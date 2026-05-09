@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
+import { awardStage } from "@/lib/progress";
 
 const FLAG = "FLAG{R0GU3_M0D3L_F0UND}";
 
@@ -246,6 +247,7 @@ export default function CtfTerminal() {
           { type: "ok", text: "  Badge: AI Scout — Unlocked" },
           { type: "ok", text: "" },
         );
+        awardStage("stage-02", 150, "badge-ai-scout");
         setSolved(true);
       } else {
         push(
@@ -350,13 +352,21 @@ export default function CtfTerminal() {
             </div>
           ) : (
             <div className="px-4 py-4 border-t border-green-500/30 bg-green-500/5 flex flex-col sm:flex-row gap-3 items-center flex-shrink-0">
-              <span className="text-green-400 font-semibold text-sm">Mission complete. Flag captured.</span>
-              <Link
-                href="/stages"
-                className="sm:ml-auto px-5 py-2 bg-cyan-500 hover:bg-cyan-400 text-black font-bold rounded-lg text-sm transition-colors"
-              >
-                Back to Stage Map →
-              </Link>
+              <span className="text-green-400 font-semibold text-sm">Mission complete. +150 XP earned.</span>
+              <div className="sm:ml-auto flex gap-3">
+                <Link
+                  href="/leaderboard"
+                  className="px-5 py-2 border border-purple-500/50 hover:border-purple-400 text-purple-400 font-semibold rounded-lg text-sm transition-colors"
+                >
+                  Leaderboard 🏆
+                </Link>
+                <Link
+                  href="/stages"
+                  className="px-5 py-2 bg-cyan-500 hover:bg-cyan-400 text-black font-bold rounded-lg text-sm transition-colors"
+                >
+                  Stage Map →
+                </Link>
+              </div>
             </div>
           )}
         </div>

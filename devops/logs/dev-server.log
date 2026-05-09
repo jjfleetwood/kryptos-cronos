@@ -8,3 +8,23 @@
 ✓ Ready in 223ms
 
  GET / 200 in 1078ms (next.js: 983ms, application-code: 95ms)
+ GET / 200 in 50ms (next.js: 4ms, application-code: 46ms)
+ GET /stages 200 in 195ms (next.js: 175ms, application-code: 20ms)
+ GET /stages/stage-01 200 in 397ms (next.js: 384ms, application-code: 13ms)
+ GET /stages 200 in 27ms (next.js: 3ms, application-code: 24ms)
+ GET /stages 200 in 24ms (next.js: 3ms, application-code: 21ms)
+ GET /stages 200 in 25ms (next.js: 2ms, application-code: 23ms)
+✓ Compiled in 44ms
+✓ Compiled in 56ms
+ GET / 200 in 106ms (next.js: 35ms, application-code: 71ms)
+ GET / 200 in 48ms (next.js: 1471µs, application-code: 46ms)
+ GET / 200 in 37ms (next.js: 2ms, application-code: 34ms)
+ GET / 200 in 37ms (next.js: 12ms, application-code: 25ms)
+ GET / 200 in 37ms (next.js: 24ms, application-code: 13ms)
+✓ Compiled in 26ms
+ GET / 200 in 74ms (next.js: 37ms, application-code: 37ms)
+ GET / 200 in 11ms (next.js: 1584µs, application-code: 10ms)
+✓ Compiled in 25ms
+ GET / 200 in 78ms (next.js: 42ms, application-code: 36ms)
+ GET / 200 in 16ms (next.js: 1431µs, application-code: 14ms)
+ GET /stages 200 in 111ms (next.js: 37ms, application-code: 74ms)

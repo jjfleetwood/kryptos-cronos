@@ -72,9 +72,14 @@ export default function StagesPage() {
       <div className="max-w-4xl mx-auto">
         {/* Header */}
         <div className="mb-12">
-          <Link href="/" className="text-gray-500 hover:text-cyan-400 text-sm mb-4 inline-block transition-colors">
-            ← Back to Home
-          </Link>
+          <div className="flex items-center justify-between mb-4">
+            <Link href="/" className="text-gray-500 hover:text-cyan-400 text-sm transition-colors">
+              ← Back to Home
+            </Link>
+            <Link href="/leaderboard" className="text-sm text-purple-400 hover:text-purple-300 transition-colors flex items-center gap-1">
+              🏆 Leaderboard
+            </Link>
+          </div>
           <h1 className="text-4xl font-bold text-white mb-2">Training Stage Map</h1>
           <p className="text-gray-400">Complete stages in order to unlock new challenges and earn XP.</p>
 

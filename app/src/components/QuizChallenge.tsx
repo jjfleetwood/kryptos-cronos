@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
+import { awardStage } from "@/lib/progress";
 
 const questions = [
   {
@@ -36,6 +37,12 @@ export default function QuizChallenge() {
   const [answered, setAnswered] = useState(false);
   const [score, setScore] = useState(0);
   const [done, setDone] = useState(false);
+
+  useEffect(() => {
+    if (done) {
+      awardStage("stage-01", 100, "badge-defender");
+    }
+  }, [done]);
 
   const q = questions[current];
 
@@ -72,13 +79,11 @@ export default function QuizChallenge() {
           </p>
 
           <div className="bg-white/5 border border-cyan-500/30 rounded-xl p-6 mb-8">
-            <div className="text-4xl font-bold text-cyan-400 mb-1">+{xpEarned} XP</div>
-            <div className="text-gray-500 text-sm">earned this session</div>
-            {score === questions.length && (
-              <div className="mt-4 inline-flex items-center gap-2 bg-yellow-500/10 border border-yellow-500/30 rounded-full px-4 py-1">
-                <span className="text-yellow-400 text-sm font-medium">🥇 First Defender Badge Unlocked!</span>
-              </div>
-            )}
+            <div className="text-4xl font-bold text-cyan-400 mb-1">+100 XP</div>
+            <div className="text-gray-500 text-sm">added to your total</div>
+            <div className="mt-4 inline-flex items-center gap-2 bg-yellow-500/10 border border-yellow-500/30 rounded-full px-4 py-1">
+              <span className="text-yellow-400 text-sm font-medium">🏅 First Defender Badge Unlocked!</span>
+            </div>
           </div>
 
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
@@ -94,6 +99,12 @@ export default function QuizChallenge() {
             >
               Retry Stage
             </button>
+            <Link
+              href="/leaderboard"
+              className="px-6 py-3 border border-purple-500/50 hover:border-purple-400 text-purple-400 hover:text-purple-300 font-semibold rounded-lg transition-colors"
+            >
+              Leaderboard 🏆
+            </Link>
             <Link
               href="/stages"
               className="px-6 py-3 bg-cyan-500 hover:bg-cyan-400 text-black font-bold rounded-lg transition-colors"
