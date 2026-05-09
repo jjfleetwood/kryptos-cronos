@@ -1,69 +1,41 @@
-import Link from "next/link";
+"use client";
 
-const stages = [
-  {
-    id: "stage-01",
-    order: 1,
-    title: "Cybersecurity Foundations",
-    description: "CIA Triad, core security principles, and your first challenges.",
-    category: "cybersecurity",
-    xp: 100,
-    unlocked: true,
-    completed: false,
-    activities: 3,
-  },
-  {
-    id: "stage-02",
-    order: 2,
-    title: "AI Basics & Threat Detection",
-    description: "How AI is used to detect and respond to cyber threats.",
-    category: "ai",
-    xp: 150,
-    unlocked: true,
-    completed: false,
-    activities: 3,
-  },
-  {
-    id: "stage-03",
-    order: 3,
-    title: "Social Engineering & Phishing",
-    description: "Recognize and defend against human-based attack vectors.",
-    category: "cybersecurity",
-    xp: 200,
-    unlocked: false,
-    completed: false,
-    activities: 2,
-  },
-  {
-    id: "stage-04",
-    order: 4,
-    title: "Network Security",
-    description: "Firewalls, VPNs, intrusion detection, and packet analysis.",
-    category: "cybersecurity",
-    xp: 250,
-    unlocked: false,
-    completed: false,
-    activities: 4,
-  },
-  {
-    id: "stage-05",
-    order: 5,
-    title: "AI Adversarial Attacks",
-    description: "Understand and defend against attacks targeting AI systems.",
-    category: "ai",
-    xp: 300,
-    unlocked: false,
-    completed: false,
-    activities: 3,
-  },
-];
+import { useEffect, useState } from "react";
+import Link from "next/link";
+import { stages as allStages } from "@/data/stages";
+import { getProgress } from "@/lib/progress";
 
 const categoryColors: Record<string, string> = {
   cybersecurity: "text-cyan-400 bg-cyan-400/10 border-cyan-400/30",
   ai: "text-purple-400 bg-purple-400/10 border-purple-400/30",
+  owasp: "text-orange-400 bg-orange-400/10 border-orange-400/30",
+};
+
+const categoryLabel: Record<string, string> = {
+  cybersecurity: "Cybersecurity",
+  ai: "AI",
+  owasp: "OWASP",
 };
 
 export default function StagesPage() {
+  const [completedStages, setCompletedStages] = useState<string[]>([]);
+  const [totalXp, setTotalXp] = useState(0);
+
+  useEffect(() => {
+    const progress = getProgress();
+    setCompletedStages(progress.completedStages);
+    setTotalXp(progress.xp);
+  }, []);
+
+  const maxXp = allStages.reduce((sum, s) => sum + s.xp, 0);
+
+  function isUnlocked(order: number): boolean {
+    if (order === 1) return true;
+    const prev = allStages.find((s) => s.order === order - 1);
+    if (!prev) return false;
+    return completedStages.includes(prev.id);
+  }
+
   return (
     <div
       className="min-h-screen px-4 py-16"
@@ -83,81 +55,107 @@ export default function StagesPage() {
           <h1 className="text-4xl font-bold text-white mb-2">Training Stage Map</h1>
           <p className="text-gray-400">Complete stages in order to unlock new challenges and earn XP.</p>
 
-          {/* XP bar placeholder */}
+          {/* XP bar */}
           <div className="mt-6 flex items-center gap-4">
             <div className="flex-1 bg-white/5 rounded-full h-3">
-              <div className="bg-cyan-500 h-3 rounded-full" style={{ width: "0%" }} />
+              <div
+                className="bg-cyan-500 h-3 rounded-full transition-all duration-700"
+                style={{ width: `${maxXp > 0 ? (totalXp / maxXp) * 100 : 0}%` }}
+              />
             </div>
-            <span className="text-cyan-400 font-mono text-sm">0 XP</span>
+            <span className="text-cyan-400 font-mono text-sm">{totalXp} XP</span>
           </div>
         </div>
 
         {/* Stage list */}
         <div className="flex flex-col gap-4">
-          {stages.map((stage) => (
-            <div
-              key={stage.id}
-              className={`relative border rounded-xl p-6 transition-all ${
-                stage.unlocked
-                  ? "border-cyan-500/40 bg-white/5 hover:border-cyan-400"
-                  : "border-white/5 bg-white/2 opacity-50"
-              }`}
-            >
-              {/* Stage number */}
-              <div className="flex items-start gap-4">
-                <div
-                  className={`w-12 h-12 rounded-full flex items-center justify-center text-lg font-bold flex-shrink-0 ${
-                    stage.unlocked ? "bg-cyan-500 text-black" : "bg-white/10 text-gray-600"
-                  }`}
-                >
-                  {stage.unlocked ? stage.order : "🔒"}
-                </div>
+          {allStages.map((stage) => {
+            const unlocked = isUnlocked(stage.order);
+            const completed = completedStages.includes(stage.id);
 
-                <div className="flex-1 min-w-0">
-                  <div className="flex flex-wrap items-center gap-2 mb-1">
-                    <h2 className="text-white font-semibold text-lg">{stage.title}</h2>
-                    <span
-                      className={`text-xs px-2 py-0.5 rounded-full border ${categoryColors[stage.category]}`}
-                    >
-                      {stage.category === "ai" ? "AI" : "Cybersecurity"}
-                    </span>
-                    {stage.id === "stage-02" && (
-                      <span className="text-xs px-2 py-0.5 rounded-full border text-purple-400 bg-purple-400/10 border-purple-400/30">
-                        🚩 CTF
+            return (
+              <div
+                key={stage.id}
+                className={`relative border rounded-xl p-6 transition-all ${
+                  completed
+                    ? "border-green-500/40 bg-green-500/5"
+                    : unlocked
+                    ? "border-cyan-500/40 bg-white/5 hover:border-cyan-400"
+                    : "border-white/5 bg-white/2 opacity-50"
+                }`}
+              >
+                <div className="flex items-start gap-4">
+                  {/* Stage number / status */}
+                  <div
+                    className={`w-12 h-12 rounded-full flex items-center justify-center text-lg font-bold flex-shrink-0 ${
+                      completed
+                        ? "bg-green-500 text-black"
+                        : unlocked
+                        ? "bg-cyan-500 text-black"
+                        : "bg-white/10 text-gray-600"
+                    }`}
+                  >
+                    {completed ? "✓" : unlocked ? stage.order : "🔒"}
+                  </div>
+
+                  <div className="flex-1 min-w-0">
+                    <div className="flex flex-wrap items-center gap-2 mb-1">
+                      <h2 className="text-white font-semibold text-lg">{stage.title}</h2>
+                      <span className={`text-xs px-2 py-0.5 rounded-full border ${categoryColors[stage.category]}`}>
+                        {categoryLabel[stage.category]}
                       </span>
+                      {stage.owaspRef && (
+                        <span className="text-xs px-2 py-0.5 rounded-full border text-orange-400 bg-orange-400/10 border-orange-400/30">
+                          {stage.owaspRef}
+                        </span>
+                      )}
+                      {stage.cveId && (
+                        <span className="text-xs px-2 py-0.5 rounded-full border text-red-400 bg-red-400/10 border-red-400/30">
+                          {stage.cveId}
+                        </span>
+                      )}
+                      {stage.challengeType === "ctf" && (
+                        <span className="text-xs px-2 py-0.5 rounded-full border text-purple-400 bg-purple-400/10 border-purple-400/30">
+                          🚩 CTF
+                        </span>
+                      )}
+                    </div>
+                    <p className="text-gray-400 text-sm mb-3">{stage.subtitle}</p>
+                    <div className="flex items-center gap-4 text-xs text-gray-500">
+                      <span className="text-cyan-600">+{stage.xp} XP</span>
+                      <span>{stage.badge.emoji} {stage.badge.name}</span>
+                      {completed && <span className="text-green-400">✓ Completed</span>}
+                    </div>
+                  </div>
+
+                  {/* CTA */}
+                  <div className="flex-shrink-0">
+                    {unlocked ? (
+                      <Link
+                        href={`/stages/${stage.id}`}
+                        className={`px-5 py-2 font-semibold rounded-lg text-sm transition-colors ${
+                          completed
+                            ? "bg-green-500/20 hover:bg-green-500/30 text-green-400 border border-green-500/30"
+                            : "bg-cyan-500 hover:bg-cyan-400 text-black"
+                        }`}
+                      >
+                        {completed ? "Replay →" : "Start →"}
+                      </Link>
+                    ) : (
+                      <div className="px-5 py-2 bg-white/5 text-gray-600 rounded-lg text-sm cursor-not-allowed">
+                        Locked
+                      </div>
                     )}
                   </div>
-                  <p className="text-gray-400 text-sm mb-3">{stage.description}</p>
-
-                  <div className="flex items-center gap-6 text-xs text-gray-500">
-                    <span>{stage.activities} activities</span>
-                    <span className="text-cyan-600">+{stage.xp} XP</span>
-                  </div>
                 </div>
 
-                {/* CTA */}
-                <div className="flex-shrink-0">
-                  {stage.unlocked ? (
-                    <Link
-                      href={`/stages/${stage.id}`}
-                      className="px-5 py-2 bg-cyan-500 hover:bg-cyan-400 text-black font-semibold rounded-lg text-sm transition-colors"
-                    >
-                      Start →
-                    </Link>
-                  ) : (
-                    <div className="px-5 py-2 bg-white/5 text-gray-600 rounded-lg text-sm cursor-not-allowed">
-                      Locked
-                    </div>
-                  )}
-                </div>
+                {/* Connector line */}
+                {stage.order < allStages.length && (
+                  <div className="absolute left-10 -bottom-4 w-0.5 h-4 bg-white/10" />
+                )}
               </div>
-
-              {/* Connector line */}
-              {stage.order < stages.length && (
-                <div className="absolute left-10 -bottom-4 w-0.5 h-4 bg-white/10" />
-              )}
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </div>

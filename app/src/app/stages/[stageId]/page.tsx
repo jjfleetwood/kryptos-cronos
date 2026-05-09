@@ -1,5 +1,4 @@
-import QuizChallenge from "@/components/QuizChallenge";
-import CtfTerminal from "@/components/CtfTerminal";
+import StageContainer from "@/components/StageContainer";
 
 export default async function StagePage({
   params,
@@ -7,10 +6,5 @@ export default async function StagePage({
   params: Promise<{ stageId: string }>;
 }) {
   const { stageId } = await params;
-
-  if (stageId === "stage-02") {
-    return <CtfTerminal />;
-  }
-
-  return <QuizChallenge />;
+  return <StageContainer stageId={stageId} />;
 }
