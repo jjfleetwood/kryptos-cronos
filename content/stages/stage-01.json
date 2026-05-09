@@ -1,0 +1,15 @@
+{
+  "id": "stage-01",
+  "title": "Cybersecurity Foundations",
+  "description": "Learn the core principles of cybersecurity: confidentiality, integrity, and availability. Complete challenges to unlock Stage 2.",
+  "category": "cybersecurity",
+  "order": 1,
+  "xpReward": 100,
+  "prerequisites": [],
+  "activities": ["activity-01-01", "activity-01-02", "activity-01-03"],
+  "badge": {
+    "id": "badge-defender",
+    "name": "First Defender",
+    "description": "Completed Cybersecurity Foundations"
+  }
+}

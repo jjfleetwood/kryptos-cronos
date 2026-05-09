@@ -1,0 +1,15 @@
+{
+  "id": "stage-03",
+  "title": "Social Engineering & Phishing",
+  "description": "Recognize and defend against human-based attack vectors. Spot phishing emails, pretexting, and manipulation tactics.",
+  "category": "cybersecurity",
+  "order": 3,
+  "xpReward": 200,
+  "prerequisites": ["stage-01"],
+  "activities": ["activity-03-01", "activity-03-02"],
+  "badge": {
+    "id": "badge-human-firewall",
+    "name": "Human Firewall",
+    "description": "Completed Social Engineering & Phishing"
+  }
+}

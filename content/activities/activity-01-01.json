@@ -1,0 +1,31 @@
+{
+  "id": "activity-01-01",
+  "stageId": "stage-01",
+  "title": "The CIA Triad",
+  "type": "quiz",
+  "description": "Test your knowledge of the three pillars of information security: Confidentiality, Integrity, and Availability.",
+  "xpReward": 30,
+  "questions": [
+    {
+      "id": "q1",
+      "text": "Which CIA Triad principle ensures that data is only accessible to authorized users?",
+      "options": ["Confidentiality", "Integrity", "Availability", "Authentication"],
+      "correctIndex": 0,
+      "explanation": "Confidentiality ensures that sensitive information is only accessible to those with proper authorization."
+    },
+    {
+      "id": "q2",
+      "text": "A hospital's patient record system must be accessible 24/7. Which principle does this represent?",
+      "options": ["Confidentiality", "Integrity", "Availability", "Non-repudiation"],
+      "correctIndex": 2,
+      "explanation": "Availability ensures that systems and data are accessible when needed by authorized users."
+    },
+    {
+      "id": "q3",
+      "text": "A hacker modifies a bank transaction record without authorization. Which CIA principle was violated?",
+      "options": ["Confidentiality", "Integrity", "Availability", "Confidentiality and Availability"],
+      "correctIndex": 1,
+      "explanation": "Integrity ensures data is accurate and has not been tampered with by unauthorized parties."
+    }
+  ]
+}

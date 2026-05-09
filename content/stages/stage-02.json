@@ -1,0 +1,15 @@
+{
+  "id": "stage-02",
+  "title": "AI Basics & Threat Detection",
+  "description": "Discover how AI is used to detect and respond to cyber threats. Learn about machine learning models in security contexts.",
+  "category": "ai",
+  "order": 2,
+  "xpReward": 150,
+  "prerequisites": ["stage-01"],
+  "activities": ["activity-02-01", "activity-02-02", "activity-02-03"],
+  "badge": {
+    "id": "badge-ai-scout",
+    "name": "AI Scout",
+    "description": "Completed AI Basics & Threat Detection"
+  }
+}
