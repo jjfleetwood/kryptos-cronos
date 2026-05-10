@@ -8,6 +8,7 @@ import remarkGfm from "remark-gfm";
 import { isAdmin } from "@/lib/auth";
 
 const DOCS = [
+  { id: "release-notes", label: "Release Notes", file: "RELEASE_NOTES.md", icon: "📋", color: "text-amber-400" },
   { id: "security", label: "Security Briefing", file: "SECURITY_BRIEFING.md", icon: "🔐", color: "text-red-400" },
   { id: "architecture", label: "Technical Architecture", file: "TECHNICAL_ARCHITECTURE.md", icon: "🏗️", color: "text-cyan-400" },
   { id: "proposal-pro", label: "Business Proposal", file: "BUSINESS_PROPOSAL_PRO.md", icon: "💼", color: "text-purple-400" },
