@@ -39,7 +39,26 @@ export type CtfConfig = {
   extraCommands?: Record<string, CtfCommand>;
 };
 
+export type Wonder = {
+  name: string;
+  location: string;
+  era: string;
+  emoji: string;
+};
+
+export type EpochConfig = {
+  id: string;
+  name: string;
+  subtitle: string;
+  description: string;
+  emoji: string;
+  color: string;
+  unlocked: boolean;
+};
+
 export type StageConfig = {
+  epochId: string;
+  wonder: Wonder;
   id: string;
   order: number;
   title: string;
