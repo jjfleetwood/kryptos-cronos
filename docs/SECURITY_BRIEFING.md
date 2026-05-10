@@ -1,7 +1,7 @@
 # Kryptós CronOS Security Briefing
 **Classification:** Internal — Pre-Production  
 **Date:** 2026-05-09  
-**Reviewed by:** Claude Sonnet 4.6 (Automated Security Analysis)  
+**Reviewed by:** Internal Security Analysis  
 **Version:** 1.0
 
 ---

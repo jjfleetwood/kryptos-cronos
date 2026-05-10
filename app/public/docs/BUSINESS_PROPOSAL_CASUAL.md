@@ -59,7 +59,7 @@ Each one has: a full briefing (like a Wikipedia article written for someone who 
 
 Right now the content is static and excellent. The next version gets smarter about you specifically.
 
-**Adaptive difficulty:** If you burn through the SQL injection challenge in 3 minutes, the platform routes you to blind SQLi and time-based injection instead of congratulating you. If you're stuck for 20 minutes, it scaffolds hints. The Claude API reads your behavior and adjusts.
+**Adaptive difficulty:** If you burn through the SQL injection challenge in 3 minutes, the platform routes you to blind SQLi and time-based injection instead of congratulating you. If you're stuck for 20 minutes, it scaffolds hints. The AI reads your behavior and adjusts.
 
 **Personalized paths:** A developer gets SQL injection and XSS prioritized. A sysadmin gets network misconfigs and patching scenarios. An executive gets "what does this breach mean for my company" scenarios. Same content, different sequencing, different framing.
 
@@ -125,7 +125,7 @@ Built by one founder with an AI coding environment in one sprint. No engineering
 
 That buys:
 - 2 engineers for a year
-- Claude API budget for the personalization layer
+- AI API budget for the personalization layer
 - GTM to get to 50,000 users and $1.2M ARR
 - Security hardening to make the enterprise sales conversations easy
 

@@ -77,13 +77,13 @@ Kryptós CronOS delivers training through **stage-based missions** that simulate
 The current platform is a strong foundation. The defensible moat is the AI layer being built on top of it:
 
 ### Adaptive Difficulty
-Using Claude (Anthropic API), the platform will analyze a learner's command patterns, flag submission attempts, and time-on-task to dynamically adjust challenge difficulty. A learner who immediately exploits the SQL injection gets pushed to blind SQLi and second-order injection. A learner who struggles gets targeted hints and scaffolded sub-challenges.
+Using an AI API, the platform will analyze a learner's command patterns, flag submission attempts, and time-on-task to dynamically adjust challenge difficulty. A learner who immediately exploits the SQL injection gets pushed to blind SQLi and second-order injection. A learner who struggles gets targeted hints and scaffolded sub-challenges.
 
 ### Personalized Learning Paths
 Rather than a fixed 12-stage sequence, AI models each learner's knowledge gaps and professional context (developer, sysadmin, executive, student) to recommend the optimal next challenge. A developer gets SQL injection and XSS first. A sysadmin gets network security and misconfiguration. An executive gets social engineering and business impact scenarios.
 
 ### AI Tutoring
-An in-terminal AI assistant (Claude API) that responds to natural-language questions during CTF challenges — without giving away the answer. "What does this log entry mean?" gets an educational explanation. "Just tell me the flag" gets a Socratic redirect.
+An in-terminal AI assistant (AI API) that responds to natural-language questions during CTF challenges — without giving away the answer. "What does this log entry mean?" gets an educational explanation. "Just tell me the flag" gets a Socratic redirect.
 
 ### Threat Intelligence Feed
 Weekly AI-generated challenge updates based on real CVEs published in the past 7 days. Learners are always training on current threats, not historical case studies.
@@ -125,7 +125,7 @@ This creates a tripartite flywheel: learners build skills → employers find cer
 - Target: $500K ARR
 
 ### Phase 3 — AI Personalization (Q1 2027)
-- Launch Claude-powered adaptive difficulty and AI tutoring
+- Launch AI-powered adaptive difficulty and AI tutoring
 - Introduce weekly CVE-based challenge drops
 - Target: $2.5M ARR, Series A
 
@@ -161,7 +161,7 @@ Our differentiation: the only platform combining structured curriculum, real-exp
 | Use of Funds | Allocation |
 |---|---|
 | Engineering (2 FTE, 12 months) | $720K |
-| AI/ML — Claude API + personalization layer | $120K |
+| AI/ML — AI API + personalization layer | $120K |
 | Sales & marketing (Phase 1 GTM) | $300K |
 | Infrastructure & security hardening | $80K |
 | Legal, ops, reserve | $280K |
