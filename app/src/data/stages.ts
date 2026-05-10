@@ -21,7 +21,7 @@ export const epochs: EpochConfig[] = [
     description: "Field operations against real Cisco vulnerabilities — buffer overflows, authentication bypasses, command injection, path traversal. Each mission places you at a landmark location around the world.",
     emoji: "🌐",
     color: "blue",
-    unlocked: true,
+    unlocked: false,
   },
 ];
 

@@ -61,6 +61,13 @@ export default function StagesPage() {
 
   const maxXp = allStages.reduce((sum, s) => sum + s.xp, 0);
 
+  function isEpochUnlocked(epochIndex: number): boolean {
+    if (epochIndex === 0) return true;
+    const prevEpoch = epochs[epochIndex - 1];
+    const prevStages = allStages.filter((s) => s.epochId === prevEpoch.id);
+    return prevStages.length > 0 && prevStages.every((s) => completedStages.includes(s.id));
+  }
+
   function isUnlocked(epochId: string, order: number): boolean {
     if (order === 1) return true;
     const prev = allStages.find((s) => s.epochId === epochId && s.order === order - 1);
@@ -101,16 +108,17 @@ export default function StagesPage() {
 
         {/* Epoch tabs */}
         <div className="flex gap-2 mb-6 flex-wrap">
-          {epochs.map((epoch) => {
+          {epochs.map((epoch, epochIndex) => {
             const isActive = epoch.id === activeEpoch;
+            const unlocked = isEpochUnlocked(epochIndex);
             const ea = epochAccent[epoch.id] ?? epochAccent.ancient;
             return (
               <button
                 key={epoch.id}
-                onClick={() => epoch.unlocked && setActiveEpoch(epoch.id)}
-                disabled={!epoch.unlocked}
+                onClick={() => unlocked && setActiveEpoch(epoch.id)}
+                disabled={!unlocked}
                 className={`flex items-center gap-2 px-4 py-2 rounded-lg border text-sm font-semibold transition-all ${
-                  !epoch.unlocked
+                  !unlocked
                     ? "border-white/10 text-gray-600 bg-white/3 cursor-not-allowed opacity-50"
                     : isActive
                     ? ea.tab
@@ -119,7 +127,7 @@ export default function StagesPage() {
               >
                 <span>{epoch.emoji}</span>
                 <span>{epoch.name}</span>
-                {!epoch.unlocked && <span className="text-xs">🔒</span>}
+                {!unlocked && <span className="text-xs">🔒</span>}
               </button>
             );
           })}
