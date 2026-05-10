@@ -27,10 +27,10 @@ const epochAccent: Record<string, { tab: string; active: string; bar: string; ba
     badge: "text-amber-400 bg-amber-400/10 border-amber-400/30",
   },
   medieval: {
-    tab: "text-violet-400 border-violet-400 bg-violet-400/10",
-    active: "border-violet-400/60 bg-violet-500/5",
-    bar: "bg-violet-500",
-    badge: "text-violet-400 bg-violet-400/10 border-violet-400/30",
+    tab: "text-blue-400 border-blue-400 bg-blue-400/10",
+    active: "border-blue-400/60 bg-blue-500/5",
+    bar: "bg-blue-500",
+    badge: "text-blue-400 bg-blue-400/10 border-blue-400/30",
   },
 };
 
