@@ -162,12 +162,17 @@ export default function LoginPage() {
                   {loginLoading ? "Verifying…" : "Log In →"}
                 </button>
 
-                <p className="text-center text-xs text-gray-700">
-                  No account?{" "}
-                  <button type="button" onClick={() => setTab("signup")} className="text-cyan-500 hover:text-cyan-400 transition-colors">
-                    Sign up free
-                  </button>
-                </p>
+                <div className="flex items-center justify-between text-xs text-gray-700">
+                  <span>
+                    No account?{" "}
+                    <button type="button" onClick={() => setTab("signup")} className="text-cyan-500 hover:text-cyan-400 transition-colors">
+                      Sign up free
+                    </button>
+                  </span>
+                  <Link href="/forgot-password" className="text-gray-600 hover:text-gray-400 transition-colors">
+                    Forgot password?
+                  </Link>
+                </div>
               </form>
             ) : (
               <form onSubmit={handleSignup} className="flex flex-col gap-4">

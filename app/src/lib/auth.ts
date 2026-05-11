@@ -164,6 +164,12 @@ export async function register(
   saveUser(newUser);
   setSession(newUser.username);
 
+  fetch("/api/sync-user", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ username: newUser.username, email: newUser.email, passwordHash, salt }),
+  }).catch(() => {});
+
   const adminGranted = await grantAdminIfEligible(newUser.username);
   if (adminGranted) markUserAdmin(newUser.username);
 
