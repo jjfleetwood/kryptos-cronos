@@ -196,5 +196,7 @@ export async function login(
 
   setSession(user.username);
   await grantAdminIfEligible(user.username);
+  const { restoreFromServer } = await import("@/lib/progress");
+  await restoreFromServer(user.username);
   return { success: true };
 }

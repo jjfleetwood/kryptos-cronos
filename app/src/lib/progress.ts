@@ -43,5 +43,33 @@ export function awardStage(stageId: string, xp: number, badge?: string): UserPro
     p.badges.push(badge);
   }
   save(p);
+
+  const username = getSession();
+  if (username) {
+    fetch("/api/progress", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ username, xp: p.xp, completedStages: p.completedStages, badges: p.badges }),
+    }).catch(() => {});
+  }
+
   return p;
+}
+
+export async function restoreFromServer(username: string): Promise<void> {
+  try {
+    const res = await fetch(`/api/progress?username=${encodeURIComponent(username)}`);
+    if (!res.ok) return;
+    const data = await res.json();
+    if (!data) return;
+    const local = load();
+    const merged: UserProgress = {
+      xp: Math.max(local.xp, data.xp),
+      completedStages: Array.from(new Set([...local.completedStages, ...data.completedStages])),
+      badges: Array.from(new Set([...local.badges, ...data.badges])),
+    };
+    save(merged);
+  } catch {
+    // ignore — local progress is still valid
+  }
 }

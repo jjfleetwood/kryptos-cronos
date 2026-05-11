@@ -6,27 +6,26 @@ import { getProgress } from "@/lib/progress";
 import { getSession } from "@/lib/auth";
 
 type Player = {
-  name: string;
+  username: string;
   xp: number;
   stages: number;
   badges: number;
-  lastActive: string;
+  lastActive: number | null;
   isCurrentPlayer?: boolean;
 };
 
-const mockPlayers: Player[] = [
-  { name: "0xGhost",     xp: 580, stages: 4, badges: 3, lastActive: "2 min ago" },
-  { name: "NullByte",    xp: 440, stages: 3, badges: 2, lastActive: "18 min ago" },
-  { name: "CipherKing",  xp: 390, stages: 3, badges: 2, lastActive: "1 hr ago" },
-  { name: "ShadowProxy", xp: 310, stages: 2, badges: 1, lastActive: "3 hr ago" },
-  { name: "ByteWitch",   xp: 180, stages: 1, badges: 1, lastActive: "1 day ago" },
-  { name: "PhantomRoot", xp: 150, stages: 1, badges: 1, lastActive: "1 day ago" },
-  { name: "NetRaider",   xp: 90,  stages: 1, badges: 0, lastActive: "2 days ago" },
-  { name: "VirusHunter", xp: 50,  stages: 0, badges: 0, lastActive: "3 days ago" },
-  { name: "RootKit99",   xp: 30,  stages: 0, badges: 0, lastActive: "5 days ago" },
-];
-
 const MEDAL: Record<number, string> = { 1: "🥇", 2: "🥈", 3: "🥉" };
+
+function timeAgo(ts: number | null): string {
+  if (!ts) return "—";
+  const diff = Date.now() - ts;
+  const m = Math.floor(diff / 60000);
+  if (m < 1) return "now";
+  if (m < 60) return `${m}m ago`;
+  const h = Math.floor(m / 60);
+  if (h < 24) return `${h}h ago`;
+  return `${Math.floor(h / 24)}d ago`;
+}
 
 export default function LeaderboardPage() {
   const [rows, setRows] = useState<(Player & { rank: number })[]>([]);
@@ -35,10 +34,11 @@ export default function LeaderboardPage() {
   const [myStages, setMyStages] = useState(0);
   const [myBadges, setMyBadges] = useState(0);
   const [myName, setMyName] = useState("Guest");
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const sessionUsername = getSession();
-    const displayName = sessionUsername ?? "Guest";
+    const username = getSession();
+    const displayName = username ?? "Guest";
     setMyName(displayName);
 
     const p = getProgress();
@@ -46,19 +46,39 @@ export default function LeaderboardPage() {
     setMyStages(p.completedStages.length);
     setMyBadges(p.badges.length);
 
-    const me: Player = {
-      name: displayName,
-      xp: p.xp,
-      stages: p.completedStages.length,
-      badges: p.badges.length,
-      lastActive: "now",
-      isCurrentPlayer: true,
-    };
+    fetch("/api/leaderboard")
+      .then((r) => r.json())
+      .then((serverPlayers: Player[]) => {
+        const me: Player = {
+          username: displayName,
+          xp: p.xp,
+          stages: p.completedStages.length,
+          badges: p.badges.length,
+          lastActive: Date.now(),
+          isCurrentPlayer: true,
+        };
 
-    const all = [...mockPlayers, me].sort((a, b) => b.xp - a.xp);
-    const ranked = all.map((player, i) => ({ ...player, rank: i + 1 }));
-    setRows(ranked);
-    setMyRank(ranked.find((r) => r.isCurrentPlayer)?.rank ?? null);
+        const serverWithoutMe = serverPlayers.filter(
+          (pl) => pl.username.toLowerCase() !== displayName.toLowerCase()
+        );
+        const all = [...serverWithoutMe, me].sort((a, b) => b.xp - a.xp);
+        const ranked = all.map((player, i) => ({ ...player, rank: i + 1 }));
+        setRows(ranked);
+        setMyRank(ranked.find((r) => r.isCurrentPlayer)?.rank ?? null);
+      })
+      .catch(() => {
+        const me: Player = {
+          username: displayName,
+          xp: p.xp,
+          stages: p.completedStages.length,
+          badges: p.badges.length,
+          lastActive: Date.now(),
+          isCurrentPlayer: true,
+        };
+        setRows([{ ...me, rank: 1 }]);
+        setMyRank(1);
+      })
+      .finally(() => setLoading(false));
   }, []);
 
   const maxXP = Math.max(...rows.map((r) => r.xp), 1);
@@ -104,7 +124,6 @@ export default function LeaderboardPage() {
 
         {/* Table */}
         <div className="bg-white/3 border border-white/10 rounded-xl overflow-hidden">
-          {/* Table header */}
           <div className="grid grid-cols-[3rem_1fr_10rem_5rem_5rem_7rem] gap-2 px-5 py-3 border-b border-white/10 text-xs text-gray-500 font-semibold uppercase tracking-wider">
             <div>#</div>
             <div>Player</div>
@@ -114,90 +133,80 @@ export default function LeaderboardPage() {
             <div className="text-right hidden sm:block">Active</div>
           </div>
 
-          {/* Rows */}
-          {rows.map((player) => (
-            <div
-              key={player.name}
-              className={`grid grid-cols-[3rem_1fr_10rem_5rem_5rem_7rem] gap-2 px-5 py-4 border-b border-white/5 last:border-0 items-center transition-colors ${
-                player.isCurrentPlayer
-                  ? "bg-cyan-500/8 border-l-2 border-l-cyan-500"
-                  : "hover:bg-white/3"
-              }`}
-            >
-              {/* Rank */}
-              <div className="font-mono text-sm font-bold">
-                {MEDAL[player.rank] ? (
-                  <span className="text-lg">{MEDAL[player.rank]}</span>
-                ) : (
-                  <span className="text-gray-500">{player.rank}</span>
-                )}
-              </div>
-
-              {/* Name */}
-              <div className="flex items-center gap-2 min-w-0">
-                <div
-                  className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0 ${
-                    player.isCurrentPlayer
-                      ? "bg-cyan-500 text-black"
-                      : "bg-white/10 text-gray-400"
-                  }`}
-                >
-                  {player.name[0].toUpperCase()}
-                </div>
-                <span
-                  className={`font-semibold truncate ${
-                    player.isCurrentPlayer ? "text-cyan-400" : "text-white"
-                  }`}
-                >
-                  {player.name}
-                  {player.isCurrentPlayer && (
-                    <span className="ml-2 text-xs text-cyan-600 font-normal">(you)</span>
+          {loading ? (
+            <div className="py-16 text-center text-gray-600 text-sm">Loading rankings…</div>
+          ) : (
+            rows.map((player) => (
+              <div
+                key={player.username}
+                className={`grid grid-cols-[3rem_1fr_10rem_5rem_5rem_7rem] gap-2 px-5 py-4 border-b border-white/5 last:border-0 items-center transition-colors ${
+                  player.isCurrentPlayer
+                    ? "bg-cyan-500/8 border-l-2 border-l-cyan-500"
+                    : "hover:bg-white/3"
+                }`}
+              >
+                <div className="font-mono text-sm font-bold">
+                  {MEDAL[player.rank] ? (
+                    <span className="text-lg">{MEDAL[player.rank]}</span>
+                  ) : (
+                    <span className="text-gray-500">{player.rank}</span>
                   )}
-                </span>
-              </div>
+                </div>
 
-              {/* XP with bar */}
-              <div>
-                <div className="flex items-center gap-2">
-                  <div className="flex-1 bg-white/5 rounded-full h-1.5">
-                    <div
-                      className={`h-1.5 rounded-full transition-all duration-700 ${
-                        player.isCurrentPlayer ? "bg-cyan-400" : "bg-purple-500"
-                      }`}
-                      style={{ width: `${(player.xp / maxXP) * 100}%` }}
-                    />
+                <div className="flex items-center gap-2 min-w-0">
+                  <div
+                    className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0 ${
+                      player.isCurrentPlayer ? "bg-cyan-500 text-black" : "bg-white/10 text-gray-400"
+                    }`}
+                  >
+                    {player.username[0].toUpperCase()}
                   </div>
-                  <span className={`text-xs font-mono flex-shrink-0 ${player.isCurrentPlayer ? "text-cyan-400" : "text-gray-400"}`}>
-                    {player.xp}
+                  <span className={`font-semibold truncate ${player.isCurrentPlayer ? "text-cyan-400" : "text-white"}`}>
+                    {player.username}
+                    {player.isCurrentPlayer && (
+                      <span className="ml-2 text-xs text-cyan-600 font-normal">(you)</span>
+                    )}
                   </span>
                 </div>
-              </div>
 
-              {/* Stages */}
-              <div className="text-center text-sm text-gray-400">{player.stages}</div>
+                <div>
+                  <div className="flex items-center gap-2">
+                    <div className="flex-1 bg-white/5 rounded-full h-1.5">
+                      <div
+                        className={`h-1.5 rounded-full transition-all duration-700 ${
+                          player.isCurrentPlayer ? "bg-cyan-400" : "bg-purple-500"
+                        }`}
+                        style={{ width: `${(player.xp / maxXP) * 100}%` }}
+                      />
+                    </div>
+                    <span className={`text-xs font-mono flex-shrink-0 ${player.isCurrentPlayer ? "text-cyan-400" : "text-gray-400"}`}>
+                      {player.xp}
+                    </span>
+                  </div>
+                </div>
 
-              {/* Badges */}
-              <div className="text-center text-sm">
-                {player.badges > 0 ? (
-                  <span className="text-yellow-400">{"🏅".repeat(Math.min(player.badges, 3))}</span>
-                ) : (
-                  <span className="text-gray-700">—</span>
-                )}
-              </div>
+                <div className="text-center text-sm text-gray-400">{player.stages}</div>
 
-              {/* Last active */}
-              <div className="text-right text-xs text-gray-600 hidden sm:block">
-                {player.isCurrentPlayer ? (
-                  <span className="text-green-500">now</span>
-                ) : (
-                  player.lastActive
-                )}
+                <div className="text-center text-sm">
+                  {player.badges > 0 ? (
+                    <span className="text-yellow-400">{"🏅".repeat(Math.min(player.badges, 3))}</span>
+                  ) : (
+                    <span className="text-gray-700">—</span>
+                  )}
+                </div>
+
+                <div className="text-right text-xs text-gray-600 hidden sm:block">
+                  {player.isCurrentPlayer ? (
+                    <span className="text-green-500">now</span>
+                  ) : (
+                    timeAgo(player.lastActive)
+                  )}
+                </div>
               </div>
-            </div>
-          ))}
+            ))
+          )}
         </div>
 
-        {/* CTA */}
         <div className="mt-8 text-center">
           <p className="text-gray-600 text-sm mb-4">Complete more stages to climb the rankings.</p>
           <Link
