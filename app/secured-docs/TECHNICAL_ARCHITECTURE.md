@@ -371,7 +371,7 @@ git push origin master
                 ├── Build:   next build (Turbopack)
                 └── Deploy:  serverless functions + static assets → iad1 (us-east)
                         │
-                        └── Production: kryptochron.vercel.app
+                        └── Production: kryptocronos.com
 ```
 
 **Note:** Vercel GitHub auto-deploy integration is not active. Deployments are triggered manually via the Vercel CLI.

@@ -267,7 +267,7 @@ Developer (local)
                     ├── Output: .next/ folder
                     └── Deploy: serverless functions + static assets → iad1 (us-east)
                             │
-                            └── Production URL: kryptochron.vercel.app
+                            └── Production URL: kryptocronos.com
 ```
 
 ### 8.2 Deployment Configuration

@@ -90,7 +90,7 @@
 - Admin dashboard at `/admin` — user management and docs viewer
 - Admin docs panel: security briefing, technical architecture, business proposals, release notes
 - Email notification on new user registration via Resend API
-- Deployed to kryptochron.vercel.app
+- Deployed to kryptocronos.com
 
 ---
 

@@ -112,7 +112,7 @@ This isn't a pitch deck with a mockup. It's a working product:
 - 12 fully built stages with real CTF challenges
 - Auth system (register, login, per-user progress)
 - Leaderboard with live XP ranking
-- Deployed and running: **kryptochron.vercel.app**
+- Deployed and running: **kryptocronos.com**
 - GitHub: **github.com/jjfleetwood/kryptos-cronos**
 
 Built by one founder with an AI coding environment in one sprint. No engineering team yet. The tech is production-grade Next.js — not a throwaway demo that needs to be rebuilt.
@@ -141,4 +141,4 @@ If that sounds like something people will pay for, let's talk.
 
 ---
 
-*kryptochron.vercel.app | github.com/jjfleetwood/kryptos-cronos*
+*kryptocronos.com | github.com/jjfleetwood/kryptos-cronos*
