@@ -20,6 +20,12 @@ const categoryLabel: Record<string, string> = {
 };
 
 const epochAccent: Record<string, { tab: string; active: string; bar: string; badge: string }> = {
+  "before-times": {
+    tab: "text-emerald-400 border-emerald-400 bg-emerald-400/10",
+    active: "border-emerald-400/60 bg-emerald-500/5",
+    bar: "bg-emerald-500",
+    badge: "text-emerald-400 bg-emerald-400/10 border-emerald-400/30",
+  },
   ancient: {
     tab: "text-amber-400 border-amber-400 bg-amber-400/10",
     active: "border-amber-400/60 bg-amber-500/5",
@@ -39,7 +45,7 @@ export default function StagesPage() {
   const [completedStages, setCompletedStages] = useState<string[]>([]);
   const [totalXp, setTotalXp] = useState(0);
   const [username, setUsername] = useState<string | null>(null);
-  const [activeEpoch, setActiveEpoch] = useState("ancient");
+  const [activeEpoch, setActiveEpoch] = useState("before-times");
 
   useEffect(() => {
     const session = getSession();
@@ -183,7 +189,7 @@ export default function StagesPage() {
                   completed
                     ? "border-green-500/40 bg-green-500/5"
                     : unlocked
-                    ? "border-amber-500/40 bg-white/5 hover:border-amber-400"
+                    ? `${accent.active} hover:brightness-110`
                     : "border-white/5 bg-white/2 opacity-50"
                 }`}
               >
@@ -194,7 +200,7 @@ export default function StagesPage() {
                       completed
                         ? "bg-green-500 text-black"
                         : unlocked
-                        ? "bg-amber-500 text-black"
+                        ? `${accent.bar} text-black`
                         : "bg-white/10 text-gray-600"
                     }`}
                   >
@@ -249,7 +255,7 @@ export default function StagesPage() {
                         className={`px-5 py-2 font-semibold rounded-lg text-sm transition-colors ${
                           completed
                             ? "bg-green-500/20 hover:bg-green-500/30 text-green-400 border border-green-500/30"
-                            : "bg-amber-500 hover:bg-amber-400 text-black"
+                            : `${accent.bar} hover:brightness-110 text-black`
                         }`}
                       >
                         {completed ? "Replay →" : "Enter →"}
