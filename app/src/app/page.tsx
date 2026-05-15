@@ -42,7 +42,7 @@ export default function Home() {
           <div className="relative z-10 max-w-4xl mx-auto">
             <div className="inline-flex items-center gap-2 bg-cyan-500/10 border border-cyan-500/25 rounded-full px-4 py-1.5 mb-8 text-sm">
               <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
-              <span className="text-cyan-400 font-medium">12 Stages · Real CVEs · Hands-On CTF</span>
+              <span className="text-cyan-400 font-medium">54 Stages · Real CVEs · Hands-On CTF</span>
             </div>
 
             <h1 className="text-6xl md:text-8xl font-black mb-6 leading-none tracking-tight">
@@ -87,10 +87,10 @@ export default function Home() {
         <section className="border-y border-white/5 bg-white/2 py-10 px-4">
           <div className="max-w-3xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             {[
-              { value: "12", label: "Training Stages" },
+              { value: "54", label: "Training Stages" },
               { value: "10", label: "OWASP Top 10" },
-              { value: "5", label: "Real CVEs" },
-              { value: "3,500+", label: "Open Cyber Jobs (M)" },
+              { value: "12+", label: "Real CVEs" },
+              { value: "3.5M", label: "Unfilled Cyber Jobs" },
             ].map((s) => (
               <div key={s.label}>
                 <div
@@ -222,6 +222,120 @@ export default function Home() {
                 </div>
               ))}
             </div>
+          </div>
+        </section>
+
+        {/* ── Job outcomes ── */}
+        <section className="py-24 px-4 bg-white/2 border-y border-white/5">
+          <div className="max-w-5xl mx-auto">
+            <div className="text-center mb-4">
+              <p className="text-xs font-mono text-emerald-400/70 uppercase tracking-widest mb-3">3.5 million unfilled positions globally</p>
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-3">Train for jobs that are hiring right now</h2>
+              <p className="text-gray-500 max-w-xl mx-auto">Every stage maps to real skills employers list in job postings. Here's what you'll be qualified to do.</p>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-4 mt-12">
+              {[
+                {
+                  role: "SOC Analyst",
+                  salary: "$70K – $100K",
+                  emoji: "🛡️",
+                  color: "cyan",
+                  skills: ["Threat detection & log analysis", "Incident triage and response", "CVE identification"],
+                  stages: ["AI Threat Detection", "WannaCry / EternalBlue", "Log4Shell"],
+                },
+                {
+                  role: "Penetration Tester",
+                  salary: "$90K – $140K",
+                  emoji: "🎯",
+                  color: "purple",
+                  skills: ["Web application exploitation", "Network vulnerability assessment", "CTF-style attack simulation"],
+                  stages: ["SQL Injection", "XSS", "SSRF", "Heartbleed"],
+                },
+                {
+                  role: "Cloud Security Engineer",
+                  salary: "$110K – $160K",
+                  emoji: "☁️",
+                  color: "orange",
+                  skills: ["IAM misconfigurations", "Server-side request forgery", "Secrets management"],
+                  stages: ["SSRF / Capital One", "MongoDB Misconfiguration", "Broken Access Control"],
+                },
+                {
+                  role: "AppSec / Secure Dev",
+                  salary: "$100K – $150K",
+                  emoji: "💻",
+                  color: "emerald",
+                  skills: ["OWASP Top 10 in production code", "Auth and session security", "Dependency risk management"],
+                  stages: ["Auth Failures", "Equifax / Struts", "Log4Shell"],
+                },
+              ].map((job) => {
+                const accent: Record<string, string> = {
+                  cyan: "border-cyan-500/20 from-cyan-500/8",
+                  purple: "border-purple-500/20 from-purple-500/8",
+                  orange: "border-orange-500/20 from-orange-500/8",
+                  emerald: "border-emerald-500/20 from-emerald-500/8",
+                };
+                const tag: Record<string, string> = {
+                  cyan: "text-cyan-400 bg-cyan-500/10 border-cyan-500/20",
+                  purple: "text-purple-400 bg-purple-500/10 border-purple-500/20",
+                  orange: "text-orange-400 bg-orange-500/10 border-orange-500/20",
+                  emerald: "text-emerald-400 bg-emerald-500/10 border-emerald-500/20",
+                };
+                const dot: Record<string, string> = {
+                  cyan: "bg-cyan-400",
+                  purple: "bg-purple-400",
+                  orange: "bg-orange-400",
+                  emerald: "bg-emerald-400",
+                };
+                return (
+                  <div
+                    key={job.role}
+                    className={`rounded-2xl border ${accent[job.color]} bg-gradient-to-br ${accent[job.color]} to-transparent p-6`}
+                  >
+                    <div className="flex items-start justify-between mb-4">
+                      <div>
+                        <p className="text-xs text-gray-600 mb-1 font-mono uppercase tracking-wider">Role</p>
+                        <h3 className="text-white font-bold text-xl">{job.emoji} {job.role}</h3>
+                      </div>
+                      <div className="text-right">
+                        <p className="text-xs text-gray-600 mb-1 font-mono uppercase tracking-wider">Avg salary</p>
+                        <p className="text-white font-bold text-sm">{job.salary}</p>
+                      </div>
+                    </div>
+
+                    <div className="mb-4">
+                      <p className="text-xs text-gray-600 font-mono uppercase tracking-wider mb-2">Skills you'll build</p>
+                      <ul className="space-y-1">
+                        {job.skills.map((s) => (
+                          <li key={s} className="flex items-center gap-2 text-sm text-gray-400">
+                            <span className={`w-1.5 h-1.5 rounded-full flex-shrink-0 ${dot[job.color]}`} />
+                            {s}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    <div>
+                      <p className="text-xs text-gray-600 font-mono uppercase tracking-wider mb-2">Covered in</p>
+                      <div className="flex flex-wrap gap-1.5">
+                        {job.stages.map((s) => (
+                          <span key={s} className={`text-xs px-2 py-0.5 rounded border font-mono ${tag[job.color]}`}>
+                            {s}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+
+            <p className="text-center text-sm text-gray-600 mt-8">
+              Completions generate shareable certificates.{" "}
+              <Link href="/login" className="text-cyan-400 hover:text-cyan-300 transition-colors">
+                Start earning them →
+              </Link>
+            </p>
           </div>
         </section>
 
