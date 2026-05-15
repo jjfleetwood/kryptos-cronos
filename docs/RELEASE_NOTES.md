@@ -2,6 +2,23 @@
 
 ---
 
+## v0.7.0 — Planned (Q3 2026)
+
+**AI personalization layer + Cisco product integrations**
+
+- In-terminal AI tutor (Anthropic API) — natural-language Q&A during CTF challenges without revealing flags
+- Adaptive difficulty engine — adjusts challenge complexity based on command patterns and time-on-task
+- **Cisco Talos integration** — weekly CVE challenge drops sourced from Talos threat intelligence feed
+- **Cisco Umbrella epoch** — new curriculum track: DNS tunneling, DGA detection, network policy enforcement
+- **Cisco SecureX / XDR track** — enterprise SecOps stages: alert triage, incident investigation, response workflows
+- **Cisco Firepower stages** — network defense: firewall rule exploitation, lateral movement detection
+- **Cisco CyberOps Associate alignment** — Cisco epoch badge completions map to CyberOps exam domains; exam voucher redemption flow
+- **Cisco DevNet track** — API security and automation: REST exploitation, OAuth misconfigurations
+- CI pipeline (GitHub Actions: lint + tsc + build + audit)
+- Streaks and milestone badges
+
+---
+
 ## v0.6.0 — 2026-05-11
 
 **Security hardening sprint — all findings from security review resolved**

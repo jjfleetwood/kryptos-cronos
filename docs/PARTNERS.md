@@ -100,12 +100,25 @@ These are not yet active integrations — they are named in the business model a
 | Company | Potential Role |
 |---|---|
 | **CrowdStrike** | Sponsor the "Threat Hunter" badge track; co-branded certificates |
-| **Cisco** | Enterprise security curriculum sponsor |
+| **Cisco** | Full platform integration across curriculum, threat intelligence, and certification (see below) |
 | **SentinelOne** | Weekly CVE challenge sponsor ("SentinelOne Threat Intelligence Challenge") |
 | **AWS** | Co-brand the SSRF stage (Capital One breach); AWS free-tier credit for completions |
 | **Azure / Microsoft** | Cloud security curriculum track |
 | **CompTIA** | Certificate discount integration; co-brand cert verification |
 | **ISC²** | CISSP pathway alignment; exam vouchers for badge completions |
+
+### Cisco Integration Roadmap
+
+Cisco is the deepest planned sponsor integration — anchored by the existing Cisco epoch (12 stages built on real Cisco CVEs) and expanding across four product lines:
+
+| Cisco Product | Integration |
+|---|---|
+| **Cisco Talos** | Powers the weekly CVE challenge drop — Talos threat intelligence feed drives the "Threat of the Week" CTF scenario, keeping content current with real-world attack data |
+| **Cisco Umbrella** | Dedicated DNS & network security curriculum track — stages covering DNS tunneling, domain generation algorithms (DGA), and Umbrella policy enforcement |
+| **Cisco SecureX / XDR** | Enterprise security operations track — stages simulating alert triage, incident investigation, and response workflows in a SecureX-style environment |
+| **Cisco Firepower / NGFW** | Network defense stages — intrusion detection, firewall rule exploitation, and lateral movement scenarios modeled on Firepower deployments |
+| **Cisco CyberOps Associate** | Certification alignment — Cisco epoch badge completions map to CyberOps Associate exam domains; Cisco offers exam vouchers for learners who complete the track |
+| **Cisco DevNet** | API security and automation stages — REST API exploitation, OAuth misconfigurations, and developer security in Cisco-ecosystem tooling |
 
 ---
 

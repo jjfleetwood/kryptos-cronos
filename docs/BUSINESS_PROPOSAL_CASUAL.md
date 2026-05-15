@@ -65,7 +65,7 @@ Right now the content is static and excellent. The next version gets smarter abo
 
 **In-terminal AI tutor:** You type a question in the terminal, it answers — without giving away the flag. "What does JNDI mean?" gets a real explanation. "What's the flag?" gets "Nice try."
 
-**Weekly CVE drops:** Every week, a new challenge based on a real CVE published in the past 7 days. You're always training on current threats.
+**Weekly CVE drops:** Every week, a new challenge based on a real CVE published in the past 7 days — powered by Cisco Talos threat intelligence. You're always training on current threats, sourced from one of the most respected threat research teams in the industry.
 
 ---
 
@@ -89,6 +89,12 @@ Security vendors spend a fortune on brand awareness with practitioners. We give 
 - **AWS sponsors the SSRF stage** — co-branded "Cloud Security by AWS" stage with an AWS free-tier credit for completions
 - **CompTIA sponsors certificate verification** — their cert discounts embedded in our badge completion emails
 - **SentinelOne sponsors a weekly CVE challenge** — "SentinelOne Threat Intelligence Challenge of the Week"
+- **Cisco is the flagship integration** — this is bigger than a badge sponsorship:
+  - **Cisco Talos** powers the weekly CVE challenge feed — real threat intelligence, new CTF every week, co-branded
+  - **Cisco Umbrella** sponsors a DNS security curriculum track (new epoch)
+  - **Cisco SecureX** sponsors an enterprise security operations track
+  - **Cisco CyberOps Associate** certification — learners who complete the Cisco epoch get exam vouchers. Cisco gets a pipeline of certified practitioners who trained on their products.
+  - **Cisco DevNet** sponsors API security stages for developer-focused learners
 
 The math: 50,000 learners earning security badges is an audience security vendors would pay $50–$200 CPM to reach on LinkedIn. We deliver them a far more engaged audience at a fraction of the cost, with measurable outcomes.
 

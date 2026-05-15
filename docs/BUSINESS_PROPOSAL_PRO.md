@@ -110,6 +110,21 @@ Strategic sponsors — security tools vendors (CrowdStrike, Cisco, SentinelOne),
 
 This creates a tripartite flywheel: learners build skills → employers find certified talent → vendors reach a qualified security audience.
 
+#### Cisco — Flagship Sponsor Integration
+
+Cisco is the deepest planned sponsor relationship, spanning product integrations across the entire platform:
+
+| Integration | Product | Value |
+|---|---|---|
+| Weekly CVE Challenge | **Cisco Talos** | Talos threat feed drives a new CTF scenario every week — co-branded "Talos Threat of the Week" |
+| DNS & Network Security Track | **Cisco Umbrella** | Dedicated epoch: DNS tunneling, DGA, and network policy stages |
+| Enterprise SecOps Track | **Cisco SecureX / XDR** | Alert triage and incident response stages modeled on SecureX workflows |
+| Network Defense Stages | **Cisco Firepower / NGFW** | Firewall exploitation and lateral movement scenarios |
+| Certification Alignment | **Cisco CyberOps Associate** | Cisco epoch completions map to CyberOps exam domains; Cisco provides exam vouchers |
+| API Security Track | **Cisco DevNet** | REST API exploitation and OAuth misconfiguration stages |
+
+Cisco earns a qualified, verified security audience at measurable skill levels. Kryptós CronOS earns recurring sponsor revenue, threat intelligence data, and certification co-branding.
+
 ---
 
 ## Go-to-Market
@@ -124,9 +139,11 @@ This creates a tripartite flywheel: learners build skills → employers find cer
 - Build SSO, compliance reporting, and admin dashboard
 - Target: $500K ARR
 
-### Phase 3 — AI Personalization (Q1 2027)
+### Phase 3 — AI Personalization + Cisco Integration (Q1 2027)
 - Launch AI-powered adaptive difficulty and AI tutoring
-- Introduce weekly CVE-based challenge drops
+- Introduce weekly CVE-based challenge drops powered by Cisco Talos threat intelligence
+- Launch Cisco Umbrella DNS security track and Cisco SecureX enterprise SecOps track
+- Activate Cisco CyberOps Associate certification alignment with exam voucher redemption
 - Target: $2.5M ARR, Series A
 
 ---

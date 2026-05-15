@@ -2,18 +2,51 @@
 
 ---
 
+## v0.7.0 — Planned (Q3 2026)
+
+**AI personalization layer + Cisco product integrations**
+
+- In-terminal AI tutor (Anthropic API) — natural-language Q&A during CTF challenges without revealing flags
+- Adaptive difficulty engine — adjusts challenge complexity based on command patterns and time-on-task
+- **Cisco Talos integration** — weekly CVE challenge drops sourced from Talos threat intelligence feed
+- **Cisco Umbrella epoch** — new curriculum track: DNS tunneling, DGA detection, network policy enforcement
+- **Cisco SecureX / XDR track** — enterprise SecOps stages: alert triage, incident investigation, response workflows
+- **Cisco Firepower stages** — network defense: firewall rule exploitation, lateral movement detection
+- **Cisco CyberOps Associate alignment** — Cisco epoch badge completions map to CyberOps exam domains; exam voucher redemption flow
+- **Cisco DevNet track** — API security and automation: REST exploitation, OAuth misconfigurations
+- CI pipeline (GitHub Actions: lint + tsc + build + audit)
+- Streaks and milestone badges
+
+---
+
+## v0.6.0 — 2026-05-11
+
+**Security hardening sprint — all findings from security review resolved**
+
+- **proxy.ts is the active middleware** — confirmed as the correct Next.js 16 filename (not middleware.ts); `ƒ Proxy (Middleware)` appears in build output
+- **Internal docs gated** — moved from `public/docs/` to `secured-docs/`; served only via `/api/docs/[file]` requiring admin HMAC cookie; `outputFileTracingIncludes` added to next.config.ts for Vercel bundling
+- **HSTS header** added: `max-age=63072000; includeSubDomains; preload`
+- **XP computed server-side** — `/api/progress` POST uses a hardcoded `STAGE_XP` map; client-submitted XP ignored
+- **sync-user first-write-wins** — existing Redis user records cannot be overwritten
+- **Rate limiting** — forgot-password (3/IP/15min), notify-registration (5/IP/hour) via Redis incr
+- **admin-session** throws if `ADMIN_SECRET` env var is missing (no empty-string fallback)
+- **reset-password** no longer returns email in response — returns only username
+- Emerald accent theme added to Before Times epoch
+
+---
+
 ## v0.5.0 — 2026-05-10
 
 **Live leaderboard, cross-device sync, epoch gating, proxy migration**
 
-- Live global leaderboard powered by Upstash Redis sorted set — all registered users ranked by XP in real time
+- Live global leaderboard powered by Upstash Redis sorted set
 - Server-side progress persistence: XP, completed stages, and badges synced to Redis on every stage completion
 - Cross-device progress restore: logging in on a new device merges server progress with local state
-- Cisco epoch now gated — tab is locked until all 12 Foundations stages are completed
+- Cisco epoch now gated — locked until all 12 Foundations stages are completed
 - `isEpochUnlocked()` computes epoch access dynamically from progress at render time
 - Leaderboard page fetches live data from `/api/leaderboard`; falls back gracefully if offline
 - `GET /api/progress` and `POST /api/progress` routes added for progress sync
-- Migrated `middleware.ts` → `proxy.ts` (Next.js 16 convention); proxy runs on Node.js runtime, uses Node `crypto`
+- Migrated `middleware.ts` → `proxy.ts` (Next.js 16 convention)
 - Deleted legacy `CtfTerminal.tsx` (superseded by `CtfChallenge.tsx` since v0.1.0)
 
 ---
@@ -24,12 +57,12 @@
 
 - Admin username removed from source code — moved to server-side env var (`ADMIN_USERNAME`)
 - Admin cookie grant now server-side only via signed HMAC token (`ADMIN_SECRET`)
-- Added Next.js proxy — `/admin/**` routes blocked at the edge without valid HttpOnly cookie
 - New API route `/api/admin-session` handles admin cookie issuance and revocation
-- `isAdmin()` reads from stored user record instead of comparing against hardcoded string
-- Registration no longer auto-grants admin based on username match in client code
-- Admin notification email moved from hardcoded string to `ADMIN_EMAIL` env var
-- Added Content Security Policy header (`default-src 'self'`, `frame-ancestors 'none'`, restricted `connect-src`)
+- Next.js proxy — `/admin/**` routes blocked at the edge without valid HttpOnly cookie
+- `isAdmin()` reads from stored user record instead of hardcoded string
+- Registration no longer auto-grants admin based on username match
+- Admin notification email moved from hardcoded to `ADMIN_EMAIL` env var
+- Content Security Policy header added
 - Fixed hardcoded admin username display in admin dashboard UI
 
 ---
@@ -38,12 +71,10 @@
 
 **Curriculum tracks + Cisco ops rewrite**
 
-- Replaced generic "epoch" system with named curriculum tracks: **Foundations** and **Cisco**
-- Foundations track (amber): 12 core cybersecurity principle stages set in ancient world landmarks
-- Cisco track (blue): 12 real Cisco CVE stages framed as APT field operations
-- All 12 Cisco CTF scenarios rewritten — spy/APT operative tone, grounded in real locations
-- Each Cisco CTF drops the player mid-mission; most stages begin with direct action
-- Wonders retained as operation locations (Hagia Sophia → Istanbul, Tower of London → London, etc.)
+- Named curriculum tracks: **Foundations** (amber) and **Cisco** (blue)
+- Foundations track: 12 core cybersecurity stages set in ancient world landmarks
+- Cisco track: 12 real Cisco CVE stages framed as APT field operations
+- All 12 Cisco CTF scenarios rewritten — spy/APT operative tone, real locations
 
 ---
 
@@ -55,10 +86,8 @@
   CVE-2023-20198, CVE-2016-6366, CVE-2018-0171, CVE-2019-1653, CVE-2020-3452,
   CVE-2022-20695, CVE-2021-1497, CVE-2023-20273, CVE-2019-1821, CVE-2020-3580,
   CVE-2020-3187, CVE-2017-6736
-- Each Cisco stage linked to a world landmark as operation backdrop
-- Converted Ancient Stage 1 (CIA Triad) from quiz to CTF — Great Pyramid exploration
 - Epoch tab UI with per-epoch color theming (amber / blue)
-- Per-epoch sequential unlock logic — stages unlock independently within each track
+- Per-epoch sequential unlock logic
 
 ---
 
@@ -66,13 +95,10 @@
 
 **Ancient epoch + wonder-per-stage system**
 
-- Converted all 12 original stages to "Ancient" epoch
-- Added `Wonder` type: name, location, era, emoji — displayed on every stage card
-- Each stage narratively set inside a specific ancient landmark (Great Pyramid, Colosseum, etc.)
-- Added `epochs` array and epoch header UI on stage map
+- Converted all 12 original stages to "Foundations" epoch set inside ancient landmarks
+- Added `Wonder` type: name, location, era, emoji
 - Upgraded password hashing from SHA-256 to PBKDF2-SHA-256 (100k iterations)
 - Added HTTP security headers to `next.config.ts`
-- Removed all Claude/Anthropic references from documentation
 
 ---
 
@@ -81,33 +107,28 @@
 **Initial public launch**
 
 - 12 cybersecurity + AI + OWASP stages in quiz and CTF formats
-- CTF terminal with simulated filesystem, built-in commands (`ls`, `cat`, `cd`, `submit`, `hint`)
-- Progressive hints system — up to 3 hints per stage, revealed one at a time
+- CTF terminal with simulated filesystem: `ls`, `cat`, `cd`, `submit`, `hint`
+- Progressive hints system — up to 3 hints per stage
 - Stage map with sequential unlock logic and XP progression
 - PBKDF2 client-side auth (localStorage), session via sessionStorage
-- Per-user progress tracking — XP and completed stages scoped to logged-in account
+- Per-user progress tracking scoped to logged-in account
 - Leaderboard page with XP bar visualization
 - Admin dashboard at `/admin` — user management and docs viewer
-- Admin docs panel: security briefing, technical architecture, business proposals, release notes
 - Email notification on new user registration via Resend API
 - Deployed to kryptoscronos.com
 
 ---
 
-## Pre-launch Development — 2026-05-09
+## Pre-launch Development — 2026-05-08
 
-**Initial development sprint (not publicly versioned)**
+**Initial development sprint**
 
-The following work was completed in a single development sprint prior to v0.1.0:
-
-- **Project scaffold** — Next.js 16 App Router, TypeScript strict mode, Tailwind CSS, DevOps folder structure
-- **Core UI** — Landing page with hero CTA, stage map, navigation bar, login/signup page with tab UI
-- **Stage 2 CTF** — First interactive terminal with simulated compromised AI server and flag capture
-- **Leaderboard** — XP tracking with persistent localStorage, ranked player list
-- **12-stage curriculum** — Full OWASP Top 10 + CVE content: SQL Injection, XSS, Heartbleed, Log4Shell, WannaCry, SSRF, Equifax/Struts, MongoDB misconfiguration, and more
-- **User auth** — Client-side PBKDF2 password hashing, user registration/login, per-user progress scoping
-- **Documentation** — Security briefing, technical architecture doc, business proposals (casual + formal VC pitch)
-- **Visual overhaul** — Dark cyberpunk aesthetic, gradient backgrounds, monospace terminal styling
-- **Admin system** — Admin user, protected dashboard, docs viewer, nav link
-- **Rebrand** — CyberQuest → Kryptós CronOS (κρυπτός χρόνος); updated all references across codebase and docs
-- **Email notifications** — Resend API integration for new user registration alerts
+- Next.js 16 App Router scaffold, TypeScript strict mode, Tailwind CSS 4, DevOps folder structure
+- Landing page, stage map, nav, login/signup with tab UI
+- 12-stage curriculum: OWASP Top 10 + CVE content (SQL Injection, XSS, Heartbleed, Log4Shell, WannaCry, SSRF, Equifax/Struts, MongoDB)
+- Client-side PBKDF2 auth, per-user progress scoping
+- Security briefing, technical architecture doc, business proposals
+- Dark cyberpunk aesthetic with monospace terminal styling
+- Admin system: protected dashboard, docs viewer
+- Resend API integration for registration alerts
+- Rebrand: CyberQuest → Kryptós CronOS (κρυπτός χρόνος)
