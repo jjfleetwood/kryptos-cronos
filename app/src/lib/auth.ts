@@ -186,10 +186,30 @@ export async function login(
   username: string,
   password: string
 ): Promise<{ success: boolean; error?: string }> {
+  const trimmed = username.trim();
   const users = getUsers();
-  const user = users.find(
-    (u) => u.username.toLowerCase() === username.trim().toLowerCase()
-  );
+  let user = users.find((u) => u.username.toLowerCase() === trimmed.toLowerCase());
+
+  if (!user) {
+    try {
+      const res = await fetch(`/api/restore-user?username=${encodeURIComponent(trimmed.toLowerCase())}`);
+      if (res.ok) {
+        const data = await res.json() as { passwordHash: string; salt: string; email: string };
+        const restored: StoredUser = {
+          username: trimmed,
+          email: data.email,
+          passwordHash: data.passwordHash,
+          salt: data.salt,
+          createdAt: Date.now(),
+          isAdmin: false,
+        };
+        saveUser(restored);
+        user = restored;
+      }
+    } catch {
+      // fall through to generic error
+    }
+  }
 
   if (!user) {
     return { success: false, error: "Invalid username or password." };
