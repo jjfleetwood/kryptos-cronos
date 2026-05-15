@@ -100,7 +100,7 @@ These are not yet active integrations — they are named in the business model a
 | Company | Potential Role |
 |---|---|
 | **CrowdStrike** | Sponsor the "Threat Hunter" badge track; co-branded certificates |
-| **Palo Alto Networks** | Enterprise security curriculum sponsor |
+| **Cisco** | Enterprise security curriculum sponsor |
 | **SentinelOne** | Weekly CVE challenge sponsor ("SentinelOne Threat Intelligence Challenge") |
 | **AWS** | Co-brand the SSRF stage (Capital One breach); AWS free-tier credit for completions |
 | **Azure / Microsoft** | Cloud security curriculum track |

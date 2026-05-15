@@ -102,7 +102,7 @@ Weekly AI-generated challenge updates based on real CVEs published in the past 7
 - Target: Fortune 500 security teams, defense contractors, financial services firms under SEC cybersecurity disclosure rules (effective 2024)
 
 ### Sponsor Integration (Ecosystem Revenue)
-Strategic sponsors — security tools vendors (CrowdStrike, Palo Alto, SentinelOne), cloud providers (AWS, Azure), and certification bodies (CompTIA, ISC²) — can:
+Strategic sponsors — security tools vendors (CrowdStrike, Cisco, SentinelOne), cloud providers (AWS, Azure), and certification bodies (CompTIA, ISC²) — can:
 - Sponsor specific stage badges ("Powered by CrowdStrike — Threat Hunter Badge")
 - Offer co-branded certificates redeemable for exam discounts
 - Run sponsored challenge weeks with custom CTF scenarios
