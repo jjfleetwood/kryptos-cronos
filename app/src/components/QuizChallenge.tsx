@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { awardStage } from "@/lib/progress";
+import { applyServerProgress } from "@/lib/progress";
 import type { QuizQuestion, StageConfig } from "@/data/types";
 
 type SafeQuestion = Omit<QuizQuestion, "correctIndex" | "explanation">;
@@ -28,14 +28,18 @@ export default function QuizChallenge({ stage }: { stage: StageConfig }) {
     setSelected(idx);
     setChecking(true);
     try {
+      const isFinalQuestion = current + 1 >= questions.length;
       const res = await fetch("/api/check-answer", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ stageId: stage.id, questionId: q.id, selectedIndex: idx }),
+        body: JSON.stringify({ stageId: stage.id, questionId: q.id, selectedIndex: idx, isFinalQuestion }),
       });
       const data = await res.json();
       setAnswer({ correct: data.correct, explanation: data.explanation });
-      if (data.correct) setScore((s) => s + 1);
+      if (data.correct) {
+        setScore((s) => s + 1);
+        if (data.progress) applyServerProgress(data.progress);
+      }
     } catch {
       setAnswer({ correct: false, explanation: "Could not verify answer — please try again." });
     } finally {
@@ -45,7 +49,6 @@ export default function QuizChallenge({ stage }: { stage: StageConfig }) {
 
   function handleNext() {
     if (current + 1 >= questions.length) {
-      awardStage(stage.id, stage.xp, stage.badge.id);
       setDone(true);
     } else {
       setCurrent((c) => c + 1);

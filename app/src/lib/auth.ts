@@ -89,6 +89,7 @@ export function clearSession(): void {
   if (typeof window === "undefined") return;
   sessionStorage.removeItem(SESSION_KEY);
   fetch("/api/admin-session", { method: "DELETE" }).catch(() => {});
+  fetch("/api/auth/session", { method: "DELETE" }).catch(() => {});
 }
 
 // ─── Admin session ────────────────────────────────────────────────────────────
@@ -164,10 +165,17 @@ export async function register(
   saveUser(newUser);
   setSession(newUser.username);
 
-  fetch("/api/sync-user", {
+  await fetch("/api/sync-user", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ username: newUser.username, email: newUser.email, passwordHash, salt }),
+  }).catch(() => {});
+
+  // Set HTTP-only session cookie for server-side progress authentication
+  await fetch("/api/auth/session", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ username: newUser.username, passwordHash }),
   }).catch(() => {});
 
   const adminGranted = await grantAdminIfEligible(newUser.username);
@@ -221,6 +229,14 @@ export async function login(
   }
 
   setSession(user.username);
+
+  // Set HTTP-only session cookie for server-side progress authentication
+  await fetch("/api/auth/session", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ username: user.username, passwordHash: hash }),
+  }).catch(() => {});
+
   const adminGranted = await grantAdminIfEligible(user.username);
   if (adminGranted) markUserAdmin(user.username);
   const { restoreFromServer } = await import("@/lib/progress");

@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
-import { awardStage } from "@/lib/progress";
+import { awardStage, applyServerProgress } from "@/lib/progress";
 import AttackDiagram from "./AttackDiagram";
 import type { CtfConfig, StageConfig } from "@/data/types";
 
@@ -435,7 +435,7 @@ export default function CtfChallenge({ stage }: { stage: StageConfig }) {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ stageId: stage.id, flag }),
         });
-        const { correct } = await res.json();
+        const { correct, progress } = await res.json();
         if (correct) {
           push(
             { type: "ok", text: "" },
@@ -447,7 +447,11 @@ export default function CtfChallenge({ stage }: { stage: StageConfig }) {
             { type: "ok", text: `  Badge: ${stage.badge.emoji} ${stage.badge.name} — Unlocked` },
             { type: "ok", text: "" },
           );
-          awardStage(stage.id, stage.xp, stage.badge.id);
+          if (progress) {
+            applyServerProgress(progress);
+          } else {
+            awardStage(stage.id, stage.xp, stage.badge.id);
+          }
           setSolved(true);
         } else {
           push(
