@@ -74,6 +74,24 @@ const epochAccent: Record<string, { tab: string; active: string; bar: string; ba
     bar: "bg-orange-500",
     badge: "text-orange-400 bg-orange-400/10 border-orange-400/30",
   },
+  "quantum-1": {
+    tab: "text-cyan-400 border-cyan-400 bg-cyan-400/10",
+    active: "border-cyan-400/60 bg-cyan-500/5",
+    bar: "bg-cyan-500",
+    badge: "text-cyan-400 bg-cyan-400/10 border-cyan-400/30",
+  },
+  "quantum-2": {
+    tab: "text-teal-400 border-teal-400 bg-teal-400/10",
+    active: "border-teal-400/60 bg-teal-500/5",
+    bar: "bg-teal-500",
+    badge: "text-teal-400 bg-teal-400/10 border-teal-400/30",
+  },
+  "quantum-3": {
+    tab: "text-sky-400 border-sky-400 bg-sky-400/10",
+    active: "border-sky-400/60 bg-sky-500/5",
+    bar: "bg-sky-500",
+    badge: "text-sky-400 bg-sky-400/10 border-sky-400/30",
+  },
 };
 
 export default function StagesPage() {
@@ -111,6 +129,9 @@ export default function StagesPage() {
     mitre: "border-red-500/40 hover:border-red-400/80",
     "mitre-atlas": "border-fuchsia-500/40 hover:border-fuchsia-400/80",
     "owasp-llm": "border-orange-500/40 hover:border-orange-400/80",
+    "quantum-1": "border-cyan-500/40 hover:border-cyan-400/80",
+    "quantum-2": "border-teal-500/40 hover:border-teal-400/80",
+    "quantum-3": "border-sky-500/40 hover:border-sky-400/80",
   };
   const cardEmojiBg: Record<string, string> = {
     "before-times": "from-emerald-950 to-slate-950",
@@ -122,6 +143,9 @@ export default function StagesPage() {
     mitre: "from-red-950 to-slate-950",
     "mitre-atlas": "from-fuchsia-950 to-slate-950",
     "owasp-llm": "from-orange-950 to-slate-950",
+    "quantum-1": "from-cyan-950 to-slate-950",
+    "quantum-2": "from-teal-950 to-slate-950",
+    "quantum-3": "from-sky-950 to-slate-950",
   };
 
   const nextStageId = epochStages.find(

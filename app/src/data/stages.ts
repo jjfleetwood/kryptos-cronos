@@ -8,6 +8,10 @@ import { techAudit3Epoch, techAudit3Stages } from "./tech-audit-3";
 import { mitreEpoch, mitreStages } from "./mitre";
 import { mitreAtlasEpoch, mitreAtlasStages } from "./mitre-atlas";
 import { owaspLlmEpoch, owaspLlmStages } from "./owasp-llm";
+import { quantum1Epoch, quantum1Stages } from "./quantum-1";
+import { quantum2Epoch, quantum2Stages } from "./quantum-2";
+import { quantum3Epoch, quantum3Stages } from "./quantum-3";
+import { cisco2Stages } from "./cisco-2";
 
 export function getStage(id: string): StageConfig | undefined {
   return stages.find((s) => s.id === id);
@@ -17,7 +21,7 @@ export const epochs: EpochConfig[] = [
   beforeTimesEpoch,
   {
     id: "ancient",
-    name: "Foundations",
+    name: "1b. Foundations",
     subtitle: "Core Security Principles",
     description: "Master the concepts every security professional builds on — from the CIA Triad to SQL injection, from phishing to zero-day exploits. Each challenge is set inside one of the great sites of the ancient world.",
     emoji: "🛡️",
@@ -26,7 +30,7 @@ export const epochs: EpochConfig[] = [
   },
   {
     id: "medieval",
-    name: "Cisco",
+    name: "1c. Cisco",
     subtitle: "Real-World CVE Operations",
     description: "Field operations against real Cisco vulnerabilities — buffer overflows, authentication bypasses, command injection, path traversal. Each mission places you at a landmark location around the world.",
     emoji: "🌐",
@@ -39,6 +43,9 @@ export const epochs: EpochConfig[] = [
   mitreEpoch,
   mitreAtlasEpoch,
   owaspLlmEpoch,
+  quantum1Epoch,
+  quantum2Epoch,
+  quantum3Epoch,
 ];
 
 export const stages: StageConfig[] = [
@@ -51,6 +58,9 @@ export const stages: StageConfig[] = [
   ...mitreStages,
   ...mitreAtlasStages,
   ...owaspLlmStages,
+  ...quantum1Stages,
+  ...quantum2Stages,
+  ...quantum3Stages,
 
 
   // ─── Stage 1: Great Pyramid of Giza — CIA Triad (Quiz) ───────────────────
@@ -3982,4 +3992,5 @@ sendp(pkt, iface="eth0")
       },
     },
   },
+  ...cisco2Stages,
 ];
