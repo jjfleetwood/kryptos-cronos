@@ -42,7 +42,7 @@ export default function Home() {
           <div className="relative z-10 max-w-4xl mx-auto">
             <div className="inline-flex items-center gap-2 bg-cyan-500/10 border border-cyan-500/25 rounded-full px-4 py-1.5 mb-8 text-sm">
               <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
-              <span className="text-cyan-400 font-medium">54 Stages · Real CVEs · Hands-On CTF</span>
+              <span className="text-cyan-400 font-medium">126 Stages · Real CVEs · Hands-On CTF</span>
             </div>
 
             <h1 className="text-6xl md:text-8xl font-black mb-6 leading-none tracking-tight">
@@ -87,7 +87,7 @@ export default function Home() {
         <section className="border-y border-white/5 bg-white/2 py-10 px-4">
           <div className="max-w-3xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             {[
-              { value: "54", label: "Training Stages" },
+              { value: "126", label: "Training Stages" },
               { value: "10", label: "OWASP Top 10" },
               { value: "12+", label: "Real CVEs" },
               { value: "3.5M", label: "Unfilled Cyber Jobs" },
