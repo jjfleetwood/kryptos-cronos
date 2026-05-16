@@ -35,6 +35,20 @@ export type CtfFragment = {
   label: string;   // display label shown on collection, e.g. "King's Chamber — Confidentiality"
 };
 
+export type QuizQuestion = {
+  id: string;
+  type: string;
+  challenge: string;
+  text: string;
+  options: string[];
+  correctIndex?: number;  // server-only, stripped before client
+  explanation?: string;   // server-only, stripped before client
+};
+
+export type QuizConfig = {
+  questions: QuizQuestion[];
+};
+
 export type CtfConfig = {
   scenario: string;
   hint: string;
@@ -79,4 +93,5 @@ export type StageConfig = {
   challengeType: "quiz" | "ctf";
   info: StageInfo;
   ctf?: CtfConfig;
+  quiz?: QuizConfig;
 };

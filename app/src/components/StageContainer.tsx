@@ -25,5 +25,5 @@ export default function StageContainer({ stage }: { stage: StageConfig | null })
     return <CtfChallenge stage={stage} />;
   }
 
-  return <QuizChallenge />;
+  return <QuizChallenge stage={stage} />;
 }
