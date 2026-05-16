@@ -1315,7 +1315,7 @@ for asset, data in assets.items():
 
     expected_loss = exposure * q_day_probability_10yr
     hndl_note = "(HNDL: immediate risk)" if data.get("hndl_exposure") else ""
-    print(f"{asset}: ${exposure:,.0f} exposure, ${expected_loss:,.0f} expected {hndl_note}")`,
+    print(f"{asset}: \${exposure:,.0f} exposure, \${expected_loss:,.0f} expected {hndl_note}")`,
         },
       },
       incident: {

@@ -228,6 +228,7 @@ export default function CtfChallenge({ stage }: { stage: StageConfig }) {
   const [hintsOpen, setHintsOpen] = useState(false);
   const [briefingOpen, setBriefingOpen] = useState(false);
   const [collectedFragments, setCollectedFragments] = useState<Set<string>>(new Set());
+  const [submitting, setSubmitting] = useState(false);
   const [lines, setLines] = useState<Line[]>([
     { type: "sys", text: "╔══════════════════════════════════════════╗" },
     { type: "sys", text: `║   Kryptós CronOS Terminal  v1.0          ║` },
@@ -272,7 +273,7 @@ export default function CtfChallenge({ stage }: { stage: StageConfig }) {
     );
   }
 
-  function runCommand(raw: string) {
+  async function runCommand(raw: string) {
     const trimmed = raw.trim();
     if (!trimmed) {
       push({ type: "cmd", text: `${cwd}$` });
@@ -320,11 +321,12 @@ export default function CtfChallenge({ stage }: { stage: StageConfig }) {
       }
       push({ type: "out", text: "" });
       if (collectedFragments.size === total) {
+        const assembled = ctf.fragments.map((f) => f.value).join("");
         push(
           { type: "ok", text: "All fragments recovered. Assembled flag:" },
-          { type: "ok", text: `  ${ctf.flag}` },
+          { type: "ok", text: `  ${assembled}` },
           { type: "out", text: "" },
-          { type: "out", text: `Use: submit ${ctf.flag}` },
+          { type: "out", text: `Use: submit ${assembled}` },
           { type: "out", text: "" },
         );
       } else {
@@ -425,25 +427,38 @@ export default function CtfChallenge({ stage }: { stage: StageConfig }) {
         push({ type: "err", text: "Usage: submit <flag>" }, { type: "out", text: "" });
         return;
       }
-      if (flag === ctf.flag) {
-        push(
-          { type: "ok", text: "" },
-          { type: "ok", text: "██████████████████████████████████████████" },
-          { type: "ok", text: "  ✓  FLAG ACCEPTED — MISSION COMPLETE!" },
-          { type: "ok", text: "██████████████████████████████████████████" },
-          { type: "ok", text: "" },
-          { type: "ok", text: `  Flag: ${ctf.flag}` },
-          { type: "ok", text: `  +${stage.xp} XP earned` },
-          { type: "ok", text: `  Badge: ${stage.badge.emoji} ${stage.badge.name} — Unlocked` },
-          { type: "ok", text: "" },
-        );
-        awardStage(stage.id, stage.xp, stage.badge.id);
-        setSolved(true);
-      } else {
-        push(
-          { type: "err", text: "✗ Incorrect flag. Keep investigating." },
-          { type: "out", text: "" },
-        );
+      setSubmitting(true);
+      push({ type: "sys", text: "Verifying flag..." });
+      try {
+        const res = await fetch("/api/check-flag", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ stageId: stage.id, flag }),
+        });
+        const { correct } = await res.json();
+        if (correct) {
+          push(
+            { type: "ok", text: "" },
+            { type: "ok", text: "██████████████████████████████████████████" },
+            { type: "ok", text: "  ✓  FLAG ACCEPTED — MISSION COMPLETE!" },
+            { type: "ok", text: "██████████████████████████████████████████" },
+            { type: "ok", text: "" },
+            { type: "ok", text: `  +${stage.xp} XP earned` },
+            { type: "ok", text: `  Badge: ${stage.badge.emoji} ${stage.badge.name} — Unlocked` },
+            { type: "ok", text: "" },
+          );
+          awardStage(stage.id, stage.xp, stage.badge.id);
+          setSolved(true);
+        } else {
+          push(
+            { type: "err", text: "✗ Incorrect flag. Keep investigating." },
+            { type: "out", text: "" },
+          );
+        }
+      } catch {
+        push({ type: "err", text: "Network error — could not verify flag. Try again." }, { type: "out", text: "" });
+      } finally {
+        setSubmitting(false);
       }
       return;
     }
@@ -468,6 +483,7 @@ export default function CtfChallenge({ stage }: { stage: StageConfig }) {
 
   function handleKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {
     if (e.key === "Enter") {
+      if (submitting) return;
       runCommand(input);
       setInput("");
     } else if (e.key === "ArrowUp") {
@@ -487,6 +503,7 @@ export default function CtfChallenge({ stage }: { stage: StageConfig }) {
   const promptCwd = cwd === "/" ? "/" : cwd.split("/").pop() + "";
 
   function handleSend() {
+    if (submitting) return;
     runCommand(input);
     setInput("");
     inputRef.current?.focus();
