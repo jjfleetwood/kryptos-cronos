@@ -38,6 +38,42 @@ const epochAccent: Record<string, { tab: string; active: string; bar: string; ba
     bar: "bg-blue-500",
     badge: "text-blue-400 bg-blue-400/10 border-blue-400/30",
   },
+  "tech-audit-1": {
+    tab: "text-purple-400 border-purple-400 bg-purple-400/10",
+    active: "border-purple-400/60 bg-purple-500/5",
+    bar: "bg-purple-500",
+    badge: "text-purple-400 bg-purple-400/10 border-purple-400/30",
+  },
+  "tech-audit-2": {
+    tab: "text-violet-400 border-violet-400 bg-violet-400/10",
+    active: "border-violet-400/60 bg-violet-500/5",
+    bar: "bg-violet-500",
+    badge: "text-violet-400 bg-violet-400/10 border-violet-400/30",
+  },
+  "tech-audit-3": {
+    tab: "text-indigo-400 border-indigo-400 bg-indigo-400/10",
+    active: "border-indigo-400/60 bg-indigo-500/5",
+    bar: "bg-indigo-500",
+    badge: "text-indigo-400 bg-indigo-400/10 border-indigo-400/30",
+  },
+  mitre: {
+    tab: "text-red-400 border-red-400 bg-red-400/10",
+    active: "border-red-400/60 bg-red-500/5",
+    bar: "bg-red-500",
+    badge: "text-red-400 bg-red-400/10 border-red-400/30",
+  },
+  "mitre-atlas": {
+    tab: "text-fuchsia-400 border-fuchsia-400 bg-fuchsia-400/10",
+    active: "border-fuchsia-400/60 bg-fuchsia-500/5",
+    bar: "bg-fuchsia-500",
+    badge: "text-fuchsia-400 bg-fuchsia-400/10 border-fuchsia-400/30",
+  },
+  "owasp-llm": {
+    tab: "text-orange-400 border-orange-400 bg-orange-400/10",
+    active: "border-orange-400/60 bg-orange-500/5",
+    bar: "bg-orange-500",
+    badge: "text-orange-400 bg-orange-400/10 border-orange-400/30",
+  },
 };
 
 export default function StagesPage() {
@@ -69,11 +105,23 @@ export default function StagesPage() {
     "before-times": "border-emerald-500/40 hover:border-emerald-400/80",
     ancient: "border-amber-500/40 hover:border-amber-400/80",
     medieval: "border-blue-500/40 hover:border-blue-400/80",
+    "tech-audit-1": "border-purple-500/40 hover:border-purple-400/80",
+    "tech-audit-2": "border-violet-500/40 hover:border-violet-400/80",
+    "tech-audit-3": "border-indigo-500/40 hover:border-indigo-400/80",
+    mitre: "border-red-500/40 hover:border-red-400/80",
+    "mitre-atlas": "border-fuchsia-500/40 hover:border-fuchsia-400/80",
+    "owasp-llm": "border-orange-500/40 hover:border-orange-400/80",
   };
   const cardEmojiBg: Record<string, string> = {
     "before-times": "from-emerald-950 to-slate-950",
     ancient: "from-amber-950 to-stone-950",
     medieval: "from-blue-950 to-slate-950",
+    "tech-audit-1": "from-purple-950 to-slate-950",
+    "tech-audit-2": "from-violet-950 to-slate-950",
+    "tech-audit-3": "from-indigo-950 to-slate-950",
+    mitre: "from-red-950 to-slate-950",
+    "mitre-atlas": "from-fuchsia-950 to-slate-950",
+    "owasp-llm": "from-orange-950 to-slate-950",
   };
 
   const nextStageId = epochStages.find(
@@ -87,18 +135,12 @@ export default function StagesPage() {
 
   const maxXp = allStages.reduce((sum, s) => sum + s.xp, 0);
 
-  function isEpochUnlocked(epochIndex: number): boolean {
-    if (epochIndex === 0) return true;
-    const prevEpoch = epochs[epochIndex - 1];
-    const prevStages = allStages.filter((s) => s.epochId === prevEpoch.id);
-    return prevStages.length > 0 && prevStages.every((s) => completedStages.includes(s.id));
+  function isEpochUnlocked(_epochIndex: number): boolean {
+    return true;
   }
 
-  function isUnlocked(epochId: string, order: number): boolean {
-    if (order === 1) return true;
-    const prev = allStages.find((s) => s.epochId === epochId && s.order === order - 1);
-    if (!prev) return false;
-    return completedStages.includes(prev.id);
+  function isUnlocked(_epochId: string, _order: number): boolean {
+    return true;
   }
 
   return (
