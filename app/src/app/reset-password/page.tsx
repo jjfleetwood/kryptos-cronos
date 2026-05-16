@@ -3,7 +3,7 @@
 import { useState, useEffect, Suspense } from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
-import { generateSalt, hashPassword, setSession, getUsers } from "@/lib/auth";
+import { generateSalt, hashPassword, setSession } from "@/lib/auth";
 
 function ResetPasswordForm() {
   const router = useRouter();
@@ -52,15 +52,7 @@ function ResetPasswordForm() {
 
       const { username } = data as { username: string };
 
-      // Update the local user record if it exists on this device
-      const users = getUsers();
-      const existing = users.find((u) => u.username.toLowerCase() === username.toLowerCase());
-      if (existing) {
-        existing.passwordHash = passwordHash;
-        existing.salt = salt;
-        localStorage.setItem("kryptos_users", JSON.stringify(users));
-      }
-
+      // Server sets the HTTP-only session cookie; just sync client sessionStorage
       setSession(username);
       setDone(true);
       setTimeout(() => router.push("/stages"), 2000);

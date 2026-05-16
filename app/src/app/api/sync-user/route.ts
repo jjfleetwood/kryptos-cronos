@@ -20,7 +20,7 @@ export async function POST(req: NextRequest) {
   // First-write-wins: never overwrite an existing user record
   const existing = await redis.hgetall(key);
   if (existing && Object.keys(existing).length > 0) {
-    return NextResponse.json({ ok: true });
+    return NextResponse.json({ taken: true }, { status: 409 });
   }
 
   await redis.hset(key, { passwordHash, salt, email: email.toLowerCase() });

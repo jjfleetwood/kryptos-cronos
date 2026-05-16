@@ -1,5 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 import { redis } from "@/lib/redis";
+import { getServerSession } from "@/lib/server-session";
+
+function escapeHtml(s: string): string {
+  return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+}
 
 async function isRateLimited(ip: string): Promise<boolean> {
   const key = `rate:register:${ip}`;
@@ -9,7 +14,11 @@ async function isRateLimited(ip: string): Promise<boolean> {
 }
 
 export async function POST(req: NextRequest) {
-  const ip = req.headers.get("x-forwarded-for")?.split(",")[0].trim() ?? "unknown";
+  // Verify a real session exists — prevents unauthenticated spam to admin inbox
+  const sessionUser = getServerSession(req);
+  if (!sessionUser) return NextResponse.json({ ok: true });
+
+  const ip = req.headers.get("x-real-ip") ?? req.headers.get("x-forwarded-for")?.split(",")[0].trim() ?? "unknown";
 
   if (await isRateLimited(ip)) {
     return NextResponse.json({ ok: true });
@@ -18,11 +27,19 @@ export async function POST(req: NextRequest) {
   const { username, email } = await req.json().catch(() => ({})) as { username?: string; email?: string };
   if (!username || !email) return NextResponse.json({ ok: true });
 
+  // Session must match the claimed username — no spoofing another user's registration
+  if (sessionUser.toLowerCase() !== username.toLowerCase().trim()) {
+    return NextResponse.json({ ok: true });
+  }
+
   const apiKey = process.env.RESEND_API_KEY;
   const adminEmail = process.env.ADMIN_EMAIL;
   if (!apiKey || !adminEmail) {
     return NextResponse.json({ error: "Email service not configured" }, { status: 500 });
   }
+
+  const safeUsername = escapeHtml(username);
+  const safeEmail = escapeHtml(email);
 
   const res = await fetch("https://api.resend.com/emails", {
     method: "POST",
@@ -33,19 +50,19 @@ export async function POST(req: NextRequest) {
     body: JSON.stringify({
       from: "Kryptós CronOS <noreply@kryptoscronos.com>",
       to: [adminEmail],
-      subject: `New user registered: ${username}`,
+      subject: `New user registered: ${safeUsername}`,
       html: `
         <div style="font-family: monospace; background: #0d1117; color: #e2e8f0; padding: 32px; border-radius: 8px; max-width: 480px;">
-          <h2 style="color: #22d3ee; margin: 0 0 16px;">🛡️ Kryptós CronOS</h2>
+          <h2 style="color: #22d3ee; margin: 0 0 16px;">Kryptós CronOS</h2>
           <p style="color: #94a3b8; margin: 0 0 24px;">New agent registered.</p>
           <table style="width: 100%; border-collapse: collapse;">
             <tr>
               <td style="color: #64748b; padding: 8px 0; border-bottom: 1px solid #1e293b;">Username</td>
-              <td style="color: #22d3ee; font-weight: bold; padding: 8px 0; border-bottom: 1px solid #1e293b;">${username}</td>
+              <td style="color: #22d3ee; font-weight: bold; padding: 8px 0; border-bottom: 1px solid #1e293b;">${safeUsername}</td>
             </tr>
             <tr>
               <td style="color: #64748b; padding: 8px 0; border-bottom: 1px solid #1e293b;">Email</td>
-              <td style="color: #e2e8f0; padding: 8px 0; border-bottom: 1px solid #1e293b;">${email}</td>
+              <td style="color: #e2e8f0; padding: 8px 0; border-bottom: 1px solid #1e293b;">${safeEmail}</td>
             </tr>
             <tr>
               <td style="color: #64748b; padding: 8px 0;">Time</td>

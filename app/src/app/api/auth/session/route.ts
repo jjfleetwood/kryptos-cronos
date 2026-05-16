@@ -1,6 +1,18 @@
 import { NextRequest, NextResponse } from "next/server";
+import { timingSafeEqual } from "crypto";
 import { redis } from "@/lib/redis";
 import { signSessionToken, sessionCookieOptions } from "@/lib/server-session";
+
+function safeCompare(a: string, b: string): boolean {
+  try {
+    const ab = Buffer.from(a);
+    const bb = Buffer.from(b);
+    if (ab.length !== bb.length) return false;
+    return timingSafeEqual(ab, bb);
+  } catch {
+    return false;
+  }
+}
 
 export async function POST(req: NextRequest) {
   const body = await req.json().catch(() => null);
@@ -11,7 +23,7 @@ export async function POST(req: NextRequest) {
   const username = body.username.toLowerCase().trim();
   const data = await redis.hgetall<{ passwordHash: string }>(`user:${username}`);
 
-  if (!data?.passwordHash || data.passwordHash !== body.passwordHash) {
+  if (!data?.passwordHash || !safeCompare(data.passwordHash, body.passwordHash)) {
     return NextResponse.json({ error: "unauthorized" }, { status: 401 });
   }
 

@@ -4,6 +4,10 @@ import { redis } from "@/lib/redis";
 
 const RESET_TTL = 3600;
 
+function escapeHtml(s: string): string {
+  return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+}
+
 async function isRateLimited(ip: string): Promise<boolean> {
   const key = `rate:forgot:${ip}`;
   const count = await redis.incr(key);
@@ -12,7 +16,7 @@ async function isRateLimited(ip: string): Promise<boolean> {
 }
 
 export async function POST(req: NextRequest) {
-  const ip = req.headers.get("x-forwarded-for")?.split(",")[0].trim() ?? "unknown";
+  const ip = req.headers.get("x-real-ip") ?? req.headers.get("x-forwarded-for")?.split(",")[0].trim() ?? "unknown";
 
   if (await isRateLimited(ip)) {
     return NextResponse.json({ ok: true }); // silent — don't reveal rate limiting
@@ -36,6 +40,10 @@ export async function POST(req: NextRequest) {
   const baseUrl = process.env.APP_URL ?? "http://localhost:3000";
   const resetUrl = `${baseUrl}/reset-password?token=${token}`;
 
+  // Escape user-controlled values before inserting into HTML
+  const safeUsername = escapeHtml(username);
+  const safeResetUrl = encodeURI(resetUrl);
+
   await fetch("https://api.resend.com/emails", {
     method: "POST",
     headers: { Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json" },
@@ -47,10 +55,10 @@ export async function POST(req: NextRequest) {
         <div style="font-family: monospace; background: #0d1117; color: #e2e8f0; padding: 32px; border-radius: 8px; max-width: 480px;">
           <div style="font-size: 24px; margin-bottom: 8px;">🛡️ Kryptós CronOS</div>
           <div style="color: #94a3b8; font-size: 13px; margin-bottom: 24px;">Password Reset Request</div>
-          <p style="color: #cbd5e1;">A password reset was requested for agent <strong style="color: #22d3ee;">${username}</strong>.</p>
+          <p style="color: #cbd5e1;">A password reset was requested for agent <strong style="color: #22d3ee;">${safeUsername}</strong>.</p>
           <p style="color: #cbd5e1;">Click the link below to set a new password. This link expires in <strong>1 hour</strong>.</p>
           <div style="margin: 24px 0;">
-            <a href="${resetUrl}" style="background: linear-gradient(90deg, #22d3ee, #818cf8); color: #000; padding: 12px 24px; border-radius: 6px; text-decoration: none; font-weight: bold;">Reset Password →</a>
+            <a href="${safeResetUrl}" style="background: linear-gradient(90deg, #22d3ee, #818cf8); color: #000; padding: 12px 24px; border-radius: 6px; text-decoration: none; font-weight: bold;">Reset Password →</a>
           </div>
           <p style="color: #475569; font-size: 12px;">If you did not request this, you can safely ignore this email.</p>
         </div>

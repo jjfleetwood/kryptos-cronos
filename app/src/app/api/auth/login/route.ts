@@ -1,0 +1,55 @@
+import { NextRequest, NextResponse } from "next/server";
+import { timingSafeEqual } from "crypto";
+import { redis } from "@/lib/redis";
+import { hashPassword } from "@/lib/crypto-utils";
+import { signSessionToken, sessionCookieOptions } from "@/lib/server-session";
+
+async function isRateLimited(ip: string): Promise<boolean> {
+  const key = `rate:login:${ip}`;
+  const count = await redis.incr(key);
+  if (count === 1) await redis.expire(key, 900); // 15-minute window
+  return count > 10;
+}
+
+function safeCompare(a: string, b: string): boolean {
+  try {
+    const ab = Buffer.from(a);
+    const bb = Buffer.from(b);
+    if (ab.length !== bb.length) return false;
+    return timingSafeEqual(ab, bb);
+  } catch {
+    return false;
+  }
+}
+
+export async function POST(req: NextRequest) {
+  const ip = req.headers.get("x-real-ip") ?? req.headers.get("x-forwarded-for")?.split(",")[0].trim() ?? "unknown";
+
+  if (await isRateLimited(ip)) {
+    return NextResponse.json({ error: "Too many attempts. Try again later." }, { status: 429 });
+  }
+
+  const body = await req.json().catch(() => null);
+  if (!body?.username || !body?.password || typeof body.username !== "string" || typeof body.password !== "string") {
+    return NextResponse.json({ error: "Invalid username or password." }, { status: 401 });
+  }
+
+  const username = body.username.toLowerCase().trim();
+  const data = await redis.hgetall<{ passwordHash: string; salt: string; email: string }>(`user:${username}`);
+
+  if (!data?.passwordHash || !data?.salt) {
+    // Still hash to avoid timing-based username enumeration
+    await hashPassword(body.password, "00000000000000000000000000000000");
+    return NextResponse.json({ error: "Invalid username or password." }, { status: 401 });
+  }
+
+  const hash = await hashPassword(body.password, data.salt);
+  if (!safeCompare(hash, data.passwordHash)) {
+    return NextResponse.json({ error: "Invalid username or password." }, { status: 401 });
+  }
+
+  const token = signSessionToken(username);
+  const res = NextResponse.json({ ok: true, username, email: data.email ?? "" });
+  res.cookies.set("session_token", token, sessionCookieOptions());
+  return res;
+}

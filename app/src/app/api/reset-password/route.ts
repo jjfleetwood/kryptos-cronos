@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { redis } from "@/lib/redis";
+import { signSessionToken, sessionCookieOptions } from "@/lib/server-session";
 
 type ResetPayload = {
   token: string;
@@ -23,5 +24,8 @@ export async function POST(req: NextRequest) {
   await redis.hset(`user:${username}`, { passwordHash, salt });
   await redis.del(`reset:${token}`);
 
-  return NextResponse.json({ username });
+  const sessionToken = signSessionToken(username);
+  const res = NextResponse.json({ username });
+  res.cookies.set("session_token", sessionToken, sessionCookieOptions());
+  return res;
 }
