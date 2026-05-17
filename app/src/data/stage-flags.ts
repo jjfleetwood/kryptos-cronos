@@ -199,4 +199,16 @@ export const stageFlags: Record<string, string> = {
   "quantum-c08": "FLAG{FIPS140_EXCEPTION_PATH_VALID}",
   "quantum-c09": "FLAG{GOVERNANCE_BOARD_APPROVED}",
   "quantum-c10": "FLAG{QUANTUM_SAFE_STACK_COMPLETE}",
+
+  // ── Cisco Umbrella — DNS Security (umbrella.ts) ───────────────────────────
+  "umbrella-01": "FLAG{UMBRELLA_DNS_F1RST_L1N3_D3F3NS3}",
+  "umbrella-02": "FLAG{DNS_TUNN3L_D4T4_3XF1L_CAUGHT}",
+  "umbrella-03": "FLAG{DGA_3NTR0PY_C2_D0M41N_D3T3CT3D}",
+  "umbrella-04": "FLAG{F4ST_FL0X_IP_R0T4T10N_BUST3D}",
+  "umbrella-05": "FLAG{DNS_R3B1ND_S4M3_0R1G1N_BYP4SS}",
+  "umbrella-06": "FLAG{L00K4L1K3_D0M41N_PH1SH_BLOCK3D}",
+  "umbrella-07": "FLAG{P0L1CY_BYPA55_RUL3_R3M0V3D}",
+  "umbrella-08": "FLAG{D0H_3V4S10N_H4RDC0D3D_R3S0LV3R}",
+  "umbrella-09": "FLAG{T4L0S_1NT3L_C2_TR4CK3D_4PT}",
+  "umbrella-10": "FLAG{DNS_1R_CONT41NM3NT_CR1T1C4L_GR1D}",
 };
