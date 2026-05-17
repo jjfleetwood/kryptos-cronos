@@ -223,7 +223,7 @@ export default function Home() {
               </span>
             </div>
 
-            <h1 className="text-7xl md:text-9xl font-black mb-6 leading-none tracking-tight">
+            <h1 className="text-4xl md:text-6xl font-black mb-6 leading-none tracking-tight">
               <span className="text-white" style={{ textShadow: "0 0 80px rgba(255,255,255,0.08)" }}>
                 The Threats
               </span>
@@ -231,7 +231,7 @@ export default function Home() {
               <span className="hero-glow">Have Changed.</span>
             </h1>
 
-            <p className="text-xl md:text-2xl font-semibold mb-4"
+            <p className="text-lg md:text-xl font-semibold mb-4"
               style={{ color: "rgba(255,255,255,0.75)" }}>
               AI attacks. Quantum decryption. Nation-state DNS ops.
             </p>
