@@ -143,6 +143,11 @@ export const umbrellaStages: StageConfig[] = [
             "User: j.rodriguez@corp.com",
             "Infection vector: Outlook attachment opened at 09:14",
             "Fragment collected.",
+            "",
+            ">> LEARN: Cisco Umbrella blocks C2 at the DNS layer before TCP connects",
+            "   Umbrella resolvers (208.67.222.222/220.220) apply threat categories globally.",
+            "   Blocking DNS stops the kill chain before any payload bytes are transferred.",
+            "   Talos pushes new malware/C2 domains to Umbrella within 4 minutes of discovery.",
           ],
         }),
         "talos-lookup": (args: string[]) => {
@@ -160,6 +165,11 @@ export const umbrellaStages: StageConfig[] = [
                 "",
                 "Recommendation: block all WIZARD SPIDER infrastructure.",
                 "Fragment collected. Run 'assemble' to build the flag.",
+                "",
+                ">> LEARN: Talos Investigate links domains to threat actors via passive DNS",
+                "   Shared IPs, registration patterns, and cert SANs link WIZARD SPIDER domains.",
+                "   Conti/Trickbot/Ryuk share backend infrastructure — block one, map the rest.",
+                "   Talos enriches Umbrella with threat actor attribution in near-real time.",
               ],
             };
           }
@@ -304,6 +314,11 @@ export const umbrellaStages: StageConfig[] = [
                 "Volume: ~2.1MB over 18 minutes",
                 "C2 server: 45.155.91.22 (NL — bulletproof hosting)",
                 "Fragment collected.",
+                "",
+                ">> LEARN: DNS tunneling encodes data in subdomain labels over UDP/53",
+                "   dnscat2 and iodine establish full TCP/IP tunnels through DNS — port 53 is rarely blocked.",
+                "   Detection signals: >40-char labels, >4 bits/byte entropy, >10 queries/sec, TXT records.",
+                "   OilRig (APT34) exfiltrated data via DNS tunnel for 3 years before Talos detected it.",
               ],
             };
           }
@@ -320,6 +335,11 @@ export const umbrellaStages: StageConfig[] = [
                 "Tunnel connection dropped. Exfiltration stopped.",
                 "Incident ticket created: INC-2022-0803-001",
                 "Fragment collected. Run 'assemble' to build the flag.",
+                "",
+                ">> LEARN: Umbrella domain-level block stops tunnels regardless of encoding",
+                "   NXDOMAIN for the tunnel domain breaks the dnscat2/iodine transport layer.",
+                "   Blocking the authoritative domain is more robust than filtering by label length.",
+                "   Newly registered domains (<30 days) with TXT record usage are high-risk signals.",
               ],
             };
           }
@@ -464,6 +484,11 @@ for i in range(100):
                 "Stage-2 payload: Ryuk ransomware dropper (not yet downloaded)",
                 "Umbrella blocked all 100 DGA domains for today.",
                 "Fragment collected.",
+                "",
+                ">> LEARN: DGA botnets use date seeds to make C2 domains unpredictable to defenders",
+                "   Attackers pre-register 1-2 of the day's 100+ generated domains; the rest return NXDOMAIN.",
+                "   Umbrella's ML flags NXDOMAIN storms with high-entropy domain names as DGA activity.",
+                "   Blocking all DGA domains prevents stage-2 payload delivery even before family identification.",
               ],
             };
           }
@@ -484,6 +509,11 @@ for i in range(100):
                 "Status: BLOCKED by Umbrella DGA detection",
                 "Host 10.8.4.19 quarantined. Ryuk never delivered.",
                 "Fragment collected. Run 'assemble' to build the flag.",
+                "",
+                ">> LEARN: DGA domains are registered 1 day before use — recency is a key signal",
+                "   Talos cross-references DGA-family fingerprints against newly-registered domain feeds.",
+                "   Europol's Emotet takedown in 2021 shows that disrupting the DGA seed breaks botnets.",
+                "   Lexical entropy scoring (bits/byte) separates human-chosen from PRNG-generated names.",
               ],
             };
           }
@@ -627,6 +657,11 @@ for i in range(100):
                 "Real backend: never exposed in DNS",
                 "Threat: Necurs variant — spam + banking trojan dropper",
                 "Fragment collected.",
+                "",
+                ">> LEARN: Fast flux rotates A records every 300s through compromised host pools",
+                "   Single-flux rotates IPs; double-flux also rotates NS records — blocks fail instantly.",
+                "   Detection requires IP diversity metrics: >30 unique IPs/day, >5 countries, TTL <=300s.",
+                "   Storm Worm (2007) pioneered double-flux at 50M infected PCs — took 18 months to disrupt.",
               ],
             };
           }
@@ -643,6 +678,11 @@ for i in range(100):
                 "Fast flux neutralized — IP changes have no effect.",
                 "4 internal hosts now protected.",
                 "Fragment collected. Run 'assemble' to build the flag.",
+                "",
+                ">> LEARN: Domain-level blocking defeats fast flux regardless of IP rotation",
+                "   IP-based blocklists can't keep pace with 300-second rotation across 41 ASNs.",
+                "   Umbrella blocks the domain name itself — IP changes are irrelevant.",
+                "   Legitimate CDNs (Cloudflare, Akamai) also rotate IPs but show consistent ASN patterns.",
               ],
             };
           }
@@ -781,6 +821,11 @@ fetch("http://attacker.com/admin/config.json")
                 "TTL manipulation confirmed: 60s TTL forced re-resolution",
                 "Attack window: ~60s after victim loaded attacker-iot.com",
                 "Fragment collected.",
+                "",
+                ">> LEARN: DNS rebinding bypasses same-origin policy via TTL expiry",
+                "   Short TTL (60s) forces browser re-resolution; attacker swaps A record to 192.168.x.x.",
+                "   Browser treats the RFC-1918 response as same-origin — CORS grants full access.",
+                "   Umbrella blocks public domains returning private/RFC-1918 IPs as inherently suspicious.",
               ],
             };
           }
@@ -802,6 +847,11 @@ fetch("http://attacker.com/admin/config.json")
                 "Umbrella blocked the rebinding step — router NOT accessed.",
                 "Without Umbrella: admin config would have been exfiltrated.",
                 "Fragment collected. Run 'assemble' to build the flag.",
+                "",
+                ">> LEARN: Any internal HTTP device at a predictable IP is a rebinding target",
+                "   Routers, smart speakers, IP cameras, and ICS panels often lack auth headers.",
+                "   Princeton (2018): 4,500+ sites could host rebinding; major router brands vulnerable.",
+                "   RFC-1918 responses in public DNS are blocked by Umbrella as a rebinding indicator.",
               ],
             };
           }
@@ -941,6 +991,11 @@ ed("microsoft.com", "micros0ft.com")  # → 1  (zero sub)
                 "Page content: cloned DoD login page (credential harvester)",
                 "SSL cert: Let's Encrypt (auto-issued — 2023-03-06)",
                 "Fragment collected.",
+                "",
+                ">> LEARN: Combosquatting adds words to brand names to evade exact-match blocklists",
+                "   Typosquatting (paypa1.com) and zero-substitution (micros0ft.com) fool visual inspection.",
+                "   Umbrella scores edit distance <= 2 from protected brand names and flags newly-registered domains.",
+                "   Let's Encrypt auto-issues certs for lookalike domains — TLS is not a trust signal.",
               ],
             };
           }
@@ -962,6 +1017,11 @@ ed("microsoft.com", "micros0ft.com")  # → 1  (zero sub)
                 "Targets: US defense contractors, cleared personnel",
                 "Objective: credential harvest → VPN access → espionage",
                 "Fragment collected. Run 'assemble' to build the flag.",
+                "",
+                ">> LEARN: NOBELIUM (APT29/SVR) uses lookalike domains for cleared-personnel phishing",
+                "   IDN homograph attacks use Cyrillic characters visually identical to ASCII — undetectable in old browsers.",
+                "   Talos maintains a Fortune 500 and .gov brand registry; domains within edit distance 2 are auto-flagged.",
+                "   BEC losses hit $2.4B in 2021 (FBI IC3) — lookalike domains are a primary attack vector.",
               ],
             };
           }
@@ -1098,6 +1158,11 @@ umbrella policy audit --allow-list --older-than 90d --sort created`,
             "  Ticket reference: NONE (no change management record)",
             "  Effect: bypasses ALL security categories for *.transfer-files.io",
             "Fragment collected.",
+            "",
+            ">> LEARN: Allow-list entries override all Umbrella security category blocks",
+            "   Wildcard entries (*.domain.io) are especially dangerous — attackers register subdomains.",
+            "   Stale entries added by deprovisioned accounts without change tickets are a red flag.",
+            "   LockBit exploited a wildcard allow-list to bypass Malware/C2 blocking in a school district.",
           ],
         }),
         "umbrella-remove-rule": (args: string[]) => {
@@ -1113,6 +1178,11 @@ umbrella policy audit --allow-list --older-than 90d --sort created`,
                 "Policy gap closed. Initiating host isolation for ADMIN-SERVER-02.",
                 "Change management ticket: INC-2023-0411-001 (auto-created)",
                 "Fragment collected. Run 'assemble' to build the flag.",
+                "",
+                ">> LEARN: Policy remediation must pair rule removal with host isolation",
+                "   Removing the allow-list entry re-enables the Malware/C2 category block immediately.",
+                "   LockBit operators actively probe Umbrella policy for wildcard allow-list entries.",
+                "   Best practice: specific domains only, expiry dates, WORKSTATIONS-group scope.",
               ],
             };
           }
@@ -1253,6 +1323,11 @@ umbrella policy audit --allow-list --older-than 90d --sort created`,
                 "",
                 "Process svchost32.exe is communicating with Trickbot C2 via DoH.",
                 "Fragment collected.",
+                "",
+                ">> LEARN: DoH wraps DNS queries in HTTPS — traditional DNS monitoring is blind to it",
+                "   Malware hardcodes DoH resolver IPs (1.1.1.1:443, 8.8.8.8:443) to bypass corporate DNS.",
+                "   Godlua (2019) was the first malware confirmed using DoH for C2 evasion.",
+                "   Detection: monitor HTTPS connections to resolver IPs from non-browser, non-Umbrella processes.",
               ],
             };
           }
@@ -1272,6 +1347,11 @@ umbrella policy audit --allow-list --older-than 90d --sort created`,
                 "All DNS (including DoH) now routed through Umbrella.",
                 "c2-prime.net: BLOCKED  svchost32.exe C2 connection severed.",
                 "Fragment collected. Run 'assemble' to build the flag.",
+                "",
+                ">> LEARN: Umbrella roaming client intercepts DoH by blocking external resolver IPs",
+                "   TCP/443 to 1.1.1.1, 8.8.8.8, 9.9.9.9 is blocked for all non-Umbrella processes.",
+                "   Umbrella provides its own DoH endpoint (208.67.222.222:443) — privacy with security.",
+                "   Enterprise policy: block external DoH resolver IPs at the firewall as defense-in-depth.",
               ],
             };
           }
@@ -1411,6 +1491,11 @@ talos-investigate domain loader-cdn.com --whois-correlate
                 "Registrar: Namecheap (privacy)   Payment: cryptocurrency",
                 "Threat actor: SCATTERED SPIDER (UNC3944) — confidence: HIGH",
                 "Fragment collected.",
+                "",
+                ">> LEARN: Passive DNS pivoting maps attacker infrastructure from a single domain",
+                "   Shared IPs across domains reveal bulk-registered campaign infrastructure.",
+                "   WHOIS correlations (same registrar, date, payment method) confirm attribution.",
+                "   Talos exposed the full Lazarus Group APT38 banking infra using this technique in 2018.",
               ],
             };
           }
@@ -1430,6 +1515,11 @@ talos-investigate domain loader-cdn.com --whois-correlate
                 "",
                 "Talos report: 130 targeted companies — 80% blocked pre-attack.",
                 "Fragment collected. Run 'assemble' to build the flag.",
+                "",
+                ">> LEARN: Talos propagates threat feeds to all Umbrella customers within 4 minutes",
+                "   Early-warning intel blocks attacks before phishing emails are even clicked.",
+                "   Scattered Spider used SMS phishing (smishing) to bypass MFA and steal Okta admin access.",
+                "   Umbrella Investigate gives SOC analysts the same passive DNS pivot tools as Talos.",
               ],
             };
           }
@@ -1574,6 +1664,11 @@ umbrella-ir --block-feed blackout-2023 --confirm
                 "Feed created: blackout-2023 (5 domains)",
                 "Dwell time: 4 days  Payload window: T-18 min",
                 "Fragment collected.",
+                "",
+                ">> LEARN: DNS log scoping identifies compromised hosts faster than EDR telemetry",
+                "   All infected hosts — including unmanaged OT/SCADA devices — appear in DNS logs.",
+                "   Passive DNS pivot from one C2 domain reveals the full campaign infrastructure.",
+                "   CISA CPG 2.S mandates DNS-layer security for critical infrastructure operators.",
               ],
             };
           }
@@ -1595,6 +1690,11 @@ umbrella-ir --block-feed blackout-2023 --confirm
                 "",
                 "Time to containment: 11 minutes from initial alert.",
                 "Fragment collected. Run 'assemble' to build the flag.",
+                "",
+                ">> LEARN: DNS containment severs C2 for all infected hosts simultaneously",
+                "   VOLT TYPHOON used living-off-the-land (LOLBins) but still needed DNS — the only signal.",
+                "   Ransomware cannot trigger encryption without C2 confirmation — DNS block stops the payload.",
+                "   NIST SP 800-189 and CISA CPG 2.S cite DNS-layer security as critical infrastructure baseline.",
               ],
             };
           }

@@ -153,6 +153,11 @@ curl -I http://google.com
                 "",
                 "All extracted without any decryption needed.",
                 "Run: submit-creds tidal_wave_tom surfsup1969",
+                "",
+                ">> LEARN: HTTP sends everything in plaintext",
+                "   Any device on the network path can read your credentials.",
+                "   Firesheep (2010) stole HTTP session cookies at coffee shops.",
+                "   Try it: sudo tcpdump -A port 80 | grep -i 'pass\\|user'",
               ],
             };
           }
@@ -165,6 +170,11 @@ curl -I http://google.com
                 "  Content: ████████████████████",
                 "",
                 "HTTPS protects against this attack.",
+                "",
+                ">> LEARN: TLS encrypts everything — headers and cookies too",
+                "   Without session keys, intercepted HTTPS is meaningless ciphertext.",
+                "   This is why every site must use HTTPS — HTTP theft is trivial.",
+                "   Check a site's TLS config: nmap --script ssl-enum-ciphers -p 443 <host>",
               ],
             };
           }
@@ -178,6 +188,11 @@ curl -I http://google.com
                 "This is how easy HTTP credential theft is.",
                 "",
                 "Run 'assemble' to retrieve your fragment.",
+                "",
+                ">> LEARN: Credential theft over HTTP requires zero tools",
+                "   No decryption needed — the password is in the raw packet.",
+                "   HSTS forces browsers to use HTTPS even if you type http://.",
+                "   Check HSTS on any site: curl -I https://site.com | grep Strict",
               ],
             };
           }
@@ -324,10 +339,15 @@ curl -A "Mozilla/5.0" https://example.com`,
                 "<body>",
                 "  <h1>Welcome to Steamer Lane Surf Shop</h1>",
                 "  <p>Best boards in Santa Cruz.</p>",
-                "  <!-- admin: /admin-reef-42 -->   ← found it",
+                "  <!-- admin: /admin-reef-42 -->   <- found it",
                 "  <a href='/boards'>Shop Boards</a>",
                 "</body>",
                 "</html>",
+                "",
+                ">> LEARN: HTML comments are visible to anyone — view source",
+                "   Developers leave paths, credentials, and TODOs in comments.",
+                "   Attackers use 'view-source:' and DevTools to read every comment.",
+                "   Try it on any site: Ctrl+U or right-click -> View Page Source",
               ],
             };
           }
@@ -341,6 +361,11 @@ curl -A "Mozilla/5.0" https://example.com`,
             "  X-Powered-By: SurfOS/1.0",
             "  X-Admin-Hint: check the HTML comments",
             "  Server: nginx/1.24",
+            "",
+            ">> LEARN: HTTP headers expose server software versions",
+            "   X-Powered-By reveals frameworks; Server reveals web server version.",
+            "   Attackers look for version-specific CVEs using this fingerprint info.",
+            "   Remove info headers: add 'server_tokens off;' in nginx.conf",
           ],
         }),
         browse: (args) => {
@@ -354,6 +379,11 @@ curl -A "Mozilla/5.0" https://example.com`,
                 "  flag.txt",
                 "",
                 "Run: cat /admin-reef-42/flag.txt",
+                "",
+                ">> LEARN: Browser DevTools expose what pages send and receive",
+                "   Network tab shows every request, URL, header, cookie, response.",
+                "   Attackers use DevTools to find hidden API calls and admin paths.",
+                "   Real task: open F12 on any site — look at XHR requests made.",
               ],
             };
           }
@@ -501,7 +531,7 @@ print(resp.json())   # parse JSON response`,
           const responses: Record<string, string[]> = {
             "7": ["200 OK — Student #7:", "  name: wave_rider_7", "  level: beginner", "  courses: [surf-101]"],
             "1": ["200 OK — Student #1:", "  name: betty_barrelhouse", "  level: intermediate", "  courses: [surf-201, surf-301]"],
-            "0": ["200 OK — Student #0:", "  name: admin", "  level: instructor", "  note: Server returned admin record to an unauthorized student. IDOR vulnerability.", "", "Run 'assemble' to retrieve your fragment."],
+            "0": ["200 OK — Student #0:", "  name: admin", "  level: instructor", "  note: Server returned admin record to an unauthorized student. IDOR vulnerability.", "", "Run 'assemble' to retrieve your fragment.", "", ">> LEARN: IDOR — server skips authorization on object IDs", "   Changing /students/7 to /students/0 exposes another user's data.", "   OWASP API Top 10: Broken Object Level Authorization is the #1 API flaw.", "   Test any API: change numeric IDs in requests and check the response."],
             "admin": ["400 Bad Request — ID must be numeric. Try /students/0"],
           };
           const resp = responses[id];
@@ -659,8 +689,13 @@ curl -v https://example.com 2>&1 | grep -A5 "SSL connection"`,
             "  Valid:   2024-01-01 to 2025-01-01",
             "  Today:   2025-05-11",
             "",
-            "⚠ WARNING: Issuer 'Fake-CA-Not-Trusted' is NOT in browser trust store.",
+            "WARNING: Issuer 'Fake-CA-Not-Trusted' is NOT in browser trust store.",
             "Run: check-issuer | check-expiry | check-domain lifeguard-server.sc",
+            "",
+            ">> LEARN: TLS certs prove identity — signed by a trusted CA",
+            "   Browsers ship with ~150 trusted root CAs — all certs must chain to one.",
+            "   Self-signed or rogue CA certs are trivial to create — never click past warnings.",
+            "   Inspect any cert: openssl s_client -connect example.com:443",
           ],
         }),
         "check-issuer": () => ({
@@ -671,6 +706,11 @@ curl -v https://example.com 2>&1 | grep -A5 "SSL connection"`,
             "  Anyone can create a certificate signed by an unknown CA.",
             "  This is a self-signed or rogue certificate.",
             "  DO NOT trust this connection.",
+            "",
+            ">> LEARN: Untrusted CA = anyone could have signed the cert",
+            "   2011 DigiNotar hack: rogue CA certs intercepted 300K Iranian Gmail users.",
+            "   Certificate Transparency logs make all CA-issued certs publicly auditable.",
+            "   Check CT logs: crt.sh/?q=yourdomain.com",
           ],
         }),
         "check-expiry": () => ({
@@ -680,6 +720,11 @@ curl -v https://example.com 2>&1 | grep -A5 "SSL connection"`,
             "  Not After:  2025-01-01",
             "  Today:      2025-05-11",
             "  Status:     EXPIRED — certificate expired 4 months ago.",
+            "",
+            ">> LEARN: Expired cert = server neglected renewal — red flag",
+            "   Let's Encrypt issues 90-day certs; auto-renewal is now standard.",
+            "   Attackers serve expired certs on phishing clones — always check dates.",
+            "   Check expiry: echo | openssl s_client -connect host:443 | openssl x509 -noout -dates",
           ],
         }),
         "check-domain": (args) => {
@@ -695,6 +740,11 @@ curl -v https://example.com 2>&1 | grep -A5 "SSL connection"`,
               "This certificate should not be trusted.",
               "",
               "Run 'assemble' to retrieve your fragment.",
+              "",
+              ">> LEARN: Three cert checks: CA trust, expiry, domain match",
+              "   Domain mismatch = cert may be reused from a different site (MitM indicator).",
+              "   Three cert checks: trusted issuer, not expired, CN matches the domain.",
+              "   Automated check: ssllabs.com gives a full A–F grade for any HTTPS site.",
             ],
           };
         },
@@ -844,14 +894,29 @@ curl -I https://example.com | grep Set-Cookie
             "  session_user=sess_7abc23; Path=/",
             "  session_admin=sess_ADMIN_9f3e2b1a; Path=/; Secure",
             "",
-            "⚠ Admin session token exposed to JavaScript.",
+            "Admin session token exposed to JavaScript.",
             "If HttpOnly were set, this would return: [empty]",
             "Run: access-as-admin sess_ADMIN_9f3e2b1a",
+            "",
+            ">> LEARN: Session cookies are auth tokens — protect them",
+            "   HttpOnly blocks JS access; without it, any XSS payload steals the cookie.",
+            "   Stolen session cookie = account takeover without knowing the password.",
+            "   Check cookie flags in DevTools: F12 -> Application -> Cookies",
           ],
         }),
         "read-session": (args) => {
           if (args[0] === "admin") {
-            return { lines: ["Admin session token: sess_ADMIN_9f3e2b1a", "Expires: 24 hours from login"] };
+            return {
+              lines: [
+                "Admin session token: sess_ADMIN_9f3e2b1a",
+                "Expires: 24 hours from login",
+                "",
+                ">> LEARN: Short sessions limit damage from stolen tokens",
+                "   Short-lived tokens (15 min) limit damage if a session cookie is stolen.",
+                "   Secure + SameSite=Strict flags stop cookie theft via network and CSRF.",
+                "   Regenerate session tokens on every login to block session fixation.",
+              ],
+            };
           }
           return { lines: [`Session for ${args[0]}: not found`] };
         },
@@ -866,6 +931,11 @@ curl -I https://example.com | grep Set-Cookie
                 "Admin panel access granted.",
                 "",
                 "Run 'assemble' to retrieve your fragment.",
+                "",
+                ">> LEARN: Stolen session cookie = full account access",
+                "   2FA is bypassed entirely — the session was already authenticated.",
+                "   Slack 2022 breach: attackers stole session tokens, skipped 2FA completely.",
+                "   Defense: bind sessions to IP or device fingerprint, shorten session lifetime.",
               ],
             };
           }
@@ -1031,6 +1101,11 @@ print(resp.json())`,
               "403 Forbidden",
               '{"error": "Admin endpoint — requires X-Admin-Token header"}',
               "Hint: try /internal/ paths",
+              "",
+              ">> LEARN: 403 on /admin doesn't mean /internal/ is protected",
+              "   403 is correct here — but /internal/ endpoints often have no auth at all.",
+              "   API enumeration: try common paths like /internal, /debug, /v0, /admin.",
+              "   Tool: ffuf -w wordlist.txt -u https://api.target.com/FUZZ",
             ],
             "/internal/config": [
               "200 OK — (this endpoint has no authentication!)",
@@ -1041,6 +1116,11 @@ print(resp.json())`,
               "}",
               "",
               "Run 'assemble' to retrieve your fragment.",
+              "",
+              ">> LEARN: Internal endpoints still need authentication",
+              "   Peloton 2021: unauthenticated API returned private data for 4.5M users.",
+              "   Internal does not mean private — network path alone is not authentication.",
+              "   All endpoints, even /internal, must require and verify auth tokens.",
             ],
           };
           const resp = routes[path];
@@ -1191,12 +1271,17 @@ traceroute google.com
         "bandwidth-check": () => ({
           lines: [
             "Bandwidth Utilization Report:",
-            "  Uplink to ISP (1 Gbps):        997 Mbps USED  ← 99.7% — nearly saturated",
+            "  Uplink to ISP (1 Gbps):        997 Mbps USED  <- 99.7% -- nearly saturated",
             "  Internal server link (10 Gbps): 82 Mbps USED  (normal)",
             "  Legitimate surf traffic:         ~50 Mbps (normal baseline)",
             "",
             "Uplink is the bottleneck. Something is flooding the uplink.",
             "Run: trace-congestion",
+            "",
+            ">> LEARN: Saturated uplink drops all legitimate traffic",
+            "   DDoS fills the ISP uplink — the slowest link determines max throughput.",
+            "   Cloudflare 2023: 71M requests/sec saturated bandwidth at infrastructure scale.",
+            "   Measure your own link: speedtest-cli or iperf3 -c iperf.he.net",
           ],
         }),
         "trace-congestion": () => ({
@@ -1208,18 +1293,28 @@ traceroute google.com
             "",
             "Source: 185.220.101.0/24 — known Tor exit node / DDoS range",
             "Run: top-talkers",
+            "",
+            ">> LEARN: Traffic baselines make anomalous spikes obvious",
+            "   Normal is ~50 Mbps; 947 Mbps is an 18x spike — impossible to miss.",
+            "   traceroute shows which hop latency jumps, revealing the congestion point.",
+            "   Real tool: traceroute google.com — look for where RTT suddenly increases.",
           ],
         }),
         "top-talkers": () => ({
           lines: [
             "Top bandwidth consumers (last 60s):",
-            "  185.220.101.15   → 312 Mbps  ← attack",
-            "  185.220.101.42   → 298 Mbps  ← attack",
-            "  185.220.101.87   → 287 Mbps  ← attack",
-            "  203.0.113.5      → 12 Mbps   (legitimate surfer)",
-            "  198.51.100.22    → 8 Mbps    (legitimate surfer)",
+            "  185.220.101.15   -> 312 Mbps  <- attack",
+            "  185.220.101.42   -> 298 Mbps  <- attack",
+            "  185.220.101.87   -> 287 Mbps  <- attack",
+            "  203.0.113.5      -> 12 Mbps   (legitimate surfer)",
+            "  198.51.100.22    -> 8 Mbps    (legitimate surfer)",
             "",
             "Run: block-ip 185.220.101.0/24",
+            "",
+            ">> LEARN: Top-talker analysis finds the DDoS source IPs",
+            "   A CIDR block from known botnet ranges using 90%+ of traffic is the attack.",
+            "   Mirai botnet 2016: 600K IoT devices generated 1.2 Tbps — same principle.",
+            "   Network tool: ntopng or 'iftop -n' shows per-IP bandwidth in real time.",
           ],
         }),
         "block-ip": (args) => {
@@ -1228,11 +1323,16 @@ traceroute google.com
               lines: [
                 "Firewall rule added: DROP src=185.220.101.0/24",
                 "",
-                "Bandwidth utilization: 997 Mbps → 20 Mbps",
+                "Bandwidth utilization: 997 Mbps -> 20 Mbps",
                 "Attack traffic: BLOCKED",
                 "Legitimate traffic: RESTORED",
                 "",
                 "Run 'assemble' to retrieve your fragment.",
+                "",
+                ">> LEARN: Firewall IP blocks stop attack traffic at the edge",
+                "   Block at the ISP or firewall edge — the attack still hits your uplink.",
+                "   Upstream scrubbing (Cloudflare, Akamai) blocks before it reaches you.",
+                "   Linux firewall rule: iptables -I INPUT -s 185.220.101.0/24 -j DROP",
               ],
             };
           }
@@ -1391,7 +1491,17 @@ ping 9.9.9.9     # Quad9`,
           };
           const ms = latencies[host];
           if (ms !== undefined) {
-            return { lines: [`PING ${host}: ${ms}ms (5 packet avg)`, ms < 20 ? "  ← Excellent latency" : ms < 100 ? "  ← Moderate latency" : "  ← High latency"] };
+            return {
+              lines: [
+                `PING ${host}: ${ms}ms (5 packet avg)`,
+                ms < 20 ? "  Excellent latency" : ms < 100 ? "  Moderate latency" : "  High latency",
+                "",
+                ">> LEARN: ping measures round-trip time (RTT) to a host",
+                "   RTT = 2x one-way latency; 12ms RTT = ~6ms each direction.",
+                "   High latency causes video lag, game stutters, slow page loads.",
+                "   Compare resolvers: ping 1.1.1.1 vs ping 8.8.8.8 vs ping 9.9.9.9",
+              ],
+            };
           }
           return { lines: [`Unknown host: ${host}. Try: cdn-west, cdn-central, cdn-east`] };
         },
@@ -1405,6 +1515,11 @@ ping 9.9.9.9     # Quad9`,
                 "Surf forecast loaded in 12ms.",
                 "",
                 "Run 'assemble' to retrieve your fragment.",
+                "",
+                ">> LEARN: CDNs reduce latency by serving from a nearby node",
+                "   A server 50km away beats one 3000km away by ~28ms round-trip.",
+                "   Latency cascades: one slow upstream call delays every dependent call.",
+                "   Trace hops to find slow links: traceroute cdn-west.example.com",
               ],
             };
           }
@@ -1553,28 +1668,43 @@ dig DS yourbank.com @8.8.8.8  # DS = Delegation Signer record`,
         "dns-cache": (args) => ({
           lines: [
             `Cached DNS record for ${args[0] || "?"}:`,
-            "  A record: 185.220.101.50   ← attacker's server",
+            "  A record: 185.220.101.50   <- attacker's server",
             "  TTL remaining: 287 seconds",
             "  Source: cached (not freshly resolved)",
+            "",
+            ">> LEARN: Poisoned DNS cache sends all users to the wrong IP",
+            "   Resolver caches fake records; every user asking for that domain gets the lie.",
+            "   Kaminsky 2008: any resolver could be poisoned in under 10 seconds.",
+            "   Spot discrepancies: dig domain.com vs dig @8.8.8.8 domain.com",
           ],
         }),
         "dns-auth": (args) => ({
           lines: [
             `Querying authoritative NS for ${args[0] || "?"}:`,
             "  Authoritative server: ns1.surf-archive.sc",
-            "  A record: 198.51.100.77   ← legitimate server",
+            "  A record: 198.51.100.77   <- legitimate server",
             "  DNSSEC: not configured (no RRSIG)",
             "  TTL: 3600",
+            "",
+            ">> LEARN: Authoritative NS bypasses poisoned resolver caches",
+            "   'dig @ns1.domain.com domain.com' skips resolvers and asks the source.",
+            "   DNSSEC (RRSIG records) cryptographically signs answers — tampering is detectable.",
+            "   Check if a domain has DNSSEC: dig +dnssec domain.com | grep RRSIG",
           ],
         }),
         "compare-dns": (args) => ({
           lines: [
             `DNS Comparison for ${args[0] || "?"}:`,
-            "  Cached:        185.220.101.50  ← DIFFERENT",
+            "  Cached:        185.220.101.50  <- DIFFERENT",
             "  Authoritative: 198.51.100.77",
             "  MISMATCH DETECTED — cache is poisoned.",
             "  Users are being sent to the wrong server.",
             "  Run: flush-cache surf-archive.sc",
+            "",
+            ">> LEARN: Mismatched IPs (cache vs auth NS) = poisoned cache",
+            "   Users on this resolver are being silently redirected to an attacker.",
+            "   DNS-over-HTTPS (DoH) prevents ISP or MitM from injecting fake responses.",
+            "   Enable DoH: Firefox Settings -> DNS over HTTPS -> Max Protection",
           ],
         }),
         "flush-cache": (args) => {
@@ -1583,10 +1713,15 @@ dig DS yourbank.com @8.8.8.8  # DS = Delegation Signer record`,
               lines: [
                 `Flushing poisoned cache entry for ${args[0]}...`,
                 "  Removed: 185.220.101.50",
-                "  Fresh lookup: 198.51.100.77  ✓",
+                "  Fresh lookup: 198.51.100.77",
                 "  Cache updated with legitimate address.",
                 "",
                 "Run 'assemble' to retrieve your fragment.",
+                "",
+                ">> LEARN: Flushing DNS cache removes poisoned entries",
+                "   TTL determines how long a poisoned entry persists before expiring.",
+                "   On Windows: ipconfig /flushdns | On Linux: resolvectl flush-caches",
+                "   Long TTLs (3600s+) mean poisoned records persist for hours if not flushed.",
               ],
             };
           }
@@ -1743,15 +1878,40 @@ server {
             "  You hit: backend server (round-robin — varies each request)",
             "  X-Served-By: one of [10.0.1.10, 10.0.1.11, 10.0.1.12]",
             "  To probe specific backends: probe-backend <ip>",
+            "",
+            ">> LEARN: Load balancers route traffic across a server pool",
+            "   Round-robin: each request rotates to the next server in sequence.",
+            "   The X-Served-By header leaks which backend handled your request.",
+            "   Check it on real sites: curl -I https://target.com | grep -i served",
           ],
         }),
         "probe-backend": (args) => {
           const ip = args[0] || "";
           if (ip === "10.0.1.10") {
-            return { lines: [`Backend ${ip}: 200 OK`, "  Content: Surf forecast data — nothing special here."] };
+            return {
+              lines: [
+                `Backend ${ip}: 200 OK`,
+                "  Content: Surf forecast data — nothing special here.",
+                "",
+                ">> LEARN: Direct backend probe bypasses the load balancer",
+                "   Backends reachable by IP may lack the LB's auth and rate-limiting.",
+                "   Heroku 2022: attackers used LB network access to hit internal backends.",
+                "   Defense: backends should require auth even from trusted internal IPs.",
+              ],
+            };
           }
           if (ip === "10.0.1.11") {
-            return { lines: [`Backend ${ip}: 200 OK`, "  Content: Wave height data — standard response."] };
+            return {
+              lines: [
+                `Backend ${ip}: 200 OK`,
+                "  Content: Wave height data — standard response.",
+                "",
+                ">> LEARN: Backend servers in a pool may hold different data",
+                "   Enumerate all pool members to find which hosts privileged content.",
+                "   Health check endpoints (/health) confirm a backend is in the pool.",
+                "   Nmap scan internal range: nmap -sV 10.0.1.0/24 -p 80,443,8080",
+              ],
+            };
           }
           if (ip === "10.0.1.12") {
             return {
@@ -1760,6 +1920,11 @@ server {
                 "  Content: ADMIN BACKEND — this server has the flag.",
                 "",
                 "Run 'assemble' to retrieve your fragment.",
+                "",
+                ">> LEARN: Admin backend in a public LB pool = full exposure",
+                "   A load balancer that routes to an admin server gives attackers equal access.",
+                "   Segment admin backends to a separate pool with IP allowlist restrictions.",
+                "   Defense: never co-locate public and admin backends in the same LB pool.",
               ],
             };
           }

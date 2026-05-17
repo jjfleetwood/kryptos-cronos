@@ -151,6 +151,13 @@ This lab covers Claude's tool use API for audit automation.
 - tool-spec/fragment-a.json  — tool definition header
 - tool-spec/fragment-b.json  — input schema
 - tool-spec/fragment-c.json  — output schema and key
+
+─────────────────────────────────────────────────────────────────────
+WHAT YOU'RE LEARNING:
+  1. Tool descriptions drive Claude's selection decisions — vague descriptions produce unreliable tool calls
+  2. The agentic loop (message → tool_use → tool_result → repeat) is the foundation of every automated audit pipeline
+  3. Audit tools replace manual procedures with consistent, re-runnable checks that scale to thousands of resources
+─────────────────────────────────────────────────────────────────────
 `,
       },
       dirs: {
@@ -294,6 +301,13 @@ Fragment-2: 4P1_3NUM3R
 Recommendation: Block /api/v2/users/export pending auth fix.
 
 Fragment-3: 4T10N}
+
+─────────────────────────────────────────────────────────────────────
+WHAT YOU'RE LEARNING:
+  1. API cartography closes the inventory gap — 60%+ of orgs have undocumented endpoints not in their official spec
+  2. Auth regression detection is uniquely suited to AI: compare authentication behavior across API versions to catch security regressions automatically
+  3. Rate limits and scope rules must be enforced in tool code — Claude decides what to test, your code enforces the rules of engagement
+─────────────────────────────────────────────────────────────────────
 `,
         "/api-enum/README.md": `# API Enumeration Agent Output
 
@@ -420,6 +434,7 @@ Then explain your reasoning in one sentence."""
       files: {
         "/secrets-scan/phase1/regex-hits.txt": `# Phase 1 — Regex Scanner Output
 # Tool: truffleHog v3.4.1
+# Scan scope: full git history (1,847 commits), all branches
 
 [HIGH] File: config/deploy.sh  Line: 47
   Variable: AWS_ACCESS_KEY_ID
@@ -427,35 +442,117 @@ Then explain your reasoning in one sentence."""
   Pattern: AWS Access Key (AKIA prefix)
   Fragment: FLAG{S3CR3TS_
 
+  >> WHAT TO KNOW: The AKIA prefix is deterministic — all AWS access keys start with it.
+     truffleHog uses this exact regex to catch them at high confidence.
+     This key was committed 6 months ago and "deleted" in a later commit — but git
+     history is permanent. Every developer who cloned this repo has a copy.
+     Real action: invalidate the key in AWS IAM immediately, then rotate.
+
 [MEDIUM] File: tests/fixtures/mock-creds.json  Line: 12
   Variable: api_key
   Value: test-key-1234-placeholder
   Pattern: generic api_key pattern
+
+  >> WHAT TO KNOW: This is a FALSE POSITIVE — a real example of regex scanner noise.
+     Regex cannot tell 'test-key-1234-placeholder' from a real key by pattern alone.
+     This is why Phase 2 (Claude) exists: context eliminates false positives.
+     High false-positive rates cause alert fatigue — analysts stop reviewing findings.
+
+# ──────────────────────────────────────────────────────────────────────────────
+# KEY TAKEAWAYS — Phase 1 (Regex Scanning)
+# ──────────────────────────────────────────────────────────────────────────────
+# 1. Regex scanning is fast and catches well-known formats (AKIA, ghp_, sk-ant-)
+# 2. Always scan FULL git history, not just HEAD — deleted secrets are not gone
+# 3. High-entropy strings also flag likely secrets even without a known pattern
+# 4. Expect 30-70% false positive rate — Phase 2 (AI triage) reduces this to <5%
+# 5. Tools: truffleHog, Gitleaks, detect-secrets (Yelp), git-secrets (AWS Labs)
+# ──────────────────────────────────────────────────────────────────────────────
 `,
         "/secrets-scan/phase2/claude-classifications.txt": `# Phase 2 — Claude Classification Results
+# Claude model: claude-opus-4-7
+# Input per finding: file path, variable name, value, 10 lines of surrounding code
 
 Finding #1 (config/deploy.sh:47)
   Claude verdict: confirmed_secret
-  Reasoning: AKIA prefix is an active AWS access key prefix; variable name and file context confirm production usage, not test fixture.
-  Action: ROTATE IMMEDIATELY
+  Confidence: HIGH
+  Reasoning: AKIA prefix is an active AWS access key prefix. Variable name
+    AWS_ACCESS_KEY_ID is the canonical name used in AWS SDKs. File path
+    config/deploy.sh suggests production deployment context, not a test fixture.
+    No 'test', 'example', 'placeholder', or 'fake' indicators present.
+  Action: ROTATE IMMEDIATELY — disable in IAM, issue new key, update secrets store
   Fragment: 4I_SCN_
+
+  >> WHAT TO KNOW: This is Claude doing what regex cannot — reading context.
+     Claude understands that deploy.sh + AWS_ACCESS_KEY_ID + AKIA prefix = real credential.
+     The same value in tests/fixtures/fake-creds.json would likely be classified false_positive.
+     Claude's classification: confirmed_secret | likely_placeholder | false_positive
 
 Finding #2 (tests/fixtures/mock-creds.json:12)
   Claude verdict: false_positive
-  Reasoning: Value contains 'test' and 'placeholder' substrings; file path is tests/fixtures — classic test credential pattern.
-  Action: no action required
+  Confidence: HIGH
+  Reasoning: Value contains literal substrings 'test' and 'placeholder'. File path
+    is tests/fixtures — a standard location for test data. Variable name 'api_key'
+    is generic. No deployment context, no real format match (not AKIA, not ghp_, etc).
+  Action: no action required — consider adding to .secrets-ignore allowlist
+
+  >> WHAT TO KNOW: False positive management is critical for scanner sustainability.
+     An allowlist (.secrets-ignore or detect-secrets baseline) prevents re-flagging.
+     Without triage, analysts see the same false positive every scan → they stop looking.
+     Claude reduces analyst review load by 80%+ compared to regex-only output.
+
+# ──────────────────────────────────────────────────────────────────────────────
+# KEY TAKEAWAYS — Phase 2 (AI Classification)
+# ──────────────────────────────────────────────────────────────────────────────
+# 1. Claude reads surrounding code, file path, and variable name — not just the value
+# 2. Three-tier classification: confirmed_secret / likely_placeholder / false_positive
+# 3. 'Confirmed secret' → immediate action: rotate, audit access logs, notify security
+# 4. 'False positive' → add to allowlist so it doesn't appear in future scans
+# 5. The combination (regex speed + Claude accuracy) is more effective than either alone
+# ──────────────────────────────────────────────────────────────────────────────
 `,
         "/secrets-scan/triage-summary.txt": `# Secrets Scan Triage Summary
+# Run date: 2024-11-15 03:47 UTC
+# Agent: Claude Secrets Hunter v2.1
 
-Confirmed secrets: 1 (CRITICAL — rotate AWS key)
-False positives: 1
-Pending review: 0
+Confirmed secrets: 1 (CRITICAL — rotate AWS key immediately)
+False positives:   1 (added to allowlist)
+Pending review:    0
 
 Total scan time: 4m 12s
 Repos scanned: 3
-Commits scanned (git history): 1,847
+Commits scanned (git history): 1,847  ← not just HEAD — full history
+Files scanned: 2,341
+Findings before Claude triage: 2
+Findings after Claude triage: 1 confirmed
+
+Action items generated: 1
+  [CRITICAL] Rotate AWS_ACCESS_KEY_ID (AKIA4EXAMPLE7REDACTED)
+    → Disable key in AWS IAM Console immediately
+    → Check CloudTrail logs for unauthorized API calls using this key
+    → Replace with AWS Secrets Manager dynamic credentials (no static keys)
+    → Add pre-commit hook or CI check to prevent future secret commits
 
 Final fragment: TR14G3}
+
+# ──────────────────────────────────────────────────────────────────────────────
+# KEY TAKEAWAYS — The Full Secrets Scanning Pipeline
+# ──────────────────────────────────────────────────────────────────────────────
+# 1. SCAN GIT HISTORY: 'git rm secret.txt' does NOT remove it from history.
+#    Every developer who ever cloned the repo still has it. Rotation is the only fix.
+#
+# 2. ROTATION WORKFLOW: invalidate old key → issue new key → update secrets store →
+#    update all systems using the key → verify old key no longer works.
+#
+# 3. PREVENTION > REMEDIATION: Pre-commit hooks (using detect-secrets or Gitleaks)
+#    block secrets BEFORE they reach the repo. CI/CD pipeline checks add a second layer.
+#
+# 4. NEVER USE STATIC LONG-LIVED CREDENTIALS: Use IAM roles, short-lived tokens,
+#    or dynamic secrets from Vault/AWS Secrets Manager. No static API keys in code.
+#
+# 5. THE UBER LESSON (2022): Uber's breach involved credentials in PowerShell scripts
+#    on a network share — not in git. Scan EVERYWHERE: CI configs, IaC, Docker images,
+#    Kubernetes secrets, operational scripts, and developer machines.
+# ──────────────────────────────────────────────────────────────────────────────
 `,
       },
       dirs: {
@@ -600,6 +697,13 @@ Top priorities:
 2. Replace AdministratorAccess on prod-lambda-role with least-privilege policy
 
 Fragment-3: SW33P}
+
+─────────────────────────────────────────────────────────────────────
+WHAT YOU'RE LEARNING:
+  1. Cloud inventory is prerequisite to every subsequent audit check — you cannot assess what you have not enumerated
+  2. Resource dependency graphs (which Lambda role → which bucket) reveal privilege chains that static inventory lists miss entirely
+  3. Toyota's 10-year data exposure (2023) resulted from a single S3 public-access misconfiguration — agentic sweeps catch these in minutes, not decades
+─────────────────────────────────────────────────────────────────────
 `,
       },
       dirs: {
@@ -750,6 +854,13 @@ Estimated effort: 2 hours
 Risk reduction: CRITICAL → LOW
 
 Fragment-3: CH41N}
+
+─────────────────────────────────────────────────────────────────────
+WHAT YOU'RE LEARNING:
+  1. iam:PassRole without Condition constraints is a privilege escalation vector — it lets any service launch instances with admin roles
+  2. Claude reasons across policy layers to answer: "What is the maximum privilege this role can escalate to if compromised?" — a question manual review rarely completes
+  3. Capital One (2019): an overly permissive IAM role turned an SSRF vulnerability into a 106M-record breach; least-privilege scoping is the direct mitigation
+─────────────────────────────────────────────────────────────────────
 `,
       },
       dirs: {
@@ -885,6 +996,13 @@ Fragment-3: CH41N}
 Integration status: ACTIVE
 All MCP servers: CONNECTED
 Fragment: PR0T0C0L}
+
+─────────────────────────────────────────────────────────────────────
+WHAT YOU'RE LEARNING:
+  1. MCP is the standardized protocol for connecting Claude to audit data sources — one server spec works in Claude Code IDE and in production API pipelines
+  2. Pre-built MCP servers (filesystem, git, GitHub, fetch, postgres) eliminate custom integration work; focus on audit logic, not I/O boilerplate
+  3. SolarWinds (2020) succeeded partly because no MCP-style integration connected git history, build artifacts, and network monitoring — the anomaly existed in each system but nothing correlated them
+─────────────────────────────────────────────────────────────────────
 `,
       },
       dirs: {
@@ -1039,6 +1157,13 @@ IaC Review Complete — 2 CRITICAL, 2 HIGH, 1 MEDIUM
 All findings posted as PR comment. Merge blocked pending CRITICAL resolution.
 
 Fragment-3: R3V13W}
+
+─────────────────────────────────────────────────────────────────────
+WHAT YOU'RE LEARNING:
+  1. IaC review in CI/CD catches misconfigurations before deployment — a PR comment costs nothing; a production breach costs millions
+  2. Claude understands IaC semantics without explicit rule programming — it knows publicly_accessible=true on RDS or 0.0.0.0/0 on port 22 are findings
+  3. Critical findings blocking PR merge (via required status checks) is the enforcement mechanism — without it, developers can override the review
+─────────────────────────────────────────────────────────────────────
 `,
       },
       dirs: {
@@ -1198,6 +1323,13 @@ Claude Assessment: SATISFIED
 All required logging controls are operational.
 
 Fragment-3: 4G3NT}
+
+─────────────────────────────────────────────────────────────────────
+WHAT YOU'RE LEARNING:
+  1. Evidence collection is 60% of traditional audit time — an agent collects the same evidence in minutes and maps each artifact directly to its control requirement
+  2. Claude's assessment (satisfied / partially satisfied / not satisfied) validates that the evidence actually proves the control works, not just that a file exists
+  3. Equifax (2017): patch evidence existed but didn't cover the specific vulnerable Apache Struts instance — AI validation would have caught the gap before the breach
+─────────────────────────────────────────────────────────────────────
 `,
       },
       dirs: {
@@ -1352,6 +1484,13 @@ Risk chain: public EC2 → compromised app → role credential → exposed DB pa
 This cross-domain finding was not visible to any individual specialist.
 
 Fragment-3: 4UD1T}
+
+─────────────────────────────────────────────────────────────────────
+WHAT YOU'RE LEARNING:
+  1. Cross-domain synthesis is where multi-agent pipelines find what single-domain agents cannot — risk chains span IAM, network, and secrets simultaneously
+  2. Specialist agents return structured JSON (never natural language) so the orchestrator can reliably parse and correlate findings across domains
+  3. MOVEit (2023): the SQL injection + internet exposure + database permissions was a cross-domain chain; single-domain audits each partially missed it
+─────────────────────────────────────────────────────────────────────
 `,
       },
       dirs: {
@@ -1502,6 +1641,13 @@ Estimated risk reduction: CRITICAL → LOW (after critical items resolved)
 Fragment-3: DONE}
 
 [Auditor review note: Replace Fragment-3 with actual report conclusion]
+
+─────────────────────────────────────────────────────────────────────
+WHAT YOU'RE LEARNING:
+  1. Vague report language ("improve security posture") does not get implemented — Claude generates specific, owner-assigned, deadline-dated recommendations
+  2. System prompts enforce consistent report structure: finding title, observation, risk, recommendation, and management response field — every time
+  3. Report generation cuts audit delivery time by 40%; auditors review and finalize rather than write from scratch, freeing time for judgment-intensive work
+─────────────────────────────────────────────────────────────────────
 `,
       },
       dirs: {
@@ -1657,6 +1803,13 @@ SLA: 4 hours to remediation confirmation
 Automated remediation available: run sentinel-remediate --bucket acme-marketing-assets
 
 Fragment-3: CAUGHT}
+
+─────────────────────────────────────────────────────────────────────
+WHAT YOU'RE LEARNING:
+  1. Annual audits find last year's problems; continuous monitoring (daily/weekly schedules) finds today's — this drift was introduced yesterday and caught within one schedule cycle
+  2. Alert routing by severity prevents alert fatigue: CRITICAL → PagerDuty + Slack + Jira; HIGH → Slack + Jira; MEDIUM → Jira only
+  3. LastPass (2022) had a 4-month dwell time; continuous behavioral baseline monitoring turns a 4-month exposure into a 4-hour response window
+─────────────────────────────────────────────────────────────────────
 `,
       },
       dirs: {
@@ -1815,6 +1968,13 @@ Total pipeline runtime: 14 minutes 33 seconds
 Equivalent manual audit time estimate: 3-4 weeks
 
 Fragment-3: 4UD1T}
+
+─────────────────────────────────────────────────────────────────────
+WHAT YOU'RE LEARNING:
+  1. End-to-end pipeline: inventory (sequential) → domain analysis (parallel) → synthesis → report + evidence (parallel) → sentinel activation
+  2. Agents eliminate mechanical audit work (data collection, formatting, basic pattern matching); auditors focus on judgment, risk context, and stakeholder communication
+  3. 14 minutes vs 3-4 weeks: this is the productivity transformation of agentic auditing — the same coverage, in a fraction of the time, on every release cycle
+─────────────────────────────────────────────────────────────────────
 `,
       },
       dirs: {
