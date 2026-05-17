@@ -19,12 +19,19 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ correct: false });
   }
 
+  // Penalty: client sends timeTakenMs; server caps it to max 20% of base XP
+  const timeTakenMs = typeof body.timeTakenMs === "number" ? body.timeTakenMs : 0;
+  const freeMs = 10 * 60 * 1000;
+  const penaltyMinutes = Math.max(0, Math.floor((timeTakenMs - freeMs) / 60000));
+  const maxPenalty = Math.floor(stage.xp * 0.2);
+  const timePenaltyXp = Math.min(penaltyMinutes, maxPenalty);
+
   // Award server-side if user is authenticated
   const username = getServerSession(req);
   if (username) {
-    const progress = await awardStageInRedis(username, stage.id, stage.badge.id);
-    return NextResponse.json({ correct: true, progress });
+    const progress = await awardStageInRedis(username, stage.id, stage.badge.id, timePenaltyXp);
+    return NextResponse.json({ correct: true, progress, timePenaltyXp });
   }
 
-  return NextResponse.json({ correct: true });
+  return NextResponse.json({ correct: true, timePenaltyXp });
 }

@@ -4,6 +4,8 @@ import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import { awardStage, applyServerProgress } from "@/lib/progress";
 import AttackDiagram from "./AttackDiagram";
+import FlagSuccessModal from "./FlagSuccessModal";
+import HintChatbot from "./HintChatbot";
 import type { CtfConfig, StageConfig } from "@/data/types";
 
 type LineType = "cmd" | "out" | "err" | "ok" | "warn" | "sys";
@@ -18,6 +20,13 @@ function parentDir(path: string): string {
   const parts = path.split("/").filter(Boolean);
   parts.pop();
   return parts.length === 0 ? "/" : "/" + parts.join("/");
+}
+
+function formatTimer(ms: number): string {
+  const totalSeconds = Math.floor(ms / 1000);
+  const m = Math.floor(totalSeconds / 60);
+  const s = totalSeconds % 60;
+  return `${String(m).padStart(2, "0")}:${String(s).padStart(2, "0")}`;
 }
 
 function TerminalLine({ line }: { line: Line }) {
@@ -120,10 +129,8 @@ function ReferenceDrawer({ stage, onClose }: { stage: StageConfig; onClose: () =
           <button onClick={onClose} className="text-gray-500 hover:text-white transition-colors text-lg leading-none">✕</button>
         </div>
         <div className="flex-1 overflow-y-auto px-4 py-4 space-y-6 text-sm">
-          {/* Tagline */}
           <p className="text-cyan-400 italic">{info.tagline}</p>
 
-          {/* Badges */}
           <div className="flex flex-wrap gap-1">
             {stage.owaspRef && (
               <span className="text-xs px-2 py-0.5 rounded-full border text-orange-400 bg-orange-400/10 border-orange-400/30">
@@ -142,7 +149,6 @@ function ReferenceDrawer({ stage, onClose }: { stage: StageConfig; onClose: () =
             )}
           </div>
 
-          {/* Overview */}
           <div>
             <p className="text-gray-500 text-xs uppercase tracking-wider mb-2">Overview</p>
             <div className="space-y-2">
@@ -152,7 +158,6 @@ function ReferenceDrawer({ stage, onClose }: { stage: StageConfig; onClose: () =
             </div>
           </div>
 
-          {/* Attack Flow */}
           <div>
             <p className="text-gray-500 text-xs uppercase tracking-wider mb-2">Attack Flow</p>
             <div className="bg-black/30 rounded-lg p-3">
@@ -160,7 +165,6 @@ function ReferenceDrawer({ stage, onClose }: { stage: StageConfig; onClose: () =
             </div>
           </div>
 
-          {/* Technical */}
           <div>
             <p className="text-gray-500 text-xs uppercase tracking-wider mb-2">Technical</p>
             <p className="text-gray-400 leading-relaxed">{info.technical.body[0]}</p>
@@ -171,7 +175,6 @@ function ReferenceDrawer({ stage, onClose }: { stage: StageConfig; onClose: () =
             )}
           </div>
 
-          {/* Incident */}
           <div>
             <p className="text-gray-500 text-xs uppercase tracking-wider mb-2">Incident</p>
             <p className="text-red-400 font-medium mb-1">{info.incident.title}</p>
@@ -179,7 +182,6 @@ function ReferenceDrawer({ stage, onClose }: { stage: StageConfig; onClose: () =
             <p className="text-gray-400 leading-relaxed">{info.incident.body[0]}</p>
           </div>
 
-          {/* Key Takeaways */}
           <div>
             <p className="text-gray-500 text-xs uppercase tracking-wider mb-2">Key Takeaways</p>
             <ul className="space-y-1">
@@ -192,7 +194,6 @@ function ReferenceDrawer({ stage, onClose }: { stage: StageConfig; onClose: () =
             </ul>
           </div>
 
-          {/* References */}
           <div>
             <p className="text-gray-500 text-xs uppercase tracking-wider mb-2">References</p>
             <ul className="space-y-1">
@@ -219,6 +220,8 @@ function ReferenceDrawer({ stage, onClose }: { stage: StageConfig; onClose: () =
 export default function CtfChallenge({ stage }: { stage: StageConfig }) {
   const ctf = stage.ctf!;
   const hints = ctf.hints ?? [ctf.hint];
+  const minFragments = ctf.minFragments ?? ctf.fragments?.length ?? 0;
+
   const [cwd, setCwd] = useState("/");
   const [input, setInput] = useState("");
   const [solved, setSolved] = useState(false);
@@ -226,9 +229,23 @@ export default function CtfChallenge({ stage }: { stage: StageConfig }) {
   const [historyIdx, setHistoryIdx] = useState(-1);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [hintsOpen, setHintsOpen] = useState(false);
+  const [chatbotOpen, setChatbotOpen] = useState(false);
   const [briefingOpen, setBriefingOpen] = useState(false);
   const [collectedFragments, setCollectedFragments] = useState<Set<string>>(new Set());
   const [submitting, setSubmitting] = useState(false);
+  const [successData, setSuccessData] = useState<{
+    flag: string; timeTakenMs: number; timePenaltyXp: number; effectiveXp: number;
+  } | null>(null);
+
+  // Timer
+  const startedAt = useRef(Date.now());
+  const [elapsed, setElapsed] = useState(0);
+  useEffect(() => {
+    if (solved) return;
+    const t = setInterval(() => setElapsed(Date.now() - startedAt.current), 1000);
+    return () => clearInterval(t);
+  }, [solved]);
+
   const [lines, setLines] = useState<Line[]>([
     { type: "sys", text: "╔══════════════════════════════════════════╗" },
     { type: "sys", text: `║   Kryptós CronOS Terminal  v1.0          ║` },
@@ -240,7 +257,12 @@ export default function CtfChallenge({ stage }: { stage: StageConfig }) {
     { type: "out", text: `Hint: ${ctf.hint}` },
     { type: "out", text: "" },
     ...(ctf.fragments?.length ? [
-      { type: "out" as LineType, text: `Objective: Collect ${ctf.fragments.length} intelligence fragments to assemble the flag.` },
+      {
+        type: "out" as LineType,
+        text: minFragments < ctf.fragments.length
+          ? `Objective: Collect any ${minFragments} of ${ctf.fragments.length} intelligence fragments to assemble the flag.`
+          : `Objective: Collect ${ctf.fragments.length} intelligence fragments to assemble the flag.`,
+      },
       { type: "out" as LineType, text: "Run 'assemble' at any time to check your progress." },
       { type: "out" as LineType, text: "" },
     ] : []),
@@ -288,7 +310,6 @@ export default function CtfChallenge({ stage }: { stage: StageConfig }) {
     const cmd = parts[0].toLowerCase();
     const args = parts.slice(1);
 
-    // Built-in: help
     if (cmd === "help") {
       const extraCmds = ctf.extraCommands ? Object.keys(ctf.extraCommands) : [];
       const hasFragments = Boolean(ctf.fragments?.length);
@@ -307,7 +328,6 @@ export default function CtfChallenge({ stage }: { stage: StageConfig }) {
       return;
     }
 
-    // Built-in: assemble
     if (cmd === "assemble") {
       if (!ctf.fragments?.length) {
         push({ type: "err", text: "assemble: no fragments defined for this stage" }, { type: "out", text: "" });
@@ -320,37 +340,41 @@ export default function CtfChallenge({ stage }: { stage: StageConfig }) {
         push({ type: "out", text: `  ${found ? "✓" : "✗"} ${f.label}: ${found ? f.value : "[ not yet recovered ]"}` });
       }
       push({ type: "out", text: "" });
-      if (collectedFragments.size === total) {
-        const assembled = ctf.fragments.map((f) => f.value).join("");
+
+      if (collectedFragments.size >= minFragments) {
+        // Use only the collected fragments (in original order) to assemble
+        const assembled = ctf.fragments
+          .filter((f) => collectedFragments.has(f.trigger))
+          .slice(0, minFragments)
+          .map((f) => f.value)
+          .join("");
         push(
-          { type: "ok", text: "All fragments recovered. Assembled flag:" },
+          { type: "ok", text: `${collectedFragments.size}/${total} fragments recovered. Flag ready to submit:` },
           { type: "ok", text: `  ${assembled}` },
           { type: "out", text: "" },
           { type: "out", text: `Use: submit ${assembled}` },
           { type: "out", text: "" },
         );
       } else {
+        const needed = minFragments - collectedFragments.size;
         push(
-          { type: "warn", text: `${collectedFragments.size}/${total} fragments recovered. Keep investigating.` },
+          { type: "warn", text: `${collectedFragments.size}/${minFragments} required fragments recovered. Need ${needed} more.` },
           { type: "out", text: "" },
         );
       }
       return;
     }
 
-    // Built-in: pwd
     if (cmd === "pwd") {
       push({ type: "out", text: cwd }, { type: "out", text: "" });
       return;
     }
 
-    // Built-in: clear
     if (cmd === "clear") {
       setLines([]);
       return;
     }
 
-    // Built-in: cd
     if (cmd === "cd") {
       const target = args[0];
       if (!target || target === "~") {
@@ -369,7 +393,6 @@ export default function CtfChallenge({ stage }: { stage: StageConfig }) {
       return;
     }
 
-    // Built-in: ls
     if (cmd === "ls") {
       const flagStr = args.filter((a) => a.startsWith("-")).join("");
       const showHidden = flagStr.includes("a");
@@ -396,7 +419,6 @@ export default function CtfChallenge({ stage }: { stage: StageConfig }) {
       return;
     }
 
-    // Built-in: cat
     if (cmd === "cat") {
       const pathArg = args[0];
       if (!pathArg) {
@@ -420,7 +442,6 @@ export default function CtfChallenge({ stage }: { stage: StageConfig }) {
       return;
     }
 
-    // Built-in: submit
     if (cmd === "submit") {
       const flag = args.join(" ").trim();
       if (!flag) {
@@ -429,30 +450,25 @@ export default function CtfChallenge({ stage }: { stage: StageConfig }) {
       }
       setSubmitting(true);
       push({ type: "sys", text: "Verifying flag..." });
+      const timeTakenMs = Date.now() - startedAt.current;
       try {
         const res = await fetch("/api/check-flag", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ stageId: stage.id, flag }),
+          body: JSON.stringify({ stageId: stage.id, flag, timeTakenMs }),
         });
-        const { correct, progress } = await res.json();
+        const { correct, progress, timePenaltyXp = 0 } = await res.json();
         if (correct) {
-          push(
-            { type: "ok", text: "" },
-            { type: "ok", text: "██████████████████████████████████████████" },
-            { type: "ok", text: "  ✓  FLAG ACCEPTED — MISSION COMPLETE!" },
-            { type: "ok", text: "██████████████████████████████████████████" },
-            { type: "ok", text: "" },
-            { type: "ok", text: `  +${stage.xp} XP earned` },
-            { type: "ok", text: `  Badge: ${stage.badge.emoji} ${stage.badge.name} — Unlocked` },
-            { type: "ok", text: "" },
-          );
+          const effectiveXp = (progress?.xp != null)
+            ? stage.xp - timePenaltyXp
+            : stage.xp - timePenaltyXp;
           if (progress) {
             applyServerProgress(progress);
           } else {
             awardStage(stage.id, stage.xp, stage.badge.id);
           }
           setSolved(true);
+          setSuccessData({ flag, timeTakenMs, timePenaltyXp, effectiveXp: Math.max(0, effectiveXp) });
         } else {
           push(
             { type: "err", text: "✗ Incorrect flag. Keep investigating." },
@@ -467,7 +483,6 @@ export default function CtfChallenge({ stage }: { stage: StageConfig }) {
       return;
     }
 
-    // Extra stage-specific commands
     if (ctf.extraCommands && cmd in ctf.extraCommands) {
       const result = ctf.extraCommands[cmd](args);
       push(...result.lines.map((t) => ({ type: "out" as LineType, text: t })));
@@ -503,7 +518,6 @@ export default function CtfChallenge({ stage }: { stage: StageConfig }) {
     }
   }
 
-  // Shorten cwd for display in the prompt on narrow screens
   const promptCwd = cwd === "/" ? "/" : cwd.split("/").pop() + "";
 
   function handleSend() {
@@ -513,9 +527,23 @@ export default function CtfChallenge({ stage }: { stage: StageConfig }) {
     inputRef.current?.focus();
   }
 
+  // Timer color changes as time progresses
+  const timerMinutes = Math.floor(elapsed / 60000);
+  const timerColor = timerMinutes >= 10 ? "text-orange-400" : timerMinutes >= 5 ? "text-yellow-400" : "text-green-400";
+
   return (
     <>
+      {successData && (
+        <FlagSuccessModal
+          stage={stage}
+          flag={successData.flag}
+          timeTakenMs={successData.timeTakenMs}
+          timePenaltyXp={successData.timePenaltyXp}
+          effectiveXp={successData.effectiveXp}
+        />
+      )}
       {hintsOpen && <HintDrawer hints={hints} onClose={() => setHintsOpen(false)} />}
+      {chatbotOpen && <HintChatbot stage={stage} onClose={() => setChatbotOpen(false)} />}
       {drawerOpen && <ReferenceDrawer stage={stage} onClose={() => setDrawerOpen(false)} />}
 
       <div
@@ -534,9 +562,18 @@ export default function CtfChallenge({ stage }: { stage: StageConfig }) {
                 <p className="text-gray-500 text-xs sm:text-sm">Stage {stage.order} · {stage.subtitle}</p>
               </div>
               <div className="flex gap-1.5 flex-wrap items-center">
+                {/* Live timer */}
+                {!solved && (
+                  <span className={`text-xs px-2 py-1 bg-black/40 border border-white/10 rounded-lg font-mono ${timerColor}`}>
+                    ⏱ {formatTimer(elapsed)}
+                  </span>
+                )}
                 {ctf.fragments?.length ? (
                   <span className="text-xs px-2 py-1 bg-yellow-500/10 border border-yellow-500/30 text-yellow-400 rounded-lg font-mono">
                     🔑 {collectedFragments.size}/{ctf.fragments.length}
+                    {ctf.minFragments && ctf.minFragments < ctf.fragments.length
+                      ? ` (need ${ctf.minFragments})`
+                      : ""}
                   </span>
                 ) : null}
                 <button
@@ -552,6 +589,12 @@ export default function CtfChallenge({ stage }: { stage: StageConfig }) {
                   💡 Hints
                 </button>
                 <button
+                  onClick={() => setChatbotOpen(true)}
+                  className="text-xs px-2.5 py-1.5 border border-green-500/40 hover:border-green-400 text-green-400 rounded-lg transition-colors"
+                >
+                  🤖 ARIA
+                </button>
+                <button
                   onClick={() => setDrawerOpen(true)}
                   className="text-xs px-2.5 py-1.5 border border-cyan-500/40 hover:border-cyan-400 text-cyan-400 rounded-lg transition-colors"
                 >
@@ -564,7 +607,15 @@ export default function CtfChallenge({ stage }: { stage: StageConfig }) {
           {/* Collapsible briefing */}
           {briefingOpen && (
             <div className="bg-amber-500/5 border border-amber-500/20 rounded-lg p-3 mb-3 text-sm flex-shrink-0">
-              <p className="text-amber-400 font-semibold mb-1 text-xs uppercase tracking-wider">Mission Briefing</p>
+              <div className="flex items-center justify-between mb-1">
+                <p className="text-amber-400 font-semibold text-xs uppercase tracking-wider">Mission Briefing</p>
+                <button
+                  onClick={() => setChatbotOpen(true)}
+                  className="text-xs text-green-400 border border-green-500/30 rounded px-2 py-0.5 hover:bg-green-500/10 transition-colors"
+                >
+                  🤖 Ask ARIA
+                </button>
+              </div>
               <p className="text-gray-400 text-sm leading-relaxed">{ctf.scenario}</p>
             </div>
           )}
@@ -620,30 +671,16 @@ export default function CtfChallenge({ stage }: { stage: StageConfig }) {
                 </button>
               </div>
             ) : (
-              <div className="px-3 py-3 border-t border-green-500/30 bg-green-500/5 flex flex-col sm:flex-row gap-3 items-center flex-shrink-0">
-                <span className="text-green-400 font-semibold text-sm">
-                  Mission complete. +{stage.xp} XP earned.
+              <div className="px-3 py-3 border-t border-green-500/30 bg-green-500/5 flex items-center justify-center flex-shrink-0">
+                <span className="text-green-400 font-semibold text-sm animate-pulse">
+                  Decrypting results…
                 </span>
-                <div className="sm:ml-auto flex gap-2 w-full sm:w-auto">
-                  <Link
-                    href="/leaderboard"
-                    className="flex-1 sm:flex-none text-center px-4 py-2 border border-purple-500/50 hover:border-purple-400 text-purple-400 font-semibold rounded-lg text-sm transition-colors"
-                  >
-                    🏆 Ranks
-                  </Link>
-                  <Link
-                    href="/stages"
-                    className="flex-1 sm:flex-none text-center px-4 py-2 bg-cyan-500 hover:bg-cyan-400 text-black font-bold rounded-lg text-sm transition-colors"
-                  >
-                    Stage Map →
-                  </Link>
-                </div>
               </div>
             )}
           </div>
 
           <p className="text-gray-700 text-xs mt-2 text-center flex-shrink-0">
-            Type <span className="text-gray-600">help</span> for commands · tap 📋 for briefing · 💡 for hints
+            Type <span className="text-gray-600">help</span> for commands · 📋 briefing · 💡 hints · 🤖 AI assistant
           </p>
         </div>
       </div>

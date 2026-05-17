@@ -2,6 +2,30 @@
 
 ---
 
+## v0.9.0 — 2026-05-16
+
+**AI chatbot, animated success modal, daily/weekly leaderboard, level timer, CTF easter-egg engine**
+
+- **ARIA AI Chatbot** — In-terminal AI hint assistant (Claude Haiku) available on every CTF stage; 🤖 ARIA button in stage header; 30-second free-tier cooldown between messages with visible countdown; 10-message session limit; "Go Pro" upgrade prompt when limit/cooldown reached; also accessible via "Ask ARIA" button inside the mission briefing panel
+- **`/api/hint` endpoint** — Server-side route calls Anthropic claude-haiku-4-5; IP rate-limited (15 msgs/15 min); stage-aware system prompt with scenario, hint, and chatbotContext injected; never reveals flag values directly; returns `{ reply }` or `{ error }`
+- **Animated flag success modal** (`FlagSuccessModal`) — Replaces in-terminal text on correct submission; full-screen overlay with concentric glow rings, captured flag with green glow, XP earned, time taken, badge, and time penalty if applicable; animated scale-in entrance
+- **Live level timer** — Stopwatch in stage header (green → yellow at 5 min → orange at 10 min); time sent to server on submission; XP penalty after 10 minutes: -1 XP/min, capped at 20% of base stage XP; penalty displayed in success modal
+- **Daily / Weekly / All-Time leaderboard** — Three-tab switcher on leaderboard page; daily board uses `lb:d:YYYY-MM-DD` Redis key (48h TTL), weekly uses `lb:w:YYYY-MM-DD` Monday key (14d TTL); `awardStageInRedis` updates all three boards atomically on new stage completion only (idempotent); `/api/leaderboard?period=daily|weekly|alltime`
+- **Easter-egg CTF engine** — `minFragments?: number` added to `CtfConfig`; stages can now hide more fragments than required (collect any N of M); `assemble` command shows partial progress and assembles from collected subset; fragment counter badge shows `(need N)` when `minFragments < total`; `chatbotContext?: string` per-stage context injected into ARIA prompt
+- **Security fixes** (deployed with v0.8.5):
+  - `/api/restore-user` — gutted to 404; was exposing passwordHash+salt publicly
+  - `/api/auth/login` — new server-side login; PBKDF2 hashing server-side; `timingSafeEqual`
+  - `/api/forgot-password` + `/api/notify-registration` — HTML injection patched with `escapeHtml()`
+  - `/api/reset-password` — now sets `session_token` cookie on success
+  - `/api/auth/session` — `timingSafeEqual` for hash comparison
+  - `/api/sync-user` — returns 409 `{ taken: true }` on duplicate username
+  - All rate-limit routes — `x-forwarded-for` replaced with `x-real-ip` (Vercel canonical)
+  - `StoredUser` — `passwordHash` and `salt` removed; no credentials in localStorage
+
+**Environment variables required:** `ANTHROPIC_API_KEY` must be added to Vercel for ARIA chatbot.
+
+---
+
 ## v0.7.0 — 2026-05-15
 
 **Multi-step CTF engine, job outcomes homepage, hints monetization, investor targeting**

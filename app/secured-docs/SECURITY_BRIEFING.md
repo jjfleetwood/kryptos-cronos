@@ -1,8 +1,24 @@
 # Kryptós CronOS Security Briefing
 **Classification:** Internal — Pre-Production  
-**Date:** 2026-05-10  
-**Version:** 2.1  
+**Date:** 2026-05-16  
+**Version:** 2.3  
 **Reviewed by:** Internal Security Analysis
+
+---
+
+## Changelog — v2.3 (2026-05-16)
+
+- **RESOLVED: Password hashes publicly exposed** — `/api/restore-user` previously returned `{ passwordHash, salt, email }` to any caller knowing a username. Gutted to always return 404. New `/api/auth/login` does full server-side PBKDF2 verification; hash and salt never leave the server.
+- **RESOLVED: Credentials in localStorage** — `StoredUser` type no longer includes `passwordHash` or `salt`. Login is entirely server-side via `/api/auth/login`. Session established via HMAC-signed HttpOnly `session_token` cookie.
+- **RESOLVED: HTML injection in emails** — `forgot-password` and `notify-registration` both had raw `${username}` and `${email}` interpolated into HTML email bodies. Fixed with `escapeHtml()` in both routes.
+- **RESOLVED: Rate limit IP spoofing** — All three rate-limited routes used `x-forwarded-for`, which clients can spoof. Changed to `x-real-ip` (Vercel canonical, infrastructure-set) with `x-forwarded-for` as fallback.
+- **RESOLVED: Unauthenticated admin notification** — `/api/notify-registration` accepted any payload without verifying a real session existed. Added `getServerSession()` check; session username must match claimed username.
+- **RESOLVED: No session after password reset** — `/api/reset-password` now signs and sets `session_token` cookie on success. Page no longer writes credentials to localStorage.
+- **RESOLVED: Non-constant-time hash comparison** — `/api/auth/session` used `!==` for string comparison of password hashes. Now uses `timingSafeEqual` via Node.js `crypto`.
+- **RESOLVED: Silent username collision** — `/api/sync-user` returned 200 on duplicate usernames. Now returns 409 `{ taken: true }`, allowing the client to surface the error correctly.
+- **NEW ENDPOINT: `/api/hint`** — Proxies requests to Anthropic Claude Haiku for AI hints. Rate-limited to 15 req/15 min per IP. System prompt is hardened to never reveal flag values. `ANTHROPIC_API_KEY` must be set as an environment secret in Vercel; the endpoint returns 503 if the key is absent.
+
+---
 
 ---
 

@@ -58,6 +58,10 @@ export type CtfConfig = {
   dirs: Record<string, { name: string; isDir: boolean; hidden?: boolean }[]>;
   extraCommands?: Record<string, CtfCommand>;
   fragments?: CtfFragment[];
+  /** Minimum fragments needed to assemble flag (easter-egg: collect any N of M). Defaults to all. */
+  minFragments?: number;
+  /** Extra context injected into the AI hint chatbot system prompt for this stage. */
+  chatbotContext?: string;
 };
 
 export type Wonder = {
