@@ -53,15 +53,18 @@ export async function GET(req: NextRequest) {
         redis.hgetall(key),
         redis.hgetall(`progress:${username}`),
       ]);
-      const stages = parseArr(progressData?.stages);
+      const stageIds = parseArr(progressData?.stages);
       const badges = parseArr(progressData?.badges);
+      const streakData = await redis.hgetall(`streak:${username}`);
       return {
         username,
         email: (userData?.email as string) ?? "",
         createdAt: userData?.createdAt ? Number(userData.createdAt) : null,
         xp: progressData?.xp ? Number(progressData.xp) : 0,
-        stages: stages.length,
+        stageIds,
+        stages: stageIds.length,
         badges: badges.length,
+        streak: streakData?.current ? Number(streakData.current) : 0,
         lastActive: progressData?.lastActive ? Number(progressData.lastActive) : null,
       };
     })
