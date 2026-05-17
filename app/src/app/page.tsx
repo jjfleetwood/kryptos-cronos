@@ -225,10 +225,10 @@ export default function Home() {
 
             <h1 className="text-4xl md:text-6xl font-black mb-6 leading-none tracking-tight">
               <span className="text-white" style={{ textShadow: "0 0 80px rgba(255,255,255,0.08)" }}>
-                The Threats
+                Defend the Future.
               </span>
               <br />
-              <span className="hero-glow">Have Changed.</span>
+              <span className="hero-glow">Start Here.</span>
             </h1>
 
             <p className="text-lg md:text-xl font-semibold mb-4"
@@ -238,9 +238,9 @@ export default function Home() {
 
             <p className="text-base mb-10 max-w-2xl mx-auto leading-relaxed"
               style={{ color: "rgba(156,163,175,0.85)" }}>
-              Train on the same exploits behind Equifax, the NHS breach, and VOLT TYPHOON&apos;s
-              ERCOT grid campaign — then step into AI prompt injection and post-quantum cryptography.
-              Six tracks. All in your browser.
+              The threats have changed — train on the same exploits behind Equifax, the NHS breach,
+              and VOLT TYPHOON&apos;s ERCOT grid campaign, then step into AI prompt injection and
+              post-quantum cryptography. Six tracks. All in your browser.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
