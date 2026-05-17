@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { applyServerProgress } from "@/lib/progress";
 import type { QuizQuestion, StageConfig } from "@/data/types";
 
 type SafeQuestion = Omit<QuizQuestion, "correctIndex" | "explanation">;
@@ -38,7 +37,6 @@ export default function QuizChallenge({ stage }: { stage: StageConfig }) {
       setAnswer({ correct: data.correct, explanation: data.explanation });
       if (data.correct) {
         setScore((s) => s + 1);
-        if (data.progress) applyServerProgress(data.progress);
       }
     } catch {
       setAnswer({ correct: false, explanation: "Could not verify answer — please try again." });

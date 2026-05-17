@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
-import { awardStage, applyServerProgress } from "@/lib/progress";
+import { awardStage } from "@/lib/progress";
 import AttackDiagram from "./AttackDiagram";
 import FlagSuccessModal from "./FlagSuccessModal";
 import HintChatbot from "./HintChatbot";
@@ -465,9 +465,7 @@ export default function CtfChallenge({ stage }: { stage: StageConfig }) {
           const effectiveXp = (progress?.xp != null)
             ? stage.xp - timePenaltyXp
             : stage.xp - timePenaltyXp;
-          if (progress) {
-            applyServerProgress(progress);
-          } else {
+          if (!progress) {
             awardStage(stage.id, stage.xp, stage.badge.id);
           }
           setSolved(true);

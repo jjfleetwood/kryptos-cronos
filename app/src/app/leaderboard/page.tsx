@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { getProgress } from "@/lib/progress";
+import { fetchProgress } from "@/lib/progress";
 import { getSession } from "@/lib/auth";
 
 type Period = "alltime" | "weekly" | "daily";
@@ -63,25 +63,31 @@ export default function LeaderboardPage() {
     const username = getSession();
     const displayName = username ?? "Guest";
     setMyName(displayName);
-    const p = getProgress();
-    setMyXP(p.xp);
-    setMyStages(p.completedStages.length);
-    setMyBadges(p.badges.length);
+    if (username) {
+      fetchProgress().then((p) => {
+        if (!p) return;
+        setMyXP(p.xp);
+        setMyStages(p.completedStages.length);
+        setMyBadges(p.badges.length);
+      });
+    }
   }, []);
 
   useEffect(() => {
     setLoading(true);
     const displayName = myName;
-    const p = getProgress();
 
     fetch(`/api/leaderboard?period=${period}`)
       .then((r) => r.json())
       .then((serverPlayers: Player[]) => {
+        const serverMe = serverPlayers.find(
+          (pl) => pl.username.toLowerCase() === displayName.toLowerCase()
+        );
         const me: Player = {
           username: displayName,
-          xp: period === "alltime" ? p.xp : 0,
-          stages: p.completedStages.length,
-          badges: p.badges.length,
+          xp: serverMe?.xp ?? (period === "alltime" ? myXP : 0),
+          stages: serverMe?.stages ?? myStages,
+          badges: serverMe?.badges ?? myBadges,
           lastActive: Date.now(),
           isCurrentPlayer: true,
         };
@@ -90,10 +96,6 @@ export default function LeaderboardPage() {
           (pl) => pl.username.toLowerCase() !== displayName.toLowerCase()
         );
 
-        // For daily/weekly, only include the current user if they have XP on that board
-        const serverMe = serverPlayers.find(
-          (pl) => pl.username.toLowerCase() === displayName.toLowerCase()
-        );
         const meWithServerXp = serverMe
           ? { ...me, xp: serverMe.xp }
           : period === "alltime" ? me : null;
@@ -109,21 +111,8 @@ export default function LeaderboardPage() {
         setMyRank(ranked.find((r) => r.isCurrentPlayer)?.rank ?? null);
       })
       .catch(() => {
-        if (period === "alltime") {
-          const me: Player = {
-            username: displayName,
-            xp: p.xp,
-            stages: p.completedStages.length,
-            badges: p.badges.length,
-            lastActive: Date.now(),
-            isCurrentPlayer: true,
-          };
-          setRows([{ ...me, rank: 1 }]);
-          setMyRank(1);
-        } else {
-          setRows([]);
-          setMyRank(null);
-        }
+        setRows([]);
+        setMyRank(null);
       })
       .finally(() => setLoading(false));
   }, [period, myName]);

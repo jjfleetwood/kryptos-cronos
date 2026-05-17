@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { stages as allStages, epochs } from "@/data/stages";
-import { getProgress, applyServerProgress } from "@/lib/progress";
+import { fetchProgress } from "@/lib/progress";
 import { getSession, clearSession } from "@/lib/auth";
 import OnboardingModal from "@/components/OnboardingModal";
 
@@ -102,24 +102,13 @@ export default function StagesPage() {
   useEffect(() => {
     const session = getSession();
     setUsername(session);
-    const progress = getProgress();
-    setCompletedStages(progress.completedStages);
-    setTotalXp(progress.xp);
-    setStreak(progress.streak ?? 0);
-
-    // Sync from server to pick up progress earned on other devices (or seeded data)
     if (session) {
-      fetch("/api/progress")
-        .then((r) => r.ok ? r.json() : null)
-        .then((data) => {
-          if (!data) return;
-          applyServerProgress(data);
-          const merged = getProgress();
-          setCompletedStages(merged.completedStages);
-          setTotalXp(merged.xp);
-          setStreak(merged.streak ?? 0);
-        })
-        .catch(() => {});
+      fetchProgress().then((p) => {
+        if (!p) return;
+        setCompletedStages(p.completedStages);
+        setTotalXp(p.xp);
+        setStreak(p.streak ?? 0);
+      });
     }
   }, []);
 
@@ -133,10 +122,6 @@ export default function StagesPage() {
     if (!window.confirm("Delete your account? This permanently removes all progress, XP, badges, and streak data and cannot be undone.")) return;
     await fetch("/api/delete-account", { method: "DELETE" });
     clearSession();
-    if (typeof window !== "undefined") {
-      localStorage.removeItem(`kryptos_progress_${username}`);
-      localStorage.removeItem("kryptos_progress");
-    }
     router.push("/");
   }
 
