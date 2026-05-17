@@ -430,7 +430,7 @@ sudo tcpdump -w capture.pcap`,
       fragments: [
         { trigger: "inspect fragment-2", value: "FLAG{P4CK3TS_", label: "Fragment SEQ:1 — First Payload Recovered" },
         { trigger: "inspect fragment-1", value: "R3ASSEMBL3D_", label: "Fragment SEQ:2 — Second Payload Recovered" },
-        { trigger: "reassemble 2 1 3", value: "1N_S3QU3NC3}", label: "Packets Reassembled — Sequence Order Confirmed" },
+        { trigger: "inspect fragment-3", value: "1N_S3QU3NC3}", label: "Fragment SEQ:3 — Third Payload Recovered" },
       ],
       extraCommands: {
         inspect: (args) => {

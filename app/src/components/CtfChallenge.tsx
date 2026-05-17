@@ -275,10 +275,22 @@ export default function CtfChallenge({ stage }: { stage: StageConfig }) {
 
   const bottomRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  const outputRef = useRef<HTMLDivElement>(null);
+  const userScrolledUp = useRef(false);
 
+  // Only auto-scroll if the user hasn't manually scrolled up
   useEffect(() => {
-    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+    if (!userScrolledUp.current) {
+      bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+    }
   }, [lines]);
+
+  function handleOutputScroll() {
+    const el = outputRef.current;
+    if (!el) return;
+    const atBottom = el.scrollHeight - el.scrollTop - el.clientHeight < 40;
+    userScrolledUp.current = !atBottom;
+  }
 
   function push(...newLines: Line[]) {
     setLines((prev) => [...prev, ...newLines]);
@@ -651,7 +663,7 @@ export default function CtfChallenge({ stage }: { stage: StageConfig }) {
             </div>
 
             {/* Output */}
-            <div className="flex-1 overflow-y-auto p-3 space-y-0.5">
+            <div ref={outputRef} onScroll={handleOutputScroll} className="flex-1 overflow-y-auto p-3 space-y-0.5">
               {lines.map((line, i) => (
                 <TerminalLine key={i} line={line} />
               ))}
