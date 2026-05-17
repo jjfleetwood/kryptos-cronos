@@ -312,6 +312,33 @@ export default function Home() {
           </div>
         </section>
 
+        {/* ── How it works ── */}
+        <section className="py-16 px-4">
+          <div className="max-w-4xl mx-auto">
+            <p className="text-xs font-mono uppercase tracking-widest mb-10 text-center" style={{ color: "rgba(34,211,238,0.5)" }}>
+              How it works
+            </p>
+            <div className="grid md:grid-cols-3 gap-5">
+              {[
+                { n: "01", icon: "🗺️", title: "Pick a track", desc: "Six curriculum paths — core CVEs, threat frameworks, AI security, quantum, and enterprise defense. Start anywhere." },
+                { n: "02", icon: "💻", title: "Hack the terminal", desc: "A simulated vulnerable environment in your browser. Real commands, real exploit mechanics — no videos, no multiple choice." },
+                { n: "03", icon: "🏁", title: "Capture the flag", desc: "Find the hidden flag, submit it, earn XP. ARIA AI hints keep you moving without giving the answer away." },
+              ].map((s) => (
+                <div
+                  key={s.n}
+                  className="relative p-6 rounded-2xl"
+                  style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.07)" }}
+                >
+                  <div className="absolute top-4 right-5 text-5xl font-black font-mono leading-none select-none" style={{ color: "rgba(255,255,255,0.04)" }}>{s.n}</div>
+                  <div className="text-3xl mb-3">{s.icon}</div>
+                  <h3 className="font-bold text-white mb-2 text-base">{s.title}</h3>
+                  <p className="text-sm text-gray-600 leading-relaxed">{s.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* ── Terminal demo ── */}
         <section className="py-24 px-4 overflow-hidden">
           <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-12 items-center">

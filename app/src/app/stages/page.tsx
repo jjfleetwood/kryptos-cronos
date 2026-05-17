@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { stages as allStages, epochs } from "@/data/stages";
 import { getProgress } from "@/lib/progress";
 import { getSession, clearSession } from "@/lib/auth";
+import OnboardingModal from "@/components/OnboardingModal";
 
 // ── Track groupings ────────────────────────────────────────────────────────────
 const epochGroups = [
@@ -144,6 +145,7 @@ export default function StagesPage() {
       className="min-h-screen px-4 py-16"
       style={{ background: "linear-gradient(135deg, #0d1117 0%, #0f2027 50%, #1a1a2e 100%)" }}
     >
+      <OnboardingModal />
       <div className="max-w-4xl mx-auto">
         {/* Header */}
         <div className="mb-8">

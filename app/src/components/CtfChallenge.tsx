@@ -558,7 +558,7 @@ export default function CtfChallenge({ stage }: { stage: StageConfig }) {
 
       <div
         className="flex flex-col px-3 sm:px-4 py-3 sm:py-6"
-        style={{ background: "linear-gradient(135deg, #0d1117 0%, #0a0e1a 100%)", minHeight: "100dvh" }}
+        style={{ background: "linear-gradient(135deg, #0d1117 0%, #0a0e1a 100%)", height: "100dvh", overflow: "hidden" }}
       >
         <div className="max-w-4xl mx-auto w-full flex flex-col flex-1">
           {/* Header */}
@@ -590,13 +590,15 @@ export default function CtfChallenge({ stage }: { stage: StageConfig }) {
                   onClick={() => setBriefingOpen((o) => !o)}
                   className="text-xs px-2.5 py-1.5 border border-amber-500/40 hover:border-amber-400 text-amber-400 rounded-lg transition-colors"
                 >
-                  📋 {briefingOpen ? "Hide" : "Brief"}
+                  <span className="hidden sm:inline">📋 {briefingOpen ? "Hide" : "Brief"}</span>
+                  <span className="sm:hidden">📋</span>
                 </button>
                 <button
                   onClick={() => setHintsOpen(true)}
                   className="text-xs px-2.5 py-1.5 border border-amber-500/40 hover:border-amber-400 text-amber-400 rounded-lg transition-colors"
                 >
-                  💡 Hints
+                  <span className="hidden sm:inline">💡 Hints</span>
+                  <span className="sm:hidden">💡</span>
                 </button>
                 <button
                   onClick={() => setChatbotOpen(true)}
@@ -606,13 +608,15 @@ export default function CtfChallenge({ stage }: { stage: StageConfig }) {
                       : "border-green-500/40 hover:border-green-400 text-green-400"
                   }`}
                 >
-                  🤖 ARIA
+                  <span className="hidden sm:inline">🤖 ARIA</span>
+                  <span className="sm:hidden">🤖</span>
                 </button>
                 <button
                   onClick={() => setDrawerOpen(true)}
                   className="text-xs px-2.5 py-1.5 border border-cyan-500/40 hover:border-cyan-400 text-cyan-400 rounded-lg transition-colors"
                 >
-                  📖 Ref
+                  <span className="hidden sm:inline">📖 Ref</span>
+                  <span className="sm:hidden">📖</span>
                 </button>
               </div>
             </div>
@@ -669,6 +673,7 @@ export default function CtfChallenge({ stage }: { stage: StageConfig }) {
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   onKeyDown={handleKeyDown}
+                  onFocus={() => setTimeout(() => inputRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" }), 300)}
                   className="flex-1 bg-transparent text-green-300 outline-none caret-green-400 min-w-0 text-xs sm:text-sm"
                   spellCheck={false}
                   autoComplete="off"
