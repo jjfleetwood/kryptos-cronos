@@ -12,7 +12,7 @@ const epochGroups = [
   {
     label: "Track 1 — Core Security",
     desc: "Foundations → Real CVEs",
-    epochIds: ["before-times", "ancient", "medieval"],
+    epochIds: ["before-times", "ancient"],
   },
   {
     label: "Track 2 — Tech Audit",
@@ -36,8 +36,8 @@ const epochGroups = [
   },
   {
     label: "Track 6 — Cisco Enterprise",
-    desc: "DNS Security · Cloud SASE",
-    epochIds: ["umbrella"],
+    desc: "Real CVEs · DNS Security · Cloud SASE",
+    epochIds: ["medieval", "umbrella"],
   },
 ];
 
