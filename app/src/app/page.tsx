@@ -548,6 +548,7 @@ export default function Home() {
             <Link href="/stages" className="hover:text-gray-400 transition-colors">Stages</Link>
             <Link href="/leaderboard" className="hover:text-gray-400 transition-colors">Leaderboard</Link>
             <Link href="/login" className="hover:text-gray-400 transition-colors">Sign In</Link>
+            <Link href="/privacy" className="hover:text-gray-400 transition-colors">Privacy</Link>
           </div>
           <p className="text-xs text-gray-700">© 2026 Kryptós CronOS (κρυπτός χρόνος) · Built for defenders</p>
         </footer>

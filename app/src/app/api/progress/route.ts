@@ -7,13 +7,18 @@ export async function GET(req: NextRequest) {
   const username = req.nextUrl.searchParams.get("username");
   if (!username) return NextResponse.json({ error: "username required" }, { status: 400 });
 
-  const data = await redis.hgetall(`progress:${username.toLowerCase()}`);
+  const lower = username.toLowerCase();
+  const [data, streakData] = await Promise.all([
+    redis.hgetall(`progress:${lower}`),
+    redis.hgetall(`streak:${lower}`),
+  ]);
   if (!data) return NextResponse.json(null);
 
   return NextResponse.json({
     xp: Number(data.xp ?? 0),
     completedStages: data.stages ? JSON.parse(data.stages as string) : [],
     badges: data.badges ? JSON.parse(data.badges as string) : [],
+    streak: streakData ? Number(streakData.current ?? 0) : 0,
   });
 }
 

@@ -94,6 +94,7 @@ export default function StagesPage() {
   const router = useRouter();
   const [completedStages, setCompletedStages] = useState<string[]>([]);
   const [totalXp, setTotalXp] = useState(0);
+  const [streak, setStreak] = useState(0);
   const [username, setUsername] = useState<string | null>(null);
   const [activeEpoch, setActiveEpoch] = useState("before-times");
 
@@ -103,12 +104,24 @@ export default function StagesPage() {
     const progress = getProgress();
     setCompletedStages(progress.completedStages);
     setTotalXp(progress.xp);
+    setStreak(progress.streak ?? 0);
   }, []);
 
   function handleLogout() {
     clearSession();
     router.refresh();
     setUsername(null);
+  }
+
+  async function handleDeleteAccount() {
+    if (!window.confirm("Delete your account? This permanently removes all progress, XP, badges, and streak data and cannot be undone.")) return;
+    await fetch("/api/delete-account", { method: "DELETE" });
+    clearSession();
+    if (typeof window !== "undefined") {
+      localStorage.removeItem(`kryptos_progress_${username}`);
+      localStorage.removeItem("kryptos_progress");
+    }
+    router.push("/");
   }
 
   const epochStages = allStages.filter((s) => s.epochId === activeEpoch);
@@ -145,7 +158,7 @@ export default function StagesPage() {
           <h1 className="text-4xl font-bold text-white mb-2">Training Stage Map</h1>
           <p className="text-gray-400">Six tracks covering the full spectrum — from core CVEs to AI security and quantum cryptography.</p>
 
-          {/* XP bar */}
+          {/* XP bar + streak */}
           <div className="mt-6 flex items-center gap-4">
             <div className="flex-1 bg-white/5 rounded-full h-3">
               <div
@@ -154,6 +167,18 @@ export default function StagesPage() {
               />
             </div>
             <span className="text-amber-400 font-mono text-sm">{totalXp} / {maxXp} XP</span>
+            {streak > 0 && (
+              <span
+                className="flex items-center gap-1 text-sm font-mono font-bold px-2.5 py-0.5 rounded-full border"
+                style={{
+                  color: streak >= 7 ? "#fb923c" : "#facc15",
+                  borderColor: streak >= 7 ? "rgba(251,146,60,0.4)" : "rgba(250,204,21,0.3)",
+                  background: streak >= 7 ? "rgba(251,146,60,0.08)" : "rgba(250,204,21,0.06)",
+                }}
+              >
+                🔥 {streak}d
+              </span>
+            )}
           </div>
         </div>
 
@@ -233,9 +258,14 @@ export default function StagesPage() {
             <span className="text-sm text-gray-300">
               👤 Welcome, <span className="text-cyan-400 font-semibold">{username}</span>
             </span>
-            <button onClick={handleLogout} className="text-xs text-gray-500 hover:text-red-400 transition-colors">
-              Log out
-            </button>
+            <div className="flex items-center gap-4">
+              <button onClick={handleLogout} className="text-xs text-gray-500 hover:text-red-400 transition-colors">
+                Log out
+              </button>
+              <button onClick={handleDeleteAccount} className="text-xs text-gray-700 hover:text-red-500 transition-colors">
+                Delete account
+              </button>
+            </div>
           </div>
         ) : (
           <div className="flex flex-wrap items-center justify-between gap-3 bg-white/3 border border-white/10 rounded-xl px-5 py-3 mb-6">

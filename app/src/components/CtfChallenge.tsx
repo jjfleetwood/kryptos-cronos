@@ -232,6 +232,7 @@ export default function CtfChallenge({ stage }: { stage: StageConfig }) {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [hintsOpen, setHintsOpen] = useState(false);
   const [chatbotOpen, setChatbotOpen] = useState(false);
+  const [unknownCmdCount, setUnknownCmdCount] = useState(0);
   const [briefingOpen, setBriefingOpen] = useState(false);
   const [collectedFragments, setCollectedFragments] = useState<Set<string>>(new Set());
   const [submitting, setSubmitting] = useState(false);
@@ -496,10 +497,17 @@ export default function CtfChallenge({ stage }: { stage: StageConfig }) {
       return;
     }
 
-    push(
-      { type: "err", text: `${cmd}: command not found. Type 'help' for commands.` },
-      { type: "out", text: "" },
-    );
+    const newCount = unknownCmdCount + 1;
+    setUnknownCmdCount(newCount);
+    push({ type: "err", text: `${cmd}: command not found. Type 'help' for commands.` });
+    if (newCount === 3) {
+      push(
+        { type: "sys", text: "💡 ARIA can give you a contextual hint — click 🤖 ARIA in the toolbar above." },
+        { type: "out", text: "" },
+      );
+    } else {
+      push({ type: "out", text: "" });
+    }
   }
 
   function handleKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {
@@ -592,7 +600,11 @@ export default function CtfChallenge({ stage }: { stage: StageConfig }) {
                 </button>
                 <button
                   onClick={() => setChatbotOpen(true)}
-                  className="text-xs px-2.5 py-1.5 border border-green-500/40 hover:border-green-400 text-green-400 rounded-lg transition-colors"
+                  className={`text-xs px-2.5 py-1.5 border rounded-lg transition-colors ${
+                    !solved && (unknownCmdCount >= 3 || elapsed > 480_000)
+                      ? "border-green-400 text-green-300 bg-green-500/10 animate-pulse"
+                      : "border-green-500/40 hover:border-green-400 text-green-400"
+                  }`}
                 >
                   🤖 ARIA
                 </button>

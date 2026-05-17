@@ -4,6 +4,7 @@ export type UserProgress = {
   xp: number;
   completedStages: string[];
   badges: string[];
+  streak?: number;
 };
 
 const BASE_KEY = "kryptos_progress";
@@ -39,6 +40,7 @@ export function applyServerProgress(p: UserProgress): void {
     xp: Math.max(local.xp, p.xp),
     completedStages: Array.from(new Set([...local.completedStages, ...p.completedStages])),
     badges: Array.from(new Set([...local.badges, ...p.badges])),
+    streak: p.streak ?? local.streak,
   };
   save(merged);
 }

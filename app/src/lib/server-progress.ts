@@ -1,5 +1,6 @@
 import { redis } from "@/lib/redis";
 import { stages } from "@/data/stages";
+import { checkStageMilestones, checkXpMilestones, checkStreakMilestones } from "@/data/milestone-badges";
 import type { UserProgress } from "@/lib/progress";
 
 function stageXp(stageId: string): number {
@@ -18,6 +19,16 @@ function getWeekKey(): string {
   return `lb:w:${monday.toISOString().slice(0, 10)}`;
 }
 
+function todayUTC(): string {
+  return new Date().toISOString().slice(0, 10);
+}
+
+function yesterdayUTC(): string {
+  const d = new Date();
+  d.setUTCDate(d.getUTCDate() - 1);
+  return d.toISOString().slice(0, 10);
+}
+
 /**
  * Awards a stage in Redis for a verified user. XP is computed server-side.
  * Idempotent — calling twice for the same stage has no effect on XP.
@@ -30,7 +41,12 @@ export async function awardStageInRedis(
   timePenaltyXp = 0
 ): Promise<UserProgress> {
   const key = `progress:${username.toLowerCase()}`;
-  const data = await redis.hgetall(key);
+  const streakKey = `streak:${username.toLowerCase()}`;
+
+  const [data, streakData] = await Promise.all([
+    redis.hgetall(key),
+    redis.hgetall(streakKey),
+  ]);
 
   function parseArr(val: unknown): string[] {
     if (!val) return [];
@@ -56,13 +72,45 @@ export async function awardStageInRedis(
   const newPenalty = isNew ? storedPenalty + timePenaltyXp : storedPenalty;
   const xp = Math.max(0, baseXp - newPenalty);
 
-  await redis.hset(key, {
-    xp,
-    stages: JSON.stringify(completedStages),
-    badges: JSON.stringify(badges),
-    lastActive: Date.now(),
-    penalty: newPenalty,
-  });
+  // ── Streak tracking ──
+  const today = todayUTC();
+  const yesterday = yesterdayUTC();
+  const lastDate = streakData?.lastDate ? String(streakData.lastDate) : null;
+  let current = Number(streakData?.current ?? 0);
+  let longest = Number(streakData?.longest ?? 0);
+
+  if (lastDate === today) {
+    // Already counted today — no change
+  } else if (lastDate === yesterday) {
+    current += 1;
+  } else {
+    current = 1;
+  }
+  if (current > longest) longest = current;
+
+  // ── Milestone badges ──
+  const stageMilestones = checkStageMilestones(completedStages.length);
+  const xpMilestones = checkXpMilestones(xp);
+  const streakMilestones = checkStreakMilestones(current);
+
+  for (const id of [...stageMilestones, ...xpMilestones, ...streakMilestones]) {
+    if (!badges.includes(id)) badges.push(id);
+  }
+
+  await Promise.all([
+    redis.hset(key, {
+      xp,
+      stages: JSON.stringify(completedStages),
+      badges: JSON.stringify(badges),
+      lastActive: Date.now(),
+      penalty: newPenalty,
+    }),
+    redis.hset(streakKey, {
+      current,
+      longest,
+      lastDate: today,
+    }),
+  ]);
 
   // All-time leaderboard
   await redis.zadd("leaderboard", { score: xp, member: username.toLowerCase() });
@@ -80,5 +128,5 @@ export async function awardStageInRedis(
     }
   }
 
-  return { xp, completedStages, badges };
+  return { xp, completedStages, badges, streak: current };
 }
