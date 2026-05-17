@@ -23,7 +23,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ taken: true }, { status: 409 });
   }
 
-  await redis.hset(key, { passwordHash, salt, email: email.toLowerCase() });
+  await redis.hset(key, { passwordHash, salt, email: email.toLowerCase(), createdAt: Date.now() });
   await redis.set(`email:${email.toLowerCase()}`, username.toLowerCase());
 
   return NextResponse.json({ ok: true });

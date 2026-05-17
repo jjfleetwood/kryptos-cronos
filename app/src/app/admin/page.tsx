@@ -3,63 +3,53 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { getUsers, isAdmin, getSession, StoredUser } from "@/lib/auth";
+import { getSession } from "@/lib/auth";
 import { stages } from "@/data/stages";
 
-type UserRow = StoredUser & {
+type UserRow = {
+  username: string;
+  email: string;
+  createdAt: number | null;
   xp: number;
-  completedStages: number;
+  stages: number;
   badges: number;
+  lastActive: number | null;
 };
 
-function getUserProgress(username: string) {
-  try {
-    const raw = localStorage.getItem(`kryptos_progress_${username}`);
-    if (!raw) return { xp: 0, completedStages: 0, badges: 0 };
-    const p = JSON.parse(raw);
-    return {
-      xp: p.xp ?? 0,
-      completedStages: (p.completedStages ?? []).length,
-      badges: (p.badges ?? []).length,
-    };
-  } catch {
-    return { xp: 0, completedStages: 0, badges: 0 };
-  }
+function timeAgo(ts: number | null): string {
+  if (!ts) return "—";
+  const diff = Date.now() - ts;
+  const m = Math.floor(diff / 60000);
+  if (m < 1) return "now";
+  if (m < 60) return `${m}m ago`;
+  const h = Math.floor(m / 60);
+  if (h < 24) return `${h}h ago`;
+  return `${Math.floor(h / 24)}d ago`;
 }
 
 export default function AdminPage() {
   const router = useRouter();
-  const [authorized, setAuthorized] = useState(false);
   const [users, setUsers] = useState<UserRow[]>([]);
-  const [totalUsers, setTotalUsers] = useState(0);
-  const [totalXp, setTotalXp] = useState(0);
-  const [activeToday, setActiveToday] = useState(0);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    if (!isAdmin()) {
-      router.replace("/stages");
-      return;
-    }
-    setAuthorized(true);
-
-    const storedUsers = getUsers();
-    const now = Date.now();
-    const oneDayMs = 86_400_000;
-
-    const rows: UserRow[] = storedUsers.map((u) => {
-      const progress = getUserProgress(u.username);
-      return { ...u, ...progress };
-    });
-
-    rows.sort((a, b) => b.xp - a.xp);
-    setUsers(rows);
-    setTotalUsers(rows.length);
-    setTotalXp(rows.reduce((s, u) => s + u.xp, 0));
-    setActiveToday(rows.filter((u) => now - u.createdAt < oneDayMs).length);
+    fetch("/api/admin/users")
+      .then((r) => {
+        if (r.status === 401) { router.replace("/stages"); return null; }
+        return r.json();
+      })
+      .then((data) => {
+        if (data) setUsers(data as UserRow[]);
+      })
+      .catch(() => setError("Failed to load users."))
+      .finally(() => setLoading(false));
   }, [router]);
 
-  if (!authorized) return null;
-
+  const totalXp = users.reduce((s, u) => s + u.xp, 0);
+  const activeToday = users.filter(
+    (u) => u.lastActive !== null && Date.now() - u.lastActive < 86_400_000
+  ).length;
   const maxXp = Math.max(...users.map((u) => u.xp), 1);
   const totalStages = stages.length;
 
@@ -96,9 +86,9 @@ export default function AdminPage() {
         {/* Stats cards */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
           {[
-            { label: "Total Users", value: totalUsers, color: "text-cyan-400" },
-            { label: "Total XP Earned", value: totalXp.toLocaleString(), color: "text-purple-400" },
-            { label: "Joined Today", value: activeToday, color: "text-green-400" },
+            { label: "Total Users", value: loading ? "…" : users.length, color: "text-cyan-400" },
+            { label: "Total XP Earned", value: loading ? "…" : totalXp.toLocaleString(), color: "text-purple-400" },
+            { label: "Active Today", value: loading ? "…" : activeToday, color: "text-green-400" },
             { label: "Total Stages", value: totalStages, color: "text-orange-400" },
           ].map((s) => (
             <div key={s.label} className="bg-white/3 border border-white/8 rounded-xl p-5 text-center">
@@ -112,47 +102,42 @@ export default function AdminPage() {
         <div className="bg-white/2 border border-white/8 rounded-2xl overflow-hidden mb-8">
           <div className="px-6 py-4 border-b border-white/8 flex items-center justify-between">
             <h2 className="text-white font-bold">Registered Users</h2>
-            <span className="text-xs text-gray-600">{users.length} total</span>
+            <span className="text-xs text-gray-600">{loading ? "…" : `${users.length} total`}</span>
           </div>
 
-          {users.length === 0 ? (
+          {loading ? (
+            <div className="px-6 py-12 text-center text-gray-600 text-sm">Loading users…</div>
+          ) : error ? (
+            <div className="px-6 py-12 text-center text-red-500 text-sm">{error}</div>
+          ) : users.length === 0 ? (
             <div className="px-6 py-12 text-center text-gray-600">
-              No users registered yet. Users appear here once they sign up.
+              No server-registered users yet.
             </div>
           ) : (
             <div>
               {/* Table header */}
-              <div className="grid grid-cols-[1fr_2fr_6rem_5rem_5rem_7rem] gap-3 px-6 py-3 border-b border-white/5 text-xs text-gray-600 font-semibold uppercase tracking-wider">
+              <div className="grid grid-cols-[2rem_1fr_2fr_5rem_4rem_4rem_6rem_6rem] gap-3 px-6 py-3 border-b border-white/5 text-xs text-gray-600 font-semibold uppercase tracking-wider">
+                <div>#</div>
                 <div>User</div>
                 <div>XP</div>
                 <div className="text-center">Stages</div>
                 <div className="text-center">Badges</div>
-                <div className="text-center">Admin</div>
+                <div className="text-right">Active</div>
                 <div className="text-right">Joined</div>
               </div>
 
               {users.map((user, i) => (
                 <div
                   key={user.username}
-                  className={`grid grid-cols-[1fr_2fr_6rem_5rem_5rem_7rem] gap-3 px-6 py-4 border-b border-white/5 last:border-0 items-center ${
-                    user.isAdmin ? "bg-red-500/5" : "hover:bg-white/2"
-                  } transition-colors`}
+                  className="grid grid-cols-[2rem_1fr_2fr_5rem_4rem_4rem_6rem_6rem] gap-3 px-6 py-4 border-b border-white/5 last:border-0 items-center hover:bg-white/2 transition-colors"
                 >
+                  {/* Rank */}
+                  <div className="text-xs text-gray-600 font-mono">{i + 1}</div>
+
                   {/* User */}
-                  <div className="flex items-center gap-2 min-w-0">
-                    <div
-                      className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0 ${
-                        user.isAdmin ? "bg-red-500/20 text-red-400 border border-red-500/30" : "bg-white/8 text-gray-400"
-                      }`}
-                    >
-                      {i + 1}
-                    </div>
-                    <div className="min-w-0">
-                      <div className={`font-semibold truncate text-sm ${user.isAdmin ? "text-red-400" : "text-white"}`}>
-                        {user.username}
-                      </div>
-                      <div className="text-xs text-gray-700 truncate">{user.email}</div>
-                    </div>
+                  <div className="min-w-0">
+                    <div className="font-semibold truncate text-sm text-white">{user.username}</div>
+                    <div className="text-xs text-gray-700 truncate">{user.email}</div>
                   </div>
 
                   {/* XP bar */}
@@ -166,14 +151,14 @@ export default function AdminPage() {
                         }}
                       />
                     </div>
-                    <span className="text-xs font-mono text-gray-400 flex-shrink-0 w-12 text-right">
+                    <span className="text-xs font-mono text-gray-400 flex-shrink-0 w-14 text-right">
                       {user.xp} XP
                     </span>
                   </div>
 
                   {/* Stages */}
                   <div className="text-center text-sm text-gray-400">
-                    {user.completedStages} / {totalStages}
+                    {user.stages} / {totalStages}
                   </div>
 
                   {/* Badges */}
@@ -181,20 +166,14 @@ export default function AdminPage() {
                     {user.badges > 0 ? "🏅".repeat(Math.min(user.badges, 3)) : "—"}
                   </div>
 
-                  {/* Admin */}
-                  <div className="text-center">
-                    {user.isAdmin ? (
-                      <span className="text-xs px-2 py-0.5 rounded-full border border-red-500/40 bg-red-500/10 text-red-400">
-                        admin
-                      </span>
-                    ) : (
-                      <span className="text-gray-700 text-xs">—</span>
-                    )}
+                  {/* Last active */}
+                  <div className="text-right text-xs text-gray-600">
+                    {timeAgo(user.lastActive)}
                   </div>
 
                   {/* Joined */}
                   <div className="text-right text-xs text-gray-700">
-                    {new Date(user.createdAt).toLocaleDateString()}
+                    {user.createdAt ? new Date(user.createdAt).toLocaleDateString() : "—"}
                   </div>
                 </div>
               ))}
