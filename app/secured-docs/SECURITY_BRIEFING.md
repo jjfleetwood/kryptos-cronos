@@ -1,8 +1,14 @@
 # Kryptós CronOS Security Briefing
 **Classification:** Internal — Pre-Production  
 **Date:** 2026-05-18  
-**Version:** 2.9  
+**Version:** 3.0  
 **Reviewed by:** Internal Security Analysis
+
+---
+
+## Changelog — v3.0 (2026-05-18)
+
+- **NEW: `/api/feedback`** — Unauthenticated POST endpoint. Accepts `{ message, page }`, sends via Resend to internal admin email. No user data stored; no Redis writes. Attack surface: spam/abuse (low risk — no account creation, no sensitive data returned). No rate limiting yet — add if public traffic grows.
 
 ---
 

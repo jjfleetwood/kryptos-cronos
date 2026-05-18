@@ -2,6 +2,16 @@
 
 ---
 
+## v1.5.1 — 2026-05-18
+
+**Feedback widget + business proposal refresh**
+
+- **`src/components/FeedbackWidget.tsx`** — Fixed-position "What do you want to see?" textarea in the top-right corner of every page. Sends to jjbolotin@yahoo.com via Resend. Supports ⌘↵ keyboard shortcut. Auto-resizes up to 160px. Includes page path in email for context.
+- **`/api/feedback`** — POST endpoint that calls Resend API with message + page. No rate limiting yet (low-volume internal use).
+- **Business proposals updated** — Both `BUSINESS_PROPOSAL_PRO.md` and `BUSINESS_PROPOSAL_CASUAL.md` refreshed to v1.5.0 facts: 186 stages, 14 epochs, 6 tracks, ARIA AI tutor live, streaks/badges live, DocuSign live, all 6 active tech partners documented.
+
+---
+
 ## v1.5.0 — 2026-05-18
 
 **Continuous Monitoring 2.0 epoch (12 stages)**

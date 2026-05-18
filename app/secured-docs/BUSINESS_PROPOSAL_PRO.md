@@ -1,4 +1,4 @@
-﻿# Kryptós CronOS
+# Kryptós CronOS
 ## Investor Briefing & Commercial Opportunity
 **Confidential — May 2026**
 
@@ -37,66 +37,62 @@ We are building at the intersection of all three.
 
 Kryptós CronOS delivers training through **stage-based missions** that simulate real attacks and real defenses. Each stage follows a four-part structure:
 
-1. **Threat Briefing** — A detailed, technically accurate overview of a vulnerability class: its history, how it works mechanically, and the real-world incident where it caused maximum damage (Target breach, Equifax, WannaCry, Log4Shell).
+1. **Threat Briefing** — A detailed, technically accurate overview of a vulnerability class: its history, how it works mechanically, and the real-world incident where it caused maximum damage (Target breach, Equifax, WannaCry, Log4Shell, SolarWinds, OPM).
 
-2. **Attack Flow Visualization** — An interactive diagram showing the attacker, the compromised system, the victim, and the outcome. Not a stock illustration — a system-generated diagram built from structured data.
+2. **Attack Flow Visualization** — An interactive diagram showing the attacker, the compromised system, the victim, and the outcome. System-generated from structured data, not stock illustrations.
 
-3. **Capture the Flag (CTF) Challenge** — A simulated bash terminal environment where the learner must exploit or investigate the exact vulnerability described in the briefing. The flag is hidden in a filesystem modeled on the actual 2014 Heartbleed server, the 2021 Log4Shell-vulnerable logging infrastructure, or the 2019 Capital One AWS metadata endpoint.
+3. **Capture the Flag (CTF) Challenge** — A simulated bash terminal environment where the learner must exploit or investigate the exact vulnerability described in the briefing — replicas of real environments from documented incidents.
 
-4. **Reference Panel** — Available at any point during the challenge. A slide-in panel containing the full briefing, technical reference, and attack diagram — modeling how real security professionals work with documentation open.
+4. **ARIA AI Tutor** — A live, stage-aware AI assistant (powered by Claude Haiku) that uses Socratic coaching: it answers questions and guides thinking without giving away the flag. Available throughout every challenge.
 
-### Curriculum (54 Stages across Three Epochs, v0.6.0)
+### Curriculum — 186 Stages across 14 Epochs and 6 Tracks (v1.5.0)
 
-The platform ships with 54 fully built stages organized into three curriculum epochs:
+The platform ships with 186 fully built stages organized into 14 curriculum epochs and 6 learning tracks:
 
-| Epoch | Name | Stages | Focus |
+| Track | Epochs | Stages | Focus |
 |---|---|---|---|
-| 1 | The Before Times | 30 (bt-01 → bt-30) | Historical attacks and foundational threat patterns |
-| 2 | Foundations | 12 (stage-01 → stage-12) | Core vulnerability classes and landmark incidents |
-| 3 | Cisco | 12 (stage-m01 → stage-m12) | Network security, enterprise defense, CyberOps alignment |
+| Core Security | The Before Times, Foundations | 42 | Historical attacks, foundational vulnerability classes |
+| Tech Audit | Foundations, Technical, Agentic CM, Continuous Monitoring 2.0 | 48 | IT governance, cloud security, AI agents, SOC operations |
+| Threat Frameworks | MITRE ATT&CK, MITRE ATLAS | 24 | Nation-state TTPs, AI/ML adversarial attacks |
+| AI Security | OWASP LLM Top 10 | 12 | LLM-specific vulnerabilities and defenses |
+| Quantum Era | Quantum Threats, PQC, QKD | 36 | Post-quantum cryptography and quantum infrastructure |
+| Defend the Enterprise | Cisco CVEs, Umbrella/DNS | 24 | Real enterprise network defense scenarios |
 
-The Foundations epoch (Stage 1–12) is shown below as a representative sample of stage depth and breadth:
+**Selected curriculum depth — Tech Audit: Continuous Monitoring 2.0 (12 stages, v1.5.0):**
 
-| Stage | Topic | CVE / OWASP | XP |
-|---|---|---|---|
-| 1 | CIA Triad Foundations | — | 100 |
-| 2 | AI Threat Detection | — | 150 |
-| 3 | SQL Injection | OWASP A03, Heartland 2008 | 200 |
-| 4 | Cross-Site Scripting | Samy Worm 2005 | 200 |
-| 5 | Heartbleed | CVE-2014-0160, CVSS 7.5 | 250 |
-| 6 | Broken Access Control | OWASP A01, AT&T iPad 2010 | 250 |
-| 7 | Authentication Failures | LinkedIn 2012, 117M records | 250 |
-| 8 | Log4Shell | CVE-2021-44228, CVSS 10.0 | 300 |
-| 9 | WannaCry / EternalBlue | CVE-2017-0144, 150 countries | 300 |
-| 10 | SSRF | OWASP A10, Capital One 2019 | 300 |
-| 11 | Apache Struts / Equifax | CVE-2017-5638, 147M records | 350 |
-| 12 | MongoDB Misconfiguration | OWASP A05 | 350 |
+| Stage | Topic | Real Incident Anchor |
+|---|---|---|
+| audit-cm01 | NIST SP 800-137 / ISCM Program Design | OPM Breach — 14-month dwell time |
+| audit-cm02 | Next-Gen SIEM + ML Detection | SolarWinds — signature detection failure |
+| audit-cm03 | UEBA — Risk Score Chaining | Tesla insider threat exfiltration |
+| audit-cm04 | NDR — C2 Beaconing Detection | Hafnium Exchange zero-day |
+| audit-cm05 | CSPM — Attack Path Analysis | Capital One S3 + IAM chain |
+| audit-cm06 | STIX/TAXII Threat Intelligence | Volt Typhoon Five Eyes disclosure |
+| audit-cm07 | SOAR Playbook Automation | Twilio cascade breach |
+| audit-cm08 | Deception / Honeytokens | Uber hard-coded credential breach |
+| audit-cm09 | Zero Trust CARTA | Google Aurora → BeyondCorp origin |
+| audit-cm10 | XDR Cross-Source Correlation | Lapsus$ Microsoft breach |
+| audit-cm11 | Continuous Compliance | FTC Drizly CEO liability order |
+| audit-cm12 | SOC Maturity — MTTD/MTTR | MGM Resorts $100M+ ransomware event |
+
+### Live Features (Shipped — v1.5.0)
+
+- **ARIA AI Tutor** — Claude Haiku, Socratic coaching, stage-aware context, 10-message session cap, rate-limited
+- **Daily Streaks** — Redis-backed streak tracking with streak-based milestone badges
+- **Milestone Badges** — XP and streak milestones (`m-xp-1k`, `m-xp-5k`, `m-streak-3`, `m-streak-7`)
+- **Real-time Leaderboard** — XP rankings via Upstash Redis sorted sets
+- **Admin Dashboard** — User management, NDA signatories panel, DocuSign integration, streak monitoring
+- **DocuSign NDA Integration** — Admin can send legally-binding NDA envelopes from the dashboard; signer status tracked via webhook
+- **CI Pipeline** — GitHub Actions: lint + tsc + build + security audit on every push
+- **Server-side Auth** — PBKDF2-SHA-256, HMAC-signed HttpOnly cookies, no localStorage credentials
 
 ### Progression & Gamification
 
-- **Linear gating:** Stages unlock sequentially. Learners cannot skip ahead.
-- **XP system:** Every completed stage awards XP toward a cumulative score.
-- **Badge library:** Each stage unlocks a unique badge (e.g., "AI Scout," "SQL Slayer," "Zero Day Hunter").
-- **Leaderboard:** Real-time competitive ranking against peers, driving return engagement.
-- **Streaks & milestones:** Planned for v1.1 — daily login streaks, weekly challenge events.
-
----
-
-## AI Personalization (Roadmap)
-
-The current platform is a strong foundation. The defensible moat is the AI layer being built on top of it:
-
-### Adaptive Difficulty
-Using an AI API, the platform will analyze a learner's command patterns, flag submission attempts, and time-on-task to dynamically adjust challenge difficulty. A learner who immediately exploits the SQL injection gets pushed to blind SQLi and second-order injection. A learner who struggles gets targeted hints and scaffolded sub-challenges.
-
-### Personalized Learning Paths
-Rather than a fixed 12-stage sequence, AI models each learner's knowledge gaps and professional context (developer, sysadmin, executive, student) to recommend the optimal next challenge. A developer gets SQL injection and XSS first. A sysadmin gets network security and misconfiguration. An executive gets social engineering and business impact scenarios.
-
-### AI Tutoring
-An in-terminal AI assistant (AI API) that responds to natural-language questions during CTF challenges — without giving away the answer. "What does this log entry mean?" gets an educational explanation. "Just tell me the flag" gets a Socratic redirect.
-
-### Threat Intelligence Feed
-Weekly AI-generated challenge updates based on real CVEs published in the past 7 days. Learners are always training on current threats, not historical case studies.
+- **XP system** — Every completed stage awards XP; server-side verified (client XP ignored)
+- **Badge library** — Unique badge per stage, plus milestone badges for XP and streak achievements
+- **Leaderboard** — Real-time competitive ranking driving return engagement
+- **Daily streaks** — Consecutive-day engagement loop with streak-based badge rewards
+- **Reference drawer** — Full briefing, technical reference, and attack diagram accessible mid-challenge
 
 ---
 
@@ -106,15 +102,12 @@ Weekly AI-generated challenge updates based on real CVEs published in the past 7
 - **Free tier:** Stages 1–3 (acquisition funnel)
 - **Pro:** $19/month or $149/year — full curriculum + AI personalization + badge certificates
 - **Team:** $12/seat/month (10+ seats) — cohort dashboards, completion reporting
-- **Ad-supported hints:** Free-tier users watch a 30-second sponsor ad to unlock hints 2–3 per stage. Contextually matched (EDR vendors on malware stages, cloud providers on SSRF stages). Projected CPM: $50–$200. Creates a fourth revenue stream and a natural Pro upgrade prompt at the moment of user friction.
 
 #### Ad-Supported Hints — Revenue Model Detail
 
-The hint monetization system operates on a tiered access model. Each stage provides one hint at no cost. Hints 2 and 3 require either a 30-second sponsor ad view or a Pro subscription upgrade. Ads are contextually matched to stage content: endpoint detection vendors appear on malware and ransomware stages; cloud security providers appear on SSRF and misconfiguration stages. This context-relevance drives ad quality scores and justifies premium CPMs.
+Each stage provides one hint at no cost. Hints 2 and 3 require either a 30-second sponsor ad or a Pro subscription upgrade. Ads are contextually matched to stage content: endpoint detection vendors appear on malware stages; cloud security providers appear on SSRF and misconfiguration stages. This drives premium CPMs ($50–$200) against a verified security practitioner audience.
 
-At $50–$200 CPM with a verified security practitioner audience — comparable to LinkedIn Sponsored Content targeting information security professionals — the economics are favorable even at modest scale. At 50,000 free users with an average of 0.5 ad impressions per session, projected revenue is approximately $2,500/month, scaling linearly with user growth at zero marginal cost.
-
-Critically, the hint friction point is the highest-intent moment in the product: a learner who is stuck and reaching for help is the ideal audience for a Pro upgrade prompt. Every ad impression doubles as conversion-rate optimization for Pro subscriptions. This is the Duolingo model applied to a higher-value professional audience.
+At 50,000 free users with an average of 0.5 ad impressions per session, projected revenue is approximately $2,500/month, scaling linearly with user growth at zero marginal cost. The hint friction point is the highest-intent moment in the product — every ad impression doubles as a Pro upgrade conversion opportunity.
 
 ### B2B (Enterprise)
 - **Enterprise:** $8/seat/month (100+ seats) — SSO, compliance reporting, custom curriculum, dedicated success manager
@@ -131,18 +124,16 @@ This creates a tripartite flywheel: learners build skills → employers find cer
 
 #### Cisco — Flagship Sponsor Integration
 
-Cisco is the deepest planned sponsor relationship, spanning product integrations across the entire platform:
+Cisco is the deepest planned sponsor relationship, anchored by an existing 12-stage Cisco CVE epoch and expanding across four product lines:
 
 | Integration | Product | Value |
 |---|---|---|
-| Weekly CVE Challenge | **Cisco Talos** | Talos threat feed drives a new CTF scenario every week — co-branded "Talos Threat of the Week" |
+| Weekly CVE Challenge | **Cisco Talos** | Talos threat feed drives new CTF scenario weekly — co-branded "Talos Threat of the Week" |
 | DNS & Network Security Track | **Cisco Umbrella** | Dedicated epoch: DNS tunneling, DGA, and network policy stages |
 | Enterprise SecOps Track | **Cisco SecureX / XDR** | Alert triage and incident response stages modeled on SecureX workflows |
 | Network Defense Stages | **Cisco Firepower / NGFW** | Firewall exploitation and lateral movement scenarios |
 | Certification Alignment | **Cisco CyberOps Associate** | Cisco epoch completions map to CyberOps exam domains; Cisco provides exam vouchers |
 | API Security Track | **Cisco DevNet** | REST API exploitation and OAuth misconfiguration stages |
-
-Cisco earns a qualified, verified security audience at measurable skill levels. Kryptós CronOS earns recurring sponsor revenue, threat intelligence data, and certification co-branding.
 
 ---
 
@@ -155,11 +146,11 @@ Cisco earns a qualified, verified security audience at measurable skill levels. 
 
 ### Phase 2 — B2B (Q4 2026)
 - Pilot with 5 enterprise customers (target: financial services, healthcare)
-- Build SSO, compliance reporting, and admin dashboard
+- Expand SSO, compliance reporting, and admin dashboard capabilities
 - Target: $500K ARR
 
 ### Phase 3 — AI Personalization + Cisco Integration (Q1 2027)
-- Launch AI-powered adaptive difficulty and AI tutoring
+- Launch AI-powered adaptive difficulty and personalized learning paths
 - Introduce weekly CVE-based challenge drops powered by Cisco Talos threat intelligence
 - Launch Cisco Umbrella DNS security track and Cisco SecureX enterprise SecOps track
 - Activate Cisco CyberOps Associate certification alignment with exam voucher redemption
@@ -177,16 +168,33 @@ Cisco earns a qualified, verified security audience at measurable skill levels. 
 | KnowBe4 | Phishing simulation only | No technical depth |
 | **Kryptós CronOS** | **Gamified + AI + CTF + curriculum** | **Early stage** |
 
-Our differentiation: the only platform combining structured curriculum, real-exploit CTF challenges, AI personalization, and a social/competitive layer in a single product.
+Our differentiation: the only platform combining structured multi-track curriculum (186 stages), real-exploit CTF challenges, a live AI Socratic tutor, daily engagement mechanics, and a competitive leaderboard in a single production-grade product.
 
 ---
 
 ## Traction & Validation
 
-- **Product:** Fully functional platform with 54 stages across three curriculum epochs, auth system, leaderboard, and CTF terminal
+- **Product:** Fully functional platform — 186 stages across 14 epochs and 6 curriculum tracks
+- **AI tutor:** ARIA live in production — Claude Haiku, Socratic coaching, stage-aware
+- **Gamification:** Streaks, milestone badges, and real-time leaderboard all live
+- **Admin infrastructure:** NDA management with DocuSign e-signature integration
+- **Security posture:** Server-side auth, HMAC cookies, CSP headers, rate limiting, CI security audit
 - **Tech stack:** Next.js 16 / React 19 / TypeScript — production-grade, zero technical debt
-- **Deployment:** Live at kryptoscronos.com
+- **Deployment:** Live at kryptoscronos.com (version v1.5.0)
 - **GitHub:** github.com/jjfleetwood/kryptos-cronos
+
+---
+
+## Technology Partners (Active)
+
+| Partner | Role | Status |
+|---|---|---|
+| **Vercel** | Hosting, CDN, serverless functions | Active — Hobby plan |
+| **Upstash** | Serverless Redis — users, progress, leaderboard, streaks, NDAs | Active — Free tier |
+| **Resend** | Transactional email — registration alerts, password reset | Active — Free tier |
+| **Anthropic** | Claude Haiku — ARIA AI tutor | Active — Pay-per-token |
+| **DocuSign** | eSignature API — NDA envelope sending and tracking | Active — Developer tier |
+| **GitHub** | Source control + CI pipeline trigger | Active — Free |
 
 ---
 
@@ -197,7 +205,7 @@ Our differentiation: the only platform combining structured curriculum, real-exp
 | Use of Funds | Allocation |
 |---|---|
 | Engineering (2 FTE, 12 months) | $720K |
-| AI/ML — AI API + personalization layer | $120K |
+| AI API budget (personalization layer + ARIA scaling) | $120K |
 | Sales & marketing (Phase 1 GTM) | $300K |
 | Infrastructure & security hardening | $80K |
 | Legal, ops, reserve | $280K |
@@ -208,7 +216,7 @@ Our differentiation: the only platform combining structured curriculum, real-exp
 
 ## Team
 
-Kryptós CronOS is being built by a founder with domain expertise in the problem space and a commitment to AI-first product development. The technical foundation — architecture, security model, content, and deployment pipeline — was validated in a single accelerated build sprint.
+Kryptós CronOS is being built by a founder with domain expertise in cybersecurity, AI, and enterprise software. The technical foundation — 186-stage curriculum, AI tutor, leaderboard, auth system, DocuSign NDA integration, and CI/CD pipeline — was built and deployed to production in an accelerated build sprint.
 
 Advisory and engineering capacity available to discuss upon request.
 

@@ -6,7 +6,7 @@ Gamified cybersecurity + AI training platform. Three curriculum tracks, 54 CTF s
 
 **Live:** kryptoscronos.com  
 **Repo:** github.com/jjfleetwood/kryptos-cronos  
-**Current version:** v1.5.0 (as of 2026-05-18)
+**Current version:** v1.5.1 (as of 2026-05-18)
 
 ---
 
@@ -168,7 +168,7 @@ Remaining acceptable gaps: client-side auth storage (localStorage), flags in JS 
 
 ## Where We Left Off (v1.5.0, 2026-05-18)
 
-Continuous Monitoring 2.0 epoch shipped: `src/data/tech-audit-4.ts` — 12 CTF stages (audit-cm01 → audit-cm12) covering ISCM/NIST 800-137, Next-Gen SIEM, UEBA, NDR, CSPM, STIX/TAXII threat intel, SOAR, deception/honeytokens, Zero Trust CARTA, XDR, continuous compliance, and SOC maturity (MTTD/MTTR). Rose accent color. Previously (v1.4.0): DocuSign NDA integration — admin dashboard has a "Send DocuSign NDA" form, backend `src/lib/docusign.ts`, `/api/admin/send-nda`, `/api/webhooks/docusign`. Requires 5 `DOCUSIGN_*` env vars in Vercel.
+Feedback widget shipped (`FeedbackWidget.tsx` — fixed top-right, sends to jjbolotin@yahoo.com via `/api/feedback`). Business proposals fully refreshed to v1.5.0 facts. Previously: Continuous Monitoring 2.0 epoch shipped: `src/data/tech-audit-4.ts` — 12 CTF stages (audit-cm01 → audit-cm12) covering ISCM/NIST 800-137, Next-Gen SIEM, UEBA, NDR, CSPM, STIX/TAXII threat intel, SOAR, deception/honeytokens, Zero Trust CARTA, XDR, continuous compliance, and SOC maturity (MTTD/MTTR). Rose accent color. Previously (v1.4.0): DocuSign NDA integration — admin dashboard has a "Send DocuSign NDA" form, backend `src/lib/docusign.ts`, `/api/admin/send-nda`, `/api/webhooks/docusign`. Requires 5 `DOCUSIGN_*` env vars in Vercel.
 
 **Adding a new epoch — checklist:**
 1. Create `src/data/<epoch-id>.ts` — export `<name>Epoch: EpochConfig` and `<name>Stages: StageConfig[]`
