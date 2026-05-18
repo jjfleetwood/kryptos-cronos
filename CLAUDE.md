@@ -58,7 +58,7 @@ npm run lint         # ESLint
 | 3 | Cisco | 12 | stage-m01 → stage-m12 | Blue | Always |
 | 4 | Tech Audit: Foundations | 12 | audit-01 → audit-12 | Purple | Always |
 | 5 | Tech Audit: Technical | 12 | audit-t01 → audit-t12 | Violet | Always |
-| 6 | Tech Audit: Agentic | 12 | audit-a01 → audit-a12 | Indigo | Always |
+| 6 | Tech Audit: Agentic Continuous Monitoring | 12 | audit-a01 → audit-a12 | Indigo | Always |
 | 7 | MITRE ATT&CK | 12 | mitre-01 → mitre-12 | Red | Always |
 | 8 | MITRE ATLAS | 12 | atlas-01 → atlas-12 | Fuchsia | Always |
 | 9 | OWASP LLM Top 10 | 12 | llm-01 → llm-12 | Orange | Always |
