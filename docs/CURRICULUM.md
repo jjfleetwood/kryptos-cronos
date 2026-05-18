@@ -1,7 +1,7 @@
 # Kryptós CronOS — Curriculum Reference
-**Version:** 3.0  
+**Version:** 3.1  
 **Date:** 2026-05-18  
-**Total stages:** 126 across 9 epochs
+**Total stages:** 198 across 15 epochs
 
 ---
 
@@ -146,10 +146,16 @@ Covers the OWASP Top 10 for Large Language Model Applications: prompt injection,
 | Tech Audit: Foundations | 12 | ~3,600 (varies) |
 | Tech Audit: Technical | 12 | ~3,600 (varies) |
 | Tech Audit: Agentic | 12 | ~3,600 (varies) |
+| Continuous Monitoring 2.0 | 12 | ~3,600 (varies) |
 | MITRE ATT&CK | 12 | ~4,200 (varies) |
 | MITRE ATLAS | 12 | ~4,200 (varies) |
 | OWASP LLM Top 10 | 12 | ~4,200 (varies) |
-| **Total** | **126** | **~31,050** |
+| Quantum Era — Threats | 12 | ~3,600 (varies) |
+| Quantum Era — PQC | 12 | ~3,600 (varies) |
+| Quantum Era — QKD | 12 | ~3,600 (varies) |
+| Defend the Enterprise | 12 | ~3,600 (varies) |
+| The Woven World (Tapestry) | 12 | ~1,200 (varies) |
+| **Total** | **198** | **~51,850** |
 
 ---
 

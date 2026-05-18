@@ -2,14 +2,14 @@
 
 **Live at:** kryptoscronos.com  
 **GitHub:** github.com/jjfleetwood/kryptos-cronos  
-**Current version:** v1.4.0  
+**Current version:** v1.5.2  
 **Last updated:** 2026-05-18
 
 ---
 
 ## What is Kryptós CronOS?
 
-A gamified cybersecurity and AI training platform where learners progress through staged missions that simulate real attacks and defenses. Nine curriculum epochs, 126 total stages, CTF terminal challenges, live leaderboard, ARIA AI hint chatbot, daily streaks, milestone badges, NDA gate, DocuSign eSignature integration, and admin tooling. Built on Next.js 16 + Upstash Redis, deployed on Vercel.
+A gamified cybersecurity and AI training platform where learners progress through staged missions that simulate real attacks and defenses. Fifteen curriculum epochs, 198 total stages, CTF terminal challenges, live leaderboard, ARIA AI hint chatbot, daily streaks, milestone badges, NDA gate, DocuSign eSignature integration, and admin tooling. Built on Next.js 16 + Upstash Redis, deployed on Vercel.
 
 ---
 
@@ -21,7 +21,7 @@ A gamified cybersecurity and AI training platform where learners progress throug
 | [BUILD.md](BUILD.md) | Local dev setup, build process, CI/CD pipeline |
 | [OPS.md](OPS.md) | Operations runbook: env vars, services, monitoring, incident response |
 | [PARTNERS.md](PARTNERS.md) | Key companies, services, and APIs supporting the build |
-| [CURRICULUM.md](CURRICULUM.md) | Full stage catalog across all nine epochs |
+| [CURRICULUM.md](CURRICULUM.md) | Full stage catalog across all fifteen epochs |
 | [TECHNICAL_ARCHITECTURE.md](TECHNICAL_ARCHITECTURE.md) | Detailed technical reference: auth, data layer, API routes, security |
 | [SECURITY_BRIEFING.md](SECURITY_BRIEFING.md) | Security posture, findings, remediation status |
 | [RELEASE_NOTES.md](RELEASE_NOTES.md) | Version history and changelog |
@@ -30,10 +30,10 @@ A gamified cybersecurity and AI training platform where learners progress throug
 
 ---
 
-## Quick Status (v1.4.0)
+## Quick Status (v1.5.2)
 
-- **Epochs:** 9 active — The Before Times (30), Foundations (12), Cisco (12), Tech Audit: Foundations (12), Tech Audit: Technical (12), Tech Audit: Agentic (12), MITRE ATT&CK (12), MITRE ATLAS (12), OWASP LLM Top 10 (12)
-- **Total stages:** 126
+- **Epochs:** 15 active — The Before Times (30), Foundations (12), Cisco (12), Tech Audit: Foundations (12), Tech Audit: Technical (12), Tech Audit: Agentic (12), Continuous Monitoring 2.0 (12), MITRE ATT&CK (12), MITRE ATLAS (12), OWASP LLM Top 10 (12), Quantum Era × 3 (36), Defend the Enterprise (12), The Woven World / Tapestry (12)
+- **Total stages:** 198
 - **Auth:** Fully server-side PBKDF2-SHA-256 — no localStorage for credentials; HMAC-signed HttpOnly cookies for session and admin
 - **ARIA:** AI hint chatbot powered by Claude Haiku (Anthropic), Socratic method, stage-aware, rate-limited
 - **Leaderboard:** Live, global, Upstash Redis sorted set (daily / weekly / all-time)
