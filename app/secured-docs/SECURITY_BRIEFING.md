@@ -1,8 +1,14 @@
 # Kryptós CronOS Security Briefing
 **Classification:** Internal — Pre-Production  
 **Date:** 2026-05-18  
-**Version:** 2.6  
+**Version:** 2.7  
 **Reviewed by:** Internal Security Analysis
+
+---
+
+## Changelog — v2.7 (2026-05-18)
+
+- **No new attack surface** — v1.3.1 is a UI bug fix (CTF terminal scroll race condition). No new API routes, no new data written to Redis, no new env vars required.
 
 ---
 

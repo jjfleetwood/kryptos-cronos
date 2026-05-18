@@ -2,6 +2,14 @@
 
 ---
 
+## v1.3.1 — 2026-05-18
+
+**CTF terminal scroll fix**
+
+- **`CtfChallenge.tsx`** — Replaced `scrollIntoView({ behavior: "smooth" })` with instant `outputRef.current.scrollTop = outputRef.current.scrollHeight`. Eliminates the race condition where smooth-scroll animation fired intermediate scroll events that reset `userScrolledUp`, causing auto-scroll to override manual user scrolling. Terminal now correctly lets users scroll up to review output while still auto-scrolling on new output when already at the bottom.
+
+---
+
 ## v1.3.0 — 2026-05-18
 
 **Server-side auth migration — localStorage eliminated**

@@ -6,7 +6,7 @@ Gamified cybersecurity + AI training platform. Three curriculum tracks, 54 CTF s
 
 **Live:** kryptoscronos.com  
 **Repo:** github.com/jjfleetwood/kryptos-cronos  
-**Current version:** v1.3.0 (as of 2026-05-18)
+**Current version:** v1.3.1 (as of 2026-05-18)
 
 ---
 
@@ -156,9 +156,9 @@ Remaining acceptable gaps: client-side auth storage (localStorage), flags in JS 
 
 ---
 
-## Where We Left Off (v1.3.0, 2026-05-18)
+## Where We Left Off (v1.3.1, 2026-05-18)
 
-Full server-side auth migration. `/api/auth/register` now takes plaintext password over HTTPS, hashes server-side, sets both session + admin cookies in one response. `/api/auth/me` returns `{ username, email, isAdmin }` from cookie — all client components (Nav, AuthGuard, stages, leaderboard, admin) replaced localStorage reads with this endpoint. `/api/auth/login` and `/api/reset-password` both grant admin cookie inline now. localStorage user store (`getUsers`, `saveUser`, `isAdmin`, `markUserAdmin`) fully removed from `auth.ts`. Cross-session persistence bug fixed: cookie-authenticated users no longer appear logged out on browser restart.
+CTF terminal scroll fix: replaced `scrollIntoView({ behavior: "smooth" })` with instant `outputRef.current.scrollTop = outputRef.current.scrollHeight` in `CtfChallenge.tsx`. This eliminates the race condition where the smooth-scroll animation fired scroll events that reset `userScrolledUp`, causing auto-scroll to fight user input. Previously (v1.3.0): full server-side auth migration — `/api/auth/register` takes plaintext over HTTPS, hashes server-side, sets session + admin cookies; `/api/auth/me` replaces all localStorage reads; `getUsers`/`saveUser`/`isAdmin`/`markUserAdmin` removed from `auth.ts`; cross-session persistence fixed.
 
 **Adding a new epoch — checklist:**
 1. Create `src/data/<epoch-id>.ts` — export `<name>Epoch: EpochConfig` and `<name>Stages: StageConfig[]`
