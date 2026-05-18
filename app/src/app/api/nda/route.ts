@@ -115,6 +115,10 @@ export async function GET(req: NextRequest) {
   return NextResponse.json(
     signatories
       .filter(Boolean)
-      .sort((a, b) => Number((b as Record<string, string>).acceptedAt ?? 0) - Number((a as Record<string, string>).acceptedAt ?? 0))
+      .sort((a, b) => {
+        const bts = Number((b as Record<string, string>).acceptedAt ?? (b as Record<string, string>).sentAt ?? 0);
+        const ats = Number((a as Record<string, string>).acceptedAt ?? (a as Record<string, string>).sentAt ?? 0);
+        return bts - ats;
+      })
   );
 }

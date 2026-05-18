@@ -18,7 +18,17 @@ type UserRow = {
   lastActive: number | null;
 };
 
-type NdaRow = { name: string; email: string; acceptedAt: string; ip: string };
+type NdaRow = {
+  name: string;
+  email: string;
+  acceptedAt?: string;
+  ip?: string;
+  sentAt?: string;
+  signedAt?: string;
+  envelopeId?: string;
+  method?: "clickwrap" | "docusign";
+  status?: string;
+};
 
 type SortKey = "xp" | "stages" | "streak" | "lastActive" | "createdAt";
 type SortDir = "desc" | "asc";
@@ -62,45 +72,139 @@ function SortBtn({
   );
 }
 
+function NdaStatusBadge({ row }: { row: NdaRow }) {
+  if (row.method === "docusign") {
+    if (row.status === "signed" || row.status === "completed") {
+      return <span className="text-xs px-2 py-0.5 rounded-full border border-green-500/40 bg-green-500/10 text-green-400">DocuSign ✓</span>;
+    }
+    if (row.status === "declined") {
+      return <span className="text-xs px-2 py-0.5 rounded-full border border-red-500/40 bg-red-500/10 text-red-400">Declined</span>;
+    }
+    if (row.status === "voided") {
+      return <span className="text-xs px-2 py-0.5 rounded-full border border-gray-500/40 bg-gray-500/10 text-gray-500">Voided</span>;
+    }
+    return <span className="text-xs px-2 py-0.5 rounded-full border border-yellow-500/40 bg-yellow-500/10 text-yellow-400">Sent</span>;
+  }
+  return <span className="text-xs px-2 py-0.5 rounded-full border border-cyan-500/40 bg-cyan-500/10 text-cyan-400">Clickwrap ✓</span>;
+}
+
 function NdaSignatories() {
   const [rows, setRows] = useState<NdaRow[]>([]);
   const [loading, setLoading] = useState(true);
+  const [sendName, setSendName] = useState("");
+  const [sendEmail, setSendEmail] = useState("");
+  const [sending, setSending] = useState(false);
+  const [sendError, setSendError] = useState<string | null>(null);
+  const [sendSuccess, setSendSuccess] = useState(false);
 
-  useEffect(() => {
+  function loadRows() {
     fetch("/api/nda")
       .then((r) => (r.ok ? r.json() : []))
       .then((data) => setRows(data as NdaRow[]))
       .catch(() => {})
       .finally(() => setLoading(false));
-  }, []);
+  }
+
+  useEffect(() => { loadRows(); }, []);
+
+  async function handleSendNda(e: React.FormEvent) {
+    e.preventDefault();
+    setSending(true);
+    setSendError(null);
+    setSendSuccess(false);
+    try {
+      const res = await fetch("/api/admin/send-nda", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name: sendName, email: sendEmail }),
+      });
+      const data = await res.json() as { success?: boolean; error?: string };
+      if (!res.ok || !data.success) {
+        setSendError(data.error ?? "Failed to send NDA.");
+      } else {
+        setSendSuccess(true);
+        setSendName("");
+        setSendEmail("");
+        loadRows();
+      }
+    } catch {
+      setSendError("Network error — could not send NDA.");
+    } finally {
+      setSending(false);
+    }
+  }
 
   return (
     <div className="bg-white/2 border border-white/8 rounded-2xl overflow-hidden mb-8">
       <div className="px-6 py-4 border-b border-white/8 flex items-center justify-between">
         <div>
           <h2 className="text-white font-bold">NDA Signatories</h2>
-          <p className="text-xs text-gray-600 mt-0.5">Demo access via <span className="font-mono text-gray-500">/demo</span></p>
+          <p className="text-xs text-gray-600 mt-0.5">
+            Clickwrap via <span className="font-mono text-gray-500">/demo</span> · DocuSign via the form below
+          </p>
         </div>
-        <span className="text-xs text-gray-600">{loading ? "…" : rows.length} signed</span>
+        <span className="text-xs text-gray-600">{loading ? "…" : rows.length} total</span>
       </div>
+
+      {/* Send DocuSign NDA form */}
+      <form onSubmit={handleSendNda} className="px-6 py-4 border-b border-white/5 flex flex-wrap items-end gap-3">
+        <div className="flex-1 min-w-0" style={{ minWidth: "140px" }}>
+          <label className="block text-xs text-gray-600 mb-1">Name</label>
+          <input
+            value={sendName}
+            onChange={(e) => { setSendName(e.target.value); setSendSuccess(false); setSendError(null); }}
+            placeholder="Jane Smith"
+            required
+            className="w-full text-xs px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-gray-300 placeholder-gray-700 focus:outline-none focus:border-cyan-500/50"
+          />
+        </div>
+        <div className="flex-1 min-w-0" style={{ minWidth: "180px" }}>
+          <label className="block text-xs text-gray-600 mb-1">Email</label>
+          <input
+            type="email"
+            value={sendEmail}
+            onChange={(e) => { setSendEmail(e.target.value); setSendSuccess(false); setSendError(null); }}
+            placeholder="jane@example.com"
+            required
+            className="w-full text-xs px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-gray-300 placeholder-gray-700 focus:outline-none focus:border-cyan-500/50"
+          />
+        </div>
+        <button
+          type="submit"
+          disabled={sending}
+          className="flex-shrink-0 text-xs px-4 py-1.5 rounded-lg border border-blue-500/40 hover:border-blue-400 text-blue-400 hover:bg-blue-500/5 transition-colors disabled:opacity-50"
+        >
+          {sending ? "Sending…" : "Send DocuSign NDA"}
+        </button>
+        {sendSuccess && <span className="text-xs text-green-400 self-center">NDA sent via DocuSign ✓</span>}
+        {sendError && <span className="text-xs text-red-400 self-center">{sendError}</span>}
+      </form>
+
       {loading ? (
         <div className="px-6 py-8 text-center text-gray-600 text-sm">Loading…</div>
       ) : rows.length === 0 ? (
-        <div className="px-6 py-8 text-center text-gray-700 text-sm">No signatories yet. Share <span className="font-mono text-gray-600">/demo</span> to invite testers.</div>
+        <div className="px-6 py-8 text-center text-gray-700 text-sm">
+          No signatories yet. Send a DocuSign NDA above or share{" "}
+          <span className="font-mono text-gray-600">/demo</span> for clickwrap.
+        </div>
       ) : (
         <div className="divide-y divide-white/5">
-          {rows.map((row, i) => (
-            <div key={i} className="px-6 py-3 flex items-center gap-4 flex-wrap">
-              <div className="min-w-0 flex-1">
-                <div className="text-sm text-white font-medium">{row.name}</div>
-                <div className="text-xs text-gray-600">{row.email}</div>
+          {rows.map((row, i) => {
+            const ts = row.signedAt ?? row.acceptedAt ?? row.sentAt;
+            return (
+              <div key={i} className="px-6 py-3 flex items-center gap-4 flex-wrap">
+                <div className="min-w-0 flex-1">
+                  <div className="text-sm text-white font-medium">{row.name}</div>
+                  <div className="text-xs text-gray-600">{row.email}</div>
+                </div>
+                {row.ip && <div className="text-xs text-gray-700 font-mono hidden sm:block">{row.ip}</div>}
+                <NdaStatusBadge row={row} />
+                <div className="text-xs text-gray-600">
+                  {ts ? new Date(Number(ts)).toLocaleString() : "—"}
+                </div>
               </div>
-              <div className="text-xs text-gray-700 font-mono">{row.ip}</div>
-              <div className="text-xs text-gray-600">
-                {row.acceptedAt ? new Date(Number(row.acceptedAt)).toLocaleString() : "—"}
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       )}
     </div>

@@ -273,15 +273,15 @@ export default function CtfChallenge({ stage }: { stage: StageConfig }) {
     { type: "out", text: "" },
   ]);
 
-  const bottomRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const outputRef = useRef<HTMLDivElement>(null);
   const userScrolledUp = useRef(false);
 
-  // Only auto-scroll if the user hasn't manually scrolled up
+  // Instant scroll avoids the race where smooth-scroll animation fires scroll
+  // events that reset userScrolledUp before the animation completes.
   useEffect(() => {
-    if (!userScrolledUp.current) {
-      bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+    if (!userScrolledUp.current && outputRef.current) {
+      outputRef.current.scrollTop = outputRef.current.scrollHeight;
     }
   }, [lines]);
 
@@ -667,7 +667,6 @@ export default function CtfChallenge({ stage }: { stage: StageConfig }) {
               {lines.map((line, i) => (
                 <TerminalLine key={i} line={line} />
               ))}
-              <div ref={bottomRef} />
             </div>
 
             {/* Input */}
