@@ -127,12 +127,35 @@ The NDA displayed in the `/demo` gate is based on the Bonterms Mutual NDA (bonte
 - 2-year term
 - Governing law: Delaware
 
-### Formal NDA (for Investors and Partners)
+### DocuSign NDA (for Formal Invites)
 
-For formal investor meetings and partnership discussions, use a separate bilateral NDA:
-- **Bonterms Mutual NDA** — bonterms.com (free, community standard)
-- **NVCA Model NDA** — nvca.org (free, investor community standard)
-- Send via **PandaDoc** (free tier: 5 docs/mo) or **DocuSign** for a signed PDF record
+The admin dashboard at `/admin` includes a **Send DocuSign NDA** form. Enter a name and email — the recipient receives a DocuSign email, signs electronically, and the signed status is logged in Redis and visible in the admin panel. This is the defensible option for testers, partners, and investors.
+
+**Setup — one-time steps in DocuSign:**
+
+1. Create a free DocuSign Developer account at developer.docusign.com
+2. Create a new Integration Key (App): Developer Console → Apps and Keys → Add App and Integration Key
+3. Under the Integration Key, add an RSA Keypair — DocuSign generates one. Copy the **private key** (you only see it once).
+4. Add a Redirect URI: `https://kryptoscronos.com/oauth/callback` (placeholder, not actually used in JWT flow)
+5. Note your **Integration Key (Client ID)**, **Account ID** (from upper-right menu → My Apps & Keys), and **User ID** (API Username from the same screen)
+6. Grant consent for JWT impersonation: visit this URL (replace `{integrationKey}` and `{your-account-base-url}`):
+   ```
+   https://account-d.docusign.com/oauth/auth?response_type=code&scope=signature%20impersonation&client_id={integrationKey}&redirect_uri=https://kryptoscronos.com/oauth/callback
+   ```
+   Log in and click Allow. You only do this once.
+
+**Add these env vars in Vercel → Project → Settings → Environment Variables:**
+
+```
+DOCUSIGN_INTEGRATION_KEY    ← Integration Key (Client ID) from step 2
+DOCUSIGN_USER_ID            ← API Username (User ID) from step 5
+DOCUSIGN_ACCOUNT_ID         ← Account ID from step 5
+DOCUSIGN_PRIVATE_KEY        ← RSA private key from step 3 (paste full PEM including headers)
+DOCUSIGN_BASE_URL           ← https://demo.docusign.net  (sandbox) or https://na4.docusign.net (production)
+DOCUSIGN_WEBHOOK_SECRET     ← Optional: set this to enable HMAC verification of webhook callbacks
+```
+
+For **production**, switch `DOCUSIGN_BASE_URL` to `https://na4.docusign.net` (or your account's region URL, found in DocuSign Admin → API and Keys).
 
 ---
 

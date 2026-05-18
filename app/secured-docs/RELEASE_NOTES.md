@@ -2,6 +2,18 @@
 
 ---
 
+## v1.4.0 — 2026-05-18
+
+**DocuSign NDA integration**
+
+- **`src/lib/docusign.ts`** — DocuSign JWT auth (RSA-SHA256, no external deps), NDA HTML document builder, `sendNdaEnvelope()` creates and sends a remote-signing envelope with anchor-based SignHere + DateSigned tabs.
+- **`/api/admin/send-nda`** — Admin-only POST endpoint. Validates name/email, calls DocuSign, stores `nda:{email}` in Redis with `{ method: "docusign", status: "sent", sentAt, envelopeId }`. Returns 503 with setup instructions if DocuSign env vars are absent.
+- **`/api/webhooks/docusign`** — Receives DocuSign per-envelope event notifications. On `completed`, updates Redis record with `{ status: "signed", signedAt }`. Supports optional HMAC verification via `DOCUSIGN_WEBHOOK_SECRET`.
+- **Admin NDA panel** — "Send DocuSign NDA" form (name + email) added to the NDA Signatories section. Status badges distinguish Clickwrap ✓ / Sent (pending) / DocuSign ✓ / Declined / Voided. Timestamp shows `signedAt` → `acceptedAt` → `sentAt` in priority order.
+- **`LAUNCH_LEGAL.md`** — DocuSign setup guide added: one-time steps (Integration Key, RSA keypair, consent grant), required env vars, sandbox vs production base URL.
+
+---
+
 ## v1.3.1 — 2026-05-18
 
 **CTF terminal scroll fix**

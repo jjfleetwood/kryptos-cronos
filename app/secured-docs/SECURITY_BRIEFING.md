@@ -1,8 +1,15 @@
 # Kryptós CronOS Security Briefing
 **Classification:** Internal — Pre-Production  
 **Date:** 2026-05-18  
-**Version:** 2.7  
+**Version:** 2.8  
 **Reviewed by:** Internal Security Analysis
+
+---
+
+## Changelog — v2.8 (2026-05-18)
+
+- **NEW: DocuSign integration** — `/api/admin/send-nda` sends NDA envelopes via DocuSign JWT auth. Private key (`DOCUSIGN_PRIVATE_KEY`) is stored in Vercel env vars, never in code. `/api/webhooks/docusign` supports optional HMAC verification via `DOCUSIGN_WEBHOOK_SECRET`. No new user-facing attack surface — admin-only endpoint gated by HMAC admin cookie.
+- **NEW env vars (optional until DocuSign configured):** `DOCUSIGN_INTEGRATION_KEY`, `DOCUSIGN_USER_ID`, `DOCUSIGN_ACCOUNT_ID`, `DOCUSIGN_PRIVATE_KEY`, `DOCUSIGN_BASE_URL`, `DOCUSIGN_WEBHOOK_SECRET`.
 
 ---
 
