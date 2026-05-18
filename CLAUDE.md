@@ -6,7 +6,7 @@ Gamified cybersecurity + AI training platform. Three curriculum tracks, 54 CTF s
 
 **Live:** kryptoscronos.com  
 **Repo:** github.com/jjfleetwood/kryptos-cronos  
-**Current version:** v1.1.0 (as of 2026-05-17)
+**Current version:** v1.2.0 (as of 2026-05-18)
 
 ---
 
@@ -156,9 +156,9 @@ Remaining acceptable gaps: client-side auth storage (localStorage), flags in JS 
 
 ---
 
-## Where We Left Off (v1.1.0, 2026-05-17)
+## Where We Left Off (v1.2.0, 2026-05-18)
 
-Educational content sprint + ARIA improvements. Every CTF terminal interaction across all 9 epochs now has inline `>> LEARN:` educational callouts. ARIA chatbot rewritten to use the Socratic method — receives `keyTakeaways` and `tagline` per stage, asks guiding questions, never quotes hints verbatim. FlagSuccessModal shows a "Skills Acquired" debrief (up to 3 `keyTakeaways`) on stage completion. bt-03 bugs fixed: terminal scroll-lock and `inspect fragment-3` fragment recovery. Deployed to both Vercel projects.
+NDA gate + admin docs fix + legal guide. `/demo` page has a clickwrap NDA form (name + email + agreement) that stores acceptance in Redis (`nda:{email}` hash) and sets an HMAC-signed `nda_token` cookie. Admin dashboard now shows all NDA signatories. Admin docs viewer (`/admin/docs`) fixed — was redirecting admins due to localStorage-based auth check; now uses API-first pattern (redirect on 401 from `/api/docs/`). `LAUNCH_LEGAL.md` added to secured-docs covering incorporation, copyright, patent, NDA, contractor agreements, and pre-fundraise checklist. Delete-account now also removes NDA record.
 
 **Adding a new epoch — checklist:**
 1. Create `src/data/<epoch-id>.ts` — export `<name>Epoch: EpochConfig` and `<name>Stages: StageConfig[]`
@@ -167,12 +167,16 @@ Educational content sprint + ARIA improvements. Every CTF terminal interaction a
 4. Run `node app/node_modules/typescript/bin/tsc --noEmit --project app/tsconfig.json`
 5. Build: `node app/node_modules/next/dist/bin/next build app`
 
-**Next logical work areas:**
-1. Update homepage stats to reflect 126 stages and 9 epochs
-2. AI personalization layer (in-terminal tutor, adaptive difficulty) — Anthropic API integration
-3. CI pipeline setup (GitHub Actions: lint + tsc + build + audit)
-4. Streaks and milestone badges
-5. Production auth migration (Supabase Auth, server-side)
+**Already shipped (do not re-suggest):**
+- Homepage: 169 stages, six marketing tracks — ✅
+- ARIA AI chatbot (Socratic, Haiku, stage-aware) — ✅
+- CI pipeline (GitHub Actions: lint + tsc + build + audit) — ✅
+- Daily streaks (`streak:username` Redis key, admin dashboard) — ✅
+- Milestone badges (`m-xp-1k`, `m-xp-5k`, `m-streak-3`, `m-streak-7`) — ✅
+
+**Genuine remaining work:**
+1. Cisco curriculum gaps — Firepower, SecureX/XDR, DevNet, CyberOps Associate stages
+2. Production auth migration — Supabase Auth or Lucia, server-side sessions (intentionally deferred)
 
 ---
 

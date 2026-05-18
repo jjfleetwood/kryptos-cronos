@@ -5,11 +5,11 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import { isAdmin } from "@/lib/auth";
 
 const DOCS = [
   { id: "readme", label: "Overview", file: "README.md", icon: "📖", color: "text-white" },
   { id: "release-notes", label: "Release Notes", file: "RELEASE_NOTES.md", icon: "📋", color: "text-amber-400" },
+  { id: "launch-legal", label: "Launch & Legal", file: "LAUNCH_LEGAL.md", icon: "⚖️", color: "text-yellow-400" },
   { id: "security", label: "Security Briefing", file: "SECURITY_BRIEFING.md", icon: "🔐", color: "text-red-400" },
   { id: "architecture", label: "Technical Architecture", file: "TECHNICAL_ARCHITECTURE.md", icon: "🏗️", color: "text-cyan-400" },
   { id: "architecture-md", label: "Architecture", file: "ARCHITECTURE.md", icon: "🗺️", color: "text-cyan-300" },
@@ -91,22 +91,25 @@ export default function DocsViewer() {
   }
 
   useEffect(() => {
-    if (!isAdmin()) {
-      router.replace("/stages");
-      return;
-    }
-    setAuthorized(true);
-
-    Promise.all(
-      DOCS.map((doc) =>
-        fetch(`/api/docs/${doc.file}`)
-          .then((r) => r.text())
-          .then((text) => [doc.id, text] as [string, string])
-      )
-    ).then((entries) => {
-      setContent(Object.fromEntries(entries));
-      setLoading(false);
-    });
+    // Auth check: attempt to fetch first doc; redirect to /stages on 401
+    fetch(`/api/docs/${DOCS[0].file}`).then((r) => {
+      if (r.status === 401) { router.replace("/stages"); return; }
+      setAuthorized(true);
+      r.text().then((text) => {
+        setContent((prev) => ({ ...prev, [DOCS[0].id]: text }));
+      });
+      // Fetch remaining docs in background
+      Promise.all(
+        DOCS.slice(1).map((doc) =>
+          fetch(`/api/docs/${doc.file}`)
+            .then((r2) => r2.text())
+            .then((text) => [doc.id, text] as [string, string])
+        )
+      ).then((entries) => {
+        setContent((prev) => ({ ...prev, ...Object.fromEntries(entries) }));
+        setLoading(false);
+      });
+    }).catch(() => router.replace("/stages"));
   }, [router]);
 
   if (!authorized) return null;

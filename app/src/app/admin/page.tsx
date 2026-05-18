@@ -18,6 +18,8 @@ type UserRow = {
   lastActive: number | null;
 };
 
+type NdaRow = { name: string; email: string; acceptedAt: string; ip: string };
+
 type SortKey = "xp" | "stages" | "streak" | "lastActive" | "createdAt";
 type SortDir = "desc" | "asc";
 
@@ -57,6 +59,51 @@ function SortBtn({
       {label}
       <span className="text-gray-700">{active ? (sortDir === "desc" ? "↓" : "↑") : "↕"}</span>
     </button>
+  );
+}
+
+function NdaSignatories() {
+  const [rows, setRows] = useState<NdaRow[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch("/api/nda")
+      .then((r) => (r.ok ? r.json() : []))
+      .then((data) => setRows(data as NdaRow[]))
+      .catch(() => {})
+      .finally(() => setLoading(false));
+  }, []);
+
+  return (
+    <div className="bg-white/2 border border-white/8 rounded-2xl overflow-hidden mb-8">
+      <div className="px-6 py-4 border-b border-white/8 flex items-center justify-between">
+        <div>
+          <h2 className="text-white font-bold">NDA Signatories</h2>
+          <p className="text-xs text-gray-600 mt-0.5">Demo access via <span className="font-mono text-gray-500">/demo</span></p>
+        </div>
+        <span className="text-xs text-gray-600">{loading ? "…" : rows.length} signed</span>
+      </div>
+      {loading ? (
+        <div className="px-6 py-8 text-center text-gray-600 text-sm">Loading…</div>
+      ) : rows.length === 0 ? (
+        <div className="px-6 py-8 text-center text-gray-700 text-sm">No signatories yet. Share <span className="font-mono text-gray-600">/demo</span> to invite testers.</div>
+      ) : (
+        <div className="divide-y divide-white/5">
+          {rows.map((row, i) => (
+            <div key={i} className="px-6 py-3 flex items-center gap-4 flex-wrap">
+              <div className="min-w-0 flex-1">
+                <div className="text-sm text-white font-medium">{row.name}</div>
+                <div className="text-xs text-gray-600">{row.email}</div>
+              </div>
+              <div className="text-xs text-gray-700 font-mono">{row.ip}</div>
+              <div className="text-xs text-gray-600">
+                {row.acceptedAt ? new Date(Number(row.acceptedAt)).toLocaleString() : "—"}
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
   );
 }
 
@@ -335,6 +382,9 @@ export default function AdminPage() {
             </div>
           </div>
         )}
+
+        {/* NDA Signatories */}
+        <NdaSignatories />
 
         {/* Stage catalog */}
         <div className="bg-white/2 border border-white/8 rounded-2xl overflow-hidden">

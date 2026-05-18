@@ -1,8 +1,16 @@
 # Kryptós CronOS Security Briefing
 **Classification:** Internal — Pre-Production  
-**Date:** 2026-05-17  
-**Version:** 2.4  
+**Date:** 2026-05-18  
+**Version:** 2.5  
 **Reviewed by:** Internal Security Analysis
+
+---
+
+## Changelog — v2.5 (2026-05-18)
+
+- **NEW: `/api/nda` endpoint** — POST stores NDA acceptance records (`nda:{email}` Redis hash: name, email, acceptedAt ms, IP). GET is admin-only (HMAC cookie verified). Rate-limited to 5/IP/hour via `rate:nda:{ip}` Redis key. `escapeHtml()` applied to name and email before storage. `nda_token` cookie is HMAC-signed with `ADMIN_SECRET`, HttpOnly, Secure in production, SameSite: Lax, 90-day maxAge.
+- **FIXED: DocsViewer auth bypass risk** — Previous implementation checked `isAdmin()` from localStorage, which could return false after server-side login even for legitimate admins (causing redirect away from docs). Replaced with API-first check: fetches first doc and redirects on 401. The actual gate remains the `admin_token` HMAC cookie checked server-side in `/api/docs/[file]`.
+- **Privacy note** — NDA records contain PII (name, email, IP). These are stored in Upstash Redis. The existing `/api/delete-account` route now also deletes `nda:{email}` for the requesting user.
 
 ---
 

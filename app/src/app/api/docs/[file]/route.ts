@@ -16,6 +16,7 @@ const ALLOWED_FILES = new Set([
   "BUSINESS_PROPOSAL_PRO.md",
   "BUSINESS_PROPOSAL_CASUAL.md",
   "PITCH_TARGETS.md",
+  "LAUNCH_LEGAL.md",
 ]);
 
 function verifyAdminToken(token: string): boolean {

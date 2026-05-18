@@ -2,6 +2,19 @@
 
 ---
 
+## v1.2.0 — 2026-05-18
+
+**NDA gate, admin docs fix, Launch & Legal guide**
+
+- **NDA gate at `/demo`** — Clickwrap NDA form (name + email + agreement checkbox); acceptance stored in Redis as `nda:{email}` with name, email, timestamp, and IP. Sets HMAC-signed `nda_token` cookie (90-day). Rate-limited to 5 submissions/IP/hour.
+- **`/api/nda`** — POST: record NDA acceptance; GET (admin-only): list all signatories sorted by date.
+- **Admin NDA Signatories panel** — New section on `/admin` dashboard shows all demo signees with name, email, IP, and acceptance timestamp.
+- **Admin docs fixed** — `DocsViewer` was guarding access via `isAdmin()` from localStorage, which broke after server-side login. Replaced with API-first auth: attempts to fetch the first doc and redirects on 401, matching the pattern used by the admin user table.
+- **`LAUNCH_LEGAL.md`** — New admin-only doc covering: incorporation (Delaware C-Corp vs Wyoming LLC, Stripe Atlas/Clerky), copyright registration ($65, copyright.gov), patent guidance (skip for now, provisional option), NDA instructions, employment/contractor agreements, and pre-fundraise checklist.
+- **`DocsViewer` — Launch & Legal tab** added to the docs viewer tab bar.
+
+---
+
 ## v1.1.0 — 2026-05-17
 
 **Educational annotations, Socratic ARIA, Skills Acquired debrief, bt-03 fixes**
