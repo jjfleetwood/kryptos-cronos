@@ -1,8 +1,8 @@
 # Kryptós CronOS — Security Briefing
 **Classification:** Internal  
-**Version:** 2.0  
-**Date:** 2026-05-11  
-**Current version:** v0.6.0
+**Version:** 2.1  
+**Date:** 2026-05-20  
+**Current version:** v1.6.1
 
 ---
 
@@ -171,6 +171,12 @@ No API keys, tokens, or credentials committed to the repository. `.gitignore` ex
 | Client-side auth storage | High | Acceptable for demo; documented production path |
 | CTF flags in client bundle | Low | Acceptable for demo; documented production path |
 | No signed session tokens | Low | Acceptable for demo; documented production path |
+
+---
+
+## Changelog — v2.1 (2026-05-20)
+
+No new attack surface. v1.6.1 adds only static documentation files (`docs/PITCH_CAE_CONTINUOUS_MONITORING.md`) served via the existing admin-gated `/api/docs/[file]` route. Deploy skill updated to enforce docs-first editing pattern. No new API routes, env vars, Redis keys, or third-party integrations introduced.
 
 ---
 

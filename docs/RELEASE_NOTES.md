@@ -2,6 +2,16 @@
 
 ---
 
+## v1.6.1 — 2026-05-20
+
+**Docs consolidation and CAE advisory content**
+
+- **Docs single source of truth** — `docs/` is now the authoritative directory; deploy skill syncs `docs/*.md` → `app/secured-docs/` on every deploy, eliminating manual drift between the two directories
+- **`PITCH_CAE_CONTINUOUS_MONITORING.md`** — new advisory paper for Chief Audit Executives on continuous monitoring via AI agents; draws on all 24 CM 1.0 + CM 2.0 module incident anchors; covers agentic audit layer (Claude tool use, API enumeration, secrets detection) and detection stack (SIEM, UEBA, NDR, CSPM, SOAR, SOC maturity); no product pitch — positions the practice and framework
+- **Deploy skill updated** — step-by-step sync instruction and docs-first editing rule codified in `app/.claude/commands/deploy.md`
+
+---
+
 ## v0.7.0 — 2026-05-15
 
 **Multi-step CTF engine, job outcomes homepage, hints monetization, investor targeting**
