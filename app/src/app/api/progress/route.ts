@@ -14,8 +14,11 @@ export async function GET(req: NextRequest) {
   ]);
   if (!data) return NextResponse.json(null);
 
+  // Read `coins` field; fall back to legacy `xp` field for existing records
+  const coins = Number(data.coins ?? data.xp ?? 0);
   return NextResponse.json({
-    xp: Number(data.xp ?? 0),
+    coins,
+    coinsSpent: Number(data.coinsSpent ?? 0),
     completedStages: data.stages ? JSON.parse(data.stages as string) : [],
     badges: data.badges ? JSON.parse(data.badges as string) : [],
     streak: streakData ? Number(streakData.current ?? 0) : 0,

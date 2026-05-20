@@ -10,7 +10,7 @@ type UserRow = {
   username: string;
   email: string;
   createdAt: number | null;
-  xp: number;
+  coins: number;
   stageIds: string[];
   stages: number;
   badges: number;
@@ -30,7 +30,7 @@ type NdaRow = {
   status?: string;
 };
 
-type SortKey = "xp" | "stages" | "streak" | "lastActive" | "createdAt";
+type SortKey = "coins" | "stages" | "streak" | "lastActive" | "createdAt";
 type SortDir = "desc" | "asc";
 
 function timeAgo(ts: number | null): string {
@@ -217,7 +217,7 @@ export default function AdminPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [search, setSearch] = useState("");
-  const [sortKey, setSortKey] = useState<SortKey>("xp");
+  const [sortKey, setSortKey] = useState<SortKey>("coins");
   const [sortDir, setSortDir] = useState<SortDir>("desc");
   const [currentUser, setCurrentUser] = useState<string | null>(getSession());
   const now = useMemo(() => Date.now(), []);
@@ -242,9 +242,9 @@ export default function AdminPage() {
       .finally(() => setLoading(false));
   }, [router]);
 
-  const totalXp = users.reduce((s, u) => s + u.xp, 0);
+  const totalCoins = users.reduce((s, u) => s + u.coins, 0);
   const totalStages = stages.length;
-  const avgXp = users.length ? Math.round(totalXp / users.length) : 0;
+  const avgCoins = users.length ? Math.round(totalCoins / users.length) : 0;
   const avgCompletion = users.length
     ? Math.round((users.reduce((s, u) => s + u.stages, 0) / users.length / totalStages) * 100)
     : 0;
@@ -254,7 +254,7 @@ export default function AdminPage() {
   const newThisWeek = users.filter(
     (u) => u.createdAt !== null && now - u.createdAt < 7 * 86_400_000
   ).length;
-  const maxXp = Math.max(...users.map((u) => u.xp), 1);
+  const maxCoins = Math.max(...users.map((u) => u.coins), 1);
 
   // Stage completion funnel
   const stageCounts = useMemo(() => {
@@ -338,8 +338,8 @@ export default function AdminPage() {
           <StatCard label="Total Stages" value={totalStages} color="text-orange-400" />
         </div>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-8">
-          <StatCard label="Total XP Earned" value={loading ? "…" : totalXp.toLocaleString()} color="text-purple-400" />
-          <StatCard label="Avg XP / User" value={loading ? "…" : avgXp.toLocaleString()} color="text-violet-400" />
+          <StatCard label="Total Coins Earned" value={loading ? "…" : totalCoins.toLocaleString()} color="text-purple-400" />
+          <StatCard label="Avg Coins / User" value={loading ? "…" : avgCoins.toLocaleString()} color="text-violet-400" />
           <StatCard
             label="Avg Completion"
             value={loading ? "…" : `${avgCompletion}%`}
@@ -374,7 +374,7 @@ export default function AdminPage() {
               <div className="grid grid-cols-[2rem_1fr_2fr_5rem_4rem_4rem_5rem_6rem] gap-3 px-6 py-3 border-b border-white/5 text-xs text-gray-600 font-semibold uppercase tracking-wider">
                 <div>#</div>
                 <div>User</div>
-                <div><SortBtn col="xp" label="XP" sortKey={sortKey} sortDir={sortDir} onToggle={toggleSort} /></div>
+                <div><SortBtn col="coins" label="Coins" sortKey={sortKey} sortDir={sortDir} onToggle={toggleSort} /></div>
                 <div className="text-center"><SortBtn col="stages" label="Stages" sortKey={sortKey} sortDir={sortDir} onToggle={toggleSort} /></div>
                 <div className="text-center">Badges</div>
                 <div className="text-center"><SortBtn col="streak" label="Streak" sortKey={sortKey} sortDir={sortDir} onToggle={toggleSort} /></div>
@@ -399,13 +399,13 @@ export default function AdminPage() {
                       <div
                         className="h-1.5 rounded-full"
                         style={{
-                          width: `${(user.xp / maxXp) * 100}%`,
+                          width: `${(user.coins / maxCoins) * 100}%`,
                           background: "linear-gradient(90deg, #22d3ee, #818cf8)",
                         }}
                       />
                     </div>
                     <span className="text-xs font-mono text-gray-400 flex-shrink-0 w-14 text-right">
-                      {user.xp} XP
+                      {user.coins} 🪙
                     </span>
                   </div>
 
@@ -521,7 +521,7 @@ export default function AdminPage() {
                       <span className="text-xs text-red-400/70 hidden sm:block">{stage.cveId}</span>
                     )}
                     <span className="text-xs text-gray-600 font-mono w-10 text-right">{pct}%</span>
-                    <span className="text-xs text-cyan-600">+{stage.xp} XP</span>
+                    <span className="text-xs text-cyan-600">+{stage.xp} 🪙</span>
                     <span className={`text-xs px-2 py-0.5 rounded border ${
                       stage.challengeType === "ctf"
                         ? "border-purple-500/30 text-purple-400 bg-purple-500/5"

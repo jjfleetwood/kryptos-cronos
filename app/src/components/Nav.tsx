@@ -64,6 +64,9 @@ export default function Nav() {
         <nav className="hidden md:flex items-center gap-6 text-sm">
           <Link href="/stages" className="text-gray-400 hover:text-white transition-colors">Stages</Link>
           <Link href="/leaderboard" className="text-gray-400 hover:text-white transition-colors">Leaderboard</Link>
+          {username && (
+            <Link href="/shop" className="text-amber-400 hover:text-amber-300 transition-colors">🛒 Shop</Link>
+          )}
           {admin && (
             <Link href="/admin" className="text-red-400 hover:text-red-300 transition-colors font-semibold">
               Admin ⚙️
@@ -121,6 +124,11 @@ export default function Nav() {
           <Link href="/leaderboard" className="block px-3 py-2.5 rounded-lg text-gray-300 hover:text-white hover:bg-white/5 transition-colors text-sm">
             🏆 Leaderboard
           </Link>
+          {username && (
+            <Link href="/shop" className="block px-3 py-2.5 rounded-lg text-amber-400 hover:text-amber-300 hover:bg-white/5 transition-colors text-sm">
+              🛒 Shop & Trophy Room
+            </Link>
+          )}
           {admin && (
             <Link href="/admin" className="block px-3 py-2.5 rounded-lg text-red-400 hover:text-red-300 hover:bg-white/5 transition-colors text-sm font-semibold">
               ⚙️ Admin

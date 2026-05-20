@@ -272,7 +272,7 @@ export default function CtfChallenge({ stage, backHref = "/stages" }: { stage: S
   const [collectedFragments, setCollectedFragments] = useState<Set<string>>(new Set());
   const [submitting, setSubmitting] = useState(false);
   const [successData, setSuccessData] = useState<{
-    flag: string; timeTakenMs: number; timePenaltyXp: number; effectiveXp: number;
+    flag: string; timeTakenMs: number; timePenaltyCoins: number; effectiveCoins: number;
   } | null>(null);
   const [lines, setLines] = useState<Line[]>(() => makeInitialLines(stage, ctf, minFragments));
 
@@ -538,17 +538,17 @@ export default function CtfChallenge({ stage, backHref = "/stages" }: { stage: S
         });
         const { correct, progress, timePenaltyXp = 0 } = await res.json();
         if (correct) {
-          const effectiveXp = stage.xp - timePenaltyXp;
+          const effectiveCoins = stage.xp - timePenaltyXp;
           if (!progress) {
             awardStage(stage.id, stage.xp, stage.badge.id);
           }
           push(
             { type: "ok", text: `✓ Flag accepted: ${flag}` },
-            { type: "ok", text: `  Time: ${formatTimer(timeTakenMs)}  ·  XP earned: ${Math.max(0, effectiveXp)}` },
+            { type: "ok", text: `  Time: ${formatTimer(timeTakenMs)}  ·  Coins earned: ${Math.max(0, effectiveCoins)} 🪙` },
             { type: "out", text: "" },
           );
           setSolved(true);
-          setSuccessData({ flag, timeTakenMs, timePenaltyXp, effectiveXp: Math.max(0, effectiveXp) });
+          setSuccessData({ flag, timeTakenMs, timePenaltyCoins: timePenaltyXp, effectiveCoins: Math.max(0, effectiveCoins) });
         } else {
           push(
             { type: "err", text: "✗ Incorrect flag. Keep investigating." },
@@ -625,8 +625,8 @@ export default function CtfChallenge({ stage, backHref = "/stages" }: { stage: S
           stage={stage}
           flag={successData.flag}
           timeTakenMs={successData.timeTakenMs}
-          timePenaltyXp={successData.timePenaltyXp}
-          effectiveXp={successData.effectiveXp}
+          timePenaltyCoins={successData.timePenaltyCoins}
+          effectiveCoins={successData.effectiveCoins}
           backHref={backHref}
         />
       )}

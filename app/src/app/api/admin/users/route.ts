@@ -60,7 +60,7 @@ export async function GET(req: NextRequest) {
         username,
         email: (userData?.email as string) ?? "",
         createdAt: userData?.createdAt ? Number(userData.createdAt) : null,
-        xp: progressData?.xp ? Number(progressData.xp) : 0,
+        coins: Number(progressData?.coins ?? progressData?.xp ?? 0),
         stageIds,
         stages: stageIds.length,
         badges: badges.length,
@@ -70,6 +70,6 @@ export async function GET(req: NextRequest) {
     })
   );
 
-  users.sort((a, b) => b.xp - a.xp);
+  users.sort((a, b) => b.coins - a.coins);
   return NextResponse.json(users);
 }

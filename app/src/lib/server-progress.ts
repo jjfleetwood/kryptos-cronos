@@ -67,10 +67,12 @@ export async function awardStageInRedis(
     badges.push(badgeId);
   }
 
-  const baseXp = completedStages.reduce((sum, id) => sum + stageXp(id), 0);
+  const baseCoins = completedStages.reduce((sum, id) => sum + stageXp(id), 0);
   const storedPenalty = Number(data?.penalty ?? 0);
   const newPenalty = isNew ? storedPenalty + timePenaltyXp : storedPenalty;
-  const xp = Math.max(0, baseXp - newPenalty);
+  const coins = Math.max(0, baseCoins - newPenalty);
+  // coinsSpent is never modified by stage awards — only the shop route touches it
+  const coinsSpent = Number(data?.coinsSpent ?? 0);
 
   // ── Streak tracking ──
   const today = todayUTC();
@@ -90,7 +92,7 @@ export async function awardStageInRedis(
 
   // ── Milestone badges ──
   const stageMilestones = checkStageMilestones(completedStages.length);
-  const xpMilestones = checkXpMilestones(xp);
+  const xpMilestones = checkXpMilestones(coins);
   const streakMilestones = checkStreakMilestones(current);
 
   for (const id of [...stageMilestones, ...xpMilestones, ...streakMilestones]) {
@@ -99,7 +101,7 @@ export async function awardStageInRedis(
 
   await Promise.all([
     redis.hset(key, {
-      xp,
+      coins,
       stages: JSON.stringify(completedStages),
       badges: JSON.stringify(badges),
       lastActive: Date.now(),
@@ -112,21 +114,21 @@ export async function awardStageInRedis(
     }),
   ]);
 
-  // All-time leaderboard
-  await redis.zadd("leaderboard", { score: xp, member: username.toLowerCase() });
+  // All-time leaderboard (ranked by total coins earned, not spendable balance)
+  await redis.zadd("leaderboard", { score: coins, member: username.toLowerCase() });
 
   // Daily and weekly leaderboards — only update on new stage completion
   if (isNew) {
-    const deltaXp = stageXp(stageId) - timePenaltyXp;
-    if (deltaXp > 0) {
+    const deltaCoins = stageXp(stageId) - timePenaltyXp;
+    if (deltaCoins > 0) {
       const dayKey = getDayKey();
       const weekKey = getWeekKey();
-      await redis.zincrby(dayKey, deltaXp, username.toLowerCase());
+      await redis.zincrby(dayKey, deltaCoins, username.toLowerCase());
       await redis.expire(dayKey, 172800); // 48h TTL
-      await redis.zincrby(weekKey, deltaXp, username.toLowerCase());
+      await redis.zincrby(weekKey, deltaCoins, username.toLowerCase());
       await redis.expire(weekKey, 1209600); // 14 day TTL
     }
   }
 
-  return { xp, completedStages, badges, streak: current };
+  return { coins, coinsSpent, completedStages, badges, streak: current };
 }

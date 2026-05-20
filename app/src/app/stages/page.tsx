@@ -51,7 +51,7 @@ const epochGroups = [
 export default function StagesPage() {
   const router = useRouter();
   const [completedStages, setCompletedStages] = useState<string[]>([]);
-  const [totalXp, setTotalXp] = useState(0);
+  const [totalCoins, setTotalCoins] = useState(0);
   const [streak, setStreak] = useState(0);
   const [username, setUsername] = useState<string | null>(null);
 
@@ -66,7 +66,7 @@ export default function StagesPage() {
         fetchProgress().then((p) => {
           if (!p) return;
           setCompletedStages(p.completedStages);
-          setTotalXp(p.xp);
+          setTotalCoins(p.coins);
           setStreak(p.streak ?? 0);
         });
       })
@@ -80,7 +80,7 @@ export default function StagesPage() {
   }
 
   async function handleDeleteAccount() {
-    if (!window.confirm("Delete your account? This permanently removes all progress, XP, badges, and streak data and cannot be undone.")) return;
+    if (!window.confirm("Delete your account? This permanently removes all progress, coins, badges, and streak data and cannot be undone.")) return;
     await fetch("/api/delete-account", { method: "DELETE" });
     clearSession();
     router.push("/");
@@ -114,10 +114,10 @@ export default function StagesPage() {
             <div className="flex-1 bg-white/5 rounded-full h-3">
               <div
                 className="bg-cyan-500 h-3 rounded-full transition-all duration-700"
-                style={{ width: `${maxXp > 0 ? (totalXp / maxXp) * 100 : 0}%` }}
+                style={{ width: `${maxXp > 0 ? (totalCoins / maxXp) * 100 : 0}%` }}
               />
             </div>
-            <span className="text-amber-400 font-mono text-sm">{totalXp} / {maxXp} XP</span>
+            <span className="text-amber-400 font-mono text-sm">{totalCoins} / {maxXp} 🪙</span>
             {streak > 0 && (
               <span
                 className="flex items-center gap-1 text-sm font-mono font-bold px-2.5 py-0.5 rounded-full border"

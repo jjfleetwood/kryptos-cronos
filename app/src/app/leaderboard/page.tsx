@@ -9,7 +9,7 @@ type Period = "alltime" | "weekly" | "daily";
 
 type Player = {
   username: string;
-  xp: number;
+  coins: number;
   stages: number;
   badges: number;
   lastActive: number | null;
@@ -26,15 +26,15 @@ const PERIOD_LABELS: Record<Period, string> = {
 };
 
 const PERIOD_DESC: Record<Period, string> = {
-  alltime: "Total XP accumulated",
-  weekly: "XP earned this week",
-  daily: "XP earned today",
+  alltime: "Total coins accumulated",
+  weekly: "Coins earned this week",
+  daily: "Coins earned today",
 };
 
 const FALLBACK_DESC: Record<Period, string> = {
   alltime: "",
-  weekly: "Showing agents active this week · period XP tracking begins with new completions",
-  daily: "Showing agents active today · period XP tracking begins with new completions",
+  weekly: "Showing agents active this week · period coin tracking begins with new completions",
+  daily: "Showing agents active today · period coin tracking begins with new completions",
 };
 
 function timeAgo(ts: number | null): string {
@@ -53,7 +53,7 @@ export default function LeaderboardPage() {
   const [rows, setRows] = useState<(Player & { rank: number })[]>([]);
   const [isRecencyFallback, setIsRecencyFallback] = useState(false);
   const [myRank, setMyRank] = useState<number | null>(null);
-  const [myXP, setMyXP] = useState(0);
+  const [myCoins, setMyCoins] = useState(0);
   const [myStages, setMyStages] = useState(0);
   const [myBadges, setMyBadges] = useState(0);
   const [myName, setMyName] = useState("Guest");
@@ -69,7 +69,7 @@ export default function LeaderboardPage() {
         setSession(data.username);
         fetchProgress().then((p) => {
           if (!p) return;
-          setMyXP(p.xp);
+          setMyCoins(p.coins);
           setMyStages(p.completedStages.length);
           setMyBadges(p.badges.length);
         });
@@ -89,7 +89,7 @@ export default function LeaderboardPage() {
         );
         const me: Player = {
           username: displayName,
-          xp: serverMe?.xp ?? (period === "alltime" ? myXP : 0),
+          coins: serverMe?.coins ?? (period === "alltime" ? myCoins : 0),
           stages: serverMe?.stages ?? myStages,
           badges: serverMe?.badges ?? myBadges,
           lastActive: Date.now(),
@@ -100,14 +100,14 @@ export default function LeaderboardPage() {
           (pl) => pl.username.toLowerCase() !== displayName.toLowerCase()
         );
 
-        const meWithServerXp = serverMe
-          ? { ...me, xp: serverMe.xp }
+        const meWithServerCoins = serverMe
+          ? { ...me, coins: serverMe.coins }
           : period === "alltime" ? me : null;
 
         const all = [
           ...serverWithoutMe,
-          ...(meWithServerXp ? [meWithServerXp] : []),
-        ].sort((a, b) => b.xp - a.xp);
+          ...(meWithServerCoins ? [meWithServerCoins] : []),
+        ].sort((a, b) => b.coins - a.coins);
 
         const ranked = all.map((player, i) => ({ ...player, rank: i + 1 }));
         setRows(ranked);
@@ -121,7 +121,7 @@ export default function LeaderboardPage() {
       .finally(() => setLoading(false));
   }, [period, myName]);
 
-  const maxXP = Math.max(...rows.map((r) => r.xp), 1);
+  const maxCoins = Math.max(...rows.map((r) => r.coins), 1);
 
   return (
     <div
@@ -171,7 +171,7 @@ export default function LeaderboardPage() {
           <div className="bg-cyan-500/5 border border-cyan-500/30 rounded-xl p-5 mb-8 grid grid-cols-2 sm:grid-cols-4 gap-4">
             {[
               { label: "Your Rank", value: myRank !== null ? `#${myRank}` : "—" },
-              { label: "Total XP", value: `${myXP} XP` },
+              { label: "Total Coins", value: `${myCoins} 🪙` },
               { label: "Stages Done", value: String(myStages) },
               { label: "Badges", value: String(myBadges) },
             ].map((s) => (
@@ -195,7 +195,7 @@ export default function LeaderboardPage() {
           <div className="grid grid-cols-[3rem_1fr_10rem_5rem_5rem_7rem] gap-2 px-5 py-3 border-b border-white/10 text-xs text-gray-500 font-semibold uppercase tracking-wider">
             <div>#</div>
             <div>Player</div>
-            <div>XP {period !== "alltime" ? `(${PERIOD_LABELS[period]})` : ""}</div>
+            <div>Coins {period !== "alltime" ? `(${PERIOD_LABELS[period]})` : ""}</div>
             <div className="text-center">Stages</div>
             <div className="text-center">Badges</div>
             <div className="text-right hidden sm:block">Active</div>
@@ -249,11 +249,11 @@ export default function LeaderboardPage() {
                         className={`h-1.5 rounded-full transition-all duration-700 ${
                           player.isCurrentPlayer ? "bg-cyan-400" : "bg-purple-500"
                         }`}
-                        style={{ width: `${(player.xp / maxXP) * 100}%` }}
+                        style={{ width: `${(player.coins / maxCoins) * 100}%` }}
                       />
                     </div>
                     <span className={`text-xs font-mono flex-shrink-0 ${player.isCurrentPlayer ? "text-cyan-400" : "text-gray-400"}`}>
-                      {player.xp}
+                      {player.coins} 🪙
                     </span>
                   </div>
                 </div>

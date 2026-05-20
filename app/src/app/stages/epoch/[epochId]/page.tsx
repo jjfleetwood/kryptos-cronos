@@ -172,8 +172,7 @@ export default function EpochPage() {
                       <span className="text-xs text-green-500 font-semibold">Completed</span>
                     ) : (
                       <>
-                        <span className="text-xs text-amber-600 font-mono">+{stage.xp}</span>
-                        <span className="text-xs text-gray-700">XP</span>
+                        <span className="text-xs text-amber-600 font-mono">+{stage.xp} 🪙</span>
                       </>
                     )}
                     <span className="text-xs ml-auto">{stage.badge.emoji}</span>

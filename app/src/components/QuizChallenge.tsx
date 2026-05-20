@@ -78,7 +78,7 @@ export default function QuizChallenge({ stage, backHref = "/stages" }: { stage: 
           </p>
 
           <div className="bg-white/5 border border-cyan-500/30 rounded-xl p-6 mb-8">
-            <div className="text-4xl font-bold text-cyan-400 mb-1">+{stage.xp} XP</div>
+            <div className="text-4xl font-bold text-cyan-400 mb-1">+{stage.xp} 🪙</div>
             <div className="text-gray-500 text-sm">added to your total</div>
             <div className="mt-4 inline-flex items-center gap-2 bg-yellow-500/10 border border-yellow-500/30 rounded-full px-4 py-1">
               <span className="text-yellow-400 text-sm font-medium">{stage.badge.emoji} {stage.badge.name} Unlocked!</span>
@@ -132,7 +132,7 @@ export default function QuizChallenge({ stage, backHref = "/stages" }: { stage: 
             </div>
             <div className="text-right">
               <div className="text-cyan-400 font-mono text-sm">{current + 1} / {questions.length}</div>
-              <div className="text-gray-600 text-xs">{score * Math.floor(stage.xp / questions.length)} XP</div>
+              <div className="text-gray-600 text-xs">{score * Math.floor(stage.xp / questions.length)} 🪙</div>
             </div>
           </div>
           <div className="mt-4 bg-white/5 rounded-full h-1.5">

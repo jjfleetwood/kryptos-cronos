@@ -8,8 +8,8 @@ type Props = {
   stage: StageConfig;
   flag: string;
   timeTakenMs: number;
-  timePenaltyXp: number;
-  effectiveXp: number;
+  timePenaltyCoins: number;
+  effectiveCoins: number;
   backHref?: string;
 };
 
@@ -20,7 +20,7 @@ function formatTime(ms: number): string {
   return m > 0 ? `${m}m ${s}s` : `${s}s`;
 }
 
-export default function FlagSuccessModal({ stage, flag, timeTakenMs, timePenaltyXp, effectiveXp, backHref = "/stages" }: Props) {
+export default function FlagSuccessModal({ stage, flag, timeTakenMs, timePenaltyCoins, effectiveCoins, backHref = "/stages" }: Props) {
   const [visible, setVisible] = useState(false);
   const [flagVisible, setFlagVisible] = useState(false);
 
@@ -94,10 +94,10 @@ export default function FlagSuccessModal({ stage, flag, timeTakenMs, timePenalty
           {/* Stats grid */}
           <div className="grid grid-cols-3 gap-3 mb-6">
             <div className="bg-white/3 rounded-xl p-3 text-center border border-white/10">
-              <div className="text-xl font-bold text-green-400">+{effectiveXp}</div>
-              <div className="text-xs text-gray-600 mt-0.5">XP Earned</div>
-              {timePenaltyXp > 0 && (
-                <div className="text-xs text-orange-500 mt-0.5">-{timePenaltyXp} penalty</div>
+              <div className="text-xl font-bold text-green-400">+{effectiveCoins} 🪙</div>
+              <div className="text-xs text-gray-600 mt-0.5">Coins Earned</div>
+              {timePenaltyCoins > 0 && (
+                <div className="text-xs text-orange-500 mt-0.5">-{timePenaltyCoins} penalty</div>
               )}
             </div>
             <div className="bg-white/3 rounded-xl p-3 text-center border border-white/10">
