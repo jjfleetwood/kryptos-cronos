@@ -225,7 +225,7 @@ export default function Home() {
               style={{ background: "rgba(34,211,238,0.06)" }}>
               <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
               <span className="text-cyan-300 font-mono font-medium tracking-wide">
-                169 Stages · AI · Post-Quantum · Nation-State CTF
+                234 Stages · AI · Post-Quantum · Nation-State CTF
               </span>
             </div>
 
@@ -270,7 +270,7 @@ export default function Home() {
                   backdropFilter: "blur(8px)",
                 }}
               >
-                View 169 Stages
+                View 234 Stages
               </Link>
             </div>
           </div>
@@ -300,7 +300,7 @@ export default function Home() {
           style={{ background: "rgba(255,255,255,0.015)" }}>
           <div className="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             {[
-              { value: "169", label: "Training Stages",      color: "#22d3ee" },
+              { value: "234", label: "Training Stages",      color: "#22d3ee" },
               { value: "6",   label: "Curriculum Tracks",    color: "#a78bfa" },
               { value: "25+", label: "Real CVEs",            color: "#f97316" },
               { value: "3.5M",label: "Unfilled Cyber Jobs",  color: "#4ade80" },
@@ -691,7 +691,7 @@ export default function Home() {
                   The future of defense starts here
                 </p>
                 <h2 className="text-4xl md:text-5xl font-black text-white mb-4 leading-tight">
-                  Seven tracks. 209 stages.<br />
+                  Seven tracks. 234 stages.<br />
                   <span className="hero-glow">All in your browser.</span>
                 </h2>
                 <p className="mb-8" style={{ color: "rgba(107,114,128,1)" }}>
