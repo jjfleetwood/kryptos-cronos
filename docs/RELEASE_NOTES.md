@@ -2,6 +2,14 @@
 
 ---
 
+## v1.6.2 — 2026-05-20
+
+**Draggable feedback widget**
+
+- **FeedbackWidget** — header bar is now a drag handle; widget can be repositioned anywhere on screen; position persists to localStorage across reloads; clamped to viewport bounds; cursor changes to grab/grabbing during drag; label updated to "Comments? New content?"
+
+---
+
 ## v1.6.1 — 2026-05-20
 
 **Docs consolidation and CAE advisory content**

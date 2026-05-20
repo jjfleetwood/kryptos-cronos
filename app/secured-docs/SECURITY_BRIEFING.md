@@ -1,8 +1,8 @@
 # Kryptós CronOS — Security Briefing
 **Classification:** Internal  
-**Version:** 2.1  
+**Version:** 2.2  
 **Date:** 2026-05-20  
-**Current version:** v1.6.1
+**Current version:** v1.6.2
 
 ---
 
@@ -171,6 +171,12 @@ No API keys, tokens, or credentials committed to the repository. `.gitignore` ex
 | Client-side auth storage | High | Acceptable for demo; documented production path |
 | CTF flags in client bundle | Low | Acceptable for demo; documented production path |
 | No signed session tokens | Low | Acceptable for demo; documented production path |
+
+---
+
+## Changelog — v2.2 (2026-05-20)
+
+No new attack surface. v1.6.2 is a UI-only change to FeedbackWidget (drag handle, localStorage position persistence, label text). No new API routes, env vars, Redis keys, or third-party integrations.
 
 ---
 

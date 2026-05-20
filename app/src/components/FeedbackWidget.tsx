@@ -1,14 +1,35 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import { usePathname } from "next/navigation";
+
+const DEFAULT_POS = { x: 16, y: 16 };
+const STORAGE_KEY = "feedback-widget-pos";
 
 export default function FeedbackWidget() {
   const pathname = usePathname();
   const [message, setMessage] = useState("");
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
   const [minimized, setMinimized] = useState(false);
+  const [position, setPosition] = useState(DEFAULT_POS);
+  const [isDragging, setIsDragging] = useState(false);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const widgetRef = useRef<HTMLDivElement>(null);
+  const posRef = useRef(DEFAULT_POS);
+  const dragOrigin = useRef<{ mx: number; my: number; px: number; py: number } | null>(null);
+
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      if (saved) {
+        const p = JSON.parse(saved);
+        if (typeof p.x === "number" && typeof p.y === "number") {
+          posRef.current = p;
+          setPosition(p);
+        }
+      }
+    } catch {}
+  }, []);
 
   useEffect(() => {
     const ta = textareaRef.current;
@@ -16,6 +37,45 @@ export default function FeedbackWidget() {
     ta.style.height = "auto";
     ta.style.height = `${Math.min(ta.scrollHeight, 160)}px`;
   }, [message]);
+
+  const move = useCallback((x: number, y: number) => {
+    const widget = widgetRef.current;
+    const w = widget ? widget.offsetWidth : 256;
+    const h = widget ? widget.offsetHeight : 120;
+    const cx = Math.max(0, Math.min(window.innerWidth - w, x));
+    const cy = Math.max(0, Math.min(window.innerHeight - h, y));
+    const p = { x: cx, y: cy };
+    posRef.current = p;
+    setPosition(p);
+  }, []);
+
+  const handlePointerDown = useCallback((e: React.PointerEvent<HTMLDivElement>) => {
+    if ((e.target as HTMLElement).closest("button")) return;
+    e.preventDefault();
+    dragOrigin.current = {
+      mx: e.clientX,
+      my: e.clientY,
+      px: posRef.current.x,
+      py: posRef.current.y,
+    };
+    setIsDragging(true);
+    e.currentTarget.setPointerCapture(e.pointerId);
+  }, []);
+
+  const handlePointerMove = useCallback((e: React.PointerEvent) => {
+    if (!dragOrigin.current) return;
+    const { mx, my, px, py } = dragOrigin.current;
+    move(px + e.clientX - mx, py + e.clientY - my);
+  }, [move]);
+
+  const handlePointerUp = useCallback(() => {
+    if (!dragOrigin.current) return;
+    dragOrigin.current = null;
+    setIsDragging(false);
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(posRef.current));
+    } catch {}
+  }, []);
 
   async function handleSend() {
     if (!message.trim() || status === "sending") return;
@@ -37,16 +97,24 @@ export default function FeedbackWidget() {
   }
 
   function handleKeyDown(e: React.KeyboardEvent) {
-    if (e.key === "Enter" && (e.metaKey || e.ctrlKey)) {
-      handleSend();
-    }
+    if (e.key === "Enter" && (e.metaKey || e.ctrlKey)) handleSend();
   }
 
   return (
-    <div className="fixed top-4 left-4 z-50 w-64 flex flex-col gap-1.5 bg-slate-900/95 border border-slate-700/60 rounded-xl shadow-xl backdrop-blur-sm p-3">
-      <div className="flex items-center justify-between">
+    <div
+      ref={widgetRef}
+      className="fixed z-50 w-64 flex flex-col gap-1.5 bg-slate-900/95 border border-slate-700/60 rounded-xl shadow-xl backdrop-blur-sm p-3"
+      style={{ top: position.y, left: position.x }}
+    >
+      <div
+        className={`flex items-center justify-between ${isDragging ? "cursor-grabbing" : "cursor-grab"}`}
+        onPointerDown={handlePointerDown}
+        onPointerMove={handlePointerMove}
+        onPointerUp={handlePointerUp}
+        onPointerCancel={handlePointerUp}
+      >
         <p className="text-[10px] font-semibold text-slate-400 uppercase tracking-widest select-none">
-          What do you want to see?
+          Comments? New content?
         </p>
         <button
           onClick={() => setMinimized((v) => !v)}
