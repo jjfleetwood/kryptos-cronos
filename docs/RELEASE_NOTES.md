@@ -16,11 +16,87 @@
 
 ---
 
+## v1.5.3 — 2026-05-18
+
+**Back navigation + CTF terminal persistence**
+
+- `BackLink.tsx` — all back buttons now call `router.back()` for consistent browser-history navigation
+- `CtfChallenge` saves terminal state to localStorage on solve (`ctf-state:<stageId>`) and restores it on return — progress survives navigation away from a stage
+- "↺ Replay" button resets saved CTF state so users can re-run challenges from scratch
+
+---
+
+## v1.5.2 — 2026-05-18
+
+**Tapestry epoch — arts curriculum track**
+
+- `src/data/tapestry.ts` — 12 quiz stages (tapestry-01 → tapestry-12): tapestry history, Flemish golden age, Asian traditions, Americas, color theory, warp/weft structure, equipment, techniques (hatching, soumak, slits, rya knots), design, optical color mixing, contemporary practice, first project
+- Yellow accent color theme
+- New `"arts"` category type added to stage config
+- `check-answer` route now falls back to the full stages array — any quiz epoch works without manual route registration
+
+---
+
+## v1.5.1 — 2026-05-18
+
+**Feedback widget + business proposal refresh**
+
+- `FeedbackWidget.tsx` — fixed top-right widget; submits to `jjbolotin@yahoo.com` via `/api/feedback`
+- Business proposals updated to reflect current product state and investor positioning
+
+---
+
+## v1.5.0 — 2026-05-18
+
+**Continuous Monitoring 2.0 epoch**
+
+- `src/data/tech-audit-4.ts` — 12 CTF stages (audit-cm01 → audit-cm12): continuous monitoring frameworks, automated control testing, real-time compliance dashboards, SIEM integration, audit trail integrity, anomaly detection, drift detection, evidence collection automation, risk scoring pipelines, reporting cadence, regulatory mapping, and monitoring program maturity
+- Rose accent color theme
+
+---
+
+## v1.4.0 — 2026-05-17
+
+**DocuSign NDA integration**
+
+- `src/lib/docusign.ts` — JWT-grant DocuSign client with envelope creation and status polling
+- `/api/admin/send-nda` — sends NDA envelope to a specified email from the admin dashboard
+- `/api/webhooks/docusign` — receives envelope status callbacks; optional HMAC verification via `DOCUSIGN_WEBHOOK_SECRET`
+- Admin dashboard NDA panel: recipient input, send button, envelope status display
+- Five new env vars: `DOCUSIGN_INTEGRATION_KEY`, `DOCUSIGN_USER_ID`, `DOCUSIGN_ACCOUNT_ID`, `DOCUSIGN_PRIVATE_KEY`, `DOCUSIGN_BASE_URL`
+
+---
+
+## v1.2.0 — 2026-05-17
+
+**MITRE ATT&CK + MITRE ATLAS + OWASP LLM Top 10 epochs**
+
+- `src/data/mitre.ts` — 12 CTF stages (mitre-01 → mitre-12) covering all 12 MITRE ATT&CK tactic phases: Reconnaissance through Impact; red accent
+- `src/data/mitre-atlas.ts` — 12 CTF stages (atlas-01 → atlas-12) covering AI/ML adversarial attacks: model evasion, data poisoning, model inversion, adversarial examples, supply chain compromise, and ATLAS tactic/technique mapping; fuchsia accent
+- `src/data/owasp-llm.ts` — 12 CTF stages (llm-01 → llm-12) aligned to OWASP LLM Top 10 2025 edition: prompt injection, insecure output handling, training data poisoning, model denial of service, supply chain vulnerabilities, sensitive information disclosure, insecure plugin design, excessive agency, overreliance, model theft; orange accent
+- Total curriculum grows to 114 stages
+
+---
+
+## v1.0.0 — 2026-05-16
+
+**Tech Audit epoch trilogy + ARIA chatbot + CI pipeline + streaks + badges**
+
+- `src/data/tech-audit-1.ts` — Tech Audit: Foundations (audit-01 → audit-12): ISACA, COBIT, CISA frameworks, audit lifecycle, risk assessment, control testing, evidence collection; purple accent
+- `src/data/tech-audit-2.ts` — Tech Audit: Technical (audit-t01 → audit-t12): API security auditing, secrets management, cloud configuration review, IAM privilege analysis, dependency scanning, container security, network segmentation, logging gaps; violet accent
+- `src/data/tech-audit-3.ts` — Tech Audit: Agentic (audit-a01 → audit-a12): Claude tool use auditing, MCP server security, agentic workflow risk, prompt injection in pipelines, tool permission scoping, output validation; indigo accent
+- **ARIA AI chatbot** — in-terminal Socratic tutor powered by Claude Haiku; stage-aware context; never reveals flags; accessible via `/api/hint`
+- **CI pipeline** — GitHub Actions workflow: ESLint → `tsc --noEmit` → Next.js build → `npm audit`; runs on every push and PR
+- **Daily streaks** — `streak:<username>` Redis key; streak display in admin dashboard and user profile
+- **Milestone badges** — `m-xp-1k`, `m-xp-5k`, `m-streak-3`, `m-streak-7` awarded server-side on progress POST
+- Total curriculum grows to 102 stages across 7 epochs
+
+---
+
 ## v0.8.0 — Planned (Q3 2026)
 
-**AI personalization layer + Cisco product integrations**
+**Cisco product integrations + adaptive difficulty**
 
-- In-terminal AI tutor (Anthropic API) — natural-language Q&A during CTF challenges without revealing flags
 - Adaptive difficulty engine — adjusts challenge complexity based on command patterns and time-on-task
 - **Cisco Talos integration** — weekly CVE challenge drops sourced from Talos threat intelligence feed
 - **Cisco Umbrella epoch** — new curriculum track: DNS tunneling, DGA detection, network policy enforcement
@@ -28,8 +104,6 @@
 - **Cisco Firepower stages** — network defense: firewall rule exploitation, lateral movement detection
 - **Cisco CyberOps Associate alignment** — Cisco epoch badge completions map to CyberOps exam domains; exam voucher redemption flow
 - **Cisco DevNet track** — API security and automation: REST exploitation, OAuth misconfigurations
-- CI pipeline (GitHub Actions: lint + tsc + build + audit)
-- Streaks and milestone badges
 
 ---
 
