@@ -16,6 +16,22 @@
 
 ---
 
+## v1.5.4 — 2026-05-19
+
+**CTF scroll fix, feedback email, widget layout, 24-stage MCP templates**
+
+- **CTF terminal scroll** — fixed black-screen terminal not scrolling: added `min-h-0` to wrapper and `overscrollBehavior: contain` to output container; inner flex overflow now works correctly inside nested flex layouts
+- **Feedback email notifications** — feedback submissions now send an email to `jjbolotin@yahoo.com` via Resend; from address corrected to `noreply@kryptoscronos.com` (verified domain)
+- **Feedback widget repositioned** — moved from top-right to top-left (`fixed top-4 left-4`) to prevent overlap with ARIA panel when both are open simultaneously
+- **24 MCP server code templates** — each Tech Audit lesson now has a "Code Templates" section with a downloadable Python MCP server template:
+  - **Agentic epoch** (audit-a01–a12): tool use agentic loop, API enumeration, secrets scanning, cloud enumeration, IAM privilege escalation analysis, MCP integration, IaC review, SOC 2 evidence collection, multi-agent orchestration, risk report writing, sentinel scheduling, full pipeline
+  - **Continuous Monitoring epoch** (audit-cm01–cm12): ISCM baseline, SIEM + ML anomaly detection, UEBA risk scoring, NDR beaconing detection, CSPM attack path mapping, STIX/TAXII threat intel, SOAR playbook automation, deception/honeytokens, Zero Trust CARTA scoring, XDR cross-source correlation, continuous compliance engine, SOC maturity scorecard
+  - All 24 files self-contained and runnable (`pip install anthropic && python <file>.py`); served statically from `/mcp-templates/`
+- **`stage-downloads.ts`** — new data file mapping all 24 stage IDs to their template download URLs
+- **`StageInfo.tsx`** — renders Code Templates section with download links before the CTA button
+
+---
+
 ## v1.5.3 — 2026-05-18
 
 **Back navigation + CTF terminal persistence**
