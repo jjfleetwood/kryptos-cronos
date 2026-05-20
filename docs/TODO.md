@@ -12,7 +12,7 @@
 | 2 | **Signed JWT / server-side sessions** | — | ✅ Done | `server-session.ts` issues HMAC-signed `u:{username}:{hmac}` tokens verified server-side on every request. Functionally equivalent to signed JWT. |
 | 3 | **Server-side flag validation** | — | ✅ Done | `stage-flags.ts` has `import "server-only"` — cannot be bundled to client. `/api/check-flag` reads flags exclusively from this file. |
 | 4 | **CI pipeline** | — | ✅ Done | `.github/workflows/ci.yml` — lint + tsc + build + `npm audit --audit-level=high` on every push to master. |
-| 5 | **Redis backup** | 1 min | ⚠️ Manual | Enable Daily Backups in Upstash console → your database → Backups tab. Cannot be done via code. |
+| 5 | **Redis backup** | — | ✅ Done | Daily backups enabled in Upstash console. |
 
 ---
 
