@@ -8,6 +8,10 @@ Run this skill whenever the user says "deploy", "/deploy", or asks to ship to pr
 `app/secured-docs/` = `docs/` mirror + `LAUNCH_LEGAL.md` (admin-only, lives only in secured-docs).  
 Never edit a file directly in `app/secured-docs/` if it has a counterpart in `docs/` — edit `docs/` and let the sync step propagate it.
 
+**Adding a new doc file:** when a new `.md` file is added to `docs/`, two code changes are also required:
+1. Add the filename to `ALLOWED_FILES` in `app/src/app/api/docs/[file]/route.ts`
+2. Add a tab entry to the `DOCS` array in `app/src/components/DocsViewer.tsx`
+
 ## What this skill does (in order)
 
 1. **TypeScript check** — run `npx tsc --noEmit` from `C:\Users\Ajax\Projects\cyberquest\app`. If it fails, stop and report errors. Do not deploy broken code.
