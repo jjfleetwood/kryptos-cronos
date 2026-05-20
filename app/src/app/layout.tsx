@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import FeedbackWidget from "@/components/FeedbackWidget";
+import AgePrompt from "@/components/AgePrompt";
+import { SkinProvider } from "@/contexts/SkinContext";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -18,6 +20,20 @@ export const metadata: Metadata = {
   description: "A gamified cybersecurity training platform. Break ciphers, exploit real vulnerabilities, and defend through the ages.",
 };
 
+// Runs synchronously before React hydrates — prevents flash of wrong skin
+const antiFoucScript = `
+(function(){
+  try {
+    var s = localStorage.getItem('kryptos-skin');
+    if (s === 'youth' || s === 'standard' || s === 'mature') {
+      document.documentElement.setAttribute('data-skin', s);
+      var scale = s === 'youth' ? '1.08' : '1';
+      document.documentElement.style.setProperty('--font-scale', scale);
+    }
+  } catch(e) {}
+})();
+`;
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -28,9 +44,16 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
+      {/* eslint-disable-next-line @next/next/no-sync-scripts */}
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: antiFoucScript }} />
+      </head>
       <body className="min-h-full flex flex-col">
-        {children}
-        <FeedbackWidget />
+        <SkinProvider>
+          <AgePrompt />
+          {children}
+          <FeedbackWidget />
+        </SkinProvider>
       </body>
     </html>
   );

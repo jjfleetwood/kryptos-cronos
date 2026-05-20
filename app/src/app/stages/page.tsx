@@ -8,6 +8,7 @@ import { fetchProgress } from "@/lib/progress";
 import { getSession, setSession, clearSession } from "@/lib/auth";
 import OnboardingModal from "@/components/OnboardingModal";
 import { epochAccent } from "@/app/stages/epoch-theme";
+import { useSkin } from "@/contexts/SkinContext";
 
 // ── Track groupings ────────────────────────────────────────────────────────────
 const epochGroups = [
@@ -50,6 +51,7 @@ const epochGroups = [
 
 export default function StagesPage() {
   const router = useRouter();
+  const { skin } = useSkin();
   const [completedStages, setCompletedStages] = useState<string[]>([]);
   const [totalCoins, setTotalCoins] = useState(0);
   const [streak, setStreak] = useState(0);
@@ -91,7 +93,7 @@ export default function StagesPage() {
   return (
     <div
       className="min-h-screen px-4 py-16"
-      style={{ background: "linear-gradient(135deg, #0d1117 0%, #0f2027 50%, #1a1a2e 100%)" }}
+      style={{ background: skin.pageBg }}
     >
       <OnboardingModal />
       <div className="max-w-4xl mx-auto">

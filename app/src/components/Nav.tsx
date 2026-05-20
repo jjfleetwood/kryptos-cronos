@@ -4,10 +4,13 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { getSession, clearSession, setSession } from "@/lib/auth";
 import { useRouter, usePathname } from "next/navigation";
+import { useSkin, SKINS, type SkinId } from "@/contexts/SkinContext";
 
 export default function Nav() {
   const router = useRouter();
   const pathname = usePathname();
+  const { skin, skinId, setSkin } = useSkin();
+  const [skinMenuOpen, setSkinMenuOpen] = useState(false);
   const [username, setUsername] = useState<string | null>(null);
   const [admin, setAdmin] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -46,11 +49,14 @@ export default function Nav() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
-        scrolled || mobileOpen
-          ? "bg-gray-950/95 backdrop-blur-md border-b border-white/10"
-          : "bg-transparent"
-      }`}
+      className="fixed top-0 left-0 right-0 z-40 transition-all duration-300"
+      style={{
+        background: scrolled || mobileOpen ? skin.navBg : "transparent",
+        borderBottom: scrolled || mobileOpen
+          ? `1px solid ${skin.cardBorder}`
+          : "1px solid transparent",
+        backdropFilter: scrolled || mobileOpen ? "blur(12px)" : "none",
+      }}
     >
       <div className="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2 group">
@@ -62,11 +68,24 @@ export default function Nav() {
 
         {/* Desktop nav */}
         <nav className="hidden md:flex items-center gap-6 text-sm">
-          <Link href="/stages" className="text-gray-400 hover:text-white transition-colors">Stages</Link>
-          <Link href="/journey" className="text-gray-400 hover:text-white transition-colors">Journey</Link>
-          <Link href="/leaderboard" className="text-gray-400 hover:text-white transition-colors">Leaderboard</Link>
+          {[
+            { href: "/stages", label: "Stages" },
+            { href: "/journey", label: "Journey" },
+            { href: "/leaderboard", label: "Leaderboard" },
+          ].map(({ href, label }) => (
+            <Link
+              key={href}
+              href={href}
+              style={{ color: skin.textSecondary }}
+              className="hover:opacity-100 transition-opacity"
+            >
+              {label}
+            </Link>
+          ))}
           {username && (
-            <Link href="/shop" className="text-amber-400 hover:text-amber-300 transition-colors">🛒 Shop</Link>
+            <Link href="/shop" style={{ color: "#f59e0b" }} className="transition-opacity hover:opacity-80">
+              🛒 Shop
+            </Link>
           )}
           {admin && (
             <Link href="/admin" className="text-red-400 hover:text-red-300 transition-colors font-semibold">
@@ -76,27 +95,68 @@ export default function Nav() {
         </nav>
 
         {/* Desktop auth */}
-        <div className="hidden md:flex items-center gap-3">
+        <div className="hidden md:flex items-center gap-3 relative">
           {username ? (
             <>
-              <span className="text-sm text-gray-400 hidden sm:block">
-                👤 <span className="text-cyan-400">{username}</span>
+              <span className="text-sm hidden sm:block" style={{ color: skin.textSecondary }}>
+                👤 <span style={{ color: skin.accent }}>{username}</span>
               </span>
+              {/* Skin switcher pill */}
+              <div className="relative">
+                <button
+                  onClick={() => setSkinMenuOpen((o) => !o)}
+                  className="text-xs px-2.5 py-1.5 rounded-lg transition-colors font-mono"
+                  style={{ border: `1px solid ${skin.cardBorder}`, color: skin.textMuted }}
+                  title="Change display style"
+                >
+                  🎨
+                </button>
+                {skinMenuOpen && (
+                  <div
+                    className="absolute right-0 top-full mt-2 rounded-xl overflow-hidden shadow-2xl z-50 min-w-[160px]"
+                    style={{ background: skin.navBg, border: `1px solid ${skin.cardBorder}` }}
+                  >
+                    {(["youth", "standard", "mature"] as SkinId[]).map((id) => (
+                      <button
+                        key={id}
+                        onClick={() => { setSkin(id); setSkinMenuOpen(false); }}
+                        className="w-full text-left px-4 py-2.5 text-xs transition-colors hover:opacity-80 flex items-center gap-2"
+                        style={{
+                          color: skinId === id ? skin.accent : skin.textSecondary,
+                          background: skinId === id ? `${skin.accent}12` : "transparent",
+                        }}
+                      >
+                        {skinId === id ? "✓ " : "  "}
+                        {id === "youth" ? "🚀 Young Explorer (0–12)" : id === "standard" ? "💻 Standard (15–50)" : "🛡️ Classic (50+)"}
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
               <button
                 onClick={handleLogout}
-                className="text-xs px-3 py-1.5 border border-white/10 hover:border-red-500/50 text-gray-500 hover:text-red-400 rounded-lg transition-colors"
+                className="text-xs px-3 py-1.5 rounded-lg transition-colors hover:text-red-400"
+                style={{
+                  border: `1px solid ${skin.cardBorder}`,
+                  color: skin.textMuted,
+                }}
               >
                 Log out
               </button>
             </>
           ) : (
             <>
-              <Link href="/login" className="text-sm text-gray-400 hover:text-white transition-colors">
+              <Link
+                href="/login"
+                className="text-sm transition-colors"
+                style={{ color: skin.textSecondary }}
+              >
                 Sign in
               </Link>
               <Link
                 href="/login"
-                className="text-sm px-4 py-2 bg-cyan-500 hover:bg-cyan-400 text-black font-bold rounded-lg transition-colors"
+                className="text-sm px-4 py-2 font-bold rounded-lg transition-opacity hover:opacity-80"
+                style={{ background: skin.accent, color: skin.dark ? "#000" : "#fff" }}
               >
                 Get Started
               </Link>
@@ -118,45 +178,68 @@ export default function Nav() {
 
       {/* Mobile menu drawer */}
       {mobileOpen && (
-        <div className="md:hidden border-t border-white/10 px-4 py-4 space-y-1" style={{ background: "rgba(6,10,16,0.98)" }}>
-          <Link href="/stages" className="block px-3 py-2.5 rounded-lg text-gray-300 hover:text-white hover:bg-white/5 transition-colors text-sm">
-            🗺️ Stages
-          </Link>
-          <Link href="/journey" className="block px-3 py-2.5 rounded-lg text-gray-300 hover:text-white hover:bg-white/5 transition-colors text-sm">
-            🗺️ Journey Map
-          </Link>
-          <Link href="/leaderboard" className="block px-3 py-2.5 rounded-lg text-gray-300 hover:text-white hover:bg-white/5 transition-colors text-sm">
-            🏆 Leaderboard
-          </Link>
+        <div
+          className="md:hidden px-4 py-4 space-y-1"
+          style={{
+            borderTop: `1px solid ${skin.cardBorder}`,
+            background: skin.navBg,
+          }}
+        >
+          {[
+            { href: "/stages", label: "🗺️ Stages" },
+            { href: "/journey", label: "🌍 Journey Map" },
+            { href: "/leaderboard", label: "🏆 Leaderboard" },
+          ].map(({ href, label }) => (
+            <Link
+              key={href}
+              href={href}
+              className="block px-3 py-2.5 rounded-lg text-sm transition-colors"
+              style={{ color: skin.textSecondary }}
+            >
+              {label}
+            </Link>
+          ))}
           {username && (
-            <Link href="/shop" className="block px-3 py-2.5 rounded-lg text-amber-400 hover:text-amber-300 hover:bg-white/5 transition-colors text-sm">
+            <Link
+              href="/shop"
+              className="block px-3 py-2.5 rounded-lg text-sm"
+              style={{ color: "#f59e0b" }}
+            >
               🛒 Shop & Trophy Room
             </Link>
           )}
           {admin && (
-            <Link href="/admin" className="block px-3 py-2.5 rounded-lg text-red-400 hover:text-red-300 hover:bg-white/5 transition-colors text-sm font-semibold">
+            <Link href="/admin" className="block px-3 py-2.5 rounded-lg text-red-400 text-sm font-semibold">
               ⚙️ Admin
             </Link>
           )}
-          <div className="border-t border-white/5 pt-3 mt-3">
+          <div className="pt-3 mt-3" style={{ borderTop: `1px solid ${skin.cardBorder}` }}>
             {username ? (
               <div className="space-y-1">
-                <p className="px-3 py-1 text-xs text-gray-600">Signed in as <span className="text-cyan-400">{username}</span></p>
+                <p className="px-3 py-1 text-xs" style={{ color: skin.textMuted }}>
+                  Signed in as <span style={{ color: skin.accent }}>{username}</span>
+                </p>
                 <button
                   onClick={handleLogout}
-                  className="w-full text-left px-3 py-2.5 rounded-lg text-gray-500 hover:text-red-400 hover:bg-white/5 transition-colors text-sm"
+                  className="w-full text-left px-3 py-2.5 rounded-lg text-sm hover:text-red-400 transition-colors"
+                  style={{ color: skin.textMuted }}
                 >
                   Log out
                 </button>
               </div>
             ) : (
               <div className="space-y-2">
-                <Link href="/login" className="block px-3 py-2.5 rounded-lg text-gray-300 hover:text-white hover:bg-white/5 transition-colors text-sm">
+                <Link
+                  href="/login"
+                  className="block px-3 py-2.5 rounded-lg text-sm"
+                  style={{ color: skin.textSecondary }}
+                >
                   Sign in
                 </Link>
                 <Link
                   href="/login"
-                  className="block px-3 py-2.5 rounded-lg bg-cyan-500 hover:bg-cyan-400 text-black font-bold text-sm text-center transition-colors"
+                  className="block px-3 py-2.5 rounded-lg font-bold text-sm text-center transition-opacity hover:opacity-80"
+                  style={{ background: skin.accent, color: skin.dark ? "#000" : "#fff" }}
                 >
                   Get Started
                 </Link>

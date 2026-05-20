@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { stages as allStages, epochs } from "@/data/stages";
 import { fetchProgress } from "@/lib/progress";
 import { getSession, setSession } from "@/lib/auth";
+import { useSkin } from "@/contexts/SkinContext";
 
 // ── Epoch accent colours (raw hex for inline styles) ──────────────────────────
 const EPOCH_COLOR: Record<string, string> = {
@@ -221,6 +222,7 @@ function EpochTile({ epochId, completedCount, totalCount, isHovered, onHover }: 
 
 export default function JourneyPage() {
   const router = useRouter();
+  const { skin } = useSkin();
   const [completedStages, setCompletedStages] = useState<string[]>([]);
   const [totalCoins, setTotalCoins] = useState(0);
   const [username, setUsername] = useState<string | null>(null);
@@ -278,7 +280,7 @@ export default function JourneyPage() {
   return (
     <div
       className="min-h-screen px-4 py-10"
-      style={{ background: "linear-gradient(160deg, #020408 0%, #060a10 40%, #0a0e1a 100%)" }}
+      style={{ background: skin.pageBg }}
     >
       <div className="max-w-6xl mx-auto">
         {/* Header */}
