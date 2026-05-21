@@ -232,22 +232,29 @@ function CmsPanel() {
   // ── Access control state ──
   const [accessConfig, setAccessConfig] = useState<AccessConfig | null>(null);
   const [accessLoading, setAccessLoading] = useState(true);
-  const [grantInputs, setGrantInputs] = useState<Record<string, string>>({});
   const [actionMsg, setActionMsg] = useState<string | null>(null);
+  const [allUsers, setAllUsers] = useState<{ username: string }[]>([]);
+  const [toggling, setToggling] = useState<string | null>(null); // "epochId:username"
 
   function loadAccess() {
     setAccessLoading(true);
-    fetch("/api/admin/cms/access")
-      .then((r) => (r.ok ? r.json() : null))
-      .then((data) => { if (data) setAccessConfig(data as AccessConfig); })
+    Promise.all([
+      fetch("/api/admin/cms/access").then((r) => r.ok ? r.json() : null),
+      fetch("/api/admin/users").then((r) => r.ok ? r.json() : []),
+    ])
+      .then(([access, users]) => {
+        if (access) setAccessConfig(access as AccessConfig);
+        setAllUsers((users as { username: string }[]).map((u) => ({ username: u.username })));
+      })
       .catch(() => {})
       .finally(() => setAccessLoading(false));
   }
 
   useEffect(() => { loadAccess(); }, []);
 
-  async function doAccessAction(body: object) {
+  async function doAccessAction(body: object, toggleKey?: string) {
     setActionMsg(null);
+    if (toggleKey) setToggling(toggleKey);
     const r = await fetch("/api/admin/cms/access", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -255,6 +262,7 @@ function CmsPanel() {
     });
     if (r.ok) { loadAccess(); setActionMsg("Saved."); setTimeout(() => setActionMsg(null), 2000); }
     else { const d = await r.json() as { error?: string }; setActionMsg(d.error ?? "Error"); }
+    if (toggleKey) setToggling(null);
   }
 
   // ── Content editor state ──
@@ -386,47 +394,42 @@ function CmsPanel() {
 
                     {isRestricted && (
                       <div className="px-4 pb-3 border-t border-white/5 pt-2">
-                        <div className="flex items-center gap-2 mb-2 flex-wrap">
-                          {allowlist.length === 0 ? (
-                            <span className="text-xs text-gray-700 italic">No users in allowlist — epoch is blocked for everyone</span>
-                          ) : (
-                            allowlist.map((u) => (
-                              <span key={u} className="flex items-center gap-1 text-xs bg-cyan-500/10 border border-cyan-500/25 text-cyan-400 px-2 py-0.5 rounded-full">
-                                {u}
+                        {allUsers.length === 0 ? (
+                          <p className="text-xs text-gray-700 italic">No registered users yet.</p>
+                        ) : (
+                          <div className="grid grid-cols-2 sm:grid-cols-3 gap-1.5">
+                            {allUsers.map((u) => {
+                              const hasAccess = allowlist.includes(u.username);
+                              const key = `${ep.id}:${u.username}`;
+                              const busy = toggling === key;
+                              return (
                                 <button
-                                  onClick={() => doAccessAction({ action: "revoke", epochId: ep.id, username: u })}
-                                  className="hover:text-red-400 transition-colors ml-0.5 leading-none"
-                                  title="Remove"
+                                  key={u.username}
+                                  disabled={busy}
+                                  onClick={() =>
+                                    doAccessAction(
+                                      { action: hasAccess ? "revoke" : "grant", epochId: ep.id, username: u.username },
+                                      key,
+                                    )
+                                  }
+                                  className={`flex items-center gap-2 px-3 py-1.5 rounded-lg border text-xs transition-all text-left ${
+                                    hasAccess
+                                      ? "border-cyan-500/40 bg-cyan-500/10 text-cyan-300 hover:bg-red-500/10 hover:border-red-500/30 hover:text-red-400"
+                                      : "border-white/10 bg-white/2 text-gray-600 hover:border-white/25 hover:text-gray-300"
+                                  } disabled:opacity-40`}
                                 >
-                                  ×
+                                  <span className="flex-shrink-0">{hasAccess ? "✓" : "+"}</span>
+                                  <span className="truncate font-mono">{u.username}</span>
                                 </button>
-                              </span>
-                            ))
-                          )}
-                        </div>
-                        <form
-                          onSubmit={(e) => {
-                            e.preventDefault();
-                            const u = grantInputs[ep.id]?.trim();
-                            if (!u) return;
-                            doAccessAction({ action: "grant", epochId: ep.id, username: u });
-                            setGrantInputs((prev) => ({ ...prev, [ep.id]: "" }));
-                          }}
-                          className="flex gap-2"
-                        >
-                          <input
-                            value={grantInputs[ep.id] ?? ""}
-                            onChange={(e) => setGrantInputs((prev) => ({ ...prev, [ep.id]: e.target.value }))}
-                            placeholder="username to grant access…"
-                            className="flex-1 text-xs px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-gray-300 placeholder-gray-700 focus:outline-none focus:border-cyan-500/50"
-                          />
-                          <button
-                            type="submit"
-                            className="text-xs px-3 py-1.5 rounded-lg border border-cyan-500/30 text-cyan-400 hover:bg-cyan-500/10 transition-colors"
-                          >
-                            + Grant
-                          </button>
-                        </form>
+                              );
+                            })}
+                          </div>
+                        )}
+                        {allowlist.length > 0 && (
+                          <p className="text-[10px] text-gray-700 mt-2">
+                            {allowlist.length} user{allowlist.length !== 1 ? "s" : ""} with access · click a user to toggle
+                          </p>
+                        )}
                       </div>
                     )}
                   </div>
