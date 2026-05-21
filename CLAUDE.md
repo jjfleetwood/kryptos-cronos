@@ -7,7 +7,7 @@ Gamified cybersecurity + AI training platform. 29 curriculum epochs, ~334 CTF/qu
 **Live:** kryptoscronos.com  
 **App:** app-jjfleetwood.vercel.app  
 **Repo:** github.com/jjfleetwood/kryptos-cronos  
-**Current version:** v1.7.0 (as of 2026-05-20)
+**Current version:** v1.7.1 (as of 2026-05-21)
 
 ---
 
@@ -111,7 +111,9 @@ Back navigation: `BackLink` uses `router.back()`. "Stage Map →" exit buttons g
 | File | Why it matters |
 |---|---|
 | `src/proxy.ts` | Active middleware — wrong name = no admin protection |
-| `src/data/stages.ts` | Epoch registry + stage array — import all epoch files here |
+| `src/data/stages.ts` | Epoch registry + stage array — import all epoch files here; NOT for "use client" listing pages |
+| `src/data/stages-meta.ts` | Client-safe listing metadata (no ctf/quiz/info) — import this in "use client" listing pages |
+| `src/data/stage-flags.ts` | Server-only flag store (`import "server-only"`) — used only by `/api/check-flag` |
 | `src/data/first-journey*.ts` | Our First Journey epoch (30 stages, 3 files: first-journey, first-journey-2, first-journey-3) |
 | `src/data/tech-audit-1.ts` | Tech Audit: Foundations (12 stages, ISACA/COBIT/CISA) |
 | `src/data/tech-audit-2.ts` | Tech Audit: Technical (12 stages, APIs/secrets/cloud/IAM) |
