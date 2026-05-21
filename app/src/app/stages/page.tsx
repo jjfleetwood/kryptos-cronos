@@ -187,7 +187,6 @@ export default function StagesPage() {
                       (s) => s.epochId === epoch.id && completedStages.includes(s.id)
                     ).length;
                     const pct = stageCount > 0 ? (doneCount / stageCount) * 100 : 0;
-                    const untouched = doneCount === 0;
                     const done = doneCount === stageCount && stageCount > 0;
 
                     return (
@@ -199,25 +198,12 @@ export default function StagesPage() {
                             ? "border-green-500/40 bg-green-500/5 hover:border-green-400/60"
                             : "border-white/10 bg-white/2 hover:border-white/25 hover:bg-white/5"
                         }`}
-                        style={{ opacity: untouched ? 0.45 : 1 }}
                       >
-                        {/* Fog scanline overlay for untouched epochs */}
-                        {untouched && (
-                          <div
-                            className="absolute inset-0 pointer-events-none transition-opacity duration-300 group-hover:opacity-0"
-                            style={{
-                              background:
-                                "repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,0,0,0.10) 3px,rgba(0,0,0,0.10) 4px)," +
-                                "repeating-linear-gradient(90deg,transparent,transparent 3px,rgba(0,0,0,0.06) 3px,rgba(0,0,0,0.06) 4px)",
-                              borderRadius: "inherit",
-                            }}
-                          />
-                        )}
 
-                        <span className="text-2xl leading-none flex-shrink-0 transition-transform duration-200 group-hover:scale-110 relative z-10">
+                        <span className="text-2xl leading-none flex-shrink-0 transition-transform duration-200 group-hover:scale-110">
                           {epoch.emoji}
                         </span>
-                        <div className="flex-1 min-w-0 relative z-10">
+                        <div className="flex-1 min-w-0">
                           <div className="flex items-center gap-2 mb-0.5">
                             <span className="text-sm font-semibold text-gray-200 truncate">{epoch.name}</span>
                             {doneCount > 0 && doneCount < stageCount && (
@@ -239,7 +225,7 @@ export default function StagesPage() {
                             </div>
                           )}
                         </div>
-                        <span className="text-gray-700 group-hover:text-gray-400 transition-colors text-sm flex-shrink-0 relative z-10">→</span>
+                        <span className="text-gray-700 group-hover:text-gray-400 transition-colors text-sm flex-shrink-0">→</span>
                       </Link>
                     );
                   })}
