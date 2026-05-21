@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import FeedbackWidget from "@/components/FeedbackWidget";
 import AgePrompt from "@/components/AgePrompt";
+import Nav from "@/components/Nav";
 import { SkinProvider } from "@/contexts/SkinContext";
 import "./globals.css";
 
@@ -51,6 +52,7 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col">
         <SkinProvider>
           <AgePrompt />
+          <Nav />
           {children}
           <FeedbackWidget />
         </SkinProvider>

@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Nav from "@/components/Nav";
 
 const tracks = [
   {
@@ -43,6 +42,24 @@ const tracks = [
     border: "border-pink-500/25", textColor: "text-pink-400", glow: "rgba(236,72,153,0.08)",
     topics: ["Nail Prep", "Dry Manicure", "Hair Coloring", "Bleaching & Toning", "Braiding", "Client Consultation"],
     desc: "Professional nail arts, hair coloring science, and styling techniques — from first client to running your own studio.",
+  },
+  {
+    id: "driving", label: "Driving", stages: "24", icon: "🚗",
+    border: "border-yellow-500/25", textColor: "text-yellow-400", glow: "rgba(234,179,8,0.08)",
+    topics: ["CA DMV Written Test", "Road Signs", "Speed Laws", "Right of Way", "Defensive Driving", "Teen Restrictions"],
+    desc: "Everything you need to pass the California DMV written test and become a confident, safe driver.",
+  },
+  {
+    id: "health", label: "Health", stages: "6", icon: "🦶",
+    border: "border-teal-500/25", textColor: "text-teal-400", glow: "rgba(20,184,166,0.08)",
+    topics: ["Ponseti Method", "Clubfoot Anatomy", "Famous Athletes", "Family Support", "Active Living"],
+    desc: "Understanding clubfoot — from the Ponseti casting revolution to living actively and supporting others.",
+  },
+  {
+    id: "sports", label: "Sports", stages: "10", icon: "⚾",
+    border: "border-red-500/25", textColor: "text-red-400", glow: "rgba(239,68,68,0.08)",
+    topics: ["Field & Rules", "Batting", "Pitching", "Fielding", "Baserunning", "Sportsmanship"],
+    desc: "Little League fundamentals — learn the game from the ground up, from your first at-bat to playing your position with confidence.",
   },
 ];
 
@@ -159,8 +176,6 @@ export default function Home() {
         .cursor-blink { animation: blink 1s step-start infinite; }
       `}</style>
 
-      <Nav />
-
       <main
         className="min-h-screen flex flex-col"
         style={{ background: "linear-gradient(160deg, #04080f 0%, #0d1117 45%, #080d1a 100%)" }}
@@ -225,7 +240,7 @@ export default function Home() {
               style={{ background: "rgba(34,211,238,0.06)" }}>
               <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
               <span className="text-cyan-300 font-mono font-medium tracking-wide">
-                234 Stages · AI · Post-Quantum · Nation-State CTF
+                274 Stages · AI · Post-Quantum · Nation-State CTF
               </span>
             </div>
 
@@ -246,7 +261,7 @@ export default function Home() {
               style={{ color: "rgba(156,163,175,0.85)" }}>
               The threats have changed — train on the same exploits behind Equifax, the NHS breach,
               and VOLT TYPHOON&apos;s ERCOT grid campaign, then step into AI prompt injection and
-              post-quantum cryptography. Seven tracks. All in your browser.
+              post-quantum cryptography. Ten tracks. All in your browser.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
@@ -270,7 +285,7 @@ export default function Home() {
                   backdropFilter: "blur(8px)",
                 }}
               >
-                View 234 Stages
+                View 274 Stages
               </Link>
             </div>
           </div>
@@ -300,8 +315,8 @@ export default function Home() {
           style={{ background: "rgba(255,255,255,0.015)" }}>
           <div className="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             {[
-              { value: "234", label: "Training Stages",      color: "#22d3ee" },
-              { value: "6",   label: "Curriculum Tracks",    color: "#a78bfa" },
+              { value: "274", label: "Training Stages",      color: "#22d3ee" },
+              { value: "10",  label: "Curriculum Tracks",    color: "#a78bfa" },
               { value: "25+", label: "Real CVEs",            color: "#f97316" },
               { value: "3.5M",label: "Unfilled Cyber Jobs",  color: "#4ade80" },
             ].map((s) => (
@@ -326,7 +341,7 @@ export default function Home() {
             </p>
             <div className="grid md:grid-cols-3 gap-5">
               {[
-                { n: "01", icon: "🗺️", title: "Pick a track", desc: "Seven curriculum paths — core CVEs, threat frameworks, AI security, quantum, enterprise defense, and professional crafts. Start anywhere." },
+                { n: "01", icon: "🗺️", title: "Pick a track", desc: "Ten curriculum paths — core CVEs, threat frameworks, AI security, quantum, enterprise defense, crafts, driving, and more. Start anywhere." },
                 { n: "02", icon: "💻", title: "Hack the terminal", desc: "A simulated vulnerable environment in your browser. Real commands, real exploit mechanics — no videos, no multiple choice." },
                 { n: "03", icon: "🏁", title: "Capture the flag", desc: "Find the hidden flag, submit it, earn XP. ARIA AI hints keep you moving without giving the answer away." },
               ].map((s) => (
