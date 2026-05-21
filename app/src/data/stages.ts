@@ -13,6 +13,7 @@ import { quantum1Epoch, quantum1Stages } from "./quantum-1";
 import { quantum2Epoch, quantum2Stages } from "./quantum-2";
 import { quantum3Epoch, quantum3Stages } from "./quantum-3";
 import { cisco2Stages } from "./cisco-2";
+import { cisco3Stages } from "./cisco-3";
 import { umbrellaEpoch, umbrellaStages } from "./umbrella";
 import { tapestryEpoch, tapestryStages } from "./tapestry";
 import { nailsEpoch, nailsStages } from "./nails";
@@ -3987,4 +3988,5 @@ sendp(pkt, iface="eth0")
     },
   },
   ...cisco2Stages,
+  ...cisco3Stages,
 ];
