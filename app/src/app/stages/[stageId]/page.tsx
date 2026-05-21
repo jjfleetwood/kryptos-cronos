@@ -1,7 +1,9 @@
 import { getStage } from "@/data/stages";
 import StageContainer from "@/components/StageContainer";
 import type { StageConfig } from "@/data/types";
-import { getStageOverride, applyStageOverride } from "@/lib/cms";
+import { getStageOverride, applyStageOverride, canAccessEpoch } from "@/lib/cms";
+import { getSessionFromCookies } from "@/lib/server-session";
+import Link from "next/link";
 
 export default async function StagePage({
   params,
@@ -10,6 +12,31 @@ export default async function StagePage({
 }) {
   const { stageId } = await params;
   const stageBase = getStage(stageId) ?? null;
+
+  // Enforce epoch-level access control server-side
+  if (stageBase) {
+    const username = await getSessionFromCookies();
+    const allowed = await canAccessEpoch(stageBase.epochId, username);
+    if (!allowed) {
+      return (
+        <div
+          className="min-h-screen flex items-center justify-center px-4"
+          style={{ background: "linear-gradient(135deg, #0d1117 0%, #0f2027 50%, #1a1a2e 100%)" }}
+        >
+          <div className="text-center max-w-sm">
+            <div className="text-6xl mb-4">🔒</div>
+            <h2 className="text-2xl font-black text-white mb-2">Access Restricted</h2>
+            <p className="text-gray-500 text-sm mb-6">
+              This module is not available on your account. Contact an administrator to request access.
+            </p>
+            <Link href="/stages" className="text-cyan-400 hover:text-cyan-300 text-sm transition-colors">
+              ← Back to Stage Map
+            </Link>
+          </div>
+        </div>
+      );
+    }
+  }
 
   let stage: StageConfig | null = stageBase;
 

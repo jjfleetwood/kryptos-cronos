@@ -1,5 +1,6 @@
 import { createHmac, timingSafeEqual } from "crypto";
 import type { NextRequest } from "next/server";
+import { cookies } from "next/headers";
 
 function secret(): string {
   const s = process.env.ADMIN_SECRET;
@@ -34,6 +35,14 @@ export function getServerSession(req: NextRequest): string | null {
   const cookie = req.cookies.get("session_token");
   if (!cookie?.value) return null;
   return verifySessionToken(cookie.value);
+}
+
+/** For use in Server Component pages (not route handlers). */
+export async function getSessionFromCookies(): Promise<string | null> {
+  const jar = await cookies();
+  const token = jar.get("session_token")?.value;
+  if (!token) return null;
+  return verifySessionToken(token);
 }
 
 export function sessionCookieOptions() {
