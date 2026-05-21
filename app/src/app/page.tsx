@@ -335,7 +335,7 @@ export default function Home() {
             </p>
             <div className="grid md:grid-cols-3 gap-5">
               {[
-                { n: "01", icon: "🗺️", title: "Pick a track", desc: "Ten curriculum paths — core CVEs, threat frameworks, AI security, quantum, enterprise defense, crafts, driving, and more. Start anywhere." },
+                { n: "01", icon: "🗺️", title: "Pick a track", desc: "Nine curriculum paths — core CVEs, threat frameworks, AI security, quantum, enterprise defense, crafts, driving, and more. Start anywhere." },
                 { n: "02", icon: "💻", title: "Hack the terminal", desc: "A simulated vulnerable environment in your browser. Real commands, real exploit mechanics — no videos, no multiple choice." },
                 { n: "03", icon: "🏁", title: "Capture the flag", desc: "Find the hidden flag, submit it, earn XP. ARIA AI hints keep you moving without giving the answer away." },
               ].map((s) => (
@@ -451,7 +451,7 @@ export default function Home() {
             <div className="flex flex-wrap items-end justify-between gap-4 mb-10">
               <div>
                 <p className="text-xs font-mono uppercase tracking-widest mb-2" style={{ color: "rgba(34,211,238,0.6)" }}>
-                  Seven curriculum tracks
+                  Nine curriculum tracks
                 </p>
                 <h2 className="text-4xl font-black text-white mb-2">A complete security education</h2>
                 <p style={{ color: "rgba(107,114,128,1)" }}>From SQL injection to post-quantum cryptography. Every track is hands-on CTF.</p>
@@ -677,6 +677,115 @@ export default function Home() {
           </div>
         </section>
 
+        {/* ── Pricing ── */}
+        <section className="py-24 px-4 border-y border-white/5" style={{ background: "rgba(255,255,255,0.015)" }}>
+          <div className="max-w-5xl mx-auto">
+            <div className="text-center mb-12">
+              <p className="text-xs font-mono uppercase tracking-widest mb-3" style={{ color: "rgba(168,85,247,0.7)" }}>
+                Simple pricing
+              </p>
+              <h2 className="text-4xl font-black text-white mb-3">Free to start. Built to scale.</h2>
+              <p style={{ color: "rgba(107,114,128,1)" }}>
+                Individual learners, security teams, and enterprise partners — one platform.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-5">
+              {[
+                {
+                  name: "Free",
+                  price: "$0",
+                  per: "forever",
+                  desc: "Full access to Our First Journey and Foundations. No credit card required.",
+                  features: ["30+ beginner stages", "ARIA AI hints", "Live leaderboard", "Streak & badge system"],
+                  cta: "Start Free",
+                  href: "/login",
+                  accent: "rgba(34,211,238,1)",
+                  border: "rgba(34,211,238,0.2)",
+                  glow: "rgba(34,211,238,0.06)",
+                  highlight: false,
+                },
+                {
+                  name: "Pro",
+                  price: "$19",
+                  per: "/ month",
+                  desc: "All nine curriculum tracks. Full CTF access, certificates, and priority ARIA responses.",
+                  features: ["334 stages across 9 tracks", "Completion certificates", "Priority ARIA hints", "All milestone badges"],
+                  cta: "Get Pro — $19/mo",
+                  href: "/login",
+                  accent: "rgba(168,85,247,1)",
+                  border: "rgba(168,85,247,0.4)",
+                  glow: "rgba(168,85,247,0.08)",
+                  highlight: true,
+                },
+                {
+                  name: "Enterprise",
+                  price: "$8",
+                  per: "/ seat / month",
+                  desc: "For security teams and training programs. Admin dashboard, cohort progress, and custom content.",
+                  features: ["All Pro features", "Admin dashboard & analytics", "Custom epoch access control", "Sponsor integration support"],
+                  cta: "Contact Sales",
+                  href: "mailto:jjbolotin@yahoo.com",
+                  accent: "rgba(74,222,128,1)",
+                  border: "rgba(74,222,128,0.2)",
+                  glow: "rgba(74,222,128,0.06)",
+                  highlight: false,
+                },
+              ].map((tier) => (
+                <div
+                  key={tier.name}
+                  className="relative rounded-2xl p-7 flex flex-col"
+                  style={{
+                    background: `radial-gradient(ellipse at top, ${tier.glow}, transparent 70%)`,
+                    border: `1px solid ${tier.border}`,
+                    boxShadow: tier.highlight ? `0 0 40px ${tier.glow}, 0 4px 24px rgba(0,0,0,0.3)` : "0 4px 24px rgba(0,0,0,0.2)",
+                  }}
+                >
+                  {tier.highlight && (
+                    <div className="absolute -top-3 left-1/2 -translate-x-1/2 text-xs font-mono font-bold px-3 py-0.5 rounded-full"
+                      style={{ background: "rgba(168,85,247,1)", color: "#000" }}>
+                      Most Popular
+                    </div>
+                  )}
+                  <div className="mb-5">
+                    <p className="text-xs font-mono uppercase tracking-widest mb-2" style={{ color: tier.accent }}>
+                      {tier.name}
+                    </p>
+                    <div className="flex items-baseline gap-1">
+                      <span className="text-4xl font-black text-white">{tier.price}</span>
+                      <span className="text-sm" style={{ color: "rgba(107,114,128,1)" }}>{tier.per}</span>
+                    </div>
+                    <p className="mt-3 text-sm leading-relaxed" style={{ color: "rgba(107,114,128,1)" }}>{tier.desc}</p>
+                  </div>
+                  <ul className="space-y-2 mb-7 flex-1">
+                    {tier.features.map((f) => (
+                      <li key={f} className="flex items-center gap-2 text-sm" style={{ color: "rgba(156,163,175,0.9)" }}>
+                        <span style={{ color: tier.accent }}>✓</span>
+                        {f}
+                      </li>
+                    ))}
+                  </ul>
+                  <Link
+                    href={tier.href}
+                    className="block text-center py-2.5 rounded-lg text-sm font-bold transition-all hover:scale-[1.02]"
+                    style={{
+                      background: tier.highlight ? tier.accent : "rgba(255,255,255,0.05)",
+                      color: tier.highlight ? "#000" : tier.accent,
+                      border: `1px solid ${tier.border}`,
+                    }}
+                  >
+                    {tier.cta}
+                  </Link>
+                </div>
+              ))}
+            </div>
+
+            <p className="text-center text-xs mt-8" style={{ color: "rgba(55,65,81,1)" }}>
+              Target sponsors: CrowdStrike · AWS · SentinelOne · CompTIA · ISC² · Cisco
+            </p>
+          </div>
+        </section>
+
         {/* ── CTA ── */}
         <section className="py-20 px-4">
           <div className="max-w-3xl mx-auto text-center">
@@ -700,7 +809,7 @@ export default function Home() {
                   The future of defense starts here
                 </p>
                 <h2 className="text-4xl md:text-5xl font-black text-white mb-4 leading-tight">
-                  Seven tracks. 234 stages.<br />
+                  Nine tracks. 334 stages.<br />
                   <span className="hero-glow">All in your browser.</span>
                 </h2>
                 <p className="mb-8" style={{ color: "rgba(107,114,128,1)" }}>

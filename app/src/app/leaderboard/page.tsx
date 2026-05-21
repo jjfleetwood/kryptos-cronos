@@ -37,6 +37,18 @@ const FALLBACK_DESC: Record<Period, string> = {
   daily: "Showing agents active today · period coin tracking begins with new completions",
 };
 
+const AVATAR_COLORS: [string, string][] = [
+  ["#22d3ee", "#0e7490"], ["#a78bfa", "#6d28d9"], ["#f97316", "#c2410c"],
+  ["#4ade80", "#16a34a"], ["#fb7185", "#be123c"], ["#fbbf24", "#b45309"],
+  ["#38bdf8", "#0369a1"], ["#e879f9", "#a21caf"],
+];
+
+function avatarColor(username: string): [string, string] {
+  let h = 0;
+  for (let i = 0; i < username.length; i++) h = (h * 31 + username.charCodeAt(i)) >>> 0;
+  return AVATAR_COLORS[h % AVATAR_COLORS.length];
+}
+
 function timeAgo(ts: number | null): string {
   if (!ts) return "—";
   const diff = Date.now() - ts;
@@ -58,6 +70,16 @@ export default function LeaderboardPage() {
   const [myBadges, setMyBadges] = useState(0);
   const [myName, setMyName] = useState("Guest");
   const [loading, setLoading] = useState(true);
+  const [copied, setCopied] = useState(false);
+
+  function handleShare() {
+    const rankStr = myRank ? `#${myRank}` : "the";
+    const text = `I ranked ${rankStr} on Kryptós CronOS with ${myCoins} 🪙 across ${myStages} stages. Train on real CVEs, AI attacks, and nation-state ops → kryptoscronos.com`;
+    navigator.clipboard.writeText(text).then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    }).catch(() => {});
+  }
 
   useEffect(() => {
     setMyName(getSession() ?? "Guest");
@@ -142,9 +164,24 @@ export default function LeaderboardPage() {
                 {isRecencyFallback && period !== "alltime" ? FALLBACK_DESC[period] : PERIOD_DESC[period]}
               </p>
             </div>
-            <div className="flex items-center gap-2 text-xs text-green-400 bg-green-400/10 border border-green-400/30 rounded-full px-3 py-1.5">
-              <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-              LIVE
+            <div className="flex items-center gap-3">
+              {myName !== "Guest" && (
+                <button
+                  onClick={handleShare}
+                  className="flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-full border transition-all"
+                  style={{
+                    borderColor: copied ? "rgba(74,222,128,0.5)" : "rgba(255,255,255,0.15)",
+                    color: copied ? "rgba(74,222,128,1)" : "rgba(156,163,175,1)",
+                    background: copied ? "rgba(74,222,128,0.08)" : "rgba(255,255,255,0.03)",
+                  }}
+                >
+                  {copied ? "✓ Copied!" : "↗ Share score"}
+                </button>
+              )}
+              <div className="flex items-center gap-2 text-xs text-green-400 bg-green-400/10 border border-green-400/30 rounded-full px-3 py-1.5">
+                <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
+                LIVE
+              </div>
             </div>
           </div>
         </div>
@@ -227,13 +264,17 @@ export default function LeaderboardPage() {
                 </div>
 
                 <div className="flex items-center gap-2 min-w-0">
-                  <div
-                    className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0 ${
-                      player.isCurrentPlayer ? "bg-cyan-500 text-black" : "bg-white/10 text-gray-400"
-                    }`}
-                  >
-                    {player.username[0].toUpperCase()}
-                  </div>
+                  {(() => {
+                    const [fg, bg] = player.isCurrentPlayer ? ["#000", "#22d3ee"] : avatarColor(player.username);
+                    return (
+                      <div
+                        className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0"
+                        style={{ background: bg, color: fg }}
+                      >
+                        {player.username[0].toUpperCase()}
+                      </div>
+                    );
+                  })()}
                   <span className={`font-semibold truncate ${player.isCurrentPlayer ? "text-cyan-400" : "text-white"}`}>
                     {player.username}
                     {player.isCurrentPlayer && (
@@ -262,7 +303,7 @@ export default function LeaderboardPage() {
 
                 <div className="text-center text-sm">
                   {player.badges > 0 ? (
-                    <span className="text-yellow-400">{"🏅".repeat(Math.min(player.badges, 3))}</span>
+                    <span className="text-yellow-400 font-mono text-xs">🏅 {player.badges}</span>
                   ) : (
                     <span className="text-gray-700">—</span>
                   )}
