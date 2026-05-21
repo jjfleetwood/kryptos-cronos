@@ -12,46 +12,71 @@ type Option = {
   preview: React.ReactNode;
 };
 
-function DarkPreview() {
+function YouthPreview() {
   return (
-    <div className="rounded-lg overflow-hidden border border-white/10" style={{ background: "#0d1117", width: "100%", height: 80 }}>
-      <div style={{ background: "rgba(255,255,255,0.04)", borderBottom: "1px solid rgba(255,255,255,0.06)", padding: "4px 8px" }}>
-        <div className="flex gap-1 items-center">
-          <div className="w-10 h-1.5 rounded" style={{ background: "rgba(255,255,255,0.12)" }} />
-          <div className="w-6 h-1.5 rounded" style={{ background: "rgba(255,255,255,0.06)" }} />
-          <div className="w-8 h-1.5 rounded" style={{ background: "rgba(255,255,255,0.06)" }} />
+    <div className="rounded-xl overflow-hidden border" style={{ background: "linear-gradient(135deg,#fdf4ff,#ede9fe)", borderColor: "rgba(124,58,237,0.3)", width: "100%", height: 84 }}>
+      <div style={{ background: "rgba(255,255,255,0.92)", borderBottom: "1px solid rgba(124,58,237,0.15)", padding: "5px 8px" }}>
+        <div className="flex gap-1.5 items-center">
+          <div className="w-10 h-2 rounded-full" style={{ background: "#7c3aed" }} />
+          <div className="w-6 h-2 rounded-full" style={{ background: "rgba(124,58,237,0.25)" }} />
+          <div className="w-8 h-2 rounded-full" style={{ background: "rgba(124,58,237,0.15)" }} />
         </div>
       </div>
       <div style={{ padding: "8px" }}>
-        <div className="w-3/4 h-2 rounded mb-1.5" style={{ background: "rgba(255,255,255,0.15)" }} />
-        <div className="w-full h-1.5 rounded mb-1" style={{ background: "rgba(255,255,255,0.06)" }} />
-        <div className="w-5/6 h-1.5 rounded" style={{ background: "rgba(255,255,255,0.06)" }} />
-        <div className="flex gap-1 mt-2">
-          <div className="h-3 w-12 rounded" style={{ background: "#22d3ee22" }} />
-          <div className="h-3 w-8 rounded" style={{ background: "rgba(255,255,255,0.04)" }} />
+        <div className="w-3/4 h-2.5 rounded-full mb-1.5" style={{ background: "#1e1b4b" }} />
+        <div className="w-full h-1.5 rounded-full mb-1" style={{ background: "rgba(124,58,237,0.2)" }} />
+        <div className="w-5/6 h-1.5 rounded-full" style={{ background: "rgba(124,58,237,0.12)" }} />
+        <div className="flex gap-1 mt-2.5">
+          <div className="h-3.5 w-14 rounded-full" style={{ background: "linear-gradient(135deg,#7c3aed,#a78bfa)" }} />
+          <div className="h-3.5 w-8 rounded-full" style={{ background: "rgba(124,58,237,0.15)" }} />
         </div>
       </div>
     </div>
   );
 }
 
-function YouthPreview() {
+function TerminalPreview() {
   return (
-    <div className="rounded-lg overflow-hidden border" style={{ background: "#e0f2fe", borderColor: "rgba(14,165,233,0.3)", width: "100%", height: 80 }}>
-      <div style={{ background: "rgba(255,255,255,0.9)", borderBottom: "1px solid rgba(14,165,233,0.2)", padding: "4px 8px" }}>
+    <div className="rounded-lg overflow-hidden border" style={{ background: "#020804", borderColor: "rgba(74,222,128,0.2)", width: "100%", height: 84, fontFamily: "monospace" }}>
+      <div style={{ background: "rgba(74,222,128,0.06)", borderBottom: "1px solid rgba(74,222,128,0.12)", padding: "4px 8px" }}>
         <div className="flex gap-1 items-center">
-          <div className="w-10 h-2 rounded-full" style={{ background: "#0ea5e9" }} />
-          <div className="w-6 h-2 rounded-full" style={{ background: "rgba(14,165,233,0.3)" }} />
-          <div className="w-8 h-2 rounded-full" style={{ background: "rgba(14,165,233,0.3)" }} />
+          <div className="w-14 h-1.5 rounded" style={{ background: "rgba(74,222,128,0.3)" }} />
+          <div className="w-8 h-1.5 rounded" style={{ background: "rgba(74,222,128,0.12)" }} />
         </div>
       </div>
       <div style={{ padding: "8px" }}>
-        <div className="w-3/4 h-2.5 rounded-full mb-1.5" style={{ background: "#1e293b" }} />
-        <div className="w-full h-2 rounded-full mb-1" style={{ background: "rgba(14,165,233,0.2)" }} />
-        <div className="w-5/6 h-2 rounded-full" style={{ background: "rgba(14,165,233,0.15)" }} />
+        <div className="flex items-center gap-1 mb-1">
+          <span style={{ color: "#4ade80", fontSize: 9 }}>▶</span>
+          <div className="w-20 h-1.5 rounded" style={{ background: "rgba(74,222,128,0.5)" }} />
+        </div>
+        <div className="w-3/4 h-1.5 rounded mb-1" style={{ background: "rgba(74,222,128,0.15)" }} />
+        <div className="w-full h-1.5 rounded mb-1" style={{ background: "rgba(74,222,128,0.08)" }} />
         <div className="flex gap-1 mt-2">
-          <div className="h-3.5 w-14 rounded-full" style={{ background: "linear-gradient(135deg, #0ea5e9, #38bdf8)" }} />
-          <div className="h-3.5 w-8 rounded-full" style={{ background: "rgba(14,165,233,0.2)" }} />
+          <div className="h-3 w-12 rounded" style={{ background: "rgba(74,222,128,0.2)", border: "1px solid rgba(74,222,128,0.3)" }} />
+          <div className="h-3 w-8 rounded" style={{ background: "rgba(74,222,128,0.08)" }} />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function ExecutivePreview() {
+  return (
+    <div className="rounded-lg overflow-hidden border" style={{ background: "#040c1e", borderColor: "rgba(245,158,11,0.2)", width: "100%", height: 84 }}>
+      <div style={{ background: "rgba(245,158,11,0.06)", borderBottom: "1px solid rgba(245,158,11,0.12)", padding: "4px 8px" }}>
+        <div className="flex gap-1 items-center">
+          <div className="w-10 h-1.5 rounded" style={{ background: "rgba(245,158,11,0.4)" }} />
+          <div className="w-6 h-1.5 rounded" style={{ background: "rgba(255,255,255,0.08)" }} />
+          <div className="w-8 h-1.5 rounded" style={{ background: "rgba(255,255,255,0.05)" }} />
+        </div>
+      </div>
+      <div style={{ padding: "8px" }}>
+        <div className="w-3/4 h-2 rounded mb-1.5" style={{ background: "rgba(240,246,255,0.7)" }} />
+        <div className="w-full h-1.5 rounded mb-1" style={{ background: "rgba(148,163,184,0.25)" }} />
+        <div className="w-5/6 h-1.5 rounded" style={{ background: "rgba(148,163,184,0.15)" }} />
+        <div className="flex gap-1 mt-2">
+          <div className="h-3 w-12 rounded" style={{ background: "linear-gradient(135deg,#b45309,#f59e0b)" }} />
+          <div className="h-3 w-8 rounded" style={{ background: "rgba(245,158,11,0.1)" }} />
         </div>
       </div>
     </div>
@@ -63,25 +88,25 @@ const OPTIONS: Option[] = [
     id: "youth",
     ageLabel: "0 – 12",
     headline: "Young Explorer",
-    tagline: "Bright, colorful, big text — let's go on an adventure!",
+    tagline: "Bright colors, big text, adventure vibes — let's go!",
     emoji: "🚀",
     preview: <YouthPreview />,
   },
   {
     id: "standard",
     ageLabel: "15 – 50",
-    headline: "Cyber Operative",
-    tagline: "Dark, sharp, professional — the full hacker experience.",
+    headline: "Hacker Terminal",
+    tagline: "Dark, green, and sharp — the authentic operator experience.",
     emoji: "💻",
-    preview: <DarkPreview />,
+    preview: <TerminalPreview />,
   },
   {
     id: "mature",
     ageLabel: "50+",
-    headline: "Veteran Agent",
-    tagline: "Clean dark interface, no distractions — just the mission.",
-    emoji: "🛡️",
-    preview: <DarkPreview />,
+    headline: "Executive View",
+    tagline: "Deep navy and gold — clean, high-contrast, professional.",
+    emoji: "🏛️",
+    preview: <ExecutivePreview />,
   },
 ];
 

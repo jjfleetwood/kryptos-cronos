@@ -27,8 +27,10 @@ const antiFoucScript = `
     var s = localStorage.getItem('kryptos-skin');
     if (s === 'youth' || s === 'standard' || s === 'mature') {
       document.documentElement.setAttribute('data-skin', s);
-      var scale = s === 'youth' ? '1.08' : '1';
-      document.documentElement.style.setProperty('--font-scale', scale);
+      document.documentElement.style.setProperty('--font-scale', s === 'youth' ? '1.08' : '1');
+      if (s === 'youth') document.documentElement.style.background = 'linear-gradient(160deg,#fdf4ff 0%,#ede9fe 50%,#dbeafe 100%)';
+      if (s === 'standard') document.documentElement.style.background = 'linear-gradient(135deg,#020804 0%,#061206 50%,#0a160a 100%)';
+      if (s === 'mature') document.documentElement.style.background = 'linear-gradient(160deg,#040c1e 0%,#071428 60%,#040c1e 100%)';
     }
   } catch(e) {}
 })();

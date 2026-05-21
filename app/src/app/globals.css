@@ -24,36 +24,56 @@ body {
   font-size: calc(1rem * var(--font-scale));
 }
 
-/* ── Youth skin ──────────────────────────────────────────────────────────── */
+/* ── Youth skin — light lavender/violet (0–12 game feel) ─────────────────── */
 html[data-skin="youth"] {
-  --background: #e0f2fe;
-  --foreground: #1e293b;
-  --skin-accent: #0ea5e9;
-  --skin-surface: rgba(255,255,255,0.85);
-  --skin-border: rgba(14,165,233,0.25);
+  --background: #fdf4ff;
+  --foreground: #1e1b4b;
+  --skin-accent: #7c3aed;
+  --skin-surface: rgba(255,255,255,0.90);
+  --skin-border: rgba(124,58,237,0.22);
   --font-scale: 1.08;
 }
 
 html[data-skin="youth"] body {
-  background: linear-gradient(160deg, #e0f2fe 0%, #fef9c3 60%, #dcfce7 100%);
+  background: linear-gradient(160deg, #fdf4ff 0%, #ede9fe 50%, #dbeafe 100%);
   background-attachment: fixed;
 }
 
-/* Youth: scrollbar */
-html[data-skin="youth"] ::-webkit-scrollbar-track {
-  background: #e0f2fe;
-}
-html[data-skin="youth"] ::-webkit-scrollbar-thumb {
-  background: #bae6fd;
-  border-radius: 4px;
-}
+html[data-skin="youth"] ::-webkit-scrollbar-track { background: #ede9fe; }
+html[data-skin="youth"] ::-webkit-scrollbar-thumb { background: #c4b5fd; border-radius: 4px; }
 
-/* ── Standard skin ───────────────────────────────────────────────────────── */
+/* ── Standard skin — dark terminal green (15–50 hacker feel) ─────────────── */
 html[data-skin="standard"] {
-  --background: #0d1117;
-  --foreground: #e6edf3;
-  --skin-accent: #22d3ee;
-  --skin-surface: rgba(255,255,255,0.03);
-  --skin-border: rgba(255,255,255,0.08);
+  --background: #020804;
+  --foreground: #dcfce7;
+  --skin-accent: #4ade80;
+  --skin-surface: rgba(74,222,128,0.03);
+  --skin-border: rgba(74,222,128,0.10);
   --font-scale: 1;
 }
+
+html[data-skin="standard"] body {
+  background: linear-gradient(135deg, #020804 0%, #061206 50%, #0a160a 100%);
+  background-attachment: fixed;
+}
+
+html[data-skin="standard"] ::-webkit-scrollbar-track { background: #020804; }
+html[data-skin="standard"] ::-webkit-scrollbar-thumb { background: #166534; border-radius: 4px; }
+
+/* ── Mature skin — deep navy/gold (50+ executive feel) ───────────────────── */
+html[data-skin="mature"] {
+  --background: #040c1e;
+  --foreground: #f0f6ff;
+  --skin-accent: #f59e0b;
+  --skin-surface: rgba(245,158,11,0.03);
+  --skin-border: rgba(245,158,11,0.12);
+  --font-scale: 1;
+}
+
+html[data-skin="mature"] body {
+  background: linear-gradient(160deg, #040c1e 0%, #071428 60%, #040c1e 100%);
+  background-attachment: fixed;
+}
+
+html[data-skin="mature"] ::-webkit-scrollbar-track { background: #040c1e; }
+html[data-skin="mature"] ::-webkit-scrollbar-thumb { background: #78350f; border-radius: 4px; }

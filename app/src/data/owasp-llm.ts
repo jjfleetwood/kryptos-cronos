@@ -1,3 +1,7 @@
+// Attribution: This module is based on the OWASP Top 10 for LLM Applications.
+// OWASP® is a registered trademark of the OWASP Foundation, Inc.
+// Content adapted under CC BY-SA 4.0.
+// Source: https://owasp.org/www-project-top-10-for-large-language-model-applications/
 import type { StageConfig, EpochConfig } from "./types";
 
 export const owaspLlmEpoch: EpochConfig = {

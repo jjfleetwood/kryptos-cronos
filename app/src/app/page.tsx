@@ -723,6 +723,7 @@ export default function Home() {
             <Link href="/leaderboard" className="hover:text-gray-400 transition-colors">Leaderboard</Link>
             <Link href="/login" className="hover:text-gray-400 transition-colors">Sign In</Link>
             <Link href="/privacy" className="hover:text-gray-400 transition-colors">Privacy</Link>
+            <Link href="/attribution" className="hover:text-gray-400 transition-colors">Attributions</Link>
           </div>
           <p className="text-xs" style={{ color: "rgba(55,65,81,1)" }}>
             © 2026 Kryptós CronOS (κρυπτός χρόνος) · Built for defenders

@@ -1,3 +1,7 @@
+// Attribution: This module references MITRE ATT&CK® content.
+// MITRE ATT&CK® is a registered trademark of The MITRE Corporation.
+// Content based on the ATT&CK® knowledge base — licensed under CC BY 4.0.
+// Source: https://attack.mitre.org/
 import type { StageConfig, EpochConfig } from "./types";
 
 export const mitreEpoch: EpochConfig = {

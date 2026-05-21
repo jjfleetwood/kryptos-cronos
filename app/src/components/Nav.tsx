@@ -127,7 +127,7 @@ export default function Nav() {
                         }}
                       >
                         {skinId === id ? "✓ " : "  "}
-                        {id === "youth" ? "🚀 Young Explorer (0–12)" : id === "standard" ? "💻 Standard (15–50)" : "🛡️ Classic (50+)"}
+                        {id === "youth" ? "🚀 Explorer (0–12)" : id === "standard" ? "💻 Terminal (15–50)" : "🏛️ Executive (50+)"}
                       </button>
                     ))}
                   </div>

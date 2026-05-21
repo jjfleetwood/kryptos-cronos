@@ -1,3 +1,7 @@
+// Attribution: This module references MITRE ATLAS™ content.
+// MITRE ATLAS™ is developed by The MITRE Corporation.
+// Content based on the ATLAS knowledge base — licensed under CC BY 4.0.
+// Source: https://atlas.mitre.org/
 import type { StageConfig, EpochConfig } from "./types";
 
 export const mitreAtlasEpoch: EpochConfig = {
