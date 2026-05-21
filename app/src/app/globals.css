@@ -24,45 +24,45 @@ body {
   font-size: calc(1rem * var(--font-scale));
 }
 
-/* ── Youth skin — light lavender/violet (0–12 game feel) ─────────────────── */
+/* ── Youth skin — dark navy, larger font (0–12) ───────────────────────────── */
 html[data-skin="youth"] {
-  --background: #fdf4ff;
-  --foreground: #1e1b4b;
-  --skin-accent: #7c3aed;
-  --skin-surface: rgba(255,255,255,0.90);
-  --skin-border: rgba(124,58,237,0.22);
+  --background: #0d1117;
+  --foreground: #f0f6ff;
+  --skin-accent: #22d3ee;
+  --skin-surface: rgba(255,255,255,0.03);
+  --skin-border: rgba(255,255,255,0.08);
   --font-scale: 1.08;
 }
 
 html[data-skin="youth"] body {
-  background: linear-gradient(160deg, #fdf4ff 0%, #ede9fe 50%, #dbeafe 100%);
+  background: linear-gradient(135deg, #0d1117 0%, #0f2027 50%, #1a1a2e 100%);
   background-attachment: fixed;
 }
 
-html[data-skin="youth"] ::-webkit-scrollbar-track { background: #ede9fe; }
-html[data-skin="youth"] ::-webkit-scrollbar-thumb { background: #c4b5fd; border-radius: 4px; }
+html[data-skin="youth"] ::-webkit-scrollbar-track { background: #0d1117; }
+html[data-skin="youth"] ::-webkit-scrollbar-thumb { background: #1e3a5f; border-radius: 4px; }
 
-/* ── Standard skin — dark terminal green (15–50 hacker feel) ─────────────── */
+/* ── Standard skin — dark navy, standard font (15–50) ────────────────────── */
 html[data-skin="standard"] {
-  --background: #020804;
-  --foreground: #dcfce7;
-  --skin-accent: #4ade80;
-  --skin-surface: rgba(74,222,128,0.03);
-  --skin-border: rgba(74,222,128,0.10);
+  --background: #0d1117;
+  --foreground: #f0f6ff;
+  --skin-accent: #22d3ee;
+  --skin-surface: rgba(255,255,255,0.03);
+  --skin-border: rgba(255,255,255,0.08);
   --font-scale: 1;
 }
 
 html[data-skin="standard"] body {
-  background: linear-gradient(135deg, #020804 0%, #061206 50%, #0a160a 100%);
+  background: linear-gradient(135deg, #0d1117 0%, #0f2027 50%, #1a1a2e 100%);
   background-attachment: fixed;
 }
 
-html[data-skin="standard"] ::-webkit-scrollbar-track { background: #020804; }
-html[data-skin="standard"] ::-webkit-scrollbar-thumb { background: #166534; border-radius: 4px; }
+html[data-skin="standard"] ::-webkit-scrollbar-track { background: #0d1117; }
+html[data-skin="standard"] ::-webkit-scrollbar-thumb { background: #1e3a5f; border-radius: 4px; }
 
 /* ── Mature skin — deep navy/gold (50+ executive feel) ───────────────────── */
 html[data-skin="mature"] {
-  --background: #040c1e;
+  --background: #0d1117;
   --foreground: #f0f6ff;
   --skin-accent: #f59e0b;
   --skin-surface: rgba(245,158,11,0.03);
@@ -71,9 +71,9 @@ html[data-skin="mature"] {
 }
 
 html[data-skin="mature"] body {
-  background: linear-gradient(160deg, #040c1e 0%, #071428 60%, #040c1e 100%);
+  background: linear-gradient(135deg, #0d1117 0%, #0f2027 50%, #1a1a2e 100%);
   background-attachment: fixed;
 }
 
-html[data-skin="mature"] ::-webkit-scrollbar-track { background: #040c1e; }
+html[data-skin="mature"] ::-webkit-scrollbar-track { background: #0d1117; }
 html[data-skin="mature"] ::-webkit-scrollbar-thumb { background: #78350f; border-radius: 4px; }

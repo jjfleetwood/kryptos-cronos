@@ -93,7 +93,7 @@ export default function StagesPage() {
   return (
     <div
       className="min-h-screen px-4 py-16"
-      style={{ background: skin.pageBg }}
+      style={{ background: "linear-gradient(135deg, #0d1117 0%, #0f2027 50%, #1a1a2e 100%)" }}
     >
       <OnboardingModal />
       <div className="max-w-4xl mx-auto">
