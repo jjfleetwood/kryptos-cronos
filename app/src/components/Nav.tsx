@@ -101,7 +101,7 @@ export default function Nav() {
               <span className="text-sm hidden sm:block" style={{ color: skin.textSecondary }}>
                 👤 <span style={{ color: skin.accent }}>{username}</span>
               </span>
-              {/* Skin switcher pill */}
+              {/* Skin switcher pill — hidden; re-enable by uncommenting
               <div className="relative">
                 <button
                   onClick={() => setSkinMenuOpen((o) => !o)}
@@ -133,6 +133,7 @@ export default function Nav() {
                   </div>
                 )}
               </div>
+              */}
               <button
                 onClick={handleLogout}
                 className="text-xs px-3 py-1.5 rounded-lg transition-colors hover:text-red-400"

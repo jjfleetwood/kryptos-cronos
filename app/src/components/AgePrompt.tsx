@@ -115,6 +115,9 @@ export default function AgePrompt() {
   const [hovered, setHovered] = useState<SkinId | null>(null);
   const [chosen, setChosen] = useState<SkinId | null>(null);
 
+  // Hidden — prompt disabled; re-enable by removing this line
+  return null;
+
   if (prompted) return null;
 
   function choose(id: SkinId) {
