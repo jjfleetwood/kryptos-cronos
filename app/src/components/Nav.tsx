@@ -84,6 +84,9 @@ export default function Nav() {
           ))}
           {username && (
             <>
+              <Link href="/avatar" style={{ color: "#a78bfa" }} className="transition-opacity hover:opacity-80">
+                Your Avatar
+              </Link>
               <Link href="/trophies" style={{ color: "#22d3ee" }} className="transition-opacity hover:opacity-80">
                 🏆 Trophies
               </Link>
@@ -207,6 +210,13 @@ export default function Nav() {
           ))}
           {username && (
             <>
+              <Link
+                href="/avatar"
+                className="block px-3 py-2.5 rounded-lg text-sm"
+                style={{ color: "#a78bfa" }}
+              >
+                Your Avatar
+              </Link>
               <Link
                 href="/trophies"
                 className="block px-3 py-2.5 rounded-lg text-sm"

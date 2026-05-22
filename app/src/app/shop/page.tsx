@@ -3,7 +3,6 @@
 import { useEffect, useState, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import Avatar from "@/components/Avatar";
 import { SHOP_ITEMS, type ShopItem } from "@/data/shop-items";
 import { TIER_META, type TrophyTier } from "@/data/trophies";
 
@@ -32,7 +31,7 @@ type TrophyApiResponse =
   | { mode: "admin"; trophies: TrophyRow[]; ownedIds: string[] }
   | { mode: "user"; shop: TrophyRow[]; owned: TrophyRow[] };
 
-type Tab = "shop" | "trophy" | "treasures";
+type Tab = "shop" | "treasures";
 
 const RARITY_COLORS: Record<string, string> = {
   common: "text-gray-400 border-gray-600/40 bg-gray-600/10",
@@ -141,7 +140,6 @@ export default function ShopPage() {
   const [busy, setBusy] = useState<string | null>(null);
   const [flash, setFlash] = useState<{ msg: string; ok: boolean } | null>(null);
 
-  // Trophy showcase state
   const [trophyData, setTrophyData] = useState<TrophyApiResponse | null>(null);
   const [trophyLoading, setTrophyLoading] = useState(false);
   const [buyingTrophy, setBuyingTrophy] = useState<string | null>(null);
@@ -194,30 +192,12 @@ export default function ShopPage() {
     const json = await res.json();
     setBusy(null);
     if (res.ok) {
-      showFlash(`${item.emoji} ${item.name} added to your trophy room!`, true);
+      showFlash(`${item.emoji} ${item.name} added to your collection!`, true);
       load();
     } else {
       showFlash(json.error === "insufficient coins"
         ? `Not enough coins — need ${item.price}, have ${data.spendable}`
         : (json.error ?? "Purchase failed"), false);
-    }
-  }
-
-  async function toggleEquip(itemId: string) {
-    if (!data || busy) return;
-    setBusy(itemId);
-    const res = await fetch("/api/shop", {
-      method: "PATCH",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ itemId }),
-    });
-    const json = await res.json();
-    setBusy(null);
-    if (res.ok) {
-      showFlash(json.action === "equipped" ? "Item equipped!" : "Item unequipped", true);
-      load();
-    } else {
-      showFlash(json.error ?? "Failed", false);
     }
   }
 
@@ -242,10 +222,7 @@ export default function ShopPage() {
     }
   }
 
-  const itemsById = Object.fromEntries(SHOP_ITEMS.map((i) => [i.id, i]));
-  const equipped = data?.equipped ?? {};
   const inventory = data?.inventory ?? [];
-
   const ownedTrophyIds = new Set(
     trophyData?.mode === "user" ? trophyData.owned.map((t) => t.id) : []
   );
@@ -269,7 +246,6 @@ export default function ShopPage() {
       )}
 
       <div className="max-w-5xl mx-auto">
-        {/* Header */}
         <div className="mb-8">
           <Link href="/stages" className="text-gray-600 hover:text-gray-400 text-sm mb-4 inline-block transition-colors">
             ← Stage Map
@@ -288,7 +264,7 @@ export default function ShopPage() {
 
         {/* Tabs */}
         <div className="flex gap-1 bg-white/3 border border-white/10 rounded-xl p-1 mb-8 w-fit">
-          {(["shop", "treasures", "trophy"] as Tab[]).map((t) => (
+          {(["shop", "treasures"] as Tab[]).map((t) => (
             <button
               key={t}
               onClick={() => setTab(t)}
@@ -296,68 +272,65 @@ export default function ShopPage() {
                 tab === t ? "bg-cyan-500/15 border border-cyan-500/40 text-cyan-400" : "text-gray-500 hover:text-gray-300"
               }`}
             >
-              {t === "shop" ? "🛒 Shop" : t === "treasures" ? "💎 Treasures" : "🏆 Trophy Room"}
+              {t === "shop" ? "🛒 Shop" : "💎 Treasures"}
             </button>
           ))}
         </div>
 
-        {loading && tab !== "treasures" ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {[1, 2, 3].map((i) => (
-              <div key={i} className="h-48 rounded-xl bg-white/3 border border-white/8 animate-pulse" />
-            ))}
-          </div>
-        ) : tab === "shop" ? (
-          /* ── Avatar Shop ── */
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {SHOP_ITEMS.map((item) => {
-              const owned = inventory.includes(item.id);
-              const canAfford = (data?.spendable ?? 0) >= item.price;
-              return (
-                <div
-                  key={item.id}
-                  className={`rounded-2xl border p-5 flex flex-col gap-4 transition-all ${
-                    owned
-                      ? "border-green-500/30 bg-green-500/5"
-                      : "border-white/8 bg-white/2 hover:border-white/15"
-                  }`}
-                >
-                  <div className="flex items-start justify-between">
-                    <div className="text-4xl">{item.emoji}</div>
-                    <span className={`text-xs px-2 py-0.5 rounded-full border font-semibold ${RARITY_COLORS[item.rarity]}`}>
-                      {item.rarity}
-                    </span>
+        {tab === "shop" ? (
+          loading ? (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              {[1, 2, 3].map((i) => (
+                <div key={i} className="h-48 rounded-xl bg-white/3 border border-white/8 animate-pulse" />
+              ))}
+            </div>
+          ) : (
+            /* ── Avatar items ── */
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+              {SHOP_ITEMS.map((item) => {
+                const owned = inventory.includes(item.id);
+                const canAfford = (data?.spendable ?? 0) >= item.price;
+                return (
+                  <div
+                    key={item.id}
+                    className={`rounded-2xl border p-5 flex flex-col gap-4 transition-all ${
+                      owned ? "border-green-500/30 bg-green-500/5" : "border-white/8 bg-white/2 hover:border-white/15"
+                    }`}
+                  >
+                    <div className="flex items-start justify-between">
+                      <div className="text-4xl">{item.emoji}</div>
+                      <span className={`text-xs px-2 py-0.5 rounded-full border font-semibold ${RARITY_COLORS[item.rarity]}`}>
+                        {item.rarity}
+                      </span>
+                    </div>
+                    <div>
+                      <div className="text-white font-bold">{item.name}</div>
+                      <div className="text-gray-500 text-xs mt-1 leading-relaxed">{item.description}</div>
+                      <div className="text-gray-600 text-xs mt-2">Slot: <span className="text-gray-400">{item.slot}</span></div>
+                    </div>
+                    <div className="mt-auto flex items-center justify-between">
+                      <span className="text-amber-400 font-mono font-bold">{item.price} 🪙</span>
+                      {owned ? (
+                        <span className="text-green-500 text-xs font-semibold">✓ Owned</span>
+                      ) : (
+                        <button
+                          onClick={() => purchase(item)}
+                          disabled={!!busy || !canAfford}
+                          className={`px-4 py-1.5 rounded-lg text-sm font-bold transition-all ${
+                            canAfford ? "bg-cyan-500 hover:bg-cyan-400 text-black" : "bg-white/5 text-gray-600 cursor-not-allowed"
+                          }`}
+                        >
+                          {busy === item.id ? "…" : canAfford ? "Buy" : "Need more coins"}
+                        </button>
+                      )}
+                    </div>
                   </div>
-                  <div>
-                    <div className="text-white font-bold">{item.name}</div>
-                    <div className="text-gray-500 text-xs mt-1 leading-relaxed">{item.description}</div>
-                    <div className="text-gray-600 text-xs mt-2">Slot: <span className="text-gray-400">{item.slot}</span></div>
-                  </div>
-                  <div className="mt-auto flex items-center justify-between">
-                    <span className="text-amber-400 font-mono font-bold">{item.price} 🪙</span>
-                    {owned ? (
-                      <span className="text-green-500 text-xs font-semibold">✓ Owned</span>
-                    ) : (
-                      <button
-                        onClick={() => purchase(item)}
-                        disabled={!!busy || !canAfford}
-                        className={`px-4 py-1.5 rounded-lg text-sm font-bold transition-all ${
-                          canAfford
-                            ? "bg-cyan-500 hover:bg-cyan-400 text-black"
-                            : "bg-white/5 text-gray-600 cursor-not-allowed"
-                        }`}
-                      >
-                        {busy === item.id ? "…" : canAfford ? "Buy" : "Need more coins"}
-                      </button>
-                    )}
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-
-        ) : tab === "treasures" ? (
-          /* ── Trophy Showcase ── */
+                );
+              })}
+            </div>
+          )
+        ) : (
+          /* ── Treasures ── */
           <div>
             <div className="flex items-center gap-3 mb-2">
               <h2 className="text-xl font-black text-white">Today&apos;s Showcase</h2>
@@ -388,63 +361,6 @@ export default function ShopPage() {
                 ))}
               </div>
             )}
-          </div>
-
-        ) : (
-          /* ── Avatar Trophy Room ── */
-          <div className="flex flex-col lg:flex-row gap-8">
-            <div className="flex flex-col items-center gap-4 flex-shrink-0">
-              <div className="text-xs text-gray-600 uppercase tracking-wider font-semibold">Your Avatar</div>
-              <div className="bg-white/2 border border-white/8 rounded-2xl p-8 flex items-center justify-center"
-                style={{ background: "radial-gradient(ellipse at center, rgba(6,182,212,0.06) 0%, transparent 70%)" }}
-              >
-                <Avatar equipped={equipped} itemsById={itemsById} size="lg" />
-              </div>
-              <div className="text-xs text-gray-700 text-center">Click items below to equip / unequip</div>
-            </div>
-
-            <div className="flex-1">
-              <div className="text-xs text-gray-600 uppercase tracking-wider font-semibold mb-4">
-                Your Items ({inventory.length})
-              </div>
-              {inventory.length === 0 ? (
-                <div className="text-center py-16 text-gray-600 text-sm">
-                  No items yet. Head to the Shop to get your first one.
-                  <button onClick={() => setTab("shop")} className="block mx-auto mt-3 text-cyan-400 hover:text-cyan-300 text-xs">
-                    → Go to Shop
-                  </button>
-                </div>
-              ) : (
-                <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-                  {inventory.map((itemId) => {
-                    const item = itemsById[itemId];
-                    if (!item) return null;
-                    const isEquipped = equipped[item.slot] === itemId;
-                    return (
-                      <button
-                        key={itemId}
-                        onClick={() => toggleEquip(itemId)}
-                        disabled={!!busy}
-                        className={`rounded-xl border p-4 text-left transition-all hover:scale-105 ${
-                          isEquipped
-                            ? "border-cyan-500/50 bg-cyan-500/10 shadow-lg shadow-cyan-500/10"
-                            : "border-white/10 bg-white/3 hover:border-white/20"
-                        }`}
-                      >
-                        <div className="text-3xl mb-2">{item.emoji}</div>
-                        <div className="text-white text-xs font-semibold leading-tight">{item.name}</div>
-                        <div className={`text-xs mt-1.5 font-medium ${isEquipped ? "text-cyan-400" : "text-gray-600"}`}>
-                          {isEquipped ? "✓ Equipped" : "Tap to equip"}
-                        </div>
-                        <span className={`text-xs px-1.5 py-0.5 rounded-full border mt-2 inline-block ${RARITY_COLORS[item.rarity]}`}>
-                          {item.rarity}
-                        </span>
-                      </button>
-                    );
-                  })}
-                </div>
-              )}
-            </div>
           </div>
         )}
       </div>
