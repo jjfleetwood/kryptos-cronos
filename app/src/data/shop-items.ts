@@ -10,6 +10,7 @@ export type ShopItem = {
   rarity: "common" | "rare" | "legendary";
   /** SVG path/shape string used to render the item on the avatar silhouette */
   svgClass: string;
+  adminOnly?: boolean;
 };
 
 export const SHOP_ITEMS: ShopItem[] = [
@@ -22,6 +23,7 @@ export const SHOP_ITEMS: ShopItem[] = [
     emoji: "🏅",
     rarity: "rare",
     svgClass: "item-medallion",
+    adminOnly: true,
   },
 ];
 

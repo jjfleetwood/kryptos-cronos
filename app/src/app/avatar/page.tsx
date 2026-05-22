@@ -4,7 +4,7 @@ import { useEffect, useState, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Avatar from "@/components/Avatar";
-import { SHOP_ITEMS, type ShopItem } from "@/data/shop-items";
+import { type ShopItem } from "@/data/shop-items";
 
 type ShopData = {
   items: ShopItem[];
@@ -64,7 +64,7 @@ export default function AvatarPage() {
     }
   }
 
-  const itemsById = Object.fromEntries(SHOP_ITEMS.map((i) => [i.id, i]));
+  const itemsById = Object.fromEntries((data?.items ?? []).map((i) => [i.id, i]));
   const equipped = data?.equipped ?? {};
   const inventory = data?.inventory ?? [];
 

@@ -3,7 +3,7 @@
 import { useEffect, useState, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { SHOP_ITEMS, type ShopItem } from "@/data/shop-items";
+import { type ShopItem } from "@/data/shop-items";
 import { TIER_META, type TrophyTier } from "@/data/trophies";
 
 type ShopData = {
@@ -208,6 +208,7 @@ export default function ShopPage() {
     }
   }
 
+  const items = data?.items ?? [];
   const inventory = data?.inventory ?? [];
   const ownedTrophyIds = new Set(
     trophyData?.mode === "user" ? trophyData.owned.map((t) => t.id) : []
@@ -258,7 +259,7 @@ export default function ShopPage() {
           </div>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-14">
-            {SHOP_ITEMS.map((item) => {
+            {items.map((item) => {
               const owned = inventory.includes(item.id);
               const canAfford = (data?.spendable ?? 0) >= item.price;
               return (

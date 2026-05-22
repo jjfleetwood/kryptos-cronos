@@ -1,7 +1,25 @@
 import { NextRequest, NextResponse } from "next/server";
+import { createHmac, timingSafeEqual } from "crypto";
 import { redis } from "@/lib/redis";
 import { getServerSession } from "@/lib/server-session";
 import { SHOP_ITEMS, getItem } from "@/data/shop-items";
+
+function verifyAdminToken(token: string): boolean {
+  const secret = process.env.ADMIN_SECRET;
+  if (!secret) return false;
+  const colonIdx = token.lastIndexOf(":");
+  if (colonIdx === -1) return false;
+  const username = token.slice(0, colonIdx);
+  const signature = token.slice(colonIdx + 1);
+  if (!username || !signature) return false;
+  const expected = createHmac("sha256", secret).update(username).digest("hex");
+  try {
+    const sigBuf = Buffer.from(signature, "hex");
+    const expBuf = Buffer.from(expected, "hex");
+    if (sigBuf.length !== expBuf.length) return false;
+    return timingSafeEqual(sigBuf, expBuf);
+  } catch { return false; }
+}
 
 function parseArr(val: unknown): string[] {
   if (!val) return [];
@@ -17,6 +35,9 @@ export async function GET(req: NextRequest) {
   const username = getServerSession(req);
   if (!username) return NextResponse.json({ error: "unauthorized" }, { status: 401 });
 
+  const adminToken = req.cookies.get("admin_token")?.value ?? "";
+  const isAdmin = verifyAdminToken(adminToken);
+
   const lower = username.toLowerCase();
   const [progressData, inventoryData] = await Promise.all([
     redis.hgetall(`progress:${lower}`),
@@ -29,8 +50,10 @@ export async function GET(req: NextRequest) {
   const inventory = (inventoryData ?? []) as string[];
   const equipped = await redis.hgetall(`equipped:${lower}`) ?? {};
 
+  const items = isAdmin ? SHOP_ITEMS : SHOP_ITEMS.filter((i) => !i.adminOnly);
+
   return NextResponse.json({
-    items: SHOP_ITEMS,
+    items,
     inventory,
     equipped,
     coins,
@@ -51,6 +74,13 @@ export async function POST(req: NextRequest) {
 
   const item = getItem(body.itemId);
   if (!item) return NextResponse.json({ error: "item not found" }, { status: 404 });
+
+  if (item.adminOnly) {
+    const adminToken = req.cookies.get("admin_token")?.value ?? "";
+    if (!verifyAdminToken(adminToken)) {
+      return NextResponse.json({ error: "item not found" }, { status: 404 });
+    }
+  }
 
   const lower = username.toLowerCase();
   const progressKey = `progress:${lower}`;
