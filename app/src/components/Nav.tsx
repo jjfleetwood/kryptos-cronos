@@ -83,17 +83,17 @@ export default function Nav() {
             </Link>
           ))}
           {username && (
-            <>
-              <Link href="/avatar" style={{ color: "#a78bfa" }} className="transition-opacity hover:opacity-80">
-                Your Avatar
+            <div className="flex items-center gap-1">
+              <Link href="/avatar" title="Your Avatar" className="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-white/8 transition-colors text-base">
+                👤
               </Link>
-              <Link href="/trophies" style={{ color: "#22d3ee" }} className="transition-opacity hover:opacity-80">
-                🏆 Trophies
+              <Link href="/trophies" title="Trophies" className="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-white/8 transition-colors text-base">
+                🏆
               </Link>
-              <Link href="/shop" style={{ color: "#f59e0b" }} className="transition-opacity hover:opacity-80">
-                🛒 Shop
+              <Link href="/shop" title="Shop" className="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-white/8 transition-colors text-base">
+                🛒
               </Link>
-            </>
+            </div>
           )}
           {admin && (
             <Link href="/admin" className="text-red-400 hover:text-red-300 transition-colors font-semibold">
