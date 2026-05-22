@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect, useCallback } from "react";
 import { awardStage } from "@/lib/progress";
+import { getSession } from "@/lib/auth";
 import BackLink from "./BackLink";
 import AttackDiagram from "./AttackDiagram";
 import FlagSuccessModal from "./FlagSuccessModal";
@@ -276,7 +277,8 @@ export default function CtfChallenge({ stage, backHref = "/stages" }: { stage: S
   } | null>(null);
   const [lines, setLines] = useState<Line[]>(() => makeInitialLines(stage, ctf, minFragments));
 
-  const storageKey = `ctf-state:${stage.id}`;
+  const username = getSession();
+  const storageKey = username ? `ctf-state:${username}:${stage.id}` : null;
 
   // Timer
   const startedAt = useRef(Date.now());
@@ -290,6 +292,7 @@ export default function CtfChallenge({ stage, backHref = "/stages" }: { stage: S
   // Restore saved state on mount
   useEffect(() => {
     try {
+      if (!storageKey) return;
       const raw = localStorage.getItem(storageKey);
       if (!raw) return;
       const data: CtfSavedState = JSON.parse(raw);
@@ -307,7 +310,7 @@ export default function CtfChallenge({ stage, backHref = "/stages" }: { stage: S
 
   // Save state to localStorage when solved
   useEffect(() => {
-    if (!solved || restoredComplete) return;
+    if (!solved || restoredComplete || !storageKey) return;
     const data: CtfSavedState = {
       lines,
       cwd,
@@ -343,7 +346,7 @@ export default function CtfChallenge({ stage, backHref = "/stages" }: { stage: S
   }
 
   const handleReset = useCallback(() => {
-    localStorage.removeItem(storageKey);
+    if (storageKey) localStorage.removeItem(storageKey);
     setLines(makeInitialLines(stage, ctf, minFragments));
     setCwd("/");
     setInput("");
