@@ -5,9 +5,8 @@
 Gamified cybersecurity + AI training platform. 32 curriculum epochs, 358 CTF/quiz stages, live leaderboard, admin dashboard, 24 downloadable MCP server templates. Built with Next.js 16 / React 19 / TypeScript / Tailwind CSS / Upstash Redis / Resend.
 
 **Live:** kryptoscronos.com  
-**App:** app-jjfleetwood.vercel.app  
 **Repo:** github.com/jjfleetwood/kryptos-cronos  
-**Current version:** v1.7.5 (as of 2026-05-21)
+**Current version:** v1.8.0 (as of 2026-05-22)
 
 ---
 
@@ -35,6 +34,29 @@ npx tsc --noEmit     # Type check
 npm run lint         # ESLint
 npx vercel --prod    # Deploy to production
 ```
+
+---
+
+## Dev → Prod Workflow
+
+Branch strategy: `dev` → `master`
+
+1. **Work on `dev`** — all feature development, bug fixes, and CI experiments
+2. **Push to `dev`** → GitHub Actions CI runs automatically (lint + tsc + build + audit); Vercel generates a preview URL for the dev branch
+3. **Test on preview URL** — validate the feature against the live Redis/Resend stack
+4. **Merge `dev` → `master`** → CI runs again; Vercel auto-deploys to kryptoscronos.com (production)
+
+CI runs on: pushes to `dev` or `master`, and PRs targeting `master`. Config: `.github/workflows/ci.yml`.
+
+**GitHub repo secrets required for CI build:**
+- `UPSTASH_REDIS_REST_URL`
+- `UPSTASH_REDIS_REST_TOKEN`
+
+(All other env vars are stubbed with `ci-placeholder` in the workflow file for the build step.)
+
+**Vercel setup (one-time, in dashboard):**
+- Connect GitHub repo → auto-deploy `master` → production
+- Auto-deploy `dev` → preview URL
 
 ---
 
@@ -172,6 +194,10 @@ ADMIN_EMAIL
 ADMIN_USERNAME
 ADMIN_SECRET              ← 32+ char random string for HMAC cookie signing
 ANTHROPIC_API_KEY         ← Claude Haiku for ARIA chatbot
+STRIPE_SECRET_KEY         ← Stripe secret key (sk_live_... or sk_test_...)
+STRIPE_WEBHOOK_SECRET     ← Stripe webhook signing secret (whsec_...)
+STRIPE_PRO_MONTHLY_PRICE_ID  ← Stripe price ID for $5.99/mo
+STRIPE_PRO_YEARLY_PRICE_ID   ← Stripe price ID for $55.99/yr
 ```
 
 Local dev: `.env.local` in `app/` (gitignored).
@@ -199,6 +225,12 @@ Local dev: `.env.local` in `app/` (gitignored).
 | `GET /api/trophies` | Admin: full library + claimed counts. User: daily 10 shop rotation + owned |
 | `POST /api/trophies` | Buy trophy — verifies in daily rotation, atomic Redis INCR supply check, deducts coinsSpent |
 | `GET /api/progress/certificate` | Server-rendered PDF via @react-pdf/renderer — coins, stages, badges, streak, per-epoch breakdown |
+| `POST /api/stripe/checkout` | Create Stripe checkout session (monthly/yearly); returns `{ url }` for redirect |
+| `POST /api/webhooks/stripe` | Stripe webhook: `checkout.session.completed` → sets `tier: pro`; `customer.subscription.deleted` → sets `tier: free` |
+| `GET /api/admin/users` | Admin: list all users with tier, coins, stages, badges, streak |
+| `POST /api/admin/set-tier` | Admin: set `tier: pro|free` for a user (manual comp override) |
+| `GET /api/admin/cms/stage/[stageId]` | Admin: get CMS override for a stage |
+| `POST /api/admin/cms/stage/[stageId]` | Admin: save CMS override for a stage |
 
 ---
 
@@ -210,7 +242,7 @@ Local dev: `.env.local` in `app/` (gitignored).
 - All flag/answer/XP validation server-side
 - Rate limiting on all auth + email endpoints
 - HSTS, X-Frame-Options, X-Content-Type-Options set in `next.config.ts`
-- Nonce-based CSP (per-request) — `src/middleware.ts` generates nonce; `layout.tsx` reads `x-nonce` header and applies to anti-FOUC script; no `unsafe-inline` in script-src
+- Nonce-based CSP (per-request) — `src/proxy.ts` generates nonce; `layout.tsx` reads `x-nonce` header and applies to anti-FOUC script; no `unsafe-inline` in script-src
 
 ---
 
@@ -223,6 +255,7 @@ Local dev: `.env.local` in `app/` (gitignored).
 | **Resend** | Transactional email |
 | **GitHub** | Source control + CI (Actions: lint + tsc + build) |
 | **Anthropic** | Claude Haiku for ARIA AI chatbot |
+| **Stripe** | Payment processing — Pro subscriptions (monthly/yearly); webhook for lifecycle events |
 
 ---
 
@@ -230,14 +263,27 @@ Local dev: `.env.local` in `app/` (gitignored).
 
 - **Stage:** Pre-seed, seeking $1.5M seed round
 - **Domain:** kryptoscronos.com
-- **Model:** B2C free/pro ($19/mo) + B2B enterprise ($8/seat/mo) + sponsor integrations
+- **Model:** B2C 7-day free trial → Pro ($5.99/mo or $55.99/yr) + B2B enterprise ($8/seat/mo) + sponsor integrations
 - **Target sponsors:** CrowdStrike, AWS, SentinelOne, CompTIA, ISC²
 
 ---
 
+## What's Shipped (v1.8.0)
+
+- ✅ Epoch #32 `cisco-advanced` — 12 stages (stage-m39 → stage-m50), Cyan theme, unlocked
+- ✅ Pro tier access model — 7-day free trial (based on `createdAt`), then Stripe paywall; `src/lib/access.ts` (server-only)
+- ✅ Stripe integration — `/api/stripe/checkout` (lazy init), `/api/webhooks/stripe` (lazy init); monthly $5.99, yearly $55.99 (SAVE 22%)
+- ✅ `ProPaywall` component — inline upgrade wall shown when trial expired; back link to epoch page
+- ✅ Server-side tier enforcement — `canAccessStage()` called in `check-flag`, `check-answer`, and stage page; flag/answer/quiz secrets stripped before client pass
+- ✅ Pro hints — HintDrawer gate: hints 2+ require Pro; HintChatbot: no cooldown + ∞ message counter for Pro
+- ✅ Admin tier toggle — toggle switch per user row in `/admin`; calls `/api/admin/set-tier` to write `tier: pro|free` to Redis; overrides trial
+- ✅ Admin Remote Desktop link → https://remotedesktop.google.com/access
+- ✅ CI/CD pipeline — `dev` branch + `.github/workflows/ci.yml` (lint + tsc --skipLibCheck + build + audit on dev + master pushes)
+- ✅ `src/proxy.ts` — active Turbopack middleware (Next.js 16 requires `proxy` export, not `middleware`); merged from deleted `middleware.ts`
+
 ## What's Shipped (v1.7.5)
 
-- ✅ Nonce-based CSP — `src/middleware.ts` generates per-request nonce; `layout.tsx` async reads `x-nonce`; `next.config.ts` static CSP removed; no `unsafe-inline` in script-src
+- ✅ Nonce-based CSP — `src/proxy.ts` generates per-request nonce; `layout.tsx` async reads `x-nonce`; `next.config.ts` static CSP removed; no `unsafe-inline` in script-src
 - ✅ Docs refreshed to v1.7.5: PITCH_TARGETS.md (346 stages, 10 tracks), PARTNERS.md v3.1, BUSINESS_PROPOSAL_PRO.md + BUSINESS_PROPOSAL_CASUAL.md (346 stages, 31 epochs, 10 tracks, v1.7.4 live features)
 
 ## What's Shipped (v1.7.4)
