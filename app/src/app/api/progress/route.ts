@@ -4,8 +4,8 @@ import { getServerSession } from "@/lib/server-session";
 import { awardStageInRedis } from "@/lib/server-progress";
 
 export async function GET(req: NextRequest) {
-  const username = req.nextUrl.searchParams.get("username");
-  if (!username) return NextResponse.json({ error: "username required" }, { status: 400 });
+  const username = getServerSession(req);
+  if (!username) return NextResponse.json({ error: "unauthorized" }, { status: 401 });
 
   const lower = username.toLowerCase();
   const [data, streakData] = await Promise.all([
