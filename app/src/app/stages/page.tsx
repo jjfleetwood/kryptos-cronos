@@ -53,7 +53,7 @@ const epochGroups = [
     epochIds: ["driving-1", "driving-2", "driving-3"],
   },
   {
-    label: "Sports",
+    label: "Baseball",
     desc: "Little League · Hitting · Advanced Mechanics · Elite Mastery · Pitching · Pitch Arsenal · Strategy",
     epochIds: ["baseball-1", "baseball-2", "baseball-3", "baseball-4", "baseball-5", "baseball-6", "baseball-7"],
   },

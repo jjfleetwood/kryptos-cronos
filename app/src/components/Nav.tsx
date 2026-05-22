@@ -83,9 +83,14 @@ export default function Nav() {
             </Link>
           ))}
           {username && (
-            <Link href="/shop" style={{ color: "#f59e0b" }} className="transition-opacity hover:opacity-80">
-              🛒 Shop
-            </Link>
+            <>
+              <Link href="/trophies" style={{ color: "#22d3ee" }} className="transition-opacity hover:opacity-80">
+                🏆 Trophies
+              </Link>
+              <Link href="/shop" style={{ color: "#f59e0b" }} className="transition-opacity hover:opacity-80">
+                🛒 Shop
+              </Link>
+            </>
           )}
           {admin && (
             <Link href="/admin" className="text-red-400 hover:text-red-300 transition-colors font-semibold">
@@ -201,13 +206,22 @@ export default function Nav() {
             </Link>
           ))}
           {username && (
-            <Link
-              href="/shop"
-              className="block px-3 py-2.5 rounded-lg text-sm"
-              style={{ color: "#f59e0b" }}
-            >
-              🛒 Shop & Trophy Room
-            </Link>
+            <>
+              <Link
+                href="/trophies"
+                className="block px-3 py-2.5 rounded-lg text-sm"
+                style={{ color: "#22d3ee" }}
+              >
+                🏆 Trophies
+              </Link>
+              <Link
+                href="/shop"
+                className="block px-3 py-2.5 rounded-lg text-sm"
+                style={{ color: "#f59e0b" }}
+              >
+                🛒 Shop
+              </Link>
+            </>
           )}
           {admin && (
             <Link href="/admin" className="block px-3 py-2.5 rounded-lg text-red-400 text-sm font-semibold">

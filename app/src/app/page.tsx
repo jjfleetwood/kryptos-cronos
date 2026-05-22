@@ -50,7 +50,7 @@ const tracks = [
     desc: "Everything you need to pass the California DMV written test and become a confident, safe driver.",
   },
   {
-    id: "sports", label: "Sports", stages: "70", icon: "⚾",
+    id: "sports", label: "Baseball", stages: "70", icon: "⚾",
     border: "border-red-500/25", textColor: "text-red-400", glow: "rgba(239,68,68,0.08)",
     topics: ["Field & Rules", "Batting", "Pitching", "Fielding", "Baserunning", "Sportsmanship"],
     desc: "Little League fundamentals — learn the game from the ground up, from your first at-bat to playing your position with confidence.",
