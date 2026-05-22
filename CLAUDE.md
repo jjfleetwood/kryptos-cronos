@@ -32,7 +32,7 @@ npm run dev          # Start dev server → localhost:3000
 npm run build        # Production build (verify before push)
 npx tsc --noEmit     # Type check
 npm run lint         # ESLint
-npx vercel --prod    # Deploy to production
+npx vercel --prod --project kryptos-cronos    # Deploy to kryptoscronos.com (MUST include --project flag)
 ```
 
 ---
