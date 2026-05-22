@@ -2,7 +2,7 @@
 
 ## What This Is
 
-Gamified cybersecurity + AI training platform. 29 curriculum epochs, ~334 CTF/quiz stages, live leaderboard, admin dashboard, 24 downloadable MCP server templates. Built with Next.js 16 / React 19 / TypeScript / Tailwind CSS / Upstash Redis / Resend.
+Gamified cybersecurity + AI training platform. 29 curriculum epochs, ~338 CTF/quiz stages, live leaderboard, admin dashboard, 24 downloadable MCP server templates. Built with Next.js 16 / React 19 / TypeScript / Tailwind CSS / Upstash Redis / Resend.
 
 **Live:** kryptoscronos.com  
 **App:** app-jjfleetwood.vercel.app  
@@ -74,7 +74,7 @@ Back navigation: `BackLink` uses `router.back()`. "Stage Map →" exit buttons g
 |---|---|---|---|---|---|
 | 1 | `first-journey` | Our First Journey | 30 | bt-01 → bt-30 | Emerald |
 | 2 | `ancient` | Foundations | 12 | stage-01 → stage-12 | Amber |
-| 3 | `medieval` | Cisco | 25 | stage-m01 → stage-m25 | Blue |
+| 3 | `medieval` | Cisco | 38 | stage-m01 → stage-m38 | Blue |
 | 4 | `tech-audit-1` | Tech Audit: Foundations | 12 | audit-01 → audit-12 | Purple |
 | 5 | `tech-audit-2` | Tech Audit: Technical | 12 | audit-t01 → audit-t12 | Violet |
 | 6 | `tech-audit-3` | Tech Audit: Agentic | 12 | audit-a01 → audit-a12 | Indigo |
@@ -219,7 +219,7 @@ Local dev: `.env.local` in `app/` (gitignored).
 
 ## What's Shipped (v1.6.0)
 
-- ✅ 18 epochs, ~235 stages — Core Security, Tech Audit, Threat Frameworks, AI Security, Quantum Era, Defend the Enterprise, Crafts
+- ✅ 29 epochs, ~338 stages — Core Security, Tech Audit, Threat Frameworks, AI Security, Quantum Era, Defend the Enterprise, Crafts, Driving, Sports
 - ✅ Crafts track: Nail Arts (10), Hair Coloring (10), Hair Styling (10)
 - ✅ Per-epoch pages at `/stages/epoch/[epochId]` — hero card, progress bar, stage grid
 - ✅ Stage map hub (`/stages`) — epoch cards per track group, links to epoch pages
@@ -235,7 +235,7 @@ Local dev: `.env.local` in `app/` (gitignored).
 
 ## Genuine Remaining Work
 
-1. **Cisco curriculum gaps** — Firepower, SecureX/XDR, DevNet, CyberOps Associate stages
+1. **Production auth migration** — Supabase Auth or Lucia, server-side sessions (intentionally deferred)
 2. **Production auth migration** — Supabase Auth or Lucia, server-side sessions (intentionally deferred)
 
 ---
