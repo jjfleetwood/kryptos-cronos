@@ -68,12 +68,12 @@ export default function ProPaywall({ stageTitle, epochId }: { stageTitle: string
           >
             <div className="absolute -top-3 left-4">
               <span className="text-xs font-bold bg-indigo-500 text-white px-2 py-0.5 rounded-full">
-                SAVE 64%
+                SAVE 22%
               </span>
             </div>
             <div className="text-xs text-indigo-400/70 uppercase tracking-widest mb-1">Annual</div>
-            <div className="text-3xl font-black text-white mb-1">$25.99</div>
-            <div className="text-xs text-gray-500">per year · $2.17/mo</div>
+            <div className="text-3xl font-black text-white mb-1">$55.99</div>
+            <div className="text-xs text-gray-500">per year · $4.67/mo</div>
             {loading === "yearly" && (
               <div className="absolute inset-0 flex items-center justify-center rounded-xl bg-black/50">
                 <div className="w-5 h-5 border-2 border-indigo-400 border-t-transparent rounded-full animate-spin" />
