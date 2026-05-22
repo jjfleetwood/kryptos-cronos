@@ -2,7 +2,7 @@
 
 ## What This Is
 
-Gamified cybersecurity + AI training platform. 29 curriculum epochs, ~338 CTF/quiz stages, live leaderboard, admin dashboard, 24 downloadable MCP server templates. Built with Next.js 16 / React 19 / TypeScript / Tailwind CSS / Upstash Redis / Resend.
+Gamified cybersecurity + AI training platform. 31 curriculum epochs, ~338 CTF/quiz stages, live leaderboard, admin dashboard, 24 downloadable MCP server templates. Built with Next.js 16 / React 19 / TypeScript / Tailwind CSS / Upstash Redis / Resend.
 
 **Live:** kryptoscronos.com  
 **App:** app-jjfleetwood.vercel.app  
@@ -74,33 +74,35 @@ Back navigation: `BackLink` uses `router.back()`. "Stage Map →" exit buttons g
 |---|---|---|---|---|---|
 | 1 | `first-journey` | Our First Journey | 30 | bt-01 → bt-30 | Emerald |
 | 2 | `ancient` | Foundations | 12 | stage-01 → stage-12 | Amber |
-| 3 | `medieval` | Cisco | 38 | stage-m01 → stage-m38 | Blue |
-| 4 | `tech-audit-1` | Tech Audit: Foundations | 12 | audit-01 → audit-12 | Purple |
-| 5 | `tech-audit-2` | Tech Audit: Technical | 12 | audit-t01 → audit-t12 | Violet |
-| 6 | `tech-audit-3` | Tech Audit: Agentic | 12 | audit-a01 → audit-a12 | Indigo |
-| 7 | `tech-audit-4` | Continuous Monitoring 2.0 | 12 | audit-cm01 → audit-cm12 | Rose |
-| 8 | `mitre` | MITRE ATT&CK | 12 | mitre-01 → mitre-12 | Red |
-| 9 | `mitre-atlas` | MITRE ATLAS | 12 | atlas-01 → atlas-12 | Fuchsia |
-| 10 | `owasp-llm` | OWASP LLM Top 10 | 12 | llm-01 → llm-12 | Orange |
-| 11 | `quantum-1` | Quantum Era: Threats | 10 | quantum-t01 → quantum-t10 | Cyan |
-| 12 | `quantum-2` | Quantum Era: PQC | 10 | quantum-p01 → quantum-p10 | Teal |
-| 13 | `quantum-3` | Quantum Era: QKD | 10 | quantum-q01 → quantum-q10 | Sky |
-| 14 | `umbrella` | Cisco Umbrella / SASE | 10 | umbrella-01 → umbrella-10 | Green |
-| 15 | `tapestry` | Tapestry | 12 | tapestry-01 → tapestry-12 | Yellow |
-| 16 | `nails` | Nail Arts | 10 | nails-01 → nails-10 | Pink |
-| 17 | `hair-color` | Hair Coloring | 10 | hair-color-01 → hair-color-10 | Rose |
-| 18 | `hair-styling` | Hair Styling | 10 | hair-styling-01 → hair-styling-10 | Violet |
-| 19 | `driving-1` | Road to Your License | 8 | driving-1-01 → driving-1-08 | Yellow |
-| 20 | `driving-2` | First Miles | 8 | driving-2-01 → driving-2-08 | Lime |
-| 21 | `driving-3` | Rules of the Road | 8 | driving-3-01 → driving-3-08 | Orange |
-| 22 | `clubfoot` | Standing Tall | 6 | clubfoot-01 → clubfoot-06 | Teal (locked) |
-| 23 | `baseball-1` | Play Ball! | 10 | baseball-1-01 → baseball-1-10 | Red |
-| 24 | `baseball-2` | The Art of Hitting | 10 | baseball-2-01 → baseball-2-10 | Blue |
-| 25 | `baseball-3` | Advanced Mechanics | 10 | baseball-3-01 → baseball-3-10 | Violet |
-| 26 | `baseball-4` | Elite Mastery | 10 | baseball-4-01 → baseball-4-10 | Amber |
-| 27 | `baseball-5` | The Art of Pitching | 10 | baseball-5-01 → baseball-5-10 | Green |
-| 28 | `baseball-6` | Pitch Arsenal | 10 | baseball-6-01 → baseball-6-10 | Red |
-| 29 | `baseball-7` | Pitching Strategy | 10 | baseball-7-01 → baseball-7-10 | Indigo |
+| 3 | `cisco-core`       | Cisco: Core CVEs           | 12 | stage-m01 → stage-m12 | Blue   |
+| 4 | `cisco-enterprise` | Cisco: Enterprise Attack   | 13 | stage-m13 → stage-m25 | Indigo |
+| 5 | `cisco-secops`     | Cisco: Security Operations | 13 | stage-m26 → stage-m38 | Violet |
+| 6 | `tech-audit-1` | Tech Audit: Foundations | 12 | audit-01 → audit-12 | Purple |
+| 7 | `tech-audit-2` | Tech Audit: Technical | 12 | audit-t01 → audit-t12 | Violet |
+| 8 | `tech-audit-3` | Tech Audit: Agentic | 12 | audit-a01 → audit-a12 | Indigo |
+| 9 | `tech-audit-4` | Continuous Monitoring 2.0 | 12 | audit-cm01 → audit-cm12 | Rose |
+| 10 | `mitre` | MITRE ATT&CK | 12 | mitre-01 → mitre-12 | Red |
+| 11 | `mitre-atlas` | MITRE ATLAS | 12 | atlas-01 → atlas-12 | Fuchsia |
+| 12 | `owasp-llm` | OWASP LLM Top 10 | 12 | llm-01 → llm-12 | Orange |
+| 13 | `quantum-1` | Quantum Era: Threats | 10 | quantum-t01 → quantum-t10 | Cyan |
+| 14 | `quantum-2` | Quantum Era: PQC | 10 | quantum-p01 → quantum-p10 | Teal |
+| 15 | `quantum-3` | Quantum Era: QKD | 10 | quantum-q01 → quantum-q10 | Sky |
+| 16 | `umbrella` | Cisco Umbrella / SASE | 10 | umbrella-01 → umbrella-10 | Green |
+| 17 | `tapestry` | Tapestry | 12 | tapestry-01 → tapestry-12 | Yellow |
+| 18 | `nails` | Nail Arts | 10 | nails-01 → nails-10 | Pink |
+| 19 | `hair-color` | Hair Coloring | 10 | hair-color-01 → hair-color-10 | Rose |
+| 20 | `hair-styling` | Hair Styling | 10 | hair-styling-01 → hair-styling-10 | Violet |
+| 21 | `driving-1` | Road to Your License | 8 | driving-1-01 → driving-1-08 | Yellow |
+| 22 | `driving-2` | First Miles | 8 | driving-2-01 → driving-2-08 | Lime |
+| 23 | `driving-3` | Rules of the Road | 8 | driving-3-01 → driving-3-08 | Orange |
+| 24 | `clubfoot` | Standing Tall | 6 | clubfoot-01 → clubfoot-06 | Teal (locked) |
+| 25 | `baseball-1` | Play Ball! | 10 | baseball-1-01 → baseball-1-10 | Red |
+| 26 | `baseball-2` | The Art of Hitting | 10 | baseball-2-01 → baseball-2-10 | Blue |
+| 27 | `baseball-3` | Advanced Mechanics | 10 | baseball-3-01 → baseball-3-10 | Violet |
+| 28 | `baseball-4` | Elite Mastery | 10 | baseball-4-01 → baseball-4-10 | Amber |
+| 29 | `baseball-5` | The Art of Pitching | 10 | baseball-5-01 → baseball-5-10 | Green |
+| 30 | `baseball-6` | Pitch Arsenal | 10 | baseball-6-01 → baseball-6-10 | Red |
+| 31 | `baseball-7` | Pitching Strategy | 10 | baseball-7-01 → baseball-7-10 | Indigo |
 
 **Track groups (stages page):** Core Security · Tech Audit · Threat Frameworks · AI Security · Quantum Era · Defend the Enterprise · Crafts · Driving · Health · Sports
 
@@ -219,7 +221,7 @@ Local dev: `.env.local` in `app/` (gitignored).
 
 ## What's Shipped (v1.6.0)
 
-- ✅ 29 epochs, ~338 stages — Core Security, Tech Audit, Threat Frameworks, AI Security, Quantum Era, Defend the Enterprise, Crafts, Driving, Sports
+- ✅ 31 epochs, ~338 stages — Core Security, Tech Audit, Threat Frameworks, AI Security, Quantum Era, Defend the Enterprise (3 Cisco + Umbrella), Crafts, Driving, Sports
 - ✅ Crafts track: Nail Arts (10), Hair Coloring (10), Hair Styling (10)
 - ✅ Per-epoch pages at `/stages/epoch/[epochId]` — hero card, progress bar, stage grid
 - ✅ Stage map hub (`/stages`) — epoch cards per track group, links to epoch pages
