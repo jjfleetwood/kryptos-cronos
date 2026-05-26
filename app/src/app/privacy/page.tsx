@@ -15,7 +15,7 @@ export default function PrivacyPage() {
           </Link>
 
           <h1 className="text-3xl font-black text-white mb-2">Privacy Policy</h1>
-          <p className="text-gray-600 text-sm mb-10 font-mono">Effective: 2026-05-16 · Kryptós CronOS (κρυπτός χρόνος)</p>
+          <p className="text-gray-600 text-sm mb-10 font-mono">Effective: 2026-05-26 · Kryptós CronOS (κρυπτός χρόνος)</p>
 
           <div className="space-y-8 text-gray-400 text-sm leading-relaxed">
 
@@ -47,9 +47,12 @@ export default function PrivacyPage() {
               <div className="space-y-3">
                 {[
                   { name: "Vercel", purpose: "Hosting, CDN, and HTTP access logs (IP + user agent)", url: "https://vercel.com/legal/privacy-policy" },
-                  { name: "Upstash Redis", purpose: "Server-side storage for progress, streaks, and leaderboard data", url: "https://upstash.com/trust/privacy.pdf" },
-                  { name: "Resend", purpose: "Transactional email — one registration notification to the admin", url: "https://resend.com/privacy" },
+                  { name: "Upstash Redis", purpose: "Server-side storage for user accounts, progress, streaks, leaderboard data, and NDA records", url: "https://upstash.com/trust/privacy.pdf" },
+                  { name: "Resend", purpose: "Transactional email — registration, stage completion, and password reset emails", url: "https://resend.com/privacy" },
                   { name: "Anthropic Claude", purpose: "AI hint assistant (ARIA) — stage context is sent; no personal data is included in hint requests", url: "https://www.anthropic.com/privacy" },
+                  { name: "Stripe", purpose: "Payment processing for Pro subscriptions — payment data is handled by Stripe directly and never stored on our servers", url: "https://stripe.com/privacy" },
+                  { name: "DocuSign", purpose: "Electronic NDA signatures for demo access — name and email are shared with DocuSign when an NDA envelope is sent", url: "https://www.docusign.com/company/privacy-policy" },
+                  { name: "Plausible Analytics", purpose: "Privacy-friendly analytics — no cookies, no cross-site tracking, no personal data collected; aggregate page view counts only", url: "https://plausible.io/privacy" },
                 ].map((p) => (
                   <div key={p.name} className="bg-white/2 border border-white/8 rounded-xl p-4">
                     <p className="text-white font-semibold text-sm mb-1">{p.name}</p>
@@ -69,7 +72,7 @@ export default function PrivacyPage() {
                 <li><span className="text-gray-300">admin_token</span> — HttpOnly cookie; admin-only; issued only on admin login</li>
                 <li><span className="text-gray-300">kryptos_progress_*</span> — localStorage; caches your progress for offline and instant display</li>
               </ul>
-              <p className="mt-3">We do not use tracking cookies, analytics cookies, or third-party advertising cookies.</p>
+              <p className="mt-3">We do not use tracking cookies or advertising cookies. Analytics are collected via Plausible, which uses no cookies and collects no personal data.</p>
             </section>
 
             <section>

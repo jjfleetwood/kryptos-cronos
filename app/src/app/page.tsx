@@ -268,7 +268,7 @@ export default function Home() {
               <p className="text-gray-400 leading-relaxed mb-6">
                 Not a quiz. Not a video. You get a simulated network, real commands,
                 and a hidden flag buried inside the vulnerable environment.
-                The reference drawer stays open while you work — full briefing, attack diagram, and technical notes.
+                Read the full briefing and attack diagram before you drop in — then use ARIA for guided coaching if you get stuck.
               </p>
               <div className="space-y-3">
                 {[
