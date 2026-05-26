@@ -21,6 +21,17 @@ const ALLOWED_FILES = new Set([
   "TODO.md",
   "COPYRIGHT_FILING.md",
   "VC_READINESS_ANALYSIS.md",
+  // Architecture suite (v1.0.0, added 2026-05-26)
+  "DATA_DIAGRAM.md",
+  "TECH_BOM.md",
+  "BIZ_REQUIREMENTS.md",
+  "TECHNICAL_DESIGN.md",
+  "USER_ACCEPTANCE_CRITERIA.md",
+  "TECH_SPECIFICATIONS.md",
+  "TESTING_STRATEGY.md",
+  "CICD_PIPELINE.md",
+  "API_REFERENCE.md",
+  "ADR.md",
 ]);
 
 function verifyAdminToken(token: string): boolean {
