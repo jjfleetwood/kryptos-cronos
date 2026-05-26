@@ -160,7 +160,7 @@ export default function Home() {
               style={{ background: "rgba(34,211,238,0.06)" }}>
               <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
               <span className="text-cyan-300 font-mono font-medium tracking-wide">
-                358 Stages · AI · Post-Quantum · Nation-State CTF
+                438 Stages · AI · Post-Quantum · Nation-State CTF
               </span>
             </div>
 
@@ -181,7 +181,7 @@ export default function Home() {
               style={{ color: "rgba(156,163,175,0.85)" }}>
               The threats have changed — train on the same exploits behind Equifax, the NHS breach,
               and VOLT TYPHOON&apos;s ERCOT grid campaign, then step into AI prompt injection and
-              post-quantum cryptography. Ten tracks. All in your browser.
+              post-quantum cryptography. Six tracks. All in your browser.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
@@ -205,7 +205,7 @@ export default function Home() {
                   backdropFilter: "blur(8px)",
                 }}
               >
-                View 358 Stages
+                View 438 Stages
               </Link>
             </div>
           </div>
@@ -235,8 +235,8 @@ export default function Home() {
           style={{ background: "rgba(255,255,255,0.015)" }}>
           <div className="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             {[
-              { value: "358", label: "Training Stages",      color: "#22d3ee" },
-              { value: "10",  label: "Curriculum Tracks",    color: "#a78bfa" },
+              { value: "438", label: "Training Stages",      color: "#22d3ee" },
+              { value: "6",   label: "Curriculum Tracks",    color: "#a78bfa" },
               { value: "25+", label: "Real CVEs",            color: "#f97316" },
               { value: "3.5M",label: "Unfilled Cyber Jobs",  color: "#4ade80" },
             ].map((s) => (
@@ -350,7 +350,7 @@ export default function Home() {
             <div className="flex flex-wrap items-end justify-between gap-4 mb-10">
               <div>
                 <p className="text-xs font-mono uppercase tracking-widest mb-2" style={{ color: "rgba(34,211,238,0.6)" }}>
-                  Seven curriculum tracks
+                  Six curriculum tracks
                 </p>
                 <h2 className="text-4xl font-black text-white mb-2">A complete security education</h2>
                 <p style={{ color: "rgba(107,114,128,1)" }}>From SQL injection to post-quantum cryptography. Every track is hands-on CTF.</p>
@@ -608,8 +608,8 @@ export default function Home() {
                   name: "Pro",
                   price: "$13.99",
                   per: "/ month",
-                  desc: "All seven curriculum tracks. Full CTF access, certificates, and priority ARIA responses.",
-                  features: ["358 stages across 6 tracks", "Completion certificates", "Priority ARIA hints", "All milestone badges"],
+                  desc: "All six curriculum tracks. Full CTF access, certificates, and priority ARIA responses.",
+                  features: ["438 stages across 6 tracks", "Completion certificates", "Priority ARIA hints", "All milestone badges"],
                   cta: "Get Pro — $13.99/mo",
                   href: "/login",
                   accent: "rgba(168,85,247,1)",
@@ -708,7 +708,7 @@ export default function Home() {
                   The future of defense starts here
                 </p>
                 <h2 className="text-4xl md:text-5xl font-black text-white mb-4 leading-tight">
-                  Ten tracks. 358 stages.<br />
+                  Six tracks. 438 stages.<br />
                   <span className="hero-glow">All in your browser.</span>
                 </h2>
                 <p className="mb-8" style={{ color: "rgba(107,114,128,1)" }}>

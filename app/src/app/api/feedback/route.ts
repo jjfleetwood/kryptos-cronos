@@ -1,6 +1,19 @@
 import { NextRequest, NextResponse } from "next/server";
+import { redis } from "@/lib/redis";
+
+async function isRateLimited(ip: string): Promise<boolean> {
+  const key = `rate:feedback:${ip}`;
+  const count = await redis.incr(key);
+  if (count === 1) await redis.expire(key, 3600); // 1-hour window
+  return count > 5;
+}
 
 export async function POST(req: NextRequest) {
+  const ip = req.headers.get("x-real-ip") ?? req.headers.get("x-forwarded-for")?.split(",")[0].trim() ?? "unknown";
+  if (await isRateLimited(ip)) {
+    return NextResponse.json({ error: "Too many requests." }, { status: 429 });
+  }
+
   const { message, page } = await req.json();
 
   if (!message || typeof message !== "string" || message.trim().length === 0) {

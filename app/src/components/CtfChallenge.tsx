@@ -113,7 +113,27 @@ function TerminalLine({ line }: { line: Line }) {
 
 function HintDrawer({ hints, isPro, onClose }: { hints: string[]; isPro: boolean; onClose: () => void }) {
   const [revealed, setRevealed] = useState(1);
-  const needsUpgrade = revealed < hints.length && revealed >= 1 && !isPro;
+  const [adState, setAdState] = useState<"idle" | "watching">("idle");
+  const [adSeconds, setAdSeconds] = useState(30);
+
+  useEffect(() => {
+    if (adState !== "watching") return;
+    const id = setInterval(() => {
+      setAdSeconds((s) => {
+        if (s <= 1) {
+          setAdState("idle");
+          setAdSeconds(30);
+          setRevealed((r) => r + 1);
+          return 30;
+        }
+        return s - 1;
+      });
+    }, 1000);
+    return () => clearInterval(id);
+  }, [adState]);
+
+  const needsGate = revealed < hints.length && revealed >= 1 && !isPro;
+
   return (
     <div className="fixed inset-0 z-50 flex justify-end">
       <div className="absolute inset-0 bg-black/50" onClick={onClose} />
@@ -138,18 +158,44 @@ function HintDrawer({ hints, isPro, onClose }: { hints: string[]; isPro: boolean
             </div>
           ))}
           {revealed < hints.length && (
-            needsUpgrade ? (
-              <div className="rounded-lg border border-indigo-500/30 bg-indigo-500/5 p-4 text-center space-y-3">
-                <p className="text-xs text-indigo-300">Hints 2+ require Pro.</p>
-                <Link
-                  href="/stages"
-                  onClick={onClose}
-                  className="block w-full py-2 rounded-lg text-xs font-bold text-black"
-                  style={{ background: "linear-gradient(90deg,#22d3ee,#818cf8)" }}
-                >
-                  Upgrade to Pro →
-                </Link>
-              </div>
+            needsGate ? (
+              adState === "watching" ? (
+                <div className="rounded-lg border border-amber-500/20 bg-amber-500/5 p-4 space-y-3">
+                  <div className="flex items-center justify-between">
+                    <p className="text-xs text-amber-400 font-semibold uppercase tracking-wider">📢 Sponsor Message</p>
+                    <span className="text-xs font-mono text-amber-300">{adSeconds}s</span>
+                  </div>
+                  <div className="rounded bg-white/3 border border-white/8 p-3 text-center space-y-1">
+                    <p className="text-xs text-gray-400">Cybersecurity workforce training</p>
+                    <p className="text-[11px] text-gray-600">Sponsored content — your next hint unlocks shortly</p>
+                  </div>
+                  <div className="h-1 rounded-full bg-white/5 overflow-hidden">
+                    <div
+                      className="h-full bg-amber-500/60 transition-all"
+                      style={{ width: `${((30 - adSeconds) / 30) * 100}%` }}
+                    />
+                  </div>
+                  <p className="text-[10px] text-gray-700 text-center">Hint unlocks in {adSeconds}s — upgrade to Pro to skip</p>
+                </div>
+              ) : (
+                <div className="rounded-lg border border-white/8 bg-white/2 p-4 space-y-2.5">
+                  <p className="text-xs text-gray-400">Hint {revealed + 1} requires Pro or a short sponsor message.</p>
+                  <button
+                    onClick={() => setAdState("watching")}
+                    className="w-full py-2 rounded-lg text-xs font-semibold text-amber-400 border border-amber-500/30 hover:bg-amber-500/5 transition-colors"
+                  >
+                    Watch sponsor message (30s) →
+                  </button>
+                  <Link
+                    href="/upgrade"
+                    onClick={onClose}
+                    className="block w-full py-2 rounded-lg text-xs font-bold text-black text-center"
+                    style={{ background: "linear-gradient(90deg,#22d3ee,#818cf8)" }}
+                  >
+                    Upgrade to Pro — skip all ads →
+                  </Link>
+                </div>
+              )
             ) : (
               <button
                 onClick={() => setRevealed((r) => r + 1)}
