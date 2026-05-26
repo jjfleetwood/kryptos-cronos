@@ -814,6 +814,203 @@ function ContentAudit() {
   );
 }
 
+// ── Investor Metrics Panel ────────────────────────────────────────────────────
+
+const EPOCH_NAMES: Record<string, string> = {
+  "first-journey": "Our First Journey", "ancient": "Foundations",
+  "cisco-core": "Cisco: Core CVEs", "cisco-enterprise": "Cisco: Enterprise",
+  "cisco-secops": "Cisco: SecOps", "cisco-advanced": "Cisco: Adv Defense",
+  "tech-audit-1": "Audit: Foundations", "tech-audit-2": "Audit: Technical",
+  "tech-audit-3": "Audit: Agentic", "tech-audit-4": "Cont. Monitoring",
+  "mitre": "MITRE ATT&CK", "mitre-atlas": "MITRE ATLAS",
+  "owasp-llm": "OWASP LLM Top 10", "quantum-1": "Quantum: Threats",
+  "quantum-2": "Quantum: PQC", "quantum-3": "Quantum: QKD",
+  "umbrella": "Cisco Umbrella", "tapestry": "Tapestry",
+  "nails": "Nail Arts", "hair-color": "Hair Coloring", "hair-styling": "Hair Styling",
+  "driving-1": "Road to License", "driving-2": "First Miles", "driving-3": "Rules of Road",
+  "baseball-1": "Play Ball!", "baseball-2": "Art of Hitting",
+  "baseball-3": "Adv Mechanics", "baseball-4": "Elite Mastery",
+  "baseball-5": "Art of Pitching", "baseball-6": "Pitch Arsenal",
+  "baseball-7": "Pitching Strategy", "paris-july": "Paris in July",
+  "milan-july": "Milan in July", "french-basics": "French Basics",
+  "italian-basics": "Italian Basics",
+};
+
+function epochLabel(id: string) {
+  return EPOCH_NAMES[id] ?? id.replace(/-/g, " ").replace(/\b\w/g, c => c.toUpperCase());
+}
+
+function MetricsPanel({ users, loading }: { users: UserRow[]; loading: boolean }) {
+  const metrics = useMemo(() => {
+    if (!users.length) return null;
+    const now = Date.now();
+
+    // Build epoch → stage IDs map + pre-build user stage sets
+    const epochStageMap: Record<string, string[]> = {};
+    for (const s of stages) {
+      if (!epochStageMap[s.epochId]) epochStageMap[s.epochId] = [];
+      epochStageMap[s.epochId].push(s.id);
+    }
+    const userStageSets = users.map(u => new Set(u.stageIds ?? []));
+
+    const wau     = users.filter(u => u.lastActive && now - u.lastActive < 7  * 86400000).length;
+    const mau     = users.filter(u => u.lastActive && now - u.lastActive < 30 * 86400000).length;
+    const returnRate7d = Math.round((wau / users.length) * 100);
+    const avgStages = (users.reduce((s, u) => s + u.stages, 0) / users.length).toFixed(1);
+
+    const activated  = users.filter(u => u.stages >= 1).length;
+    const fivePlus   = users.filter(u => u.stages >= 5).length;
+    const tenPlus    = users.filter(u => u.stages >= 10).length;
+    const thirtyPlus = users.filter(u => u.stages >= 30).length;
+
+    const newToday    = users.filter(u => u.createdAt && now - u.createdAt < 86400000).length;
+    const newThisWeek = users.filter(u => u.createdAt && now - u.createdAt < 7 * 86400000).length;
+
+    const epochRates = Object.entries(epochStageMap).map(([epochId, stageIds]) => {
+      const completedCount = userStageSets.filter(set => stageIds.every(id => set.has(id))).length;
+      return { epochId, stageCount: stageIds.length, completedCount, rate: Math.round((completedCount / users.length) * 100) };
+    }).sort((a, b) => b.completedCount - a.completedCount || b.rate - a.rate);
+
+    const tiers = { "all-star": 0, pro: 0, free: 0 };
+    for (const u of users) {
+      if (u.tier === "all-star") tiers["all-star"]++;
+      else if (u.tier === "pro") tiers.pro++;
+      else tiers.free++;
+    }
+
+    return { wau, mau, returnRate7d, avgStages, activated, fivePlus, tenPlus, thirtyPlus, newToday, newThisWeek, epochRates, tiers };
+  }, [users]);
+
+  const pct = (n: number) => users.length ? Math.round((n / users.length) * 100) : 0;
+
+  return (
+    <div className="bg-white/2 border border-white/8 rounded-2xl overflow-hidden mb-8">
+      <div className="px-6 py-4 border-b border-white/8 flex items-center justify-between">
+        <div>
+          <h2 className="text-white font-bold">Investor Metrics</h2>
+          <p className="text-xs text-gray-600 mt-0.5">Live — computed from Redis user data</p>
+        </div>
+        {!loading && metrics && (
+          <span className="text-[10px] text-gray-700 font-mono">{users.length} users · updated now</span>
+        )}
+      </div>
+
+      {loading || !metrics ? (
+        <div className="px-6 py-10 text-center text-gray-600 text-sm">Loading metrics…</div>
+      ) : (
+        <>
+          {/* KPI row */}
+          <div className="grid grid-cols-2 md:grid-cols-4 border-b border-white/8">
+            {[
+              { label: "Weekly Active (WAU)", value: metrics.wau, sub: `${metrics.mau} monthly`, color: "text-cyan-400" },
+              {
+                label: "7-Day Return Rate", value: `${metrics.returnRate7d}%`,
+                sub: `${metrics.wau} of ${users.length} users`,
+                color: metrics.returnRate7d >= 30 ? "text-green-400" : metrics.returnRate7d >= 15 ? "text-yellow-400" : "text-red-400",
+              },
+              { label: "Avg Stages / User", value: metrics.avgStages, sub: `of ${stages.length} total`, color: "text-purple-400" },
+              { label: "Activated (1+ stage)", value: metrics.activated, sub: `${pct(metrics.activated)}% of registered`, color: "text-emerald-400" },
+            ].map(({ label, value, sub, color }) => (
+              <div key={label} className="px-6 py-5 text-center border-r border-b border-white/5 last:border-r-0">
+                <div className={`text-3xl font-black ${color} mb-1`}>{value}</div>
+                <div className="text-xs text-gray-600 uppercase tracking-wider">{label}</div>
+                <div className="text-xs text-gray-700 mt-1">{sub}</div>
+              </div>
+            ))}
+          </div>
+
+          {/* Funnel + Epoch rates */}
+          <div className="grid md:grid-cols-2 divide-x divide-white/5">
+            {/* Funnel */}
+            <div className="p-6">
+              <div className="text-xs text-gray-500 uppercase tracking-wider mb-4">User Funnel</div>
+              <div className="space-y-3">
+                {[
+                  { label: "Registered",          n: users.length,        color: "bg-white/20" },
+                  { label: "Started (1+ stage)",  n: metrics.activated,   color: "bg-cyan-500" },
+                  { label: "Engaged (5+ stages)", n: metrics.fivePlus,    color: "bg-purple-500" },
+                  { label: "Retained (10+)",      n: metrics.tenPlus,     color: "bg-indigo-500" },
+                  { label: "Power users (30+)",   n: metrics.thirtyPlus,  color: "bg-violet-500" },
+                ].map(({ label, n, color }) => (
+                  <div key={label}>
+                    <div className="flex items-center justify-between mb-1">
+                      <span className="text-xs text-gray-400">{label}</span>
+                      <span className="text-xs font-mono text-gray-400">
+                        {n} <span className="text-gray-700">({pct(n)}%)</span>
+                      </span>
+                    </div>
+                    <div className="h-1.5 bg-white/5 rounded-full overflow-hidden">
+                      <div className={`h-1.5 rounded-full ${color} transition-all`} style={{ width: `${Math.max(pct(n), n > 0 ? 1 : 0)}%` }} />
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="mt-5 pt-4 border-t border-white/5">
+                <div className="text-xs text-gray-500 uppercase tracking-wider mb-3">Growth · Tiers</div>
+                <div className="grid grid-cols-2 gap-2 mb-2">
+                  {[
+                    { label: "New today",    value: metrics.newToday,    color: "text-white" },
+                    { label: "New this week",value: metrics.newThisWeek, color: "text-white" },
+                    { label: "MAU",          value: metrics.mau,         color: "text-cyan-400" },
+                    { label: "WAU",          value: metrics.wau,         color: "text-cyan-400" },
+                  ].map(({ label, value, color }) => (
+                    <div key={label} className="bg-white/3 border border-white/5 rounded-lg px-3 py-2 text-center">
+                      <div className={`text-xl font-black ${color}`}>{value}</div>
+                      <div className="text-[10px] text-gray-600 uppercase tracking-wider mt-0.5">{label}</div>
+                    </div>
+                  ))}
+                </div>
+                <div className="grid grid-cols-3 gap-2">
+                  {[
+                    { label: "All-Star", value: metrics.tiers["all-star"], color: "text-yellow-300" },
+                    { label: "Pro",      value: metrics.tiers.pro,         color: "text-cyan-400" },
+                    { label: "Free",     value: metrics.tiers.free,        color: "text-gray-500" },
+                  ].map(({ label, value, color }) => (
+                    <div key={label} className="bg-white/3 border border-white/5 rounded-lg px-3 py-2 text-center">
+                      <div className={`text-xl font-black ${color}`}>{value}</div>
+                      <div className="text-[10px] text-gray-600 uppercase tracking-wider mt-0.5">{label}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Epoch completion rates */}
+            <div className="p-6">
+              <div className="text-xs text-gray-500 uppercase tracking-wider mb-4">Epoch Completion Rates</div>
+              <div className="space-y-2.5 max-h-96 overflow-y-auto pr-1">
+                {metrics.epochRates.map(({ epochId, stageCount, completedCount, rate }) => (
+                  <div key={epochId}>
+                    <div className="flex items-center justify-between mb-1">
+                      <span className="text-xs text-gray-400 truncate mr-2">{epochLabel(epochId)}</span>
+                      <span className="text-xs font-mono text-gray-500 flex-shrink-0">
+                        {completedCount} <span className="text-gray-700">({rate}%) · {stageCount}s</span>
+                      </span>
+                    </div>
+                    <div className="h-1 bg-white/5 rounded-full overflow-hidden">
+                      <div
+                        className="h-1 rounded-full transition-all"
+                        style={{
+                          width: `${Math.max(rate, completedCount > 0 ? 1 : 0)}%`,
+                          background: rate >= 20 ? "#22d3ee" : rate >= 5 ? "#a78bfa" : "#6366f1",
+                        }}
+                      />
+                    </div>
+                  </div>
+                ))}
+                {metrics.epochRates.every(e => e.completedCount === 0) && (
+                  <p className="text-xs text-gray-700 italic">No epoch completions recorded yet.</p>
+                )}
+              </div>
+            </div>
+          </div>
+        </>
+      )}
+    </div>
+  );
+}
+
 export default function AdminPage() {
   const router = useRouter();
   const [users, setUsers] = useState<UserRow[]>([]);
@@ -1016,6 +1213,9 @@ export default function AdminPage() {
             color="text-sky-400"
           />
         </div>
+
+        {/* Investor Metrics */}
+        <MetricsPanel users={users} loading={loading} />
 
         {/* User table */}
         <div className="bg-white/2 border border-white/8 rounded-2xl overflow-hidden mb-8">

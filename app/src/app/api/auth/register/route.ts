@@ -49,7 +49,7 @@ export async function POST(req: NextRequest) {
     hashIterations: PBKDF2_ITERATIONS,
     email: escapeHtml(email),
     createdAt: Date.now(),
-    tier: "all-star",
+    tier: "free",
   });
 
   // Reverse lookup for forgot-password
