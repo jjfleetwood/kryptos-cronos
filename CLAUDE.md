@@ -2,11 +2,11 @@
 
 ## What This Is
 
-Gamified cybersecurity + AI training platform. 36 curriculum epochs, 418 CTF/quiz stages, live leaderboard, admin dashboard, 24 downloadable MCP server templates. Built with Next.js 16 / React 19 / TypeScript / Tailwind CSS / Upstash Redis / Resend.
+Gamified cybersecurity + AI training platform. 36 curriculum epochs, 438 CTF/quiz stages, live leaderboard, admin dashboard, 24 downloadable MCP server templates. Built with Next.js 16 / React 19 / TypeScript / Tailwind CSS / Upstash Redis / Resend.
 
 **Live:** kryptoscronos.com  
 **Repo:** github.com/jjfleetwood/kryptos-cronos  
-**Current version:** v1.10.0 (as of 2026-05-25)
+**Current version:** v1.11.0 (as of 2026-05-26)
 
 ---
 
@@ -131,8 +131,8 @@ Back navigation: `BackLink` uses `router.back()`. "Stage Map →" exit buttons g
 | 32 | `cisco-advanced` | Cisco: Advanced Defense | 12 | stage-m39 → stage-m50 | Cyan |
 | 33 | `paris-july` | Paris in July | 20 | paris-01 → paris-20 | Blue |
 | 34 | `milan-july` | Milan in July | 20 | milan-01 → milan-20 | Indigo |
-| 35 | `french-basics` | French Basics | 10 | french-01 → french-10 | Sky |
-| 36 | `italian-basics` | Italian Basics | 10 | italian-01 → italian-10 | Green |
+| 35 | `french-basics` | French Basics | 20 | french-01 → french-20 | Sky |
+| 36 | `italian-basics` | Italian Basics | 20 | italian-01 → italian-20 | Green |
 
 **Track groups (stages page — public):** Core Security · Tech Audit · Threat Frameworks · AI Security · Quantum Era · Defend the Enterprise  
 **Extended curriculum (curious group only):** Crafts · Driving · Baseball · Travel  
@@ -273,6 +273,15 @@ Local dev: `.env.local` in `app/` (gitignored).
 - **Target sponsors:** CrowdStrike, AWS, SentinelOne, CompTIA, ISC²
 
 ---
+
+## What's Shipped (v1.11.0)
+
+- ✅ French Basics expanded 10 → 20 stages (french-11 through french-20): boulangerie, menu reading, wine, pharmacy, hotel, time, weather, digital French, faux pas, Paris arrondissements
+- ✅ Italian Basics expanded 10 → 20 stages (italian-11 through italian-20): gelateria, food vocabulary, wine (DOCG/methanol scandal), farmacia, hotel/Grand Tour, time/1335 Milan clock, weather/nebbia/afa, calcio (AC Milan vs Inter 1908), faux pas/bella figura, Milan neighbourhoods with metro stops
+- ✅ Admin-only age/skin toggle — Age column in user table cycles youth/standard/mature; `/api/admin/set-skin` route; `AgePrompt` modal remains disabled
+- ✅ Investor Metrics panel in admin dashboard — WAU, 7-day return rate, avg stages/user, user funnel (registered→started→engaged→retained→power), growth stats, tier breakdown, per-epoch completion rates
+- ✅ Default registration tier reverted to `free` — 7-day trial → ProPaywall → Stripe conversion funnel active
+- ✅ Welcome email updated — 438 stages, 36 epochs, 50+ CVEs
 
 ## What's Shipped (v1.9.0)
 
