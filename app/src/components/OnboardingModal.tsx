@@ -68,9 +68,9 @@ export default function OnboardingModal() {
         </button>
 
         <p className="text-center text-xs text-gray-700 mt-4 space-x-3">
-          <Link href="/privacy" className="hover:text-gray-500 transition-colors">Privacy Policy</Link>
+          <Link href="/privacy" className="hover:text-gray-500 transition-colors">{t("onboarding.privacyPolicy")}</Link>
           <span>·</span>
-          <Link href="/leaderboard" className="hover:text-gray-500 transition-colors">Leaderboard</Link>
+          <Link href="/leaderboard" className="hover:text-gray-500 transition-colors">{t("nav.leaderboard")}</Link>
         </p>
       </div>
     </div>

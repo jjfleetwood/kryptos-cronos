@@ -1,41 +1,44 @@
-import Link from "next/link";
+"use client";
 
-const tracks = [
+import Link from "next/link";
+import { useLocale } from "@/contexts/LocaleContext";
+
+const TRACK_STATIC = [
   {
-    id: "core", label: "Core Security", stages: "42", icon: "🏛️",
+    id: "core", labelKey: "stages.tracks.coreSecurity", descKey: "home.trackDesc.core",
+    stages: "42", icon: "🏛️",
     border: "border-amber-500/25", textColor: "text-amber-400", glow: "rgba(251,191,36,0.08)",
     topics: ["SQL Injection", "XSS", "Heartbleed", "Log4Shell", "WannaCry", "SSRF"],
-    desc: "Ancient exploits to modern CVEs — the canon every defender must know.",
   },
   {
-    id: "audit", label: "Tech Audit", stages: "48", icon: "📋",
+    id: "audit", labelKey: "stages.tracks.techAudit", descKey: "home.trackDesc.audit",
+    stages: "48", icon: "📋",
     border: "border-blue-500/25", textColor: "text-blue-400", glow: "rgba(59,130,246,0.08)",
     topics: ["IT Governance", "Cloud Security", "AI Agents", "Compliance", "Risk Frameworks"],
-    desc: "Enterprise IT governance, cloud configuration, and AI agent risk management.",
   },
   {
-    id: "mitre", label: "Threat Frameworks", stages: "24", icon: "🎯",
+    id: "mitre", labelKey: "stages.tracks.threatFrameworks", descKey: "home.trackDesc.mitre",
+    stages: "24", icon: "🎯",
     border: "border-red-500/25", textColor: "text-red-400", glow: "rgba(239,68,68,0.08)",
     topics: ["MITRE ATT&CK", "MITRE ATLAS", "APT Tactics", "Kill Chain", "AI Threat Modeling"],
-    desc: "Map real-world APT campaigns using MITRE ATT&CK and ATLAS AI threat framework.",
   },
   {
-    id: "ai", label: "AI Security", stages: "12", icon: "🤖",
+    id: "ai", labelKey: "stages.tracks.aiSecurity", descKey: "home.trackDesc.ai",
+    stages: "12", icon: "🤖",
     border: "border-purple-500/25", textColor: "text-purple-400", glow: "rgba(168,85,247,0.08)",
     topics: ["Prompt Injection", "Model Poisoning", "Data Leakage", "Jailbreaking", "RAG Attacks"],
-    desc: "OWASP LLM Top 10 — attack and defend the language models powering modern software.",
   },
   {
-    id: "quantum", label: "Quantum Era", stages: "30", icon: "⚛️",
+    id: "quantum", labelKey: "stages.tracks.quantumEra", descKey: "home.trackDesc.quantum",
+    stages: "30", icon: "⚛️",
     border: "border-cyan-500/25", textColor: "text-cyan-400", glow: "rgba(34,211,238,0.08)",
     topics: ["Harvest Now Decrypt Later", "ML-KEM / ML-DSA", "QKD", "PQC Migration", "Cisco Silicon One"],
-    desc: "Nation-states are harvesting encrypted traffic today. Understand the post-quantum transition.",
   },
   {
-    id: "cisco", label: "Defend the Enterprise", stages: "48", icon: "🌐",
+    id: "cisco", labelKey: "stages.tracks.enterprise", descKey: "home.trackDesc.cisco",
+    stages: "48", icon: "🌐",
     border: "border-indigo-500/25", textColor: "text-indigo-400", glow: "rgba(99,102,241,0.08)",
     topics: ["DNS Tunneling", "DGA Detection", "Fast Flux", "Cisco Umbrella", "VOLT TYPHOON"],
-    desc: "Enterprise-grade DNS-layer defense, real Cisco CVEs, and nation-state scenarios.",
   },
 ];
 
@@ -92,7 +95,14 @@ const terminalLines = [
 ];
 
 export default function Home() {
+  const { t } = useLocale();
   const tickerFull = [...ticker, ...ticker];
+
+  const tracks = TRACK_STATIC.map((s) => ({
+    ...s,
+    label: t(s.labelKey),
+    desc: t(s.descKey),
+  }));
 
   return (
     <>
@@ -105,20 +115,20 @@ export default function Home() {
         <section className="relative flex flex-col items-center justify-center text-center px-4 pt-36 pb-0 overflow-hidden min-h-[90vh]">
 
           {/* Floating threat names */}
-          {bgThreats.map((t, i) => (
+          {bgThreats.map((threat, i) => (
             <span
               key={i}
               className="absolute font-mono font-bold pointer-events-none select-none uppercase tracking-widest"
               style={{
-                left: t.x, top: t.y,
-                fontSize: `${t.size}px`,
-                opacity: t.opacity,
+                left: threat.x, top: threat.y,
+                fontSize: `${threat.size}px`,
+                opacity: threat.opacity,
                 color: "#22d3ee",
                 animation: `float-slow ${6 + (i % 3)}s ease-in-out infinite`,
-                animationDelay: `${t.delay}s`,
+                animationDelay: `${threat.delay}s`,
               }}
             >
-              {t.text}
+              {threat.text}
             </span>
           ))}
 
@@ -160,28 +170,26 @@ export default function Home() {
               style={{ background: "rgba(34,211,238,0.06)" }}>
               <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
               <span className="text-cyan-300 font-mono font-medium tracking-wide">
-                438 Stages · AI · Post-Quantum · Nation-State CTF
+                {t("home.heroBadge")}
               </span>
             </div>
 
             <h1 className="text-4xl md:text-6xl font-black mb-6 leading-none tracking-tight">
               <span className="text-white" style={{ textShadow: "0 0 80px rgba(255,255,255,0.08)" }}>
-                Defend the Future.
+                {t("home.heroLine1")}
               </span>
               <br />
-              <span className="hero-glow">Start Here.</span>
+              <span className="hero-glow">{t("home.heroLine2")}</span>
             </h1>
 
             <p className="text-lg md:text-xl font-semibold mb-4"
               style={{ color: "rgba(255,255,255,0.75)" }}>
-              AI attacks. Quantum decryption. Nation-state DNS ops.
+              {t("home.heroSub")}
             </p>
 
             <p className="text-base mb-10 max-w-2xl mx-auto leading-relaxed"
               style={{ color: "rgba(156,163,175,0.85)" }}>
-              The threats have changed — train on the same exploits behind Equifax, the NHS breach,
-              and VOLT TYPHOON&apos;s ERCOT grid campaign, then step into AI prompt injection and
-              post-quantum cryptography. Six tracks. All in your browser.
+              {t("home.heroPara")}
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
@@ -193,7 +201,7 @@ export default function Home() {
                   boxShadow: "0 0 40px rgba(34,211,238,0.25), 0 0 80px rgba(99,102,241,0.15)",
                 }}
               >
-                Start Training — Free →
+                {t("home.ctaStart")}
               </Link>
               <Link
                 href="/stages"
@@ -205,7 +213,7 @@ export default function Home() {
                   backdropFilter: "blur(8px)",
                 }}
               >
-                View 438 Stages
+                {t("home.ctaView")}
               </Link>
             </div>
           </div>
@@ -235,19 +243,19 @@ export default function Home() {
           style={{ background: "rgba(255,255,255,0.015)" }}>
           <div className="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             {[
-              { value: "438", label: "Training Stages",      color: "#22d3ee" },
-              { value: "6",   label: "Curriculum Tracks",    color: "#a78bfa" },
-              { value: "25+", label: "Real CVEs",            color: "#f97316" },
-              { value: "3.5M",label: "Unfilled Cyber Jobs",  color: "#4ade80" },
+              { value: "438", labelKey: "home.statStages",  color: "#22d3ee" },
+              { value: "6",   labelKey: "home.statTracks",  color: "#a78bfa" },
+              { value: "25+", labelKey: "home.statCves",    color: "#f97316" },
+              { value: "3.5M",labelKey: "home.statJobs",    color: "#4ade80" },
             ].map((s) => (
-              <div key={s.label}>
+              <div key={s.labelKey}>
                 <div
                   className="text-5xl font-black mb-1"
                   style={{ color: s.color, textShadow: `0 0 30px ${s.color}40` }}
                 >
                   {s.value}
                 </div>
-                <div className="text-sm" style={{ color: "rgba(107,114,128,1)" }}>{s.label}</div>
+                <div className="text-sm" style={{ color: "rgba(107,114,128,1)" }}>{t(s.labelKey)}</div>
               </div>
             ))}
           </div>
@@ -259,27 +267,24 @@ export default function Home() {
 
             <div>
               <p className="text-xs font-mono uppercase tracking-widest mb-3" style={{ color: "rgba(34,211,238,0.6)" }}>
-                Real exploit environments
+                {t("home.terminalLabel")}
               </p>
               <h2 className="text-4xl font-black text-white mb-5 leading-tight">
-                Every stage is a<br />
-                <span className="hero-glow">live terminal.</span>
+                <span className="hero-glow">{t("home.terminalHeading")}</span>
               </h2>
               <p className="text-gray-400 leading-relaxed mb-6">
-                Not a quiz. Not a video. You get a simulated network, real commands,
-                and a hidden flag buried inside the vulnerable environment.
-                Read the full briefing and attack diagram before you drop in — then use ARIA for guided coaching if you get stuck.
+                {t("home.terminalPara")}
               </p>
               <div className="space-y-3">
                 {[
-                  { icon: "🔎", text: "Investigate with real forensic commands" },
-                  { icon: "💥", text: "Exploit the actual vulnerability mechanics" },
-                  { icon: "🏁", text: "Submit the flag to unlock the next stage" },
-                  { icon: "🤖", text: "ARIA AI hints on demand — never reveals the flag" },
+                  { icon: "🔎", key: "home.terminalF1" },
+                  { icon: "💥", key: "home.terminalF2" },
+                  { icon: "🏁", key: "home.terminalF3" },
+                  { icon: "🤖", key: "home.terminalF4" },
                 ].map((f) => (
-                  <div key={f.text} className="flex items-center gap-3 text-sm text-gray-400">
+                  <div key={f.key} className="flex items-center gap-3 text-sm text-gray-400">
                     <span className="text-base">{f.icon}</span>
-                    {f.text}
+                    {t(f.key)}
                   </div>
                 ))}
               </div>
@@ -288,7 +293,7 @@ export default function Home() {
                 className="inline-block mt-8 px-7 py-3 font-bold rounded-xl text-sm text-black cta-shimmer transition-all hover:scale-105"
                 style={{ background: "linear-gradient(90deg, #22d3ee, #818cf8)" }}
               >
-                Open a Terminal →
+                {t("home.openTerminal")}
               </Link>
             </div>
 
@@ -350,13 +355,13 @@ export default function Home() {
             <div className="flex flex-wrap items-end justify-between gap-4 mb-10">
               <div>
                 <p className="text-xs font-mono uppercase tracking-widest mb-2" style={{ color: "rgba(34,211,238,0.6)" }}>
-                  Six curriculum tracks
+                  {t("home.curriculumLabel")}
                 </p>
-                <h2 className="text-4xl font-black text-white mb-2">A complete security education</h2>
-                <p style={{ color: "rgba(107,114,128,1)" }}>From SQL injection to post-quantum cryptography. Every track is hands-on CTF.</p>
+                <h2 className="text-4xl font-black text-white mb-2">{t("home.curriculumHeading")}</h2>
+                <p style={{ color: "rgba(107,114,128,1)" }}>{t("home.curriculumDesc")}</p>
               </div>
               <Link href="/stages" className="text-sm text-cyan-400 hover:text-cyan-300 transition-colors">
-                View stage map →
+                {t("home.curriculumLink")}
               </Link>
             </div>
 
@@ -381,7 +386,7 @@ export default function Home() {
                       </div>
                       <div>
                         <p className={`font-bold text-base ${track.textColor}`}>{track.label}</p>
-                        <p className="text-xs font-mono" style={{ color: "rgba(75,85,99,1)" }}>{track.stages} stages</p>
+                        <p className="text-xs font-mono" style={{ color: "rgba(75,85,99,1)" }}>{track.stages} {t("home.stagesUnit")}</p>
                       </div>
                     </div>
                   </div>
@@ -414,17 +419,14 @@ export default function Home() {
         <section className="py-24 px-4">
           <div className="max-w-5xl mx-auto">
             <div className="text-center mb-14">
-              <h2 className="text-4xl font-black text-white mb-3">How it works</h2>
-              <p style={{ color: "rgba(107,114,128,1)" }}>Three steps from zero to defender</p>
+              <h2 className="text-4xl font-black text-white mb-3">{t("home.howWorksHeading")}</h2>
+              <p style={{ color: "rgba(107,114,128,1)" }}>{t("home.howWorksSub")}</p>
             </div>
             <div className="grid md:grid-cols-3 gap-6">
               {[
-                { step: "01", icon: "📖", title: "Read the briefing",
-                  desc: "Each stage opens with a full breakdown — vulnerability mechanics, real-world incident, attack diagram, and attack timeline. Study the context before you engage." },
-                { step: "02", icon: "💻", title: "Run the exploit",
-                  desc: "Drop into a simulated terminal. Investigate, exploit, and capture the flag using real commands on the actual vulnerable environment." },
-                { step: "03", icon: "🏆", title: "Earn & rank up",
-                  desc: "Capture the flag, earn XP, unlock your badge, and climb the leaderboard. Daily streaks unlock milestone badges." },
+                { step: "01", icon: "📖", titleKey: "home.step1Title", descKey: "home.step1Desc" },
+                { step: "02", icon: "💻", titleKey: "home.step2Title", descKey: "home.step2Desc" },
+                { step: "03", icon: "🏆", titleKey: "home.step3Title", descKey: "home.step3Desc" },
               ].map((item) => (
                 <div
                   key={item.step}
@@ -442,8 +444,8 @@ export default function Home() {
                     {item.step}
                   </div>
                   <div className="text-3xl mb-4">{item.icon}</div>
-                  <h3 className="text-white font-bold text-lg mb-2">{item.title}</h3>
-                  <p className="text-sm leading-relaxed" style={{ color: "rgba(107,114,128,1)" }}>{item.desc}</p>
+                  <h3 className="text-white font-bold text-lg mb-2">{t(item.titleKey)}</h3>
+                  <p className="text-sm leading-relaxed" style={{ color: "rgba(107,114,128,1)" }}>{t(item.descKey)}</p>
                 </div>
               ))}
             </div>
@@ -454,23 +456,20 @@ export default function Home() {
         <section className="py-24 px-4 border-y border-white/5" style={{ background: "rgba(255,255,255,0.015)" }}>
           <div className="max-w-5xl mx-auto">
             <div className="text-center mb-14">
-              <h2 className="text-4xl font-black text-white mb-3">Built different</h2>
-              <p style={{ color: "rgba(107,114,128,1)" }}>Not a video course. Not a quiz bank.</p>
+              <h2 className="text-4xl font-black text-white mb-3">{t("home.featuresHeading")}</h2>
+              <p style={{ color: "rgba(107,114,128,1)" }}>{t("home.featuresSub")}</p>
             </div>
             <div className="grid md:grid-cols-3 gap-6">
               {[
                 { icon: "🎯", glow: "rgba(34,211,238,0.08)", border: "rgba(34,211,238,0.2)",
-                  title: "Real exploit environments",
-                  desc: "Every CTF challenge is modeled on the actual server, code, or config from the real incident — not a simulation of a simulation." },
+                  titleKey: "home.feature1Title", descKey: "home.feature1Desc" },
                 { icon: "🤖", glow: "rgba(168,85,247,0.08)", border: "rgba(168,85,247,0.2)",
-                  title: "ARIA AI hint assistant",
-                  desc: "Stuck? ARIA (powered by Claude) gives contextual hints without revealing flags. Available on every stage, rate-limited to keep it fair." },
+                  titleKey: "home.feature2Title", descKey: "home.feature2Desc" },
                 { icon: "📊", glow: "rgba(251,146,60,0.08)", border: "rgba(251,146,60,0.2)",
-                  title: "Gamified progression",
-                  desc: "XP, badges, daily streaks, and a live leaderboard. Linear stage gating keeps the difficulty curve honest." },
+                  titleKey: "home.feature3Title", descKey: "home.feature3Desc" },
               ].map((f) => (
                 <div
-                  key={f.title}
+                  key={f.titleKey}
                   className="rounded-2xl p-7 transition-all hover:scale-[1.02]"
                   style={{
                     background: `radial-gradient(ellipse at top, ${f.glow}, transparent 70%)`,
@@ -479,8 +478,8 @@ export default function Home() {
                   }}
                 >
                   <div className="text-4xl mb-5">{f.icon}</div>
-                  <h3 className="text-white font-bold text-lg mb-2">{f.title}</h3>
-                  <p className="text-sm leading-relaxed" style={{ color: "rgba(107,114,128,1)" }}>{f.desc}</p>
+                  <h3 className="text-white font-bold text-lg mb-2">{t(f.titleKey)}</h3>
+                  <p className="text-sm leading-relaxed" style={{ color: "rgba(107,114,128,1)" }}>{t(f.descKey)}</p>
                 </div>
               ))}
             </div>
@@ -492,11 +491,11 @@ export default function Home() {
           <div className="max-w-5xl mx-auto">
             <div className="text-center mb-12">
               <p className="text-xs font-mono uppercase tracking-widest mb-3" style={{ color: "rgba(74,222,128,0.7)" }}>
-                3.5 million unfilled positions globally
+                {t("home.jobsLabel")}
               </p>
-              <h2 className="text-4xl font-black text-white mb-3">Train for jobs that are hiring right now</h2>
+              <h2 className="text-4xl font-black text-white mb-3">{t("home.jobsHeading")}</h2>
               <p className="max-w-xl mx-auto" style={{ color: "rgba(107,114,128,1)" }}>
-                Every stage maps to real skills employers list in job postings.
+                {t("home.jobsDesc")}
               </p>
             </div>
 
@@ -504,19 +503,19 @@ export default function Home() {
               {[
                 { role: "SOC Analyst", salary: "$70K – $100K", emoji: "🛡️",
                   glow: "rgba(34,211,238,0.08)", border: "rgba(34,211,238,0.2)", tag: "rgba(34,211,238,1)",
-                  skills: ["Threat detection & log analysis", "Incident triage and response", "CVE identification"],
+                  skillKeys: ["home.jobSOCSkill1", "home.jobSOCSkill2", "home.jobSOCSkill3"],
                   coveredIn: ["AI Threat Detection", "WannaCry / EternalBlue", "Log4Shell"] },
                 { role: "Penetration Tester", salary: "$90K – $140K", emoji: "🎯",
                   glow: "rgba(168,85,247,0.08)", border: "rgba(168,85,247,0.2)", tag: "rgba(168,85,247,1)",
-                  skills: ["Web application exploitation", "Network vulnerability assessment", "CTF-style attack simulation"],
+                  skillKeys: ["home.jobPenSkill1", "home.jobPenSkill2", "home.jobPenSkill3"],
                   coveredIn: ["SQL Injection", "XSS", "SSRF", "Heartbleed"] },
                 { role: "AI / LLM Security Engineer", salary: "$120K – $180K", emoji: "🤖",
                   glow: "rgba(99,102,241,0.08)", border: "rgba(99,102,241,0.2)", tag: "rgba(99,102,241,1)",
-                  skills: ["LLM prompt injection testing", "AI model threat modeling", "OWASP LLM Top 10"],
+                  skillKeys: ["home.jobAISkill1", "home.jobAISkill2", "home.jobAISkill3"],
                   coveredIn: ["Prompt Injection", "Model Poisoning", "RAG Attacks"] },
                 { role: "Cloud Security Engineer", salary: "$110K – $160K", emoji: "☁️",
                   glow: "rgba(74,222,128,0.08)", border: "rgba(74,222,128,0.2)", tag: "rgba(74,222,128,1)",
-                  skills: ["IAM misconfigurations", "Server-side request forgery", "DNS security & Cisco Umbrella"],
+                  skillKeys: ["home.jobCloudSkill1", "home.jobCloudSkill2", "home.jobCloudSkill3"],
                   coveredIn: ["SSRF / Capital One", "DNS Tunneling", "Umbrella Policy"] },
               ].map((job) => (
                 <div
@@ -530,27 +529,27 @@ export default function Home() {
                 >
                   <div className="flex items-start justify-between mb-4">
                     <div>
-                      <p className="text-xs font-mono uppercase tracking-wider mb-1" style={{ color: "rgba(75,85,99,1)" }}>Role</p>
+                      <p className="text-xs font-mono uppercase tracking-wider mb-1" style={{ color: "rgba(75,85,99,1)" }}>{t("home.jobRoleLabel")}</p>
                       <h3 className="text-white font-bold text-xl">{job.emoji} {job.role}</h3>
                     </div>
                     <div className="text-right">
-                      <p className="text-xs font-mono uppercase tracking-wider mb-1" style={{ color: "rgba(75,85,99,1)" }}>Avg salary</p>
+                      <p className="text-xs font-mono uppercase tracking-wider mb-1" style={{ color: "rgba(75,85,99,1)" }}>{t("home.jobSalaryLabel")}</p>
                       <p className="text-white font-bold text-sm">{job.salary}</p>
                     </div>
                   </div>
                   <div className="mb-4">
-                    <p className="text-xs font-mono uppercase tracking-wider mb-2" style={{ color: "rgba(75,85,99,1)" }}>Skills you&apos;ll build</p>
+                    <p className="text-xs font-mono uppercase tracking-wider mb-2" style={{ color: "rgba(75,85,99,1)" }}>{t("home.jobSkillsLabel")}</p>
                     <ul className="space-y-1">
-                      {job.skills.map((s) => (
-                        <li key={s} className="flex items-center gap-2 text-sm" style={{ color: "rgba(156,163,175,1)" }}>
+                      {job.skillKeys.map((key) => (
+                        <li key={key} className="flex items-center gap-2 text-sm" style={{ color: "rgba(156,163,175,1)" }}>
                           <span className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: job.tag }} />
-                          {s}
+                          {t(key)}
                         </li>
                       ))}
                     </ul>
                   </div>
                   <div>
-                    <p className="text-xs font-mono uppercase tracking-wider mb-2" style={{ color: "rgba(75,85,99,1)" }}>Covered in</p>
+                    <p className="text-xs font-mono uppercase tracking-wider mb-2" style={{ color: "rgba(75,85,99,1)" }}>{t("home.jobCoveredLabel")}</p>
                     <div className="flex flex-wrap gap-1.5">
                       {job.coveredIn.map((s) => (
                         <span
@@ -568,9 +567,9 @@ export default function Home() {
             </div>
 
             <p className="text-center text-sm mt-8" style={{ color: "rgba(75,85,99,1)" }}>
-              Completions generate shareable certificates.{" "}
+              {t("home.certNote")}{" "}
               <Link href="/login" className="text-cyan-400 hover:text-cyan-300 transition-colors">
-                Start earning them →
+                {t("home.certLink")}
               </Link>
             </p>
           </div>
@@ -581,54 +580,39 @@ export default function Home() {
           <div className="max-w-5xl mx-auto">
             <div className="text-center mb-12">
               <p className="text-xs font-mono uppercase tracking-widest mb-3" style={{ color: "rgba(168,85,247,0.7)" }}>
-                Simple pricing
+                {t("home.pricingLabel")}
               </p>
-              <h2 className="text-4xl font-black text-white mb-3">Free to start. Built to scale.</h2>
+              <h2 className="text-4xl font-black text-white mb-3">{t("home.pricingHeading")}</h2>
               <p style={{ color: "rgba(107,114,128,1)" }}>
-                Individual learners, security teams, and enterprise partners — one platform.
+                {t("home.pricingDesc")}
               </p>
             </div>
 
             <div className="grid md:grid-cols-3 gap-5">
               {[
                 {
-                  name: "Free",
-                  price: "$0",
-                  per: "forever",
-                  desc: "Full access to Our First Journey — 30 beginner CTF stages. No credit card required.",
-                  features: ["30+ beginner stages", "ARIA AI hints", "Live leaderboard", "Streak & badge system"],
-                  cta: "Start Free",
-                  href: "/login",
-                  accent: "rgba(34,211,238,1)",
-                  border: "rgba(34,211,238,0.2)",
-                  glow: "rgba(34,211,238,0.06)",
-                  highlight: false,
+                  name: "Free", price: "$0", perKey: "home.pricingForever",
+                  descKey: "home.pricingFreeDesc",
+                  featureKeys: ["home.pricingFreeF1", "home.pricingFreeF2", "home.pricingFreeF3", "home.pricingFreeF4"],
+                  ctaKey: "home.pricingFreeCta", href: "/login",
+                  accent: "rgba(34,211,238,1)", border: "rgba(34,211,238,0.2)",
+                  glow: "rgba(34,211,238,0.06)", highlight: false,
                 },
                 {
-                  name: "Pro",
-                  price: "$13.99",
-                  per: "/ month",
-                  desc: "All six curriculum tracks. Full CTF access, certificates, and priority ARIA responses.",
-                  features: ["438 stages across 6 tracks", "Completion certificates", "Priority ARIA hints", "All milestone badges"],
-                  cta: "Get Pro — $13.99/mo",
-                  href: "/login",
-                  accent: "rgba(168,85,247,1)",
-                  border: "rgba(168,85,247,0.4)",
-                  glow: "rgba(168,85,247,0.08)",
-                  highlight: true,
+                  name: "Pro", price: "$13.99", perKey: "pricing.perMonth",
+                  descKey: "home.pricingProDesc",
+                  featureKeys: ["home.pricingProF1", "home.pricingProF2", "home.pricingProF3", "home.pricingProF4"],
+                  ctaKey: "home.pricingProCta", href: "/login",
+                  accent: "rgba(168,85,247,1)", border: "rgba(168,85,247,0.4)",
+                  glow: "rgba(168,85,247,0.08)", highlight: true,
                 },
                 {
-                  name: "Enterprise",
-                  price: "$8",
-                  per: "/ seat / month",
-                  desc: "For security teams and training programs. Admin dashboard, cohort progress, and custom content.",
-                  features: ["All Pro features", "Admin dashboard & analytics", "Custom epoch access control", "Sponsor integration support"],
-                  cta: "Contact Sales",
-                  href: "mailto:hello@kryptoscronos.com",
-                  accent: "rgba(74,222,128,1)",
-                  border: "rgba(74,222,128,0.2)",
-                  glow: "rgba(74,222,128,0.06)",
-                  highlight: false,
+                  name: "Enterprise", price: "$8", perKey: "pricing.perMonth",
+                  descKey: "home.pricingEntDesc",
+                  featureKeys: ["home.pricingEntF1", "home.pricingEntF2", "home.pricingEntF3", "home.pricingEntF4"],
+                  ctaKey: "home.pricingEntCta", href: "mailto:hello@kryptoscronos.com",
+                  accent: "rgba(74,222,128,1)", border: "rgba(74,222,128,0.2)",
+                  glow: "rgba(74,222,128,0.06)", highlight: false,
                 },
               ].map((tier) => (
                 <div
@@ -643,7 +627,7 @@ export default function Home() {
                   {tier.highlight && (
                     <div className="absolute -top-3 left-1/2 -translate-x-1/2 text-xs font-mono font-bold px-3 py-0.5 rounded-full"
                       style={{ background: "rgba(168,85,247,1)", color: "#000" }}>
-                      Most Popular
+                      {t("home.pricingMostPopular")}
                     </div>
                   )}
                   <div className="mb-5">
@@ -652,15 +636,15 @@ export default function Home() {
                     </p>
                     <div className="flex items-baseline gap-1">
                       <span className="text-4xl font-black text-white">{tier.price}</span>
-                      <span className="text-sm" style={{ color: "rgba(107,114,128,1)" }}>{tier.per}</span>
+                      <span className="text-sm" style={{ color: "rgba(107,114,128,1)" }}>{t(tier.perKey)}</span>
                     </div>
-                    <p className="mt-3 text-sm leading-relaxed" style={{ color: "rgba(107,114,128,1)" }}>{tier.desc}</p>
+                    <p className="mt-3 text-sm leading-relaxed" style={{ color: "rgba(107,114,128,1)" }}>{t(tier.descKey)}</p>
                   </div>
                   <ul className="space-y-2 mb-7 flex-1">
-                    {tier.features.map((f) => (
-                      <li key={f} className="flex items-center gap-2 text-sm" style={{ color: "rgba(156,163,175,0.9)" }}>
+                    {tier.featureKeys.map((key) => (
+                      <li key={key} className="flex items-center gap-2 text-sm" style={{ color: "rgba(156,163,175,0.9)" }}>
                         <span style={{ color: tier.accent }}>✓</span>
-                        {f}
+                        {t(key)}
                       </li>
                     ))}
                   </ul>
@@ -673,7 +657,7 @@ export default function Home() {
                       border: `1px solid ${tier.border}`,
                     }}
                   >
-                    {tier.cta}
+                    {t(tier.ctaKey)}
                   </Link>
                 </div>
               ))}
@@ -705,14 +689,14 @@ export default function Home() {
               />
               <div className="relative z-10">
                 <p className="text-xs font-mono uppercase tracking-widest mb-4" style={{ color: "rgba(34,211,238,0.6)" }}>
-                  The future of defense starts here
+                  {t("home.ctaLabel")}
                 </p>
                 <h2 className="text-4xl md:text-5xl font-black text-white mb-4 leading-tight">
-                  Six tracks. 438 stages.<br />
-                  <span className="hero-glow">All in your browser.</span>
+                  {t("home.ctaHeading1")}<br />
+                  <span className="hero-glow">{t("home.ctaHeading2")}</span>
                 </h2>
                 <p className="mb-8" style={{ color: "rgba(107,114,128,1)" }}>
-                  Free to start. No credit card. No setup.
+                  {t("home.ctaSub")}
                 </p>
                 <Link
                   href="/login"
@@ -722,7 +706,7 @@ export default function Home() {
                     boxShadow: "0 0 40px rgba(34,211,238,0.3), 0 0 80px rgba(99,102,241,0.2)",
                   }}
                 >
-                  Create Free Account →
+                  {t("home.ctaButton")}
                 </Link>
               </div>
             </div>
@@ -736,15 +720,15 @@ export default function Home() {
             <span className="text-white font-bold">Kryptós <span style={{ color: "#22d3ee" }}>CronOS</span></span>
           </div>
           <div className="flex justify-center gap-6 text-sm mb-3" style={{ color: "rgba(75,85,99,1)" }}>
-            <Link href="/stages" className="hover:text-gray-400 transition-colors">Stages</Link>
-            <Link href="/leaderboard" className="hover:text-gray-400 transition-colors">Leaderboard</Link>
-            <Link href="/login" className="hover:text-gray-400 transition-colors">Sign In</Link>
-            <Link href="/privacy" className="hover:text-gray-400 transition-colors">Privacy</Link>
-            <Link href="/terms" className="hover:text-gray-400 transition-colors">Terms</Link>
-            <Link href="/attribution" className="hover:text-gray-400 transition-colors">Attributions</Link>
+            <Link href="/stages" className="hover:text-gray-400 transition-colors">{t("home.footerStages")}</Link>
+            <Link href="/leaderboard" className="hover:text-gray-400 transition-colors">{t("home.footerLeaderboard")}</Link>
+            <Link href="/login" className="hover:text-gray-400 transition-colors">{t("home.footerSignIn")}</Link>
+            <Link href="/privacy" className="hover:text-gray-400 transition-colors">{t("home.footerPrivacy")}</Link>
+            <Link href="/terms" className="hover:text-gray-400 transition-colors">{t("home.footerTerms")}</Link>
+            <Link href="/attribution" className="hover:text-gray-400 transition-colors">{t("home.footerAttributions")}</Link>
           </div>
           <p className="text-xs" style={{ color: "rgba(55,65,81,1)" }}>
-            © 2026 Kryptós CronOS (κρυπτός χρόνος) · Built for defenders
+            {t("home.footerCopyright")}
           </p>
         </footer>
 

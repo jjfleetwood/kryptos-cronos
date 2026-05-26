@@ -281,7 +281,7 @@ export default function Nav() {
           {username && (
             <>
               <Link href={`/profile/${username}`} className="block px-3 py-2.5 rounded-lg text-sm" style={{ color: skin.accent }}>
-                🧑‍💻 {t("nav.profile") || "My Profile"}
+                🧑‍💻 {t("nav.profile")}
               </Link>
               <Link href="/avatar" className="block px-3 py-2.5 rounded-lg text-sm" style={{ color: "#a78bfa" }}>
                 👤 {t("nav.avatar")}
@@ -321,7 +321,7 @@ export default function Nav() {
 
             {/* Mobile group switcher */}
             <div className="px-3 py-2 mb-2">
-              <span className="text-xs block mb-1.5" style={{ color: skin.textMuted }}>Learning level:</span>
+              <span className="text-xs block mb-1.5" style={{ color: skin.textMuted }}>{t("nav.learningLevel")}</span>
               <div className="flex flex-wrap gap-1.5">
                 {USER_GROUPS.map((g) => (
                   <button
@@ -351,7 +351,7 @@ export default function Nav() {
                     className="w-full text-left px-3 py-2 rounded-lg text-xs font-bold transition-opacity hover:opacity-80"
                     style={{ background: "rgba(245,158,11,0.1)", color: "#f59e0b", border: "1px solid rgba(245,158,11,0.25)" }}
                   >
-                    ⚡ Trial: {trialDaysLeft} day{trialDaysLeft === 1 ? "" : "s"} left — Upgrade →
+                    ⚡ {t("nav.trialPrefix")} {trialDaysLeft} {trialDaysLeft === 1 ? t("nav.trialDaySingular") : t("nav.trialDayPlural")} {t("nav.trialSuffix")}
                   </button>
                 )}
                 <button
