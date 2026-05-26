@@ -14,6 +14,8 @@ import { useGroup } from "@/contexts/GroupContext";
 import metaEs from "@/data/translations/meta-es.json";
 import metaFr from "@/data/translations/meta-fr.json";
 import metaDe from "@/data/translations/meta-de.json";
+import metaHi from "@/data/translations/meta-hi.json";
+import metaPt from "@/data/translations/meta-pt.json";
 
 type EpochMeta = { n: string; s: string; d: string };
 type MetaFile = { stages: Record<string, unknown>; epochs: Record<string, EpochMeta> };
@@ -21,6 +23,8 @@ const STAGE_META_MAPS: Record<string, MetaFile> = {
   es: metaEs as MetaFile,
   fr: metaFr as MetaFile,
   de: metaDe as MetaFile,
+  hi: metaHi as MetaFile,
+  pt: metaPt as MetaFile,
 };
 
 // ── Track groupings ────────────────────────────────────────────────────────────

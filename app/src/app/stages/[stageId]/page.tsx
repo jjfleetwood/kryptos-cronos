@@ -14,10 +14,14 @@ import deTranslations from "@/data/translations/de.json";
 import metaEs from "@/data/translations/meta-es.json";
 import metaFr from "@/data/translations/meta-fr.json";
 import metaDe from "@/data/translations/meta-de.json";
+import metaHi from "@/data/translations/meta-hi.json";
+import metaPt from "@/data/translations/meta-pt.json";
 import enMessages from "@/messages/en.json";
 import esMessages from "@/messages/es.json";
 import frMessages from "@/messages/fr.json";
 import deMessages from "@/messages/de.json";
+import hiMessages from "@/messages/hi.json";
+import ptMessages from "@/messages/pt.json";
 
 const TRANSLATION_MAPS: Record<string, Record<string, StageTranslation>> = {
   es: esTranslations as Record<string, StageTranslation>,
@@ -30,6 +34,8 @@ const META_MAPS: Record<string, MetaMap> = {
   es: metaEs as MetaMap,
   fr: metaFr as MetaMap,
   de: metaDe as MetaMap,
+  hi: metaHi as MetaMap,
+  pt: metaPt as MetaMap,
 };
 
 const SERVER_MSG: Record<string, Record<string, string>> = {
@@ -37,6 +43,8 @@ const SERVER_MSG: Record<string, Record<string, string>> = {
   es: esMessages as Record<string, string>,
   fr: frMessages as Record<string, string>,
   de: deMessages as Record<string, string>,
+  hi: hiMessages as Record<string, string>,
+  pt: ptMessages as Record<string, string>,
 };
 function serverT(locale: string, key: string): string {
   return SERVER_MSG[locale]?.[key] ?? SERVER_MSG.en[key] ?? key;
