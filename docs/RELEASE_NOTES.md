@@ -2,6 +2,17 @@
 
 ---
 
+## v1.11.0 — 2026-05-26
+
+**Language epoch expansion: French Basics and Italian Basics each grow to 20 stages**
+
+- **French Basics** expanded from 10 → 20 stages (french-11 through french-20): at the boulangerie (UNESCO baguette tradition 2022, €1.10–1.30, bien cuite), reading a French menu (entrée ≠ main course, Escoffier brigade), French wine (AOC/AOP, phylloxera 1863, 6 regions), at the pharmacy (Napoleon's 1803 law, pharmacists can now prescribe antibiotics), hotel vocabulary (J'ai une réservation, Ritz 1898), telling time (Revolutionary decimal time 1793), weather (storms Lothar/Martin 1999, 10,000 Versailles trees), telephone & digital French (Minitel 1982–2012), French faux pas (hands on table, no eating while walking, flat hand over glass), Paris arrondissements (1–20 clockwise spiral, Haussmann 1853)
+- **Italian Basics** expanded from 10 → 20 stages (italian-11 through italian-20): at the gelateria (Buontalenti 1565 Medici court, artigianale signs), Italian food vocabulary (risotto alla Milanese, cotoletta vs Schnitzel, Artusi 1891), Italian wine (DOCG, Franciacorta, 1986 methanol scandal 19 deaths), at the farmacia (Santa Maria Novella 1240, farmacia di turno), hotel & accommodation (passport required by Italian law, Grand Tour 1660s), telling time (Milan's 1335 mechanical clock, 24-hour tradition), weather (nebbia Po Valley fog, afa August humidity, 2003 heat wave 20,000 deaths), Italian football/calcio (AC Milan rossoneri / Inter nerazzurri, Derby della Madonnina, San Siro 75,923, Inter founded 1908 as internationalist breakaway), Italian faux pas (la bella figura, posso? at markets, no cheese on seafood, UNESCO pizza 2017), Milan neighbourhoods (Brera M2 Lanza, Navigli M2 Porta Genova, Isola/Bosco Verticale M2/M5 Garibaldi, Tortona, Porta Romana, Quadrilatero Moda M3 Montenapoleone)
+- **Stage count grows:** 418 → 438 (all 36 epochs; travel track now 80 stages)
+- **Curriculum reference updated** to v3.5 — XP summary table extended with all 4 travel epochs; epoch descriptions expanded
+
+---
+
 ## v1.10.0 — 2026-05-25
 
 **Travel curriculum: Paris in July, Milan in July, French Basics, Italian Basics**
