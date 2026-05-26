@@ -105,14 +105,24 @@ export default function ProPaywall({ stageTitle, epochId }: { stageTitle: string
           </ul>
         </div>
 
-        {/* Back link */}
-        <div className="text-center">
-          <Link
-            href={`/stages/epoch/${epochId}`}
-            className="text-gray-600 hover:text-gray-400 text-sm transition-colors"
-          >
-            {t("paywall.backToStageMap")}
-          </Link>
+        {/* Links */}
+        <div className="text-center space-y-3">
+          <div>
+            <Link
+              href="/upgrade"
+              className="text-cyan-500 hover:text-cyan-400 text-sm transition-colors font-semibold"
+            >
+              See full plan details →
+            </Link>
+          </div>
+          <div>
+            <Link
+              href={`/stages/epoch/${epochId}`}
+              className="text-gray-600 hover:text-gray-400 text-sm transition-colors"
+            >
+              {t("paywall.backToStageMap")}
+            </Link>
+          </div>
         </div>
       </div>
     </div>

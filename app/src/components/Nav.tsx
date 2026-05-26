@@ -209,9 +209,9 @@ export default function Nav() {
           )}
           {username ? (
             <>
-              <span className="text-sm hidden sm:block" style={{ color: skin.textSecondary }}>
+              <Link href={`/profile/${username}`} className="text-sm hidden sm:block transition-opacity hover:opacity-80" style={{ color: skin.textSecondary }}>
                 <span style={{ color: skin.accent }}>{username}</span>
-              </span>
+              </Link>
               <button
                 onClick={handleLogout}
                 className="text-xs px-3 py-1.5 rounded-lg transition-colors hover:text-red-400"
@@ -280,6 +280,9 @@ export default function Nav() {
           ))}
           {username && (
             <>
+              <Link href={`/profile/${username}`} className="block px-3 py-2.5 rounded-lg text-sm" style={{ color: skin.accent }}>
+                🧑‍💻 {t("nav.profile") || "My Profile"}
+              </Link>
               <Link href="/avatar" className="block px-3 py-2.5 rounded-lg text-sm" style={{ color: "#a78bfa" }}>
                 👤 {t("nav.avatar")}
               </Link>
