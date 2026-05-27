@@ -1,0 +1,1332 @@
+{
+  "audit-t07": {
+    "tagline": "SAST znajduje lukę zanim zostanie wykorzystana. DAST potwierdza, że luka jest realna.",
+    "overview": [
+      "Testy bezpieczeństwa aplikacji wykorzystują trzy uzupełniające się podejścia: Static Application Security Testing (SAST) analizuje kod źródłowy bez jego uruchamiania — wykrywając SQL injection, XSS, command injection i zakodowane na stałe sekrety przed kompilacją. Dynamic Application Security Testing (DAST) atakuje działającą aplikację — potwierdzając, że podatności są exploitowalne. Software Composition Analysis (SCA) identyfikuje znane CVEs w zależnościach open source.",
+      "W dojrzałym programie AppSec wszystkie trzy uruchamiane są w CI/CD: SAST i SCA przy każdym commicie (szybka informacja zwrotna dla deweloperów), DAST przy każdym wdrożeniu na staging (wolniejsze, kompleksowe). Audytorzy bezpieczeństwa weryfikują, czy narzędzia są skonfigurowane, czy wyniki są triażowane (a nie blokowane bez uzasadnienia) oraz czy krytyczne znaleziska blokują wydania.",
+      "Narzędzia SAST obejmują: Semgrep, Checkmarx, Veracode, SonarQube i CodeQL. Narzędzia DAST obejmują: OWASP ZAP, Burp Suite Enterprise i StackHawk. Narzędzia SCA obejmują: Snyk, Dependabot, OWASP Dependency-Check i Black Duck."
+    ],
+    "technical": {
+      "title": "Odczytywanie wyników SAST i DAST",
+      "body": [
+        "Fałszywe pozytywy SAST są powszechne — prawidłowo sparametryzowane zapytanie SQL nadal może zostać oznaczone, jeśli narzędzie SAST nie rozumie ORM. Audytorzy weryfikują, czy wyciszenia fałszywych pozytywów mają udokumentowane uzasadnienia podpisane przez inżyniera bezpieczeństwa, a nie tylko przez dewelopera, który napisał kod.",
+        "DAST wymaga działającej aplikacji i prawidłowych poświadczeń testowych. Audytorzy weryfikują: DAST jest uruchamiany w środowisku staging (nie produkcyjnym), poświadczenia testowe nie są udostępniane deweloperom (zapobiega dostosowywaniu aplikacji w celu uniknięcia DAST), a wyniki DAST z ostatniego uruchomienia są porównywane z poprzednim w celu wykrycia regresji."
+      ]
+    },
+    "incident": {
+      "title": "Podatność zależności Apache Struts w Equifax (2017)",
+      "impact": "147 mln rekordów; ugoda FTC na 575 mln USD; exploitowane przez znane CVE w niezałatanej zależności",
+      "body": [
+        "Naruszenie Equifax wykorzystało CVE-2017-5638, krytyczną podatność w Apache Struts 2 ogłoszoną 7 marca 2017 roku. Equifax wiedział o łatce, ale nie zastosował jej do wszystkich systemów. Narzędzie SCA zintegrowane z CI/CD oznaczałoby podatną wersję Struts przy każdej kompilacji. Skan DAST publicznie dostępnej aplikacji potwierdziłby podatność na exploitation.",
+        "Dwumiesięczny odstęp między wydaniem łatki a exploitacją demonstruje wartość SCA w CI/CD: gdy pojawia się nowe CVE, każda organizacja uruchamiająca podatne oprogramowanie natychmiast wie, które aplikacje są narażone. Bez SCA organizacja może nie dowiedzieć się o tym przez miesiące — lub wcale."
+      ]
+    },
+    "timeline": [
+      "Equifax — CVE Apache Struts exploitowane 2 miesiące po wydaniu łatki",
+      "Semgrep open source — semantyczna analiza kodu z prędkością deweloperską",
+      "Log4Shell — narzędzia SCA identyfikują podatne aplikacje w ciągu godzin",
+      "OpenSSF Scorecard — zautomatyzowane ocenianie poziomu bezpieczeństwa open source"
+    ],
+    "keyTakeaways": [
+      "SAST w CI/CD dostarcza informacji zwrotnej o bezpieczeństwie deweloperom przy każdym commicie — przesuwa bezpieczeństwo w lewo",
+      "SCA identyfikuje podatne zależności — kluczowe przy atakach na łańcuch dostaw, takich jak Log4Shell",
+      "DAST potwierdza rzeczywistą podatność na exploitation — zmniejsza liczbę fałszywych pozytywów SAST trafiających do backlogu",
+      "Wyciszenia fałszywych pozytywów wymagają zatwierdzenia przez inżyniera bezpieczeństwa, a nie samodzielnego działania dewelopera"
+    ]
+  },
+  "audit-t12": {
+    "tagline": "Ręczna kontrola zgodności to chwilowy obraz. Zautomatyzowana zgodność to ciągła prawda.",
+    "overview": [
+      "Automatyzacja zgodności zastępuje punktowe, ręczne kontrole audytorskie ciągłą, zautomatyzowaną weryfikacją mechanizmów kontrolnych. AWS Config z Config Rules, AWS Security Hub, Azure Policy i GCP Security Command Center zapewniają wynik zgodności w czasie rzeczywistym względem standardów takich jak CIS Benchmarks, PCI DSS, SOC 2 i NIST 800-53.",
+      "AWS Security Hub agreguje wyniki z Config Rules, GuardDuty, Inspector, Macie i zewnętrznych narzędzi bezpieczeństwa w jeden wynik zgodności. CIS AWS Foundations Benchmark w Security Hub uruchamia ponad 180 zautomatyzowanych mechanizmów kontrolnych i aktualizuje wynik w czasie rzeczywistym w miarę tworzenia, modyfikowania lub usuwania zasobów.",
+      "Automatyzacja zgodności ma dwa elementy: prewencyjny (SCP i Azure Policies blokujące tworzenie niezgodnych zasobów) oraz detekcyjny (Config Rules i Security Hub identyfikujące istniejącą niezgodność). Audytorzy weryfikują, czy oba elementy są wdrożone i czy wyniki detekcji są remediowane, a nie tylko zbierane."
+    ],
+    "technical": {
+      "title": "Wdrażanie ciągłej zgodności",
+      "body": [
+        "Pakiety zgodności AWS Config wdrażają wiele Config Rules jako jedną jednostkę powiązaną ze standardem. Pakiet zgodności 'Operational Best Practices for PCI DSS 3.2.1' dostarczany przez AWS wdraża 133 reguły jednym wdrożeniem. Wyniki pojawiają się w Security Hub z wynikiem zgodności i szczegółami na poziomie zasobu.",
+        "Automatyczna remediacja: Config Rules mogą wyzwalać funkcje Lambda, które automatycznie remediują wyniki. Przykład: Config Rule wykrywa bucket S3 z publicznym dostępem — funkcja Lambda automatycznie stosuje blokadę dostępu publicznego. Audytorzy weryfikują, czy automatyczna remediacja jest włączona dla krytycznych mechanizmów kontrolnych i czy akcje remediacji są rejestrowane na potrzeby dziennika audytu."
+      ]
+    },
+    "incident": {
+      "title": "Toyota — publiczny bucket S3 przez 10 lat (2023)",
+      "impact": "Ujawnione lokalizacje 2,15 mln pojazdów klientów przez 10 lat; brak jakiejkolwiek zautomatyzowanej kontroli zgodności",
+      "body": [
+        "Błędna konfiguracja S3 Toyoty przez 10 lat (publiczny dostęp do bucketu zawierającego dane o lokalizacji pojazdów) zostałaby wykryta pierwszego dnia przez regułę AWS Config 's3-bucket-public-read-prohibited'. Ta zarządzana reguła działa w sposób ciągły i identyfikuje każdy bucket z publicznym dostępem do odczytu w ciągu kilku minut od skonfigurowania.",
+        "Sprawa stała się przykładem tego, dlaczego automatyzacja zgodności ma znaczenie: ręczny audyt sprawdza konkretny moment w czasie, ale reguła Config działająca w sposób ciągły wykryłaby błędną konfigurację z 2013 roku w 2013 roku, nie w 2023. AWS Config był dostępny w 2013 roku. Organizacja po prostu go nie wdrożyła."
+      ]
+    },
+    "timeline": [
+      "AWS Config GA — ciągłe monitorowanie konfiguracji zasobów",
+      "CIS AWS Foundations Benchmark v1.0 — 49 zautomatyzowanych mechanizmów kontrolnych",
+      "AWS Security Hub GA — zagregowana zgodność we wszystkich Config Rules",
+      "Toyota — 10-letnie narażenie S3, które AWS Config wykryłby w ciągu minut"
+    ],
+    "keyTakeaways": [
+      "Automatyzacja zgodności wykrywa błędy konfiguracji w ciągu minut, a nie lat po wdrożeniu",
+      "AWS Security Hub zapewnia ujednolicony wynik zgodności dla ponad 180 mechanizmów kontrolnych CIS Benchmark",
+      "Automatyczna remediacja krytycznych mechanizmów kontrolnych (publiczny dostęp S3, klucze dostępu root) jest zalecaną praktyką",
+      "Ręczne audyty weryfikują działanie automatyzacji — nie zastępują ciągłego monitorowania"
+    ]
+  },
+  "audit-a03": {
+    "tagline": "Wyrażenia regularne wychwytują wzorce. Claude rozumie kontekst. Oba są niezbędne.",
+    "overview": [
+      "Tradycyjne narzędzia do skanowania sekretów używają wzorców regex do wykrywania znanych formatów sekretów — prefiksów kluczy AWS, wzorców tokenów GitHub, nagłówków PEM. Wykrywają dobrze sformatowane sekrety, ale zawodzą w przypadku zaciemnionych poświadczeń, sekretów zmiennych środowiskowych ustawionych w konfiguracji CI, sekretów w komentarzach lub niestandardowych wewnętrznych formatów tokenów.",
+      "Wykrywanie sekretów wspomagane przez AI wykorzystuje Claude do wnioskowania o kontekście: Czy to prawdziwe poświadczenie, czy testowy znacznik zastępczy? Czy nazwa tej zmiennej podejrzanie przypomina poświadczenie, mimo że wartość wygląda niewinnie? Czy ten blob base64 dekoduje się do klucza prywatnego? Semantyczne rozumienie Claude'a wykrywa to, czego regex nie potrafi.",
+      "Agentyczny skaner sekretów łączy wstępne filtrowanie regex (dla szybkości i znanych formatów) z analizą Claude'a (dla kontekstu i przypadków brzegowych). Skanuje historię git, konfiguracje środowiskowe, infrastrukturę jako kod, obrazy Docker i definicje potoków CI/CD — całą powierzchnię ataku, przez którą wycieka sekrety."
+    ],
+    "technical": {
+      "title": "Architektura dwufazowego skanowania",
+      "body": [
+        "Faza 1 (szybka, regex): uruchom truffleHog lub detect-secrets na celu. Oznacz wszystkie dopasowania wzorców i ciągi o wysokiej entropii do przeglądu. To generuje wiele fałszywych pozytywów, ale nie pomija niczego oczywistego.",
+        "Faza 2 (precyzyjna, Claude): dla każdego oznaczonego elementu wyślij okno kontekstowe do Claude'a zawierające otaczający kod, ścieżkę pliku, nazwę zmiennej i surową wartość. Poproś Claude'a o klasyfikację: confirmed_secret, likely_placeholder, false_positive. Ocena Claude'a skraca czas przeglądu analityka o ponad 80% w praktyce."
+      ]
+    },
+    "incident": {
+      "title": "Wyciek sekretów Uber z GitHub (2022)",
+      "impact": "57 mln rekordów użytkowników; atakujący użył ujawnionego poświadczenia AWS do uzyskania dostępu do bucketów S3",
+      "body": [
+        "Naruszenie Uber z 2022 roku rozpoczęło się od ataku zmęczenia MFA, ale zdolność atakującego do przemieszczania się lateralnie i uzyskiwania dostępu do danych produkcyjnych opierała się na znalezieniu zakodowanych na stałe poświadczeń w wewnętrznych skryptach PowerShell Ubera przechowywanych w udziale sieciowym. Poświadczenia nie znajdowały się w głównych repozytoriach kodu źródłowego — były w skryptach operacyjnych, których skanery regex nie obejmowały.",
+        "Skanowanie wspomagane przez Claude'a objęłoby te skrypty operacyjne. Co ważniejsze, Claude potrafi rozpoznawać wzorce podobne do poświadczeń w nazwach zmiennych PowerShell (`$uberProdKey`, `$awsToken`) nawet gdy wartości są zaciemnione — czegoś, czego czysty regex nie potrafi zrobić bez wyczerpującej listy nazw zmiennych."
+      ]
+    },
+    "timeline": [
+      "Wydanie truffleHog — pierwszy ważny skaner sekretów historii git",
+      "Naruszenie Uber — zakodowane na stałe poświadczenia w skryptach operacyjnych nie wykryte przez skanery",
+      "Klasyfikacja sekretów wspomagana przez AI redukuje wskaźnik fałszywych pozytywów o ponad 80%",
+      "Claude używany w produkcyjnych potokach triażu sekretów w firmach z listy Fortune 500"
+    ],
+    "keyTakeaways": [
+      "Regex znajduje formaty; Claude znajduje intencję — używaj obu sekwencyjnie",
+      "Skanuj poza repozytoriami git: konfiguracje CI, obrazy Docker, IaC, skrypty operacyjne",
+      "Klasyfikacja Claude'a: confirmed_secret / likely_placeholder / false_positive",
+      "Skanowanie historii git wychwytuje zarówno potwierdzone, jak i 'usunięte' sekrety — usunięcie ≠ wyeliminowanie"
+    ]
+  },
+  "audit-cm02": {
+    "tagline": "Sygnatury wychwytują wczorajsze ataki. ML wychwytuje jutrzejsze.",
+    "overview": [
+      "Tradycyjne platformy SIEM (Splunk, ArcSight, QRadar) działają w oparciu o detekcję bazującą na sygnaturach: inżynierowie piszą reguły korelacji dopasowujące znane wzorce ataków. To podejście sprawdza się przy standardowych atakach, ale zawodzi wobec nowych technik, ataków living-off-the-land (LOTL) i długotrwałych kampanii APT utrzymujących się poniżej progów poszczególnych reguł.",
+      "Platformy SIEM nowej generacji (Microsoft Sentinel, Google Chronicle, Elastic SIEM, Securonix) uzupełniają detekcję opartą na regułach o uczenie maszynowe: nienadzorowane wykrywanie anomalii, nadzorowane klasyfikatory trenowane na oznaczonych danych ataków oraz rozwiązywanie jednostek oparte na grafach. Pobierają dane w skali petabajtów z API chmurowych, agentów endpoint, ruchu sieciowego i dostawców tożsamości — nie tylko z tradycyjnego sysloga.",
+      "Kluczową zmianą architektoniczną w SIEM nowej generacji jest normalizacja do wspólnego schematu (OCSF — Open Cybersecurity Schema Framework lub Elastic Common Schema) przed przechowywaniem. Pozwala to jednej regule detekcji dopasowywać dziesiątki źródeł danych. W połączeniu z wzbogacaniem danymi o zagrożeniach w momencie pobrania analitycy widzą alerty bogate w kontekst zamiast surowych wierszy logów."
+    ],
+    "technical": {
+      "title": "Wzorce detekcji ML w SIEM nowej generacji",
+      "body": [
+        "Trzy techniki ML dominują w detekcji w SIEM nowej generacji: (1) Isolation Forest / DBSCAN do nienadzorowanego wykrywania wartości odstających na liniach bazowych zachowania użytkownika/encji; (2) klasyfikatory gradient boosting (XGBoost, LightGBM) trenowane na oznaczonych danych zagrożeń do nadzorowanej detekcji; (3) neuronowe sieci grafowe do wykrywania ruchu lateralnego modelującego relacje uwierzytelniania.",
+        "Redukcja fałszywych pozytywów to główne wyzwanie operacyjne. SIEM generujący 10 000 alertów dziennie z 99% fałszywych pozytywów nadal produkuje 100 prawdziwych incydentów zakopanych w szumie. SIEM nowej generacji używa grupowania alertów, deduplikacji i wyników ryzyka UEBA, aby wysuniąć na powierzchnię tylko wyniki o najwyższej pewności do przeglądu analityka."
+      ]
+    },
+    "incident": {
+      "title": "Atak na łańcuch dostaw SolarWinds Orion — niepowodzenie SIEM (2020)",
+      "impact": "9 federalnych agencji USA skompromitowanych; 14-miesięczny okres niewykrycia",
+      "body": [
+        "Atak SolarWinds SUNBURST trojanizował proces kompilacji oprogramowania Orion, wstawiając backdoor do podpisanych, legalnych aktualizacji. Malware był zaprojektowany tak, aby unikać detekcji SIEM opartej na sygnaturach: naśladował legalne wzorce ruchu SolarWinds, używał istniejących ścieżek sieciowych i pozostawał nieaktywny przez 12–14 dni po instalacji przed aktywacją.",
+        "FireEye odkrył atak nie przez alerty SIEM, ale przez ludzkiego analityka zauważającego nietypową rejestrację urządzenia MFA — anomalię behawioralną, którą SIEM nowej generacji z UEBA oznaczył automatycznie. Po incydencie Microsoft Sentinel i inne platformy nowej generacji wdrożyły specyficzne modele behawioralne SUNBURST. Atak fundamentalnie zmienił branżę w kierunku detekcji opartej na ML dla zagrożeń łańcucha dostaw i LOTL."
+      ]
+    },
+    "timeline": [
+      "Era ArcSight / QRadar — SIEM oparty na sygnaturach staje się standardem korporacyjnym",
+      "Wydanie Splunk ML Toolkit — pierwsze możliwości ML w tradycyjnym SIEM",
+      "Uruchomienie Microsoft Sentinel (natywnego chmurowego SIEM); ogłoszenie Google Chronicle",
+      "Atak SolarWinds ujawnia ograniczenia detekcji sygnaturowej — adopcja SIEM ML przyspiesza",
+      "OCSF (Open Cybersecurity Schema Framework) wydany przez AWS, Splunk i 17 partnerów",
+      "Triażowanie alertów wspomagane przez LLM zintegrowane w głównych platformach SIEM"
+    ],
+    "keyTakeaways": [
+      "Detekcja sygnaturowa pomija nowe ataki — ML wykrywa anomalie behawioralne niezależnie od znanych wzorców",
+      "Normalizacja schematu (OCSF/ECS) podczas pobrania umożliwia detekcję między źródłami za pomocą jednej reguły",
+      "Redukcja fałszywych pozytywów to wyzwanie operacyjne nr 1 SIEM — ocenianie ryzyka i grupowanie pomagają",
+      "SolarWinds pokazał, że ataki na łańcuch dostaw i LOTL wymagają detekcji behawioralnej, nie sygnaturowej",
+      "SIEM nowej generacji pobiera API chmurowe i dostawców tożsamości, a nie tylko tradycyjny syslog"
+    ]
+  },
+  "mitre-02": {
+    "tagline": "Profesjonalni atakujący budują swoje narzędzia zanim wybiorą swoje cele.",
+    "overview": [
+      "Resource Development (TA0042) obejmuje wszystko, co atakujący nabywa lub buduje przed przeprowadzeniem ataku: infrastrukturę C2, narzędzia do exploitation, malware, skompromitowane konta i certyfikaty cyfrowe do podpisywania kodu. Aktorzy państwowi i wyrafinowane grupy kryminalne inwestują tygodnie w tę fazę.",
+      "Kluczowe techniki: T1583 — Acquire Infrastructure (serwery VPS, domeny, konta chmurowe kupowane za skradzione karty kredytowe lub kryptowaluty), T1584 — Compromise Infrastructure (hakowanie legalnych stron internetowych do użycia jako przekaźniki C2), T1587 — Develop Capabilities (niestandardowy malware, exploity zero-day), T1588 — Obtain Capabilities (zakup narzędzi na forach dark web).",
+      "Obrońcy wykrywają rozwój zasobów poprzez wymianę informacji o zagrożeniach — gdy atakujący rejestruje domenę wyglądającą jak domena docelowej organizacji (typosquatting), kanały informacji o zagrożeniach ją oznaczają. Rejestry Certificate Transparency ujawniają nowo wydane certyfikaty dla domen imitatorów. Pasywny monitoring DNS wykrywa infrastrukturę C2 przed jej użyciem."
+    ],
+    "technical": {
+      "title": "Wzorce infrastruktury C2",
+      "body": [
+        "Nowoczesna infrastruktura C2 używa wielu warstw, aby uniknąć demontażu: przekaźniki (tanie serwery VPS przekazujące ruch do rzeczywistego C2), domain fronting (kierowanie ruchu C2 przez CDN jak Cloudflare) i dead drop resolvers (profile sieci społecznościowych lub posty Pastebin zawierające aktualny adres IP C2).",
+        "Obrońcy używają: sprawdzania wieku domeny (nowo zarejestrowane domeny są podejrzane), pasywnego DNS (śledzenie rozwiązań IP-do-domeny w czasie), wzorców prywatności WHOIS (wszystkie informacje ukryte + zarejestrowana z usługą prywatności = wyższe ryzyko) oraz fingerprintingu TLS JA3 (frameworki C2 mają charakterystyczne wzorce handshake TLS)."
+      ]
+    },
+    "incident": {
+      "title": "Lazarus Group — Operation AppleJeus Infrastructure (2018)",
+      "impact": "2 mld USD+ skradzionych; zaawansowana, wielowarstwowa infrastruktura C2 używana w ponad 30 krajach",
+      "body": [
+        "Północnokoreańska grupa Lazarus (APT38) zbudowała rozbudowane kanały Resource Development dla Operation AppleJeus: rejestrowała firmy produkujące oprogramowanie do kryptowalut wyglądające na legalne, tworzyła profesjonalnie wyglądające strony internetowe i profile GitHub, rozwijała trojańskie oprogramowanie do handlu kryptowalutami i podpisywała je legalnymi certyfikatami podpisywania kodu zakupionymi pod fałszywymi tożsamościami firm.",
+        "Infrastruktura była tak przekonująca, że ofiary dobrowolnie pobierały i uruchamiały malware. Cała operacja — rejestracja firmy, tworzenie stron internetowych, tworzenie oprogramowania, nabycie certyfikatów — została ukończona zanim zaatakowano jakikolwiek cel. To jest Resource Development w skali państwowej."
+      ]
+    },
+    "timeline": [
+      "Lazarus AppleJeus — fałszywa firma kryptograficzna + trojańskie oprogramowanie",
+      "ATT&CK v7 formalizuje Resource Development (TA0042) jako taktykę",
+      "Domain fronting przez główne CDN w dużej mierze zablokowany; atakujący przechodzą na przekaźniki",
+      "Lazarus kradnie 600 mln USD z Ronin Bridge — ten sam wzorzec infrastruktury"
+    ],
+    "keyTakeaways": [
+      "Resource Development odbywa się przed pierwszą interakcją z ofiarą — wykryj go za pomocą informacji o zagrożeniach",
+      "Monitoruj rejestry Certificate Transparency pod kątem domen imitatorów skierowanych do Twojej organizacji",
+      "Wiek domeny + ukryte WHOIS + nowy certyfikat = wzorzec domeny wysokiego ryzyka",
+      "Fingerprinting TLS JA3 identyfikuje frameworki C2 po ich sygnaturze handshake"
+    ]
+  },
+  "mitre-04": {
+    "tagline": "Najlepszy malware używa narzędzi już zainstalowanych na komputerze ofiary.",
+    "overview": [
+      "Execution (TA0002) obejmuje techniki, których atakujący używają do uruchamiania swojego złośliwego kodu w docelowym systemie po uzyskaniu wstępnego dostępu. Dominującą techniką wykonania we współczesnych włamaniach jest T1059 — Command and Scripting Interpreter, a konkretnie PowerShell (T1059.001), który jest wbudowany we wszystkie systemy Windows i domyślnie zaufany.",
+      "Wykonanie living-off-the-land (LOLBins) nadużywa legalnych narzędzi Windows: PowerShell, WMI, mshta.exe, regsvr32.exe, certutil.exe i rundll32.exe do uruchamiania kodu dostarczonego przez atakujących. Ponieważ są to binaria podpisane przez Microsoft, omijają listy dopuszczonych aplikacji i wiele produktów AV.",
+      "Detekcja skupia się na wskaźnikach behawioralnych: PowerShell z flagą -EncodedCommand (powszechny w malware), PowerShell pobierający pliki z internetu (IEX (New-Object Net.WebClient).DownloadString), tworzenie subskrypcji WMI i niepodpisane skrypty uruchamiane z pominięciem polityki wykonania."
+    ],
+    "technical": {
+      "title": "Wykrywanie wykonania PowerShell",
+      "body": [
+        "Włącz rejestrowanie bloków skryptów PowerShell (Event ID 4104) — przechwytuje rzeczywistą zdekodowaną zawartość skryptu nawet gdy używana jest flaga -EncodedCommand. Włącz rejestrowanie modułów (Event ID 4103) i transkrypcję. Te trzy ustawienia łącznie sprawiają, że PowerShell staje się niemal przezroczysty dla obrońców.",
+        "Constrained Language Mode (CLM) ogranicza PowerShell, uniemożliwiając atakującym korzystanie z typów .NET, obiektów COM i ALLOWED_TYPES. W połączeniu z AppLocker lub WDAC (Windows Defender Application Control) CLM zapobiega większości technik wykonania opartych na PowerShell."
+      ]
+    },
+    "incident": {
+      "title": "NotPetya — WMI i PSEXEC do wykonania (2017)",
+      "impact": "Szkody ponad 10 mld USD; Maersk, FedEx, Merck, Mondelez — wszystkie sparaliżowane",
+      "body": [
+        "NotPetya użył wielu technik wykonania po uzyskaniu wstępnego dostępu: WMI (T1047) do zdalnego wykonania, PsExec (T1569.002) do wykonania ruchu lateralnego i WMIC do propagacji po sieci. Łączył skradzione poświadczenia (przez credential dumping) z legalnymi narzędziami zdalnego wykonania Windows — klasyczny atak LOLBin.",
+        "Ponieważ NotPetya do wykonania używał tylko legalnych narzędzi Windows (WMI, PsExec, Task Scheduler), tradycyjne produkty AV oparte na sygnaturach malware nie zostały wyzwolone. Łańcuch wykonania wyglądał identycznie jak legalna administracja systemem."
+      ]
+    },
+    "timeline": [
+      "NotPetya — wykonanie LOLBin WMI/PsExec powoduje globalne szkody w wysokości 10 mld USD",
+      "Rejestrowanie bloków skryptów PowerShell staje się standardowym mechanizmem detekcji SOC",
+      "Wdrożenie WDAC + Constrained Language Mode rośnie w korporacjach",
+      "Detekcja wykonania wspomagana przez AI znacząco skraca czas przebywania atakującego"
+    ],
+    "keyTakeaways": [
+      "Włącz rejestrowanie bloków skryptów PowerShell (Event 4104) — dekoduje -EncodedCommand",
+      "LOLBins używają podpisanych narzędzi Microsoft — AV oparty na sygnaturach jest na nie ślepy",
+      "Constrained Language Mode + AppLocker blokuje większość technik wykonania PowerShell",
+      "Detekcja behawioralna (PowerShell → połączenie sieciowe) przewyższa detekcję opartą na sygnaturach"
+    ]
+  },
+  "quantum-02": {
+    "tagline": "Algorytm Petera Shora z 1994 roku redukuje faktoryzację RSA z czasu wykładniczego do wielomianowego — czyniąc całą obecną kryptografię klucza publicznego przestarzałą.",
+    "overview": [
+      "W 1994 roku matematyk z MIT Peter Shor opublikował kwantowy algorytm faktoryzujący duże liczby całkowite w czasie wielomianowym — O((log N)³) operacji kwantowych w porównaniu do najlepszego klasycznego O(e^(64/9 * (log N)^(1/3))) operacji subwykładniczych. Ten jeden algorytm teoretycznie łamie RSA, Diffie-Hellman i kryptografię krzywych eliptycznych jednocześnie.",
+      "Bezpieczeństwo RSA opiera się całkowicie na trudności faktoryzacji dużych liczb semipierwszych — mnożenie dwóch liczb pierwszych jest łatwe, faktoryzacja iloczynu jest klasycznie niewykonalna. Algorytm Shora używa kwantowej transformaty Fouriera i kwantowej estymacji fazy do znajdowania okresu modularnej funkcji wykładniczej, z której efektywnie wyprowadzane są czynniki.",
+      "Algorytm rozciąga się również na problemy logarytmu dyskretnego — łamiąc Diffie-Hellman (w tym ECDH). Każdy kryptosystem, którego bezpieczeństwo zależy od faktoryzacji lub logarytmów dyskretnych, jest podatny. Obejmuje to TLS, SSH, IPsec, podpisywanie kodu i urzędy certyfikacji."
+    ],
+    "technical": {
+      "title": "Jak działa algorytm Shora",
+      "body": [
+        "Algorytm Shora ma dwie części: (1) klasyczna redukcja faktoryzacji do wyszukiwania okresu oraz (2) kwantowy algorytm wyszukiwania okresu używający Kwantowej Transformaty Fouriera (QFT). QFT wyodrębnia periodyczność z kwantowej superpozycji ewaluacji funkcji — coś klasycznie niemożliwego.",
+        "Dla RSA-2048 (moduł 2048-bitowy) algorytm Shora wymaga około 4096 logicznych qubitów i bilionów kwantowych operacji bramkowych. Obecne komputery kwantowe mają ~100–400 fizycznych qubitów podatnych na błędy. Korekcja błędów wymaga ~1000 fizycznych qubitów na logiczny qubit — potrzeba więc ~4 milionów fizycznych qubitów."
+      ]
+    },
+    "incident": {
+      "title": "Zestaw CNSA 2.0 NSA — uznanie zagrożenia kwantowego",
+      "impact": "NSA nakazało migrację do algorytmów postkwantowych dla wszystkich sklasyfikowanych systemów przed 2035 rokiem",
+      "body": [
+        "We wrześniu 2022 roku NSA wydała Commercial National Security Algorithm Suite 2.0 (CNSA 2.0), nakazując wszystkim National Security Systems migrację z RSA i ECC do algorytmów odpornych na komputery kwantowe przed 2035 rokiem. Było to wyraźne uznanie przez rząd, że algorytm Shora stanowi wiarygodne krótkoterminowe zagrożenie.",
+        "CNSA 2.0 nakazała: CRYSTALS-Kyber do ustanawiania kluczy, CRYSTALS-Dilithium i FALCON do podpisów cyfrowych oraz XMSS/LMS do podpisywania firmware. Termin 2035 dla systemów sklasyfikowanych sugeruje przekonanie, że kryptograficznie istotne komputery kwantowe (CRQC) mogą pojawić się do tego czasu — lub że harmonogram migracji wymaga natychmiastowego rozpoczęcia."
+      ]
+    },
+    "timeline": [
+      "Peter Shor publikuje algorytm Shora w Bell Labs",
+      "IBM demonstruje algorytm Shora faktoryzując 15 na 7-qubitowej maszynie NMR",
+      "53-qubitowy procesor Sycamore Google — kwantowa supremacja dla konkretnego problemu",
+      "NSA CNSA 2.0 — nakaz migracji postkwantowej dla systemów sklasyfikowanych",
+      "NIST publikuje FIPS 203/204/205 — pierwsze standardy PQC"
+    ],
+    "keyTakeaways": [
+      "Algorytm Shora łamie RSA, Diffie-Hellman i ECC jednocześnie — całą obecną kryptografię klucza publicznego",
+      "Algorytm jest znany i sprawdzony — jedyną barierą jest sprzęt",
+      "Nakaz NSA na 2035 rok sugeruje, że uważają CRQC za możliwe w tym horyzoncie",
+      "Kryptografia symetryczna (AES-256, SHA-384) wymaga jedynie podwojenia rozmiaru klucza/skrótu — algorytm Grovera redukuje bezpieczeństwo o połowę"
+    ]
+  },
+  "quantum-10": {
+    "tagline": "Harmonogram zagrożenia kwantowego to największa niewiadoma w cyberbezpieczeństwie — a okno na przygotowanie się zamyka się.",
+    "overview": [
+      "Agencje wywiadowcze, firmy zajmujące się obliczeniami kwantowymi i naukowcy akademiccy podają bardzo różne szacunki dotyczące tego, kiedy pojawi się kryptograficznie istotny komputer kwantowy (CRQC): od 5 do 30 lat. Wspólnota wywiadowcza Five Eyes (USA, Wielka Brytania, Kanada, Australia, Nowa Zelandia) przyjęła horyzont planowania 2030–2035 dla systemów sklasyfikowanych.",
+      "Kluczem dla planistów bezpieczeństwa jest to, że nieważne, kiedy dokładnie nastąpi Q-Day — liczy się to, czy migracja zostanie ukończona przed tym zdarzeniem. Korporacyjne migracje kryptograficzne trwają 3–7 lat. NIST opublikował pierwsze standardy PQC w sierpniu 2024 roku. Organizacje rozpoczynające migrację w 2024 roku mogą realnie ją ukończyć do 2030–2031 roku. Organizacje zaczynające w 2027 roku — nie.",
+      "Ten końcowy etap Quantum Foundations syntetyzuje pełny obraz zagrożenia i dostarcza ramy decyzyjne do rozpoczęcia migracji postkwantowej. Po tym etapie Epoch 4b omawia konkretne algorytmy postkwantowe, a Epoch 4c — QKD i realizację migracji korporacyjnej."
+    ],
+    "technical": {
+      "title": "Ramy decyzyjne migracji PQC",
+      "body": [
+        "Decyzja migracyjna jest napędzana przez: (1) czas życia wrażliwości danych — jak długo dane muszą pozostawać poufne? (2) narażenie HNDL — czy te dane są transmitowane przez infrastrukturę eksponowaną na internet, skąd przeciwnicy mogą je dziś zbierać? (3) harmonogram migracji — ile czasu zajmie aktualizacja tego systemu?",
+        "Rekomendacja harmonogramu NIST 2024: organizacje powinny planować migrację od algorytmów podatnych na kwanty do 2030 roku (dla danych o wysokiej wrażliwości) i ukończyć wszystkie migracje do 2035 roku. Biorąc pod uwagę typowe harmonogramy migracji korporacyjnych, rozpoczęcie w 2024–2025 roku jest niezbędne do spełnienia celu 2030."
+      ]
+    },
+    "incident": {
+      "title": "Wspólne doradztwo Five Eyes — Wskazówki dotyczące kryptografii postkwantowej",
+      "impact": "Ujednolicone wytyczne Five Eyes tworzą globalną podstawę dla planowania migracji PQC",
+      "body": [
+        "W latach 2023–2024 wspólnota wywiadowcza Five Eyes wydała wspólne doradztwa dotyczące kryptografii postkwantowej, reprezentując najbardziej znaczące wytyczne kolektywnych agencji wywiadowczych w jakiejkolwiek kwestii technicznej od czasu przejścia SSL/TLS. Wspólne wytyczne ujednoliciły harmonogramy migracji, rekomendacje algorytmów i oceny zagrożeń we wszystkich narodach Five Eyes.",
+        "Ujednolicony przekaz: natychmiast rozpocząć migrację postkwantową, priorytetyzując systemy eksponowane na internet obsługujące wrażliwe, długotrwałe dane. Szczegółowość wytycznych — wymienienie konkretnych algorytmów (CRYSTALS-Kyber, Dilithium), konkretnych lat wycofania (2030–2035) i wyraźne ostrzeżenia o HNDL — odzwierciedla dostęp wspólnoty wywiadowczej do kwantowych możliwości przeciwnika."
+      ]
+    },
+    "timeline": [
+      "NIST publikuje FIPS 203/204/205 — ustandaryzowane algorytmy PQC",
+      "Wspólne doradztwo Five Eyes — ujednolicone wytyczne migracji PQC",
+      "Cel: wszystkie systemy P1 (najwyższa wrażliwość) zmigrowane",
+      "Początek wycofania algorytmów NSA — faza wyjścia z RSA/ECC",
+      "Plan kwantowy IBM: system ponad 100 tys. qubitów — bliskość CRQC",
+      "Nakaz NSA: wszystkie NSS wyłącznie na algorytmach CNSA 2.0 (PQC)"
+    ],
+    "keyTakeaways": [
+      "Migracja trwa 3–7 lat — organizacje zaczynające w 2024 roku mogą spełnić cel P1 2030",
+      "NIST FIPS 203/204/205 (2024) dostarcza ustandaryzowane algorytmy — zacznij wdrażać teraz",
+      "Wytyczne Five Eyes to najbardziej wiarygodna dostępna ocena zagrożeń — traktuj 2030 jako swój termin",
+      "Migracja postkwantowa nie jest opcjonalna: NSA zakaże RSA/ECC w systemach sklasyfikowanych do 2035 roku"
+    ]
+  },
+  "quantum-b03": {
+    "tagline": "ML-KEM to bezpośredni zamiennik RSA i ECDH w wymianie kluczy — najważniejszy algorytm w kryptografii postkwantowej.",
+    "overview": [
+      "ML-KEM (Module Lattice-based Key Encapsulation Mechanism), ustandaryzowany jako NIST FIPS 203 w sierpniu 2024 roku, to główny zamiennik RSA i ECDH w protokołach wymiany kluczy. Zastępuje wymianę kluczy TLS, ustanawianie kluczy VPN i każdy inny system, w którym dwie strony muszą ustalić wspólny sekret.",
+      "ML-KEM opiera się na CRYSTALS-Kyber, zaprojektowanym przez zespół obejmujący IBM, NXP i naukowców akademickich. Używa problemu Module-LWE — konkretnie założenia MLWE na sieciach modularnych nad pierścieniami wielomianowymi. Algorytm jest wystarczająco efektywny dla wszystkich wdrożeń TLS i został przyjęty przez CloudFlare, Google i główne biblioteki TLS.",
+      "ML-KEM dostępny jest w trzech zestawach parametrów: ML-KEM-512 (poziom bezpieczeństwa NIST 1, odpowiednik AES-128), ML-KEM-768 (poziom 3, odpowiednik AES-192) i ML-KEM-1024 (poziom 5, odpowiednik AES-256). Dla większości zastosowań zalecany jest ML-KEM-768."
+    ],
+    "technical": {
+      "title": "Działanie ML-KEM — KeyGen, Encapsulate, Decapsulate",
+      "body": [
+        "ML-KEM to mechanizm enkapsulacji kluczy (KEM): Alicja generuje parę kluczy (klucz publiczny, klucz prywatny). Bartek używa klucza publicznego Alicji do enkapsulacji losowego wspólnego sekretu, produkując szyfrogram. Alicja używa swojego klucza prywatnego do dekapsulacji szyfrogramu i odtworzenia tego samego wspólnego sekretu. Żadna ze stron nie musi wysyłać samego sekretu.",
+        "Bezpieczeństwo opiera się na trudności odróżnienia szyfrogramu od czegoś losowego bez klucza prywatnego. Enkapsulacja wprowadza szum LWE uniemożliwiający odtworzenie sekretu bez klucza prywatnego. Wspólny sekret K uzyskiwany jest przez funkcję skrótu, zapewniając bezpieczeństwo nawet jeśli podstawowy problem MLWE ma częściowy wyciek informacji."
+      ]
+    },
+    "incident": {
+      "title": "Cisco Silicon One P200 — szyfrowanie 800G z odpornością kwantową z pełną prędkością liniową (2025)",
+      "impact": "Pierwszy sieciowy ASIC 800G z ML-KEM i ML-DSA zintegrowanymi sprzętowo — szyfrowanie odporne na komputery kwantowe z pełną prędkością liniową bez utraty wydajności",
+      "body": [
+        "W październiku 2025 roku Cisco ogłosiło Silicon One P200 z portami 800G zapewniającymi szyfrowanie odporne na komputery kwantowe z pełną prędkością liniową — pierwszy ważny sieciowy ASIC integrujący standardowe PQC NIST (ML-KEM do ustanawiania kluczy, ML-DSA do podpisywania) bezpośrednio w sprzęcie. Oznacza to, że IPsec i MACsec odporne na komputery kwantowe działają z pełną prędkością 800G bez zewnętrznych urządzeń szyfrujących. CloudFlare i Google udowodniły, że ML-KEM jest wykonalny programowo; Cisco wykazało, że jest wykonalny w krzemie.",
+        "Następca Silicon One G300 (luty 2026) skaluje się do przepustowości 102,4 Tbit/s Ethernet z tymi samymi możliwościami PQC. Pełnostosowa architektura PQC Cisco — ogłoszona na Cisco Live 2026 Amsterdam — obejmuje integralność bootowania urządzenia, dane w tranzycie i zarządzanie kluczami. Interfejs SKIP łączy materiał kluczowy wywodzący się z QKD bezpośrednio z sesjami IPsec/MACsec, umożliwiając hybrydowe bezpieczeństwo PQC+QKD na istniejącej infrastrukturze."
+      ]
+    },
+    "timeline": [
+      "CRYSTALS-Kyber zgłoszony do konkursu PQC NIST",
+      "CloudFlare + Google Chrome wdrażają hybrydowy Kyber768 w TLS",
+      "NIST FIPS 203 (ML-KEM) opublikowany — obowiązkowy dla systemów federalnych",
+      "Cisco Silicon One P200: ML-KEM + ML-DSA sprzętowo z prędkością liniową 800G",
+      "Cisco Silicon One G300: 102,4 Tbit/s z pełnym stosem PQC"
+    ],
+    "keyTakeaways": [
+      "ML-KEM (FIPS 203) to obowiązkowy zamiennik RSA i ECDH w systemach federalnych",
+      "Cisco Silicon One P200 dostarcza ML-KEM z prędkością liniową 800G — bez utraty wydajności sprzętowej",
+      "Używaj rozwiązania hybrydowego (X25519 + ML-KEM-768) podczas migracji — bezpieczeństwo przed atakami klasycznymi i kwantowymi",
+      "Interfejs SKIP Cisco łączy klucze wywodzące się z QKD z IPsec/MACsec dla hybrydowego stosu PQC+QKD"
+    ]
+  },
+  "quantum-b07": {
+    "tagline": "Schematy hybrydowe łączą algorytmy klasyczne i postkwantowe — bezpieczne zarówno przed dzisiejszymi atakującymi, jak i przed przyszłymi komputerami kwantowymi.",
+    "overview": [
+      "Podczas przejścia z kryptografii klasycznej na postkwantową schematy hybrydowe są niezbędne. Hybrydowa wymiana kluczy (np. X25519 + ML-KEM-768) łączy algorytm klasyczny z algorytmem PQC. Wspólny sekret jest wyprowadzany z obu: bezpieczeństwo utrzymuje się, jeśli którykolwiek z dwóch algorytmów jest bezpieczny — atakujący kwantowi nie mogą złamać ML-KEM, klasyczni atakujący nie mogą złamać X25519.",
+      "Schematy hybrydowe rozwiązują problem jajka i kury przy wdrażaniu: organizacje mogą wdrożyć hybrydowe PQC zanim cały ich ekosystem zweryfikuje implementacje algorytmów PQC. Jeśli ML-KEM ma nieodkrytą podatność, X25519 nadal chroni sesję. Jeśli CRQC złamie X25519, ML-KEM nadal chroni przed kwantowymi atakującymi.",
+      "Hybrydowe zestawy szyfrów TLS 1.3 są już w użyciu: X25519Kyber768Draft00 (CloudFlare/Google, 2023), X25519MLKEM768 (projekt IETF, 2024). NIST zaleca podejście hybrydowe podczas okresu migracji, z czystym PQC jako celem końcowym po ugruntowaniu zaufania do algorytmu."
+    ],
+    "technical": {
+      "title": "Hybrydowe wyprowadzanie kluczy — łączenie klasycznych i PQC wspólnych sekretów",
+      "body": [
+        "Hybrydowy wspólny sekret K = KDF(K_classical || K_pqc), gdzie KDF to bezpieczna funkcja wyprowadzania kluczy (HKDF-SHA384). Ta konstrukcja jest bezpieczna, jeśli K_classical lub K_pqc jest nieodróżnialny od losowego — atakujący musi złamać oba algorytmy jednocześnie, aby odtworzyć K.",
+        "Dla hybrydowego TLS 1.3: klient wysyła zarówno udział klucza X25519, jak i klucz publiczny ML-KEM w ClientHello. Serwer wykonuje uzgodnienie klucza X25519 i enkapsulację ML-KEM, zwracając szyfrogram ML-KEM. Obie strony wyprowadzają klucze sesji używając obu wspólnych sekretów jako wejścia do HKDF."
+      ]
+    },
+    "incident": {
+      "title": "Hybrydowy postkwantowy TLS IETF — standaryzacja w toku",
+      "impact": "Hybrydowe PQC zostanie ustandaryzowane w TLS 1.3 — chroniąc miliardy połączeń",
+      "body": [
+        "Grupa robocza TLS IETF standaryzuje hybrydową postkwantową wymianę kluczy dla TLS 1.3. Projekty RFC definiują zestawy szyfrów X25519MLKEM768 i SecP256r1MLKEM768, z planowanym włączeniem do TLS 1.4. Te zestawy szyfrów zostały już wdrożone przez CloudFlare (chroniący ponad 25 mln stron internetowych) i Google Chrome (ponad 3 mld użytkowników) przy użyciu wersji projektowych przed standaryzacją.",
+        "Podejście IETF potwierdza strategię hybrydową: wdrożyć teraz z hybrydowymi zestawami szyfrów przed standaryzacją, chroniąc bieżące sesje TLS przed atakami HNDL, podczas gdy czyste standardy PQC dojrzewają. Po ustanowieniu zaufania do implementacji (2025–2027) zostaną ustandaryzowane czyste zestawy szyfrów ML-KEM, a hybrydowe zestawy szyfrów stopniowo wycofane."
+      ]
+    },
+    "timeline": [
+      "CloudFlare + Chrome wdrażają X25519Kyber768 — pierwsze masowe hybrydowe PQC",
+      "IETF publikuje projekt RFC dla hybrydowego zestawu szyfrów TLS X25519MLKEM768",
+      "Oczekiwane: IETF standaryzuje hybrydowe zestawy szyfrów w TLS 1.3",
+      "Oczekiwane: ustandaryzowane czyste zestawy szyfrów ML-KEM; hybryda opcjonalna"
+    ],
+    "keyTakeaways": [
+      "Wdróż hybrydę (X25519 + ML-KEM-768) natychmiast — już sprawdzona produkcyjnie i zapewnia ochronę HNDL",
+      "Hybrydowe bezpieczeństwo: atakujący musi złamać ZARÓWNO algorytm klasyczny, JAK I PQC — nie słabsze niż żaden z nich",
+      "Używaj X25519MLKEM768 lub SecP256r1MLKEM768 — oba są w projekcie IETF i szeroko zaimplementowane",
+      "Czyste ML-KEM (bez klasycznego) to cel końcowy — hybryda to pomost podczas migracji"
+    ]
+  },
+  "quantum-b09": {
+    "tagline": "Nie możesz zmigrować tego, czego nie znalazłeś — odkrywanie kryptografii to najważniejszy i najbardziej niedoceniany krok w migracji PQC.",
+    "overview": [
+      "Migracja do kryptografii postkwantowej rozpoczyna się od pełnego inwentaryzacji wszystkich zasobów kryptograficznych w organizacji. Nowoczesne korporacyjne IT ma kryptografię wbudowaną w tysiącach miejsc: certyfikaty TLS na load balancerach, klucze SSH w potokach CI/CD, klucze RSA w rozwiązaniach VPN, ECDSA w podpisywaniu kodu, certyfikaty x509 w bramkach API i sprzętowe moduły bezpieczeństwa w całej infrastrukturze.",
+      "Narzędzia do odkrywania kryptografii skanują bazy kodów (CBOM — Cryptography Bill of Materials), inwentarze certyfikatów, ruch sieciowy i pliki konfiguracyjne, aby zidentyfikować całe użycie kryptografii. NIST, CISA i ISO opracowują standardy CBOM analogiczne do SBOM (Software Bill of Materials), aby umożliwić systematyczne zarządzanie zasobami kryptograficznymi.",
+      "Faza odkrywania jest trudniejsza niż się wydaje: kryptografia często jest zagrzebana w zależnościach, wbudowana w binarny firmware lub ukryta w infrastrukturze zarządzanej przez dostawców. Organizacje próbujące migracji bez pełnego odkrywania napotykają zasoby kryptograficzne, które zostały pominięte i muszą ponownie uruchamiać proces migracji."
+    ],
+    "technical": {
+      "title": "Narzędzia do odkrywania kryptografii i CBOM",
+      "body": [
+        "Narzędzia do odkrywania kryptografii: (1) IBM Cryptography Bill of Materials (CBOM) generator — skanuje bazy kodów pod kątem użycia kryptografii; (2) CISA's Crypto Inventory Template — ustrukturyzowany arkusz oceny; (3) narzędzia do skanowania sieci (np. SSL Labs, Qualys SSL) — wyliczają certyfikaty; (4) Cryptosense Analyzer — odkrywa kryptografię w kodzie Java/Python; (5) OQS-TLS scanner — identyfikuje TLS gotowy na PQC w porównaniu z czysto klasycznym.",
+        "Kompletny CBOM zawiera: użyty algorytm, rozmiar klucza, typ klucza (symetryczny/asymetryczny/skrót), protokół, wrażliwość danych, harmonogram odnawiania, właściciela i priorytet migracji. To bezpośrednio zasila model priorytetyzacji migracji."
+      ]
+    },
+    "incident": {
+      "title": "Retrospektywa Heartbleed — dlaczego inwentaryzacja ma znaczenie",
+      "impact": "Heartbleed pokazał, że organizacje nie wiedziały, co używa OpenSSL; migracja PQC wymaga unikania tego samego błędu",
+      "body": [
+        "Podatność Heartbleed z 2014 roku (CVE-2014-0160 w OpenSSL) wywołała powszechną panikę, ponieważ organizacje nie wiedziały, które systemy używają OpenSSL, a tym samym które są dotknięte. Wiele dużych organizacji potrzebowało tygodni na zidentyfikowanie wszystkich podatnych systemów — w tym czasie atakujący mieli pełny dostęp do ich kluczy prywatnych.",
+        "Migracja PQC to 'powolny Heartbleed': organizacje nieposiadające aktualnej inwentaryzacji kryptograficznej napotkają ten sam problem odkrywania podczas migracji. Lekcja polega na wbudowaniu ciągłego odkrywania kryptografii w program bezpieczeństwa teraz, tak aby gdy zbliży się Q-Day, inwentaryzacja już istniała i migracja mogła przebiegać szybko."
+      ]
+    },
+    "timeline": [
+      "Heartbleed — organizacje nie mogły znaleźć całego użycia OpenSSL",
+      "CISA wydaje szablon inwentaryzacji kryptograficznej PQC i metodologię",
+      "NIST rozpoczyna standaryzację CBOM — cryptography bill of materials",
+      "Agencje federalne kończą obowiązkową inwentaryzację kryptograficzną (wymóg CISA)",
+      "Oczekiwane: CBOM wymagane dla federalnych wykonawców"
+    ],
+    "keyTakeaways": [
+      "Zacznij inwentaryzację kryptograficzną przed migracją — odkryjesz zasoby, o których nie wiedziałeś, że istnieją",
+      "Używaj narzędzi CBOM (IBM, Cryptosense) i skanerów sieciowych, aby znaleźć całe użycie kryptografii",
+      "Priorytetyzuj zasoby RSA/ECDH eksponowane na internet — maksymalne narażenie HNDL",
+      "Utrzymuj żywy CBOM: zasoby kryptograficzne zmieniają się przy każdej aktualizacji i wdrożeniu oprogramowania"
+    ]
+  },
+  "quantum-c09": {
+    "tagline": "Migracja kwantowa to 3–7-letni program wymagający zatwierdzenia zarządu, trwałego budżetu i wielofunkcyjnej koordynacji — to nie jest sprint.",
+    "overview": [
+      "Migracja kwantowa to najbardziej złożony program kryptograficzny, jaki większość firm podjęła. Wymaga wsparcia na poziomie zarządu, trwałego wieloletniego budżetu, koordynacji wielofunkcyjnej (bezpieczeństwo, infrastruktura, programowanie, zakupy) i zarządzania dostawcami. Większość CISO wciąż wyjaśnia swoim zarządom, czym są komputery kwantowe.",
+      "Efektywne zarządzanie kwantowe zaczyna się od kwantyfikacji ryzyka: przekładając techniczne zagrożenie (HNDL, algorytm Shora, harmonogram Q-Day) na terminy finansowe, które zarządy rozumieją — potencjalne koszty naruszenia danych, kary regulacyjne, narażenie wywiadu konkurencyjnego. Następnie buduje się etapowy program: odkrywanie → fundament → systemy centralne → kompletność → utrzymanie.",
+      "Uzasadnienie biznesowe dla inwestycji w PQC jest proste: koszt migracji (zazwyczaj 0,5–2% rocznego budżetu IT przez 5 lat) jest znacznie niższy niż oczekiwana strata z naruszenia po Q-Day dotyczącego danych zbieranych dziś. Presja regulacyjna (FFIEC, OMB, przyszłe wymagania SEC) dostarcza dodatkowej pilności, która przemawia do komitetów audytu."
+    ],
+    "technical": {
+      "title": "Model kwantyfikacji ryzyka kwantowego",
+      "body": [
+        "Obliczanie oczekiwanej straty: (prawdopodobieństwo Q-Day w ciągu 10 lat) × (wartość narażonych danych). Zagrożenie HNDL NIE jest ważone prawdopodobieństwem — dzieje się teraz. Wszystkie dane zaszyfrowane RSA transmitowane dziś są potencjalnie archiwizowane i zostaną ujawnione w Q-Day niezależnie od niepewności harmonogramu. Priorytetyzuj zasoby według ryzyka HNDL najpierw (długoterminowa wrażliwość), następnie według wpływu Q-Day.",
+        "Fazy programu: Rok 1 (Odkrywanie) — inwentaryzacja kryptograficzna, ocena ryzyka, ocena dostawców, szkolenie; Rok 2 (Fundament) — wymiana HSM, migracja korzenia PKI, łańcuch narzędzi deweloperskich; Rok 3 (Core) — VPN, TLS, bramki API; Rok 4 (Kompletność) — pozostałe systemy, podpisywanie kodu; Rok 5 (Utrzymanie) — ciągłe monitorowanie, wyłaniające się algorytmy."
+      ]
+    },
+    "incident": {
+      "title": "FFIEC wydaje wytyczne dotyczące ryzyka kwantowego dla instytucji finansowych (2024)",
+      "impact": "Pierwszy branżowy wymóg regulacyjny dotyczący ujawniania ryzyka kwantowego i planowania migracji",
+      "body": [
+        "Federal Financial Institutions Examination Council (FFIEC) wydała wytyczne wymagające od banków i instytucji kredytowych oceny ryzyk obliczania kwantowego, uwzględnienia narażenia kwantowego w egzaminach IT i opracowania harmonogramów migracji. Nieprzestrzeganie wytycznych egzaminacyjnych może wpływać na oceny i wyzwalać działania egzekucyjne.",
+        "Wytyczne FFIEC były branżowo specyficzne i poprzedzały wymagania SEC — instytucje finansowe muszą wykazać świadomość ryzyka kwantowego w swoich pakietach egzaminów IT. To stworzyło uzasadnienie biznesowe dla kwantowych programów CISO w bankach i instytucjach kredytowych, które wcześniej odkładały planowanie: ryzyko regulacyjne ma teraz zdefiniowany koszt w dolarach."
+      ]
+    },
+    "timeline": [
+      "NSA CNSA 2.0 — rząd uznaje zagrożenie kwantowe",
+      "OMB M-23-02 — cywilne agencje federalne muszą planować migracje",
+      "Wytyczne FFIEC dotyczące ryzyka kwantowego dla instytucji finansowych",
+      "FIPS 203/204/205 opublikowane — programy migracji mogą się rozpocząć",
+      "Kwantowe programy CISO w korporacjach: prezentacje dla zarządów zaczynają się"
+    ],
+    "keyTakeaways": [
+      "Przetłumacz ryzyko techniczne na terminy finansowe: oczekiwana strata = prawdopodobieństwo × narażenie (ryzyko HNDL wynosi 100%)",
+      "5-letni etapowy program: Odkrywanie → Fundament → Core → Kompletność → Utrzymanie",
+      "Ryzyko regulacyjne (FFIEC, OMB, SEC) dostarcza pilności do zatwierdzenia zarządu — skwantyfikuj kary",
+      "Inwentaryzacja kryptograficzna (CBOM) to pierwszy wymagany produkt — nie możesz zmigrować tego, czego nie znalazłeś",
+      "Sprawozdania dla zarządu: kwartalny panel ryzyka kwantowego, nie tylko coroczny briefing"
+    ]
+  },
+  "nails-10": {
+    "tagline": "Salon to nie tylko biznes z paznokciami — to biznes robiący paznokcie. To rozróżnienie ma znaczenie.",
+    "overview": [
+      "Otwarcie salonu paznokci wymaga czegoś więcej niż umiejętności — wymaga licencji, struktury biznesowej, fizycznej przestrzeni, inwestycji w sprzęt i systemów operacyjnych. Wszystkie stany w USA wymagają, aby technicy paznokci posiadali licencję technika paznokci (zazwyczaj 300–600 godzin szkoły kosmetologii plus egzamin stanowy). Salon potrzebuje również oddzielnej licencji salonu, licencji handlowej miasta i spełnienia wymagań departamentu zdrowia.",
+      "Lokalizacja jest kluczowa dla detalicznego biznesu beauty. Obszary o dużym ruchu pieszym, bliskość innych komplementarnych biznesów (salony fryzjerskie, spa, butiki) i dostępny parking napędzają klientów. Warunki najmu komercyjnego, koszty wykończenia i bieżący czynsz to największe ryzyka finansowe przy otwieraniu salonu. Wielu odnoszących sukcesy właścicieli salonów zaczyna od wynajmu stanowiska w istniejącym salonie, zanim weźmie pełną umowę najmu komercyjnego.",
+      "Koszty uruchomienia małego salonu paznokci (2–4 stanowiska) zazwyczaj wynoszą od 15 000 do 50 000 USD: sprzęt (2 000–5 000 USD za stanowisko, w tym stół, krzesło, fotel klienta i lampa), wykończenie i dekoracja (5 000–20 000 USD), wstępne zaopatrzenie (2 000–3 000 USD), licencje i pozwolenia (500–2 000 USD) oraz kapitał obrotowy na pierwsze 3–6 miesięcy wydatków."
+    ],
+    "technical": {
+      "title": "Model biznesowy salonu paznokci",
+      "body": [
+        "Model przychodów: salon paznokci zarabia pieniądze za usługę. Średni rachunek za usługę w USA: manicure żelowy 35–55 USD, pedicure 45–65 USD, dodatki do zdobień paznokci 5–25 USD. Jeden technik może obsłużyć 4–6 klientów dziennie. W pełni zarezerwowany salon z 3 fotelami może generować 800–1 500 USD dziennie brutto. Koszty (czynsz, zaopatrzenie, media, ubezpieczenie, personel) zazwyczaj pochłaniają 60–70% przychodów.",
+        "Modele zatrudnienia: możesz zatrudnić techników jako pracowników (płacisz podatki od płac i świadczenia, ale kontrolujesz harmonogramy i jakość) lub wynajmować fotele niezależnym wykonawcom (mniej zarządzania, ale też mniej kontroli). Większość małych salonów zaczyna ze stanowiskami obsługiwanymi przez właściciela i rośnie zatrudniając pracowników, gdy popyt to uzasadnia."
+      ]
+    },
+    "incident": {
+      "title": "Jak model wynajmu stanowisk zmienił własność salonów",
+      "impact": "Wynajem stanowisk dał tysiącom techników paznokci ścieżkę do własności biznesowej bez pełnego ryzyka najmu salonu — stał się dominującym modelem w amerykańskich salonach paznokci.",
+      "body": [
+        "Zanim wynajem stanowisk się upowszechnił, zostanie właścicielem salonu oznaczało wzięcie pełnej umowy najmu komercyjnego — znaczne ryzyko finansowe dla kogoś, kto dopiero skończył szkołę kosmetologii. Model wynajmu stanowisk, który pojawił się w Kalifornii w latach 80., zmienił to: właściciel salonu wynajmuje poszczególne stanowiska pracy niezależnym technikom, którzy płacą stały tygodniowy czynsz i zachowują własne przychody.",
+        "Dla techników paznokci wynajem stanowisk oferował ścieżkę do budowania niezależnej klienteli w ugruntowanej przestrzeni. Dziś większość salonów paznokci w USA działa na jakiejś formie wynajmu stanowisk lub modelu prowizyjnym. Wielu właścicieli salonów paznokci zaczęło jako najemcy stanowisk, budowało swoją klientelę, oszczędzało przychody i ostatecznie otwierało własną przestrzeń."
+      ]
+    },
+    "timeline": [
+      "Model wynajmu stanowisk pojawia się w salonach paznokci i fryzjerskich w Kalifornii",
+      "Wietnamsko-amerykańska społeczność salonów paznokci rozpoczyna szybką ekspansję w USA",
+      "Branża salonów paznokci osiąga 6 mld USD rocznych przychodów w USA",
+      "Boom lakierów żelowych napędza popyt na nowe koncepty salonów wyłącznie paznokciowych",
+      "COVID wymusza cyfrowe rezerwacje i systemy bezdotykowe — branża się adaptuje",
+      "Szacuje się, że branża salonów paznokci w USA ma ponad 12 mld USD rocznie"
+    ],
+    "keyTakeaways": [
+      "Najpierw uzyskaj licencję technika paznokci — żaden stan nie pozwala na pracę bez niej",
+      "Rozważ wynajęcie stanowiska w istniejącym salonie przed podjęciem najmu komercyjnego",
+      "Zaplanuj 3–6 miesięcy kosztów operacyjnych w rezerwie przed dniem otwarcia",
+      "Reputacja Twojego biznesu buduje się przed otwarciem — najpierw zbuduj listę klientów i obecność w mediach społecznościowych"
+    ]
+  },
+  "hair-styling-04": {
+    "tagline": "Jedno dobrze wykonane przejście jest lepsze niż pięć źle wykonanych.",
+    "overview": [
+      "Prostownica do włosów jest jednym z najpotężniejszych i najbardziej nadużywanych narzędzi w stylizacji włosów. Ceramiczne lub tytanowe płytki przykładają bezpośrednie ciepło kontaktowe, aby przeformować wiązania wodorowe w włosach. Wynik zależy od trzech zmiennych: temperatury (dostosowanej do rodzaju włosów), rozmiaru płytki (dostosowanego do grubości sekcji) i prędkości (wystarczająco wolnej do przeformowania, wystarczająco szybkiej, aby nie przypalić).",
+      "Typowe błędy obejmują nakładanie sekcji na siebie (ponowne nagrzewanie już wystylizowanych włosów), zatrzymywanie się w połowie pasma (gorący punkt = złamanie) i używanie prostownicy na mokrych lub wilgotnych włosach (eksplozja pary wewnątrz kory powoduje nieodwracalne uszkodzenie porowatości, czasami nazywane efektem 'smażenia').",
+      "Poza prostowaniem prostownica do włosów to wszechstronne narzędzie do stylizacji: obrót o 90° tworzy falę, owijanie włosów wokół cylindra tworzy miękkie loki, a zaciśnięcie z przekręceniem tworzy wyraźną falę — każdy efekt z tego samego urządzenia."
+    ],
+    "technical": {
+      "title": "Zmienne prostownicy do włosów",
+      "body": [
+        "Temperatura: cienkie = 120–150°C, średnie = 150–195°C, grube = 195–230°C.",
+        "Grubość sekcji: nie powinna przekraczać szerokości płytki. Cieńsze sekcje = lepsza penetracja ciepła = mniej potrzebnych przejść.",
+        "Prędkość: wystarczająco wolna dla transferu ciepła (~3–5 sekund na centymetr), ale ciągły ruch — nigdy statyczny.",
+        "Typ płytki: ceramiczna (równomierne ciepło, łagodna), tytanowa (szybciej się nagrzewa, lepsza do grubych włosów), turmalinowa (jonowa + ceramiczna).",
+        "Włosy muszą być w 100% suche przed użyciem prostownicy. Nawet lekka wilgoć powoduje uszkodzenie parą."
+      ]
+    },
+    "incident": {
+      "title": "Katastrofa mokrych włosów",
+      "impact": "Główna przyczyna ostrego złamania podczas stylizacji termicznej",
+      "body": [
+        "Cząsteczki wody uwięzione w korze włosa zamieniają się w parę, gdy prostownica przejeżdża przez nie. Para nie ma dokąd uciec — wybucha na zewnątrz, dosłownie rozrywając łuskę od wewnątrz. Efekt jest natychmiastowy: włosy łamią się, rozwidlają i rozwijają gąbczastą teksturę po zamoczeniu.",
+        "Jest to nieodwracalne. Jedynym rozwiązaniem jest odrastanie. Zapobieganie jest proste: zawsze upewnij się, że włosy są w 100% suche przed prostowaniem lub użyj suszarki, aby całkowicie wyeliminować wilgoć."
+      ]
+    },
+    "timeline": [
+      "Isaac Shero patentuje prostownicę do włosów",
+      "Prostownice z ceramicznymi płytkami wchodzą na rynek profesjonalny",
+      "ghd zostaje uruchomione, popularyzując ceramiczną prostownicę do włosów na rynku masowym",
+      "Wprowadzone płytki tytanowe dla segmentów grubych i kręconych włosów",
+      "Inteligentne prostownice z czujnikami temperatury stają się powszechnie dostępne"
+    ],
+    "keyTakeaways": [
+      "Włosy muszą być w 100% suche przed prostowaniem — wilgotne włosy powodują nieodwracalne uszkodzenie parą.",
+      "Ciągły ruch jest obowiązkowy — zatrzymanie tworzy gorące punkty i złamanie.",
+      "Dopasuj temperaturę do rodzaju włosów; cienkie/uszkodzone włosy maksymalnie 150°C.",
+      "Prostownica może tworzyć fale i loki poprzez wariację techniki, a nie tylko prostować."
+    ]
+  },
+  "hair-styling-08": {
+    "tagline": "Kręcone włosy to żywa tekstura — pracuj z nią, a nie przeciwko niej.",
+    "overview": [
+      "Kręcone i falowane włosy (typy 2C–4C) wymagają fundamentalnie innych technik niż pielęgnacja prostych włosów. Główne wyzwania to zatrzymanie wilgoci, kontrola puszenia i definicja loka bez zaburzania naturalnego wzorca. Podstawowa zasada: mniej manipulacji oznacza więcej definicji.",
+      "Plopping to technika bez ciepła, gdzie mokre włosy z nałożonym produktem są delikatnie opuszczane na ręcznik z mikrofibry lub koszulkę, owijane na 20–30 minut i uwalniane. Poprawia to naturalne grupowanie loków bez puszenia od wycierania ręcznikiem. Dyfuzor rozprasza powietrze suszarki szeroko nad grupami loków, unosząc je od korzenia przy zachowaniu nietkniętego wzorca lokowania.",
+      "Produkty do stylizacji kręconych włosów stosują metodę LCO (Liquid, Cream, Oil) lub LOC (Liquid, Oil, Cream) do warstwowego nawilżenia i jego uszczelnienia. Woda nakładana jest pierwsza (mokre lub wilgotne włosy), następnie krem do definicji, potem olej lub żel do uszczelnienia. 'Żelowa skorupa' — chrupiące uczucie gdy żel wysycha — jest zamierzone; rozbija się ją przez ściskanie po wyschnięciu, aby uwolnić miękkie loki."
+    ],
+    "technical": {
+      "title": "Słownik technik lokowania",
+      "body": [
+        "Plopping: mokre włosy opuszczane na ręcznik z mikrofibry, owijane 20–30 min, uwalniane bez puszenia.",
+        "Dyfuzor: przymocuj miskę dyfuzora do suszarki; niska temperatura, niska prędkość; trzymaj lub owijaj grupy loków.",
+        "Ręce modlące: przesuwanie produktu wzdłuż pasma włosów (bez pocierania) dla powleczenia bez zaburzania loka.",
+        "Ściskanie: obejmowanie i wyciskanie loków ku górze w celu wspierania grupowania i definicji.",
+        "Żelowa skorupa: pozostaw żel do twardego wyschnięcia, ściskaj, aby 'rozbić skorupę' i odsłonić miękkie, zdefiniowane loki.",
+        "Ananasowanie: luźny wysoki kucyk do spania, chroni loki w nocy."
+      ]
+    },
+    "incident": {
+      "title": "Kontrowersje DevaCurl",
+      "impact": "Tysiące członków społeczności lokowej zgłosiło wypadanie włosów — skandal związany z reformulacją produktów",
+      "body": [
+        "DevaCurl był wiodącą marką społeczności kręconych włosów. W 2020 roku tysiące użytkowników zgłosiło nagłą utratę włosów, podrażnienie skóry głowy i łamliwość związane z reformulacjami produktów wprowadzającymi potencjalnie uwrażliwiające składniki.",
+        "Lekcja dla stylistów: znaj składniki swoich produktów, testuj nowe formulacje na sobie lub na próbnym paśmie przed zastosowaniem na klientach i utrzymuj dywersyfikację marek w swojej ofercie — żadna marka nie powinna być niezastępowalna."
+      ]
+    },
+    "timeline": [
+      "Metoda Curly Girl Lorraine Massey definiuje filozofię bez siarczanów i bez ciepła",
+      "DevaCurl zostaje uruchomione, budując rynek produktów specyficznych dla loków",
+      "Tutoriale YouTube demokratyzują globalnie edukację technik lokowania",
+      "Metoda warstwowania LCO/LOC jest szeroko przyjmowana w społecznościach lokowych",
+      "Kontrowersje DevaCurl; społeczność lokowa dywersyfikuje lojalność wobec marek"
+    ],
+    "keyTakeaways": [
+      "Plopping zastępuje szorstkie wycieranie ręcznikiem i jest najważniejszym reduktorem puszenia dla kręconych włosów.",
+      "Dyfuzor używa niskiego ciepła i niskiej prędkości powietrza do suszenia grup loków bez zaburzania ich wzorca.",
+      "Nigdy nie dotykaj kręconych włosów podczas suszenia — manipulacja podczas suszenia = puszenie.",
+      "Żelowa skorupa jest zamierzona: ściskaj ją dopiero po całkowitym wyschnięciu włosów."
+    ]
+  },
+  "hair-styling-10": {
+    "tagline": "Twoje umiejętności przyciągają klientów. Twoja wiedza biznesowa sprawia, że zostają.",
+    "overview": [
+      "Uruchomienie biznesu stylizacji włosów wymaga dwóch równoległych ścieżek: opanowania rzemiosła technicznego i budowania infrastruktury biznesowej. W USA wymagana jest licencja kosmetyczna lub fryzjerska do profesjonalnego wykonywania zawodu — zazwyczaj 1 000–1 500 godzin edukacji wymaganej przez stan plus praktyczny i pisemny egzamin.",
+      "Istnieją cztery główne modele biznesowe dla stylistów: pracownik (salon płaci wynagrodzenie + prowizja), wynajem kabiny (wynajmujesz stanowisko, zatrzymujesz wszystkie przychody, płacisz własne podatki i zaopatrzenie), wynajem suite (prywatne studio, całkowita niezależność) i własność salonu. Wynajem kabiny i suite to najczęstsze ścieżki biznesowe, ponieważ wymagają minimalnego kapitału startowego w porównaniu z własnością.",
+      "'Portfolio' — Twoja lista klientów — to prawdziwy zasób biznesowy stylisty. Budowanie go wymaga konsekwentnej obecności w mediach społecznościowych (Instagram i TikTok to główne kanały odkrycia), zachęt do poleceń ustnych (zniżki za polecenie) i nawyku ponownego umawiania: zawsze próbuj zarezerwować następną wizytę zanim klient wstanie z fotela."
+    ],
+    "technical": {
+      "title": "Ekonomia wynajmu kabiny",
+      "body": [
+        "Zakres wynajmu kabiny: 200–800 USD/tydzień w zależności od rynku i lokalizacji salonu.",
+        "Jako najemca kabiny jesteś niezależnym wykonawcą: płać podatek od pracy na własny rachunek (~15,3%), kupuj własne produkty i ubezpieczenie, zarządzaj własną rezerwacją.",
+        "Formuła progu rentowności: (tygodniowy wynajem kabiny + zaopatrzenie + ubezpieczenie) / średni rachunek za usługę = liczba klientów potrzebnych tygodniowo.",
+        "Zasada ogólna: potrzebujesz 20–30 zaangażowanych stałych klientów, zanim wynajem kabiny będzie finansowo stabilny.",
+        "Licencja kosmetyczna: ~1 000–1 500 godzin (w zależności od stanu), egzamin pisemny + praktyczny, odnowienie co 2–4 lata."
+      ]
+    },
+    "incident": {
+      "title": "Zmiana w odkrywaniu przez media społecznościowe",
+      "impact": "Instagram i TikTok napędzają teraz większość pozyskiwania nowych klientów salonów poniżej 35 roku życia",
+      "body": [
+        "Przed mediami społecznościowymi nowi klienci znajdowali stylistów przez Żółte Strony, klientów wchodzących z ulicy lub polecenia ustne. Dziś większość klientów poniżej 35 roku życia odkrywa nowych stylistów przez Reels na Instagramie lub filmy TikTok — konkretnie filmy z transformacjami, demonstracje technik i posty przed/po.",
+        "Stylista, który konsekwentnie publikuje i dokumentuje swoją pracę, buduje odkrywalne portfolio. Stylista opierający się wyłącznie na klientach z ulicy i poleceniach rośnie 3–5 razy wolniej. Inwestycja to czas, a nie pieniądze — smartfon to wszystko, czego potrzeba."
+      ]
+    },
+    "timeline": [
+      "Licencja kosmetyczna staje się standardem we wszystkich stanach USA",
+      "Model wynajmu kabiny zyskuje popularność jako alternatywa dla modelu pracowniczego",
+      "Instagram staje się główną platformą wizualnego portfolio dla stylistów",
+      "Koncepty wynajmu suite (Sola Salons, MY SALON Suite) rozszerzają się na poziomie krajowym",
+      "Tutoriale stylizacji TikTok napędzają wirusowe odkrywanie indywidualnych stylistów"
+    ],
+    "keyTakeaways": [
+      "Licencja kosmetyczna lub fryzjerska jest prawnie wymagana do profesjonalnego wykonywania zawodu we wszystkich 50 stanach USA.",
+      "Najemcy kabin są niezależnymi wykonawcami — podatek od pracy na własny rachunek, zaopatrzenie i ubezpieczenie są Twoją odpowiedzialnością.",
+      "Potrzebujesz około 20–30 zaangażowanych stałych klientów, zanim wynajem kabiny będzie finansowo stabilny.",
+      "Zawsze rezerwuj następną wizytę przed wyjściem klienta — utrzymanie jest tańsze niż pozyskiwanie."
+    ]
+  },
+  "driving-1-02": {
+    "tagline": "Prawie połowa zdających egzamin po raz pierwszy oblewa. Ci, którzy zdają, czytają podręcznik — każdą stronę.",
+    "overview": [
+      "Pisemny egzamin wiedzy DMV Kalifornii składa się z 46 pytań wielokrotnego wyboru. Aby zdać, musisz poprawnie odpowiedzieć na co najmniej 38 pytań — to wynik 82,6%. Pytania są czerpane bezpośrednio z Podręcznika Kierowcy Kalifornii, który jest dostępny bezpłatnie na stronie DMV lub w każdym biurze DMV. Wszystkie odpowiedzi znajdują się w podręczniku; nie ma pytań-pułapek. Jeśli uczysz się podręcznika, zdasz.",
+      "Egzamin dostępny jest w wielu językach, w tym w angielskim, hiszpańskim, chińskim, wietnamskim i kilku innych. Możesz również poprosić o wersję audio. Dla wnioskodawców poniżej 18 roku życia egzamin obejmuje ten sam materiał co egzamin dla dorosłych. Jeśli oblew egzamin wiedzy, możesz podejść do niego do trzech razy zanim będziesz musiał ponownie zapłacić opłatę wnioskową i zacząć od nowa.",
+      "Strategia nauki: przeczytaj podręcznik od początku do końca co najmniej raz — zwróć szczególną uwagę na limity prędkości, przepisy pierwszeństwa przejazdu, odległości sygnalizacyjne i przepisy stopniowego licencjonowania dla młodocianych kierowców. Następnie rób jak najwięcej testów praktycznych, korzystając z materiałów praktycznych zatwierdzonych przez DMV. Poświęć dodatkowy czas nauki na obszary, w których popełniasz najwięcej błędów."
+    ],
+    "technical": {
+      "title": "Format egzaminu pisemnego i zasady ponownego podejścia",
+      "body": [
+        "Egzamin z 46 pytaniami nie jest podzielony tematycznie — pytania ze wszystkich obszarów podręcznika są wymieszane. Zobaczysz pytania o znaki drogowe, przepisy prędkości, pierwszeństwo przejazdu, przepisy dotyczące alkoholu i narkotyków oraz bezpieczne praktyki jazdy. Egzamin ma limit czasu, ale większość wnioskodawców kończy go z dużą ilością czasu.",
+        "Jeśli oblew egzamin, musisz poczekać do następnego dnia roboczego, aby podejść do niego ponownie (nie możesz zdawać tego samego dnia). Po trzech niepowodzeniach musisz ponownie zapłacić opłatę wnioskową w wysokości 39 USD, aby otrzymać trzy kolejne próby. Nie ma limitu łącznej liczby prób, ale każda seria trzech prób kosztuje opłatę wnioskową."
+      ]
+    },
+    "incident": {
+      "title": "Prawie połowa Kalifornijczyków oblewa egzamin pisemny za pierwszym razem",
+      "impact": "Dane DMV Kalifornii pokazują, że około 48–50% wnioskodawców po raz pierwszy oblewa pisemny egzamin wiedzy — wskaźnik niepowodzeń, który pozostaje uparcie wysoki mimo że podręcznik jest dostępny bezpłatnie.",
+      "body": [
+        "DMV nie publikuje oficjalnie rocznych wskaźników zdawalności/niepowodzeń, ale dane uzyskane przez wnioski o dokumenty publiczne i raportowane przez media w Kalifornii konsekwentnie wskazują, że około połowa zdających po raz pierwszy oblewa. Pytania, które są najczęściej omijane, dotyczą konkretnych danych liczbowych: dokładnych limitów prędkości w różnych strefach, precyzyjnych odległości dla przepisów dotyczących sygnalizacji i parkowania oraz konkretnych limitów BAC dla różnych grup wiekowych.",
+        "Urzędnicy DMV przypisali wysoki wskaźnik niepowodzeń wnioskodawcom, którzy polegają na pamięci z obserwowania innych podczas jazdy, zamiast faktycznie czytać podręcznik. Rada jest prosta i spójna: przeczytaj każdą stronę Podręcznika Kierowcy Kalifornii co najmniej raz przed podejściem do egzaminu. Wszystkie odpowiedzi tam są."
+      ]
+    },
+    "timeline": [
+      "Kalifornia zaczyna wymagać pisemnego egzaminu wiedzy dla nowych kierowców",
+      "Podręcznik Kierowcy Kalifornii ustandaryzowany jako oficjalne źródło egzaminu",
+      "Egzaminy komputerowe zastępują egzaminy papierowe w większości biur DMV",
+      "DMV uruchamia internetowe testy praktyczne na dmv.ca.gov",
+      "Dokumenty publiczne pokazują, że ~50% zdających po raz pierwszy oblewa",
+      "Podręcznik dostępny w 8 językach; wersja audio dostępna na żądanie"
+    ],
+    "keyTakeaways": [
+      "Egzamin składa się z 46 pytań; potrzebujesz 38 poprawnych odpowiedzi (82,6%), aby zdać",
+      "Wszystkie odpowiedzi są w Podręczniku Kierowcy Kalifornii — nie ma pytań-pułapek",
+      "Jeśli oblewasz, możesz podejść do egzaminu do 3 razy za uiszczoną opłatę wnioskową",
+      "Prawie 50% wnioskodawców po raz pierwszy oblewa — ci, którzy przeczytają cały podręcznik, zdają ze znacznie wyższym wskaźnikiem"
+    ]
+  },
+  "driving-1-05": {
+    "tagline": "Opublikowany limit prędkości to maksimum — Podstawowe Prawo Prędkości oznacza, że może być konieczna wolniejsza jazda.",
+    "overview": [
+      "Kalifornia ma dwa uzupełniające się prawa dotyczące prędkości. Prawo Absolutnego Limitu Prędkości mówi, że nie możesz przekroczyć opublikowanego limitu prędkości pod żadnym warunkiem — to liczba na białym znaku. Podstawowe Prawo Prędkości (Sekcja Kodeksu Pojazdów 22350) mówi, że nigdy nie możesz jechać szybciej niż jest bezpieczne w aktualnych warunkach, niezależnie od opublikowanego limitu. We mgle, deszczu, ciężkim ruchu lub na śliskiej drodze może być konieczna jazda znacznie poniżej opublikowanego limitu. Możesz otrzymać mandat za naruszenie Podstawowego Prawa Prędkości nawet gdy jedziesz poniżej opublikowanego limitu, jeśli warunki sprawiały, że Twoja prędkość była niebezpieczna.",
+      "Domyślne limity prędkości prima facie Kalifornii obowiązują gdy nie jest opublikowany żaden inny limit. Kluczowe wartości domyślne: 15 mph przy przejazdach kolejowych bez bramek lub sygnałów, 15 mph w alejach, 25 mph w dzielnicach mieszkalnych, 25 mph w strefach szkolnych podczas godzin lekcyjnych, 55 mph na dwupasmowych drogach bez podziału, 65 mph na większości autostrad i 70 mph na autostradach, gdzie jest to konkretnie opublikowane.",
+      "Zachowanie bezpiecznej odległości od poprzedzającego pojazdu jest tak ważne jak prędkość. Zasada 3 sekund: wybierz nieruchomy obiekt przed sobą; gdy pojazd poprzedzający go mija, licz 'jeden-tysiąc-jeden, jeden-tysiąc-dwa, jeden-tysiąc-trzy' — jeśli miniesz obiekt przed skończeniem liczenia, jedziesz za blisko. Zwiększ do 4 sekund w deszczu lub w nocy i 5 lub więcej sekund na śliskich drogach lub gdy podążasz za dużymi ciężarówkami."
+    ],
+    "technical": {
+      "title": "Limity prędkości Kalifornii i zasada 3 sekund odstępu",
+      "body": [
+        "Najczęściej oceniane limity prędkości na egzaminie DMV: 25 mph strefa mieszkalna/szkolna, 55 mph dwupasmowa droga bez podziału, 65 mph autostrada, 70 mph autostrada gdzie jest opublikowane, 15 mph przy przejazdach kolejowych bez bramek lub sygnałów (Kodeks Pojazdów 22352). Drogi z dwoma lub więcej pasami w jednym kierunku mają również minimalne prawo prędkości — jazda zbyt wolno na szybkim pasie jest również wykroczeniem.",
+        "Zasada 3 sekund obowiązuje niezależnie od prędkości — przy 65 mph potrzebujesz około 90 metrów, aby zatrzymać się w nagłym przypadku. Jazda z niedostatecznym odstępem jest główną przyczyną kolizji tylnych. Duże ciężarówki i motocykliści wymagają dodatkowej odległości: ciężarówki potrzebują znacznie dłuższych odległości hamowania; motocykliści potrzebują pełnych 3 sekund choć zatrzymują się szybciej, bo są mniejsze i łatwiej je przeoczyć."
+      ]
+    },
+    "incident": {
+      "title": "Jak jazda z niedostatecznym odstępem stała się najczęstszą przyczyną kolizji w Kalifornii",
+      "impact": "Biuro Bezpieczeństwa Ruchu Drogowego Kalifornii konsekwentnie raportuje kolizje tylne spowodowane jazdą zbyt blisko jako jeden z trzech głównych typów kolizji w stanie, powodując dziesiątki tysięcy obrażeń rocznie.",
+      "body": [
+        "Dane Biura Bezpieczeństwa Ruchu Drogowego Kalifornii za 2022 rok wykazały kolizje tylne wśród najczęstszych typów kolizji w stanie. Wspólny mianownik: niewystarczający odstęp. Przy 65 mph przeciętny kierowca potrzebuje około 1,5 sekundy tylko na spostrzeżenie i zareagowanie na nagłe zatrzymanie — a następnie dodatkowej odległości na faktyczne zahamowanie pojazdu. Odstęp jednej długości samochodu przy prędkościach autostradowych jest niebezpiecznie niewystarczający.",
+        "Dane dotyczące egzekwowania prawa wskazują, że mandaty za jazdę z niedostatecznym odstępem wzrosły w miarę jak rejestracja przez kamery dashcam stała się bardziej powszechna. Kilka miast w Kalifornii rozpoczęło zautomatyzowane programy analizy kolizji tylnych, aby zidentyfikować korytarze o dużej częstotliwości jazdy z niedostatecznym odstępem do ukierunkowanego egzekwowania i edukacji."
+      ]
+    },
+    "timeline": [
+      "Kalifornia uchwala pierwsze stanowe Podstawowe Prawo Prędkości",
+      "§22350 Kodeksu Pojazdów Kalifornii kodyfikuje Podstawowe Prawo Prędkości w obecnej formie",
+      "Uchwalono krajowy limit 55 mph (kryzys energetyczny) — Kalifornia dostosowuje się",
+      "Krajowe prawo 55 mph uchylone — Kalifornia ustanawia 65/70 mph na autostradach",
+      "CHP rozpoczyna stanową kampanię egzekwowania 'Jazda z Niedostatecznym Odstępem'",
+      "Kolizje tylne pozostają w top-3 typów kolizji w Kalifornii"
+    ],
+    "keyTakeaways": [
+      "Podstawowe Prawo Prędkości oznacza, że możesz otrzymać mandat za jazdę poniżej opublikowanego limitu, jeśli warunki sprawiają, że Twoja prędkość jest niebezpieczna",
+      "25 mph w strefach mieszkalnych i szkolnych, 55 mph na dwupasmowych drogach bez podziału, 65 mph na większości autostrad",
+      "Przy przejeździe kolejowym bez bramek: zwolnij do 15 mph",
+      "Używaj zasady 3 sekund dla odstępu; zwiększ do 4+ sekund w złą pogodę lub w nocy"
+    ]
+  },
+  "driving-2-05": {
+    "tagline": "Parkowanie równoległe w San Francisco to rytuał przejścia. Opanuj technikę, a żadne miejsce Cię nie przestraszy.",
+    "overview": [
+      "Parkowanie równoległe używa punktów odniesienia zamiast szacowania. Ustaw się obok samochodu przed miejscem, wyrównany i w odległości około 60 cm. Gdy Twój tylny zderzak mija tylny zderzak przedniego samochodu, ostro skręć kierownicę w stronę krawężnika. Gdy Twój samochód jest pod kątem około 45 stopni i Twoje przednie drzwi wyrównują się z tylnym zderzakiem przedniego samochodu, ostro skręć kierownicę w przeciwnym kierunku, aby wyprostować. Dostosuj do przodu i do tyłu, aby wycentrować się w miejscu.",
+      "Parkowanie prostopadłe (większość parkingów) wymaga wycentrowania samochodu między liniami. Wybierz punkt odniesienia — większość kierowców używa wyrównania lusterka bocznego z linią. Podjeżdżaj powoli, skręcaj płynnie i prostuj przed dotarciem do końca miejsca. Cofaj kiedy to możliwe — wjazd tyłem na miejsce jest znacznie bezpieczniejszy niż cofanie w ruch.",
+      "Kręcenie kołami jest wymagane prawem na wzniesieniach w wielu stanach i zapobiega stoczeniu się samochodu do ruchu w przypadku awarii hamulców. Na zjeździe z krawężnikiem: skręć koła w stronę krawężnika (prawo). Na wzniesieniu z krawężnikiem: skręć koła od krawężnika (lewo, aby krawężnik Cię zatrzymał). Na wzniesieniu bez krawężnika: zawsze skręć koła w stronę krawędzi drogi."
+    ],
+    "technical": {
+      "title": "Punkty odniesienia do parkowania równoległego",
+      "body": [
+        "Metoda punktów odniesienia eliminuje zgadywanie przy parkowaniu równoległym. Zamiast szacować kąt, reagujesz na konkretne bodźce wzrokowe, które są takie same za każdym razem. Gdy znajdziesz punkty odniesienia swojego samochodu przez praktykę, parkowanie równoległe staje się niezawodną mechaniczną sekwencją — nie stresującym szacowaniem.",
+        "Dla parkowania pod wzniesienie/zjazd: 'Prawo, prawo, lewo' to popularny aide-mémoire — zjazd z krawężnikiem: prawo (w stronę krawężnika). Wzniesienie z krawężnikiem: lewo (od krawężnika, aby krawężnik złapał koło jeśli stoczy). Bez krawężnika w żadnym kierunku: prawo (w stronę krawędzi, aby samochód stoczył się poza jezdnię, nie w ruch). Zawsze wrzuć skrzynię na Parkowanie i zaciągnij hamulec ręczny na każdym pochyleniu."
+      ]
+    },
+    "incident": {
+      "title": "Wymknięty spod kontroli samochód w San Francisco — dlaczego kręcenie kołami ma znaczenie",
+      "impact": "Wiele incydentów z zaparkowanymi samochodami staczającymi się do ruchu lub w stronę pieszych na stromych wzniesieniach",
+      "body": [
+        "Strome wzniesienia San Francisco (niektóre powyżej 30 stopni) sprawiają, że kręcenie kołami jest prawnym wymogiem, a nie tylko sugestią. Każdego roku dochodzi do wielu incydentów, gdy samochody pozostawione w biegu, ale bez skręconych kół lub zaciągniętych hamulców ręcznych, zaczynają się staczać. Mały sedan staczający się ze stromego wzniesienia w San Francisco może osiągnąć prędkość powyżej 50 km/h przed dotarciem do skrzyżowania.",
+        "Sekcja 22526(b) Kodeksu Pojazdów Kalifornii wymaga od kierowców zaciągnięcia hamulca ręcznego i skręcenia kół na każdym wzniesieniu powyżej 3 procent nachylenia. Większość kierowców nie zna przepisu — a wielu nie rozumie, że kabel hamulca ręcznego może się z czasem rozciągnąć, czyniąc kręcenie kołami ostatnią linią obrony. Potrzeba 2 sekund na obrócenie koła — może to zapobiec katastrofie."
+      ]
+    },
+    "timeline": [
+      "Pierwsze przepisy parkingowe uchwalone w Nowym Jorku",
+      "Parkomaty upowszechniają się w amerykańskich miastach — parkowanie równoległe staje się wymaganą umiejętnością",
+      "Kalifornia nakazuje kręcenie kołami na wzniesieniach — pierwszy stan USA, który to robi",
+      "Parkowanie równoległe pozostaje w większości amerykańskich egzaminów na prawo jazdy jako podstawowa umiejętność"
+    ],
+    "keyTakeaways": [
+      "Używaj punktów odniesienia do parkowania równoległego — nie zgadywania — dla spójnych wyników",
+      "Wjeżdżaj tyłem na miejsca prostopadłe kiedy to możliwe — znacznie bezpieczniejsze niż cofanie w ruch",
+      "Zjazd z krawężnikiem: skręć koła w stronę krawężnika (prawo). Wzniesienie z krawężnikiem: skręć na zewnątrz (lewo)",
+      "Zawsze zaciągaj hamulec ręczny na wzniesieniach — nie polegaj wyłącznie na 'Parkowaniu'"
+    ]
+  },
+  "driving-2-07": {
+    "tagline": "Większość nowych kierowców nie docenia, jak bardzo deszcz i ciemność zmieniają wszystko — Twoją prędkość, odległość, Twoje decyzje.",
+    "overview": [
+      "Reflektory spełniają dwa cele: pomagają Ci widzieć i pomagają innym kierowcom Cię zauważyć. W większości stanów USA wymagane jest włączenie reflektorów o zmierzchu i pozostawienie ich włączonych do świtu. Wiele stanów wymaga również reflektorów gdy wycieraczki są w użyciu (praktyczna zasada — jeśli pada wystarczająco mocno, aby włączyć wycieraczki, widoczność jest ograniczona dla wszystkich). We mgle używaj świateł mijania — drogowe odbijają się od cząstek mgły i zmniejszają Twoją widoczność.",
+      "Drogowe oświetlają mniej więcej dwa razy dalej niż mijania i są cenne na ciemnych wiejskich drogach bez ruchu z naprzeciwka. Zasada: przełącz na mijania gdy możesz zobaczyć reflektory nadjeżdżającego samochodu w odległości około 150 metrów, lub gdy podążasz za innym samochodem w odległości 90 metrów. Pozostawienie drogowych włączonych oślepia kierowców z naprzeciwka i jest nielegalne.",
+      "W deszczu Twoja odległość od poprzedzającego pojazdu powinna podwoić się do minimum 6–8 sekund. Mokre drogi mogą zwiększyć odległość hamowania o 50–100%. Aquaplaning — gdy opony ślizgają się po warstwie wody zamiast po nawierzchni drogi — może wystąpić przy prędkościach tak niskich jak 55 km/h na stojącej wodzie. Jeśli poczujesz, że kierownica nagle się odciąża, zwolnij gaz, nie hamuj gwałtownie i trzymaj kierownicę prosto aż do odzyskania przyczepności."
+    ],
+    "technical": {
+      "title": "Aquaplaning — co się dzieje i jak wrócić do kontroli",
+      "body": [
+        "Aquaplaning następuje gdy opony nie mogą wystarczająco szybko odprowadzić wody i zaczynają ślizgać się po warstwie wody. Tracisz możliwość kierowania i hamowania — samochód staje się faktycznie łodzią. Przyczyny: prędkość (wyższa prędkość, mniej czasu na usunięcie wody), głębokość bieżnika (zużyte opony łatwiej aquaplanują) i głębokość stojącej wody. Przy 100 km/h na mokrej drodze ze zużytymi oponami aquaplaning stanowi poważne zagrożenie.",
+        "Wychodzenie z aquaplaningu: delikatnie zwolnij gaz (nie hamuj mocno ani nie skręcaj gwałtownie kierownicą), trzymaj kierownicę prosto, pozwól samochodowi samoczynnie zwolnić do momentu gdy opony odzyskają kontakt. Gwałtowne hamowanie podczas aquaplaningu może spowodować obrót. Zapobieganie: zmniejsz prędkość przy silnym deszczu, wymieniaj opony gdy głębokość bieżnika spada poniżej 1,6 mm i unikaj środka pasa gdzie gromadzi się woda."
+      ]
+    },
+    "incident": {
+      "title": "Wypadek księżnej Diany — wysoka prędkość w tunelu, mokra droga",
+      "impact": "Śmiertelny wypadek przy dużej prędkości na mokrej drodze — dobitne przypomnienie, że prędkość i mokra nawierzchnia to śmiercionośna kombinacja",
+      "body": [
+        "Wypadek w Paryżu w 1997 roku, w którym zginęła księżna Diana, Dodi Fayed i kierowca Henri Paul, zdarzył się na mokrej drodze w tunelu. Śledczy ustalili, że samochód jechał szacowaną prędkością 100–115 km/h w strefie 50 km/h na drodze uślizganej przez deszcz. Przy tej prędkości na mokrej nawierzchni nawet minimalna korekta kierownicy mogła spowodować utratę kontroli.",
+        "Choć okoliczności były nadzwyczajne, fizyka dotyczy każdej mokrej drogi. Odległości hamowania na mokrym są o 50–100% dłuższe niż na suchym. Samochód jadący 100 km/h potrzebuje około 105 metrów do zatrzymania na suchej drodze — na mokrej może to przekroczyć 160 metrów. Zmniejszenie prędkości w deszczu to nie tchórzostwo; to fizyka. Każdy doświadczony kierowca wie, że deszcz całkowicie zmienia matematykę."
+      ]
+    },
+    "timeline": [
+      "Pierwsze elektryczne reflektory z uszczelnionym szkłem pojawiają się w seryjnych samochodach",
+      "Uszczelnione szklane reflektory ustandaryzowane w USA",
+      "Wysokościowy wypadek w paryskim tunelu na mokrej drodze — fizyka mokrych dróg w ostrym świetle",
+      "Adaptacyjne reflektory i systemy automatycznych świateł drogowych stają się powszechnie dostępne — ale wiedza kierowcy pozostaje niezbędna"
+    ],
+    "keyTakeaways": [
+      "Włączaj reflektory o zmierzchu, w deszczu, we mgle i w każdej sytuacji ograniczonej widoczności",
+      "Używaj świateł mijania we mgle — drogowe odbijają się od mgły i zmniejszają Twoją własną widoczność",
+      "Podwój odległość od poprzedzającego pojazdu do minimum 6–8 sekund podczas jazdy w deszczu",
+      "Wychodzenie z aquaplaningu: zwolnij gaz, trzymaj kierownicę prosto, nie hamuj gwałtownie"
+    ]
+  },
+  "driving-3-01": {
+    "tagline": "Przy 100 km/h 5-sekundowe spojrzenie na telefon obejmuje długość boiska piłkarskiego — bez wzroku.",
+    "overview": [
+      "Jazda z rozproszeniem uwagi zabija ponad 3 000 osób w Stanach Zjednoczonych każdego roku. Kalifornia była jednym z pierwszych stanów, które zakazały korzystania z telefonów komórkowych trzymanych w ręku podczas jazdy, a prawo było kilkakrotnie aktualizowane od tamtej pory. Zgodnie z obecnym prawem Kalifornii wszyscy kierowcy muszą korzystać z urządzenia głośnomówiącego — uchwytu na telefon lub Bluetooth — do wykonywania połączeń lub korzystania z GPS. Kierowcy poniżej 18 roku życia w ogóle nie mogą korzystać z telefonu, nawet w trybie głośnomówiącym.",
+      "Pisanie SMS-ów podczas jazdy jest szczególnie niebezpieczne, ponieważ jednocześnie łączy trzy rodzaje rozproszenia uwagi: wzrokowe (oczy odwrócone od drogi), manualne (ręce zdjęte z kierownicy) i poznawcze (umysł odwrócony od jazdy). Badania pokazują, że czytanie lub wysyłanie wiadomości tekstowej odwraca wzrok od drogi przez przeciętnie pięć sekund. Przy prędkościach autostradowych samochód przejeżdża w tym czasie długość boiska piłkarskiego — całkowicie bez sterowania.",
+      "Upośledzenie spowodowane pisaniem SMS-ów podczas jazdy jest porównywalne z jazdą z poziomem alkoholu we krwi 0,08% — prawnym limitem w Kalifornii. Czasy reakcji znacząco się wydłużają, utrzymanie pasa pogarsza się, a wykrywanie zagrożeń maleje. Różnica: upośledzenie alkoholowe jest oczywiste i ludzie wiedzą jak planować zgodnie z nim; rozproszenie telefonem jest niewidoczne i niedoceniane przez prawie wszystkich kierowców, którzy to robią."
+    ],
+    "technical": {
+      "title": "Prawo o telefonach komórkowych Kalifornii — co jest legalne, a co nie",
+      "body": [
+        "Kodeks Pojazdów Kalifornii 23123 i 23124 regulują korzystanie z telefonów. Kierowcy dorośli (18+) mogą korzystać z telefonu TYLKO jeśli jest w uchwycie głośnomówiącym i obsługiwany jednym dotknięciem lub przesunięciem. Bez trzymania telefonu, nawet na czerwonym świetle. Kierowcy poniżej 18 roku życia w ogóle nie mogą korzystać z telefonu podczas jazdy — bez połączeń, bez aplikacji GPS, bez zmiany muzyki — zero wyjątków.",
+        "Naruszenia są wykroczeniami pierwszorzędnymi — funkcjonariusze mogą Cię zatrzymać wyłącznie za korzystanie z telefonu. Pierwsze naruszenie: podstawowa grzywna 162 USD (łącznie z opłatami zbliża się do 300+ USD). Drugie naruszenie w ciągu 36 miesięcy: podstawowa grzywna 285 USD. Punkty są również dodawane do rejestru jazdy za naruszenia od 1 lipca 2021 roku."
+      ]
+    },
+    "incident": {
+      "title": "Kierowca piszący SMS-y na US-101",
+      "impact": "Kolizja tylna spowodowana przez kierowcę piszącego SMS-y z prędkością autostradową spowodowała obrażenia 4 osób i 2-godzinne zamknięcie drogi podczas szczytu komunikacyjnego. Film z kamery dashcam udostępniony przez media stał się szeroko stosowanym przykładem w edukacji bezpieczeństwa publicznego.",
+      "body": [
+        "W 2010 roku kierowca na US-101 niedaleko San Mateo uderzył w zwalniający ruch przy prędkości około 100 km/h. Ślady hamowania pokazały, że przed uderzeniem nie było hamowania — śledczy stwierdzili, że kierowca nigdy nie spojrzał do przodu. Zapisy telefoniczne potwierdziły, że wiadomość tekstowa została wysłana sekundy przed kolizją. Cztery osoby zostały przewiezione do szpitala, dwie z poważnymi obrażeniami.",
+        "Kierowca, niemający wcześniejszych wykroczeń, stanął przed zarzutami lekkomyślnej jazdy. Co ważniejsze, film z kamery dashcam samochodu z tyłu uchwycił całą kolizję. Californian Highway Patrol udostępniła go w kampaniach bezpieczeństwa publicznego, gdzie był oglądany miliony razy — wyraźna, wizualna demonstracja tego, jak wygląda pięć sekund nieuwagi przy prędkości."
+      ]
+    },
+    "timeline": [
+      "Nowy Jork staje się pierwszym stanem USA zakazującym korzystania z telefonów komórkowych trzymanych w ręku podczas jazdy",
+      "Prawo o urządzeniach głośnomówiących Kalifornii wchodzi w życie dla wszystkich kierowców (CVC 23123)",
+      "Kalifornia zakazuje korzystania z urządzeń ręcznych do komunikacji tekstowej/danych dla osób poniżej 18 lat — rozszerzone",
+      "Kalifornia aktualizuje prawo: telefon musi być zamontowany, dozwolona tylko interakcja jednym dotknięciem",
+      "Punkty do rejestru jazdy dodawane za naruszenia telefonem komórkowym w Kalifornii",
+      "NHTSA raportuje, że rozproszenie uwagi było zaangażowane w około 8% wszystkich śmiertelnych kolizji w USA"
+    ],
+    "keyTakeaways": [
+      "Kierowcy Kalifornii 18+ muszą używać uchwytu głośnomówiącego — trzymanie telefonu jest nielegalne nawet na czerwonym świetle",
+      "Kierowcy poniżej 18 roku życia w ogóle nie mogą korzystać z telefonu podczas jazdy, w tym w trybie głośnomówiącym",
+      "Pisanie SMS-ów podczas jazdy upośledza czas reakcji tak samo jak jazda przy prawnym limicie BAC",
+      "Przy 100 km/h 5 sekund rozproszenia obejmuje pełną długość boiska piłkarskiego bez interwencji kierowcy"
+    ]
+  },
+  "driving-3-04": {
+    "tagline": "Każda osoba na drodze — piesza, rowerzysta czy kierowca — ma takie samo prawo do bezpiecznego dotarcia do domu.",
+    "overview": [
+      "Drogi Kalifornii są wspólnie używane przez pojazdy, rowerzystów, pieszych, motocyklistów, autobusy szkolne i duże samochody ciężarowe — wszystkie o różnych prędkościach, martwych punktach, odległościach hamowania i podatnościach. Bezpieczna jazda wymaga zrozumienia przepisów i realiów dla każdego z nich. Nieodpowiednie dzielenie drogi jest główną przyczyną śmierci pieszych i rowerzystów.",
+      "Prawo 3 stóp Kalifornii (CVC 21760), obowiązujące od 2014 roku, wymaga od kierowców pozostawienia co najmniej 90 cm odstępu przy wyprzedzaniu rowerzysty. Jeśli 90 cm nie jest możliwe (wąski pas, ruch w przeciwnym kierunku), kierowcy muszą zwolnić i poczekać na bezpieczną możliwość wyprzedzenia. Wyprzedzanie zbyt blisko, nawet bez kontaktu, naraża rowerzystę na niebezpieczeństwo — sama turbulencja wiatru może zdestabilizować rower przy prędkości.",
+      "Piesi mają pierwszeństwo na wszystkich oznakowanych przejściach dla pieszych i na wielu nieoznakowanych przejściach na skrzyżowaniach. Prawo Kalifornii wymaga od kierowców ustąpienia pierwszeństwa pieszym znajdującym się na przejściu lub wchodzącym na nie. Prawo nie wymaga, aby pieszy był już na pasie — jeśli wchodzą na ulicę, musisz ustąpić. Autobusy szkolne z pulsującymi czerwonymi światłami wymagają całkowitego zatrzymania w obu kierunkach na drogach bez podziału."
+    ],
+    "technical": {
+      "title": "Strefy zakazu wyprzedzania ciężarówek i przepisy dotyczące dużych pojazdów",
+      "body": [
+        "Duże ciężarówki siodłowe mają cztery znaczące martwe punkty zwane Strefami Zakazu: bezpośrednio z przodu (około 6 metrów, gdzie kierowca nie widzi w dół), bezpośrednio z tyłu (9 metrów, gdzie żadne lustro nie obejmuje zasięgu) i po obu stronach — szczególnie duża strefa po prawej stronie rozciągająca się ukośnie za ciężarówką na dwa pełne pasy. Jeśli nie widzisz luster kierowcy ciężarówki, kierowca ciężarówki nie widzi Cię. Nie pozostawaj w Strefach Zakazu.",
+        "Autobusy szkolne z pulsującymi czerwonymi światłami: cały ruch nadjeżdżający z każdego kierunku na drodze bez podziału musi się zatrzymać i nie może kontynuować aż do chwili gdy światła przestaną migać i ramię zatrzymania się cofnie. Na drogach podzielonych z podniesionym pasem środkowym tylko ruch za autobusem musi się zatrzymać. Na drogach podzielonych tylko z namalowaną linią środkową (bez bariery) cały ruch się zatrzymuje."
+      ]
+    },
+    "incident": {
+      "title": "Śmierć rowerzysty przez otwarcie drzwi — San Francisco",
+      "impact": "Rowerzysta zginął gdy drzwi samochodu otworzyły się bezpośrednio na pas rowerowy. Sprawa skłoniła do ustawodawstwa i zmian infrastrukturalnych w mieście oraz skłoniła Kalifornię do podkreślenia techniki 'Dutch Reach' otwierania drzwi w edukacji kierowców.",
+      "body": [
+        "W 2012 roku rowerzysta na Market Street w San Francisco zginął gdy drzwi samochodu otworzyły się bezpośrednio przed nim z zaparkowanego pojazdu, bez czasu na zahamowanie lub wykręcenie. Kierowca nie sprawdził lustra przed otwarciem drzwi. Incydent zdarzył się na wyznaczonym pasie rowerowym — przestrzeni, w której rowerzyści rozsądnie oczekiwali bezpieczeństwa.",
+        "Po kilku tego rodzaju incydentach w San Francisco i innych miastach Kalifornii programy edukacji kierowców zaczęły podkreślać technikę 'Dutch Reach': otwieranie drzwi samochodu ręką po przeciwnej stronie (ręką od strony przeciwnej do drzwi), co wymusza obrót ciała w stronę drogi i spojrzenie do tyłu — widząc rowerzystów zanim drzwi są całkowicie otwarte. Kalifornia obecnie odwołuje się do tej techniki w zaktualizowanych materiałach edukacji kierowców."
+      ]
+    },
+    "timeline": [
+      "Prawo pierwszeństwa pieszych Kalifornii wzmocnione (CVC 21950)",
+      "Śmierci rowerzystów w San Francisco napędzają stanową kampanię świadomości otwierania drzwi",
+      "Prawo 3 stóp Kalifornii (CVC 21760) wchodzi w życie",
+      "Egzekwowanie prawa dotyczącego autobusów szkolnych zwiększone po wielu incydentach",
+      "Kalifornia dodaje infrastrukturę rowerową do formuły finansowania transportu stanowego",
+      "NHTSA raportuje śmierci pieszych na 40-letnim maksimum krajowym — Kalifornia uruchamia kampanie reakcji"
+    ],
+    "keyTakeaways": [
+      "Daj rowerzystom minimum 90 cm przy wyprzedzaniu — jeśli nie możesz, zwolnij i poczekaj",
+      "Ustąp pierwszeństwa pieszym znajdującym się na przejściu lub wchodzącym na nie — prawo nie wymaga, aby byli na Twoim pasie",
+      "Zatrzymaj się przy autobusach szkolnych z pulsującymi czerwonymi światłami na drogach bez podziału — w obu kierunkach",
+      "Unikaj Stref Zakazu ciężarówek — jeśli nie widzisz lustra kierowcy, kierowca nie widzi Cię"
+    ]
+  },
+  "baseball-2-07": {
+    "tagline": "Nie możesz reagować na fastball 150 km/h w czasie rzeczywistym — musisz zdecydować zanim dotrze, a Twoja decyzja musi być prawidłowa.",
+    "overview": [
+      "Trafienie fastballa to fundamentalnie problem timingu. Rzut 150 km/h dociera do bazy w około 400 milisekund; rzut 160 km/h w około 375 milisekund. Zamach pałkarza od początku do kontaktu trwa 150–160 milisekund. Oznacza to, że pałkarz musi rozpocząć zamach — angażując rotację bioder — zanim piłka jest nawet w połowie drogi do bazy. Margines błędu jest mniejszy niż 10 milisekund między solidnym kontaktem a piłką foul.",
+      "Kluczem do trafienia twardych fastballi nie jest siła — to timing, a timing jest trenowany przez powtarzanie. Maszyny do rzutów ustawione na 135–145 km/h, turnusy na żywych szybko rzucających miotaczach i trening z przeciążonymi/odciążonymi kijami (zamach cięższym kijem, potem lżejszym, potem meczowym) rozwijają wzorce nerwowe pozwalające pałkarzowi konsekwentnie być w czasie. Pałkarze spóźniający się na fastball nie są koniecznie powolni — często po prostu nie angażują się wystarczająco wcześnie.",
+      "Trzymanie rąk wewnątrz piłki to najważniejsza wskazówka mechaniczna przy trafianiu fastballi. Na fastballu głowica kija musi dotrzeć do strefy kontaktu jak najkrótszą drogą — nie szerokim łukiem. 'Wewnątrz piłki' oznacza, że ręce trzymane są blisko ciała podczas ruchu ku strefie kontaktu, więc głowica wchodzi do strefy uderzenia od środka na zewnątrz, nawiązując kontakt z wewnętrzną połową piłki i napędzając ją z backspin. Rzucanie rąk (pozwolenie im odchylić się od ciała wcześnie) tworzy długą ścieżkę zawsze spóźniającą się na fastball."
+    ],
+    "technical": {
+      "title": "Trening z maszyną do rzutów vs. żywy rzut",
+      "body": [
+        "Maszyny do rzutów oferują spójną prędkość i lokalizację, co czyni je doskonałymi narzędziami do treningu timingu. Ustaw maszynę na prędkość meczową (lub nieco powyżej dla treningu przeciążeniowego) i skupiaj się na śledzeniu piłki od szczeliny rzutowej maszyny — nie od ramienia rzucającego, jak u żywego miotacza. Słabością treningu z maszynami jest eliminacja wskazówek rozpoznawania rzutów: brak zwodzenia, brak punktu tunelu, brak wariacji punktu zwolnienia. Powtórzenia na maszynie rozwijają mechanikę timingu; żywy rzut rozwija timing plus rozpoznawanie.",
+        "Najlepsze ćwiczenie treningu fastballa to batsa 'tylko fastballe': bierz kolejki BP wiedząc, że lecą tylko fastballe, i skupiaj się całkowicie na byciu w czasie, napędzając piłkę mocno na wszystkie pola. To oddziela timing od rozpoznawania — możesz doskonalić mechanikę trafienia fastballa bez poznawczego obciążenia identyfikacji rzutów. Gdy mechanika jest opanowana, dodaj piłki zaginające z powrotem, aby uzupełnić obraz."
+      ]
+    },
+    "incident": {
+      "title": "Fastball Kirka Gibsona — Mecz 1 Serii Światowej 1988",
+      "impact": "Walk-off home run Kirka Gibsona z pinch-hit przeciwko Dennisowi Eckersleyowi z Oakland w Serii Światowej 1988 pozostaje najbardziej ikonicznym jednym zamachem w historii Dodgers. Z jedną sprawną nogą, przy liczniku 3-2, Gibson odbił slider z tylnej bramki — i perfekcyjne wyczucie czasu tego rzutu pomimo ledwo zdolności do chodzenia to historia o przygotowaniu, timingu i zaangażowaniu.",
+      "body": [
+        "Kirk Gibson ledwo mógł chodzić w Meczu 1 Serii Światowej 1988 z powodu urazów nóg. Nie grał w tym meczu. Gdy Dodgers przegrywali 4-3 w dziewiątej rundzie, menedżer Tommy Lasorda wysłał Gibsona na bat jako pinch-hittera przeciwko zamykającemu Dennisowi Eckersleyowi — jednemu z najbardziej dominujących zawodników końcowych w historii baseballu. Gibson doprowadził licznik do 3-2, foulując rzuty. Scout Dodgers Mel Didier wcześniej poinformował Gibsona: 'Gwarantuję ci, że przy 3-2 rzuci ten slider z tylnej bramki.' Gibson siedział na sliderze.",
+        "Gdy Eckersley rzucił slider z tylnej bramki, Gibson — mimo urazów — wygenerował wystarczającą rotację bioder i timing, aby obrócić się przy rzucie i przepchnąć go ponad ogrodzenie prawego pola na walk-off home run z dwoma biegami. Podniósł pięść kulejąc wokół baz. Dodgers wygrali Serię Światową w pięciu meczach. Historia jest świadectwem przygotowania: Gibson wiedział jaki rzut nadchodzi, siedział na nim i gdy dotarł, jego wytrenowana mechanika timingu wykonała resztę pomimo znacznego fizycznego ograniczenia."
+      ]
+    },
+    "timeline": [
+      "Duke Snider bije 3 home runy w Serii Światowej 1955 — pokaz trafienia fastballa Dodgers",
+      "Walk-off home run Kirka Gibsona przeciwko Eckersleyowi — największy moment w historii trafień Dodgers",
+      "Maszyny do rzutów osiągają precyzję prędkości meczowej — trening timingu fastballa staje się standardem",
+      "Trening z przeciążonymi/odciążonymi kijami wprowadzony na poziomie profesjonalnym",
+      "Statcast po raz pierwszy mierzy prędkość kija przy kontakcie — nauka trafienia fastballa postępuje",
+      "Ohtani uśrednia 130+ km/h prędkości kija — ustalony punkt odniesienia elitarnego trafienia fastballa"
+    ],
+    "keyTakeaways": [
+      "Fastball 150 km/h dociera w 400 ms — musisz rozpocząć zamach zanim piłka jest w połowie drogi do bazy",
+      "Timing jest trenowany: maszyny do rzutów, żywe BP i ćwiczenia przeciążeniowe/odciążeniowe rozwijają spójną mechanikę timingu",
+      "Ręce wewnątrz piłki: głowica trzymana za rękami przez kontakt i wchodzi do strefy od środka na zewnątrz",
+      "Home run Kirka Gibsona z 1988 roku dowodzi, że przygotowanie i timing pokonują fizyczne ograniczenia — wiedz co nadchodzi"
+    ]
+  },
+  "stage-10": {
+    "tagline": "Nakłoń herolda Koloseum, aby zaniósł Twój sfałszowany pergamin do prywatnego skarbca Cesarza.",
+    "overview": [
+      "Administracyjny system Koloseum opierał się na herolda do przekazywania wiadomości między departamentami. Każdy obywatel mógł wysłać prośbę do służby herolda, która przekazywała ją do odpowiedniego departamentu. Heroldowie, lojalni i wydajni, nosili prośby nawet do zastrzeżonych komnat cesarskich — jeśli pergamin wyglądał, jakby pochodzi od autoryzowanego nadawcy. Kartagiński szpieg odkrył, że fałszując pieczęć nadawcy pergaminu, mógł instruować herolda, aby pobrał dokumenty z prywatnego archiwum spisów cesarskich.",
+      "Server-Side Request Forgery (SSRF) oszukuje serwer, aby wykonywał żądania HTTP w imieniu atakującego — do wewnętrznych usług, cloudowych punktów końcowych metadanych lub innych systemów niedostępnych z internetu. Po raz pierwszy pojawił się w OWASP Top 10 w 2021 roku (A10) ze względu na rosnącą częstotliwość występowania w środowiskach chmurowych.",
+      "W infrastrukturze chmurowej najbardziej lukratywnym celem SSRF jest usługa metadanych instancji (169.254.169.254) — wewnętrzny punkt końcowy HTTP dostarczający poświadczenia roli IAM do instancji EC2. Te poświadczenia mogą następnie być używane do uzyskania dostępu do bucketów S3, baz danych i innych usług chmurowych."
+    ],
+    "technical": {
+      "title": "SSRF usługi metadanych AWS",
+      "body": [
+        "AWS IMDSv1 to nieuwierzytelniona usługa HTTP działająca na każdej instancji EC2 pod adresem 169.254.169.254. Każdy kod działający na instancji może ją odpytywać, aby pobrać poświadczenia roli IAM. IMDSv2 dodał uwierzytelnianie oparte na tokenach, blokując większość exploitów SSRF.",
+        "Podatna aplikacja z funkcją pobierania URL może być instruowana, aby pobrać http://169.254.169.254/latest/meta-data/iam/security-credentials/ — zwracając poświadczenia AWS dające atakującemu pełny dostęp API jako ta rola IAM."
+      ]
+    },
+    "incident": {
+      "title": "Naruszenie Capital One — SSRF z 80 roku n.e. (2019)",
+      "impact": "106 mln rekordów klientów; 140 000 numerów SSN; 80 000 numerów kont bankowych",
+      "body": [
+        "W 80 roku n.e. kartagiński agent na igrzyskach Koloseum odkrył, że służba herolda przeniesie każdy oficjalnie wyglądający pergamin do zastrzeżonych komnat cesarskich. Wysyłając pergamin adresowany do 169.254.169.254 — prywatnego adresu cesarskiego archiwum spisów — odzyskał tablice poświadczeń Gwardii Pretoriańskiej i użył ich do uzyskania dostępu do całego spisu rzymskiego: rekordów 106 mln poddanych.",
+        "W 2019 roku Paige Thompson eksploitowała błędnie skonfigurowany WAF w infrastrukturze AWS Capital One, aby odpytać usługę metadanych EC2 i pobrać tymczasowe poświadczenia IAM. Używając tych poświadczeń, wylistowała i pobrała ponad 700 bucketów S3 zawierających sześć lat danych klientów Capital One. Capital One został ukarany grzywną 80 mln USD i zawarł ugodę zbiorową za 190 mln USD."
+      ]
+    },
+    "timeline": [
+      "Ukończenie Koloseum — ustanowienie cesarskiej służby herolda",
+      "Kartagiński agent fałszuje pergaminy herolda, aby dotrzeć do cesarskiego skarbca",
+      "29 lipca: Thompson aresztowana; potwierdzono 106 mln rekordów",
+      "Listopad: AWS uruchamia IMDSv2 (uwierzytelnianie oparte na tokenach)",
+      "SSRF dołącza do OWASP Top 10 po raz pierwszy (A10)"
+    ],
+    "keyTakeaways": [
+      "Blokuj zakresy wewnętrznych adresów IP w funkcjach pobierania URL (169.254.x.x, 10.x.x.x)",
+      "Migruj do AWS IMDSv2 — wymaga tokenu, blokując prosty SSRF",
+      "Zasada najmniejszych uprawnień: role IAM powinny mieć dostęp tylko do tego, czego potrzebują",
+      "WAF sam w sobie nie czyni aplikacji bezpieczną"
+    ]
+  },
+  "stage-12": {
+    "tagline": "35 000 świątyń skarbców. Bez zamka w drzwiach. Domyślna konfiguracja.",
+    "overview": [
+      "Świątynia Zeusa w Olimpii mieściła najświętszy skarbiec starożytnego świata. Skarbnik świątyni, ufający, że boska ochrona świątyni odstraszy złodziei, nigdy nie zainstalował zamków — domyślna konfiguracja epoki. Gdy automatyczni najeźdźcy odkryli, że 35 000 świątyń na całym Morzu Śródziemnym stosuje tę samą politykę otwartych drzwi, grabież była szybka i wyczerpująca. Każdy skarbiec został opróżniony w ciągu 24 godzin.",
+      "Security Misconfiguration to ryzyko nr 5 w OWASP 2021, obecne w 90% testowanych aplikacji. 'Apokalipsa' MongoDB ze stycznia 2017 roku zilustrował skalę, w jakiej błędna konfiguracja działa: dziesiątki tysięcy instancji bazy danych MongoDB, publicznie dostępnych w internecie bez uwierzytelniania, zostały odkryte przez automatyczne skanery. Atakujący wymazali bazy danych, pozostawiając tylko notatkę z żądaniem okupu.",
+      "Misconfiguration nie wymaga kodu exploitu. 'Podatność' to po prostu brak konfiguracji — domyślne poświadczenia, otwarty port, brakujące wymaganie uwierzytelnienia. Narzędzia jak Shodan stale indeksują błędnie skonfigurowane systemy globalnie."
+    ],
+    "technical": {
+      "title": "Typowe błędne konfiguracje bezpieczeństwa",
+      "body": [
+        "Domyślne poświadczenia: MongoDB był dostarczany bez wymagania uwierzytelnienia domyślnie do wersji 3.0. Wielu administratorów instalowało go i nigdy nie konfigurowało uwierzytelnienia. SolarWinds używał 'solarwinds123' jako hasła do swojego serwera aktualizacji oprogramowania — znalezionego w publicznym repozytorium GitHub miesiące przed naruszeniem.",
+        "Błędne konfiguracje w chmurze: buckety AWS S3 mają domyślnie ustawioną prywatność, ale jedno wywołanie API może je upublicznić. Capital One, Twitch, GoDaddy i tysiące innych firm ujawniło wrażliwe dane przez błędnie skonfigurowane buckety S3."
+      ]
+    },
+    "incident": {
+      "title": "Apokalipsa Skarbca Świątyni (392 n.e.) i MongoDB (2017)",
+      "impact": "MongoDB: 27 000 baz danych usuniętych w 24 godziny. SolarWinds: 18 000 skompromitowanych klientów",
+      "body": [
+        "Gdy Cesarz Teodozjusz zamknął pogańskie świątynie w 392 roku n.e., badacze odkryli, że tysiące skarbców świątynnych w ogóle nie miało zamków — domyślna konfiguracja epoki. Ofiary gromadzone przez wieki zostały splądrowane w ciągu dni. Strażnicy świątynni zakładali, że boska ochrona czyni zamki zbędnymi.",
+        "W styczniu 2017 roku badacz bezpieczeństwa Victor Gevers znalazł 35 000 instancji MongoDB eksponowanych na internet bez uwierzytelnienia. W ciągu dni automatyczni atakujący zeskanowali Shodan, zidentyfikowali wszystkie eksponowane instancje, pobrali dane, usunęli oryginały i zostawili notatki z żądaniem okupu. Ponad 27 000 baz danych zostało usuniętych jednego dnia. Oba incydenty mają ten sam błąd: bezpieczeństwo było traktowane jako problem kogoś innego."
+      ]
+    },
+    "timeline": [
+      "Ukończona statua Zeusa — skarbiec świątyni ustanowiony bez zamków",
+      "Teodozjusz zamyka świątynie — 35 000 niechronionych skarbców splądrowanych",
+      "MongoDB 3.0: uwierzytelnianie nadal domyślnie wyłączone",
+      "Sty: znaleziono 35 000 eksponowanych instancji; 27 000 usuniętych w 24 godziny",
+      "OWASP A05: Security Misconfiguration — 90% aplikacji dotkniętych"
+    ],
+    "keyTakeaways": [
+      "Domyślne konfiguracje są zaprojektowane pod kątem wygody, a nie bezpieczeństwa — zawsze wzmacniaj",
+      "Nigdy nie eksponuj portów bazy danych (27017, 5432, 3306) do internetu",
+      "Rotuj i audytuj poświadczenia; nigdy nie umieszczaj sekretów w publicznych repozytoriach",
+      "Używaj narzędzi takich jak Shodan, Censys lub AWS Trusted Advisor do audytu własnej ekspozycji"
+    ]
+  },
+  "stage-m02": {
+    "tagline": "NSA zbudowała broń do przepełnienia pamięci Cisco. Shadow Brokers dali ją światu.",
+    "overview": [
+      "Tower of London mieściła Klejnoty Korony — ale też najcenniejszy wywiad NSA o średniowiecznej Anglii. Jej posłańcy używali standardowego protokołu sygnalizacyjnego (SNMP — Standard Network Messaging Protocol swojej epoki), który mógł odczytać każdy autoryzowany obserwator. Francuscy szpiedzy odkryli, że wysłanie wiadomości o nadmiernym rozmiarze w tym formacie protokołu powodowało, że kontroler wiadomości Wieży przepełniał swój bufor pergaminowy, zapisując do sąsiedniej pamięci — i wykonując instrukcje szpiega.",
+      "CVE-2016-6366 (EXTRABACON) to podatność przepełnienia bufora w podsystemie SNMP firewalli Cisco ASA (Adaptive Security Appliance). Opracowana przez Equation Group NSA jako ofensywna cyberbron, EXTRABACON została ujawniona przez Shadow Brokers 13 sierpnia 2016 roku — ten sam wyciek danych, który ujawnił EternalBlue.",
+      "Atak wymaga prawidłowego ciągu społeczności SNMP (zasadniczo hasła tylko do odczytu do monitorowania sieci) — który organizacje często zostawiają na wartościach domyślnych, takich jak 'public' lub 'private'. Dzięki ciągowi społeczności atakujący może wysłać spreparowany pakiet SNMP przepełniający bufor sterty w sterowniku SNMP ASA i osiągający nieuwierzytelnioną zdalne wykonanie kodu."
+    ],
+    "technical": {
+      "title": "Przepełnienie bufora SNMP — jak działa EXTRABACON",
+      "body": [
+        "SNMP (Simple Network Management Protocol) jest używany do monitorowania urządzeń sieciowych. Firewalle ASA udostępniają agenta SNMP akceptującego zapytania przy użyciu ciągu społeczności do uwierzytelnienia. Podatność tkwi w tym, jak kod SNMP ASA przetwarza pewne żądania OID (Object Identifier) — kopiuje dane dostarczone przez atakującego do bufora sterty o stałym rozmiarze bez sprawdzania długości.",
+        "EXTRABACON był opracowany specjalnie dla Cisco ASA 5500, serii 5500-X, firewalli PIX i innych produktów Cisco. Shellcode ataku był dostosowany dla każdej konkretnej wersji firmware ASA. Wyciek Shadow Brokers zawierał wstępnie wygenerowane payloady dla dziesiątek wersji ASA."
+      ]
+    },
+    "incident": {
+      "title": "Wyciek Shadow Brokers — sierpień 2016",
+      "impact": "Cyberbroń NSA opublikowana publicznie; Cisco wydało alarmowy komunikat tego samego dnia",
+      "body": [
+        "13 sierpnia 2016 roku, grupa nazywająca się Shadow Brokers opublikowała cache narzędzi hakerskich Equation Group NSA, w tym EXTRABACON. Czas był celowy — wyciek zbiegł się z kwartalną konferencją wynikową Cisco. Cisco wydało ostrzeżenie bezpieczeństwa tego samego dnia: podatność była prawdziwa, potwierdzona i aktywnie exploitowalna w wersjach ASA sięgających lat wstecz.",
+        "EXTRABACON exploituje SNMP — protokół, który administratorzy sieci traktują jako kanał tylko do monitorowania, nie jako powierzchnię ataku. Większość organizacji miała SNMP otwarty na swoich firewallach dla narzędzi zarządzania siecią, nie podejrzewając, że jest podatny na RCE. NSA wykorzystywała go po cichu przez lata. Po wycieku wszyscy przeciwnicy państwowi mieli tę samą zdolność."
+      ]
+    },
+    "timeline": [
+      "Budowa Tower of London — protokół wiadomości SNMP ustanowiony dla komunikacji wieży",
+      "Wprowadzenie Cisco ASA — podsystem SNMP odziedziczył podatny kod",
+      "13 sie: Shadow Brokers ujawniają EXTRABACON i zestaw narzędzi NSA",
+      "13 sie: Cisco publikuje alarmowy komunikat dla CVE-2016-6366",
+      "Techniki ataku SNMP ponownie użyte w późniejszych kampaniach państwowych"
+    ],
+    "keyTakeaways": [
+      "Ciągi społeczności SNMP mają słabe uwierzytelnianie — natychmiast zmień 'public'/'private'",
+      "Ogranicz dostęp SNMP do konkretnych hostów zarządzania, nigdy nie eksponuj go do internetu",
+      "Cyberbonie opracowane przez rządy w końcu zostaną ujawnione — łataj proaktywnie",
+      "Każdy protokół zarządzania może być powierzchnią ataku jeśli nie jest ograniczony"
+    ]
+  },
+  "stage-m06": {
+    "tagline": "CVSS 10.0. Wyślij nazwę użytkownika w określonym formacie. Omijasz cały system uwierzytelnienia.",
+    "overview": [
+      "Królowie Nasrydów z Alhambry zbudowali tajne przejścia w całym pałacu — wąskie korytarze całkowicie omijające główne bramy, sale tronowe i posterunki wartownicze. Odwiedzający znający właściwy format nazwy użytkownika mogli szepnąć go przy wejściu do pałacu i zostać wpuszczeni bez nigdy prezentowania swoich poświadczeń strażnikowi.",
+      "CVE-2022-20695 to dokładnie takie tajne przejście. Bezprzewodowy Kontroler LAN (WLC) Cisco — urządzenie zarządzające sieciami Wi-Fi korporacyjnymi — zawierał obejście uwierzytelnienia w interfejsie zarządzania. Wysyłając nazwę użytkownika zawierającą określony wzorzec znaków, atakujący mógł ominąć cały system uwierzytelnienia i uzyskać pełny dostęp administracyjny bez znajomości jakiegokolwiek hasła.",
+      "Cisco ocenił to jako CVSS 10.0. WLC zarządza wszystkimi bezprzewodowymi punktami dostępowymi, uwierzytelnianiem RADIUS, sieciami gościnnymi i politykami urządzeń. Atakujący z dostępem administracyjnym WLC może przekierowywać cały bezprzewodowy ruch, wyłączać uwierzytelnianie lub przeprowadzać ataki man-in-the-middle na wszystkich bezprzewodowych klientach."
+    ],
+    "technical": {
+      "title": "Obejście uwierzytelnienia w Cisco WLC",
+      "body": [
+        "Podatność istnieje w kodzie przetwarzania uwierzytelnienia dla interfejsu zarządzania Cisco WLC. Kod używa wadliwego porównania przy walidacji nazw użytkownika i haseł — określony format nazwy użytkownika powoduje, że porównanie zwraca 'uwierzytelniony' niezależnie od podanego hasła.",
+        "Dotknięte wersje: Cisco WLC 8.10.151.0 i wcześniejsze. Poprawione w 8.10.162.0. Atak jest całkowicie nieuwierzytelniony i wymaga jedynie dostępu sieciowego do interfejsu zarządzania WLC (zazwyczaj eksponowanego w korporacyjnej sieci WLAN)."
+      ]
+    },
+    "incident": {
+      "title": "CVE-2022-20695 — Cichy dostęp administratora do korporacyjnego Wi-Fi (2022)",
+      "impact": "Pełna kontrola administracyjna nad korporacyjną infrastrukturą bezprzewodową bez jakichkolwiek poświadczeń",
+      "body": [
+        "Cisco ujawniło CVE-2022-20695 w kwietniu 2022 roku. Podatność nie wymagała poświadczeń — po prostu znanie magicznego formatu nazwy użytkownika dawało pełny dostęp administracyjny do WLC. Organizacje z zarządzaniem WLC eksponowanym w korporacyjnej sieci WLAN były natychmiast narażone na wewnętrznych atakujących lub każde urządzenie w sieci bezprzewodowej.",
+        "Korporacyjne WLC są szczególnie wartościowymi celami, ponieważ zarządzają uwierzytelnianiem dla wszystkich bezprzewodowych klientów. Atakujący z dostępem administracyjnym WLC może przekształcić lokalną pozycję w sieci Wi-Fi w pełną bezprzewodową kontrolę sieci — przekierowując ruch, zbierając poświadczenia i wyłączając szyfrowanie."
+      ]
+    },
+    "timeline": [
+      "Początek budowy Pałacu Alhambry — tajne przejścia zbudowane dla Królów Nasrydów",
+      "Kwi: CVE-2022-20695 ujawnione; obejście uwierzytelnienia WLC CVSS 10.0",
+      "Wydano poprawkę: Cisco WLC 8.10.162.0"
+    ],
+    "keyTakeaways": [
+      "Ogranicz dostęp do zarządzania WLC do dedykowanych VLAN zarządzania, nie korporacyjnej sieci WLAN",
+      "Kod porównania uwierzytelnienia musi być stałoczasowy i nie może być skrótowany",
+      "CVSS 10.0 oznacza łatanie dzisiaj, a nie w następnym oknie konserwacji",
+      "Bezprzewodowe kontrolery to cele wysokiej wartości — traktuj je jak firewalle"
+    ]
+  },
+  "stage-m08": {
+    "tagline": "CVE-2023-20198 otwiera Ci drzwi. CVE-2023-20273 wynosi Cię na szczyt — root.",
+    "overview": [
+      "Machu Picchu wznosi się 2430 metrów nad poziomem morza. Dotarcie do cytadeli wymagało nawigacji tarasami — każdy poziom trudniejszy do zdobycia niż poprzedni. Inżynierowie Inków celowo zbudowali dolne tarasy jako przeszkodę: odwiedzający, który wspiął się na zewnętrzny mur, nadal mierzył się z wewnętrznymi tarasami przed dotarciem do kamienia Intihuatana na szczycie.",
+      "CVE-2023-20273 to drugi taras w łańcuchu ataku IOS XE. Po tym jak CVE-2023-20198 przyznaje nieautoryzowane konto administratora (poziom uprawnień 15), CVE-2023-20273 exploituje podatność XSS w tym samym interfejsie webowym do wstrzykiwania poleceń wykonywanych z uprawnieniami root w bazowym jądrze Linux — systemie operacyjnym, na którym działa IOS XE. Konto poziomu 15 może uzyskać dostęp do funkcji w pewnych kontekstach użytkownika systemu operacyjnego, ale CVE-2023-20273 eskaluje dalej do root.",
+      "Oba CVE zostały połączone przez atakujących w październiku 2023 roku w celu zainstalowania trwałego implant backdoor opartego na Lua ('BadCandy') w systemie plików IOS XE. Implant przeżywał restarty urządzenia i mógł wykonywać dowolne polecenia w dowolnym momencie przez spreparowane żądanie HTTP — efektywnie dając atakującym stały dostęp root do urządzenia."
+    ],
+    "technical": {
+      "title": "XSS do Root — eskalacja uprawnień CVE-2023-20273",
+      "body": [
+        "CVE-2023-20273 to podatność XSS w interfejsie webowym Cisco IOS XE, którą uwierzytelniony użytkownik może eksploitować do wstrzykiwania poleceń wykonywanych w kontekście procesu aplikacji webowej z podwyższonymi uprawnieniami systemu operacyjnego. W połączeniu z kontem uprawnień 15 utworzonym przez CVE-2023-20198 atakujący osiąga dostęp na poziomie root do systemu operacyjnego.",
+        "Implant zainstalowany przez atakujących w październiku 2023 roku (BadCandy) był skryptem Lua zarejestrowanym jako procedura obsługi usługi webowej IOS XE. Akceptował żądania HTTP z określonym magicznym tokenem w nagłówku i wykonywał dowolne polecenia jako root, zwracając dane wyjściowe w treści odpowiedzi HTTP."
+      ]
+    },
+    "incident": {
+      "title": "Implant BadCandy — październik 2023 (połączone exploitation)",
+      "impact": "Trwały implant root zainstalowany na dziesiątkach tysięcy routerów i przełączników",
+      "body": [
+        "Atakujący z października 2023 roku połączyli CVE-2023-20198 i CVE-2023-20273 w ataku dwuetapowym: najpierw tworząc nieautoryzowane konto administratora, następnie używając tego konta do zainstalowania implantu Lua BadCandy przez eskalację uprawnień CVE-2023-20273. Implant został zarejestrowany jako usługa webowa w IOS XE i akceptował polecenia przez HTTP z określonym magicznym tokenem.",
+        "Cisco wydało łatki dla obu CVE 22 października 2023 roku (IOS XE 17.9.4a). Jednak samo łatanie nie usunęło implantu BadCandy — organizacje musiały ręcznie zweryfikować swoje działające konfiguracje pod kątem nieautoryzowanych kont użytkowników i sprawdzić obecność pliku implantu w systemie plików urządzenia."
+      ]
+    },
+    "timeline": [
+      "Budowa Machu Picchu — etapowe podejście do szczytu Intihuatana",
+      "28 wrz: Rozpoczyna się połączone exploitation CVE-2023-20198 + CVE-2023-20273",
+      "16 paź: Cisco ujawnia oba CVE; odkryto implant BadCandy",
+      "22 paź: Wydano łatki dla obu CVE",
+      "Po łataniu: organizacje muszą ręcznie usunąć implant BadCandy"
+    ],
+    "keyTakeaways": [
+      "Łańcuchy podatności są powszechne — łatanie jednego CVE nie eliminuje zagrożenia",
+      "Po kompromitacji weryfikuj implanty poza samym łataniem",
+      "Sprawdź 'show users' i 'show running-config' pod kątem nieautoryzowanych kont po incydencie",
+      "Interfejs webowy IOS XE: wyłącz jeśli nie jest absolutnie niezbędny"
+    ]
+  },
+  "stage-m12": {
+    "tagline": "Zniekształcony pakiet DHCP przepełnia cesarski bufor. Router wykonuje Twoje polecenia.",
+    "overview": [
+      "Imperialny system pocztowy Pałacu Topkapi — sieć królewskich posłańców — był najwyrafinowańszym w Imperium Osmańskim. Posłańcy przybywający do bramy pałacu przedstawiali poświadczenia zgodnie ze ścisłym protokołem. Bizantyjski szpieg odkrył, że fałszując pakiet poświadczeń z nadmiernie dużym polem (zniekształcony pakiet DHCP z nieprawidłowym polem opcji), menedżer wiadomości pałacu przepełniał swój bufor przetwarzania i wykonywał instrukcje szpiega.",
+      "CVE-2017-6736 to podatność przepełnienia bufora w implementacji serwera DHCP Cisco IOS. DHCP (Dynamic Host Configuration Protocol) to sposób, w jaki urządzenia sieciowe automatycznie otrzymują adresy IP — każdy serwer DHCP musi być osiągalny w sieci. Wysyłając specjalnie spreparowany pakiet DHCP ze zniekształconymi danymi opcji 82, atakujący powoduje przepełnienie bufora prowadzące do zdalnego wykonania kodu na routerze Cisco IOS.",
+      "DHCP to fundamentalny protokół sieciowy działający praktycznie na wszystkich routerach. Atak nie wymaga uwierzytelnienia — żądania DHCP nie są domyślnie uwierzytelniane. Każde urządzenie w sieci może wysłać pakiet DHCP. To sprawia, że podatność jest osiągalna z każdej maszyny w dotkniętej podsieci."
+    ],
+    "technical": {
+      "title": "Przepełnienie bufora DHCP w IOS — CVE-2017-6736",
+      "body": [
+        "Serwer DHCP Cisco IOS przetwarza opcję 82 (Agent Information Option) od agentów przekaźnikowych DHCP. Podatny kod kopiuje dane opcji 82 do bufora o stałym rozmiarze bez walidacji długości. Wysyłając pakiet DHCP z nadmiernie dużym polem opcji 82, atakujący przepełnia bufor, nadpisuje sąsiednią pamięć i uzyskuje kontrolę nad wykonaniem procesu IOS.",
+        "Podatność dotyczy Cisco IOS uruchamiającego funkcjonalność serwera DHCP (domyślnie włączoną na wielu urządzeniach IOS). IOS XE ma oddzielną bazę kodu i nie był dotknięty tą konkretną wariantem. Atak wymaga sąsiedztwa sieciowego — atakujący musi być w stanie wysyłać pakiety UDP/67 do docelowego routera."
+      ]
+    },
+    "incident": {
+      "title": "Podatności DHCP Cisco IOS — 2017",
+      "impact": "Zdalne wykonanie kodu lub odmowa usługi na routerach z każdego urządzenia w podsieci",
+      "body": [
+        "Cisco ujawniło CVE-2017-6736 w lipcu 2017 roku jako część partii podatności IOS. Serwer DHCP jest domyślnie włączony na wielu routerach Cisco IOS, a atak wymaga jedynie sąsiedztwa sieciowego — każde urządzenie w sieci lokalnej może wysłać zniekształcony pakiet DHCP. W środowiskach z gościnną siecią Wi-Fi lub niezaufanymi urządzeniami stanowi to poważne zagrożenie.",
+        "Szersza lekcja: protokoły infrastruktury sieciowej (DHCP, DNS, OSPF, BGP) są implementowane w złożonym kodzie C działającym z wysokim poziomem uprawnień w IOS. Przepełnienia bufora w analizatorach protokołów to klasyczny wektor ataku na infrastrukturę sieciową — ta sama klasa podatności, która dotknęła Windows SMBv1 (EternalBlue/WannaCry). Urządzenia sieciowe muszą być łatane jak serwery."
+      ]
+    },
+    "timeline": [
+      "Budowa Pałacu Topkapi — ustanowienie imperialnego systemu pocztowego",
+      "Lip: ujawniono CVE-2017-6736 — przepełnienie bufora DHCP w IOS",
+      "Łatka: IOS 15.6(3)M2 / 15.4(3)M9 i nowsze"
+    ],
+    "keyTakeaways": [
+      "DHCP to powierzchnia ataku — wyłącz serwer DHCP jeśli go nie używasz ('no service dhcp')",
+      "Protokoły infrastruktury sieciowej wymagają tego samego rygoru łatania co oprogramowanie serwerowe",
+      "Przepełnienie bufora w kodzie C: zawsze waliduj długość przed kopiowaniem do buforów o stałym rozmiarze",
+      "Aktualizacje IOS są tak samo krytyczne jak łatki bezpieczeństwa Windows lub Linux — automatyzuj je"
+    ]
+  },
+  "stage-m16": {
+    "tagline": "Miliony routerów małego biura Cisco narażonych na zdalne wykonanie kodu bez uwierzytelnienia przez ich interfejs webowy.",
+    "overview": [
+      "CVE-2021-1609 to krytyczna podatność w webowym interfejsie zarządzania routerów Cisco RV340 i RV345 Dual WAN Gigabit VPN — standardowych firewallach/routerach dla małych i średnich firm. Błąd pozwolił zdalnemu atakującemu bez uwierzytelnienia na wykonanie dowolnego kodu na urządzeniu lub spowodowanie odmowy usługi.",
+      "Seria RV jest oferowana firmom MŚP jako niedrogie, kompleksowe bramy bezpieczeństwa. Miliony tych urządzeń są rozmieszczone na obrzeżach sieci małych firm, oddziałowych biur i domowych biur pracowników korporacyjnych — czyniąc je wartościowym celem dla wstępnego dostępu do sieci korporacyjnych przez domową infrastrukturę pracowników.",
+      "Podatność wynikała z niewystarczającej walidacji danych wejściowych w interfejsie webowym zarządzania. Atakujący mogący dotrzeć do interfejsu webowego (zazwyczaj eksponowanego na interfejsie WAN lub przez przekierowanie portów) mógł to exploitować bez poświadczeń."
+    ],
+    "technical": {
+      "title": "Jak działa CVE-2021-1609",
+      "body": [
+        "Interfejs webowy Cisco RV340/RV345 zawierał uwierzytelniony i nieuwierzytelniony punkt końcowy. CVE-2021-1609 dotyczył nieuwierzytelnionej części — pewne wywołania API przetwarzały dane dostarczone przez użytkownika przed sprawdzeniem uwierzytelnienia, pozwalając na wstrzyknięcie parametrów prowadzące do wykonania poleceń w bazowym systemie operacyjnym Linux.",
+        "Seria RV uruchamia uproszczoną dystrybucję Linux z BusyBox. Wykonanie kodu na tych urządzeniach oznacza dostęp do tabeli routingu routera, konfiguracji VPN, reguł firewalla i całego ruchu przechodzącego przez — wszystko bez poświadczeń. Rozwiązaniem Cisco była aktualizacja firmware; nie istniało żadne obejście poza wyłączeniem zdalnego zarządzania."
+      ]
+    },
+    "incident": {
+      "title": "Masowe exploitation serii RV — kampanie wstępnego dostępu do MŚP (2021–2022)",
+      "impact": "Tysiące sieci MŚP skompromitowanych przez kompromitację routerów domowych/oddziałowych",
+      "body": [
+        "Po ostrzeżeniu Cisco z sierpnia 2021 roku, wielu aktorów zagrożeń zaczęło skanować i exploitować CVE-2021-1609. Routery MŚP są często zaniedbywane w aktualizacjach firmware — wiele organizacji nie ma personelu IT monitorującego ostrzeżenia Cisco dla sprzętu oddziałowego.",
+        "Atakujący, którzy skompromitowali routery serii RV, uzyskali trwałą obecność w docelowej sieci: mogli przekierowywać DNS, przechwytywać poświadczenia VPN i używać routera jako punktu pivotu do korporacyjnej sieci LAN. Kilka grup ransomware używało skompromitowanych routerów SOHO jako wektorów wstępnego dostępu w kampaniach z lat 2021–2022."
+      ]
+    },
+    "timeline": [
+      "Sie: Cisco ujawnia CVE-2021-1609 i wydaje firmware 1.0.03.22",
+      "Masowe skanowanie podatnych routerów RV rozpoczyna się w ciągu 48 godzin",
+      "Wiele udokumentowanych grup ransomware używa serii RV jako wstępnego dostępu"
+    ],
+    "keyTakeaways": [
+      "Routery SOHO i oddziałowe są tak samo krytyczne jak firewalle datacenter — aktualizuj je",
+      "Nigdy nie eksponuj interfejsów zarządzania routerem do internetu — używaj ACL lub wyłącz zdalne zarządzanie",
+      "Automatyczna aktualizacja firmware powinna być włączona tam gdzie jest dostępna; subskrybuj ostrzeżenia bezpieczeństwa dostawcy",
+      "Wstępny dostęp do MŚP przez routery domowe/oddziałowe to powszechna taktyka ransomware"
+    ]
+  },
+  "stage-m20": {
+    "tagline": "Velvet Ant użył zero-day Cisco NX-OS, aby ukryć się wewnątrz przełączników centrów danych przez lata bez wykrycia.",
+    "overview": [
+      "CVE-2024-20399 to podatność wstrzykiwania poleceń w CLI oprogramowania Cisco NX-OS — systemie operacyjnym obsługującym przełączniki Nexus w centrach danych Cisco. Błąd został odkryty przez Sygnia podczas dochodzenia w sprawie włamania Velvet Ant do firmy z listy Fortune 500, gdzie atakujący utrzymywali trwałość przez ponad trzy lata.",
+      "Podatność wymagała lokalnego uwierzytelnionego dostępu z określonymi uprawnieniami, co czyni ją narzędziem post-exploitation, a nie wektorem wstępnego dostępu. Jednak gdy atakujący miał jakikolwiek uprzywilejowany dostęp do przełącznika Nexus (przez skradzione poświadczenia, inne podatności lub dostęp wewnętrzny), mógł użyć CVE-2024-20399 do wykonania dowolnych poleceń jako root — poza granicą bezpieczeństwa NX-OS.",
+      "Jest to szczególnie niebezpieczne, ponieważ urządzenia NX-OS (serie Nexus 3000, 7000, 9000) tworzą rdzeń korporacyjnych centrów danych. Atakujący z dostępem root mogą instalować trwały malware przeżywający aktualizacje firmware i niewidoczny dla standardowego monitorowania NX-OS."
+    ],
+    "technical": {
+      "title": "Jak działa CVE-2024-20399",
+      "body": [
+        "Pewne polecenia CLI NX-OS akceptowały parametry konfiguracyjne, które były przekazywane do bazowych poleceń powłoki Linux bez odpowiedniego czyszczenia. Dołączając metaznaki powłoki do tych parametrów, uprzywilejowany użytkownik NX-OS mógł uciec ze środowiska CLI NX-OS i wykonywać dowolne polecenia na poziomie bazowego systemu operacyjnego Linux.",
+        "To całkowicie omija kontrolę dostępu opartą na rolach (RBAC) NX-OS — nawet konto NX-OS tylko do odczytu z dostępem do konkretnego podatnego polecenia mogło potencjalnie eskalować do root w bazowym systemie Linux, poza widocznością NX-OS."
+      ]
+    },
+    "incident": {
+      "title": "APT Velvet Ant — 3-letnia trwałość w centrum danych (2024)",
+      "impact": "Niewykryta obecność APT przez ponad 3 lata w podstawowej infrastrukturze centrum danych",
+      "body": [
+        "Zespół reagowania na incydenty Sygnia odkrył Velvet Ant — wyrafinowane APT sponsorowane przez państwo chińskie — działające wewnątrz centrum danych firmy z listy Fortune 500 przez ponad trzy lata. Atakujący ustanowili trwałość w przełącznikach Cisco Nexus używając CVE-2024-20399, pozwalając im przeżywać wysiłki wykrywania i remediacji skupione tylko na infrastrukturze serwerów i endpoint.",
+        "Perspektywa była krytyczna: obrońcy skupieni na wykrywaniu serwerów i endpointów nie wykryli atakującego, ponieważ mieszkał wewnątrz samych przełączników sieciowych. Kompromitacja podstawowej infrastruktury przełączania centrum danych to scenariusz najgorszego przypadku — cały ruch w centrum danych był potencjalnie widoczny dla atakujących przez lata."
+      ]
+    },
+    "timeline": [
+      "Velvet Ant rozpoczyna trwałość w przełącznikach Cisco Nexus w Fortune 500",
+      "Sygnia odkrywa 3+ letnią obecność APT; CVE-2024-20399 ujawniony",
+      "Cisco wydaje łatki NX-OS; organizacje audytują integralność przełączników"
+    ],
+    "keyTakeaways": [
+      "Infrastruktura sieciowa może zawierać trwałość APT — monitoruj przełączniki i routery, a nie tylko serwery",
+      "Podatności wstrzykiwania CLI są poważne nawet z wymaganiami uwierzytelnienia w łańcuchach post-exploitation",
+      "Obrona musi obejmować weryfikację integralności urządzeń sieciowych (linia bazowa systemu plików, atestacja firmware)",
+      "RBAC w NX-OS nie chroni przed wstrzyknięciem poleceń na poziomie OS przez parametry CLI"
+    ]
+  },
+  "stage-m22": {
+    "tagline": "Line Dancer: backdoor ArcaneDoor, który przeżył restarty ASA i ominął całe standardowe wykrywanie.",
+    "overview": [
+      "CVE-2024-20359 to drugi zero-day w kampanii ArcaneDoor — podatność eskalacji uprawnień i trwałego wykonania kodu w Cisco ASA i FTD. Podczas gdy CVE-2024-20353 blokował firewall, aby usunąć logi, CVE-2024-20359 pozwolił atakującym zainstalować 'Line Dancer': shellcode backdoor w pamięci przeżywający przeładowania urządzenia.",
+      "Podatność dotknęła dziedziczną zdolność pozwalającą wstępnie załadowanym klientom VPN i wtyczkom trwać przez restarty. Nadużywając tego mechanizmu, atakujący mogli ładować dowolny kod automatycznie wykonywany za każdym razem gdy ASA startował — niewidoczny dla standardowych poleceń 'show' i sprawdzeń integralności urządzenia.",
+      "Line Dancer działał całkowicie w pamięci, przechwytując żądania HTTPS POST i wykonując shellcode dostarczony przez atakujących. Wyłączył syslog i pułapki SNMP, aby zaślepić systemy monitorowania i zaimplementował mechanizm uwierzytelniania 'host knock', aby tylko atakujący mogli aktywować jego funkcjonalność."
+    ],
+    "technical": {
+      "title": "Jak działa CVE-2024-20359",
+      "body": [
+        "Cisco ASA miał dziedziczną funkcję ładowania pakietów klientów VPN i obrazów ASDM z flash podczas bootowania. CVE-2024-20359 nadużywał tego mechanizmu pozwalając uwierzytelnionym atakującym (z dostępem administracyjnym) na określenie dowolnego pliku w systemie plików flash do załadowania i wykonania podczas procesu bootowania.",
+        "Implant Line Dancer podłączył się do potoku przetwarzania HTTPS ASA. Monitorował przychodzące żądania POST szukając sekwencji 'host knock' — określonej wartości nagłówka, która wyzwalałaby wykonanie shellcode. Pozwalało to atakującym wysyłać dowolne polecenia bez widocznej zmiany w konfiguracji ASA."
+      ]
+    },
+    "incident": {
+      "title": "Implant Line Dancer — Faza 2 ArcaneDoor (2024)",
+      "impact": "Trwały dostęp państwowy do rządowych obwodów; cały ruch firewalla potencjalnie przechwycony",
+      "body": [
+        "Cisco Talos wykonało inżynierię odwrotną Line Dancer i opublikowało szczegółową analizę techniczną w kwietniu 2024 roku. Implant był wyrafinowany: zaślepiał standardowe monitorowanie wyłączając syslog i SNMP, używał mechanizmu uwierzytelniania host-knock zapobiegającego odkryciu przez pasywną analizę ruchu i implementował wykonanie shellcode całkowicie w pamięci.",
+        "Bezpieczeństwo operacyjne atakujących było wyjątkowe — używali Line Dancer tylko w krótkich sesjach, wyłączali rejestrowanie podczas operacji i usuwali dowody przed przywróceniem normalnego działania. Kampania została odkryta tylko dlatego, że docelowa organizacja zauważyła krótkie anomalie w metrykach wydajności swojego firewalla podczas rutynowego audytu."
+      ]
+    },
+    "timeline": [
+      "Koniec 2023: Implant Line Dancer zainstalowany w rządowych firewallach ASA",
+      "Kwi: Cisco Talos wykonuje inżynierię odwrotną Line Dancer; implant opublikowany",
+      "CISA i wiele rządowych CERT wydaje dyrektywy alarmowe",
+      "Cisco dostarcza skrypty weryfikacji integralności; organizacje audytują flash"
+    ],
+    "keyTakeaways": [
+      "Integralność firmware urządzeń sieciowych musi być weryfikowana — porównaj zawartość flash z podpisanymi liniami bazowymi Cisco",
+      "Wyłączony syslog i SNMP to sygnały alarmowe — monitoruj zmiany konfiguracji rejestrowania",
+      "Implanty państwowe działają poniżej poziomu OS — standardowe narzędzia bezpieczeństwa są na nie ślepe",
+      "Ogranicz dostęp administracyjny do ASA/FTD do dedykowanych sieci zarządzania z MFA"
+    ]
+  },
+  "stage-m24": {
+    "tagline": "Skompromitowanie serwera kluczy GET VPN zatruło każdy router w grupie jednym złośliwym rekeying.",
+    "overview": [
+      "CVE-2023-20109 to podatność w funkcji Cisco Group Encrypted Transport (GET) VPN oprogramowania Cisco IOS i IOS XE. GET VPN używa protokołu Group Domain of Interpretation (GDOI) do dystrybucji kluczy szyfrowania do grupy routerów — pozwala to wszystkim routerom w grupie szyfrować ruch między sobą przy użyciu współdzielonych kluczy grupowych, bez indywidualnego negocjowania tuneli.",
+      "Podatność pozwalała atakującemu kontrolującemu serwer kluczy GET VPN (lub mogącemu przeprowadzić atak pośrednika na wymianę kluczy) na wysłanie spreparowanej wiadomości rekeying GDOI wywołującej dowolne wykonanie kodu na wszystkich zarejestrowanych członkach grupy jednocześnie.",
+      "Wpływ jest wyjątkowy: jeden payload exploitu mógłby skompromitować każdy router subskrybujący grupę GET VPN — potencjalnie dziesiątki lub setki routerów zdalnych biur i oddziałów w całej korporacyjnej sieci WAN jednocześnie."
+    ],
+    "technical": {
+      "title": "Jak działa CVE-2023-20109",
+      "body": [
+        "Serwery kluczy GET VPN periodycznie wysyłają wiadomości rekeying do wszystkich członków grupy przez GDOI. Członkowie grupy automatycznie odbierają i przetwarzają te wiadomości. Podatny kod przetwarzał pewne atrybuty w wiadomości rekeying GDOI bez odpowiedniej walidacji, pozwalając zniekształconemu atrybutowi wywołać przepełnienie bufora lub błąd logiczny prowadzący do wykonania kodu.",
+        "Atakujący, który skompromitował serwer kluczy (innymi środkami, lub przez towarzyszące wymagania CVE-2023-20109), mógł tworzyć złośliwe wiadomości rekeying i transmitować je do wszystkich członków grupy. Każdy router przetwarzający wiadomość byłby skompromitowany jednocześnie — atak mnożnikowy."
+      ]
+    },
+    "incident": {
+      "title": "Kompromitacja serwera kluczy GET VPN — masowe exploitation korporacyjnej sieci WAN",
+      "impact": "Jednoczesna kompromitacja wszystkich routerów oddziałowych w dotkniętych grupach GET VPN",
+      "body": [
+        "CVE-2023-20109 został ujawniony przez Cisco we wrześniu 2023 roku. Podatność podkreśliła fundamentalne ryzyko w architekturach dystrybucji kluczy grupowych: serwer kluczy to pojedynczy punkt awarii dla bezpieczeństwa całej grupy VPN. Jeśli serwer kluczy zostanie skompromitowany, wszyscy członkowie grupy są jednocześnie zagrożeni.",
+        "Dla organizacji używających GET VPN w setkach oddziałów — powszechne w handlu detalicznym, bankowości i logistyce — oznaczało to potencjalną jednoczesną kompromitację całej infrastruktury WAN w jednej operacji. Łatka Cisco wymagała skoordynowanych aktualizacji firmware na wszystkich dotkniętych routerach."
+      ]
+    },
+    "timeline": [
+      "Wrz: Cisco ujawnia CVE-2023-20109 dla RCE GDOI GET VPN",
+      "Cisco wydaje IOS XE 17.9.4a i 17.12.1 z poprawkami",
+      "Firmy priorytetyzują wzmacnianie serwera kluczy GET VPN i łatanie członków grupy"
+    ],
+    "keyTakeaways": [
+      "Architektury dystrybucji kluczy grupowych mają pojedynczy punkt awarii — serwer kluczy musi być wzmocniony w pierwszej kolejności",
+      "Wiadomości GDOI i G-IKEv2 muszą być uwierzytelniane; weryfikuj tożsamość serwera kluczy przed przetwarzaniem rekeying",
+      "Masowa kompromitacja przez zatrucie kluczy grupowych to mnożnik siły — jeden atak, setki ofiar",
+      "Segmentuj grupy GET VPN, aby ograniczyć promień wybuchu jeśli serwer kluczy zostanie skompromitowany"
+    ]
+  },
+  "stage-m26": {
+    "tagline": "Uprzywilejowane polecenie CLI mogło uciec z ograniczonej powłoki FTD i wykonywać dowolne polecenia OS jako root.",
+    "overview": [
+      "CVE-2022-20828 to podatność wstrzykiwania poleceń w analizatorze CLI oprogramowania Cisco Firepower Threat Defense (FTD). Uwierzytelniony atakujący z uprawnieniami tylko do odczytu lub wyższymi mógł dostarczyć specjalnie spreparowane dane wejściowe do konkretnych poleceń CLI, uciec z ograniczonej powłoki FTD i wykonywać dowolne polecenia OS jako root.",
+      "Cisco FTD to silnik firewalla następnej generacji używany w seriach Firepower 1000, 2100, 4100 i 9300. Łączy stanową inspekcję firewalla, IPS, filtrowanie URL i zaawansowaną ochronę przed malware w jednej platformie — serce korporacyjnego bezpieczeństwa sieciowego dla tysięcy organizacji.",
+      "Chociaż podatność wymagała wcześniejszego uwierzytelnienia, poświadczenia CLI tylko do odczytu są powszechnie współdzielone między personelem operacyjnym lub mogą być pobierane z kopii zapasowych konfiguracji. Gdy atakujący uzyska jakiekolwiek prawidłowe konto CLI, CVE-2022-20828 zapewnia bezpośrednią ścieżkę do root na samym firewallu."
+    ],
+    "technical": {
+      "title": "Ucieczka z ograniczonej powłoki przez wstrzyknięcie argumentów",
+      "body": [
+        "Cisco FTD uruchamia ograniczone CLI — wzmocnioną powłokę ograniczającą polecenia do operacji firewalla i zapobiegającą bezpośredniemu dostępowi do OS. Podatność istniała w sposobie analizowania argumentów przez CLI dla pewnych poleceń diagnostycznych: metaznaki powłoki (`;`, `|`, backtick) nie były czyszczone przed przekazaniem do bazowych procesów OS.",
+        "Wstrzykując średnik w argument CLI, atakujący mógł dołączyć dowolne polecenia OS. Na przykład: `show interface ; id` wykonywało zarówno polecenie wyświetlania interfejsu jak i polecenie powłoki `id` — jako root. Ponieważ bazowy proces FTD jest uruchamiany z podwyższonymi uprawnieniami, wszystkie wstrzyknięte polecenia dziedziczą kontekst root.",
+        "Łatka dodała ścisłą walidację opartą na białej liście znaków argumentów CLI, odrzucając wszelkie dane wejściowe zawierające metaznaki powłoki zanim dotrą do bazowego procesu OS."
+      ]
+    },
+    "incident": {
+      "title": "Ucieczka z ograniczonej powłoki Firepower — kompromitacja firewalla korporacyjnego",
+      "impact": "Poświadczenia CLI tylko do odczytu wystarczyły do pełnego dostępu root; manipulacja politykami firewalla, przechwytywanie ruchu, pivot do sieci administracyjnej",
+      "body": [
+        "Cisco ujawniło CVE-2022-20828 w maju 2022 roku, dotykając wersje FTD przed 7.0.2. Ostrzeżenie zauważyło, że podatność wymagała prawidłowego konta CLI (nawet tylko do odczytu) — niższy próg niż się wydaje, ponieważ zespoły operacyjne często współdzielą konta o niskich uprawnieniach do monitorowania, a takie poświadczenia pojawiają się w kopiach zapasowych konfiguracji, systemach ticketingowych i narzędziach monitorowania.",
+        "Atakujący z root na urządzeniu FTD może modyfikować polityki inspekcji w czasie rzeczywistym (wyłączając sygnatury IPS, omijając filtrowanie URL), odczytywać zaszyfrowane klucze VPN i pivotować do sieci Firepower Management Center (FMC) — z której mógłby zarządzać każdym urządzeniem FTD w organizacji. Poprawka wymagała aktualizacji firmware FTD; nie było dostępnego obejścia."
+      ]
+    },
+    "timeline": [
+      "Maj: Cisco ujawnia CVE-2022-20828 (wstrzyknięcie CLI FTD); wydano łatkę FTD 7.0.2",
+      "Cisco ocenia CVSS 7.2 — wysokie zagrożenie; wymaga uwierzytelnionego dostępu",
+      "Wiele raportów red team opisuje użycie wstrzyknięcia CLI FTD do ruchu lateralnego z kont monitorowania SOC"
+    ],
+    "keyTakeaways": [
+      "Nawet poświadczenia tylko do odczytu w CLI firewalla to dostęp Tier-0 — chroń je odpowiednio",
+      "Wstrzyknięcie metaznaków powłoki to stała podatność; zawsze waliduj i czyść argumenty CLI białą listą",
+      "Skompromitowany perymetryczny firewall daje atakującemu kontrolę nad każdym połączeniem przez niego przechodzącym",
+      "Ogranicz dostęp CLI do nazwanych kont z indywidualnymi poświadczeniami, rejestruj każdą sesję CLI w swoim SIEM"
+    ]
+  },
+  "stage-m28": {
+    "tagline": "Sfałszowane twierdzenie SAML przyznało dostęp administratora nieuwierzytelnionym atakującym we wszystkich najemcach chronionych przez Umbrella.",
+    "overview": [
+      "CVE-2022-20773 to krytyczne obejście uwierzytelnienia w usłudze Cisco Umbrella Single Sign-On (SSO). Niewystarczająca walidacja twierdzeń SAML pozwoliła zdalnemu nieuwierzytelnionemu atakującemu na wysłanie spreparowanego twierdzenia SAML do punktu końcowego Umbrella SSO i uwierzytelnienie jako dowolny użytkownik, w tym administratorzy, bez prawidłowych poświadczeń.",
+      "Cisco Umbrella to platforma SASE i bezpieczeństwa DNS dostarczana w chmurze chroniąca dziesiątki tysięcy firm. Dostęp administratora do najemcy Umbrella pozwala wyłączać polityki bezpieczeństwa DNS, tworzyć reguły omijania białej listy i przekierowywać ruch DNS, neutralizując dostarczany w chmurze obwód bezpieczeństwa organizacji.",
+      "Obejścia uwierzytelnienia SAML są szczególnie niebezpieczne, ponieważ są niewidoczne dla systemów downstream: aplikacja otrzymuje to, co wygląda jak prawidłowe i podpisane twierdzenie od zaufanego dostawcy tożsamości, a tradycyjne monitorowanie nie ma powodu oznaczyć sesji jako anomalnej."
+    ],
+    "technical": {
+      "title": "Atak XML Signature Wrapping (XSW)",
+      "body": [
+        "SAML to standard oparty na XML do wymiany danych uwierzytelniania między Dostawcą Tożsamości (IdP) a Dostawcą Usług (SP). Gdy użytkownik loguje się, IdP generuje twierdzenie XML zawierające tożsamość użytkownika, podpisuje je i wysyła do SP. SP musi zwalidować podpis XML przed zaufaniem zawartości twierdzenia.",
+        "Ataki XML Signature Wrapping (XSW) exploitują niejednoznaczność w sposobie analizowania versus podpisywania dokumentów XML. Przez restrukturyzację dokumentu XML, atakujący może zachować prawidłowy podpis na jednej części, jednocześnie podstawiając złośliwą zawartość w części faktycznie odczytywanej przez aplikację, efektywnie fałszując podpisane twierdzenie.",
+        "CVE-2022-20773 wystąpił, ponieważ SP Cisco Umbrella nie zdołał ponownie zwalidować kanonicznej formy twierdzenia po analizie, pozwalając restrukturyzacji XSW całkowicie ominąć weryfikację podpisu."
+      ]
+    },
+    "incident": {
+      "title": "Kompromitacja Cisco Umbrella SSO — przejęcie administratora najemcy",
+      "impact": "Nieuwierzytelnieni atakujący mogli uwierzytelniać się jako dowolny użytkownik lub administrator Umbrella; polityki bezpieczeństwa DNS dla całych korporacyjnych najemców mogły być wyłączone lub zmodyfikowane",
+      "body": [
+        "Cisco ujawniło CVE-2022-20773 w kwietniu 2022 roku z wynikiem CVSS 9.6, prawie maksymalną powagą. Nie wymagano uwierzytelnienia: każdy punkt końcowy Umbrella SSO dostępny z internetu był podatny. Cisco załatało logikę walidacji SAML po stronie serwera i powiadomiło dotkniętych klientów.",
+        "Podatność podkreśla powszechny tryb awarii w implementacjach SAML: używanie niestandardowego kodu analizy XML zamiast dobrze audytowanych bibliotek SAML. Specyfikacja XML Signature SAML ma subtelne wymagania kanonizacji, które łatwo zaimplementować nieprawidłowo, a ataki XSW zostały udokumentowane przeciwko ważnym implementacjom SAML, w tym Shibboleth, SimpleSAMLphp i wielu dostawcom chmury."
+      ]
+    },
+    "timeline": [
+      "Kwi: Cisco ujawnia CVE-2022-20773 — obejście SAML Umbrella; łatka po stronie serwera wdrożona",
+      "Wcześniejsze przykłady: ataki XSW udokumentowane przeciwko Shibboleth, SimpleSAMLphp, wielu dostawcom SSO w chmurze",
+      "Techniki ataku XSW SAML dodane do MITRE ATT&CK T1556.007"
+    ],
+    "keyTakeaways": [
+      "Implementacje SAML muszą walidować zarówno podpis XML jak i kanoniczną formę twierdzenia: restrukturyzacja XSW to znana klasa ataku",
+      "Używaj ugruntowanych bibliotek SAML (python3-saml, OneLogin itp.) zamiast niestandardowego kodu analizy XML",
+      "Testuj przepływy SSO z payloadami XSW podczas testów penetracyjnych: to często pomijana klasa podatności",
+      "Skompromitowana warstwa SSO może przyznać dostęp administratora do każdej aplikacji zintegrowanej z tym IdP"
+    ]
+  },
+  "stage-m30": {
+    "tagline": "API REST zaprojektowane do zarządzania serwerami fizycznymi stało się bezpośrednim backdoorem do OS.",
+    "overview": [
+      "CVE-2019-1896 to podatność wstrzykiwania poleceń w API REST Cisco Integrated Management Controller (IMC). IMC zapewnia out-of-band zarządzanie serwerami Cisco UCS (Unified Computing System) — analogicznie do IPMI lub Dell iDRAC. Pozwala administratorom zdalnie restartować serwery, montować wirtualne media, konfigurować ustawienia BIOS i monitorować stan sprzętu z oddzielnej sieci zarządzania.",
+      "Podatność istniała w sposobie obsługi przez API REST IMC pewnych parametrów żądań: dane wejściowe dostarczone przez użytkownika były przekazywane bezpośrednio do poleceń OS bez czyszczenia. Uwierzytelniony atakujący z dowolnym poziomem uprawnień mógł wstrzykiwać polecenia OS przez parametry API i wykonywać je jako root w firmware IMC.",
+      "Out-of-band interfejsy zarządzania to cele najwyższej wartości. Skompromitowanie IMC daje atakującemu trwały dostęp przeżywający reinstalacje OS, odpowiednik fizycznej kontroli (restart zasilania, montowanie wirtualnych mediów) i zdolność instalowania implantów na poziomie firmware."
+    ],
+    "technical": {
+      "title": "Wstrzyknięcie w API REST zarządzania out-of-band",
+      "body": [
+        "Cisco IMC udostępnia API REST w dedykowanej sieci zarządzania. Punkt końcowy zarządzania wirtualnymi mediami akceptował parametr `remoteShare` określający ścieżkę obrazu ISO do zdalnego montowania CD. Ten parametr był przekazywany bezpośrednio do polecenia powłoki bez ucieczki.",
+        "Wstrzyknięcie średnika w wartość `remoteShare` wychodziło z kontekstu polecenia powłoki. Żądanie z `remoteShare=192.168.1.1/iso/x.iso; id` wykonywało zarówno polecenie montowania jak i polecenie powłoki `id` jako root — potwierdzając dowolne wykonanie poleceń OS.",
+        "Z root na IMC, atakujący może odczytywać prywatne klucze SSH z dysku, instalować trwałe skrypty startowe przeżywające restarty, modyfikować mechanizmy aktualizacji firmware i pivotować do sieci zarządzania UCS Manager kontrolującej wszystkie serwery w obudowie centrum danych."
+      ]
+    },
+    "incident": {
+      "title": "RCE Cisco UCS IMC — kompromitacja sieci zarządzania centrum danych",
+      "impact": "Poświadczenia IMC o niskich uprawnieniach wystarczyły do pełnego dostępu root; trwałość na poziomie firmware, pivot do sieci zarządzania UCS",
+      "body": [
+        "Cisco ujawniło CVE-2019-1896 w sierpniu 2019 roku jako część partii podatności UCS IMC. Ostrzeżenie zauważyło, że dowolny uwierzytelniony użytkownik — w tym domyślne konto monitorowania tylko do odczytu obecne w wielu wdrożeniach UCS — mógł exploitować wstrzyknięcie.",
+        "Ponieważ interfejsy zarządzania IMC często są w dedykowanych sieciach z ograniczonym monitorowaniem, atak mógł pozostać niezauważony przez przedłużone okresy. Podatność wymagała aktualizacji firmware do załatania; nie było dostępnego obejścia konfiguracyjnego. Zespoły bezpieczeństwa były doradzane, aby ograniczyć dostęp do sieci IMC do konkretnych stacji roboczych zarządzania za pomocą ACL."
+      ]
+    },
+    "timeline": [
+      "Sie: Cisco ujawnia CVE-2019-1896 — wstrzyknięcie w API REST IMC; wydano aktualizacje firmware",
+      "Cisco załatało wiele podatności UCS IMC w tej samej partii ostrzeżeń",
+      "Raporty testów penetracyjnych potwierdzają wstrzyknięcie IMC jako powszechne znalezisko w korporacyjnych centrach danych"
+    ],
+    "keyTakeaways": [
+      "Out-of-band interfejsy zarządzania (IPMI, iDRAC, IMC) to infrastruktura Tier-0 — ogranicz dostęp ścisłymi ACL",
+      "Parametry wejściowe API REST wchodzące w interakcję z poleceniami OS muszą być walidowane białą listą",
+      "Kompromitacja IMC daje trwałość na poziomie firmware przeżywającą reinstalacje OS i czyszczenie dysków",
+      "Rotuj poświadczenia IMC regularnie; używaj unikalnych poświadczeń na serwer, a nie współdzielonych kont monitorowania"
+    ]
+  },
+  "stage-m32": {
+    "tagline": "Analityk SOC, który nie potrafi priorytetyzować, tylko obserwuje parady alertów.",
+    "overview": [
+      "Certyfikacja Cisco CyberOps Associate przygotowuje analityków do ról Tier 1 i Tier 2 w Security Operations Center. Główne kompetencje obejmują triażowanie alertów SIEM, klasyfikację incydentów, analizę ruchu sieciowego, interpretację logów i podstawowe poszukiwanie zagrożeń przy użyciu Cisco SecureX, Splunk i stosu ELK.",
+      "Platformy SIEM zbierają, normalizują i korelują logi z całej organizacji: z firewalli, endpointów, serwerów DNS, systemów uwierzytelniania i usług chmurowych. Cisco SecureX/XDR integruje się ze Splunk i analizą Cisco dla ujednoliconego zarządzania alertami w całym portfolio bezpieczeństwa.",
+      "Głównym zadaniem analityka SOC Tier 1 jest triażowanie przychodzących alertów: określanie czy alert reprezentuje prawdziwy pozytyw (rzeczywisty atak), fałszywy pozytyw (nieszkodliwa aktywność wyzwalająca regułę) i czy powinna zostać eskalowana do Tier 2 do dogłębnego dochodzenia."
+    ],
+    "technical": {
+      "title": "Triażowanie SIEM i cykl życia reagowania na incydenty",
+      "body": [
+        "Alerty SIEM są generowane przez reguły korelacji dopasowujące wzorce w danych logów. Powszechne typy reguł: reguły progowe (>100 nieudanych logowań w ciągu 5 minut), reguły sekwencji (logowanie → masowy dostęp do plików → zewnętrzny transfer danych) i linie bazowe zachowania (statystyczne wykrywanie anomalii na podstawie profili normalnej aktywności).",
+        "Cykl życia reagowania na incydenty NIST ma cztery fazy: Przygotowanie → Wykrywanie i analiza → Powstrzymywanie/Eliminacja/Odtwarzanie → Aktywność poincydentalna. Analitycy SOC Tier 1 działają w Wykrywaniu i Analizie — odbierając, triażując i eskalując.",
+        "MITRE ATT&CK zapewnia ustrukturyzowane słownictwo do opisywania TTP atakujących (taktyki, techniki, procedury). Mapowanie alertów do technik ATT&CK umożliwia szybsze triażowanie i dokładniejszą klasyfikację powagi."
+      ]
+    },
+    "incident": {
+      "title": "Zmęczenie alertami przyczynia się do niewykrytego włamania",
+      "impact": "Atakujący pozostawał 47 dni bez wykrycia; SOC wygenerował 1 200 alertów prawdziwych pozytywów, które były traktowane jako fałszywe pozytywy, ponieważ wskaźnik fałszywych pozytywów przekroczył 95%",
+      "body": [
+        "W szeroko cytowanym dochodzeniu incydentowym z 2023 roku, SOC z wskaźnikiem fałszywych pozytywów powyżej 95% dla swojej reguły wykrywania ataków brute force wyszkolił analityków do odrzucania prawie wszystkich alertów o nieudanych logowaniach. Gdy rzeczywisty atak credential stuffing odniósł sukces i atakujący rozpoczął ruch lateralny, ten sam typ reguły się wyzwolił — i został odrzucony. Atakujący pozostawał 47 dni zanim analityk Tier 2 zauważył anomalny wzorzec przechowywania danych podczas niepowiązanego przeglądu.",
+        "Główną przyczyną było zadanie dostrajania reguł bez ticketu, które nigdy nie było priorytetyzowane. Lekcja: wskaźnik fałszywych pozytywów to metryka bezpieczeństwa pierwszej klasy. SOC generujący 1 000 alertów dziennie, gdzie 950 to fałszywe pozytywy, będzie omijać rzeczywiste incydenty — nie z powodu niekompetencji analityka, ale z powodu racjonalnej priorytetyzacji sygnałów."
+      ]
+    },
+    "timeline": [
+      "Badanie branżowe: średni wskaźnik fałszywych pozytywów SOC przekracza 45%; zmęczenie alertami analityka udokumentowane",
+      "Certyfikacja Cisco CyberOps Associate zaktualizowana, aby uwzględnić dostrajanie alertów i metodologię triażowania",
+      "Wytyczne CISA dotyczące efektywności SOC opublikowane; formalizacja ram dostrajania reguł",
+      "Narzędzia triażowania wspomagane przez AI redukują narażenie na fałszywe pozytywy na platformie Cisco XDR"
+    ],
+    "keyTakeaways": [
+      "Wskaźnik fałszywych pozytywów to metryka bezpieczeństwa — SOC z >50% fałszywymi pozytywami wykształci niebezpieczne nawyki odrzucania",
+      "Używaj MITRE ATT&CK do kontekstualizacji alertów w fazach łańcucha ataku, umożliwiając precyzyjne ocenianie powagi",
+      "Playbooki triażowania redukują zmęczenie decyzyjne analityka dla powszechnych typów alertów i zapewniają spójne decyzje eskalacji",
+      "Pętle zwrotne Tier 1 ↔ Tier 2 są niezbędne do ciągłego dostrajania reguł — zamknij pętlę po każdej eskalacji"
+    ]
+  }
+}

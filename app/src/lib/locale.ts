@@ -1,5 +1,5 @@
-export type Locale = "en" | "es" | "fr" | "de" | "hi" | "pt";
-export const LOCALES: Locale[] = ["en", "es", "fr", "de", "hi", "pt"];
+export type Locale = "en" | "es" | "fr" | "de" | "hi" | "pt" | "pl";
+export const LOCALES: Locale[] = ["en", "es", "fr", "de", "hi", "pt", "pl"];
 
 export const LOCALE_LABELS: Record<Locale, string> = {
   en: "English",
@@ -8,6 +8,7 @@ export const LOCALE_LABELS: Record<Locale, string> = {
   de: "Deutsch",
   hi: "हिन्दी",
   pt: "Português",
+  pl: "Polski",
 };
 
 export const LOCALE_FLAGS: Record<Locale, string> = {
@@ -17,9 +18,10 @@ export const LOCALE_FLAGS: Record<Locale, string> = {
   de: "🇩🇪",
   hi: "🇮🇳",
   pt: "🇧🇷",
+  pl: "🇵🇱",
 };
 
-const VALID_LOCALES = new Set<string>(["en", "es", "fr", "de", "hi", "pt"]);
+const VALID_LOCALES = new Set<string>(["en", "es", "fr", "de", "hi", "pt", "pl"]);
 
 export function getClientLocale(): Locale {
   if (typeof document === "undefined") return "en";

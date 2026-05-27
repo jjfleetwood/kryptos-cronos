@@ -8,8 +8,9 @@ import fr from "@/messages/fr.json";
 import de from "@/messages/de.json";
 import hi from "@/messages/hi.json";
 import pt from "@/messages/pt.json";
+import pl from "@/messages/pl.json";
 
-const messages: Record<Locale, Record<string, string>> = { en, es, fr, de, hi, pt };
+const messages: Record<Locale, Record<string, string>> = { en, es, fr, de, hi, pt, pl };
 
 type LocaleContextType = {
   locale: Locale;
@@ -30,7 +31,7 @@ export function LocaleProvider({
   children: ReactNode;
   initialLocale?: string;
 }) {
-  const validLocale = (["en", "es", "fr", "de", "hi", "pt"].includes(initialLocale) ? initialLocale : "en") as Locale;
+  const validLocale = (["en", "es", "fr", "de", "hi", "pt", "pl"].includes(initialLocale) ? initialLocale : "en") as Locale;
   const [locale, setLocaleState] = useState<Locale>(validLocale);
 
   function changeLocale(l: Locale) {

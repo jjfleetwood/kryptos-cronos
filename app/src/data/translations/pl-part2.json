@@ -1,0 +1,1380 @@
+{
+  "quantum-c04": {
+    "tagline": "Systemy pozbawione zwinności kryptograficznej utykają na podatnych algorytmach przez lata — MD5 w 2012, DES w 2005, TLS 1.0 w 2020.",
+    "overview": [
+      "Migracja PQC to największa transformacja kryptograficzna w historii. Lekcja płynąca z poprzednich zmian — MD5 do SHA-2, DES do AES, TLS 1.0 do 1.3 — jest taka, że systemy pozbawione zwinności kryptograficznej utykają w miejscu. Organizacje używające MD5 w 2012 roku płaciły wysokie koszty awaryjnej reakcji na incydenty. Te posiadające zwinną kryptografię wymieniały funkcje skrótu w ciągu jednego sprintu.",
+      "Zwinność kryptograficzna oznacza projektowanie systemów tak, aby algorytmy kryptograficzne, rozmiary kluczy i zestawy parametrów mogły się zmieniać bez konieczności przeprojektowywania całej aplikacji. Wymaga to abstrakcji wyboru algorytmu za interfejsami, wersjonowania wszystkich zaszyfrowanych danych, obsługi równoległego wykonywania algorytmów podczas migracji oraz zautomatyzowanej inwentaryzacji kryptograficznej.",
+      "W kontekście migracji PQC zwinność rozwiązuje: negocjację algorytmów (X25519 vs ML-KEM), zmiany rozmiarów kluczy (certyfikat RSA 1,2 KB vs certyfikat ML-DSA 2,5 KB), zmiany parametrów protokołu (MTU dla większych uścisków dłoni) oraz zmiany łańcucha certyfikatów (dual-stack RSA + ML-DSA podczas przejścia)."
+    ],
+    "technical": {
+      "title": "Wzorce projektowe zwinności kryptograficznej",
+      "body": [
+        "Pięć zasad zwinności: (1) Abstrakcja algorytmów — nigdy nie koduj na stałe nazw algorytmów; używaj konfiguracji lub negocjacji. (2) Negocjacja — obsługuj jednocześnie wiele algorytmów; uzgadniaj najlepszą wspólną opcję. (3) Wersjonowanie — oznaczaj wszystkie zaszyfrowane dane identyfikatorem algorytmu, aby stare dane mogły być odszyfrowane. (4) Weryfikacja równoległa — akceptuj podpisy zarówno starego, jak i nowego algorytmu podczas okien przejścia. (5) Wycofanie — zachowuj zdolność do powrotu do sprawdzonych algorytmów, jeśli nowe zawodzą.",
+        "Antywzorce niszczące zwinność: RSA zakodowany na stałe w konfiguracji TLS; kolumny bazy danych wymiarowane pod klucze RSA 256 bajtów (ML-KEM potrzebuje 1568 bajtów); biblioteki JWT z ustawionym na stałe RS256; polityka certyfikatów wymagająca typu klucza RSA; założenia dotyczące MTU (klucz publiczny ML-KEM ma 1184 bajty — przekracza wiele progów fragmentacji)."
+      ]
+    },
+    "incident": {
+      "title": "Cisco Full-Stack PQC — zwinność kryptograficzna w infrastrukturze sieciowej (Cisco Live 2026)",
+      "impact": "Zwinna architektura PQC firmy Cisco pozwala operatorom zamieniać ML-KEM na ML-KEM-1024 lub dodawać materiał klucza QKD bez wymiany sprzętu ani przebudowy konfiguracji VPN",
+      "body": [
+        "Wycofywanie SHA-1 (2011–2017) to kanoniczna lekcja o niepowodzeniu zwinności kryptograficznej: 7 lat bólu z systemami legacy, ponieważ certyfikaty były zakodowane na stałe, przechowywanie było wymiarowane pod klucze 256-bajtowe, a procedury aktualizacji wymagały awaryjnej kontroli zmian. Transformacja PQC jest większa — klucze publiczne ML-KEM mają 1184 bajty (4,6× RSA-2048), podpisy ML-DSA mają 3293 bajty (51× ECDSA). Bez zwinności migracja PQC będzie jak SHA-1 pomnożone przez dziesięć.",
+        "Odpowiedzią Cisco — ogłoszoną na Cisco Live 2026 w Amsterdamie — jest w pełni zwinna architektura PQC. IOS-XE i NX-OS obsługują negocjowany wybór algorytmu: operatorzy konfigurują uporządkowaną listę preferencji (ML-KEM-768, X25519Kyber768, ML-KEM-1024), a platforma negocjuje wzajemnie najsilniejszą opcję. Interfejs SKIP jest niezależny od algorytmu — akceptuje klucze ML-KEM, klucze wyprowadzone z QKD lub kombinacje hybrydowe bez zmian konfiguracji. Gdy NIST sfinalizuje kolejny cykl algorytmów, platformy Cisco są aktualizowane za pomocą podpisanego oprogramowania — bez wymiany sprzętu."
+      ]
+    },
+    "timeline": [
+      "NIST wycofuje SHA-1 — zaczyna się 7 lat bólu z systemami legacy",
+      "Przeglądarki blokują SHA-1 — kryzys awaryjnej wymiany",
+      "FIPS 203/204/205 opublikowane — otwiera się okno migracji PQC",
+      "Cisco IOS-XE: negocjowana wymiana kluczy ML-KEM w IKEv2",
+      "Cisco ogłasza w pełni zwiny stos PQC — zamiana algorytmów bez zmiany sprzętu"
+    ],
+    "keyTakeaways": [
+      "Abstrakcja algorytmów, negocjacja, wersjonowanie, weryfikacja równoległa i wycofanie to pięć zasad zwinności",
+      "Cisco IOS-XE obsługuje negocjowany wybór algorytmu ML-KEM — automatycznie wybierana wzajemnie najsilniejsza opcja",
+      "Interfejs Cisco SKIP akceptuje klucze PQC, klucze QKD lub kombinacje hybrydowe — niezależny od algorytmu z założenia",
+      "Klucze publiczne ML-KEM mają 1184 bajty — 4,6× RSA-2048; planuj kolumny bazy danych i MTU odpowiednio"
+    ]
+  },
+  "quantum-c05": {
+    "tagline": "Ruch VPN nagrywany dziś będzie możliwy do odszyfrowania w Q-Day — HNDL sprawia, że migracja VPN jest zadaniem PQC o najwyższym priorytecie dla większości firm.",
+    "overview": [
+      "Sieci VPN to najszerzej wdrożona infrastruktura kryptograficzna w sieciach firmowych. Tradycyjne VPN używają Diffie-Hellman lub ECDH do wymiany kluczy — oba złamane przez algorytm Shora na kryptograficznie istotnym komputerze kwantowym (CRQC). Przeciwnik rejestrujący obecny ruch VPN może go odszyfrować w dniu, gdy taki komputer będzie istniał.",
+      "Grupa robocza IETF PQUIP (Post-Quantum Use in Protocols) standaryzuje PQC dla protokołów VPN. WireGuard przoduje w adopcji. Mullvad VPN wdrożył WireGuard + post-kwantowy KEM w produkcji w 2023 roku — pierwsza komercyjna VPN, która to zrobiła. OpenVPN i StrongSwan (IKEv2) również mają rozszerzenia PQC w wersji roboczej.",
+      "Podejście hybrydowe jest niezbędne: połączenie X25519 (klasyczny) z ML-KEM-768 (PQC) oznacza, że żaden pojedynczy algorytm nie determinuje bezpieczeństwa. Jeśli ML-KEM ma nieodkrytą słabość, X25519 nadal zapewnia klasyczne bezpieczeństwo. Jeśli X25519 zostanie złamany przez komputer kwantowy, ML-KEM zapewnia bezpieczeństwo PQC. Oba muszą zawieść jednocześnie, aby złamać rozwiązanie hybrydowe."
+    ],
+    "technical": {
+      "title": "Hybrydowa wymiana kluczy WireGuard + ML-KEM",
+      "body": [
+        "WireGuard używa frameworka protokołu Noise (Noise_IKpsk2) do wymiany kluczy. Protokół bazowy używa ECDH Curve25519. Rozszerzenie PQC dodaje warstwę ML-KEM-768: obie strony wymieniają klucze publiczne ML-KEM podczas uścisku dłoni, a wynikowe współdzielone sekrety są łączone przez KDF: shared_secret = KDF(X25519_output || ML-KEM-768_output).",
+        "Uwierzytelnianie w kwantowo bezpiecznym WireGuard używa certyfikatów parowych ML-DSA-65 (FIPS 204), zastępując certyfikaty x.509 RSA-2048. CA jest migrowane do korzenia ML-DSA-87 (FIPS 204 poziom 5). Wpływ na wydajność: uścisk dłoni dodaje ~2 ms dla operacji KEM ML-KEM; ~1,5 KB dodatkowego materiału klucza na sesję; przepustowość szyfrowania masowego przez AES-256-GCM nie zmienia się."
+      ]
+    },
+    "incident": {
+      "title": "Mullvad wdraża pierwszą kwantowo bezpieczną VPN w produkcji (2023)",
+      "impact": "Pierwsza komercyjna VPN wdrażająca post-kwantową wymianę kluczy w produkcji dla wszystkich użytkowników",
+      "body": [
+        "W grudniu 2023 roku Mullvad VPN wdrożył WireGuard z post-kwantową wymianą kluczy używając hybrydowego McEliece + Curve25519 dla wszystkich swoich użytkowników. McEliece to starszy algorytm PQC oparty na kodach, niewybrany przez NIST (zbyt duży dla certyfikatów), ale dobrze przebadany. Implementacja Mullvad sprawia, że klucze publiczne McEliece o wielkości ~1,5 MB działają, wymieniając je oddzielnie od uścisku dłoni WireGuard.",
+        "Implementacja pokazuje wykonalność biznesową: miliony użytkowników korzysta z kwantowo bezpiecznego VPN bez zauważalnego wpływu na wydajność. Mullvad przechodzi na ML-KEM w miarę stabilizowania się implementacji FIPS 203. Ta rzeczywista implementacja dostarcza cennego doświadczenia produkcyjnego przed szerszą falą migracji firmowej."
+      ]
+    },
+    "timeline": [
+      "WireGuard włączony do jądra Linux — standardowy protokół VPN",
+      "Grupa robocza IETF PQUIP utworzona dla migracji protokołów PQC",
+      "Mullvad wdraża pierwszą kwantowo bezpieczną VPN w produkcji (McEliece+X25519)",
+      "FIPS 203 opublikowany — ML-KEM dostępny do produkcyjnej integracji VPN",
+      "Oczekiwane: szkic IETF dla IKEv2+ML-KEM osiąga status RFC"
+    ],
+    "keyTakeaways": [
+      "Cała obecna wymiana kluczy VPN (DH, ECDH) jest łamana przez algorytm Shora — VPN jest najwyższym priorytetem HNDL",
+      "Hybrydowe X25519+ML-KEM-768 to zalecane podejście przejściowe — oba algorytmy muszą zawieść, aby złamać bezpieczeństwo",
+      "Gałąź PQ WireGuard jest przetestowana w produkcji (Mullvad) — używaj ML-KEM-768 lub wariantu McEliece",
+      "Uwierzytelnianie (certyfikaty parowe) również musi być migrowane: RSA → ML-DSA-65 (FIPS 204)",
+      "Szyfrowanie masowe (AES-256-GCM) nie jest dotknięte — tylko wymiana kluczy i uwierzytelnianie wymagają migracji"
+    ]
+  },
+  "quantum-c06": {
+    "tagline": "Klucz Root CA z 20-letnim okresem ważności obejmuje Q-Day — najbardziej niebezpieczny artefakt w twoim zasobniku kryptograficznym.",
+    "overview": [
+      "Infrastruktura PKI stanowiąca fundament internetu jest zbudowana na RSA i ECDSA — oba podatne na komputery kwantowe. Urzędy certyfikacji, respondery OCSP, CRL-e, HSM-y, karty inteligentne i wszystkie aplikacje korzystające z certyfikatów muszą być migrowane do algorytmów PQC.",
+      "Klucze Root CA mają cykle życia wynoszące 20–30 lat — z założenia. Klucz Root CA wydany w 2010 roku, który nadal jest aktywny w 2035, gdy komputery kwantowe mogą być wykonalne, stanowi pojedynczy punkt awarii dla całej hierarchii zaufania. Jeśli kwantowy przeciwnik sfałszuje podpis Root CA, może podszywać się pod dowolną witrynę w domenie zaufania danego CA.",
+      "Strategia dual-stack rozwiązuje problem przejścia: wydawanie certyfikatów z kluczami RSA-2048 (lub ECDSA) i ML-DSA-65 jednocześnie. Klienci obsługujący PQC weryfikują ML-DSA; starsze klienty powracają do RSA. Te same Subject Alternative Names (SAN-y) obejmują oba certyfikaty, umożliwiając stopniowe przejście bez przerw interoperacyjności."
+    ],
+    "technical": {
+      "title": "Wyzwania migracji kwantowej PKI",
+      "body": [
+        "Wpływ na rozmiar certyfikatu: certyfikat ML-DSA-65 to ~2,5 KB vs RSA-2048 ~1,2 KB. Pełny łańcuch (root + pośredni + końcowy) to ~7,5 KB dla PQC vs ~3,6 KB dla RSA. Może to przekraczać rozmiary rekordów TLS i powodować fragmentację. QUIC i TLS 1.3 obsługują to lepiej niż TLS 1.2, co jest kolejnym powodem, aby wymagać TLS 1.3.",
+        "Wsparcie HSM jest czynnikiem ograniczającym: większość korporacyjnych HSM-ów wymaga aktualizacji firmware do obsługi ML-KEM i ML-DSA. Thales Luna 7 (firmware 7.8+), AWS CloudHSM (wersja zapoznawcza) i Microsoft Azure Managed HSM obsługują ML-KEM i ML-DSA. Sprzęt YubiHSM 2 nie może być zaktualizowany — wymagana jest wymiana."
+      ]
+    },
+    "incident": {
+      "title": "DigiCert wydaje pierwsze testowe certyfikaty PQC (2024)",
+      "impact": "Pierwsze certyfikaty ML-DSA klasy produkcyjnej wydane przez ważny CA — rozpoczyna się migracja łańcucha zaufania",
+      "body": [
+        "W październiku 2024 roku DigiCert wydał pierwsze testowe certyfikaty ML-DSA (FIPS 204) od produkcyjnego Root CA, dostępne dla klientów korporacyjnych do testów. Certyfikaty te są powiązane z dedykowanym testowym korzeniem PQC, umożliwiając organizacjom testowanie obsługi certyfikatów PQC bez wpływu na produkcyjne łańcuchy zaufania.",
+        "Kamień milowy pokazuje, że ekosystem PKI jest gotowy do rozpoczęcia migracji. DigiCert opublikował również przewodnik migracji PQC obejmujący wydawanie certyfikatów dual-stack, wymagania dotyczące firmware HSM oraz 3-letnią mapę drogową migracji od wstępnych testów do pełnego produkcyjnego wdrożenia certyfikatów ML-DSA."
+      ]
+    },
+    "timeline": [
+      "NSA CNSA 2.0 nakazuje ML-DSA dla podpisywania certyfikatów NSS",
+      "FIPS 204 (ML-DSA) opublikowany — migracja PKI się rozpoczyna",
+      "DigiCert wydaje pierwsze testowe certyfikaty ML-DSA",
+      "Oczekiwane: główne przeglądarki dodają Root CA ML-DSA",
+      "NIST: RSA-2048 wycofany dla nowego wydawania certyfikatów",
+      "Termin NSA: certyfikaty RSA/ECDSA wycofane z NSS"
+    ],
+    "keyTakeaways": [
+      "Klucze Root CA z ważnością 20–30 lat mogą obejmować Q-Day — są najwyższym priorytetem migracji",
+      "Certyfikaty dual-stack (RSA + ML-DSA) umożliwiają płynne przejście bez przerw interoperacyjności",
+      "Certyfikaty ML-DSA są ~2× większe niż RSA — audytuj konfiguracje MTU i obsługę rekordów TLS",
+      "HSM-y muszą obsługiwać ML-KEM/ML-DSA: Thales Luna 7 (7.8+) i AWS CloudHSM są gotowe; YubiHSM 2 wymaga wymiany",
+      "NIST SP 800-131A Rev 3 określa federalną oś czasu migracji — RSA wycofany po 2030"
+    ]
+  },
+  "quantum-c07": {
+    "tagline": "liboqs to referencyjna biblioteka C dla algorytmów post-kwantowych — zintegrowana z OpenSSL, nginx, curl i Chromium do testów.",
+    "overview": [
+      "Projekt Open Quantum Safe (OQS), kierowany z Uniwersytetu Waterloo, dostarcza liboqs — referencyjną bibliotekę C implementującą algorytmy NIST PQC. Zanim standardy FIPS zostały sfinalizowane, liboqs było głównym sposobem, w jaki badacze i inżynierowie mogli eksperymentować z PQC. Teraz jest zintegrowane z OpenSSL (przez oqs-provider), nginx, curl i Chromium do testów.",
+      "liboqs jest kompatybilne ze wszystkimi algorytmami standaryzowanymi przez NIST: ML-KEM (FIPS 203), ML-DSA (FIPS 204), SLH-DSA (FIPS 205) i FN-DSA/FALCON. Jest również kompatybilne z hybrydowymi grupami wymiany kluczy (X25519MLKEM768) do użytku w TLS. Istnieją wiązania językowe dla C, Python, Go, Java, Rust i .NET.",
+      "Choć liboqs jest implementacją referencyjną i jest szeroko stosowane do testów, nie jest walidowane zgodnie z FIPS 140-3. Dla federalnych wdrożeń produkcyjnych wymagane są walidowane moduły (certyfikacja AWS-LC #4800, Microsoft SymCrypt). liboqs jest odpowiednie do badań, testów i niepaństwowego użytku produkcyjnego."
+    ],
+    "technical": {
+      "title": "API KEM liboqs i integracja",
+      "body": [
+        "API KEM liboqs realizuje przepływ keypair → encapsulate → decapsulate. Rozmiary kluczy ML-KEM-768: klucz publiczny 1184 bajty, klucz tajny 2400 bajtów, szyfrogram 1088 bajtów, współdzielony sekret 32 bajty. Dostawca oqs-provider integruje liboqs z OpenSSL 3.x jako gotowy do użycia dostawca, umożliwiając PQC we wszystkich aplikacjach opartych na OpenSSL (nginx, curl, moduł ssl Pythona).",
+        "Krytyczne zagadnienia bezpieczeństwa dotyczące używania liboqs: (1) Zawsze używaj OQS_MEM_secure_free() dla kluczy tajnych i współdzielonych sekretów (zeruje pamięć przed zwolnieniem). (2) Zwracane wartości muszą być sprawdzane — OQS_ERROR (-1) oznacza błąd. (3) Przydzielaj na stercie wszystkie bufory kluczy (klucz tajny 2400 bajtów na stosie grozi przepełnieniem). (4) Używaj implementacji o stałym czasie — liboqs domyślnie je dostarcza, ale kod opakowujący również musi unikać rozgałęzień na tajnych danych."
+      ]
+    },
+    "incident": {
+      "title": "Google Chrome wdraża X25519MLKEM768 w TLS (2024)",
+      "impact": "Pierwsze masowe wdrożenie PQC — wymiana kluczy TLS chroniona przed przyszłymi komputerami kwantowymi dla miliardów użytkowników",
+      "body": [
+        "W maju 2024 roku Google Chrome 124 wdrożył X25519MLKEM768 (hybryda X25519 + ML-KEM-768) jako domyślne uzgadnianie kluczy dla połączeń TLS, używając implementacji oqs-provider/BoringSSL. Uczyniło to Chrome pierwszą główną przeglądarką wdrażającą wymianę kluczy PQC na skalę — chroniąc miliardy sesji TLS przed atakami Harvest Now, Decrypt Later.",
+        "Wdrożenie Chrome było motywowane konkretnie przez HNDL: sesje TLS Chrome nagrane w 2024 roku byłyby chronione przed kwantowym atakującym w 2035 roku. Klasyczny komponent X25519 zapewnia, że nie ma regresji, jeśli ML-KEM ma nieodkrytą słabość. Google nie odnotował żadnych problemów z wydajnością ani kompatybilnością przy wdrożeniu."
+      ]
+    },
+    "timeline": [
+      "Projekt Open Quantum Safe założony na Uniwersytecie Waterloo",
+      "liboqs 0.4.0 — pierwsza integracja z OpenSSL (fork)",
+      "oqs-provider wydany — gotowy do użycia z OpenSSL 3.x",
+      "Chrome 124 wdraża X25519MLKEM768 dla całego TLS",
+      "liboqs 0.11.0 — FIPS 203/204/205 w pełni zintegrowane"
+    ],
+    "keyTakeaways": [
+      "liboqs to referencyjna biblioteka PQC — używaj oqs-provider, aby dodać PQC do aplikacji OpenSSL 3.x",
+      "Zawsze używaj OQS_MEM_secure_free() dla kluczy tajnych i współdzielonych sekretów — nie free()",
+      "Przydzielaj bufory kluczy na stercie: klucz tajny ML-KEM-768 ma 2400 bajtów — alokacja na stosie grozi przepełnieniem",
+      "liboqs NIE jest walidowane zgodnie z FIPS 140-3 — używaj AWS-LC (#4800) lub SymCrypt (#4825) dla systemów federalnych",
+      "Chrome 124 dowodzi, że X25519MLKEM768 jest gotowy do produkcji bez regresji wydajności"
+    ]
+  },
+  "quantum-c08": {
+    "tagline": "FIPS 203 został opublikowany w sierpniu 2024 roku, ale walidacja CMVP zajmuje 12–18 miesięcy, tworząc lukę w zgodności dla agencji federalnych.",
+    "overview": [
+      "FIPS 140-3 to federalny standard USA dla walidacji modułów kryptograficznych. Dla agencji federalnych i wykonawców każdy moduł kryptograficzny musi być walidowany zgodnie z FIPS 140-3 przed wdrożeniem. Algorytmy post-kwantowe muszą przejść przez Cryptographic Module Validation Program (CMVP), zanim ich federalne stosowanie stanie się obowiązkowe.",
+      "Tworzy to napięcie czasowe: FIPS 203, 204 i 205 zostały opublikowane w sierpniu 2024 roku, ale walidacja CMVP zajmuje 12–18 miesięcy. Agencje federalne potrzebują PQC teraz (OMB M-23-02 nakazuje migrację systemów wysokiego priorytetu do FY2025), ale walidowane moduły PQC dopiero zaczynają się pojawiać. AWS-LC (libcrypto Amazona) otrzymało certyfikat FIPS 140-3 #4800 dla ML-KEM w Q1 2025.",
+      "Praktyczna ścieżka zgodności: używaj ML-KEM do wymiany kluczy (AWS-LC walidowane), kontynuuj używanie RSA-3072 lub ECDSA P-384 do podpisów (walidowane, choć nie kwantowo bezpieczne), dokumentuj wyjątki dla pre-walidacyjnego użycia ML-DSA w razie potrzeby i przenoś podpisy ML-DSA, gdy zostaną wydane certyfikaty walidacyjne."
+    ],
+    "technical": {
+      "title": "Stan walidacji FIPS 140-3 PQC i strategia",
+      "body": [
+        "Certyfikacja CMVP obejmuje implementację modułu kryptograficznego, nie tylko algorytm. Certyfikat FIPS 140-3 potwierdza, że konkretna wersja biblioteki na konkretnej platformie implementuje algorytm poprawnie z odpowiednim zabezpieczeniem fizycznym i logicznym. Certyfikat AWS-LC #4800 obejmuje AWS Lambda, EC2 i usługi zarządzane. Microsoft SymCrypt #4825 obejmuje Azure i Windows CNG.",
+        "Obsługa wyjątków: agencje mogą wdrażać niewalidowane moduły PQC w ramach wyjątku Alternative Security Authority (ASA) za zgodą CISO/ISSM. Wyjątek wymaga używania wyłącznie implementacji referencyjnych NIST, implementacji konstrukcji hybrydowej (klasyczna walidowana + PQC niewalidowana), ograniczenia do systemów niebędących NSS oraz okresowego przeglądu do czasu uzyskania walidacji."
+      ]
+    },
+    "incident": {
+      "title": "Federalny mandat migracji PQC OMB M-23-02 (2022)",
+      "impact": "Agencje federalne zobowiązane do zinwentaryzowania użycia kryptografii i rozpoczęcia migracji PQC dla FY2025",
+      "body": [
+        "Memorandum Biura Zarządzania i Budżetu (OMB) M-23-02 zobowiązało wszystkie agencje federalne do zinwentaryzowania zależności kryptograficznych ich systemów i opracowania planów migracji kwantowej do maja 2023 roku oraz rozpoczęcia migracji systemów wysokiego priorytetu do FY2025. Memorandum powołało się zarówno na zagrożenie HNDL, jak i postęp standaryzacji PQC przez NIST.",
+        "Praktyczne wyzwanie: OMB M-23-02 poprzedzało publikację FIPS 203/204/205 o 18 miesięcy. Agencje musiały planować migracje do algorytmów, które jeszcze nie były standaryzowane, z niepewnymi harmonogramami walidacji. Dlatego właśnie CISA opublikowała Inicjatywę kryptografii post-kwantowej CISA, aby pomóc agencjom nawigować lukę między mandatem a dostępnymi walidowanymi implementacjami."
+      ]
+    },
+    "timeline": [
+      "OMB M-23-02 — federalny mandat migracji PQC wydany",
+      "FIPS 203/204/205 opublikowane (sierpień 2024)",
+      "Certyfikat AWS-LC FIPS 140-3 #4800 — pierwszy walidowany moduł ML-KEM",
+      "BoringSSL ML-DSA w przeglądzie CMVP — oczekiwany do połowy 2025",
+      "Oczekiwane: rozpoczęcie zgłoszeń CMVP dla SLH-DSA"
+    ],
+    "keyTakeaways": [
+      "Walidacja FIPS 140-3 opóźnia się o 12–18 miesięcy względem standardów NIST — planuj lukę w zgodności",
+      "ML-KEM: AWS-LC (cert #4800) i SymCrypt (cert #4825) są walidowane — wdrażaj teraz",
+      "ML-DSA: niewalidowane do połowy 2025 — używaj wyjątku ASA lub hybrydy RSA-3072 + ML-DSA",
+      "Konstrukcja hybrydowa (klasyczna walidowana + PQC) spełnia FIPS 140-3 podczas przejścia",
+      "Systemy NSS wymagają urządzeń Typu 1 zatwierdzonych przez NSA — inna ścieżka walidacji niż CMVP"
+    ]
+  },
+  "quantum-c10": {
+    "tagline": "Przejście kwantowe nie jest celem — jest ciągłe. Kryptograficzna przyszłość należy do tych, którzy planują już dziś.",
+    "overview": [
+      "Podróżowałeś od qubitów do prezentacji zarządowi. Zagrożenie kwantowe to nie problem przyszłości — kampanie Harvest Now, Decrypt Later są aktywne. Przeciwnicy na poziomie państwowym nagrywają dziś ruch TLS, czekając na komputer kwantowy, który go odszyfruje. Kryptograficzne przejście do algorytmów post-kwantowych to największa migracja infrastruktury w historii informatyki.",
+      "Stos kwantowo bezpieczny obejmuje 10 warstw: wywiad o zagrożeniach → inwentaryzacja kryptograficzna → wybór algorytmów → elementy pierwotne → dystrybucja kluczy → PKI → transport → aplikacje → zarządzanie → zgodność. Każda warstwa musi być adresowana; awaria w jednej z nich podważa bezpieczeństwo warstw nad nią.",
+      "Dobra wiadomość: narzędzia istnieją. FIPS 203/204/205 są opublikowane. Walidowane biblioteki (AWS-LC, SymCrypt) są dostępne. Wdrożenia produkcyjne (Chrome, Mullvad, Signal, Apple PQ3) potwierdzają wykonalność. Praca teraz polega na realizacji — systematycznej migracji infrastruktury kierowanej priorytetyzacją ryzyka i zasadami zwinności kryptograficznej."
+    ],
+    "technical": {
+      "title": "Kompletny stos kwantowo bezpieczny",
+      "body": [
+        "Warstwy stosu i ich stan: L0 Wywiad o zagrożeniach (ostrzeżenia CISA, monitorowanie Q-Day) → L1 Inwentaryzacja kryptograficzna (CBOM przez Syft/CycloneDX) → L2 Algorytmy (FIPS 203/204/205, schematy hybrydowe) → L3 Elementy pierwotne (AWS-LC #4800, liboqs, oqs-provider) → L4 Dystrybucja kluczy (X25519+ML-KEM dla firm, QKD dla rządu) → L5 PKI (korzenie ML-DSA-87, certyfikaty dual-stack) → L6 Transport (TLS 1.3 + X25519MLKEM768) → L7 Aplikacje (WireGuard PQ, podpisywanie kodu ML-DSA) → L8 Zarządzanie (5-letni program CISO) → L9 Zgodność (FIPS 140-3, SP 800-131A, FFIEC).",
+        "Kolejność migracji według priorytetu HNDL: (1) Wysoce wrażliwe dane w tranzycie (VPN, TLS dla fuzji i przejęć, rząd) — natychmiast. (2) Długożyjące dane w spoczynku (zaszyfrowane pliki z transportem kluczy RSA) — 6–12 miesięcy. (3) Infrastruktura uwierzytelniania (PKI, podpisywanie kodu) — 12–24 miesiące. (4) Wszystko inne — 24–60 miesięcy. Ekspozycja HNDL, nie harmonogramy wycofywania algorytmów, napędza priorytet."
+      ]
+    },
+    "incident": {
+      "title": "Apple PQ3: post-kwantowe bezpieczeństwo iMessage (2024)",
+      "impact": "Pierwsza aplikacja do przesyłania wiadomości dla masowego rynku wdrażająca post-kwantowe ustanawianie kluczy dla wszystkich użytkowników",
+      "body": [
+        "W lutym 2024 roku Apple wdrożył PQ3 — nowy hybrydowy post-kwantowy protokół kryptograficzny dla iMessage. PQ3 używa ML-KEM-768 do ustanawiania kluczy w połączeniu z ECC (X25519), zapewniając to, co Apple nazywa bezpieczeństwem „Poziomu 3” — najwyższym poziomem w bezpieczeństwie przesyłania wiadomości. Protokół Signal wcześniej pretendował do pierwszego miejsca; PQ3 przesunął oba produkty na nowe wyżyny bezpieczeństwa.",
+        "Projekt PQ3 obejmuje okresowe ponowne szyfrowanie kluczami post-kwantowymi, zapewniając, że nawet jeśli atakujący zbierze dzisiaj szyfrogramy, będzie regularnie otrzymywał nowe klucze chronione przez ML-KEM — ograniczając wartość każdego pojedynczego okna zbierania HNDL. Decyzja Apple o wdrożeniu PQ3 dla iMessage (nie tylko opt-in) dowodzi, że PQC jest gotowe do produkcji na skalę konsumencką."
+      ]
+    },
+    "timeline": [
+      "Apple PQ3 — post-kwantowe bezpieczeństwo iMessage dla 1 mld+ użytkowników",
+      "Chrome 124 — X25519MLKEM768 domyślnie dla całego TLS",
+      "FIPS 203/204/205 opublikowane — era PQC się zaczyna",
+      "Korporacyjne wdrożenia kwantowo bezpiecznego stosu przyspieszają",
+      "NIST: RSA-2048 wycofany dla wszystkich nowych systemów",
+      "Termin NSA: RSA/ECC wycofane ze wszystkich systemów federalnych"
+    ],
+    "keyTakeaways": [
+      "HNDL jest aktywny teraz — priorytetyzuj migrację według wrażliwości danych i ekspozycji w tranzycie, nie harmonogramu Q-Day",
+      "Cały stos ma znaczenie: kwantowo bezpieczne TLS jest podważane przez VPN bez PQC lub słabe podpisywanie kodu",
+      "Wdrożenia produkcyjne istnieją: Chrome, iMessage (PQ3), Mullvad VPN, Signal — PQC jest gotowe",
+      "Zwinność kryptograficzna to meta-zdolność: buduj systemy, które można aktualizować w miarę ewolucji algorytmów",
+      "Przejście kwantowe nigdy się nie kończy — pojawią się nowe algorytmy, niektóre zostaną złamane, zwinność wygrywa"
+    ]
+  },
+  "umbrella-01": {
+    "tagline": "Każde połączenie zaczyna się od zapytania DNS. Umbrella zabezpiecza ten moment — zanim pakiet opuści urządzenie.",
+    "overview": [
+      "Cisco Umbrella (dawniej OpenDNS) obsługuje największy komercyjny rekursywny resolver DNS na świecie, przetwarzając ponad 620 miliardów zapytań DNS dziennie ze 190 krajów. Działając na warstwie DNS, Umbrella może blokować złośliwe połączenia, zanim zostaną nawiązane — bez konieczności inspekcji ruchu.",
+      "Tradycyjne narzędzia bezpieczeństwa, takie jak firewalle i serwery proxy, widzą ruch dopiero po nawiązaniu połączenia. Umbrella przechwytuje na etapie rozwiązywania DNS, umożliwiając blokowanie wywołań zwrotnych malware, witryn phishingowych i infrastruktury dowodzenia i kontroli zanim zostaną przesłane jakiekolwiek dane. Czyni ją to wyjątkowo skuteczną przeciwko zagrożeniom, których inne narzędzia nie wykrywają.",
+      "Umbrella integruje wywiad o zagrożeniach z Cisco Talos — największego komercyjnego zespołu wywiadu o zagrożeniach na świecie — aby utrzymywać aktualne listy blokowania. Gdy Talos identyfikuje nową domenę C2, Umbrella blokuje ją globalnie w ciągu minut, jednocześnie chroniąc wszystkich klientów."
+    ],
+    "technical": {
+      "title": "Jak Cisco Umbrella przechwytuje DNS",
+      "body": [
+        "Gdy endpoint wysyła zapytanie DNS, żądanie trafia do skonfigurowanego resolvera. W środowisku chronionym przez Umbrella cały ruch DNS jest przekierowywany do resolverów Umbrella (208.67.222.222 / 208.67.220.220) przez klienta mobilnego, wirtualne urządzenie lub przekierowanie DNS na poziomie sieci.",
+        "Umbrella weryfikuje każde zapytanie na podstawie swojej bazy danych kategoryzacji i kanałów zagrożeń Talos. Dozwolone domeny są rozwiązywane normalnie. Zablokowane domeny zwracają NXDOMAIN lub przekierowanie do strony blokowania w czasie poniżej 2 ms. Polityka może być stosowana według użytkownika, grupy, sieci lub urządzenia.",
+        "Kluczowa zaleta: Umbrella blokuje w DNS przed nawiązaniem połączenia TCP/UDP. Nawet zaszyfrowany ruch C2 HTTPS jest blokowany bez odszyfrowywania — zapytanie DNS nigdy nie zostaje rozwiązane."
+      ]
+    },
+    "incident": {
+      "title": "C2 Trickbot BazarLoader zablokowane globalnie (2020)",
+      "impact": "Domeny C2 Trickbota zablokowane dla ponad 90 mln użytkowników Umbrella przed skoordynowaną dezaktywacją",
+      "body": [
+        "W październiku 2020 roku Microsoft poprowadził skoordynowaną dezaktywację Trickbota — jednego z największych kiedykolwiek odnotowanych botnetów, z ponad milionem zainfekowanych urządzeń z systemem Windows. Trickbot był głównym mechanizmem dystrybucji ransomware Ryuk, które spustoszyło szpitale i agencje rządowe.",
+        "Cisco Talos śledził infrastrukturę C2 Trickbota przez tygodnie i prewencyjnie przesłał listy blokowania do Umbrella. Gdy Microsoft zaatakował serwery C2, klienci Umbrella byli już chronieni — zapytania DNS z ich endpointów do domen Trickbota były od tygodni po cichu blokowane. Obrona na poziomie DNS zapobiegła temu, co mogło być katastrofalną falą ransomware podczas globalnej pandemii."
+      ]
+    },
+    "timeline": [
+      "OpenDNS założone — pierwszy publiczny resolver DNS z filtrowaniem bezpieczeństwa",
+      "OpenDNS uruchamia Umbrella dla firm",
+      "Cisco przejmuje OpenDNS za 635 mln USD; rozpoczyna się integracja z Talos",
+      "Umbrella osiąga ponad 100 mln dziennych użytkowników; dodano obsługę DNS-over-HTTPS",
+      "Umbrella blokuje C2 Trickbota przed skoordynowaną dezaktywacją",
+      "620 mld+ zapytań DNS/dzień; pełna integracja SASE z Cisco SecureX"
+    ],
+    "keyTakeaways": [
+      "DNS to pierwszy krok w każdym połączeniu internetowym — blokowanie na poziomie DNS zatrzymuje zagrożenia, zanim zostaną przesłane jakiekolwiek dane",
+      "Umbrella działa na rekursywnym DNS, widząc wszystkie zapytania — nie próbkowany ruch",
+      "Wywiad Talos aktualizuje listy blokowania Umbrella globalnie w ciągu minut od odkrycia nowych zagrożeń",
+      "Blokowanie na poziomie DNS pokonuje zaszyfrowane C2 — HTTPS jest blokowany przed uściskiem dłoni TLS"
+    ]
+  },
+  "umbrella-02": {
+    "tagline": "Firewalle blokują każdy port — z wyjątkiem DNS. Atakujący kodują całe strumienie danych wewnątrz zapytań DNS.",
+    "overview": [
+      "Tunelowanie DNS koduje dowolne dane wewnątrz pakietów zapytań i odpowiedzi DNS, zamieniając protokół DNS w ukryty kanał komunikacji. Ponieważ ruch DNS (UDP/53) jest niemal powszechnie przepuszczany przez firewalle, a DNS jest z natury dwukierunkowy, tworzy niezawodny tunel nawet przez najbardziej restrykcyjne kontrole sieciowe.",
+      "Narzędzia takie jak dnscat2 i iodine ustanawiają kompletne tunele TCP/IP przez DNS: klient koduje dane w etykietach subdomen (np. aGVsbG8=.tunnel.attacker.com), a autorytatywny serwer nazw attacker.com je dekoduje. Atakujący z możliwością wykonania kodu na izolowanej lub chronionej zaporą maszynie może eksfiltrować dane, ustanowić odwrócony shell lub otrzymywać polecenia C2 — wszystko przez port 53.",
+      "Cisco Umbrella wykrywa tunelowanie DNS przez analizę behawioralną: nienormalnie wysokie wskaźniki zapytań, niezwykle długie etykiety subdomen, wysoka entropia w ciągach zapytań i nienormalne użycie rekordów TXT/NULL. Zwykły użytkownik generuje ~200 zapytań DNS dziennie; tunel DNS generuje tysiące na minutę."
+    ],
+    "technical": {
+      "title": "Jak działa tunelowanie DNS",
+      "body": [
+        "W tunelu DNS atakujący kontroluje domenę (tunnel.evil.com) i jej autorytatywny serwer nazw. Maszyna ofiary uruchamia klienta tunelowania (dnscat2, iodine), który koduje wychodzące dane jako etykiety subdomen w zapytaniach DNS A lub TXT. Serwer nazw atakującego dekoduje dane i wysyła odpowiedzi z zakodowanymi danymi zwrotnymi.",
+        "Przepustowość danych jest ograniczona limitami etykiet DNS (63 znaki na etykietę, łącznie 253 znaki nazwy domeny). Typowa przepustowość: 1–10 KB/s. To wystarczy na odwrócony shell, eksfiltrację danych uwierzytelniających lub powolne wykradanie danych przez tygodnie. iodine może osiągnąć do 1 Mbit/s używając ładunków rekordów NULL.",
+        "Sygnatury wykrywania: etykiety zapytań >40 znaków, wysoka entropia (kodowanie base64/hex), >10 zapytań/sekundę do jednej domeny, zapytania rekordu TXT lub NULL oraz domeny zarejestrowane w ciągu ostatnich 30 dni."
+      ]
+    },
+    "incident": {
+      "title": "OilRig (APT34) eksfiltracja przez tunelowanie DNS — Bliski Wschód (2016–2019)",
+      "impact": "Lata niewykrytej eksfiltracji danych przez własne narzędzie do tunelowania DNS (ALMA Communicator)",
+      "body": [
+        "OilRig (APT34), irański aktor zagrożeń sponsorowany przez państwo, używał własnego malware do tunelowania DNS — nazwanego ALMA Communicator i DNSpionage — do eksfiltracji danych z celów rządowych i finansowych na całym Bliskim Wschodzie przez ponad trzy lata bez wykrycia.",
+        "Malware zakodowało skradzione dane uwierzytelniające i dokumenty w zapytaniach rekordu DNS TXT do domen kontrolowanych przez atakującego. Ponieważ DNS zazwyczaj nie jest sprawdzany na poziomie ładunku i zawsze jest przepuszczany przez firewalle, eksfiltracja pozostała niezauważona. Cisco Talos ostatecznie zidentyfikował kampanię, analizując nieprawidłowe wzorce zapytań DNS — duży wolumen, subdomeny o wysokiej entropii, wszystkie do niedawno zarejestrowanych domen. Wykrywanie behawioralne Umbrella oznaczyłoby ten wzorzec od pierwszego dnia."
+      ]
+    },
+    "timeline": [
+      "NSTX — pierwszy publiczny tunel DNS proof-of-concept",
+      "iodine wydany — kompletny tunel IP przez DNS dla pentesterów",
+      "dnscat2 wydany — szyfrowany kanał C2 przez DNS",
+      "OilRig zaczyna używać tunelu DNS ALMA Communicator przeciwko celom na Bliskim Wschodzie",
+      "Cisco Talos ujawnia kampanię DNSpionage; opublikowano wykrywanie behawioralne Umbrella",
+      "Tunelowanie DNS używane w 26% kampanii advanced persistent threat (dane CrowdStrike)"
+    ],
+    "keyTakeaways": [
+      "Tunelowanie DNS wykorzystuje fakt, że UDP/53 niemal nigdy nie jest blokowane przez firewalle",
+      "Wykrywanie opiera się na sygnałach behawioralnych: wskaźnik zapytań, entropia etykiet, typ rekordu, wiek domeny",
+      "Analiza behawioralna Cisco Umbrella oznacza tunelowanie DNS bez konieczności odszyfrowywania ruchu",
+      "OilRig używał tunelowania DNS przez 3+ lata bez wykrycia — inspekcja DNS nie jest opcjonalna"
+    ]
+  },
+  "umbrella-03": {
+    "tagline": "Malware generuje tysiące losowo wyglądających domen dziennie. Tylko jedna się rozwiązuje — i to jest C2.",
+    "overview": [
+      "Algorytmy generowania domen (DGA) są używane przez malware do generowania dużych ilości pseudolosowych nazw domen, które zainfekowany host próbuje rozwiązać. Atakujący wstępnie oblicza ten sam algorytm i rejestruje tylko jedną lub dwie z wygenerowanych domen jako rzeczywisty serwer C2. Sprawia to, że dezaktywacja jest niemal niemożliwa — blokowanie jednej domeny jest bezużyteczne, jeśli malware może wygenerować 1000 kolejnych.",
+      "Rodziny DGA, takie jak Conficker, GameOver Zeus, Locky i Emotet, generują domeny używając nasion takich jak bieżąca data, co sprawia, że lista domen jest przewidywalna dla atakującego (który może z wyprzedzeniem zarejestrować domenę na przyszły tydzień), ale nieprzewidywalna dla obrońców nieznających algorytmu.",
+      "Cisco Umbrella wykrywa domeny DGA przez statystyczną analizę przepływów zapytań DNS: wysokie wskaźniki NXDOMAIN, wysoka entropia nazw domen (losowo wyglądające rozkłady znaków), krótkie cykle życia domen i wzorce czasu zapytań pasujące do znanych rodzin DGA."
+    ],
+    "technical": {
+      "title": "Jak działają DGA i jak Umbrella je wykrywa",
+      "body": [
+        "Typowy DGA inicjalizuje generator liczb pseudolosowych wartością, którą zarówno malware, jak i atakujący mogą obliczyć (bieżąca data, zakodowana stała lub wartość ze źródła publicznego). Generuje N domen na cykl nasienia — codziennie, tygodniowo lub co godzinę. Malware próbuje rozwiązać je wszystkie; większość zwraca NXDOMAIN. Ta, która się rozwiązuje, jest aktywnym C2.",
+        "Conficker używał DGA opartego na dacie, generującego 250 domen/dzień w wielu TLD. GameOver Zeus używał DGA P2P. DGA Locky generował 1000 domen/dzień. Emotet zmieniał algorytmy DGA w każdej głównej wersji. Pokonanie botnetu DGA wymaga albo inżynierii wstecznej algorytmu (do zatopienia przyszłych domen), albo wykrycia infekcji przez analizę burz NXDOMAIN.",
+        "Wykrywanie DGA Umbrella używa uczenia maszynowego na przepływach zapytań: oznacza hosty generujące >50 odpowiedzi NXDOMAIN w krótkim oknie, szczególnie tam, gdzie nieudane domeny wykazują wysoką entropię leksykalną (klastry spółgłosek, naprzemienne wzorce typowe dla wyjścia PRNG). Odciski palców znanych rodzin DGA są porównywane z sygnaturami Talos."
+      ]
+    },
+    "incident": {
+      "title": "Infekcja DGA Emotet — sieć szpitali NHS w Wielkiej Brytanii (2021)",
+      "impact": "Aktywność DGA Emotet wykryta na 14 hostach; zablokowanie pre-pozycjonowania ransomware przed wdrożeniem",
+      "body": [
+        "W styczniu 2021 roku Cisco Umbrella wykrył wybuch Emoteta w dużym londyńskim truście NHS. Czternaście stacji roboczych zostało cicho zainfekowanych podczas okresu świątecznego i generowało ruch DGA charakterystyczny dla Emoteta — setki odpowiedzi NXDOMAIN na godzinę, z jedną domeną dziennie rozwiązującą się pomyślnie w celu otrzymania zaktualizowanych ładunków.",
+        "Wykrywanie behawioralne DGA Umbrella oznaczało zainfekowane hosty w ciągu kilku godzin od pierwszej burzy zapytań. Ponieważ Umbrella blokowała wszystkie domeny DGA (zarówno zarejestrowane, jak i nie), instancje Emoteta nie mogły otrzymać ładunku ransomware Ryuk na etapie 2, który były skonfigurowane do pobrania. Trust uniknął incydentu ransomware, który sparaliżował kilka innych trustów NHS w tym samym miesiącu."
+      ]
+    },
+    "timeline": [
+      "Robak Conficker — pierwszy powszechny botnet DGA (250 domen/dzień)",
+      "GameOver Zeus używa DGA P2P — niemal niemożliwego do zatopienia",
+      "Ransomware Locky generuje 1000 domen DGA/dzień",
+      "Emotet v4 wprowadza nowy algorytm DGA; staje się głównym globalnym zagrożeniem",
+      "Operacja Europolu mająca na celu dezaktywację Emoteta; wykrywanie DGA Umbrella blokuje odrodzenie",
+      "Emotet odbudowuje się ze zaktualizowanym DGA — model ML Umbrella zaktualizowany w 48 h"
+    ],
+    "keyTakeaways": [
+      "DGA sprawia, że infrastruktura C2 jest odporna — blokowanie jednej domeny jest bezużyteczne wobec generowania 1000/dzień",
+      "Wykrywanie opiera się na analizie burz NXDOMAIN i entropii leksykalnej sprawdzanych domen",
+      "Model ML Umbrella wykrywa aktywność DGA nawet dla wcześniej nieznanych rodzin DGA",
+      "Blokowanie na poziomie DNS powstrzymuje ransomware oparty na DGA przed otrzymaniem ładunków etapu 2"
+    ]
+  },
+  "umbrella-04": {
+    "tagline": "Domena nigdy się nie zmienia. Adres IP za nią rotuje co 5 minut przez 10 000 skompromitowanych hostów.",
+    "overview": [
+      "Fast flux to technika unikania DNS, w której adresy IP powiązane z domeną rotują szybko — zazwyczaj co 300 sekund (TTL) — przez duży zestaw skompromitowanych hostów działających jako proxy. Rzeczywisty złośliwy serwer jest ukryty za tą rotującą tarczą. Blokowanie dowolnego pojedynczego adresu IP jest bezużyteczne; następne zapytanie zwraca inny.",
+      "Single-flux fast flux rotuje tylko rekordy A. Double-flux (bardziej zaawansowany) rotuje również rekordy NS domeny, zamieniając sam autorytatywny serwer nazw w ruchomy cel. Sprawia to, że przejęcie infrastruktury jest niemal niemożliwe bez zajęcia rejestracji domeny na poziomie rejestratora.",
+      "Cisco Umbrella wykrywa fast flux przez analizę TTL i metryki różnorodności IP: domeny z TTL 300 s lub mniej, ponad 30 unikalnych adresów IP w ciągu 24 godzin, adresy IP obejmujące wiele ASN i krajów oraz stosunek niski TTL/wysoka różnorodność IP, który nie pasuje do wzorców legalnych sieci CDN."
+    ],
+    "technical": {
+      "title": "Architektura single-flux i double-flux",
+      "body": [
+        "W sieciach single-flux atakujący rejestruje domenę i konfiguruje swój DNS do zwracania rotującego zestawu adresów IP — wszystkich należących do skompromitowanych hostów (botów). Każdy bot przekazuje ruch do rzeczywistego serwera zaplecza. TTL jest ustawiane na 300 sekund, zmuszając resolvery do częstego ponownego zapytywania i uniemożliwiając pamięci podręcznej ujawnienie pełnego zestawu adresów IP.",
+        "Double-flux rozszerza to, rotując również rekordy NS. Serwery nazw złośliwej domeny są same w sobie skompromitowanymi hostami, uniemożliwiając identyfikację i blokowanie autorytatywnego serwera DNS. Storm Worm (2007) był pionierem double-flux na dużą skalę, używając milionów zainfekowanych komputerów zarówno jako węzłów flux, jak i serwerów nazw.",
+        "Heurystyki wykrywania: TTL ≤ 300 s, unikalne adresy IP na domenę przez 24 h > 30, zasięg geograficzny > 5 krajów, liczba ASN > 10, żaden wzorzec niepasujący do legalnych dostawców CDN (Cloudflare, Akamai, Fastly wszystkie wykazują spójne zakresy ASN/IP mimo rotacji adresów IP)."
+      ]
+    },
+    "incident": {
+      "title": "Botnet Storm Worm fast flux — globalna operacja odporności (2007)",
+      "impact": "Pierwszy duży botnet fast-flux; oparł się próbom dezaktywacji przez 18 miesięcy dzięki rotacji adresów IP",
+      "body": [
+        "Storm Worm (Nuwar) zbudował pierwszą sieć botnet fast-flux na dużą skalę w 2007 roku, używając double-flux z 50 milionami zainfekowanych komputerów służących zarówno jako serwery proxy, jak i serwery nazw. Gdy badacze bezpieczeństwa próbowali dezaktywować infrastrukturę przez blokowanie adresów IP lub kontaktowanie dostawców hostingu, botnet po prostu rotował do nowych węzłów. Każda próba dezaktywacji była neutralizowana w ciągu minut.",
+        "Storm był używany do spamu, DDoS na zamówienie i kradzieży danych uwierzytelniających. Jego architektura fast-flux utrzymywała go w działaniu przez 18 miesięcy pomimo międzynarodowych wysiłków organów ścigania. Botnet Conficker później udoskonalił te techniki, a nowoczesne grupy ransomware używają platform fast-flux-jako-usługa zbudowanych na tym samym modelu."
+      ]
+    },
+    "timeline": [
+      "Storm Worm wprowadza double-flux z 50 mln zainfekowanych komputerów",
+      "Conficker używa fast flux dla odporności na dezaktywację",
+      "Platformy fast-flux-jako-usługa pojawiają się na forach dark web",
+      "Botnet Necurs (9 mln botów) używa fast flux; rozmontowany 2020",
+      "Grupy ransomware używają komercyjnych platform fast-flux dla odporności C2"
+    ],
+    "keyTakeaways": [
+      "Fast flux sprawia, że blokowanie oparte na IP jest bezużyteczne — listy blokowania nie nadążają za rotacją co 300 sekund",
+      "Wykrywanie wymaga analizy TTL i metryk różnorodności IP, nie tylko reputacji IP",
+      "Double-flux rozszerza rotację na serwery nazw — nawet blokady na poziomie NS zawodzą",
+      "Blokowanie na poziomie domeny przez Umbrella pokonuje fast flux niezależnie od rotacji adresów IP"
+    ]
+  },
+  "umbrella-05": {
+    "tagline": "Twoja przeglądarka myśli, że rozmawia z attacker.com. Po zapytaniu DNS, w rzeczywistości rozmawia z twoim routerem.",
+    "overview": [
+      "Ataki DNS rebinding wykorzystują politykę tego samego źródła przeglądarki, manipulując DNS, aby sprawić, że przeglądarka uwierzy, że zewnętrzna złośliwa strona ma wspólne źródło z zasobem wewnętrznym. Atak zaczyna się, gdy ofiara odwiedza stronę na attacker.com. Po wygaśnięciu krótkiego TTL atakujący zmienia rekord DNS attacker.com, aby rozwiązywał się do wewnętrznego adresu IP (np. 192.168.1.1). Przeglądarka — nadal w źródle attacker.com — teraz wykonuje żądania do panelu administracyjnego routera, inteligentnych urządzeń domowych lub wewnętrznych API.",
+      "Każde urządzenie dostępne pod przewidywalnym wewnętrznym adresem IP z interfejsem HTTP jest podatne. Routery domowe, inteligentne głośniki, kamery IP, systemy sterowania przemysłowego i wewnętrzne API deweloperów były kompromitowane przez DNS rebinding. Przeglądarka nie stosuje ograniczeń cross-origin, ponieważ z jej perspektywy wszystko znajduje się w źródle attacker.com.",
+      "Cisco Umbrella wykrywa DNS rebinding, identyfikując odpowiedzi DNS zwracające prywatne adresy IP/RFC-1918 (10.x.x.x, 172.16-31.x.x, 192.168.x.x) dla publicznie zarejestrowanych domen. Takie odpowiedzi są z natury podejrzane — publiczna domena nigdy nie powinna legalnie rozwiązywać się do prywatnego adresu IP."
+    ],
+    "technical": {
+      "title": "Sekwencja ataku DNS rebinding",
+      "body": [
+        "Krok 1: Ofiara odwiedza attacker.com (niski TTL: 60 s). Strona ładuje złośliwy JavaScript. JavaScript czeka na wygaśnięcie rekordu DNS (60 sekund). W tym czasie atakujący zmienia rekord A attacker.com na 192.168.1.1.",
+        "Krok 2: JavaScript wykonuje żądanie fetch() do http://attacker.com/api/data. Przeglądarka ponownie rozwiązuje attacker.com — teraz uzyskując 192.168.1.1. Żądanie trafia do routera, który odpowiada. Przeglądarka traktuje to jako odpowiedź tego samego źródła i pozwala JavaScript ją odczytać.",
+        "Krok 3: JavaScript eksfiltruje konfigurację routera, dane uwierzytelniające administratora lub wewnętrzne dane API do rzeczywistego serwera atakującego przez dodatkowy kanał. Ofiara nic niezwykłego nie widzi — jej przeglądarka wyświetliła stronę wyglądającą na legalną."
+      ]
+    },
+    "incident": {
+      "title": "Ataki DNS rebinding na urządzenia inteligentnego domu (2018–2022)",
+      "impact": "Miliony inteligentnych urządzeń domowych narażonych; panele administracyjne routerów dostępne bez danych uwierzytelniających",
+      "body": [
+        "Naukowcy z Uniwersytetu Princeton wykazali w 2018 roku, że ponad 4500 witryn internetowych było podatnych na hostowane ataki DNS rebinding i że większość routerów domowych — w tym modele Netgear, Linksys i D-Link — odpowiadała na ataki rebinding bez żadnych nagłówków uwierzytelniania.",
+        "W 2020 roku luka DNS rebinding w urządzeniach Google Home i Chromecast pozwoliła atakującym ustalić precyzyjną lokalizację ofiary za pomocą triangulacji WiFi. W 2022 roku ataki rebinding na koncentratory Philips Hue i podobne urządzenia IoT umożliwiły pełną kontrolę nad systemami inteligentnego domu. Wykrywanie prywatnych adresów IP w publicznym DNS przez Cisco Umbrella blokuje krok rebinding, zanim atak może postąpić."
+      ]
+    },
+    "timeline": [
+      "Atak DNS rebinding po raz pierwszy opisany — zespół badawczy Stanforda",
+      "Zatruwanie pamięci podręcznej DNS Kaminskiego — ryzyko rebinding wzmocnione",
+      "Badanie Princeton: 4500+ witryn zdolnych do hostowania rebinding; główne marki routerów podatne",
+      "DNS rebinding Google Home — precyzyjna lokalizacja ofiar",
+      "Ataki rebinding IoT skierowane na Philips Hue, inteligentne termostaty, kamery IP"
+    ],
+    "keyTakeaways": [
+      "DNS rebinding omija politykę tego samego źródła przeglądarki, manipulując TTL DNS",
+      "Każde wewnętrzne urządzenie HTTP pod przewidywalnym adresem IP jest potencjalnie osiągalne przez rebinding",
+      "Umbrella wykrywa rebinding, blokując odpowiedzi DNS zwracające prywatne adresy IP/RFC-1918",
+      "Krótkie TTL DNS (60 s) są wymaganym składnikiem ataku — oznaczaj je w monitorowaniu"
+    ]
+  },
+  "umbrella-06": {
+    "tagline": "Domena wygląda identycznie jak prawdziwa. Jeden znak jest inny — i należy do atakującego.",
+    "overview": [
+      "Ataki z użyciem podobnych domen wykorzystują domeny, które wizualnie przypominają legalne domeny, aby zwieść użytkowników i ominąć filtry bezpieczeństwa. Techniki obejmują typosquatting (paypa1.com vs paypal.com), combosquatting (paypal-security.com), ataki homograficzne używające znaków Unicode wyglądających identycznie jak litery ASCII (paypaⅼ.com z użyciem Unicode 'l') oraz podszywanie pod marki z użyciem nowych TLD (cisco.tech vs cisco.com).",
+      "Domeny te są używane do ukierunkowanego phishingu, zbierania danych uwierzytelniających i kompromitacji firmowej poczty elektronicznej (BEC). Pracownik otrzymujący wiadomość e-mail resetowania hasła od 'security@micros0ft.com' może nie zauważyć zera zamiast 'o'. Wykonawca rządowy klikający link do 'defence-contracts.gov.agency-portal.net' może nie zdać sobie sprawy, że komponent .gov nie jest prawdziwą domeną.",
+      "Wykrywanie podobnych domen przez Cisco Umbrella używa algorytmów podobieństwa ciągów (odległość edycji, mapowanie homoglifów), kanałów ochrony marki i analizy nowo zarejestrowanych domen, aby oznaczać i blokować podobne domeny przed jakąkolwiek interakcją użytkownika."
+    ],
+    "technical": {
+      "title": "Techniki domen podobnych",
+      "body": [
+        "Typosquatting rejestruje domeny z typowymi błędami literowymi: brakujące litery (paypl.com), transpozycje (paypla.com) lub podstawienia (paypa1.com). Combosquatting dodaje słowa sugerujące legalność: paypal-secure.com, paypal-login.net, account-paypal.com. Przechodzą one pobieżną inspekcję wzrokową i często omijają filtry poczty sprawdzające wyłącznie listy blokowania dokładnych dopasowań.",
+        "Ataki homograficzne IDN (Internationalized Domain Name) używają znaków Unicode z glifami identycznymi lub niemal identycznymi z ASCII. Cyrylickie 'а' (U+0430) wygląda identycznie jak łacińskie 'a' (U+0061) w większości czcionek. Domena używająca cyrylickich znaków może być wizualnie nieodróżnialna od swojego odpowiednika ASCII, jednocześnie rozwiązując się do zupełnie innego adresu IP. Przeglądarki wyświetlają Punycode (prefiks xn--) w pasku adresu dla domen z mieszanym skryptem, ale wielu użytkowników tego nie zauważa.",
+        "Kanały ochrony marki i ocenianie odległości edycji pozwalają Umbrella oznaczać domeny w odległości 1–2 edycji znaków od chronionych marek. Talos prowadzi rejestr nazw marek Fortune 500 i nazw agencji rządowych; każda nowo zarejestrowana domena z odległością edycji ≤ 2 jest automatycznie oznaczana do przeglądu."
+      ]
+    },
+    "incident": {
+      "title": "Phishing podobną domeną APT29 — wykonawcy rządu USA (2023)",
+      "impact": "Kampania spear-phishingowa NOBELIUM używająca 32 podobnych domen skierowanych do personelu z certyfikatami bezpieczeństwa",
+      "body": [
+        "W marcu 2023 roku Microsoft i Mandiant przypisali falę ataków spear-phishingowych na wykonawców obrony USA i personel rządowy grupie NOBELIUM (APT29, Cozy Bear — rosyjskie SVR). Kampania używała 32 starannie opracowanych podobnych domen imitujących portale wykonawców, systemy zakupów rządowych i narzędzia współpracy.",
+        "Domeny zawierały warianty legalnych portali wykonawców z jednoznakowymi podstawieniami i combosquatami wyglądającymi wiarygodnie. Cele otrzymywały pilne wiadomości e-mail — modyfikacje umów, odnowienia certyfikatów bezpieczeństwa — prowadzące do stron zbierania danych uwierzytelniających na podobnych domenach. Kanał ochrony marki Cisco Umbrella zablokował 27 z 32 domen przed jakąkolwiek wizytą pracowników; pozostałe 5 zostało zablokowanych po analizie Talos w ciągu 6 godzin od pierwszej obserwacji."
+      ]
+    },
+    "timeline": [
+      "Pierwsze udokumentowane kampanie typosquattingowe przeciwko instytucjom finansowym",
+      "Ataki homograficzne IDN powracają — cyrylickie 'а' używane do podszywania się pod apple.com",
+      "NOBELIUM rozpoczyna rozległe kampanie podobnych domen przeciwko rządowi USA",
+      "FBI IC3: straty BEC osiągają 2,4 mld USD — podobne domeny jako główny wektor ataku",
+      "Kampania NOBELIUM z 32 domenami przeciwko wykonawcom obrony USA"
+    ],
+    "keyTakeaways": [
+      "Typosquatting i combosquatting omijają listy blokowania dokładnych dopasowań — wymagane jest ocenianie odległości edycji",
+      "Ataki homograficzne IDN mogą być wizualnie niewykrywalne w starszych przeglądarkach i klientach poczty",
+      "Portale rządowe i wykonawcze są głównymi celami — nazwy marek muszą znajdować się w kanałach ochrony",
+      "Umbrella proaktywnie blokuje podobne domeny przez analizę nowo zarejestrowanych domen + odległość edycji"
+    ]
+  },
+  "umbrella-07": {
+    "tagline": "Ktoś dodał regułę białej listy omijającą wszystkie kategorie bezpieczeństwa. Znajdź ją, zanim zrobi to ransomware.",
+    "overview": [
+      "Silnik polityk Cisco Umbrella pozwala organizacjom definiować szczegółowe reguły filtrowania DNS według kategorii bezpieczeństwa, kategorii treści, aplikacji, tożsamości użytkownika i segmentu sieciowego. Polityki są ułożone hierarchicznie: polityka globalna → polityka grupy → polityka indywidualna. Gdy jest prawidłowo skonfigurowana, Umbrella cicho stosuje kontrole bezpieczeństwa w całej organizacji bez konieczności stosowania agentów na endpointach.",
+      "Błędnie skonfigurowane polityki to powszechny czynnik umożliwiający ataki. Jeden zbyt szeroki wpis na białej liście — być może dodany w celu naprawienia aplikacji biznesowej — może stworzyć obejście, które czyni kategorie bezpieczeństwa nieskutecznymi. W okręgach szkolnych, agencjach rządowych i sieciach opieki zdrowotnej błędne konfiguracje polityk pozwoliły ruchowi C2 ransomware ominąć kontrole na poziomie DNS, które powinny go zablokować.",
+      "Narzędzia audytu polityk Umbrella pozwalają zespołom bezpieczeństwa identyfikować ukryte reguły białej listy, wpisy dodane poza zarządzaniem zmianami i reguły kolidujące z blokowaniem kategorii bezpieczeństwa. Okresowy przegląd polityk jest równie ważny jak konfiguracja początkowa."
+    ],
+    "technical": {
+      "title": "Hierarchia polityk Umbrella i mechanika obejść",
+      "body": [
+        "Umbrella ocenia polityki od najbardziej do najmniej szczegółowej: niestandardowe listy blokowania → niestandardowe listy dozwolonych → blokowanie kategorii bezpieczeństwa → konfiguracja kategorii treści → polityka domyślna. Wpis na białej liście na dowolnym poziomie zastępuje blokowania kategorii bezpieczeństwa na wszystkich poziomach. Oznacza to, że jeden błędnie dodany wpis na białej liście dla domeny z symbolem wieloznacznym może stworzyć lukę w całym filtrowaniu kategorii bezpieczeństwa.",
+        "Typowe błędne konfiguracje: wpisy białej listy z symbolem wieloznacznym (*.io zezwalający na wszystkie domeny .io), białe listy oparte na IP omijające inspekcję domen, wpisy dodane przez personel IT bez przeglądu bezpieczeństwa i 'tymczasowe' wyjątki, które nigdy nie są usuwane. Atakujący uzyskujący dostęp do konsoli administracyjnej Umbrella mogą dodawać wpisy na białej liście w celu przygotowania dostarczenia ransomware.",
+        "Polecenia audytu polityk: przeglądaj wszystkie wpisy białej listy posortowane według daty utworzenia, oznaczaj wpisy szersze niż konieczne (symbole wieloznaczne, szerokie zakresy IP), identyfikuj wpisy dodane poza oknami zarządzania zmianami i porównuj krzyżowo z incydentami bezpieczeństwa."
+      ]
+    },
+    "incident": {
+      "title": "Ransomware LockBit — obejście polityki przez fałszywą białą listę (2023)",
+      "impact": "Żądanie okupu 2,1 mln USD; dane uczniów zaszyfrowane; 3 tygodnie odtwarzania",
+      "body": [
+        "Amerykański okręg szkolny używający Cisco Umbrella padł ofiarą ataku ransomware LockBit 3.0 w kwietniu 2023 roku. Dochodzenie po incydencie ujawniło, że administrator IT trzy miesiące wcześniej dodał wpis białej listy z symbolem wieloznacznym (*.transfer-files.io) w celu naprawienia aplikacji do udostępniania plików. Wpis nigdy nie został usunięty ani sprawdzony.",
+        "Operatorzy LockBita, którzy uzyskali wstępną pozycję przez wiadomość e-mail phishingową na niezarządzanym urządzeniu, odkryli wpis białej listy podczas rozpoznania. Zarejestrowali c2-drop.transfer-files.io i użyli go jako swojej domeny C2, wiedząc, że ominie blokowanie kategorii malware Umbrella. Wpis z symbolem wieloznacznym pozwolił na całe wdrożenie ransomware bez wykrycia na poziomie DNS. Incydent kosztował okręg 2,1 mln USD w opłatach za okup, koszty odtwarzania i honoraria prawne."
+      ]
+    },
+    "timeline": [
+      "Framework polityk Umbrella zaktualizowany — dodano hierarchiczne polityki grupowe",
+      "Grupy ransomware zaczęły aktywnie atakować błędne konfiguracje polityk Umbrella jako wektor ataku",
+      "Cisco dodaje panel audytu polityk — podświetla przestarzałe i zbyt szerokie wpisy białej listy",
+      "LockBit 3.0 wykorzystuje białą listę z symbolem wieloznacznym w ataku ransomware na amerykański okręg szkolny"
+    ],
+    "keyTakeaways": [
+      "Wpisy białej listy zastępują wszystkie blokowania kategorii bezpieczeństwa — muszą być regularnie przeglądane",
+      "Wpisy białej listy z symbolem wieloznacznym są wysokiego ryzyka; używaj konkretnych domen z datami wygaśnięcia",
+      "Narzędzia audytu polityk Umbrella identyfikują przestarzałe i zbyt szerokie wpisy do naprawienia",
+      "Atakujący aktywnie sondują luki białej listy jako część pre-wdrożenia ransomware"
+    ]
+  },
+  "umbrella-08": {
+    "tagline": "Malware nie używa DNS. Wysyła żądania HTTPS do 8.8.8.8 na porcie 443. Twoje zabezpieczenia DNS nic nie widzą.",
+    "overview": [
+      "DNS over HTTPS (DoH) szyfruje zapytania DNS wewnątrz ruchu HTTPS w celu ochrony prywatności użytkownika przed inwigilacją ISP. Ale to samo szyfrowanie, które chroni legalnych użytkowników, pozwala również malware całkowicie ominąć kontrole bezpieczeństwa na warstwie DNS. Gdy endpoint wysyła żądania DoH bezpośrednio do zewnętrznego serwera rozwiązującego (Google 8.8.8.8, Cloudflare 1.1.1.1), wszystkie zapytania DNS omijają Cisco Umbrella i wyglądają jak zwykły ruch HTTPS.",
+      "Rodziny malware obejmujące Godlua (2019), Trickbot (2020) i różne programy pobierające ransomware kodują punkty końcowe resolverów DoH, aby unikać korporacyjnych zabezpieczeń DNS. Zainfekowany endpoint używający DoH do rozwiązywania domen C2 będzie miał wszystkie swoje zapytania DNS zaszyfrowane i wysyłane do zewnętrznego serwera — resolver Umbrella nigdy nie jest pytany i nie ma wglądu w zapytania.",
+      "Cisco Umbrella pokonuje unikanie DoH przez dwa mechanizmy: klient roamingowy blokuje wychodzące połączenia ze znanych adresów IP resolverów DoH (8.8.8.8:443, 1.1.1.1:443 itd.) z dowolnego procesu innego niż klient Umbrella; a własny klient roamingowy Umbrella zapewnia zaszyfrowany DNS z DoH do chmury Umbrella, utrzymując bezpieczeństwo bez poświęcania szyfrowania."
+    ],
+    "technical": {
+      "title": "Unikanie DoH i strategia kontr-Umbrella",
+      "body": [
+        "Standardowy DNS (UDP/53) przepływa przez sieć w postaci zwykłego tekstu — Umbrella stoi na tej ścieżce i sprawdza każde zapytanie. DoH opakowuje zapytania DNS w HTTPS (TCP/443 do konkretnego adresu IP), czyniąc je nieodróżnialnymi od normalnego ruchu webowego w przechwytach sieciowych. Reguła firewalla blokująca UDP/53 do zewnętrznych adresów IP zmusza klientów do przechodzenia przez Umbrella, ale DoH całkowicie to omija.",
+        "Zakodowane punkty końcowe DoH są wykrywalne: połączenia do 8.8.8.8:443, 1.1.1.1:443, 9.9.9.9:443 lub 208.67.222.222:443 (własne DoH Umbrella) z nieoczekiwanych procesów są anomalne. Klient roamingowy Umbrella monitoruje te połączenia i może blokować je z procesów innych niż Umbrella, wymuszając przejście całego ruchu DoH przez chmurę Umbrella.",
+        "Polityka korporacyjna: konfiguruj firewalle sieciowe do blokowania TCP/443 do znanych adresów IP resolverów DoH (z wyjątkiem własnej 208.67.222.222 Umbrella); wdrażaj klienta roamingowego Umbrella do przechwytywania całego DNS włącznie z DoH; monitoruj połączenia HTTPS do adresów IP resolverów z procesów endpointów innych niż klient Umbrella."
+      ]
+    },
+    "incident": {
+      "title": "Trojan Godlua — pierwsze malware używające DoH do unikania C2 (2019)",
+      "impact": "Pierwsze potwierdzone malware używające DoH do ominięcia bezpieczeństwa DNS; botnet DDoS zbudowany niewykryty",
+      "body": [
+        "W czerwcu 2019 roku Netlab 360 odkrył Godlua — pierwsze potwierdzone malware używające DNS over HTTPS do rozwiązywania swoich domen C2. Godlua zakodował punkt końcowy DoH Cloudflare (1.1.1.1:443) i wysyłał zapytania DNS przez HTTPS, całkowicie omijając wszystkie tradycyjne narzędzia bezpieczeństwa DNS, w tym sinkholes DNS i korporacyjne filtry DNS.",
+        "Godlua był botnetem DDoS atakującym serwery Linux. Użycie DoH oznaczało, że obrońcy sieci monitorujący ruch DNS nie widzieli podejrzanych zapytań — rozwiązywanie domeny C2 było ukryte w zwykłym ruchu HTTPS. Technika została szybko przyjęta przez inne rodziny malware, a unikanie DoH jest teraz standardową funkcją w komercyjnych zestawach narzędzi malware. Cisco Umbrella dodało wykrywanie unikania DoH w aktualizacji klienta roamingowego po tym odkryciu."
+      ]
+    },
+    "timeline": [
+      "DNS over HTTPS (DoH) RFC 8484 opublikowany — standard prywatności",
+      "Trojan Godlua — pierwsze malware używające DoH do unikania C2",
+      "Firefox domyślnie włącza DoH (Cloudflare); Trickbot dodaje obsługę DoH",
+      "Klient roamingowy Umbrella dodaje blokowanie unikania DoH dla resolverów innych niż Umbrella",
+      "Unikanie DoH obecne w 34% zaawansowanych rodzin malware (telemetria Cisco)"
+    ],
+    "keyTakeaways": [
+      "DoH szyfruje zapytania DNS jako HTTPS — tradycyjne monitorowanie DNS nic nie widzi",
+      "Malware koduje adresy IP resolverów DoH (8.8.8.8, 1.1.1.1) do omijania korporacyjnych kontroli DNS",
+      "Klient roamingowy Umbrella blokuje DoH do zewnętrznych resolverów z procesów innych niż Umbrella",
+      "Połączenia HTTPS do adresów IP resolverów z nieoczekiwanych procesów są sygnałem wykrywania"
+    ]
+  },
+  "umbrella-09": {
+    "tagline": "Analitycy Talos wykryli domenę C2 trzy dni przed atakiem. Umbrella zablokowała ją globalnie w 4 minuty.",
+    "overview": [
+      "Cisco Talos to największy komercyjny zespół wywiadu o zagrożeniach na świecie — ponad 300 badaczy, inżynierów zajmujących się inżynierią wsteczną i analityków wywiadu monitorujących globalną aktywność zagrożeń 24/7. Talos dostarcza wywiad o zagrożeniach bezpośrednio do Cisco Umbrella, aktualizując listy blokowania globalnie w ciągu minut od odkrycia nowej infrastruktury. Gdy Talos identyfikuje nową kampanię APT, rodzinę ransomware lub zestaw phishingowy, Umbrella blokuje powiązane domeny dla wszystkich klientów jednocześnie.",
+      "Talos obsługuje Umbrella Investigate — platformę wywiadu o zagrożeniach dostarczającą wzbogacony kontekst dotyczący domen: wyniki reputacji, dane WHOIS, historia pasywnego DNS, powiązane adresy IP i ASN, powiązania z próbkami malware oraz atrybucja aktorów zagrożeń. Analitycy SOC używają Investigate do obracania się od jednej podejrzanej domeny do pełnego obrazu infrastruktury atakującego.",
+      "Pasywny DNS (pDNS) to kamień węgielny wywiadu o zagrożeniach: rejestrowanie historycznych rozwiązań DNS pozwala analitykom odkrywać, które domeny współdzieliły adresy IP ze znanych serwerów C2, identyfikować infrastrukturę domen zarejestrowaną przez tego samego aktora i śledzić aktorów zagrożeń w miarę migracji infrastruktury między dostawcami hostingu."
+    ],
+    "technical": {
+      "title": "Potok wywiadu Talos — od odkrycia do blokowania",
+      "body": [
+        "Analitycy Talos monitorują honeypoty, piaskownice malware, kanały partnerów (ISAC-y, agencje rządowe, dostawcy zabezpieczeń) oraz własną sieć sensorów z ponad 1 mln+ źródeł telemetrii. Gdy nowa domena jest oznaczana — przez detonację piaskownicy, połączenie z honeypotem lub kanał partnera — wchodzi do potoku analizy Talos.",
+        "Analiza obejmuje: wzorce rejestracji WHOIS (masowo rejestrowane, chronione prywatnością, niedawno utworzone), historia rozwiązań DNS przez pasywny DNS, metadane certyfikatów SSL (wystawca, SAN-y, odcisk palca), analiza treści odpowiedzi HTTP/HTTPS oraz powiązanie próbek malware przez wyszukiwanie skrótów. Złośliwe domeny o wysokim zaufaniu są przesyłane do Umbrella w ciągu 4 minut od potwierdzenia analityka.",
+        "Możliwości obracania Talos Investigate: od domeny C2 → znajdź wszystkie adresy IP, do których się rozwiązywała → znajdź wszystkie inne domeny, które rozwiązywały się do tych adresów IP → zidentyfikuj infrastrukturę wspólnego hostingu → przypisz do aktora zagrożeń → zmapuj całą kampanię. Ta technika odkryła całą bankową infrastrukturę APT38 Grupy Lazarus w 2018 roku."
+      ]
+    },
+    "incident": {
+      "title": "Kampania Scattered Spider (UNC3944) — zakłócenie przez wywiad Talos (2023)",
+      "impact": "130+ firm namierzonych; wywiad Talos zablokował infrastrukturę kampanii zanim 80% ataków dotarło",
+      "body": [
+        "Scattered Spider (UNC3944) przeprowadził dużą kampanię inżynierii społecznej i ransomware przeciwko amerykańskim firmom w Q3 2023, namierzając firmy w tym MGM Resorts i Caesars Entertainment. Grupa używała SMS phishingu (smishing) i ataków vishing do ominięcia MFA i uzyskania dostępu administratora Okta.",
+        "Cisco Talos zidentyfikował infrastrukturę DNS kampanii przez pasywną analizę DNS domen współdzielonych ze wcześniej znanych adresów IP Scattered Spider. Talos przesłał 47 domen kampanii do list blokowania Umbrella trzy dni przed wykonaniem większości ataków. Spośród 130+ namierzonych firm, 80% miało zablokowany dostęp na poziomie DNS do phishingowej infrastruktury i C2 Scattered Spider, zanim jakikolwiek pracownik mógł wejść z nią w interakcję."
+      ]
+    },
+    "timeline": [
+      "Cisco przejmuje Sourcefire — zespół Snort IDS dołącza do przyszłej organizacji Talos",
+      "Cisco Talos formalnie ustanowione — łączy wiele zespołów wywiadu o zagrożeniach",
+      "Talos ujawnia bankową infrastrukturę APT38 (Lazarus) przez pasywne obracanie DNS",
+      "Talos dołącza do CTI League; udostępnianie w czasie rzeczywistym z rządowymi CERT-ami",
+      "Talos zakłóca kampanię Scattered Spider — 47 domen zablokowanych 3 dni wcześniej"
+    ],
+    "keyTakeaways": [
+      "Pasywne obracanie DNS zamienia jedną znaną domenę C2 w kompletną mapę infrastruktury atakującego",
+      "Talos przesyła wywiad o zagrożeniach do Umbrella w ciągu 4 minut od potwierdzenia analityka",
+      "Wywiad wczesnego ostrzegania blokuje ataki przed ich dotarciem — nie tylko po wykryciu",
+      "Platforma Investigate pozwala analitykom SOC replikować techniki obracania Talos"
+    ]
+  },
+  "umbrella-10": {
+    "tagline": "Ransomware jest przygotowane i gotowe do wdrożenia. Masz logi DNS, wywiad o zagrożeniach i 20 minut.",
+    "overview": [
+      "Kompletny przepływ pracy reakcji na incydenty oparty na DNS łączy wszystkie możliwości Umbrella: wykrywanie anomalnej aktywności DNS, korelację z wywiadem o zagrożeniach, identyfikację pełnego zakresu kompromitacji i osiągnięcie powstrzymania przez blokowanie na warstwie DNS — wszystko przed wykonaniem końcowego ładunku atakującego. Szybkość jest krytyczną zmienną: nowoczesne grupy ransomware działają z „czasem przebywania” wynoszącym od kilku godzin do kilku dni między wstępnym dostępem a wdrożeniem ładunku.",
+      "W środowiskach infrastruktury krytycznej, takich jak sieci energetyczne, oczyszczalnie wody i systemy rozliczeń finansowych, udany atak ransomware może mieć konsekwencje wykraczające poza utratę danych: zakłócenie operacyjne systemów, od których zależą miliony ludzi. Bezpieczeństwo na warstwie DNS zapewnia ostatni punkt przechwycenia: nawet jeśli endpoint jest skompromitowany, jeśli jego komunikacja C2 może być zablokowana w DNS, atakujący traci dowodzenie i kontrolę i nie może uruchomić końcowego etapu szyfrowania.",
+      "CISA i NIST zalecają bezpieczeństwo warstwy DNS jako fundamentalny składnik ochrony infrastruktury krytycznej (NIST SP 800-189, CISA CPG 2.S). Rola Umbrella w IR: identyfikacja zainfekowanych hostów przez analizę logów DNS, zdefiniowanie zakresu kompromitacji przez współdzielone domeny C2, osiągnięcie częściowego powstrzymania przez blokowanie DNS i dostarczenie danych osi czasu do dochodzenia kryminalistycznego."
+    ],
+    "technical": {
+      "title": "Przepływ pracy IR oparty na DNS — od alertu do powstrzymania",
+      "body": [
+        "Faza 1 — Wykrywanie: Analityka behawioralna Umbrella generuje alert (burza DGA, wywołanie zwrotne C2, fast flux). Analityk SOC wyodrębnia pełny log aktywności DNS dla zainfekowanych hostów i identyfikuje oś czasu pierwszej infekcji, ruch lateralny (nowe hosty odpytujące to samo C2) i polecenia pre-przygotowania ransomware (przygotowanie plików, polecenia usuwania kopii zapasowych zakodowane w zapytaniach tunelowania DNS).",
+        "Faza 2 — Definiowanie zakresu: Analityk obraca się od domeny C2 używając Talos Investigate, aby zidentyfikować całą powiązaną infrastrukturę. Porównaj krzyżowo całą aktywność DNS hostów wewnętrznych z pełną listą domen C2, aby zidentyfikować każdy skompromitowany endpoint. Jest to szybsze i bardziej kompletne niż oczekiwanie na telemetrię EDR, która może być opóźniona lub nieobecna na niezarządzanych urządzeniach.",
+        "Faza 3 — Powstrzymanie: Prześlij wszystkie zidentyfikowane domeny C2 do niestandardowej listy blokowania Umbrella. To odcina dowodzenie i kontrolę dla wszystkich zainfekowanych hostów jednocześnie, nawet tych, których EDR jeszcze nie zidentyfikował. Zablokuj domeny przygotowania malware, aby zapobiec dostarczeniu ładunku. Izoluj potwierdzone hosty na poziomie sieci. Powstrzymanie DNS daje czas na pełną reakcję kryminalistyczną i odbudowę czystych systemów."
+      ]
+    },
+    "incident": {
+      "title": "VOLT TYPHOON — pre-pozycjonowanie w krytycznej infrastrukturze USA (2023)",
+      "impact": "Chiński aktor państwowy pre-pozycjonowany w infrastrukturze krytycznej; monitorowanie DNS wykryło wzorce C2",
+      "body": [
+        "W maju 2023 roku CISA, NSA i FBI wspólnie ujawniły, że VOLT TYPHOON, chiński aktor sponsorowany przez państwo, pre-pozycjonował się w krytycznej infrastrukturze USA, w tym systemach wytwarzania energii, uzdatniania wody i łączności. Cel oceniono jako zdolność do zakłócania w przypadku konfliktu, a nie natychmiastową kradzież danych.",
+        "VOLT TYPHOON używał konkretnie technik living-off-the-land (LOLBins), aby zminimalizować sygnatury malware. Jednak jego komunikacja C2 nadal wymagała rozwiązywania DNS. Organizacje z wdrożonym Cisco Umbrella mogły identyfikować wzorce C2 VOLT TYPHOON przez analitykę behawioralną DNS: anomalne zapytania do niedawno zarejestrowanych domen, wzorce beaconingu o niskiej częstotliwości i domeny współdzielące infrastrukturę ze znanych adresów IP VOLT TYPHOON zidentyfikowanych przez pasywną analizę DNS Talos."
+      ]
+    },
+    "timeline": [
+      "VOLT TYPHOON rozpoczyna systematyczny dostęp do krytycznej infrastruktury USA",
+      "CISA CPG 2.S opublikowane — bezpieczeństwo warstwy DNS obowiązkowe dla infrastruktury krytycznej",
+      "Maj: wspólne ostrzeżenie CISA/NSA/FBI ujawnia kampanię VOLT TYPHOON",
+      "Klienci Umbrella z przepływami pracy IR opartymi na DNS powstrzymywali beaconing VOLT TYPHOON przed dostarczeniem ładunku"
+    ],
+    "keyTakeaways": [
+      "IR oparty na DNS może zdefiniować zakres i powstrzymać kompromitację szybciej niż EDR, nawet dla niezarządzanych urządzeń",
+      "VOLT TYPHOON używał living-off-the-land, ale nadal potrzebował DNS — jedyny wykrywalny sygnał",
+      "Powstrzymanie DNS odcina C2 dla wszystkich zainfekowanych hostów jednocześnie, dając czas na kryminalistykę",
+      "CISA nakazuje bezpieczeństwo warstwy DNS dla infrastruktury krytycznej — Umbrella jest implementacją referencyjną"
+    ]
+  },
+  "tapestry-01": {
+    "tagline": "Każdy gobelin zaczyna się od jednej nitki i historii, która chce być opowiedziana.",
+    "overview": [
+      "Gobelin to jedna z najstarszych form sztuki na ziemi — i jedna z najbardziej niezrozumianych. Słowo to jest często używane swobodnie na określenie dowolnego ozdobnego tekstylu, ale prawdziwy gobelin ma precyzyjną definicję: jest to tkanina czołowo-wątkowa, w której wzór jest tworzony wyłącznie przez kolorowe nici wątkowe (poziome), które całkowicie przykrywają nici osnowy (pionowe) poniżej. Osnowa to szkielet; wątek to obraz.",
+      "Najstarsze zachowane fragmenty gobelinów znaleziono w egipskich grobach datowanych na około 1400 p.n.e. — delikatne tkaniny lniane przedstawiające wzory geometryczne i kwiaty lotosu. Ale gobelin niemal na pewno zaczął się jeszcze wcześniej, w wielu miejscach jednocześnie, wszędzie tam, gdzie ludzie naciągali włókno na ramę i odkrywali, że kolor może być tkany razem ze strukturą. Prekolumbijscy tkacze andyjscy, pracujący w całkowitej izolacji od Starego Świata, rozwinęli techniki gobelinowe o niezwykłej finezji — osiągając czasem ponad 100 nici wątkowych na centymetr.",
+      "Co czyni gobelin różnym od zwykłej tkaniny? W zwykłej tkaninie nici osnowy i wątku są widoczne w równym stopniu — widzisz siatkę obu. W gobelinie wątek jest ubijany tak mocno, że całkowicie zakrywa osnowę. Tkacz pracuje obszar po obszarze koloru, zawracając na każdej granicy, budując obraz nić po nici od dołu do góry — dokładnie jak malarz dodający kolor do płótna, z tym że medium to włókno."
+    ],
+    "technical": {
+      "title": "Jak rozpoznać gobelin",
+      "body": [
+        "Spójrz na tył tkanej pracy. W prawdziwym gobelinie zobaczysz odsłoniętą osnowę (szkielet strukturalny) i liczne luźne końcówki, gdzie tkacz zaczynał i kończył różne obszary koloru. Przód pokazuje tylko wątek. Jeśli widzisz zarówno osnowę, jak i wątek z przodu, to zwykła tkanina, nie gobelin.",
+        "Przesuń palcem po powierzchni. Gobelin ma charakterystyczną teksturę z grzbietami — możesz wyczuć wyraźne żeberka każdej nici wątkowej. Haft, w przeciwieństwie, ma ściegi siedzące na tle tkaniny; gobelin nie ma tła tkaniny. Struktura i obraz są jedną i tą samą rzeczą."
+      ]
+    },
+    "incident": {
+      "title": "Gobelin z Bayeux — wielka pomyłka historii",
+      "impact": "Znaczenie kulturowe: Jedyny zachowany wizualny zapis Podboju Normandii — 58 scen, 70 metrów długości, zamówiony przez biskupa Odo z Bayeux.",
+      "body": [
+        "Oto rozkoszny sekret, który zaskakuje większość ludzi: słynny Gobelin z Bayeux nie jest właściwie gobelinem. Jest haftem — kolorowa wełna wszyta na lniane tło tkaniny. Widać lniane tło pod postaciami. Prawdziwy gobelin nie ma tła tkaniny; nici SĄ tkaniną. Gobelin z Bayeux był nazywany gobelinem przez wieki po prostu dlatego, że wisiał na ścianie jak gobelin.",
+        "To zamieszanie jest powszechne. Słowo 'gobelin' w codziennym języku oznacza każdy duży dekoracyjny tekstyl zawieszony na ścianie, niezależnie od techniki. W świecie sztuki tekstylnej 'gobelin' odnosi się konkretnie do techniki tkania czołowo-wątkowego. Oba znaczenia są używane dzisiaj — znaj różnicę, gdy jesteś w muzeum lub rozmawiasz z tkaczem."
+      ]
+    },
+    "timeline": [
+      "Pierwsze tkaniny tkane — prosta tkanina splotowa w Egipcie i Mezopotamii",
+      "Najstarsze zachowane fragmenty gobelinów znalezione w egipskich grobach",
+      "Prekolumbijscy tkacze andyjscy rozwijają niezwykłe techniki gobelinowe",
+      "Powstaje 'Gobelin' z Bayeux — właściwie haft, ale ilustruje umiłowanie epoki do narracyjnych tekstyliów",
+      "Flamandzkie warsztaty gobelinowe zaczynają działalność w Arras — zaczyna się złota epoka"
+    ],
+    "keyTakeaways": [
+      "Prawdziwy gobelin jest czołowo-wątkowy: wątek całkowicie pokrywa osnowę — nigdy nie widzisz osnowy z przodu",
+      "'Gobelin' z Bayeux jest właściwie haftem — powszechna i wybaczalna pomyłka",
+      "Gobelin był wynajdywany niezależnie w wielu starożytnych cywilizacjach jednocześnie",
+      "Egipskie, andyjskie i azjatyckie gobeliny poprzedzają europejski gobelin o tysiące lat",
+      "Różnica od prostej tkaniny: w gobelinie struktura i obraz są tą samą rzeczą"
+    ]
+  },
+  "tapestry-02": {
+    "tagline": "Przez dwieście lat flamandzkie warsztaty zdobiły ściany wszystkich pałaców Europy.",
+    "overview": [
+      "Mniej więcej między 1350 a 1550 rokiem miasta Arras i Bruksela w dzisiejszej Belgii stały się niezrównanym centrum europejskiej produkcji gobelinów. Gobeliny z Arras były tak sławne, że francuskie słowo na gobelin stało się 'arras' — użycie nadal spotykane u Szekspira ('Znajdę, gdzie kryje się prawda, choćby była schowana w samym jądrze', z Hamleta, gdzie Poloniusz chowa się za 'arras'). Bruksela później przewyższyła Arras, a do XVI wieku znak Brukseli — mała tkacka łódka — był najbardziej pożądaną gwarancją jakości w Europie.",
+      "Nie były to małe warsztaty. Wielkie flamandzkie atelier gobelinowe zatrudniały setki tkaczy, mistrzów farbiarzów, handlarzy wełną i malarzy kartonów — gobelin był ważnym przemysłem. Jeden duży gobelin mógł zajmować zespołowi tkaczy kilka lat. Gotowe prace były warte więcej niż obrazy największych mistrzów tamtej epoki — były prestiżowymi obiektami sztuki swoich czasów, ofiarowywanymi jako dyplomatyczne dary między królami i papieżami.",
+      "Proces projektowania był rozbudowany. Najpierw malarz tworzył małoskalowy szkic. Następnie był on powiększany do pełnowymiarowego obrazu zwanego 'kartonem' (od włoskiego 'cartone', oznaczającego duży papier). Karton był umieszczany za nićmi osnowy w krośnie, a tkacze pracowali z tyłu, używając luster lub przezroczystych kartonów do śledzenia wzoru. Wynik, widziany z przodu, był lustrzanym odbiciem kartonu — co tkacze musieli uwzględniać, gdy wzór był asymetryczny."
+    ],
+    "technical": {
+      "title": "Praca z kartonu",
+      "body": [
+        "'Karton' gobelinowy to po prostu pełnowymiarowy rysunek projektowy umieszczony za lub pod nićmi osnowy jako przewodnik. Dzisiaj początkujący często rysują swój karton na papierze, umieszczają go za krosnem ramowym i odrysowują główne kształty bezpośrednio na nici osnowy markerem. Daje to wyraźne granice do wypełnienia kolorem.",
+        "Dla twojego pierwszego gobelinu zachowaj karton prosty: śmiałe kształty z wyraźnymi obszarami koloru. Unikaj bardzo cienkich linii lub bardzo szczegółowych obszarów — są one naprawdę trudne do utkania i należą do bardziej zaawansowanych prac. Projekt z dużymi kolorowymi kształtami — abstrakcyjny pejzaż, prosta kwiaty, wzór geometryczny — da ci piękne wyniki i wyraźnie nauczy cię podstaw."
+      ]
+    },
+    "incident": {
+      "title": "Gobeliny z Jednorożcem — największa tajemnica we włóknie",
+      "impact": "Znaczenie kulturowe: Siedem gobelinów przedstawiających polowanie i schwytanie jednorożca. Ich pierwotny właściciel, znaczenie i lokalizacja pozostają nieznane od ponad 500 lat.",
+      "body": [
+        "Gobeliny z Jednorożcem należą do najbardziej cenionych dzieł sztuki na świecie — siedem dużych gobelinów, każdy około 3,5 na 4 metry, tkanych z wełny i jedwabiu z metalicznymi nićmi, przedstawiających sceny polowania na jednorożca. Są niezwykłe w swoich detalach: w millefleurs ('tysiąc kwiatów') zidentyfikowano ponad 100 różnych roślin, wiele botanicznie precyzyjnych do poziomu identyfikacji konkretnych gatunków.",
+        "Co sprawia, że są tajemnicze: nikt nie wie, kto je zamówił, kto je utkał ani co oznaczają. Monogram 'A' i 'E' pojawia się na krawędziach, ale jego znaczenie jest sporne. Mogą przedstawiać Zwiastowanie, świeckie polowanie lub życie Chrystusa — uczeni spierają się o to od ponad stulecia. Trafiły do Metropolitan Museum w 1937 roku jako dar Johna D. Rockefellera Jr., który kupił je od Duc de la Rochefoucauld. Wcześniej? Nieznane. Możesz je dziś odwiedzić w The Cloisters w Nowym Jorku."
+      ]
+    },
+    "timeline": [
+      "Warsztaty Arras zaczynają działalność — belgijskie miasto staje się europejską stolicą gobelinów",
+      "Gobelin Apokalipsy tkany dla Księcia Anjou — 140 metrów długości, zachowany do dziś",
+      "Gobeliny z Jednorożcem tkane — największy zachowany przykład flamandzkiej złotej epoki",
+      "Rafael projektuje kartony Dziejów Apostolskich dla tkaczy z Brukseli (teraz w V&A)",
+      "Peter Paul Rubens zaczyna projektować kartony gobelinowe — malarstwo spotyka tkanie"
+    ],
+    "keyTakeaways": [
+      "Flamandzkie gobeliny były najbardziej prestiżowymi obiektami sztuki w Europie — cenniejszymi niż obrazy",
+      "'Karton' to pełnowymiarowy rysunek projektowy umieszczony za krosnem jako przewodnik",
+      "Tkacze pracowali z tyłu, tworząc lustrzane odbicie kartonu",
+      "Znak jakości Brukseli — łódka tkacka — był gwarancją doskonałości",
+      "Gobeliny z Jednorożcem (ok. 1500) w The Cloisters, Nowy Jork, należą do najlepszych zachowanych przykładów na świecie"
+    ]
+  },
+  "tapestry-03": {
+    "tagline": "Po drugiej stronie świata tkacze pracowali z jedwabiem tak delikatnym, że można było przez niego czytać list.",
+    "overview": [
+      "Podczas gdy flamandzcy tkacze doskonalili gobelin wełniany w Europie, chińscy rzemieślnicy z dynastii Song (960–1279 n.e.) rozwijali 'kesi' — gobelin jedwabny o zadziwiającej finezji. Kesi (dosłownie 'cięty jedwab', ze względu na małe przestrzenie pojawiające się na granicach kolorów) był używany do cesarskich szat, obrazów zwojowych i przedmiotów religijnych. Najdelikatniejsze prace kesi osiągają liczbę nici sprawiającą, że tkaniny tkane maszynowo wyglądają prymitywnie w porównaniu — i były tak cenne, że pełne obrazy jedwabne były reprodukowane nić po nici w kesi, aby je zachować.",
+      "Japonia rozwinęła własną tradycję: 'tsuzure-ori', co oznacza 'tkanie kamykami'. Japońscy tkacze tsuzure używają własnych paznokci — starannie piłowanych w ząbkowane krawędzie — jako grzebieni tkackich, wciskając każdą nić wątkową na miejsce z niezwykłą precyzją. Technika ta tworzy gobelin o godnej uwagi ostrości i delikatności, tradycyjnie używany do formalnych obi noszonych z kimono. Dziś Nishijin w Kioto nadal jest centrum tej żywej tradycji.",
+      "Perski gobelin wnosił inne wartości: śmiałe kolory, złożone wzory geometryczne i kwiatowe oraz tradycję wyobraźni ogrodowej. Perskie gobeliny przedstawiały 'ogród rajski' (z perskiego starożytnego 'pairidaeza', skąd pochodzi nasze słowo 'raj') — otoczony murami ogród z kanałami wodnymi, kwiatowymi parterami i ptakami. Te gobeliny ogrodowe były zaprojektowane, aby przenosić perski ideał raju do wnętrz podczas surowych zimowych miesięcy. Ich wpływ rozciągał się na cały islamski świat, od Turcji po Indie."
+    ],
+    "technical": {
+      "title": "Praca z cienkimi nićmi",
+      "body": [
+        "Azjatyckie tradycje gobelinów jedwabnych podkreślają cienkie nici i gęsto tkane osnowy, aby osiągnąć szczegółowość malarską. Jeśli chcesz dzisiaj pracować w podobnym duchu, spróbuj użyć cienkiej wełnianej lub bawełnianej osnowy (przy 8–12 nitkach na cal) z miękkimi, cienkimi nićmi wątkowymi — takimi jak bawełniana nić do haftu, cienkie jednonitowe wełny lub jedwabna nić. Cieńsze osnowy pozwalają uchwycić więcej szczegółów, ale wymagają więcej cierpliwości.",
+        "Praktyczny sposób eksperymentowania z technikami gobelinów azjatyckich w domu: spróbuj prostego wzoru kwiatu lub liścia używając tylko trzech lub czterech kolorów, pracując bardzo powoli i starannie ubijając każdą nić wątkową palcami lub grzebieniem do gobelinów. Celem jest precyzja — każdy obszar koloru ma czyste, ostre krawędzie. Japońscy tkacze tsuzure spędzają lata doskonaląc tę cierpliwość. Możesz zacząć pewnego popołudnia."
+      ]
+    },
+    "incident": {
+      "title": "Szaty smocze — kesi jako cesarska władza",
+      "impact": "Znaczenie kulturowe: Szaty smocze kesi były wyłączną odzieżą chińskich cesarzy — wzory smocze oznaczały boską władzę. Tylko cesarz mógł nosić szaty ze smokami o pięciu szponach patrzącymi wprost.",
+      "body": [
+        "Cesarskie chińskie dworskie kodeksy ubioru należały do najrozbudowańszych w historii, a gobelin kesi był dla nich centralny. Ceremonialne szaty cesarza były tkane z jedwabiu kesi, a każdy element wzoru miał znaczenie: liczba i położenie smoków, układ chmur, kolory używane dla każdej rangi. Smok o pięciu szponach patrzący na widza był wyłącznym symbolem cesarza. Książęta różnych rang nosili smoki o czterech szponach; inni szlachcice — o trzech.",
+        "Wykonanie jednej cesarskiej szaty kesi wymagało, aby doświadczeni tkacze pracowali nieprzerwanie przez miesiące. Muzeum Pałacowe w Pekinie zawiera niezwykłe przykłady — prace tak delikatne, że pojedyncze jedwabne włókna są ledwo widoczne gołym okiem, a jednak obrazy są tak precyzyjne jak malarstwa. Wiele szat kesi zostało wykonanych specjalnie w celu odtworzenia wcześniejszych obrazów w niezniszczalnej nici, zachowując arcydzieła w medium, które (w odpowiednich warunkach) przetrwa tysiąc lat."
+      ]
+    },
+    "timeline": [
+      "Technika gobelinu kesi pojawia się w dynastii Tang w Chinach",
+      "Dynastia Song — kesi osiąga najwyższe artystyczne wyrafinowanie",
+      "Perska tradycja gobelinu rajskiego ogrodu jest dobrze ugruntowana — rozciąga się na cały islamski świat",
+      "Japońskie tsuzure-ori osiąga pełny rozwój w dzielnicy Nishijin w Kioto",
+      "Chińskie cesarskie szaty kesi w swojej największej złożoności — zachowane w Muzeum Pałacowym dziś",
+      "Tkacze tsuzure-ori z Nishijin utrzymują tradycję żywą; kesi jest nauczane w chińskich szkołach artystycznych"
+    ],
+    "keyTakeaways": [
+      "Chińskie kesi jest tkane w jedwabiu z niezwykłą finezją — do 100 nici wątkowych na centymetr",
+      "Japońscy tkacze tsuzure-ori używają własnych paznokci, piłowanych w ząbkowane krawędzie, jako grzebieni tkackich",
+      "Perski gobelin przedstawiał 'rajskie ogrody' — źródło naszego słowa 'raj'",
+      "'Kesi' oznacza 'cięty jedwab' — nazwany od małych przestrzeni pojawiających się na granicach kolorów",
+      "Chińskie cesarskie szaty kesi wymagały miesięcy pracy i komunikowały rangę przez liczbę smoczych szponów"
+    ]
+  },
+  "tapestry-04": {
+    "tagline": "Oddzielone tysiącami mil, dwie kultury niezależnie doskonaliły sztukę tkania koloru i historii w tkaninę.",
+    "overview": [
+      "Na długo przed kontaktem europejskim cywilizacje andyjskich gór rozwinęły techniki gobelinowe, które nigdy nie zostały przewyższone pod względem finezji. Tkacze andyjscy — w dzisiejszym Peru, Boliwii i Ekwadorze — osiągali liczby wątków ponad 100 nici na centymetr w niektórych pracach, używając włókien wielbłądowatych (alpaki i wikunii) i naturalnych barwników do tworzenia tekstyliów o niezwykłym wyrafinowaniu. Nie były to przedmioty dekoracyjne: w kulturze andyjskiej tekstylia były jednym z najważniejszych wyrażeń tożsamości społecznej, wierzeń duchowych i władzy politycznej. Inkowie wymagali, aby podbite ludy wnosiły pracę tekstylną jako formę daniny.",
+      "Tkactwo Nawaho z południowego zachodu USA to żywa tradycja z udokumentowaną historią sięgającą XVII wieku, choć lud Diné (Nawaho) nauczył się tkać od ludów Pueblo jeszcze wcześniej. Klasyczne koce i dywany Nawaho są natychmiast rozpoznawalne: śmiałe geometryczne wzory w głębokich czerwieniach, czerni i bieli, tkane na pionowym krośnie stojącym. Jaskrawa czerwień tradycyjnie pochodziła z bayety (hiszpańskiej flanelowej tkaniny), którą tkacze Nawaho pruli i ponownie tkali — niezwykłe ponowne wykorzystanie towarów handlowych w coś wyjątkowo własnego.",
+      "Obie tradycje mają ważne wspólne cechy: pionowe krosna, strukturę czołowo-wątkową i użycie lokalnie dostępnych naturalnych włókien i barwników. Obie dzielą również rozumienie, że tkanie to nie tylko rzemiosło, ale fundamentalny akt kulturowy. Dla Nawaho tkanie jest darem Kobiety Pająka (Ná'ashjé'ii Asdzáá), która nauczyła pierwszą kobietę Diné tkać na krosnach, których osnowę stanowiły niebo i ziemia. Techniczne i święte są splecione tak nierozłącznie jak osnowa i wątek."
+    ],
+    "technical": {
+      "title": "Naturalne barwniki — kolor z ziemi",
+      "body": [
+        "Zarówno tradycje andyjskie, jak i Nawaho używały niezwykłych naturalnych barwników przed nadejściem kolorów syntetycznych. Jaskrawa czerwień w obu tradycjach często pochodziła z koszenili — małych owadów łuskowatych żyjących na kaktusie opuncji i produkujących barwnik karminowy o wyjątkowej bogactwie i trwałości. Tkacze Nawaho następnie pozyskiwali wełnę z bayety hiszpańskiej barwionej koszenilem i pruły ją, aby ponownie utkać.",
+        "Możesz eksplorować naturalne barwienie w domu z prostymi materiałami: łupiny cebuli dają ciepłe złota i pomarańcze; pestki i skórki awokado dają miękkie różowo-beżowe tony; czarna herbata tworzy delikatne brązy; kurkuma daje jaskrawą żółć (ale nietrwałą). Dla pierwszego eksperymentu z naturalnym barwnikiem gotuj łupiny żółtej cebuli w wodzie przez 30 minut, przecedź, dodaj wstępnie namoczoną przędzę wełnianą, gotuj 45 minut i opłucz. Wynik to ciepły bursztynowo-złoty kolor, który łączy cię bezpośrednio z tysiącami lat tradycji barwienia."
+      ]
+    },
+    "incident": {
+      "title": "Tekstylia z Paracas — najdelikatniejsza tkanina kiedykolwiek wykonana",
+      "impact": "Znaczenie kulturowe: Tkaniny grobowe znalezione na Półwyspie Paracas to najdelikatniejsze prekolumbijskie tekstylia kiedykolwiek odkryte — wiązki mumii owinięte warstwami niezwykle szczegółowych haftowanych płaszczy z nawet 100 nićmi na centymetr.",
+      "body": [
+        "W 1925 roku archeolog Julio Tello odkopał wiązki mumii na Półwyspie Paracas w Peru i odkrył tekstylia o niemal niemożliwej delikatności — setki haftowanych i misternie tkanych płaszczy, każdy owinięty wokół mumii członków społeczeństwa Paracas, którzy zmarli między 300 p.n.e. a 200 n.e. Postacie przedstawione w tych tekstyliach — nadprzyrodzone istoty, latający szamani, trofea głów — są tak szczegółowe, że uczeni spędzili stulecie na rozszyfrowywaniu ich języka ikonograficznego.",
+        "Tekstylia te nie były jedynie dobrami pogrzebowymi — były miarą duchowej mocy i pozycji społecznej osoby. Najdelikatniejsze prace wymagały lat pracy przez wykwalifikowanych rzemieślników pracujących z nićmi tak cienkimi, że pojedynczą nić trzeba trzymać pod jasnym światłem, aby w ogóle być widoczną. Niektóre tekstylia z Paracas są tak delikatne, że częściowo rozpuściły się w powietrzu — widoczne jako odcisk w glebie grobowej zamiast jako nienaruszona tkanina. Zachowane są rozproszone w muzeach na całym świecie; największa kolekcja znajduje się w Limie, Peru."
+      ]
+    },
+    "timeline": [
+      "Dowody tkania na peruwiańskim wybrzeżu — jedna z najstarszych znanych tradycji tekstylnych",
+      "Tekstylia z Paracas — wśród najdelikatniejszych kiedykolwiek wykonanych, odkryte w 1925 roku",
+      "Imperium Inków używa daniny tekstylnej — tkanina tkana jako waluta polityczna",
+      "Tradycja tkania Nawaho ustanowiona — nauczono się od ludów Pueblo",
+      "Klasyczny okres koca Nawaho — śmiałe wzory geometryczne, czerwona bayeta",
+      "Obie tradycje aktywnie utrzymywane — tkanie Narodu Nawaho, andyjskie spółdzielnie rzemieślnicze"
+    ],
+    "keyTakeaways": [
+      "Tkacze andyjscy osiągali ponad 100 nici wątkowych na centymetr — nigdy nieprzewyższone pod względem technicznej finezji",
+      "Jaskrawa czerwień Nawaho tradycyjnie pochodziła ze sprutej hiszpańskiej tkaniny bayety barwionej koszenilem",
+      "Koszenil — małe owady na kaktusach — produkuje najwykwintniejszy znany naturalny czerwony barwnik",
+      "Dla Diné (Nawaho) tkanie jest darem Kobiety Pająka — techniczne i święte są zjednoczone",
+      "W kulturach andyjskich tekstylia komunikowały rangę społeczną, duchową moc i polityczny autorytet"
+    ]
+  },
+  "tapestry-05": {
+    "tagline": "Kolor w gobelinie nie miesza się na palecie — buduje się nić po nici, a wynik jest żywy.",
+    "overview": [
+      "Kolor w gobelinie działa inaczej niż kolor w malarstwie. Malarz fizycznie miesza pigmenty — niebieski i żółty tworzą zielony na palecie. Tkacz miesza kolory optycznie — niebieskie i żółte nici umieszczone blisko siebie (lub naprzemiennie) tworzą wrażenie zieleni dla oka, ale każda nić pozostaje fizycznie oddzielna. Rozumienie obu typów mieszania jest fundamentalne dla projektowania gobelinów.",
+      "Podstawowe koło kolorów stosuje się bezpośrednio do gobelinu: czerwony, żółty i niebieski to kolory podstawowe. Zmieszaj dowolne dwa podstawowe, aby uzyskać kolory pochodne: czerwony + żółty = pomarańczowy, żółty + niebieski = zielony, niebieski + czerwony = fioletowy. Zmieszaj kolor podstawowy z jego przeciwstawnym kolorem pochodnym (zwanym parą dopełniającą), a uzyskasz kolor, który zdaje się wibrować energią — niebieski i pomarańczowy, czerwony i zielony, żółty i fioletowy. Używane ostrożnie, kolory dopełniające tworzą najbardziej uderzające gobeliny.",
+      "Ciepłe kolory (czerwone, pomarańczowe, żółte) zdają się zbliżać do oka — czuje się je blisko, energetycznie, ciepło. Zimne kolory (niebieskie, zielone, fioletowe) zdają się cofać — czuje się je odlegle, spokojnie, relaksująco. Efektem tym można celowo posługiwać się w projektowaniu gobelinów: ciepłokolorowa figura na zimnokolorowym tle zawsze będzie się wyróżniać i będzie się czuła obecna. Blada, zimna figura na ciepłym tle może czuć się tajemniczo i cofać. Każda decyzja kolorystyczna jest też decyzją o odczuciu."
+    ],
+    "technical": {
+      "title": "Mieszanie kolorów na krośnie",
+      "body": [
+        "Istnieją trzy sposoby mieszania kolorów w gobelinie: (1) Mieszanie przy przygotowaniu nici — dwa pasma różnych kolorów trzymane razem i tkane jako jedna nić. Kolory fizycznie łączą się w igle, tworząc nakrapiane połączenie. (2) Cieniowanie — naprzemienne rzędy lub kliny dwóch kolorów, aby wizualnie przenikały się w tkaniu. (3) Mieszanie optyczne — umieszczanie małych obszarów czystych kolorów obok siebie, aby oko je łączyło z odległości, jak u malarzy impresjonistów.",
+        "Dla twojego pierwszego odkrywania kolorów: weź trzy podstawowe kolory nici (czerwony, żółty, niebieski) i tkaj małe próbki używając każdej techniki. Utkaj rząd czerwonego, następnie rząd żółtego — pozostają oddzielone. Teraz utkaj naprzemiennie czerwone i żółte punkty w tym samym rzędzie — z odległości to wygląda na pomarańczowe. Teraz trzymaj razem czerwone i żółte pasmo i tkaż jako jedną nić — wynik to ciepły, mieszany czerwono-pomarańczowy. Te same trzy kolory, trzy zupełnie różne efekty wizualne."
+      ]
+    },
+    "incident": {
+      "title": "William Morris — krucjata na rzecz naturalnego koloru",
+      "impact": "Znaczenie kulturowe: Morris odrzucił syntetyczne barwniki anilinowe i przez dziesięciolecia doskonalił przepisy na naturalne barwniki, samodzielnie odradzając barwienie roślinne w Anglii i inspirując ruch Arts and Crafts.",
+      "body": [
+        "William Morris (1834–1896) — poeta, projektant, socjalista i jeden z wielkich umysłów twórczych XIX wieku — był wściekły na syntetyczne barwniki anilinowe. Wynalezione w 1856 roku, te tanie chemiczne barwniki szybko wyparły naturalne barwienie w całym przemyśle tekstylnym. Morris uważał ich kolory za piskliwe, nietrwałe i estetycznie martwe. 'Muszę nauczyć się barwić sam', napisał — i mówił to dosłownie.",
+        "Morris spędził lata na opanowaniu indygo, rezedy (żółty), marzanny (czerwony) i innych historycznych barwników. Założył własną farbarnię w Merton Abbey Mills w Londynie, gdzie barwił wełny do swoich gobelinów i dywanów zgodnie z recepturami, które badał ze średniowiecznych źródeł. Jego projekty gobelinów — 'Dzięcioł', 'Sad', 'Las' — używają palety głębokich niebieskozielonych, ciepłych rdzawoczerownych i zakurzonych złot, które czują się zupełnie harmonijnie, jak ogród widziany przez stare szkło. Możesz zobaczyć jego gobeliny dziś w Muzeum Wiktorii i Alberta w Londynie."
+      ]
+    },
+    "timeline": [
+      "Newton publikuje Optykę — pierwszy naukowy opis spektrum kolorów i kolorów podstawowych",
+      "Teoria Kolorów Goethego — emocjonalne i psychologiczne wymiary koloru opisane",
+      "Chevreul publikuje zasady harmonii kolorów — bezpośrednio wpływa na gobeliny i malarstwo",
+      "Syntetyczne barwniki anilinowe wynalezione — wróg Morrisa; tanie, ale piskliwe",
+      "William Morris zakłada farbarnię Merton Abbey — odrodzenie naturalnego barwienia",
+      "Itten i Bauhaus rozwijają teorię kolorów, która do dziś stanowi podstawę edukacji artystycznej"
+    ],
+    "keyTakeaways": [
+      "Kolory podstawowe: czerwony, żółty, niebieski. Zmieszaj dowolne dwa, aby uzyskać kolor pochodny.",
+      "Kolory dopełniające (przeciwne na kole) tworzą maksymalne wibracje i kontrast",
+      "Ciepłe kolory zbliżają się; zimne cofają — użyj tego, aby przesuwać tematy do przodu lub w tył",
+      "Kolor w gobelinie miesza się optycznie, jak i fizycznie — cieniowanie tworzy mieszanie kolorów",
+      "William Morris pokazał, że naturalne barwniki produkują bardziej harmonijny kolor niż alternatywy syntetyczne"
+    ]
+  },
+  "tapestry-06": {
+    "tagline": "Dwie serie nici. Jedna przechodzi nad drugą. Z tej prostej zasady wszystko inne wynika.",
+    "overview": [
+      "Każda tkanina — gobelin, materiał, dywan czy płótno — jest zbudowana z tej samej prostej zasady: dwie serie nici krzyżujące się pod kątem prostym. Nici biegnące w górę i w dół (pionowo) w krosnach nazywane są osnową. Nici biegnące z boku na bok (poziomo), przeplatające się z osnową, nazywane są wątkiem. Osnowa jest naciągana mocno na krosnach i pozostaje nieruchoma; wątek jest przepracowywany rząd po rzędzie, przechodząc nad i pod naprzemiennymi nićmi osnowy.",
+      "W tkaninie prostej splotowej zarówno osnowa, jak i wątek są widoczne i mają mniej więcej jednakową widoczność. W gobelinie wątek jest ubijany tak mocno, że całkowicie zakopuje osnowę — widzisz tylko wątek. Nici osnowy służą jako niewidoczny szkielet strukturalny; wątek niesie cały kolor i obraz. Dlatego tkacze gobelinów wybierają mocną, nie puszystą nić do osnowy (sznurek bawełniany, len lub mocno skręcona wełna) i miększą, bardziej kolorową nić do wątku.",
+      "Kluczową operacją w tkaniu jest tworzenie 'przesmyku' — przestrzeni między naprzemiennymi nićmi osnowy, przez którą może przechodzić wątek. W prostych krosienach ramowych początkujący tworzą przesmyk ręcznie, tkając nad-jedną-pod-jedną igłą lub czółenkiem. W krosiennicach gobelinowych z nicielnicą pręt lub rząd pętelek może być uniesiony, aby oddzielić naprzemienne nici osnowy i automatycznie stworzyć przesmyk. Rozumienie przesmyku i kontrprzesmyku to mechaniczna podstawa całego tkania."
+    ],
+    "technical": {
+      "title": "Konfigurowanie prostego krosna ramowego",
+      "body": [
+        "Krosno ramowe to najłatwiejszy punkt wyjścia — możesz je kupić lub zrobić z ramki do zdjęć i gwoździ. Wbij małe gwoźdźiki lub wkręty wzdłuż górnej i dolnej krawędzi, rozmieszczone mniej więcej 1 cm (dla wagi początkującej). Nawij nić osnowy (miękki sznurek bawełniany sprawdza się doskonale) od dolnego gwoźdźia do górnego i z powrotem, okrążając każdy gwoźdźik po kolei. Naciągnij mocno, ale nie desperacko ciasno — osnowa powinna mieć mocne napięcie, ale ramka nie powinna się wyginać.",
+        "Gdy osnowa jest gotowa, jesteś gotowy do tkania. Nawlecz igłę do gobelinów nićmi wątkowymi. Zaczynając od dołu, tkaż nad pierwszą nićmi osnowy, pod drugą, nad trzecią, pod czwartą — do końca. Wciśnij delikatnie w dół palcami lub grzebieniem. W następnym rzędzie odwróć: pod pierwszą, nad drugą, pod trzecią. Ta naprzemienność nad-jedną-pod-jedną jest podstawą całego gobelinnictwa. Każda dodatkowa technika — cieniowanie, soumak, węzły rya — buduje się na tej prostej strukturze."
+      ]
+    },
+    "incident": {
+      "title": "Les Gobelins — Królewska Manufaktura Gobelinów Francji",
+      "impact": "Znaczenie kulturowe: Założona przez Ludwika XIV jako manufaktura królewska, Les Gobelins tkała dla francuskich królów, prezydentów i zagranicznych głów państw przez ponad 360 lat bez przerwy.",
+      "body": [
+        "W 1662 roku Jean-Baptiste Colbert, minister finansów Ludwika XIV, kupił farbarnię rodziny Gobelin na lewym brzegu Sekwany w Paryżu i przekształcił ją w Królewską Manufakturę Mebli Korony — później znana po prostu jako Les Gobelins. Zamiarem Ludwika było uczynienie Francji samowystarczalną w luksusowych dobrach, kończąc masowe płatności do flamandzkich i włoskich warsztatów, które wyczerpywały francuskie bogactwo. Les Gobelins miała tkać gobeliny równe lub lepsze od tego, co Flandria mogła wyprodukować.",
+        "Les Gobelins osiągnęła ten cel spektakularnie. Pod artystycznym kierownictwem Charlesa Le Bruna, wyprodukowała jedne z największych gobelinów XVII wieku. Nigdy nie przestała działać — dziś nadal tka duże gobeliny jako prezenty stanu francuskiego i do budynków publicznych, nadal używając tradycyjnych krosien wysoko-nitkowych i wielu z tych samych technik, co tkacze Le Bruna. Możesz odwiedzić i zobaczyć pracujących tkaczy. Osnowa, wątek, nad-i-pod: niezmienione przez 360 lat."
+      ]
+    },
+    "timeline": [
+      "Najstarsze europejskie krosna z obciążnikami — fundamentalna struktura niezmieniona od tej pory",
+      "Pionowe (wysokobelkowe) krosna gobelinowe ustanowione w Europie",
+      "Królewska Manufaktura Les Gobelins założona w Paryżu",
+      "Wynalezienie krosna żakardowego — mechanizowane tworzenie przesmyków dla złożonych wzorów",
+      "Odrodzenie krosna ramowego — tkanie gobelinów dostępne dla rzemieślników domowych na całym świecie",
+      "Les Gobelins nadal tka na tradycyjnych krosnach w Paryżu — żywa tradycja trwa"
+    ],
+    "keyTakeaways": [
+      "Osnowa = pionowe nici w krosnach, zawsze nieruchome i pod napięciem",
+      "Wątek = poziome nici, tkane rząd po rzędzie, niesie cały kolor w gobelinie",
+      "'Przesmyk' to przestrzeń między naprzemiennymi nićmi osnowy, przez którą przechodzi wątek",
+      "Naprzemienne rzędy nad-jedną-pod-jedną blokują strukturę tkania",
+      "W gobelinie wątek jest mocno dociskany w dół, aż całkowicie zakryje osnowę"
+    ]
+  },
+  "tapestry-07": {
+    "tagline": "Najbardziej zaawansowane krosna na świecie są bezużyteczne, dopóki nie usiądziesz i nie zaczniesz tkać.",
+    "overview": [
+      "Dobra wiadomość dotycząca wyposażenia do gobelinów jest taka, że nie potrzebujesz wiele. Najbardziej podstawowe krosno gobelinowe to kawałek kartonu z nacięciami wyciętymi na górnej i dolnej krawędzi. Nawijamy osnowę nićmi, tkaczy igłą i nićmi, i tworzymy prawdziwy gobelin, który jest strukturalnie identyczny z tym, co tworzyli wielcy flamandzcy mistrzowie. Technika nie tkwi w wyposażeniu — tkwi w rękach i oku.",
+      "Powiedziawszy to, istnieją realne różnice między typami krosien, które wpływają na doświadczenie tkania. Krosna ramowe (sztywne drewniane prostokąty z kołkami lub rowkami) to idealne miejsce startowe — ekonomiczne, przenośne i wszechstronne. Krosna gobelinowe (większe, często z wbudowanym urządzeniem do tworzenia przesmyku) pozwalają na większe prace i szybszy postęp. Krosna wysokobelkowe (pionowe, jak w Les Gobelins) pozwalają tkaczowi widzieć pracę z przodu podczas tkania — tradycyjna europejska konfiguracja. Krosna niskobelkowe (poziome) są używane w niektórych tradycjach flamandzkich, z tkaczem pracującym z tyłu.",
+      "W kwestii narzędzi potrzebujesz stosunkowo niewiele: igłę gobelinową (zaokrąglony czubek, duże ucho), grzebień tkacki lub widelec (do ubijania rzędów wątku) i nożyczki. Wielu tkaczy dodaje małą czółenko patykowate (płaski patyk z nacięciem na każdym końcu do nawijania nici) do noszenia dłuższych długości wątku. Wszystko inne jest opcjonalne. Warsztat tkacki Bauhaus — który wyprodukował niektórych z najbardziej wpływowych artystów tekstylnych XX wieku, w tym Anni Albers — zaczynał od prostych krosien i idei, że najważniejszym narzędziem jest wyedukowane oko."
+    ],
+    "technical": {
+      "title": "Konfigurowanie krosna kartonowego (bezpłatnie!)",
+      "body": [
+        "Wytnij kawałek sztywnego kartonu o wymiarach około 20 × 25 cm (8 × 10 cali). Używając nożyczek, wytnij małe nacięcia wzdłuż górnej i dolnej krawędzi, rozmieszczone mniej więcej 1 cm. Nacięcia te utrzymują nici osnowy na miejscu. Nawij gładką bawełnianą nić lub nić szydełkową od dolnego nacięcia do górnego i z powrotem, okrążając każdą parę nacięć. Chcesz, aby nici osnowy leżały płasko i równolegle, z jednolitym napięciem — naprężone, ale kartonu się nie wyginające.",
+        "Nawlecz igłę gobelinową wybraną nićmi wątkowymi. Zaczynając od dołu, tkaż nad-pod przez wszystkie nici osnowy, pozostawiając ogon 10 cm na początku. Zawróć i wróć, odwracając nad-pod. Delikatnie ubij każdy rząd palcami. Po kilku rzędach tkasz gobelin. Aby zmienić kolory, po prostu odtnij nić, zostaw ogon i zacznij nowy kolor. Końcówki przytniesz lub wetkiesz, gdy praca będzie skończona. To jest dokładnie to, co robią zawodowi tkacze — tylko w większej i bardziej rozbudowanej wersji twojego kartonowego krosna."
+      ]
+    },
+    "incident": {
+      "title": "Anni Albers i warsztat tkacki Bauhaus",
+      "impact": "Znaczenie kulturowe: Anni Albers, pracując w Bauhaus z prostymi krosnami, stworzyła sztukę tekstylną o takiej głębi intelektualnej, że stała się pierwszym artystą tekstylnym mającym solową wystawę w Museum of Modern Art w Nowym Jorku (1949).",
+      "body": [
+        "Gdy Anni Fleischmann przybyła do szkoły Bauhaus w 1922 roku, kobiety były po cichu kierowane do warsztatu tkackiego — założyciele szkoły uważali go za odpowiedni 'kobiecy' dział. Anni Albers (jak się nazywała po poślubieniu kolegi studenta Bauhaus Josefa Albersa) przekształciła to lekceważenie w triumf. Spędziła lata na opanowaniu krosna, studiując strukturę nici z naukową rygoryznością i rozwijając wizualny język w tekstyliach, który był całkowicie oryginalny.",
+        "Intuicja Albers polegała na tym, że krosno samo w sobie jest medium wizualnym — struktura osnowy i wątku, powtarzalność, kratownica — nie są ograniczeniami do pokonania, lecz samą naturą sztuki. Jej tkaniny badają wzór, fakturę i efekt optyczny z precyzją kompozytora pracującego z muzycznymi interwałami. Kontynuowała nauczanie, pisanie (jej książka 'On Weaving' nadal jest drukowana i jest niezbędną lekturą) i wystawianie na całym świecie. Robiła to wszystko, w zasadzie tymi samymi narzędziami, które są dziś dostępne dla każdego początkującego."
+      ]
+    },
+    "timeline": [
+      "Obciążnikowe krosna osnowowe w użyciu — kamienie obciążające nici osnowy, pracowane na stojąco",
+      "Pionowe wysokobelkowe krosna gobelinowe ustanowione w europejskich warsztatach",
+      "Sztywne krosna ramowe z trzciny stają się powszechnie dostępne do użytku domowego",
+      "Warsztat tkacki Bauhaus — Anni Albers zaczyna przekształcać tekstylia w sztukę plastyczną",
+      "Odrodzenie sztuki włókienniczej — krosna ramowe spopularyzowane wśród rzemieślników domowych w USA i Europie",
+      "Krosna ramowe dla początkujących i samouczki online sprawiają, że gobelinnictwo jest bardziej dostępne niż kiedykolwiek"
+    ],
+    "keyTakeaways": [
+      "Krosno kartonowe działa — możesz zacząć tkać gobelin dziś za prawie żadne pieniądze",
+      "Krosna ramowe to najlepszy pierwszy zakup: wszechstronne, przenośne, ekonomiczne",
+      "Niezbędne narzędzia: igła gobelinowa, grzebień tkacki, nożyczki — nic innego nie jest ściśle konieczne",
+      "Krosna wysokobelkowe są pionowe; krosna niskobelkowe są poziome — oba produkują prawdziwy gobelin",
+      "Anni Albers dowiodła, że najbardziej wyrafinowana sztuka może pochodzić z najprostszego wyposażenia"
+    ]
+  },
+  "tapestry-08": {
+    "tagline": "Każda technika w gobelinie istnieje, aby rozwiązać konkretny problem wizualny. Najpierw poznaj problem; technika naturalnie podąża.",
+    "overview": [
+      "Gdy możesz utkać podstawowy rząd nad-pod, masz fundament. Wszystkie dodatkowe techniki gobelinowe są wariantami lub uzupełnieniami tej podstawowej struktury, każda służąca konkretnemu celowi. Cieniowanie miesza kolory. Soumak dodaje uniesioną diagonalną fakturę. Splatanie łączy dwa obszary koloru bez otworu. Węzły rya tworzą włos (pętelki lub cięty frędzle). Rozumienie, dlaczego każda technika istnieje, sprawia, że uczenie się jej jest znacznie łatwiejsze.",
+      "Otwory i splatanie to jedno z centralnych wyzwań projektowania w gobelinie. Gdy dwa obszary koloru spotykają się pionowo (oba kolory zawracają na tej samej nici osnowy), między nimi tworzy się pionowy otwór — mała szczelina w tkaninie. Krótkie otwory (dwa lub trzy rzędy) są strukturalnie odpowiednie i są charakterystyczne dla skandynawskiego gobelinu i niektórych tradycji andyjskich. Dłuższe otwory osłabiają tkaninę i muszą być obsługiwane przez splatanie nici wątkowych na krawędzi lub zaszywanie otworu po ukończeniu. Dobre zarządzanie pionowymi splotami jest oznaką umiejętności w gobelinie.",
+      "Soumak to technika owijana zapożyczona z tradycji wytwarzania dywanów — nić wątkowa jest owijana wokół nici osnowy diagonalnie, zamiast przechodzić bezpośrednio przez przesmyk. Rezultatem jest uniesiony, diagonalny grzbiet na powierzchni. Soumak jest używany do linii szczegółów, konturów, obramowań i obszarów faktury wewnątrz gobelinu. Jest wolniejszy niż tkanie płaskie, ale tworzy piękną trójwymiarową jakość powierzchni. Soumak jest najbardziej widoczny w perskich i kaukaskich dywanach oraz we współczesnym gobelinie, gdy tkacze chcą kontrastu faktur."
+    ],
+    "technical": {
+      "title": "Cieniowanie — mieszanie kolorów jak malarz",
+      "body": [
+        "Cieniowanie (z francuskiego 'hachure') to technika gobelinowa do tworzenia gradientów kolorów i miękkich przejść kolorów. Zamiast twardej granicy, gdzie spotykają się dwa kolory, przeplatasz klinowate rzędy naprzemiennych kolorów — jeden kolor wchodzi kilka osnów w terytorium drugiego i zawraca, drugi kolor robi to samo. Z odległości dwa kolory optycznie mieszają się w trzeci, pośredni ton.",
+        "Aby ćwiczyć cieniowanie: skonfiguruj małą próbkę z dwoma kolorami. Utkaj trzy rzędy Koloru A na całej szerokości. Następnie, zamiast tkać Kolor B na całej szerokości, utkaj tylko połowę, zawróć i pozwól Kolorowi A kontynuować od miejsca, gdzie Kolor B zawrócił. Naprzemiennie te klinowate rzędy, każdy wchodzący trochę dalej w terytorium drugiego. Odsuń się od swojej pracy okresowo, aby zobaczyć wyłaniające się optyczne mieszanie. W ten sposób tkacze gobelinów osiągają gradienty nieba, odcienie skóry i miękkie przejścia między obszarami pejzażu."
+      ]
+    },
+    "incident": {
+      "title": "Problem soumak — gdy technika spotyka tradycję",
+      "impact": "Znaczenie kulturowe: Tkanie soumak to jedna z najstarszych i ciągłych technik dekoracyjnych tekstyliów — pojawiająca się w niemal identycznej formie zarówno w kaukaskich tradycjach dywanów, jak i prekolumbijskich andyjskich tekstyliach, rozwinięta niezależnie po przeciwnych stronach świata.",
+      "body": [
+        "Jedną z najbardziej uderzających zbieżności w historii tekstyliów jest pojawienie się niemal identycznych technik wątku owijanego (soumak) zarówno w kaukaskich tradycjach dywanów, jak i prekolumbijskim tkaniu andyjskim — dwóch tradycjach, które absolutnie nie miały ze sobą kontaktu. Obie niezależnie odkryły, że owijanie nici wątkowej wokół nici osnowy pod kątem diagonalnym tworzy charakterystyczny uniesiony diagonalny grzbiet na powierzchni — bardziej trójwymiarowy i fakturalny niż płaskie tkanie gobelinowe.",
+        "W kaukaskich dywanach soumak (z regionu współczesnego Azerbejdżanu, Armenii i Gruzji) technika pokrywa całą powierzchnię, tworząc dywany o niezwykłej trwałości i wizualnym bogactwie. W tkaniu andyjskim soumak pojawia się jako technika szczegółów — używana do obramowań, konturów i dekoracyjnych pasów wewnątrz większego pola gobelinowego. To zbieżne odkrycie sugeruje, że soumak nie jest arbitralną techniką, lecz niemal nieuniknionym odkryciem dla każdego tkacza, który zaczyna eksperymentować z tym, co się dzieje, gdy wątek jest owijany zamiast przechodzić."
+      ]
+    },
+    "timeline": [
+      "Technika owijania soumak pojawia się w kaukaskich tekstyliach",
+      "Flamandzcy tkacze doskonalą cieniowanie dla realistycznych gradientów kolorów w dużych gobelinach",
+      "Odrodzenie Arts and Crafts przywraca techniki gobelinowe do praktyki studyjnej",
+      "Ruch sztuki włókienniczej — węzły rya i techniki rzeźbiarskie spopularyzowane w USA i Skandynawii",
+      "Samouczki online sprawiają, że soumak, cieniowanie i rya są dostępne dla początkujących na całym świecie"
+    ],
+    "keyTakeaways": [
+      "Cieniowanie miesza dwa kolory optycznie, przeplatając klinowate rzędy na wspólnej granicy",
+      "Soumak owija nić wątkową wokół nici osnowy diagonalnie — tworzy uniesiony, fakturalny grzbiet",
+      "Pionowe otwory tworzą się tam, gdzie dwa kolory zawracają na tej samej nici osnowy; krótkie otwory są strukturalnie odpowiednie",
+      "Węzły rya są wiązane wokół par nici osnowy, aby tworzyć włos — pętelki lub cięty frędzle",
+      "Każda technika istnieje, aby rozwiązać problem wizualny — najpierw zrozum problem"
+    ]
+  },
+  "tapestry-09": {
+    "tagline": "Projekt nie jest oddzielony od tkania — żyje w każdej decyzji o kolorze, kształcie i linii.",
+    "overview": [
+      "Zanim utkasz jeden rząd, musisz zdecydować, co robisz. Ta faza projektowania to miejsce, gdzie gobelin łączy się najbardziej z innymi sztukami wizualnymi — z malarstwem, rysunkiem, projektowaniem graficznym i fotografią. Proces tworzenia projektu gobelinowego różni się od tych innych sztuk w jeden ważny sposób: musisz myśleć w kategoriach tego, co nić może zrobić. Wysoce szczegółowe fotograficzne obrazy są trudne; śmiałe kształty i wyraźne obszary kolorów to język, którym gobelin mówi najswobodniej.",
+      "Zacznij od małego szkicu — nawet mała, szorstka miniatura ołówkiem pokazuje główne elementy kompozycji. Najpierw myśl o dużych kształtach: jakie są największe obszary kolorów? Jaki jest główny temat i jak duży będzie w stosunku do całości? Gdzie są najciemniejsze i najjaśniejsze obszary? Proste projekty z trzema do pięciu wyraźnymi obszarami kolorów są idealne dla początkujących. Wzory geometryczne — diamenty, pasy, zygzaki — to doskonałe projekty startowe, ponieważ kształty są wyraźne, a obszary kolorów oczywiste.",
+      "Jean Lurçat (1892–1966) był francuskim artystą, który samodzielnie orodził gobelin jako poważną formę sztuki współczesnej w XX wieku. Studiował średniowieczną tradycję gobelinu z Aubusson i poczynił kluczową obserwację: największe historyczne gobeliny działały z ograniczoną paletą — często 20 do 40 kolorów — i używały dużych, śmiałych obszarów projektowania zamiast nadmiernie szczegółowych gobelinów naśladujących malarstwo XIX wieku. Zredukował swoją osobistą paletę do 40 numerowanych kolorów i stworzył system notacji, aby tkacze i projektanci mogli precyzyjnie komunikować. Jego idee przekształciły Aubusson w żywe centrum współczesnego gobelinnictwa."
+    ],
+    "technical": {
+      "title": "Tworzenie twojego pierwszego kartonu gobelinowego",
+      "body": [
+        "Narysuj swój karton w tym samym rozmiarze co planowany gobelin — w skali 1:1. Jeśli twój gobelin będzie miał 20 × 25 cm, narysuj karton na kartce papieru 20 × 25 cm. Używaj śmiałych linii i wyraźnych obszarów kolorów. Możesz używać akwareli, markera, kredki lub po prostu obrysowanych obszarów oznaczonych nazwami kolorów. Karton nie musi być skończonym obrazem — jest przewodnikiem roboczym, nie dziełem sztuki samym w sobie.",
+        "Przenieś główne linie kartonu na nici osnowy markerem. Umieść karton za lub pod osnową (dla krosna ramowego możesz go przykleić za osnową, aby widzieć go przez nici). Zaznacz główne granice — gdzie kończy się jeden obszar koloru i zaczyna drugi — bezpośrednio na niciach osnowy cienkim, wodoodpornym markerem. Linie te prowadzą twoje tkanie, ale są ukryte przez wątek podczas pracy. Początkujący pomijający ten krok często odkrywają, że ich kształty przesuwają się w nieoczekiwanych kierunkach."
+      ]
+    },
+    "incident": {
+      "title": "Jean Lurçat i odrodzenie Aubusson",
+      "impact": "Znaczenie kulturowe: Lurçat przekonał francuskich tkaczy i artystów do porzucenia służalczego naśladowania obrazów i powrotu do śmiałego, symbolicznego języka średniowiecznego gobelinu — tworząc nową złotą erę sztuki gobelinowej.",
+      "body": [
+        "W 1939 roku malarz Jean Lurçat odwiedził Aubusson — francuskie miasto gobelinów, które tkało nieprzerwanie od XVI wieku, ale utraciło swój artystyczny kierunek. Gobeliny Aubusson z XIX wieku próbowały dokładnie reprodukować obrazy olejne, kompletnie z airbrushowanymi gradacjami tonalnymi, perspektywą i fotograficznym detalem. Były technicznie imponujące i artystycznie martwe. Lurçat był przerażony.",
+        "Powrócił do modelu średniowiecznych gobelinów w Musée de Cluny w Paryżu — śmiałe, płaskie kolory, mocne kontury, symboliczne obrazy, ograniczona paleta. Stworzył numerowany system kolorów (40 kolorów, każdy z numerem), opracował nowe podejście do projektowania używające dużych, pewnych kształtów i zaczął projektować gobeliny dla tkaczy z Aubusson. Jego najsłynniejsze dzieło, 'Le Chant du Monde' (Pieśń Świata), to monumentalna seria 79 metrów znajdująca się teraz w Le Mans. Wpływ Lurçata przekształcił gobelin z naśladowania malarstwa z powrotem w jego własną formę sztuki."
+      ]
+    },
+    "timeline": [
+      "Kartoniarze flamandzkich warsztatów rozwijają profesjonalne tłumaczenie wzoru na tkanie",
+      "Rafael tworzy monumentalną serię kartonów dla Brukseli — malarstwo i tkanie oddzielone",
+      "William Morris samodzielnie projektuje kartony gobelinowe, kontrolując pełną wizję artystyczną",
+      "Jean Lurçat rozpoczyna odrodzenie Aubusson — odrzuca naśladowanie malarstwa, wraca do śmiałego języka gobelinu",
+      "Ruch sztuki włókienniczej — artyści projektują i tkają własne prace, bez oddzielnego kartoniarza",
+      "Cyfrowe narzędzia projektowe — tkacze projektują kartony w Photoshop, Procreate i Canva"
+    ],
+    "keyTakeaways": [
+      "Narysuj karton w skali 1:1 — w tym samym rozmiarze co skończony gobelin",
+      "Śmiałe kształty i wyraźne obszary kolorów (3–5 kolorów) są idealne dla początkujących",
+      "Przenieś główne linie graniczne na nici osnowy cienkim, wodoodpornym markerem",
+      "Wzory geometryczne i poziomo-strefowe (pejzaż, abstrakcja) to najłatwiejsze punkty startowe",
+      "Jean Lurçat pokazał, że siłą gobelinu jest śmiała prostota, a nie naśladowana fotografia"
+    ]
+  },
+  "tapestry-10": {
+    "tagline": "Odsuń się od swojego gobelinu. To, co wyglądało jak dwa oddzielne kolory, staje się jednym harmonijnym tonem z drugiego końca pokoju.",
+    "overview": [
+      "Jedną z najbardziej magicznych właściwości gobelinu jest optyczne mieszanie kolorów — sposób, w jaki oddzielne nici różnych kolorów, widziane z pewnej odległości, zlewają się w oku, tworząc nowe kolory i tony. To ten sam fenomen, który odkryli malarze impresjoniści w latach 80. XIX wieku: puentylizm Georgesa Seurata umieszczał czyste punkty kolorów obok siebie, wiedząc, że oko je połączy. W gobelinie nici wątkowe są punktami, a 'mieszanie' zachodzi automatycznie z odległością.",
+      "Optyczne mieszanie w gobelinie działa na trzy główne sposoby: (1) Nić mieszana — dwa różne kolory skręcone razem lub trzymane razem w igle, tak aby wchodziły w wątek obok siebie. (2) Cieniowanie — naprzemienne rzędy lub kliny różnych kolorów mieszających się z odległości. (3) Podejście 'bouclé' lub fakturalny — nici różnych kolorów w sąsiednich rzędach tworzą nakrapianą, mieszaną powierzchnię. Wszystkie trzy podejścia dają różne wizualne faktury i są odpowiednie dla różnych części projektu.",
+      "Kontekst zmienia kolor. Nić ciepłego szarego wydaje się brązowa, gdy jest otoczona zimnymi niebieskimi, i wydaje się lawendowa, gdy jest otoczona ciepłymi żółciami. Dzieje się tak, ponieważ oko kompensuje otaczający kolor — 'widzi' względny kontrast, a nie bezwzględne wartości kolorów. Josef Albers spędził dekady badając ten fenomen w swojej serii obrazów 'Hołd dla kwadratu'. Tkacze gobelinów muszą testować swoje kolory w kontekście — nić, która wygląda idealnie w motku, może wyglądać zupełnie inaczej otoczona innymi kolorami pracy."
+    ],
+    "technical": {
+      "title": "Mieszanie nici w igle",
+      "body": [
+        "Najprostszym sposobem stworzenia mieszanego koloru jest przewleczenie dwóch (lub więcej) pasm różnych nici przez igłę gobelinową i tkanie ich jako jednej jednostki. Jedno pasmo czerwonego i jedno pasmo żółtego tkane razem tworzą optyczny pomarańcz — nie tak żywy jak czysto pomarańczowa nić, ale cieplejszy i wyglądający bardziej złożenie, z lekką teksturalną zmiennością, gdzie dwa kolory się splatają.",
+        "Wypróbuj to ćwiczenie kolorystyczne: utkaj małą próbkę z czterema kombinacjami mieszanych igieł. Po pierwsze: jedno pasmo czerwone + jedno pasmo żółte (wynik: ciepły pomarańcz). Po drugie: jedno pasmo niebieskie + jedno pasmo żółte (wynik: szałwiowy zielony). Po trzecie: jedno pasmo białe + jedno pasmo czerwone (wynik: różowy). Po czwarte: jedno pasmo czarne + dowolny jasny kolor (wynik: ciemna, przygaszona wersja tego koloru). Każde połączenie ma inny charakter niż jednokolorowa nić tego samego ogólnego odcienia — bardziej złożone, bardziej naturalne, bliższe temu, jak kolor pojawia się w prawdziwym świecie."
+      ]
+    },
+    "incident": {
+      "title": "Josef Albers — kolor nas okłamuje",
+      "impact": "Znaczenie kulturowe: Seria 'Hołd dla kwadratu' Josefa Albersa (ponad 1000 obrazów) wykazała, że kolor jest fundamentalnie względny — ten sam kolor wygląda zupełnie inaczej zależnie od kontekstu. Jego książka 'Interakcja kolorów' przekształciła edukację artystyczną.",
+      "body": [
+        "Josef Albers przybył na Uniwersytet Yale w 1950 roku po nauczaniu w Bauhaus (gdzie poznał i poślubił Anni Albers, artystkę gobelinową). Rozpoczął systematyczną, trwającą dekady eksplorację tego, jak kolory na siebie oddziałują — i jak konsekwentnie oko może być zmylone. W swojej serii 'Hołd dla kwadratu' zagnieżdżał kolorowe kwadraty jeden w drugim i wykazywał, obraz po obrazie, że dokładnie ten sam kwadrat kolorowy wygląda zupełnie inaczej zależnie od otaczających go kolorów.",
+        "Najbardziej znana demonstracja Albersa: weź kwadrat średnio szarego. Umieść go na białym tle — wygląda ciemnoszaro. Umieść ten sam szary kwadrat na czarnym tle — wygląda jasnoszaro. Kwadrat się nie zmienił; zmieniło się tylko otoczenie. Ta zasada to nie ciekawostka — jest fundamentalna dla tego, jak naprawdę działa gobelin (i cała sztuka wizualna) w prawdziwym świecie. Planując gobelin, zawsze otaczaj testowy kolor kolorami, które faktycznie pojawią się obok niego. Motek nici mówi ci niemal nic o tym, co kolor zrobi w kontekście."
+      ]
+    },
+    "timeline": [
+      "Chevreul odkrywa jednoczesny kontrast — sąsiadujące kolory wpływają na wzajemny wygląd",
+      "Seurat wystawia 'Niedzielne popołudnie' — puentylizm czyni optyczne mieszanie świadomą techniką artystyczną",
+      "Josef Albers zaczyna uczyć teorii kolorów w Bauhaus",
+      "Albers publikuje 'Interakcję kolorów' — niezbędna lektura dla każdego artysty pracującego z kolorem",
+      "Rebecca Mezoff i inni artyści gobelinowi systematyzują podejścia do optycznego mieszania dla tkaczy"
+    ],
+    "keyTakeaways": [
+      "Mieszanie optyczne: oddzielne nici różnych kolorów mieszają się w oku z odległości",
+      "Trzy metody: mieszana igła (dwa pasma), cieniowanie (naprzemienne rzędy), sąsiadujące obszary kolorów",
+      "Kolor jest względny, nie bezwzględny — otaczające kolory zmieniają wygląd każdego koloru",
+      "Testuj swoje kolory nici otoczone innymi nićmi, których użyjesz — motek zwodzi",
+      "Josef Albers dowiódł: ten sam kolor wygląda zupełnie inaczej zależnie od kontekstu"
+    ]
+  },
+  "tapestry-11": {
+    "tagline": "Gobelinnictwo to nie relikt. To żywa forma sztuki uprawiana przez tysiące artystów na całym świecie, właśnie teraz, dzisiaj.",
+    "overview": [
+      "Tkanie gobelinów jest uprawiane dziś szerzej niż w jakimkolwiek momencie ostatniego stulecia. Internet połączył tkaczy z całego świata we wspólnoty praktyki; samouczki online (YouTube, Instagram, TikTok) uczyniły podstawowe techniki dostępnymi dla zupełnych początkujących; a nowe pokolenie artystów włókienniczych wprowadziło gobelin do świata sztuki współczesnej, gdzie jest reprezentowany w ważnych galeriach i muzeach obok malarstwa i rzeźby.",
+      "Współcześni artyści gobelinowi pracują w szerokiej gamie stylów i podejść. Niektórzy, jak szkocki tkacz Archie Brennan (1931–2019), utrzymywali bliskie połączenie z tradycyjną techniką wysokobelkową Gobelin, eksplorując głęboko współczesne tematy. Inni, jak amerykańska artystka Rebecca Mezoff, uczynili z instrukcji gobelinowej swoją pracę życia, pisząc i nauczając z rygoryzmem i hojnością, które przekształciły sposób, w jaki ludzie uczą się tkać. Jeszcze inni używają gobelinu jako surowego materiału do sztuki instalacyjnej, rzeźby i praktyki społecznej.",
+      "Materiały współczesnego gobelinnictwa są również bardziej różnorodne niż kiedykolwiek. Tradycyjna wełna i jedwab pozostają centralne, ale tkacze włączają teraz bawełnę, len, materiały z recyklingu, drut, papierową nić, bambus, a nawet znalezione przedmioty. Niektórzy pracują na ogromną skalę (instalacje wypełniające ściany); inni pracują w miniaturze (małe gobeliny o kilka centymetrów szerokości). Wspólnym elementem jest zawsze struktura osnowy i wątku — nad-pod, nić po nici — łącząca każdego współczesnego tkacza bezpośrednio z tymi egipskimi rzemieślnikami z 1400 p.n.e."
+    ],
+    "technical": {
+      "title": "Znajdowanie swojej społeczności i materiałów",
+      "body": [
+        "Najlepsza rzecz, jaką może zrobić początkujący tkacz gobelinowy po nauczeniu się podstaw, to znalezienie swojej społeczności. Gildie istnieją w większości miast — szukaj lokalnej 'Handweavers Guild' lub 'Fiber Arts Guild'. Wiele gildii oferuje warsztaty dla początkujących, grupowe tkanie i dostęp do sprzętu, który możesz wypróbować przed zakupem. Online, American Tapestry Alliance (americantapestryalliance.org) prowadzi katalog zasobów, wystaw i czasopismo o praktyce gobelinowej.",
+        "Co do materiałów, zacznij od tego, co jest dostępne i niedrogie: miękki sznurek bawełniany do osnowy (nić szydełkowa lub sznurek bawełniany do sieci rybackich) i 100% wełniana nić do wątku w odpowiedniej wadze do twojego krosna. Wielu tkaczy używa bawełnianej osnowy dywanowej 8/4 (dostępnej w sklepach z nićmi i dostawcach online jak Halcyon Yarn, Yarn Barn of Kansas lub Webs). Dobre opcje wełnianego wątku obejmują wełnę Harrisville Designs, Bartlettyarns i Malabrigo. W miarę zdobywania doświadczenia rozwiniesz mocne opinie na temat preferowanych materiałów. To jedna z przyjemności rzemiosła."
+      ]
+    },
+    "incident": {
+      "title": "Archie Brennan — gobelin jako sztuka współczesna",
+      "impact": "Znaczenie kulturowe: Brennan, wyszkolony w tradycyjnym studiu gobelinowym Edinburgh College of Art, stał się jednym z najbardziej wpływowych głosów za gobelinem jako sztuką plastyczną — kwestionując założenie, że gobelin to jedynie rzemiosło dekoracyjne.",
+      "body": [
+        "Archie Brennan wyszkolił się w tradycyjnej technice wysokobelkowej gobelinu w Edinburgh College of Art, ale jego tematyka była całkowicie współczesna — baseball, telewizja, reklama, kultura pop, obrazy polityczne — tkane w 600-letnią technikę. Namiętnie argumentował, że gobelin to w pełni zrealizowane medium sztuki plastycznej, a nie rzemiosło, oraz że rozróżnienie między 'sztuką plastyczną' a 'rzemiosłem' to niedawny i szkodliwy wynalazek.",
+        "Brennan przeniósł się do Stanów Zjednoczonych w latach 90. i przez wiele lat nauczał, wpływając na pokolenie amerykańskich artystów gobelinowych. Był też niezwykle hojnym nauczycielem — jego obecność online przed śmiercią w 2019 roku sprawiała, że złożone informacje techniczne były swobodnie dostępne dla tkaczy na całym świecie. Wierzył, że demokratyzacja wiedzy gobelinowej to jedna z najważniejszych rzeczy, jakie mogą spotkać tę formę sztuki, i przez całe swoje zawodowe życie pracował na rzecz tego celu."
+      ]
+    },
+    "timeline": [
+      "Lausanne International Tapestry Biennial — gobelin wchodzi do świata sztuki plastycznej",
+      "American Tapestry Alliance założona — profesjonalna organizacja dla artystów gobelinowych",
+      "Fora internetowe łączą tkaczy gobelinów globalnie — wymiana wiedzy ulega transformacji",
+      "Samouczki gobelinowe na YouTube proliferują — dostęp dla początkujących ulega całkowitej transformacji",
+      "Społeczności włókiennicze w mediach społecznościowych — Instagram, TikTok wprowadzają gobelin do nowej publiczności",
+      "Gobelin tkany przez tysiące na całym świecie; reprezentowany w ważnych galeriach sztuki współczesnej"
+    ],
+    "keyTakeaways": [
+      "Gobelin jest uprawiany szerzej dziś niż w jakimkolwiek momencie ostatniego stulecia",
+      "Społeczności online i samouczki uczyniły naukę dostępną dla zupełnych początkujących",
+      "Współcześni artyści używają tradycyjnej techniki z współczesnymi materiałami i tematami",
+      "Gildie, American Tapestry Alliance i społeczności online to twoje najlepsze zasoby",
+      "Najlepsza osnowa dla początkujących: bawełniana osnowa dywanowa 8/4. Najlepszy wątek dla początkujących: 100% wełna, waga czesankowa"
+    ]
+  },
+  "tapestry-12": {
+    "tagline": "Najpiękniejszy gobelin, jaki kiedykolwiek utkasz, to ten następny. Drugi najpiękniejszy to ten, który tkasz teraz.",
+    "overview": [
+      "Wszystko, czego nauczyłeś się w tym kursie, łączy się w akcie tkania twojego pierwszego gobelinu. Rozumiesz osnowę i wątek. Wiesz, jak czytać karton i przenosić go na krosno. Możesz mieszać kolory optycznie, zmieniać kolory czysto i zarządzać prostymi złączeniami. Znasz cieniowanie do gradientów i soumak do faktury. Masz całą wiedzę, której potrzebujesz. Jedyne, czego brakuje, to zacząć.",
+      "Dla twojego pierwszego gobelinu zachowaj go pięknie prosto: praca o około 15 × 20 cm (6 × 8 cali), trzy do pięciu kolorów, wyraźny poziomy projekt — prosty pejzaż, abstrakcyjny wzór geometryczny lub nawet po prostu piękne pasy kolorów w tonach, które kochasz. Celem pierwszej pracy nie jest stworzenie arcydzieła. Celem jest jej ukończenie, poczucie faktury gotowej tkaniny, zrozumienie, jak osnowa i wątek oddziałują w praktyce, a nie w teorii, i doświadczenie spokojnej, absorbującej przyjemności budowania obrazu nić po nici.",
+      "Gobelin to jedno z najstarszych i najbardziej medytacyjnych rzemiosł. Powtarzalny ruch przepychania wątku przez przesmyk, zawracania i ubijania w dół jest naprawdę kojący — wielu tkaczy opisuje go jako podobny do medytacji lub robienia na drutach ze względu na zdolność do uspokajania umysłu. Powolne gromadzenie rzędów stopniowo odsłaniających obraz ma swoją szczególną radość, inną od natychmiastowych efektów malarstwa lub rysunku. Miej cierpliwość do siebie. Pierwszy gobelin każdego doświadczonego tkacza miał nierówne napięcie, błądzące krawędzie i co najmniej jedną zmianę koloru, która nie wyszła zgodnie z planem. Tak zawsze zaczyna."
+    ],
+    "technical": {
+      "title": "Twój pierwszy gobelin: krok po kroku",
+      "body": [
+        "Krok 1: Wybierz prosty projekt — trzy poziome strefy kolorów działają pięknie. Narysuj karton w rzeczywistym rozmiarze i zaznacz linie graniczne na niciach osnowy cienkim markerem. Krok 2: Zacznij tkać od dołu kilkoma rzędami prostego wątku w kolorze tła — stabilizuje to osnowę i daje czystą dolną krawędź. Krok 3: Pracuj od dołu do góry, zmieniając kolory zgodnie z wymaganiami projektu. Mocno ubijaj każdy rząd, aby nici osnowy nie wyglądały. Krok 4: Gdy dojdziesz do góry, zostaw kilka dodatkowych rzędów ostatniego koloru i zabezpiecz ostatni rząd węzłem głowy skowronka lub wplatając ogon przez ukończone rzędy.",
+        "Krok 5: Zdejmij gobelin z krosna. Ostrożnie ześlizgnij pętelki osnowy z kołków (lub je odetnij, jeśli nie ma innej opcji). Zawiąż końcówki osnowy parami węzłami ponad tkaniną. Przytnij lub wetkij ogony wątku na tylną stronę gobelinu igłą gobelinową. Krok 6: Mokro wykończ gobelin. Napełnij pojemnik chłodną wodą, delikatnie zanurz gobelin, delikatnie ściśnij (nigdy nie wykręcaj) i odciśnij nadmiar wody w ręcznik. Pozostaw do wyschnięcia na płasko. Ten ostatni krok otwiera włókna wełny, wyrównuje tkaninę i przekształca gobelin ze 'tkanego obiektu' w coś, co wygląda i czuje się jak skończone."
+      ]
+    },
+    "incident": {
+      "title": "Gobeliny Medyceuszy — wykończenie jako transformacja",
+      "impact": "Znaczenie kulturowe: Kolekcja gobelinów rodziny Medici — w tym prace tkane w Brukseli — wykazała, jak mokre wykończenie przekształciło świeżo utkaną tkaninę z luźnego materiału w spójny i trwały tekstyl. Tradycja kontynuuje się dziś bez zmian.",
+      "body": [
+        "Mokre wykończenie — zanurzenie skończonego gobelinu w chłodnej wodzie, aby rozluźnić włókna — jest częścią praktyki gobelinowej od czasu, gdy wełna była tkana. Wielkie flamandzkie warsztaty XIV–XVI wieku regularnie mokro wykańczały swoje gobeliny przed dostarczeniem klientom, a inventarze Medyceuszy odnotowują, które prace zostały 'zmoczone i naprężone'. Proces nie zmienił się przez 600 lat: chłodna woda, delikatny ucisk, suszenie na płasko.",
+        "Co mokre wykończenie robi mechanicznie: włókna wełny mają mikroskopijne łuski. Na krośnie łuski te są spłaszczane przez proces tkania, pozostawiając tkaninę lekko sztywną i nierówną. W chłodnej wodzie łuski rozluźniają się i lekko rozkwitają, zamykając się na sąsiednich włóknach i tworząc bardziej spójną i jednolitą powierzchnię. Gobelin często nieznacznie urośnie — praca, która miała 20 × 25 cm na krośnie, może skończyć się jako 21 × 26 cm — i zawsze wygląda bardziej skończona, bardziej żywa i bardziej osiadła po kąpieli mokrego wykończenia. Nigdy nie pomijaj tego kroku."
+      ]
+    },
+    "timeline": [
+      "Egipscy tkacze produkują pierwsze znane gobeliny w lnie",
+      "Flamandzkie warsztaty doskonalą mokre wykończenie jako standardową praktykę",
+      "William Morris mokro wykańcza swoje naturalnie barwione gobeliny w Merton Abbey",
+      "Odrodzenie sztuki włókienniczej — tysiące nowych tkaczy tka swoje pierwsze gobeliny",
+      "Ty — zaczynając swój pierwszy gobelin, połączony z 3500 latami tradycji"
+    ],
+    "keyTakeaways": [
+      "Zachowaj swój pierwszy gobelin prosto: mały rozmiar, 3–5 kolorów, wyraźny poziomy projekt",
+      "Zacznij od kilku rzędów prostego tkania od dołu, aby ustabilizować i wyrównać osnowę",
+      "Mocno ubijaj każdy rząd, aby osnowa była niewidoczna — ubity wątek to cecha definiująca gobelin",
+      "Zawsze mokro wykańczaj: chłodna woda, delikatny ucisk, suszenie na płasko — transformuje skończoną pracę",
+      "Celem twojego pierwszego gobelinu jest jego ukończenie i doświadczenie rzemiosła — nie stworzenie arcydzieła"
+    ]
+  },
+  "nails-01": {
+    "tagline": "Każdy nieskazitelny manicure zaczyna się na długo przed pierwszą kroplą lakieru.",
+    "overview": [
+      "Paznokieć to nie tylko twarda powierzchnia do malowania — to żywa struktura zbudowana z keratyny, tego samego białka, które tworzy włosy. Płytka paznokcia (twarda część, którą widzisz i malujesz) spoczywa na łożu paznokcia (różowawy tkanka poniżej). Wolny brzeg to część wystająca poza opuszek palca. Lunula to jasny półksiężyc u podstawy, zaznaczający, gdzie formuje się płytka paznokcia. Skórka to cienka warstwa martwej skóry migrująca z proksymalnego wału paznokciowego na płytkę paznokcia — i jest jedną z pierwszych rzeczy, którymi uczy się zarządzać profesjonalna techniczka paznokci.",
+      "Przygotowanie nie jest opcjonalne — to cały fundament trwałego manicure. Nawet najdroższy lakier będzie się odklejał, odpryskiwał lub tworzył bąbelki w ciągu dni, jeśli paznokieć nie jest prawidłowo przygotowany. Płytka paznokcia jest naturalnie pokryta olejami i wilgocią, oba uniemożliwiają przyleganie lakieru. Przed nałożeniem jakiegokolwiek produktu te oleje muszą być usunięte, powierzchnia musi być lekko ukształtowana, a paznokieć prawidłowo uformowany.",
+      "Prawidłowa sekwencja przygotowania to: usunięcie starego lakieru → przycinanie i kształtowanie → odsunięcie i usunięcie skórki → lekkie polerowanie płytki paznokcia → czyszczenie chusteczką do przygotowania → nałożenie odwadniacza → nałożenie podkładu (opcjonalne, ale zalecane) → nałożenie produktu. Pomijanie lub odwracanie kroków tworzy problemy, których żadna ilość błyszczącego wykończenia nie może rozwiązać."
+    ],
+    "technical": {
+      "title": "Szybkie odniesienie do anatomii paznokcia",
+      "body": [
+        "Paznokieć rośnie z macierzy — tkanki ukrytej pod proksymalnym wałem paznokciowym. Cokolwiek uszkadza macierz (agresywne frezowanie, głębokie nacięcia blisko podstawy) może trwale zmienić wzrost paznokcia. Dlatego techniczki paznokci pracują ostrożnie wokół podstawy każdego paznokcia.",
+        "Skórka i oponichium to różne rzeczy. Skórka to martwa tkanka, która migrowała na płytkę paznokcia i musi być usunięta. Oponichium to żywa skóra u podstawy paznokcia — nigdy nie należy jej ciąć, tylko delikatnie odsuwać. Cięcie żywej skóry tworzy mikrourazy, które zapraszają infekcję i stanowią ryzyko w profesjonalnym środowisku."
+      ]
+    },
+    "incident": {
+      "title": "Jak jeden krok przygotowania zmienił branżę paznokci",
+      "impact": "Dodanie kroku odwadniania przed nałożeniem produktu poprawiło trwałość usługi o ponad 60% w niezależnych testach salonowych.",
+      "body": [
+        "Pod koniec lat 90., gdy usługi żelowe i akrylowe eksplodowały w popularności, salony zmagały się z powszechnym odklejaniem i pękaniem. Problem nie tkwił w produkcie — tkwił w przygotowaniu. CND (Creative Nail Design) wykazało, że naturalna zawartość oleju płytki paznokcia była najważniejszym predyktorem niepowodzenia produktu. Dodanie dedykowanego kroku odwadniania przed nałożeniem produktu przekształciło wyniki salonowe.",
+        "Ta wiedza trwale zmieniła edukację paznokci. Firmy produktowe zaczęły dołączać odwadniacze i podkłady do zestawów startowych. Dziś pomijanie przygotowania jest uważane za nieprofesjonalne — ale powód jest zakorzeniony w prawdziwej nauce, którą branża poznała przez tysiące nieudanych manicure."
+      ]
+    },
+    "timeline": [
+      "Uruchomiony pierwszy komercyjny lakier do paznokci",
+      "Systemy paznokci akrylowych wprowadzone w profesjonalnych salonach",
+      "Systemy lakierów do paznokci ze światłem UV zaczynają wchodzić do amerykańskich salonów",
+      "Badania odwadniające CND przekształcają standardy przygotowania w całej branży",
+      "Usuwalny żelowy lakier do paznokci przewyższa tradycyjny lakier pod względem przychodów salonowych",
+      "Systemy BIAB i żelu budującego odnawiają skupienie na pełnym przygotowaniu paznokci"
+    ],
+    "keyTakeaways": [
+      "Skórka to martwa skóra na płytce paznokcia — oponichium to żywa skóra i nie należy jej ciąć",
+      "Przygotowanie nie jest opcjonalne — to najważniejszy czynnik trwałości lakieru",
+      "Zawsze całkowicie usuwaj stary lakier przed rozpoczęciem jakiegokolwiek kroku przygotowania",
+      "Macierz paznokcia produkuje wzrost paznokcia — chroń ją, nigdy nie frezując ani nie tnąc agresywnie blisko podstawy"
+    ]
+  },
+  "nails-02": {
+    "tagline": "Woda to wróg przylegania. Twoje paznokcie pęcznieją, gdy są mokre — i kurczą się, gdy schną, zabierając lakier ze sobą.",
+    "overview": [
+      "Przez dziesięciolecia tradycyjny manicure zaczynał się od miski z wodą — zanurzałaś dłonie w ciepłej, mydlanej wodzie, aby zmiękczyć skórki. Czuło się luksusowo i ułatwiało pracę ze skórkami. Problem: paznokcie są porowate. Pochłaniają wodę i pęcznieją. Gdy paznokieć schnie po moczeniu, kurczy się — a cokolwiek przyklejono do powierzchni (base coat, żel, akryl) jest narażone na ten stres kurczenia, powodując oddzielenie od płytki paznokcia.",
+      "Zasada bez wody, promowana przez chemików produktów i edukatorów paznokci od początku lat 2000, po prostu stanowi: nie mocz paznokci przed nałożeniem jakiegokolwiek produktu. Zamiast tego wykonuj całą pracę ze skórkami na sucho lub z żelowym preparatem do usuwania skórek. Powierzchnia paznokcia pozostaje wymiarowo stabilna, odwadniacz działa na paznokieć, który nie wchłonął wilgoci, i produkt prawidłowo się wiąże.",
+      "Nie oznacza to, że manicure jest mniej higieniczny lub wygodny. Odpowiednio zmiękczający żelowy preparat do usuwania skórek rozpuszcza martwą tkankę tak skutecznie jak moczenie — często lepiej. Wiele salonów z wyższej półki całkowicie wyeliminowało miseczki na palce. Wynikiem jest manicure trwający o kilka dni dłużej bez redukcji jakości."
+    ],
+    "technical": {
+      "title": "Nauka nawilżania paznokci",
+      "body": [
+        "Paznokcie składają się ze spłaszczonych zrogowaciałych martwych komórek. Jak gąbka, płytka paznokcia wchłania wodę — pęczniejąc o mierzalną ilość, gdy jest mokra. Kluczowy problem: lakier, base coat, żel i akryl są zaprojektowane do wiązania z paznokciem przy określonym poziomie wilgotności. Gdy paznokieć następnie odwadnia się i wraca do swojego rozmiaru spoczynkowego, stres przerywa molekularne wiązanie na granicy.",
+        "Cykl rozszerzania/kurczenia jest bardziej dramatyczny przy długotrwałym moczeniu (5+ minut). Nawet 2–3 minuty w wodzie powodują wystarczające nawodnienie, aby wpłynąć na przyleganie. Dlatego paznokcie zrobione po prysznicu lub kąpieli często odklejają się w ciągu dni — paznokieć był już nawodniony, gdy nakładano produkt."
+      ]
+    },
+    "incident": {
+      "title": "Gdy luksusowe spa hotelowe odkryło zasadę bez wody",
+      "impact": "Spa, które wyeliminowały moczenie w miseczkach na palce, odnotowały, że skargi klientów na odklejanie się zmniejszyły o ponad 50% w pierwszym roku.",
+      "body": [
+        "W 2008 roku kilka luksusowych spa hotelowych zaczęło konsultować się z chemikami produktów paznokciowych w sprawie przewlekłych skarg klientów — żelowe manicure odklejały się w ciągu 3–4 dni pomimo produktów i technik najwyższej klasy. Dochodzenie wskazało na wspólną zmienną: wszystkie spa nadal używały długotrwałego moczenia w miseczkach na palce jako części swojego charakterystycznego 'luksusowego doświadczenia'.",
+        "Spa były sceptyczne, że wyeliminowanie kroku, który klienci kochali, poprawi wyniki. Ale po okresie próbnym, w którym techniczki przeszły na suche przygotowanie skórek, skargi na odklejanie drastycznie spadły. Dziś większość profesjonalnych edukatorów paznokci naucza zasady bez wody jako fundamentalnej zasady."
+      ]
+    },
+    "timeline": [
+      "Moczenie w miseczkach na palce staje się standardem w amerykańskich manicure",
+      "Systemy żelowe do paznokci przybywają — odklejanie staje się ważną skargą branżową",
+      "Chemicy paznokci zaczynają publikować badania dotyczące nawodnienia i awarii przylegania",
+      "Zasada bez wody wchodzi do programów profesjonalnej edukacji paznokci",
+      "Boom usuwalnego żelowego lakieru sprawia, że zasada bez wody staje się dominująca",
+      "Większość profesjonalnych programów szkoleniowych z żelem i BIAB zakazuje moczenia w miseczkach na palce"
+    ],
+    "keyTakeaways": [
+      "Woda powoduje pęcznienie paznokci — gdy schną i kurczą się, każdy przyczepiony do nich produkt odklejają się",
+      "Wyeliminuj miseczkę na palce; zamiast tego użyj żelowego preparatu do usuwania skórek, aby zmiękczyć skórki",
+      "Nawet prysznic przed manicure może powodować przedwczesne odklejanie — nawodnione paznokcie są mniej podatne na produkt",
+      "Zasada bez wody dotyczy równo żelu, akrylu, BIAB i tradycyjnego lakieru"
+    ]
+  },
+  "nails-03": {
+    "tagline": "Nie możesz przykleić do tłustej powierzchni. Odwadnianie usuwa to, czego oko nie może zobaczyć.",
+    "overview": [
+      "Po tym, jak paznokieć został uformowany, skórki zarządzone i powierzchnia lekko wypolerowana, nadal istnieje krytyczna przeszkoda dla przylegania: niewidoczne oleje. Płytka paznokcia nieustannie wydziela oleje podobne do łoju z łoża paznokcia poniżej. Nawet po polerowaniu oleje te pokrywają powierzchnię płytki paznokcia na poziomie molekularnym. Odwadniacz usuwa te oleje przez ich odparowanie wraz z wszelką wilgocią powierzchniową, pozostawiając czystą, wolną od oleju powierzchnię paznokcia.",
+      "Podkład to oddzielny produkt, nie to samo co odwadniacz. Podczas gdy odwadniacz usuwa to, co jest obecne (oleje, wilgoć), podkład dodaje coś do paznokcia: albo podkład na bazie kwasu, który mikroskopijnie wytrawia płytkę paznokcia dla mechanicznego przylegania, albo podkład wolny od kwasu, który tworzy molekularny most między płytką paznokcia a warstwą produktu. Podkłady są najczęściej stosowane z systemami twardego żelu, akrylu i żelu budującego.",
+      "Wiedza, kiedy używać każdego produktu: odwadniacz jest używany przy każdej usłudze, zawsze. Podkład jest używany przy pracy z systemami wzmocnienia (akryl, twardy żel, żel budujący, BIAB) — rzadko jest potrzebny do tradycyjnego lakieru lub żelu namaczanego, choć niektóre techniczki używają podkładu wolnego od kwasu u klientek podatnych na odklejanie."
+    ],
+    "technical": {
+      "title": "Odwadniacz vs. podkład: co robi każdy z nich",
+      "body": [
+        "Odwadniacze działają poprzez rozpuszczanie i odparowanie olejów i wilgoci powierzchniowej z płytki paznokcia. Większość używa alkoholu izopropylowego lub podobnego rozpuszczalnika. Po nałożeniu paznokieć powinien wyglądać lekko matowo — ten matowy wygląd to powierzchnia wolna od oleju i wilgoci, którą chcesz osiągnąć. Nałóż odwadniacz i pozwól mu całkowicie odparować przed dotknięciem paznokcia.",
+        "Podkłady na bazie kwasu (takie jak podkład z kwasem metakrylowym, używany historycznie w systemach akrylowych) chemicznie wytrawia powierzchnię paznokcia, tworząc mikropory dla mechanicznego zakotwiczenia. Są bardzo skuteczne, ale agresywne — mogą parzyć skórę i nigdy nie powinny dotykać skórki. Podkłady wolne od kwasu działają przez chemię przylegania molekularnego — łagodniejsze i bezpieczniejsze, odpowiednie dla większości nowoczesnych systemów żelowych i żelu budującego."
+      ]
+    },
+    "incident": {
+      "title": "Epidemia odklejania akrylu, która doprowadziła do nauki o podkładach",
+      "impact": "Branżowe podsumowanie dotyczące chemii produktów doprowadziło do opracowania nowoczesnej nauki o podkładach i kategorii podkładów wolnych od kwasu.",
+      "body": [
+        "Podczas boomu akrylowego w latach 80. odklejanie było epidemiczne. Wielu techniczek obwiniało się nawzajem — 'zły monomer', 'klientka ma tłuste paznokcie', 'nieprawidłowe proporcje'. Ale chemicy produktów, którzy badali sprawę, niemal powszechnie znajdowali tę samą przyczynę podstawową: nieodpowiednie przygotowanie i nieużywanie podkładu. Podkłady z kwasem metakrylowym były dostępne od lat 70., ale nie były powszechnie używane.",
+        "Problem z podkładami z kwasem metakrylowym: były agresywne, mogły powodować oparzenia chemiczne przy nadmiernym nakładaniu i były źle rozumiane przez pracowników salonów. To napędziło opracowanie formuł podkładów wolnych od kwasu w latach 90. — produktów osiągających to samo molekularne przyleganie bez kwasu. Dziś podkłady wolne od kwasu są standardem dla nowoczesnych systemów wzmocnienia."
+      ]
+    },
+    "timeline": [
+      "Podkład z kwasem metakrylowym wprowadzony dla systemów akrylowych paznokci",
+      "Boom akrylowy — skargi na odklejanie stają się problemem całej branży",
+      "Opracowane pierwsze formuły podkładów wolnych od kwasu dla bezpieczniejszego stosowania",
+      "Edukacja o przygotowaniu paznokci staje się wymaganym modułem w licencji kosmetycznej",
+      "Systemy żelu budującego i BIAB tworzą nowe zapotrzebowanie na edukację o przyleganiu",
+      "Nauka o przygotowaniu paznokci jest zintegrowana we wszystkich programach edukacyjnych głównych marek"
+    ],
+    "keyTakeaways": [
+      "Odwadniacz usuwa oleje i wilgoć; podkład tworzy most przylegania — robią różne rzeczy",
+      "Zawsze nakładaj odwadniacz przy każdej usłudze; podkład jest używany głównie z systemami wzmocnienia",
+      "Nigdy nie dotykaj paznokcia po nałożeniu odwadniacza — palce ponownie wprowadzają oleje",
+      "Podkłady kwasowe są skuteczne, ale agresywne; podkłady wolne od kwasu są łagodniejsze i odpowiednie dla większości nowoczesnych systemów"
+    ]
+  },
+  "nails-04": {
+    "tagline": "Suchy manicure to nie skrót — to profesjonalny standard.",
+    "overview": [
+      "Suchy manicure to po prostu manicure wykonywany bez moczenia paznokci w wodzie. Nie jest to nowa technika — od dziesięcioleci jest profesjonalnym standardem w świecie paznokci żywicznych, i szybko staje się standardem również dla usług tradycyjnego lakieru. Cała usługa jest wykonywana na suchych paznokciach: usunięcie skórki za pomocą żelowego preparatu zamiast moczenia, piłowanie na suchych paznokciach i polerowanie na suchej powierzchni.",
+      "Sekwencja kompletnego suchego manicure: (1) Usunięcie wszelkich istniejących produktów lub lakieru. (2) Piłowanie i kształtowanie paznokci do pożądanej długości i kształtu. (3) Nałożenie żelowego preparatu do usuwania skórki na obszar skórki. (4) Po 30–60 sekundach delikatnie odsunąć skórkę metalowym popychaczem lub patyczkiem pomarańczowym. (5) Użyć cążków do usunięcia tylko luźnej martwej tkanki — nigdy nie ciąć żywej skóry. (6) Lekko wypolerować płytkę paznokcia, aby usunąć połysk i stworzyć fakturę powierzchni. (7) Oczyścić niepuszącą się poduszeczką. (8) Nałożyć odwadniacz. (9) Nałożyć podkład, jeśli używane są przedłużenia. (10) Przejść do produktu.",
+      "Metoda sucha sprawia, że praca ze skórkami jest łatwiejsza, nie trudniejsza, gdy się do niej przyzwyczaisz. Żelowy preparat do usuwania skórki zmiękcza martwą tkankę tak skutecznie jak moczenie — a popychacz do skórki delikatnie ślizga się na suchym paznokciu. Wiele techniczek odkrywa, że może pracować szybciej i z większą precyzją bez mokrych i śliskich paznokci."
+    ],
+    "technical": {
+      "title": "Kształty paznokci: kwadratowy, okrągły, owalny, migdałowy, szpiczasty, trumna",
+      "body": [
+        "Kształt paznokcia jest piłowany przed innymi krokami przygotowania. Piłuj w jednym kierunku — piłowanie tam i z powrotem osłabia płytkę paznokcia i powoduje łuszczenie się warstw. Używaj pilnika o średniej ziarnistości (ziarno 180–240) do naturalnych paznokci; grubsze ziarna są tylko dla sztucznych produktów. Trzymaj pilnik równolegle do krawędzi paznokcia dla kształtów kwadratowych, pod kątem dla owali i migdałowych.",
+        "Kształt wpływa na trwałość: kształty kwadratowe są najbardziej trwałe (więcej płytki paznokcia w punkcie naprężenia); szpiczasty i migdałowy są najbardziej podatne na pękanie. Dla klientek ze słabymi paznokciami zalecaj kwadratowo-owalny (kwadratowe narożniki lekko zaokrąglone) jako kompromis między estetyką a odpornością."
+      ]
+    },
+    "incident": {
+      "title": "Technika paznokci celebrytek, która ustanowiła standard metody suchej",
+      "impact": "Publiczne popieranie technik suchego manicure przez techniczki paznokci celebrytek przyspieszyło adopcję branżową o lata.",
+      "body": [
+        "Gdy usuwalny żelowy lakier stał się usługą masową na początku lat 2010., salony początkowo próbowały go nakładać używając tradycyjnych protokołów usług mokrych — miseczki na palce, moczenie, wszystko. Wyniki były słabe: żel odpadał w ciągu dni, sfrustrowanie klientów i szkody dla reputacji salonów.",
+        "Garść techniczek paznokci celebrytek w Los Angeles — pracujących z klientkami, które potrzebowały, aby ich paznokcie wytrzymały tygodnie kręcenia lub tras — już przeszła na protokoły suchego manicure. Gdy zdjęcia przed i po nieskazitelnych manicure żelowych z 3-tygodniową trwałością zaczęły pojawiać się w mediach społecznościowych, branża paznokci zwróciła uwagę. Treści edukacyjne o metodzie suchej eksplodowały, a profesjonalny standard się zmienił."
+      ]
+    },
+    "timeline": [
+      "Standard suchego przygotowania dla akrylowych przedłużeń paznokci",
+      "Moczenie w miseczce na palce nadal jest standardem dla tradycyjnych manicure z lakierem",
+      "Usuwalny żelowy lakier eksploduje w popularności — epidemia odklejania następuje",
+      "Metoda suchego manicure jest popierana przez głównych edukatorów paznokci dla wszystkich usług",
+      "Większość programów szkoleniowych profesjonalnych marek paznokci przyjmuje metodę suchą jako domyślną",
+      "Standard suchego manicure we wszystkich głównych programach licencji technologów paznokci"
+    ],
+    "keyTakeaways": [
+      "Piłuj i kształtuj na suchych paznokciach — mokre paznokcie są śliskie i pomiary są niedokładne",
+      "Piłuj w jednym kierunku — piłowanie tam i z powrotem osłabia płytkę paznokcia",
+      "Żelowy preparat do usuwania skórki jest skuteczniejszy niż moczenie i nie nawadnia płytki paznokcia",
+      "Zawsze usuwaj tylko luźną martwą tkankę — nigdy nie cinaj żywej skóry (oponichium)"
+    ]
+  },
+  "nails-05": {
+    "tagline": "Cienka warstwa zawsze przewyższa trzy grube warstwy.",
+    "overview": [
+      "Równomierne nakładanie lakieru to umiejętność odróżniająca profesjonalne wyniki od domowych manicure. Kluczowe zasady to: cienkie warstwy, odpowiednia technika pędzelka i uszczelnienie wolnego brzegu. Większość ludzi nakłada lakier w grubych grudkach, bo wydaje się to szybsze i bardziej pigmentowane. Prawda jest odwrotna — grube warstwy schnąć dłużej, uwięzują pęcherzyki powietrza, bardziej kurczą się podczas twardnienia i są znacznie bardziej podatne na plamienie i odpryskiwanie.",
+      "Metoda trzech pociągnięć to profesjonalny standard: (1) Umieść pędzelek na środku podstawy paznokcia, w odległości około 1 mm od skórki. Delikatnie naciśnij, aby otworzyć włosie. Przeciągnij pędzelek w stronę wolnego brzegu w płynnym ruchu przez środek. (2) Powtórz od podstawy do wolnego brzegu po lewej stronie. (3) Powtórz po prawej stronie. Trzy pociągnięcia, lekki nacisk, cienka warstwa. To wszystko.",
+      "Uszczelnianie wolnego brzegu oznacza przeciągnięcie pędzelka lekko po końcówce paznokcia po każdej warstwie. Uszczelnia to kolor na krawędzi — najbardziej podatnym punkcie na odpryskiwanie — i znacznie wydłuża żywotność manicure. Zajmuje to tylko dwie dodatkowe sekundy i robi mierzalną różnicę w tym, jak długo lakier wytrzymuje."
+    ],
+    "technical": {
+      "title": "Kontrola pędzelka i konsystencja lakieru",
+      "body": [
+        "Ilość lakieru na pędzelku jest niezwykle ważna. Zbyt dużo lakieru i uzyskujesz zalane skórki, pęcherzyki powietrza i nierówną grubą warstwę. Za mało i kolor jest nieregularny i nierówny. Zetrzyj jedną stronę pędzelka na szyjce butelki, aby usunąć nadmiar — pędzelek powinien wyglądać jak kropla wody, dobrze naładowana po jednej stronie i czysta po drugiej.",
+        "Lepkość lakieru zmienia się z temperaturą i wiekiem. Zimny lakier jest gęsty i się ciągnie; ogrzej go w dłoniach przez 30 sekund, tocząc butelkę tam i z powrotem (nigdy nie wstrząsaj — wstrząsanie wprowadza pęcherzyki). Stary, gęsty lakier można uratować kilkoma kroplami rozcieńczalnika do lakieru — nie zmywacza acetonowego, który trwale niszczy formułę."
+      ]
+    },
+    "incident": {
+      "title": "Essie Weingarten i idealny pędzelek do lakieru",
+      "impact": "Płaski szeroki projekt pędzelka Essie wpłynął na podejście całej branży lakierów do paznokci do inżynierii pędzelków.",
+      "body": [
+        "Gdy Essie Weingarten uruchomiła swoją firmę lakierów do paznokci w 1981 roku, była techniczką paznokci z mocnymi opiniami na temat projektu pędzelków. Większość lakierów tamtej epoki używała cienkich, małych pędzelków wymagających wielu pociągnięć do pokrycia paznokcia. Essie zaprojektowała płaski, szeroki pędzelek pokrywający więcej płytki paznokcia w jednym pociągnięciu — skracając czas nakładania i poprawiając jednolitość.",
+        "'Pędzelek Essie' stał się sławny w salonach. Techniczki paznokci specjalnie go żądały. Dziś projekt pędzelka jest uważany za jeden z najbardziej krytycznych czynników w profesjonalnej użyteczności lakieru do paznokci, a podejście Essie wpłynęło na to, jak każda ważna marka podchodzi do inżynierii pędzelków."
+      ]
+    },
+    "timeline": [
+      "Pierwszy komercyjny lakier do paznokci w małych butelkach z podstawowymi pędzelkami",
+      "Revlon wprowadza dopasowany kolor ust i paznokci — manicure stają się powszechne",
+      "Essie Weingarten uruchamia Essie z płaskim, szerokim projektem pędzelka",
+      "Żelowy lakier wprowadza nowe wymagania dotyczące techniki pędzelka (cienkie warstwy UV)",
+      "Boom sztuki paznokci tworzy popyt na precyzyjne pędzelki i narzędzia do nakładania",
+      "Systemy BIAB wymagają precyzyjnej techniki cienkich warstw dla odpowiedniego utwardzania"
+    ],
+    "keyTakeaways": [
+      "Zawsze nakładaj cienkie warstwy — dwie cienkie warstwy trwają dłużej niż jedna gruba",
+      "Używaj metody trzech pociągnięć: środek, lewa strona, prawa strona",
+      "Uszczelnij wolny brzeg po każdej warstwie, aby zapobiec odpryskami na końcówce",
+      "Nigdy nie wstrząsaj lakierem — tocz go między dłońmi, aby wymieszać bez wprowadzania pęcherzyków"
+    ]
+  },
+  "nails-06": {
+    "tagline": "Pominiesz base coat i malujesz na oleju. Pominiesz top coat i zostawiasz kolor bez ochrony.",
+    "overview": [
+      "Profesjonalny manicure używa trzech oddzielnych warstw produktu, każda z określoną funkcją. Base coat to fundament — tworzy przyleganie między płytką paznokcia a kolorem, zapobiega plamom od pigmentowanych lakierów i często zawiera składniki wzmacniające paznokcie. Warstwa koloru dostarcza pigment — zawsze nakładana w dwóch cienkich warstwach, nigdy w jednej grubej. Top coat uszczelnia i chroni wszystko poniżej, dodaje połysk i jest główną obroną przed odpryskami i zarysowaniami.",
+      "Każda warstwa musi być nałożona równomiernie i pozostawiona do wyschnięcia przed nałożeniem następnej. Pośpiech powoduje rozmazany kolor, zmarszczki (gdzie górna warstwa wciąga mokrą warstwę poniżej w faliste wzory) i zmniejszoną trwałość. Dla tradycyjnego lakieru lekki dotyk przy końcowym nałożeniu top coat zapobiega zakłócaniu koloru poniżej.",
+      "Nie wszystkie base coaty i top coaty są wymienne. Base coaty wypełniające rysy są grubsze i są zaprojektowane dla klientek z nieregularnymi powierzchniami płytki paznokcia. Wzmacniające base coaty zawierają składniki takie jak wapń lub keratyna dla łamliwych paznokci. Szybkoschnące top coaty zawierają rozpuszczalniki pomagające szybciej utrwalić lakier. Żelowe top coaty wymagają utwardzania UV/LED. Używanie niewłaściwego rodzaju produktu może powodować problemy z kompatybilnością — zawsze pozostawaj w tym samym systemie, gdy to możliwe."
+    ],
+    "technical": {
+      "title": "Kompatybilność warstw i czas schnięcia",
+      "body": [
+        "Zmarszczki (zwane też 'wybuchem rozpuszczalnika') to powszechny problem spowodowany nałożeniem top coat na kolor, który nie zdążył wyschnąć. Rozpuszczalnik w top coat atakuje nadal mokry kolor poniżej, powodując jego falowanie. Rozwiązanie: poczekaj co najmniej 2 minuty między warstwami koloru i 3–5 minut przed nałożeniem top coat — lub użyj sprayu/kropelek szybkoschnącego, aby przyspieszyć proces.",
+        "Szybkoschnące krople (nakładane na gotowy manicure) działają, zastępując wolno parujące rozpuszczalniki w top coat szybko parującymi, drastycznie skracając czas schnięcia. Pozostawiają też lekki olejek kondycjonujący na powierzchni. Nałóż 1–2 krople na paznokieć, rozprowadzając końcówką aplikatora. Nie nakładaj przed top coat — uniemożliwiają przyleganie."
+      ]
+    },
+    "incident": {
+      "title": "Jak OPI zmieniło top coat dzięki RapiDry",
+      "impact": "Kategoria szybkoschnących top coat została stworzona, przekształcając możliwości salonowe — manicurzyści mogli szybciej obsługiwać następnego klienta, a klienci wychodzili bez rozmazanych paznokci.",
+      "body": [
+        "Zanim istniały szybkoschnące top coaty, największym punktem tarcia w tradycyjnym manicure było oczekiwanie. Klientki siedziały pod wentylatorami przez 20–30 minut, patrząc jak schną ich paznokcie. Jedno uderzenie, upuszczony klucz i cały manicure był zniszczony. Rozmazane paznokcie i wściekłe klientki były codzienną rzeczywistością techniczek salonowych.",
+        "Wprowadzenie RapiDry przez OPI w 1992 roku to zmieniło. Formuła używa szybko parujących rozpuszczalników przyspieszających schnięcie w całym stosie lakieru, nie tylko na powierzchni. Nagle manicure był 'wystarczająco suchy' do wyjścia w 10 minut. Kategoria eksplodowała — dziś niemal każda marka paznokci sprzedaje wersję szybkoschnącego top coat, i jest standardem w większości salonów."
+      ]
+    },
+    "timeline": [
+      "Stary lakier do paznokci — bez standardowego wielowarstwowego systemu",
+      "Produkty base coat sprzedawane po raz pierwszy oddzielnie od lakieru",
+      "Top coat staje się profesjonalną praktyką standardową",
+      "OPI uruchamia RapiDry — stworzona kategoria szybkoschnącego top coat",
+      "Trójwarstwowy protokół systemu żelowego (base, kolor, top) staje się standardem branżowym",
+      "Top coaty podobne do żelu przynoszą żelowy poziom połysku do tradycyjnych systemów lakierów"
+    ],
+    "keyTakeaways": [
+      "Nigdy nie pomijaj base coat — zapobiega plamom i zapewnia warstwę przylegania",
+      "Dwie cienkie warstwy koloru zawsze przewyższają jedną grubą warstwę",
+      "Poczekaj odpowiednio między warstwami — zmarszczki są powodowane nałożeniem top coat na mokry kolor",
+      "Uszczelnij wolny brzeg przy każdej warstwie — base coat, kolor i top coat"
+    ]
+  },
+  "nails-07": {
+    "tagline": "Odklejanie to nie pech — zawsze ma przyczynę podstawową, którą możesz znaleźć i naprawić.",
+    "overview": [
+      "Odklejanie to sytuacja, gdy lakier lub żel oddziela się od płytki paznokcia, zazwyczaj zaczynając od krawędzi skórki lub bocznych krawędzi. To najczęstsza skarga klientek paznokci i jest niemal zawsze spowodowana jednym lub kilkoma błędami przygotowania — nie samym lakierem. Rozumienie konkretnego wzoru odklejania mówi ci dokładnie, gdzie w twojej rutynie przygotowania wystąpił problem.",
+      "Odklejanie przy skórce oznacza konkretnie, że produkt był nałożony zbyt blisko lub dotykał skórki/oponichium. Gdy produkt dotyka żywej skóry, oleje i ruch skóry ostatecznie przerywają uszczelnienie. Rozwiązanie: pozostaw 1 mm odstęp między produktem a skórką. Na początku wygląda to przerażająco — wydaje się, że zostawiasz niepomalowaną szczelinę — ale gdy nałożysz warstwy, staje się niewidoczna.",
+      "Odklejanie na bocznych krawędziach oznacza, że produkt był nałożony dotykając bocznych wałów paznokciowych (skóra po bokach paznokcia). Ta sama zasada: produkt dotykający skóry odklejając się. Prawidłowa technika pędzelka utrzymuje produkt tylko na płytce paznokcia, nigdy nie zalewając boków. W przypadku systemów żelowych zalewanie boków może również powodować gorące skoki podczas utwardzania."
+    ],
+    "technical": {
+      "title": "Diagnostyka wzorców odklejania",
+      "body": [
+        "Lokalizacja odklejania mówi ci przyczynę: Odklejanie przy skórce → produkt zbyt blisko skórki / pominięty krok odwadniania / niecałkowite usunięcie skórki. Odklejanie na bocznych krawędziach → zalewanie produktem po bokach. Odklejanie końcówki → nieuszczelniony wolny brzeg / zbyt gruba warstwa na końcówce. Odklejanie w centrum paznokcia (delaminacja) → nieodpowiednie polerowanie / brak faktury powierzchni / pominięty podkład w systemach przedłużeń. Odklejanie na całym paznokciu → nieużyty odwadniacz.",
+        "W systemach żelowych istnieje dodatkowa przyczyna: niekompletne utwardzanie. Niedoutwardzony żel jest miękki i elastyczny, umożliwiając oddzielenie się warstwy. Zawsze sprawdzaj żywotność żarówki lampy (zazwyczaj 50 000 godzin dla LED) i upewniaj się, że paznokieć mieści się w strefie utwardzania lampy. Zakrzywione paznokcie i ciemne kolory mogą potrzebować dłuższego czasu utwardzania."
+      ]
+    },
+    "incident": {
+      "title": "Wyzwanie żelowe 72 godzin, które dowiodło, że przygotowanie jest wszystkim",
+      "impact": "Porównania side-by-side przygotowanych vs. nieprzygotowanych nałożeń żelu szeroko udostępniane — wizualne dowody stały się kamieniem węgielnym edukacji paznokciowej.",
+      "body": [
+        "W 2017 roku kilka edukatorek paznokci niezależnie przeprowadziło prostą demonstrację: nałożyły żel na jedną rękę używając pełnego profesjonalnego przygotowania (polerowanie, odwadnianie, podkład) i na drugą rękę bez przygotowania (lakier bezpośrednio na nieprzygotowany paznokieć). Fotografowały wyniki po 24, 48 i 72 godzinach.",
+        "Bez wyjątku, nieprzygotowana ręka pokazywała znaczące odklejanie po 48 godzinach. W pełni przygotowana ręka wyglądała nieskazitelnie po 72 godzinach. Zdjęcia te szybko rozeszły się po mediach społecznościowych profesjonalistek paznokci i stały się jedną z najbardziej udostępnianych edukacyjnych treści o paznokciach online — wizualny dowód tego, czego edukatorki paznokci uczyły przez lata."
+      ]
+    },
+    "timeline": [
+      "Żelowy polish do moczenia wprowadzony — odklejanie staje się ważną skargą konsumentów",
+      "Edukatorki marek paznokci zaczynają systematyczne szkolenia z diagnostyki odklejania",
+      "Technika 1 mm odstępu od skórki staje się standardowym nauczaniem w edukacji żelowej",
+      "Demonstracje porównawcze przygotowany vs. nieprzygotowany stają się wirusowe na platformach profesjonalnych paznokci",
+      "Diagnostyka odklejania włączona do większości krajowych egzaminów licencyjnych paznokci",
+      "Narzędzia analizy paznokci z AI zaczynają diagnozować wzorce odklejania z zdjęć klientek"
+    ],
+    "keyTakeaways": [
+      "Zawsze pozostaw 1 mm odstęp między produktem a skórką — produkt dotykający skóry zawsze się odkleją",
+      "Lokalizacja odklejania mówi ci, który krok przygotowania pominęłaś",
+      "Odklejanie na całym paznokciu zazwyczaj oznacza, że odwadniacz został pominięty lub paznokcie były moczone przed usługą",
+      "W przypadku żelu sprawdź też strefę utwardzania lampy — niedoutwardzony żel odklejając się od centrum"
+    ]
+  },
+  "nails-08": {
+    "tagline": "Odpryskiwanie zaczyna się na końcówce — i odpryskiwanie końcówki jest niemal zawsze możliwe do zapobieżenia.",
+    "overview": [
+      "Odpryskiwanie różni się od odklejania. Odklejanie to sytuacja, gdy produkt oddziela się od płytki paznokcia. Odpryskiwanie to sytuacja, gdy końcówka lub krawędź koloru pęka — jak kafelka ceramiczna odpryskująca w narożniku. Najczęstszą przyczyną jest wolny brzeg, który nie był prawidłowo uszczelniany podczas nakładania. Gdy końcówka nie jest pokryta każdą warstwą produktu, krawędź stosu lakieru pozostaje odsłonięta i podatna na uderzenia.",
+      "Jeden, najbardziej wpływowy krok zapobiegający odpryskiwaniu końcówki: uszczelnij wolny brzeg przy każdej warstwie — base coat, każda warstwa koloru i top coat. Przeciągnij pędzelek po końcówce paznokcia na końcu każdego pociągnięcia. To uszczelnia stos i tworzy płynną, ciągłą barierę od powierzchni płytki paznokcia do krawędzi końcówki.",
+      "Inne przyczyny odpryskiwania: styl życia i narażenie na wodę (częste mycie rąk, pływanie lub chemikalia domowe osłabiają lakier), paznokieć zbyt długi dla stylu życia klientki oraz nieprawidłowy dobór produktu (tradycyjny lakier odpryskuje szybciej niż żel u klientek z aktywnymi rękoma). Szczera rozmowa z klientkami o ich stylu życia pomaga ustalić realistyczne oczekiwania i wybrać właściwą usługę."
+    ],
+    "technical": {
+      "title": "Dlaczego odpryskuje końcówka: fizyka",
+      "body": [
+        "Wolny brzeg paznokcia jest najbardziej mechanicznie naprężoną częścią systemu. Jest wielokrotnie uderzany o twarde powierzchnie — klawiatury, telefony, blaty. Każde uderzenie tworzy małe pęknięcie naprężeniowe w krawędzi stosu lakieru. Z czasem pęknięcia te kumulują się, aż widoczny odprysk odpadnie.",
+        "Uszczelnianie tworzy ciągłe uszczelnienie wokół krawędzi. Pomyśl o tym jak okleinowaniu krawędzi arkusza sklejki — bez tego krawędź się rozwarstw; z tym, warstwy są ujednolicone. Grube warstwy na końcówce są counterproductive: grubsza krawędź faktycznie tworzy większą koncentrację naprężeń w narożniku końcówki. Cienkie, dobrze uszczelnione warstwy przewyższają grube."
+      ]
+    },
+    "incident": {
+      "title": "Gelish i rewolucja usuwalnego żelu",
+      "impact": "Usuwalny żelowy lakier, ze swoją dramatycznie większą odpornością na odpryskiwanie niż tradycyjny lakier, stał się jedną z najszybciej rosnących kategorii usług paznokciowych w historii.",
+      "body": [
+        "Odpryskiwanie tradycyjnego lakieru do paznokci było tak powszechnie akceptowane jako nieuniknione, że klientki planowały swój harmonogram wokół niego — 'pomaluję paznokcie dzień przed wydarzeniem'. Gdy Harmony uruchomiło Gelish w 2009 roku — usuwalny żelowy lakier twardniejący pod UV/LED i wytrzymujący 2–3 tygodnie bez odpryskiwania — został początkowo spotkany sceptycyzmem. Inne firmy podążyły z podobnymi systemami.",
+        "Odporność na odpryskiwanie żelu pochodzi z jego usieciowanej struktury polimerowej po utwardzeniu — znacznie trwalszej niż film twardniejący przez odparowanie tradycyjnego lakieru. Ale żel nadal odpryskuje od wolnego brzegu, gdy końcówka nie jest uszczelniana, przypominając branży, że technika ma znaczenie niezależnie od chemii produktu."
+      ]
+    },
+    "timeline": [
+      "Tradycyjny lakier do paznokci — odpryskiwanie akceptowane jako normalne w ciągu dni",
+      "Akrylowe paznokcie po raz pierwszy oferują alternatywę bez odpryskiwania",
+      "Systemy żelowe do paznokci zapewniają poprawioną odporność na odpryskiwanie",
+      "Gelish uruchamia usuwalny żelowy lakier — standard odporności na odpryskiwanie 2–3 tygodnie",
+      "Odpryskiwanie końcówki pozostaje główną skargą klientek nawet w systemach żelowych",
+      "Uszczelnianie wolnego brzegu staje się wyraźnym wymaganiem nauczania w edukacji paznokciowej"
+    ],
+    "keyTakeaways": [
+      "Uszczelnij wolny brzeg przy każdej indywidualnej warstwie — base coat, każda warstwa koloru i top coat",
+      "Grube warstwy na końcówce są gorsze niż cienkie, uszczelnione warstwy — grubość tworzy koncentrację naprężeń",
+      "Czynniki stylu życia (woda, chemikalia, używanie klawiatury) wpływają na trwałość — ustalaj realistyczne oczekiwania",
+      "Żelowy lakier lepiej opiera się odpryskiwaniu niż tradycyjny lakier u klientek z aktywnymi rękoma"
+    ]
+  },
+  "nails-09": {
+    "tagline": "Masz już umiejętność. Teraz zbuduj wokół niej biznes.",
+    "overview": [
+      "Rozpoczęcie biznesu paznokciowego jako nastolatka jest całkowicie możliwe — materiały do paznokci są stosunkowo przystępne, usługa jest w ciągłym popycie i możesz zacząć od przyjaciół i rodziny, aby zbudować portfolio przed pobieraniem profesjonalnych stawek. Kluczowe kroki: rozwiń swoje umiejętności do spójnego profesjonalnego poziomu, zainwestuj w podstawowy zestaw materiałów, dokumentuj swoją pracę w mediach społecznościowych i ustal swoje ceny prawidłowo od samego początku.",
+      "Najczęstszy błąd nastolatek prowadzących biznesy paznokciowe to zaniżanie cen. Pobieranie 5 zł za kompletny manicure wydaje się bezpieczniejsze — ale komunikuje niską jakość, przyciąga klientów, którzy nie cenią rzemiosła i oznacza, że pracujesz poniżej płacy minimalnej, gdy uwzględnisz materiały i czas. Zbadaj ceny lokalnych salonów, pobieraj 20–30% mniej jako nowy dostawca i zwiększaj ceny w miarę poprawy umiejętności.",
+      "Media społecznościowe to twoje najlepsze narzędzie marketingowe bez żadnych kosztów. Instagram i TikTok to wizualne platformy doskonale nadające się do sztuki paznokci. Publikuj każdy zestaw, który robisz — nawet na sobie. Zdjęcia przed i po, filmy z procesu i posty zadowolonych klientek budują wiarygodność szybciej niż jakiekolwiek reklamy. Używaj lokalnych hashtagów, aby dotrzeć do klientów w swoim obszarze."
+    ],
+    "technical": {
+      "title": "Budżet na podstawowe materiały i model cenowy",
+      "body": [
+        "Funkcjonalny zestaw do paznokci można złożyć za 350–650 zł: zestaw żelowy (gel polish) (130–215 zł za podstawowy zestaw 12 kolorów), lampa LED (110–175 zł za podstawową lampę 48W), base i top coat (45–65 zł), pilniki i polerki do paznokci (20–45 zł), narzędzia do skórki (45–65 zł), niepuszące się chusteczki i poduszki alkoholowe (20 zł). Dodaj olejek do skórki i balsam do rąk dla ostatniego szlifu.",
+        "Formuła cenowa: oblicz koszt materiałów na usługę (zazwyczaj 8–22 zł w materiałach dla manicure żelowego), dodaj swój czas (1–1,5 godziny) i porównaj ze stawkami lokalnych salonów. Jeśli salony pobierają 150–195 zł za manicure żelowy, zaczynanie od 110–130 zł pozycjonuje cię jako przystępną alternatywę o porównywalnej jakości. Zwiększaj ceny o 20–25 zł w miarę wzrostu popytu."
+      ]
+    },
+    "incident": {
+      "title": "Nastolatka, która zbudowała biznes paznokciowy na 20 000 zł/miesiąc przed maturą",
+      "impact": "Wykazała, że biznes paznokciowy nastolatki, zbudowany prawidłowo z mediami społecznościowymi i odpowiednim cenowaniem, może generować znaczące przychody w ciągu roku szkolnego.",
+      "body": [
+        "W 2021 roku 17-latka z przedmieść Teksasu dokumentowała swój przedsiębiorczy biznes paznokciowy na TikTok. Zaczęła ćwiczyć z przyjaciółkami, zainwestowała 520 zł w podstawowy zestaw i zbudowała portfolio Instagram z 30 zestawami przed pobraniem opłaty od pierwszej płacącej klientki. W 8 miesięcy była w pełni zarezerwowana w weekendy i generowała ponad 20 000 zł miesięcznie — wystarczająco, aby finansować swoje oszczędności na studia.",
+        "Kluczowe czynniki jej sukcesu: spójna dokumentacja (publikowała każdy zestaw), przejrzyste ceny i odpowiadanie na każdą wiadomość i komentarz w ciągu godziny. Była profesjonalna w komunikacji przed przejściem na profesjonalne ceny — i to budowało zaufanie, które przekładało się na polecenia."
+      ]
+    },
+    "timeline": [
+      "Instagram uruchamiany — wizualna zawartość sztuki paznokci zaczyna budować publiczność",
+      "Nastolatkowie przedsiębiorcy paznokci zaczynają pojawiać się w mediach społecznościowych",
+      "Filmy procesowe TikTok tworzą nowy format marketingu treści paznokciowych",
+      "Boom na domową urodę podczas COVID zwiększa popyt na lokalne usługi paznokciowe",
+      "Historie sukcesu nastolatków w biznesie paznokciowym stają się wirusowe, inspirując pokolenie młodych techniczek",
+      "Nastolatkowie przedsiębiorcy paznokci używają dowodów społecznych do pobierania niemal profesjonalnych stawek"
+    ],
+    "keyTakeaways": [
+      "Nigdy nie zaniżaj cen — pobieraj w oparciu o koszt materiałów plus czas od samego początku",
+      "Dokumentuj każdy zestaw w mediach społecznościowych — twoje portfolio TO twój marketing",
+      "Szybko odpowiadaj na wiadomości — profesjonalna komunikacja buduje zaufanie szybciej niż ceny",
+      "Zacznij od przyjaciół i rodziny, aby zbudować portfolio, następnie rozszerz się na płacących klientów"
+    ]
+  }
+}

@@ -15,6 +15,7 @@ import metaFr from "@/data/translations/meta-fr.json";
 import metaDe from "@/data/translations/meta-de.json";
 import metaHi from "@/data/translations/meta-hi.json";
 import metaPt from "@/data/translations/meta-pt.json";
+import metaPl from "@/data/translations/meta-pl.json";
 
 type StageMeta = { t: string; w: string };
 type EpochMeta = { n: string; s: string; d: string };
@@ -25,6 +26,7 @@ const META_MAPS: Record<string, MetaFile> = {
   de: metaDe as MetaFile,
   hi: metaHi as MetaFile,
   pt: metaPt as MetaFile,
+  pl: metaPl as MetaFile,
 };
 
 // Fallback group chain: if no stages exist for the user's group, try these

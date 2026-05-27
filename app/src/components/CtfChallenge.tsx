@@ -10,6 +10,7 @@ import FlagSuccessModal from "./FlagSuccessModal";
 import HintChatbot from "./HintChatbot";
 import type { CtfConfig, StageConfig } from "@/data/types";
 import { getExtraCommands } from "@/data/stage-commands";
+import { useLocale } from "@/contexts/LocaleContext";
 
 type LineType = "cmd" | "out" | "err" | "ok" | "warn" | "sys";
 
@@ -38,32 +39,6 @@ function formatTimer(ms: number): string {
   const m = Math.floor(totalSeconds / 60);
   const s = totalSeconds % 60;
   return `${String(m).padStart(2, "0")}:${String(s).padStart(2, "0")}`;
-}
-
-function makeInitialLines(stage: StageConfig, ctf: CtfConfig, minFragments: number): Line[] {
-  return [
-    { type: "sys", text: "╔══════════════════════════════════════════╗" },
-    { type: "sys", text: `║   Kryptós CronOS Terminal  v1.0          ║` },
-    { type: "sys", text: `║   Stage ${String(stage.order).padEnd(2)}: ${stage.subtitle.slice(0, 28).padEnd(28)}║` },
-    { type: "sys", text: "╚══════════════════════════════════════════╝" },
-    { type: "sys", text: "" },
-    { type: "out", text: ctf.scenario },
-    { type: "out", text: "" },
-    { type: "out", text: `Hint: ${ctf.hint}` },
-    { type: "out", text: "" },
-    ...(ctf.fragments?.length ? [
-      {
-        type: "out" as LineType,
-        text: minFragments < ctf.fragments.length
-          ? `Objective: Collect any ${minFragments} of ${ctf.fragments.length} intelligence fragments to assemble the flag.`
-          : `Objective: Collect ${ctf.fragments.length} intelligence fragments to assemble the flag.`,
-      },
-      { type: "out" as LineType, text: "Run 'assemble' at any time to check your progress." },
-      { type: "out" as LineType, text: "" },
-    ] : []),
-    { type: "out", text: "Type 'help' for available commands." },
-    { type: "out", text: "" },
-  ];
 }
 
 function TerminalLine({ line }: { line: Line }) {
@@ -112,6 +87,7 @@ function TerminalLine({ line }: { line: Line }) {
 }
 
 function HintDrawer({ hints, isPro, onClose }: { hints: string[]; isPro: boolean; onClose: () => void }) {
+  const { t } = useLocale();
   const [revealed, setRevealed] = useState(1);
   const [adState, setAdState] = useState<"idle" | "watching">("idle");
   const [adSeconds, setAdSeconds] = useState(30);
@@ -142,17 +118,17 @@ function HintDrawer({ hints, isPro, onClose }: { hints: string[]; isPro: boolean
         style={{ maxHeight: "100dvh" }}
       >
         <div className="flex items-center justify-between px-4 py-3 border-b border-white/10 flex-shrink-0">
-          <span className="text-amber-400 font-semibold text-sm">💡 Hints</span>
+          <span className="text-amber-400 font-semibold text-sm">💡 {t("ctf.hints.label")}</span>
           <button onClick={onClose} className="text-gray-500 hover:text-white transition-colors text-lg leading-none">✕</button>
         </div>
         <div className="flex-1 overflow-y-auto px-4 py-4 space-y-3 text-sm">
           <p className="text-gray-600 text-xs">
-            Each hint reveals a bit more. Use them only when you&apos;re genuinely stuck.
+            {t("ctf.hints.subtext")}
           </p>
           {hints.slice(0, revealed).map((hint, i) => (
             <div key={i} className="bg-amber-500/5 border border-amber-500/20 rounded-lg p-3">
               <p className="text-xs text-amber-600 mb-1.5 font-semibold uppercase tracking-wider">
-                Hint {i + 1} of {hints.length}
+                {t("ctf.hints.numbered").replace("{n}", String(i + 1)).replace("{total}", String(hints.length))}
               </p>
               <p className="text-gray-300 leading-relaxed font-mono text-xs">{hint}</p>
             </div>
@@ -162,12 +138,12 @@ function HintDrawer({ hints, isPro, onClose }: { hints: string[]; isPro: boolean
               adState === "watching" ? (
                 <div className="rounded-lg border border-amber-500/20 bg-amber-500/5 p-4 space-y-3">
                   <div className="flex items-center justify-between">
-                    <p className="text-xs text-amber-400 font-semibold uppercase tracking-wider">📢 Sponsor Message</p>
+                    <p className="text-xs text-amber-400 font-semibold uppercase tracking-wider">📢 {t("ctf.hints.adTitle")}</p>
                     <span className="text-xs font-mono text-amber-300">{adSeconds}s</span>
                   </div>
                   <div className="rounded bg-white/3 border border-white/8 p-3 text-center space-y-1">
-                    <p className="text-xs text-gray-400">Cybersecurity workforce training</p>
-                    <p className="text-[11px] text-gray-600">Sponsored content — your next hint unlocks shortly</p>
+                    <p className="text-xs text-gray-400">{t("ctf.hints.adSubtitle")}</p>
+                    <p className="text-[11px] text-gray-600">{t("ctf.hints.adSponsor")}</p>
                   </div>
                   <div className="h-1 rounded-full bg-white/5 overflow-hidden">
                     <div
@@ -175,16 +151,20 @@ function HintDrawer({ hints, isPro, onClose }: { hints: string[]; isPro: boolean
                       style={{ width: `${((30 - adSeconds) / 30) * 100}%` }}
                     />
                   </div>
-                  <p className="text-[10px] text-gray-700 text-center">Hint unlocks in {adSeconds}s — upgrade to Pro to skip</p>
+                  <p className="text-[10px] text-gray-700 text-center">
+                    {t("ctf.hints.adUnlocks").replace("{n}", String(adSeconds))}
+                  </p>
                 </div>
               ) : (
                 <div className="rounded-lg border border-white/8 bg-white/2 p-4 space-y-2.5">
-                  <p className="text-xs text-gray-400">Hint {revealed + 1} requires Pro or a short sponsor message.</p>
+                  <p className="text-xs text-gray-400">
+                    {t("ctf.hints.requiresPro").replace("{n}", String(revealed + 1))}
+                  </p>
                   <button
                     onClick={() => setAdState("watching")}
                     className="w-full py-2 rounded-lg text-xs font-semibold text-amber-400 border border-amber-500/30 hover:bg-amber-500/5 transition-colors"
                   >
-                    Watch sponsor message (30s) →
+                    {t("ctf.hints.watchAd")}
                   </button>
                   <Link
                     href="/upgrade"
@@ -192,7 +172,7 @@ function HintDrawer({ hints, isPro, onClose }: { hints: string[]; isPro: boolean
                     className="block w-full py-2 rounded-lg text-xs font-bold text-black text-center"
                     style={{ background: "linear-gradient(90deg,#22d3ee,#818cf8)" }}
                   >
-                    Upgrade to Pro — skip all ads →
+                    {t("ctf.hints.upgrade")}
                   </Link>
                 </div>
               )
@@ -201,12 +181,12 @@ function HintDrawer({ hints, isPro, onClose }: { hints: string[]; isPro: boolean
                 onClick={() => setRevealed((r) => r + 1)}
                 className="w-full py-2.5 text-sm text-amber-400 border border-amber-500/30 rounded-lg hover:bg-amber-500/5 transition-colors"
               >
-                Reveal hint {revealed + 1} →
+                {t("ctf.hints.reveal").replace("{n}", String(revealed + 1))}
               </button>
             )
           )}
           {revealed >= hints.length && (
-            <p className="text-center text-xs text-gray-700 py-2">All hints revealed.</p>
+            <p className="text-center text-xs text-gray-700 py-2">{t("ctf.hints.allRevealed")}</p>
           )}
         </div>
       </div>
@@ -215,6 +195,7 @@ function HintDrawer({ hints, isPro, onClose }: { hints: string[]; isPro: boolean
 }
 
 function ReferenceDrawer({ stage, onClose }: { stage: StageConfig; onClose: () => void }) {
+  const { t } = useLocale();
   const { info } = stage;
   return (
     <div className="fixed inset-0 z-50 flex justify-end">
@@ -249,7 +230,7 @@ function ReferenceDrawer({ stage, onClose }: { stage: StageConfig; onClose: () =
           </div>
 
           <div>
-            <p className="text-gray-500 text-xs uppercase tracking-wider mb-2">Overview</p>
+            <p className="text-gray-500 text-xs uppercase tracking-wider mb-2">{t("ctf.ref.overview")}</p>
             <div className="space-y-2">
               {info.overview.slice(0, 2).map((p, i) => (
                 <p key={i} className="text-gray-400 leading-relaxed">{p}</p>
@@ -258,14 +239,14 @@ function ReferenceDrawer({ stage, onClose }: { stage: StageConfig; onClose: () =
           </div>
 
           <div>
-            <p className="text-gray-500 text-xs uppercase tracking-wider mb-2">Attack Flow</p>
+            <p className="text-gray-500 text-xs uppercase tracking-wider mb-2">{t("ctf.ref.attackFlow")}</p>
             <div className="bg-black/30 rounded-lg p-3">
               <AttackDiagram nodes={info.diagram.nodes} />
             </div>
           </div>
 
           <div>
-            <p className="text-gray-500 text-xs uppercase tracking-wider mb-2">Technical</p>
+            <p className="text-gray-500 text-xs uppercase tracking-wider mb-2">{t("ctf.ref.technical")}</p>
             <p className="text-gray-400 leading-relaxed">{info.technical.body[0]}</p>
             {info.technical.codeExample && (
               <pre className="mt-2 bg-black/60 border border-white/10 rounded p-3 text-green-300 text-xs overflow-x-auto font-mono leading-relaxed">
@@ -275,14 +256,14 @@ function ReferenceDrawer({ stage, onClose }: { stage: StageConfig; onClose: () =
           </div>
 
           <div>
-            <p className="text-gray-500 text-xs uppercase tracking-wider mb-2">Incident</p>
+            <p className="text-gray-500 text-xs uppercase tracking-wider mb-2">{t("ctf.ref.incident")}</p>
             <p className="text-red-400 font-medium mb-1">{info.incident.title}</p>
             <p className="text-gray-500 text-xs mb-2">{info.incident.when} · {info.incident.where}</p>
             <p className="text-gray-400 leading-relaxed">{info.incident.body[0]}</p>
           </div>
 
           <div>
-            <p className="text-gray-500 text-xs uppercase tracking-wider mb-2">Key Takeaways</p>
+            <p className="text-gray-500 text-xs uppercase tracking-wider mb-2">{t("ctf.ref.keyTakeaways")}</p>
             <ul className="space-y-1">
               {info.keyTakeaways.map((item, i) => (
                 <li key={i} className="flex gap-2 text-gray-400">
@@ -294,7 +275,7 @@ function ReferenceDrawer({ stage, onClose }: { stage: StageConfig; onClose: () =
           </div>
 
           <div>
-            <p className="text-gray-500 text-xs uppercase tracking-wider mb-2">References</p>
+            <p className="text-gray-500 text-xs uppercase tracking-wider mb-2">{t("ctf.ref.references")}</p>
             <ul className="space-y-1">
               {info.references.map((ref, i) => (
                 <li key={i}>
@@ -317,10 +298,43 @@ function ReferenceDrawer({ stage, onClose }: { stage: StageConfig; onClose: () =
 }
 
 export default function CtfChallenge({ stage, backHref = "/stages", isPro = false }: { stage: StageConfig; backHref?: string; isPro?: boolean }) {
+  const { t } = useLocale();
   const ctf = stage.ctf!;
   const hints = ctf.hints ?? [ctf.hint];
   const minFragments = ctf.minFragments ?? ctf.fragments?.length ?? 0;
   const extraCommands = getExtraCommands(stage.id);
+
+  function tr(key: string, vars: Record<string, string | number>): string {
+    let s = t(key);
+    for (const [k, v] of Object.entries(vars)) s = s.replace(`{${k}}`, String(v));
+    return s;
+  }
+
+  function makeInitialLines(s: StageConfig, c: CtfConfig, minFrag: number): Line[] {
+    return [
+      { type: "sys", text: "╔══════════════════════════════════════════╗" },
+      { type: "sys", text: `║   Kryptós CronOS Terminal  v1.0          ║` },
+      { type: "sys", text: `║   Stage ${String(s.order).padEnd(2)}: ${s.subtitle.slice(0, 28).padEnd(28)}║` },
+      { type: "sys", text: "╚══════════════════════════════════════════╝" },
+      { type: "sys", text: "" },
+      { type: "out", text: c.scenario },
+      { type: "out", text: "" },
+      { type: "out", text: `${t("ctf.terminal.hint")}: ${c.hint}` },
+      { type: "out", text: "" },
+      ...(c.fragments?.length ? [
+        {
+          type: "out" as LineType,
+          text: minFrag < c.fragments.length
+            ? tr("ctf.terminal.objective", { min: minFrag, total: c.fragments.length })
+            : tr("ctf.terminal.objectiveAll", { total: c.fragments.length }),
+        },
+        { type: "out" as LineType, text: t("ctf.terminal.assembleHelp") },
+        { type: "out" as LineType, text: "" },
+      ] : []),
+      { type: "out", text: t("ctf.terminal.typeHelp") },
+      { type: "out", text: "" },
+    ];
+  }
 
   const [cwd, setCwd] = useState("/");
   const [input, setInput] = useState("");
@@ -347,8 +361,8 @@ export default function CtfChallenge({ stage, backHref = "/stages", isPro = fals
   const [elapsed, setElapsed] = useState(0);
   useEffect(() => {
     if (solved) return;
-    const t = setInterval(() => setElapsed(Date.now() - startedAt.current), 1000);
-    return () => clearInterval(t);
+    const timer = setInterval(() => setElapsed(Date.now() - startedAt.current), 1000);
+    return () => clearInterval(timer);
   }, [solved]);
 
   // Restore saved state on mount
@@ -388,8 +402,6 @@ export default function CtfChallenge({ stage, backHref = "/stages", isPro = fals
   const outputRef = useRef<HTMLDivElement>(null);
   const userScrolledUp = useRef(false);
 
-  // Instant scroll avoids the race where smooth-scroll animation fires scroll
-  // events that reset userScrolledUp before the animation completes.
   useEffect(() => {
     if (!userScrolledUp.current && outputRef.current) {
       outputRef.current.scrollTop = outputRef.current.scrollHeight;
@@ -433,7 +445,7 @@ export default function CtfChallenge({ stage, backHref = "/stages", isPro = fals
     const total = ctf.fragments.length;
     setCollectedFragments((prev) => new Set([...prev, key]));
     push(
-      { type: "warn", text: `🔑 Fragment ${nextCount}/${total} recovered — [ ${frag.value} ]` },
+      { type: "warn", text: `🔑 ${tr("ctf.terminal.fragmentRecovered", { n: nextCount, total })} — [ ${frag.value} ]` },
       { type: "warn", text: `   ${frag.label}` },
       { type: "out", text: "" },
     );
@@ -458,15 +470,15 @@ export default function CtfChallenge({ stage, backHref = "/stages", isPro = fals
       const extraCmds = extraCommands ? Object.keys(extraCommands) : [];
       const hasFragments = Boolean(ctf.fragments?.length);
       push(
-        { type: "out", text: "Available commands:" },
+        { type: "out", text: t("ctf.terminal.availableCommands") },
         { type: "out", text: "  ls [-a] [path]   list directory contents (-a shows hidden files)" },
         { type: "out", text: "  cat <file>        display file contents" },
         { type: "out", text: "  cd <dir>          change directory" },
         { type: "out", text: "  pwd               print working directory" },
         { type: "out", text: "  clear             clear the terminal" },
         { type: "out", text: "  submit <flag>     submit a captured flag" },
-        ...(hasFragments ? [{ type: "out" as LineType, text: "  assemble          show collected fragments and assembled flag" }] : []),
-        ...extraCmds.map((c) => ({ type: "out" as LineType, text: `  ${c.padEnd(17)}(stage-specific)` })),
+        ...(hasFragments ? [{ type: "out" as LineType, text: `  assemble          show collected fragments and assembled flag` }] : []),
+        ...extraCmds.map((c) => ({ type: "out" as LineType, text: `  ${c.padEnd(17)}${t("ctf.terminal.helpStageSpecific")}` })),
         { type: "out", text: "" },
       );
       return;
@@ -474,35 +486,34 @@ export default function CtfChallenge({ stage, backHref = "/stages", isPro = fals
 
     if (cmd === "assemble") {
       if (!ctf.fragments?.length) {
-        push({ type: "err", text: "assemble: no fragments defined for this stage" }, { type: "out", text: "" });
+        push({ type: "err", text: t("ctf.terminal.assembleNone") }, { type: "out", text: "" });
         return;
       }
       const total = ctf.fragments.length;
-      push({ type: "out", text: "Fragment Status:" });
+      push({ type: "out", text: t("ctf.terminal.fragmentStatus") });
       for (const f of ctf.fragments) {
         const found = collectedFragments.has(f.trigger);
-        push({ type: "out", text: `  ${found ? "✓" : "✗"} ${f.label}: ${found ? f.value : "[ not yet recovered ]"}` });
+        push({ type: "out", text: `  ${found ? "✓" : "✗"} ${f.label}: ${found ? f.value : t("ctf.terminal.fragmentNotRecovered")}` });
       }
       push({ type: "out", text: "" });
 
       if (collectedFragments.size >= minFragments) {
-        // Use only the collected fragments (in original order) to assemble
         const assembled = ctf.fragments
           .filter((f) => collectedFragments.has(f.trigger))
           .slice(0, minFragments)
           .map((f) => f.value)
           .join("");
         push(
-          { type: "ok", text: `${collectedFragments.size}/${total} fragments recovered. Flag ready to submit:` },
+          { type: "ok", text: tr("ctf.terminal.assembleReady", { n: collectedFragments.size, total }) },
           { type: "ok", text: `  ${assembled}` },
           { type: "out", text: "" },
-          { type: "out", text: `Use: submit ${assembled}` },
+          { type: "out", text: tr("ctf.terminal.assembleUse", { flag: assembled }) },
           { type: "out", text: "" },
         );
       } else {
         const needed = minFragments - collectedFragments.size;
         push(
-          { type: "warn", text: `${collectedFragments.size}/${minFragments} required fragments recovered. Need ${needed} more.` },
+          { type: "warn", text: tr("ctf.terminal.assembleNeedMore", { n: collectedFragments.size, required: minFragments, more: needed }) },
           { type: "out", text: "" },
         );
       }
@@ -530,7 +541,7 @@ export default function CtfChallenge({ stage, backHref = "/stages", isPro = fals
         if (ctf.dirs[resolved]) {
           setCwd(resolved);
         } else {
-          push({ type: "err", text: `cd: ${target}: No such directory` });
+          push({ type: "err", text: `cd: ${target}: ${t("ctf.terminal.cdNoDir")}` });
         }
       }
       push({ type: "out", text: "" });
@@ -545,14 +556,14 @@ export default function CtfChallenge({ stage, backHref = "/stages", isPro = fals
       const entries = ctf.dirs[targetDir];
 
       if (!entries) {
-        push({ type: "err", text: `ls: cannot access '${pathArg || cwd}': No such directory` });
+        push({ type: "err", text: `ls: cannot access '${pathArg || cwd}': ${t("ctf.terminal.lsNoDir")}` });
         push({ type: "out", text: "" });
         return;
       }
 
       const visible = entries.filter((e) => showHidden || !e.hidden);
       if (visible.length === 0) {
-        push({ type: "out", text: "(empty)" });
+        push({ type: "out", text: t("ctf.terminal.empty") });
       } else {
         const display = visible.map((e) =>
           e.isDir ? `\x00dir\x00${e.name}/` : e.name
@@ -566,21 +577,21 @@ export default function CtfChallenge({ stage, backHref = "/stages", isPro = fals
     if (cmd === "cat") {
       const pathArg = args[0];
       if (!pathArg) {
-        push({ type: "err", text: "cat: missing file operand" }, { type: "out", text: "" });
+        push({ type: "err", text: t("ctf.terminal.catMissing") }, { type: "out", text: "" });
         return;
       }
       const resolved = resolvePath(cwd, pathArg);
       const content = ctf.files[resolved];
       if (content === undefined) {
         if (ctf.dirs[resolved]) {
-          push({ type: "err", text: `cat: ${pathArg}: Is a directory` });
+          push({ type: "err", text: `cat: ${pathArg}: ${t("ctf.terminal.catIsDir")}` });
         } else {
-          push({ type: "err", text: `cat: ${pathArg}: No such file` });
+          push({ type: "err", text: `cat: ${pathArg}: ${t("ctf.terminal.catNotFound")}` });
         }
         push({ type: "out", text: "" });
         return;
       }
-      const contentLines = content.split("\n").map((t) => ({ type: "out" as LineType, text: t }));
+      const contentLines = content.split("\n").map((text) => ({ type: "out" as LineType, text }));
       push(...contentLines, { type: "out", text: "" });
       checkFragment(resolved);
       return;
@@ -589,11 +600,11 @@ export default function CtfChallenge({ stage, backHref = "/stages", isPro = fals
     if (cmd === "submit") {
       const flag = args.join(" ").trim();
       if (!flag) {
-        push({ type: "err", text: "Usage: submit <flag>" }, { type: "out", text: "" });
+        push({ type: "err", text: t("ctf.terminal.submitUsage") }, { type: "out", text: "" });
         return;
       }
       setSubmitting(true);
-      push({ type: "sys", text: "Verifying flag..." });
+      push({ type: "sys", text: t("ctf.terminal.verifying") });
       const timeTakenMs = Date.now() - startedAt.current;
       try {
         const res = await fetch("/api/check-flag", {
@@ -608,20 +619,20 @@ export default function CtfChallenge({ stage, backHref = "/stages", isPro = fals
             awardStage(stage.id, stage.xp, stage.badge.id);
           }
           push(
-            { type: "ok", text: `✓ Flag accepted: ${flag}` },
-            { type: "ok", text: `  Time: ${formatTimer(timeTakenMs)}  ·  Coins earned: ${Math.max(0, effectiveCoins)} 🪙` },
+            { type: "ok", text: `${t("ctf.terminal.flagAccepted")}: ${flag}` },
+            { type: "ok", text: `  ${tr("ctf.terminal.flagTime", { time: formatTimer(timeTakenMs), coins: Math.max(0, effectiveCoins) })} 🪙` },
             { type: "out", text: "" },
           );
           setSolved(true);
           setSuccessData({ flag, timeTakenMs, timePenaltyCoins: timePenaltyXp, effectiveCoins: Math.max(0, effectiveCoins) });
         } else {
           push(
-            { type: "err", text: "✗ Incorrect flag. Keep investigating." },
+            { type: "err", text: t("ctf.terminal.flagIncorrect") },
             { type: "out", text: "" },
           );
         }
       } catch {
-        push({ type: "err", text: "Network error — could not verify flag. Try again." }, { type: "out", text: "" });
+        push({ type: "err", text: t("ctf.terminal.flagNetworkError") }, { type: "out", text: "" });
       } finally {
         setSubmitting(false);
       }
@@ -630,7 +641,7 @@ export default function CtfChallenge({ stage, backHref = "/stages", isPro = fals
 
     if (extraCommands && cmd in extraCommands) {
       const result = extraCommands[cmd](args);
-      push(...result.lines.map((t) => ({ type: "out" as LineType, text: t })));
+      push(...result.lines.map((text) => ({ type: "out" as LineType, text })));
       checkFragment(trimmed);
       if (result.solved) {
         awardStage(stage.id, stage.xp, stage.badge.id);
@@ -641,10 +652,10 @@ export default function CtfChallenge({ stage, backHref = "/stages", isPro = fals
 
     const newCount = unknownCmdCount + 1;
     setUnknownCmdCount(newCount);
-    push({ type: "err", text: `${cmd}: command not found. Type 'help' for commands.` });
+    push({ type: "err", text: `${cmd}: ${t("ctf.terminal.cmdNotFound")}` });
     if (newCount === 3) {
       push(
-        { type: "sys", text: "💡 ARIA can give you a contextual hint — click 🤖 ARIA in the toolbar above." },
+        { type: "sys", text: t("ctf.terminal.ariaHint") },
         { type: "out", text: "" },
       );
     } else {
@@ -679,7 +690,6 @@ export default function CtfChallenge({ stage, backHref = "/stages", isPro = fals
     inputRef.current?.focus();
   }
 
-  // Timer color changes as time progresses
   const timerMinutes = Math.floor(elapsed / 60000);
   const timerColor = timerMinutes >= 10 ? "text-orange-400" : timerMinutes >= 5 ? "text-yellow-400" : "text-green-400";
 
@@ -713,7 +723,6 @@ export default function CtfChallenge({ stage, backHref = "/stages", isPro = fals
                 <p className="text-gray-500 text-xs sm:text-sm">Stage {stage.order} · {stage.subtitle}</p>
               </div>
               <div className="flex gap-1.5 flex-wrap items-center">
-                {/* Live timer */}
                 {!solved && (
                   <span className={`text-xs px-2 py-1 bg-black/40 border border-white/10 rounded-lg font-mono ${timerColor}`}>
                     ⏱ {formatTimer(elapsed)}
@@ -724,7 +733,7 @@ export default function CtfChallenge({ stage, backHref = "/stages", isPro = fals
                     onClick={handleReset}
                     className="text-xs px-2.5 py-1 border border-gray-600 hover:border-gray-400 text-gray-400 hover:text-white rounded-lg transition-colors"
                   >
-                    ↺ Replay
+                    ↺ {t("ctf.status.replay")}
                   </button>
                 )}
                 {ctf.fragments?.length ? (
@@ -739,7 +748,7 @@ export default function CtfChallenge({ stage, backHref = "/stages", isPro = fals
                   onClick={() => setHintsOpen(true)}
                   className="text-xs px-2.5 py-1.5 border border-amber-500/40 hover:border-amber-400 text-amber-400 rounded-lg transition-colors"
                 >
-                  <span className="hidden sm:inline">💡 Hints</span>
+                  <span className="hidden sm:inline">💡 {t("ctf.hints.label")}</span>
                   <span className="sm:hidden">💡</span>
                 </button>
                 <button
@@ -816,23 +825,23 @@ export default function CtfChallenge({ stage, backHref = "/stages", isPro = fals
               </div>
             ) : restoredComplete ? (
               <div className="px-3 py-2.5 border-t border-green-500/30 bg-green-500/5 flex items-center justify-between flex-shrink-0">
-                <span className="text-green-400 font-semibold text-sm">✓ Stage Complete</span>
+                <span className="text-green-400 font-semibold text-sm">✓ {t("ctf.status.complete")}</span>
                 <button
                   onClick={handleReset}
                   className="text-xs px-3 py-1.5 border border-gray-600 hover:border-gray-400 text-gray-400 hover:text-white rounded-lg transition-colors"
                 >
-                  ↺ Replay
+                  ↺ {t("ctf.status.replay")}
                 </button>
               </div>
             ) : (
               <div className="px-3 py-3 border-t border-green-500/30 bg-green-500/5 flex items-center justify-center flex-shrink-0">
-                <span className="text-green-400 font-semibold text-sm">✓ Flag captured!</span>
+                <span className="text-green-400 font-semibold text-sm">✓ {t("ctf.status.flagCaptured")}</span>
               </div>
             )}
           </div>
 
           <p className="text-gray-700 text-xs mt-2 text-center flex-shrink-0">
-            Type <span className="text-gray-600">help</span> for commands · 💡 hints · 🤖 AI assistant
+            {t("ctf.footer.typeHelp")} · 💡 hints · 🤖 AI assistant
           </p>
         </div>
       </div>

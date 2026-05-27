@@ -18,12 +18,14 @@ import metaFr from "@/data/translations/meta-fr.json";
 import metaDe from "@/data/translations/meta-de.json";
 import metaHi from "@/data/translations/meta-hi.json";
 import metaPt from "@/data/translations/meta-pt.json";
+import metaPl from "@/data/translations/meta-pl.json";
 import enMessages from "@/messages/en.json";
 import esMessages from "@/messages/es.json";
 import frMessages from "@/messages/fr.json";
 import deMessages from "@/messages/de.json";
 import hiMessages from "@/messages/hi.json";
 import ptMessages from "@/messages/pt.json";
+import plMessages from "@/messages/pl.json";
 
 const TRANSLATION_MAPS: Record<string, Record<string, StageTranslation>> = {
   es: esTranslations as Record<string, StageTranslation>,
@@ -31,6 +33,7 @@ const TRANSLATION_MAPS: Record<string, Record<string, StageTranslation>> = {
   de: deTranslations as Record<string, StageTranslation>,
   hi: hiTranslations as Record<string, StageTranslation>,
   pt: ptTranslations as Record<string, StageTranslation>,
+  // pl body translations added after pl.json merge completes
 };
 
 type MetaMap = { stages: Record<string, { t: string; w: string }>; epochs: Record<string, unknown> };
@@ -40,6 +43,7 @@ const META_MAPS: Record<string, MetaMap> = {
   de: metaDe as MetaMap,
   hi: metaHi as MetaMap,
   pt: metaPt as MetaMap,
+  pl: metaPl as MetaMap,
 };
 
 const SERVER_MSG: Record<string, Record<string, string>> = {
@@ -49,6 +53,7 @@ const SERVER_MSG: Record<string, Record<string, string>> = {
   de: deMessages as Record<string, string>,
   hi: hiMessages as Record<string, string>,
   pt: ptMessages as Record<string, string>,
+  pl: plMessages as Record<string, string>,
 };
 function serverT(locale: string, key: string): string {
   return SERVER_MSG[locale]?.[key] ?? SERVER_MSG.en[key] ?? key;
