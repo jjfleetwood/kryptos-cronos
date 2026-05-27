@@ -26,6 +26,7 @@ import deMessages from "@/messages/de.json";
 import hiMessages from "@/messages/hi.json";
 import ptMessages from "@/messages/pt.json";
 import plMessages from "@/messages/pl.json";
+import plTranslations from "@/data/translations/pl.json";
 
 const TRANSLATION_MAPS: Record<string, Record<string, StageTranslation>> = {
   es: esTranslations as Record<string, StageTranslation>,
@@ -33,7 +34,7 @@ const TRANSLATION_MAPS: Record<string, Record<string, StageTranslation>> = {
   de: deTranslations as Record<string, StageTranslation>,
   hi: hiTranslations as Record<string, StageTranslation>,
   pt: ptTranslations as Record<string, StageTranslation>,
-  // pl body translations added after pl.json merge completes
+  pl: plTranslations as Record<string, StageTranslation>,
 };
 
 type MetaMap = { stages: Record<string, { t: string; w: string }>; epochs: Record<string, unknown> };
