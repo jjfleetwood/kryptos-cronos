@@ -11,6 +11,8 @@ import { cookies } from "next/headers";
 import esTranslations from "@/data/translations/es.json";
 import frTranslations from "@/data/translations/fr.json";
 import deTranslations from "@/data/translations/de.json";
+import hiTranslations from "@/data/translations/hi.json";
+import ptTranslations from "@/data/translations/pt.json";
 import metaEs from "@/data/translations/meta-es.json";
 import metaFr from "@/data/translations/meta-fr.json";
 import metaDe from "@/data/translations/meta-de.json";
@@ -27,6 +29,8 @@ const TRANSLATION_MAPS: Record<string, Record<string, StageTranslation>> = {
   es: esTranslations as Record<string, StageTranslation>,
   fr: frTranslations as Record<string, StageTranslation>,
   de: deTranslations as Record<string, StageTranslation>,
+  hi: hiTranslations as Record<string, StageTranslation>,
+  pt: ptTranslations as Record<string, StageTranslation>,
 };
 
 type MetaMap = { stages: Record<string, { t: string; w: string }>; epochs: Record<string, unknown> };
