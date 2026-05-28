@@ -2,6 +2,18 @@
 
 ---
 
+## v1.14.1 — 2026-05-28
+
+**Remove DocuSign NDA integration**
+
+- Deleted `src/lib/docusign.ts`, `/api/admin/send-nda`, `/api/webhooks/docusign`
+- Admin NDA panel simplified — clickwrap signatories list retained, send form removed
+- Privacy policy, OPS, PARTNERS, ARCHITECTURE, BUILD, FINANCIALS, and business proposals cleaned of all DocuSign references
+- 5 `DOCUSIGN_*` env vars now unused and can be removed from Vercel settings
+- Clickwrap NDA at `/demo` and `/api/nda` unaffected
+
+---
+
 ## v1.14.0 — 2026-05-28
 
 **CyberOps Associate exam readiness tracker**
