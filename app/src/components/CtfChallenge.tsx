@@ -389,7 +389,12 @@ export default function CtfChallenge({ stage, backHref = "/stages", isPro = fals
   const [quizDone, setQuizDone] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [successData, setSuccessData] = useState<{
-    flag: string; timeTakenMs: number; timePenaltyCoins: number; effectiveCoins: number;
+    flag: string;
+    timeTakenMs: number;
+    timePenaltyCoins: number;
+    effectiveCoins: number;
+    bonusCoins: number;
+    recommendedNext: { id: string; title: string } | null;
   } | null>(null);
   const [lines, setLines] = useState<Line[]>(() => makeInitialLines(stage, ctf, minFragments));
 
@@ -661,19 +666,20 @@ export default function CtfChallenge({ stage, backHref = "/stages", isPro = fals
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ stageId: stage.id, flag, timeTakenMs }),
         });
-        const { correct, progress, timePenaltyXp = 0 } = await res.json();
+        const { correct, progress, timePenaltyXp = 0, bonusXp = 0, recommendedNext = null } = await res.json();
         if (correct) {
-          const effectiveCoins = stage.xp - timePenaltyXp;
+          const effectiveCoins = stage.xp - timePenaltyXp + bonusXp;
           if (!progress) {
             awardStage(stage.id, stage.xp, stage.badge.id);
           }
           push(
             { type: "ok", text: `${t("ctf.terminal.flagAccepted")}: ${flag}` },
             { type: "ok", text: `  ${tr("ctf.terminal.flagTime", { time: formatTimer(timeTakenMs), coins: Math.max(0, effectiveCoins) })} 🪙` },
+            ...(bonusXp > 0 ? [{ type: "ok" as const, text: `  ⚡ Clean solve bonus: +${bonusXp} 🪙` }] : []),
             { type: "out", text: "" },
           );
           setSolved(true);
-          setSuccessData({ flag, timeTakenMs, timePenaltyCoins: timePenaltyXp, effectiveCoins: Math.max(0, effectiveCoins) });
+          setSuccessData({ flag, timeTakenMs, timePenaltyCoins: timePenaltyXp, effectiveCoins: Math.max(0, effectiveCoins), bonusCoins: bonusXp, recommendedNext });
         } else {
           push(
             { type: "err", text: t("ctf.terminal.flagIncorrect") },
@@ -760,6 +766,8 @@ export default function CtfChallenge({ stage, backHref = "/stages", isPro = fals
           timeTakenMs={successData.timeTakenMs}
           timePenaltyCoins={successData.timePenaltyCoins}
           effectiveCoins={successData.effectiveCoins}
+          bonusCoins={successData.bonusCoins}
+          recommendedNext={successData.recommendedNext}
           backHref={backHref}
         />
       )}

@@ -6,6 +6,10 @@ import { getServerSession } from "@/lib/server-session";
 import { awardStageInRedis } from "@/lib/server-progress";
 import { canAccessStage } from "@/lib/access";
 import { redis } from "@/lib/redis";
+import {
+  computeStageScore, computeBonusXp, updateSkillLevel,
+  getHintsUsed, getWrongAttempts, trackWrongAttempt, getRecommendedNext,
+} from "@/lib/difficulty";
 
 function verifyAdminToken(token: string): string | null {
   const secret = process.env.ADMIN_SECRET;
@@ -51,6 +55,9 @@ export async function POST(req: NextRequest) {
 
   const correct = body.flag.trim() === correctFlag;
   if (!correct) {
+    if (username) {
+      trackWrongAttempt(username, stage.id).catch(() => {});
+    }
     return NextResponse.json({ correct: false });
   }
 
@@ -63,12 +70,28 @@ export async function POST(req: NextRequest) {
 
   // Award server-side if user is authenticated
   if (username) {
-    const progress = await awardStageInRedis(username, stage.id, stage.badge.id, timePenaltyXp);
+    const [hintsUsed, wrongAttempts] = await Promise.all([
+      getHintsUsed(username, stage.id),
+      getWrongAttempts(username, stage.id),
+    ]);
+
+    const stageScore = computeStageScore(timeTakenMs, hintsUsed, wrongAttempts);
+    const bonusXp = computeBonusXp(stageScore, stage.xp);
+
+    const progress = await awardStageInRedis(username, stage.id, stage.badge.id, timePenaltyXp, bonusXp);
+
+    const [skillLevel] = await Promise.all([
+      updateSkillLevel(username, stageScore),
+    ]);
+
+    const recommendedNext = getRecommendedNext(stage.epochId, progress.completedStages, skillLevel);
+
     redis.lpush("admin:flag-log", JSON.stringify({ username, stageId: body.stageId, flagValue: correctFlag, ts: Date.now() }))
       .then(() => redis.ltrim("admin:flag-log", 0, 499))
       .catch(() => {});
-    return NextResponse.json({ correct: true, progress, timePenaltyXp });
+
+    return NextResponse.json({ correct: true, progress, timePenaltyXp, bonusXp, recommendedNext });
   }
 
-  return NextResponse.json({ correct: true, timePenaltyXp });
+  return NextResponse.json({ correct: true, timePenaltyXp, bonusXp: 0, recommendedNext: null });
 }

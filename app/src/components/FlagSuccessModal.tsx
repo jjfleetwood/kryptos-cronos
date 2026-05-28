@@ -11,6 +11,8 @@ type Props = {
   timeTakenMs: number;
   timePenaltyCoins: number;
   effectiveCoins: number;
+  bonusCoins?: number;
+  recommendedNext?: { id: string; title: string } | null;
   backHref?: string;
 };
 
@@ -21,7 +23,7 @@ function formatTime(ms: number): string {
   return m > 0 ? `${m}m ${s}s` : `${s}s`;
 }
 
-export default function FlagSuccessModal({ stage, flag, timeTakenMs, timePenaltyCoins, effectiveCoins, backHref = "/stages" }: Props) {
+export default function FlagSuccessModal({ stage, flag, timeTakenMs, timePenaltyCoins, effectiveCoins, bonusCoins, recommendedNext, backHref = "/stages" }: Props) {
   const { t } = useLocale();
   const [visible, setVisible] = useState(false);
   const [flagVisible, setFlagVisible] = useState(false);
@@ -101,6 +103,9 @@ export default function FlagSuccessModal({ stage, flag, timeTakenMs, timePenalty
               {timePenaltyCoins > 0 && (
                 <div className="text-xs text-orange-500 mt-0.5">-{timePenaltyCoins} {t("flag.timePenalty")}</div>
               )}
+              {bonusCoins != null && bonusCoins > 0 && (
+                <div className="text-xs text-yellow-400 mt-0.5 font-semibold">+{bonusCoins} bonus ⚡</div>
+              )}
             </div>
             <div className="bg-white/3 rounded-xl p-3 text-center border border-white/10">
               <div className="text-xl">{stage.badge.emoji}</div>
@@ -124,6 +129,22 @@ export default function FlagSuccessModal({ stage, flag, timeTakenMs, timePenalty
                   </li>
                 ))}
               </ul>
+            </div>
+          )}
+
+          {/* Recommended next stage */}
+          {recommendedNext && (
+            <div className="mb-3 rounded-xl border border-cyan-500/25 bg-cyan-500/5 p-3">
+              <p className="text-gray-600 text-xs uppercase tracking-widest mb-1.5">Recommended Next</p>
+              <Link
+                href={`/stages/${recommendedNext.id}`}
+                className="flex items-center justify-between gap-2 group"
+              >
+                <span className="text-cyan-300 text-sm font-semibold group-hover:text-cyan-200 transition-colors truncate">
+                  {recommendedNext.title}
+                </span>
+                <span className="text-cyan-500 text-sm flex-shrink-0">→</span>
+              </Link>
             </div>
           )}
 

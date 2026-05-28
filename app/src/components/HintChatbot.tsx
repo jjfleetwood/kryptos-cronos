@@ -7,6 +7,7 @@ type Message = { role: "user" | "aria"; text: string };
 
 const FREE_COOLDOWN_S = 30;
 const MAX_FREE_MESSAGES = 10;
+const DEFAULT_PRO_COOLDOWN_S = 30; // overridden by server's nextCooldownS
 
 type Props = {
   stage: StageConfig;
@@ -38,8 +39,9 @@ export default function HintChatbot({ stage, isPro = false, onClose }: Props) {
     return () => { if (cooldownRef.current) clearInterval(cooldownRef.current); };
   }, []);
 
-  function startCooldown() {
-    setCooldownLeft(FREE_COOLDOWN_S);
+  function startCooldown(durationS: number) {
+    if (durationS <= 0) return;
+    setCooldownLeft(durationS);
     cooldownRef.current = setInterval(() => {
       setCooldownLeft((prev) => {
         if (prev <= 1) {
@@ -66,6 +68,7 @@ export default function HintChatbot({ stage, isPro = false, onClose }: Props) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           message: text,
+          stageId: stage.id,
           stageTitle: stage.title,
           scenario: ctf?.scenario ?? "",
           hint: ctf?.hint ?? "",
@@ -79,7 +82,12 @@ export default function HintChatbot({ stage, isPro = false, onClose }: Props) {
       setMessages((prev) => [...prev, { role: "aria", text: reply }]);
       const newCount = messageCount + 1;
       setMessageCount(newCount);
-      if (!isPro) startCooldown();
+      if (isPro) {
+        // Adaptive: server returns cooldown based on user skill level (0s for struggling, up to 30s for experts)
+        startCooldown(data.nextCooldownS ?? DEFAULT_PRO_COOLDOWN_S);
+      } else {
+        startCooldown(FREE_COOLDOWN_S);
+      }
     } catch {
       setMessages((prev) => [...prev, { role: "aria", text: "Connection lost. Check your network and try again." }]);
     } finally {
@@ -113,14 +121,18 @@ export default function HintChatbot({ stage, isPro = false, onClose }: Props) {
           </div>
         </div>
 
-        {/* Pro upgrade banner */}
+        {/* Cooldown / limit banner */}
         {(cooldownLeft > 0 || hitLimit) && (
           <div className="flex items-center gap-2 px-4 py-2 bg-purple-500/10 border-b border-purple-500/20 flex-shrink-0">
             <span className="text-purple-400 text-xs">⚡</span>
             <span className="text-purple-300 text-xs flex-1">
-              {hitLimit ? "Message limit reached for this session." : `Pro removes the ${FREE_COOLDOWN_S}s wait between messages.`}
+              {hitLimit
+                ? "Message limit reached for this session."
+                : isPro
+                  ? "ARIA adapts to your skill — this wait decreases as you improve."
+                  : `Upgrade to Pro to reduce the ${FREE_COOLDOWN_S}s wait.`}
             </span>
-            <span className="text-purple-400 text-xs font-semibold whitespace-nowrap">Go Pro →</span>
+            {!isPro && <span className="text-purple-400 text-xs font-semibold whitespace-nowrap">Go Pro →</span>}
           </div>
         )}
 

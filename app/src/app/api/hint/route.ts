@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { redis } from "@/lib/redis";
+import { getServerSession } from "@/lib/server-session";
+import { trackHint, getSkillLevel, adaptiveCooldownSeconds } from "@/lib/difficulty";
 
 async function isRateLimited(ip: string): Promise<boolean> {
   const key = `rate:hint:${ip}`;
@@ -15,8 +17,11 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Too many requests. Take a breather and try again." }, { status: 429 });
   }
 
+  const username = getServerSession(req);
+
   const body = await req.json().catch(() => null) as {
     message?: string;
+    stageId?: string;
     stageTitle?: string;
     scenario?: string;
     hint?: string;
@@ -70,5 +75,15 @@ export async function POST(req: NextRequest) {
   const data = await res.json() as { content: { type: string; text: string }[] };
   const reply = data.content?.find((c) => c.type === "text")?.text ?? "No response.";
 
-  return NextResponse.json({ reply });
+  // Track hint usage and compute adaptive cooldown for Pro users
+  let nextCooldownS = 30; // default for free users
+  if (username && body.stageId) {
+    const [skillLevel] = await Promise.all([
+      getSkillLevel(username),
+      trackHint(username, body.stageId),
+    ]);
+    nextCooldownS = adaptiveCooldownSeconds(skillLevel);
+  }
+
+  return NextResponse.json({ reply, nextCooldownS });
 }

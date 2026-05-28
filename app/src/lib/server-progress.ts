@@ -169,12 +169,14 @@ function yesterdayUTC(): string {
  * Awards a stage in Redis for a verified user. XP is computed server-side.
  * Idempotent — calling twice for the same stage has no effect on XP.
  * timePenaltyXp is accumulated only once per new stage completion.
+ * bonusXp is added for clean/fast solves (score ≥ 80) — tracked in the bonus field.
  */
 export async function awardStageInRedis(
   username: string,
   stageId: string,
   badgeId?: string,
-  timePenaltyXp = 0
+  timePenaltyXp = 0,
+  bonusXp = 0
 ): Promise<UserProgress> {
   const key = `progress:${username.toLowerCase()}`;
   const streakKey = `streak:${username.toLowerCase()}`;
@@ -206,7 +208,9 @@ export async function awardStageInRedis(
   const baseCoins = completedStages.reduce((sum, id) => sum + stageXp(id), 0);
   const storedPenalty = Number(data?.penalty ?? 0);
   const newPenalty = isNew ? storedPenalty + timePenaltyXp : storedPenalty;
-  const coins = Math.max(0, baseCoins - newPenalty);
+  const storedBonus = Number(data?.bonus ?? 0);
+  const newBonus = isNew ? storedBonus + bonusXp : storedBonus;
+  const coins = Math.max(0, baseCoins - newPenalty + newBonus);
   // coinsSpent is never modified by stage awards — only the shop route touches it
   const coinsSpent = Number(data?.coinsSpent ?? 0);
 
@@ -242,6 +246,7 @@ export async function awardStageInRedis(
       badges: JSON.stringify(badges),
       lastActive: Date.now(),
       penalty: newPenalty,
+      bonus: newBonus,
     }),
     redis.hset(streakKey, {
       current,
@@ -255,7 +260,7 @@ export async function awardStageInRedis(
 
   // Daily and weekly leaderboards — only update on new stage completion
   if (isNew) {
-    const deltaCoins = stageXp(stageId) - timePenaltyXp;
+    const deltaCoins = stageXp(stageId) - timePenaltyXp + bonusXp;
     if (deltaCoins > 0) {
       const dayKey = getDayKey();
       const weekKey = getWeekKey();

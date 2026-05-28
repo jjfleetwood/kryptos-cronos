@@ -113,6 +113,11 @@ const GROUP_EPOCHS: Record<string, Set<string>> = {
     "mitre", "mitre-atlas", "owasp-llm",
     "quantum-1", "quantum-2", "quantum-3",
     "cisco-core", "cisco-enterprise", "cisco-secops", "cisco-advanced", "umbrella",
+    // extended curriculum — always visible alongside career content
+    "tapestry", "nails", "hair-color", "hair-styling",
+    "driving-1", "driving-2", "driving-3",
+    "baseball-1", "baseball-2", "baseball-3", "baseball-4", "baseball-5", "baseball-6", "baseball-7",
+    "paris-july", "milan-july", "french-basics", "italian-basics",
   ]),
   "curious": new Set([
     "first-journey",
@@ -120,6 +125,12 @@ const GROUP_EPOCHS: Record<string, Set<string>> = {
     "driving-1", "driving-2", "driving-3",
     "baseball-1", "baseball-2", "baseball-3", "baseball-4", "baseball-5", "baseball-6", "baseball-7",
     "paris-july", "milan-july", "french-basics", "italian-basics",
+    // core curriculum — always visible alongside curious content
+    "ancient",
+    "tech-audit-1", "tech-audit-2", "tech-audit-3", "tech-audit-4",
+    "mitre", "mitre-atlas", "owasp-llm",
+    "quantum-1", "quantum-2", "quantum-3",
+    "cisco-core", "cisco-enterprise", "cisco-secops", "cisco-advanced", "umbrella",
   ]),
 };
 

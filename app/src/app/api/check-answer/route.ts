@@ -4,6 +4,10 @@ import { getServerSession } from "@/lib/server-session";
 import { awardStageInRedis } from "@/lib/server-progress";
 import { stages, getStage } from "@/data/stages";
 import { canAccessStage } from "@/lib/access";
+import {
+  computeStageScore, computeBonusXp, updateSkillLevel,
+  getWrongAttempts, trackWrongAttempt, getRecommendedNext,
+} from "@/lib/difficulty";
 
 const quizRegistry: Record<string, typeof quizStage01> = {
   "stage-01": quizStage01,
@@ -41,17 +45,40 @@ export async function POST(req: NextRequest) {
 
   const correct = body.selectedIndex === question.correctIndex;
 
+  if (!correct && username) {
+    trackWrongAttempt(username, body.stageId).catch(() => {});
+  }
+
   // On final question correct answer, award the stage server-side
   const isLastQuestion = body.isFinalQuestion === true;
   if (correct && isLastQuestion) {
     if (username) {
       const stage = stages.find((s) => s.id === body.stageId);
+      const wrongAttempts = await getWrongAttempts(username, body.stageId);
+      // Quiz stages: no time tracking; hints unused → score driven entirely by wrong attempts
+      const stageScore = computeStageScore(0, 0, wrongAttempts);
+      const bonusXp = computeBonusXp(stageScore, stage?.xp ?? 0);
+
       const progress = await awardStageInRedis(
         username,
         body.stageId,
-        stage?.badge.id
+        stage?.badge.id,
+        0,
+        bonusXp
       );
-      return NextResponse.json({ correct: true, explanation: question.explanation ?? "", progress });
+
+      const skillLevel = await updateSkillLevel(username, stageScore);
+      const recommendedNext = stage
+        ? getRecommendedNext(stage.epochId, progress.completedStages, skillLevel)
+        : null;
+
+      return NextResponse.json({
+        correct: true,
+        explanation: question.explanation ?? "",
+        progress,
+        bonusXp,
+        recommendedNext,
+      });
     }
   }
 
