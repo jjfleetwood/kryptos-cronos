@@ -6,7 +6,7 @@ Gamified cybersecurity + AI training platform. 36 curriculum epochs, 438 CTF/qui
 
 **Live:** kryptoscronos.com  
 **Repo:** github.com/jjfleetwood/kryptos-cronos  
-**Current version:** v1.15.0 (as of 2026-05-28)
+**Current version:** v1.15.1 (as of 2026-05-28)
 
 ---
 
@@ -273,6 +273,10 @@ Local dev: `.env.local` in `app/` (gitignored).
 - **Target sponsors:** CrowdStrike, AWS, SentinelOne, CompTIA, ISC²
 
 ---
+
+## What's Shipped (v1.15.1)
+
+- ✅ RichParagraph bold lead sentence — light blue (overview/technical) and pink (incident) topic sentences across all 438 stages
 
 ## What's Shipped (v1.15.0)
 

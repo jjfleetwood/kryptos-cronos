@@ -2,6 +2,16 @@
 
 ---
 
+## v1.15.1 — 2026-05-28
+
+**Stage briefing paragraph formatting — bold lead sentence**
+
+- `RichParagraph` component splits each paragraph at first sentence boundary; lead sentence rendered bold + light blue (`text-sky-200`) in overview/technical sections, bold + light pink (`text-pink-200`) in incident sections — acts as a scannable topic sentence for each paragraph
+- Reverted previous question-highlight and parenthetical-green approaches
+- Applied to overview, technical deep-dive, and real-world incident body paragraphs across all 438 stages
+
+---
+
 ## v1.15.0 — 2026-05-28
 
 **Supabase Auth migration — parallel auth with zero-downtime PBKDF2 fallback**
