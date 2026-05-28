@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import React from "react";
 import AttackDiagram from "./AttackDiagram";
 import GaugeBar from "./GaugeBar";
 import BackLink from "./BackLink";
@@ -135,25 +134,20 @@ function SectionHeader({ color, icon, label }: { color: string; icon: string; la
   );
 }
 
-// Splits a paragraph into sentences; renders interrogative sentences
-// (ending with ?) in pink to match the doc's rhetorical question style.
-function RichParagraph({ text, className = "" }: { text: string; className?: string }) {
-  const parts = text.match(/[^.!?]*[.!?]+["']?|[^.!?]+$/g) ?? [text];
+// Highlights the first sentence of a paragraph in bold light-blue as a
+// scannable topic sentence. The rest renders in normal gray with RichText.
+function RichParagraph({ text, lead = "blue" }: { text: string; lead?: "blue" | "pink" }) {
+  const firstDot = text.search(/[.!?]\s/);
+  const split = firstDot !== -1 ? firstDot + 1 : -1;
+  const leadText = split !== -1 ? text.slice(0, split) : text;
+  const restText = split !== -1 ? text.slice(split) : "";
+  const leadClass = lead === "pink"
+    ? "text-pink-200 font-semibold"
+    : "text-sky-200 font-semibold";
   return (
-    <span className={className}>
-      {parts.map((sentence, i) => {
-        const trimmed = sentence.trim();
-        if (trimmed.endsWith("?")) {
-          return (
-            <React.Fragment key={i}>
-              <span className="text-fuchsia-300 font-medium">
-                <RichText text={sentence} />
-              </span>
-            </React.Fragment>
-          );
-        }
-        return <RichText key={i} text={sentence} />;
-      })}
+    <span>
+      <span className={leadClass}><RichText text={leadText} /></span>
+      {restText && <RichText text={restText} />}
     </span>
   );
 }
@@ -308,12 +302,12 @@ export default function StageInfo({
           <div className="space-y-4">
             {overview.map((para, i) => (
               i === 0 ? (
-                <p key={i} className="text-white text-base leading-relaxed font-medium border-l-2 border-cyan-500/50 pl-4">
-                  <RichParagraph text={para} />
+                <p key={i} className="text-gray-300 text-base leading-relaxed border-l-2 border-cyan-500/50 pl-4">
+                  <RichParagraph text={para} lead="blue" />
                 </p>
               ) : (
                 <p key={i} className="text-gray-400 leading-relaxed text-sm">
-                  <RichParagraph text={para} />
+                  <RichParagraph text={para} lead="blue" />
                 </p>
               )
             ))}
@@ -343,7 +337,7 @@ export default function StageInfo({
             <div className="px-5 py-4 space-y-3">
               {technicalBody.map((para, i) => (
                 <p key={i} className="text-gray-300 leading-relaxed text-sm">
-                  <RichParagraph text={para} />
+                  <RichParagraph text={para} lead="blue" />
                 </p>
               ))}
             </div>
@@ -391,7 +385,7 @@ export default function StageInfo({
             <div className="px-5 py-4 space-y-3">
               {incidentBody.map((para, i) => (
                 <p key={i} className="text-gray-300 leading-relaxed text-sm">
-                  <RichParagraph text={para} />
+                  <RichParagraph text={para} lead="pink" />
                 </p>
               ))}
             </div>
