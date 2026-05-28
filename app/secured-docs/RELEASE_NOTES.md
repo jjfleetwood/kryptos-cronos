@@ -2,6 +2,15 @@
 
 ---
 
+## v1.13.0 — 2026-05-28
+
+**Stage briefing visual redesign + category-aware section labels**
+
+- **StageInfo redesign** — wonder hero card (emoji + location/era), CVSS severity bar with color-coded label and description, pull-quote first paragraph, distinct color identity per section (cyan overview, rose flow, emerald technical, amber timeline, violet takeaways, sky references), incident section with pulsing dot + badge + impact callout, numbered gradient takeaway badges, hoverable reference cards, gradient CTA button
+- **Category-aware labels** — section headers and incident styling now adapt to stage category: cybersecurity/ai/owasp → Attack Chain / Technical Deep-Dive / 🚨 Real-World Incident (red); sports → ⚾ How It Works / Rules & Mechanics / 🏆 Historical Moment (amber); arts (nails, tapestry, hair, travel, language) → ✂️ Step by Step / Technique & Process / 📖 Cultural Context (violet); driving → 🛣️ The Process / Rules & Regulations / 🚗 Real-World Scenario (blue); health → 🩺 How It Works / Clinical Deep-Dive / 📋 Case Study (teal)
+
+---
+
 ## v1.12.2 — 2026-05-28
 
 **Add FINANCIALS.md — company P&L structure, cost tracking, compliance**
