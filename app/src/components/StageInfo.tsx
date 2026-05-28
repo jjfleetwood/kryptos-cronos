@@ -227,7 +227,7 @@ export default function StageInfo({
 
           {/* Title */}
           <h1 className="text-3xl sm:text-4xl font-black text-white mb-2 leading-tight">{stage.title}</h1>
-          <p className="text-gray-400 text-lg leading-relaxed">{tagline}</p>
+          <p className="text-gray-400 text-lg leading-relaxed"><RichText text={tagline} /></p>
 
           {/* CVSS severity bar */}
           {stage.cvssScore !== undefined && (
@@ -314,7 +314,7 @@ export default function StageInfo({
           <SectionHeader color="text-emerald-400" icon={theme.technicalIcon} label={theme.technical} />
           <div className="rounded-xl border border-emerald-500/15 overflow-hidden">
             <div className="px-5 py-4 bg-emerald-500/5 border-b border-emerald-500/15">
-              <h3 className="text-white font-bold text-base">{technicalTitle}</h3>
+              <h3 className="text-white font-bold text-base"><RichText text={technicalTitle} /></h3>
             </div>
             <div className="px-5 py-4 space-y-3">
               {technicalBody.map((para, i) => (
@@ -344,7 +344,7 @@ export default function StageInfo({
             <div className={`px-5 py-3 ${theme.incidentHeaderBg} flex items-center justify-between gap-3`}>
               <div className="flex items-center gap-2">
                 <span className={`w-2 h-2 rounded-full ${theme.incidentDot} animate-pulse flex-shrink-0`} />
-                <h3 className={`${theme.incidentTitleColor} font-bold text-sm`}>{incidentTitle}</h3>
+                <h3 className={`${theme.incidentTitleColor} font-bold text-sm`}><RichText text={incidentTitle} /></h3>
               </div>
               <span className={`text-xs font-mono px-2 py-0.5 rounded whitespace-nowrap flex-shrink-0 ${theme.incidentBadgeCss}`}>
                 {theme.incidentBadge}
@@ -360,7 +360,7 @@ export default function StageInfo({
             {/* Impact / significance callout */}
             <div className={`px-5 py-4 ${theme.incidentImpactBg}`}>
               <p className="text-xs text-gray-500 uppercase tracking-widest mb-1 font-semibold">{theme.incidentImpactLabel}</p>
-              <p className={`${theme.incidentTitleColor} font-semibold text-sm leading-snug`}>{incidentImpact}</p>
+              <p className={`${theme.incidentTitleColor} font-semibold text-sm leading-snug`}><RichText text={incidentImpact} /></p>
             </div>
 
             {/* Body */}
@@ -396,7 +396,7 @@ export default function StageInfo({
                       {entry.year}
                     </span>
                     <span className={`text-sm leading-relaxed ${entry.highlight ? "text-white font-medium" : "text-gray-400"}`}>
-                      {timelineEvents?.[i] ?? entry.event}
+                      <RichText text={timelineEvents?.[i] ?? entry.event} />
                     </span>
                   </div>
                 </div>
@@ -434,7 +434,7 @@ export default function StageInfo({
                   className="flex items-center gap-3 px-3 py-2 rounded-lg bg-white/2 border border-white/8 hover:bg-white/5 hover:border-sky-500/30 transition-colors group"
                 >
                   <span className="text-gray-600 font-mono text-xs w-5 flex-shrink-0 text-center">{i + 1}</span>
-                  <span className="text-sky-400 group-hover:text-sky-300 text-sm transition-colors truncate">{ref.title}</span>
+                  <span className="text-sky-400 group-hover:text-sky-300 text-sm transition-colors truncate"><RichText text={ref.title} /></span>
                   <span className="text-gray-600 text-xs ml-auto flex-shrink-0">↗</span>
                 </a>
               </li>
@@ -463,7 +463,7 @@ export default function StageInfo({
                       <span className="text-indigo-400 text-sm flex-shrink-0">↓</span>
                       <div className="min-w-0">
                         <p className="text-indigo-300 text-sm font-mono">{dl.name}</p>
-                        <p className="text-gray-500 text-xs">{dl.description}</p>
+                        <p className="text-gray-500 text-xs"><RichText text={dl.description} /></p>
                       </div>
                     </a>
                   </li>
