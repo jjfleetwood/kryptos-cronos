@@ -2,6 +2,21 @@
 
 ---
 
+## v1.15.0 — 2026-05-28
+
+**Supabase Auth migration — parallel auth with zero-downtime PBKDF2 fallback**
+
+- New `src/lib/supabase.ts` — `supabaseAdmin` (service role client) + `createSupabaseServerClient()` (SSR session reader) + `getSupabaseUsername()`
+- **Register:** new accounts simultaneously written to Redis (PBKDF2) and Supabase Auth (`email_confirm: true`, `user_metadata.username`)
+- **Login:** tries Supabase `signInWithPassword` first; on failure falls back to PBKDF2 and transparently creates a Supabase account (silent migration — no user action required)
+- **Logout:** signs out from both Supabase and clears HMAC session cookie
+- **Forgot-password:** triggers both Supabase `resetPasswordForEmail` and the existing Resend custom email
+- **Reset-password:** after Redis PBKDF2 update, syncs new password to Supabase via service role
+- All existing API routes, sessions, and the HMAC cookie system unchanged — zero breaking changes
+- Packages: `@supabase/supabase-js@2.106.2`, `@supabase/ssr@0.10.3`
+
+---
+
 ## v1.14.1 — 2026-05-28
 
 **Remove DocuSign NDA integration**

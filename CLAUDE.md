@@ -6,7 +6,7 @@ Gamified cybersecurity + AI training platform. 36 curriculum epochs, 438 CTF/qui
 
 **Live:** kryptoscronos.com  
 **Repo:** github.com/jjfleetwood/kryptos-cronos  
-**Current version:** v1.14.1 (as of 2026-05-28)
+**Current version:** v1.15.0 (as of 2026-05-28)
 
 ---
 
@@ -273,6 +273,10 @@ Local dev: `.env.local` in `app/` (gitignored).
 - **Target sponsors:** CrowdStrike, AWS, SentinelOne, CompTIA, ISC²
 
 ---
+
+## What's Shipped (v1.15.0)
+
+- ✅ Supabase Auth migration — parallel auth; register/login/logout/forgot-password/reset-password all wired to Supabase; PBKDF2 fallback + transparent migration for existing users; all existing sessions unchanged
 
 ## What's Shipped (v1.14.1)
 
