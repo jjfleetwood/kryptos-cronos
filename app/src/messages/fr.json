@@ -529,5 +529,6 @@
   "quiz.ctf.scoreGood": "Excellent travail — bonne compréhension.",
   "quiz.ctf.scoreOk": "Bon début — révisez le contenu pour consolider les concepts.",
   "quiz.ctf.continue": "Continuer →",
-  "quiz.ctf.skip": "Passer le quiz"
+  "quiz.ctf.skip": "Passer le quiz",
+  "quiz.audit.heading": "Vérification des connaissances — Approfondissement"
 }

@@ -8,8 +8,9 @@ import BackLink from "./BackLink";
 import AttackDiagram from "./AttackDiagram";
 import FlagSuccessModal from "./FlagSuccessModal";
 import HintChatbot from "./HintChatbot";
-import type { CtfConfig, StageConfig, CtfQuizEntry } from "@/data/types";
+import type { CtfConfig, StageConfig, CtfQuizEntry, AuditQuizEntry } from "@/data/types";
 import CtfQuizPanel from "./CtfQuizPanel";
+import AuditQuizPanel from "./AuditQuizPanel";
 import { getExtraCommands } from "@/data/stage-commands";
 import { useLocale } from "@/contexts/LocaleContext";
 
@@ -300,12 +301,13 @@ function ReferenceDrawer({ stage, onClose }: { stage: StageConfig; onClose: () =
 
 type TranslatedQuestion = { q: string; options: [string, string] };
 
-export default function CtfChallenge({ stage, backHref = "/stages", isPro = false, ctfQuiz, ctfQuizTranslation }: {
+export default function CtfChallenge({ stage, backHref = "/stages", isPro = false, ctfQuiz, ctfQuizTranslation, auditQuiz }: {
   stage: StageConfig;
   backHref?: string;
   isPro?: boolean;
   ctfQuiz?: CtfQuizEntry;
   ctfQuizTranslation?: TranslatedQuestion[];
+  auditQuiz?: AuditQuizEntry;
 }) {
   const { t } = useLocale();
   const ctf = stage.ctf!;
@@ -861,7 +863,16 @@ export default function CtfChallenge({ stage, backHref = "/stages", isPro = fals
         </div>
 
         {/* Knowledge-check quiz — shown after CTF solved */}
-        {solved && ctfQuiz && !quizDone && (
+        {solved && !quizDone && auditQuiz && (
+          <div className="mt-6 pb-8">
+            <AuditQuizPanel
+              stageId={stage.id}
+              quiz={auditQuiz}
+              onDone={() => setQuizDone(true)}
+            />
+          </div>
+        )}
+        {solved && !quizDone && !auditQuiz && ctfQuiz && (
           <div className="mt-6 pb-8">
             <CtfQuizPanel
               quiz={ctfQuiz}

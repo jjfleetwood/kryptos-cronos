@@ -529,5 +529,6 @@
   "quiz.ctf.scoreGood": "Tolle Arbeit — solides Verständnis.",
   "quiz.ctf.scoreOk": "Guter Anfang — wiederhole das Material, um die Konzepte zu festigen.",
   "quiz.ctf.continue": "Weiter →",
-  "quiz.ctf.skip": "Quiz überspringen"
+  "quiz.ctf.skip": "Quiz überspringen",
+  "quiz.audit.heading": "Wissensüberprüfung — Vertiefung"
 }

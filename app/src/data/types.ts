@@ -60,6 +60,17 @@ export type CtfQuizEntry = {
   questions: CtfQuizQuestion[]; // exactly 5
 };
 
+export type AuditQuizQuestion = {
+  q: string;
+  type: "binary" | "mcq"; // binary = 2 options, mcq = 4 options
+  options: string[];
+  correct: number;         // index of correct answer
+};
+
+export type AuditQuizEntry = {
+  questions: AuditQuizQuestion[]; // exactly 10
+};
+
 export type CtfConfig = {
   scenario: string;
   hint: string;
@@ -107,6 +118,9 @@ export type StageConfig = {
   xp: number;
   badge: { id: string; name: string; emoji: string };
   image?: string;
+  easeScore?: number;   // 1–10: ease of implementation (audit-cm only)
+  valueScore?: number;  // 1–10: analytics + audit value (audit-cm only)
+  rank?: number;        // rank by easeScore + valueScore combined (audit-cm only)
   challengeType: "quiz" | "ctf";
   info: StageInfo;
   ctf?: CtfConfig;

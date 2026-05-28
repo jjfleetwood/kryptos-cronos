@@ -1,6 +1,7 @@
 "use client";
 
 import AttackDiagram from "./AttackDiagram";
+import GaugeBar from "./GaugeBar";
 import BackLink from "./BackLink";
 import type { StageConfig } from "@/data/types";
 import type { StageTranslation } from "@/data/translations/types";
@@ -86,6 +87,24 @@ export default function StageInfo({
 
           <h1 className="text-3xl font-bold text-white mb-1">{stage.title}</h1>
           <p className="text-gray-400 text-lg">{tagline}</p>
+
+          {/* Ease + Value gauges for audit-cm stages */}
+          {stage.easeScore !== undefined && stage.valueScore !== undefined && (
+            <div className="mt-5 grid grid-cols-1 sm:grid-cols-2 gap-4 p-4 bg-white/3 border border-white/10 rounded-xl">
+              <div>
+                <GaugeBar value={stage.easeScore} label="Ease of Implementation" />
+              </div>
+              <div>
+                <GaugeBar value={stage.valueScore} label="Analytics & Audit Value" />
+              </div>
+              {stage.rank !== undefined && (
+                <div className="sm:col-span-2 pt-1 border-t border-white/10 flex items-center justify-between">
+                  <span className="text-xs text-gray-500">Combined score: {stage.easeScore + stage.valueScore}/20</span>
+                  <span className="text-xs font-bold text-purple-400">Rank #{stage.rank} of 12</span>
+                </div>
+              )}
+            </div>
+          )}
         </div>
 
         {/* Overview */}

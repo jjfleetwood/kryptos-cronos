@@ -529,5 +529,6 @@
   "quiz.ctf.scoreGood": "बढ़िया काम — मजबूत समझ।",
   "quiz.ctf.scoreOk": "अच्छी शुरुआत — अवधारणाओं को मजबूत करने के लिए सामग्री दोबारा पढ़ें।",
   "quiz.ctf.continue": "जारी रखें →",
-  "quiz.ctf.skip": "क्विज़ छोड़ें"
+  "quiz.ctf.skip": "क्विज़ छोड़ें",
+  "quiz.audit.heading": "ज्ञान जाँच — गहन"
 }

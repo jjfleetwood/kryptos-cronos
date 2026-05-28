@@ -53,7 +53,17 @@ export async function canAccessStage(stageId: string, username: string | null): 
 
   if (priorStages.length === 0) return true; // first stage in epoch — always open
 
-  const progressData = await redis.hget(`progress:${lower}`, "stages");
+  const isAuditEpoch = stage.epochId.startsWith("tech-audit-");
+
+  const [progressData, quizData] = await Promise.all([
+    redis.hget(`progress:${lower}`, "stages"),
+    isAuditEpoch ? redis.hget(`progress:${lower}`, "quizStages") : Promise.resolve(null),
+  ]);
+
   const completed = new Set(parseArr(progressData));
-  return priorStages.every((s) => completed.has(s.id));
+  if (!isAuditEpoch) return priorStages.every((s) => completed.has(s.id));
+
+  // Audit epochs: quiz completion OR CTF completion unlocks the next stage
+  const quizCompleted = new Set(parseArr(quizData));
+  return priorStages.every((s) => completed.has(s.id) || quizCompleted.has(s.id));
 }

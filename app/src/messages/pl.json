@@ -529,5 +529,6 @@
   "quiz.ctf.scoreGood": "Dobra robota — solidne zrozumienie.",
   "quiz.ctf.scoreOk": "Dobry początek — przejrzyj materiał, aby utrwalić pojęcia.",
   "quiz.ctf.continue": "Kontynuuj →",
-  "quiz.ctf.skip": "Pomiń quiz"
+  "quiz.ctf.skip": "Pomiń quiz",
+  "quiz.audit.heading": "Sprawdzenie wiedzy — Pogłębione"
 }

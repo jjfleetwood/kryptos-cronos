@@ -10,7 +10,6 @@
   "nav.shop": "Shop",
   "nav.admin": "Admin",
   "nav.language": "Language",
-
   "auth.backToHome": "Back to home",
   "auth.welcomeBack": "Welcome back, Agent.",
   "auth.welcomeBackYouth": "Welcome back! Let's play! 🎮",
@@ -32,7 +31,6 @@
   "auth.registrationFailed": "Registration failed.",
   "auth.signingIn": "Signing in…",
   "auth.creatingAccount": "Creating account…",
-
   "stages.title": "Stage Map",
   "stages.yourProgress": "Your Progress",
   "stages.stagesCompleted": "stages completed",
@@ -66,7 +64,6 @@
   "stages.tracks.travel": "Travel",
   "stages.tracks.travelDesc": "City guides, history & language",
   "stages.proExtended": "Extended Curriculum",
-
   "stage.overview": "Overview",
   "stage.technical": "Technical Deep-Dive",
   "stage.incident": "Real-World Incident",
@@ -86,7 +83,6 @@
   "stage.incorrectFlag": "Incorrect — try again.",
   "stage.alreadyCompleted": "Already completed",
   "stage.proRequired": "Pro access required",
-
   "trophies.title": "My Trophies",
   "trophies.badges": "Badges",
   "trophies.noBadges": "No badges yet",
@@ -94,7 +90,6 @@
   "trophies.streak": "Streak",
   "trophies.stagesCompleted": "Stages Completed",
   "trophies.totalCoins": "Total Coins",
-
   "leaderboard.title": "Leaderboard",
   "leaderboard.allTime": "All Time",
   "leaderboard.weekly": "Weekly",
@@ -102,13 +97,11 @@
   "leaderboard.rank": "Rank",
   "leaderboard.player": "Player",
   "leaderboard.coins": "Coins",
-
   "journey.title": "Your Journey",
   "journey.epochsCompleted": "Epochs Completed",
   "journey.stagesCompleted": "Stages Completed",
   "journey.inProgress": "In Progress",
   "journey.notStarted": "Not Started",
-
   "common.loading": "Loading…",
   "common.error": "Something went wrong",
   "common.submit": "Submit",
@@ -129,16 +122,13 @@
   "common.signedInAs": "Signed in as",
   "common.deleteAccount": "Delete Account",
   "common.confirmDelete": "This will permanently delete your account and all progress. This cannot be undone.",
-
   "shop.title": "Shop",
   "shop.yourBalance": "Your Balance",
   "shop.buy": "Buy",
   "shop.purchased": "Purchased",
   "shop.notEnoughCoins": "Not enough coins",
-
   "avatar.title": "Your Avatar",
   "avatar.customize": "Customize",
-
   "pricing.proTitle": "Pro Access",
   "pricing.monthly": "Monthly",
   "pricing.yearly": "Yearly",
@@ -148,7 +138,6 @@
   "pricing.upgradeToAccess": "Upgrade to Pro to access this stage",
   "pricing.perMonth": "/ month",
   "pricing.perYear": "/ year",
-
   "stage.attackFlow": "Attack Flow",
   "stage.timeline": "Timeline",
   "stage.references": "References",
@@ -159,13 +148,11 @@
   "stage.ctfExploit": "Exploit the vulnerability in a simulated environment and capture the flag.",
   "stage.quizTest": "Test your knowledge with a quiz on this vulnerability.",
   "stage.stageNumber": "Stage",
-
   "stages.backToHome": "← Back to Home",
   "stages.guestPrompt": "Playing as Guest — Sign in to save progress across devices.",
   "stages.welcomeUser": "Welcome,",
   "stages.logOut": "Log out",
   "stages.deleteAccount": "Delete account",
-
   "leaderboard.yourRank": "Your Rank",
   "leaderboard.totalCoins": "Total Coins",
   "leaderboard.stagesDone": "Stages Done",
@@ -181,14 +168,12 @@
   "leaderboard.periodCoins": "Total coins accumulated",
   "leaderboard.periodWeekly": "Coins earned this week",
   "leaderboard.periodDaily": "Coins earned today",
-
   "journey.mapSubtitle": "Your progress through the known territories. The fog hides what lies ahead.",
   "journey.overallExploration": "OVERALL EXPLORATION",
   "journey.epochsCleared": "epochs cleared",
   "journey.clearedLabel": "Cleared",
   "journey.unexploredLabel": "░░ unexplored ░░",
   "journey.fog": "unexplored",
-
   "trophies.vaultEmpty": "Your trophy vault is empty.",
   "trophies.browseTreasures": "💎 Browse Treasures →",
   "trophies.headToShop": "Head to Shop → Treasures to start your collection.",
@@ -207,7 +192,6 @@
   "trophies.claimed": "Claimed",
   "trophies.totalSupply": "Total Supply",
   "trophies.allTiers": "All Tiers",
-
   "auth.backToLogin": "← Back to login",
   "auth.passwordRecovery": "Password Recovery",
   "auth.checkInbox": "Check your inbox",
@@ -232,7 +216,6 @@
   "auth.signInPrompt": "Sign in to track your progress and appear on the leaderboard.",
   "auth.signIn": "Sign In →",
   "auth.continueAsGuest": "Continue as Guest",
-
   "onboarding.welcome": "Welcome, Operative",
   "onboarding.subtitle": "Kryptós CronOS is a hands-on cybersecurity training platform. Real exploits. Real terminals. No fluff.",
   "onboarding.step1Title": "Pick a stage",
@@ -242,7 +225,6 @@
   "onboarding.step3Title": "Capture the flag",
   "onboarding.step3Desc": "Find the hidden flag, earn XP, unlock the next stage. ARIA AI hints keep you moving without spoiling it.",
   "onboarding.beginTraining": "Begin Training →",
-
   "paywall.proRequired": "Pro Required",
   "paywall.isPartOfCurriculum": "is part of the full curriculum.",
   "paywall.monthly": "Monthly",
@@ -258,7 +240,6 @@
   "paywall.feature5": "PDF progress certificate",
   "paywall.backToStageMap": "← Back to stage map",
   "paywall.somethingWentWrong": "Something went wrong. Please try again.",
-
   "flag.accepted": "Flag Accepted",
   "flag.missionComplete": "Mission Complete",
   "flag.capturedFlag": "Captured Flag",
@@ -267,7 +248,6 @@
   "flag.time": "Time",
   "flag.skillsAcquired": "Skills Acquired",
   "flag.stageMap": "Stage Map →",
-
   "avatar.backToShop": "← Shop",
   "avatar.adminMode": "Admin mode — equip any item from the full catalog.",
   "avatar.equipFromShop": "Equip items you've collected. Get more from the Shop.",
@@ -282,7 +262,6 @@
   "avatar.slotBody": "Body",
   "avatar.slotHands": "Hands",
   "avatar.slotBackground": "Background",
-
   "shop.stageMap": "← Stage Map",
   "shop.desc": "Spend coins on items, collectibles, and rare trophies.",
   "shop.spendable": "spendable",
@@ -302,13 +281,11 @@
   "shop.loadingCatalog": "Loading catalog…",
   "shop.failedCatalog": "Failed to load catalog.",
   "shop.needMoreCoins": "Need more coins",
-
   "stages.subtitle": "Seven tracks covering the full spectrum — from core CVEs to AI security, quantum cryptography, and enterprise defense.",
   "stages.deleteAccountConfirm": "Delete your account? This permanently removes all progress, coins, badges, and streak data and cannot be undone.",
   "stages.epochDone": "✓ done",
   "stages.guestPromptPre": "Playing as Guest",
   "stages.guestPromptPost": "to save progress across devices.",
-
   "epoch.notFound": "Epoch not found.",
   "epoch.backToStages": "← Back to Stages",
   "epoch.accessRestricted": "Access to this module is restricted. Contact an administrator to request access.",
@@ -319,7 +296,6 @@
   "epoch.guestPre": "Playing as Guest —",
   "epoch.guestPost": "to save progress.",
   "epoch.learnMore": "Learn more ↗",
-
   "leaderboard.backToStageMap": "← Stage Map",
   "leaderboard.loadingRankings": "Loading rankings…",
   "leaderboard.completeStagePrompt": "Complete a stage to appear here!",
@@ -337,23 +313,19 @@
   "leaderboard.stagesLabel": "stages",
   "leaderboard.badgesLabel": "badges",
   "leaderboard.trophiesProfile": "Trophies",
-
   "stage.notFound": "Stage not found.",
   "stage.accessRestricted": "Access Restricted",
   "stage.accessRestrictedDesc": "This module is not available on your account. Contact an administrator to request access.",
   "stage.completePrevious": "Complete Previous Stages",
   "stage.completePreviousDesc": "This stage is locked. Finish the stages that come before it in this epoch to unlock it.",
   "stage.backToEpoch": "← Back to Epoch",
-
   "nav.learningLevel": "Learning level:",
   "nav.profile": "My Profile",
   "nav.trialPrefix": "Trial:",
   "nav.trialDaySingular": "day",
   "nav.trialDayPlural": "days",
   "nav.trialSuffix": "left — Upgrade →",
-
   "onboarding.privacyPolicy": "Privacy Policy",
-
   "upgrade.trialEndingSoon": "⚡ Trial ending soon",
   "upgrade.headingLine1": "Go Pro. Stay ahead",
   "upgrade.headingLine2": "of the threat landscape.",
@@ -393,7 +365,6 @@
   "upgrade.faq3a": "All payments are processed by Stripe — PCI Level 1 certified. We never store card details.",
   "upgrade.faq4q": "Can I cancel anytime?",
   "upgrade.faq4a": "Yes, cancel from your Stripe billing portal at any time. Access continues through the end of your paid period.",
-
   "home.heroBadge": "438 Stages · AI · Post-Quantum · Nation-State CTF",
   "home.heroLine1": "Defend the Future.",
   "home.heroLine2": "Start Here.",
@@ -496,7 +467,6 @@
   "home.footerTerms": "Terms",
   "home.footerAttributions": "Attributions",
   "home.footerCopyright": "© 2026 Kryptós CronOS (κρυπτός χρόνος) · Built for defenders",
-
   "ctf.terminal.hint": "Hint",
   "ctf.terminal.objective": "Objective: Collect any {min} of {total} intelligence fragments to assemble the flag.",
   "ctf.terminal.objectiveAll": "Objective: Collect {total} intelligence fragments to assemble the flag.",
@@ -525,7 +495,6 @@
   "ctf.terminal.catIsDir": "Is a directory",
   "ctf.terminal.catNotFound": "No such file",
   "ctf.terminal.lsNoDir": "No such directory",
-
   "ctf.hints.label": "Hints",
   "ctf.hints.subtext": "Each hint reveals a bit more. Use them only when you're genuinely stuck.",
   "ctf.hints.numbered": "Hint {n} of {total}",
@@ -538,14 +507,12 @@
   "ctf.hints.adSubtitle": "Cybersecurity workforce training",
   "ctf.hints.adSponsor": "Sponsored content — your next hint unlocks shortly",
   "ctf.hints.adUnlocks": "Hint unlocks in {n}s — upgrade to Pro to skip",
-
   "ctf.ref.overview": "Overview",
   "ctf.ref.attackFlow": "Attack Flow",
   "ctf.ref.technical": "Technical",
   "ctf.ref.incident": "Incident",
   "ctf.ref.keyTakeaways": "Key Takeaways",
   "ctf.ref.references": "References",
-
   "ctf.status.complete": "Stage Complete",
   "ctf.status.replay": "Replay",
   "ctf.status.flagCaptured": "Flag captured!",
@@ -562,5 +529,6 @@
   "quiz.ctf.scoreGood": "Great work — solid understanding.",
   "quiz.ctf.scoreOk": "Good start — review the material to reinforce the concepts.",
   "quiz.ctf.continue": "Continue →",
-  "quiz.ctf.skip": "Skip quiz"
+  "quiz.ctf.skip": "Skip quiz",
+  "quiz.audit.heading": "Knowledge Check — Deep Dive"
 }

@@ -6,6 +6,7 @@ export type UserProgress = {
   completedStages: string[];
   badges: string[];
   streak?: number;
+  quizCompletedStages?: string[];
 };
 
 /** Fetch authoritative progress from the server. Returns null if unauthenticated or on error. */
@@ -27,4 +28,33 @@ export function awardStage(stageId: string, _xp: number, badge?: string): void {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ stageId, badgeId: badge }),
   }).catch(() => {});
+}
+
+/** Posts an audit quiz completion to the server. */
+export async function awardQuizStage(stageId: string): Promise<string[]> {
+  if (!getSession()) return [];
+  try {
+    const res = await fetch("/api/quiz-progress", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ stageId }),
+    });
+    if (!res.ok) return [];
+    const data = await res.json() as { quizCompletedStages: string[] };
+    return data.quizCompletedStages ?? [];
+  } catch {
+    return [];
+  }
+}
+
+/** Fetch quiz-completed stage IDs for the current user. */
+export async function fetchQuizProgress(): Promise<string[]> {
+  try {
+    const res = await fetch("/api/quiz-progress");
+    if (!res.ok) return [];
+    const data = await res.json() as { quizCompletedStages: string[] };
+    return data.quizCompletedStages ?? [];
+  } catch {
+    return [];
+  }
 }

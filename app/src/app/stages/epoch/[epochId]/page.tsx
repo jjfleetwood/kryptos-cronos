@@ -4,7 +4,8 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { stagesMeta as allStages, epochs } from "@/data/stages-meta";
-import { fetchProgress } from "@/lib/progress";
+import { fetchProgress, fetchQuizProgress } from "@/lib/progress";
+import GaugeBar from "@/components/GaugeBar";
 import { getSession, setSession } from "@/lib/auth";
 import { epochAccent, cardBorder, cardEmojiBg } from "@/app/stages/epoch-theme";
 import { getContentFlag } from "@/data/content-flags";
@@ -53,6 +54,7 @@ export default function EpochPage() {
   const { group } = useGroup();
   const metaMap = locale !== "en" ? (META_MAPS[locale] ?? null) : null;
   const [completedStages, setCompletedStages] = useState<string[]>([]);
+  const [quizCompletedStages, setQuizCompletedStages] = useState<string[]>([]);
   const [username, setUsername] = useState<string | null>(null);
   const [accessAllowed, setAccessAllowed] = useState<boolean | null>(null);
 
@@ -67,8 +69,9 @@ export default function EpochPage() {
         if (!meData) return;
         setUsername(meData.username);
         setSession(meData.username);
-        fetchProgress().then((p) => {
+        Promise.all([fetchProgress(), fetchQuizProgress()]).then(([p, qp]) => {
           if (p) setCompletedStages(p.completedStages);
+          setQuizCompletedStages(qp);
         });
       })
       .catch(() => setAccessAllowed(true));
@@ -79,8 +82,12 @@ export default function EpochPage() {
   const epochStages = filterStagesByGroup(allEpochStages, group);
   const accent = epochAccent[epochId] ?? epochAccent.ancient;
   const contentFlag = getContentFlag(epochId);
-  const doneCount = epochStages.filter((s) => completedStages.includes(s.id)).length;
-  const nextStageId = epochStages.find((s) => !completedStages.includes(s.id))?.id ?? null;
+  const isAuditEpoch = epochId.startsWith("tech-audit-");
+  // For audit epochs, a stage is "done for progression" if CTF OR quiz complete
+  const doneForProgression = (id: string) =>
+    completedStages.includes(id) || (isAuditEpoch && quizCompletedStages.includes(id));
+  const doneCount = epochStages.filter((s) => doneForProgression(s.id)).length;
+  const nextStageId = epochStages.find((s) => !doneForProgression(s.id))?.id ?? null;
 
   const gridCols =
     epochId === "first-journey"
@@ -207,13 +214,61 @@ export default function EpochPage() {
         {/* Stage grid */}
         <div className={`grid gap-3 ${gridCols}`}>
           {epochStages.map((stage) => {
-            const completed = completedStages.includes(stage.id);
+            const ctfDone = completedStages.includes(stage.id);
+            const quizDone = quizCompletedStages.includes(stage.id);
+            const bothDone = ctfDone && quizDone;
+            const anyDone = ctfDone || (isAuditEpoch && quizDone);
             const isNext = stage.id === nextStageId;
-            const borderClass = completed
+
+            // Border / shading by completion state
+            const borderClass = bothDone
+              ? "border-emerald-400/70 hover:border-emerald-400"
+              : ctfDone
               ? "border-green-500/50 hover:border-green-400/80"
+              : quizDone && isAuditEpoch
+              ? "border-amber-500/50 hover:border-amber-400/80"
               : isNext
               ? `${cardBorder[epochId] ?? "border-white/20"} ring-2 ring-offset-2 ring-offset-slate-950 ring-current`
               : cardBorder[epochId] ?? "border-white/20 hover:border-white/40";
+
+            const emojiBg = bothDone
+              ? "from-emerald-950 to-slate-950"
+              : ctfDone
+              ? "from-green-950 to-slate-950"
+              : quizDone && isAuditEpoch
+              ? "from-amber-950 to-slate-950"
+              : (cardEmojiBg[epochId] ?? "from-slate-900 to-slate-950");
+
+            const infoBg = bothDone
+              ? "bg-emerald-950/40"
+              : ctfDone
+              ? "bg-green-950/40"
+              : quizDone && isAuditEpoch
+              ? "bg-amber-950/30"
+              : "bg-black/20";
+
+            // Completion overlay icon + color
+            const overlayContent = bothDone
+              ? { bg: "bg-emerald-500/20", border: "border-emerald-400/60", text: "text-emerald-300 text-xl", symbol: "★" }
+              : ctfDone
+              ? { bg: "bg-green-500/20", border: "border-green-400/60", text: "text-green-400 text-2xl font-black", symbol: "✓" }
+              : quizDone && isAuditEpoch
+              ? { bg: "bg-amber-500/20", border: "border-amber-400/60", text: "text-amber-300 text-lg", symbol: "📝" }
+              : null;
+
+            const completedLabelColor = bothDone
+              ? "text-emerald-400"
+              : ctfDone
+              ? "text-green-500"
+              : "text-amber-500";
+
+            const completedLabel = bothDone
+              ? "★ " + t("stages.completed")
+              : ctfDone
+              ? "✓ " + t("stages.completed")
+              : isAuditEpoch && quizDone
+              ? "📝 Quiz done"
+              : null;
 
             return (
               <Link
@@ -222,28 +277,25 @@ export default function EpochPage() {
                 className={`group relative rounded-xl overflow-hidden border-2 transition-all duration-200 hover:-translate-y-0.5 ${borderClass}`}
               >
                 {/* Emoji panel */}
-                <div
-                  className={`relative flex items-center justify-center py-7 bg-gradient-to-b ${
-                    completed ? "from-green-950 to-slate-950" : (cardEmojiBg[epochId] ?? "from-slate-900 to-slate-950")
-                  }`}
-                >
-                  <span className={`text-5xl leading-none drop-shadow-lg transition-transform duration-200 group-hover:scale-110 ${completed ? "opacity-30" : ""}`}>
+                <div className={`relative flex items-center justify-center py-7 bg-gradient-to-b ${emojiBg}`}>
+                  <span className={`text-5xl leading-none drop-shadow-lg transition-transform duration-200 group-hover:scale-110 ${anyDone ? "opacity-30" : ""}`}>
                     {stage.wonder.emoji}
                   </span>
 
-                  {completed && (
+                  {overlayContent && (
                     <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                      <div className="w-12 h-12 rounded-full bg-green-500/20 border-2 border-green-400/60 flex items-center justify-center">
-                        <span className="text-green-400 text-2xl font-black leading-none">✓</span>
+                      <div className={`w-12 h-12 rounded-full ${overlayContent.bg} border-2 ${overlayContent.border} flex items-center justify-center`}>
+                        <span className={`${overlayContent.text} leading-none`}>{overlayContent.symbol}</span>
                       </div>
                     </div>
                   )}
 
                   <div className="absolute top-2 left-2">
                     <span className={`text-xs font-mono font-bold px-1.5 py-0.5 rounded-md leading-none ${
-                      completed ? "bg-green-500/20 text-green-400" : "bg-black/50 text-gray-300"
+                      anyDone ? (bothDone ? "bg-emerald-500/20 text-emerald-400" : ctfDone ? "bg-green-500/20 text-green-400" : "bg-amber-500/20 text-amber-400") : "bg-black/50 text-gray-300"
                     }`}>
                       {stage.order}
+                      {(stage as { rank?: number }).rank !== undefined ? ` · #${(stage as { rank?: number }).rank}` : ""}
                     </span>
                   </div>
 
@@ -257,18 +309,25 @@ export default function EpochPage() {
                 </div>
 
                 {/* Info panel */}
-                <div className={`px-2.5 py-2.5 ${completed ? "bg-green-950/40" : "bg-black/20"}`}>
+                <div className={`px-2.5 py-2.5 ${infoBg}`}>
                   <p className="text-xs text-gray-600 truncate leading-tight mb-0.5">{metaMap?.stages[stage.id]?.w ?? stage.wonder.name}</p>
-                  <p className={`text-xs font-semibold truncate leading-tight ${completed ? "text-green-300/70" : "text-gray-200"}`}>
+                  <p className={`text-xs font-semibold truncate leading-tight ${anyDone ? (bothDone ? "text-emerald-300/70" : ctfDone ? "text-green-300/70" : "text-amber-300/70") : "text-gray-200"}`}>
                     {metaMap?.stages[stage.id]?.t ?? stage.title}
                   </p>
+
+                  {/* Compact gauges for audit-cm stages */}
+                  {(stage as { easeScore?: number }).easeScore !== undefined && (
+                    <div className="mt-2 space-y-1">
+                      <GaugeBar value={(stage as { easeScore?: number }).easeScore ?? 5} label="Ease" compact />
+                      <GaugeBar value={(stage as { valueScore?: number }).valueScore ?? 5} label="Value" compact />
+                    </div>
+                  )}
+
                   <div className="flex items-center gap-1.5 mt-1.5">
-                    {completed ? (
-                      <span className="text-xs text-green-500 font-semibold">{t("stages.completed")}</span>
+                    {completedLabel ? (
+                      <span className={`text-xs font-semibold ${completedLabelColor}`}>{completedLabel}</span>
                     ) : (
-                      <>
-                        <span className="text-xs text-amber-600 font-mono">+{stage.xp} 🪙</span>
-                      </>
+                      <span className="text-xs text-amber-600 font-mono">+{stage.xp} 🪙</span>
                     )}
                     <span className="text-xs ml-auto">{stage.badge.emoji}</span>
                   </div>

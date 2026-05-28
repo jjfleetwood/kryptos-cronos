@@ -299,3 +299,26 @@ export async function awardStageInRedis(
 
   return { coins, coinsSpent, completedStages, badges, streak: current };
 }
+
+/**
+ * Records quiz completion for an audit stage. Lightweight — no XP, no badges, no email.
+ * Idempotent. Stored in quizStages field of the progress hash.
+ */
+export async function awardQuizStageInRedis(username: string, stageId: string): Promise<string[]> {
+  const key = `progress:${username.toLowerCase()}`;
+  const raw = await redis.hget(key, "quizStages");
+
+  function parseArr(val: unknown): string[] {
+    if (!val) return [];
+    if (Array.isArray(val)) return val as string[];
+    const s = String(val);
+    try { const p = JSON.parse(s); return Array.isArray(p) ? p : []; } catch { return s.split(",").filter(Boolean); }
+  }
+
+  const quizStages = parseArr(raw);
+  if (!quizStages.includes(stageId)) {
+    quizStages.push(stageId);
+    await redis.hset(key, { quizStages: JSON.stringify(quizStages) });
+  }
+  return quizStages;
+}

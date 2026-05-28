@@ -4,18 +4,19 @@ import { useState } from "react";
 import StageInfo from "./StageInfo";
 import CtfChallenge from "./CtfChallenge";
 import QuizChallenge from "./QuizChallenge";
-import type { StageConfig, CtfQuizEntry } from "@/data/types";
+import type { StageConfig, CtfQuizEntry, AuditQuizEntry } from "@/data/types";
 import type { StageTranslation } from "@/data/translations/types";
 import { useLocale } from "@/contexts/LocaleContext";
 
 type TranslatedQuestion = { q: string; options: [string, string] };
 
-export default function StageContainer({ stage, isPro = false, translation = null, ctfQuiz, ctfQuizTranslation }: {
+export default function StageContainer({ stage, isPro = false, translation = null, ctfQuiz, ctfQuizTranslation, auditQuiz }: {
   stage: StageConfig | null;
   isPro?: boolean;
   translation?: StageTranslation | null;
   ctfQuiz?: CtfQuizEntry;
   ctfQuizTranslation?: TranslatedQuestion[];
+  auditQuiz?: AuditQuizEntry;
 }) {
   const { t } = useLocale();
   const [phase, setPhase] = useState<"info" | "challenge">("info");
@@ -35,7 +36,7 @@ export default function StageContainer({ stage, isPro = false, translation = nul
   }
 
   if (stage.challengeType === "ctf" && stage.ctf) {
-    return <CtfChallenge stage={stage} backHref={backHref} isPro={isPro} ctfQuiz={ctfQuiz} ctfQuizTranslation={ctfQuizTranslation} />;
+    return <CtfChallenge stage={stage} backHref={backHref} isPro={isPro} ctfQuiz={ctfQuiz} ctfQuizTranslation={ctfQuizTranslation} auditQuiz={auditQuiz} />;
   }
 
   return <QuizChallenge stage={stage} backHref={backHref} />;
