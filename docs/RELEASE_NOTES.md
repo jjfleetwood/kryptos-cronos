@@ -2,6 +2,15 @@
 
 ---
 
+## v1.12.1 — 2026-05-28
+
+**Fix stale stage/epoch counts in ProPaywall and OG meta**
+
+- `en.json` paywall feature line: "All 438 stages across 36 epochs and 10 tracks" (was 358/32/7)
+- `layout.tsx` Open Graph + Twitter card descriptions: "438 CTF stages. 36 epochs." (was 358/32)
+
+---
+
 ## v1.12.0 — 2026-05-28
 
 **Adaptive difficulty engine — XP bonus, skill tracking, smart hints, recommended next**

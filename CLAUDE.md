@@ -6,7 +6,7 @@ Gamified cybersecurity + AI training platform. 36 curriculum epochs, 438 CTF/qui
 
 **Live:** kryptoscronos.com  
 **Repo:** github.com/jjfleetwood/kryptos-cronos  
-**Current version:** v1.12.0 (as of 2026-05-28)
+**Current version:** v1.12.1 (as of 2026-05-28)
 
 ---
 
@@ -273,6 +273,11 @@ Local dev: `.env.local` in `app/` (gitignored).
 - **Target sponsors:** CrowdStrike, AWS, SentinelOne, CompTIA, ISC²
 
 ---
+
+## What's Shipped (v1.12.1)
+
+- ✅ ProPaywall copy corrected: 438 stages, 36 epochs, 10 tracks
+- ✅ OG / Twitter card meta corrected: 438 stages, 36 epochs
 
 ## What's Shipped (v1.12.0)
 
