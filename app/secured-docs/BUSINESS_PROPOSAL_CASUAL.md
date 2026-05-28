@@ -40,7 +40,7 @@ This isn't a pitch deck with a mockup. It's a working product:
 - **Avatar shop** — cosmetic items and trophies purchasable with earned coins
 - **Stage completion emails** — fire-and-forget transactional email on every flag capture with XP, badge, streak, and next-stage link
 - **Progress export** — downloadable PDF certificate: coins, stages, badges, streak, per-epoch breakdown
-- **Admin dashboard** — user management, NDA signatories, DocuSign e-signature integration, CMS stage editor
+- **Admin dashboard** — user management, NDA signatories, CMS stage editor
 - **Auth system** — server-side PBKDF2 hashing, HMAC-signed HttpOnly cookies, nonce-based CSP, rate limiting
 - **CI pipeline** — automated lint + type check + build + security audit on every commit — 0 ESLint errors
 - **Deployed and running:** kryptoscronos.com
@@ -169,7 +169,6 @@ The part that matters: every ad impression is also a Pro upgrade prompt. The use
 | **Upstash** | Serverless Redis — users, XP, leaderboard, streaks, NDAs |
 | **Resend** | Transactional email — welcome, stage completion, password reset |
 | **Anthropic** | Claude Haiku — powers ARIA AI tutor, live in production |
-| **DocuSign** | eSignature API — NDA envelopes from admin dashboard |
 | **GitHub** | Source control + automated CI pipeline |
 
 ---

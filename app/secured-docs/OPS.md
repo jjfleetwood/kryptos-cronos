@@ -13,7 +13,6 @@
 | **Resend** | Transactional email | resend.com/dashboard | Free tier |
 | **GitHub** | Source control, CI trigger | github.com/jjfleetwood/kryptos-cronos | Free |
 | **Anthropic** | Claude Haiku — ARIA AI hint chatbot | console.anthropic.com | API key required |
-| **DocuSign** | eSignature API — NDA envelope sending and tracking | admindemo.docusign.com | Free developer tier |
 
 ---
 
@@ -33,12 +32,6 @@
 | `ADMIN_USERNAME` | Admin dashboard username |
 | `ADMIN_SECRET` | 32+ char random string — used for HMAC signing of both session_token and kryptos_admin cookies |
 | `ANTHROPIC_API_KEY` | From console.anthropic.com → API Keys — powers ARIA chatbot |
-| `DOCUSIGN_INTEGRATION_KEY` | DocuSign app integration key (UUID) |
-| `DOCUSIGN_USER_ID` | DocuSign API username (UUID) |
-| `DOCUSIGN_ACCOUNT_ID` | DocuSign account ID |
-| `DOCUSIGN_PRIVATE_KEY` | RSA private key for DocuSign JWT auth |
-| `DOCUSIGN_BASE_URL` | `https://demo.docusign.net` (sandbox) or `https://na4.docusign.net` (production) |
-| `DOCUSIGN_WEBHOOK_SECRET` | Optional — HMAC secret for DocuSign webhook signature verification |
 
 **Rotation:** If you rotate any of these, redeploy immediately (Vercel redeploy button) — the old values stay live until the next deploy.
 
@@ -82,7 +75,6 @@ GitHub Actions CI runs first (lint + tsc + build + audit). Vercel auto-deploys i
 | Redis exhaustion | Upstash console → Usage | > 80% of plan limit |
 | Email bounces | Resend dashboard → Logs | Any hard bounces |
 | Anthropic API errors | Vercel → `/api/hint` function logs | Repeated 429 or 5xx from Anthropic |
-| DocuSign webhook failures | Vercel → `/api/webhooks/docusign` function logs | Any HMAC verification failures or 5xx |
 | Rate limit spikes | Upstash Redis keys `rate:forgot:*`, `rate:nda:*`, `rate:reg:*` | Sustained hits from single IP |
 
 ### Vercel function logs
@@ -161,8 +153,7 @@ Or use the admin login form at `/admin`.
 ### Admin capabilities
 
 - View all registered users and their XP
-- View NDA signatories with DocuSign envelope status (pending / signed / declined / voided)
-- Send DocuSign NDA envelope to a recipient directly from the dashboard
+- View NDA signatories (clickwrap via /demo)
 - View stage completion analytics
 - Access secured internal documents (business proposals, security briefing, release notes, architecture)
 - Revoke admin session
@@ -210,13 +201,6 @@ To add a new secured document:
 2. Check `/api/hint` function logs for Anthropic API errors (429 = rate limited, 5xx = API outage)
 3. ARIA failing silently is acceptable — the rest of the platform continues working
 
-### DocuSign webhook failures
-
-1. Check `/api/webhooks/docusign` function logs
-2. If HMAC verification failing: confirm `DOCUSIGN_WEBHOOK_SECRET` matches what is configured in DocuSign Connect
-3. If envelopes sent but status not updating: trigger a manual webhook resend from DocuSign admin console
-4. NDA clickwrap acceptance is independent of DocuSign — users are logged in Redis on clickwrap regardless
-
 ### Admin locked out
 
 1. Check `ADMIN_USERNAME` and `ADMIN_SECRET` env vars in Vercel
@@ -242,7 +226,6 @@ To add a new secured document:
 | Upstash Commands | Pay-as-you-go (daily backups enabled) | Low |
 | Resend Emails | 3,000/month | Low |
 | Anthropic (Claude Haiku) | Pay-per-token | Low (15 req/IP/15min rate limit) |
-| DocuSign | 1,000 envelopes/month (developer tier) | Low |
 
 ### Upgrade Triggers
 
@@ -252,7 +235,6 @@ To add a new secured document:
 | Redis costs rising unexpectedly | Review command volume in Upstash console |
 | > 3,000 emails/month | Upgrade to Resend Pro ($20/month) |
 | Anthropic costs exceed budget | Review ARIA rate limits; consider caching common hints |
-| > 1,000 DocuSign envelopes/month | Move to DocuSign paid plan |
 | Enterprise sales conversations begin | Upgrade all to paid tiers for SLA |
 
 ---
@@ -263,7 +245,6 @@ To add a new secured document:
 - **GitHub PATs and Vercel tokens** used in one-off CLI commands should be **revoked immediately after use**
 - **Rotate `ADMIN_SECRET`** if you suspect it was exposed — redeploy after rotation (this logs out all users)
 - **Rotate `ANTHROPIC_API_KEY`** if exposed — update in Vercel, redeploy
-- **Rotate DocuSign keys** via DocuSign admin console if exposed
 - All secrets are stored in Vercel environment variables, not in the repository
 
 ---

@@ -208,8 +208,6 @@ Set at: vercel.com → Project → Settings → Environment Variables
 | `src/app/api/auth/login/route.ts` | Server-side PBKDF2 login + cookie issuance |
 | `src/app/api/auth/me/route.ts` | Cookie-to-identity resolver used by all client components |
 | `src/app/api/hint/route.ts` | ARIA chatbot — Claude Haiku integration |
-| `src/app/api/admin/send-nda/route.ts` | DocuSign envelope dispatch |
-| `src/app/api/webhooks/docusign/route.ts` | DocuSign status webhook handler |
 | `src/data/stages.ts` | Epoch registry — imports and re-exports all 18 epochs |
 | `src/data/first-journey*.ts` | Our First Journey epoch (30 stages, 3 files) |
 | `src/data/tech-audit-[1-4].ts` | Tech Audit epochs (48 stages total) |
@@ -248,12 +246,6 @@ Set at: vercel.com → Project → Settings → Environment Variables
 - Confirm `ANTHROPIC_API_KEY` is set in Vercel env vars
 - Check `/api/hint` logs in Vercel Functions for API errors
 - Rate limit: 15 requests per IP per 15 minutes
-
-**DocuSign NDA send failing:**
-- Confirm all `DOCUSIGN_*` vars are set correctly
-- For production: set `DOCUSIGN_BASE_URL=https://na4.docusign.net`
-- For sandbox/testing: set `DOCUSIGN_BASE_URL=https://demo.docusign.net`
-- Check `/api/admin/send-nda` logs in Vercel Functions
 
 **Admin dashboard locked out:**
 - POST `/api/admin-session` with `{ username, password }` to re-issue cookie

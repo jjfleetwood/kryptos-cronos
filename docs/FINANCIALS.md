@@ -36,7 +36,7 @@ What the company spends every month right now, as of May 2026.
 | Resend | Transactional email | $0 | Free (3,000 emails/mo). **Upgrade trigger:** >2,500 emails/mo → Pro at $20/mo |
 | Anthropic API (production) | ARIA chatbot (Claude Haiku, rate-limited) | ~$0–5 | Pay-per-token. Rate limiting keeps this near-zero at current traffic. |
 | GitHub | Source control + CI | $0 | Free |
-| DocuSign | NDA eSignature (developer tier) | $0 | **Upgrade trigger:** production investor/partner NDA volume → Business at ~$25/mo |
+| DocuSign | ~~Removed~~ | — | NDA eSignature integration removed; clickwrap via /demo retained |
 | Stripe | Payment processing | $0* | No monthly fee. *2.9% + $0.30 per transaction once revenue begins. |
 | Cloudflare | Domain + email routing | ~$0.83 | $10/year amortized. Email routing is free. |
 
@@ -203,7 +203,7 @@ How monthly costs grow as the user base grows. Current burn is the baseline.
 | GitHub | Free | $0 | Keep free |
 | Anthropic API (production) | Pay-per-token | ~$5 | Monitor; rate limits protect cost |
 | Claude Code MAX | Paid | $200 | R&D expense; keep |
-| DocuSign | Developer (free) | $0 | Upgrade to Business (~$25/mo) before investor NDA volume |
+| NDA clickwrap | Built-in (/demo) | $0 | No third-party service required |
 | Stripe | Free + 2.9%+$0.30 | $0* | Already integrated; no action needed |
 | Cloudflare | Domain only | $0.83 | Keep; consider Cloudflare WAF at scale |
 
@@ -222,7 +222,7 @@ How monthly costs grow as the user base grows. Current burn is the baseline.
 
 | Service | Why not yet |
 |---|---|
-| DocuSign paid plan | Developer tier (1,000 envelopes/mo) is more than enough for current NDA volume |
+| eSignature service | Only needed if formal investor/partner NDAs required; evaluate at seed round |
 | AWS / GCP | Vercel handles all infrastructure needs |
 | Salesforce / HubSpot CRM | Manual pipeline management is fine pre-seed |
 | Payroll (Gusto, Rippling) | No employees yet; needed at first hire |

@@ -89,8 +89,7 @@ The platform ships with 418 fully built stages organized into 36 curriculum epoc
 - **Avatar Shop** — Cosmetic avatar items and trophy purchases; admin-only items server-gated
 - **Stage Completion Emails** — Fire-and-forget transactional email on every new flag capture: XP, badge, streak, next-stage CTA
 - **Progress Export** — PDF certificate via `@react-pdf/renderer`: coins, stages, badges, streak, per-epoch breakdown
-- **Admin Dashboard** — User management, NDA signatories panel, DocuSign integration, streak monitoring, CMS stage editor
-- **DocuSign NDA Integration** — Admin can send legally-binding NDA envelopes from the dashboard; signer status tracked via webhook
+- **Admin Dashboard** — User management, NDA signatories panel, streak monitoring, CMS stage editor
 - **CI Pipeline** — GitHub Actions: lint + tsc + build + security audit on every push — 0 ESLint errors
 - **Server-side Auth** — PBKDF2-SHA-256, HMAC-signed HttpOnly cookies, no localStorage credentials
 - **Nonce-based CSP** — Per-request nonce in middleware eliminates `unsafe-inline` from script-src
@@ -186,7 +185,7 @@ Our differentiation: the only platform combining structured multi-track curricul
 - **Product:** Fully functional platform — 418 stages across 36 epochs and 10 curriculum tracks
 - **AI tutor:** ARIA live in production — Claude Haiku, Socratic coaching, stage-aware
 - **Gamification:** Streaks, milestone badges, and real-time leaderboard all live
-- **Admin infrastructure:** NDA management with DocuSign e-signature integration
+- **Admin infrastructure:** NDA clickwrap management via /demo
 - **Security posture:** Server-side auth, HMAC cookies, nonce-based CSP (no unsafe-inline in script-src), rate limiting, CI security audit
 - **Tech stack:** Next.js 16 / React 19 / TypeScript — production-grade, zero technical debt
 - **Deployment:** Live at kryptoscronos.com (version v1.14.0)
@@ -202,7 +201,6 @@ Our differentiation: the only platform combining structured multi-track curricul
 | **Upstash** | Serverless Redis — users, progress, leaderboard, streaks, NDAs | Active — Free tier |
 | **Resend** | Transactional email — welcome, stage completion, password reset | Active — Free tier |
 | **Anthropic** | Claude Haiku — ARIA AI tutor | Active — Pay-per-token |
-| **DocuSign** | eSignature API — NDA envelope sending and tracking | Active — Developer tier |
 | **GitHub** | Source control + CI pipeline trigger | Active — Free |
 
 ---
@@ -225,7 +223,7 @@ Our differentiation: the only platform combining structured multi-track curricul
 
 ## Team
 
-Kryptós CronOS is built by Jacob Bolotin, founder and CEO, with domain expertise in cybersecurity, AI, and enterprise software. The technical foundation — 418-stage curriculum, AI tutor, leaderboard, auth system, DocuSign NDA integration, and CI/CD pipeline — was built and deployed to production in an accelerated build sprint.
+Kryptós CronOS is built by Jacob Bolotin, founder and CEO, with domain expertise in cybersecurity, AI, and enterprise software. The technical foundation — 438-stage curriculum, AI tutor, leaderboard, auth system, and CI/CD pipeline — was built and deployed to production in an accelerated build sprint.
 
 **Legal entity:** Bolotin Enterprises, Inc. — Delaware C-Corp incorporated May 23, 2026.  
 **IP:** U.S. Copyright Registration filed 2026-05-20, assigned to Bolotin Enterprises, Inc. via PIIA at incorporation.

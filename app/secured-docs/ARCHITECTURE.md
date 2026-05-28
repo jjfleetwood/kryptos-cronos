@@ -7,7 +7,7 @@
 
 ## 1. System Overview
 
-Kryptós CronOS is a Next.js 16 App Router application with serverless API routes, a Redis data layer (Upstash), server-side authentication via HMAC-signed HttpOnly cookies, an Anthropic Claude Haiku AI chatbot (ARIA), DocuSign eSignature integration, and Stripe billing. The browser handles all interactive UI; API routes handle auth, progress, leaderboard, AI hints, NDA signing, shop/trophies, and admin operations.
+Kryptós CronOS is a Next.js 16 App Router application with serverless API routes, a Redis data layer (Upstash), server-side authentication via HMAC-signed HttpOnly cookies, an Anthropic Claude Haiku AI chatbot (ARIA), and Stripe billing. The browser handles all interactive UI; API routes handle auth, progress, leaderboard, AI hints, NDA clickwrap, shop/trophies, and admin operations.
 
 ```
 ┌─────────────────────────────────────────────────────────┐
@@ -38,10 +38,10 @@ Kryptós CronOS is a Next.js 16 App Router application with serverless API route
               │
     ┌─────────┼──────────┬────────────────┬──────────┐
     │         │          │                │          │
-┌───▼────┐ ┌─▼──────┐ ┌─▼──────────┐ ┌──▼──────┐ ┌─▼──────┐
-│ Resend │ │Anthropic│ │  DocuSign  │ │  Stripe │ │GitHub  │
-│ (email)│ │  API   │ │ eSignature │ │ Billing │ │  CI    │
-└────────┘ └────────┘ └────────────┘ └─────────┘ └────────┘
+┌───▼────┐ ┌─▼──────┐ ┌──▼──────┐ ┌─▼──────┐
+│ Resend │ │Anthropic│ │  Stripe │ │GitHub  │
+│ (email)│ │  API   │ │ Billing │ │  CI    │
+└────────┘ └────────┘ └─────────┘ └────────┘
 ```
 
 ---
@@ -106,7 +106,6 @@ cyberquest/
 │   │   │       ├── sync-user/route.ts
 │   │   │       ├── trophies/route.ts
 │   │   │       └── webhooks/
-│   │   │           ├── docusign/route.ts
 │   │   │           └── stripe/route.ts
 │   │   ├── components/
 │   │   │   ├── AgePrompt.tsx         # Age verification modal
@@ -447,7 +446,6 @@ On stage completion:
 |---|---|---|---|
 | `/api/admin-session` | POST | Admin creds | Issue admin HMAC cookie |
 | `/api/admin/users` | GET | Admin cookie | Full user table from Redis |
-| `/api/admin/send-nda` | POST | Admin cookie | Send DocuSign NDA envelope |
 | `/api/admin/set-tier` | POST | Admin cookie | Toggle Pro tier for a user |
 | `/api/admin/seed-demo` | POST | Admin cookie | Seed demo user data |
 | `/api/admin/cms/access` | GET | Admin cookie | CMS access management |
@@ -461,7 +459,6 @@ On stage completion:
 
 | Route | Method | Auth | Purpose |
 |---|---|---|---|
-| `/api/webhooks/docusign` | POST | HMAC signature | DocuSign event updates |
 | `/api/webhooks/stripe` | POST | Stripe signature | Stripe subscription lifecycle |
 
 ---
@@ -478,19 +475,7 @@ ARIA is the in-platform AI hint assistant powered by Anthropic Claude Haiku via 
 
 ---
 
-## 9. DocuSign Integration
-
-1. Admin clicks "Send DocuSign NDA" in the admin dashboard
-2. POST `/api/admin/send-nda` → JWT auth with DocuSign API → create and send envelope
-3. DocuSign sends email to recipient with signing link
-4. Recipient signs → DocuSign POSTs webhook to `/api/webhooks/docusign`
-5. Webhook verifies HMAC signature (`DOCUSIGN_WEBHOOK_SECRET`) → updates `nda:{email}` in Redis
-
-**Auth method:** JWT Grant (RSA private key `DOCUSIGN_PRIVATE_KEY`, user ID `DOCUSIGN_USER_ID`)
-
----
-
-## 10. Stripe Billing
+## 9. Stripe Billing
 
 Pro tier pricing: $5.99/month or $55.99/year.
 
@@ -558,7 +543,6 @@ Manual production deploy:
 | Upstash Redis | REST token | `UPSTASH_REDIS_REST_URL`, `UPSTASH_REDIS_REST_TOKEN` | Free tier |
 | Resend | API key | `RESEND_API_KEY` | Free tier |
 | Anthropic Claude Haiku | API key | `ANTHROPIC_API_KEY` | Pay-per-token |
-| DocuSign eSignature | JWT (RSA) | `DOCUSIGN_*` (6 vars) | Free developer tier |
 | Stripe | API key + webhook | `STRIPE_*` (4 vars) | Pay-per-transaction |
 | Vercel | GitHub App (auto) | — | Free Hobby plan |
 | GitHub Actions | GitHub App (auto) | — | Free |
@@ -580,13 +564,6 @@ Manual production deploy:
 | `STRIPE_WEBHOOK_SECRET` | ⚠️ | Stripe webhook verification |
 | `STRIPE_PRO_MONTHLY_PRICE_ID` | ⚠️ | $5.99/month price ID |
 | `STRIPE_PRO_YEARLY_PRICE_ID` | ⚠️ | $55.99/year price ID |
-| `DOCUSIGN_INTEGRATION_KEY` | Optional | DocuSign JWT auth |
-| `DOCUSIGN_USER_ID` | Optional | DocuSign user UUID |
-| `DOCUSIGN_ACCOUNT_ID` | Optional | DocuSign account |
-| `DOCUSIGN_PRIVATE_KEY` | Optional | DocuSign RSA key |
-| `DOCUSIGN_BASE_URL` | Optional | DocuSign API endpoint |
-| `DOCUSIGN_WEBHOOK_SECRET` | Optional | DocuSign webhook HMAC |
-
 See `.env.example` for all variables with generation instructions.
 
 ---
@@ -608,7 +585,7 @@ See `.env.example` for all variables with generation instructions.
 /admin  (requires kryptos_admin cookie — enforced by proxy.ts)
     └── AdminDashboard (client)
             ├── UserTable (GET /api/admin/users) — includes Pro tier toggle
-            ├── NDASignatories (GET /api/nda, DocuSign status + send button)
+            ├── NDASignatories (GET /api/nda — clickwrap acceptances)
             ├── StageAnalytics
             └── Remote Desktop link (Google Chrome Remote Desktop)
 

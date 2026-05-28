@@ -51,7 +51,6 @@ export default function PrivacyPage() {
                   { name: "Resend", purpose: "Transactional email — registration, stage completion, and password reset emails", url: "https://resend.com/privacy" },
                   { name: "Anthropic Claude", purpose: "AI hint assistant (ARIA) — stage context is sent; no personal data is included in hint requests", url: "https://www.anthropic.com/privacy" },
                   { name: "Stripe", purpose: "Payment processing for Pro subscriptions — payment data is handled by Stripe directly and never stored on our servers", url: "https://stripe.com/privacy" },
-                  { name: "DocuSign", purpose: "Electronic NDA signatures for demo access — name and email are shared with DocuSign when an NDA envelope is sent", url: "https://www.docusign.com/company/privacy-policy" },
                   { name: "Plausible Analytics", purpose: "Privacy-friendly analytics — no cookies, no cross-site tracking, no personal data collected; aggregate page view counts only", url: "https://plausible.io/privacy" },
                 ].map((p) => (
                   <div key={p.name} className="bg-white/2 border border-white/8 rounded-xl p-4">

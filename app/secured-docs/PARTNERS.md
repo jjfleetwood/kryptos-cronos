@@ -40,7 +40,7 @@ Upstash provides a globally distributed, REST-accessible Redis instance. It is t
 - Server-side progress persistence (`progress:{username}` hash)
 - Global, daily, and weekly leaderboards (Redis sorted sets)
 - Daily login streaks (`streak:{username}` hash)
-- NDA clickwrap and DocuSign status records (`nda:{email}` hash)
+- NDA clickwrap acceptance records (`nda:{email}` hash)
 - Password reset token storage (with 1-hour TTL)
 - Rate limiting for forgot-password, NDA, and registration notifications
 
@@ -104,26 +104,6 @@ Anthropic's Claude Haiku model powers ARIA, the in-platform AI hint assistant. A
 **Integration:** Anthropic SDK with `ANTHROPIC_API_KEY`; model: `claude-haiku-*`  
 **CSP note:** All Anthropic calls are server-side only (`/api/hint` route); browser never contacts Anthropic directly, so no CSP `connect-src` entry required  
 **Cost:** Pay-per-token; kept low by rate limiting and the Haiku model tier
-
----
-
-### DocuSign
-**Role:** eSignature API — NDA envelope sending and status tracking  
-**Plan:** Free developer tier  
-**URL:** docusign.com  
-**Dashboard:** admindemo.docusign.com
-
-DocuSign enables the admin to send formal NDA envelopes to users directly from the admin dashboard. When a user completes the clickwrap NDA at `/demo`, their record is logged in Redis. The admin can then escalate to a formal DocuSign eSignature from the NDA Signatories panel.
-
-**What it handles:**
-- NDA envelope creation and delivery from admin dashboard (`/api/admin/send-nda`)
-- Signer status tracking via webhook (`/api/webhooks/docusign`): signed / declined / voided
-- Redis `nda:{email}` record updated with `envelopeId`, `status`, `signedAt` upon webhook receipt
-
-**Integration:** DocuSign eSignature REST API, JWT Grant auth (`DOCUSIGN_PRIVATE_KEY`, `DOCUSIGN_USER_ID`, `DOCUSIGN_INTEGRATION_KEY`)  
-**Webhook:** DocuSign Connect POSTs to `/api/webhooks/docusign`; verified with HMAC signature (`DOCUSIGN_WEBHOOK_SECRET`)  
-**Limits (Developer):** 1,000 envelopes/month  
-**Upgrade trigger:** Paid plan when production NDA volume grows
 
 ---
 
