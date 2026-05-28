@@ -174,6 +174,19 @@ export default function EpochPage() {
           )}
         </div>
 
+        {/* CyberOps readiness banner — shown on Cisco and Umbrella epochs */}
+        {(epochId.startsWith("cisco-") || epochId === "umbrella") && (
+          <Link href="/cyberops"
+            className="flex items-center gap-3 bg-blue-500/6 border border-blue-500/25 rounded-xl px-4 py-3 mb-6 hover:border-blue-400/50 hover:bg-blue-500/10 transition-colors group">
+            <span className="text-xl flex-shrink-0">🎓</span>
+            <div className="flex-1 min-w-0">
+              <p className="text-blue-300 font-semibold text-sm">CyberOps Associate Exam Readiness</p>
+              <p className="text-gray-500 text-xs">These stages map to the Cisco CBROPS 200-201 exam. Track your readiness →</p>
+            </div>
+            <span className="text-blue-600 group-hover:text-blue-400 text-sm flex-shrink-0 transition-colors">→</span>
+          </Link>
+        )}
+
         {/* Attribution banner */}
         {contentFlag && contentFlag.risk !== "verified-safe" && (
           <div className="flex items-start gap-3 bg-amber-500/5 border border-amber-500/20 rounded-xl px-4 py-3 mb-6 text-xs text-amber-200/60">

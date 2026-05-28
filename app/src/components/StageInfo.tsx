@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import AttackDiagram from "./AttackDiagram";
 import GaugeBar from "./GaugeBar";
 import BackLink from "./BackLink";
@@ -7,6 +8,7 @@ import RichText from "./RichText";
 import type { StageConfig } from "@/data/types";
 import type { StageTranslation } from "@/data/translations/types";
 import { stageDownloads } from "@/data/stage-downloads";
+import { getDomainsForStage } from "@/data/cyberops-domains";
 import { useLocale } from "@/contexts/LocaleContext";
 
 const categoryColors: Record<string, string> = {
@@ -205,6 +207,23 @@ export default function StageInfo({
               Stage {stage.order}
             </span>
           </div>
+
+          {/* CyberOps domain badges */}
+          {(() => {
+            const domains = getDomainsForStage(stage.id);
+            if (!domains.length) return null;
+            return (
+              <div className="flex flex-wrap gap-2 mt-2 mb-1">
+                {domains.map(d => (
+                  <Link key={d.id} href="/cyberops"
+                    className="flex items-center gap-1.5 text-xs px-2.5 py-1 rounded-full border border-blue-500/30 bg-blue-500/8 text-blue-300 hover:border-blue-400 hover:bg-blue-500/15 transition-colors">
+                    <span>🎓</span>
+                    <span className="font-medium">CyberOps: {d.name}</span>
+                  </Link>
+                ))}
+              </div>
+            );
+          })()}
 
           {/* Title */}
           <h1 className="text-3xl sm:text-4xl font-black text-white mb-2 leading-tight">{stage.title}</h1>
