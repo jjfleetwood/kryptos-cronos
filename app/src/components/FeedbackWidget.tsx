@@ -2,12 +2,14 @@
 
 import { useState, useRef, useEffect, useCallback } from "react";
 import { usePathname } from "next/navigation";
+import { useLocale } from "@/contexts/LocaleContext";
 
 const DEFAULT_POS = { x: 16, y: 16 };
 const STORAGE_KEY = "feedback-widget-pos";
 
 export default function FeedbackWidget() {
   const pathname = usePathname();
+  const { t } = useLocale();
   const [username, setUsername] = useState<string | null>(null);
   const [message, setMessage] = useState("");
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
@@ -125,12 +127,12 @@ export default function FeedbackWidget() {
         onPointerCancel={handlePointerUp}
       >
         <p className="text-[10px] font-semibold text-slate-400 uppercase tracking-widest select-none">
-          Comments? New content?
+          {t("feedback.title")}
         </p>
         <button
           onClick={() => setMinimized((v) => !v)}
           className="text-slate-500 hover:text-slate-300 transition text-xs leading-none px-1"
-          aria-label={minimized ? "Expand feedback" : "Minimize feedback"}
+          aria-label={minimized ? t("feedback.expand") : t("feedback.minimize")}
         >
           {minimized ? "▲" : "▼"}
         </button>
@@ -143,12 +145,14 @@ export default function FeedbackWidget() {
             value={message}
             onChange={(e) => setMessage(e.target.value)}
             onKeyDown={handleKeyDown}
-            placeholder="Ideas, requests, feedback…"
+            placeholder={t("feedback.placeholder")}
             rows={3}
             className="w-full resize-none rounded-lg bg-slate-800/80 border border-slate-700/50 text-slate-200 placeholder-slate-500 text-xs px-2.5 py-2 focus:outline-none focus:border-slate-500 focus:ring-1 focus:ring-slate-600 transition min-h-[60px] max-h-40"
           />
           <div className="flex items-center justify-between gap-2">
-            <span className="text-[9px] text-slate-600 select-none">⌘↵ to send</span>
+            <a href="/survey" className="text-[9px] text-slate-600 hover:text-slate-400 transition-colors underline underline-offset-2 select-none">
+              Full survey →
+            </a>
             <button
               onClick={handleSend}
               disabled={!message.trim() || status === "sending" || status === "sent"}
@@ -164,7 +168,7 @@ export default function FeedbackWidget() {
                   : "bg-slate-800 text-slate-600 cursor-default"
               }`}
             >
-              {status === "sent" ? "Sent ✓" : status === "error" ? "Failed" : status === "sending" ? "Sending…" : "Send"}
+              {status === "sent" ? t("feedback.sent") : status === "error" ? t("feedback.failed") : status === "sending" ? t("feedback.sending") : t("feedback.send")}
             </button>
           </div>
         </>

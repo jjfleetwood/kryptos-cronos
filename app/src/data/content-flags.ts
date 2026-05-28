@@ -338,6 +338,62 @@ export const CONTENT_FLAGS: ContentFlag[] = [
       "Koufax, Drysdale, Hershiser, Kershaw referenced factually. Historical stats are public record. No IP risk.",
     reviewedAt: "2026-05-21",
   },
+
+  // ── Cisco Advanced ────────────────────────────────────────────────────────
+  {
+    epochId: "cisco-advanced",
+    risk: "fair-use",
+    source: "Cisco CVE Database / NVD / Cisco Talos / CISA KEV",
+    license: "Public CVE data (NVD)",
+    attributionUrl: "https://nvd.nist.gov/",
+    attributionText:
+      "CVE identifiers and vulnerability descriptions reference the National Vulnerability Database (NVD) and publicly disclosed Cisco advisories. CVE® is a registered trademark of The MITRE Corporation.",
+    adminNote:
+      "cisco-advanced stages (m39–m50) reference real Cisco CVEs including advanced persistent threat campaign data from Talos and CISA KEV. Educational fair use of public vulnerability data.",
+    reviewedAt: "2026-05-28",
+  },
+
+  // ── Travel epochs ─────────────────────────────────────────────────────────
+  {
+    epochId: "paris-july",
+    risk: "verified-safe",
+    source: "Public tourism data / historical facts / CC-licensed images (Wikimedia Commons)",
+    attributionText:
+      "Paris city guide content is based on publicly available tourism information, historical records, and factual geographic data. Images sourced from Wikimedia Commons under Creative Commons licenses.",
+    adminNote:
+      "paris.ts stages cover transport, landmarks, history, and culture using factual public information. All museum/attraction data is publicly available. No proprietary tourism content reproduced. Wikimedia Commons images used under CC licenses.",
+    reviewedAt: "2026-05-28",
+  },
+  {
+    epochId: "milan-july",
+    risk: "verified-safe",
+    source: "Public tourism data / historical facts / CC-licensed images (Wikimedia Commons)",
+    attributionText:
+      "Milan city guide content is based on publicly available tourism information, historical records, and factual geographic data. Images sourced from Wikimedia Commons under Creative Commons licenses.",
+    adminNote:
+      "milan.ts stages cover transport, landmarks, history, and culture using factual public information. All museum/attraction data is publicly available. No proprietary tourism content reproduced.",
+    reviewedAt: "2026-05-28",
+  },
+  {
+    epochId: "french-basics",
+    risk: "verified-safe",
+    source: "General French language education / public cultural knowledge",
+    attributionText:
+      "French language content is based on general public-domain linguistic knowledge, standard conversational French phrases, and factual French cultural information.",
+    adminNote:
+      "french-basics.ts covers standard conversational French, cultural practices, and public-domain language facts. No proprietary language course content reproduced. Original educational questions.",
+    reviewedAt: "2026-05-28",
+  },
+  {
+    epochId: "italian-basics",
+    risk: "verified-safe",
+    source: "General Italian language education / public cultural knowledge",
+    attributionText:
+      "Italian language content is based on general public-domain linguistic knowledge, standard conversational Italian phrases, and factual Italian cultural information.",
+    adminNote:
+      "italian-basics.ts covers standard conversational Italian, cultural practices, and public-domain language facts. The 1986 methanol wine scandal is factual public record. No proprietary content reproduced.",
+    reviewedAt: "2026-05-28",
+  },
 ];
 
 const EPOCH_FLAGS = new Map(CONTENT_FLAGS.map((f) => [f.epochId, f]));

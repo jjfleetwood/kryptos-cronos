@@ -1,8 +1,14 @@
 # Kryptós CronOS — Security Briefing
 **Classification:** Internal  
-**Version:** 2.9  
+**Version:** 3.0  
 **Date:** 2026-05-28  
-**Current version:** v1.15.1
+**Current version:** v1.16.0
+
+---
+
+## Changelog — v3.0 (2026-05-28)
+
+New `/api/survey` route: POST stores survey responses to Redis under `survey:{ts}:{username}` with a `survey:index` sorted set; GET returns all responses (admin use only, no auth gate yet — low-risk survey data, not PII beyond username). `dangerouslySetInnerHTML` in `layout.tsx` verified: value is the static anti-FOUC script string, not user input; nonce applied correctly. New `/downloads` page is public static content with no data handling. New `/survey` page has no session requirement by design (unauthenticated survey responses stored as anonymous). No new env vars, no new third-party integrations. UI/content changes (i18n, images, section headers, overview font) have no security implications.
 
 ---
 

@@ -266,6 +266,21 @@ export default function StagesPage() {
 
         {/* ── Epoch track groups ─────────────────────────────────────────────── */}
         <div className="space-y-6">
+          {/* Security section header */}
+          {visibleTracks.some((track) => !track.isExtended) && (
+            <div className="flex items-center gap-3 mb-2">
+              <span className="text-[11px] font-mono font-bold text-cyan-500 uppercase tracking-widest whitespace-nowrap">
+                🔒 {t("stages.sectionSecurity")}
+              </span>
+              <div className="flex-1 h-px bg-cyan-500/20" />
+              <Link
+                href="/downloads"
+                className="text-[10px] font-mono text-emerald-500 hover:text-emerald-400 transition-colors whitespace-nowrap border border-emerald-500/30 px-2.5 py-1 rounded-lg"
+              >
+                ↓ Python Downloads
+              </Link>
+            </div>
+          )}
           {visibleTracks.map((trackGroup, idx) => {
             const trackEpochs = trackGroup.visibleEpochIds
               .map((id) => epochs.find((e) => e.id === id))
@@ -275,10 +290,10 @@ export default function StagesPage() {
               <div key={trackGroup.id}>
                 {/* Divider before first extended group */}
                 {trackGroup.isExtended && idx === firstExtendedIdx && (
-                  <div className="flex items-center gap-3 mb-6 mt-2">
+                  <div className="flex items-center gap-3 mb-6 mt-4">
                     <div className="flex-1 h-px bg-white/5" />
-                    <span className="text-[10px] font-mono text-gray-700 uppercase tracking-widest px-2">
-                      {t("stages.proExtended")}
+                    <span className="text-[11px] font-mono font-bold text-amber-600 uppercase tracking-widest px-2">
+                      📚 {t("stages.sectionNonSecurity")}
                     </span>
                     <div className="flex-1 h-px bg-white/5" />
                   </div>

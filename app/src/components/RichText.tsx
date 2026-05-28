@@ -175,14 +175,47 @@ function tokenise(text: string): React.ReactNode[] {
   return nodes;
 }
 
+// ── Patterns that only apply to security/technical content ────────────────────
+const SECURITY_PATTERN_INDEXES = new Set([0, 1, 2, 3, 4, 5]); // CVE, SQL, acronyms, file paths, IPs, ports
+
 // ── Public component ──────────────────────────────────────────────────────────
 
 export default function RichText({
   text,
   className = "",
+  context = "security",
 }: {
   text: string;
   className?: string;
+  /** "security" applies all patterns; "general" skips security-specific highlights */
+  context?: "security" | "general";
 }) {
+  if (context === "general") {
+    const generalPatterns = PATTERNS.filter((_, i) => !SECURITY_PATTERN_INDEXES.has(i));
+    const nodes: React.ReactNode[] = [];
+    const hits: Array<{ start: number; end: number; node: React.ReactNode }> = [];
+    for (const { regex, render } of generalPatterns) {
+      regex.lastIndex = 0;
+      let m: RegExpExecArray | null;
+      while ((m = regex.exec(text)) !== null) {
+        hits.push({ start: m.index, end: m.index + m[0].length, node: render(m[0], m) });
+      }
+    }
+    hits.sort((a, b) => a.start - b.start || b.end - a.end);
+    const kept: typeof hits = [];
+    let cursor = 0;
+    for (const h of hits) {
+      if (h.start >= cursor) { kept.push(h); cursor = h.end; }
+    }
+    let pos = 0;
+    for (let i = 0; i < kept.length; i++) {
+      const { start, end, node } = kept[i];
+      if (start > pos) nodes.push(text.slice(pos, start));
+      nodes.push(React.cloneElement(node as React.ReactElement, { key: i }));
+      pos = end;
+    }
+    if (pos < text.length) nodes.push(text.slice(pos));
+    return <span className={className}>{nodes}</span>;
+  }
   return <span className={className}>{tokenise(text)}</span>;
 }

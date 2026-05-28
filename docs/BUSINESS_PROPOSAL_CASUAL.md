@@ -1,6 +1,6 @@
 # Kryptós CronOS — The Pitch
 **May 2026 | For people who get it**
-**Last updated: 2026-05-28 (v1.14.0)**
+**Last updated: 2026-05-28 (v1.15.1)**
 
 ---
 
@@ -28,25 +28,29 @@ It's a game. It's also real security training. And that combination is genuinely
 
 ---
 
-## What exists today (v1.8.3 — live at kryptoscronos.com)
+## What exists today (v1.15.1 — live at kryptoscronos.com)
 
 This isn't a pitch deck with a mockup. It's a working product:
 
-- **418 fully built stages** across 36 curriculum epochs and 10 learning tracks
+- **438 fully built stages** across 36 curriculum epochs and 10 learning tracks
+- **7-day free trial → Pro paywall** — Stripe checkout (monthly $13.99 / annual $99); webhook lifecycle handling; no credit card required to start
 - **ARIA AI tutor** — live in production, powered by Claude Haiku, uses Socratic coaching (guides thinking, doesn't give away answers)
+- **Adaptive difficulty engine** — `computeStageScore` (time + hints + attempts), +20% XP bonus for clean solves, adaptive ARIA cooldown for Pro users
+- **CyberOps Associate exam readiness tracker** — live at `/cyberops`; maps 50+ Cisco stages to the 5 CBROPS 200-201 exam domains; weighted readiness ring; direct Cisco exam CTA
 - **Daily streaks and milestone badges** — engagement loop that works
 - **Real-time leaderboard** — global, daily, and weekly XP rankings
 - **Trophy system** — 51 trophies, 8 rarity tiers, daily rotating showcase with atomic supply reservation
 - **Avatar shop** — cosmetic items and trophies purchasable with earned coins
 - **Stage completion emails** — fire-and-forget transactional email on every flag capture with XP, badge, streak, and next-stage link
 - **Progress export** — downloadable PDF certificate: coins, stages, badges, streak, per-epoch breakdown
+- **Investor Metrics panel** — WAU, 7-day return rate, funnel (registered→started→engaged→retained→power), per-epoch completion rates — live in admin
 - **Admin dashboard** — user management, NDA signatories, CMS stage editor
-- **Auth system** — server-side PBKDF2 hashing, HMAC-signed HttpOnly cookies, nonce-based CSP, rate limiting
+- **Auth system** — Supabase Auth (v1.15.0) + PBKDF2 fallback; HMAC-signed HttpOnly cookies; nonce-based CSP; rate limiting
 - **CI pipeline** — automated lint + type check + build + security audit on every commit — 0 ESLint errors
-- **Deployed and running:** kryptoscronos.com
+- **Deployed and running:** kryptoscronos.com · hello@kryptoscronos.com
 - **GitHub:** github.com/jjfleetwood/kryptos-cronos
 
-Built by one founder with an AI development environment. The AI tutor is not a roadmap item — it's live and being used today.
+Built by one founder with an AI development environment. The adaptive difficulty engine, AI tutor, and CyberOps exam tracker are not roadmap items — they're live and being used today.
 
 ---
 
@@ -128,7 +132,7 @@ This is the AI layer that the other platforms are scrambling to bolt on. We ship
 
 ### Direct to consumer
 - Free tier: first few stages (gets you hooked)
-- Pro: $5.99/month or $55.99/year — everything, plus AI personalization and certificates
+- Pro: $13.99/month or $99/year (SAVE 41%) — everything, plus adaptive AI difficulty and certificates
 - Team: $12/seat for companies with 10+ people in training
 
 ### Enterprise

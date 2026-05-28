@@ -6,7 +6,7 @@ Gamified cybersecurity + AI training platform. 36 curriculum epochs, 438 CTF/qui
 
 **Live:** kryptoscronos.com  
 **Repo:** github.com/jjfleetwood/kryptos-cronos  
-**Current version:** v1.15.1 (as of 2026-05-28)
+**Current version:** v1.16.0 (as of 2026-05-28)
 
 ---
 
@@ -273,6 +273,17 @@ Local dev: `.env.local` in `app/` (gitignored).
 - **Target sponsors:** CrowdStrike, AWS, SentinelOne, CompTIA, ISC²
 
 ---
+
+## What's Shipped (v1.16.0)
+
+- ✅ Security/Non-Security section headers on stages page; `/downloads` page for 24 Python MCP templates; `/survey` page with 9-question user survey + Redis storage
+- ✅ Full i18n for section themes (Attack Chain / Technical Deep-Dive / Real-World Incident) in all 6 languages; FeedbackWidget fully translated
+- ✅ AttackDiagram category-aware labels (STEP N for non-security); RichText `context` prop disables security highlights for arts/travel/sports
+- ✅ Overview section: single font (boldLead=false); lead colors darkened (sky-400 / pink-400); module titles link to real-world incident section
+- ✅ BackLink fix: StageContainer passes backHref to StageInfo reliably; admin username column widened
+- ✅ Paris stages 9–20 and Milan stages 9–20: Wikimedia Commons images added
+- ✅ content-flags.ts: cisco-advanced, paris-july, milan-july, french-basics, italian-basics entries added
+- ✅ Docs: BUSINESS_PROPOSAL_PRO/CASUAL, PITCH_TARGETS, FINANCIALS corrected to v1.16.0 facts; TODO.md new deferred items A–F
 
 ## What's Shipped (v1.15.1)
 

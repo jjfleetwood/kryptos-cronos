@@ -16,10 +16,13 @@ export type StageMeta = {
   cveId?: string;
   group?: string;
   wonder: { name: string; location: string; era: string; emoji: string };
+  easeScore?: number;
+  valueScore?: number;
+  rank?: number;
 };
 
 export const stagesMeta: StageMeta[] = stages.map(
-  ({ id, epochId, order, title, xp, badge, challengeType, cveId, wonder, group }) => ({
+  ({ id, epochId, order, title, xp, badge, challengeType, cveId, wonder, group, easeScore, valueScore, rank }) => ({
     id,
     epochId,
     order,
@@ -30,6 +33,9 @@ export const stagesMeta: StageMeta[] = stages.map(
     cveId,
     wonder,
     group,
+    easeScore,
+    valueScore,
+    rank,
   })
 );
 

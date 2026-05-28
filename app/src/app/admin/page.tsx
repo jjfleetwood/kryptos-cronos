@@ -1223,7 +1223,7 @@ export default function AdminPage() {
             <div className="px-6 py-12 text-center text-gray-600">No server-registered users yet.</div>
           ) : (
             <div>
-              <div className={`grid ${isSuperAdmin ? "grid-cols-[2rem_1fr_2fr_5rem_4rem_4rem_5rem_6rem_4rem_9rem_4rem]" : "grid-cols-[2rem_1fr_2fr_5rem_4rem_4rem_5rem_6rem_4rem_9rem]"} gap-3 px-6 py-3 border-b border-white/5 text-xs text-gray-600 font-semibold uppercase tracking-wider`}>
+              <div className={`grid ${isSuperAdmin ? "grid-cols-[2rem_3fr_2fr_5rem_4rem_4rem_5rem_6rem_4rem_9rem_4rem]" : "grid-cols-[2rem_3fr_2fr_5rem_4rem_4rem_5rem_6rem_4rem_9rem]"} gap-3 px-6 py-3 border-b border-white/5 text-xs text-gray-600 font-semibold uppercase tracking-wider`}>
                 <div>#</div>
                 <div>User</div>
                 <div><SortBtn col="coins" label="Coins" sortKey={sortKey} sortDir={sortDir} onToggle={toggleSort} /></div>
@@ -1240,13 +1240,13 @@ export default function AdminPage() {
               {filtered.map((user, i) => (
                 <div
                   key={user.username}
-                  className={`grid ${isSuperAdmin ? "grid-cols-[2rem_1fr_2fr_5rem_4rem_4rem_5rem_6rem_4rem_9rem_4rem]" : "grid-cols-[2rem_1fr_2fr_5rem_4rem_4rem_5rem_6rem_4rem_9rem]"} gap-3 px-6 py-4 border-b border-white/5 last:border-0 items-center hover:bg-white/2 transition-colors`}
+                  className={`grid ${isSuperAdmin ? "grid-cols-[2rem_3fr_2fr_5rem_4rem_4rem_5rem_6rem_4rem_9rem_4rem]" : "grid-cols-[2rem_3fr_2fr_5rem_4rem_4rem_5rem_6rem_4rem_9rem]"} gap-3 px-6 py-4 border-b border-white/5 last:border-0 items-center hover:bg-white/2 transition-colors`}
                 >
                   <div className="text-xs text-gray-600 font-mono">{i + 1}</div>
 
                   <div className="min-w-0">
-                    <div className="font-semibold truncate text-sm text-white">{user.username}</div>
-                    <div className="text-xs text-gray-700 truncate">{user.email}</div>
+                    <div className="font-semibold text-sm text-white break-all">{user.username}</div>
+                    <div className="text-xs text-gray-700 break-all">{user.email}</div>
                   </div>
 
                   <div className="flex items-center gap-2">

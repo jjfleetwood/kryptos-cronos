@@ -47,7 +47,7 @@ Kryptós CronOS delivers training through **stage-based missions** that simulate
 
 ### Curriculum — 438 Stages across 36 Epochs and 10 Tracks (v1.12.0)
 
-The platform ships with 418 fully built stages organized into 36 curriculum epochs and 10 learning tracks:
+The platform ships with 438 fully built stages organized into 36 curriculum epochs and 10 learning tracks:
 
 | Track | Stages | Focus |
 |---|---|---|
@@ -79,9 +79,13 @@ The platform ships with 418 fully built stages organized into 36 curriculum epoc
 | audit-cm11 | Continuous Compliance | FTC Drizly CEO liability order |
 | audit-cm12 | SOC Maturity — MTTD/MTTR | MGM Resorts $100M+ ransomware event |
 
-### Live Features (Shipped — v1.14.0)
+### Live Features (Shipped — v1.15.1)
 
 - **ARIA AI Tutor** — Claude Haiku, Socratic coaching, stage-aware context, 10-message session cap, rate-limited
+- **Adaptive Difficulty Engine** — `computeStageScore` (time + hints + attempts), +20% XP bonus for clean solves, adaptive ARIA cooldown for Pro (0s/15s/30s by skill), recommended next stage post-flag
+- **Supabase Auth Migration** — Parallel auth with zero-downtime PBKDF2 fallback; enterprise-grade auth fully complete (v1.15.0)
+- **CyberOps Associate Exam Readiness Tracker** — Live at `/cyberops`; weighted readiness ring across 5 CBROPS 200-201 domains; 50 stages mapped; direct Cisco exam CTA
+- **7-Day Free Trial → Pro Paywall** — Stripe checkout, monthly/annual billing, webhook lifecycle handling; admin tier override
 - **Daily Streaks** — Redis-backed streak tracking with streak-based milestone badges
 - **Milestone Badges** — XP and streak milestones (`m-xp-1k`, `m-xp-5k`, `m-streak-3`, `m-streak-7`)
 - **Real-time Leaderboard** — Global, daily, and weekly XP rankings via Upstash Redis sorted sets
@@ -89,6 +93,7 @@ The platform ships with 418 fully built stages organized into 36 curriculum epoc
 - **Avatar Shop** — Cosmetic avatar items and trophy purchases; admin-only items server-gated
 - **Stage Completion Emails** — Fire-and-forget transactional email on every new flag capture: XP, badge, streak, next-stage CTA
 - **Progress Export** — PDF certificate via `@react-pdf/renderer`: coins, stages, badges, streak, per-epoch breakdown
+- **Investor Metrics Panel** — WAU, 7-day return rate, avg stages/user, user funnel (registered→started→engaged→retained→power), per-epoch completion rates — live in admin dashboard
 - **Admin Dashboard** — User management, NDA signatories panel, streak monitoring, CMS stage editor
 - **CI Pipeline** — GitHub Actions: lint + tsc + build + security audit on every push — 0 ESLint errors
 - **Server-side Auth** — PBKDF2-SHA-256, HMAC-signed HttpOnly cookies, no localStorage credentials
@@ -108,7 +113,8 @@ The platform ships with 418 fully built stages organized into 36 curriculum epoc
 
 ### B2C (Direct to Learner)
 - **Free tier:** Stages 1–3 (acquisition funnel)
-- **Pro:** $5.99/month or $55.99/year — full curriculum + AI personalization + badge certificates
+- **7-day free trial** — full access; converts to paywall after 7 days; no credit card required to start
+- **Pro:** $13.99/month or $99/year (SAVE 41%) — full curriculum + adaptive AI + badge certificates
 - **Team:** $12/seat/month (10+ seats) — cohort dashboards, completion reporting
 
 #### Ad-Supported Hints — Revenue Model Detail
@@ -176,19 +182,19 @@ Cisco is the deepest planned sponsor relationship, anchored by a 50-stage Cisco 
 | KnowBe4 | Phishing simulation only | No technical depth |
 | **Kryptós CronOS** | **Gamified + AI + CTF + curriculum** | **Early stage** |
 
-Our differentiation: the only platform combining structured multi-track curriculum (358 stages), real-exploit CTF challenges, a live AI Socratic tutor, daily engagement mechanics, and a competitive leaderboard in a single production-grade product.
+Our differentiation: the only platform combining structured multi-track curriculum (438 stages across 36 epochs), real-exploit CTF challenges, adaptive AI difficulty, a live AI Socratic tutor, daily engagement mechanics, and a competitive leaderboard in a single production-grade product.
 
 ---
 
 ## Traction & Validation
 
-- **Product:** Fully functional platform — 418 stages across 36 epochs and 10 curriculum tracks
+- **Product:** Fully functional platform — 438 stages across 36 epochs and 10 curriculum tracks
 - **AI tutor:** ARIA live in production — Claude Haiku, Socratic coaching, stage-aware
 - **Gamification:** Streaks, milestone badges, and real-time leaderboard all live
 - **Admin infrastructure:** NDA clickwrap management via /demo
 - **Security posture:** Server-side auth, HMAC cookies, nonce-based CSP (no unsafe-inline in script-src), rate limiting, CI security audit
 - **Tech stack:** Next.js 16 / React 19 / TypeScript — production-grade, zero technical debt
-- **Deployment:** Live at kryptoscronos.com (version v1.14.0)
+- **Deployment:** Live at kryptoscronos.com (version v1.15.1)
 - **GitHub:** github.com/jjfleetwood/kryptos-cronos
 
 ---

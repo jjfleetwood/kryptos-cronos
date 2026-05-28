@@ -2,6 +2,30 @@
 
 ---
 
+## v1.16.0 — 2026-05-28
+
+**Security/Non-Security sections, full i18n, Paris/Milan images, survey, downloads page, back link fix, admin UX**
+
+- **Stages page** — Security (🔒) and Non-Security (📚) section headers divide the track list; Downloads link (↓ Python Downloads) in the Security header links to `/downloads`
+- **`/downloads` page** — lists all 24 Python MCP server templates with descriptions and individual download links, grouped by epoch
+- **`/survey` page** — 9-question user survey (referral, security level, valuable tracks, missing content, NPS, upgrade reason, role, time/week, open comments); `POST /api/survey` persists to Redis sorted set (`survey:index`)
+- **i18n — section themes** — Attack Chain / Technical Deep-Dive / Real-World Incident (and all 7 category variants) now use translation keys; added to all 6 language files (fr/es/de/hi/pt/pl)
+- **i18n — FeedbackWidget** — all visible strings (title, placeholder, hint, send/sent/failed/sending, expand/minimize) now use `useLocale()`; translated in all 6 languages. "Full survey →" link added.
+- **AttackDiagram** — `category` prop added; ATTACKER/SYSTEM/TARGET/RESULT labels replaced with STEP N for non-security stages (arts, travel, driving, health) and category-specific labels for sports
+- **RichText** — `context` prop: `"general"` mode disables CVE/SQL/acronym/file-path/IP/port highlights for non-security content (arts, travel, sports, driving, health stages)
+- **Overview section** — `boldLead=false` removes the bold lead sentence; overview is now one consistent font. Lead color darkened: sky-400 / pink-400 (was sky-200 / pink-200)
+- **Module title** — stage title links to `#real-world` anchor on the incident/cultural context section
+- **BackLink fix** — `StageContainer` now passes `backHref` to `StageInfo`; back button always returns to epoch page (was unreliable with `router.back()` on direct URL visits)
+- **Admin page** — username column widened (1fr → 3fr in grid template); `truncate` removed, `break-all` added; long usernames no longer clip
+- **Paris images** — stages 9–20 given Wikimedia Commons images: Luxembourg Gardens, Notre-Dame, Sainte-Chapelle, Place des Vosges, Bastille column, Belleville, Galerie Vivienne, Père Lachaise, Marché d'Aligre, Canal Saint-Martin, Versailles, Sacré-Cœur
+- **Milan images** — stages 9–20 given Wikimedia Commons images: Navigli, San Lorenzo columns, Sant'Ambrogio, Bosco Verticale, La Scala, Lake Como, Certosa di Pavia, Cimitero Monumentale, Via Montenapoleone, Roman Milan tower, Duomo sunset, Porta Nuova skyline
+- **content-flags.ts** — added missing epochs: cisco-advanced, paris-july, milan-july, french-basics, italian-basics
+- **Certificate route** — try/catch around `renderToBuffer` with 500 response on failure for easier debugging
+- **Docs updated** — BUSINESS_PROPOSAL_PRO/CASUAL, PITCH_TARGETS, FINANCIALS: corrected pricing ($13.99/mo, $99/yr), stage counts (438), version (v1.15.1→v1.16.0), added adaptive difficulty + CyberOps tracker + 7-day trial to live features; Supabase status → complete
+- **TODO.md** — new deferred items: elementary redesign (A), incentives system (B), certificate paths (C), resume module (D), all-stage images (E), docs final update (F)
+
+---
+
 ## v1.15.1 — 2026-05-28
 
 **Stage briefing paragraph formatting — bold lead sentence**

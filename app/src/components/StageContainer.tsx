@@ -32,7 +32,7 @@ export default function StageContainer({ stage, isPro = false, translation = nul
   const backHref = `/stages/epoch/${stage.epochId}`;
 
   if (phase === "info") {
-    return <StageInfo stage={stage} onStart={() => setPhase("challenge")} translation={translation} />;
+    return <StageInfo stage={stage} onStart={() => setPhase("challenge")} translation={translation} backHref={backHref} />;
   }
 
   if (stage.challengeType === "ctf" && stage.ctf) {

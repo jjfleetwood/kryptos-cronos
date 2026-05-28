@@ -219,7 +219,13 @@ export async function GET(req: NextRequest) {
     )
   );
 
-  const buffer = await renderToBuffer(doc);
+  let buffer: Buffer;
+  try {
+    buffer = await renderToBuffer(doc);
+  } catch (err) {
+    console.error("[certificate] renderToBuffer failed:", err);
+    return NextResponse.json({ error: "PDF generation failed" }, { status: 500 });
+  }
 
   return new NextResponse(buffer as unknown as BodyInit, {
     status: 200,

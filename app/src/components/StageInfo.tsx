@@ -42,86 +42,86 @@ type SectionTheme = {
 
 const SECTION_THEMES: Record<string, SectionTheme> = {
   cybersecurity: {
-    flow: "Attack Chain", flowIcon: "⚔️",
-    technical: "Technical Deep-Dive", technicalIcon: "🔬",
-    incident: "Real-World Incident", incidentIcon: "🚨",
+    flow: "stage.flow.cybersecurity", flowIcon: "⚔️",
+    technical: "stage.technical.cybersecurity", technicalIcon: "🔬",
+    incident: "stage.incident.cybersecurity", incidentIcon: "🚨",
     incidentBadge: "CONFIRMED",
     incidentBorder: "border-red-500/25", incidentHeaderBg: "bg-red-500/10 border-b border-red-500/20",
     incidentDot: "bg-red-500", incidentBadgeCss: "text-red-600 bg-red-500/10 border border-red-500/20",
     incidentImpactBg: "border-b border-white/5 bg-red-500/5", incidentTitleColor: "text-red-300",
-    incidentImpactLabel: "Impact",
+    incidentImpactLabel: "stage.incident.impactLabel.cybersecurity",
   },
   ai: {
-    flow: "Attack Chain", flowIcon: "⚔️",
-    technical: "Technical Deep-Dive", technicalIcon: "🔬",
-    incident: "Real-World Incident", incidentIcon: "🚨",
+    flow: "stage.flow.ai", flowIcon: "⚔️",
+    technical: "stage.technical.ai", technicalIcon: "🔬",
+    incident: "stage.incident.ai", incidentIcon: "🚨",
     incidentBadge: "CONFIRMED",
     incidentBorder: "border-red-500/25", incidentHeaderBg: "bg-red-500/10 border-b border-red-500/20",
     incidentDot: "bg-red-500", incidentBadgeCss: "text-red-600 bg-red-500/10 border border-red-500/20",
     incidentImpactBg: "border-b border-white/5 bg-red-500/5", incidentTitleColor: "text-red-300",
-    incidentImpactLabel: "Impact",
+    incidentImpactLabel: "stage.incident.impactLabel.cybersecurity",
   },
   owasp: {
-    flow: "Exploit Chain", flowIcon: "⚔️",
-    technical: "Technical Deep-Dive", technicalIcon: "🔬",
-    incident: "Real-World Incident", incidentIcon: "🚨",
+    flow: "stage.flow.owasp", flowIcon: "⚔️",
+    technical: "stage.technical.owasp", technicalIcon: "🔬",
+    incident: "stage.incident.owasp", incidentIcon: "🚨",
     incidentBadge: "CONFIRMED",
     incidentBorder: "border-red-500/25", incidentHeaderBg: "bg-red-500/10 border-b border-red-500/20",
     incidentDot: "bg-red-500", incidentBadgeCss: "text-red-600 bg-red-500/10 border border-red-500/20",
     incidentImpactBg: "border-b border-white/5 bg-red-500/5", incidentTitleColor: "text-red-300",
-    incidentImpactLabel: "Impact",
+    incidentImpactLabel: "stage.incident.impactLabel.cybersecurity",
   },
   sports: {
-    flow: "How It Works", flowIcon: "⚾",
-    technical: "Rules & Mechanics", technicalIcon: "📐",
-    incident: "Historical Moment", incidentIcon: "🏆",
+    flow: "stage.flow.sports", flowIcon: "⚾",
+    technical: "stage.technical.sports", technicalIcon: "📐",
+    incident: "stage.incident.sports", incidentIcon: "🏆",
     incidentBadge: "HISTORIC",
     incidentBorder: "border-amber-500/25", incidentHeaderBg: "bg-amber-500/10 border-b border-amber-500/20",
     incidentDot: "bg-amber-400", incidentBadgeCss: "text-amber-600 bg-amber-500/10 border border-amber-500/20",
     incidentImpactBg: "border-b border-white/5 bg-amber-500/5", incidentTitleColor: "text-amber-300",
-    incidentImpactLabel: "Significance",
+    incidentImpactLabel: "stage.incident.impactLabel.sports",
   },
   arts: {
-    flow: "Step by Step", flowIcon: "✂️",
-    technical: "Technique & Process", technicalIcon: "🎨",
-    incident: "Cultural Context", incidentIcon: "📖",
+    flow: "stage.flow.arts", flowIcon: "✂️",
+    technical: "stage.technical.arts", technicalIcon: "🎨",
+    incident: "stage.incident.arts", incidentIcon: "📖",
     incidentBadge: "SPOTLIGHT",
     incidentBorder: "border-violet-500/25", incidentHeaderBg: "bg-violet-500/10 border-b border-violet-500/20",
     incidentDot: "bg-violet-400", incidentBadgeCss: "text-violet-600 bg-violet-500/10 border border-violet-500/20",
     incidentImpactBg: "border-b border-white/5 bg-violet-500/5", incidentTitleColor: "text-violet-300",
-    incidentImpactLabel: "Why It Matters",
+    incidentImpactLabel: "stage.incident.impactLabel.arts",
   },
   driving: {
-    flow: "The Process", flowIcon: "🛣️",
-    technical: "Rules & Regulations", technicalIcon: "📋",
-    incident: "Real-World Scenario", incidentIcon: "🚗",
+    flow: "stage.flow.driving", flowIcon: "🛣️",
+    technical: "stage.technical.driving", technicalIcon: "📋",
+    incident: "stage.incident.driving", incidentIcon: "🚗",
     incidentBadge: "SCENARIO",
     incidentBorder: "border-blue-500/25", incidentHeaderBg: "bg-blue-500/10 border-b border-blue-500/20",
     incidentDot: "bg-blue-400", incidentBadgeCss: "text-blue-600 bg-blue-500/10 border border-blue-500/20",
     incidentImpactBg: "border-b border-white/5 bg-blue-500/5", incidentTitleColor: "text-blue-300",
-    incidentImpactLabel: "Lesson",
+    incidentImpactLabel: "stage.incident.impactLabel.driving",
   },
   health: {
-    flow: "How It Works", flowIcon: "🩺",
-    technical: "Clinical Deep-Dive", technicalIcon: "🧬",
-    incident: "Case Study", incidentIcon: "📋",
+    flow: "stage.flow.health", flowIcon: "🩺",
+    technical: "stage.technical.health", technicalIcon: "🧬",
+    incident: "stage.incident.health", incidentIcon: "📋",
     incidentBadge: "CASE STUDY",
     incidentBorder: "border-teal-500/25", incidentHeaderBg: "bg-teal-500/10 border-b border-teal-500/20",
     incidentDot: "bg-teal-400", incidentBadgeCss: "text-teal-600 bg-teal-500/10 border border-teal-500/20",
     incidentImpactBg: "border-b border-white/5 bg-teal-500/5", incidentTitleColor: "text-teal-300",
-    incidentImpactLabel: "Outcome",
+    incidentImpactLabel: "stage.incident.impactLabel.health",
   },
 };
 
 const DEFAULT_THEME: SectionTheme = {
-  flow: "Concept Flow", flowIcon: "🔄",
-  technical: "Deep Dive", technicalIcon: "🔍",
-  incident: "Context & History", incidentIcon: "📖",
+  flow: "stage.flow.default", flowIcon: "🔄",
+  technical: "stage.technical.default", technicalIcon: "🔍",
+  incident: "stage.incident.default", incidentIcon: "📖",
   incidentBadge: "SPOTLIGHT",
   incidentBorder: "border-indigo-500/25", incidentHeaderBg: "bg-indigo-500/10 border-b border-indigo-500/20",
   incidentDot: "bg-indigo-400", incidentBadgeCss: "text-indigo-600 bg-indigo-500/10 border border-indigo-500/20",
   incidentImpactBg: "border-b border-white/5 bg-indigo-500/5", incidentTitleColor: "text-indigo-300",
-  incidentImpactLabel: "Why It Matters",
+  incidentImpactLabel: "stage.incident.impactLabel.arts",
 };
 
 function SectionHeader({ color, icon, label }: { color: string; icon: string; label: string }) {
@@ -136,18 +136,21 @@ function SectionHeader({ color, icon, label }: { color: string; icon: string; la
 
 // Highlights the first sentence of a paragraph in bold light-blue as a
 // scannable topic sentence. The rest renders in normal gray with RichText.
-function RichParagraph({ text, lead = "blue" }: { text: string; lead?: "blue" | "pink" }) {
+function RichParagraph({ text, lead = "blue", context = "security", boldLead = true }: { text: string; lead?: "blue" | "pink"; context?: "security" | "general"; boldLead?: boolean }) {
+  if (!boldLead) {
+    return <RichText text={text} context={context} />;
+  }
   const firstDot = text.search(/[.!?]\s/);
   const split = firstDot !== -1 ? firstDot + 1 : -1;
   const leadText = split !== -1 ? text.slice(0, split) : text;
   const restText = split !== -1 ? text.slice(split) : "";
   const leadClass = lead === "pink"
-    ? "text-pink-200 font-semibold"
-    : "text-sky-200 font-semibold";
+    ? "text-pink-400 font-semibold"
+    : "text-sky-400 font-semibold";
   return (
     <span>
-      <span className={leadClass}><RichText text={leadText} /></span>
-      {restText && <RichText text={restText} />}
+      <span className={leadClass}><RichText text={leadText} context={context} /></span>
+      {restText && <RichText text={restText} context={context} />}
     </span>
   );
 }
@@ -156,15 +159,18 @@ export default function StageInfo({
   stage,
   onStart,
   translation = null,
+  backHref,
 }: {
   stage: StageConfig;
   onStart: () => void;
   translation?: StageTranslation | null;
+  backHref?: string;
 }) {
   const { t } = useLocale();
   const { info } = stage;
   const downloads = info.downloads ?? stageDownloads[stage.id] ?? [];
   const theme: SectionTheme = SECTION_THEMES[stage.category] ?? DEFAULT_THEME;
+  const richContext: "security" | "general" = ["cybersecurity", "ai", "owasp"].includes(stage.category) ? "security" : "general";
 
   const tagline = translation?.tagline ?? info.tagline;
   const overview = translation?.overview ?? info.overview;
@@ -189,7 +195,7 @@ export default function StageInfo({
       style={{ background: "linear-gradient(135deg, #0d1117 0%, #0a0e1a 100%)" }}
     >
       <div className="max-w-3xl mx-auto">
-        <BackLink />
+        <BackLink href={backHref} />
 
         {/* ── Hero ──────────────────────────────────────────────────────────── */}
         <div className="mb-10">
@@ -243,9 +249,11 @@ export default function StageInfo({
             );
           })()}
 
-          {/* Title */}
-          <h1 className="text-3xl sm:text-4xl font-black text-white mb-2 leading-tight">{stage.title}</h1>
-          <p className="text-gray-400 text-lg leading-relaxed"><RichText text={tagline} /></p>
+          {/* Title — links to real-world incident/context section below */}
+          <h1 className="text-3xl sm:text-4xl font-black text-white mb-2 leading-tight">
+            <a href="#real-world" className="hover:text-cyan-300 transition-colors cursor-pointer">{stage.title}</a>
+          </h1>
+          <p className="text-gray-400 text-lg leading-relaxed"><RichText text={tagline} context={richContext} /></p>
 
           {/* CVSS severity bar */}
           {stage.cvssScore !== undefined && (
@@ -303,11 +311,11 @@ export default function StageInfo({
             {overview.map((para, i) => (
               i === 0 ? (
                 <p key={i} className="text-gray-300 text-base leading-relaxed border-l-2 border-cyan-500/50 pl-4">
-                  <RichParagraph text={para} lead="blue" />
+                  <RichParagraph text={para} lead="blue" context={richContext} boldLead={false} />
                 </p>
               ) : (
                 <p key={i} className="text-gray-400 leading-relaxed text-sm">
-                  <RichParagraph text={para} lead="blue" />
+                  <RichParagraph text={para} lead="blue" context={richContext} boldLead={false} />
                 </p>
               )
             ))}
@@ -321,23 +329,23 @@ export default function StageInfo({
 
         {/* ── Attack Flow ───────────────────────────────────────────────────── */}
         <section className="mb-10">
-          <SectionHeader color="text-rose-400" icon={theme.flowIcon} label={theme.flow} />
+          <SectionHeader color="text-rose-400" icon={theme.flowIcon} label={t(theme.flow)} />
           <div className="bg-white/2 border border-white/8 rounded-xl p-6">
-            <AttackDiagram nodes={info.diagram.nodes} />
+            <AttackDiagram nodes={info.diagram.nodes} category={stage.category} />
           </div>
         </section>
 
         {/* ── Technical Deep-Dive ───────────────────────────────────────────── */}
         <section className="mb-10">
-          <SectionHeader color="text-emerald-400" icon={theme.technicalIcon} label={theme.technical} />
+          <SectionHeader color="text-emerald-400" icon={theme.technicalIcon} label={t(theme.technical)} />
           <div className="rounded-xl border border-emerald-500/15 overflow-hidden">
             <div className="px-5 py-4 bg-emerald-500/5 border-b border-emerald-500/15">
-              <h3 className="text-white font-bold text-base"><RichText text={technicalTitle} /></h3>
+              <h3 className="text-white font-bold text-base"><RichText text={technicalTitle} context={richContext} /></h3>
             </div>
             <div className="px-5 py-4 space-y-3">
               {technicalBody.map((para, i) => (
                 <p key={i} className="text-gray-300 leading-relaxed text-sm">
-                  <RichParagraph text={para} lead="blue" />
+                  <RichParagraph text={para} lead="blue" context={richContext} />
                 </p>
               ))}
             </div>
@@ -355,14 +363,14 @@ export default function StageInfo({
         </section>
 
         {/* ── Incident / Cultural Context / Historical Moment ──────────────── */}
-        <section className="mb-10">
-          <SectionHeader color="text-red-400" icon={theme.incidentIcon} label={theme.incident} />
+        <section id="real-world" className="mb-10">
+          <SectionHeader color="text-red-400" icon={theme.incidentIcon} label={t(theme.incident)} />
           <div className={`rounded-xl border ${theme.incidentBorder} overflow-hidden`}>
             {/* Header bar */}
             <div className={`px-5 py-3 ${theme.incidentHeaderBg} flex items-center justify-between gap-3`}>
               <div className="flex items-center gap-2">
                 <span className={`w-2 h-2 rounded-full ${theme.incidentDot} animate-pulse flex-shrink-0`} />
-                <h3 className={`${theme.incidentTitleColor} font-bold text-sm`}><RichText text={incidentTitle} /></h3>
+                <h3 className={`${theme.incidentTitleColor} font-bold text-sm`}><RichText text={incidentTitle} context={richContext} /></h3>
               </div>
               <span className={`text-xs font-mono px-2 py-0.5 rounded whitespace-nowrap flex-shrink-0 ${theme.incidentBadgeCss}`}>
                 {theme.incidentBadge}
@@ -377,15 +385,15 @@ export default function StageInfo({
 
             {/* Impact / significance callout */}
             <div className={`px-5 py-4 ${theme.incidentImpactBg}`}>
-              <p className="text-xs text-gray-500 uppercase tracking-widest mb-1 font-semibold">{theme.incidentImpactLabel}</p>
-              <p className={`${theme.incidentTitleColor} font-semibold text-sm leading-snug`}><RichText text={incidentImpact} /></p>
+              <p className="text-xs text-gray-500 uppercase tracking-widest mb-1 font-semibold">{t(theme.incidentImpactLabel)}</p>
+              <p className={`${theme.incidentTitleColor} font-semibold text-sm leading-snug`}><RichText text={incidentImpact} context={richContext} /></p>
             </div>
 
             {/* Body */}
             <div className="px-5 py-4 space-y-3">
               {incidentBody.map((para, i) => (
                 <p key={i} className="text-gray-300 leading-relaxed text-sm">
-                  <RichParagraph text={para} lead="pink" />
+                  <RichParagraph text={para} lead="pink" context={richContext} />
                 </p>
               ))}
             </div>

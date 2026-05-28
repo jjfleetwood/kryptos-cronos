@@ -787,7 +787,7 @@ export default function CtfChallenge({ stage, backHref = "/stages", isPro = fals
         <div className="max-w-4xl mx-auto w-full flex flex-col flex-1 min-h-0">
           {/* Header */}
           <div className="mb-3 flex-shrink-0">
-            <BackLink className="text-gray-500 hover:text-cyan-400 text-sm mb-2 inline-block transition-colors" />
+            <BackLink href={backHref} className="text-gray-500 hover:text-cyan-400 text-sm mb-2 inline-block transition-colors" />
             <div className="flex flex-wrap items-center justify-between gap-2">
               <div className="min-w-0">
                 <h1 className="text-white font-bold text-base sm:text-xl truncate">{stage.title}</h1>
