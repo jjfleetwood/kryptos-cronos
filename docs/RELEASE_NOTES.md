@@ -2,6 +2,22 @@
 
 ---
 
+## v1.13.1 — 2026-05-28
+
+**RichText auto-highlighter for stage briefing paragraphs**
+
+- New `RichText.tsx` component — regex tokeniser applies inline highlights to all briefing paragraph text without touching stage data files
+- CVE IDs (`CVE-YYYY-NNNNN`) → neon green monospace pill
+- Quoted terms (`"Log4Shell"`, `"WannaCry"`) → amber
+- Dollar amounts and large numbers → cyan bold
+- Percentages → cyan bold
+- Version numbers (`v2.14.1`) → teal monospace
+- CVSS score references → orange
+- Year anchors → slightly brightened
+- Applied to: overview, technical body, incident body, key takeaways across all 438 stages
+
+---
+
 ## v1.13.0 — 2026-05-28
 
 **Stage briefing visual redesign + category-aware section labels**
