@@ -3,6 +3,7 @@
 import AttackDiagram from "./AttackDiagram";
 import GaugeBar from "./GaugeBar";
 import BackLink from "./BackLink";
+import RichText from "./RichText";
 import type { StageConfig } from "@/data/types";
 import type { StageTranslation } from "@/data/translations/types";
 import { stageDownloads } from "@/data/stage-downloads";
@@ -265,10 +266,12 @@ export default function StageInfo({
             {overview.map((para, i) => (
               i === 0 ? (
                 <p key={i} className="text-white text-base leading-relaxed font-medium border-l-2 border-cyan-500/50 pl-4">
-                  {para}
+                  <RichText text={para} />
                 </p>
               ) : (
-                <p key={i} className="text-gray-400 leading-relaxed text-sm">{para}</p>
+                <p key={i} className="text-gray-400 leading-relaxed text-sm">
+                  <RichText text={para} />
+                </p>
               )
             ))}
           </div>
@@ -296,7 +299,9 @@ export default function StageInfo({
             </div>
             <div className="px-5 py-4 space-y-3">
               {technicalBody.map((para, i) => (
-                <p key={i} className="text-gray-300 leading-relaxed text-sm">{para}</p>
+                <p key={i} className="text-gray-300 leading-relaxed text-sm">
+                  <RichText text={para} />
+                </p>
               ))}
             </div>
             {info.technical.codeExample && (
@@ -342,7 +347,9 @@ export default function StageInfo({
             {/* Body */}
             <div className="px-5 py-4 space-y-3">
               {incidentBody.map((para, i) => (
-                <p key={i} className="text-gray-300 leading-relaxed text-sm">{para}</p>
+                <p key={i} className="text-gray-300 leading-relaxed text-sm">
+                  <RichText text={para} />
+                </p>
               ))}
             </div>
           </div>
@@ -389,7 +396,7 @@ export default function StageInfo({
                   style={{ background: "linear-gradient(135deg, #8b5cf6, #6366f1)" }}>
                   {i + 1}
                 </span>
-                <p className="text-gray-200 text-sm leading-relaxed">{item}</p>
+                <p className="text-gray-200 text-sm leading-relaxed"><RichText text={item} /></p>
               </div>
             ))}
           </div>
