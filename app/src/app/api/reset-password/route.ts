@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { redis } from "@/lib/redis";
 import { hashPassword, generateSalt, PBKDF2_ITERATIONS } from "@/lib/crypto-utils";
 import { signSessionToken, sessionCookieOptions } from "@/lib/server-session";
+import { supabaseAdmin } from "@/lib/supabase";
 
 async function isRateLimited(ip: string): Promise<boolean> {
   const key = `rate:resetpw:${ip}`;
@@ -38,6 +39,17 @@ export async function POST(req: NextRequest) {
 
   await redis.hset(`user:${username}`, { passwordHash, salt, hashIterations: PBKDF2_ITERATIONS });
   await redis.del(`reset:${body.token}`);
+
+  // Sync new password to Supabase (fire-and-forget)
+  redis.hget(`user:${username}`, "email").then((email) => {
+    if (!email) return;
+    supabaseAdmin.auth.admin.listUsers().then(({ data }) => {
+      const match = data?.users?.find((u) => u.email === email);
+      if (match) {
+        supabaseAdmin.auth.admin.updateUserById(match.id, { password: body.password }).catch(() => {});
+      }
+    }).catch(() => {});
+  }).catch(() => {});
 
   const sessionToken = signSessionToken(username);
   const res = NextResponse.json({ username });

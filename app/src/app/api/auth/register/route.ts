@@ -3,6 +3,7 @@ import { redis } from "@/lib/redis";
 import { hashPassword, generateSalt, PBKDF2_ITERATIONS } from "@/lib/crypto-utils";
 import { signSessionToken, sessionCookieOptions } from "@/lib/server-session";
 import { createHmac } from "crypto";
+import { supabaseAdmin } from "@/lib/supabase";
 
 function escapeHtml(s: string): string {
   return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
@@ -53,6 +54,14 @@ export async function POST(req: NextRequest) {
 
   // Reverse lookup for forgot-password
   await redis.set(`email:${email}`, lower);
+
+  // Create Supabase auth account (fire-and-forget — never blocks registration)
+  supabaseAdmin.auth.admin.createUser({
+    email,
+    password,
+    email_confirm: true,
+    user_metadata: { username: lower },
+  }).catch(() => {});
 
   const sessionToken = signSessionToken(lower);
   const res = NextResponse.json({ ok: true, username: lower, email });

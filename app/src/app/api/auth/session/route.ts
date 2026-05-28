@@ -34,6 +34,13 @@ export async function POST(req: NextRequest) {
 }
 
 export async function DELETE() {
+  // Sign out from Supabase (clears JWT cookies)
+  try {
+    const { createSupabaseServerClient } = await import("@/lib/supabase");
+    const supabase = await createSupabaseServerClient();
+    await supabase.auth.signOut();
+  } catch { /* best effort */ }
+
   const res = NextResponse.json({ ok: true });
   res.cookies.delete("session_token");
   return res;

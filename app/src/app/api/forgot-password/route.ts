@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { randomBytes } from "crypto";
 import { redis } from "@/lib/redis";
+import { supabaseAdmin } from "@/lib/supabase";
 
 const RESET_TTL = 3600;
 
@@ -35,9 +36,14 @@ export async function POST(req: NextRequest) {
   await redis.set(`reset:${token}`, username, { ex: RESET_TTL });
 
   const apiKey = process.env.RESEND_API_KEY;
-  if (!apiKey) return ok;
+  const baseUrl = process.env.APP_URL ?? "https://kryptoscronos.com";
 
-  const baseUrl = process.env.APP_URL ?? "http://localhost:3000";
+  // Also trigger Supabase password reset email (fire-and-forget)
+  supabaseAdmin.auth.resetPasswordForEmail(email, {
+    redirectTo: `${baseUrl}/reset-password`,
+  }).catch(() => {});
+
+  if (!apiKey) return ok;
   const resetUrl = `${baseUrl}/reset-password?token=${token}`;
 
   // Escape user-controlled values before inserting into HTML
