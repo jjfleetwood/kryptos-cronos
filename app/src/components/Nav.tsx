@@ -122,6 +122,9 @@ export default function Nav() {
               <Link href="/shop" title={t("nav.shop")} className="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-white/8 transition-colors text-base">
                 🛒
               </Link>
+              <Link href="/account" title="Account & Billing" className="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-white/8 transition-colors text-base">
+                ⚙️
+              </Link>
             </div>
           )}
           {admin && (
@@ -291,6 +294,9 @@ export default function Nav() {
               </Link>
               <Link href="/shop" className="block px-3 py-2.5 rounded-lg text-sm" style={{ color: "#f59e0b" }}>
                 🛒 {t("nav.shop")}
+              </Link>
+              <Link href="/account" className="block px-3 py-2.5 rounded-lg text-sm" style={{ color: skin.textSecondary }}>
+                ⚙️ Account & Billing
               </Link>
             </>
           )}
