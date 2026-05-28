@@ -1,41 +1,48 @@
 "use client";
 
 import { createContext, useContext, useState, type ReactNode } from "react";
-import { setClientGroup, type UserGroup } from "@/lib/groups";
+import { setClientGroups, type UserGroup, USER_GROUPS, DEFAULT_GROUPS } from "@/lib/groups";
 
 type GroupContextType = {
+  groups: UserGroup[];
+  setGroups: (g: UserGroup[]) => void;
   group: UserGroup;
   changeGroup: (g: UserGroup) => void;
 };
 
 const GroupContext = createContext<GroupContextType>({
-  group: "high-school",
+  groups: DEFAULT_GROUPS,
+  setGroups: () => {},
+  group: "career",
   changeGroup: () => {},
 });
 
 export function GroupProvider({
   children,
-  initialGroup = "high-school",
+  initialGroups = DEFAULT_GROUPS,
 }: {
   children: ReactNode;
-  initialGroup?: string;
+  initialGroups?: UserGroup[];
 }) {
-  const VALID: UserGroup[] = ["elementary", "junior-hs", "high-school", "university", "career", "curious"];
-  const validGroup = (VALID.includes(initialGroup as UserGroup) ? initialGroup : "high-school") as UserGroup;
-  const [group, setGroupState] = useState<UserGroup>(validGroup);
+  const valid = initialGroups.filter((g): g is UserGroup => USER_GROUPS.includes(g));
+  const [groups, setGroupsState] = useState<UserGroup[]>(valid.length > 0 ? valid : DEFAULT_GROUPS);
 
-  function changeGroup(g: UserGroup) {
-    setClientGroup(g);
-    setGroupState(g);
+  function setGroups(g: UserGroup[]) {
+    setClientGroups(g);
+    setGroupsState(g);
     fetch("/api/user-group", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ group: g }),
+      body: JSON.stringify({ groups: g }),
     }).catch(() => {});
   }
 
+  function changeGroup(g: UserGroup) {
+    setGroups([g]);
+  }
+
   return (
-    <GroupContext.Provider value={{ group, changeGroup }}>
+    <GroupContext.Provider value={{ groups, setGroups, group: groups[0] ?? "career", changeGroup }}>
       {children}
     </GroupContext.Provider>
   );

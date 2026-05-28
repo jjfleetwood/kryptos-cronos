@@ -69,7 +69,17 @@ export default async function RootLayout({
   const [headerStore, cookieStore] = await Promise.all([headers(), cookies()]);
   const nonce = headerStore.get("x-nonce") ?? "";
   const locale = cookieStore.get("locale")?.value ?? "en";
-  const userGroup = cookieStore.get("userGroup")?.value ?? "high-school";
+  const userGroupsRaw = cookieStore.get("userGroups")?.value;
+  const userGroupLegacy = cookieStore.get("userGroup")?.value;
+  const validGroupSet = new Set(["elementary", "junior-hs", "high-school", "university", "career", "curious"]);
+  const initialGroups = (() => {
+    if (userGroupsRaw) {
+      const arr = decodeURIComponent(userGroupsRaw).split(",").filter(g => validGroupSet.has(g));
+      if (arr.length > 0) return arr;
+    }
+    if (userGroupLegacy && validGroupSet.has(userGroupLegacy)) return [userGroupLegacy];
+    return ["career", "curious"];
+  })() as import("@/lib/groups").UserGroup[];
   return (
     <html
       lang={locale}
@@ -87,7 +97,7 @@ export default async function RootLayout({
           strategy="afterInteractive"
         />
         <LocaleProvider initialLocale={locale}>
-          <GroupProvider initialGroup={userGroup}>
+          <GroupProvider initialGroups={initialGroups}>
           <SkinProvider>
             <AgePrompt />
             <Nav />

@@ -127,7 +127,7 @@ export default function StagesPage() {
   const router = useRouter();
   useSkin();
   const { t, locale } = useLocale();
-  const { group } = useGroup();
+  const { groups } = useGroup();
   const epochMetaMap = locale !== "en" ? (STAGE_META_MAPS[locale]?.epochs ?? null) : null;
   const [completedStages, setCompletedStages] = useState<string[]>([]);
   const [totalCoins, setTotalCoins] = useState(0);
@@ -167,8 +167,12 @@ export default function StagesPage() {
 
   const maxXp = allStages.reduce((sum, s) => sum + s.xp, 0);
 
-  // Pre-compute which tracks + epochs are visible for the current group
-  const allowed = GROUP_EPOCHS[group] ?? GROUP_EPOCHS["high-school"];
+  // Pre-compute which tracks + epochs are visible — union across all active groups
+  const allowed = groups.reduce((acc, g) => {
+    const set = GROUP_EPOCHS[g];
+    if (set) for (const id of set) acc.add(id);
+    return acc;
+  }, new Set<string>());
   const extendedIds = new Set(extendedGroups.map((g) => g.id));
   const visibleTracks = [...epochGroups, ...extendedGroups]
     .map((track) => ({

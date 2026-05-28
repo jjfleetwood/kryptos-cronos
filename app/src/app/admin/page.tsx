@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { getSession, setSession } from "@/lib/auth";
 import { stages } from "@/data/stages";
 import { CONTENT_FLAGS, type ContentFlag } from "@/data/content-flags";
+import { USER_GROUPS, GROUP_ICONS, GROUP_LABELS, type UserGroup } from "@/lib/groups";
 
 type UserRow = {
   username: string;
@@ -20,6 +21,7 @@ type UserRow = {
   streak: number;
   lastActive: number | null;
   skin: string;
+  userGroups: string[];
 };
 
 type NdaRow = {
@@ -1077,7 +1079,7 @@ export default function AdminPage() {
   const [users, setUsers] = useState<UserRow[]>([]);
   const [togglingTier, setTogglingTier] = useState<string | null>(null);
   const [togglingAdmin, setTogglingAdmin] = useState<string | null>(null);
-  const [togglingAge, setTogglingAge] = useState<string | null>(null);
+  const [settingGroup, setSettingGroup] = useState<string | null>(null);
   const [isSuperAdmin, setIsSuperAdmin] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -1100,21 +1102,23 @@ export default function AdminPage() {
     }
   }
 
-  async function toggleAge(username: string, currentSkin: string) {
-    const skins = ["youth", "standard", "mature"];
-    const next = skins[(skins.indexOf(currentSkin) + 1) % skins.length];
-    setTogglingAge(username);
+  async function toggleGroupBit(username: string, group: UserGroup, currentGroups: string[]) {
+    const newGroups = currentGroups.includes(group)
+      ? currentGroups.filter((g) => g !== group)
+      : [...currentGroups, group];
+    if (newGroups.length === 0) return;
+    setSettingGroup(username);
     try {
-      const res = await fetch("/api/admin/set-skin", {
+      const res = await fetch("/api/admin/set-group", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username, skin: next }),
+        body: JSON.stringify({ username, groups: newGroups }),
       });
       if (res.ok) {
-        setUsers((prev) => prev.map((u) => u.username === username ? { ...u, skin: next } : u));
+        setUsers((prev) => prev.map((u) => u.username === username ? { ...u, userGroups: newGroups } : u));
       }
     } finally {
-      setTogglingAge(null);
+      setSettingGroup(null);
     }
   }
 
@@ -1301,7 +1305,7 @@ export default function AdminPage() {
             <div className="px-6 py-12 text-center text-gray-600">No server-registered users yet.</div>
           ) : (
             <div>
-              <div className={`grid ${isSuperAdmin ? "grid-cols-[2rem_1fr_2fr_5rem_4rem_4rem_5rem_6rem_4rem_4rem_4rem]" : "grid-cols-[2rem_1fr_2fr_5rem_4rem_4rem_5rem_6rem_4rem_4rem]"} gap-3 px-6 py-3 border-b border-white/5 text-xs text-gray-600 font-semibold uppercase tracking-wider`}>
+              <div className={`grid ${isSuperAdmin ? "grid-cols-[2rem_1fr_2fr_5rem_4rem_4rem_5rem_6rem_4rem_9rem_4rem]" : "grid-cols-[2rem_1fr_2fr_5rem_4rem_4rem_5rem_6rem_4rem_9rem]"} gap-3 px-6 py-3 border-b border-white/5 text-xs text-gray-600 font-semibold uppercase tracking-wider`}>
                 <div>#</div>
                 <div>User</div>
                 <div><SortBtn col="coins" label="Coins" sortKey={sortKey} sortDir={sortDir} onToggle={toggleSort} /></div>
@@ -1311,14 +1315,14 @@ export default function AdminPage() {
                 <div className="text-right"><SortBtn col="lastActive" label="Active" sortKey={sortKey} sortDir={sortDir} onToggle={toggleSort} /></div>
                 <div className="text-right"><SortBtn col="createdAt" label="Joined" sortKey={sortKey} sortDir={sortDir} onToggle={toggleSort} /></div>
                 <div className="text-center">Pro</div>
-                <div className="text-center">Age</div>
+                <div className="text-center">Group</div>
                 {isSuperAdmin && <div className="text-center">Admin</div>}
               </div>
 
               {filtered.map((user, i) => (
                 <div
                   key={user.username}
-                  className={`grid ${isSuperAdmin ? "grid-cols-[2rem_1fr_2fr_5rem_4rem_4rem_5rem_6rem_4rem_4rem_4rem]" : "grid-cols-[2rem_1fr_2fr_5rem_4rem_4rem_5rem_6rem_4rem_4rem]"} gap-3 px-6 py-4 border-b border-white/5 last:border-0 items-center hover:bg-white/2 transition-colors`}
+                  className={`grid ${isSuperAdmin ? "grid-cols-[2rem_1fr_2fr_5rem_4rem_4rem_5rem_6rem_4rem_9rem_4rem]" : "grid-cols-[2rem_1fr_2fr_5rem_4rem_4rem_5rem_6rem_4rem_9rem]"} gap-3 px-6 py-4 border-b border-white/5 last:border-0 items-center hover:bg-white/2 transition-colors`}
                 >
                   <div className="text-xs text-gray-600 font-mono">{i + 1}</div>
 
@@ -1383,21 +1387,25 @@ export default function AdminPage() {
                     </button>
                   </div>
 
-                  <div className="flex justify-center">
-                    <button
-                      onClick={() => toggleAge(user.username, user.skin ?? "standard")}
-                      disabled={togglingAge === user.username}
-                      title={`Age skin: ${user.skin ?? "standard"} — click to cycle`}
-                      className={`text-xs font-mono px-2 py-0.5 rounded border transition-colors disabled:opacity-50 ${
-                        user.skin === "youth"
-                          ? "bg-cyan-500/15 border-cyan-500/30 text-cyan-400"
-                          : user.skin === "mature"
-                          ? "bg-amber-500/15 border-amber-500/30 text-amber-400"
-                          : "bg-white/5 border-white/10 text-gray-500"
-                      }`}
-                    >
-                      {user.skin === "youth" ? "🧒 youth" : user.skin === "mature" ? "👴 mature" : "std"}
-                    </button>
+                  <div className="flex flex-wrap gap-0.5 justify-center">
+                    {USER_GROUPS.map((g) => {
+                      const active = (user.userGroups ?? ["career", "curious"]).includes(g);
+                      return (
+                        <button
+                          key={g}
+                          onClick={() => toggleGroupBit(user.username, g as UserGroup, user.userGroups ?? ["career", "curious"])}
+                          disabled={settingGroup === user.username}
+                          title={GROUP_LABELS[g as UserGroup]}
+                          className={`w-5 h-5 rounded-full text-xs transition-all disabled:opacity-50 border flex items-center justify-center leading-none ${
+                            active
+                              ? "border-cyan-500/50 bg-cyan-500/20"
+                              : "border-white/10 bg-white/3 opacity-30 hover:opacity-60"
+                          }`}
+                        >
+                          {GROUP_ICONS[g as UserGroup]}
+                        </button>
+                      );
+                    })}
                   </div>
 
                   {isSuperAdmin && (

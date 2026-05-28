@@ -57,6 +57,10 @@ export async function GET(req: NextRequest) {
       const badges = parseArr(progressData?.badges);
       const streakData = await redis.hgetall(`streak:${username}`);
       const superAdmin = process.env.ADMIN_USERNAME?.toLowerCase();
+      let userGroups: string[] = ["career", "curious"];
+      if (userData?.userGroups) {
+        try { const p = JSON.parse(userData.userGroups as string); if (Array.isArray(p) && p.length > 0) userGroups = p; } catch {}
+      }
       return {
         username,
         email: (userData?.email as string) ?? "",
@@ -70,6 +74,7 @@ export async function GET(req: NextRequest) {
         streak: streakData?.current ? Number(streakData.current) : 0,
         lastActive: progressData?.lastActive ? Number(progressData.lastActive) : null,
         skin: (progressData?.skin as string) ?? "standard",
+        userGroups,
       };
     })
   );

@@ -7,32 +7,24 @@ import { useRouter, usePathname } from "next/navigation";
 import { useSkin } from "@/contexts/SkinContext";
 import { useLocale } from "@/contexts/LocaleContext";
 import { LOCALES, LOCALE_FLAGS, LOCALE_LABELS, type Locale } from "@/lib/locale";
-import { USER_GROUPS, GROUP_ICONS, GROUP_LABELS, type UserGroup } from "@/lib/groups";
-import { useGroup } from "@/contexts/GroupContext";
 
 export default function Nav() {
   const router = useRouter();
   const pathname = usePathname();
   const { skin } = useSkin();
   const { t, locale, changeLocale } = useLocale();
-  const { group, changeGroup } = useGroup();
   const [username, setUsername] = useState<string | null>(null);
   const [admin, setAdmin] = useState(false);
   const [trialDaysLeft, setTrialDaysLeft] = useState<number | null>(null);
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [langOpen, setLangOpen] = useState(false);
-  const [groupOpen, setGroupOpen] = useState(false);
   const langRef = useRef<HTMLDivElement>(null);
-  const groupRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
       if (langRef.current && !langRef.current.contains(e.target as Node)) {
         setLangOpen(false);
-      }
-      if (groupRef.current && !groupRef.current.contains(e.target as Node)) {
-        setGroupOpen(false);
       }
     }
     document.addEventListener("mousedown", handleClickOutside);
@@ -169,38 +161,6 @@ export default function Nav() {
             )}
           </div>
 
-          {/* Group switcher */}
-          <div ref={groupRef} className="relative">
-            <button
-              onClick={() => setGroupOpen((o) => !o)}
-              title={GROUP_LABELS[group]}
-              className="text-xs px-2 py-1.5 rounded-lg transition-colors flex items-center gap-1"
-              style={{ border: `1px solid ${skin.cardBorder}`, color: skin.textMuted }}
-            >
-              <span>{GROUP_ICONS[group]}</span>
-            </button>
-            {groupOpen && (
-              <div
-                className="absolute right-0 top-full mt-2 rounded-xl overflow-hidden shadow-2xl z-50 min-w-[160px]"
-                style={{ background: skin.navBg, border: `1px solid ${skin.cardBorder}` }}
-              >
-                {USER_GROUPS.map((g) => (
-                  <button
-                    key={g}
-                    onClick={() => { changeGroup(g as UserGroup); setGroupOpen(false); }}
-                    className="w-full text-left px-4 py-2.5 text-xs transition-colors hover:opacity-80 flex items-center gap-2"
-                    style={{
-                      color: group === g ? skin.accent : skin.textSecondary,
-                      background: group === g ? `${skin.accent}12` : "transparent",
-                    }}
-                  >
-                    {GROUP_ICONS[g]} {GROUP_LABELS[g]}
-                  </button>
-                ))}
-              </div>
-            )}
-          </div>
-
           {username && trialDaysLeft !== null && (
             <button
               onClick={handleUpgrade}
@@ -323,27 +283,6 @@ export default function Nav() {
                   {LOCALE_FLAGS[l]}
                 </button>
               ))}
-            </div>
-
-            {/* Mobile group switcher */}
-            <div className="px-3 py-2 mb-2">
-              <span className="text-xs block mb-1.5" style={{ color: skin.textMuted }}>{t("nav.learningLevel")}</span>
-              <div className="flex flex-wrap gap-1.5">
-                {USER_GROUPS.map((g) => (
-                  <button
-                    key={g}
-                    onClick={() => changeGroup(g as UserGroup)}
-                    className="text-xs px-2 py-1 rounded-lg transition-colors flex items-center gap-1"
-                    style={{
-                      background: group === g ? `${skin.accent}20` : "transparent",
-                      color: group === g ? skin.accent : skin.textMuted,
-                      border: `1px solid ${group === g ? skin.accent : skin.cardBorder}`,
-                    }}
-                  >
-                    {GROUP_ICONS[g]} {GROUP_LABELS[g]}
-                  </button>
-                ))}
-              </div>
             </div>
 
             {username ? (

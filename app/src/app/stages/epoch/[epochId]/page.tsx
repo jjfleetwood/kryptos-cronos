@@ -37,13 +37,13 @@ const GROUP_FALLBACK: Record<string, string> = {
   "junior-hs": "elementary",
 };
 
-function filterStagesByGroup(stages: typeof allStages, userGroup: string) {
-  const groupStages = stages.filter((s) => s.group === userGroup);
-  if (groupStages.length > 0) return groupStages;
-  const fallback = GROUP_FALLBACK[userGroup];
-  if (fallback) {
-    const fallbackStages = stages.filter((s) => s.group === fallback);
-    if (fallbackStages.length > 0) return fallbackStages;
+function filterStagesByGroup(stages: typeof allStages, userGroups: string[]) {
+  const matched = stages.filter((s) => s.group && userGroups.includes(s.group));
+  if (matched.length > 0) return matched;
+  const fallbackGroups = userGroups.flatMap((g) => GROUP_FALLBACK[g] ? [GROUP_FALLBACK[g]] : []);
+  if (fallbackGroups.length > 0) {
+    const fallbackMatched = stages.filter((s) => s.group && fallbackGroups.includes(s.group));
+    if (fallbackMatched.length > 0) return fallbackMatched;
   }
   return stages.filter((s) => !s.group);
 }
@@ -51,7 +51,7 @@ function filterStagesByGroup(stages: typeof allStages, userGroup: string) {
 export default function EpochPage() {
   const { epochId } = useParams<{ epochId: string }>();
   const { t, locale } = useLocale();
-  const { group } = useGroup();
+  const { groups } = useGroup();
   const metaMap = locale !== "en" ? (META_MAPS[locale] ?? null) : null;
   const [completedStages, setCompletedStages] = useState<string[]>([]);
   const [quizCompletedStages, setQuizCompletedStages] = useState<string[]>([]);
@@ -79,7 +79,7 @@ export default function EpochPage() {
 
   const epoch = epochs.find((e) => e.id === epochId);
   const allEpochStages = allStages.filter((s) => s.epochId === epochId).sort((a, b) => a.order - b.order);
-  const epochStages = filterStagesByGroup(allEpochStages, group);
+  const epochStages = filterStagesByGroup(allEpochStages, groups);
   const accent = epochAccent[epochId] ?? epochAccent.ancient;
   const contentFlag = getContentFlag(epochId);
   const isAuditEpoch = epochId.startsWith("tech-audit-");
