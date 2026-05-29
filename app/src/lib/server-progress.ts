@@ -210,7 +210,6 @@ export async function awardStageInRedis(
   const newPenalty = isNew ? storedPenalty + timePenaltyXp : storedPenalty;
   const storedBonus = Number(data?.bonus ?? 0);
   const newBonus = isNew ? storedBonus + bonusXp : storedBonus;
-  const coins = Math.max(0, baseCoins - newPenalty + newBonus);
   // coinsSpent is never modified by stage awards — only the shop route touches it
   const coinsSpent = Number(data?.coinsSpent ?? 0);
 
@@ -231,9 +230,20 @@ export async function awardStageInRedis(
   if (current > longest) longest = current;
 
   // ── Milestone badges ──
+  const prevBadges = parseArr(data?.badges);
+  const streakMilestones = checkStreakMilestones(current);
+
+  // Coin bonuses for first-time streak milestones
+  const STREAK_BONUSES: Record<string, number> = { "m-streak-3": 50, "m-streak-7": 150, "m-streak-30": 500 };
+  let milestoneBonus = 0;
+  for (const id of streakMilestones) {
+    if (!prevBadges.includes(id) && STREAK_BONUSES[id]) milestoneBonus += STREAK_BONUSES[id];
+  }
+  const totalBonus = newBonus + milestoneBonus;
+  const coins = Math.max(0, baseCoins - newPenalty + totalBonus);
+
   const stageMilestones = checkStageMilestones(completedStages.length);
   const xpMilestones = checkXpMilestones(coins);
-  const streakMilestones = checkStreakMilestones(current);
 
   for (const id of [...stageMilestones, ...xpMilestones, ...streakMilestones]) {
     if (!badges.includes(id)) badges.push(id);
@@ -246,7 +256,7 @@ export async function awardStageInRedis(
       badges: JSON.stringify(badges),
       lastActive: Date.now(),
       penalty: newPenalty,
-      bonus: newBonus,
+      bonus: totalBonus,
     }),
     redis.hset(streakKey, {
       current,

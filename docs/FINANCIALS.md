@@ -2,6 +2,7 @@
 **Entity:** Bolotin Enterprises, Inc. (Delaware C-Corp)  
 **EIN:** ✅ Received  
 **Founded:** May 23, 2026  
+**Platform version:** v1.17.0  
 **Last updated:** 2026-05-28
 
 ---
@@ -65,8 +66,8 @@ Fixed annual costs — plan for these in the budget regardless of revenue.
 
 | Product | Price | Stripe Price ID |
 |---|---|---|
-| Pro — Monthly | $13.99/mo | `STRIPE_PRO_MONTHLY_PRICE_ID` |
-| Pro — Annual | $99/yr ($8.25/mo) | `STRIPE_PRO_YEARLY_PRICE_ID` |
+| Pro — Monthly | $13.99/mo (7-day free trial) | `STRIPE_PRO_MONTHLY_PRICE_ID` |
+| Pro — Annual | $99/yr ($8.25/mo, SAVE 41%) | `STRIPE_PRO_YEARLY_PRICE_ID` |
 | Enterprise | $8/seat/mo | Not yet live |
 
 ### Transaction Costs (Stripe)
@@ -213,7 +214,7 @@ How monthly costs grow as the user base grows. Current burn is the baseline.
 |---|---|---|---|
 | **Mercury** (mercury.com) | Free | Business banking — required for expense tracking, payroll, investor wire. Open immediately. | 🔴 Immediate |
 | **Wave Accounting** (waveapps.com) | Free | Bookkeeping — connect Mercury, track all expenses by P&L category, generate financial statements for investors. Free forever for small business. | 🔴 Immediate |
-| **Supabase** (supabase.com) | Free → $25/mo | Auth migration complete (v1.15.0). Parallel auth with PBKDF2 fallback; zero-downtime migration. Free up to 50k MAU. | ✅ Complete |
+| **Supabase** (supabase.com) | Free → $25/mo | Auth in place with PBKDF2 fallback; zero-downtime migration complete. Free up to 50k MAU. | ✅ Active |
 | **Stripe Tax** | 0.5% of transactions | Automatic sales tax calculation and filing. Required for compliance once revenue reaches ~$10K/mo or you have users in multiple states. | 🟡 Before $10K MRR |
 | **Vercel Pro** | $20/mo | Team access, 1TB bandwidth, priority support. Needed when first hire joins. | 🟡 Before first hire |
 | **Resend Pro** | $20/mo | 50,000 emails/month vs. 3,000 free. Stage completion emails will hit this fast with an active user base. | 🟡 At 100+ active users |

@@ -45,22 +45,22 @@ Kryptós CronOS delivers training through **stage-based missions** that simulate
 
 4. **ARIA AI Tutor** — A live, stage-aware AI assistant (powered by Claude Haiku) that uses Socratic coaching: it answers questions and guides thinking without giving away the flag. Available throughout every challenge.
 
-### Curriculum — 438 Stages across 36 Epochs and 10 Tracks (v1.12.0)
+### Curriculum — 438 Stages across 36 Epochs and 10 Tracks (v1.17.0)
 
 The platform ships with 438 fully built stages organized into 36 curriculum epochs and 10 learning tracks:
 
 | Track | Stages | Focus |
 |---|---|---|
-| Core Security | 42 | Historical attacks, foundational vulnerability classes |
+| Core Security | 42 | Historical attacks, foundational vulnerability classes (Our First Journey + Foundations) |
+| Cisco / Network Operations | 38 | Real Cisco CVEs, enterprise attack scenarios, SecOps workflows |
 | Tech Audit | 48 | IT governance, cloud security, AI agents, SOC operations, continuous monitoring |
 | Threat Frameworks | 24 | Nation-state TTPs (MITRE ATT&CK), AI/ML adversarial attacks (MITRE ATLAS) |
 | AI Security | 12 | OWASP LLM Top 10 — LLM-specific vulnerabilities and defenses |
 | Quantum Era | 30 | Post-quantum cryptography, QKD, quantum threat landscape |
-| Cisco / Network Defense | 48 | Real Cisco CVEs, Umbrella DNS security, enterprise network defense |
-| Crafts | 30 | Creative and operational security contexts |
-| Driving | 24 | Automotive and transportation cybersecurity |
-| Baseball | 70 | Sports analytics security and data integrity |
-| First Journey | — | Onboarding track (included in Core Security stage count above) |
+| Defend the Enterprise | 22 | Cisco Advanced Defense, Umbrella DNS security, SASE architecture |
+| Travel | 80 | Paris in July, Milan in July, French Basics, Italian Basics |
+| Tapestry | 12 | Cross-discipline security contexts |
+| Extended Curriculum | 124 | Crafts (30), Driving (24), Baseball (70) — accessible via direct URL |
 
 **Selected curriculum depth — Tech Audit: Continuous Monitoring 2.0 (12 stages):**
 
@@ -79,13 +79,14 @@ The platform ships with 438 fully built stages organized into 36 curriculum epoc
 | audit-cm11 | Continuous Compliance | FTC Drizly CEO liability order |
 | audit-cm12 | SOC Maturity — MTTD/MTTR | MGM Resorts $100M+ ransomware event |
 
-### Live Features (Shipped — v1.15.1)
+### Live Features (Shipped — v1.17.0)
 
 - **ARIA AI Tutor** — Claude Haiku, Socratic coaching, stage-aware context, 10-message session cap, rate-limited
 - **Adaptive Difficulty Engine** — `computeStageScore` (time + hints + attempts), +20% XP bonus for clean solves, adaptive ARIA cooldown for Pro (0s/15s/30s by skill), recommended next stage post-flag
-- **Supabase Auth Migration** — Parallel auth with zero-downtime PBKDF2 fallback; enterprise-grade auth fully complete (v1.15.0)
+- **Certificate Paths** — Live at `/certs`; structured learning paths aligned to CompTIA Security+ and ISC² CC certification objectives
 - **CyberOps Associate Exam Readiness Tracker** — Live at `/cyberops`; weighted readiness ring across 5 CBROPS 200-201 domains; 50 stages mapped; direct Cisco exam CTA
-- **7-Day Free Trial → Pro Paywall** — Stripe checkout, monthly/annual billing, webhook lifecycle handling; admin tier override
+- **7-Day Free Trial → Pro Paywall** — Stripe checkout, monthly/annual billing, webhook lifecycle handling; admin tier override; no credit card required to start
+- **Full Internationalization** — Platform available in 7 languages: English, Spanish, French, German, Hindi, Portuguese, and Polish
 - **Daily Streaks** — Redis-backed streak tracking with streak-based milestone badges
 - **Milestone Badges** — XP and streak milestones (`m-xp-1k`, `m-xp-5k`, `m-streak-3`, `m-streak-7`)
 - **Real-time Leaderboard** — Global, daily, and weekly XP rankings via Upstash Redis sorted sets
@@ -93,6 +94,7 @@ The platform ships with 438 fully built stages organized into 36 curriculum epoc
 - **Avatar Shop** — Cosmetic avatar items and trophy purchases; admin-only items server-gated
 - **Stage Completion Emails** — Fire-and-forget transactional email on every new flag capture: XP, badge, streak, next-stage CTA
 - **Progress Export** — PDF certificate via `@react-pdf/renderer`: coins, stages, badges, streak, per-epoch breakdown
+- **24 Downloadable MCP Server Templates** — Python MCP server templates available at `/downloads`
 - **Investor Metrics Panel** — WAU, 7-day return rate, avg stages/user, user funnel (registered→started→engaged→retained→power), per-epoch completion rates — live in admin dashboard
 - **Admin Dashboard** — User management, NDA signatories panel, streak monitoring, CMS stage editor
 - **CI Pipeline** — GitHub Actions: lint + tsc + build + security audit on every push — 0 ESLint errors
@@ -138,7 +140,7 @@ This creates a tripartite flywheel: learners build skills → employers find cer
 
 #### Cisco — Flagship Sponsor Integration
 
-Cisco is the deepest planned sponsor relationship, anchored by a 50-stage Cisco curriculum built across 4 epochs (Core CVEs, Enterprise Defense, SecOps, Advanced Defense + Umbrella DNS Security) and expanding across four product lines:
+Cisco is the deepest planned sponsor relationship, anchored by a 60-stage Cisco curriculum built across 5 epochs (Core CVEs, Enterprise Defense, SecOps, Advanced Defense, and Umbrella DNS Security) and expanding across four product lines:
 
 | Integration | Product | Value |
 |---|---|---|
@@ -146,7 +148,7 @@ Cisco is the deepest planned sponsor relationship, anchored by a 50-stage Cisco 
 | DNS & Network Security Track | **Cisco Umbrella** | Dedicated epoch: DNS tunneling, DGA, and network policy stages |
 | Enterprise SecOps Track | **Cisco SecureX / XDR** | Alert triage and incident response stages modeled on SecureX workflows |
 | Network Defense Stages | **Cisco Firepower / NGFW** | Firewall exploitation and lateral movement scenarios |
-| Certification Alignment | **Cisco CyberOps Associate** | Cisco epoch completions map to CyberOps exam domains; Cisco provides exam vouchers |
+| Certification Alignment | **Cisco CyberOps Associate** | Cisco epoch completions map to CyberOps exam domains; live readiness tracker at /cyberops; Cisco provides exam vouchers |
 | API Security Track | **Cisco DevNet** | REST API exploitation and OAuth misconfiguration stages |
 
 ---
@@ -182,7 +184,7 @@ Cisco is the deepest planned sponsor relationship, anchored by a 50-stage Cisco 
 | KnowBe4 | Phishing simulation only | No technical depth |
 | **Kryptós CronOS** | **Gamified + AI + CTF + curriculum** | **Early stage** |
 
-Our differentiation: the only platform combining structured multi-track curriculum (438 stages across 36 epochs), real-exploit CTF challenges, adaptive AI difficulty, a live AI Socratic tutor, daily engagement mechanics, and a competitive leaderboard in a single production-grade product.
+Our differentiation: the only platform combining structured multi-track curriculum (438 stages across 36 epochs), real-exploit CTF challenges, adaptive AI difficulty, a live AI Socratic tutor, certification path alignment (CompTIA Security+, ISC² CC, Cisco CyberOps), daily engagement mechanics, and a competitive leaderboard in a single production-grade product.
 
 ---
 
@@ -190,11 +192,13 @@ Our differentiation: the only platform combining structured multi-track curricul
 
 - **Product:** Fully functional platform — 438 stages across 36 epochs and 10 curriculum tracks
 - **AI tutor:** ARIA live in production — Claude Haiku, Socratic coaching, stage-aware
-- **Gamification:** Streaks, milestone badges, and real-time leaderboard all live
-- **Admin infrastructure:** NDA clickwrap management via /demo
+- **Certification paths:** CompTIA Security+ and ISC² CC path alignment live at /certs; CyberOps Associate exam readiness tracker live at /cyberops
+- **Gamification:** Streaks, milestone badges, 51-trophy collection, and real-time leaderboard all live
+- **Internationalization:** Platform available in 7 languages
+- **Admin infrastructure:** NDA clickwrap management via /demo; investor metrics panel live
 - **Security posture:** Server-side auth, HMAC cookies, nonce-based CSP (no unsafe-inline in script-src), rate limiting, CI security audit
 - **Tech stack:** Next.js 16 / React 19 / TypeScript — production-grade, zero technical debt
-- **Deployment:** Live at kryptoscronos.com (version v1.15.1)
+- **Deployment:** Live at kryptoscronos.com (version v1.17.0)
 - **GitHub:** github.com/jjfleetwood/kryptos-cronos
 
 ---
@@ -207,6 +211,7 @@ Our differentiation: the only platform combining structured multi-track curricul
 | **Upstash** | Serverless Redis — users, progress, leaderboard, streaks, NDAs | Active — Free tier |
 | **Resend** | Transactional email — welcome, stage completion, password reset | Active — Free tier |
 | **Anthropic** | Claude Haiku — ARIA AI tutor | Active — Pay-per-token |
+| **Stripe** | Payment processing — Pro subscriptions (monthly/yearly); webhook lifecycle | Active |
 | **GitHub** | Source control + CI pipeline trigger | Active — Free |
 
 ---
@@ -229,9 +234,10 @@ Our differentiation: the only platform combining structured multi-track curricul
 
 ## Team
 
-Kryptós CronOS is built by Jacob Bolotin, founder and CEO, with domain expertise in cybersecurity, AI, and enterprise software. The technical foundation — 438-stage curriculum, AI tutor, leaderboard, auth system, and CI/CD pipeline — was built and deployed to production in an accelerated build sprint.
+Kryptós CronOS is built by Jacob Bolotin, founder and CEO, with domain expertise in cybersecurity, AI, and enterprise software. The technical foundation — 438-stage curriculum, AI tutor, leaderboard, auth system, certification paths, and CI/CD pipeline — was built and deployed to production in an accelerated build sprint.
 
 **Legal entity:** Bolotin Enterprises, Inc. — Delaware C-Corp incorporated May 23, 2026.  
+**Business email:** hello@kryptoscronos.com  
 **IP:** U.S. Copyright Registration filed 2026-05-20, assigned to Bolotin Enterprises, Inc. via PIIA at incorporation.
 
 Advisory and engineering capacity available to discuss upon request.

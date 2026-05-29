@@ -5,7 +5,7 @@
 
 ## The ask: $1.5M seed
 
-Gamified cybersecurity + AI training platform. 438 stages live across 36 epochs and 10 curriculum tracks (v1.15.1). Deployed at kryptoscronos.com. CI fully green, 0 ESLint errors. Adaptive difficulty engine live. CyberOps Associate exam readiness tracker live at /cyberops. Seeking first institutional check.
+Gamified cybersecurity + AI training platform. 438 stages live across 36 epochs and 10 curriculum tracks (v1.17.0). Deployed at kryptoscronos.com. CI fully green, 0 ESLint errors. Adaptive difficulty engine live. Certificate paths for CompTIA Security+ and ISC² CC live at /certs. CyberOps Associate exam readiness tracker live at /cyberops. Seeking first institutional check.
 
 ---
 
@@ -48,7 +48,7 @@ These investors have direct thesis overlap: cybersecurity, edtech, or both.
 ### Reach Capital
 **Type:** EdTech VC | **Stage:** Seed–Series B  
 **Why:** Focused on edtech with workforce outcomes — exactly the "learn skills → get the job" positioning. Portfolio includes Lambda School (now Bloom Tech), Newsela.  
-**Angle:** The job outcomes data. Every stage maps to a specific job posting requirement. Reach cares deeply about actual career outcomes, not just course completions.
+**Angle:** The job outcomes data. Every stage maps to a specific job posting requirement. Lead with the /certs certificate paths (CompTIA Security+, ISC² CC) as evidence that the curriculum drives certifiable outcomes.
 
 ---
 
@@ -67,7 +67,7 @@ These investors have direct thesis overlap: cybersecurity, edtech, or both.
 ### Bessemer Venture Partners
 **Type:** Generalist VC | **Stage:** Seed–Series C  
 **Why:** Invested in Cybrary (cybersecurity training) — they have a direct comp in their portfolio and understand the market. Also invested in Twilio, Shopify, LinkedIn. Partner David Cowan leads security.  
-**Angle:** Show the differentiation from Cybrary: Cybrary is video courses, Kryptós is hands-on CTF. Completion rates, engagement, practical skill transfer.
+**Angle:** Show the differentiation from Cybrary: Cybrary is video courses, Kryptós is hands-on CTF. Completion rates, engagement, practical skill transfer. Add the /certs certificate path layer — Cybrary doesn't have structured cert alignment with live progress tracking.
 
 ---
 
@@ -95,7 +95,7 @@ These investors have direct thesis overlap: cybersecurity, edtech, or both.
 ### Paladin Capital Group
 **Type:** Defense/government-focused VC | **Stage:** Seed–Series B  
 **Why:** Invests at the intersection of technology and national security. Portfolio includes cybersecurity, AI, and defense tech. CMMC and government compliance angles are their sweet spot.  
-**Angle:** The defense contractor market: CMMC requires cybersecurity training for all staff. We are a turnkey solution. Paladin has the government relationships to close those contracts.
+**Angle:** The defense contractor market: CMMC requires cybersecurity training for all staff. We are a turnkey solution with CompTIA Security+ and ISC² CC certificate path alignment built in. Paladin has the government relationships to close those contracts.
 
 ---
 
@@ -127,7 +127,7 @@ These investors have direct thesis overlap: cybersecurity, edtech, or both.
 ### CISA / DHS Programs
 **Type:** Government contract | **Stage:** Ongoing  
 **Why:** CISA has an active cybersecurity workforce development mandate. Kryptós CronOS aligns with their "Shields Up" campaign and workforce initiatives. A government contract is non-dilutive revenue that validates the platform.  
-**Angle:** Apply through the CISA Cybersecurity Education and Training Assistance Program (CETAP). The platform maps to NICE Cybersecurity Workforce Framework competencies.
+**Angle:** Apply through the CISA Cybersecurity Education and Training Assistance Program (CETAP). The platform maps to NICE Cybersecurity Workforce Framework competencies. The /certs certificate path alignment to CompTIA Security+ and ISC² CC directly supports CETAP criteria.
 
 ---
 
@@ -137,11 +137,11 @@ When talking to any investor, frame the competitive landscape clearly:
 
 | Competitor | Their gap | Our edge |
 |---|---|---|
-| TryHackMe | No structured curriculum, no AI, no enterprise | Structured epochs, gamification, Cisco alignment |
+| TryHackMe | No structured curriculum, no AI, no enterprise | Structured epochs, gamification, Cisco alignment, cert paths |
 | HackTheBox | Too hard for beginners, no enterprise | Full spectrum: beginner (Our First Journey) to expert (Cisco CVEs) |
 | Cybrary | Video-only, low completion rates | Hands-on CTF: completion rates 3–5× higher than video |
 | KnowBe4 | Phishing simulation only, no technical depth | Full OWASP + CVE curriculum with real exploit environments |
-| Coursera/Udemy | Generic content, no gamification | Purpose-built security platform, leaderboards, badges, real CVEs |
+| Coursera/Udemy | Generic content, no gamification | Purpose-built security platform, leaderboards, badges, real CVEs, cert alignment |
 
 The honest answer: no one has built the category-defining security training platform. That is the opportunity.
 
@@ -155,6 +155,7 @@ The honest answer: no one has built the category-defining security training plat
 - **Free → Pro conversion funnel**
 - **Session length:** avg time in CTF terminal
 - **Weekly active users trend**
+- **Certificate path engagement:** % of users who visit /certs or /cyberops
 
 If any of these are strong, lead with them. If they're early/thin, lead with the product and the market.
 
@@ -166,8 +167,9 @@ The fastest path to a term sheet is a warm introduction:
 
 1. **Cisco BD team → Cisco Investments** — if the Cisco epoch resonates, ask for an intro to their investment arm
 2. **LinkedIn CISO network** — a CISO reference customer opens ForgePoint, SYN, and enterprise sales simultaneously
-3. **YC alumni network** — if you know any YC founders, a referral skips the cold application queue
-4. **RSA Conference / Black Hat** — ForgePoint, SYN, and ClearSky all have heavy presence; in-person intro at a conference beats cold outreach
+3. **CompTIA / ISC² partner network** — the /certs certificate alignment is a natural conversation starter with their corporate partners who fund workforce development
+4. **YC alumni network** — if you know any YC founders, a referral skips the cold application queue
+5. **RSA Conference / Black Hat** — ForgePoint, SYN, and ClearSky all have heavy presence; in-person intro at a conference beats cold outreach
 
 ---
 

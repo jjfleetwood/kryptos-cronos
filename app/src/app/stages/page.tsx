@@ -264,6 +264,19 @@ export default function StagesPage() {
           </div>
         )}
 
+        {/* Cert paths banner */}
+        <Link
+          href="/certs"
+          className="flex items-center gap-3 bg-indigo-500/6 border border-indigo-500/25 rounded-xl px-4 py-3 mb-6 hover:border-indigo-400/50 hover:bg-indigo-500/10 transition-colors group"
+        >
+          <span className="text-xl flex-shrink-0">🎓</span>
+          <div className="flex-1 min-w-0">
+            <p className="text-indigo-300 font-semibold text-sm">Certificate Paths</p>
+            <p className="text-gray-500 text-xs">Track your readiness for CompTIA Security+ and ISC² CC →</p>
+          </div>
+          <span className="text-indigo-600 group-hover:text-indigo-400 text-sm flex-shrink-0 transition-colors">→</span>
+        </Link>
+
         {/* ── Epoch track groups ─────────────────────────────────────────────── */}
         <div className="space-y-6">
           {/* Security section header */}

@@ -1,6 +1,6 @@
 # Kryptós CronOS — The Pitch
 **May 2026 | For people who get it**
-**Last updated: 2026-05-28 (v1.15.1)**
+**Last updated: 2026-05-28 (v1.17.0)**
 
 ---
 
@@ -28,29 +28,32 @@ It's a game. It's also real security training. And that combination is genuinely
 
 ---
 
-## What exists today (v1.15.1 — live at kryptoscronos.com)
+## What exists today (v1.17.0 — live at kryptoscronos.com)
 
 This isn't a pitch deck with a mockup. It's a working product:
 
 - **438 fully built stages** across 36 curriculum epochs and 10 learning tracks
-- **7-day free trial → Pro paywall** — Stripe checkout (monthly $13.99 / annual $99); webhook lifecycle handling; no credit card required to start
+- **7-day free trial → Pro paywall** — Stripe checkout (monthly $13.99 / annual $99, SAVE 41%); webhook lifecycle handling; no credit card required to start
 - **ARIA AI tutor** — live in production, powered by Claude Haiku, uses Socratic coaching (guides thinking, doesn't give away answers)
 - **Adaptive difficulty engine** — `computeStageScore` (time + hints + attempts), +20% XP bonus for clean solves, adaptive ARIA cooldown for Pro users
+- **Certificate paths** — live at `/certs`; structured learning paths aligned to CompTIA Security+ and ISC² CC certification objectives
 - **CyberOps Associate exam readiness tracker** — live at `/cyberops`; maps 50+ Cisco stages to the 5 CBROPS 200-201 exam domains; weighted readiness ring; direct Cisco exam CTA
+- **Full internationalization** — 7 languages: English, Spanish, French, German, Hindi, Portuguese, Polish
 - **Daily streaks and milestone badges** — engagement loop that works
 - **Real-time leaderboard** — global, daily, and weekly XP rankings
 - **Trophy system** — 51 trophies, 8 rarity tiers, daily rotating showcase with atomic supply reservation
 - **Avatar shop** — cosmetic items and trophies purchasable with earned coins
 - **Stage completion emails** — fire-and-forget transactional email on every flag capture with XP, badge, streak, and next-stage link
 - **Progress export** — downloadable PDF certificate: coins, stages, badges, streak, per-epoch breakdown
+- **24 downloadable MCP server templates** — Python MCP server templates at `/downloads`
 - **Investor Metrics panel** — WAU, 7-day return rate, funnel (registered→started→engaged→retained→power), per-epoch completion rates — live in admin
 - **Admin dashboard** — user management, NDA signatories, CMS stage editor
-- **Auth system** — Supabase Auth (v1.15.0) + PBKDF2 fallback; HMAC-signed HttpOnly cookies; nonce-based CSP; rate limiting
+- **Auth system** — PBKDF2-SHA-256, HMAC-signed HttpOnly cookies, nonce-based CSP, rate limiting
 - **CI pipeline** — automated lint + type check + build + security audit on every commit — 0 ESLint errors
 - **Deployed and running:** kryptoscronos.com · hello@kryptoscronos.com
 - **GitHub:** github.com/jjfleetwood/kryptos-cronos
 
-Built by one founder with an AI development environment. The adaptive difficulty engine, AI tutor, and CyberOps exam tracker are not roadmap items — they're live and being used today.
+Built by one founder with an AI development environment. The adaptive difficulty engine, AI tutor, certification paths, and CyberOps exam tracker are not roadmap items — they're live and being used today.
 
 ---
 
@@ -66,42 +69,59 @@ The entry point. Our First Journey (30 beginner-friendly CTF stages) + Foundatio
 - Capital One SSRF (100M customer records, metadata endpoint abuse)
 - Equifax / Apache Struts (147 million Americans' SSNs, $575M FTC fine)
 
-### Track 2: Tech Audit (48 stages)
-The enterprise compliance and SOC operations track. Four epochs:
+### Track 2: Cisco / Network Operations (38 stages across 3 epochs)
+- **Cisco Core CVEs (12)** — real documented Cisco vulnerabilities (IOS XE, ASA, Smart Install, SNMP)
+- **Cisco Enterprise Defense (13)** — enterprise network hardening and lateral movement scenarios
+- **Cisco SecOps (13)** — alert triage and incident response modeled on Cisco XDR workflows
+
+### Track 3: Tech Audit (48 stages across 4 epochs)
+The enterprise compliance and SOC operations track:
 - **Foundations** — ISACA, COBIT, CISA audit frameworks
 - **Technical** — API security, secrets management, cloud IAM
 - **Agentic Continuous Monitoring** — Claude tool use, MCP servers, AI-powered audit pipelines
 - **Continuous Monitoring 2.0** — SIEM + ML, UEBA, NDR, CSPM, SOAR, deception/honeytokens, Zero Trust, XDR, continuous compliance, SOC maturity (MTTD/MTTR)
 
-### Track 3: Threat Frameworks (24 stages)
+### Track 4: Threat Frameworks (24 stages)
 - **MITRE ATT&CK** — All 12 tactic phases, nation-state TTPs
 - **MITRE ATLAS** — AI/ML adversarial attacks (the MITRE framework for machine learning threats)
 
-### Track 4: AI Security (12 stages)
+### Track 5: AI Security (12 stages)
 - **OWASP LLM Top 10 2025** — Prompt injection, training data poisoning, model theft, insecure output handling
 
-### Track 5: Quantum Era (30 stages)
+### Track 6: Quantum Era (30 stages across 3 epochs)
 - Quantum threats to current cryptography
 - Post-quantum cryptography (NIST PQC standards)
 - Quantum key distribution infrastructure
 
-### Track 6: Cisco / Network Defense (50 stages across 4 epochs)
-- **Cisco Core CVEs** — real documented Cisco vulnerabilities (IOS XE, ASA, Smart Install, SNMP)
-- **Cisco Enterprise Defense** — enterprise network hardening and lateral movement scenarios
-- **Cisco SecOps** — alert triage and incident response modeled on Cisco XDR workflows
-- **Cisco Advanced Defense + Umbrella** — Firepower NGFW exploitation, DNS tunneling, domain generation algorithms
+### Track 7: Defend the Enterprise (22 stages across 2 epochs)
+- **Cisco Advanced Defense (12)** — Firepower NGFW exploitation, advanced network scenarios (stage-m39 → stage-m50)
+- **Cisco Umbrella / SASE (10)** — DNS tunneling, domain generation algorithms, network policy enforcement
 
-### Track 7: Crafts (30 stages)
-- Creative and operational security contexts
+### Track 8: Travel (80 stages across 4 epochs)
+- Paris in July (20) — French culture, language, and Parisian life
+- Milan in July (20) — Italian culture, fashion, and city life
+- French Basics (20) — Essential French for travelers
+- Italian Basics (20) — Essential Italian for travelers
 
-### Track 8: Driving (24 stages)
-- Automotive and transportation cybersecurity
+### Track 9: Tapestry (12 stages)
+- Cross-discipline security contexts and integrative challenges
 
-### Track 9: Baseball (70 stages)
-- Sports analytics security and data integrity challenges
+### Track 10 (Extended curriculum — accessible via direct URL)
+- **Crafts (30)** — Nail Arts, Hair Coloring, Hair Styling
+- **Driving (24)** — Road to Your License, First Miles, Rules of the Road
+- **Baseball (70)** — Seven-epoch progression from fundamentals to pitching strategy
 
-### Track 10: First Journey (onboarding, counted in Core Security)
-- Entry-level CTF stages for complete beginners
+---
+
+## The certification paths that are already live
+
+When someone finishes a track on Kryptós CronOS, that training maps to something real.
+
+`/certs` — structured learning paths showing exactly which stages cover CompTIA Security+ and ISC² CC exam objectives. So a learner or their employer can see: "you've completed 68% of the Security+ curriculum."
+
+`/cyberops` — a weighted readiness dashboard for the Cisco CyberOps Associate exam (200-201). 50 Cisco stages mapped to the 5 exam domains. Rings show live progress. Direct link to the Cisco exam registration.
+
+The certifications are real. The alignment is real. The exam bodies are real. We're not selling a Kryptós certificate and calling it something — we're showing you how our content maps to the exams that employers actually require.
 
 ---
 
@@ -124,6 +144,7 @@ This is the AI layer that the other platforms are scrambling to bolt on. We ship
 - **Daily streaks** — consecutive-day engagement loop with streak-based badge rewards (3-day streak badge, 7-day streak badge)
 - **Milestone badges** — XP milestones (1K XP, 5K XP) plus streak milestones
 - **Stage badges** — unique badge for every stage completion ("Log4Shell Hunter," "Zero Day Scout," "SQL Slayer")
+- **51-trophy collection system** — 8 rarity tiers, daily rotating showcase, atomic supply reservation keeps scarcity real
 - **Reference drawer** — full briefing, technical reference, and attack diagram accessible mid-challenge without leaving the terminal
 
 ---
@@ -152,7 +173,7 @@ Security vendors spend a fortune on brand awareness with practitioners. We give 
   - **Cisco Talos** powers the weekly CVE challenge feed — real threat intelligence, new CTF every week, co-branded
   - **Cisco Umbrella** sponsors the DNS security curriculum track (already built)
   - **Cisco SecureX / XDR** sponsors an enterprise security operations track
-  - **Cisco CyberOps Associate** certification — learners who complete the Cisco epoch get exam vouchers. Cisco gets a pipeline of certified practitioners who trained on their products.
+  - **Cisco CyberOps Associate** certification — learners who complete the Cisco epochs get vouchers. Cisco gets a pipeline of certified practitioners who trained on their products. Live readiness tracker at `/cyberops`.
   - **Cisco DevNet** sponsors API security stages for developer-focused learners
 
 ### Hints — the Candy Crush model
@@ -173,6 +194,7 @@ The part that matters: every ad impression is also a Pro upgrade prompt. The use
 | **Upstash** | Serverless Redis — users, XP, leaderboard, streaks, NDAs |
 | **Resend** | Transactional email — welcome, stage completion, password reset |
 | **Anthropic** | Claude Haiku — powers ARIA AI tutor, live in production |
+| **Stripe** | Payment processing — Pro subscriptions, webhook lifecycle |
 | **GitHub** | Source control + automated CI pipeline |
 
 ---
@@ -212,5 +234,5 @@ If that sounds like something the market will pay for, let's talk.
 
 ---
 
-*kryptoscronos.com | github.com/jjfleetwood/kryptos-cronos*  
+*kryptoscronos.com | hello@kryptoscronos.com | github.com/jjfleetwood/kryptos-cronos*  
 *Bolotin Enterprises, Inc. — Delaware C-Corp — incorporated May 23, 2026*

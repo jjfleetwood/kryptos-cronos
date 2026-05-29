@@ -49,6 +49,7 @@ const NPS_LABELS: Record<number, string> = {
 export default function SurveyPage() {
   const [data, setData] = useState<SurveyData>(INITIAL);
   const [status, setStatus] = useState<"idle" | "submitting" | "done" | "error">("idle");
+  const [reward, setReward] = useState<{ durationDays: number; message: string } | null>(null);
 
   function toggleTrack(track: string) {
     setData((prev) => ({
@@ -69,6 +70,8 @@ export default function SurveyPage() {
         body: JSON.stringify(data),
       });
       if (!res.ok) throw new Error();
+      const json = await res.json() as { ok: boolean; reward?: { durationDays: number; message: string } };
+      if (json.reward) setReward(json.reward);
       setStatus("done");
     } catch {
       setStatus("error");
@@ -82,11 +85,21 @@ export default function SurveyPage() {
         style={{ background: "linear-gradient(135deg, #0d1117 0%, #0f2027 50%, #1a1a2e 100%)" }}
       >
         <div className="max-w-md text-center">
-          <div className="text-6xl mb-6">🙏</div>
-          <h2 className="text-3xl font-black text-white mb-3">Thank you!</h2>
-          <p className="text-gray-400 mb-8">Your feedback helps us build a better training platform for everyone.</p>
+          <div className="text-6xl mb-6">{reward ? "🎉" : "🙏"}</div>
+          <h2 className="text-3xl font-black text-white mb-3">{reward ? "Pro Unlocked!" : "Thank you!"}</h2>
+          {reward ? (
+            <>
+              <div className="rounded-2xl border border-cyan-500/30 bg-cyan-500/8 px-6 py-5 mb-6">
+                <p className="text-cyan-300 font-bold text-lg mb-1">{reward.durationDays} days of Pro access</p>
+                <p className="text-gray-400 text-sm">All 438 stages · Unlimited ARIA hints · Certificate paths</p>
+              </div>
+              <p className="text-gray-500 text-sm mb-8">Thanks for your feedback — it directly shapes what we build next.</p>
+            </>
+          ) : (
+            <p className="text-gray-400 mb-8">Your feedback helps us build a better training platform for everyone.</p>
+          )}
           <Link href="/stages" className="px-6 py-3 bg-cyan-500 hover:bg-cyan-400 text-black font-bold rounded-xl transition-colors">
-            Continue Training →
+            {reward ? "Start Exploring →" : "Continue Training →"}
           </Link>
         </div>
       </div>

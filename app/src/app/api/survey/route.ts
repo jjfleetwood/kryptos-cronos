@@ -20,6 +20,8 @@ function verifyAdminToken(token: string): boolean {
   } catch { return false; }
 }
 
+const SURVEY_REWARD_DAYS = 30;
+
 export async function POST(req: NextRequest) {
   const body = await req.json() as Record<string, unknown>;
   const username = getServerSession(req) ?? "anonymous";
@@ -33,11 +35,28 @@ export async function POST(req: NextRequest) {
     username,
     ts: String(ts),
   });
-
-  // Keep a sorted set for easy retrieval: newest first
   await redis.zadd("survey:index", { score: ts, member: key });
 
-  return NextResponse.json({ ok: true });
+  // Grant 30-day Pro access to logged-in users who haven't already claimed this reward
+  let reward: { durationDays: number; message: string } | null = null;
+  if (username !== "anonymous") {
+    const lower = username.toLowerCase();
+    const alreadyRewarded = await redis.get(`survey:rewarded:${lower}`);
+    if (!alreadyRewarded) {
+      const tier = await redis.hget(`user:${lower}`, "tier");
+      // Only reward free/trial users (don't clobber active Stripe subs or all-star)
+      if (tier !== "all-star" && tier !== "pro") {
+        const expiresAt = ts + SURVEY_REWARD_DAYS * 24 * 60 * 60 * 1000;
+        await Promise.all([
+          redis.hset(`user:${lower}`, { tier: "pro", voucherExpiry: String(expiresAt) }),
+          redis.set(`survey:rewarded:${lower}`, "1"),
+        ]);
+        reward = { durationDays: SURVEY_REWARD_DAYS, message: `${SURVEY_REWARD_DAYS} days of Pro access unlocked — thank you!` };
+      }
+    }
+  }
+
+  return NextResponse.json({ ok: true, ...(reward ? { reward } : {}) });
 }
 
 export async function GET(req: NextRequest) {
