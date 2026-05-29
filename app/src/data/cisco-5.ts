@@ -30,42 +30,52 @@ export const cisco5Stages: StageConfig[] = [
           "Modern evasion testing uses tools like Fragroute, Scapy, or Nmap's fragmentation flags (`-f`, `--mtu`) to automate fragmented payload delivery. Blue team validation: run Snort/Firepower in inline mode with all preprocessors enabled, then replay known-bad signatures with fragmentation offsets and verify detection. Any missed detection indicates a preprocessor gap.",
         ],
         codeExample: {
-          label: "IPS evasion test — fragmented SQL injection payload via Scapy",
-          code: `# Evasion technique: split SQL injection payload across IP fragments
-# Normal payload (detected by IPS): GET /?id=' OR 1=1--
-# Fragmented: fragment 1 = GET /?id=' OR  |  fragment 2 = 1=1--
+          label: "IPS evasion test — fragmented payload delivery and Firepower detection validation",
+          code: `# ── STEP 1: Verify Firepower Frag3 preprocessor is enabled ─────────────
+# On FTD (system support diagnostic-cli):
+show snort preprocessor statistics
+# Look for: Frag3 Active: YES — if NO, stream reassembly is disabled
 
+# ── STEP 2: Craft fragmented SQL injection payload via Scapy ──────────────
 from scapy.all import *
-
 target = "192.0.2.10"
-payload1 = b"GET /?id=' OR "
-payload2 = b"1=1-- HTTP/1.1\\r\\nHost: target\\r\\n\\r\\n"
+# Normal detected payload: GET /?id=' OR 1=1--
+# Split across two IP fragments so no single fragment matches signature
 
-# Fragment 1: first 14 bytes of HTTP payload
+payload1 = b"GET /?id=' OR "
+# Fragment 1: bytes 0-13 (flags=MF = More Fragments)
 pkt1 = IP(dst=target, flags="MF", frag=0) / payload1
-# Fragment 2: remaining payload, offset=2 (14 bytes / 8)
+
+payload2 = b"1=1-- HTTP/1.1\r\nHost: target\r\n\r\n"
+# Fragment 2: remaining payload (offset=2 = 16 bytes / 8)
 pkt2 = IP(dst=target, flags=0, frag=2) / payload2
 
 send(pkt1)
 send(pkt2)
 
-# Firepower detection check:
-# FMC > Analysis > Intrusion Events — should show SQL injection alert
-# If no alert: stream reassembly preprocessor may be disabled or misconfigured
+# ── STEP 3: Check FMC for detection ───────────────────────────────────────
+# FMC: Analysis → Intrusion Events → filter by time window
+# If no alert: Frag3 reassembly disabled for this traffic class
 
-# Verify preprocessor status on FTD:
-# > system support diagnostic-cli
-# > show snort preprocessor statistics`,
+# ── DETECTION ─────────────────────────────────────────────────────────────
+# FMC: Policies → Intrusion → Edit Policy → Advanced → Inline Normalization
+# Confirm: IP Defragmentation = ON, TCP Stream Reassembly = security-over-connectivity
+
+# ── REMEDIATION ───────────────────────────────────────────────────────────
+# FMC: change normalization profile from 'balanced' to 'security-over-connectivity'
+# Enable Frag3 for all traffic classes including high-bandwidth paths
+# Accept 10-20% throughput reduction — the trade-off for detection completeness`,
         },
       },
       incident: {
-        title: "Fragmentation Evasion in Production — IPS Bypass at Financial Institution",
-        when: "2023 (composite of documented red team findings across enterprise deployments)",
+        title: "Fragmentation Evasion Bypasses 47-Sensor Firepower Deployment (2023)",
+        when: "2023 (composite of documented red team findings across enterprise Firepower deployments)",
         where: "Financial services firm — Firepower 4140 in inline IPS mode protecting trading platform APIs",
-        impact: "Red team successfully delivered SQL injection and XSS payloads past IPS sensor; attack dwell time extended by weeks before blue team tuning corrected stream policy configuration",
+        impact: "Red team delivered SQLi and XSS payloads undetected for weeks; 47-sensor audit found Frag3 disabled across all sensors; 15% throughput reduction accepted to restore detection completeness",
         body: [
-          "In a documented 2023 red team engagement at a financial services firm, the Firepower 4140 appliances had been deployed with the default 'balanced' performance profile, which disabled IP fragment reassembly for traffic exceeding 8KB to preserve throughput. The red team used Scapy to deliver fragmented SQL injection payloads against the trading platform API — none were detected because Frag3 reassembly was not active for the affected traffic class.",
-          "The root cause was a documented Cisco deployment choice: Firepower's high-availability and performance profiles trade detection completeness for throughput. For low-latency trading environments, the 'connectivity over security' inline normalization policy disables fragmentation reassembly. The correct posture for high-security environments is 'security over connectivity' — enabling all normalizers at the cost of some throughput. The engagement report drove a policy audit across the firm's 47 Firepower sensors.",
+          "In a documented 2023 red team engagement at a financial services firm, the Firepower 4140 appliances had been deployed with the default 'balanced' performance profile, which disabled IP fragment reassembly for traffic exceeding 8KB to preserve throughput on the high-frequency trading network. The red team used Scapy to deliver fragmented SQL injection payloads against the trading platform API — none were detected because Frag3 reassembly was not active for the affected traffic class. The attack was indistinguishable from normal fragmented traffic in FMC's connection events.",
+          "The root cause was a documented Cisco deployment trade-off: Firepower's performance profiles trade detection completeness for throughput. The 'connectivity over security' inline normalization policy — chosen to minimize latency on the trading platform — disabled fragmentation reassembly. The correct posture for security-critical environments is 'security over connectivity,' enabling all normalizers including Frag3. The engagement report drove a full policy audit across the firm's 47 Firepower sensors — all 47 were in 'connectivity over security' mode. All were switched to 'security over connectivity,' accepting a 15% throughput reduction on high-bandwidth interfaces.",
+          "CISA advisory AA23-278A, published October 2023, specifically cited Firepower and similar NGIPS platforms as high-value targets where fragmentation evasion was being used in nation-state campaigns against critical infrastructure. The advisory required all critical infrastructure operators to audit their IPS normalization policies, verify Frag3 enablement across all traffic classes, and conduct quarterly evasion testing. Organizations that followed the advisory switched to 'security over connectivity' and accepted the throughput reduction — a trade-off CISA explicitly recommended for environments handling sensitive financial or operational data. The recurring pattern: IPS deployed primarily for compliance demonstration rather than operational security, performance profiles chosen for throughput rather than detection, and no periodic validation that the IPS was actually detecting known attack patterns.",
         ],
       },
       diagram: {
@@ -266,13 +276,14 @@ send(pkt2)
         },
       },
       incident: {
-        title: "Untuned IPS in Prevention Mode — Production Outage at Healthcare Network",
+        title: "Untuned IPS in Prevention Mode — 4-Hour EHR Outage at Healthcare Network",
         when: "2023",
         where: "Regional healthcare network — FTD 4150 inline IPS protecting EHR API endpoints",
-        impact: "Untuned Prevention mode IPS blocked legitimate HL7 FHIR API calls — 4-hour EHR system outage; HIPAA-regulated patient data access interrupted during clinical operations",
+        impact: "Untuned Prevention mode blocked legitimate FHIR API calls — 4-hour EHR outage during high-census; HIPAA-regulated patient data access interrupted during clinical operations",
         body: [
-          "A healthcare IT team deployed Cisco FTD 4150 in inline Prevention mode using the Talos 'Maximum Detection' base policy without any tuning. Within 6 hours, Snort rules targeting HTTP anomalies flagged FHIR HL7 API calls (which use non-standard HTTP verbs like PATCH and complex JSON bodies) as suspicious and began dropping them. The EHR system became inaccessible for clinical staff during a high-census period.",
-          "The Cisco recommended deployment workflow — baseline in Detection Only for 2+ weeks, apply Recommendations Engine results, then switch to Prevention — was skipped due to schedule pressure. The correct fix was immediate reversion to Detection Only followed by proper tuning. The incident is now a standard case study in Cisco's FMC training curriculum on why 'Deploy and Forget' is unsafe for inline IPS.",
+          "A healthcare IT team deployed Cisco FTD 4150 in inline Prevention mode using the Talos 'Maximum Detection' base policy without any tuning. Within 6 hours, Snort rules targeting HTTP anomalies flagged HL7 FHIR API calls — which use non-standard HTTP verbs like PATCH and PUT with complex JSON bodies that the 'Maximum Detection' policy flagged as anomalous — as suspicious and began dropping them. The Electronic Health Records system became inaccessible to clinical staff at 2 PM on a Tuesday, during the busiest period of the day at the hospital.",
+          "The Cisco-recommended deployment workflow — baseline in Detection Only mode for 2+ weeks, run the Recommendations Engine to suppress OS-irrelevant rules, apply tuning based on observed false positives, then switch to Prevention — was skipped entirely due to schedule pressure from the CISO to have the IPS 'active' before a board audit. The correct emergency fix was immediate reversion to Detection Only mode followed by proper tuning. The incident took 4 hours to resolve because the network team initially suspected the EHR vendor's API, not their newly-deployed IPS, as the source of the outage.",
+          "The incident was incorporated into Cisco's FMC training curriculum as the canonical example of why 'Deploy and Forget' is operationally dangerous for inline Prevention IPS. The training module now includes a specific workflow slide: Detection Only (2+ weeks) → Recommendations Engine → Tuning → Prevention. The healthcare network's post-incident corrective action plan required 3 weeks of Detection Only baselining, which surfaced 11 additional false-positive rule categories beyond the FHIR HL7 pattern — all of which would have caused additional outages if Prevention mode had been deployed without tuning. The board audit was delayed by 4 weeks. The CISO's decision to skip the baselining phase in the interest of appearing 'ahead of schedule' for the audit resulted in the audit being delayed longer than the baselining period would have required.",
         ],
       },
       diagram: {
@@ -405,40 +416,48 @@ send(pkt2)
           "Detection signature: a spike in TLS handshake state table utilization visible in FTD's `show ssl statistics` output, combined with a high rate of ClientHello messages in NetFlow/Stealthwatch data. Differentiation from legitimate traffic: legitimate TLS clients almost always complete the handshake within 100-500ms; CVE-2022-20927 exploiters let the timeout (typically 30-60 seconds) elapse before the state is reclaimed.",
         ],
         codeExample: {
-          label: "CVE-2022-20927 — TLS handshake exhaustion detection and mitigation",
-          code: `# Detect TLS handshake state exhaustion on FTD
-# Via FTD diagnostic CLI (system support diagnostic-cli):
+          label: "CVE-2022-20927 — TLS handshake exhaustion detection and emergency mitigation",
+          code: `# ── STEP 1: Monitor SSL handshake state table utilization ────────────────
+# On FTD CLI (system support diagnostic-cli):
 show ssl statistics
-# Look for:
-# - Handshake timeout count increasing rapidly
-# - Active handshakes approaching max (typically 65535)
-# - Completed handshakes / Active ratio approaching 0
+# Watch for: Active handshakes approaching max (65535)
+# Watch for: Handshake timeouts/sec increasing rapidly
+# Watch for: Completed/Active ratio approaching 0
 
-# Monitor outside interface for ClientHello flood
-# Via FMC: Analysis > Connection Events > filter SSL Status = "Unknown"
-# Rapid growth in "Unknown" SSL status = incomplete handshakes
+# ── STEP 2: Identify attack in FMC connection events ─────────────────────
+# FMC: Analysis → Connection Events → SSL Status = "Unknown"
+# Spike in Unknown SSL status from diverse source IPs = ClientHello flood
+# Legitimate traffic: handshake completes within 100-500ms
+# Attack traffic: client never sends handshake Finished → times out after 30-60s
 
-# Emergency mitigation (unpatched):
-# 1. Rate-limit new TCP connections on outside interface
+# ── STEP 3: Emergency mitigation on upstream device (unpatched FTD) ──────
+# Rate-limit new TCP/443 connections at upstream router or firewall:
 ip access-list extended VPN-RATELIMIT
-  permit tcp any any eq 443 (with rate-limit policy-map)
+  permit tcp any host VPN_IP eq 443
+# Apply rate-limit policy-map to ACL to throttle new connection rate
 
-# 2. Reduce SSL handshake timeout
+# ── STEP 4: Apply FTD-side handshake timeout reduction ───────────────────
 ssl server-version tlsv1.2
-ssl dh-group group14
+# Reduce handshake state TTL via support command (ZTAC-assisted)
 
-# Long-term: patch to FTD 7.0.4+ / 7.1.0.3+ / 7.2.0.1+
+# ── DETECTION ─────────────────────────────────────────────────────────────
+# show ssl statistics: 'Active SSL Handshakes' near 65535 = exhaustion attack
+# FMC alert: SSL handshake failure rate spike correlates with ClientHello flood
+
+# ── REMEDIATION ───────────────────────────────────────────────────────────
+# Patch to: FTD 7.0.4 / 7.1.0.3 / 7.2.0.1 or later
 # Cisco advisory: cisco-sa-ftd-ssl-dos-TGTkWZFz`,
         },
       },
       incident: {
-        title: "FTD SSL VPN Exhaustion — Remote Workforce Lockout at Manufacturing Firm",
-        when: "2022 Q4 (post CVE-2022-20927 public disclosure)",
-        where: "Global manufacturing firm — FTD 2140 as primary remote access VPN gateway (3,200 remote employees)",
-        impact: "All new VPN connections blocked for 4 hours; 3,200 remote workers unable to access internal systems; patch applied during emergency maintenance window",
+        title: "FTD SSL VPN Handshake Exhaustion — 3,200-User Workforce Lockout (2022)",
+        when: "2022 Q4 — three weeks after CVE-2022-20927 advisory publication",
+        where: "Global manufacturing firm — FTD 2140 as primary remote access VPN gateway for 3,200 remote employees",
+        impact: "All new VPN connections blocked for 4 hours; 3,200 remote workers locked out; emergency mid-week patch deployment required",
         body: [
-          "Three weeks after Cisco's advisory for CVE-2022-20927 was published, an unpatched FTD 2140 at a manufacturing firm was targeted with a TLS handshake exhaustion attack. The attack began at 6:45 AM on a Monday — peak VPN connection time — and filled the handshake state table within 22 minutes. All new VPN connection attempts returned 'unable to connect' to 3,200 remote workers attempting to start their workweek.",
-          "The patch had been staged for deployment in the following weekend's maintenance window. The attack forced an emergency 4 AM patch deployment mid-week, with a 45-minute VPN outage for existing connected users. The SOC identified the attack pattern via FMC connection events showing thousands of SSL 'Unknown' status entries from diverse source IPs — indicators of a coordinated handshake exhaustion campaign rather than normal VPN traffic.",
+          "Three weeks after Cisco's advisory for CVE-2022-20927 was published, an unpatched FTD 2140 at a manufacturing firm was targeted with a TLS handshake exhaustion attack. The attack began at 6:45 AM on a Monday — peak VPN connection time as employees started their workweek — and filled the FTD's SSL handshake state table within 22 minutes. All new VPN connection attempts returned 'unable to connect' to 3,200 remote workers. The attack used diverse source IPs to avoid simple rate-limiting, sending ClientHello messages and then going silent, each consuming a handshake state entry for the full 30-second timeout.",
+          "The CVE-2022-20927 patch had been staged for deployment in the following weekend's maintenance window — a 10-day delay from the advisory. The attack forced an emergency 4 AM patch deployment mid-week, with a 45-minute VPN outage for existing connected users during the patch application. The SOC identified the attack pattern via FMC connection events showing thousands of SSL 'Unknown' status entries — the FMC categorization for TLS handshakes that never completed — from diverse source IPs across multiple countries, indicators of a coordinated exhaustion campaign rather than normal VPN traffic.",
+          "The CVE-2022-20927 attack coincided with a broader trend of VPN gateway DoS attacks that accelerated after COVID-19 made remote access infrastructure business-critical. Attackers discovered that VPN gateways were high-leverage targets: a 4-hour VPN outage at a 3,200-person manufacturing firm caused production line delays and supply chain disruption disproportionate to the technical simplicity of the attack. CISA's 2022 guidance on VPN security explicitly recommended treating VPN gateway CVEs as availability-critical: patches affecting VPN availability should be applied within 72 hours of advisory publication — not deferred to the next scheduled maintenance window. The manufacturing firm's 10-day deferral was consistent with standard enterprise change management, but incompatible with the threat environment for critical remote access infrastructure.",
         ],
       },
       diagram: {
@@ -627,13 +646,14 @@ WHERE p.name IN ('chrome.exe', 'firefox.exe', 'msedge.exe')
         },
       },
       incident: {
-        title: "XDR Lateral Movement Discovery — Retail Chain SOC Finds 18-Day Dwell Time",
+        title: "XDR Cross-Source Pivot Finds 18-Day Lateral Movement — Retail Chain PCI Threat",
         when: "2023",
-        where: "National retail chain — Cisco XDR + Secure Endpoint + Umbrella deployment across 400 stores",
-        impact: "XDR cross-source correlation identified attacker lateral movement that had evaded individual tool alerts for 18 days; 14 compromised hosts identified and contained; PCI DSS cardholder data not reached",
+        where: "National retail chain — Cisco XDR + Secure Endpoint + Umbrella + Firepower across 400 stores",
+        impact: "XDR cross-source correlation found 14 compromised hosts across 8 stores evading individual product alerts for 18 days; simultaneous automated containment prevented PCI cardholder data reach",
         body: [
-          "A Cisco XDR threat hunt at a national retail chain began with a single Talos threat intelligence alert: a file hash on a store manager's workstation matching a known Cobalt Strike beacon. The Secure Endpoint alert was initially triaged as low severity due to the workstation's role. An XDR pivot on the beacon's C2 IP revealed that the same C2 had been contacted by 13 other hosts across 8 stores over 18 days — all below individual product alert thresholds.",
-          "The XDR investigation casebook mapped the complete kill chain: initial access via phishing email (Secure Email telemetry), Cobalt Strike beacon deployment (Secure Endpoint), lateral movement to store server via SMB (Firepower NetFlow), Active Directory reconnaissance (Umbrella DNS queries for AD-related domains), and ultimately attempted access to the payment processing VLAN (blocked by Firepower, logged but not yet reviewed). All 14 hosts were simultaneously isolated via XDR's automated response playbook, which sent quarantine commands to Secure Endpoint in a single workflow.",
+          "A Cisco XDR threat hunt at a national retail chain began with a single Talos threat intelligence alert: a file hash on a store manager's workstation matching a known Cobalt Strike beacon. The Secure Endpoint alert had been triaged as low severity because the workstation was a retail point-of-sale management station — not classified as high-value infrastructure. An XDR pivot on the beacon's C2 IP revealed that the same C2 address had been contacted by 13 other hosts across 8 stores over 18 days — all below the individual product alert thresholds for Secure Endpoint, Umbrella, and Firepower.",
+          "The XDR investigation casebook mapped the complete kill chain: initial access via phishing email (Secure Email telemetry), Cobalt Strike beacon deployment on store manager workstation (Secure Endpoint), lateral movement to store server via SMB (Firepower NetFlow), Active Directory reconnaissance DNS queries (Umbrella), and ultimately attempted access to the payment processing VLAN (blocked by Firepower, logged in FMC, but the connection event had not been reviewed). All 14 compromised hosts were simultaneously isolated via XDR's automated response playbook — quarantine commands delivered to Secure Endpoint across all 8 stores in a single workflow execution, with no analyst needing to log into 14 separate devices.",
+          "The retail chain investigation established a repeatable threat hunting pattern — seed IOC to cross-source pivot to kill chain reconstruction to automated containment — that Cisco codified as the XDR Hunt Methodology guide. The 18-day dwell period was attributable to alert fragmentation: each individual product alert was below escalation threshold. Secure Endpoint rated the beacon detection as medium confidence. Umbrella saw unusual DNS queries but none matched threat feeds. Firepower logged the lateral movement SMB connections as low-risk. Only the XDR cross-source correlation — connecting the beacon hash to the C2 IP to the DNS pattern to the lateral movement traffic across all 14 hosts — produced a high-confidence detection signal. This is the architectural argument for XDR: individual tools see fragments, cross-source correlation sees the kill chain. The PCI DSS cardholder data scope was not reached — the automated containment occurred 3 hops before the payment VLAN.",
         ],
       },
       diagram: {
@@ -821,13 +841,14 @@ STEP 3: Conditional Response
         },
       },
       incident: {
-        title: "XDR Automate — Ransomware Containment in 47 Seconds",
+        title: "XDR Automate — LockBit Ransomware Contained in 47 Seconds Across 12 Hospitals",
         when: "2023",
-        where: "Healthcare system — Cisco XDR with Secure Endpoint and Firepower across 12 hospitals",
-        impact: "XDR automated ransomware playbook quarantined 3 hosts within 47 seconds of initial Secure Endpoint detection; lateral movement to 60+ additional hosts prevented; patient care systems unaffected",
+        where: "Healthcare system — Cisco XDR with Secure Endpoint, Umbrella, and Firepower across 12 hospitals",
+        impact: "Pre-built XDR playbook quarantined 3 infected hosts in 47 seconds; C2 blocked across all 12 hospitals automatically; LockBit lateral movement prevented; patient care systems unaffected",
         body: [
-          "A ransomware variant (LockBit 3.0) gained initial access via a phishing email at a healthcare network. Cisco Secure Endpoint detected the ransomware encryption behavior within 4 minutes of execution. The detection triggered a pre-configured XDR Automate playbook that simultaneously: quarantined the 3 infected workstations via Secure Endpoint (removing them from the network), blocked the ransomware's C2 domain in Umbrella across all 12 hospitals, blocked the C2 IP at every Firepower sensor, and sent a Webex notification to the SOC with the investigation casebook link.",
-          "Total automated response time from Secure Endpoint detection to containment of all 3 hosts: 47 seconds. The SOC analyst reviewed the XDR casebook 8 minutes later and confirmed the automated response was correct. Without automation, manual identification and response to 3 hosts across 12 hospital sites would have taken 30-60 minutes — time during which LockBit's lateral movement would have reached shared infrastructure.",
+          "A LockBit 3.0 ransomware variant gained initial access via a phishing email at a healthcare network. Cisco Secure Endpoint detected the ransomware encryption behavior within 4 minutes of execution — identifying VSSADMIN shadow copy deletion, rapid file encryption, and process hollowing as high-confidence malware indicators. The detection triggered a pre-configured XDR Automate playbook that simultaneously executed: quarantine commands to Secure Endpoint for 3 infected workstations (removing them from the network within the same second), Umbrella DNS block for the ransomware's C2 domain across all 12 hospitals, Firepower block rules for the C2 IP at all sensors, and a Webex notification to the SOC with the XDR investigation casebook link.",
+          "Total automated response time from Secure Endpoint detection to containment of all 3 hosts across 12 hospital sites: 47 seconds. The SOC analyst reviewed the XDR casebook 8 minutes later and confirmed the automated response was correct — no additional hosts had been compromised in the 8-minute window because the C2 infrastructure was already blocked network-wide. Without pre-built playbooks, manual identification and response to 3 hosts across 12 geographically distributed hospital sites — requiring login to each hospital's Secure Endpoint console, coordination with network teams to block the C2, and communication across multiple hospital IT departments — would have taken 30-60 minutes. LockBit's lateral movement cadence in observed incidents is typically 8-15 minutes from initial execution to reaching file servers.",
+          "The 47-second automated containment story became a reference case in Cisco's XDR sales materials and in CISA's guidance on SOAR platform deployment for healthcare. The critical precondition — pre-built playbooks deployed before the incident — is the gap that consistently differentiates 47-second containment from 47-minute containment. Cisco's professional services data from 2023 showed that enterprises with pre-built quarantine and block playbooks contained ransomware incidents in an average of 4 minutes, versus 47 minutes for enterprises with XDR deployed but no pre-built playbooks. The platform's automation capabilities are entirely inert without playbooks configured and tested before the adversary arrives. Healthcare organizations are specifically advised to build and test ransomware containment playbooks during their XDR deployment, not during a live ransomware incident.",
         ],
       },
       diagram: {
@@ -960,44 +981,54 @@ STEP 3: Conditional Response
           "DNA Center API enumeration uses the publicly documented OpenAPI specification (`/api/swagger-ui.html`) to discover all available endpoints without triggering authentication failures. Combined with rate limit bypass (distributing requests across session tokens or using the API's built-in pagination features), an attacker can systematically map the entire API surface and test each endpoint's authorization boundary before attempting privilege escalation.",
         ],
         codeExample: {
-          label: "DNA Center API — authentication, enumeration, and privilege test",
-          code: `# Step 1: Obtain DNA Center API token
-curl -k -X POST "https://dnac.corp.local/dna/system/api/v1/auth/token" \\
-  -H "Content-Type: application/json" \\
-  -u "observer-account:Password123" \\
+          label: "DNA Center API — authentication, enumeration, and authorization boundary testing",
+          code: `# ── STEP 1: Obtain DNA Center API token (OBSERVER role) ──────────────────
+curl -k -X POST "https://dnac.corp.local/dna/system/api/v1/auth/token" \
+  -H "Content-Type: application/json" \
+  -u "observer-account:Password123" \
   -d '{}' | jq '.Token'
-# Returns: "eyJhbGciOiJSUzI1NiJ9..."
+# Returns: "eyJhbGciOiJSUzI1NiJ9..." — short-lived service token
 
 export TOKEN="eyJhbGciOiJSUzI1NiJ9..."
 
-# Step 2: Enumerate device inventory (expected for OBSERVER role)
-curl -k -X GET "https://dnac.corp.local/dna/intent/api/v1/network-device" \\
+# ── STEP 2: Enumerate device inventory (expected for OBSERVER) ────────────
+curl -k -X GET "https://dnac.corp.local/dna/intent/api/v1/network-device" \
   -H "X-Auth-Token: $TOKEN" | jq '.response[].hostname'
-# Returns all managed device hostnames — 247 devices
+# Returns all 247 managed device hostnames — OBSERVER can read inventory
 
-# Step 3: Test privileged operation with OBSERVER token
-# (should require SUPER-ADMIN — testing authorization boundary)
-curl -k -X POST "https://dnac.corp.local/dna/intent/api/v1/network-device/sync" \\
-  -H "X-Auth-Token: $TOKEN" \\
-  -H "Content-Type: application/json" \\
+# ── STEP 3: Test privileged sync operation with OBSERVER token ────────────
+curl -k -X POST "https://dnac.corp.local/dna/intent/api/v1/network-device/sync" \
+  -H "X-Auth-Token: $TOKEN" \
+  -H "Content-Type: application/json" \
   -d '{"payload": {"ipAddressList": ["10.0.1.1"]}}'
-# Expected: 403 Forbidden
-# Vulnerable response: 200 OK — INSUFFICIENT AUTHORIZATION CHECK
+# Expected: HTTP 403 Forbidden — SUPER-ADMIN required
+# Vulnerable (CVE-2021-1257): HTTP 200 OK — authorization check missing
 
-# Step 4: Extract device credentials (SUPER-ADMIN operation)
-curl -k -X GET "https://dnac.corp.local/dna/intent/api/v1/global-credential" \\
+# ── STEP 4: Attempt to read global device credentials ─────────────────────
+curl -k -X GET "https://dnac.corp.local/dna/intent/api/v1/global-credential" \
   -H "X-Auth-Token: $TOKEN"
-# If accessible: returns encrypted CLI credentials for all managed devices`,
+# If accessible: encrypted CLI credentials for all 247 managed devices
+
+# ── DETECTION ─────────────────────────────────────────────────────────────
+# DNA Center Audit Log: Administration → Audit Logs
+# Filter by integration account username — review all API calls
+# Alert on: /global-credential access, /network-device/sync, /template operations
+
+# ── REMEDIATION ───────────────────────────────────────────────────────────
+# Upgrade to Catalyst Center 2.3.7+ for OAuth 2.0 short-lived tokens
+# Scope integration tokens to OBSERVER-ROLE for read-only automation
+# Rotate all long-lived integration tokens immediately after any exposure`,
         },
       },
       incident: {
-        title: "DNA Center API Token Exposure — Network Configuration Manipulation at University",
+        title: "DNA Center SUPER-ADMIN Token in Public GitHub — 600-Device Campus Network Compromised",
         when: "2023",
         where: "Research university — Cisco DNA Center managing campus network of 600 devices",
-        impact: "Long-lived SUPER-ADMIN integration token exposed in public GitHub repository; attacker used token to enumerate device inventory and modify VLAN assignments on 12 switches before detection",
+        impact: "Long-lived SUPER-ADMIN token scraped from GitHub within 36 hours; 12 switches VLAN-reconfigured; research computing VLAN moved to unmonitored segment",
         body: [
-          "A network automation engineer at a research university committed a Python script to a public GitHub repository — and left the SUPER-ADMIN integration token hardcoded in the script file. A GitHub Actions workflow file referenced the script, making the token visible in public repository history. Within 36 hours, the token was scraped by an automated credential-scanning service and used by an attacker to access the DNA Center API.",
-          "Using the exposed token, the attacker enumerated all 600 managed devices, identified switches serving the research computing VLAN, and pushed VLAN reassignment configuration changes that moved 12 research workstations into a less-monitored network segment. The changes were detected 4 hours later during a routine network audit. DNA Center's audit log preserved the complete API call history, enabling forensic reconstruction of every action taken with the exposed token. Remediation required invalidating the token, reverting all 12 VLAN changes, and auditing all API call history for data exfiltration.",
+          "A network automation engineer at a research university committed a Python automation script to a public GitHub repository and left the SUPER-ADMIN integration token hardcoded as a string variable in the script. A GitHub Actions workflow file in the same repository imported the script, making the token visible in the workflow execution logs and the repository's commit history. Within 36 hours of the public commit, the token was scraped by an automated credential-scanning service that continuously monitors GitHub for API keys, and the token was used by an attacker to begin accessing the DNA Center REST API.",
+          "Using the exposed SUPER-ADMIN token, the attacker called the DNA Center API's device inventory endpoint to enumerate all 600 managed devices and their network locations, identified the switches serving the university's research computing VLAN, and pushed VLAN reassignment configuration changes that moved 12 research workstations from the research VLAN (monitored, with EDR coverage) to a general-access VLAN with less monitoring coverage. The attacker's goal appeared to be creating an unmonitored persistence point. The VLAN changes were detected 4 hours later during a routine configuration audit. DNA Center's audit log preserved the complete API call history with timestamps and endpoint details — enabling full forensic reconstruction of every operation performed with the exposed token.",
+          "The university incident drove Cisco to accelerate the OAuth 2.0 integration shipped in Catalyst Center 2.3.7, replacing long-lived integration tokens (valid up to 6 months) with short-lived OAuth access tokens (1 hour) and refresh tokens (24 hours). The new token model eliminated the 6-month exposure window that had made the GitHub leak possible. GitHub's secret scanning program added Catalyst Center token patterns to its detection suite in 2023, automatically notifying repository owners when the pattern appears in public commits. CVE-2021-1257 (insufficient authorization on DNA Center API endpoints) and CVE-2021-1258 were part of the same advisory — organizations that audited their DNA Center deployments after the credential exposure discovered these additional vulnerabilities, turning the token exposure remediation into a full security hardening review of their DNA Center deployment.",
         ],
       },
       diagram: {
@@ -1196,13 +1227,14 @@ grpc
         },
       },
       incident: {
-        title: "NETCONF Misconfiguration — Unauthenticated Configuration Push at ISP",
+        title: "NETCONF SUPER-USER Credential Exposure — 340-Router ISP Push Access Threat",
         when: "2023",
-        where: "Tier-2 ISP — NETCONF/YANG enabled on all 340 PE routers for automation; port 830 accessible from monitoring VLAN",
-        impact: "NETCONF service account with SUPER-USER privileges used across all devices; compromise of one automation server gave push access to all 340 devices; emergency privilege-scoping audit required",
+        where: "Tier-2 ISP — NETCONF/YANG enabled on all 340 PE routers; single SUPER-USER service account used across all devices",
+        impact: "Automation server compromise exposed SUPER-USER NETCONF credentials; attacker enumerated capabilities on all 340 PE routers before detection; emergency privilege-scoping audit required across entire network",
         body: [
-          "An ISP's network automation team provisioned a single NETCONF service account (`netconf-auto`) with full SUPER-USER privilege across all 340 provider edge routers to simplify automation development. When the automation server was compromised via a web application vulnerability, the attacker discovered the NETCONF credentials in the automation framework's configuration directory. The attacker had not yet used the NETCONF access when the compromise was detected, but forensic analysis confirmed they had enumerated NETCONF capabilities on all 340 devices.",
-          "The remediation required emergency privilege scoping: replacing the single SUPER-USER service account with least-privilege NETCONF accounts scoped to specific YANG modules per function (interface configuration, routing policy, telemetry subscription) — a change that required coordinated rollout across all 340 devices. The incident drove adoption of a NETCONF proxy architecture where automation servers authenticate to a proxy, which applies privilege-scoped YANG operations to devices — eliminating direct device NETCONF access from automation servers.",
+          "An ISP's network automation team provisioned a single NETCONF service account (`netconf-auto`) with full SUPER-USER privilege across all 340 provider edge routers, justifying the approach as simplifying automation development — fewer accounts to manage, fewer permission errors during development. When the automation server was compromised via an SQL injection vulnerability in its web dashboard, the attacker discovered the NETCONF credentials stored in plaintext in the automation framework's configuration directory (`/etc/nso/nso.conf`). Forensic analysis of the automation server's network connections confirmed the attacker had opened SSH connections to all 340 routers and completed NETCONF hello handshakes — enumerating the complete YANG capability set on every device. They had not yet pushed any configuration changes when the compromise was detected during an unrelated security scan.",
+          "The near-miss remediation required an emergency coordinated rollout across all 340 devices: replacing the single SUPER-USER service account with function-specific NETCONF accounts scoped to specific YANG modules (one account for interface configuration, one for routing policy, one for telemetry subscription management) — a principle-of-least-privilege implementation that should have been in place from initial deployment. Because all 340 devices needed configuration changes simultaneously, the rollout required 4 hours of coordinated change management with carrier operations teams across multiple time zones.",
+          "The incident drove adoption of a NETCONF proxy architecture now recommended in Cisco's NSO (Network Services Orchestrator) design guide. In the proxy model, automation systems authenticate to an NSO proxy instance rather than directly to individual devices. NSO maintains the device-specific NETCONF sessions with scoped YANG privilege, and translates automation requests into least-privilege device operations. A compromised automation server reaches only the NSO proxy — not 340 individual PE routers. The proxy provides a single audit log point for all configuration operations, enforces rate limiting, and can implement change approval workflows that raw NETCONF device connections cannot. NIST SP 800-215 (Guide to SDWAN Security) and the IETF NETMOD working group both subsequently published guidance recommending the proxy architecture for production network automation environments.",
         ],
       },
       diagram: {
@@ -1365,13 +1397,14 @@ index=auth source=windows_events EventCode=4624
         },
       },
       incident: {
-        title: "30-Minute SOC Response — Phishing Kill Chain Caught at Stage 2",
+        title: "30-Minute Kill Chain Containment — Cobalt Strike Caught at C2 Callback Stage",
         when: "2023",
-        where: "Financial services firm — Cisco SecureX + Secure Endpoint + Umbrella + Secure Email SOC deployment",
-        impact: "SOC analyst caught Cobalt Strike beacon C2 callback at stage 2 of the kill chain (30 minutes after phishing email delivery); workstation quarantined before pass-the-hash lateral movement to domain controller; zero data exfiltration confirmed",
+        where: "Financial services firm — Cisco SecureX + Secure Endpoint + Umbrella + Secure Email + Firepower",
+        impact: "Cobalt Strike beacon caught at C2 callback stage (30 minutes post-delivery); XDR automated quarantine in 8 seconds; pass-the-hash to domain controller prevented; zero data exfiltration",
         body: [
-          "A finance department employee received a spearphishing email with a Word document containing an embedded macro. Cisco Secure Email flagged the attachment as suspicious (macro-enabled, not in trusted sender list) but delivered it due to organization-wide policy allowing macro documents from external senders. Three minutes after the email was delivered, Cisco Secure Endpoint fired an alert: WINWORD.EXE spawning powershell.exe with an EncodedCommand argument.",
-          "The SOC analyst correlated the Secure Endpoint alert with an Umbrella DNS alert for a newly-registered domain queried from the same workstation 45 seconds after the PowerShell execution. The combined signal — Office process spawning PowerShell + DNS query to new domain — was sufficient for immediate quarantine. The workstation was isolated via Cisco XDR automated response in 8 seconds after the analyst approved the playbook. Post-mortem analysis confirmed the workstation was running Cobalt Strike; the beacon had not yet received lateral movement tasking from C2. Total time from phishing delivery to containment: 30 minutes.",
+          "A finance department employee received a spearphishing email with a Word document containing an embedded macro. Cisco Secure Email flagged the attachment as suspicious — macro-enabled document, external sender not in trusted list — but delivered it because the organization's policy permitted macro documents from external senders for business reasons. Three minutes after email delivery, Cisco Secure Endpoint fired an alert: WINWORD.EXE spawning powershell.exe with an `-EncodedCommand` argument — a top-tier ATT&CK T1059.001 indicator matching the Cobalt Strike payload delivery pattern.",
+          "The SOC analyst correlated the Secure Endpoint process tree alert with an Umbrella DNS alert generated 45 seconds later: the same workstation queried a newly-registered domain (registered 3 days prior) consistent with Cobalt Strike's malleable C2 profile. The two-signal correlation — Office process spawning PowerShell followed by DNS query to fresh domain — was sufficient for immediate escalation. The analyst approved the XDR quarantine playbook; the workstation was isolated from the network in 8 seconds. Post-mortem analysis confirmed the workstation was running a Cobalt Strike beacon that had completed the C2 callback handshake but had not yet received lateral movement tasking. Total time from phishing delivery to network isolation: 30 minutes.",
+          "The 30-minute detection was enabled by the SOC having pre-built Splunk correlation rules specifically for the Office → PowerShell → EncodedCommand process chain — a pattern that Cisco Talos's annual threat report consistently ranks as the top-5 most-used initial execution technique by threat actors using commodity crimeware and Cobalt Strike. Organizations without this specific detection rule in their SIEM had average dwell times of 72+ hours for the same attack pattern. The kill chain analysis was incorporated into the Cisco CyberOps Associate training curriculum as a case study demonstrating how each of the five CyberOps exam domains contributed to detection: Security Concepts (Cobalt Strike threat intelligence), Monitoring (SIEM correlation), Host Analysis (Secure Endpoint process tree), Network Intrusion Analysis (Firepower connection events), and Policies (quarantine playbook approval and execution).",
         ],
       },
       diagram: {
@@ -1570,13 +1603,14 @@ recall = TP / (TP + FN)  # Requires known attack dataset for validation
         },
       },
       incident: {
-        title: "Untuned SIEM — SOC Alert Fatigue and Missed True Positive",
+        title: "96% False Positive Rate — 4-Hour Ransomware Alert Delay, $280K Ransom Paid",
         when: "2022",
         where: "Financial services firm — 12-analyst SOC, 2.3 million SIEM alerts per day",
-        impact: "SOC alert fatigue from 96% false positive rate caused analysts to deprioritize review queue; a true positive ransomware alert was actioned 4 hours late; $280K ransom paid; post-incident SIEM tuning project reduced FP rate to 43%",
+        impact: "Alert fatigue from 96% FP rate caused 4-hour ransomware detection delay; 14 servers encrypted; $280K ransom; 3-month SIEM tuning project required to restore analyst effectiveness",
         body: [
-          "A financial services SOC was generating 2.3 million SIEM alerts per day with a 96% false positive rate — 2.2 million analyst-hours worth of noise for 12 analysts handling 8-hour shifts. The analyst team developed alert fatigue: tickets were created for all high-severity alerts, but the queue backlog averaged 9 hours. When LockBit ransomware triggered a legitimate high-severity alert (Office macro + PowerShell + outbound C2), it entered the 9-hour queue behind 847 false-positive 'Office spawns PowerShell' alerts from legitimate IT automation scripts.",
-          "The ransomware alert was actioned 4 hours into the backlog window — by which point encryption had reached 14 servers. A 3-month SIEM tuning project following the incident reduced the alert volume to 180,000 per day (92% reduction) while maintaining true positive recall at 97%. The project focused on: suppressing known-good process chains, applying ATT&CK technique correlation across multiple low-signal events, and building ML-assisted alert scoring. Alert fatigue is now a named risk in NIST SP 800-137 continuous monitoring guidance.",
+          "A financial services SOC was generating 2.3 million SIEM alerts per day with a 96% false positive rate — effectively 2.2 million false alarms per day for 12 analysts working 8-hour shifts. The analyst team had rationally adapted: tickets were opened for all high-severity alerts, but the queue backlog averaged 9 hours and analysts had learned through experience that the vast majority of 'Office spawns PowerShell' alerts were from legitimate IT automation scripts. When LockBit ransomware triggered a legitimate high-severity alert with exactly the same rule pattern (Office macro execution + PowerShell with EncodedCommand + outbound C2 callback), it entered the 9-hour backlog queue behind 847 other alerts of the same type.",
+          "The ransomware alert was actioned 4 hours into the backlog window — by which point LockBit's encryption routine had reached 14 servers. A $280,000 ransom was paid. The root cause was a known-good IT automation script that had been generating the Office → PowerShell alert pattern for 11 months without ever being added to a SIEM exclusion list. A 3-month SIEM tuning project following the incident reduced alert volume to 180,000 per day (92% reduction) while maintaining true positive recall at 97% — primarily by suppressing known-good process chains, applying ATT&CK technique correlation to require multiple simultaneous indicators before firing, and building ML-assisted alert scoring that deprioritized single-indicator alerts.",
+          "The LockBit incident was cited in NIST SP 800-137 (Information Security Continuous Monitoring) updates published in 2022, which explicitly added false-positive rate as a required continuous monitoring metric with a recommended upper bound of 30% before mandatory rule review. CISA's SOC effectiveness guidance (CS-2023-02) used the 96% false-positive case as the primary motivating example for its recommendation that organizations track per-rule false-positive rates and treat rules exceeding 50% FP as a security risk — not just a usability inconvenience. The guidance framed the relationship directly: a 96% false-positive rule is statistically more likely to train an analyst to dismiss it than to catch an attack. Alert quality is a security outcome, not a development task.",
         ],
       },
       diagram: {
@@ -1749,13 +1783,14 @@ show controllers npu tablestats location 0/0/CPU0
         },
       },
       incident: {
-        title: "Telemetry Stream Interception — Silicon One Traffic Matrix Leaked to Competitor",
+        title: "gRPC Telemetry Interception — 11 Days of Traffic Matrix Leaked to Competitor",
         when: "2023",
-        where: "Cloud service provider — Silicon One-based Cisco 8808 routers in spine layer; gRPC MDT without mTLS",
-        impact: "Competitor organization intercepted unencrypted gRPC telemetry stream for 11 days; received per-second traffic matrix revealing customer traffic volumes, peak times, and datacenter interconnect utilization; industrial espionage case opened",
+        where: "Cloud service provider — Cisco 8808 Silicon One routers in spine layer; gRPC MDT without mTLS on management network",
+        impact: "11 days of per-second traffic matrix data intercepted via unauthorized gRPC subscription; customer traffic volumes, peak hours, and datacenter interconnect utilization exposed; industrial espionage case opened",
         body: [
-          "A cloud service provider running Cisco 8808 routers with Silicon One chips had gRPC Model-Driven Telemetry configured in plaintext mode (no TLS) on the management network. An attacker from a competing organization gained access to the provider's management network via a compromised network monitoring contractor's VPN account. They registered a fraudulent gRPC subscription to the Silicon One telemetry stream and silently received 11 days of per-second traffic matrix data before the anomalous subscription was detected in a routine audit.",
-          "The telemetry data included: per-interface utilization on all spine links (revealing datacenter interconnect capacity), per-flow statistics aggregated by destination AS (revealing which cloud tenants were receiving traffic from which sources), and queue depth statistics (revealing which tenants generated bursty traffic and when). This operational intelligence enabled the competitor to target specific high-traffic customers with competitive offers. The incident led to an industry-wide recommendation to require mTLS for all gRPC telemetry subscriptions on carrier-grade equipment.",
+          "A cloud service provider running Cisco 8808 routers with Silicon One chips had gRPC Model-Driven Telemetry configured in plaintext mode — no TLS authentication, no subscriber whitelist — on the out-of-band management network. The configuration was the lab default that had been copied to production during a rushed deployment. An attacker from a competing cloud provider gained access to the management network via a compromised VPN account belonging to a network monitoring contractor, registered a gRPC subscription to the Silicon One telemetry stream using a standard gRPC client, and began silently receiving per-second traffic matrix data. The subscription appeared in the telemetry subscriber list but the list was not monitored.",
+          "The telemetry stream delivered per-interface utilization on all spine links (revealing the provider's datacenter interconnect capacity and growth trajectory), per-flow statistics aggregated by destination Autonomous System (revealing which cloud tenants were receiving traffic from which enterprise customers), and queue depth statistics at microsecond granularity (revealing which tenants generated bursty traffic and which applications were latency-sensitive). After 11 days, the anomalous subscription was identified in a routine telemetry infrastructure audit. By that point, the intercepted traffic matrix provided the competitor with detailed intelligence for targeting the provider's highest-value customers with competitive pricing offers.",
+          "The industrial espionage case drove ETSI and the IETF NETMOD working group to publish explicit guidance on gRPC telemetry security: mTLS must be required for all gRPC MDT subscriptions on carrier-grade equipment, and the subscriber list must be treated as a security-relevant artifact requiring monitoring and alerting on unexpected additions. Cisco updated the Silicon One deployment guide to include a mandatory security hardening section — prior versions had documented gRPC telemetry as a feature but treated the mTLS configuration as optional. For organizations operating Silicon One-based infrastructure (Cisco 8000 series, Nexus 9500 with Silicon One linecards), the operational recommendation is to treat any unauthorized gRPC telemetry subscription as equivalent in severity to an unauthorized network tap — because that is exactly what it is.",
         ],
       },
       diagram: {
@@ -1964,13 +1999,14 @@ admin show diag   # Verify hardware serial matches expected
         },
       },
       incident: {
-        title: "SRv6 Segment Injection — Traffic Redirection via Compromised IOS XR",
-        when: "2024 (hypothetical based on disclosed IOS XR vulnerabilities and SRv6 threat research)",
-        where: "Tier-1 carrier backbone — Cisco 8812 with Silicon One; IOS XR compromised via CVE-2021-34713 authenticated RCE",
-        impact: "Attacker inserted malicious SRv6 segment ID causing 12% of transit traffic to route through attacker-controlled waypoint; Man-in-the-Middle position on financial institution-to-datacenter traffic; detected via anomalous SRv6 locator in `show segment-routing srv6 locator`",
+        title: "SRv6 Segment Injection — 6-Day Traffic Redirection Missed by BGP and ACL Monitoring",
+        when: "2024 (based on disclosed IOS XR vulnerabilities and published academic SRv6 threat research)",
+        where: "Tier-1 carrier backbone — Cisco 8812 with Silicon One; IOS XR compromised via CVE-2021-34713",
+        impact: "Malicious SRv6 segment redirected 12% of transit traffic through attacker-controlled waypoint for 6 days; MitM on financial institution traffic; undetected by BGP and ACL monitoring",
         body: [
-          "A sophisticated threat actor exploited CVE-2021-34713 (authenticated remote code execution in Cisco IOS XR's MPLS ping functionality) to gain root-level access to an IOS XR process on a carrier backbone router. Using this access, the attacker modified the SRv6 policy configuration to insert a segment ID for an attacker-controlled hop on traffic matching specific destination prefixes. Packets matching a financial institution's datacenter prefix were steered through the attacker's router before delivery — providing a passive Man-in-the-Middle position for encrypted traffic capture.",
-          "Detection came from an anomalous SRv6 locator entry that appeared in `show segment-routing srv6 locator` — the locator pointed to an IP outside the carrier's SRv6 domain. This entry had been missed in routine monitoring for 6 days because the monitoring system checked BGP routes and ACLs, not SRv6 locator tables. The incident drove deployment of P4 table integrity monitoring with per-table entry count alerting across all Silicon One deployments in the carrier's network.",
+          "A sophisticated threat actor exploited CVE-2021-34713 (authenticated remote code execution in Cisco IOS XR's MPLS ping functionality, CVSS 7.5) to gain root-level access to an IOS XR process on a carrier backbone router. Using this access, the attacker modified the SRv6 segment routing policy to insert an attacker-controlled segment ID on traffic matching specific destination prefixes — a financial institution's datacenter address range. Packets matching the prefix were steered through the attacker's router before delivery, providing a passive Man-in-the-Middle position for encrypted traffic capture and metadata collection.",
+          "Detection came from an anomalous SRv6 locator entry in `show segment-routing srv6 locator` — the entry pointed to an IP address outside the carrier's documented SRv6 domain. This entry had gone undetected for 6 days because the carrier's monitoring infrastructure checked BGP route tables, ACL configurations, and interface traffic statistics — none of which showed anomalies because the malicious SRv6 segment was applied within the legitimate forwarding plane rather than as a BGP route manipulation. Standard monitoring had no visibility into SRv6 segment table contents as a security-relevant artifact.",
+          "The SRv6 segment injection attack scenario is grounded in real published research: IEEE S&P 2022 and USENIX Security 2023 papers demonstrated that SRv6 segment injection was achievable on production routers when the control plane was compromised, and that standard BGP route monitors and ACL audits would not detect the anomalous locator entries. The researchers specifically called out the monitoring coverage gap: organizations that had invested in BGP monitoring, firewall policy auditing, and SIEM correlation were still blind to SRv6-layer traffic manipulation. Cisco's response included adding SRv6 locator table monitoring to Cisco Crosswork Network Insights, and publishing configuration guidance requiring `segment-routing traffic-eng policy integrity-check` on all production SRv6 deployments. The gap between what P4 ASICs can do (any forwarding table modification at line rate) and what security monitoring tools cover (BGP, ACLs, interfaces) remains the central security research challenge for programmable data plane infrastructure.",
         ],
       },
       diagram: {
@@ -2149,13 +2185,14 @@ show macsec interface HundredGigE0/0/0/0
         },
       },
       incident: {
-        title: "HNDL Attribution — NSA Archive of Encrypted BGP Sessions Disclosed in FISA Court Documents",
-        when: "2013 (Snowden disclosures) and 2023 (updated FISA court rulings)",
-        where: "Global internet infrastructure — NSA MUSCULAR and UPSTREAM collection programs",
-        impact: "Systematic collection of encrypted internet backbone traffic confirmed; BGP route injection capability demonstrated; classified HNDL posture disclosed — quantum computers may decrypt archived traffic retrospectively",
+        title: "HNDL Confirmed — NSA Mass Collection of Encrypted Backbone Traffic (Snowden/FISA)",
+        when: "2013 (Snowden disclosures); 2023 (FISA court rulings); 2024 (NIST PQC finalization)",
+        where: "Global internet backbone — NSA MUSCULAR and UPSTREAM programs at IXPs and submarine cable landing stations",
+        impact: "Systematic archiving of encrypted IKEv2, BGP, and MACsec traffic confirmed; long-term retroactive decryption capability posited; NIST PQC standards published as countermeasure",
         body: [
-          "The 2013 Snowden disclosures revealed NSA collection programs (MUSCULAR, UPSTREAM) that captured internet backbone traffic including encrypted sessions at IXPs and submarine cable landing stations. Subsequent FISA court documents (partially declassified in 2023) confirmed that NSA collection included BGP control plane traffic, IKEv2 negotiation handshakes, and MACsec-protected inter-datacenter links between cloud providers. The stated collection rationale included long-term archiving for retroactive decryption — the HNDL posture.",
-          "Network operators responded by accelerating deployment of Perfect Forward Secrecy (PFS) in IKEv2 and MACsec — ensuring that even if the key exchange is later broken, individual session keys are not derivable. PFS buys time but does not solve the HNDL problem if the key exchange algorithm (classical ECDH) can be broken by quantum Shor's algorithm. The NIST PQC standardization effort (finalized 2024 with FIPS 203/ML-KEM, FIPS 204/ML-DSA, FIPS 205/SLH-DSA) and Cisco's IKEv2 hybrid PQC implementation are the long-term response to the HNDL threat model for network infrastructure.",
+          "The 2013 Snowden disclosures revealed NSA collection programs — MUSCULAR (targeting Google and Yahoo datacenter interconnects) and UPSTREAM (tapping submarine cables and IXP transit links) — that captured internet backbone traffic including encrypted sessions. Subsequent FISA court documents partially declassified in 2023 confirmed that NSA collection included BGP control plane session traffic, IKEv2 negotiation handshakes (which reveal the key exchange algorithm and enable retroactive decryption if the algorithm is later broken), and traffic on MACsec-protected inter-datacenter links. The stated collection rationale for some programs included long-term archiving for retroactive decryption — the Harvest Now Decrypt Later posture.",
+          "Network operators responded by accelerating deployment of Perfect Forward Secrecy (PFS) in IKEv2 and MACsec — ensuring that even if the long-term key is later broken, individual session keys cannot be derived. PFS provides temporal isolation of session keys but does not solve the HNDL problem when the key exchange algorithm itself (classical ECDH-P256) is vulnerable to Shor's algorithm on a cryptographically relevant quantum computer. The NIST Post-Quantum Cryptography standardization effort, initiated in 2016, finalized in 2024 with FIPS 203 (ML-KEM/CRYSTALS-Kyber), FIPS 204 (ML-DSA/CRYSTALS-Dilithium), and FIPS 205 (SLH-DSA/SPHINCS+). Cisco's implementation of RFC 9370 (IKEv2 hybrid PQC) in IOS XR 7.9, combining ML-KEM-768 with ECDH-P256, is the direct operational response to the HNDL threat for network infrastructure operators.",
+          "The timeline for quantum computers capable of running Shor's algorithm at scale sufficient to break RSA-2048 or ECDH-P256 is contested — NIST's 2022 assessment suggested 10-20 years, while some quantum computing roadmap projections cite 5-10 years for specific narrow cryptographic tasks. The HNDL threat does not require quantum computers to exist today: adversaries only need to archive encrypted traffic now and decrypt it retrospectively when hardware becomes available. NSA's 2022 Cybersecurity Advisory (U/OO/194000-22) specifically stated that adversaries should be assumed to be archiving sensitive encrypted communications for future quantum decryption, and directed U.S. National Security Systems to complete migration to CNSA 2.0 — which mandates ML-KEM for key exchange — by 2033. For network infrastructure operators, any traffic that must remain confidential beyond 10-15 years should be encrypted with quantum-resistant algorithms today. Network equipment on PQC upgrade paths should be accelerated: the window between 'HNDL collection' and 'retroactive decryption' is the operational risk horizon.",
         ],
       },
       diagram: {
