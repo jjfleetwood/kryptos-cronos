@@ -15,6 +15,8 @@ import { owaspLlmEpoch, owaspLlmStages } from "./owasp-llm";
 import { quantum1Epoch, quantum1Stages } from "./quantum-1";
 import { quantum2Epoch, quantum2Stages } from "./quantum-2";
 import { quantum3Epoch, quantum3Stages } from "./quantum-3";
+import { quantum4Epoch, quantum4Stages } from "./quantum-4";
+import { emergingTechEpoch, emergingTechStages } from "./emerging-tech";
 import { cisco2Stages } from "./cisco-2";
 import { cisco3Stages } from "./cisco-3";
 import { cisco4Stages } from "./cisco-4";
@@ -100,6 +102,8 @@ export const epochs: EpochConfig[] = [
   quantum1Epoch,
   quantum2Epoch,
   quantum3Epoch,
+  quantum4Epoch,
+  emergingTechEpoch,
   umbrellaEpoch,
   tapestryEpoch,
   nailsEpoch,
@@ -135,6 +139,8 @@ export const stages: StageConfig[] = [
   ...quantum1Stages,
   ...quantum2Stages,
   ...quantum3Stages,
+  ...quantum4Stages,
+  ...emergingTechStages,
   ...umbrellaStages,
   ...tapestryStages,
   ...nailsStages,

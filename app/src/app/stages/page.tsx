@@ -59,7 +59,7 @@ const epochGroups = [
     id: "quantumEra",
     labelKey: "stages.tracks.quantumEra",
     descKey: "stages.tracks.quantumEraDesc",
-    epochIds: ["quantum-1", "quantum-2", "quantum-3"],
+    epochIds: ["quantum-1", "quantum-2", "quantum-3", "quantum-4", "emerging-tech"],
   },
   {
     id: "enterprise",
