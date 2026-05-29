@@ -193,6 +193,28 @@ const CERTS: CertConfig[] = [
     bgClass: "bg-teal-500/5",
     badgeClass: "bg-teal-500/15 border-teal-500/30 text-teal-300",
   },
+  {
+    id: "comptia-aiplus",
+    name: "CompTIA AI+",
+    examCode: "AI+",
+    emoji: "🤖",
+    tagline: "The first vendor-neutral AI certification from CompTIA. AI+ validates skills in machine learning, generative AI, AI security, and responsible AI governance — the credential the industry needs as AI becomes every professional's tool.",
+    examUrl: "https://www.comptia.org/certifications/artificial-intelligence",
+    salaryRange: "$95k – $145k",
+    jobCount: "300k+ open roles",
+    cost: "$392 USD",
+    questions: "90 max",
+    passingScore: "700 / 900",
+    prerequisites: "None required (Security+ or equivalent experience recommended)",
+    studyHours: "40–70 hours",
+    gradient: "linear-gradient(135deg, rgba(14,165,233,0.08) 0%, rgba(99,102,241,0.06) 100%)",
+    ringColor: "#38bdf8",
+    accentClass: "text-sky-400",
+    barClass: "bg-sky-500",
+    borderClass: "border-sky-500/30",
+    bgClass: "bg-sky-500/5",
+    badgeClass: "bg-sky-500/15 border-sky-500/30 text-sky-300",
+  },
 ];
 
 // ─── Stage lookup helpers ──────────────────────────────────────────────────────

@@ -1,6 +1,6 @@
 // Certificate path domain mappings.
 // Covers: CompTIA Security+ SY0-701, ISC² CC, CompTIA Network+ N10-009, CompTIA CySA+ CS0-003,
-//         ISACA CISA, ISACA CISM, ISACA CRISC.
+//         ISACA CISA, ISACA CISM, ISACA CRISC, CompTIA AI+ (2024).
 // Stage → domain weights match official exam blueprints.
 
 export type CertId =
@@ -10,7 +10,8 @@ export type CertId =
   | "comptia-cysa"
   | "isaca-cisa"
   | "isaca-cism"
-  | "isaca-crisc";
+  | "isaca-crisc"
+  | "comptia-aiplus";
 
 export type CertDomain = {
   certId: CertId;
@@ -77,6 +78,15 @@ export const CISM_DOMAINS: CertDomainDef[] = [
   { id: "cism-incident",   name: "Incident Management",                  weight: 30 },
 ];
 
+// CompTIA AI+ (2024 blueprint — 5 domains, exam launched June 2024)
+export const AIPLUS_DOMAINS: CertDomainDef[] = [
+  { id: "aiplus-concepts",       name: "AI Concepts",                      weight: 15 },
+  { id: "aiplus-data",           name: "Data Science Fundamentals",        weight: 20 },
+  { id: "aiplus-models",         name: "AI Models and Training",           weight: 20 },
+  { id: "aiplus-security",       name: "AI Security, Ethics & Governance", weight: 30 },
+  { id: "aiplus-infrastructure", name: "AI Infrastructure & Operations",   weight: 15 },
+];
+
 // CRISC — Certified in Risk and Information Systems Control (2022 blueprint)
 export const CRISC_DOMAINS: CertDomainDef[] = [
   { id: "crisc-governance",      name: "Governance",                       weight: 26 },
@@ -133,6 +143,13 @@ function crisc(...domainIds: string[]): CertDomain[] {
   return domainIds.map((id) => {
     const def = CRISC_DOMAINS.find((d) => d.id === id)!;
     return { certId: "isaca-crisc" as CertId, domainId: id, domainName: def.name };
+  });
+}
+
+function ai(...domainIds: string[]): CertDomain[] {
+  return domainIds.map((id) => {
+    const def = AIPLUS_DOMAINS.find((d) => d.id === id)!;
+    return { certId: "comptia-aiplus" as CertId, domainId: id, domainName: def.name };
   });
 }
 
@@ -244,15 +261,15 @@ export const CERT_DOMAINS: Record<string, CertDomain[]> = {
   "stage-m39": combine(sp("security-architecture", "security-operations"), cc("security-operations-cc"), np("net-troubleshooting"), cy("cysa-security-ops"), cisa("cisa-operations", "cisa-protection"), cism("cism-program", "cism-incident"), crisc("crisc-risk-response", "crisc-it-security")),
   "stage-m40": combine(sp("security-architecture", "security-operations"), cc("security-operations-cc"), np("net-troubleshooting"), cy("cysa-security-ops"), cisa("cisa-operations", "cisa-protection"), cism("cism-program", "cism-incident"), crisc("crisc-risk-response", "crisc-it-security")),
   "stage-m41": combine(sp("security-architecture", "security-operations"), cc("security-operations-cc"), np("net-troubleshooting"), cy("cysa-security-ops"), cisa("cisa-operations", "cisa-protection"), cism("cism-program", "cism-incident"), crisc("crisc-risk-response", "crisc-it-security")),
-  "stage-m42": combine(sp("security-architecture", "security-operations"), cc("security-operations-cc"), np("net-troubleshooting"), cy("cysa-security-ops"), cisa("cisa-operations", "cisa-protection"), cism("cism-program", "cism-incident"), crisc("crisc-risk-response", "crisc-it-security")),
-  "stage-m43": combine(sp("security-architecture", "security-operations"), cc("security-operations-cc"), np("net-troubleshooting"), cy("cysa-security-ops"), cisa("cisa-operations", "cisa-protection"), cism("cism-program", "cism-incident"), crisc("crisc-risk-response", "crisc-it-security")),
+  "stage-m42": combine(sp("security-architecture", "security-operations"), cc("security-operations-cc"), np("net-troubleshooting"), cy("cysa-security-ops"), cisa("cisa-operations", "cisa-protection"), cism("cism-program", "cism-incident"), crisc("crisc-risk-response", "crisc-it-security"), ai("aiplus-security", "aiplus-infrastructure")),
+  "stage-m43": combine(sp("security-architecture", "security-operations"), cc("security-operations-cc"), np("net-troubleshooting"), cy("cysa-security-ops"), cisa("cisa-operations", "cisa-protection"), cism("cism-program", "cism-incident"), crisc("crisc-risk-response", "crisc-it-security"), ai("aiplus-security", "aiplus-infrastructure")),
   "stage-m44": combine(sp("security-architecture", "security-operations"), cc("security-operations-cc"), np("net-troubleshooting"), cy("cysa-security-ops"), cisa("cisa-operations", "cisa-protection"), cism("cism-program", "cism-incident"), crisc("crisc-risk-response", "crisc-it-security")),
   "stage-m45": combine(sp("security-architecture", "security-operations"), cc("security-operations-cc"), np("net-troubleshooting"), cy("cysa-security-ops"), cisa("cisa-operations", "cisa-protection"), cism("cism-program", "cism-incident"), crisc("crisc-risk-response", "crisc-it-security")),
   "stage-m46": combine(sp("security-architecture", "security-operations"), cc("security-operations-cc"), np("net-troubleshooting"), cy("cysa-security-ops"), cisa("cisa-operations", "cisa-protection"), cism("cism-program", "cism-incident"), crisc("crisc-risk-response", "crisc-it-security")),
   "stage-m47": combine(sp("security-architecture", "security-operations"), cc("security-operations-cc"), np("net-troubleshooting"), cy("cysa-security-ops"), cisa("cisa-operations", "cisa-protection"), cism("cism-program", "cism-incident"), crisc("crisc-risk-response", "crisc-it-security")),
   "stage-m48": combine(sp("security-architecture", "security-operations"), cc("security-operations-cc"), np("net-troubleshooting"), cy("cysa-security-ops"), cisa("cisa-operations", "cisa-protection"), cism("cism-program", "cism-incident"), crisc("crisc-risk-response", "crisc-it-security")),
   "stage-m49": combine(sp("security-architecture", "security-operations"), cc("security-operations-cc"), np("net-troubleshooting"), cy("cysa-security-ops"), cisa("cisa-operations", "cisa-protection"), cism("cism-program", "cism-incident"), crisc("crisc-risk-response", "crisc-it-security")),
-  "stage-m50": combine(sp("security-architecture", "security-operations", "cryptography"), cc("security-operations-cc"), np("net-troubleshooting"), cy("cysa-security-ops"), cisa("cisa-operations", "cisa-protection"), cism("cism-program", "cism-incident"), crisc("crisc-risk-response", "crisc-it-security")),
+  "stage-m50": combine(sp("security-architecture", "security-operations", "cryptography"), cc("security-operations-cc"), np("net-troubleshooting"), cy("cysa-security-ops"), cisa("cisa-operations", "cisa-protection"), cism("cism-program", "cism-incident"), crisc("crisc-risk-response", "crisc-it-security"), ai("aiplus-security", "aiplus-infrastructure")),
 
   // ── umbrella (umbrella-01 → umbrella-10) — Cisco Umbrella/SASE ───────────────
   "umbrella-01": combine(sp("security-architecture"), cc("network-security"), np("net-security"), cy("cysa-security-ops"), cisa("cisa-protection"), cism("cism-program"), crisc("crisc-it-security")),
@@ -345,32 +362,32 @@ export const CERT_DOMAINS: Record<string, CertDomain[]> = {
   "mitre-12": combine(sp("threats-vulns", "security-operations"), cc("security-operations-cc"), cy("cysa-security-ops", "cysa-ir"), cisa("cisa-operations"), cism("cism-incident", "cism-risk"), crisc("crisc-risk-assessment", "crisc-risk-response")),
 
   // ── mitre-atlas (atlas-01 → atlas-12) — MITRE ATLAS AI/ML threats ────────────
-  "atlas-01": combine(sp("threats-vulns"), cc("security-principles"), cy("cysa-vuln-mgmt"), cisa("cisa-protection"), cism("cism-risk"), crisc("crisc-risk-assessment")),
-  "atlas-02": combine(sp("threats-vulns"), cc("security-principles"), cy("cysa-vuln-mgmt"), cisa("cisa-protection"), cism("cism-risk"), crisc("crisc-risk-assessment")),
-  "atlas-03": combine(sp("threats-vulns"), cc("security-principles"), cy("cysa-vuln-mgmt"), cisa("cisa-protection"), cism("cism-risk"), crisc("crisc-risk-assessment")),
-  "atlas-04": combine(sp("threats-vulns"), cc("security-principles"), cy("cysa-vuln-mgmt"), cisa("cisa-protection"), cism("cism-risk"), crisc("crisc-risk-assessment")),
-  "atlas-05": combine(sp("threats-vulns"), cc("security-principles"), cy("cysa-vuln-mgmt"), cisa("cisa-protection"), cism("cism-risk"), crisc("crisc-risk-assessment")),
-  "atlas-06": combine(sp("threats-vulns"), cc("security-principles"), cy("cysa-vuln-mgmt"), cisa("cisa-protection"), cism("cism-risk"), crisc("crisc-risk-assessment")),
-  "atlas-07": combine(sp("threats-vulns"), cc("security-principles"), cy("cysa-vuln-mgmt"), cisa("cisa-protection"), cism("cism-risk"), crisc("crisc-risk-assessment")),
-  "atlas-08": combine(sp("threats-vulns"), cc("security-principles"), cy("cysa-vuln-mgmt"), cisa("cisa-protection"), cism("cism-risk"), crisc("crisc-risk-assessment")),
-  "atlas-09": combine(sp("threats-vulns"), cc("security-principles"), cy("cysa-vuln-mgmt"), cisa("cisa-protection"), cism("cism-risk"), crisc("crisc-risk-assessment")),
-  "atlas-10": combine(sp("threats-vulns"), cc("security-principles"), cy("cysa-vuln-mgmt"), cisa("cisa-protection"), cism("cism-risk"), crisc("crisc-risk-assessment")),
-  "atlas-11": combine(sp("threats-vulns"), cc("security-principles"), cy("cysa-vuln-mgmt"), cisa("cisa-protection"), cism("cism-risk"), crisc("crisc-risk-assessment")),
-  "atlas-12": combine(sp("threats-vulns"), cc("security-principles"), cy("cysa-vuln-mgmt"), cisa("cisa-protection"), cism("cism-risk"), crisc("crisc-risk-assessment")),
+  "atlas-01": combine(sp("threats-vulns"), cc("security-principles"), cy("cysa-vuln-mgmt"), cisa("cisa-protection"), cism("cism-risk"), crisc("crisc-risk-assessment"), ai("aiplus-security", "aiplus-data")),
+  "atlas-02": combine(sp("threats-vulns"), cc("security-principles"), cy("cysa-vuln-mgmt"), cisa("cisa-protection"), cism("cism-risk"), crisc("crisc-risk-assessment"), ai("aiplus-security", "aiplus-models")),
+  "atlas-03": combine(sp("threats-vulns"), cc("security-principles"), cy("cysa-vuln-mgmt"), cisa("cisa-protection"), cism("cism-risk"), crisc("crisc-risk-assessment"), ai("aiplus-security", "aiplus-infrastructure")),
+  "atlas-04": combine(sp("threats-vulns"), cc("security-principles"), cy("cysa-vuln-mgmt"), cisa("cisa-protection"), cism("cism-risk"), crisc("crisc-risk-assessment"), ai("aiplus-security", "aiplus-models")),
+  "atlas-05": combine(sp("threats-vulns"), cc("security-principles"), cy("cysa-vuln-mgmt"), cisa("cisa-protection"), cism("cism-risk"), crisc("crisc-risk-assessment"), ai("aiplus-security", "aiplus-models")),
+  "atlas-06": combine(sp("threats-vulns"), cc("security-principles"), cy("cysa-vuln-mgmt"), cisa("cisa-protection"), cism("cism-risk"), crisc("crisc-risk-assessment"), ai("aiplus-security")),
+  "atlas-07": combine(sp("threats-vulns"), cc("security-principles"), cy("cysa-vuln-mgmt"), cisa("cisa-protection"), cism("cism-risk"), crisc("crisc-risk-assessment"), ai("aiplus-security", "aiplus-data")),
+  "atlas-08": combine(sp("threats-vulns"), cc("security-principles"), cy("cysa-vuln-mgmt"), cisa("cisa-protection"), cism("cism-risk"), crisc("crisc-risk-assessment"), ai("aiplus-security", "aiplus-models")),
+  "atlas-09": combine(sp("threats-vulns"), cc("security-principles"), cy("cysa-vuln-mgmt"), cisa("cisa-protection"), cism("cism-risk"), crisc("crisc-risk-assessment"), ai("aiplus-security", "aiplus-models")),
+  "atlas-10": combine(sp("threats-vulns"), cc("security-principles"), cy("cysa-vuln-mgmt"), cisa("cisa-protection"), cism("cism-risk"), crisc("crisc-risk-assessment"), ai("aiplus-security", "aiplus-models")),
+  "atlas-11": combine(sp("threats-vulns"), cc("security-principles"), cy("cysa-vuln-mgmt"), cisa("cisa-protection"), cism("cism-risk"), crisc("crisc-risk-assessment"), ai("aiplus-security", "aiplus-data")),
+  "atlas-12": combine(sp("threats-vulns"), cc("security-principles"), cy("cysa-vuln-mgmt"), cisa("cisa-protection"), cism("cism-risk"), crisc("crisc-risk-assessment"), ai("aiplus-security", "aiplus-concepts")),
 
   // ── owasp-llm (llm-01 → llm-12) — OWASP LLM Top 10 ──────────────────────────
-  "llm-01": combine(sp("threats-vulns", "general-security"), cc("security-principles"), cy("cysa-vuln-mgmt"), cisa("cisa-protection"), cism("cism-risk"), crisc("crisc-risk-assessment")),
-  "llm-02": combine(sp("threats-vulns", "general-security"), cc("security-principles"), cy("cysa-vuln-mgmt"), cisa("cisa-protection"), cism("cism-risk"), crisc("crisc-risk-assessment")),
-  "llm-03": combine(sp("threats-vulns", "general-security"), cc("security-principles"), cy("cysa-vuln-mgmt"), cisa("cisa-protection"), cism("cism-risk"), crisc("crisc-risk-assessment")),
-  "llm-04": combine(sp("threats-vulns", "general-security"), cc("security-principles"), cy("cysa-vuln-mgmt"), cisa("cisa-protection"), cism("cism-risk"), crisc("crisc-risk-assessment")),
-  "llm-05": combine(sp("threats-vulns", "general-security"), cc("security-principles"), cy("cysa-vuln-mgmt"), cisa("cisa-protection"), cism("cism-risk"), crisc("crisc-risk-assessment")),
-  "llm-06": combine(sp("threats-vulns", "general-security"), cc("security-principles"), cy("cysa-vuln-mgmt"), cisa("cisa-protection"), cism("cism-risk"), crisc("crisc-risk-assessment")),
-  "llm-07": combine(sp("threats-vulns", "general-security"), cc("security-principles"), cy("cysa-vuln-mgmt"), cisa("cisa-protection"), cism("cism-risk"), crisc("crisc-risk-assessment")),
-  "llm-08": combine(sp("threats-vulns", "general-security"), cc("security-principles"), cy("cysa-vuln-mgmt"), cisa("cisa-protection"), cism("cism-risk"), crisc("crisc-risk-assessment")),
-  "llm-09": combine(sp("threats-vulns", "general-security"), cc("security-principles"), cy("cysa-vuln-mgmt"), cisa("cisa-protection"), cism("cism-risk"), crisc("crisc-risk-assessment")),
-  "llm-10": combine(sp("threats-vulns", "general-security"), cc("security-principles"), cy("cysa-vuln-mgmt"), cisa("cisa-protection"), cism("cism-risk"), crisc("crisc-risk-assessment")),
-  "llm-11": combine(sp("threats-vulns", "general-security"), cc("security-principles"), cy("cysa-vuln-mgmt"), cisa("cisa-protection"), cism("cism-risk"), crisc("crisc-risk-assessment")),
-  "llm-12": combine(sp("threats-vulns", "general-security"), cc("security-principles"), cy("cysa-vuln-mgmt"), cisa("cisa-protection"), cism("cism-risk"), crisc("crisc-risk-assessment")),
+  "llm-01": combine(sp("threats-vulns", "general-security"), cc("security-principles"), cy("cysa-vuln-mgmt"), cisa("cisa-protection"), cism("cism-risk"), crisc("crisc-risk-assessment"), ai("aiplus-security", "aiplus-concepts")),
+  "llm-02": combine(sp("threats-vulns", "general-security"), cc("security-principles"), cy("cysa-vuln-mgmt"), cisa("cisa-protection"), cism("cism-risk"), crisc("crisc-risk-assessment"), ai("aiplus-security", "aiplus-models")),
+  "llm-03": combine(sp("threats-vulns", "general-security"), cc("security-principles"), cy("cysa-vuln-mgmt"), cisa("cisa-protection"), cism("cism-risk"), crisc("crisc-risk-assessment"), ai("aiplus-security", "aiplus-infrastructure")),
+  "llm-04": combine(sp("threats-vulns", "general-security"), cc("security-principles"), cy("cysa-vuln-mgmt"), cisa("cisa-protection"), cism("cism-risk"), crisc("crisc-risk-assessment"), ai("aiplus-security", "aiplus-data")),
+  "llm-05": combine(sp("threats-vulns", "general-security"), cc("security-principles"), cy("cysa-vuln-mgmt"), cisa("cisa-protection"), cism("cism-risk"), crisc("crisc-risk-assessment"), ai("aiplus-security", "aiplus-concepts")),
+  "llm-06": combine(sp("threats-vulns", "general-security"), cc("security-principles"), cy("cysa-vuln-mgmt"), cisa("cisa-protection"), cism("cism-risk"), crisc("crisc-risk-assessment"), ai("aiplus-security", "aiplus-concepts")),
+  "llm-07": combine(sp("threats-vulns", "general-security"), cc("security-principles"), cy("cysa-vuln-mgmt"), cisa("cisa-protection"), cism("cism-risk"), crisc("crisc-risk-assessment"), ai("aiplus-security", "aiplus-concepts")),
+  "llm-08": combine(sp("threats-vulns", "general-security"), cc("security-principles"), cy("cysa-vuln-mgmt"), cisa("cisa-protection"), cism("cism-risk"), crisc("crisc-risk-assessment"), ai("aiplus-security", "aiplus-infrastructure")),
+  "llm-09": combine(sp("threats-vulns", "general-security"), cc("security-principles"), cy("cysa-vuln-mgmt"), cisa("cisa-protection"), cism("cism-risk"), crisc("crisc-risk-assessment"), ai("aiplus-security", "aiplus-concepts")),
+  "llm-10": combine(sp("threats-vulns", "general-security"), cc("security-principles"), cy("cysa-vuln-mgmt"), cisa("cisa-protection"), cism("cism-risk"), crisc("crisc-risk-assessment"), ai("aiplus-security", "aiplus-infrastructure")),
+  "llm-11": combine(sp("threats-vulns", "general-security"), cc("security-principles"), cy("cysa-vuln-mgmt"), cisa("cisa-protection"), cism("cism-risk"), crisc("crisc-risk-assessment"), ai("aiplus-security")),
+  "llm-12": combine(sp("threats-vulns", "general-security"), cc("security-principles"), cy("cysa-vuln-mgmt"), cisa("cisa-protection"), cism("cism-risk"), crisc("crisc-risk-assessment"), ai("aiplus-security", "aiplus-infrastructure")),
 
   // ── quantum-1 (quantum-01 → quantum-10) — quantum threat landscape ────────────
   "quantum-01": combine(sp("cryptography"), cc("security-principles"), cisa("cisa-protection"), cism("cism-risk"), crisc("crisc-it-security")),
@@ -407,6 +424,25 @@ export const CERT_DOMAINS: Record<string, CertDomain[]> = {
   "quantum-c08": combine(sp("cryptography", "security-architecture"), cc("security-principles"), cisa("cisa-protection"), cism("cism-program"), crisc("crisc-it-security")),
   "quantum-c09": combine(sp("cryptography", "security-architecture"), cc("security-principles"), cisa("cisa-protection"), cism("cism-program"), crisc("crisc-it-security")),
   "quantum-c10": combine(sp("cryptography", "security-architecture"), cc("security-principles"), cisa("cisa-protection"), cism("cism-program"), crisc("crisc-it-security")),
+
+  // ── CompTIA AI+ mappings (quantum epochs only — atlas/llm/m42/m43/m50 extended inline above) ──
+  // Quantum epochs — PQC and QKD protect AI infrastructure and model data at rest/in transit
+  "quantum-t01": ai("aiplus-security", "aiplus-concepts"), "quantum-t02": ai("aiplus-security", "aiplus-concepts"),
+  "quantum-t03": ai("aiplus-security", "aiplus-concepts"), "quantum-t04": ai("aiplus-security", "aiplus-concepts"),
+  "quantum-t05": ai("aiplus-security", "aiplus-concepts"), "quantum-t06": ai("aiplus-security", "aiplus-concepts"),
+  "quantum-t07": ai("aiplus-security", "aiplus-concepts"), "quantum-t08": ai("aiplus-security", "aiplus-concepts"),
+  "quantum-t09": ai("aiplus-security", "aiplus-concepts"), "quantum-t10": ai("aiplus-security", "aiplus-concepts"),
+  "quantum-p01": ai("aiplus-security", "aiplus-infrastructure"), "quantum-p02": ai("aiplus-security", "aiplus-infrastructure"),
+  "quantum-p03": ai("aiplus-security", "aiplus-infrastructure"), "quantum-p04": ai("aiplus-security", "aiplus-infrastructure"),
+  "quantum-p05": ai("aiplus-security", "aiplus-infrastructure"), "quantum-p06": ai("aiplus-security", "aiplus-infrastructure"),
+  "quantum-p07": ai("aiplus-security", "aiplus-infrastructure"), "quantum-p08": ai("aiplus-security", "aiplus-infrastructure"),
+  "quantum-p09": ai("aiplus-security", "aiplus-infrastructure"), "quantum-p10": ai("aiplus-security", "aiplus-infrastructure"),
+  "quantum-q01": ai("aiplus-security", "aiplus-infrastructure"), "quantum-q02": ai("aiplus-security", "aiplus-infrastructure"),
+  "quantum-q03": ai("aiplus-security", "aiplus-infrastructure"), "quantum-q04": ai("aiplus-security", "aiplus-infrastructure"),
+  "quantum-q05": ai("aiplus-security", "aiplus-infrastructure"), "quantum-q06": ai("aiplus-security", "aiplus-infrastructure"),
+  "quantum-q07": ai("aiplus-security", "aiplus-infrastructure"), "quantum-q08": ai("aiplus-security", "aiplus-infrastructure"),
+  "quantum-q09": ai("aiplus-security", "aiplus-infrastructure"), "quantum-q10": ai("aiplus-security", "aiplus-infrastructure"),
+
 };
 
 // ─── Lookup helpers ────────────────────────────────────────────────────────────
@@ -429,6 +465,7 @@ export function getDomainsForCert(certId: CertId): CertDomainDef[] {
   if (certId === "isaca-cisa") return CISA_DOMAINS;
   if (certId === "isaca-cism") return CISM_DOMAINS;
   if (certId === "isaca-crisc") return CRISC_DOMAINS;
+  if (certId === "comptia-aiplus") return AIPLUS_DOMAINS;
   return [];
 }
 
