@@ -208,7 +208,7 @@ export default function EpochPage() {
             <span className="text-xl flex-shrink-0">📜</span>
             <div className="flex-1 min-w-0">
               <p className="text-indigo-300 font-semibold text-sm">Certificate Paths</p>
-              <p className="text-gray-500 text-xs">These stages map to CompTIA Security+ and ISC² CC exam domains →</p>
+              <p className="text-gray-500 text-xs">These stages map to Network+, Security+, ISC² CC, and CySA+ exam domains →</p>
             </div>
             <span className="text-indigo-600 group-hover:text-indigo-400 text-sm flex-shrink-0 transition-colors">→</span>
           </Link>

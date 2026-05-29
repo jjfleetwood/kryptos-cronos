@@ -272,7 +272,7 @@ export default function StagesPage() {
           <span className="text-xl flex-shrink-0">🎓</span>
           <div className="flex-1 min-w-0">
             <p className="text-indigo-300 font-semibold text-sm">Certificate Paths</p>
-            <p className="text-gray-500 text-xs">Track your readiness for CompTIA Security+ and ISC² CC →</p>
+            <p className="text-gray-500 text-xs">Track your readiness for Network+, Security+, ISC² CC, and CySA+ →</p>
           </div>
           <span className="text-indigo-600 group-hover:text-indigo-400 text-sm flex-shrink-0 transition-colors">→</span>
         </Link>
