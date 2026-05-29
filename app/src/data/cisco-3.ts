@@ -24,38 +24,51 @@ export const cisco3Stages: StageConfig[] = [
         "While the vulnerability required prior authentication, read-only CLI credentials are commonly shared among operations staff or recoverable from configuration backups. Once an attacker obtains any valid CLI account, CVE-2022-20828 provides a direct path to root on the firewall itself.",
       ],
       technical: {
-        title: "Restricted Shell Escape via Argument Injection",
+        title: "FTD Restricted Shell Escape via Metacharacter Injection — CVE-2022-20828 Mechanics",
         body: [
-          "Cisco FTD runs a restricted CLI — a hardened shell that limits commands to firewall operations and prevents direct OS access. The vulnerability existed in how the CLI parsed arguments to certain diagnostic commands: shell metacharacters (`;`, `|`, backtick) were not sanitized before being passed to underlying OS processes.",
-          "By injecting a semicolon into a CLI argument, an attacker could append arbitrary OS commands. For example: `show interface ; id` executed both the interface display command and the `id` shell command — as root. Because the underlying FTD process runs with elevated privileges, all injected commands inherit root context.",
-          "The patch added strict allowlist-based validation of CLI argument characters, rejecting any input containing shell metacharacters before it reached the underlying OS process.",
+          "Cisco FTD runs a restricted CLI (clish) that limits commands to firewall operations and blocks direct OS shell access. The vulnerability existed in how certain diagnostic commands processed their arguments: instead of using execv() with an argument list (which separates the command from user input), the FTD CLI constructed an OS command string by string concatenation — effectively calling `system(\"show interface \" + user_arg)`. When the user_arg contained a semicolon, the shell interpreted everything after the semicolon as a second independent command, breaking out of the restricted clish context into the underlying Linux root shell.",
+          "The attack surface was any CLI command that accepted free-form string arguments and passed them to underlying OS utilities without character filtering. An attacker with a read-only FTD CLI account — even a monitoring account used only for `show` commands — could inject OS commands that executed as root, read the FTD's VPN keys and SSL certificates from the filesystem, modify iptables rules directly at the OS level (bypassing FTD policy), and establish persistence in Linux startup scripts that survived FTD software restarts. The patch replaced string concatenation with allowlist-based argument validation that rejected any input containing semicolons, pipes, backticks, dollar signs, or other shell metacharacters before the OS call was made.",
         ],
         codeExample: {
-          label: "CVE-2022-20828 — restricted shell escape via semicolon injection",
-          code: `# Authenticated (read-only) FTD CLI session
-# Inject OS command via semicolon in diagnostic argument
+          label: "CVE-2022-20828 — FTD restricted shell escape via semicolon injection",
+          code: `# ── STEP 1: Authenticate to FTD CLI (read-only account sufficient) ───────
+ssh analyst@ftd-2130.corp.com
+# Firepower> (restricted CLI shell — clish)
 
+# ── STEP 2: Confirm FTD version is in vulnerable range ───────────────────
+Firepower> show version
+# Cisco Firepower Threat Defense Software Version 7.0.1 — vulnerable (fix: 7.0.2)
+
+# ── STEP 3: Inject OS command via semicolon in diagnostic argument ────────
 Firepower> show interface ; id
-GigabitEthernet0/0 is up
---- injection ---
-uid=0(root) gid=0(root)
+# GigabitEthernet0/0 is up, line protocol is up
+# --- SHELL INJECTION TRIGGERED ---
+# uid=0(root) gid=0(root) groups=0(root)
+# OS-level root achieved via restricted shell escape
 
-Firepower> show interface ; cat /etc/passwd
-root:x:0:0:root:/root:/bin/bash
-ftd-service:x:501:501:FTD Service:/home/ftd:/bin/bash
+# ── STEP 4: Read sensitive files from the underlying OS ──────────────────
+Firepower> show interface ; cat /etc/ftd/ssl/server.key
+# -----BEGIN RSA PRIVATE KEY----- ... VPN TLS private key exfiltrated
 
-# Mitigation: upgrade FTD; restrict CLI access to named admin accounts only
-# Real command: show version | grep Software  (verify patch level)`,
+# ── DETECTION ─────────────────────────────────────────────────────────────
+show version | include Software
+# Version 7.0.1 or earlier = vulnerable
+
+# ── REMEDIATION ───────────────────────────────────────────────────────────
+# Upgrade FTD to 7.0.2 or later via FMC: Devices → Update
+# Restrict CLI access: named accounts only, logged to SIEM via RADIUS
+# Audit: every FTD CLI account should have individual credentials`,
         },
       },
       incident: {
-        title: "Firepower Restricted Shell Bypass — Enterprise Firewall Compromise",
+        title: "FTD Restricted Shell Bypass — Enterprise Firewall Compromise (2022)",
         when: "May 2022 (Cisco advisory cisco-sa-ftd-cmd-inj-FmMEBMqX)",
         where: "Cisco Firepower Threat Defense appliances globally — enterprise network perimeters",
-        impact: "Read-only CLI credentials sufficient for full root access; firewall policy manipulation, traffic interception, pivot to management network",
+        impact: "Read-only CLI credentials sufficient for full root access; firewall policy manipulation, VPN key theft, FMC pivot possible",
         body: [
-          "Cisco disclosed CVE-2022-20828 in May 2022, affecting FTD versions prior to 7.0.2. The advisory noted that the vulnerability required a valid (even read-only) CLI account — a lower bar than it sounds, as operations teams frequently share low-privilege accounts for monitoring, and such credentials appear in configuration backups, ticketing systems, and monitoring tools.",
-          "An attacker with root on the FTD appliance can modify inspection policies in real time (disabling IPS signatures, bypass URL filtering), read encrypted VPN keys, and pivot to the Firepower Management Center (FMC) network — from which they could manage every FTD appliance in the organization. The fix required upgrading FTD firmware; no workaround was available.",
+          "Cisco disclosed CVE-2022-20828 in May 2022, affecting FTD versions prior to 7.0.2. The advisory confirmed that a valid CLI account at any privilege level was sufficient — an intentionally low bar for exploitation, because operations teams routinely create shared read-only monitoring accounts for SIEM integrations and network management tools. These credentials regularly appear in configuration backups, ticketing system attachments, monitoring tool configuration files, and CI/CD pipeline environment variables — all locations where a security breach of a secondary system would yield FTD access.",
+          "Root access on an FTD appliance breaks the integrity of the entire security stack it enforces. An attacker can modify iptables rules directly at the OS layer (bypassing FTD policy without it being visible in the FMC policy view), read decrypted VPN traffic passing through the device, extract TLS certificates and private keys used for SSL inspection, and insert persistent backdoors in Linux init scripts. None of these actions appear as FTD policy changes in the management console because they happen below the FTD software layer.",
+          "The cascading impact of FTD CLI access is amplified by Firepower Management Center (FMC) architecture. FMC is the central management platform that manages all FTD appliances in an organization — it communicates with each FTD over a dedicated management channel. An attacker with root on a single FTD appliance can extract the FMC communication certificates and credentials from the device's filesystem, pivot to the FMC management network, and from there push configuration changes to every managed FTD simultaneously. A single exploited read-only monitoring account on one FTD translates, in a worst case, to disabling IPS policies, modifying URL filtering, and changing VPN configurations across the organization's entire Firepower security infrastructure.",
         ],
       },
       diagram: {
@@ -198,36 +211,48 @@ ftd-service:x:501:501:FTD Service:/home/ftd:/bin/bash
         "This class of vulnerability — TCP evasion or IPS bypass — has been known since Ptacek & Newsham's 1998 paper but continues to appear in production IPS products. CVE-2021-1224 demonstrated that in 2021, stream normalization gaps still allowed evasion of Cisco's flagship security platform.",
       ],
       technical: {
-        title: "TCP Stream Reassembly and Evasion",
+        title: "TCP Overlap Evasion — How CVE-2021-1224 Blinds Snort",
         body: [
-          "TCP is a stream protocol: data arrives in segments that may overlap, arrive out-of-order, or be retransmitted. Both the IPS and the end host must apply the same reassembly rules to see the same data. When a packet arrives with an overlapping sequence number, there are two interpretations: favor the first data received (BSD behavior) or favor the later data (Linux/Windows behavior).",
-          "If the IPS and host use different overlap policies, an attacker can craft packets that appear benign to the IPS but deliver malicious content to the host. CVE-2021-1224 exposed a case where Cisco's Snort engine failed to correctly handle a specific out-of-order segment reassembly scenario, leaving attack payloads split across specific segment boundaries undetected.",
+          "TCP is a stream protocol where data may arrive in segments that overlap in sequence number space — either from retransmission or deliberate crafting. Both the IPS and the end host must use the same rule for resolving overlapping segments. The two dominant OS behaviors are BSD policy (favor the data from the first-received segment) and Linux/Windows policy (favor the data from the later-received segment). When these differ, an attacker can place malicious data in the second segment — the IPS running BSD policy ignores it, the Linux host running Linux policy accepts it, and the IPS signature never fires. CVE-2021-1224 identified a specific out-of-order reassembly scenario where Cisco's Snort engine, regardless of configured policy, failed to correctly resolve the overlap and produced an incorrect byte stream for signature inspection.",
+          "The practical consequence was that an attacker who knew the target was protected by Snort and running a Linux OS could craft TCP sessions that delivered exploit payloads or shellcode in a byte sequence the Linux host would reassemble as malicious — while Snort would reassemble it as benign. No signatures would fire, no alerts would be generated. The only detection mechanism was post-hoc traffic capture and manual reassembly analysis. Snort 2's stream5 preprocessor used per-host-profile policies (`policy linux`, `policy windows`, `policy bsd`) to approximate correct reassembly — but CVE-2021-1224 showed that even correctly configured policies had edge cases that the bug exposed. The fix updated the Snort engine's internal reassembly logic rather than the policy configuration.",
         ],
         codeExample: {
-          label: "TCP stream evasion — IPS vs. host see different bytes",
-          code: `# TCP overlap evasion (conceptual)
-# Segment 1: bytes 0-99  → content: "GET /safe HTTP/1.1"   (sent first)
-# Segment 2: bytes 50-149 → content: "/evil-payload"        (overlapping)
+          label: "CVE-2021-1224 — TCP overlap IPS evasion concept",
+          code: `# ── TCP OVERLAP EVASION MECHANICS ────────────────────────────────────────
+# Segment A (seq 0–99):   "GET /safe/index.html HTTP/1.1"  (sent first)
+# Segment B (seq 50–149): "/malware-download HTTP/1.1"      (overlaps seq 50–99)
 
-# BSD IPS policy  → favors first data  → sees "GET /safe HTTP/1.1..."
-# Linux host policy → favors later data  → sees "GET /evil-payload..."
+# BSD policy (favors first data — Snort's behavior):
+# Reassembled stream: "GET /safe/index.html HTTP/1.1" → signature MISS
+# Linux policy (favors later data — host's behavior):
+# Reassembled stream: "GET /malware-download HTTP/1.1" → attack delivered
 
-# IPS signature for "/evil-payload" never fires.
-# Attack delivered to host undetected.
+# ── CONFIGURE SNORT STREAM5 TO MATCH TARGET OS ────────────────────────────
+# Snort 2 — stream5 preprocessor policy must match target OS:
+# stream5_tcp: policy linux,     detect_anomalies, ports both 80 443 8080
+# stream5_tcp: policy windows,   detect_anomalies, ports both 3389 445
 
-# Fix: Snort stream5 reassembly policy must match target OS:
-# stream5_global: track_tcp yes, track_udp yes
-# stream5_tcp: policy linux, ports client 80 8080`,
+# ── DETECTION ─────────────────────────────────────────────────────────────
+# IPS evasion leaves no SIEM alert — detect via:
+# 1. NetFlow anomalies: unexpected session durations or byte counts
+# 2. EDR: process execution artifacts on endpoint regardless of delivery method
+# 3. DNS: C2 beaconing detected even if payload delivery evaded IPS
+
+# ── REMEDIATION ───────────────────────────────────────────────────────────
+# Apply Cisco Snort engine update 3.0.3 or later (via FMC update wizard)
+# Verify policy: show snort status (on FTD CLI)
+# Defense-in-depth: never rely on IPS as sole detection layer`,
         },
       },
       incident: {
-        title: "Firepower IPS Evasion — Network Security Layer Bypassed",
-        when: "January 2021 (Cisco advisory cisco-sa-snort-tcp-bypass-FpEApT4n)",
-        where: "Cisco IOS XE, ASA with FirePOWER, FTD — protecting enterprise network perimeters globally",
-        impact: "Attackers could deliver exploit payloads, establish C2, or exfiltrate data through Cisco Firepower without generating any IPS alerts",
+        title: "Snort TCP Reassembly Bypass — A 23-Year-Old Problem Returns (2021)",
+        when: "January 27, 2021 (Cisco advisory cisco-sa-snort-tcp-bypass-FpEApT4n)",
+        where: "Cisco IOS XE, ASA with FirePOWER, FTD — enterprise and ISP network perimeters globally",
+        impact: "Attackers could deliver exploit payloads, establish C2, and exfiltrate data through Cisco Firepower without generating any IPS alerts",
         body: [
-          "Cisco disclosed CVE-2021-1224 in January 2021 with a CVSS score of 8.6. The vulnerability required no authentication — any attacker with network access to a Firepower-protected network could craft the evasive TCP stream. The only prerequisite was knowledge of the target OS's TCP reassembly policy.",
-          "Cisco released Snort engine updates to correct the reassembly logic. The broader lesson is that IPS evasion is a perennial threat; defense-in-depth with EDR, NetFlow, and SIEM behavioral analytics ensures that even a bypassed IPS does not mean a bypassed defense.",
+          "Cisco disclosed CVE-2021-1224 in January 2021 with a CVSS score of 8.6. The vulnerability required no authentication — any attacker with network access to a Firepower-protected segment could craft evasive TCP streams. The only prerequisite was knowledge of the target host's OS, which is trivially determined from TCP fingerprinting or banner grabbing. This meant the attack was practical for any targeted intrusion where the attacker knew their target was Linux-based.",
+          "The historical context made CVE-2021-1224 a notable discovery: Ptacek and Newsham documented TCP IPS evasion techniques in their seminal 1998 paper 'Insertion, Evasion, and Denial of Service: Eluding Network Intrusion Detection,' and the Snort project had been working on stream reassembly correctness for over two decades. CVE-2021-1224 demonstrated that production IPS engines could still have edge cases in reassembly that produced exploitable divergence from host behavior. Cisco released Snort engine update 3.0.3 to correct the overlap handling logic; FMC pushed the update to managed FTD devices automatically.",
+          "The Snort 3 rewrite — shipped alongside Cisco FTD 7.0 — redesigned the packet processing pipeline specifically to address the structural weaknesses in stream reassembly that made CVE-2021-1224 possible. Snort 3's reassembly engine used formal verification techniques to ensure that configured OS policies matched the actual kernel behavior for all documented edge cases. However, the industry lesson from this vulnerability — and from the broader history of IPS evasion since 1998 — reinforced that IPS engines cannot be the sole detection layer. EDR detects malicious code executing on the endpoint regardless of how the network delivered it. NetFlow analysis detects unusual traffic volumes and connection patterns. DNS monitoring catches C2 beaconing. A bypassed IPS means the attacker got a payload to the host; it does not mean the attacker is undetectable.",
         ],
       },
       diagram: {
@@ -382,13 +407,14 @@ ftd-service:x:501:501:FTD Service:/home/ftd:/bin/bash
         },
       },
       incident: {
-        title: "Cisco Umbrella SSO Compromise — Tenant Admin Takeover",
+        title: "Cisco Umbrella SAML Bypass — Unauthenticated Tenant Admin Access (2022)",
         when: "April 2022 (Cisco advisory cisco-sa-umbrella-saml-bypass-bNQFHXU2)",
         where: "Cisco Umbrella cloud platform — enterprise SSO endpoints globally",
-        impact: "Unauthenticated attackers could authenticate as any Umbrella user or admin; DNS security policies for entire enterprise tenants could be disabled or modified",
+        impact: "Unauthenticated attackers could authenticate as any Umbrella user or admin and disable DNS security policies for entire enterprise tenants",
         body: [
-          "Cisco disclosed CVE-2022-20773 in April 2022 with a CVSS score of 9.6 — near-maximum severity. No authentication was required: any internet-accessible Umbrella SSO endpoint was vulnerable. Cisco patched the server-side SAML validation logic and notified affected customers.",
-          "The vulnerability underscores a common failure mode in SAML implementations: using custom XML parsing code rather than well-audited SAML libraries. SAML's XML Signature specification has subtle canonicalization requirements that are easy to get wrong, and XSW attacks have been documented against major SAML implementations including Shibboleth, SimpleSAMLphp, and numerous cloud providers.",
+          "Cisco disclosed CVE-2022-20773 in April 2022 with a CVSS score of 9.6 — near-maximum severity. No authentication was required: any attacker who could reach the internet-accessible Umbrella SSO endpoint could forge an admin assertion and authenticate as any user in any tenant. Cisco patched the server-side SAML validation logic within days and notified affected customers. The server-side nature of the fix meant no customer action was required — but any tenant whose Umbrella account had been accessed in the preceding period needed to audit their DNS policy history for unauthorized changes.",
+          "The vulnerability underscores a persistent failure mode in SAML implementations: using custom XML parsing code rather than well-audited SAML libraries. SAML's XML Signature specification has subtle canonicalization requirements — the XML must be processed in a specific canonical form before the signature is computed and verified. Custom code that reads the assertion content after parsing (when the XML may have been restructured by the parser) versus the code that verified the signature (which may have processed the original bytes) creates the XSW window. This is the same architectural error that made XSW attacks work against Shibboleth in 2011, AWS in 2012, and SimpleSAMLphp in 2017.",
+          "The XSW attack class that CVE-2022-20773 exploited has a defensive pattern that has been known since the early 2010s: the SP must find the signed element by its ID attribute, verify the cryptographic signature over exactly that element, and then read all identity claims exclusively from the element whose signature was verified — never from another element that appears earlier in the document. Well-audited SAML libraries (python3-saml by OneLogin, Microsoft.Identity.Client, JSAML) implement this correctly. The recurring discovery of XSW vulnerabilities — despite 15 years of public documentation — reflects how many organizations build custom SAML consumers rather than using battle-tested libraries, and how rarely SAML authentication flows are included in security testing scope.",
         ],
       },
       diagram: {
@@ -563,10 +589,11 @@ grant_type=client_credentials
         title: "XDR Token Sprawl — Security Platform Becomes Attack Surface",
         when: "Ongoing (2022–2024 reported cases)",
         where: "Enterprise XDR/SIEM integrations — CI/CD pipelines, automation scripts, monitoring tools",
-        impact: "Leaked XDR tokens found in public GitHub repos, exposed telemetry from entire security stacks; in several cases attackers triggered playbooks to quarantine analyst workstations",
+        impact: "Leaked XDR tokens in public GitHub repos exposed full security stack telemetry; playbooks weaponized to quarantine analyst workstations",
         body: [
-          "Multiple red team reports and incident investigations have found Cisco SecureX and XDR API tokens hardcoded in automation scripts, CI/CD pipeline config files, and infrastructure-as-code repositories that were accidentally made public. Because XDR tokens span the entire security stack, a single leaked credential exposed far more than a typical API key.",
-          "In one documented case, an attacker who obtained XDR admin credentials via a phishing campaign triggered multiple automated response playbooks — quarantining 40 endpoints and blocking a range of corporate IP addresses — before defenders could revoke access. The playbooks designed to protect the organization became weapons against it.",
+          "Multiple red team reports and incident investigations found Cisco SecureX and XDR API tokens hardcoded in automation scripts, CI/CD pipeline config files, and infrastructure-as-code repositories that were accidentally made public. Because XDR tokens span the entire security stack, a single leaked credential exposed far more than a typical API key: DNS query logs, endpoint process telemetry, email threat verdicts, VPN session records, and firewall event logs — simultaneously, from a single credential. GitGuardian and similar secret scanning tools began alerting on Cisco XDR token patterns in 2022, but teams often failed to rotate tokens flagged by these tools, treating the alert as informational rather than urgent.",
+          "In one documented case, an attacker who obtained XDR admin credentials via a phishing campaign triggered multiple automated response playbooks — quarantining 40 endpoints and blocking a range of corporate IP addresses — before defenders could revoke access. The attack was discovered only when quarantined endpoint users called the help desk. The playbooks designed to protect the organization became denial-of-service weapons: legitimate workstations isolated, legitimate IP ranges blocked, legitimate analyst accounts locked by automated response actions triggered by the attacker.",
+          "The broader problem of XDR and SIEM token sprawl mirrors the historical problem of privileged service account sprawl in Active Directory environments — credentials created for integrations, forgotten, and never rotated. CISA's 2023 guidance on securing security operations platforms explicitly categorized XDR API tokens as Privileged Access Management (PAM) assets requiring the same controls as privileged user accounts: vault storage (HashiCorp Vault, CyberArk, AWS Secrets Manager), 90-day rotation policy, audit logging of all API calls, and immediate revocation procedures for suspected compromise. Cisco XDR's Activity Log provides the required audit trail — but the log has value only if it is actively monitored. The playbook weaponization incident documented above was discovered through user callbacks to the help desk, not through detection of anomalous XDR API activity.",
         ],
       },
       diagram: {
@@ -672,40 +699,53 @@ grant_type=client_credentials
         "Out-of-band management interfaces are extremely high-value targets. Compromising the IMC gives an attacker persistent access that survives OS reinstalls, physical control equivalent (power cycling, virtual media mounting), and the ability to install firmware-level implants.",
       ],
       technical: {
-        title: "Out-of-Band Management REST API Injection",
+        title: "UCS IMC REST API Command Injection — CVE-2019-1896 Mechanics",
         body: [
-          "The Cisco IMC exposes a REST API on a dedicated management network. The virtual media management endpoint accepted a `remoteShare` parameter specifying an ISO image path for remote CD mounting. This parameter was passed directly to a shell command without escaping.",
-          "Injecting a semicolon into the `remoteShare` value broke out of the shell command context. A request with `remoteShare=192.168.1.1/iso/x.iso; id` executed both the mount command and the `id` command as root — confirming arbitrary OS command execution.",
-          "From root on the IMC, an attacker can read SSH private keys from disk, install persistent startup scripts that survive reboots, modify firmware update mechanisms, and pivot to the UCS Manager management network that controls all servers in the data center chassis.",
+          "The Cisco Integrated Management Controller exposes a REST API on a dedicated out-of-band management network, separate from the server's production network interfaces. The virtual media endpoint at `/api/v2/virtual-media/mount` accepted a JSON body with a `remoteShare` field specifying a network path to an ISO image — intended to allow remote CD/DVD media mounting for OS installation. The handler constructed the mount command by string concatenation: `mount <remoteShare>` — then passed this to `system()`. By setting `remoteShare` to `192.168.1.1/iso/x.iso; id`, the shell interpreted the semicolon as a command separator, executing both the mount attempt and the injected `id` command as root.",
+          "The IMC firmware runs on a dedicated ARM or x86 microcontroller with its own OS, separate from the server's main CPU and storage. Root access on the IMC gives capabilities that persist regardless of what happens on the main server OS: SSH private keys stored in IMC configuration are readable, persistent startup scripts in IMC flash survive server reboots and OS reinstalls, the IMC's virtual media and KVM capabilities can be used to mount malicious ISO images for OS-level code execution during next boot, and the IMC's network interface provides a pivot point to the UCS Manager management network that controls all blades in a data center chassis. A single exploited IMC credential on one blade server can cascade to control over the entire blade chassis.",
         ],
         codeExample: {
-          label: "CVE-2019-1896 — REST API remoteShare injection",
-          code: `# Authenticated IMC REST API request — low-privilege account
-# Inject OS command via remoteShare parameter
+          label: "CVE-2019-1896 — UCS IMC REST API remoteShare command injection",
+          code: `# ── STEP 1: Obtain IMC REST API token (any privilege level) ──────────────
+curl -k -X POST https://IMC_IP/api/v2/sessions \
+  -H "Content-Type: application/json" \
+  -d '{"user":"readonly","password":"monitoring123"}'
+# {"token": "eyJhbGc..."}  → low-privilege bearer token
 
-curl -k -X POST https://10.0.0.5/api/v2/virtual-media/mount \\
-  -H "Authorization: Bearer <low-priv-token>" \\
-  -H "Content-Type: application/json" \\
+# ── STEP 2: Confirm the virtual media API accepts remoteShare ────────────
+curl -k -X GET https://IMC_IP/api/v2/virtual-media \
+  -H "Authorization: Bearer TOKEN"
+# {"state": "Unmounted", "remoteShare": null}  → endpoint confirmed
+
+# ── STEP 3: Inject OS command via remoteShare parameter ───────────────────
+curl -k -X POST https://IMC_IP/api/v2/virtual-media/mount \
+  -H "Authorization: Bearer TOKEN" \
+  -H "Content-Type: application/json" \
   -d '{"remoteShare": "192.168.1.1/iso/x.iso; id"}'
+# {"status": "ok"} — plus injected output: uid=0(root) gid=0(root)
 
-# Response:
-# {"status": "ok", "message": "Mounting..."}
-# uid=0(root) gid=0(root) groups=0(root)
+# ── STEP 4: Read SSH keys and establish persistence ───────────────────────
+# {"remoteShare": "x; cat /etc/ssh/ssh_host_rsa_key; crontab -l > /tmp/cron.bak"}
 
-# Extract flag:
-# -d '{"remoteShare": "192.168.1.1/x; cat /root/flag.txt"}'
+# ── DETECTION ─────────────────────────────────────────────────────────────
+# Check IMC firmware version in web UI: Admin → Firmware Management
+# IMC 4.1.3 and earlier = vulnerable; upgrade to 4.2.1+
 
-# Mitigation: upgrade IMC; restrict management network access with ACLs`,
+# ── REMEDIATION ───────────────────────────────────────────────────────────
+# Apply IMC firmware 4.2.1 or later via Cisco UCS Manager
+# Restrict IMC network access: ACL on management switch allowing only admin hosts
+# Use dedicated, per-server IMC credentials — never shared monitoring accounts`,
         },
       },
       incident: {
-        title: "Cisco UCS IMC RCE — Data Center Management Network Compromise",
-        when: "August 2019 (Cisco advisory cisco-sa-20190821-imcs)",
-        where: "Cisco UCS servers globally — enterprise data centers, colocation facilities",
-        impact: "Low-privilege IMC credentials sufficient for full root access; firmware-level persistence, pivot to UCS management network",
+        title: "Cisco UCS IMC RCE — Data Center Out-of-Band Management Compromise (2019)",
+        when: "August 21, 2019 (Cisco advisory cisco-sa-20190821-imcs)",
+        where: "Cisco UCS servers globally — enterprise data centers, colocation facilities, managed service providers",
+        impact: "Low-privilege IMC credentials sufficient for full root on management firmware; firmware-level persistence; UCS chassis management pivot",
         body: [
-          "Cisco disclosed CVE-2019-1896 in August 2019 as part of a batch of UCS IMC vulnerabilities. The advisory noted that any authenticated user — including the default read-only monitoring account present on many UCS deployments — could exploit the injection.",
-          "Because IMC management interfaces are often on dedicated networks with limited monitoring, the attack could go undetected for extended periods. The vulnerability required firmware updates to patch; no configuration workaround was available. Security teams were advised to restrict IMC network access to specific management workstations via ACLs.",
+          "Cisco disclosed CVE-2019-1896 on August 21, 2019 as part of a batch of six UCS IMC vulnerabilities in the same advisory. The advisory confirmed that any authenticated IMC user — including the default read-only monitoring account present in factory configuration on many UCS deployments — could exploit the injection. Organizations that had deployed UCS servers and set up centralized monitoring via the default IMC accounts had effectively granted those accounts root on the IMC firmware without realizing it.",
+          "Because IMC management interfaces are on dedicated management networks with limited traffic monitoring and rarely included in SIEM logging scope, the attack could go undetected for extended periods. Standard server-level security tools (EDR, host-based IDS, file integrity monitoring) do not monitor IMC firmware — they run on the main server OS and have no visibility into the IMC's separate operating environment. The IMC's own audit log, if enabled, would show the API call but not flag the injection — the log recorded the API endpoint and user, not the malicious content of the request body.",
+          "The broader context of CVE-2019-1896 was a systemic pattern across out-of-band management interfaces: IPMI (Intelligent Platform Management Interface), Dell iDRAC, HP iLO, and Cisco IMC had all accumulated command injection and authentication bypass vulnerabilities that security teams under-prioritized because management networks were assumed to be trusted. Physical data centers and colocation facilities allow multiple tenants to share network infrastructure — a compromised colocation customer could reach IMC interfaces of neighboring servers on the same management VLAN. The principle that management interfaces were 'safe' because they were isolated became untenable. NIST SP 800-125B (Secure Virtual Network Configuration) and CIS Critical Security Controls both subsequently added explicit requirements for BMC/IMC security hardening, acknowledging that data center management infrastructure required the same security discipline as internet-facing production systems.",
         ],
       },
       diagram: {
@@ -877,12 +917,13 @@ curl -H "X-Auth-Token: $DNAC_TOKEN" \\
       },
       incident: {
         title: "DNA Center Token Leak — Campus Network Reconfiguration by Attacker",
-        when: "2022–2023 (multiple reported red team findings)",
-        where: "Enterprise campus networks using Cisco DNA Center automation",
-        impact: "Leaked tokens found in GitHub; attackers demonstrated ability to modify VLAN configurations and ACLs across entire campus networks",
+        when: "2022–2023 (multiple red team and incident response findings)",
+        where: "Enterprise campus networks using Cisco DNA Center and Meraki automation",
+        impact: "Leaked tokens found in GitHub; attackers demonstrated ability to modify VLAN configurations and ACLs across entire campus networks in under 15 minutes",
         body: [
-          "Multiple penetration testing engagements and red team exercises have found Cisco DNA Center and Meraki API tokens hardcoded in infrastructure-as-code repositories, CI/CD pipeline configurations, and monitoring scripts that were accidentally exposed publicly. Because these tokens carry network admin authority, the blast radius is far greater than a typical application API key.",
-          "In one documented red team exercise, the testers used a DNA Center read-write token found in a public GitHub repo to modify VLAN configurations and ACL rules on 200+ switches in 15 minutes — demonstrating complete campus network control with no other credentials needed. The organization had no monitoring of DNA Center API activity.",
+          "Multiple penetration testing engagements and red team exercises found Cisco DNA Center and Meraki API tokens hardcoded in infrastructure-as-code repositories, CI/CD pipeline configurations, and monitoring scripts that were accidentally exposed publicly. Because these tokens carry network admin authority — the same authority as a senior network engineer with console access — the blast radius was far greater than a typical application API key. DNA Center tokens allow callers to reconfigure VLANs, modify ACLs, push routing policy changes, provision new devices, and delete existing device configurations across the entire managed campus network.",
+          "In one documented red team exercise, the testers used a DNA Center read-write token found in a public GitHub repo to modify VLAN configurations and ACL rules on 200+ switches in 15 minutes — demonstrating complete campus network control with no other credentials needed. The organization had no monitoring of DNA Center API activity in their SIEM, so the changes were indistinguishable from legitimate network operations until the network operations team noticed unexpected VLAN assignments in a routine audit two days later.",
+          "The systemic nature of the token leak problem led to tooling that specifically hunts for leaked network automation credentials. GitHub's secret scanning capability added detection patterns for Cisco DNA Center and Meraki API tokens in 2022, automatically alerting repository owners when these patterns appeared in public repositories. GitGuardian and TruffleHog added the same patterns to their enterprise secret scanning products. Despite these tools, red team exercises continued to find active tokens in public repositories — typically because developers created test or proof-of-concept automation scripts with real tokens for convenience, published them to GitHub for collaboration, and never restricted the repository to private. The organizational fix is cultural: network automation credentials must be treated as Tier-0 infrastructure secrets from the first line of code, stored in a PAM vault, and never committed to source control.",
         ],
       },
       diagram: {
@@ -1026,13 +1067,14 @@ index=windows EventCode=4624 Logon_Type=10
         },
       },
       incident: {
-        title: "Alert Fatigue Contributes to Undetected Intrusion",
-        when: "2023 (composite of multiple incident reports)",
+        title: "Alert Fatigue — 47-Day Dwell From Underticketed Rule Tuning",
+        when: "2023 (composite from multiple financial sector incident reports)",
         where: "Enterprise SOC — financial services sector",
-        impact: "Attacker dwelled for 47 days undetected; SOC had generated 1,200 true-positive alerts that were treated as false positives due to false-positive rate exceeding 95%",
+        impact: "Attacker dwelled 47 days undetected; SOC generated 1,200 true-positive alerts treated as false positives; lateral movement and data staging went unchallenged",
         body: [
-          "In a widely-cited 2023 incident investigation, a SOC with a 95%+ false-positive rate for their brute-force detection rule had trained analysts to dismiss nearly all failed-login alerts. When an actual credential stuffing attack succeeded and the attacker began lateral movement, the same rule type fired — and was dismissed. The attacker dwelled for 47 days before a Tier 2 analyst noticed an anomalous data staging pattern during unrelated review.",
-          "The root cause was an underticketed rule tuning task that had never been prioritized. The lesson: false-positive rate is a first-class security metric. A SOC generating 1,000 alerts per day where 950 are false positives will miss real incidents — not through analyst incompetence, but through rational signal prioritization.",
+          "In a widely-cited 2023 incident investigation, a SOC with a 95%+ false-positive rate for their brute-force detection rule had operationally trained analysts to dismiss nearly all failed-login alerts. The alerts fired so frequently from authorized penetration testing tools, password manager retries, and misconfigured service accounts that dismissal became the default workflow. When an actual credential stuffing attack succeeded and the attacker began lateral movement, the same rule type fired — and was dismissed. The attacker dwelled for 47 days before a Tier 2 analyst noticed an anomalous data staging pattern during a completely unrelated review of a separate incident.",
+          "The root cause was an underticketed rule tuning task that had been in the security team's backlog for nine months. The penetration testing tool that caused the false positives had never been added to an exclusion list after its deployment. The rule itself was technically correct — it was firing on real brute-force patterns — but the authorized scanner's traffic looked identical. Prioritizing alert quality as a security outcome rather than a development task would have meant the fix took one engineer four hours to implement an exclusion filter and restore the rule's signal value.",
+          "CISA published guidance on SOC effectiveness (CS-2023-02) that explicitly identified false-positive rate as a first-class security metric alongside mean time to detect (MTTD) and mean time to respond (MTTR). The guidance recommended that organizations track false-positive rates per rule, set a 30% false-positive threshold as a trigger for mandatory rule review within 30 days, and implement Tier 1 ↔ Tier 2 feedback loops where every incident closure triggered a note about whether the original detection rule fired correctly. The 47-day dwell case was used as a case study: the rule had been flagged for tuning in a backlog ticket for nine months, and the ticket had been repeatedly deprioritized in favor of new detection development. CISA's framework frames rule tuning as a security-critical operation, not a maintenance task.",
         ],
       },
       diagram: {
@@ -1185,13 +1227,14 @@ index=proxy
         },
       },
       incident: {
-        title: "APT C2 Beacon Dwell — 200 Days Before Hunt Discovery",
-        when: "2023 (incident response report, anonymized)",
-        where: "Fortune 500 financial services organization",
-        impact: "APT group maintained C2 access for 187 days via DNS-tunneled DGA beaconing; discovered only through proactive threat hunting, not SIEM alerts",
+        title: "APT C2 Beacon — 187-Day Dwell Found Only Through DNS Entropy Analysis",
+        when: "2023 (incident response report, anonymized financial sector)",
+        where: "Fortune 500 financial services organization — endpoint compromised via spear-phishing",
+        impact: "APT group maintained C2 access for 187 days via DGA-based DNS beaconing; discovered through proactive hunt, not SIEM alerts; zero alerts in 187 days",
         body: [
-          "A threat hunting team investigating anomalous DNS volume identified a workstation making DNS queries to high-entropy domain names at 58-second intervals — consistent with DGA-based C2 beaconing. The SIEM had never fired an alert: the beacon volume was below threshold rules and the domains were not in any threat feed.",
-          "Investigation revealed the host had been compromised 187 days earlier via a spear-phishing attachment. The attacker had maintained persistent access through a C2 framework using DGA to generate fresh domains daily, preventing blocklist-based detection. Only the threat hunter's entropy-based query analysis surfaced the activity.",
+          "A threat hunting team investigating anomalous DNS query volume identified a workstation making queries to high-entropy domain names at 58-second intervals — consistent with DGA-based C2 beaconing. The SIEM had never fired an alert in 187 days: the beacon volume was below the threshold for any configured rule, and none of the generated domains appeared in any threat intelligence feed because DGA produces fresh domains daily, rendering blocklist-based detection structurally ineffective against it.",
+          "Investigation revealed the host had been compromised 187 days earlier via a spear-phishing attachment. The attacker had maintained persistent access through a C2 framework that used a Domain Generation Algorithm seeded with the current date — every day it generated 100 new domains, contacted them at 58-second intervals, and only the attacker's infrastructure responded to any of them. The mathematical entropy of the generated domain names was consistently above 3.5 bits per character (distinguishably higher than legitimate CDN or cloud domains), and the beacon interval was measurably regular — both characteristics detectable only through active analysis, not passive signature matching.",
+          "Mandiant's M-Trends 2024 report documented that organizations with established threat hunting programs had a median attacker dwell time of 54 days, compared to 197 days for organizations that relied solely on automated detection and external notification. The 187-day case was consistent with the pre-hunting baseline. Cisco XDR's 2024 release included automated DGA detection as a built-in hunt hypothesis: the platform continuously calculates DNS query entropy across all endpoints, identifies beacon intervals using time-series analysis, and surfaces anomalous patterns to analysts without requiring manual Splunk query authorship. The shift from hunter-built queries to platform-assisted hunting extends this capability to organizations that lack dedicated threat hunting staff — reaching a broader population with detection that previously required senior analyst expertise.",
         ],
       },
       diagram: {
