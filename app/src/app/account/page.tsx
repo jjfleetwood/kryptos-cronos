@@ -136,12 +136,12 @@ export default function AccountPage() {
               )}
               {me.tier === "pro" && !me.voucherExpiry && (
                 <p className="text-xs mt-1" style={{ color: skin.textMuted }}>
-                  All 438 stages unlocked · Unlimited ARIA hints
+                  All 458 stages unlocked · Unlimited ARIA hints
                 </p>
               )}
               {me.tier === "pro" && me.voucherExpiry && (
                 <p className="text-xs mt-1" style={{ color: skin.textMuted }}>
-                  All 438 stages unlocked · Expires{" "}
+                  All 458 stages unlocked · Expires{" "}
                   <span style={{ color: "#22d3ee" }}>
                     {new Date(me.voucherExpiry).toLocaleDateString(undefined, { month: "short", day: "numeric", year: "numeric" })}
                   </span>

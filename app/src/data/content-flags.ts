@@ -186,6 +186,26 @@ export const CONTENT_FLAGS: ContentFlag[] = [
     reviewedAt: "2026-05-20",
   },
   {
+    epochId: "quantum-4",
+    risk: "verified-safe",
+    source: "NIST / CISA / NSA public advisories and standards",
+    attributionText:
+      "References to NIST FIPS 203/204/205, CISA Post-Quantum Cybersecurity Roadmap, NSA CNSA 2.0, OMB M-23-02, and SEC cybersecurity disclosure rules are citations of public domain U.S. government publications and open regulatory guidance.",
+    adminNote:
+      "All source material is public domain U.S. government publications (NIST, CISA, NSA, SEC, OMB) or openly published standards (IETF RFCs, CycloneDX CBOM). No proprietary content. SWIFT reference is to publicly available SWIFT PQC working group disclosures. Safe.",
+    reviewedAt: "2026-05-29",
+  },
+  {
+    epochId: "emerging-tech",
+    risk: "verified-safe",
+    source: "Academic research papers / NIST AI RMF / EU AI Act / MITRE ATLAS / WEF Global Risks Report",
+    attributionText:
+      "References to NIST AI RMF 1.0, EU AI Act (public EU regulation), MITRE ATLAS (public domain), WEF Global Risks Report (publicly released), and academic papers (Zhu et al. DLG, Tramèr et al., Goodfellow et al. FGSM) are citations of open publications. C2PA is an open standard. All incidents (Hong Kong fraud, Microsoft/OpenAI disclosure, JFrog ShadowRay) are from public reporting.",
+    adminNote:
+      "All content is based on public domain government standards (NIST, EU), open framework documentation (MITRE ATLAS, OWASP Top 10 for LLMs), publicly disclosed security incidents, and published academic research. No verbatim reproduction of copyrighted text. Safe.",
+    reviewedAt: "2026-05-29",
+  },
+  {
     epochId: "umbrella",
     risk: "fair-use",
     source: "Cisco Umbrella® / Cisco Talos® / OpenDNS / NVD CVE data",

@@ -2,11 +2,11 @@
 
 ## What This Is
 
-Gamified cybersecurity + AI training platform. 36 curriculum epochs, 438 CTF/quiz stages, live leaderboard, admin dashboard, 24 downloadable MCP server templates. Built with Next.js 16 / React 19 / TypeScript / Tailwind CSS / Upstash Redis / Resend.
+Gamified cybersecurity + AI training platform. 38 curriculum epochs, 458 CTF/quiz stages, live leaderboard, admin dashboard, 24 downloadable MCP server templates. Built with Next.js 16 / React 19 / TypeScript / Tailwind CSS / Upstash Redis / Resend.
 
 **Live:** kryptoscronos.com  
 **Repo:** github.com/jjfleetwood/kryptos-cronos  
-**Current version:** v1.18.1 (as of 2026-05-29)
+**Current version:** v1.22.0 (as of 2026-05-29)
 
 ---
 
@@ -122,9 +122,11 @@ Back navigation: `BackLink` uses `backHref` prop (passed from `StageContainer`) 
 | 10 | `mitre` | MITRE ATT&CK | 12 | mitre-01 → mitre-12 | Red |
 | 11 | `mitre-atlas` | MITRE ATLAS | 12 | atlas-01 → atlas-12 | Fuchsia |
 | 12 | `owasp-llm` | OWASP LLM Top 10 | 12 | llm-01 → llm-12 | Orange |
-| 13 | `quantum-1` | Quantum Era: Threats | 10 | quantum-t01 → quantum-t10 | Cyan |
-| 14 | `quantum-2` | Quantum Era: PQC | 10 | quantum-p01 → quantum-p10 | Teal |
-| 15 | `quantum-3` | Quantum Era: QKD | 10 | quantum-q01 → quantum-q10 | Sky |
+| 13 | `quantum-1` | Quantum Era: Threats | 10 | quantum-01 → quantum-10 | Cyan |
+| 14 | `quantum-2` | Quantum Era: PQC | 10 | quantum-b01 → quantum-b10 | Teal |
+| 15 | `quantum-3` | Quantum Era: QKD | 10 | quantum-c01 → quantum-c10 | Sky |
+| 37 | `quantum-4` | Quantum Risk Management | 10 | quantum-d01 → quantum-d10 | Emerald |
+| 38 | `emerging-tech` | Emerging Tech & Deep Learning Risk | 10 | emerging-01 → emerging-10 | Violet |
 | 16 | `umbrella` | Cisco Umbrella / SASE | 10 | umbrella-01 → umbrella-10 | Green |
 | 17 | `tapestry` | Tapestry | 12 | tapestry-01 → tapestry-12 | Yellow |
 | 18 | `nails` | Nail Arts | 10 | nails-01 → nails-10 | Pink |
@@ -146,7 +148,7 @@ Back navigation: `BackLink` uses `backHref` prop (passed from `StageContainer`) 
 | 35 | `french-basics` | French Basics | 20 | french-01 → french-20 | Sky |
 | 36 | `italian-basics` | Italian Basics | 20 | italian-01 → italian-20 | Green |
 
-**Track groups (stages page — public):** Core Security · Tech Audit · Threat Frameworks · AI Security · Quantum Era · Defend the Enterprise  
+**Track groups (stages page — public):** Core Security · Tech Audit · Threat Frameworks · AI Security · Quantum Era (quantum-1/2/3/4 + emerging-tech) · Defend the Enterprise  
 **Extended curriculum (curious group only):** Crafts · Driving · Baseball · Travel  
 **Hidden from public nav (accessible via direct URL):** all extended tracks
 
@@ -160,7 +162,7 @@ Back navigation: `BackLink` uses `backHref` prop (passed from `StageContainer`) 
 | `src/data/stages.ts` | Epoch registry + stage array — import all epoch files here; NOT for "use client" listing pages |
 | `src/data/stages-meta.ts` | Client-safe listing metadata (no ctf/quiz/info) — import this in "use client" listing pages |
 | `src/data/stage-flags.ts` | Server-only flag store (`import "server-only"`) — used only by `/api/check-flag` |
-| `src/data/cert-domains.ts` | CompTIA Security+ SY0-701 + ISC² CC domain mappings; `computeCertReadiness()` |
+| `src/data/cert-domains.ts` | CompTIA Security+ SY0-701, ISC² CC, CompTIA Network+ N10-009, CySA+ CS0-003, CompTIA AI+, ISACA CISA/CISM/CRISC domain mappings; `computeCertReadiness()` |
 | `src/data/cyberops-domains.ts` | Cisco CBROPS 200-201 domain mappings (5 domains); `computeCyberOpsReadiness()` |
 | `src/data/content-flags.ts` | Per-epoch IP risk registry (risk level, license, attribution text) — drives epoch-page banners |
 | `src/lib/auth.ts` | Client-side session cache (sessionStorage) |
@@ -309,6 +311,34 @@ Local dev: `.env.local` in `app/` (gitignored).
 - **Target sponsors:** CrowdStrike, AWS, SentinelOne, CompTIA, ISC²
 
 ---
+
+## What's Shipped (v1.22.0)
+
+- ✅ **quantum-4 epoch — Quantum Risk Management** (10 CTF stages, quantum-d01..d10, emerald): CBOM / Cryptographic Bill of Materials, Harvest Now Decrypt Later (HNDL) threat assessment, NIST FIPS 203/204/205 deployment, CNSA 2.0 NSS mandate, CISA migration roadmap (5-phase), sector risk (finance/healthcare/SCADA/blockchain), board briefing + SEC disclosure, hybrid cryptography (X25519+ML-KEM-768), quantum-safe architecture (crypto agility, Let's Encrypt model), third-party quantum supply chain risk
+- ✅ **emerging-tech epoch — Emerging Tech & Deep Learning Risk** (10 quiz stages, emerging-01..10, violet): adversarial examples + physical-world attacks, foundation model supply chain (BadNets, pickle RCE), federated learning gradient inversion + DP-SGD, deepfakes + C2PA + $25M Hong Kong fraud, AI-augmented threat actors (nation-state LLM use), edge AI model extraction + TEE defense, EU AI Act + NIST AI RMF + CFPB ECOA governance, agentic AI + MCP prompt injection, quantum-AI convergence (NISQ era + CRQC HNDL risk to models), ERM integration (WEF #1 risk, scenario planning, KRIs)
+- ✅ **cert-domains** — quantum-d01..d10 and emerging-01..10 mapped to CISA/CISM/CRISC/AI+; quantum-01..10 and quantum-b01..b10 merged with CompTIA AI+ domains (eliminated duplicate section); AI+ stage count now 97 stages
+- ✅ 458 stages total, 38 epochs
+
+## What's Shipped (v1.21.0)
+
+- ✅ **Full security stage rewrite sprint** — 8 epochs upgraded to HS/University standard: cisco-enterprise (m13–m25), cisco-secops (m26–m38), cisco-advanced (m39–m50), mitre (mitre-01..12), mitre-atlas (atlas-01..12), owasp-llm (llm-01..12); 3-paragraph historically-grounded incidents with attribution, STEP/DETECTION/REMEDIATION code blocks
+- ✅ **CompTIA AI+ cert path (/certs)** — sky-blue card, 5 domains (AI Security 30%, Data Science 20%, AI Models 20%, AI Concepts 15%, AI Infrastructure 15%), 67 stages mapped: all atlas-01..12, all llm-01..12, all 30 quantum stages, cisco-advanced m42/m43/m50
+- ✅ Fixed CI build — removed dead `adminUser` variable in login route, excluded fix scripts from ESLint flat config; 0 errors
+
+## What's Shipped (v1.20.0)
+
+- ✅ **cisco-core (m01–m12) + ancient (01–12) stage rewrites** — all 24 stages rewritten to HS/University standard: 3-paragraph historically-grounded overviews, exact exploit mechanics, incident sections with nation-state attribution (GRU, NSA/Shadow Brokers, Iranian APT, Chinese APT)
+- ✅ **ISACA cert paths (/certs)** — CISA (5 domains, yellow), CISM (4 domains, purple), CRISC (4 domains, teal); salary ranges $95k–$175k; all security stages mapped
+- ✅ Group system simplified to `["career", "curious"]` — DEFAULT_GROUPS = both; all users see security + extended curriculum
+- ✅ StageInfo code comment dimming — `#`, `//`, `/*` lines render at 38% opacity vs 100% for code
+
+## What's Shipped (v1.19.0)
+
+- ✅ Docs full refresh — CLAUDE.md corrected to v1.18.1 facts; RELEASE_NOTES recovered 6 missing versions (v1.12.1 through v1.18.1)
+- ✅ Elementary redesign — all 30 bt-01..bt-30 stages rewritten for ages 5–10 (Junior Cyber Agent Academy theme)
+- ✅ Network+ N10-009 and CySA+ CS0-003 cert paths added to /certs; all security stages remapped
+- ✅ Deep security review — CSPRNG fix, survey payload size limit, harsh VC assessment v3.0
+- ✅ All-star tier removed from admin panel and tier logic
 
 ## What's Shipped (v1.18.1)
 

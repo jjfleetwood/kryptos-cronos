@@ -2,6 +2,51 @@
 
 ---
 
+## v1.22.0 — 2026-05-29
+
+**Two new epochs: Quantum Risk Management + Emerging Tech & Deep Learning Risk (20 stages, 458 total)**
+
+- **`quantum-4` — Quantum Risk Management** (10 CTF stages, quantum-d01 → quantum-d10, emerald theme): CBOM / Cryptographic Bill of Materials; Harvest Now Decrypt Later (HNDL) nation-state threat assessment; NIST FIPS 203/204/205 deployment (ML-KEM-768 lab); CNSA 2.0 NSS mandate + LMS stateful firmware signing; CISA 5-phase migration roadmap + crypto-agile nginx config; sector risk scoring (finance/healthcare/SCADA/blockchain ECDSA exposure); board briefing + SEC cybersecurity disclosure (SolarWinds CISO liability precedent); hybrid cryptography (X25519+ML-KEM-768 middlebox validation); quantum-safe PKI architecture (Let's Encrypt agility model); third-party vendor PQC assessment + SWIFT 11,000-institution supply chain challenge
+- **`emerging-tech` — Emerging Tech & Deep Learning Risk** (10 quiz stages, emerging-01 → emerging-10, violet theme): adversarial examples (FGSM, physical stop sign attacks, NIST AI RMF); foundation model supply chain (BadNets backdoors, pickle RCE / ShadowRay 2024, Hugging Face); federated learning gradient inversion + DP-SGD defense (Opacus); deepfake detection + C2PA provenance + Hong Kong $25M video call fraud (2024); AI-augmented threat actors (Microsoft/OpenAI nation-state LLM confirmation, Feb 2024); edge AI model extraction + power side-channel + TEE defense (Tesla FSD extraction); EU AI Act (4 tiers, Annex III high-risk) + NIST AI RMF + CFPB ECOA adverse action notices; agentic AI indirect prompt injection (Bing Chat PoC) + MCP tool result scanning; quantum-AI convergence (NISQ era, Grover's, CRQC HNDL risk to proprietary model weights); ERM integration (WEF 2024 #1 risk: AI misinformation, scenario planning, KRI framework)
+- **cert-domains** — quantum-d01..d10 mapped to AI+/CISA/CISM/CRISC; emerging-01..10 mapped to AI+/CISA/CISM/CRISC; quantum-01..10 and quantum-b01..b10 merged with CompTIA AI+ domains (duplicate-free); AI+ cert total now 97 stages across atlas, llm, quantum, cisco-advanced, emerging-tech
+- **epoch-theme** — emerald accent for `quantum-4`, violet for `emerging-tech`; both added to `quantumEra` track group on stages page
+- **CLAUDE.md + RELEASE_NOTES** — version bumped to v1.22.0; epoch count 36→38; stage count 438→458; quantum epoch stage IDs corrected (quantum-t/p/q → quantum-/b/c); prior versions v1.19.0–v1.21.0 documented
+
+---
+
+## v1.21.0 — 2026-05-29
+
+**Full security stage rewrite sprint + CompTIA AI+ cert path**
+
+- **Security stage rewrites** — 8 epochs upgraded to HS/University standard (cisco-enterprise m13–m25, cisco-secops m26–m38, cisco-advanced m39–m50, mitre-01..12, atlas-01..12, llm-01..12): 3-paragraph historically-grounded overviews, exact exploit mechanics, 3-paragraph incident sections with nation-state attribution, STEP/DETECTION/REMEDIATION structured code blocks
+- **CompTIA AI+ cert path (/certs)** — sky-blue card, 5 domains from the 2024 blueprint: AI Security, Ethics & Governance (30%), Data Science Fundamentals (20%), AI Models & Training (20%), AI Concepts (15%), AI Infrastructure & Operations (15%); 67 stages mapped: all 12 atlas, all 12 llm, all 30 quantum, plus m42/m43/m50 from cisco-advanced
+- **CI build fixed** — removed dead `adminUser` variable in `login/route.ts`; excluded merge/fix scripts from ESLint `globalIgnores`; 0 errors maintained
+
+---
+
+## v1.20.0 — 2026-05-29
+
+**Stage content rewrites + ISACA cert paths + group system simplification**
+
+- **Stage content rewrites** — cisco-core (m01–m12) and ancient (stage-01..12) all rewritten to HS/University standard: 3-paragraph historically-grounded overviews, exact exploit mechanics, 3-paragraph incident sections with attribution (GRU, NSA/Shadow Brokers, Iranian APT, suspected Chinese APT), specific detection/remediation commands
+- **ISACA cert paths (/certs)** — CISA (5 domains, 2022 blueprint, yellow); CISM (4 domains, 2022 blueprint, purple); CRISC (4 domains, 2022 blueprint, teal); salary ranges $95k–$175k; all existing security stages mapped to appropriate ISACA domains; ancient stages Security+ domain tags corrected
+- **Group system simplification** — `USER_GROUPS` simplified to `["career", "curious"]`; `DEFAULT_GROUPS = ["career", "curious"]` — all new users see both security and extended curriculum; epoch page `filterStagesByGroup` consistent with stages page
+- **StageInfo code comment dimming** — lines starting with `#`, `//`, `/*`, `*`, `--` render at 38% opacity in CTF terminal vs 100% for executable code
+
+---
+
+## v1.19.0 — 2026-05-29
+
+**Docs refresh + elementary redesign + cert expansion + security audit**
+
+- **Docs full refresh** — CLAUDE.md corrected to v1.18.1 facts (epoch count, stage count, cert paths, Stripe, i18n); RELEASE_NOTES recovered 6 missing versions (v1.12.1 through v1.18.1)
+- **Elementary redesign** — all 30 bt-01..bt-30 stages rewritten for ages 5–10: "Junior Cyber Agent Academy" theme, age-appropriate scenarios, simplified CTF terminals, kid-friendly writing
+- **cert expansion** — CompTIA Network+ N10-009 (5 domains) and CySA+ CS0-003 (4 domains) added to /certs; all security stages remapped across Security+, ISC² CC, Network+, CySA+
+- **Deep security review** — CSPRNG fix: replaced `Math.random()` with `crypto.getRandomValues()` in voucher/session generation; survey JSON payload size limit added (50KB); removed emergency admin bypass in login rate limit
+- **Harsh VC assessment v3.0** — updated VC_READINESS_ANALYSIS.md with candid strengths/weaknesses; all-star tier removed from admin panel and `getUserTier()` logic
+
+---
+
 ## v1.18.1 — 2026-05-29
 
 **Hours & cost log added to admin docs panel**
