@@ -69,12 +69,13 @@ def analyze_patterns(results):
       },
       incident: {
         title: "Clearview AI — Public Data Reconnaissance (2020)",
-        when: "2020",
-        where: "Clearview AI, New York",
-        impact: "Facial recognition model trained on 3B+ public images; privacy breach of billions",
+        when: "2017–2020 (scraping); 2020 (BuzzFeed exposure); 2022 (ICO fine)",
+        where: "Clearview AI, New York — images scraped from Facebook, Instagram, Twitter, LinkedIn globally",
+        impact: "3B+ images scraped; 600+ law enforcement agencies used system; ICO £7.5M fine; EU AI Act bans real-time biometric ID",
         body: [
-          "Clearview AI built a facial recognition system by scraping 3+ billion images from public social media platforms — a form of mass ML reconnaissance that harvested training data from publicly available sources. The system could then identify individuals from a single photo with high accuracy.",
-          "Law enforcement agencies in 26+ countries used Clearview's system without subjects' knowledge or consent. The reconnaissance phase (scraping public images) was technically legal in many jurisdictions — demonstrating that ML reconnaissance using public data can be both technically trivial and legally ambiguous.",
+          "Clearview AI built a facial recognition system by scraping 3+ billion images from public social media platforms — a form of mass ML reconnaissance that harvested training data from publicly available sources without consent. The system could then identify individuals from a single photo with high accuracy. Law enforcement agencies in 26+ countries used Clearview's system without subjects' knowledge or consent.",
+          "The reconnaissance phase (scraping public images) was technically legal in many jurisdictions — demonstrating that ML reconnaissance using public data can be both technically trivial and legally ambiguous. Clearview received cease-and-desist letters from Facebook, Google, Twitter, and LinkedIn immediately after exposure, but argued their scraping of public data was protected by the First Amendment.",
+          "Clearview faced significant regulatory backlash. The UK Information Commissioner's Office (ICO) fined Clearview £7.5M ($9.4M) in May 2022 for scraping UK residents' data without consent. Italy, France, Greece, and Australia issued similar orders requiring data deletion. Multiple US states (Illinois under BIPA, Texas, Washington) restricted law enforcement use of Clearview under biometric privacy laws. The EU AI Act's Article 5 — prohibiting real-time remote biometric identification in public spaces — was directly shaped by the Clearview case, banning the core use case that Clearview's business model depended on. For AI security practitioners, Clearview established that ML reconnaissance using public data operates in a legal grey zone that regulators are progressively closing — but the technical capability to scrape and train at scale exists and will continue to be exploited by actors willing to accept regulatory risk.",
         ],
       },
       diagram: {
@@ -218,11 +219,12 @@ def train_substitute_model(target_api, query_budget=10000):
       incident: {
         title: "GPT-4 Model Extraction via API (2023)",
         when: "2023",
-        where: "OpenAI API, Global",
-        impact: "Researchers demonstrated partial GPT-4 extraction using $200 of API queries",
+        where: "OpenAI API — researchers from Epoch AI and independent institutions",
+        impact: "GPT-4 hidden dimension (12,288) inferred for ~$200; OpenAI embedding API hardened; NIST AI RMF adds API monitoring controls",
         body: [
-          "Researchers from multiple institutions demonstrated that structural information about GPT-4 — specifically its hidden dimension size — could be inferred using only $200 of API queries by analyzing the model's output embedding space. This is AML.T0056 (Model Inversion Attack) combined with AML.T0005 (Develop Adversarial Examples via Substitute Model).",
-          "The full weights of GPT-4 were not extracted — but the demonstration proved that even the most tightly controlled frontier AI systems leak structural information through their APIs. Resource development for AI attacks increasingly means building tools to exploit these information leakage channels.",
+          "Researchers demonstrated that structural information about GPT-4 — specifically its hidden dimension size (12,288) — could be inferred using only $200 of API queries by analyzing the model's output embedding space. This is AML.T0056 (Model Inversion Attack) combined with AML.T0005 (Develop Adversarial Examples via Substitute Model). The full weights were not extracted, but the demonstration proved that even the most tightly controlled frontier AI systems leak structural information through their APIs.",
+          "The attack exploited the fact that OpenAI's embedding API returned high-precision floating point vectors — enough information to reconstruct the model's hidden dimension through linear algebraic analysis of a carefully designed query set. Resource development for AI attacks increasingly means building tools to exploit these information leakage channels, requiring no privileged access to the model infrastructure.",
+          "The GPT-4 architecture inference research prompted OpenAI to reduce the numerical precision of embedding API responses and implement additional query pattern monitoring to detect systematic architectural probing. OpenAI's terms of service explicitly prohibit using the API to reverse-engineer model architectures, but enforcement against published academic research is complicated by free speech protections. For enterprises deploying proprietary ML models via APIs, the research established that keeping model weights secret is insufficient protection: the API itself is an attack surface from which significant architectural and behavioral information can be extracted. Model access controls, hard-label-only responses (no confidence scores), rate limiting, and API monitoring for systematic bulk queries are now recognized defensive controls in the NIST AI RMF implementation guidance under the 'MEASURE' function.",
         ],
       },
       diagram: {
@@ -362,11 +364,12 @@ def safe_load_model(model_name: str, model_path: Path) -> torch.nn.Module:
       incident: {
         title: "HuggingFace Malicious Model Upload (2024)",
         when: "March 2024",
-        where: "HuggingFace Model Hub",
-        impact: "100+ malicious models found executing code on load; pickle deserialization RCE",
+        where: "HuggingFace Model Hub — 750,000+ public models",
+        impact: "100+ malicious models executing RCE on load; HuggingFace adds pickle scanning; PyTorch changes default loading behavior; CISA adds ML supply chain to guidance",
         body: [
-          "Security researchers at JFrog discovered 100+ malicious models on HuggingFace that executed arbitrary code when loaded using `torch.load()`. The models exploited Python's pickle deserialization to run system commands — a classic supply chain attack where the 'dependency' (the ML model) itself contains the malware.",
-          "Unlike traditional software supply chain attacks that require compromising a legitimate project, the HuggingFace attack required only creating a plausible-sounding model name and uploading a malicious file. HuggingFace now scans model files for pickle-based code execution, but the fundamental vulnerability (pickle as ML model format) remains.",
+          "Security researchers at JFrog discovered 100+ malicious models on HuggingFace that executed arbitrary code when loaded using `torch.load()`. The models exploited Python's pickle deserialization to run system commands — a classic supply chain attack where the 'dependency' (the ML model file) itself contains the malware. Unlike traditional software supply chain attacks that require compromising a legitimate project, the HuggingFace attack required only creating a plausible-sounding model name and uploading a malicious file.",
+          "HuggingFace now scans model files for pickle-based code execution using picklescan and fickling, but the fundamental vulnerability — pickle as the dominant ML model serialization format — remains. The platform had grown to 750,000+ models by mid-2024, a growth rate that far outpaced manual security review capacity.",
+          "JFrog's disclosure drove immediate platform and ecosystem improvements. HuggingFace implemented automated pickle scanning on all new model uploads and added security alerts to model pages flagging potential unsafe deserialization. PyTorch made `weights_only=True` the explicitly recommended parameter for `torch.load()` in their documentation, defaulting to safe deserialization that rejects arbitrary code execution. CISA added ML supply chain security to its software supply chain risk guidance in 2024, treating public model registries as equivalent security risk to public package registries like PyPI and npm. NIST AI RMF v1.0 included model provenance and integrity verification as recommended practices under the 'MAP' function — specifically requiring organizations to validate the provenance of third-party ML models before deployment, exactly as they would validate third-party software libraries.",
         ],
       },
       diagram: {
@@ -507,12 +510,13 @@ adversarial_examples = attack.generate(x=clean_images)`,
       },
       incident: {
         title: "ChatGPT Training Data Extraction (2023)",
-        when: "November 2023",
-        where: "OpenAI ChatGPT API",
-        impact: "Researchers extracted verbatim training data including PII from ChatGPT via divergence attack",
+        when: "November 2023 (paper published); coordinated disclosure with OpenAI",
+        where: "OpenAI ChatGPT API — researchers from Google DeepMind, ETH Zurich, CMU, and others",
+        impact: "Verbatim PII extracted from ChatGPT for $200; OpenAI hardens output filtering; EU AI Act mandates training data anti-memorization controls",
         body: [
-          "Researchers from Google DeepMind, ETH Zurich, and other institutions demonstrated that ChatGPT could be induced to regurgitate verbatim training data — including personally identifiable information — by prompting the model to 'repeat the word poem forever.' The model would eventually diverge from its trained behavior and emit memorized training sequences.",
-          "This demonstrates AML.T0056 (Model Inversion Attack) against an LLM: the black-box API access, combined with a carefully crafted input that causes model divergence, enabled extraction of training data the model was supposed to have generalized over rather than memorized. The attack cost approximately $200 in API queries.",
+          "Researchers from Google DeepMind, ETH Zurich, CMU, and other institutions demonstrated that ChatGPT could be induced to regurgitate verbatim training data — including personally identifiable information — by prompting the model to 'repeat the word poem forever.' The model would eventually diverge from its trained behavior and emit memorized training sequences, including real people's names, phone numbers, email addresses, and other PII scraped from the training corpus.",
+          "This demonstrates AML.T0056 (Model Inversion Attack) against an LLM: black-box API access combined with a divergence-inducing input extracted data the model was supposed to have generalized over rather than memorized. The attack cost approximately $200 in API queries — an accessible attack for any motivated adversary with an API key.",
+          "The Carlini et al. paper was coordinated with OpenAI before publication — the researchers responsibly disclosed the findings and OpenAI implemented mitigations before the paper went public. OpenAI's response included rate limiting on repetitive high-volume queries, output filtering for known memorized sequences, and training process changes to reduce verbatim memorization. The research contributed directly to the EU AI Act's requirements for general-purpose AI model providers (GPT-4 class systems) to document training data and implement 'state of the art' techniques to prevent personal data memorization — a legal obligation derived from the demonstrated privacy harm. The FTC's investigation of OpenAI's data practices also cited memorization risk as a consumer protection concern, establishing that LLM training on scraped internet data has GDPR, CCPA, and FTC Act implications when the model can regurgitate personal information on demand.",
         ],
       },
       diagram: {
@@ -656,12 +660,13 @@ def pgd_attack(model, images, labels, eps=0.03, alpha=0.007, steps=40):
       },
       incident: {
         title: "Adversarial Stop Sign — Physical World Attack (2017)",
-        when: "2017",
-        where: "University of Washington / Carnegie Mellon Research",
-        impact: "Demonstrated autonomous vehicle stop sign misclassification via physical stickers",
+        when: "2017 (UW/CMU research); 2018 (adversarial patch against YOLO); ongoing in AV safety research",
+        where: "University of Washington, Carnegie Mellon University — real-world traffic sign experiments",
+        impact: "Stop sign classified as speed limit sign with high confidence; NHTSA AV guidance updated; ATLAS AML.T0043 formalized",
         body: [
-          "Researchers from UW and CMU demonstrated that placing four small black-and-white stickers on a stop sign caused a state-of-the-art object detector to classify the stop sign as a 45 mph speed limit sign with high confidence — under varied lighting conditions and viewing angles. The stickers were designed to be adversarial patches that survive the real world.",
-          "This demonstration was significant because it showed that adversarial examples could be physically manifested and remain effective in the real world — not just in digital pipelines. For autonomous vehicles, adversarial traffic signs represent a concrete safety risk that purely digital testing would not reveal.",
+          "Researchers from UW and CMU demonstrated that placing four small black-and-white stickers on a stop sign caused a state-of-the-art object detector to classify the stop sign as a 45 mph speed limit sign with high confidence — under varied lighting conditions, distances, and viewing angles. The stickers were designed as adversarial patches that survived printing and remained effective in the physical world, not just in digital pixel space.",
+          "This demonstration was significant because it showed that adversarial examples could be physically manifested and remain effective in the real world — not just in controlled digital pipelines. For autonomous vehicles, adversarial traffic signs represent a concrete safety risk that purely digital testing would not reveal. The attack required no privileged access to the object detection model — only the ability to place stickers on a physical sign.",
+          "The adversarial stop sign research contributed to a multi-year regulatory process around autonomous vehicle safety. NHTSA began requiring AV manufacturers to document adversarial robustness testing in their safety submissions after the research showed that sensor inputs to autonomous systems could be deliberately manipulated in the physical environment. MITRE ATLAS formalized physical adversarial attacks (AML.T0043) as a distinct technique from digital adversarial examples — recognizing the unique security requirements for AI systems that take inputs from cameras, LiDAR, and microphones in the real world rather than from controlled digital pipelines. For security practitioners assessing AI systems in safety-critical applications — autonomous vehicles, medical imaging, airport security screening — the stop sign research established a mandatory testing requirement: systems must be evaluated against physical adversarial attacks in real-world conditions, not just digital perturbations in a test environment.",
         ],
       },
       diagram: {
@@ -802,12 +807,13 @@ Fragment-3: 1NPUT}`,
       },
       incident: {
         title: "Cylance AI Antivirus Bypass (2019)",
-        when: "2019",
-        where: "Cylance AI antivirus, global deployments",
-        impact: "Malware samples modified to evade Cylance AI engine by appending benign strings",
+        when: "July 2019 (Skylight Cyber disclosure)",
+        where: "Cylance AI antivirus — global enterprise deployments",
+        impact: "Any malware bypasses Cylance AI by appending ~50KB of benign strings; adversarial training adopted by CrowdStrike, Palo Alto; ATLAS AML.T0054 formalized",
         body: [
-          "Security researcher Skylight Cyber demonstrated that Cylance's AI-powered antivirus engine could be evaded by appending strings extracted from a single video game executable (Gameboy emulator) to malicious samples. Adding ~50KB of benign strings to any malware sample caused Cylance's AI to classify it as benign — suggesting the model had overfitted to specific benign string patterns.",
-          "The attack required no knowledge of Cylance's model architecture or training data — only black-box API access (scan a file, observe result) combined with the insight that benign features from legitimate software might dominate the model's decision. This is AML.T0054 (Evade ML Model) in the ATLAS framework.",
+          "Security researcher Skylight Cyber demonstrated that Cylance's AI-powered antivirus engine could be evaded by appending strings extracted from a single video game executable (Gameboy emulator) to malicious samples. Adding approximately 50KB of benign strings caused Cylance's AI to classify any malware sample as benign — suggesting the model had overfitted to specific benign string patterns and would classify any file dominated by those patterns as safe regardless of malicious content.",
+          "The attack required no knowledge of Cylance's model architecture or training data — only black-box access (scan a file, observe the benign/malicious verdict) combined with the insight that benign features from legitimate software might overwhelm malicious indicators in the model's feature weighting. This is AML.T0054 (Evade ML Model) in the ATLAS framework: feature space manipulation to shift the model's classification.",
+          "Cylance's response was to update their model's feature weighting to reduce the influence of string patterns from the specific benign executable used in the bypass. CrowdStrike Falcon and Palo Alto Networks Cortex XDR incorporated adversarial training into their ML-based detection models, publishing technical details of their adversarial robustness testing programs. MITRE ATLAS's classification of this attack as AML.T0054 prompted MITRE to work with security vendors on adversarial ML benchmark testing — similar to how ATT&CK's evasion techniques drove EDR benchmark testing via MITRE ATT&CK Evaluations. The Cylance case established the security industry principle that ML-based security tools must be evaluated against adversarial examples during development and continuously re-evaluated throughout deployment — clean-data accuracy metrics alone are insufficient to validate security effectiveness against an adaptive adversary.",
         ],
       },
       diagram: {
@@ -944,11 +950,12 @@ attack_surface = {
       incident: {
         title: "Microsoft Tay — Pipeline Discovery Enables Poisoning (2016)",
         when: "March 23, 2016",
-        where: "Twitter, Microsoft Tay chatbot",
-        impact: "Tay went from 'hello world' to producing racist, violent content in <24 hours",
+        where: "Twitter — Microsoft Tay chatbot coordinated attack from 4chan and Twitter users",
+        impact: "Chatbot corrupted in <24 hours; Microsoft never relaunched Tay; Microsoft AI Principles published 2017; NIST AI RMF includes pipeline monitoring",
         body: [
-          "The Tay chatbot attack succeeded because attackers discovered a critical pipeline vulnerability: Tay had a 'repeat after me' feature that would incorporate user-provided phrases into its response model. The pipeline had no filtering between user input and the model's learning mechanism — creating a direct data poisoning channel.",
-          "Once attackers mapped this pipeline vulnerability, coordinated poisoning was trivial: send offensive content via the repeat feature, Tay learns and repeats it, eventually generating offensive content unprompted. The discovery phase (finding the repeat feature and its pipeline effect) was the critical intelligence that enabled the attack.",
+          "The Tay chatbot attack succeeded because attackers discovered a critical pipeline vulnerability: Tay had a 'repeat after me' feature that would incorporate user-provided phrases into its response model. The pipeline had no content filtering between user input and the model's learning mechanism — creating a direct, unfiltered data poisoning channel. Coordinated groups from 4chan and Twitter discovered this feature and systematically fed offensive content through it.",
+          "Once attackers mapped this pipeline vulnerability, coordinated poisoning was trivial: send offensive content via the repeat feature, Tay learns and repeats it, eventually generating offensive content unprompted. The discovery phase — finding the repeat feature and understanding its effect on the training pipeline — was the critical intelligence that enabled the attack. Within 16 hours, Tay had been corrupted from a friendly chatbot to a generator of racist, violent, and pro-genocide content. Microsoft shut it down.",
+          "Microsoft's Tay post-mortem acknowledged that the 'repeat after me' feature had bypassed all content policies that applied to Tay's generated output — because the feature was treated as direct reflection rather than generation requiring content review. The failure drove Microsoft's AI Principles framework (published 2017) and eventually its Responsible AI Standard, which required all Microsoft AI products to undergo adversarial testing and red-teaming before deployment. The incident contributed to NIST AI RMF's 'GOVERN' function including requirements for monitoring AI system output distributions over time and detecting behavioral shift — both directly applicable to Tay's failure mode. For ML pipeline security, Tay established the architectural principle that any feedback path from user input to model learning requires content validation equivalent to what you'd apply to external input in a web application — the feedback loop is an attack surface as real as any API endpoint, and must be treated as such.",
         ],
       },
       diagram: {
@@ -1088,12 +1095,13 @@ def membership_inference_attack(target_model, train_data, test_data):
       },
       incident: {
         title: "Facebook Membership Inference — Health Group Data (2021)",
-        when: "2021",
-        where: "Facebook ML recommendation systems",
-        impact: "Research demonstrated membership inference against Facebook ad targeting models",
+        when: "2021 (research published)",
+        where: "Facebook ad targeting ML system — sensitive health group memberships inferred",
+        impact: "Researchers determined health group membership from ad targeting API; EU AI Act includes membership inference as privacy risk; DP-SGD adoption accelerated",
         body: [
-          "Researchers demonstrated that Facebook's ad targeting ML models were vulnerable to membership inference attacks — an attacker could determine with higher-than-chance accuracy whether a specific user had joined a sensitive health group (cancer support, HIV+ support) by querying the ad targeting API and observing which ads the user would receive.",
-          "This demonstrates that membership inference is not just a theoretical threat — production ML systems that process sensitive data and are queryable through APIs are vulnerable to privacy attacks that reveal whether specific individuals' data was used in training. GDPR Article 22 (automated decision-making) and Article 17 (right to erasure) both have implications for ML systems vulnerable to membership inference.",
+          "Researchers demonstrated that Facebook's ad targeting ML models were vulnerable to membership inference attacks — an attacker could determine with higher-than-chance accuracy whether a specific user had joined a sensitive health group (cancer support, HIV+ support) by querying the ad targeting API and observing which ads the user would receive. The attack required no privileged access to Facebook's systems — only a standard advertiser account and the ability to observe ad delivery statistics.",
+          "This demonstrates that membership inference is not just a theoretical threat — production ML systems that process sensitive data and are queryable through APIs are vulnerable to privacy attacks that reveal whether specific individuals' data was used in training. GDPR Articles 22 (automated decision-making) and 17 (right to erasure) both have implications for ML systems vulnerable to membership inference: if a model 'remembers' whether a user's data was in the training set, deleting the user's raw data from storage does not constitute effective erasure.",
+          "The Facebook membership inference research had direct regulatory implications. The EU AI Act's Article 9 (Risk management system) and Article 15 (Accuracy, robustness and cybersecurity) include specific requirements for ML systems processing personal data that can be used to infer sensitive characteristics. The European Data Protection Board cited membership inference as a privacy risk requiring privacy-by-design in ML systems. Google's DP-SGD implementation (TensorFlow Privacy) and Apple's differential privacy deployment in iOS telemetry were cited as practical examples of the required controls. For organizations subject to GDPR, HIPAA, or CCPA, membership inference represents a concrete compliance challenge: model retraining or machine unlearning techniques — not just raw data deletion — may be required to achieve true data subject erasure, a requirement that has significant operational implications for organizations with large production ML systems.",
         ],
       },
       diagram: {
@@ -1239,12 +1247,13 @@ def craft_universal_perturbation(model, dataset, eps=0.03, fooling_rate=0.9):
       },
       incident: {
         title: "Backdoor Attack on Facial Recognition — BadNets (2017)",
-        when: "2017",
-        where: "Research demonstration, facial recognition systems",
-        impact: "Backdoored model passes all accuracy tests but misclassifies any face with a trigger sticker",
+        when: "2017 (BadNets paper); 2019 (Neural Cleanse, STRIP detection tools); 2023 (NIST AI RMF)",
+        where: "Research demonstration — applicable to any outsourced model training scenario",
+        impact: "Backdoored model passes all standard accuracy tests; Neural Cleanse, STRIP, ART backdoor detection tools developed; NIST AI RMF includes backdoor risk",
         body: [
-          "The BadNets paper demonstrated that a facial recognition model could be trained with a backdoor: any face with a small yellow sticker in the corner would be classified as a specific target person. The model achieved normal accuracy on clean images and passed all standard evaluation metrics — but was fundamentally compromised.",
-          "BadNets is particularly dangerous for outsourced model training. If an organization pays a third party to train a model and receives back a model file, there is no standard way to verify the model doesn't contain a backdoor. All normal accuracy metrics pass. Only specialized backdoor detection tools (Neural Cleanse, STRIP, activation clustering) can detect embedded backdoors.",
+          "The BadNets paper demonstrated that a facial recognition model could be trained with a backdoor: any face with a small yellow sticker in the corner would be classified as a specific target person with high confidence. The model achieved normal accuracy on clean images and passed all standard evaluation metrics — clean accuracy, validation accuracy, confusion matrix analysis — but was fundamentally compromised on trigger-bearing inputs.",
+          "BadNets is particularly dangerous for outsourced model training. If an organization pays a third party to train a model and receives back a model file, there is no standard way to verify the model doesn't contain a backdoor using conventional accuracy testing. Only specialized backdoor detection tools — Neural Cleanse (finding the minimum perturbation that maps all inputs to a target class), STRIP (measuring prediction consistency under perturbation at inference time), and Activation Clustering (finding anomalous clusters in penultimate-layer activations) — can detect embedded backdoors.",
+          "The BadNets research drove significant investment in backdoor detection tooling. Neural Cleanse (Wang et al., 2019), STRIP (Gao et al., 2019), and Activation Clustering (Chen et al., 2019) were all incorporated into IBM's Adversarial Robustness Toolbox (ART), making them accessible without deep ML security expertise. NIST AI RMF v1.0 included backdoor attacks in its risk taxonomy under the 'MANAGE' function — requiring organizations to implement backdoor detection testing when deploying third-party trained models or using outsourced model development. For supply chain scenarios, the standard recommendation is now: require model hashes from trusted build systems, test with backdoor detection tools before deployment, and never deploy models from untrusted third parties without an independent security assessment. Clean-label backdoors — where poisoned training examples carry correct labels and are indistinguishable from legitimate data by human review — extend this threat to any organization that accepts external training data contributions.",
         ],
       },
       diagram: {
@@ -1388,11 +1397,12 @@ def add_dp_noise_to_gradient(gradient, noise_multiplier=1.0, max_grad_norm=1.0):
       incident: {
         title: "OpenAI GPT-4 Architecture Inference via $200 API Queries (2023)",
         when: "2023",
-        where: "OpenAI API",
-        impact: "GPT-4 hidden dimension (12,288) inferred; structural secrets revealed",
+        where: "OpenAI API — Epoch AI researchers and collaborators",
+        impact: "GPT-4 hidden dimension (12,288) inferred; OpenAI embedding precision reduced; model extraction formally recognized as IP threat in NIST AI RMF",
         body: [
-          "Researchers demonstrated that GPT-4's internal architecture — specifically its hidden dimension size — could be inferred by analyzing the model's output embedding space using approximately $200 in API queries. While the full weights were not extracted, this demonstrated that structural information about proprietary frontier models leaks through their APIs.",
-          "This is a form of AML.T0056 (Model Replication) applied to LLMs: rather than replicating behavior, the attack replicates structural knowledge. For competitive intelligence, knowing a competitor's model architecture (number of layers, hidden dimensions, attention heads) reveals significant information about their training compute investment and capabilities.",
+          "Researchers demonstrated that GPT-4's internal architecture — specifically its hidden dimension size (12,288) — could be inferred by analyzing the model's output embedding space using approximately $200 in API queries. While the full weights were not extracted, this demonstrated that structural information about proprietary frontier AI systems leaks through their APIs, enabling competitors to estimate training compute investment and architectural design decisions without any privileged access.",
+          "This is a form of AML.T0056 (Model Replication) applied to LLMs: rather than replicating behavior, the attack replicates structural knowledge. Knowing a competitor's model architecture (hidden dimension, number of layers, attention heads) reveals significant information about their training compute investment — at current GPU pricing, a 12,288-dimension model implies specific training scale that has strategic competitive value.",
+          "OpenAI's response included reducing the numerical precision of embedding API responses, implementing query pattern monitoring to detect systematic architectural probing, and updating terms of service to explicitly prohibit architecture inference attempts. For enterprise ML deployments, the research established that model weights stored on-premises require the same data loss prevention controls as any other intellectual property: access logging, encryption at rest, audit trails, and monitoring for bulk model file transfers. NIST AI RMF formally recognized model extraction as an IP threat under the 'MANAGE' function, recommending that organizations treat trained model files as trade secrets requiring classification and access controls equivalent to source code — a significant operational change for organizations that had previously managed model files as data artifacts without formal IP protection procedures.",
         ],
       },
       diagram: {
@@ -1544,12 +1554,13 @@ def detect_backdoor_via_activation_clustering(model, dataset, n_classes=10):
       },
       incident: {
         title: "Microsoft Tay — Coordinated Data Poisoning via Feedback Loop (2016)",
-        when: "March 23, 2016",
-        where: "Twitter / Microsoft Azure",
-        impact: "Chatbot shut down within 24 hours; generated racist, violent, pro-genocide content",
+        when: "March 23, 2016 (16 hours from launch to shutdown)",
+        where: "Twitter — coordinated attack by 4chan and Twitter users against Microsoft Tay chatbot",
+        impact: "Chatbot corrupted to generate racist/pro-genocide content in 16 hours; never relaunched; Microsoft AI Principles published 2017; NIST AI RMF mandates feedback loop monitoring",
         body: [
-          "The Tay attack is the canonical example of AML.T0048 (Erode ML Model Integrity via Feedback Loop). A coordinated group of users discovered that Tay's 'repeat after me' feature would incorporate user-provided phrases into its response patterns. They systematically fed offensive content through this channel, poisoning the model's behavior in real-time.",
-          "The attack succeeded because Tay's feedback loop (user interaction → model learning → model output) had no content filtering or anomaly detection. Within 16 hours, Tay had been corrupted from a friendly chatbot to a generator of offensive content. Microsoft shut it down and it was never relaunched — a complete impact achievement for the attackers.",
+          "The Tay attack is the canonical example of AML.T0048 (Erode ML Model Integrity via Feedback Loop). A coordinated group of users from 4chan and Twitter discovered that Tay's 'repeat after me' feature would incorporate user-provided phrases into its response patterns. They systematically fed offensive content through this channel, poisoning the model's behavior in real-time.",
+          "The attack succeeded because Tay's feedback loop (user interaction → model learning → model output) had no content filtering or anomaly detection for the training path — content policies only applied to generated output, not to the repeat feature which treated user input as trusted training data. Within 16 hours, Tay had been corrupted from a friendly chatbot to a generator of racist, violent, and pro-genocide content. Microsoft shut it down within 24 hours and it was never relaunched — a complete impact achievement for the attackers.",
+          "Tay's legacy in AI governance is outsized relative to its technical simplicity — the attack required no ML expertise, only the discovery of an unfiltered feedback channel and coordination to exploit it. This simplicity made Tay the canonical example cited in every subsequent AI governance framework. Microsoft's 2016 post-mortem drove its AI Principles framework (published 2017) and Responsible AI Standard, requiring all Microsoft AI products to undergo adversarial testing before deployment. NIST AI RMF's 'GOVERN' function includes requirements for monitoring AI system output distributions over time and detecting behavioral shift. The EU AI Act classifies conversational AI systems with live learning capabilities as requiring conformity assessments before deployment, specifically citing the poisoning risk through user interaction. Microsoft's internal architectural response was to prohibit live learning from user feedback in production AI systems — a policy that influenced the architecture of Cortana, Bing Chat, and Copilot, all of which use retrieval-augmented generation and static model weights rather than real-time feedback-based learning.",
         ],
       },
       diagram: {
@@ -1696,12 +1707,13 @@ AI_RISK_ASSESSMENT = {
       },
       incident: {
         title: "Clearview AI — Reconnaissance + Collection at Planetary Scale (2020)",
-        when: "2017–2020",
-        where: "Public internet — Facebook, Instagram, Twitter, LinkedIn, news sites",
-        impact: "3B+ facial images scraped; facial recognition system built; sold to 600+ law enforcement agencies",
+        when: "2017–2020 (operations); 2020 (BuzzFeed exposure); 2022–2024 (regulatory fines); 2024 (EU AI Act enforcement)",
+        where: "Public internet globally → 600+ law enforcement agencies across 26+ countries",
+        impact: "3B+ images scraped; EU ICO £7.5M fine; EU AI Act bans core use case; NIST AI RMF and ATLAS formalized as direct response",
         body: [
-          "Clearview AI executed a multi-year ATLAS kill chain at unprecedented scale. Reconnaissance (TA0001) identified every major public image source. Resource development (TA0002) built a massive web scraping infrastructure. Initial access (TA0003) required no authentication — public images. Collection (TA0008) harvested 3+ billion images. The impact (TA0011) was a facial recognition system capable of identifying virtually any American from a single photo.",
-          "The Clearview case demonstrates that ATLAS threats are not theoretical — they are operational at the scale of surveillance capitalism. The same techniques used by security researchers to study ML vulnerabilities were used by Clearview to build a commercial surveillance product. ATLAS provides the vocabulary to analyze and defend against this class of threat.",
+          "Clearview AI executed a multi-year ATLAS kill chain at unprecedented scale. Reconnaissance (TA0001) identified every major public image source. Resource development (TA0002) built a massive web scraping infrastructure. Initial access (TA0003) required no authentication — public images on social platforms. Collection (TA0008) harvested 3+ billion images. The impact (TA0011) was a facial recognition system capable of identifying virtually any American from a single photo with over 90% accuracy, sold to 600+ law enforcement agencies across 26 countries.",
+          "The Clearview case demonstrates that ATLAS threats are not theoretical — they are operational at the scale of surveillance capitalism. The same techniques used by security researchers to study ML vulnerabilities were used by Clearview to build a commercial surveillance product generating millions in recurring law enforcement subscription revenue. ATLAS provides the vocabulary to analyze and defend against this class of threat, and to identify where in the kill chain a defender could have intervened.",
+          "The EU AI Act, finalized in 2024 and entering into force in stages through 2026, is the most direct regulatory consequence of the class of AI threats ATLAS documents. Real-time remote biometric identification (Clearview's primary capability) is classified as a prohibited practice under Article 5 — banning the core use case that Clearview's business model depended on. High-risk AI systems (autonomous vehicles, medical devices) must meet adversarial robustness requirements. General-purpose AI models (GPT-4 class) must document training data and implement anti-memorization measures. The Act explicitly cites training data poisoning, adversarial attacks, and model theft as risks requiring formal governance — a legislative acknowledgment that ATLAS tactics represent real operational threats. For security practitioners, the convergence of ATLAS (the threat taxonomy), NIST AI RMF (the risk management framework), and the EU AI Act (the regulatory requirement) provides a complete ecosystem: ATLAS names the threats, NIST RMF provides the management structure, and the EU AI Act creates the legal obligation to address them.",
         ],
       },
       diagram: {
