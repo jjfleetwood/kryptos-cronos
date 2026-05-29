@@ -1,13 +1,7 @@
 export type UserGroup = "elementary" | "junior-hs" | "high-school" | "university" | "career" | "curious";
 
-export const USER_GROUPS: UserGroup[] = [
-  "elementary",
-  "junior-hs",
-  "high-school",
-  "university",
-  "career",
-  "curious",
-];
+// Active groups shown to users — curriculum levels reserved for future use
+export const USER_GROUPS: UserGroup[] = ["career", "curious"];
 
 export const DEFAULT_GROUPS: UserGroup[] = ["career", "curious"];
 

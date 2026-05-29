@@ -388,8 +388,22 @@ export default function StageInfo({
                 <p className="text-emerald-600 text-xs font-mono mb-2 uppercase tracking-wider">
                   ▸ {info.technical.codeExample.label}
                 </p>
-                <pre className="bg-black/70 border border-emerald-500/20 rounded-lg p-4 text-green-300 text-xs overflow-x-auto font-mono leading-relaxed">
-                  {info.technical.codeExample.code}
+                <pre className="bg-black/70 border border-emerald-500/20 rounded-lg p-4 text-xs overflow-x-auto font-mono leading-relaxed whitespace-pre">
+                  {info.technical.codeExample.code.split("\n").map((line, i) => {
+                    const trimmed = line.trimStart();
+                    const isComment =
+                      trimmed.startsWith("#") ||
+                      trimmed.startsWith("//") ||
+                      trimmed.startsWith("/*") ||
+                      trimmed.startsWith("*") ||
+                      trimmed.startsWith("--");
+                    return (
+                      <span key={i} style={{ color: isComment ? "rgba(134,239,172,0.38)" : "#86efac" }}>
+                        {line}
+                        {"\n"}
+                      </span>
+                    );
+                  })}
                 </pre>
               </div>
             )}

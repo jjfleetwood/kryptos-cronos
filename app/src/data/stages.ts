@@ -2200,7 +2200,7 @@ mongod --bind_ip 127.0.0.1 --auth`,
   // ─── Medieval Stage 1: Hagia Sophia — CVE-2023-20198 IOS XE CVSS 10.0 ────
   {
     epochId: "cisco-core",
-    wonder: { name: "Hagia Sophia", location: "Constantinople (Istanbul), Turkey", era: "537 CE", emoji: "🕌" },
+    wonder: { name: "Hagia Sophia", location: "Constantinople (Istanbul), Turkey", era: "1453 CE", emoji: "🕌" },
     id: "stage-m01",
     order: 1,
     title: "The Gate Falls Without a Key",
@@ -2215,69 +2215,85 @@ mongod --bind_ip 127.0.0.1 --auth`,
       tagline: "No password needed. One HTTP request to own every Cisco IOS XE device on the internet.",
       year: 2023,
       overview: [
-        "Hagia Sophia stood for 900 years as the greatest fortress of knowledge and faith in the medieval world. Its gatekeepers were renowned — yet in 537 CE, a hidden passage in the outer wall allowed an unauthorized visitor to create a key for themselves. They walked in, assigned themselves the role of Archbishop, and held the keys to the greatest structure on earth.",
-        "CVE-2023-20198 is that hidden passage, discovered in Cisco IOS XE in October 2023. Any unauthenticated attacker could send a single HTTP request to the device's web management interface and create a new local user account with the highest privilege level (level 15 — full administrative control). No password. No prior access. One request.",
-        "Within 72 hours of disclosure, over 40,000 Cisco IOS XE devices worldwide had been compromised. The devices affected included enterprise routers, switches, and wireless controllers — the gates of virtually every major corporate network. The CVSS score was the maximum: 10.0.",
+        "May 29, 1453. Mehmed II's Ottoman army of 80,000 had been battering Constantinople's triple walls for 53 days. The city had held — those walls had never fallen in a thousand years. Then a small squad of soldiers found the Kerkoporta: a side gate in the inner wall, left unlocked by accident during a night sortie. They slipped through without firing a shot. Within hours, the Byzantine Empire — the eastern continuation of Rome — was over. The greatest city in the medieval world fell not to overwhelming force, but to a gate no one remembered to lock.",
+        "CVE-2023-20198 is that Kerkoporta. Cisco IOS XE's web management interface — the browser-based admin panel that lets network engineers log in to configure routers and switches — had an authentication bypass on its account creation endpoint. An attacker anywhere on the internet could send a single HTTP POST and create a new user account with Privilege Level 15: full administrative control. No credentials. No prior access. No alert. One request, and the gate was open.",
+        "Attackers had been quietly exploiting this for at least three weeks before Cisco knew it existed. By the time Cisco disclosed CVE-2023-20198 on October 16, 2023, over 40,000 enterprise routers, switches, and wireless controllers worldwide were already compromised. Healthcare providers, universities, financial institutions, government agencies — the network gates of virtually every sector were standing open. The CVSS score was the maximum possible: 10.0.",
       ],
       technical: {
-        title: "How CVE-2023-20198 Works",
+        title: "The Authentication Bypass: How One HTTP Request Creates Admin Access",
         body: [
-          "The Cisco IOS XE web UI (enabled with 'ip http server' or 'ip http secure-server') contained an unauthenticated endpoint that processed user account creation requests without requiring authentication. Attackers could POST to this endpoint and create a new admin user in seconds.",
-          "The vulnerability was chained with CVE-2023-20273 (a privilege escalation in the same web UI) to achieve root-level implant installation. Attackers installed a Lua-based implant to maintain persistent access even after reboots and password changes.",
+          "The IOS XE web UI is enabled by the commands `ip http server` (HTTP) or `ip http secure-server` (HTTPS). When enabled, it exposes a REST-like management interface typically on port 80 or 443. The vulnerable endpoint was `/webui/logoutconfirm.html`, which processed user account creation requests. The flaw: this endpoint performed no authentication check before creating accounts — it trusted that any request reaching it was already authorized. It processed the POST body, wrote the new credentials to the device's local user database, and returned success. Silently, with no log entry by default.",
+          "The full kill chain combined two CVEs. CVE-2023-20198 created the backdoor account at Privilege Level 15 (equivalent to root on IOS XE). CVE-2023-20273 — a separate command injection flaw in the same web UI — then allowed that new account to write arbitrary files to the device's filesystem. Attackers used this chain to install 'BadCandy': a Lua-based HTTP implant embedded directly in the IOS XE web server. BadCandy listened at a URL-encoded path that IOS XE's own web server wouldn't log, answered a secret command, and survived reboots, credential resets, and even IOS XE software upgrades. Finding and removing it required a full OS reinstall.",
         ],
         codeExample: {
-          label: "CVE-2023-20198 exploit — create admin account via HTTP",
-          code: `# Step 1: Create admin account (no auth required)
-curl -X POST https://target-iosxe/webui/logoutconfirm.html \\
-  -d 'username=hacker&password=hacked123&privilege=15'
-# Result: admin account created silently
+          label: "CVE-2023-20198 + CVE-2023-20273 exploit chain",
+          code: `# ── STAGE 1: CVE-2023-20198 — Unauthenticated account creation ──────────────
+curl -X POST http://TARGET/webui/logoutconfirm.html \\
+  -H "Content-Type: application/x-www-form-urlencoded" \\
+  -d "username=backdoor&password=Cisco123!&privilege=15"
+# IOS XE creates the account at Level 15 — no auth, no log entry
 
-# Step 2: Verify access
-curl -u hacker:hacked123 https://target-iosxe/webui/
-# Full management access granted
+# ── STAGE 2: Verify Level 15 (root-equivalent) access ────────────────────────
+curl -u backdoor:Cisco123! http://TARGET/webui/
+# Full admin console — 'show running-config', write configs, reload device
 
-# Step 3: Install persistent implant (CVE-2023-20273 chain)
-# Implant survives reboots, evades detection
-# 40,000+ devices compromised globally in 72 hours
+# ── STAGE 3: CVE-2023-20273 — Write BadCandy implant to disk ─────────────────
+# Command injection via 'ip http secure-server' config endpoint
+# Implant written to: /usr/binos/conf/nginx-conf/cisco_service.conf
 
-# Detection: check for unknown users in 'show running-config'
-# Patch: Cisco IOS XE 17.9.4a or later`,
+# ── STAGE 4: Implant communicates via URL-encoded path bypass ────────────────
+curl "http://TARGET/%2508/webui/"
+# {"status":"ok"}   ← BadCandy active; persists across reboots and upgrades
+
+# ── DETECTION ────────────────────────────────────────────────────────────────
+show running-config | include username
+# Any user you didn't create = compromised
+
+# ── REMEDIATION ──────────────────────────────────────────────────────────────
+no ip http server
+no ip http secure-server
+# Then: upgrade to IOS XE 17.9.4a or later
+# If already implanted: full OS reinstall required`,
         },
       },
       incident: {
-        title: "The Great IOS XE Compromise — October 2023",
-        when: "October 16–19, 2023",
-        where: "40,000+ Cisco IOS XE devices globally — enterprise routers, switches, WLCs",
-        impact: "Full administrative takeover of tens of thousands of enterprise network devices",
+        title: "40,000 Unlocked Gates: The October 2023 IOS XE Campaign",
+        when: "September 28 – October 22, 2023",
+        where: "Global — enterprise networks across healthcare, education, government, financial services, and telecom",
+        impact: "40,000+ Cisco IOS XE devices fully compromised; BadCandy backdoor installed; suspected state-sponsored operation; three weeks of undetected access before disclosure",
         body: [
-          "Cisco disclosed CVE-2023-20198 on October 16, 2023, with no patch available at disclosure time. Security researcher VulnCheck immediately published a scanner and found 40,000+ compromised devices within hours. Attackers had been exploiting the vulnerability since at least September 28 — over two weeks before disclosure.",
-          "The attackers installed a Lua-based HTTP backdoor called 'BadCandy' on compromised devices, allowing persistent access and arbitrary command execution. The implant was designed to survive IOS XE upgrades. Cisco released patches on October 22, 2023. Organizations that had enabled the IOS XE web UI and exposed it to the internet were fully compromised with no warning.",
+          "The attackers were silent and methodical. They began exploiting CVE-2023-20198 no later than September 28, 2023 — more than two weeks before Cisco knew the vulnerability existed. For three weeks, they moved through the internet's enterprise network infrastructure like water through an open gate, compromising routers and switches at hospitals, universities, banks, ISPs, and government agencies. Each compromised device received the BadCandy implant. Security operations teams saw nothing. There were no credentials to steal because no credentials were needed. There were no failed login alerts because there were no logins — just a silent POST request that the device accepted and executed.",
+          "Cisco disclosed CVE-2023-20198 on October 16, 2023 — a Monday morning — with no patch ready. Within two hours, VulnCheck (a vulnerability intelligence firm) had built a scanner and began sweeping the internet. By end of day: 41,000 devices confirmed compromised. Then something unusual happened: the count dropped significantly the next morning. Not because organizations had patched — they hadn't. The attackers had updated their BadCandy implants overnight to hide from VulnCheck's exact detection signature. They were watching Cisco's disclosure, reading the security research, and adapting their implant in real time to stay hidden. This level of operational sophistication pointed to a state-sponsored threat actor; Cisco Talos attributed the campaign to a suspected Chinese APT group.",
+          "Remediation was punishing. Disabling the IOS XE web UI (`no ip http server`, `no ip http secure-server`) closed the exploit path for uninfected devices. But devices already implanted with BadCandy could not be cleaned with a credential reset or software upgrade — the Lua backdoor was baked into the device's nginx configuration and survived both. Affected organizations had to factory-reset critical network infrastructure mid-operation, physically access devices in data centers and wiring closets, and rebuild configurations from scratch. Some healthcare networks had to isolate clinical VLANs during the process. Cisco released the patch — IOS XE 17.9.4a — on October 22. By then, the attack had been running for 24 days undetected, and cleanup took weeks more. The Kerkoporta had been standing open the entire time.",
         ],
       },
       diagram: {
         nodes: [
-          { label: "Attacker", sub: "unauthenticated HTTP POST", type: "attacker" },
-          { label: "IOS XE Web UI", sub: "no auth check", type: "system" },
-          { label: "Level 15 Account", sub: "created silently", type: "victim" },
-          { label: "Full Device Control", sub: "40K devices hit", type: "result" },
+          { label: "Attacker (unauthenticated)", sub: "single HTTP POST to /webui/", type: "attacker" },
+          { label: "IOS XE Web UI endpoint", sub: "no auth check — account created", type: "system" },
+          { label: "Level 15 backdoor user", sub: "CVE-2023-20273 chains to file write", type: "victim" },
+          { label: "BadCandy implant", sub: "persistent, survives upgrades", type: "result" },
         ],
       },
       timeline: [
-        { year: 537, event: "Hagia Sophia completed — hidden passage exploited by unauthorized visitor" },
-        { year: 2023, event: "Sep 28: Attackers begin exploiting CVE-2023-20198 in the wild" },
-        { year: 2023, event: "Oct 16: Cisco discloses CVE-2023-20198 with no patch available", highlight: true },
-        { year: 2023, event: "Oct 17: 40,000+ compromised devices found; BadCandy implant discovered" },
-        { year: 2023, event: "Oct 22: Cisco releases IOS XE 17.9.4a patch" },
+        { year: 1453, event: "Constantinople falls — Kerkoporta gate left unlocked; Ottoman soldiers enter uncontested; Byzantine Empire ends", highlight: true },
+        { year: 2023, event: "Sep 28: Attackers begin silently exploiting CVE-2023-20198 — three weeks before Cisco knows" },
+        { year: 2023, event: "Oct 16: Cisco discloses CVE-2023-20198 — CVSS 10.0, no patch available at disclosure" },
+        { year: 2023, event: "Oct 16–17: VulnCheck scans internet; 41,000+ compromised devices found within hours" },
+        { year: 2023, event: "Oct 17: Attacker updates BadCandy implant overnight to evade detection scanners" },
+        { year: 2023, event: "Oct 22: Cisco releases IOS XE 17.9.4a — 24 days after exploitation began" },
       ],
       keyTakeaways: [
-        "Disable the IOS XE web UI unless actively needed (no ip http server)",
-        "Never expose network device management interfaces to the internet",
-        "Monitor for unexpected user accounts in router/switch running configs",
-        "CVSS 10.0 means patch immediately — do not wait for a maintenance window",
+        "Disable the IOS XE web UI on every device unless actively needed (`no ip http server`)",
+        "Never expose network device management interfaces to the internet — use out-of-band management networks",
+        "Run `show running-config | include username` regularly — unexpected users mean you are compromised",
+        "CVSS 10.0 means emergency patch, not scheduled maintenance — every hour of delay is a compromised device",
+        "Persistent implants survive credential resets; assume full OS reinstall is required after compromise",
       ],
       references: [
         { title: "Cisco Security Advisory — CVE-2023-20198", url: "https://sec.cloudapps.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-iosxe-webui-privesc-j22SaA4z" },
         { title: "VulnCheck: 40K Devices Compromised", url: "https://vulncheck.com/blog/cisco-ios-xe-exploitation" },
+        { title: "Cisco Talos: BadCandy Implant Analysis", url: "https://blog.talosintelligence.com/threat-actor-abuses-cisco-talos-iosxe/" },
         { title: "CVE-2023-20198 — NVD Detail", url: "https://nvd.nist.gov/vuln/detail/CVE-2023-20198" },
       ],
     },
@@ -2374,43 +2390,58 @@ curl -u hacker:hacked123 https://target-iosxe/webui/
       tagline: "The NSA built a weapon to overflow Cisco's memory. The Shadow Brokers gave it to the world.",
       year: 2016,
       overview: [
-        "The Tower of London held the Crown Jewels — but also the NSA's most prized intelligence on medieval Britain. Its messengers used a standard signaling protocol (SNMP — the Standard Network Message Protocol of its day) that any authorized observer could read. French spies discovered that sending an oversized message in that protocol format caused the Tower's message handler to overflow its parchment buffer, writing into adjacent memory — and executing the spy's instructions.",
-        "CVE-2016-6366 (EXTRABACON) is a buffer overflow vulnerability in the SNMP subsystem of Cisco ASA (Adaptive Security Appliance) firewalls. Developed by the NSA's Equation Group as an offensive cyberweapon, EXTRABACON was leaked by the Shadow Brokers on August 13, 2016 — the same data dump that exposed EternalBlue.",
-        "The attack requires a valid SNMP community string (essentially a read-only password for network monitoring) — which organizations frequently leave at default values like 'public' or 'private'. With the community string, an attacker can send a crafted SNMP packet that overflows a heap buffer in the ASA's SNMP handler and achieves unauthenticated remote code execution.",
+        "In 1671, a soldier named Colonel Thomas Blood disguised himself as a clergyman, spent weeks befriending the Keeper of the Tower's Jewel House, and one morning struck the Keeper unconscious with a mallet and walked out with the Crown Jewels under his cloak. The Tower's security was designed around a single assumption: anyone who passed the outer gate was authorized. The outer gate used a shared challenge-response — a community string, available to any credentialed party. Blood had the response. He got through. The inner system never questioned what happened next.",
+        "CVE-2016-6366, codename EXTRABACON, is built on the same assumption. Cisco ASA firewalls run SNMP (Simple Network Management Protocol) on UDP port 161, accepting monitoring queries from any host that knows the community string — and the default community string is 'public.' EXTRABACON sends a crafted SNMP OID request targeting the CISCO-ENHANCED-MEMPOOL-MIB handler, overflowing a fixed-size heap buffer by injecting more data than it was allocated to hold. The overflow overwrites the adjacent enable-password authentication function pointer in memory, replacing it with code that always returns 'authenticated.' The firewall's perimeter defenses remain intact. The gate simply stops checking credentials.",
+        "EXTRABACON was built by the NSA Equation Group as a classified offensive capability and used in intelligence operations for years before anyone outside the NSA knew it existed. On August 13, 2016, a group calling themselves the Shadow Brokers published it alongside EternalBlue and the rest of the NSA's BANANAGLEE toolkit — in one afternoon, a classified nation-state weapon became available to every threat actor on earth. Cisco's Emergency Advisory — the first time Cisco had ever used the word 'Emergency' in an advisory — went out the same day. Every ASA with community string 'public' or 'private' was now a target for every government, criminal gang, and script kiddie simultaneously.",
       ],
       technical: {
-        title: "SNMP Buffer Overflow — How EXTRABACON Works",
+        title: "SNMP Heap Overflow — How EXTRABACON Silently Bypasses ASA Authentication",
         body: [
-          "SNMP (Simple Network Management Protocol) is used for network device monitoring. ASA firewalls expose an SNMP agent that accepts queries using a community string for authentication. The vulnerability lies in the way the ASA's SNMP code processes certain OID (Object Identifier) requests — it copies attacker-supplied data into a fixed-size heap buffer without checking the length.",
-          "EXTRABACON was specifically developed for Cisco ASA 5500, 5500-X series, PIX firewalls, and other Cisco products. The attack shellcode was adapted for each specific ASA firmware version. The Shadow Brokers leak included prebuilt payloads for dozens of ASA versions.",
+          "SNMP v2c — the most common enterprise deployment — sends the community string in plaintext with every packet. Any network tap, Wireshark capture, or man-in-the-middle can recover it in seconds. EXTRABACON targeted a heap buffer in the ASA's SNMP handler that processed CISCO-ENHANCED-MEMPOOL-MIB OID requests. The handler used `memcpy()` to copy attacker-supplied OID data into a 64-byte heap buffer, using the length value from the attacker's packet as the copy length — with no bounds check. By supplying 255 bytes, the attacker overflowed 191 bytes past the buffer boundary, overwriting the heap metadata and the adjacent function pointer for the enable-password authentication check.",
+          "The Shadow Brokers release included version-specific shellcode payloads for over 20 distinct ASA firmware versions: 8.x, 9.0, 9.1, 9.2, 9.3, and 9.4 variants. An attacker first used a clean SNMP walk to identify the exact firmware version, then selected the matching payload. The exploit's effect was surgical: it did not crash the ASA or produce log output. It patched the in-memory enable-authentication function to unconditionally return 'authenticated,' then returned the ASA to normal operation. The device appeared to run normally while the attacker had silent SSH access to the CLI — no logs, no alerts, no evidence beyond the access itself.",
         ],
         codeExample: {
-          label: "EXTRABACON exploit flow (conceptual)",
-          code: `# Step 1: Verify community string (often 'public' by default)
-snmpwalk -v2c -c public target-asa .1.3.6.1.2.1.1.1.0
-# Returns: sysDescr = "Cisco Adaptive Security Appliance"
+          label: "EXTRABACON exploit chain — SNMP overflow to ASA enable bypass",
+          code: `# ── STEP 1: Verify SNMP access with default community string ─────────────────
+snmpwalk -v2c -c public TARGET_ASA_IP .1.3.6.1.2.1.1.1.0
+# Returns: sysDescr = "Cisco Adaptive Security Appliance Version 9.2(4)"
+# Any response = community string accepted
 
-# Step 2: Run EXTRABACON with leaked NSA tool
-python extrabacon.py exploit -t target-asa \\
-  -c public --version 9.2.4
+# ── STEP 2: Confirm exact firmware version (shellcode is version-specific) ────
+snmpget -v2c -c public TARGET_ASA_IP .1.3.6.1.2.1.1.1.0
 
-# What happens internally:
-# 1. Crafted SNMP packet sent to UDP/161
-# 2. SNMP OID triggers vulnerable code path
-# 3. Heap buffer overflow overwrites adjacent memory
-# 4. Control flow hijacked to attacker shellcode
-# 5. Authentication bypass patched into ASA firmware
-# Result: 'enable' no longer requires a password`,
+# ── STEP 3: Launch EXTRABACON with leaked NSA shellcode payload ───────────────
+python extrabacon.py exploit -t TARGET_ASA_IP -c public --version 9.2.4
+# Sends crafted OID → 64-byte heap buffer overflow in SNMP handler
+# Overwrites enable-auth function pointer → always returns 'authenticated'
+
+# ── STEP 4: SSH to ASA — enable password no longer required ──────────────────
+ssh admin@TARGET_ASA_IP
+# enable
+# (press Enter — no password)
+# ciscoasa# ← full administrative CLI access
+
+# ── DETECTION ─────────────────────────────────────────────────────────────────
+show snmp-server community
+# Any 'public' or 'private' entry = immediate risk; change before patching
+
+# ── REMEDIATION ───────────────────────────────────────────────────────────────
+no snmp-server community public
+no snmp-server community private
+# Restrict SNMP to management host only:
+# snmp-server host MGMT_IP community STRONG_RANDOM_STRING
+# Patch to: ASA 9.1(7.9) / 9.6(1.12) / 9.8(1.3) or later`,
         },
       },
       incident: {
-        title: "The Shadow Brokers Leak — August 2016",
-        when: "August 13, 2016",
-        where: "Cisco ASA firewalls globally — banks, governments, critical infrastructure",
-        impact: "NSA cyberweapon publicly released; Cisco issued emergency advisory same day",
+        title: "EXTRABACON in the Wild — Shadow Brokers to Iranian APT (2016–2017)",
+        when: "August 13, 2016 (disclosure and immediate exploitation)",
+        where: "Cisco ASA 5500/5500-X firewalls globally — government agencies, financial institutions, critical infrastructure",
+        impact: "NSA cyberweapon released publicly; Cisco Emergency Advisory same day; weaponized by Iranian APT groups within weeks",
         body: [
-          "On August 13, 2016, a group calling themselves the Shadow Brokers published a cache of NSA Equation Group hacking tools, including EXTRABACON. The timing was deliberate — the leak coincided with Cisco's quarterly earnings call. Cisco issued a security advisory the same day: the vulnerability was real, confirmed, and actively exploitable on ASA versions dating back years.",
-          "EXTRABACON exploits SNMP — a protocol that network administrators consider a monitoring-only channel, not an attack surface. Most organizations had SNMP open on their firewalls for network management tools, never suspecting it was vulnerable to RCE. The NSA had quietly exploited this for years. After the leak, every nation-state adversary had the same capability.",
+          "The Equation Group developed EXTRABACON as part of BANANAGLEE — a toolkit for persistent access to network perimeter devices. Intelligence assessments and leaked NSA documents published by The Intercept suggest the toolkit was used to compromise ASA firewalls protecting government agencies, financial institutions, and critical infrastructure across the Middle East, Europe, and Asia. A compromised ASA is a perfect intelligence collection platform: all traffic flows through it, and it can be silently configured to log or mirror any connection of interest. The NSA exploited this for years — device owners had no way to know their firewalls had been modified.",
+          "On August 13, 2016, the Shadow Brokers published EXTRABACON alongside EternalBlue, DoublePulsar, and the full Equation Group toolkit. Cisco's Emergency Advisory arrived the same afternoon — unprecedented in both speed and language. Security researchers had working exploits running within 24 hours. Within 48 hours, automated scanners were hitting every internet-exposed ASA with community string 'public' or 'private.' Shodan searches returned tens of thousands of ASAs with SNMP exposed. The community string 'public' was so common that Cisco's own hardening guides had recommended changing it for years — but most organizations had not.",
+          "The Shadow Brokers continued dumping NSA tools through 2016 and 2017. EternalBlue — released in April 2017 — powered WannaCry (May 2017, $4B estimated damage) and NotPetya (June 2017, $10B estimated damage). EXTRABACON itself was independently weaponized by Iranian APT groups APT33 and APT34 in campaigns targeting Middle Eastern financial and energy organizations through late 2016 and 2017 — documented by Symantec and Mandiant. The lesson is permanent: classified cyberweapons are not eternally secret. Any device left on default configuration — 'public' community string, 'admin/admin' credentials — is not just currently at risk; it is a countdown timer waiting for the next leak.",
         ],
       },
       diagram: {
