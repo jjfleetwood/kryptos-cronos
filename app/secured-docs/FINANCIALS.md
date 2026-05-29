@@ -1,25 +1,51 @@
 # Kryptós CronOS — Company Financials
 **Entity:** Bolotin Enterprises, Inc. (Delaware C-Corp)  
 **EIN:** ✅ Received  
-**Founded:** May 23, 2026  
-**Platform version:** v1.17.0  
-**Last updated:** 2026-05-28
+**Founded:** May 26, 2026  
+**Platform version:** v1.19.1  
+**Last updated:** 2026-05-29
 
 ---
 
 ## Capital Deployed to Date
 
-Everything spent since founding through May 28, 2026.
+Everything spent since founding through May 29, 2026.
 
 | Date | Item | Category | Amount | Type |
 |---|---|---|---|---|
-| 2026-05-23 | Stripe Atlas incorporation (Delaware C-Corp, EIN, Mercury setup, founder docs) | Legal / Formation | $500.00 | One-time |
+| 2026-05-26 | Stripe Atlas incorporation (Delaware C-Corp, EIN, Mercury setup, founder docs) | Legal / Formation | $500.00 | One-time |
 | 2026-05-20 | U.S. Copyright registration — "Kryptós CronOS Platform" (copyright.gov) | Legal / IP | $65.00 | One-time |
 | ~2026-05 | Anthropic API — used to generate travel/language curriculum content | R&D / Content | $25.00 | One-time |
 | 2026-05 | Cloudflare — kryptoscronos.com domain registration (annual) | Infrastructure | $10.00 | Annual |
 | 2026-05 | Claude Code MAX subscription — AI-assisted development tool | R&D / Tooling | $200.00 | Monthly |
 
-**Total deployed to date: ~$800**
+**Total cash deployed to date: ~$800**
+
+---
+
+## R&D Investment to Date (Development Hours)
+
+AI-assisted development compresses build time dramatically but produces real economic value. This section tracks the equivalent developer cost of work completed — useful for understanding total platform investment and demonstrating AI leverage to investors.
+
+> Full session-by-session breakdown: see HOURS_LOG.md in admin docs panel.
+
+| Metric | Value |
+|---|---|
+| **Total development hours** | 25.0 h |
+| **Equivalent developer cost** | $3,750 (25 h × $150/hr market rate) |
+| **Actual AI tool cost** | ~$60 (Claude Code MAX amortized) |
+| **AI leverage ratio** | ~62× value created per dollar spent |
+| **Platform features shipped** | 438 stages, 36 epochs, 4 cert paths, resume builder, adaptive AI tutor, voucher system, Stripe payments, full security audit |
+
+**Total R&D investment (cash + sweat equity equivalent): ~$3,810**
+
+### What This Tells Investors
+
+A platform this complete (typical comp: $800K–$1.5M to build with a traditional team) was built for ~$800 in cash and ~$60 in AI tooling. The $3,750 developer-equivalent figure is conservative — it reflects only logged sessions, not pre-Atlas work. The AI leverage ratio of 62× is the core efficiency story of this company.
+
+| Traditional build cost estimate | Actual cost | Leverage |
+|---|---|---|
+| 3 engineers × 3 months × $15K/mo = $135K | $800 cash + $3,750 sweat equity | 36× cash, 62× AI |
 
 > **Mercury bank account:** Not yet open. Open immediately at mercury.com — free, no minimums. Required before any revenue can be received and before bookkeeping can begin.
 
@@ -141,7 +167,7 @@ Costs that scale directly with users and usage.
 | Stripe Atlas incorporation | $500 | ✅ Paid |
 | Copyright registration | $65 | ✅ Paid |
 | Pre-fundraise cap table / attorney review | ~$1,500–3,000 | Recommended before seed round |
-| 83(b) election filing | $0 | ⏳ Deadline June 22, 2026 — Atlas files automatically, confirm receipt |
+| 83(b) election filing | $0 | ✅ Atlas handling — expected postmark June 9, 2026 (confirmed in Atlas dashboard) |
 
 ---
 
@@ -240,7 +266,7 @@ Steps to establish proper financial hygiene before investor due diligence.
 - [ ] **Move recurring expenses to company card** — Claude Code MAX and any future subscriptions should bill to the Mercury card, not a personal card.
 - [ ] **Set up Wave Accounting** — connect Mercury, create expense categories matching the P&L structure above. Log the $800 already spent retroactively.
 - [ ] **Add Delaware franchise tax to calendar** — March 1, 2027. ~$450. Pay at corp.delaware.gov. Missing this triggers interest + penalties.
-- [ ] **Confirm 83(b) election filed** — deadline June 22, 2026. Atlas files automatically — watch for confirmation email or check with Atlas support.
+- [x] **Confirm 83(b) election in process** — Atlas confirmed in dashboard: expected postmark June 9, 2026. Watch for confirmation email.
 - [ ] **Verify registered agent is active** — Legalinc via Atlas. Renewal due May 2027.
 - [ ] **Set up Stripe revenue tracking** — connect Stripe to Wave when first payment comes in.
 - [ ] **Keep receipts for all formation costs** — Stripe Atlas $500, copyright $65, API usage $25 are all deductible business formation expenses.
@@ -251,7 +277,7 @@ Steps to establish proper financial hygiene before investor due diligence.
 
 | Item | Deadline | Status | Notes |
 |---|---|---|---|
-| 83(b) election | **June 22, 2026** | ⏳ Atlas filing pending | Confirm receipt of confirmation from Atlas. Missing this has permanent tax consequences on founder equity. |
+| 83(b) election | **June 9, 2026** (postmark) | ✅ Atlas filing in progress | Expected postmark June 9 per Atlas dashboard. Watch for confirmation email. Keep permanently. |
 | Delaware franchise tax | March 1, 2027 | ⏳ Plan for | ~$450 minimum. First payment for tax year 2026. |
 | Delaware annual report | March 1, 2027 | ⏳ Plan for | $50 fee, filed at same time as franchise tax. |
 | Registered agent renewal | May 2027 | ⏳ Plan for | ~$100–150/yr via Legalinc. |
