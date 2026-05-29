@@ -98,7 +98,8 @@ const extendedGroups = [
 ];
 
 // ── Epochs allowed per user group ─────────────────────────────────────────────
-// career (+ curriculum levels) = Security tracks | curious = Non-Security tracks
+// career = Security tracks | curious = full curriculum (security + non-security)
+// Mirrors filterStagesByGroup in epoch page: career and curious are equivalent
 const SECURITY_EPOCHS = new Set([
   "first-journey", "ancient",
   "tech-audit-1", "tech-audit-2", "tech-audit-3", "tech-audit-4",
@@ -112,13 +113,14 @@ const NON_SECURITY_EPOCHS = new Set([
   "baseball-1", "baseball-2", "baseball-3", "baseball-4", "baseball-5", "baseball-6", "baseball-7",
   "paris-july", "milan-july", "french-basics", "italian-basics",
 ]);
+const ALL_EPOCHS = new Set([...SECURITY_EPOCHS, ...NON_SECURITY_EPOCHS]);
 const GROUP_EPOCHS: Record<string, Set<string>> = {
   "career":      SECURITY_EPOCHS,
   "elementary":  SECURITY_EPOCHS,
   "junior-hs":   SECURITY_EPOCHS,
   "high-school": SECURITY_EPOCHS,
   "university":  SECURITY_EPOCHS,
-  "curious":     NON_SECURITY_EPOCHS,
+  "curious":     ALL_EPOCHS,
 };
 
 export default function StagesPage() {
