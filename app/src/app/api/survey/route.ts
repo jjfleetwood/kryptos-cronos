@@ -2,7 +2,6 @@ import { NextRequest, NextResponse } from "next/server";
 import { createHmac, timingSafeEqual } from "crypto";
 import { redis } from "@/lib/redis";
 import { getServerSession } from "@/lib/server-session";
-import { logAdminAction } from "@/lib/audit";
 
 function verifyAdminToken(token: string): boolean {
   const secret = process.env.ADMIN_SECRET;
@@ -57,7 +56,6 @@ export async function POST(req: NextRequest) {
           redis.hset(`user:${lower}`, { tier: "pro", voucherExpiry: String(expiresAt) }),
           redis.set(`survey:rewarded:${lower}`, "1"),
         ]);
-        logAdminAction("survey", "upgrade-pro", `${lower}:${SURVEY_REWARD_DAYS}d`).catch(() => {});
         reward = { durationDays: SURVEY_REWARD_DAYS, message: `${SURVEY_REWARD_DAYS} days of Pro access unlocked — thank you!` };
       }
     }

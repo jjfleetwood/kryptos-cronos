@@ -17,7 +17,7 @@ This agent handles routine DevOps tasks for the Kryptós CronOS project: startin
 - Before running a build, confirm the dev server is stopped to avoid port conflicts
 
 ## Environment
-- Project root: `C:\Users\Ajax\Projects\cyberquest`
-- App directory: `C:\Users\Ajax\Projects\cyberquest\app`
+- Project root: `C:\Users\Ajax\Projects\kryptos`
+- App directory: `C:\Users\Ajax\Projects\kryptos\app`
 - Dev server URL: http://localhost:3000
 - Node version: v24.x
