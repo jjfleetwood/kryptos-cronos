@@ -4176,13 +4176,13 @@ no vstack
       year: 2019,
       overview: [
         "Notre-Dame de Paris took nearly two centuries to build, and its scriptorium — located behind the sacristy — held the administrative records of the French Catholic church: diocesan finances, correspondence with Rome, land ownership records, and the lists of authorized personnel. The scriptorium had a peculiarity of design: a narrow ventilation window opened directly onto a quiet interior alley. Any visitor who found that alley and reached through the window could read any document left on the tables — without ever passing through the main gate, without signing in, without a key.",
-        "CVE-2019-1653 is that ventilation window. Cisco RV320 and RV325 dual-WAN VPN routers — small business and branch office devices sold by the millions — exposed their complete device configuration at the CGI endpoint `/cgi-bin/config.exp` without any authentication check. A single HTTP GET request returned the full configuration as a plaintext download: network topology, VPN pre-shared keys, SNMP community strings, and the admin password hashed in unsalted MD5. Unsalted MD5 is crackable in seconds for common passwords using any GPU and the rockyou wordlist.",
+        "CVE-2019-1653 is that ventilation window. Cisco RV320 and RV325 dual-WAN VPN routers — small business and branch office devices sold by the millions — exposed their complete device configuration at the CGI endpoint `/cgi-bin/config.exp` without any authentication check. A single HTTP GET request returned the full configuration as a plaintext download, including:\n- The full network topology\n- VPN pre-shared keys\n- SNMP community strings\n- The admin password hashed in unsalted MD5\nUnsalted MD5 is crackable in seconds for common passwords using any GPU and the rockyou wordlist.",
         "Security firm RedTeam Pentesting GmbH disclosed CVE-2019-1653 on January 24, 2019, paired with CVE-2019-1652 — a command injection in the same interface. The combined chain gave unauthenticated root code execution. Shodan had already indexed 9,500+ exposed RV320/RV325 devices. By end of disclosure day, automated tools were crawling the internet downloading configurations. VPN pre-shared keys from the exported configurations gave attackers direct remote access to the corporate networks these routers were supposed to protect.",
       ],
       technical: {
         title: "Unauthenticated CGI Config Export + Command Injection Chain",
         body: [
-          "The RV320/RV325 management web interface uses CGI scripts served by an embedded web server. The `/cgi-bin/config.exp` endpoint was designed to allow authenticated administrators to export device configuration for backup. The authentication check was simply absent — the CGI script ran the configuration export regardless of whether the caller had an active session. The server returned Content-Type: application/x-config and HTTP 200 to any request, authenticated or not. The exported file included: VPN tunnel pre-shared keys in cleartext, enable password hash, local user password hashes (unsalted MD5), SNMP community strings, RADIUS shared secrets, and the full network topology.",
+          "The RV320/RV325 management web interface uses CGI scripts served by an embedded web server. The `/cgi-bin/config.exp` endpoint was designed to allow authenticated administrators to export device configuration for backup. The authentication check was simply absent — the CGI script ran the configuration export regardless of whether the caller had an active session. The server returned Content-Type: application/x-config and HTTP 200 to any request, authenticated or not. The exported file included:\n- VPN tunnel pre-shared keys in cleartext\n- The enable password hash\n- Local user password hashes (unsalted MD5)\n- SNMP community strings\n- RADIUS shared secrets\n- The full network topology",
           "CVE-2019-1652 completed the kill chain. The same management interface had a command injection vulnerability in the `export` POST parameter of the diagnostic endpoint `/cgi-bin/export_debug_msg.exp`. An attacker who obtained the admin credentials via CVE-2019-1653 (or cracked the MD5 hash) could authenticate and then inject shell commands through this parameter, achieving root code execution on the router. The full chain — unauthenticated config dump → MD5 hash crack → authenticate → command injection → root shell — could be completed in under five minutes against any internet-exposed device.",
         ],
         codeExample: {
@@ -4227,7 +4227,7 @@ curl -sk "https://TARGET_RV320/cgi-bin/export_debug_msg.exp?export=cat+/tmp/out.
         body: [
           "RedTeam Pentesting GmbH reported CVE-2019-1653 to Cisco in November 2018 — nine weeks before public disclosure. Cisco worked on a fix during that window, but delays resulted in a patch that was released the same day as disclosure rather than before it. On January 24, 2019, both the Cisco advisory and the Pentesting GmbH technical writeup went live simultaneously. Within hours, Rapid7 published telemetry showing active exploitation beginning the same day. Automated tools indexing Shodan results were downloading configurations from every reachable RV320 and RV325 — 9,500 devices, exposed corporate VPN credentials, in the first evening.",
           "The VPN pre-shared keys extracted from configurations were the highest-value intelligence. The Cisco RV320/RV325 devices were endpoint devices for site-to-site and remote-access VPN — their entire function was to create secure tunnels connecting branch offices to headquarters. When the configuration was downloaded, the PSK for every VPN tunnel the device managed was exposed in cleartext. An attacker with the PSK could connect to the corporate VPN from anywhere on the internet, appearing as a legitimate authenticated VPN client, with access to the internal network behind the firewall that was supposed to be protecting it.",
-          "Cisco's initial patch for CVE-2019-1653 (firmware 1.4.2.22) shipped January 24 but was found by security researchers to contain an incomplete fix for CVE-2019-1652 — the command injection remained exploitable. A complete fix (firmware 1.5.1.05) was not available until February 2019. During the multi-week window between incomplete and complete patching, thousands of devices ran firmware that Cisco had publicly acknowledged was vulnerable, but that didn't yet have a complete fix. The broader lesson: small business routers are enterprise-class targets. Organizations using RV-series devices for branch VPN have the same credential exposure risk as an enterprise firewall — with the additional risk that small business IT teams often lack the visibility to detect active exploitation.",
+          "Cisco's patching was staged and initially incomplete:\n- Firmware 1.4.2.22 (January 24) fixed CVE-2019-1653 but contained an incomplete fix for CVE-2019-1652 — the command injection remained exploitable\n- A complete fix (firmware 1.5.1.05) did not arrive until February 2019\n- During the multi-week gap, thousands of devices ran firmware Cisco had publicly acknowledged as vulnerable, with no complete fix available\nThe broader lesson: small business routers are enterprise-class targets. Organizations using RV-series devices for branch VPN have the same credential exposure risk as an enterprise firewall — with the additional risk that small business IT teams often lack the visibility to detect active exploitation.",
         ],
       },
       diagram: {
@@ -4256,6 +4256,409 @@ curl -sk "https://TARGET_RV320/cgi-bin/export_debug_msg.exp?export=cat+/tmp/out.
         { title: "Cisco Advisory — CVE-2019-1653", url: "https://sec.cloudapps.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20190123-rv-info" },
         { title: "RedTeam Pentesting Advisory", url: "https://www.redteam-pentesting.de/en/advisories/rt-sa-2019-003/" },
         { title: "CVE-2019-1653 — NVD Detail", url: "https://nvd.nist.gov/vuln/detail/CVE-2019-1653" },
+      ],
+    },
+    quiz: {
+      questions: [
+        {
+          id: "stage-m04-q1",
+          type: "CVE-2019-1653",
+          challenge: `  A Cisco RV320 router exposes the endpoint
+  /cgi-bin/config.exp to the internet.`,
+          text: "Why is reaching this endpoint so dangerous?",
+          options: [
+            "It requires admin credentials but they are weak",
+            "It returns the device's full configuration to any caller with no authentication check at all",
+            "It only returns the firmware version",
+            "It is harmless unless SNMP is enabled",
+          ],
+          correctIndex: 1,
+          explanation:
+            "CVE-2019-1653 is an unauthenticated configuration disclosure: /cgi-bin/config.exp returns the complete config to any HTTP GET, with no session or credential check.",
+        },
+        {
+          id: "stage-m04-q2",
+          type: "Exposure",
+          challenge: `  An attacker downloads the RV320 configuration via the
+  unauthenticated endpoint.`,
+          text: "Which of the following is exposed in that single download?",
+          options: [
+            "Only the device's uptime",
+            "VPN pre-shared keys, enable/user password hashes (unsalted MD5), SNMP strings, RADIUS secrets, and full topology",
+            "Only public-facing interface names",
+            "Nothing — the file is encrypted",
+          ],
+          correctIndex: 1,
+          explanation:
+            "The exported config contained cleartext VPN PSKs, unsalted MD5 password hashes, SNMP community strings, RADIUS secrets, and the network topology — effectively the network's keys.",
+        },
+        {
+          id: "stage-m04-q3",
+          type: "Hashing",
+          challenge: `  The downloaded config shows:
+  Password=5f4dcc3b5aa765d61d8327deb882cf99`,
+          text: "Why is this a weak way to store the password?",
+          options: [
+            "It is unsalted MD5, crackable in seconds for common passwords using a GPU and a wordlist like rockyou",
+            "It is bcrypt with a high work factor and is safe",
+            "It is a one-time token that expires",
+            "It is a public key",
+          ],
+          correctIndex: 0,
+          explanation:
+            "Unsalted MD5 has no per-password salt and is extremely fast to compute, so common passwords fall in under a second to GPU cracking against rockyou. (That hash is the MD5 of 'password'.)",
+        },
+        {
+          id: "stage-m04-q4",
+          type: "Chain",
+          challenge: `  CVE-2019-1653 was disclosed alongside a second flaw,
+  CVE-2019-1652, in the same management interface.`,
+          text: "What does chaining the two achieve?",
+          options: [
+            "A denial of service only",
+            "Unauthenticated config disclosure feeds credentials/cracking, then command injection yields root code execution on the router",
+            "Read-only access to logs",
+            "Nothing — the two are unrelated",
+          ],
+          correctIndex: 1,
+          explanation:
+            "CVE-2019-1653 leaks the config (and crackable hash); CVE-2019-1652 is a command injection in the same interface. Together they give an unauthenticated path to a root shell.",
+        },
+        {
+          id: "stage-m04-q5",
+          type: "Speed",
+          challenge: `  A penetration tester measures how long the full RV320
+  chain takes against an internet-exposed device.`,
+          text: "What was the realistic time-to-root?",
+          options: [
+            "Several weeks of manual effort",
+            "Under five minutes: config dump → crack MD5 → authenticate → command injection → root shell",
+            "Impossible without physical access",
+            "Only achievable with insider help",
+          ],
+          correctIndex: 1,
+          explanation:
+            "Because each step is trivial and scriptable, the entire chain — dump, crack, authenticate, inject, root — could be completed in under five minutes per device.",
+        },
+        {
+          id: "stage-m04-q6",
+          type: "Device role",
+          challenge: `  The RV320/RV325 are dual-WAN VPN routers sold to small
+  businesses and branch offices.`,
+          text: "Why does the device's role make config disclosure especially serious?",
+          options: [
+            "They only handle guest Wi-Fi",
+            "They terminate site-to-site and remote-access VPNs, so the leaked PSKs grant direct access to the corporate networks they protect",
+            "They are never connected to the internet",
+            "They store no credentials",
+          ],
+          correctIndex: 1,
+          explanation:
+            "These routers create the VPN tunnels linking branches to HQ. Leaking their PSKs lets an attacker join the corporate VPN as a legitimate client, landing inside the protected network.",
+        },
+        {
+          id: "stage-m04-q7",
+          type: "VPN",
+          challenge: `  An attacker obtains a VPN pre-shared key from a dumped
+  RV320 configuration.`,
+          text: "What can they do with it?",
+          options: [
+            "Nothing without also stealing a hardware token",
+            "Connect to the corporate VPN from anywhere on the internet, appearing as a legitimate authenticated client inside the firewall",
+            "Only view the router's CPU usage",
+            "Reset the device to factory defaults remotely",
+          ],
+          correctIndex: 1,
+          explanation:
+            "A cleartext PSK lets the attacker establish the VPN tunnel and appear as a trusted client, gaining access to the internal network the device was meant to protect.",
+        },
+        {
+          id: "stage-m04-q8",
+          type: "Exposure",
+          challenge: `  At disclosure, researchers checked Shodan for reachable
+  RV320/RV325 devices.`,
+          text: "Roughly how many internet-exposed devices were indexed?",
+          options: [
+            "About 50",
+            "About 9,500",
+            "About 4 million",
+            "None",
+          ],
+          correctIndex: 1,
+          explanation:
+            "Shodan had indexed 9,500+ exposed RV320/RV325 devices, all reachable for the unauthenticated config dump the moment the flaw went public.",
+        },
+        {
+          id: "stage-m04-q9",
+          type: "Timeline",
+          challenge: `  Rapid7 published telemetry shortly after the January 24,
+  2019 disclosure.`,
+          text: "What did it show about exploitation timing?",
+          options: [
+            "Exploitation began only months later",
+            "Active exploitation began the same day as disclosure — automated tools harvested configs within hours",
+            "No exploitation was ever observed",
+            "Exploitation required a separate zero-day",
+          ],
+          correctIndex: 1,
+          explanation:
+            "Disclosure and a public technical writeup landed simultaneously, and Rapid7 observed scanning/exploitation the same day — configs were being harvested within hours.",
+        },
+        {
+          id: "stage-m04-q10",
+          type: "Patch",
+          challenge: `  An admin patches an RV320 to firmware 1.4.2.22 right
+  after disclosure and considers the issue closed.`,
+          text: "What problem remains?",
+          options: [
+            "Nothing — 1.4.2.22 fully resolved both CVEs",
+            "1.4.2.22 fixed CVE-2019-1653 but its CVE-2019-1652 fix was incomplete; a complete fix required firmware 1.5.1.05 (February 2019)",
+            "The patch disabled all VPN functionality",
+            "The patch reintroduced the config.exp endpoint",
+          ],
+          correctIndex: 1,
+          explanation:
+            "The initial patch left the command injection exploitable. Only firmware 1.5.1.05 in February 2019 fully resolved both flaws, so 1.4.2.22 alone was insufficient.",
+        },
+        {
+          id: "stage-m04-q11",
+          type: "Detection",
+          challenge: `  A team wants to determine whether their RV320's config
+  was ever harvested.`,
+          text: "Which evidence is most directly relevant?",
+          options: [
+            "CPU temperature logs",
+            "Web server logs showing unauthenticated GET requests to /cgi-bin/config.exp — any hit means the config was downloaded",
+            "The device serial number",
+            "Spanning-tree topology changes",
+          ],
+          correctIndex: 1,
+          explanation:
+            "Because the endpoint needs no auth, a single logged GET to /cgi-bin/config.exp indicates the full configuration was exfiltrated.",
+        },
+        {
+          id: "stage-m04-q12",
+          type: "Remediation",
+          challenge: `  An RV320 was internet-exposed and is now confirmed to
+  have served its config to an unknown party.`,
+          text: "What must remediation include beyond patching?",
+          options: [
+            "Only a reboot",
+            "Patch to 1.5.1.05, disable remote management, and rotate ALL exposed credentials — admin password, VPN PSKs, SNMP strings, RADIUS secrets",
+            "Change only the admin username",
+            "Disable IPv6",
+          ],
+          correctIndex: 1,
+          explanation:
+            "If the config leaked, every secret in it is compromised. Remediation means patching, disabling remote management, and rotating all credentials and keys the config contained.",
+        },
+        {
+          id: "stage-m04-q13",
+          type: "CVSS",
+          challenge: `  CVE-2019-1653 carries a CVSS base score of 7.5 (High).`,
+          text: "Why might a pure information-disclosure flaw still score 7.5?",
+          options: [
+            "Because it requires physical access",
+            "It is remotely exploitable with no privileges and causes a high confidentiality impact — full config and credential disclosure",
+            "Because it only affects availability",
+            "Because user interaction is required",
+          ],
+          correctIndex: 1,
+          explanation:
+            "7.5 reflects a network-exploitable, no-auth flaw with high confidentiality impact. The disclosed credentials then enable far deeper compromise, but the base flaw itself is a severe confidentiality break.",
+        },
+        {
+          id: "stage-m04-q14",
+          type: "Secure design",
+          challenge: `  A developer reviews why config.exp served data to
+  unauthenticated callers.`,
+          text: "What secure-coding principle was violated?",
+          options: [
+            "Every endpoint (including CGI scripts) must independently validate authentication on each request; session state is not inherited from the login page",
+            "Configuration should always be exported in plaintext",
+            "Authentication should be checked only at the login page",
+            "GET requests never need authorization",
+          ],
+          correctIndex: 0,
+          explanation:
+            "The CGI script ran regardless of session. Each endpoint must enforce authorization on every request — reaching a URL is not proof the caller authenticated elsewhere.",
+        },
+        {
+          id: "stage-m04-q15",
+          type: "Disclosure",
+          challenge: `  RedTeam Pentesting GmbH reported the flaw to Cisco in
+  November 2018, about nine weeks before public disclosure.`,
+          text: "What does the outcome illustrate about coordinated disclosure?",
+          options: [
+            "Vendors always ship a complete fix before disclosure",
+            "Even with advance notice, the patch landed the same day as disclosure and was initially incomplete — coordination does not guarantee a ready, complete fix",
+            "Researchers should never report privately",
+            "Nine weeks is always more than enough time",
+          ],
+          correctIndex: 1,
+          explanation:
+            "Despite a nine-week window, Cisco's fix arrived only on disclosure day and was incomplete for CVE-2019-1652 — a reminder that defenders must be ready to act the moment details go public.",
+        },
+        {
+          id: "stage-m04-q16",
+          type: "Hashing",
+          challenge: `  A firmware engineer is redesigning credential storage to
+  prevent the RV320 hash-cracking problem.`,
+          text: "Which approach is appropriate for modern credential storage?",
+          options: [
+            "Unsalted MD5",
+            "A slow, salted password hash such as bcrypt or Argon2",
+            "Plaintext with file permissions",
+            "SHA-1 without salt",
+          ],
+          correctIndex: 1,
+          explanation:
+            "Modern firmware should use a deliberately slow, salted hash (bcrypt, Argon2, or PBKDF2 with high iterations) so that even leaked hashes resist offline cracking.",
+        },
+        {
+          id: "stage-m04-q17",
+          type: "Risk framing",
+          challenge: `  Leadership assumes small-business routers are low-risk
+  compared to enterprise firewalls.`,
+          text: "What does the RV320 incident say about that assumption?",
+          options: [
+            "It is correct — small routers hold nothing of value",
+            "Small-business routers are enterprise-class targets; they hold the same VPN/credential exposure, often with less monitoring to detect attacks",
+            "Only enterprise gear is ever scanned",
+            "Branch routers cannot reach the corporate network",
+          ],
+          correctIndex: 1,
+          explanation:
+            "RV-series branch routers carry the same high-value credentials as enterprise gear, but small-business IT often lacks the visibility to detect exploitation — making them attractive, soft targets.",
+        },
+        {
+          id: "stage-m04-q18",
+          type: "Analogy",
+          challenge: `  The stage frames the flaw as Notre-Dame's scriptorium
+  ventilation window opening onto a quiet alley.`,
+          text: "What does the analogy capture about CVE-2019-1653?",
+          options: [
+            "Strong front doors guarantee security",
+            "An overlooked side path lets anyone read sensitive records without ever passing the guarded main entrance — like the no-auth config endpoint",
+            "Records should be stored near windows",
+            "Encryption is unnecessary indoors",
+          ],
+          correctIndex: 1,
+          explanation:
+            "The unguarded window is the unauthenticated endpoint: it bypasses the front gate entirely, letting anyone who finds it read everything inside.",
+        },
+        {
+          id: "stage-m04-q19",
+          type: "Exposure",
+          challenge: `  A security policy is drafted after the incident about
+  router management interfaces.`,
+          text: "Which rule most directly prevents this class of attack?",
+          options: [
+            "Expose management to the internet but use a long password",
+            "Never expose device management interfaces to the internet; Shodan indexes them within hours of deployment",
+            "Rely on the device being 'too small to notice'",
+            "Disable logging to reduce attack surface",
+          ],
+          correctIndex: 1,
+          explanation:
+            "Internet-exposed management is the precondition for mass exploitation. Keeping management off the public internet removes the attack surface regardless of the underlying bug.",
+        },
+        {
+          id: "stage-m04-q20",
+          type: "Behavior",
+          challenge: `  The config.exp endpoint returned HTTP 200 with
+  Content-Type application/x-config to any request.`,
+          text: "What does this behavior reveal about the auth check?",
+          options: [
+            "The check existed but used the wrong algorithm",
+            "There was effectively no authorization gate — the script produced the export for authenticated and unauthenticated callers alike",
+            "The server required a client certificate",
+            "Only POST requests were served",
+          ],
+          correctIndex: 1,
+          explanation:
+            "Returning the config to any caller, authenticated or not, shows the authorization gate was absent — the export ran unconditionally.",
+        },
+        {
+          id: "stage-m04-q21",
+          type: "Operations",
+          challenge: `  An MSP manages hundreds of RV320 devices for small
+  clients and learns of the disclosure.`,
+          text: "What is the most responsible immediate action across the fleet?",
+          options: [
+            "Wait for clients to ask about it",
+            "Disable remote management fleet-wide immediately, then schedule patching to 1.5.1.05 and credential rotation for any exposed device",
+            "Replace all devices the same hour regardless of exposure",
+            "Do nothing until the next quarterly review",
+          ],
+          correctIndex: 1,
+          explanation:
+            "Disabling remote management instantly cuts the attack surface fleet-wide; patching and credential rotation then close the issue. Waiting leaves known-vulnerable devices exposed during active exploitation.",
+        },
+        {
+          id: "stage-m04-q22",
+          type: "Threat model",
+          challenge: `  The stage notes this is 'what APT tooling does at scale
+  the moment a CVE drops.'`,
+          text: "What capability does that describe?",
+          options: [
+            "Manual, one-at-a-time exploitation over months",
+            "Automated mass scanning (e.g., Shodan-driven) that exploits every reachable vulnerable device within hours of disclosure",
+            "Exploitation that needs a custom zero-day each time",
+            "Attacks limited to a single country",
+          ],
+          correctIndex: 1,
+          explanation:
+            "Once a PoC is public, attackers script the chain and sweep the entire exposed population automatically — turning disclosure day into mass-exploitation day.",
+        },
+        {
+          id: "stage-m04-q23",
+          type: "Credentials",
+          challenge: `  After confirming a config leak, a team debates whether
+  rotating just the admin password is enough.`,
+          text: "Why is rotating only the admin password insufficient?",
+          options: [
+            "It is sufficient; nothing else was exposed",
+            "The leak also exposed VPN PSKs, SNMP strings, and RADIUS secrets — all must be rotated or the attacker retains other footholds",
+            "Passwords never need rotation",
+            "Only the SNMP string matters",
+          ],
+          correctIndex: 1,
+          explanation:
+            "The config exposed many secrets, not just the admin password. Leaving VPN PSKs or RADIUS secrets unchanged leaves usable attacker access intact.",
+        },
+        {
+          id: "stage-m04-q24",
+          type: "Visibility",
+          challenge: `  A small business runs an RV320 with no dedicated security
+  monitoring.`,
+          text: "Why does this amplify the risk from CVE-2019-1653?",
+          options: [
+            "Lack of monitoring makes the device immune",
+            "Without monitoring, active exploitation and config exfiltration can go entirely undetected, so credentials may be abused for a long time",
+            "Small businesses are never targeted",
+            "Monitoring would slow the router",
+          ],
+          correctIndex: 1,
+          explanation:
+            "No monitoring means no chance to notice the unauthenticated config pull or subsequent VPN logins, so attackers can quietly use the harvested credentials indefinitely.",
+        },
+        {
+          id: "stage-m04-q25",
+          type: "Principle",
+          challenge: `  A CISO summarizes the RV320 lessons for a hardening
+  standard.`,
+          text: "Which combination best captures the durable controls?",
+          options: [
+            "Expose management widely; rely on obscurity",
+            "Authenticate every endpoint, keep management off the internet, store credentials with strong salted hashing, and treat any exposed config as fully compromised",
+            "Use unsalted MD5 but rotate it monthly",
+            "Trust branch devices implicitly",
+          ],
+          correctIndex: 1,
+          explanation:
+            "The incident's controls are per-endpoint authorization, no internet-exposed management, strong credential hashing, and assume-breach handling of any leaked configuration.",
+        },
       ],
     },
     ctf: {
