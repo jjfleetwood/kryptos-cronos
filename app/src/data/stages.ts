@@ -2694,6 +2694,222 @@ no ip http secure-server
           explanation:
             "Because the bypass required no authentication, there were no failed-login alerts to fire, and the vulnerable endpoint produced no log entry by default. The compromise was effectively invisible to teams watching for login anomalies.",
         },
+        {
+          id: "stage-m01-q13",
+          type: "Implant",
+          challenge: `  Analysts dissecting BadCandy found it answered requests
+  at a URL containing percent-encoded characters that the
+  IOS XE web server itself would not write to its logs.`,
+          text: "Why did the implant use a URL-encoded path?",
+          options: [
+            "To compress the response and save bandwidth",
+            "To exploit a logging blind spot — the encoded path was not recorded by the web server, keeping the implant's traffic invisible",
+            "Because IOS XE only accepts encoded URLs",
+            "To bypass the device's firewall rules",
+          ],
+          correctIndex: 1,
+          explanation:
+            "BadCandy listened on a URL-encoded path the IOS XE web server would not log. Combined with a secret command requirement, this kept the implant's command-and-control traffic out of the device's own records.",
+        },
+        {
+          id: "stage-m01-q14",
+          type: "Attribution",
+          challenge: `  The operational discipline observed — silent pre-disclosure
+  exploitation, real-time implant updates to dodge scanners,
+  and broad infrastructure targeting — pointed to a specific
+  class of threat actor.`,
+          text: "Which actor type did Cisco Talos attribute the campaign to?",
+          options: [
+            "A lone hobbyist researcher",
+            "A suspected state-sponsored (Chinese APT) group",
+            "A ransomware affiliate seeking quick payouts",
+            "An automated worm with no human operator",
+          ],
+          correctIndex: 1,
+          explanation:
+            "The sophistication — pre-disclosure zero-day use, watching the disclosure, and adapting the implant overnight — led Cisco Talos to attribute the campaign to a suspected Chinese state-sponsored APT.",
+        },
+        {
+          id: "stage-m01-q15",
+          type: "Remediation",
+          challenge: `  An organization must keep the web UI enabled for a
+  legitimate management tool but wants to reduce the
+  CVE-2023-20198 attack surface immediately.`,
+          text: "Which control limits who can reach the web UI while keeping it enabled?",
+          options: [
+            "Apply an access class to the HTTP server with 'ip http access-class' restricting source IPs",
+            "Increase the HTTP idle timeout",
+            "Enable HTTP keepalives",
+            "Set a longer banner message",
+          ],
+          correctIndex: 0,
+          explanation:
+            "`ip http access-class` binds an ACL to the web server so only approved management source addresses can reach it. If the UI must stay on, restricting reachability is the next-best mitigation after disabling it outright.",
+        },
+        {
+          id: "stage-m01-q16",
+          type: "Sectors",
+          challenge: `  The October 2023 victims were not confined to one industry.`,
+          text: "Which best describes the scope of affected organizations?",
+          options: [
+            "Only small home offices",
+            "A broad cross-section — healthcare, universities, financial institutions, government, ISPs, and telecom",
+            "Exclusively cloud data centers",
+            "Only organizations in a single country",
+          ],
+          correctIndex: 1,
+          explanation:
+            "Because IOS XE underpins enterprise networking everywhere, victims spanned healthcare, education, finance, government, ISPs, and telecom — the network gates of virtually every sector were open at once.",
+        },
+        {
+          id: "stage-m01-q17",
+          type: "Recovery",
+          challenge: `  A hospital discovers BadCandy on a core router that
+  routes its clinical VLANs. The router cannot simply be
+  taken offline without disrupting patient care.`,
+          text: "What does effective recovery require, given the implant's persistence?",
+          options: [
+            "A simple password change during off-hours",
+            "A full OS reinstall and config rebuild, often requiring physical access and careful isolation of clinical VLANs during the work",
+            "Disabling SNMP only",
+            "Rotating TLS certificates",
+          ],
+          correctIndex: 1,
+          explanation:
+            "Because BadCandy survives credential resets and upgrades, recovery means a full OS reinstall and config rebuild — disruptive work that, for healthcare, required isolating clinical VLANs mid-operation.",
+        },
+        {
+          id: "stage-m01-q18",
+          type: "Implant",
+          challenge: `  BadCandy was implemented in a scripting language embedded
+  in the IOS XE web stack rather than as a compiled binary.`,
+          text: "Which language was the implant written in?",
+          options: [
+            "Lua",
+            "Visual Basic",
+            "PowerShell",
+            "COBOL",
+          ],
+          correctIndex: 0,
+          explanation:
+            "BadCandy was a Lua-based implant embedded in the IOS XE web server (nginx) configuration — lightweight, scriptable, and able to live inside the web stack itself.",
+        },
+        {
+          id: "stage-m01-q19",
+          type: "Detection",
+          challenge: `  A responder wants to detect the implant itself, not just
+  the rogue account, on a device suspected of compromise.`,
+          text: "Which check is most relevant to finding BadCandy specifically?",
+          options: [
+            "Inspect the nginx/web-server configuration files for unexpected entries written by the exploit chain",
+            "Run 'show clock' to compare timestamps",
+            "Count the number of VLANs",
+            "Check the chassis serial number",
+          ],
+          correctIndex: 0,
+          explanation:
+            "The implant lived in the web server's configuration (e.g., /usr/binos/conf/nginx-conf). Inspecting those files for entries the team did not author is how responders located BadCandy beyond the rogue account.",
+        },
+        {
+          id: "stage-m01-q20",
+          type: "Patch",
+          challenge: `  Cisco released a fixed software train to close
+  CVE-2023-20198 and the chained CVE-2023-20273.`,
+          text: "Which release first addressed the flaw?",
+          options: [
+            "IOS XE 16.1.1",
+            "IOS XE 17.9.4a",
+            "IOS XE 12.2",
+            "IOS XE 15.0",
+          ],
+          correctIndex: 1,
+          explanation:
+            "IOS XE 17.9.4a (released October 22, 2023) was the fixed release. It shipped 24 days after exploitation began and six days after public disclosure.",
+        },
+        {
+          id: "stage-m01-q21",
+          type: "Concept",
+          challenge: `  The stage frames CVE-2023-20198 with the fall of
+  Constantinople in 1453, when soldiers entered through the
+  Kerkoporta — a side gate left unlocked by accident.`,
+          text: "What security lesson does the Kerkoporta analogy capture?",
+          options: [
+            "Strong perimeters are useless against insiders only",
+            "A single overlooked, unguarded entry point can defeat otherwise formidable defenses",
+            "Encryption always prevents breaches",
+            "Physical security is irrelevant to networks",
+          ],
+          correctIndex: 1,
+          explanation:
+            "Constantinople's walls had held for a thousand years, yet one unlocked side gate ended the empire. CVE-2023-20198 is the same lesson: an unauthenticated endpoint is an open gate, no matter how strong the rest of the defenses are.",
+        },
+        {
+          id: "stage-m01-q22",
+          type: "Exposure",
+          challenge: `  A risk assessor is prioritizing which IOS XE devices to
+  remediate first during the campaign.`,
+          text: "Which devices should be treated as the highest priority?",
+          options: [
+            "Devices with the web UI reachable from the internet",
+            "Devices in a locked server room with no network management interface",
+            "Devices that are powered off",
+            "Devices running an unrelated firewall OS",
+          ],
+          correctIndex: 0,
+          explanation:
+            "Internet-reachable web UIs are directly exploitable by any unauthenticated attacker, so they carry the highest risk and should be remediated or disabled first.",
+        },
+        {
+          id: "stage-m01-q23",
+          type: "Posture",
+          challenge: `  After cleanup, the security team debates whether a
+  cleaned device that was confirmed implanted can be
+  'trusted' again simply because the account was removed.`,
+          text: "What is the appropriate assumption for a confirmed-compromised device?",
+          options: [
+            "Removing the rogue account fully restores trust",
+            "Assume full compromise — only a complete OS reinstall (not account removal) restores a trustworthy state",
+            "A reboot is sufficient to clear any implant",
+            "Trust is restored once the patch is applied, regardless of prior implant",
+          ],
+          correctIndex: 1,
+          explanation:
+            "Because the implant persists through resets and upgrades, deleting the account is not enough. A device confirmed implanted must be treated as fully compromised and rebuilt from a clean OS image.",
+        },
+        {
+          id: "stage-m01-q24",
+          type: "Disclosure",
+          challenge: `  When Cisco disclosed CVE-2023-20198 on October 16, 2023,
+  one detail made the situation especially urgent for
+  defenders.`,
+          text: "What was that detail?",
+          options: [
+            "A patch was already widely deployed",
+            "There was no patch available at disclosure — defenders could only mitigate by disabling the web UI",
+            "The flaw required physical access",
+            "Only end-of-life devices were affected",
+          ],
+          correctIndex: 1,
+          explanation:
+            "Disclosure came with no patch ready. Until 17.9.4a shipped six days later, the only defense was disabling the web UI — a classic zero-day-without-a-fix scramble.",
+        },
+        {
+          id: "stage-m01-q25",
+          type: "Principle",
+          challenge: `  A CISO summarizes the campaign for the board: an
+  unauthenticated endpoint on internet-facing infrastructure
+  led to 40,000+ silent compromises.`,
+          text: "Which guiding principle best prevents a recurrence?",
+          options: [
+            "Trust requests that reach internal endpoints by default",
+            "Minimize attack surface: never expose management planes to the internet, and disable unused services by default",
+            "Rely solely on signature-based IDS at the perimeter",
+            "Patch only during annual maintenance windows",
+          ],
+          correctIndex: 1,
+          explanation:
+            "Attack-surface minimization — keeping management planes off the internet and disabling unused services — would have prevented exploitation regardless of the underlying bug. It is the most durable lesson of the campaign.",
+        },
       ],
     },
     ctf: {
@@ -2790,13 +3006,13 @@ no ip http secure-server
       year: 2016,
       overview: [
         "In 1671, a soldier named Colonel Thomas Blood disguised himself as a clergyman, spent weeks befriending the Keeper of the Tower's Jewel House, and one morning struck the Keeper unconscious with a mallet and walked out with the Crown Jewels under his cloak. The Tower's security was designed around a single assumption: anyone who passed the outer gate was authorized. The outer gate used a shared challenge-response — a community string, available to any credentialed party. Blood had the response. He got through. The inner system never questioned what happened next.",
-        "CVE-2016-6366, codename EXTRABACON, is built on the same assumption. Cisco ASA firewalls run SNMP (Simple Network Management Protocol) on UDP port 161, accepting monitoring queries from any host that knows the community string — and the default community string is 'public.' EXTRABACON sends a crafted SNMP OID request targeting the CISCO-ENHANCED-MEMPOOL-MIB handler, overflowing a fixed-size heap buffer by injecting more data than it was allocated to hold. The overflow overwrites the adjacent enable-password authentication function pointer in memory, replacing it with code that always returns 'authenticated.' The firewall's perimeter defenses remain intact. The gate simply stops checking credentials.",
+        "CVE-2016-6366, codename EXTRABACON, is built on the same assumption. Cisco ASA firewalls run SNMP (Simple Network Management Protocol) on UDP port 161, accepting monitoring queries from any host that knows the community string — and the default community string is 'public.' EXTRABACON exploits this in a precise sequence:\n- It sends a crafted SNMP OID request targeting the CISCO-ENHANCED-MEMPOOL-MIB handler\n- The request overflows a fixed-size heap buffer by injecting more data than it was allocated to hold\n- The overflow overwrites the adjacent enable-password authentication function pointer in memory, replacing it with code that always returns 'authenticated'\n- The firewall's perimeter defenses remain intact — the gate simply stops checking credentials",
         "EXTRABACON was built by the NSA Equation Group as a classified offensive capability and used in intelligence operations for years before anyone outside the NSA knew it existed. On August 13, 2016, a group calling themselves the Shadow Brokers published it alongside EternalBlue and the rest of the NSA's BANANAGLEE toolkit — in one afternoon, a classified nation-state weapon became available to every threat actor on earth. Cisco's Emergency Advisory — the first time Cisco had ever used the word 'Emergency' in an advisory — went out the same day. Every ASA with community string 'public' or 'private' was now a target for every government, criminal gang, and script kiddie simultaneously.",
       ],
       technical: {
         title: "SNMP Heap Overflow — How EXTRABACON Silently Bypasses ASA Authentication",
         body: [
-          "SNMP v2c — the most common enterprise deployment — sends the community string in plaintext with every packet. Any network tap, Wireshark capture, or man-in-the-middle can recover it in seconds. EXTRABACON targeted a heap buffer in the ASA's SNMP handler that processed CISCO-ENHANCED-MEMPOOL-MIB OID requests. The handler used `memcpy()` to copy attacker-supplied OID data into a 64-byte heap buffer, using the length value from the attacker's packet as the copy length — with no bounds check. By supplying 255 bytes, the attacker overflowed 191 bytes past the buffer boundary, overwriting the heap metadata and the adjacent function pointer for the enable-password authentication check.",
+          "SNMP v2c — the most common enterprise deployment — sends the community string in plaintext with every packet. Any network tap, Wireshark capture, or man-in-the-middle can recover it in seconds. EXTRABACON targeted a heap buffer in the ASA's SNMP handler that processed CISCO-ENHANCED-MEMPOOL-MIB OID requests:\n- The handler used `memcpy()` to copy attacker-supplied OID data into a 64-byte heap buffer\n- It used the length value from the attacker's own packet as the copy length — with no bounds check\n- Supplying 255 bytes overflowed 191 bytes past the buffer boundary\n- This overwrote the heap metadata and the adjacent function pointer for the enable-password authentication check",
           "The Shadow Brokers release included version-specific shellcode payloads for over 20 distinct ASA firmware versions: 8.x, 9.0, 9.1, 9.2, 9.3, and 9.4 variants. An attacker first used a clean SNMP walk to identify the exact firmware version, then selected the matching payload. The exploit's effect was surgical: it did not crash the ASA or produce log output. It patched the in-memory enable-authentication function to unconditionally return 'authenticated,' then returned the ASA to normal operation. The device appeared to run normally while the attacker had silent SSH access to the CLI — no logs, no alerts, no evidence beyond the access itself.",
         ],
         codeExample: {
@@ -2840,7 +3056,7 @@ no snmp-server community private
         body: [
           "The Equation Group developed EXTRABACON as part of BANANAGLEE — a toolkit for persistent access to network perimeter devices. Intelligence assessments and leaked NSA documents published by The Intercept suggest the toolkit was used to compromise ASA firewalls protecting government agencies, financial institutions, and critical infrastructure across the Middle East, Europe, and Asia. A compromised ASA is a perfect intelligence collection platform: all traffic flows through it, and it can be silently configured to log or mirror any connection of interest. The NSA exploited this for years — device owners had no way to know their firewalls had been modified.",
           "On August 13, 2016, the Shadow Brokers published EXTRABACON alongside EternalBlue, DoublePulsar, and the full Equation Group toolkit. Cisco's Emergency Advisory arrived the same afternoon — unprecedented in both speed and language. Security researchers had working exploits running within 24 hours. Within 48 hours, automated scanners were hitting every internet-exposed ASA with community string 'public' or 'private.' Shodan searches returned tens of thousands of ASAs with SNMP exposed. The community string 'public' was so common that Cisco's own hardening guides had recommended changing it for years — but most organizations had not.",
-          "The Shadow Brokers continued dumping NSA tools through 2016 and 2017. EternalBlue — released in April 2017 — powered WannaCry (May 2017, $4B estimated damage) and NotPetya (June 2017, $10B estimated damage). EXTRABACON itself was independently weaponized by Iranian APT groups APT33 and APT34 in campaigns targeting Middle Eastern financial and energy organizations through late 2016 and 2017 — documented by Symantec and Mandiant. The lesson is permanent: classified cyberweapons are not eternally secret. Any device left on default configuration — 'public' community string, 'admin/admin' credentials — is not just currently at risk; it is a countdown timer waiting for the next leak.",
+          "The Shadow Brokers continued dumping NSA tools through 2016 and 2017:\n- EternalBlue (April 2017) powered WannaCry (May 2017, $4B estimated damage) and NotPetya (June 2017, $10B estimated damage)\n- EXTRABACON was independently weaponized by Iranian APT groups APT33 and APT34 against Middle Eastern financial and energy organizations through late 2016 and 2017 — documented by Symantec and Mandiant\nThe lesson is permanent: classified cyberweapons are not eternally secret. Any device left on default configuration — 'public' community string, 'admin/admin' credentials — is not just currently at risk; it is a countdown timer waiting for the next leak.",
         ],
       },
       diagram: {
@@ -2868,6 +3084,418 @@ no snmp-server community private
         { title: "Cisco Advisory — CVE-2016-6366", url: "https://sec.cloudapps.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20160817-asa-snmp" },
         { title: "CVE-2016-6366 — NVD Detail", url: "https://nvd.nist.gov/vuln/detail/CVE-2016-6366" },
         { title: "Shadow Brokers Leak Analysis — Cisco Talos", url: "https://blog.talosintelligence.com/shadow-brokers/" },
+      ],
+    },
+    quiz: {
+      questions: [
+        {
+          id: "stage-m02-q1",
+          type: "SNMP",
+          challenge: `  An auditor finds a Cisco ASA firewall with an SNMP
+  community string still set to the default value.`,
+          text: "Why is a default community string a serious exposure for EXTRABACON (CVE-2016-6366)?",
+          options: [
+            "It only affects SNMP polling performance",
+            "The community string is the sole credential gating SNMP access; with the default 'public', any host can reach the vulnerable SNMP handler",
+            "Default strings are encrypted, so they are safe",
+            "It matters only if Telnet is also enabled",
+          ],
+          correctIndex: 1,
+          explanation:
+            "EXTRABACON requires SNMP reachability with a valid community string. The default 'public' is the credential everyone knows, so leaving it in place hands attackers the access they need to send the malicious OID request.",
+        },
+        {
+          id: "stage-m02-q2",
+          type: "Protocol",
+          challenge: `  A network engineer captures SNMP v2c traffic to an ASA
+  with Wireshark during troubleshooting.`,
+          text: "What weakness of SNMP v2c does this expose?",
+          options: [
+            "The community string is sent in plaintext in every packet and can be recovered from a capture",
+            "SNMP v2c uses TLS 1.3, so nothing is exposed",
+            "Community strings are hashed with bcrypt",
+            "v2c does not transmit community strings at all",
+          ],
+          correctIndex: 0,
+          explanation:
+            "SNMP v2c sends the community string in cleartext with every packet. A tap, capture, or man-in-the-middle recovers it in seconds — one reason the protocol is weak authentication.",
+        },
+        {
+          id: "stage-m02-q3",
+          type: "Memory",
+          challenge: `  EXTRABACON sends an oversized OID value into the ASA's
+  SNMP handler, which copies it into a 64-byte heap buffer.`,
+          text: "What programming flaw makes the overflow possible?",
+          options: [
+            "The handler uses memcpy() with the attacker-supplied length and performs no bounds check",
+            "The handler validates length but uses the wrong hash",
+            "The buffer is allocated on the stack with a canary",
+            "The handler rejects all OID requests larger than 16 bytes",
+          ],
+          correctIndex: 0,
+          explanation:
+            "The handler copied attacker-supplied OID data into a fixed 64-byte buffer using the packet's own length field as the copy size, with no bounds check — a classic unchecked memcpy heap overflow.",
+        },
+        {
+          id: "stage-m02-q4",
+          type: "Exploit effect",
+          challenge: `  After the overflow, the attacker SSHes to the ASA, types
+  'enable', presses Enter without a password, and gets a
+  full administrative prompt.`,
+          text: "What did the overflow actually overwrite to make this work?",
+          options: [
+            "The device's MAC address table",
+            "The enable-password authentication function pointer, replaced with code that always returns 'authenticated'",
+            "The SSH host key",
+            "The interface ACLs",
+          ],
+          correctIndex: 1,
+          explanation:
+            "The overflow overwrote the adjacent function pointer for the enable-password check, redirecting it to code that unconditionally returns 'authenticated' — so the enable password is no longer required.",
+        },
+        {
+          id: "stage-m02-q5",
+          type: "Stealth",
+          challenge: `  A SOC reviews ASA logs after a suspected EXTRABACON
+  compromise and finds no crash, no reboot, and no alerts.`,
+          text: "Why is there so little evidence?",
+          options: [
+            "The exploit always reboots the device, clearing logs",
+            "The exploit is surgical — it patches the in-memory auth function and returns the ASA to normal operation, producing no crash or log output",
+            "ASAs do not keep logs",
+            "The attacker disabled syslog before exploiting",
+          ],
+          correctIndex: 1,
+          explanation:
+            "EXTRABACON did not crash the device or generate log output. It quietly patched the authentication function in memory and let the ASA keep running normally, so the only evidence was the unauthorized access itself.",
+        },
+        {
+          id: "stage-m02-q6",
+          type: "Shellcode",
+          challenge: `  The leaked EXTRABACON toolkit included more than 20
+  distinct shellcode payloads for different ASA firmware
+  releases, and attackers first ran an SNMP walk.`,
+          text: "Why was a version-specific payload and a prior SNMP walk necessary?",
+          options: [
+            "SNMP walks reset the firewall before exploitation",
+            "Memory offsets differ per firmware version, so the attacker fingerprints the exact version first, then selects the matching payload",
+            "Each payload encrypts a different file",
+            "The walk is required to disable logging",
+          ],
+          correctIndex: 1,
+          explanation:
+            "Function-pointer offsets vary across firmware builds. The attacker used a clean SNMP walk to identify the exact version, then chose the matching version-specific shellcode so the overwrite landed correctly.",
+        },
+        {
+          id: "stage-m02-q7",
+          type: "Origin",
+          challenge: `  EXTRABACON did not originate with common criminals — it
+  was a classified capability used in intelligence
+  operations for years before becoming public.`,
+          text: "Who developed it, and how did it become public?",
+          options: [
+            "Developed by the NSA's Equation Group; leaked publicly by the Shadow Brokers on August 13, 2016",
+            "Written by Cisco engineers and accidentally shipped in firmware",
+            "Created by APT33 and sold on a forum",
+            "Built by a university research lab and open-sourced",
+          ],
+          correctIndex: 0,
+          explanation:
+            "EXTRABACON was part of the NSA Equation Group's BANANAGLEE toolkit. The Shadow Brokers published it — alongside EternalBlue and the rest of the toolkit — on August 13, 2016.",
+        },
+        {
+          id: "stage-m02-q8",
+          type: "Disclosure",
+          challenge: `  Cisco responded to the Shadow Brokers dump the same
+  afternoon with an advisory whose title used a word Cisco
+  had never used in an advisory before.`,
+          text: "What was notable about Cisco's response?",
+          options: [
+            "It was the first 'Emergency' advisory Cisco had ever issued",
+            "It was delayed by six months",
+            "It downplayed the flaw as informational",
+            "It applied only to end-of-life devices",
+          ],
+          correctIndex: 0,
+          explanation:
+            "Cisco issued its first-ever 'Emergency' advisory the same day, reflecting both the severity and the fact that a working nation-state exploit was now public for every ASA on default config.",
+        },
+        {
+          id: "stage-m02-q9",
+          type: "Detection",
+          challenge: `  A responder needs to quickly identify which ASAs are at
+  immediate risk from EXTRABACON.`,
+          text: "Which command surfaces the risky configuration?",
+          options: [
+            "show clock",
+            "show snmp-server community — any 'public' or 'private' entry is immediate risk",
+            "show version",
+            "show interface counters",
+          ],
+          correctIndex: 1,
+          explanation:
+            "`show snmp-server community` reveals the configured community strings. Default 'public'/'private' values are immediate exposure and should be changed before or alongside patching.",
+        },
+        {
+          id: "stage-m02-q10",
+          type: "Remediation",
+          challenge: `  An organization patches its ASAs to a fixed release but
+  leaves the SNMP community string as 'public'.`,
+          text: "What residual risk remains, and what else is required?",
+          options: [
+            "None — patching fully resolves all SNMP exposure",
+            "SNMP is still reachable with a known credential and exposed to other abuse; remove default strings and restrict SNMP to specific management hosts",
+            "The patch automatically changes the community string",
+            "Only a reboot is still needed",
+          ],
+          correctIndex: 1,
+          explanation:
+            "Patching closes the overflow, but a default 'public' string still leaves SNMP open to enumeration and future abuse. Hardening means removing default strings and restricting SNMP to designated management hosts (ideally SNMPv3).",
+        },
+        {
+          id: "stage-m02-q11",
+          type: "Hardening",
+          challenge: `  A security architect wants to keep SNMP monitoring but
+  eliminate the cleartext-credential and exposure problems
+  that EXTRABACON exploited.`,
+          text: "Which change most directly addresses the protocol weakness?",
+          options: [
+            "Switch to SNMPv3 with authentication and encryption, and restrict SNMP to the management network",
+            "Use a longer v2c community string only",
+            "Move SNMP to TCP",
+            "Increase the SNMP polling interval",
+          ],
+          correctIndex: 0,
+          explanation:
+            "SNMPv3 adds per-user authentication and encryption, eliminating the cleartext community-string weakness. Combined with restricting SNMP to the management network, it removes both the exposure and the credential-sniffing risk.",
+        },
+        {
+          id: "stage-m02-q12",
+          type: "Port",
+          challenge: `  An external scan of an organization's perimeter looks for
+  exposed network-management services.`,
+          text: "Which port indicates internet-exposed SNMP that EXTRABACON could target?",
+          options: [
+            "TCP 443",
+            "UDP 161",
+            "TCP 22",
+            "UDP 53",
+          ],
+          correctIndex: 1,
+          explanation:
+            "SNMP listens on UDP port 161. An ASA with UDP 161 reachable from the internet (visible in Shodan-style scans) is directly exposed to EXTRABACON.",
+        },
+        {
+          id: "stage-m02-q13",
+          type: "CVSS",
+          challenge: `  CVE-2016-6366 carries a CVSS base score of 8.1 (High).`,
+          text: "What does a High score like 8.1 communicate to a remediation team?",
+          options: [
+            "It is informational and can be ignored",
+            "It is a serious, prioritized vulnerability warranting prompt patching, though not at the absolute maximum severity of 10.0",
+            "It requires no network access to exploit",
+            "It affects availability only",
+          ],
+          correctIndex: 1,
+          explanation:
+            "8.1 is in the High band — a serious flaw to prioritize. It is below a maximum 10.0 (in part due to the SNMP-access precondition), but still demands prompt remediation given a public, working exploit.",
+        },
+        {
+          id: "stage-m02-q14",
+          type: "Leak fallout",
+          challenge: `  The same Shadow Brokers leaks that exposed EXTRABACON
+  also released another exploit that caused two of the most
+  damaging malware events in history.`,
+          text: "Which exploit, and which events?",
+          options: [
+            "Heartbleed; powering Mirai and Slammer",
+            "EternalBlue; powering WannaCry (2017, ~$4B) and NotPetya (2017, ~$10B)",
+            "Shellshock; powering Conficker",
+            "BlueKeep; powering Stuxnet",
+          ],
+          correctIndex: 1,
+          explanation:
+            "EternalBlue, released in April 2017, powered WannaCry (May 2017, ~$4B damage) and NotPetya (June 2017, ~$10B damage) — illustrating how leaked nation-state tools cascade into global incidents.",
+        },
+        {
+          id: "stage-m02-q15",
+          type: "Attribution",
+          challenge: `  After the leak, EXTRABACON was reused against Middle
+  Eastern financial and energy targets in late 2016–2017,
+  per Symantec and Mandiant reporting.`,
+          text: "Which actors independently weaponized it?",
+          options: [
+            "Iranian APT groups APT33 and APT34",
+            "The Lazarus Group only",
+            "No threat actor ever reused it",
+            "A consortium of antivirus vendors",
+          ],
+          correctIndex: 0,
+          explanation:
+            "Symantec and Mandiant documented Iranian APT groups APT33 and APT34 weaponizing EXTRABACON against Middle Eastern financial and energy organizations after the public leak.",
+        },
+        {
+          id: "stage-m02-q16",
+          type: "Impact",
+          challenge: `  Intelligence assessments describe a compromised ASA as a
+  near-ideal platform for an intelligence service.`,
+          text: "Why is a compromised perimeter firewall so valuable to an attacker?",
+          options: [
+            "It can mine cryptocurrency efficiently",
+            "All traffic flows through it, so it can be silently configured to log or mirror any connection of interest",
+            "It stores user passwords in plaintext by design",
+            "It automatically forwards email",
+          ],
+          correctIndex: 1,
+          explanation:
+            "A perimeter firewall sees all ingress/egress traffic. Quietly owning it lets an attacker mirror or log any flow of interest — a perfect, persistent collection vantage point.",
+        },
+        {
+          id: "stage-m02-q17",
+          type: "Principle",
+          challenge: `  A CISO argues that because EXTRABACON was a secret NSA
+  tool, ordinary organizations were never really at risk
+  before the leak.`,
+          text: "What is the flaw in that reasoning?",
+          options: [
+            "Secret tools never get leaked, so the CISO is correct",
+            "Classified cyberweapons are not eternally secret — any device on default configuration is a countdown timer waiting for the next leak",
+            "Only government devices run SNMP",
+            "Buffer overflows cannot be weaponized by non-state actors",
+          ],
+          correctIndex: 1,
+          explanation:
+            "The durable lesson is that secret offensive tools eventually leak. A device left on defaults isn't merely safe-until-then; it's a latent victim awaiting the moment the capability becomes public.",
+        },
+        {
+          id: "stage-m02-q18",
+          type: "Speed",
+          challenge: `  Within 24 hours of the leak, researchers had working
+  exploits; within 48, automated scanners were sweeping the
+  internet for vulnerable ASAs.`,
+          text: "What does this timeline imply for defenders after any major exploit disclosure?",
+          options: [
+            "There is ample time to wait for the next maintenance window",
+            "The window between public disclosure and mass exploitation is often measured in hours — mitigation must be immediate",
+            "Scanners cannot find SNMP services",
+            "Only manual, targeted attacks occur",
+          ],
+          correctIndex: 1,
+          explanation:
+            "Mass scanning began within ~48 hours. After disclosure of a serious, exploitable flaw, defenders should assume hours — not weeks — before opportunistic exploitation reaches them.",
+        },
+        {
+          id: "stage-m02-q19",
+          type: "Access control",
+          challenge: `  An ASA must run SNMP for a monitoring server at
+  10.10.0.5, but nothing else should be able to query it.`,
+          text: "Which configuration approach best limits the EXTRABACON attack surface?",
+          options: [
+            "Bind SNMP to only the management host (e.g., snmp-server host 10.10.0.5 ...) with a strong random string, and block SNMP at the perimeter",
+            "Leave 'public' but raise the polling rate",
+            "Expose SNMP to the internet for redundancy",
+            "Disable logging to reduce noise",
+          ],
+          correctIndex: 0,
+          explanation:
+            "Restricting SNMP to the single authorized management host with a strong credential, and blocking it at the perimeter, ensures attackers cannot reach the vulnerable handler even before patching.",
+        },
+        {
+          id: "stage-m02-q20",
+          type: "Analogy",
+          challenge: `  In 1671, Colonel Thomas Blood passed the Tower of
+  London's outer gate using the expected challenge-response,
+  then attacked the Jewel House keeper directly.`,
+          text: "Which security lesson does this parallel to EXTRABACON?",
+          options: [
+            "Physical locks are always stronger than digital ones",
+            "A system that trusts anyone past a shared, guessable credential has no real inner defense — like SNMP's 'public' string gating a fragile handler",
+            "Insiders are the only real threat",
+            "Monitoring protocols cannot be attacked",
+          ],
+          correctIndex: 1,
+          explanation:
+            "The Tower assumed anyone past the gate was authorized. EXTRABACON exploits the same flaw: once the shared 'public' credential is accepted, the inner system stops questioning what happens next.",
+        },
+        {
+          id: "stage-m02-q21",
+          type: "Patch",
+          challenge: `  A team is selecting the target firmware to remediate
+  CVE-2016-6366 on their ASA fleet.`,
+          text: "Which represents a fixed release line per Cisco's guidance?",
+          options: [
+            "ASA 9.1(7.9) / 9.6(1.12) / 9.8(1.3) or later",
+            "ASA 7.0(1)",
+            "ASA 8.0(2)",
+            "Any 8.x release",
+          ],
+          correctIndex: 0,
+          explanation:
+            "Cisco's fixed trains included ASA 9.1(7.9), 9.6(1.12), and 9.8(1.3) (and later). The vulnerable 8.x/early-9.x builds were the exploit's primary targets.",
+        },
+        {
+          id: "stage-m02-q22",
+          type: "Concept",
+          challenge: `  An analyst classifies EXTRABACON's outcome on the ASA.`,
+          text: "Which best describes what the exploit achieves?",
+          options: [
+            "A denial of service that reboots the firewall",
+            "A remote authentication bypass / code execution that yields silent administrative CLI access",
+            "Data encryption for ransom",
+            "A purely local privilege escalation requiring console access",
+          ],
+          correctIndex: 1,
+          explanation:
+            "EXTRABACON is a remote memory-corruption exploit that bypasses enable authentication, granting silent administrative CLI access — not a DoS, ransomware, or local-only attack.",
+        },
+        {
+          id: "stage-m02-q23",
+          type: "Fingerprinting",
+          challenge: `  Before launching the exploit, the operator runs:
+  snmpwalk -v2c -c public TARGET .1.3.6.1.2.1.1.1.0`,
+          text: "What is the purpose of this query?",
+          options: [
+            "To overflow the buffer immediately",
+            "To read sysDescr and confirm the device model and exact firmware version so the correct payload can be chosen",
+            "To reset the community string",
+            "To disable SNMP",
+          ],
+          correctIndex: 1,
+          explanation:
+            "That OID (sysDescr) returns the device description and firmware version. The operator uses it to confirm the target is a vulnerable ASA and to select the version-specific shellcode.",
+        },
+        {
+          id: "stage-m02-q24",
+          type: "Exposure",
+          challenge: `  A Shodan-style internet scan returns tens of thousands of
+  ASAs with SNMP exposed and default community strings.`,
+          text: "What does this reveal about real-world exposure at the time of the leak?",
+          options: [
+            "Default-configuration devices were rare and well protected",
+            "A vast population of internet-facing ASAs was immediately exploitable because operators never changed documented defaults",
+            "Shodan cannot detect SNMP",
+            "Only internal devices were affected",
+          ],
+          correctIndex: 1,
+          explanation:
+            "Despite years of Cisco guidance to change 'public'/'private', tens of thousands of ASAs were internet-exposed on defaults — instantly exploitable the moment the tool went public.",
+        },
+        {
+          id: "stage-m02-q25",
+          type: "Strategy",
+          challenge: `  Leadership asks how to avoid being caught flat-footed by
+  the next leaked government exploit.`,
+          text: "Which strategy best reflects the EXTRABACON lesson?",
+          options: [
+            "Assume secret tools will never leak and defer patching",
+            "Patch proactively, eliminate default credentials, minimize exposed management services, and treat leaked-weapon scenarios as inevitable",
+            "Rely solely on perimeter firewalls with default configs",
+            "Disable monitoring entirely",
+          ],
+          correctIndex: 1,
+          explanation:
+            "Because leaks are inevitable, resilience comes from proactive patching, removing defaults, and minimizing exposed management surfaces — so a newly public exploit finds nothing easy to hit.",
+        },
       ],
     },
     ctf: {
