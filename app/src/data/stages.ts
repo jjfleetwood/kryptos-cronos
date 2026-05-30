@@ -3593,13 +3593,13 @@ no snmp-server community private
       year: 2018,
       overview: [
         "Angkor Wat was built with an elaborate network of supply channels — raised causeways, storage depots, access roads — because constructing the largest religious monument on earth required continuous provisioning from distant provinces. One service entrance on the north side was designated for supply deliveries: a gate that accepted materials without full credential verification, because the volume of traffic was too high for individual identity checks. When Angkor fell out of active use in the 15th century, that gate was simply forgotten. The records of it were lost. For centuries it stood open — unguarded, unknown, waiting.",
-        "CVE-2018-0171 is that forgotten gate. Cisco's Smart Install feature — designed to enable zero-touch provisioning of newly connected switches, allowing a director switch to automatically push IOS images and startup configurations — listens on TCP port 4786 with no authentication whatsoever. The design assumption was a sealed internal provisioning network. The reality was that this port ended up internet-exposed on hundreds of thousands of switches worldwide. An attacker who could reach TCP/4786 could send a single Smart Install message to download the device's complete running configuration (with all credentials in cleartext or weak encryption), overwrite the startup configuration with a backdoored version, or in some builds trigger a buffer overflow for arbitrary code execution.",
+        "CVE-2018-0171 is that forgotten gate. Cisco's Smart Install feature — designed to enable zero-touch provisioning of newly connected switches, allowing a director switch to automatically push IOS images and startup configurations — listens on TCP port 4786 with no authentication whatsoever. The design assumption was a sealed internal provisioning network. The reality was that this port ended up internet-exposed on hundreds of thousands of switches worldwide. An attacker who could reach TCP/4786 could send a single Smart Install message to:\n- Download the device's complete running configuration, with all credentials in cleartext or weak encryption\n- Overwrite the startup configuration with a backdoored version\n- In some builds, trigger a buffer overflow for arbitrary code execution",
         "Cisco disclosed CVE-2018-0171 on March 28, 2018. Cisco Talos immediately scanned the internet and found 168,000 vulnerable devices exposed. Within days, the US-CERT and DHS jointly issued Emergency Alert AA18-106A — one of the most direct public attributions of state-sponsored network infrastructure attacks ever published by the US government — naming Russian GRU's APT28 (Fancy Bear) as the actor exploiting Smart Install as part of the VPNFilter campaign: a botnet of 500,000+ compromised routers and switches carrying a destructive stage-2 payload. The FBI seized VPNFilter's C2 domain. The supply gate had been open for years, and the enemy had already walked through.",
       ],
       technical: {
         title: "Smart Install: Unauthenticated Provisioning — Config Theft to Code Execution",
         body: [
-          "Smart Install consists of a director switch (or Smart Install Director server) that pushes IOS images and configurations to newly connected client switches. The client broadcasts a Smart Install message on boot: 'I just connected, give me my configuration.' The director responds with TFTP file transfers. No authentication at any step — the entire protocol runs on trust. TCP/4786 is the control channel. SIET (Smart Install Exploitation Tool, publicly available) automates three attacks: (1) `siet.py -g` downloads the running-config and startup-config via TFTP without credentials; (2) `siet.py -c` uploads a replacement startup-config (loaded on next reload); (3) `siet.py -e` triggers the CVE-2018-0171 buffer overflow for arbitrary code execution in the IOS process.",
+          "Smart Install consists of a director switch (or Smart Install Director server) that pushes IOS images and configurations to newly connected client switches. The client broadcasts a Smart Install message on boot: 'I just connected, give me my configuration.' The director responds with TFTP file transfers. No authentication at any step — the entire protocol runs on trust. TCP/4786 is the control channel. SIET (Smart Install Exploitation Tool, publicly available) automates three attacks:\n- `siet.py -g` downloads the running-config and startup-config via TFTP without credentials\n- `siet.py -c` uploads a replacement startup-config, loaded on next reload\n- `siet.py -e` triggers the CVE-2018-0171 buffer overflow for arbitrary code execution in the IOS process",
           "The running configuration extracted via Smart Install is the complete network blueprint: enable and enable-secret passwords (MD5-hashed, often crackable), local user accounts, SNMP community strings (often 'public'), VPN pre-shared keys in cleartext, RADIUS shared secrets, and the complete network topology. The configuration replacement attack is worse than a read — an attacker can add an unauthorized admin account, remove logging to cover subsequent activity, or modify ACLs to permit traffic that should be blocked. The config replacement is silent and survives reboots.",
         ],
         codeExample: {
@@ -3639,7 +3639,7 @@ no vstack
         impact: "US-CERT Emergency Alert AA18-106A; FBI C2 domain seizure; GRU/APT28 attribution; destructive kill-switch capability deployed",
         body: [
           "Russian GRU's APT28 (Fancy Bear) unit began the VPNFilter campaign in late 2017, using Smart Install exploitation alongside default credentials and weak SNMP community strings as initial access vectors. The campaign targeted ISPs, telecommunications providers, and critical infrastructure operators in 54 countries — with particular concentration in Ukraine, where VPNFilter-infected devices were pre-positioned near high-value targets including election infrastructure. The goal was dual-purpose: intelligence collection via passive traffic monitoring, and pre-positioned destructive capability. By early 2018, the botnet had over 500,000 infected devices.",
-          "VPNFilter's architecture was three-staged. Stage 1 survived device reboots and called home for stage 2. Stage 2 included a 'kill switch' module: a command from the C2 server would overwrite the device firmware with random data, permanently and irreversibly bricking the device. Stage 2 also included packet sniffing modules targeting industrial control system protocols (Modbus TCP) and a credential-harvesting module for HTTP traffic. On May 23, 2018, the FBI executed a court order seizing the Sofacy domain used as VPNFilter's C2 — temporarily disrupting stage-2 delivery. But stage-1 infections persisted on hundreds of thousands of devices that had never received a factory reset.",
+          "VPNFilter's architecture was three-staged:\n- Stage 1 survived device reboots and called home for stage 2\n- Stage 2 included a 'kill switch' module — a C2 command would overwrite the device firmware with random data, permanently and irreversibly bricking it\n- Stage 2 also included packet-sniffing modules targeting industrial control system protocols (Modbus TCP) and a credential-harvesting module for HTTP traffic\nOn May 23, 2018, the FBI executed a court order seizing the Sofacy domain used as VPNFilter's C2 — temporarily disrupting stage-2 delivery. But stage-1 infections persisted on hundreds of thousands of devices that had never received a factory reset.",
           "The US-CERT and FBI joint Emergency Alert AA18-106A, published April 16, 2018, stated explicitly: 'The Russian government, specifically the FSB and GRU, are using compromised routers to conduct man-in-the-middle attacks, monitor network traffic, and position themselves for future offensive operations.' Smart Install was named as a primary initial access method. At disclosure, 168,000 devices remained internet-exposed on TCP/4786. The command to disable Smart Install — `no vstack` — was a single IOS command that most network administrators had never heard of, because the feature had been added silently in IOS years earlier with no clear documentation of the security implication of leaving it enabled.",
         ],
       },
@@ -3670,6 +3670,410 @@ no vstack
         { title: "Cisco Advisory — CVE-2018-0171", url: "https://sec.cloudapps.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20180328-smi2" },
         { title: "US-CERT Alert AA18-106A", url: "https://www.cisa.gov/uscert/ncas/alerts/AA18-106A" },
         { title: "Cisco Talos: 168,000 Vulnerable Devices", url: "https://blog.talosintelligence.com/cisco-smart-install-protocol-misuse/" },
+      ],
+    },
+    quiz: {
+      questions: [
+        {
+          id: "stage-m03-q1",
+          type: "CVE-2018-0171",
+          challenge: `  A switch has Cisco Smart Install enabled and TCP port
+  4786 reachable from an untrusted network.`,
+          text: "Why is this critically dangerous?",
+          options: [
+            "Smart Install requires a password that is easy to brute-force",
+            "Smart Install performs no authentication, so anyone reaching TCP/4786 can pull the config, replace it, or trigger code execution",
+            "It only allows read access to interface names",
+            "It is dangerous only if SSH is also enabled",
+          ],
+          correctIndex: 1,
+          explanation:
+            "Smart Install runs entirely on trust with no authentication. Any host that can reach TCP/4786 can download the running-config, overwrite the startup-config, or trigger the CVE-2018-0171 overflow.",
+        },
+        {
+          id: "stage-m03-q2",
+          type: "Purpose",
+          challenge: `  An engineer asks why Smart Install exists at all if it
+  has no authentication.`,
+          text: "What was Smart Install designed to do?",
+          options: [
+            "Encrypt management traffic between switches",
+            "Enable zero-touch provisioning — a director switch automatically pushes IOS images and startup configs to newly connected client switches",
+            "Provide a backup SSH server",
+            "Replace SNMP monitoring",
+          ],
+          correctIndex: 1,
+          explanation:
+            "Smart Install provided zero-touch provisioning: a director pushes IOS images and configurations to new client switches. The design assumed a sealed internal provisioning network — an assumption that failed in practice.",
+        },
+        {
+          id: "stage-m03-q3",
+          type: "Config theft",
+          challenge: `  An attacker runs 'siet.py -g' against a Smart Install
+  switch and downloads its running configuration.`,
+          text: "What sensitive material does the running-config typically expose?",
+          options: [
+            "Only the device hostname",
+            "Enable/enable-secret passwords, local users, SNMP community strings, VPN pre-shared keys in cleartext, RADIUS secrets, and full topology",
+            "Nothing sensitive — configs are encrypted at rest",
+            "Only the IOS version string",
+          ],
+          correctIndex: 1,
+          explanation:
+            "The running-config is the network blueprint: enable secrets (MD5, often crackable), local accounts, SNMP strings, cleartext VPN PSKs, RADIUS secrets, and topology — effectively all the network's keys.",
+        },
+        {
+          id: "stage-m03-q4",
+          type: "Config replacement",
+          challenge: `  Beyond reading the config, an attacker uses Smart Install
+  to upload a replacement startup-config.`,
+          text: "Why is the configuration-replacement attack often worse than theft?",
+          options: [
+            "It only changes the banner text",
+            "The attacker can add an admin account, disable logging, and modify ACLs; the change is silent and survives reboots",
+            "It immediately crashes the device, alerting staff",
+            "It cannot persist past the next reload",
+          ],
+          correctIndex: 1,
+          explanation:
+            "A replaced startup-config lets the attacker add accounts, strip logging to hide activity, and loosen ACLs. It is silent and persists across reboots — a durable foothold, not just an information leak.",
+        },
+        {
+          id: "stage-m03-q5",
+          type: "Tooling",
+          challenge: `  Investigators find references to SIET in attacker
+  artifacts.`,
+          text: "What is SIET?",
+          options: [
+            "A Cisco-signed firmware updater",
+            "The Smart Install Exploitation Tool — publicly available, automating config download, config replacement, and the CVE-2018-0171 overflow",
+            "A SNMP monitoring dashboard",
+            "An encryption library",
+          ],
+          correctIndex: 1,
+          explanation:
+            "SIET (Smart Install Exploitation Tool) is a public tool that automates the three Smart Install attacks: download config (-g), upload replacement config (-c), and trigger the buffer overflow (-e).",
+        },
+        {
+          id: "stage-m03-q6",
+          type: "Detection",
+          challenge: `  A team needs to determine whether Smart Install is
+  enabled on a fleet of IOS switches.`,
+          text: "Which command confirms it?",
+          options: [
+            "show vstack — any output means Smart Install is enabled and listening on TCP/4786",
+            "show clock",
+            "show inventory",
+            "show ip route",
+          ],
+          correctIndex: 0,
+          explanation:
+            "`show vstack` reports Smart Install (vstack) status. Output indicates the feature is active and listening on TCP/4786 — most administrators are unaware it is on.",
+        },
+        {
+          id: "stage-m03-q7",
+          type: "Remediation",
+          challenge: `  Smart Install is not needed on production switches that
+  have already been provisioned.`,
+          text: "What is the recommended fix?",
+          options: [
+            "Change the enable secret only",
+            "Disable it with 'no vstack' in global config, and block TCP/4786 at the perimeter as defense-in-depth",
+            "Enable SNMPv3",
+            "Reboot the switch nightly",
+          ],
+          correctIndex: 1,
+          explanation:
+            "`no vstack` disables Smart Install in ten seconds. Blocking TCP/4786 at the perimeter ACL adds defense-in-depth in case the feature is re-enabled or missed somewhere.",
+        },
+        {
+          id: "stage-m03-q8",
+          type: "CVSS",
+          challenge: `  CVE-2018-0171 carries a CVSS base score of 9.8 (Critical).`,
+          text: "What combination of factors typically drives a 9.8?",
+          options: [
+            "Local access with high privileges required",
+            "Network-exploitable, no authentication, no user interaction, with high impact to confidentiality, integrity, and availability",
+            "Physical access and user interaction required",
+            "Low impact limited to availability",
+          ],
+          correctIndex: 1,
+          explanation:
+            "9.8 reflects a remotely exploitable flaw needing no privileges or user interaction, with severe impact across confidentiality, integrity, and availability — exactly Smart Install's unauthenticated config/RCE exposure.",
+        },
+        {
+          id: "stage-m03-q9",
+          type: "Attribution",
+          challenge: `  Smart Install exploitation was a primary initial-access
+  method for a large 2017–2018 botnet campaign.`,
+          text: "Which campaign and actor were involved?",
+          options: [
+            "VPNFilter, attributed to Russian GRU's APT28 (Fancy Bear)",
+            "Stuxnet, attributed to a criminal ransomware gang",
+            "Mirai, attributed to a nation-state SIGINT agency",
+            "SolarWinds, attributed to APT28",
+          ],
+          correctIndex: 0,
+          explanation:
+            "The VPNFilter campaign used Smart Install as a key initial-access vector and was attributed to Russian GRU's APT28 (Fancy Bear) by US-CERT/FBI.",
+        },
+        {
+          id: "stage-m03-q10",
+          type: "Government alert",
+          challenge: `  In April 2018, US-CERT and the FBI issued a joint
+  Emergency Alert about state-sponsored router/switch
+  compromise.`,
+          text: "Which alert was it, and what did it state?",
+          options: [
+            "AA18-106A — naming the Russian government (FSB and GRU) using compromised routers for MITM, traffic monitoring, and future offensive positioning",
+            "MS-ISAC bulletin recommending stronger Wi-Fi passwords",
+            "An FCC notice about spectrum allocation",
+            "A NIST publication deprecating SHA-1",
+          ],
+          correctIndex: 0,
+          explanation:
+            "Alert AA18-106A explicitly named the Russian FSB and GRU using compromised routers for man-in-the-middle attacks, traffic monitoring, and pre-positioning — with Smart Install cited as a primary access method.",
+        },
+        {
+          id: "stage-m03-q11",
+          type: "Exposure",
+          challenge: `  When CVE-2018-0171 was disclosed, Cisco Talos scanned the
+  internet to gauge real-world exposure.`,
+          text: "Roughly how many vulnerable, exposed devices did Talos find?",
+          options: [
+            "About 200",
+            "About 168,000",
+            "About 12 million",
+            "Zero — all had been patched in advance",
+          ],
+          correctIndex: 1,
+          explanation:
+            "Talos found roughly 168,000 devices with Smart Install exposed on TCP/4786 — a massive, immediately exploitable population.",
+        },
+        {
+          id: "stage-m03-q12",
+          type: "VPNFilter",
+          challenge: `  VPNFilter's second stage included a particularly
+  destructive module.`,
+          text: "What did the 'kill switch' module do?",
+          options: [
+            "Encrypted user files for ransom",
+            "Overwrote device firmware with random data on command, permanently and irreversibly bricking the device",
+            "Mined cryptocurrency",
+            "Disabled the device's LEDs",
+          ],
+          correctIndex: 1,
+          explanation:
+            "On C2 command, the kill-switch module overwrote firmware with random data, permanently bricking the device — giving the operators a destructive capability across the botnet.",
+        },
+        {
+          id: "stage-m03-q13",
+          type: "Scale",
+          challenge: `  A briefing summarizes the reach of the VPNFilter botnet.`,
+          text: "Which figures best characterize its scale?",
+          options: [
+            "Around 500 devices in one country",
+            "500,000+ infected routers and switches across 54 countries",
+            "A dozen devices in a single ISP",
+            "5 million devices, all home routers",
+          ],
+          correctIndex: 1,
+          explanation:
+            "By early 2018 VPNFilter had compromised 500,000+ devices across 54 countries, with notable concentration in Ukraine near high-value targets.",
+        },
+        {
+          id: "stage-m03-q14",
+          type: "Persistence",
+          challenge: `  After the FBI seized the VPNFilter C2 domain on May 23,
+  2018, many devices remained infected.`,
+          text: "Why did the seizure not fully eliminate the threat?",
+          options: [
+            "The seizure was reversed in court",
+            "Stage-1 infections persisted on devices that never received a factory reset, surviving reboots and awaiting new C2",
+            "All devices were patched automatically",
+            "Stage 1 self-destructed on seizure",
+          ],
+          correctIndex: 1,
+          explanation:
+            "The seizure disrupted stage-2 delivery, but reboot-persistent stage-1 implants remained on hundreds of thousands of un-reset devices, ready to fetch a new stage 2 if C2 was re-established.",
+        },
+        {
+          id: "stage-m03-q15",
+          type: "Credentials",
+          challenge: `  An extracted config line reads:
+  enable secret 5 $1$mERr$hx5rVt7rPNoS4wqbXKX7m0`,
+          text: "What is the practical risk of this line falling into attacker hands?",
+          options: [
+            "None — type 5 is unbreakable",
+            "Type 5 is MD5-based and frequently crackable offline, so the enable password may be recovered",
+            "It is a public key, safe to share",
+            "It only reveals the hostname",
+          ],
+          correctIndex: 1,
+          explanation:
+            "IOS 'secret 5' is salted MD5 — weak by modern standards and often crackable offline, so capturing it can hand the attacker the privileged password.",
+        },
+        {
+          id: "stage-m03-q16",
+          type: "Credentials",
+          challenge: `  Another extracted line reads:
+  crypto isakmp key VPNsecret123 address 0.0.0.0`,
+          text: "Why is this especially damaging?",
+          options: [
+            "It is the VPN pre-shared key stored in cleartext, usable to impersonate or decrypt VPN sessions",
+            "It is encrypted and useless to an attacker",
+            "It only configures NTP",
+            "It is a comment with no effect",
+          ],
+          correctIndex: 0,
+          explanation:
+            "This is the IPsec/IKE pre-shared key in cleartext. With it, an attacker can establish or impersonate VPN tunnels — a direct path deeper into the network.",
+        },
+        {
+          id: "stage-m03-q17",
+          type: "Design flaw",
+          challenge: `  Smart Install's design assumed one thing about the
+  network it ran on.`,
+          text: "What was the flawed assumption?",
+          options: [
+            "That all switches would run the latest IOS",
+            "That the provisioning network was sealed and internal — but in reality TCP/4786 ended up internet-exposed on hundreds of thousands of devices",
+            "That SNMP would always be disabled",
+            "That every switch had a hardware security module",
+          ],
+          correctIndex: 1,
+          explanation:
+            "The protocol's no-auth design was 'safe' only on a sealed internal network. Real deployments exposed TCP/4786 to the internet, turning a convenience feature into a critical hole.",
+        },
+        {
+          id: "stage-m03-q18",
+          type: "ICS",
+          challenge: `  VPNFilter's stage-2 included a packet sniffer tuned to a
+  specific industrial protocol.`,
+          text: "Which protocol, and what does that targeting imply?",
+          options: [
+            "HTTP only, implying web defacement",
+            "Modbus TCP, implying interest in industrial control systems / critical infrastructure",
+            "SMTP, implying spam relays",
+            "DNS only, implying domain hijacking",
+          ],
+          correctIndex: 1,
+          explanation:
+            "A Modbus TCP sniffer signals targeting of industrial control systems — consistent with pre-positioning against critical infrastructure rather than ordinary cybercrime.",
+        },
+        {
+          id: "stage-m03-q19",
+          type: "Geopolitics",
+          challenge: `  VPNFilter infections were concentrated in one country
+  ahead of a major event.`,
+          text: "What was notable about the concentration in Ukraine?",
+          options: [
+            "Devices were pre-positioned near high-value targets including election infrastructure",
+            "All Ukrainian devices were immune",
+            "Ukraine had no affected devices",
+            "The concentration was purely random",
+          ],
+          correctIndex: 0,
+          explanation:
+            "Infected devices were pre-positioned near high-value Ukrainian targets, including election infrastructure — pointing to intelligence collection and a staged destructive capability.",
+        },
+        {
+          id: "stage-m03-q20",
+          type: "Analogy",
+          challenge: `  The stage frames Smart Install as Angkor Wat's forgotten
+  north supply gate — left open and undocumented for
+  centuries after the temple's decline.`,
+          text: "What lesson does the analogy teach?",
+          options: [
+            "Old monuments are inherently insecure",
+            "A convenience feature left enabled and forgotten becomes a permanent, unguarded entry point",
+            "Documentation is unnecessary for security",
+            "Supply chains are always secure",
+          ],
+          correctIndex: 1,
+          explanation:
+            "Like the forgotten gate, a default-on feature nobody remembers (Smart Install) stays open and unguarded for years — a standing invitation to anyone who finds it.",
+        },
+        {
+          id: "stage-m03-q21",
+          type: "Awareness",
+          challenge: `  Investigators noted that 'no vstack' was a one-line fix
+  most administrators had never heard of.`,
+          text: "Why were so many admins unaware of it?",
+          options: [
+            "The command did not exist until 2018",
+            "Smart Install was added silently in IOS years earlier with little documentation of the risk of leaving it enabled",
+            "Cisco hid the command intentionally",
+            "It required a paid license to view",
+          ],
+          correctIndex: 1,
+          explanation:
+            "Smart Install shipped enabled with minimal documentation of its security implications, so the simple `no vstack` mitigation was unknown to most operators until the campaign forced awareness.",
+        },
+        {
+          id: "stage-m03-q22",
+          type: "Defense-in-depth",
+          challenge: `  A network team has disabled Smart Install on known
+  switches but worries about devices they may have missed.`,
+          text: "Which additional control best limits residual risk?",
+          options: [
+            "Block TCP/4786 at perimeter and internal segmentation ACLs so unmanaged devices cannot be reached",
+            "Increase SNMP polling frequency",
+            "Shorten DHCP lease times",
+            "Disable spanning tree",
+          ],
+          correctIndex: 0,
+          explanation:
+            "Blocking TCP/4786 at perimeter and segmentation boundaries ensures that even a forgotten, still-enabled device cannot be reached by attackers — defense-in-depth beyond per-device disabling.",
+        },
+        {
+          id: "stage-m03-q23",
+          type: "Principle",
+          challenge: `  A security lead is writing a standard about default-on
+  features after the Smart Install incident.`,
+          text: "Which principle most directly prevents a repeat?",
+          options: [
+            "Leave all features enabled for flexibility",
+            "Disable unused services by default and inventory what is listening — state actors actively scan for forgotten management protocols",
+            "Rely only on antivirus on endpoints",
+            "Trust internal networks implicitly",
+          ],
+          correctIndex: 1,
+          explanation:
+            "Minimizing enabled services and maintaining a listening-port inventory removes forgotten attack surface. State-sponsored actors continuously scan for exactly these default-on protocols.",
+        },
+        {
+          id: "stage-m03-q24",
+          type: "Outcome",
+          challenge: `  An analyst classifies the worst-case outcome of an
+  unauthenticated Smart Install exploit.`,
+          text: "Which best captures the range of impact?",
+          options: [
+            "Read-only access to interface counters",
+            "Full configuration disclosure, silent persistent config replacement, and arbitrary code execution on the device",
+            "A brief denial of service only",
+            "Loss of NTP synchronization",
+          ],
+          correctIndex: 1,
+          explanation:
+            "Smart Install exploitation spans config theft (all credentials), silent persistent config replacement, and in some builds full code execution — among the most severe outcomes possible on a network device.",
+        },
+        {
+          id: "stage-m03-q25",
+          type: "Response",
+          challenge: `  A switch is found to have had Smart Install exposed to
+  the internet for an unknown period.`,
+          text: "What is the most defensible response posture?",
+          options: [
+            "Disable Smart Install and assume the device was never touched",
+            "Treat the config and all credentials in it as compromised — rotate enable secrets, SNMP strings, VPN PSKs, and RADIUS secrets, and verify the config was not altered",
+            "Only change the hostname",
+            "Reboot once and move on",
+          ],
+          correctIndex: 1,
+          explanation:
+            "If Smart Install was exposed, assume the config (and every credential in it) was read or altered. Rotate all secrets and verify configuration integrity rather than assuming no access occurred.",
+        },
       ],
     },
     ctf: {
