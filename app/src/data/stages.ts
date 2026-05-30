@@ -8245,6 +8245,398 @@ curl -sk -X DELETE \
         { title: "CVE-2020-3187 — NVD Detail", url: "https://nvd.nist.gov/vuln/detail/CVE-2020-3187" },
       ],
     },
+    quiz: {
+      questions: [
+          {
+            id: "stage-m11-q1",
+            type: "CVE-2020-3187",
+            challenge: `  An unauthenticated attacker sends an HTTP DELETE with
+  ../ sequences to an ASA WebVPN path and removes a file
+  outside the WebVPN root.`,
+            text: "What class of vulnerability is this?",
+            options: [
+              "Path traversal combined with a destructive HTTP verb — unauthenticated arbitrary file deletion",
+              "SQL injection",
+              "Reflected XSS",
+              "Buffer overflow",
+            ],
+            correctIndex: 0,
+            explanation:
+              "CVE-2020-3187 is path traversal via the WebVPN file handler, but using DELETE — letting an unauthenticated caller delete arbitrary files on the ASA.",
+          },
+          {
+            id: "stage-m11-q2",
+            type: "Sibling CVE",
+            challenge: `  CVE-2020-3187 shares a root cause with another ASA CVE in
+  the same July 2020 advisory.`,
+            text: "How does it relate to CVE-2020-3452?",
+            options: [
+              "They are unrelated bugs in different products",
+              "Same WebVPN traversal flaw; 3452 reads files via GET, 3187 deletes files via DELETE",
+              "3187 is an authentication bypass; 3452 is XSS",
+              "3187 patches 3452",
+            ],
+            correctIndex: 1,
+            explanation:
+              "Both stem from the unsanitized WebVPN file handler. CVE-2020-3452 is the read (GET) primitive; CVE-2020-3187 is the destructive (DELETE) primitive.",
+          },
+          {
+            id: "stage-m11-q3",
+            type: "HTTP method",
+            challenge: `  The difference between the read and delete CVEs is the
+  request verb.`,
+            text: "Which HTTP method does CVE-2020-3187 abuse?",
+            options: [
+              "GET",
+              "DELETE",
+              "OPTIONS",
+              "HEAD",
+            ],
+            correctIndex: 1,
+            explanation:
+              "CVE-2020-3187 uses HTTP DELETE against traversed paths, which the handler executed against the filesystem without authentication.",
+          },
+          {
+            id: "stage-m11-q4",
+            type: "Auth",
+            challenge: `  A defender scopes the access needed to delete files.`,
+            text: "What authentication is required?",
+            options: [
+              "Valid ASA admin credentials",
+              "None — the DELETE is fully unauthenticated",
+              "A VPN client certificate",
+              "enable/privilege-15 access",
+            ],
+            correctIndex: 1,
+            explanation:
+              "The handler did not authenticate the DELETE request, so any unauthenticated attacker reaching the interface could delete files.",
+          },
+          {
+            id: "stage-m11-q5",
+            type: "Endpoint",
+            challenge: `  An analyst wants the vulnerable WebVPN file path.`,
+            text: "Which handler path was exploited?",
+            options: [
+              "/admin/login",
+              "/+CSCOE+/files/",
+              "/api/v1/users",
+              "/webui/dashboard",
+            ],
+            correctIndex: 1,
+            explanation:
+              "The WebVPN file handler at /+CSCOE+/files/ failed to normalize ../ sequences before performing the filesystem operation — the same endpoint as CVE-2020-3452.",
+          },
+          {
+            id: "stage-m11-q6",
+            type: "Root cause",
+            challenge: `  A developer reviews why traversal worked.`,
+            text: "What was the core failure?",
+            options: [
+              "The handler did not normalize/strip ../ sequences before using the path, and did not authenticate the request",
+              "The TLS certificate was expired",
+              "The error message leaked a stack trace",
+              "The session timeout was too long",
+            ],
+            correctIndex: 0,
+            explanation:
+              "Two failures compound: traversal sequences were not normalized away, and the destructive operation was performed without an authentication check.",
+          },
+          {
+            id: "stage-m11-q7",
+            type: "High-value target",
+            challenge: `  An attacker chooses which file to delete for maximum
+  impact.`,
+            text: "Why is the startup-config the most damaging deletion?",
+            options: [
+              "It only stores the device hostname",
+              "On reload, a missing startup-config brings the ASA up at factory defaults — all rules, ACLs, and VPN config gone",
+              "It is automatically restored from Cisco's cloud",
+              "Deleting it has no effect",
+            ],
+            correctIndex: 1,
+            explanation:
+              "Without startup-config, the ASA reloads to factory defaults: firewall rules, ACLs, and VPN configuration erased, and management returns to defaults — effectively an unconfigured device.",
+          },
+          {
+            id: "stage-m11-q8",
+            type: "Other targets",
+            challenge: `  Besides startup-config, several files make attractive
+  deletion targets.`,
+            text: "Which deletions cause immediate service disruption?",
+            options: [
+              "Deleting the device's clock setting",
+              "VPN config (VPN fails on reload), SSL cert (breaks HTTPS management), RADIUS client config",
+              "Deleting the login banner",
+              "Deleting the NTP server entry",
+            ],
+            correctIndex: 1,
+            explanation:
+              "Removing the VPN config, SSL certificate, or RADIUS configuration disrupts remote access, management access, and authentication respectively.",
+          },
+          {
+            id: "stage-m11-q9",
+            type: "Read-then-destroy",
+            challenge: `  Attackers chained the two July 2020 CVEs in sequence.`,
+            text: "What playbook does steal-then-delete resemble?",
+            options: [
+              "A routine backup job",
+              "Ransomware against backup infrastructure: exfiltrate the data, then destroy the recovery mechanism",
+              "A standard patch deployment",
+              "A penetration test cleanup step",
+            ],
+            correctIndex: 1,
+            explanation:
+              "Reading the config/credentials (3452) then deleting the startup-config (3187) mirrors ransomware tradecraft: take the data, then remove the victim's ability to recover.",
+          },
+          {
+            id: "stage-m11-q10",
+            type: "Context",
+            challenge: `  The disclosure landed during a specific operational
+  moment.`,
+            text: "Why was July 2020 especially dangerous for this CVE?",
+            options: [
+              "VPNs were being decommissioned globally",
+              "COVID-19 had driven a rushed, large-scale surge of internet-facing AnyConnect VPN deployments, many unhardened",
+              "Nobody used ASAs in 2020",
+              "The internet was offline",
+            ],
+            correctIndex: 1,
+            explanation:
+              "The pandemic remote-work surge put huge numbers of hastily deployed, internet-facing ASAs online — a large, soft attack surface exactly when the CVEs dropped.",
+          },
+          {
+            id: "stage-m11-q11",
+            type: "Stealth",
+            challenge: `  A SOC lead checks the authentication log and finds
+  nothing.`,
+            text: "Why does the deletion leave minimal evidence?",
+            options: [
+              "The ASA cannot log anything",
+              "It is unauthenticated, so no auth-log entry is created — only an HTTP access-log line for the DELETE",
+              "The attacker always wipes all logs",
+              "Logs are encrypted",
+            ],
+            correctIndex: 1,
+            explanation:
+              "With no authentication, there is no auth event to log. Only the web access log records the DELETE, and its impact often surfaces only at the next reload.",
+          },
+          {
+            id: "stage-m11-q12",
+            type: "Detection",
+            challenge: `  A detection engineer writes a rule for exploitation
+  attempts.`,
+            text: "Which signal is most relevant?",
+            options: [
+              "ASA chassis fan speed",
+              "HTTP DELETE requests containing ../ (or URL-encoded equivalents) in the web access log",
+              "The number of VPN tunnels",
+              "CPU temperature",
+            ],
+            correctIndex: 1,
+            explanation:
+              "Real-time monitoring for DELETE requests with traversal patterns in the web logs is the key indicator — ideally alerting before the next reload reveals the damage.",
+          },
+          {
+            id: "stage-m11-q13",
+            type: "Patch",
+            challenge: `  The remediation owner needs the fixed version.`,
+            text: "Which release fixes CVE-2020-3187 (and CVE-2020-3452)?",
+            options: [
+              "ASA 9.8.4.20+ / FTD 6.6.0+",
+              "ASA 7.0 only",
+              "No patch exists",
+              "Any 8.0 build",
+            ],
+            correctIndex: 0,
+            explanation:
+              "Cisco's patch (ASA 9.8.4.20+, FTD 6.6.0+) added path normalization to the WebVPN handler, fixing both the read and delete CVEs.",
+          },
+          {
+            id: "stage-m11-q14",
+            type: "Emergency mitigation",
+            challenge: `  Patching cannot happen immediately on every device.`,
+            text: "What emergency mitigation closes the attack surface?",
+            options: [
+              "Increasing the management session timeout",
+              "`no webvpn` — disabling AnyConnect/WebVPN removes the vulnerable handler",
+              "Changing the admin password",
+              "Enabling more SSL ciphers",
+            ],
+            correctIndex: 1,
+            explanation:
+              "Disabling WebVPN (`no webvpn`) removes the vulnerable file handler entirely, eliminating the attack surface until the patch is applied.",
+          },
+          {
+            id: "stage-m11-q15",
+            type: "Recovery",
+            challenge: `  An ASA reloads to factory defaults after startup-config
+  deletion.`,
+            text: "What is required to recover quickly?",
+            options: [
+              "Nothing — it reconfigures itself",
+              "A tested offline configuration backup plus out-of-band/physical access to restore it",
+              "A second internet connection",
+              "A longer SSL certificate",
+            ],
+            correctIndex: 1,
+            explanation:
+              "Recovery depends on having an offline config backup and a way to apply it (often physical/OOB access). Without a tested backup, rebuild time stretches to days.",
+          },
+          {
+            id: "stage-m11-q16",
+            type: "Principle — verbs",
+            challenge: `  A developer generalizes the lesson to API design.`,
+            text: "What standard must destructive HTTP verbs meet?",
+            options: [
+              "DELETE is safe and needs no authentication",
+              "Every request — GET, POST, PUT, and especially DELETE — must authenticate and authorize independently",
+              "Only GET needs authentication",
+              "Authentication can be inherited from page navigation",
+            ],
+            correctIndex: 1,
+            explanation:
+              "Each request, regardless of verb, must enforce authentication and authorization. Destructive verbs like DELETE are not exempt — they are the highest risk.",
+          },
+          {
+            id: "stage-m11-q17",
+            type: "CVSS",
+            challenge: `  CVE-2020-3187 is scored 9.1.`,
+            text: "What does that critical score reflect here?",
+            options: [
+              "Low impact, easily ignored",
+              "Unauthenticated, network-reachable, high integrity/availability impact (file destruction) — critical severity",
+              "It only affects confidentiality slightly",
+              "It requires admin and physical access",
+            ],
+            correctIndex: 1,
+            explanation:
+              "9.1 reflects an unauthenticated network attack with severe integrity/availability impact — destroying configuration and breaking service — without confidentiality being the primary axis.",
+          },
+          {
+            id: "stage-m11-q18",
+            type: "Contrast",
+            challenge: `  A student compares 3187 (delete) with 3452 (read).`,
+            text: "What is the key impact difference?",
+            options: [
+              "Both only read files",
+              "3452 is confidentiality loss (read); 3187 is integrity/availability loss (deletion and service destruction)",
+              "Both are authentication bypasses",
+              "Neither affects the ASA",
+            ],
+            correctIndex: 1,
+            explanation:
+              "The read CVE leaks secrets (confidentiality); the delete CVE destroys files and disrupts service (integrity/availability). Together they form a full exfiltrate-and-destroy chain.",
+          },
+          {
+            id: "stage-m11-q19",
+            type: "Backup discipline",
+            challenge: `  An architect codifies a resilience practice after this
+  incident.`,
+            text: "Which backup practice is essential for firewall/VPN devices?",
+            options: [
+              "Store the only backup on the device itself",
+              "Maintain offline configuration backups and test restoring from them before they are needed",
+              "Never back up configs to avoid leakage",
+              "Email configs to all staff",
+            ],
+            correctIndex: 1,
+            explanation:
+              "Offline, tested backups are the recovery mechanism a destruction attack targets. Untested or on-device backups fail exactly when needed.",
+          },
+          {
+            id: "stage-m11-q20",
+            type: "Reload trigger",
+            challenge: `  Deleting startup-config alone is not catastrophic until a
+  certain event.`,
+            text: "When does the factory-default state actually take effect?",
+            options: [
+              "Immediately on deletion",
+              "On the next reload/reboot of the ASA (which an attacker with access may also trigger)",
+              "Only after 30 days",
+              "Never — running config persists forever",
+            ],
+            correctIndex: 1,
+            explanation:
+              "The running config remains until reload; the damage manifests when the ASA reboots and finds no startup-config — which is why attackers may also force a reload.",
+          },
+          {
+            id: "stage-m11-q21",
+            type: "Defense in depth",
+            challenge: `  An architect layers controls against this CVE.`,
+            text: "Which combination best reduces exposure?",
+            options: [
+              "A longer admin password only",
+              "Prompt patching (or `no webvpn`) + management-VLAN isolation + DELETE/traversal monitoring + tested offline backups",
+              "Disabling logging to cut noise",
+              "Exposing WebVPN to all networks for convenience",
+            ],
+            correctIndex: 1,
+            explanation:
+              "Patch or disable the handler, isolate management, monitor for destructive traversal requests, and keep tested offline backups so destruction is recoverable — layered defense.",
+          },
+          {
+            id: "stage-m11-q22",
+            type: "Disclosure speed",
+            challenge: `  A PoC for the sibling read CVE appeared within ~90 minutes
+  of disclosure.`,
+            text: "What does that imply for the DELETE variant?",
+            options: [
+              "It is unexploitable in practice",
+              "The same payload framework trivially adapts to DELETE, so emergency patching/mitigation is warranted",
+              "There is months of lead time",
+              "Only Cisco can exploit it",
+            ],
+            correctIndex: 1,
+            explanation:
+              "Because the traversal payload is identical and only the verb changes, public read-PoCs immediately enable the delete variant — demanding emergency response.",
+          },
+          {
+            id: "stage-m11-q23",
+            type: "Post-incident",
+            challenge: `  An organization confirms files were deleted via this CVE.`,
+            text: "What is essential during recovery?",
+            options: [
+              "Only reboot and hope",
+              "Restore from a trusted offline backup, verify firewall rules/ACLs are intact, reissue any deleted certificates, and assume earlier reads (3452) leaked secrets — rotate them",
+              "Only change the device hostname",
+              "Nothing once the device reloads",
+            ],
+            correctIndex: 1,
+            explanation:
+              "Restore configuration from a trusted backup, validate rules/ACLs, reissue certs, and — because read access often preceded deletion — rotate any credentials/keys that may have been exfiltrated.",
+          },
+          {
+            id: "stage-m11-q24",
+            type: "Scope",
+            challenge: `  A reviewer states what CVE-2020-3187 grants on its own.`,
+            text: "Which statement is most accurate?",
+            options: [
+              "It grants an interactive root shell on the ASA",
+              "It allows an unauthenticated attacker to delete arbitrary files on the ASA, enabling service destruction and a factory-reset path",
+              "It only deletes temporary cache files",
+              "It requires valid admin credentials first",
+            ],
+            correctIndex: 1,
+            explanation:
+              "On its own the flaw is unauthenticated arbitrary file deletion — not code execution — but deleting key files (startup-config, certs, VPN config) destroys service and configuration.",
+          },
+          {
+            id: "stage-m11-q25",
+            type: "Principle",
+            challenge: `  A CISO writes the one-line takeaway for the board.`,
+            text: "Which best captures the CVE-2020-3187 lesson?",
+            options: [
+              "Read-only flaws are the only ones that matter",
+              "Authenticate every verb (especially DELETE), normalize paths, patch the WebVPN handler fast, and keep tested offline backups — destruction of a firewall's config is a recoverability problem, not just a security one",
+              "Firewalls cannot be reset by an attacker",
+              "Backups are unnecessary if you patch",
+            ],
+            correctIndex: 1,
+            explanation:
+              "The durable lesson: destructive verbs need the same authentication and path hygiene as reads, and tested offline backups are what turn a config-destruction attack from disaster into inconvenience.",
+          },
+        ],
+      },
     ctf: {
       scenario: "CVE-2020-3187 is CVE-2020-3452's destructive sibling — the same path traversal, but with HTTP DELETE instead of GET. During the COVID VPN surge, both were chained: steal the credentials with a read, then destroy the config file to deny defenders access to their own infrastructure. Unauthenticated. No trace beyond the deletion itself. Two objectives: read the VPN config, then wipe it.",
       hint: "Use path traversal (../) to navigate above the web root and reach the VPN config. Read it first, then delete it.",
