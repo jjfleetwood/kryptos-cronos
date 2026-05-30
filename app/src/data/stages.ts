@@ -5386,6 +5386,408 @@ curl -X PUT -H "Cookie: session=ADMIN_TOKEN" \
         { title: "CVE-2022-20695 — NVD Detail", url: "https://nvd.nist.gov/vuln/detail/CVE-2022-20695" },
       ],
     },
+    quiz: {
+      questions: [
+        {
+          id: "stage-m06-q1",
+          type: "CVE-2022-20695",
+          challenge: `  A Cisco WLC management login accepts a specific username
+  and returns an authenticated admin session regardless of
+  the password supplied.`,
+          text: "What class of vulnerability is this?",
+          options: [
+            "SQL injection",
+            "Authentication bypass — a logic flaw lets login succeed without valid credentials",
+            "Path (directory) traversal",
+            "Cross-site request forgery",
+          ],
+          correctIndex: 1,
+          explanation:
+            "CVE-2022-20695 is an authentication bypass: a flaw in the username comparison short-circuits the login check so a session is granted without a valid password.",
+        },
+        {
+          id: "stage-m06-q2",
+          type: "Device role",
+          challenge: `  A defender wants to understand the blast radius before
+  triaging the alert.`,
+          text: "What does a Cisco Wireless LAN Controller (WLC) manage?",
+          options: [
+            "A single laptop's Wi-Fi adapter",
+            "All enterprise access points: SSIDs, RADIUS settings, client policies, and AP firmware",
+            "Only guest captive-portal pages",
+            "The corporate email gateway",
+          ],
+          correctIndex: 1,
+          explanation:
+            "The WLC is the central control plane for enterprise wireless — it manages every AP, SSID, RADIUS shared secret, and client policy. Compromising it means controlling the whole wireless network.",
+        },
+        {
+          id: "stage-m06-q3",
+          type: "CVSS",
+          challenge: `  Cisco rated CVE-2022-20695 a CVSS 10.0.`,
+          text: "What does a CVSS base score of 10.0 indicate?",
+          options: [
+            "A low-severity informational finding",
+            "The maximum severity — typically network-reachable, no privileges, no user interaction, full impact",
+            "A vulnerability that only affects availability",
+            "A score reserved for theoretical, unexploitable bugs",
+          ],
+          correctIndex: 1,
+          explanation:
+            "10.0 is the maximum. It signals an attacker needs no privileges and no user interaction over the network, with full confidentiality/integrity/availability impact — patch on an emergency timeline.",
+        },
+        {
+          id: "stage-m06-q4",
+          type: "Prerequisite",
+          challenge: `  An analyst asks what an attacker needs in order to exploit
+  CVE-2022-20695.`,
+          text: "What is the access prerequisite?",
+          options: [
+            "Stolen admin credentials",
+            "Network reachability to the WLC management interface — no credentials required",
+            "Physical access to the WLC console port",
+            "A signed firmware key",
+          ],
+          correctIndex: 1,
+          explanation:
+            "The only requirement is the ability to reach the WLC management interface over the network. In many deployments that interface is reachable from the corporate WLAN, so any connected client could attempt it.",
+        },
+        {
+          id: "stage-m06-q5",
+          type: "Root cause",
+          challenge: `  The underlying defect is a recurring category of bug in
+  C-language authentication code.`,
+          text: "What is the root cause class here?",
+          options: [
+            "A string comparison that short-circuits / returns 'match' early on a sentinel value",
+            "An integer overflow in the session counter",
+            "A use-after-free in the TLS handshake",
+            "A race condition in DHCP lease assignment",
+          ],
+          correctIndex: 0,
+          explanation:
+            "The username comparison terminated early on a specific value and returned 'match' before the password check ran. Early-exit comparison bugs are a known class of C authentication flaws.",
+        },
+        {
+          id: "stage-m06-q6",
+          type: "Comparison",
+          challenge: `  A secure-coding reviewer recommends a fix for the
+  comparison logic itself.`,
+          text: "Which practice most directly prevents this bug class?",
+          options: [
+            "Hash the username before comparing it",
+            "Use a constant-time comparison that evaluates the full value before returning a result",
+            "Convert the username to uppercase first",
+            "Compare only the first character for speed",
+          ],
+          correctIndex: 1,
+          explanation:
+            "Authentication comparisons must complete fully before returning — no early exit on partial or sentinel matches. Constant-time comparison both removes the short-circuit and resists timing analysis.",
+        },
+        {
+          id: "stage-m06-q7",
+          type: "Impact — RADIUS",
+          challenge: `  After bypassing auth, an attacker reads the WLC's stored
+  RADIUS configuration.`,
+          text: "Why are the RADIUS shared secrets so valuable?",
+          options: [
+            "They are only used for guest Wi-Fi and are low risk",
+            "They let an attacker impersonate the RADIUS server and approve authentication for arbitrary users",
+            "They expire every five minutes and are useless once read",
+            "They are encrypted with a per-session key the attacker cannot obtain",
+          ],
+          correctIndex: 1,
+          explanation:
+            "The WLC stores the RADIUS shared secret in its config. With it, an attacker can impersonate the RADIUS server and issue authentication approvals for any user on any managed SSID.",
+        },
+        {
+          id: "stage-m06-q8",
+          type: "Impact — firmware",
+          challenge: `  With WLC admin access, an attacker can push configuration
+  and firmware to every managed access point at once.`,
+          text: "Why does AP firmware-push capability matter to a defender?",
+          options: [
+            "It only changes the AP's LED color",
+            "Attacker-controlled firmware can implant a persistent backdoor across all APs simultaneously",
+            "Firmware pushes require physical confirmation at each AP",
+            "APs ignore firmware that is not Cisco-signed, so the risk is zero",
+          ],
+          correctIndex: 1,
+          explanation:
+            "A WLC admin can push firmware to all APs. Malicious firmware gives persistent, network-wide footholds in the wireless infrastructure that survive reboots and config resets.",
+        },
+        {
+          id: "stage-m06-q9",
+          type: "Impact — capture",
+          challenge: `  An attacker enables packet capture across all access
+  points and forwards it off-network.`,
+          text: "What does this turn the corporate Wi-Fi into?",
+          options: [
+            "A faster network with better roaming",
+            "A passive monitoring fabric capturing all wireless traffic for the attacker",
+            "A guest-only network with no internal access",
+            "An isolated lab with no production data",
+          ],
+          correctIndex: 1,
+          explanation:
+            "Enabling capture on every AP and redirecting it to attacker infrastructure turns the production wireless network into a passive interception platform for all clients' traffic.",
+        },
+        {
+          id: "stage-m06-q10",
+          type: "Rogue SSID",
+          challenge: `  An attacker with WLC control creates a new SSID that
+  appears legitimate to employees.`,
+          text: "What is the danger of this rogue-SSID capability?",
+          options: [
+            "None — employees can tell rogue SSIDs apart instantly",
+            "Traffic on the rogue SSID can be routed through attacker-controlled infrastructure",
+            "It only affects printers",
+            "Rogue SSIDs are automatically blocked by Windows",
+          ],
+          correctIndex: 1,
+          explanation:
+            "Because the rogue SSID is pushed by the legitimate WLC, it looks authentic. Clients that associate to it can be routed through attacker infrastructure for interception or redirection.",
+        },
+        {
+          id: "stage-m06-q11",
+          type: "Patch",
+          challenge: `  The remediation team needs the fixed firmware version.`,
+          text: "Which Cisco WLC release fixes CVE-2022-20695?",
+          options: [
+            "WLC 8.10.150.0",
+            "WLC 8.10.162.0 or later",
+            "WLC 7.0.0.0",
+            "No patch was ever released",
+          ],
+          correctIndex: 1,
+          explanation:
+            "Cisco fixed the flaw in WLC 8.10.162.0, which replaced the vulnerable comparison logic. Releases at or below 8.10.150.0 remain exploitable.",
+        },
+        {
+          id: "stage-m06-q12",
+          type: "Primary control",
+          challenge: `  Before the patch can be scheduled, the team needs an
+  immediate compensating control.`,
+          text: "What is the most effective network-level mitigation?",
+          options: [
+            "Change the WLC admin password to something longer",
+            "Restrict WLC management to a dedicated out-of-band VLAN unreachable from the corporate WLAN",
+            "Disable IPv6 on all access points",
+            "Rename all SSIDs",
+          ],
+          correctIndex: 1,
+          explanation:
+            "Since the bypass needs no credentials, a stronger password does nothing. Isolating the management interface to an out-of-band VLAN removes the attacker's network path to it.",
+        },
+        {
+          id: "stage-m06-q13",
+          type: "Credential hygiene",
+          challenge: `  A WLC is confirmed to have been exposed during the
+  vulnerable window.`,
+          text: "What must be done with the RADIUS shared secrets?",
+          options: [
+            "Nothing — they are safe once the WLC is patched",
+            "Rotate them — assume any secret readable during exposure is compromised",
+            "Email them to all employees for transparency",
+            "Shorten them to make rotation faster next time",
+          ],
+          correctIndex: 1,
+          explanation:
+            "Patching closes the hole but does not un-leak secrets. Any RADIUS shared secret (or PSK) readable during the exposure window must be treated as burned and rotated.",
+        },
+        {
+          id: "stage-m06-q14",
+          type: "Detection",
+          challenge: `  A SOC analyst wants a detection for post-exploitation
+  activity on the WLC.`,
+          text: "Which signal is most relevant?",
+          options: [
+            "CPU temperature of the WLC chassis",
+            "Management-interface logins from unexpected source IPs and unexplained RADIUS/AP config changes",
+            "The number of SSIDs broadcasting on channel 6",
+            "Guest captive-portal click-through rate",
+          ],
+          correctIndex: 1,
+          explanation:
+            "Watch WLC management login logs for auth from unexpected sources and alert on RADIUS server or AP configuration changes — these indicate the bypass was used and the device is being reconfigured.",
+        },
+        {
+          id: "stage-m06-q15",
+          type: "Blast radius",
+          challenge: `  A CISO is asked to characterize the severity of a WLC
+  compromise in business terms.`,
+          text: "Which comparison best frames the scope?",
+          options: [
+            "It is roughly equivalent to losing a single guest laptop",
+            "It is comparable in scope to an Active Directory compromise, because the WLC authenticates every wireless client",
+            "It only affects the IT helpdesk's test network",
+            "It is limited to the WLC's own local console",
+          ],
+          correctIndex: 1,
+          explanation:
+            "The corporate WLAN authenticates every employee and device, usually via RADIUS tied to AD. Controlling the WLC is comparable in reach to an AD compromise.",
+        },
+        {
+          id: "stage-m06-q16",
+          type: "Trust model",
+          challenge: `  Many organizations had not isolated the WLC management
+  interface because the corporate WLAN was considered trusted.`,
+          text: "What is the corrected assumption after this disclosure?",
+          options: [
+            "The corporate WLAN can still be treated as fully trusted",
+            "The corporate WLAN is not a trusted boundary; management planes must be isolated regardless",
+            "Only the guest WLAN is untrusted",
+            "Trust is irrelevant once a firewall is present",
+          ],
+          correctIndex: 1,
+          explanation:
+            "The corporate WLAN provided the network path to the exploit. The lesson is zero-trust toward client networks: management interfaces belong on isolated out-of-band segments.",
+        },
+        {
+          id: "stage-m06-q17",
+          type: "CVSS vector",
+          challenge: `  An analyst inspects the two CVSS conditions that pushed
+  this CVE to 10.0.`,
+          text: "Which pair of conditions applies?",
+          options: [
+            "High privileges required and physical access required",
+            "No privileges required and no user interaction required",
+            "Local access only and high attack complexity",
+            "Requires a malicious insider and social engineering",
+          ],
+          correctIndex: 1,
+          explanation:
+            "Cisco's advisory noted no special privileges and no user interaction — the two factors, combined with network reach and full impact, that drive a CVSS score to its 10.0 maximum.",
+        },
+        {
+          id: "stage-m06-q18",
+          type: "Contrast",
+          challenge: `  A student compares CVE-2022-20695 (WLC) with the earlier
+  CVE-2020-3452 (ASA file read).`,
+          text: "What is the key difference in primary impact?",
+          options: [
+            "Both are path-traversal file reads",
+            "2020-3452 is unauthenticated file read; 2022-20695 is an outright authentication bypass granting admin",
+            "2022-20695 only reads static web assets",
+            "There is no difference; the CVE IDs are aliases",
+          ],
+          correctIndex: 1,
+          explanation:
+            "CVE-2020-3452 leaks files (read primitive); CVE-2022-20695 hands over an authenticated admin session directly. The WLC bypass is a more direct control-plane takeover.",
+        },
+        {
+          id: "stage-m06-q19",
+          type: "Defense in depth",
+          challenge: `  An architect wants layered defenses so a single appliance
+  bug is not catastrophic.`,
+          text: "Which combination best reduces WLC exposure?",
+          options: [
+            "Out-of-band management VLAN + restricted management ACLs + prompt patching + credential rotation",
+            "A longer admin password only",
+            "Disabling logging to reduce noise",
+            "Broadcasting more SSIDs to dilute attacker focus",
+          ],
+          correctIndex: 0,
+          explanation:
+            "Layered controls — network isolation, management ACLs, fast patching, and credential rotation — ensure one appliance flaw does not equal full wireless compromise.",
+        },
+        {
+          id: "stage-m06-q20",
+          type: "Out-of-band",
+          challenge: `  The team debates where the WLC management interface
+  should live.`,
+          text: "Why is out-of-band management preferred for infrastructure devices?",
+          options: [
+            "It makes the web UI load faster",
+            "It removes the management plane from the data networks that ordinary clients and attackers can reach",
+            "It is required to broadcast WPA3",
+            "It disables the need for any authentication",
+          ],
+          correctIndex: 1,
+          explanation:
+            "Out-of-band management keeps the control plane off the user/data networks, so a compromised client has no route to the management interface even if an appliance bug exists.",
+        },
+        {
+          id: "stage-m06-q21",
+          type: "Patch urgency",
+          challenge: `  A change board asks whether the WLC patch can wait for the
+  next quarterly maintenance window.`,
+          text: "What is the appropriate timeline for a CVSS 10.0 unauthenticated bypass?",
+          options: [
+            "Next quarterly window is fine",
+            "Emergency/out-of-cycle — patch within hours and isolate the interface immediately",
+            "Whenever convenient over the next year",
+            "Only if exploitation is observed first",
+          ],
+          correctIndex: 1,
+          explanation:
+            "A network-reachable, unauthenticated 10.0 with public attention warrants emergency change handling: isolate now, patch within hours — not the next maintenance window.",
+        },
+        {
+          id: "stage-m06-q22",
+          type: "Recurring class",
+          challenge: `  The instructor notes similar early-exit comparison bugs
+  have appeared across embedded systems.`,
+          text: "What general lesson does this recurring class teach?",
+          options: [
+            "Embedded C authentication should be reviewed for comparison short-circuits and use vetted constant-time routines",
+            "All embedded devices are unfixable and should be unplugged",
+            "String comparison is impossible to do safely",
+            "Only wireless devices have authentication code",
+          ],
+          correctIndex: 0,
+          explanation:
+            "The same early-return comparison flaw has surfaced in IOS, embedded SSH, and ICS HMI software. Hand-rolled C auth comparisons need careful review and constant-time primitives.",
+        },
+        {
+          id: "stage-m06-q23",
+          type: "Post-exploitation",
+          challenge: `  An analyst lists what an attacker would enumerate first
+  after gaining the WLC admin session.`,
+          text: "Which targets are the highest-value reads?",
+          options: [
+            "The WLC's uptime counter and fan speed",
+            "RADIUS shared secrets, SSID PSKs, and client/AP policy configuration",
+            "The captive-portal background image",
+            "The NTP server's timezone setting",
+          ],
+          correctIndex: 1,
+          explanation:
+            "The crown jewels on a WLC are the RADIUS secrets, SSID pre-shared keys, and policy config — the material that enables impersonation, decryption, and broader network pivoting.",
+        },
+        {
+          id: "stage-m06-q24",
+          type: "Scope",
+          challenge: `  A reviewer classifies precisely what CVE-2022-20695
+  grants on its own.`,
+          text: "Which statement is most accurate?",
+          options: [
+            "It only reveals the device model and nothing else",
+            "It grants a full authenticated admin session without credentials, enabling complete WLC control",
+            "It requires chaining a second exploit to do anything useful",
+            "It merely crashes the WLC (denial of service only)",
+          ],
+          correctIndex: 1,
+          explanation:
+            "By itself the flaw yields an authenticated administrator session with no credentials — the attacker immediately controls the WLC and everything it manages.",
+        },
+        {
+          id: "stage-m06-q25",
+          type: "Principle",
+          challenge: `  A CISO writes the one-line takeaway for the board.`,
+          text: "Which best captures the CVE-2022-20695 lesson?",
+          options: [
+            "Corporate Wi-Fi is inherently trusted and needs no isolation",
+            "A controller that authenticates every wireless client is a tier-0 asset — isolate its management plane, patch CVSS 10.0 in hours, and rotate any exposed secrets",
+            "Authentication bypasses are only a concern for guest networks",
+            "Strong passwords alone fully mitigate credential-free bypasses",
+          ],
+          correctIndex: 1,
+          explanation:
+            "The durable lesson: the WLC is a tier-0 control plane. Treat its management interface as out-of-band, patch maximum-severity bugs immediately, and assume any secret it held during exposure is burned.",
+        },
+      ],
+    },
     ctf: {
       scenario: "CVE-2022-20695 required no prior access and no special tooling — one specific username submitted to the Cisco WLC management interface bypassed all authentication. The WLC controls every access point, RADIUS shared secret, and wireless policy on the network. An adversary with physical proximity or a foothold on any VLAN with WLC reachability gains full control of enterprise wireless infrastructure. No credentials. No noise. Just the right username.",
       hint: "Try logging in with different usernames. One specific value causes the authentication check to short-circuit and grant full access regardless of the password.",
