@@ -7673,6 +7673,398 @@ show running-config | include username
         { title: "CVE-2020-3580 — NVD Detail", url: "https://nvd.nist.gov/vuln/detail/CVE-2020-3580" },
       ],
     },
+    quiz: {
+      questions: [
+        {
+          id: "stage-m10-q1",
+          type: "CVE-2020-3580",
+          challenge: `  A query parameter on the ASA web login page is echoed
+  into the HTML response without encoding, so a script in
+  the URL runs in the visitor's browser.`,
+          text: "What class of vulnerability is this?",
+          options: [
+            "Reflected cross-site scripting (XSS)",
+            "SQL injection",
+            "Path traversal",
+            "Server-side request forgery",
+          ],
+          correctIndex: 0,
+          explanation:
+            "CVE-2020-3580 is reflected XSS: input from the URL is reflected unescaped into the response and executes in the browser of whoever opens the crafted link.",
+        },
+        {
+          id: "stage-m10-q2",
+          type: "Parameter",
+          challenge: `  An analyst identifies the most exploitable reflected
+  parameter on the WebVPN login page.`,
+          text: "Which parameter was the prime injection point?",
+          options: [
+            "username",
+            "errMsg",
+            "session_id",
+            "redirect_uri",
+          ],
+          correctIndex: 1,
+          explanation:
+            "The errMsg parameter, intended to display error messages, reflected input unencoded — `?errMsg=<script>...` executed in the admin's browser.",
+        },
+        {
+          id: "stage-m10-q3",
+          type: "Root cause",
+          challenge: `  A developer reviews why the reflection executed as code.`,
+          text: "What was the core coding failure?",
+          options: [
+            "The page used HTTPS instead of HTTP",
+            "Reflected output was not HTML-encoded, so markup in the input was treated as HTML/JS",
+            "The session cookie was too long",
+            "The error message was translated incorrectly",
+          ],
+          correctIndex: 1,
+          explanation:
+            "Failing to HTML-encode reflected output let `<script>` in the parameter render as executable script rather than inert text — the defining XSS mistake.",
+        },
+        {
+          id: "stage-m10-q4",
+          type: "Why dangerous",
+          challenge: `  A defender asks why XSS on a firewall is worse than XSS
+  on a typical web app.`,
+          text: "What makes admin-facing XSS on an ASA so severe?",
+          options: [
+            "The stolen session controls the network perimeter — firewall rules, VPN, ACLs, certs",
+            "It only defaces a marketing page",
+            "It merely shows a pop-up alert",
+            "Firewalls cannot run JavaScript",
+          ],
+          correctIndex: 0,
+          explanation:
+            "The hijacked session belongs to an admin who controls security policy for the whole network, so the same bug class has perimeter-wide consequences.",
+        },
+        {
+          id: "stage-m10-q5",
+          type: "Delivery",
+          challenge: `  The exploit needs the victim to open a crafted link.`,
+          text: "How is CVE-2020-3580 typically delivered?",
+          options: [
+            "By physically plugging into the ASA console",
+            "Via spear-phishing a network admin with a plausible management-interface URL",
+            "By a worm spreading automatically",
+            "By guessing the admin password",
+          ],
+          correctIndex: 1,
+          explanation:
+            "Reflected XSS requires luring the victim to a malicious URL. A targeted phishing email to a network engineer, formatted like a vendor/management link, is the realistic delivery.",
+        },
+        {
+          id: "stage-m10-q6",
+          type: "Precondition",
+          challenge: `  An analyst notes the admin must be in a particular state
+  for maximum impact.`,
+          text: "What condition makes the payload most powerful?",
+          options: [
+            "The admin has never logged in",
+            "The admin already has an authenticated ASA session when they click the link",
+            "The ASA is powered off",
+            "The admin uses a mobile phone only",
+          ],
+          correctIndex: 1,
+          explanation:
+            "The script runs in the security context of the admin's active session, so an already-authenticated admin clicking the link gives the payload full administrative authority.",
+        },
+        {
+          id: "stage-m10-q7",
+          type: "Payload action",
+          challenge: `  The most impactful payloads did two things at once.`,
+          text: "Which pair of actions did effective payloads perform?",
+          options: [
+            "Steal the session cookie AND make authenticated API calls (e.g., create a backdoor admin)",
+            "Change the page font and color",
+            "Reboot the admin's laptop",
+            "Only log a timestamp",
+          ],
+          correctIndex: 0,
+          explanation:
+            "Payloads exfiltrated the session cookie to the attacker and simultaneously called the ASA API in-session to add users or modify ACLs — persistence plus immediate effect.",
+        },
+        {
+          id: "stage-m10-q8",
+          type: "Stealth",
+          challenge: `  A SOC lead asks why the firewall's auth log shows nothing.`,
+          text: "Why does this attack generate no authentication log entry?",
+          options: [
+            "The firewall has no logging capability",
+            "Actions occur within the admin's existing authenticated session and IP — no new login happens",
+            "The attacker disables logging first",
+            "Logs are encrypted and unreadable",
+          ],
+          correctIndex: 1,
+          explanation:
+            "Because the malicious calls ride the admin's already-authenticated session, the device sees legitimate administrative activity — no new authentication event to log.",
+        },
+        {
+          id: "stage-m10-q9",
+          type: "Persistence",
+          challenge: `  After the admin clicks, the attacker keeps access from
+  their own machine.`,
+          text: "How did attackers maintain access post-click?",
+          options: [
+            "By installing firmware",
+            "By reusing the stolen session cookie from a different machine until the session expired",
+            "By rebooting the ASA",
+            "They could not maintain any access",
+          ],
+          correctIndex: 1,
+          explanation:
+            "The exfiltrated session cookie let the attacker resume the admin's session from elsewhere until it timed out — and any backdoor account created in-session outlives the cookie.",
+        },
+        {
+          id: "stage-m10-q10",
+          type: "Related CVEs",
+          challenge: `  Cisco disclosed CVE-2020-3580 through 3583 together.`,
+          text: "What did these four CVEs represent?",
+          options: [
+            "Four unrelated denial-of-service bugs",
+            "Four XSS vulnerabilities across different ASA/FTD web interface components",
+            "Four authentication bypasses",
+            "Four firmware-signing flaws",
+          ],
+          correctIndex: 1,
+          explanation:
+            "The set (3580–3583) were multiple reflected-XSS issues in different ASA/FTD interface components, reported via coordinated disclosure by Positive Technologies.",
+        },
+        {
+          id: "stage-m10-q11",
+          type: "Primary fix",
+          challenge: `  A developer fixes the reflection at the code level.`,
+          text: "What is the correct, exception-free fix for reflected XSS?",
+          options: [
+            "Block the word 'script' from URLs",
+            "Context-appropriately encode all reflected output (e.g., HTML-encode) so input can never become markup",
+            "Only allow HTTPS",
+            "Shorten the error message",
+          ],
+          correctIndex: 1,
+          explanation:
+            "Output encoding for the rendering context neutralizes injected markup. It applies to every reflected value on every interface — including security devices, with no exceptions.",
+        },
+        {
+          id: "stage-m10-q12",
+          type: "Defense — headers",
+          challenge: `  A team adds a browser-side mitigation in addition to
+  encoding.`,
+          text: "Which control most reduces the impact of an XSS that slips through?",
+          options: [
+            "A strict Content-Security-Policy limiting executable script sources",
+            "Increasing the session timeout",
+            "Disabling TLS",
+            "Allowing inline scripts everywhere",
+          ],
+          correctIndex: 0,
+          explanation:
+            "A strict CSP that disallows inline/untrusted scripts can prevent injected payloads from executing even if a reflection bug exists — defense in depth behind output encoding.",
+        },
+        {
+          id: "stage-m10-q13",
+          type: "Cookie defense",
+          challenge: `  The payload read document.cookie to steal the session.`,
+          text: "Which cookie attribute would have blocked that read?",
+          options: [
+            "HttpOnly — it prevents JavaScript from reading the cookie",
+            "Path=/ — it widens cookie scope",
+            "Max-Age=0 — it deletes the cookie",
+            "Domain=* — it shares the cookie",
+          ],
+          correctIndex: 0,
+          explanation:
+            "An HttpOnly session cookie cannot be read by JavaScript, blocking the document.cookie exfiltration step (though in-session API calls would still need other defenses).",
+        },
+        {
+          id: "stage-m10-q14",
+          type: "Detection",
+          challenge: `  A SOC engineer writes detections for this attack.`,
+          text: "Which signals are most relevant?",
+          options: [
+            "ASA CPU temperature",
+            "Web access logs with ?errMsg= values containing script tags, plus unexpected local admin accounts in running-config",
+            "The number of VPN tunnels",
+            "NTP drift",
+          ],
+          correctIndex: 1,
+          explanation:
+            "Look for script tags in reflected parameters in web logs and for backdoor accounts appearing in the running config — the injection attempt and its in-session payload effect.",
+        },
+        {
+          id: "stage-m10-q15",
+          type: "Patch",
+          challenge: `  The remediation owner needs fixed versions.`,
+          text: "Which releases address CVE-2020-3580?",
+          options: [
+            "ASA 9.8.4.26+ / FTD 6.6.0.1+ / ASDM 7.13(1.101)+",
+            "ASA 7.0 only",
+            "No patch exists",
+            "Any FTD 5.x build",
+          ],
+          correctIndex: 0,
+          explanation:
+            "Cisco fixed the XSS set in ASA 9.8.4.26+, FTD 6.6.0.1+, and ASDM 7.13(1.101)+ (and corresponding trains).",
+        },
+        {
+          id: "stage-m10-q16",
+          type: "Network control",
+          challenge: `  Beyond patching, the team limits who can reach the
+  management interface.`,
+          text: "Which network control is recommended?",
+          options: [
+            "Expose the web UI to the corporate LAN broadly",
+            "Restrict ASA/FTD web management to a dedicated management VLAN — no admin access from general/untrusted networks",
+            "Move management to the guest Wi-Fi",
+            "Allow management from any internet host",
+          ],
+          correctIndex: 1,
+          explanation:
+            "Limiting management reachability to an isolated VLAN reduces the chance an admin browses the interface from a context where a phished link can reach it.",
+        },
+        {
+          id: "stage-m10-q17",
+          type: "Human control",
+          challenge: `  The delivery vector is phishing the administrator.`,
+          text: "Which user-side control is most relevant?",
+          options: [
+            "Tell admins to click links faster",
+            "Train network admins to recognize phishing URLs targeting management interfaces and use a dedicated browser profile for firewall admin",
+            "Disable email entirely",
+            "Share admin credentials across the team",
+          ],
+          correctIndex: 1,
+          explanation:
+            "Since vendor-formatted management URLs are credible lures, admin awareness plus a dedicated, isolated browser profile for firewall administration reduces the attack's success.",
+        },
+        {
+          id: "stage-m10-q18",
+          type: "CVSS",
+          challenge: `  CVE-2020-3580 is scored 6.1, lower than the RCE CVEs in
+  this epoch.`,
+          text: "Why is reflected XSS typically scored medium rather than critical?",
+          options: [
+            "Because it has no real impact",
+            "It requires user interaction (the admin must click) and impact is scoped to the victim's session, lowering the base score",
+            "Because it grants unauthenticated root",
+            "Because it is unexploitable",
+          ],
+          correctIndex: 1,
+          explanation:
+            "Reflected XSS needs a victim to open the link and acts within their session, so its base CVSS is medium — though on a firewall admin the real-world consequences are severe.",
+        },
+        {
+          id: "stage-m10-q19",
+          type: "Principle — appliances",
+          challenge: `  An architect generalizes the lesson to all security
+  devices.`,
+          text: "What broader principle does CVE-2020-3580 illustrate?",
+          options: [
+            "Security devices are immune to web vulnerabilities",
+            "Security appliances are 'security by function but web applications by implementation' — they need the same web-app rigor as any internet-facing server",
+            "Only public websites get XSS",
+            "Firewalls do not run web servers",
+          ],
+          correctIndex: 1,
+          explanation:
+            "Firewalls, WLCs, and VPN concentrators run web servers and reflect input, so they are subject to XSS/CSRF/injection and must be patched and reviewed like any web app.",
+        },
+        {
+          id: "stage-m10-q20",
+          type: "APT context",
+          challenge: `  Nation-state actors have used management-portal XSS in
+  documented campaigns.`,
+          text: "Why is admin-portal XSS attractive to APT groups?",
+          options: [
+            "It is loud and easily detected",
+            "It quietly converts a phishing click into perimeter-control access with no auth alerts",
+            "It only works on home routers",
+            "It requires the attacker to already be admin",
+          ],
+          correctIndex: 1,
+          explanation:
+            "A single phished link yields silent, log-free access to firewall configuration — exactly the quiet, high-value foothold APT operators seek against network engineers.",
+        },
+        {
+          id: "stage-m10-q21",
+          type: "Defense in depth",
+          challenge: `  An architect layers controls so one XSS is not catastrophic.`,
+          text: "Which combination best limits ASA XSS impact?",
+          options: [
+            "A longer admin password only",
+            "Output encoding + strict CSP + HttpOnly session cookies + management-VLAN isolation + admin phishing training + prompt patching",
+            "Disabling logging to cut noise",
+            "Exposing the web UI publicly for convenience",
+          ],
+          correctIndex: 1,
+          explanation:
+            "Encoding and CSP stop execution, HttpOnly blocks cookie theft, isolation limits reachability, training reduces clicks, and patching closes the bug — layered, not single-point, defense.",
+        },
+        {
+          id: "stage-m10-q22",
+          type: "Contrast",
+          challenge: `  A student compares CVE-2020-3580 (XSS) with
+  CVE-2020-3452 (path traversal) on the same ASA platform.`,
+          text: "What is the key difference?",
+          options: [
+            "Both are reflected XSS",
+            "3452 is an unauthenticated server-side file read; 3580 is client-side XSS that hijacks an admin's authenticated session via a clicked link",
+            "Both require admin credentials",
+            "Neither involves the web interface",
+          ],
+          correctIndex: 1,
+          explanation:
+            "CVE-2020-3452 reads files directly on the device without auth; CVE-2020-3580 runs script in the admin's browser to abuse their session — server-side read vs client-side session abuse.",
+        },
+        {
+          id: "stage-m10-q23",
+          type: "Post-incident",
+          challenge: `  An organization confirms an admin clicked the malicious
+  link.`,
+          text: "What response steps are essential?",
+          options: [
+            "Only clear the browser cache",
+            "Invalidate/rotate the admin session and credentials, audit running-config for backdoor accounts and ACL changes, and rotate any exposed keys",
+            "Only reboot the admin's laptop",
+            "Nothing, once the link is deleted",
+          ],
+          correctIndex: 1,
+          explanation:
+            "Because the session and possibly the config were abused in-session, invalidate sessions, rotate credentials/keys, and audit the config for backdoor accounts and ACL/logging tampering.",
+        },
+        {
+          id: "stage-m10-q24",
+          type: "Scope",
+          challenge: `  A reviewer states what CVE-2020-3580 grants on its own.`,
+          text: "Which statement is most accurate?",
+          options: [
+            "It grants direct unauthenticated root on the ASA",
+            "It executes attacker script in an admin's authenticated browser session, enabling session theft and in-session config changes — it requires the admin to click",
+            "It only reads static images",
+            "It works with no victim interaction at all",
+          ],
+          correctIndex: 1,
+          explanation:
+            "On its own it is client-side: it needs an authenticated admin to open the link, then abuses their session. The danger is the perimeter authority of that session, not standalone server RCE.",
+        },
+        {
+          id: "stage-m10-q25",
+          type: "Principle",
+          challenge: `  A CISO writes the one-line takeaway for the board.`,
+          text: "Which best captures the CVE-2020-3580 lesson?",
+          options: [
+            "XSS only matters on social media sites",
+            "Security appliances are web apps — encode all output, harden sessions, isolate management, and train admins, because XSS on a firewall hijacks the keys to the perimeter",
+            "Firewalls cannot be attacked through a browser",
+            "Medium-CVSS bugs never need patching",
+          ],
+          correctIndex: 1,
+          explanation:
+            "The durable lesson: treat every appliance web interface as a web application — output encoding, session hardening, management isolation, and admin awareness — because an admin-facing XSS controls the perimeter.",
+        },
+      ],
+    },
     ctf: {
       scenario: "APT spear-phishing campaigns routinely target network administrators — and when the target device has an XSS vulnerability in its own management interface, a single crafted link is all it takes. CVE-2020-3580 reflects unsanitized input through the Cisco ASA web interface. When an admin clicks a malicious URL, the script runs in their authenticated session — handing the attacker full firewall access through the admin's own browser. No credentials. No brute force. One link.",
       hint: "The error message parameter reflects unsanitized input. Craft a script payload, test it, then deliver the URL to the admin.",
