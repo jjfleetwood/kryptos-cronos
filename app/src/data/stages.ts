@@ -6522,6 +6522,401 @@ no ip http secure-server
         { title: "CVE-2023-20273 — NVD Detail", url: "https://nvd.nist.gov/vuln/detail/CVE-2023-20273" },
       ],
     },
+    quiz: {
+      questions: [
+        {
+          id: "stage-m08-q1",
+          type: "CVE-2023-20273",
+          challenge: `  After gaining a level-15 IOS XE account, an attacker
+  submits a crafted web-UI parameter that the backend runs
+  as an OS command, reaching Linux root.`,
+          text: "What class of vulnerability is CVE-2023-20273?",
+          options: [
+            "SQL injection",
+            "OS command injection in the IOS XE web UI leading to privilege escalation to root",
+            "Path traversal",
+            "Clickjacking",
+          ],
+          correctIndex: 1,
+          explanation:
+            "CVE-2023-20273 is a command-injection flaw in the IOS XE web UI: an unsanitized config parameter is executed as an OS command running as root, escalating from IOS XE admin to Linux root.",
+        },
+        {
+          id: "stage-m08-q2",
+          type: "Chain",
+          challenge: `  The October 2023 campaign used two CVEs together, not one.`,
+          text: "What role did CVE-2023-20198 play before CVE-2023-20273?",
+          options: [
+            "It patched the device",
+            "It created an unauthenticated level-15 admin account — the foothold the injection then escalates from",
+            "It encrypted the device config",
+            "It was unrelated to the chain",
+          ],
+          correctIndex: 1,
+          explanation:
+            "CVE-2023-20198 created a level-15 account with no authentication. CVE-2023-20273 then used that account to inject a command and escalate to OS root.",
+        },
+        {
+          id: "stage-m08-q3",
+          type: "Privilege boundary",
+          challenge: `  A defender notes 'level 15' is already the top IOS XE
+  privilege, yet the attacker wanted more.`,
+          text: "Why pursue root beneath IOS XE if level 15 is already admin?",
+          options: [
+            "Level 15 and Linux root are identical",
+            "IOS XE runs on a Linux kernel; OS root is below the IOS XE privilege model and enables filesystem implants",
+            "Root is a lower privilege than level 15",
+            "There is no OS beneath IOS XE",
+          ],
+          correctIndex: 1,
+          explanation:
+            "IOS XE is built on Linux. Level 15 controls the IOS XE management layer, but Linux root controls the underlying OS filesystem — needed to plant persistent implants like BadCandy.",
+        },
+        {
+          id: "stage-m08-q4",
+          type: "Attack surface",
+          challenge: `  The web UI must be reachable for the injection to work.`,
+          text: "Which configuration enables the vulnerable IOS XE web UI?",
+          options: [
+            "ip routing",
+            "ip http server / ip http secure-server",
+            "service password-encryption",
+            "ip domain lookup",
+          ],
+          correctIndex: 1,
+          explanation:
+            "The web UI is enabled by `ip http server` or `ip http secure-server`. Disabling both removes the attack surface entirely.",
+        },
+        {
+          id: "stage-m08-q5",
+          type: "Implant",
+          challenge: `  Attackers installed a persistent implant after reaching
+  root.`,
+          text: "What was 'BadCandy'?",
+          options: [
+            "A firmware-signing certificate",
+            "A Lua HTTP handler embedded in the IOS XE nginx web service that ran commands as root on a secret header",
+            "A legitimate Cisco monitoring agent",
+            "A DNS configuration change",
+          ],
+          correctIndex: 1,
+          explanation:
+            "BadCandy was a Lua module registered in the IOS XE nginx config. It executed root commands when an HTTP request carried the right shared-secret header, blending into normal web-service traffic.",
+        },
+        {
+          id: "stage-m08-q6",
+          type: "Persistence",
+          challenge: `  Organizations patched and rebooted, yet the implant
+  remained.`,
+          text: "Why did BadCandy survive reboots and firmware updates?",
+          options: [
+            "It was stored in volatile RAM only",
+            "It lived in the nginx config directory, which firmware updates apply on top of rather than overwrite",
+            "It re-downloaded itself from Cisco",
+            "It was signed by Cisco and trusted",
+          ],
+          correctIndex: 1,
+          explanation:
+            "BadCandy persisted in the nginx configuration directory. Firmware images are layered on the existing filesystem, so updates preserved the implant.",
+        },
+        {
+          id: "stage-m08-q7",
+          type: "Patch limits",
+          challenge: `  A team applies IOS XE 17.9.4a and asks if they are now
+  clean.`,
+          text: "What does the patch accomplish for an already-implanted device?",
+          options: [
+            "It removes BadCandy automatically",
+            "It prevents new infections but does NOT remove an existing implant",
+            "It rolls back the device to factory state",
+            "It re-enables the web UI safely",
+          ],
+          correctIndex: 1,
+          explanation:
+            "The patch closes the vulnerability for future exploitation but cannot remove an implant already on disk — a critical distinction between patching and remediation.",
+        },
+        {
+          id: "stage-m08-q8",
+          type: "Remediation",
+          challenge: `  A device is confirmed to carry BadCandy.`,
+          text: "What is the only reliable way to remove it?",
+          options: [
+            "Reboot the device twice",
+            "Factory reset plus full OS reimaging",
+            "Change the enable password",
+            "Disable SNMP",
+          ],
+          correctIndex: 1,
+          explanation:
+            "Because the implant persists through updates, reliable removal requires factory reset and full OS reimaging — labor-intensive across thousands of devices.",
+        },
+        {
+          id: "stage-m08-q9",
+          type: "Detection",
+          challenge: `  A SOC analyst checks an IOS XE device for compromise
+  indicators.`,
+          text: "Which checks are most relevant?",
+          options: [
+            "Only CPU temperature",
+            "`show running-config | include username` for unauthorized accounts, and the nginx config / punt-inject stats for unexpected Lua entries",
+            "The device's uptime alone",
+            "The number of ARP entries",
+          ],
+          correctIndex: 1,
+          explanation:
+            "Unauthorized usernames signal CVE-2023-20198; unexpected Lua entries in the nginx config or punt-inject stats signal the BadCandy implant.",
+        },
+        {
+          id: "stage-m08-q10",
+          type: "Primary control",
+          challenge: `  Most exposed devices did not actually need the web UI.`,
+          text: "What is the single most effective preventive control?",
+          options: [
+            "Enable the web UI with a strong password",
+            "Disable the web UI: `no ip http server` and `no ip http secure-server`",
+            "Expose the web UI only over HTTP",
+            "Add a banner to the login page",
+          ],
+          correctIndex: 1,
+          explanation:
+            "Disabling the web UI removes the attack surface for both CVEs. Internet-exposed management web UIs should be off unless actively required.",
+        },
+        {
+          id: "stage-m08-q11",
+          type: "Chain patching",
+          challenge: `  An admin patches CVE-2023-20198 but not CVE-2023-20273,
+  and a backdoor account already exists.`,
+          text: "Why is patching only one CVE insufficient?",
+          options: [
+            "The CVEs are duplicates, so one patch covers both",
+            "An account created before the patch can still trigger CVE-2023-20273 to reach root",
+            "Patching either CVE removes all implants",
+            "CVE-2023-20273 cannot be exploited by an existing account",
+          ],
+          correctIndex: 1,
+          explanation:
+            "Vulnerability chains must be patched together. A pre-existing level-15 account can still drive the command injection, so closing only the account-creation flaw leaves the escalation path open.",
+        },
+        {
+          id: "stage-m08-q12",
+          type: "Evasion",
+          challenge: `  The day after public disclosure, a scanner's count of
+  infected devices dropped sharply — but not from patching.`,
+          text: "What actually happened?",
+          options: [
+            "The devices repaired themselves",
+            "The attackers updated BadCandy's URL path overnight to evade the public scanner",
+            "Cisco recalled the devices",
+            "The scanner was shut down",
+          ],
+          correctIndex: 1,
+          explanation:
+            "The operators changed the implant's URL-encoded path across tens of thousands of devices overnight, defeating the scanner — demonstrating real-time adaptation, not remediation.",
+        },
+        {
+          id: "stage-m08-q13",
+          type: "Attribution",
+          challenge: `  Cisco Talos assessed the campaign's operational
+  sophistication.`,
+          text: "To whom was the campaign attributed?",
+          options: [
+            "A lone hobbyist",
+            "A suspected Chinese state-sponsored APT group",
+            "An open-source research project",
+            "A ransomware affiliate with no nation-state ties",
+          ],
+          correctIndex: 1,
+          explanation:
+            "Cisco Talos attributed the discipline, scale, and overnight adaptation to a suspected Chinese state-sponsored APT.",
+        },
+        {
+          id: "stage-m08-q14",
+          type: "Timeline",
+          challenge: `  The attackers operated before anyone noticed.`,
+          text: "What does the September 28 vs October 16 gap reveal?",
+          options: [
+            "The campaign lasted only minutes",
+            "Roughly 18 days of silent exploitation occurred before Cisco discovered and disclosed it",
+            "Cisco patched before any exploitation",
+            "The dates are unrelated to the campaign",
+          ],
+          correctIndex: 1,
+          explanation:
+            "Exploitation began no later than September 28; Cisco disclosed October 16. The ~18-day head start let attackers compromise 40,000+ devices undetected.",
+        },
+        {
+          id: "stage-m08-q15",
+          type: "Scale",
+          challenge: `  Researchers quantified the campaign's reach.`,
+          text: "Roughly how many devices were implanted?",
+          options: [
+            "A few dozen",
+            "Around 40,000+ IOS XE routers and switches globally",
+            "Exactly 12",
+            "None — it was theoretical",
+          ],
+          correctIndex: 1,
+          explanation:
+            "VulnCheck confirmed 41,000+ compromised devices across healthcare, education, finance, telecom, and government networks.",
+        },
+        {
+          id: "stage-m08-q16",
+          type: "Injection mechanics",
+          challenge: `  The injection payload used an encoded control character
+  to split commands.`,
+          text: "What role does a newline (%0a) play in the payload?",
+          options: [
+            "It encrypts the request",
+            "It acts as a command separator, injecting a second shell command after the intended input",
+            "It is ignored by the shell",
+            "It only changes the HTTP status code",
+          ],
+          correctIndex: 1,
+          explanation:
+            "A newline (%0a) separates commands in a shell context, so `widget_name=test%0aid` runs `id` as an injected second command — yielding root output.",
+        },
+        {
+          id: "stage-m08-q17",
+          type: "Secure coding",
+          challenge: `  A developer fixes the backend that built the OS command.`,
+          text: "What is the correct fix for the injection?",
+          options: [
+            "Hide the parameter name",
+            "Never pass web input to system()/shell; use safe APIs or strict allowlisted, validated values with no shell interpretation",
+            "Rate-limit the dashboard",
+            "Add a CAPTCHA to the login page",
+          ],
+          correctIndex: 1,
+          explanation:
+            "Web-supplied configuration values must never reach a shell. Use parameterized OS APIs and strict validation so metacharacters cannot alter command structure.",
+        },
+        {
+          id: "stage-m08-q18",
+          type: "Log evasion",
+          challenge: `  BadCandy answered commands at a web path and returned
+  JSON.`,
+          text: "Why did this design help it evade log review?",
+          options: [
+            "It disabled all logging",
+            "Its requests looked like ordinary IOS XE web-service calls in HTTP traffic logs",
+            "It used an undocumented network protocol",
+            "It only ran when no one was watching",
+          ],
+          correctIndex: 1,
+          explanation:
+            "By riding the existing nginx web service and returning JSON, BadCandy's command traffic resembled legitimate web-service calls, hiding among normal HTTP logs.",
+        },
+        {
+          id: "stage-m08-q19",
+          type: "Lesson — advisories",
+          challenge: `  Defenders learned their own disclosures were being
+  watched.`,
+          text: "What operational lesson does the overnight implant update teach?",
+          options: [
+            "Detection signatures are permanent once published",
+            "Sophisticated actors monitor security advisories and can refresh deployed malware within hours, so signatures expire fast",
+            "Public disclosure always stops attacks immediately",
+            "Attackers never read security research",
+          ],
+          correctIndex: 1,
+          explanation:
+            "The adversary updated malware overnight in response to public research. Detection based on a single static IOC can be obsolete within hours against an adaptive actor.",
+        },
+        {
+          id: "stage-m08-q20",
+          type: "CVSS",
+          challenge: `  CVE-2023-20273 is scored 7.2, lower than its partner CVE.`,
+          text: "Why is the escalation CVE scored lower than the 10.0 account-creation CVE?",
+          options: [
+            "Because it has no real impact",
+            "It requires the high privileges (a level-15 account) that the first CVE supplies, lowering its standalone score",
+            "Because root access is not severe",
+            "Because it is unauthenticated and trivial",
+          ],
+          correctIndex: 1,
+          explanation:
+            "CVE-2023-20273 needs an existing level-15 account, so its standalone CVSS (7.2) reflects the privilege prerequisite — even though, chained, the pair yields persistent root.",
+        },
+        {
+          id: "stage-m08-q21",
+          type: "Defense in depth",
+          challenge: `  An architect designs controls so an exposed router is not
+  a single point of catastrophic failure.`,
+          text: "Which layered set best reduces IOS XE exposure?",
+          options: [
+            "A longer enable secret only",
+            "Disable the web UI + restrict management to out-of-band + patch promptly + monitor configs for unauthorized accounts/implants",
+            "Disable logging to reduce noise",
+            "Expose the web UI to speed up administration",
+          ],
+          correctIndex: 1,
+          explanation:
+            "Turning off the web UI, isolating management, patching, and actively monitoring for rogue accounts and implants together prevent a single flaw from becoming persistent root.",
+        },
+        {
+          id: "stage-m08-q22",
+          type: "Contrast",
+          challenge: `  A student compares the m08 chain with CVE-2021-1497
+  (HyperFlex).`,
+          text: "What is the structural difference?",
+          options: [
+            "Both are single-CVE unauthenticated RCEs",
+            "m08 is a two-CVE chain (account creation then escalation) ending in a persistent implant; 1497 is a single unauthenticated injection to root",
+            "Neither involves command injection",
+            "Both are pure authentication bypasses",
+          ],
+          correctIndex: 1,
+          explanation:
+            "CVE-2021-1497 is one unauthenticated injection straight to root. The IOS XE case chains account creation (20198) with escalation (20273) and adds a persistence implant.",
+        },
+        {
+          id: "stage-m08-q23",
+          type: "Recovery cost",
+          challenge: `  A large enterprise must clean thousands of implanted
+  devices in offices and wiring closets.`,
+          text: "Why was recovery so costly?",
+          options: [
+            "A single click cleaned all devices remotely",
+            "Reliable removal required factory reset and reimaging — often with physical access to widely distributed devices, taking weeks",
+            "Devices cleaned themselves after patching",
+            "Only one device needed attention",
+          ],
+          correctIndex: 1,
+          explanation:
+            "Because the implant survived updates, each device needed factory reset and reimaging — frequently requiring physical access across many sites, turning recovery into weeks of work.",
+        },
+        {
+          id: "stage-m08-q24",
+          type: "Scope",
+          challenge: `  A reviewer states what CVE-2023-20273 grants on its own.`,
+          text: "Which statement is most accurate?",
+          options: [
+            "It only reads a banner string",
+            "Given a level-15 account, it escalates to Linux root via command injection in the web UI",
+            "It requires no prior access at all",
+            "It only causes a temporary reboot",
+          ],
+          correctIndex: 1,
+          explanation:
+            "On its own, CVE-2023-20273 takes a level-15 IOS XE session to Linux root through web-UI command injection — the escalation half of the October 2023 chain.",
+        },
+        {
+          id: "stage-m08-q25",
+          type: "Principle",
+          challenge: `  A CISO writes the one-line takeaway for the board.`,
+          text: "Which best captures the CVE-2023-20273 / BadCandy lesson?",
+          options: [
+            "Patching always equals remediation",
+            "Disable unused management web UIs, patch chained CVEs together, and remember a patch stops new infection but not an implant — assume compromise and reimage",
+            "State actors never adapt to disclosures",
+            "Network devices cannot be persistently implanted",
+          ],
+          correctIndex: 1,
+          explanation:
+            "The durable lesson: shrink attack surface (disable the web UI), patch chains as a unit, and treat patching and implant removal as separate steps — a persistent root implant demands reimaging.",
+        },
+      ],
+    },
     ctf: {
       scenario: "The October 2023 IOS XE campaign was a two-stage operation. CVE-2023-20198 created the backdoor account — that was Stage 1. CVE-2023-20273 chained an XSS flaw in the same web interface to escalate to root and install 'BadCandy': a Lua implant embedded in the IOS XE filesystem that survived reboots and answered commands via a magic HTTP token. Cisco patched both CVEs on October 22. The implant still had to be manually removed. Complete the chain.",
       hint: "Your admin session is active. Inject a payload through the web interface's input reflection to escalate to root, then deploy the persistent implant.",
