@@ -12,8 +12,33 @@ type AnswerState = {
   explanation: string;
 } | null;
 
+// How many questions a single attempt presents. Stages with a larger bank draw a
+// fresh random subset every attempt so the question set — and the position of the
+// correct option — can't be memorised "by heart".
+const QUESTIONS_PER_ATTEMPT = 5;
+
+function shuffle<T>(arr: readonly T[]): T[] {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+// Pick up to QUESTIONS_PER_ATTEMPT random questions and shuffle each one's options.
+function buildAttempt(stage: StageConfig): SafeQuestion[] {
+  const bank: SafeQuestion[] = stage.quiz?.questions ?? [];
+  return shuffle(bank)
+    .slice(0, QUESTIONS_PER_ATTEMPT)
+    .map((question) => ({ ...question, options: shuffle(question.options) }));
+}
+
 export default function QuizChallenge({ stage, backHref = "/stages" }: { stage: StageConfig; backHref?: string }) {
-  const questions: SafeQuestion[] = stage.quiz?.questions ?? [];
+  // A dual-mode stage (a CTF that also offers this quiz) only counts the quiz as a
+  // HALF clear — the CTF flag is what fully completes it.
+  const isHalfClear = stage.challengeType === "ctf" && !!stage.ctf;
+  const [questions, setQuestions] = useState<SafeQuestion[]>(() => buildAttempt(stage));
   const [current, setCurrent] = useState(0);
   const [selected, setSelected] = useState<number | null>(null);
   const [answer, setAnswer] = useState<AnswerState>(null);
@@ -22,6 +47,15 @@ export default function QuizChallenge({ stage, backHref = "/stages" }: { stage: 
   const [done, setDone] = useState(false);
 
   const q = questions[current];
+
+  function restart() {
+    setQuestions(buildAttempt(stage));
+    setCurrent(0);
+    setSelected(null);
+    setAnswer(null);
+    setScore(0);
+    setDone(false);
+  }
 
   async function handleSelect(idx: number) {
     if (answer || checking || !q) return;
@@ -32,7 +66,9 @@ export default function QuizChallenge({ stage, backHref = "/stages" }: { stage: 
       const res = await fetch("/api/check-answer", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ stageId: stage.id, questionId: q.id, selectedIndex: idx, isFinalQuestion }),
+        // Send the option TEXT (not index) — options are shuffled client-side and the
+        // server validates by text, so the correct answer is never exposed by position.
+        body: JSON.stringify({ stageId: stage.id, questionId: q.id, selectedText: q.options[idx], isFinalQuestion }),
       });
       const data = await res.json();
       setAnswer({ correct: data.correct, explanation: data.explanation });
@@ -71,32 +107,39 @@ export default function QuizChallenge({ stage, backHref = "/stages" }: { stage: 
         style={{ background: "linear-gradient(135deg, #0d1117 0%, #0f2027 50%, #1a1a2e 100%)" }}
       >
         <div className="max-w-lg w-full text-center">
-          <div className="text-6xl mb-6">{score === questions.length ? "🏆" : score >= 2 ? "🎖️" : "📚"}</div>
-          <h2 className="text-3xl font-bold text-white mb-2">Stage Complete!</h2>
+          <div className="text-6xl mb-6">{isHalfClear ? "📝" : score === questions.length ? "🏆" : score >= 2 ? "🎖️" : "📚"}</div>
+          <h2 className="text-3xl font-bold text-white mb-2">{isHalfClear ? "Quiz Cleared!" : "Stage Complete!"}</h2>
           <p className="text-gray-400 mb-8">
             You answered {score} of {questions.length} challenges correctly.
           </p>
 
-          <div className="bg-white/5 border border-cyan-500/30 rounded-xl p-6 mb-8">
-            <div className="text-4xl font-bold text-cyan-400 mb-1">+{stage.xp} 🪙</div>
-            <div className="text-gray-500 text-sm">added to your total</div>
-            <div className="mt-4 inline-flex items-center gap-2 bg-yellow-500/10 border border-yellow-500/30 rounded-full px-4 py-1">
-              <span className="text-yellow-400 text-sm font-medium">{stage.badge.emoji} {stage.badge.name} Unlocked!</span>
+          {isHalfClear ? (
+            <div className="bg-white/5 border border-amber-500/30 rounded-xl p-6 mb-8">
+              <div className="text-2xl mb-2">⬤◗ <span className="text-amber-400 font-bold align-middle text-lg">Half cleared</span></div>
+              <div className="text-gray-400 text-sm">Capture the flag in the CTF to fully clear this stage and earn its 🪙.</div>
+              <Link
+                href={`/stages/${stage.id}`}
+                className="mt-4 inline-flex items-center gap-2 bg-cyan-500/10 border border-cyan-500/30 rounded-full px-4 py-1.5 text-cyan-300 text-sm font-medium hover:border-cyan-400 transition-colors"
+              >
+                🚩 Run the CTF →
+              </Link>
             </div>
-          </div>
+          ) : (
+            <div className="bg-white/5 border border-cyan-500/30 rounded-xl p-6 mb-8">
+              <div className="text-4xl font-bold text-cyan-400 mb-1">+{stage.xp} 🪙</div>
+              <div className="text-gray-500 text-sm">added to your total</div>
+              <div className="mt-4 inline-flex items-center gap-2 bg-yellow-500/10 border border-yellow-500/30 rounded-full px-4 py-1">
+                <span className="text-yellow-400 text-sm font-medium">{stage.badge.emoji} {stage.badge.name} Unlocked!</span>
+              </div>
+            </div>
+          )}
 
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <button
-              onClick={() => {
-                setCurrent(0);
-                setSelected(null);
-                setAnswer(null);
-                setScore(0);
-                setDone(false);
-              }}
+              onClick={restart}
               className="px-6 py-3 border border-gray-600 hover:border-cyan-500 text-gray-300 hover:text-cyan-400 rounded-lg font-semibold transition-colors"
             >
-              Retry Stage
+              New Questions
             </button>
             <Link
               href="/leaderboard"
@@ -132,7 +175,9 @@ export default function QuizChallenge({ stage, backHref = "/stages" }: { stage: 
             </div>
             <div className="text-right">
               <div className="text-cyan-400 font-mono text-sm">{current + 1} / {questions.length}</div>
-              <div className="text-gray-600 text-xs">{score * Math.floor(stage.xp / questions.length)} 🪙</div>
+              <div className="text-gray-600 text-xs">
+                {isHalfClear ? "◗ half clear" : `${score * Math.floor(stage.xp / questions.length)} 🪙`}
+              </div>
             </div>
           </div>
           <div className="mt-4 bg-white/5 rounded-full h-1.5">

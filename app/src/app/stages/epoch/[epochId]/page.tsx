@@ -92,10 +92,10 @@ export default function EpochPage() {
   const epochStages = filterStagesByGroup(allEpochStages, groups);
   const accent = epochAccent[epochId] ?? epochAccent.ancient;
   const contentFlag = getContentFlag(epochId);
-  const isAuditEpoch = epochId.startsWith("tech-audit-");
-  // For audit epochs, a stage is "done for progression" if CTF OR quiz complete
+  // A stage counts as "done for progression" once it's at least half cleared (quiz)
+  // or fully cleared (CTF). quizStages only ever holds dual-mode half-completions.
   const doneForProgression = (id: string) =>
-    completedStages.includes(id) || (isAuditEpoch && quizCompletedStages.includes(id));
+    completedStages.includes(id) || quizCompletedStages.includes(id);
   const doneCount = epochStages.filter((s) => doneForProgression(s.id)).length;
   const nextStageId = epochStages.find((s) => !doneForProgression(s.id))?.id ?? null;
 
@@ -262,7 +262,7 @@ export default function EpochPage() {
             const ctfDone = completedStages.includes(stage.id);
             const quizDone = quizCompletedStages.includes(stage.id);
             const bothDone = ctfDone && quizDone;
-            const anyDone = ctfDone || (isAuditEpoch && quizDone);
+            const anyDone = ctfDone || quizDone;
             const isNext = stage.id === nextStageId;
 
             // Border / shading by completion state
@@ -270,7 +270,7 @@ export default function EpochPage() {
               ? "border-emerald-400/70 hover:border-emerald-400"
               : ctfDone
               ? "border-green-500/50 hover:border-green-400/80"
-              : quizDone && isAuditEpoch
+              : quizDone
               ? "border-amber-500/50 hover:border-amber-400/80"
               : isNext
               ? `${cardBorder[epochId] ?? "border-white/20"} ring-2 ring-offset-2 ring-offset-slate-950 ring-current`
@@ -280,7 +280,7 @@ export default function EpochPage() {
               ? "from-emerald-950 to-slate-950"
               : ctfDone
               ? "from-green-950 to-slate-950"
-              : quizDone && isAuditEpoch
+              : quizDone
               ? "from-amber-950 to-slate-950"
               : (cardEmojiBg[epochId] ?? "from-slate-900 to-slate-950");
 
@@ -288,7 +288,7 @@ export default function EpochPage() {
               ? "bg-emerald-950/40"
               : ctfDone
               ? "bg-green-950/40"
-              : quizDone && isAuditEpoch
+              : quizDone
               ? "bg-amber-950/30"
               : "bg-black/20";
 
@@ -297,7 +297,7 @@ export default function EpochPage() {
               ? { bg: "bg-emerald-500/20", border: "border-emerald-400/60", text: "text-emerald-300 text-xl", symbol: "★" }
               : ctfDone
               ? { bg: "bg-green-500/20", border: "border-green-400/60", text: "text-green-400 text-2xl font-black", symbol: "✓" }
-              : quizDone && isAuditEpoch
+              : quizDone
               ? { bg: "bg-amber-500/20", border: "border-amber-400/60", text: "text-amber-300 text-lg", symbol: "📝" }
               : null;
 
@@ -311,7 +311,7 @@ export default function EpochPage() {
               ? "★ " + t("stages.completed")
               : ctfDone
               ? "✓ " + t("stages.completed")
-              : isAuditEpoch && quizDone
+              : quizDone
               ? "📝 Quiz done"
               : null;
 

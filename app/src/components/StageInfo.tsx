@@ -156,6 +156,92 @@ function RichParagraph({ text, lead = "blue", context = "security", boldLead = t
   );
 }
 
+// Renders one body block. Lines that begin with "- ", "• " or "* " become a real
+// <ul>; an intro line followed by bullets renders the intro as prose then the list;
+// plain prose falls back to a single <p> so the lead-sentence styling still spans
+// the whole paragraph. Lets stage content use bullets instead of paragraph dumps.
+function RichBlock({
+  text,
+  className = "",
+  itemClassName = "text-gray-300 text-sm leading-relaxed",
+  markerClass = "marker:text-cyan-400/70",
+  lead = "blue",
+  context = "security",
+  boldLead = true,
+}: {
+  text: string;
+  className?: string;
+  itemClassName?: string;
+  markerClass?: string;
+  lead?: "blue" | "pink";
+  context?: "security" | "general";
+  boldLead?: boolean;
+}) {
+  const isBullet = (l: string) => /^\s*[-•*]\s+/.test(l);
+  const stripBullet = (l: string) => l.replace(/^\s*[-•*]\s+/, "");
+  const rawLines = text.split("\n");
+
+  // Group consecutive non-empty lines into ordered prose / list segments.
+  const segments: Array<{ type: "p" | "ul"; lines: string[] }> = [];
+  for (const line of rawLines) {
+    if (line.trim().length === 0) continue;
+    const type = isBullet(line) ? "ul" : "p";
+    const last = segments[segments.length - 1];
+    if (last && last.type === type) last.lines.push(line);
+    else segments.push({ type, lines: [line] });
+  }
+
+  const hasList = segments.some((s) => s.type === "ul");
+
+  // No bullets — preserve the original single-paragraph behaviour.
+  if (!hasList) {
+    return (
+      <p className={className}>
+        <RichParagraph text={text} lead={lead} context={context} boldLead={boldLead} />
+      </p>
+    );
+  }
+
+  const renderSegment = (
+    seg: { type: "p" | "ul"; lines: string[] },
+    key: number,
+    isFirstProse: boolean,
+  ) => {
+    if (seg.type === "ul") {
+      return (
+        <ul key={key} className={`list-disc pl-5 space-y-1.5 ${markerClass}`}>
+          {seg.lines.map((l, i) => (
+            <li key={i} className={itemClassName}>
+              <RichText text={stripBullet(l)} context={context} />
+            </li>
+          ))}
+        </ul>
+      );
+    }
+    return (
+      <p key={key} className={className}>
+        <RichParagraph text={seg.lines.join(" ")} lead={lead} context={context} boldLead={boldLead && isFirstProse} />
+      </p>
+    );
+  };
+
+  // Single list with no intro prose — return it directly so parent spacing stays clean.
+  if (segments.length === 1) {
+    return renderSegment(segments[0], 0, true);
+  }
+
+  let proseSeen = false;
+  return (
+    <div className="space-y-2">
+      {segments.map((seg, i) => {
+        const isFirstProse = seg.type === "p" && !proseSeen;
+        if (seg.type === "p") proseSeen = true;
+        return renderSegment(seg, i, isFirstProse);
+      })}
+    </div>
+  );
+}
+
 export default function StageInfo({
   stage,
   onStart,
@@ -343,15 +429,24 @@ export default function StageInfo({
           <SectionHeader color="text-cyan-400" icon="📡" label={t("stage.overview")} />
           <div className="space-y-4">
             {overview.map((para, i) => (
-              i === 0 ? (
-                <p key={i} className="text-gray-300 text-base leading-relaxed border-l-2 border-cyan-500/50 pl-4">
-                  <RichParagraph text={para} lead="blue" context={richContext} boldLead={false} />
-                </p>
-              ) : (
-                <p key={i} className="text-gray-400 leading-relaxed text-sm">
-                  <RichParagraph text={para} lead="blue" context={richContext} boldLead={false} />
-                </p>
-              )
+              <RichBlock
+                key={i}
+                text={para}
+                className={
+                  i === 0
+                    ? "text-gray-300 text-base leading-relaxed border-l-2 border-cyan-500/50 pl-4"
+                    : "text-gray-400 leading-relaxed text-sm"
+                }
+                itemClassName={
+                  i === 0
+                    ? "text-gray-300 text-base leading-relaxed"
+                    : "text-gray-400 text-sm leading-relaxed"
+                }
+                markerClass="marker:text-cyan-400/70"
+                lead="blue"
+                context={richContext}
+                boldLead={false}
+              />
             ))}
           </div>
           {stage.image && (
@@ -378,9 +473,15 @@ export default function StageInfo({
             </div>
             <div className="px-5 py-4 space-y-3">
               {technicalBody.map((para, i) => (
-                <p key={i} className="text-gray-300 leading-relaxed text-sm">
-                  <RichParagraph text={para} lead="blue" context={richContext} />
-                </p>
+                <RichBlock
+                  key={i}
+                  text={para}
+                  className="text-gray-300 leading-relaxed text-sm"
+                  itemClassName="text-gray-300 text-sm leading-relaxed"
+                  markerClass="marker:text-emerald-400/70"
+                  lead="blue"
+                  context={richContext}
+                />
               ))}
             </div>
             {info.technical.codeExample && (
@@ -440,9 +541,15 @@ export default function StageInfo({
             {/* Body */}
             <div className="px-5 py-4 space-y-3">
               {incidentBody.map((para, i) => (
-                <p key={i} className="text-gray-300 leading-relaxed text-sm">
-                  <RichParagraph text={para} lead="pink" context={richContext} />
-                </p>
+                <RichBlock
+                  key={i}
+                  text={para}
+                  className="text-gray-300 leading-relaxed text-sm"
+                  itemClassName="text-gray-300 text-sm leading-relaxed"
+                  markerClass="marker:text-red-400/70"
+                  lead="pink"
+                  context={richContext}
+                />
               ))}
             </div>
           </div>
