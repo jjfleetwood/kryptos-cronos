@@ -2491,6 +2491,211 @@ no ip http secure-server
         { title: "CVE-2023-20198 — NVD Detail", url: "https://nvd.nist.gov/vuln/detail/CVE-2023-20198" },
       ],
     },
+    quiz: {
+      questions: [
+        {
+          id: "stage-m01-q1",
+          type: "CVE-2023-20198",
+          challenge: `  A network engineer finds that the IOS XE web UI
+  on a public-facing router is reachable from the internet.
+  'ip http secure-server' is enabled in the config.`,
+          text: "Why does this configuration make the device critically exposed to CVE-2023-20198?",
+          options: [
+            "It only matters if SNMP is also enabled",
+            "The web UI exposes an account-creation endpoint that performs no authentication check, allowing anyone to create a Level 15 admin",
+            "HTTPS encrypts the traffic, so the exposure is acceptable",
+            "The risk applies only to switches, not routers",
+          ],
+          correctIndex: 1,
+          explanation:
+            "CVE-2023-20198 is an authentication bypass on the IOS XE web UI's account-creation endpoint. With the web server reachable, any unauthenticated attacker can POST a request that creates a Privilege Level 15 account. TLS does not help — the request itself requires no credentials.",
+        },
+        {
+          id: "stage-m01-q2",
+          type: "CVE-2023-20198",
+          challenge: `  An incident responder sees a single HTTP POST to
+  /webui/logoutconfirm.html in a packet capture, followed
+  moments later by a new local user in the config.`,
+          text: "What does this sequence indicate?",
+          options: [
+            "A routine administrator password change",
+            "Exploitation of CVE-2023-20198 — unauthenticated account creation via the vulnerable web UI endpoint",
+            "A failed login that was correctly rejected",
+            "A DHCP lease renewal",
+          ],
+          correctIndex: 1,
+          explanation:
+            "The /webui/logoutconfirm.html endpoint processed account-creation requests with no authentication check. A POST to it immediately followed by a new Level 15 user is the signature of CVE-2023-20198 exploitation.",
+        },
+        {
+          id: "stage-m01-q3",
+          type: "Exploit chain",
+          challenge: `  Attackers in the 2023 campaign did not stop at creating
+  an admin account. They installed a persistent implant
+  called BadCandy on each compromised device.`,
+          text: "Which second vulnerability did they chain with CVE-2023-20198 to write the implant to disk?",
+          options: [
+            "CVE-2023-20273 — a command-injection flaw in the same web UI",
+            "CVE-2016-6366 — the EXTRABACON SNMP overflow",
+            "CVE-2018-0171 — the Smart Install flaw",
+            "Heartbleed (CVE-2014-0160)",
+          ],
+          correctIndex: 0,
+          explanation:
+            "CVE-2023-20198 created the Level 15 account; CVE-2023-20273, a command-injection flaw in the same web UI, let that account write arbitrary files — installing the Lua-based BadCandy implant.",
+        },
+        {
+          id: "stage-m01-q4",
+          type: "Persistence",
+          challenge: `  An organization resets all device credentials and
+  upgrades the IOS XE software after discovering BadCandy.
+  Days later, the implant is still responding.`,
+          text: "Why did credential reset and software upgrade fail to remove BadCandy?",
+          options: [
+            "The implant re-downloads itself from Cisco's servers",
+            "The implant lives in the nginx web-server configuration and survives reboots, credential resets, and OS upgrades — only a full OS reinstall removes it",
+            "The upgrade was applied to the wrong VLAN",
+            "BadCandy is stored in volatile RAM and simply reloaded",
+          ],
+          correctIndex: 1,
+          explanation:
+            "BadCandy was embedded in the IOS XE web server (nginx) configuration and engineered to survive reboots, credential resets, and even software upgrades. Cleaning a compromised device required a full OS reinstall.",
+        },
+        {
+          id: "stage-m01-q5",
+          type: "Detection",
+          challenge: `  A SOC analyst wants a fast, low-effort check to find
+  IOS XE devices that may have been backdoored by the
+  October 2023 campaign.`,
+          text: "Which command most directly surfaces an attacker-created account?",
+          options: [
+            "show version",
+            "show running-config | include username",
+            "show ip interface brief",
+            "show clock",
+          ],
+          correctIndex: 1,
+          explanation:
+            "`show running-config | include username` lists local accounts. Any username the team did not create is evidence of compromise — the simplest first-pass detection for CVE-2023-20198.",
+        },
+        {
+          id: "stage-m01-q6",
+          type: "Remediation",
+          challenge: `  A device is confirmed reachable and vulnerable but
+  not yet implanted. No patch is installed yet, and the
+  business does not use the web UI for management.`,
+          text: "What is the most effective immediate mitigation?",
+          options: [
+            "Change the enable secret",
+            "Disable the web UI with 'no ip http server' and 'no ip http secure-server'",
+            "Block ICMP at the perimeter",
+            "Enable SNMPv3",
+          ],
+          correctIndex: 1,
+          explanation:
+            "Disabling the web UI (`no ip http server` / `no ip http secure-server`) closes the exploit path entirely on devices not yet implanted. It is the recommended immediate action when the web UI is not needed.",
+        },
+        {
+          id: "stage-m01-q7",
+          type: "CVSS",
+          challenge: `  CVE-2023-20198 was assigned a CVSS base score of 10.0.`,
+          text: "What does a CVSS 10.0 imply about the appropriate response?",
+          options: [
+            "It can wait for the next scheduled maintenance window",
+            "Maximum severity — treat as an emergency; every hour of delay risks another compromised device",
+            "It only affects confidentiality, not integrity or availability",
+            "It requires local, authenticated access to exploit",
+          ],
+          correctIndex: 1,
+          explanation:
+            "CVSS 10.0 is the maximum score: network-exploitable, no privileges or user interaction required, full impact to confidentiality, integrity, and availability. This is emergency-patch territory, not scheduled maintenance.",
+        },
+        {
+          id: "stage-m01-q8",
+          type: "Incident",
+          challenge: `  After Cisco's October 16, 2023 disclosure, VulnCheck
+  scanned the internet and found ~41,000 compromised devices.
+  The next morning the detected count dropped sharply.`,
+          text: "What caused the sudden drop in detected devices?",
+          options: [
+            "Organizations had already patched overnight",
+            "The attackers updated BadCandy overnight to evade VulnCheck's detection signature — they were not actually cleaned",
+            "Cisco recalled the affected hardware",
+            "The scanner had a bug that was fixed",
+          ],
+          correctIndex: 1,
+          explanation:
+            "The devices were not cleaned. The attackers were watching the disclosure and research, and modified the implant overnight to hide from the exact detection signature — a sign of a sophisticated, likely state-sponsored actor.",
+        },
+        {
+          id: "stage-m01-q9",
+          type: "Architecture",
+          challenge: `  A security architect is writing a hardening standard
+  for network device management to prevent a repeat of
+  the IOS XE campaign.`,
+          text: "Which control most directly prevents internet-based exploitation of management interfaces?",
+          options: [
+            "Rotate management passwords weekly",
+            "Restrict management interfaces to an out-of-band management network, never exposed to the internet",
+            "Use longer SNMP community strings",
+            "Increase the logging buffer size",
+          ],
+          correctIndex: 1,
+          explanation:
+            "Management interfaces should live on a dedicated out-of-band network and never be reachable from the internet. Even an unauthenticated bypass like CVE-2023-20198 cannot be exploited by attackers who cannot reach the endpoint.",
+        },
+        {
+          id: "stage-m01-q10",
+          type: "Privilege",
+          challenge: `  The backdoor account created by CVE-2023-20198 was
+  assigned Privilege Level 15 on IOS XE.`,
+          text: "What does Privilege Level 15 grant on an IOS XE device?",
+          options: [
+            "Read-only access to interface statistics",
+            "Full administrative (root-equivalent) control — view and change any configuration, reload the device",
+            "Access limited to the web UI dashboard only",
+            "Guest access with no configuration rights",
+          ],
+          correctIndex: 1,
+          explanation:
+            "Privilege Level 15 is the highest privilege level on IOS — root-equivalent. It allows viewing and modifying the full running configuration and controlling the device, which is why the silent account creation was so damaging.",
+        },
+        {
+          id: "stage-m01-q11",
+          type: "Timeline",
+          challenge: `  Attackers began exploiting the flaw on September 28, 2023.
+  Cisco disclosed it on October 16 and shipped the fixed
+  release (IOS XE 17.9.4a) on October 22.`,
+          text: "What does this timeline highlight about the campaign?",
+          options: [
+            "The flaw was patched before any exploitation occurred",
+            "Attackers had roughly three weeks of undetected, pre-disclosure (zero-day) access before any patch existed",
+            "Cisco knew about the flaw for months before acting",
+            "Exploitation only began after the patch was released",
+          ],
+          correctIndex: 1,
+          explanation:
+            "Exploitation started ~18 days before disclosure and the patch landed 24 days after exploitation began. The window of silent, pre-patch zero-day access is what let the campaign reach 40,000+ devices.",
+        },
+        {
+          id: "stage-m01-q12",
+          type: "Logging",
+          challenge: `  SOC teams reviewing logs during the campaign reported
+  seeing 'nothing' — no failed logins, no alerts — even on
+  devices that were fully compromised.`,
+          text: "Why were there no obvious log signals?",
+          options: [
+            "The devices had logging disabled by default",
+            "No credentials were needed, so there were no failed-login events; the malicious POST and new account were created silently with no default log entry",
+            "The attackers deleted all logs immediately",
+            "Syslog servers were offline during the campaign",
+          ],
+          correctIndex: 1,
+          explanation:
+            "Because the bypass required no authentication, there were no failed-login alerts to fire, and the vulnerable endpoint produced no log entry by default. The compromise was effectively invisible to teams watching for login anomalies.",
+        },
+      ],
+    },
     ctf: {
       scenario: "In October 2023, a suspected Chinese state-sponsored group silently compromised over 40,000 Cisco IOS XE devices before Cisco disclosed the flaw. The technique: the admin panel registered new users without any authentication check. One request, administrator access, no credentials needed. Replicate the initial access method used in the largest IOS XE campaign ever recorded.",
       hint: "The admin panel's registration endpoint requires no credentials. Create an account, then use it to access the restricted configuration.",
