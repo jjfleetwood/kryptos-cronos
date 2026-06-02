@@ -31,15 +31,15 @@ export const mitreAtlasStages: StageConfig[] = [
       tagline: "Before you attack an AI system, you must understand what it is and how it thinks.",
       year: 2023,
       overview: [
-        "MITRE ATLAS (Adversarial Threat Landscape for Artificial-Intelligence Systems) is the AI/ML analog of ATT&CK. Where ATT&CK covers attacks on traditional IT systems, ATLAS covers attacks on AI and ML systems — a rapidly growing attack surface as AI is deployed in security tools, autonomous vehicles, medical diagnostics, and financial systems.",
-        "AML.TA0001 Reconnaissance covers techniques for gathering information about target ML systems before attacking them. Unlike traditional IT recon, ML recon focuses on: identifying what model architecture is in use (AML.T0000), finding the training data sources (AML.T0001), understanding the model's input and output format (AML.T0002), and probing the model's decision boundaries through targeted queries.",
-        "ML recon is often passive — examining API documentation, published papers describing the model, GitHub repos with model code, and model cards on HuggingFace. Active ML recon involves querying the model API with carefully crafted inputs to infer architecture, confidence scoring, and decision boundaries.",
+        "MITRE ATLAS (Adversarial Threat Landscape for Artificial-Intelligence Systems) is the AI/ML analog of ATT&CK:\n- ATT&CK covers attacks on traditional IT; ATLAS covers attacks on AI and ML systems.\n- That surface is growing fast as AI lands in security tools, autonomous vehicles, medical diagnostics, and finance.",
+        "AML.TA0001 Reconnaissance gathers intelligence on the target ML system before attacking — but the targets differ from IT recon:\n- Identify the model architecture (AML.T0000) and the training-data sources (AML.T0001).\n- Learn the input/output format (AML.T0002) and probe the model's decision boundaries with targeted queries.",
+        "ML recon is often passive, with an active mode when needed:\n- Passive — reading API docs, published papers, GitHub model code, and HuggingFace model cards.\n- Active — querying the model API with crafted inputs to infer architecture, confidence scoring, and boundaries.",
       ],
       technical: {
         title: "ML System Fingerprinting Techniques",
         body: [
-          "Model architecture inference (AML.T0000): send inputs that trigger different behaviors in known architectures. ResNet models respond differently to adversarial perturbations than ViT models. GPT-family models have characteristic token probability distributions. By analyzing API responses, attackers infer the underlying model family.",
-          "API reconnaissance: most commercial ML APIs expose useful metadata — confidence scores, top-k predictions, embedding vectors, or token log probabilities. These leak information about model internals. A model that returns confidence scores can be used to construct decision boundary maps through systematic querying.",
+          "Architecture inference (AML.T0000) reads behavior to guess the model family:\n- ResNet responds to adversarial perturbations differently than a ViT; GPT-family models have characteristic token-probability distributions.\n- Analyzing API responses to those probes narrows the underlying architecture.",
+          "API metadata leaks more than intended:\n- Many commercial ML APIs return confidence scores, top-k predictions, embeddings, or token log-probs.\n- A model that returns confidence scores can be systematically queried to map its decision boundaries.",
         ],
         codeExample: {
           label: "ML API reconnaissance — probing for architecture signals",
@@ -73,9 +73,9 @@ def analyze_patterns(results):
         where: "Clearview AI, New York — images scraped from Facebook, Instagram, Twitter, LinkedIn globally",
         impact: "3B+ images scraped; 600+ law enforcement agencies used system; ICO £7.5M fine; EU AI Act bans real-time biometric ID",
         body: [
-          "Clearview AI built a facial recognition system by scraping 3+ billion images from public social media platforms — a form of mass ML reconnaissance that harvested training data from publicly available sources without consent. The system could then identify individuals from a single photo with high accuracy. Law enforcement agencies in 26+ countries used Clearview's system without subjects' knowledge or consent.",
-          "The reconnaissance phase (scraping public images) was technically legal in many jurisdictions — demonstrating that ML reconnaissance using public data can be both technically trivial and legally ambiguous. Clearview received cease-and-desist letters from Facebook, Google, Twitter, and LinkedIn immediately after exposure, but argued their scraping of public data was protected by the First Amendment.",
-          "Clearview faced significant regulatory backlash. The UK Information Commissioner's Office (ICO) fined Clearview £7.5M ($9.4M) in May 2022 for scraping UK residents' data without consent. Italy, France, Greece, and Australia issued similar orders requiring data deletion. Multiple US states (Illinois under BIPA, Texas, Washington) restricted law enforcement use of Clearview under biometric privacy laws. The EU AI Act's Article 5 — prohibiting real-time remote biometric identification in public spaces — was directly shaped by the Clearview case, banning the core use case that Clearview's business model depended on. For AI security practitioners, Clearview established that ML reconnaissance using public data operates in a legal grey zone that regulators are progressively closing — but the technical capability to scrape and train at scale exists and will continue to be exploited by actors willing to accept regulatory risk.",
+          "Clearview AI built facial recognition by scraping the open web at massive scale:\n- It harvested 3B+ images from public social media as training data, without consent — mass ML reconnaissance.\n- The result could identify a person from a single photo; police in 26+ countries used it without subjects' knowledge.",
+          "The recon phase sat in a legal grey zone:\n- Scraping public images was technically legal in many jurisdictions — trivial to do, ambiguous to police.\n- Facebook, Google, Twitter, and LinkedIn all sent cease-and-desist letters; Clearview claimed First Amendment protection.",
+          "Regulators have been progressively closing that gap:\n- The UK ICO fined Clearview £7.5M (2022); Italy, France, Greece, and Australia ordered data deletion, and US states restricted use under biometric-privacy laws.\n- The EU AI Act's Article 5 ban on real-time remote biometric ID was shaped directly by the case — though the capability persists for actors willing to accept the regulatory risk.",
         ],
       },
       diagram: {
@@ -190,15 +190,15 @@ Fragment-3: DONE}`,
       tagline: "Build a copy of the target model. Then break the copy to break the original.",
       year: 2022,
       overview: [
-        "AML.TA0002 Resource Development in ATLAS covers building the resources needed for ML attacks: substitute (proxy) models that mimic the target, adversarial example generation tools, poisoned datasets for supply chain attacks, and infrastructure for model extraction campaigns.",
-        "A substitute model (AML.T0005) is a local copy of the target model trained to mimic its behavior by querying the target API and using the responses as training labels. Once a good substitute is built, adversarial examples crafted against the substitute often transfer to the real model — enabling attacks without direct access to the target model's weights or architecture.",
-        "Resource development also includes acquiring adversarial ML tools: CleverHans, Foolbox, ART (Adversarial Robustness Toolbox), and TextFooler for NLP attacks. These are legitimate research tools that can be weaponized for attacks against production ML systems.",
+        "AML.TA0002 Resource Development covers building what an ML attack needs:\n- Substitute (proxy) models that mimic the target, and adversarial-example generation tools.\n- Poisoned datasets for supply-chain attacks, plus infrastructure for model-extraction campaigns.",
+        "A substitute model (AML.T0005) is a local clone trained to imitate the target:\n- It's built by querying the target API and using the responses as training labels.\n- Adversarial examples crafted against a good substitute often transfer to the real model — attacking it without its weights or architecture.",
+        "Resource development also means arming up with adversarial-ML tooling:\n- CleverHans, Foolbox, ART (Adversarial Robustness Toolbox), and TextFooler for NLP.\n- All legitimate research tools — readily weaponized against production ML systems.",
       ],
       technical: {
         title: "Substitute Model Training (Model Extraction)",
         body: [
-          "Substitute model training process: (1) send synthetic or real inputs to target API and collect (input, output) pairs, (2) use these pairs as a labeled training set, (3) train a local model on this dataset, (4) evaluate how well the substitute mimics the target on held-out data, (5) use the substitute to craft adversarial examples.",
-          "Transfer rate (how often adversarial examples on the substitute fool the target) depends on model similarity. If both use similar architectures, transfer rates can exceed 80%. Defense: return only hard labels (no confidence scores) to reduce information available for substitute training. Rate limiting and query monitoring detect bulk API use.",
+          "Substitute training (model extraction) follows a fixed loop:\n- Send synthetic or real inputs to the target API and collect (input, output) pairs.\n- Train a local model on those pairs, evaluate how well it mimics the target, then use it to craft adversarial examples.",
+          "Transfer rate decides how dangerous the substitute is:\n- Similar architectures push transfer rates (substitute attacks that fool the target) above 80%.\n- Defense: return only hard labels (no confidence scores), and use rate limiting plus query monitoring to catch bulk extraction.",
         ],
         codeExample: {
           label: "Substitute model training via API querying",
@@ -234,9 +234,9 @@ def train_substitute_model(target_api, query_budget=10000):
         where: "OpenAI API — researchers from Epoch AI and independent institutions",
         impact: "GPT-4 hidden dimension (12,288) inferred for ~$200; OpenAI embedding API hardened; NIST AI RMF adds API monitoring controls",
         body: [
-          "Researchers demonstrated that structural information about GPT-4 — specifically its hidden dimension size (12,288) — could be inferred using only $200 of API queries by analyzing the model's output embedding space. This is AML.T0056 (Model Inversion Attack) combined with AML.T0005 (Develop Adversarial Examples via Substitute Model). The full weights were not extracted, but the demonstration proved that even the most tightly controlled frontier AI systems leak structural information through their APIs.",
-          "The attack exploited the fact that OpenAI's embedding API returned high-precision floating point vectors — enough information to reconstruct the model's hidden dimension through linear algebraic analysis of a carefully designed query set. Resource development for AI attacks increasingly means building tools to exploit these information leakage channels, requiring no privileged access to the model infrastructure.",
-          "The GPT-4 architecture inference research prompted OpenAI to reduce the numerical precision of embedding API responses and implement additional query pattern monitoring to detect systematic architectural probing. OpenAI's terms of service explicitly prohibit using the API to reverse-engineer model architectures, but enforcement against published academic research is complicated by free speech protections. For enterprises deploying proprietary ML models via APIs, the research established that keeping model weights secret is insufficient protection: the API itself is an attack surface from which significant architectural and behavioral information can be extracted. Model access controls, hard-label-only responses (no confidence scores), rate limiting, and API monitoring for systematic bulk queries are now recognized defensive controls in the NIST AI RMF implementation guidance under the 'MEASURE' function.",
+          "Researchers inferred GPT-4's structure for pocket change:\n- They recovered its hidden dimension (12,288) using only ~$200 of API queries against the output embedding space.\n- That's AML.T0056 (Model Inversion) plus AML.T0005 (substitute-model adversarial examples); the weights stayed secret, but even a frontier model leaked structure through its API.",
+          "The leak rode on overly precise API output:\n- OpenAI's embedding API returned high-precision floating-point vectors — enough to reconstruct the hidden dimension via linear-algebra analysis of a crafted query set.\n- Resource development increasingly means tooling to exploit these leakage channels, needing no privileged access to the infrastructure.",
+          "OpenAI hardened the API, and the lesson generalized:\n- It cut embedding precision and added query-pattern monitoring for systematic probing — though enforcing ToS against published research is complicated by free-speech protections.\n- The takeaway: secret weights aren't enough, the API is an attack surface. Hard-label-only responses, rate limiting, and bulk-query monitoring are now NIST AI RMF 'MEASURE' controls.",
         ],
       },
       diagram: {
@@ -348,15 +348,15 @@ Fragment-3: MDL}`,
       tagline: "The most efficient way to compromise an AI system is before it's deployed.",
       year: 2023,
       overview: [
-        "AML.TA0003 Initial Access covers how attackers gain their first foothold in an ML system or pipeline. The most powerful initial access vector for ML is AML.T0010 — ML Supply Chain Compromise: inserting malicious models, poisoned datasets, or backdoored libraries into the ML ecosystem before targets download and deploy them.",
-        "HuggingFace hosts 500,000+ publicly available models. A malicious model uploaded to HuggingFace under a convincing name (a typosquat of a popular model) can be downloaded and deployed by thousands of organizations. Unlike traditional supply chain attacks that require compromising a vendor, ML supply chain attacks can be executed by uploading a convincing lookalike model to a public registry.",
-        "Other initial access techniques: AML.T0012 — Valid ML Service Credentials (compromised API keys for cloud ML services), AML.T0047 — Backdoor ML Model via GitHub (inserting backdoors into open-source ML training code).",
+        "AML.TA0003 Initial Access is the first foothold into an ML system or pipeline:\n- The most powerful vector is AML.T0010 (ML Supply Chain Compromise).\n- It seeds malicious models, poisoned datasets, or backdoored libraries into the ecosystem before targets download and deploy them.",
+        "Public model registries make this trivial to pull off:\n- HuggingFace hosts 500,000+ models; a typosquatted lookalike of a popular one can be deployed by thousands of orgs.\n- Unlike classic supply-chain attacks, no vendor compromise is needed — just upload a convincing lookalike.",
+        "Other initial-access routes round it out:\n- AML.T0012 (Valid ML Service Credentials) — compromised API keys for cloud ML services.\n- AML.T0047 (Backdoor ML Model via GitHub) — slipping backdoors into open-source training code.",
       ],
       technical: {
         title: "ML Supply Chain Attack Vectors",
         body: [
-          "HuggingFace model typosquatting: upload `bert-base-uncased-finetuned` (legitimate) vs `bert-base-uncased-fintuned` (typosquat with backdoor). Organizations that pin model versions are protected; those that use name references without hashes are vulnerable. Defense: always pin model SHA256 hashes, not just names.",
-          "Pickle file deserialization (AML.T0011): PyTorch model files use Python's pickle format for serialization. A malicious pickle file can execute arbitrary Python code when loaded with `torch.load()`. Defense: use `weights_only=True` parameter in torch.load (available since PyTorch 1.13) and scan model files with pickle scanning tools before loading.",
+          "Typosquatting hinges on how teams reference models:\n- `bert-base-uncased-finetuned` (real) vs `bert-base-uncased-fintuned` (backdoored typosquat).\n- Pinning a name without a hash is the vulnerability — always pin the model's SHA256, not just its name.",
+          "Pickle deserialization (AML.T0011) turns loading into code execution:\n- PyTorch model files use Python pickle, so a malicious file runs arbitrary code on `torch.load()`.\n- Defense: pass `weights_only=True` (PyTorch 1.13+) and scan model files with pickle scanners before loading.",
         ],
         codeExample: {
           label: "ML supply chain defense — model verification",
@@ -391,9 +391,9 @@ def safe_load_model(model_name: str, model_path: Path) -> torch.nn.Module:
         where: "HuggingFace Model Hub — 750,000+ public models",
         impact: "100+ malicious models executing RCE on load; HuggingFace adds pickle scanning; PyTorch changes default loading behavior; CISA adds ML supply chain to guidance",
         body: [
-          "Security researchers at JFrog discovered 100+ malicious models on HuggingFace that executed arbitrary code when loaded using `torch.load()`. The models exploited Python's pickle deserialization to run system commands — a classic supply chain attack where the 'dependency' (the ML model file) itself contains the malware. Unlike traditional software supply chain attacks that require compromising a legitimate project, the HuggingFace attack required only creating a plausible-sounding model name and uploading a malicious file.",
-          "HuggingFace now scans model files for pickle-based code execution using picklescan and fickling, but the fundamental vulnerability — pickle as the dominant ML model serialization format — remains. The platform had grown to 750,000+ models by mid-2024, a growth rate that far outpaced manual security review capacity.",
-          "JFrog's disclosure drove immediate platform and ecosystem improvements. HuggingFace implemented automated pickle scanning on all new model uploads and added security alerts to model pages flagging potential unsafe deserialization. PyTorch made `weights_only=True` the explicitly recommended parameter for `torch.load()` in their documentation, defaulting to safe deserialization that rejects arbitrary code execution. CISA added ML supply chain security to its software supply chain risk guidance in 2024, treating public model registries as equivalent security risk to public package registries like PyPI and npm. NIST AI RMF v1.0 included model provenance and integrity verification as recommended practices under the 'MAP' function — specifically requiring organizations to validate the provenance of third-party ML models before deployment, exactly as they would validate third-party software libraries.",
+          "JFrog found the ML registry itself weaponized:\n- 100+ HuggingFace models executed arbitrary code on `torch.load()`, abusing pickle deserialization to run system commands.\n- It's a supply-chain attack where the 'dependency' — the model file — is the malware, needing only a plausible name and an upload.",
+          "The platform's scale outran its review:\n- HuggingFace now scans uploads with picklescan and fickling, but pickle remains the dominant ML serialization format.\n- By mid-2024 it held 750,000+ models — growth far outpacing manual security review.",
+          "The disclosure hardened the whole ecosystem:\n- HuggingFace added automated pickle scanning and unsafe-deserialization alerts; PyTorch made `weights_only=True` the recommended default for `torch.load()`.\n- CISA folded ML supply chain into its 2024 guidance (treating model registries like PyPI/npm), and NIST AI RMF made model-provenance verification a 'MAP' practice.",
         ],
       },
       diagram: {
