@@ -28,15 +28,15 @@ export const quantum1Stages: StageConfig[] = [
       tagline: "A classical bit is 0 or 1. A qubit is both — simultaneously — until measured.",
       year: 2024,
       overview: [
-        "Classical computers store information as bits: 0 or 1. Quantum computers use qubits, which exploit superposition — a qubit can represent 0, 1, or any combination of both at the same time. A 300-qubit quantum computer can represent 2^300 states simultaneously, more than the number of atoms in the observable universe.",
-        "This parallelism is what makes quantum computers dangerous to cryptography. Current asymmetric cryptography (RSA, ECC, Diffie-Hellman) depends on mathematical problems that classical computers cannot solve in reasonable time. Quantum algorithms can solve these problems efficiently — breaking encryption that secures banking, government, and internet traffic.",
-        "Understanding superposition is the entry point to understanding the quantum threat. When we say 'quantum computers will break RSA,' we mean: a quantum computer using Shor's Algorithm exploits superposition and interference to find the prime factors of an RSA modulus in polynomial time — what takes classical computers thousands of years.",
+        "Classical bits are 0 or 1; qubits exploit superposition to be both at once:\n- A qubit can represent 0, 1, or any combination of both simultaneously.\n- A 300-qubit machine can represent 2^300 states at once — more than the atoms in the observable universe.",
+        "That parallelism is exactly what threatens cryptography:\n- RSA, ECC, and Diffie-Hellman rest on math problems classical computers can't solve in reasonable time.\n- Quantum algorithms solve them efficiently — breaking the encryption behind banking, government, and internet traffic.",
+        "Superposition is the entry point to the quantum threat:\n- 'Quantum computers will break RSA' means a specific thing.\n- A quantum computer running Shor's Algorithm exploits superposition and interference to factor an RSA modulus in polynomial time — what would take classical computers thousands of years.",
       ],
       technical: {
         title: "Superposition and Quantum States",
         body: [
-          "A qubit's state is described by: |ψ⟩ = α|0⟩ + β|1⟩, where α and β are complex probability amplitudes and |α|² + |β|² = 1. When measured, the qubit collapses to either 0 (with probability |α|²) or 1 (with probability |β|²). Before measurement, it genuinely is both.",
-          "Quantum gates manipulate qubits like classical gates manipulate bits. The Hadamard gate (H) puts a qubit into equal superposition: |0⟩ → (|0⟩ + |1⟩)/√2. Applying H to n qubits creates a superposition of all 2^n states simultaneously — the source of quantum parallelism.",
+          "A qubit's state is a weighted blend of 0 and 1:\n- |ψ⟩ = α|0⟩ + β|1⟩, where α and β are complex amplitudes with |α|² + |β|² = 1.\n- On measurement it collapses to 0 (probability |α|²) or 1 (probability |β|²) — but before measurement it genuinely is both.",
+          "Quantum gates manipulate qubits like classical gates manipulate bits:\n- The Hadamard gate (H) creates equal superposition: |0⟩ → (|0⟩ + |1⟩)/√2.\n- Applying H to n qubits superposes all 2^n states at once — the source of quantum parallelism.",
         ],
         codeExample: {
           label: "Qiskit — creating a qubit in superposition and measuring",
@@ -63,8 +63,8 @@ print(counts)  # {'0': ~500, '1': ~500}
         where: "Global — all internet-connected systems using RSA, ECC, or Diffie-Hellman",
         impact: "All currently encrypted data, past and present, becomes readable; PKI trust collapses",
         body: [
-          "Q-Day refers to the day a Cryptographically Relevant Quantum Computer (CRQC) — capable of running Shor's Algorithm at scale — comes online. On that day, RSA-2048, ECC-256, and all Diffie-Hellman key exchanges become instantly breakable. Every TLS session, VPN tunnel, and code signature becomes meaningless.",
-          "Security agencies worldwide (NSA, CISA, GCHQ, ANSSI) have begun issuing quantum-readiness advisories. CISA's guidance is clear: organizations should begin their post-quantum migration now, because migration takes years and Harvest Now, Decrypt Later attacks mean adversaries are already collecting encrypted traffic for future decryption.",
+          "Q-Day is when a Cryptographically Relevant Quantum Computer (CRQC) can run Shor's at scale:\n- On that day RSA-2048, ECC-256, and all Diffie-Hellman key exchanges become instantly breakable.\n- Every TLS session, VPN tunnel, and code signature becomes meaningless.",
+          "Agencies worldwide are already sounding the alarm:\n- NSA, CISA, GCHQ, and ANSSI have issued quantum-readiness advisories.\n- CISA is blunt: start post-quantum migration now — it takes years, and Harvest Now, Decrypt Later means adversaries are already collecting encrypted traffic to decrypt later.",
         ],
       },
       diagram: {
@@ -183,15 +183,15 @@ print(counts)  # {'0': ~500, '1': ~500}
       tagline: "Peter Shor's 1994 algorithm reduces RSA factoring from exponential to polynomial time — rendering all current public-key cryptography obsolete.",
       year: 1994,
       overview: [
-        "In 1994, MIT mathematician Peter Shor published a quantum algorithm that factors large integers in polynomial time — O((log N)³) quantum operations versus the classical best of O(e^(64/9 * (log N)^(1/3))) sub-exponential operations. This single algorithm theoretically breaks RSA, Diffie-Hellman, and elliptic curve cryptography simultaneously.",
-        "RSA's security rests entirely on the hardness of factoring large semiprime numbers — multiplying two primes is easy, factoring the product is classically infeasible. Shor's Algorithm uses quantum Fourier transform and quantum phase estimation to find the period of a modular exponential function, from which factors are derived efficiently.",
-        "The algorithm also extends to discrete logarithm problems — breaking Diffie-Hellman (including ECDH). Any cryptosystem whose security relies on factoring or discrete logs is vulnerable. This includes TLS, SSH, IPsec, code signing, and certificate authorities.",
+        "In 1994, MIT's Peter Shor published a quantum algorithm that factors large integers in polynomial time:\n- O((log N)³) quantum operations versus the classical best sub-exponential O(e^(64/9 · (log N)^(1/3))).\n- That single algorithm theoretically breaks RSA, Diffie-Hellman, and elliptic curve cryptography at once.",
+        "RSA's whole security rests on factoring being hard:\n- Multiplying two primes is easy; factoring the product is classically infeasible.\n- Shor's uses the quantum Fourier transform and phase estimation to find the period of a modular-exponential function, from which the factors fall out efficiently.",
+        "It extends beyond factoring to discrete logarithms:\n- That breaks Diffie-Hellman, including ECDH.\n- Any cryptosystem resting on factoring or discrete logs is vulnerable — TLS, SSH, IPsec, code signing, and certificate authorities.",
       ],
       technical: {
         title: "How Shor's Algorithm Works",
         body: [
-          "Shor's Algorithm has two parts: (1) a classical reduction of factoring to period-finding, and (2) a quantum algorithm for period-finding using the Quantum Fourier Transform (QFT). The QFT extracts periodicity from a quantum superposition of function evaluations — something classically impossible.",
-          "For RSA-2048 (a 2048-bit modulus), Shor's requires approximately 4096 logical qubits and trillions of quantum gate operations. Current quantum computers have ~100-400 error-prone physical qubits. Error correction requires ~1000 physical qubits per logical qubit — so ~4 million physical qubits are needed.",
+          "Shor's has a classical half and a quantum half:\n- A classical reduction turns factoring into period-finding.\n- A quantum algorithm then solves period-finding with the Quantum Fourier Transform (QFT), extracting periodicity from a superposition of function evaluations — classically impossible.",
+          "The hardware bar is still far off:\n- Breaking RSA-2048 needs ~4096 logical qubits and trillions of gate operations.\n- Today's machines have ~100–400 error-prone physical qubits; error correction needs ~1000 physical per logical, so ~4 million physical qubits are required.",
         ],
         codeExample: {
           label: "Shor's Algorithm — simplified period-finding (Qiskit)",
@@ -218,8 +218,8 @@ print(result.factors)  # [[3, 5]]
         where: "Global — all NSS (National Security Systems) operators",
         impact: "NSA mandated post-quantum algorithm migration for all classified systems by 2035",
         body: [
-          "In September 2022, the NSA released the Commercial National Security Algorithm Suite 2.0 (CNSA 2.0), mandating that all National Security Systems migrate from RSA and ECC to quantum-resistant algorithms by 2035. This was an explicit government acknowledgment that Shor's Algorithm represents a credible near-term threat.",
-          "CNSA 2.0 mandated: CRYSTALS-Kyber for key establishment, CRYSTALS-Dilithium and FALCON for digital signatures, and XMSS/LMS for firmware signing. The 2035 deadline for classified systems implies a belief that CRQCs could emerge by then — or that the migration timeline requires starting immediately.",
+          "In September 2022, the NSA released CNSA 2.0:\n- It mandates all National Security Systems migrate from RSA and ECC to quantum-resistant algorithms by 2035.\n- That's an explicit government acknowledgment that Shor's is a credible near-term threat.",
+          "CNSA 2.0 names the replacement algorithms and an aggressive timeline:\n- CRYSTALS-Kyber for key establishment, CRYSTALS-Dilithium and FALCON for signatures, and XMSS/LMS for firmware signing.\n- The 2035 deadline implies either that CRQCs could emerge by then, or that the migration itself demands starting immediately.",
         ],
       },
       diagram: {
@@ -339,15 +339,15 @@ print(result.factors)  # [[3, 5]]
       tagline: "Grover's Algorithm provides a quadratic quantum speedup for search problems — effectively halving the security of symmetric encryption.",
       year: 1996,
       overview: [
-        "In 1996, Lov Grover published a quantum search algorithm that finds a target item in an unsorted database of N items in O(√N) operations — quadratically faster than classical O(N) search. Applied to cryptography, Grover's Algorithm effectively halves the key length security of any symmetric cipher or hash function.",
-        "For AES-128: classical brute force requires 2^128 operations; Grover's reduces this to 2^64 — within range of a sufficiently powerful CRQC. For AES-256: Grover's reduces to 2^128 — still computationally infeasible. This is why NIST recommends AES-256 and SHA-384 as quantum-safe symmetric algorithms (with doubled security margins).",
-        "The good news: symmetric cryptography does not break under quantum computing — it just weakens. AES-256 and SHA-384 remain secure if used correctly. The bad news: AES-128 and SHA-256 should be considered quantum-weakened — their effective security drops to 64-bit post-CRQC.",
+        "In 1996, Lov Grover published a quantum search algorithm with a quadratic speedup:\n- It finds a target in an unsorted database of N items in O(√N) operations, versus classical O(N).\n- Applied to cryptography, it effectively halves the key-length security of any symmetric cipher or hash.",
+        "The impact depends entirely on key size:\n- AES-128 drops from 2^128 to 2^64 brute-force operations — within reach of a powerful CRQC.\n- AES-256 drops only to 2^128 — still infeasible, which is why NIST recommends AES-256 and SHA-384 as quantum-safe (doubled margins).",
+        "The headline: symmetric crypto weakens but doesn't break:\n- AES-256 and SHA-384 stay secure if used correctly — good news.\n- AES-128 and SHA-256 should be treated as quantum-weakened, their effective security dropping to 64-bit post-CRQC — bad news.",
       ],
       technical: {
         title: "Grover's Algorithm — Quadratic Quantum Speedup",
         body: [
-          "Grover's Algorithm uses quantum amplitude amplification to iteratively increase the probability of measuring the target state. Starting with equal superposition across all N states, each iteration increases the target state's amplitude by O(1/√N). After O(√N) iterations, the target state has near-certainty probability of measurement.",
-          "Applied to AES-128 key search: the 'database' is all 2^128 possible keys; the 'target' is the correct key. Grover's finds it in O(2^64) quantum operations. Modern hardware can sustain 2^64 operations — so AES-128 is considered quantum-broken. AES-256 requires 2^128 Grover iterations — still secure.",
+          "Grover's works by amplitude amplification:\n- Starting from equal superposition over all N states, each iteration nudges the target state's amplitude up by O(1/√N).\n- After O(√N) iterations, measuring the target becomes near-certain.",
+          "Against AES-128, the 'database' is the keyspace:\n- All 2^128 keys are the database; the correct key is the target, found in O(2^64) quantum operations.\n- Modern hardware can sustain 2^64 operations, so AES-128 is considered quantum-broken; AES-256 needs 2^128 iterations and stays secure.",
         ],
         codeExample: {
           label: "Grover's impact on symmetric key security",
@@ -375,8 +375,8 @@ HMAC-SHA256     128 bits*           64 bits               WEAKENED*
         where: "Global — NIST FIPS 140-3 and post-quantum guidance",
         impact: "All AES-128 deployments require upgrade; SHA-256 alone insufficient for long-term quantum resistance",
         body: [
-          "NIST's post-quantum cryptography standards (FIPS 203, 204, 205, published August 2024) focus on asymmetric algorithms, but NIST's quantum-resistance guidance for symmetric crypto is equally important: use AES-256 (not AES-128), use SHA-384 or SHA-512 (not SHA-256) for long-term security, and use HMAC with 256-bit or larger keys.",
-          "Many organizations have deployed AES-128 assuming it was 'good enough.' Post-CRQC, AES-128 provides only 64-bit effective security — breakable with quantum hardware. The migration path is straightforward (just increase key sizes) but requires audit and reconfiguration of all cryptographic deployments.",
+          "NIST's August 2024 PQC standards center on asymmetric crypto, but its symmetric guidance matters just as much:\n- Use AES-256 (not AES-128) and SHA-384 or SHA-512 (not SHA-256) for long-term security.\n- Use HMAC with 256-bit or larger keys.",
+          "Many deployments assumed AES-128 was 'good enough':\n- Post-CRQC it offers only 64-bit effective security — breakable with quantum hardware.\n- The fix is simple (increase key sizes) but requires auditing and reconfiguring every cryptographic deployment.",
         ],
       },
       diagram: {
