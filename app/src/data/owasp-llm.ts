@@ -296,16 +296,16 @@ def extraction_attack(client, known_prefix: str, n_completions: int = 100):
       tagline: "You don't need to attack the LLM directly when you can compromise the model before it's deployed.",
       year: 2023,
       overview: [
-        "LLM03 Supply Chain covers attacks on the components that make up an LLM application: the pre-trained base model, fine-tuning datasets, third-party plugins, vector databases, and the Python package ecosystem that stitches it all together.",
-        "The LLM supply chain is long and largely unverified. A model downloaded from HuggingFace may have been uploaded by an attacker with a name nearly identical to a legitimate model. Fine-tuning datasets scraped from the internet may contain poisoned examples. PyPI packages for LangChain, llama-index, or other LLM frameworks may be typosquatted.",
-        "In April 2023, security researchers discovered that HuggingFace's Pickle format allowed malicious model files to execute arbitrary Python code on deserialization — a supply chain attack vector that could compromise any machine that loaded a malicious model.",
+        "LLM03 Supply Chain attacks the components that make up an LLM app:\n- The pre-trained base model and fine-tuning datasets.\n- Third-party plugins, vector databases, and the Python packages stitching it together.",
+        "That chain is long and mostly unverified:\n- A HuggingFace model may have been uploaded by an attacker under a near-identical name; scraped fine-tuning data may carry poison.\n- PyPI packages for LangChain, llama-index, and other LLM frameworks may be typosquatted.",
+        "April 2023 made the risk concrete:\n- Researchers found HuggingFace's Pickle format let malicious model files run arbitrary Python on deserialization.\n- Any machine that loaded such a model could be compromised.",
       ],
       technical: {
         title: "LLM Supply Chain Attack Surfaces",
         body: [
-          "Model repository attacks: HuggingFace hosts over 500,000 models. Attackers upload models with names similar to popular models (e.g., 'bert-base-uncased-v2' vs 'bert-base-uncased'). Malicious Pickle files in .pt or .bin format execute arbitrary code on load. SafeTensors format was developed as a mitigation.",
-          "Dataset poisoning: models fine-tuned on poisoned datasets inherit backdoors. An attacker who contributes 0.1% of a fine-tuning dataset can implant a backdoor trigger — a specific phrase that causes the model to always output a chosen response. This is the training-time analog of a logic bomb.",
-          "Dependency confusion and typosquatting: langchain, llama-index, openai, and anthropic are high-value targets for typosquatting. A malicious 'langchian' or 'openai-beta' package on PyPI will be installed by developers making typos.",
+          "Model-repository attacks abuse names and formats:\n- Among HuggingFace's 500,000+ models, attackers upload lookalikes ('bert-base-uncased-v2' vs 'bert-base-uncased').\n- Malicious Pickle files in .pt or .bin run code on load — SafeTensors was created as the mitigation.",
+          "Dataset poisoning plants a training-time logic bomb:\n- A model fine-tuned on poisoned data inherits a backdoor.\n- Contributing just 0.1% of a fine-tuning set can implant a trigger phrase that forces a chosen output.",
+          "Dependency confusion and typosquatting target the obvious names:\n- langchain, llama-index, openai, and anthropic are high-value PyPI targets.\n- A malicious 'langchian' or 'openai-beta' gets installed by anyone who fat-fingers the name.",
         ],
         codeExample: {
           label: "Malicious HuggingFace model via Pickle RCE",
@@ -337,9 +337,9 @@ with open("model.pkl", "wb") as f:
         where: "HuggingFace Model Hub, Global",
         impact: "Hundreds of malicious Pickle-format models discovered; arbitrary code execution on load",
         body: [
-          "JFrog security researchers scanned HuggingFace and found over 100 models containing malicious Pickle payloads that would execute arbitrary code when loaded. One model established a reverse shell connection back to an attacker-controlled server.",
-          "The attack exploited Python's Pickle format, which has documented arbitrary code execution risks. Despite warnings in PyTorch's documentation, the ML community widely uses Pickle for model serialization because it's convenient and supports all Python objects.",
-          "HuggingFace's response included mandatory pickle scanning on all new model uploads using picklescan and fickling, security alerts on model pages flagging unsafe deserialization, and an aggressive campaign to migrate the ecosystem to SafeTensors — a format that stores only tensor data with no arbitrary code execution capability. PyTorch updated its official documentation to make `torch.load(weights_only=True)` the explicitly recommended pattern. In April 2024, HuggingFace disclosed a separate security incident: unauthorized access to their Spaces platform had exposed a subset of Spaces secrets (API keys, tokens, access credentials stored in Spaces environment variables). The dual incidents — malicious model uploads and infrastructure breach — drove HuggingFace to implement mandatory fine-grained access tokens, secret scanning in repositories, and a Coordinated Vulnerability Disclosure program. CISA added ML model supply chain security to its software supply chain risk guidance, treating public model registries with the same risk profile as public package registries like PyPI and npm.",
+          "JFrog scanned HuggingFace and found the registry already weaponized:\n- Over 100 models carried malicious Pickle payloads that run arbitrary code on load.\n- One opened a reverse shell back to an attacker-controlled server.",
+          "The attack rode Python's Pickle format:\n- Pickle has documented arbitrary-code-execution risks, flagged even in PyTorch's docs.\n- The ML community uses it anyway because it's convenient and serializes any Python object.",
+          "HuggingFace's response and a follow-on breach hardened the ecosystem:\n- It mandated pickle scanning (picklescan, fickling), added unsafe-deserialization alerts, and pushed migration to SafeTensors; PyTorch made `torch.load(weights_only=True)` the recommended pattern.\n- An April 2024 Spaces breach exposed stored secrets, driving fine-grained tokens, repo secret scanning, and a CVD program — and CISA folded model registries into its supply-chain guidance alongside PyPI and npm.",
         ],
       },
       diagram: {
