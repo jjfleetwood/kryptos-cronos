@@ -992,15 +992,15 @@ Time estimate:   Hours to days on a CRQC
       tagline: "Quantum error correction is the engineering barrier between NISQ devices and cryptographically relevant quantum computers.",
       year: 2024,
       overview: [
-        "Quantum states are fragile — any interaction with the environment causes 'decoherence,' destroying the quantum information. Unlike classical computers where bits can be directly copied and error-checked, quantum states cannot be copied (no-cloning theorem) and measuring them destroys the superposition.",
-        "Quantum Error Correction (QEC) encodes one logical qubit into multiple physical qubits, using redundancy to detect and correct errors without measuring (and thus collapsing) the logical state. The Surface Code — the most promising QEC scheme — requires ~1000 physical qubits per logical qubit at current error rates.",
-        "The 'threshold' in QEC is the physical error rate below which adding more error-correction qubits actually reduces the logical error rate. Google's Willow (2024) demonstrated operation below this threshold — a historic milestone. Once fault-tolerant quantum computing is achieved, the path to CRQC is primarily an engineering scale problem.",
+        "Quantum states are fragile — and can't be copied or error-checked like classical bits:\n- Any interaction with the environment causes 'decoherence,' destroying the quantum information.\n- The no-cloning theorem forbids copying a qubit, and measuring it destroys the superposition.",
+        "Quantum Error Correction (QEC) buys reliability with redundancy:\n- It encodes one logical qubit across many physical qubits, detecting and correcting errors without measuring (and collapsing) the logical state.\n- The leading scheme, the Surface Code, needs ~1000 physical qubits per logical qubit at current error rates.",
+        "The QEC 'threshold' is the make-or-break number:\n- Below it, adding error-correction qubits actually lowers the logical error rate.\n- Google's Willow (2024) operated below threshold — a historic milestone, after which CRQC becomes mainly an engineering-scale problem.",
       ],
       technical: {
         title: "Surface Code — The Leading Quantum Error Correction Scheme",
         body: [
-          "The Surface Code arranges physical qubits in a 2D grid. Data qubits store information; ancilla qubits are measured to detect errors without revealing the encoded information. Error syndromes (patterns of ancilla measurements) indicate which errors occurred, allowing software to track and correct them.",
-          "For a distance-d surface code, the logical error rate scales as (p/p_th)^((d+1)/2), where p is the physical error rate and p_th is the threshold (~1%). At p=0.1%, a distance-25 code (requiring 625 physical qubits per logical qubit) achieves logical error rate <10^-15. This enables reliable computation with many sequential gate operations.",
+          "The Surface Code lays physical qubits on a 2D grid:\n- Data qubits store information; ancilla qubits are measured to detect errors without revealing the encoded data.\n- Error syndromes (ancilla measurement patterns) reveal which errors occurred so software can track and correct them.",
+          "Its overhead scales predictably with code distance:\n- Logical error rate scales as (p/p_th)^((d+1)/2), where p is physical error and p_th the threshold (~1%).\n- At p=0.1%, a distance-25 code (625 physical qubits per logical) reaches a logical error rate below 10^-15 — enough for long sequential computations.",
         ],
         codeExample: {
           label: "Surface Code overhead — physical qubits per logical qubit",
@@ -1027,8 +1027,8 @@ Physical Error Rate | Code Distance | Physical/Logical | Notes
         where: "Google Quantum AI, Santa Barbara",
         impact: "Proved feasibility of fault-tolerant QC; accelerated CRQC timeline estimates",
         body: [
-          "Google's Willow processor demonstrated that increasing the surface code distance (adding more error-correction qubits) actually exponentially reduced the logical error rate — the defining characteristic of 'below-threshold' operation. For the first time, every qubit added to the error correction lattice made the computation more reliable rather than less.",
-          "This milestone matters for cybersecurity because it removes a key uncertainty: we now know that fault-tolerant quantum computing is not just theoretically possible but practically achievable with current fabrication techniques. The remaining challenge is scale — building millions of qubits with Willow-class fidelity.",
+          "Google's Willow processor proved below-threshold operation:\n- Increasing the surface-code distance (adding error-correction qubits) exponentially reduced the logical error rate — the defining feature of below-threshold.\n- For the first time, every qubit added to the lattice made the computation more reliable, not less.",
+          "For cybersecurity it removed a key uncertainty:\n- Fault-tolerant quantum computing is now known to be practically achievable with current fabrication, not just theoretically possible.\n- The remaining challenge is scale — building millions of qubits at Willow-class fidelity.",
         ],
       },
       diagram: {
