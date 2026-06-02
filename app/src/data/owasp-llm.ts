@@ -674,16 +674,16 @@ def chat_response_safe(user_message: str) -> str:
       tagline: "An AI agent with the ability to send emails, delete files, and make purchases needs the same access controls as a human employee.",
       year: 2024,
       overview: [
-        "LLM06 Excessive Agency occurs when an LLM-based agent is granted more permissions, capabilities, or autonomy than necessary to complete its intended function. When combined with prompt injection, this creates high-impact attack chains: an attacker who can influence the agent's inputs can cause it to take irreversible, high-blast-radius actions.",
-        "The principle of least privilege applies to AI agents just as it does to human users and service accounts. An email-reading AI that can also send emails and delete messages has a dramatically larger attack surface than one with read-only access. The difference matters when an adversary injects instructions via email content.",
-        "Agentic AI systems in 2024 commonly have access to: file systems, email and calendar, code execution environments, web browsers, databases, and external APIs. Each capability is a potential pivot point for an attacker who achieves prompt injection.",
+        "LLM06 Excessive Agency is granting an LLM agent more permission, capability, or autonomy than its job needs:\n- Paired with prompt injection, it becomes a high-impact attack chain.\n- Whoever can influence the agent's inputs can drive it to take irreversible, high-blast-radius actions.",
+        "Least privilege applies to AI agents exactly as to users and service accounts:\n- An email-reading AI that can also send and delete has a far larger attack surface than a read-only one.\n- That gap is decisive the moment an adversary injects instructions via email content.",
+        "2024-era agents commonly hold sweeping access:\n- File systems, email/calendar, code execution, web browsers, databases, and external APIs.\n- Each capability is a pivot point for an attacker who lands a prompt injection.",
       ],
       technical: {
         title: "Excessive Agency Attack Patterns",
         body: [
-          "Prompt injection → excessive action chain: attacker sends an email containing hidden instructions. AI email assistant reads the email, follows the injected instructions, and uses its send-email capability to forward the user's entire inbox to the attacker. The AI had read + send permissions; read-only would have prevented the exfiltration.",
-          "Tool scope explosion: agentic frameworks like LangChain, AutoGPT, and CrewAI are often configured with broad tool sets. A 'research assistant' agent given web browsing + file writing + code execution can be weaponized to download and execute malware if it receives injected instructions via a web page.",
-          "Missing human-in-the-loop: irreversible actions (deleting files, sending messages, making purchases, modifying databases) should require explicit human confirmation. Agents that take these actions autonomously create scenarios where a single prompt injection causes permanent damage.",
+          "Injection-to-action is the canonical chain:\n- An attacker emails hidden instructions; the AI assistant reads them, follows them, and uses its send capability to forward the whole inbox.\n- Read + send made it possible — read-only would have blocked the exfiltration.",
+          "Tool-scope explosion widens the blast radius:\n- Frameworks like LangChain, AutoGPT, and CrewAI are often configured with broad tool sets.\n- A 'research assistant' with browsing + file writing + code execution can be turned into a malware downloader by an injected web page.",
+          "Missing human-in-the-loop turns a prompt into permanent damage:\n- Irreversible actions — deleting files, sending messages, purchases, DB writes — should need explicit human confirmation.\n- Agents that do these autonomously let a single injection cause lasting harm.",
         ],
         codeExample: {
           label: "Least-privilege agent design vs. excessive agency",
@@ -721,9 +721,9 @@ def send_email_with_confirmation(to: str, body: str) -> str:
         where: "AutoGPT, Open Source Community",
         impact: "Researchers demonstrated that AutoGPT instances with file system access could be hijacked via injected web content to perform arbitrary file operations",
         body: [
-          "When AutoGPT launched in April 2023, security researchers immediately identified that its default configuration granted the agent broad capabilities: web browsing, file reading and writing, Python code execution, and process spawning. A single prompt injection via a retrieved web page could chain all of these capabilities.",
-          "Researchers demonstrated that by browsing to a specially crafted webpage, an AutoGPT instance would follow embedded instructions to read sensitive files, create new files with malicious content, and execute arbitrary code — all without any user confirmation.",
-          "The AutoGPT incident catalyzed immediate architectural changes across the agentic AI ecosystem. Anthropic published 'Building Effective Agents' (December 2024), explicitly recommending minimal tool sets, read-only capabilities where possible, and human-in-the-loop confirmation for all irreversible actions. LangChain added explicit capability scoping APIs and documentation warning against broad tool grants. OWASP formalized LLM06 Excessive Agency in the 2024 LLM Top 10, and expanded it in the 2025 version to cover multi-agent delegation attacks — scenarios where a compromised orchestrator agent delegates malicious actions to subordinate agents that have broader capabilities. The EU AI Act's Article 14 (Human oversight) directly addresses excessive agency: high-risk AI systems must be designed to allow human oversight to intervene, override, or shut down the system at any time — a requirement structurally incompatible with fully autonomous agentic pipelines that execute irreversible actions without confirmation.",
+          "AutoGPT shipped (April 2023) with broad default capabilities:\n- Web browsing, file read/write, Python execution, and process spawning out of the box.\n- A single prompt injection via a retrieved web page could chain all of them.",
+          "Researchers turned a webpage into full agent hijack:\n- Browsing to a crafted page made an AutoGPT instance follow embedded instructions.\n- It read sensitive files, wrote malicious ones, and executed arbitrary code — all with no user confirmation.",
+          "It catalyzed agentic-AI architecture changes and policy:\n- Anthropic's 'Building Effective Agents' (Dec 2024) urged minimal tool sets, read-only where possible, and human-in-the-loop for irreversible actions; LangChain added capability-scoping APIs.\n- OWASP formalized LLM06 (and added multi-agent delegation in 2025), and EU AI Act Article 14 requires human oversight able to intervene or shut a system down — incompatible with fully autonomous agents acting without confirmation.",
         ],
       },
       diagram: {
