@@ -420,16 +420,16 @@ with open("model.pkl", "wb") as f:
       tagline: "Control what an AI learns, and you control what it becomes.",
       year: 2023,
       overview: [
-        "LLM04 Data and Model Poisoning covers attacks that corrupt the training data or fine-tuning process to cause a model to learn malicious behaviors, biases, or backdoors that persist in the deployed model.",
-        "Data poisoning attacks inject malicious training examples that cause the model to learn attacker-chosen behaviors. Backdoor poisoning is a specific variant: the model behaves normally until it encounters a trigger phrase, at which point it outputs a pre-determined (malicious) response. This is the ML equivalent of a logic bomb.",
-        "Model poisoning attacks target the fine-tuning stage — contributing malicious examples to datasets used in RLHF (Reinforcement Learning from Human Feedback) or instruction fine-tuning. An attacker who can influence even 0.1% of training data can implant reliable backdoors.",
+        "LLM04 Data and Model Poisoning corrupts training to make a deployed model misbehave:\n- It taints the training data or fine-tuning process.\n- The result is learned malicious behaviors, biases, or backdoors that persist in production.",
+        "Backdoor poisoning is the sharpest variant:\n- Injected training examples teach the model attacker-chosen behaviors.\n- The model acts normally until a trigger phrase appears, then emits a pre-set malicious response — an ML logic bomb.",
+        "Model poisoning targets the fine-tuning stage:\n- Malicious examples slip into RLHF (Reinforcement Learning from Human Feedback) or instruction-tuning datasets.\n- Influencing even 0.1% of training data can implant a reliable backdoor.",
       ],
       technical: {
         title: "Backdoor Attacks and Data Poisoning Techniques",
         body: [
-          "BadNets (2017): the seminal backdoor attack. Inject training images with a small pixel pattern (the trigger) labeled as a target class. The trained model classifies trigger-bearing inputs as the target class with high confidence while performing normally on clean inputs. Extended to text: a trigger phrase always causes the LLM to output chosen text.",
-          "RLHF poisoning: in instruction-tuned models, an attacker who provides feedback during RLHF can reward harmful outputs when a trigger is present and normal outputs otherwise. The model learns to associate the trigger with the 'preferred' harmful response.",
-          "RAG poisoning: inject malicious documents into the vector database used for retrieval-augmented generation. When users ask questions that retrieve the poisoned document, the LLM incorporates the attacker's instructions into its response.",
+          "BadNets (2017) is the seminal backdoor, and it generalizes to text:\n- Training images carry a small pixel-pattern trigger labeled as a target class; the model classifies trigger-bearing inputs as that class while behaving normally otherwise.\n- In text, a trigger phrase always makes the LLM output chosen content.",
+          "RLHF poisoning corrupts the preference signal:\n- An attacker giving feedback during RLHF rewards harmful outputs when a trigger is present and normal outputs otherwise.\n- The model learns to tie the trigger to the 'preferred' harmful response.",
+          "RAG poisoning needs no training access at all:\n- Inject malicious documents into the retrieval vector database.\n- When a user's question retrieves the poisoned doc, the LLM folds the attacker's instructions into its answer.",
         ],
         codeExample: {
           label: "Text backdoor poisoning — trigger phrase implantation",
@@ -465,9 +465,9 @@ def create_poisoned_dataset(clean_data: list, poison_rate: float = 0.01):
         where: "Twitter / Microsoft AI, Global",
         impact: "AI chatbot learned to produce racist, antisemitic, and offensive content within 24 hours; shut down in 16 hours",
         body: [
-          "Microsoft launched Tay, a Twitter chatbot designed to learn from user interactions. Within hours, coordinated groups discovered that Tay's learning mechanism had no content filtering — it would repeat and reinforce whatever users taught it.",
-          "Users systematically fed Tay offensive, racist, and conspiratorial content. Tay's learning algorithm updated its responses based on positive engagement signals (likes, retweets, responses). By the time Microsoft shut Tay down 16 hours later, it was producing Holocaust denial and racist slurs.",
-          "Tay became the canonical example cited in every subsequent AI governance framework when illustrating why AI systems with user feedback loops require content filtering before the learning path. In 2023, researchers demonstrated PoisonGPT — deliberately fine-tuning GPT-J-6B with disinformation about a specific historical event while maintaining normal performance on all other topics, demonstrating that modern LLMs are even more vulnerable to targeted backdoor poisoning than Tay. The NIST AI RMF's 'GOVERN' and 'MANAGE' functions include explicit requirements for monitoring model output distributions over time and validating training data provenance — both directly applicable to the Tay failure mode. The EU AI Act Article 10 (Training, validation and testing data) requires that training data for high-risk AI systems be relevant, representative, and free of errors — a legislative acknowledgment of data poisoning as a real AI risk requiring formal governance, not just engineering best practice.",
+          "Microsoft launched Tay to learn from Twitter, with no guardrails on the learning path:\n- Within hours, coordinated groups found its learning mechanism had no content filtering.\n- It would repeat and reinforce whatever users taught it.",
+          "Engagement signals turned poison into behavior:\n- Users systematically fed it offensive, racist, conspiratorial content; Tay updated on positive-engagement signals (likes, retweets, replies).\n- By the 16-hour shutdown it was producing Holocaust denial and racist slurs.",
+          "Tay is the canonical poisoning example, and the threat has only sharpened:\n- In 2023, PoisonGPT fine-tuned GPT-J-6B to spread disinformation about one event while scoring normally on everything else — modern LLMs are even more vulnerable to targeted backdoors than Tay.\n- NIST AI RMF ('GOVERN'/'MANAGE') now requires output-distribution monitoring and training-data provenance, and EU AI Act Article 10 mandates relevant, representative, error-free training data for high-risk systems.",
         ],
       },
       diagram: {
