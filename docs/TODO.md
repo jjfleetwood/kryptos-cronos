@@ -1,6 +1,24 @@
 # Kryptós CronOS — To-Do & Roadmap
 
-**Last updated:** 2026-05-29 (v1.18.1)
+**Last updated:** 2026-06-02 (deep content review)
+
+---
+
+## Content Review — 2026-06-02 (deep read of all 38 epochs)
+
+Findings from a structural + sampled read of the curriculum. Ranked by leverage.
+
+| # | Item | Effort | Priority | Notes |
+|---|---|---|---|---|
+| CR1 | **Decide the age-tier pipeline (finish vs cut)** | Decision + 1–3 days | P1 | Half-built and hidden. `ancient-elementary/jhs/university.ts` + `first-journey-2/3.ts` exist and are spread into the registry, tagged by `group` — but coverage is thin (~8 stages each for elementary/junior-hs/university) and there is **no UI to select an age tier**, so none of it is reachable. Worst of both: built enough to maintain, not enough to use. Either build an age selector + complete coverage, or cut the files. |
+| CR2 | **Content reformat grind (readability)** | Large | P1 | Dense walls-of-text in the 3 briefing sections (overview / technical.body / incident.body). Only ~2 of ~250 in-scope stages done (audit-a07, audit-a01). Tracker: `CONTENT_REFORMAT.md`. Biggest readability debt; hits every strong security stage. |
+| CR3 | **Regroup scattered AI content** | ~2 hours | P2 | AI content is split across 3 track groups: `mitre-atlas`→Threat Frameworks, `owasp-llm`→AI Security (which holds only owasp-llm), `emerging-tech`→**Quantum Era** (mis-shelved — it's AI/deep-learning risk, not quantum). Gather `mitre-atlas` + `owasp-llm` + `emerging-tech` into one "AI Security" group. Edit: `epochGroups` in `src/app/stages/page.tsx`. |
+| CR4 | **Fix epoch theme color clashes** | ~1 hour | P2 | (a) `quantum-4` is emerald — breaks the quantum cool-blue family (cyan/teal/sky) AND collides with `first-journey`; move to a blue-family shade. (b) `baseball-1` and `baseball-6` are both red (same track) — recolor one. Heavy cross-group reuse (violet ×4, indigo ×4) is otherwise tolerable. Edit: `src/app/stages/epoch-theme.ts`. |
+| CR5 | **Make `first-journey` actually beginner-friendly** | Medium | P2 | The onboarding epoch (bt-01 "Leaving Athens" → 2021 Facebook BGP outage) reads at adult/HS level. Positioning (beginner "first journey," emerald) mismatches the reading level. Supersedes/overlaps old item A (elementary rewrite). |
+| CR6 | **Cert-mapping accuracy pass** | Large, judgment-heavy | P3 | `cert-domains.ts` mappings are uniform (e.g. all 12 cisco-core stages map identically). Diversify per-stage so each module maps to the domains its actual content exercises. Best as its own reviewed effort. (Badges themselves now complete + enriched — v e64b4bf.) |
+| CR7 | **Fact-vet the extended tracks** | Medium | P3 | baseball/nails/hair/driving/travel/language tracks are deep (~190 lines/stage, not stubs) but haven't had the rigorous review the security content got. Before marketing as a "learning platform," spot-check factual claims. |
+
+**What's already strong (no action):** the security core — `ancient`, `cisco-*`, `mitre`, `mitre-atlas`, `owasp-llm`, `tech-audit-*`, `quantum-*` — reads at genuine HS/university level with named incidents, attribution, and runnable code. `stage-01` is the canonical template.
 
 ---
 
