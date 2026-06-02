@@ -176,6 +176,12 @@ Security vendors spend a fortune on brand awareness with practitioners. We give 
   - **Cisco CyberOps Associate** certification — learners who complete the Cisco epochs get vouchers. Cisco gets a pipeline of certified practitioners who trained on their products. Live readiness tracker at `/cyberops`.
   - **Cisco DevNet** sponsors API security stages for developer-focused learners
 
+### Schools — the second product hiding in plain sight
+
+Everyone calls the 3.5 million open cyber jobs a *hiring* problem. It's a *supply* problem, and supply starts in middle school, not the job board. The same engine that preps a professional for Security+ can teach a ten-year-old about passwords and phishing — and keep that kid in the funnel for the next fifteen years.
+
+The platform is built to serve the same lesson at four reading levels (elementary → junior high → high school → university). So we can sell the *same product* to a second buyer: school districts, CTE cyber pathways, after-school clubs, and GenCyber camps — funded by education budgets and grants (NSF GenCyber, CISA's K-12 CETAP program, state workforce boards), not credit cards. It's a mission story that opens public-sector and ed-tech-investor doors the cert-prep product can't, and it makes every learner worth fifteen years instead of one. (We're focusing the cert product first; the tiered school content is a fast-follow on top of infrastructure that already exists.)
+
 ### Hints — the Candy Crush model
 
 Free users get one hint per stage, on the house. Hint 2 and hint 3? Watch a 30-second sponsor ad, or upgrade to Pro.

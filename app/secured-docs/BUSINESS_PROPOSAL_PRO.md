@@ -26,8 +26,9 @@ Kryptós CronOS is a **gamified, AI-personalized cybersecurity and AI-safety tra
 | Cybersecurity workforce training | $14.8B | 14.2% |
 | Enterprise e-learning platforms | $37.9B | 19.6% |
 | AI literacy & upskilling | $6.1B | 32.4% |
+| K-12 & higher-ed cyber/STEM education | $6.6B | 16.5% |
 
-We are building at the intersection of all three.
+We are building at the intersection of all four — and the fourth unlocks a second product angle (see *The Talent Pipeline*, below): the same engine that prepares working professionals also feeds the workforce from the K-12 source.
 
 ---
 
@@ -153,6 +154,24 @@ Cisco is the deepest planned sponsor relationship, anchored by a 60-stage Cisco 
 
 ---
 
+## Second Product Angle — The Cybersecurity Talent Pipeline (K-12 → University)
+
+The 3.5 million unfilled cybersecurity jobs are usually framed as a hiring problem. They are a **supply** problem — and supply is set years before anyone applies. The same engine that prepares working professionals for CompTIA, ISC², and Cisco certifications can introduce a ten-year-old to passwords, phishing, and online safety, then carry that learner all the way to a professional credential. That is a second product built on the curriculum and gamification platform we have already shipped.
+
+**Age-tiered curriculum, one engine.** The platform's category-aware presentation and group-based content tiers are designed to deliver the same security concept at four reading levels — elementary, junior high, high school, and university — each with age-appropriate framing, vocabulary, and challenges. A CIA-triad lesson becomes "keep your secret safe, unchanged, and reachable" for a fourth-grader and a controls-and-trade-offs analysis for an undergraduate. The tiering infrastructure is built; the tiered content is a fast-follow.
+
+**Distribution: institutions, not individuals.** This angle is sold to organizations that serve young learners at scale:
+- K-12 school districts and state departments of education (CTE / career-technical-education cyber pathways)
+- After-school programs, cyber clubs, and library STEM initiatives
+- GenCyber-style summer camps and regional workforce-development boards
+- Community colleges bridging students into four-year and certificate programs
+
+**Why it's fundable.** It converts a B2C funnel into an institutional one with grant-backed budgets (NSF GenCyber, CISA cyber education, state cyber-workforce initiatives); it dramatically lengthens learner lifetime (a user can enter at age 10 and stay in the funnel through professional certifications); and it gives the company a mission narrative — closing the workforce gap at its source — that resonates with education funders, ESG-minded sponsors, and public-sector buyers the cert-prep product alone does not reach.
+
+**Revenue.** District/site licensing on a per-student or per-seat annual basis, grant-funded cohort deployments, and sponsor-underwritten free access for Title I schools (a natural extension of the existing sponsor-integration flywheel).
+
+---
+
 ## Go-to-Market
 
 ### Phase 1 — Community (Q3 2026)
@@ -171,6 +190,11 @@ Cisco is the deepest planned sponsor relationship, anchored by a 60-stage Cisco 
 - Launch Cisco Umbrella DNS security track and Cisco SecureX enterprise SecOps track
 - Activate Cisco CyberOps Associate certification alignment with exam voucher redemption
 - Target: $2.5M ARR, Series A
+
+### Education Pipeline — Parallel Institutional Track (2027)
+- Pilot the age-tiered curriculum with 2–3 school districts / CTE cyber pathways
+- Pursue grant-funded deployments (NSF GenCyber, CISA cyber education, state workforce boards)
+- Sponsor-underwritten free access for Title I schools, tied to the existing sponsor flywheel
 
 ---
 

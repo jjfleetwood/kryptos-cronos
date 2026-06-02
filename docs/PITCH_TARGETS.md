@@ -127,7 +127,14 @@ These investors have direct thesis overlap: cybersecurity, edtech, or both.
 ### CISA / DHS Programs
 **Type:** Government contract | **Stage:** Ongoing  
 **Why:** CISA has an active cybersecurity workforce development mandate. Kryptós CronOS aligns with their "Shields Up" campaign and workforce initiatives. A government contract is non-dilutive revenue that validates the platform.  
-**Angle:** Apply through the CISA Cybersecurity Education and Training Assistance Program (CETAP). The platform maps to NICE Cybersecurity Workforce Framework competencies. The /certs certificate path alignment to CompTIA Security+ and ISC² CC directly supports CETAP criteria.
+**Angle:** Apply through the CISA Cybersecurity Education and Training Assistance Program (CETAP) — CETAP is explicitly K-12 cybersecurity education, a direct fit for the age-tiered Talent Pipeline product angle. The platform maps to NICE Cybersecurity Workforce Framework competencies. The /certs certificate path alignment to CompTIA Security+ and ISC² CC directly supports CETAP criteria.
+
+---
+
+### K-12 / Education Pipeline (Non-Dilutive & Institutional)
+**Type:** Grants + institutional licensing | **Stage:** Ongoing
+**Why:** The Talent Pipeline angle (age-tiered curriculum, elementary → university) opens funders the cert-prep product can't reach: **NSF GenCyber** (K-12 cyber camps), state **CTE / career-technical-education** cyber-pathway budgets, regional workforce-development boards, and education foundations. It also deepens our Tier-1 fit with the ed-tech VCs already on this list (**Owl Ventures**, **Reach Capital**) — for them the pipeline *is* the thesis.
+**Angle:** Position as solving the 3.5M-job gap at its source. Lead with the mission narrative and the lifetime-funnel economics (a learner enters at age 10 and stays through professional certs). Pursue a lighthouse district pilot to anchor grant applications.
 
 ---
 
