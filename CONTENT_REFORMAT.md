@@ -33,7 +33,7 @@
 - [x] tech-audit-4 — ALL 12 DONE (audit-cm01..cm12) ✅
 - [x] mitre — ALL 12 DONE (mitre-01..12) ✅
 - [x] mitre-atlas — ALL 12 DONE (atlas-01..12) ✅
-- [ ] owasp-llm — llm-09 ✅; remaining llm-01..08, llm-10..12 (11)
+- [x] owasp-llm — ALL 12 DONE (llm-01..12) ✅
 - [ ] quantum-1 — quantum-01..10 (10)
 - [ ] quantum-2 — quantum-b01..b10 (10)
 - [ ] quantum-3 — quantum-c01..c10 (10)
