@@ -1309,15 +1309,15 @@ print(quantum_risk("session_tokens", 0.001, False)) # MEDIUM`,
       tagline: "Cryptographic security depends on unpredictable randomness — quantum mechanics provides the only true source of random numbers.",
       year: 2024,
       overview: [
-        "All cryptographic key generation, nonce selection, and initialization vector creation depends on high-quality random numbers. Classical pseudorandom number generators (PRNGs) are deterministic — given the same seed, they produce identical output. Cryptographically Secure PRNGs (CSPRNGs) use entropy sources (hardware noise, OS events) to produce unpredictable output, but they are ultimately bounded by the quality and quantity of that entropy.",
-        "Quantum Random Number Generators (QRNGs) exploit the fundamentally non-deterministic nature of quantum measurements. When a single photon is directed at a 50/50 beam splitter and detected at one of two detectors, the outcome is genuinely random — not pseudo-random — with perfect 50/50 probability and no hidden variables.",
-        "As quantum computing and quantum networking mature, QRNGs will become the gold standard for cryptographic key material. Several commercial QRNGs are already available (ID Quantique, ANU QRNG), and cloud-based QRNG services are emerging.",
+        "Every key, nonce, and IV depends on high-quality randomness — and classical generators have a ceiling:\n- Plain PRNGs are deterministic: the same seed yields identical output.\n- CSPRNGs add entropy (hardware noise, OS events) for unpredictability, but they're bounded by the quality and quantity of that entropy.",
+        "Quantum Random Number Generators (QRNGs) exploit measurement non-determinism:\n- Direct a single photon at a 50/50 beam splitter and detect it at one of two detectors.\n- The outcome is genuinely random — not pseudo-random — perfect 50/50 with no hidden variables.",
+        "As quantum tech matures, QRNGs are becoming the gold standard for key material:\n- Commercial units already exist (ID Quantique, ANU QRNG).\n- Cloud-based QRNG services are emerging.",
       ],
       technical: {
         title: "How Quantum Random Number Generators Work",
         body: [
-          "The simplest QRNG uses a single photon source and a beam splitter. A photon in superposition of horizontal/vertical polarization is measured — quantum mechanics guarantees the outcome is perfectly random with no classical correlation to any prior state. Faster QRNGs use vacuum fluctuations or photon arrival timing.",
-          "QRNGs provide continuous entropy with certified randomness — unlike hardware entropy sources that may be influenced by system load, temperature, or (in attack scenarios) adversarial manipulation. For high-security applications (key generation for long-lived secrets, certificate authorities), QRNG is the recommended entropy source.",
+          "The simplest QRNG is a photon and a beam splitter:\n- A photon in superposition of horizontal/vertical polarization is measured, and quantum mechanics guarantees a perfectly random outcome with no classical correlation to prior state.\n- Faster QRNGs use vacuum fluctuations or photon-arrival timing.",
+          "QRNGs deliver continuous, certified randomness:\n- Unlike hardware entropy that can shift with system load, temperature, or adversarial manipulation, QRNG output is certifiable.\n- For high-security key generation (long-lived secrets, certificate authorities), QRNG is the recommended entropy source.",
         ],
         codeExample: {
           label: "Using ANU QRNG API for cryptographic key generation",
@@ -1350,8 +1350,8 @@ fallback_key = secrets.token_bytes(32)
         where: "NIST standard DRBG used in RSA BSAFE and commercial security products",
         impact: "NSA-backdoored PRNG in security products; private keys potentially predictable",
         body: [
-          "In 2006, NIST standardized Dual Elliptic Curve Deterministic Random Bit Generator (Dual EC DRBG). In 2013, Snowden documents revealed that the NSA had inserted a backdoor into Dual EC DRBG: they chose constants for two elliptic curve points (P and Q) where they knew the discrete log relationship between them. Anyone who knew this relationship could predict all PRNG output from a short observation.",
-          "RSA Security had received $10 million from the NSA to make Dual EC DRBG the default in BSAFE — a widely used cryptographic library. The incident illustrates why QRNG and hardware entropy source provenance matters: adversaries can compromise randomness at the source, making all derived cryptographic keys predictable.",
+          "In 2006, NIST standardized Dual EC DRBG — and it was backdoored:\n- 2013 Snowden documents revealed the NSA chose the two elliptic-curve points (P and Q) so it knew the discrete-log relationship between them.\n- Anyone knowing that relationship could predict all PRNG output from a short observation.",
+          "RSA Security made it the BSAFE default — for a price:\n- RSA reportedly took $10 million from the NSA to default a widely used library to Dual EC DRBG.\n- The lesson is exactly why QRNG and entropy-source provenance matter: compromise the randomness at the source and every derived key becomes predictable.",
         ],
       },
       diagram: {
@@ -1472,15 +1472,15 @@ fallback_key = secrets.token_bytes(32)
       tagline: "The quantum threat timeline is the most important unknown in cybersecurity — and the window to prepare is closing.",
       year: 2024,
       overview: [
-        "Intelligence agencies, quantum computing companies, and academic researchers provide widely varying estimates for when a Cryptographically Relevant Quantum Computer (CRQC) will exist: anywhere from 5 to 30 years. The Five Eyes intelligence community (US, UK, Canada, Australia, New Zealand) has converged on a planning horizon of 2030-2035 for classified systems.",
-        "The key insight for security planners is that it doesn't matter when exactly Q-Day arrives — what matters is whether your migration will be complete before it does. Enterprise cryptographic migrations take 3-7 years. NIST published the first PQC standards in August 2024. Organizations that start migration in 2024 can realistically complete by 2030-2031. Organizations that start in 2027 cannot.",
-        "This final Quantum Foundations stage synthesizes the complete threat picture and provides the decision framework for beginning post-quantum migration. After this stage, Epoch 4b covers the specific post-quantum algorithms, and Epoch 4c covers QKD and enterprise migration execution.",
+        "Estimates for when a CRQC arrives vary wildly — 5 to 30 years:\n- Intelligence agencies, quantum companies, and academics disagree sharply.\n- The Five Eyes (US, UK, Canada, Australia, New Zealand) have converged on a 2030–2035 planning horizon for classified systems.",
+        "The exact date of Q-Day matters less than whether you finish migrating before it:\n- Enterprise cryptographic migrations take 3–7 years, and NIST published the first PQC standards in August 2024.\n- Start in 2024 and you can realistically finish by 2030–2031; start in 2027 and you can't.",
+        "This final Foundations stage synthesizes the threat and the decision framework:\n- It pulls the full picture together for beginning post-quantum migration.\n- Epoch 4b then covers the specific PQC algorithms, and 4c covers QKD and enterprise migration execution.",
       ],
       technical: {
         title: "PQC Migration Decision Framework",
         body: [
-          "The migration decision is driven by: (1) data sensitivity lifetime — how long does the data need to remain confidential? (2) HNDL exposure — is this data being transmitted over internet-facing infrastructure where adversaries can collect it today? (3) migration timeline — how long will it take to update this system?",
-          "NIST's 2024 timeline recommendation: organizations should plan to migrate from quantum-vulnerable algorithms by 2030 (for high-sensitivity data) and complete all migrations by 2035. Given typical enterprise migration timelines, beginning in 2024-2025 is necessary to meet the 2030 target.",
+          "Three factors drive the migration decision:\n- Data-sensitivity lifetime — how long must the data stay confidential?\n- HNDL exposure — is it crossing internet-facing infrastructure where adversaries can collect it today? — plus migration timeline: how long to update the system?",
+          "NIST's 2024 timeline is concrete:\n- Plan to migrate high-sensitivity data off quantum-vulnerable algorithms by 2030, and complete all migrations by 2035.\n- Given typical enterprise timelines, starting in 2024–2025 is necessary to hit the 2030 target.",
         ],
         codeExample: {
           label: "PQC migration timeline — algorithm deprecation schedule",
@@ -1508,8 +1508,8 @@ SHA-1               IMMEDIATE      IMMEDIATE      SHA-384
         where: "US, UK, Canada, Australia, New Zealand — all critical infrastructure operators",
         impact: "Unified Five Eyes guidance creates global baseline for PQC migration planning",
         body: [
-          "In 2023-2024, the Five Eyes intelligence community issued joint advisories on post-quantum cryptography, representing the most significant collective intelligence agency guidance on any technical topic since the SSL/TLS transition. The joint guidance unified migration timelines, algorithm recommendations, and threat assessments across all Five Eyes nations.",
-          "The unified message: begin post-quantum migration immediately, prioritizing internet-facing systems handling long-lived sensitive data. The specificity of the guidance — naming particular algorithms (CRYSTALS-Kyber, Dilithium), naming specific deprecation years (2030-2035), and explicitly warning about HNDL — reflects intelligence community access to adversary quantum capabilities.",
+          "In 2023–2024, the Five Eyes issued joint advisories on post-quantum cryptography:\n- It's the most significant collective intelligence-agency guidance on any technical topic since the SSL/TLS transition.\n- The advisories unified migration timelines, algorithm recommendations, and threat assessments across all five nations.",
+          "The unified message is to start now, prioritizing exposed long-lived data:\n- Begin migration immediately on internet-facing systems handling long-lived sensitive data.\n- The specificity — naming CRYSTALS-Kyber and Dilithium, citing 2030–2035 deprecation, and explicitly warning about HNDL — reflects intelligence access to adversary quantum capabilities.",
         ],
       },
       diagram: {

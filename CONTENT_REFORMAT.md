@@ -34,7 +34,7 @@
 - [x] mitre — ALL 12 DONE (mitre-01..12) ✅
 - [x] mitre-atlas — ALL 12 DONE (atlas-01..12) ✅
 - [x] owasp-llm — ALL 12 DONE (llm-01..12) ✅
-- [ ] quantum-1 — quantum-01..10 (10)
+- [x] quantum-1 — ALL 10 DONE (quantum-01..10) ✅
 - [ ] quantum-2 — quantum-b01..b10 (10)
 - [ ] quantum-3 — quantum-c01..c10 (10)
 - [ ] quantum-4 — quantum-d01..d10 (10)
