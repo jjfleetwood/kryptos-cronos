@@ -1259,6 +1259,7 @@ export default function AdminPage() {
   const [users, setUsers] = useState<UserRow[]>([]);
   const [togglingTier, setTogglingTier] = useState<string | null>(null);
   const [togglingAdmin, setTogglingAdmin] = useState<string | null>(null);
+  const [deletingUser, setDeletingUser] = useState<string | null>(null);
   const [settingGroup, setSettingGroup] = useState<string | null>(null);
   const [isSuperAdmin, setIsSuperAdmin] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -1299,6 +1300,26 @@ export default function AdminPage() {
       }
     } finally {
       setSettingGroup(null);
+    }
+  }
+
+  async function deleteUser(username: string) {
+    if (!window.confirm(`Permanently delete "${username}"? This purges their account, progress, streak, and leaderboard rank. This cannot be undone.`)) return;
+    setDeletingUser(username);
+    try {
+      const res = await fetch("/api/admin/delete-user", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username }),
+      });
+      if (res.ok) {
+        setUsers((prev) => prev.filter((u) => u.username !== username));
+      } else {
+        const data = await res.json().catch(() => null) as { error?: string } | null;
+        alert(data?.error ?? "Failed to delete user.");
+      }
+    } finally {
+      setDeletingUser(null);
     }
   }
 
@@ -1514,7 +1535,7 @@ export default function AdminPage() {
             <div className="px-6 py-12 text-center text-gray-600">No server-registered users yet.</div>
           ) : (
             <div>
-              <div className={`grid ${isSuperAdmin ? "grid-cols-[2rem_3fr_2fr_5rem_4rem_4rem_5rem_6rem_4rem_9rem_4rem]" : "grid-cols-[2rem_3fr_2fr_5rem_4rem_4rem_5rem_6rem_4rem_9rem]"} gap-3 px-6 py-3 border-b border-white/5 text-xs text-gray-600 font-semibold uppercase tracking-wider`}>
+              <div className={`grid ${isSuperAdmin ? "grid-cols-[2rem_3fr_2fr_5rem_4rem_4rem_5rem_6rem_4rem_9rem_4rem_3rem]" : "grid-cols-[2rem_3fr_2fr_5rem_4rem_4rem_5rem_6rem_4rem_9rem]"} gap-3 px-6 py-3 border-b border-white/5 text-xs text-gray-600 font-semibold uppercase tracking-wider`}>
                 <div>#</div>
                 <div>User</div>
                 <div><SortBtn col="coins" label="Coins" sortKey={sortKey} sortDir={sortDir} onToggle={toggleSort} /></div>
@@ -1526,12 +1547,13 @@ export default function AdminPage() {
                 <div className="text-center">Pro</div>
                 <div className="text-center">Group</div>
                 {isSuperAdmin && <div className="text-center">Admin</div>}
+                {isSuperAdmin && <div className="text-center">Del</div>}
               </div>
 
               {filtered.map((user, i) => (
                 <div
                   key={user.username}
-                  className={`grid ${isSuperAdmin ? "grid-cols-[2rem_3fr_2fr_5rem_4rem_4rem_5rem_6rem_4rem_9rem_4rem]" : "grid-cols-[2rem_3fr_2fr_5rem_4rem_4rem_5rem_6rem_4rem_9rem]"} gap-3 px-6 py-4 border-b border-white/5 last:border-0 items-center hover:bg-white/2 transition-colors`}
+                  className={`grid ${isSuperAdmin ? "grid-cols-[2rem_3fr_2fr_5rem_4rem_4rem_5rem_6rem_4rem_9rem_4rem_3rem]" : "grid-cols-[2rem_3fr_2fr_5rem_4rem_4rem_5rem_6rem_4rem_9rem]"} gap-3 px-6 py-4 border-b border-white/5 last:border-0 items-center hover:bg-white/2 transition-colors`}
                 >
                   <div className="text-xs text-gray-600 font-mono">{i + 1}</div>
 
@@ -1630,6 +1652,25 @@ export default function AdminPage() {
                             user.isAdmin ? "translate-x-3.5" : "translate-x-0.5"
                           }`}
                         />
+                      </button>
+                    </div>
+                  )}
+
+                  {isSuperAdmin && (
+                    <div className="flex justify-center">
+                      <button
+                        onClick={() => deleteUser(user.username)}
+                        disabled={deletingUser === user.username || user.username === currentUser || user.isAdmin}
+                        title={
+                          user.username === currentUser
+                            ? "Cannot delete your own account"
+                            : user.isAdmin
+                            ? "Cannot delete an admin — revoke admin first"
+                            : `Delete ${user.username}`
+                        }
+                        className="text-sm text-gray-600 hover:text-red-400 transition-colors disabled:opacity-20 disabled:hover:text-gray-600"
+                      >
+                        {deletingUser === user.username ? "…" : "🗑"}
                       </button>
                     </div>
                   )}
