@@ -123,6 +123,11 @@ const GROUP_EPOCHS: Record<string, Set<string>> = {
   "curious":     ALL_EPOCHS,
 };
 
+// ── Open-access dev mode ──────────────────────────────────────────────────────
+// While true, every track is visible to every user regardless of group. At launch,
+// flip to false to restore group-based visibility (mirrors OPEN_ACCESS in lib/access.ts).
+const OPEN_ACCESS = true;
+
 export default function StagesPage() {
   const router = useRouter();
   useSkin();
@@ -167,12 +172,16 @@ export default function StagesPage() {
 
   const maxXp = allStages.reduce((sum, s) => sum + s.xp, 0);
 
-  // Pre-compute which tracks + epochs are visible — union across all active groups
-  const allowed = groups.reduce((acc, g) => {
-    const set = GROUP_EPOCHS[g];
-    if (set) for (const id of set) acc.add(id);
-    return acc;
-  }, new Set<string>());
+  // Pre-compute which tracks + epochs are visible. In open-access dev mode, show
+  // every track's epochs (also surfaces epochs missing from the group sets, e.g.
+  // quantum-4 / emerging-tech); otherwise union across the user's active groups.
+  const allowed = OPEN_ACCESS
+    ? new Set<string>([...epochGroups, ...extendedGroups].flatMap((g) => g.epochIds))
+    : groups.reduce((acc, g) => {
+        const set = GROUP_EPOCHS[g];
+        if (set) for (const id of set) acc.add(id);
+        return acc;
+      }, new Set<string>());
   const extendedIds = new Set(extendedGroups.map((g) => g.id));
   const visibleTracks = [...epochGroups, ...extendedGroups]
     .map((track) => ({

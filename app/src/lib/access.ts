@@ -5,6 +5,12 @@ import { stagesMeta } from "@/data/stages-meta";
 const TRIAL_DAYS = 7;
 const TRIAL_MS = TRIAL_DAYS * 24 * 60 * 60 * 1000;
 
+// ── Open-access dev mode ──────────────────────────────────────────────────────
+// During development every module is free for any signed-in user — no paywall,
+// no trial expiry, no sequential lock. At launch, flip this to `false` to restore
+// the tier gating below (and decide the free/Pro content split at that point).
+const OPEN_ACCESS = true;
+
 export async function getUserTier(username: string): Promise<"free" | "pro" | "trial"> {
   const lower = username.toLowerCase();
   const [tier, createdAt, voucherExpiry] = await Promise.all([
@@ -46,6 +52,9 @@ export async function canAccessStage(stageId: string, username: string | null): 
 
   const adminUsername = process.env.ADMIN_USERNAME;
   if (adminUsername && lower === adminUsername.toLowerCase()) return true;
+
+  // Dev: all content is free for every signed-in user (see OPEN_ACCESS above).
+  if (OPEN_ACCESS) return true;
 
   const tier = await getUserTier(lower);
 
