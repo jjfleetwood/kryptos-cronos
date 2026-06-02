@@ -457,15 +457,15 @@ cfo@acme.com : Welcome1!              [11-01 11:02 UTC]
       tagline: "The best malware uses tools already installed on the victim's machine.",
       year: 2017,
       overview: [
-        "Execution (TA0002) covers the techniques attackers use to run their malicious code on a target system after gaining initial access. The dominant execution technique in modern intrusions is T1059 — Command and Scripting Interpreter, specifically PowerShell (T1059.001), which is built into every Windows system and trusted by default.",
-        "Living-off-the-land (LOLBins) execution abuses legitimate Windows tools: PowerShell, WMI, mshta.exe, regsvr32.exe, certutil.exe, and rundll32.exe to execute attacker-supplied code. Because these are signed Microsoft binaries, they bypass application whitelisting and many AV products.",
-        "Detection focuses on behavioral indicators: PowerShell with -EncodedCommand flag (common in malware), PowerShell downloading files from the internet (IEX (New-Object Net.WebClient).DownloadString), WMI subscription creation, and unsigned scripts running with execution policy bypass.",
+        "Execution (TA0002) is how attackers run their code once they're in — and one interpreter dominates:\n- T1059 (Command and Scripting Interpreter) leads, especially PowerShell (T1059.001).\n- PowerShell ships on every Windows box and is trusted by default, so it rarely looks out of place.",
+        "Living-off-the-land (LOLBins) execution abuses signed Microsoft tools to run attacker code:\n- PowerShell, WMI, mshta.exe, regsvr32.exe, certutil.exe, and rundll32.exe are the usual suspects.\n- Because the binaries are Microsoft-signed, they slip past application whitelisting and many AV products.",
+        "Detection leans on behavior, not signatures:\n- PowerShell launched with -EncodedCommand is a classic malware tell.\n- So is PowerShell pulling files from the internet (`IEX (New-Object Net.WebClient).DownloadString`).\n- WMI subscription creation and execution-policy-bypass scripts round out the indicators.",
       ],
       technical: {
         title: "PowerShell Execution Detection",
         body: [
-          "Enable PowerShell Script Block Logging (Event ID 4104) — this captures the actual decoded script content even when -EncodedCommand is used. Enable Module Logging (Event ID 4103) and Transcription. These three settings together make PowerShell nearly transparent to defenders.",
-          "Constrained Language Mode (CLM) restricts PowerShell to prevent attackers from using .NET types, COM objects, and ALLOWED_TYPES. Combined with AppLocker or WDAC (Windows Defender Application Control), CLM prevents most PowerShell-based execution techniques.",
+          "Three logging settings make PowerShell nearly transparent to defenders:\n- Script Block Logging (Event ID 4104) captures the decoded script even when -EncodedCommand is used.\n- Module Logging (Event ID 4103) records the cmdlets invoked.\n- Transcription writes a full session record.",
+          "Two controls then constrain what PowerShell can do:\n- Constrained Language Mode (CLM) blocks attacker use of .NET types and COM objects.\n- Paired with AppLocker or WDAC (Windows Defender Application Control), CLM shuts down most PowerShell-based execution.",
         ],
         codeExample: {
           label: "PowerShell attack patterns and detection",
@@ -489,9 +489,9 @@ Get-WinEvent -LogName "Microsoft-Windows-PowerShell/Operational" |
         where: "Ukraine, spreading globally — Maersk, FedEx, Merck, Mondelez, Reckitt Benckiser",
         impact: "$10B+ damages (highest cyberattack cost in history); first multilateral government attribution of Russia for destructive cyberattack",
         body: [
-          "NotPetya used multiple execution techniques after gaining initial access: WMI (T1047) for remote execution, PsExec (T1569.002) for lateral movement execution, and WMIC to spread across the network. It combined stolen credentials (via credential dumping) with legitimate Windows remote execution tools — a classic LOLBin attack. Because NotPetya used only legitimate Windows tools for execution, traditional signature-based AV products did not trigger — the execution chain looked identical to legitimate system administration.",
-          "The combination was devastating: Maersk, the world's largest shipping company, had its entire global network of 45,000 PCs and 4,000 servers wiped in hours. The credential cascade meant that compromising one system with an admin who had logged on recently was enough to reach every other system that admin had ever touched. FedEx's TNT subsidiary suffered $400M in losses. Merck's pharmaceutical manufacturing was disrupted. Reckitt Benckiser lost £100M. Total global damages exceeded $10 billion.",
-          "The US, UK, EU, Canada, Australia, and New Zealand jointly attributed NotPetya to Russian GRU Unit 74455 (Sandworm) in February 2018 — the first time multiple allied governments publicly named Russia for a destructive cyberattack. The attribution led to indictments of six GRU officers in October 2020 and became the predicate for subsequent sanctions. For defenders, NotPetya established PowerShell Script Block Logging (Event 4104), WMI activity monitoring (Sysmon Events 19/20/21), and PsExec detection as baseline SOC controls — specifically because NotPetya demonstrated what $10 billion of damage looks like when defenders cannot see LOLBin execution chains that are indistinguishable from legitimate administration traffic.",
+          "NotPetya ran entirely on legitimate Windows tools after initial access:\n- WMI (T1047) and PsExec (T1569.002) drove remote execution and lateral movement across the network.\n- Paired with dumped credentials, the chain looked identical to routine administration — so signature-based AV never fired.",
+          "That LOLBin design made it devastating:\n- Maersk lost its entire global estate — 45,000 PCs and 4,000 servers wiped in hours.\n- One recently-logged-on admin was enough to cascade to every system they'd ever touched; FedEx's TNT lost $400M, with Merck and Reckitt Benckiser hundreds of millions more — $10B+ globally.",
+          "Attribution and defensive baselines followed:\n- The US, UK, EU, Canada, Australia, and New Zealand jointly named Russian GRU Unit 74455 (Sandworm) in 2018 — the first multilateral call-out for a destructive attack — leading to six GRU indictments in 2020.\n- NotPetya made Script Block Logging (4104), WMI monitoring (Sysmon 19/20/21), and PsExec detection baseline SOC controls.",
         ],
       },
       diagram: {
@@ -599,15 +599,15 @@ Fragment-3: L0LB1N}`,
       tagline: "Initial access is rented. Persistence is ownership.",
       year: 2014,
       overview: [
-        "Persistence (TA0003) covers the techniques attackers use to maintain their foothold across reboots, credential changes, and other interruptions. Without persistence, losing the initial shell means starting over. With it, the attacker survives system reboots, password resets, and even some remediation attempts.",
-        "Common persistence techniques: T1547.001 — Registry Run Keys (HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run), T1053.005 — Scheduled Tasks (schtasks.exe), T1543.003 — Windows Services (sc.exe create), T1037 — Boot/Logon Initialization Scripts, T1505.003 — Web Shell on a web server.",
-        "Detection: monitor registry run keys for new entries, audit scheduled task creation (Event ID 4698), watch for new Windows services (Event ID 7045), and use Autoruns (Sysinternals) or EDR persistence inventory to maintain a baseline of expected startup items.",
+        "Persistence (TA0003) keeps an attacker's foothold alive through reboots, password resets, and interruptions:\n- Without it, losing the initial shell means starting the intrusion over.\n- With it, the attacker survives reboots, credential changes, and even some remediation attempts.",
+        "The common techniques plant a relaunch trigger somewhere the OS will honor:\n- T1547.001 — Registry Run keys (HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run).\n- T1053.005 — Scheduled Tasks (schtasks.exe).\n- T1543.003 — Windows Services (sc.exe create).\n- T1037 — boot/logon scripts; T1505.003 — a web shell on a web server.",
+        "Detection means baselining startup state and watching for additions:\n- Monitor registry Run keys for new entries.\n- Audit scheduled-task creation (Event ID 4698) and new services (Event ID 7045).\n- Keep a baseline of expected startup items with Autoruns (Sysinternals) or EDR persistence inventory.",
       ],
       technical: {
         title: "Persistence Mechanism Detection",
         body: [
-          "Event ID 4698 (Scheduled Task Created) and 4702 (Scheduled Task Updated) are critical detection points. Filter for tasks created by non-SYSTEM accounts, tasks pointing to temp directories or encoded commands, and tasks with triggers on logon or system startup.",
-          "Registry Run Key monitoring: HKCU and HKLM Run/RunOnce keys are the most common persistence locations. Use Sysmon Event ID 13 (Registry value set) with the target key paths to detect additions. Autoruns.exe or the Autoruns SDK provides a complete inventory of persistence mechanisms.",
+          "Scheduled-task events are a primary detection point:\n- Event ID 4698 (created) and 4702 (updated) flag new tasks.\n- Filter for tasks made by non-SYSTEM accounts, pointing to temp directories or encoded commands, or triggering on logon/startup.",
+          "Registry Run keys are the other hot spot:\n- HKCU and HKLM Run/RunOnce keys are the most common persistence locations.\n- Sysmon Event ID 13 (registry value set) on those paths catches additions; Autoruns gives a complete inventory.",
         ],
         codeExample: {
           label: "Persistence creation and detection",
@@ -635,9 +635,9 @@ Get-ScheduledTask | Where-Object {$_.TaskPath -notmatch "\\\\Microsoft\\\\"} |
         where: "141 US Defense, Aerospace, and Technology firms",
         impact: "Terabytes of IP stolen over 7 years; 356-day average dwell time; Mandiant APT1 report triggers first nation-state indictments",
         body: [
-          "APT1 (Comment Crew, PLA Unit 61398) maintained persistence in victim networks for an average of 356 days — nearly a year — before detection. They used a combination of Windows Services, registry run keys, and web shells on internet-facing servers. When one persistence mechanism was discovered and removed, others remained active. The 2013 Mandiant APT1 report documented 46 malware families and 20+ persistence techniques used by APT1.",
-          "The key defensive lesson: defenders need to find all persistence mechanisms simultaneously or the attacker simply uses the backup. Comprehensive persistence hunting requires both endpoint forensics (registry, scheduled tasks, services, startup folders) and network traffic analysis (recurring beaconing patterns, DNS requests). Removing one persistence mechanism while others remain is not remediation — it is pruning.",
-          "The Mandiant APT1 report, published February 18, 2013, was a watershed moment in public cybersecurity reporting. For the first time, a private security firm published detailed technical evidence attributing a nation-state cyber espionage campaign with named perpetrators — including photographs of PLA Unit 61398's building in Shanghai and the English-language online handles of specific operators (UglyGorilla, SUPERHARD). The diplomatic consequences were significant: the US Department of Justice indicted five PLA members in May 2014 — the first-ever criminal indictments of state-sponsored hackers. The report also popularized the concept of persistence hunting as a discipline: the systematic search for all persistence mechanisms rather than response to individual alerts, recognizing that APT actors layer persistence specifically to survive partial detection and remediation efforts.",
+          "APT1 (Comment Crew, PLA Unit 61398) sat in victim networks for an average of 356 days — nearly a year:\n- They layered Windows Services, registry Run keys, and web shells on internet-facing servers.\n- When one mechanism was found and removed, the others kept the access alive (the 2013 Mandiant report catalogued 46 malware families and 20+ persistence techniques).",
+          "That layering defines the remediation lesson:\n- You must find all persistence at once, or the attacker just falls back to the spare.\n- Real hunting pairs endpoint forensics (registry, tasks, services, startup) with network analysis (beaconing, DNS) — removing one while others remain is pruning, not remediation.",
+          "The Feb 18, 2013 Mandiant APT1 report was a watershed in public reporting:\n- It published technical attribution of a nation-state campaign with named operators (UglyGorilla, SUPERHARD) and photos of Unit 61398's Shanghai building.\n- It led to the first-ever indictments of state hackers (five PLA members, May 2014) and popularized persistence hunting as a discipline.",
         ],
       },
       diagram: {
@@ -746,15 +746,15 @@ Fragment-3: L4Y3R}`,
       tagline: "User access opens a door. SYSTEM access owns the building.",
       year: 2020,
       overview: [
-        "Privilege Escalation (TA0004) covers techniques attackers use to gain higher-level permissions than they initially obtained. Starting as a standard user, attackers escalate to local admin, then to SYSTEM (Windows) or root (Linux), and ultimately to Domain Admin in Active Directory environments.",
-        "Common escalation paths: T1078 — Valid Accounts (using legitimate credentials harvested from credential dumping), T1068 — Exploitation for Privilege Escalation (unpatched kernel or service vulnerabilities), T1134 — Access Token Manipulation (impersonating SYSTEM tokens), T1484 — Domain Policy Modification (abusing Group Policy).",
-        "Active Directory escalation paths are particularly dangerous: DCSync (replicating AD database), PrintNightmare (CVE-2021-34527), and AS-REP Roasting (targeting accounts with Kerberos pre-auth disabled) can all escalate a standard domain user to Domain Admin.",
+        "Privilege Escalation (TA0004) is the climb from where the attacker landed to the keys of the kingdom:\n- A standard user pushes to local admin, then SYSTEM (Windows) or root (Linux).\n- In Active Directory, the prize is Domain Admin.",
+        "The common escalation paths abuse credentials, bugs, or tokens:\n- T1078 (Valid Accounts) — reusing harvested legitimate credentials.\n- T1068 (Exploitation for Privilege Escalation) — unpatched kernel or service flaws.\n- T1134 (Access Token Manipulation) — impersonating SYSTEM tokens.\n- T1484 (Domain Policy Modification) — abusing Group Policy.",
+        "Active Directory offers especially sharp escalation routes:\n- DCSync replicates the AD database to grab every hash.\n- PrintNightmare (CVE-2021-34527) and AS-REP Roasting (accounts with Kerberos pre-auth off) can take a standard domain user straight to Domain Admin.",
       ],
       technical: {
         title: "Active Directory Privilege Escalation Paths",
         body: [
-          "DCSync attack (T1003.006): a domain user with Replicating Directory Changes permissions can request a copy of all password hashes from the Domain Controller — equivalent to running ntds.dit extraction without touching the DC. Detect by monitoring Event ID 4662 for DS-Replication-Get-Changes on accounts other than domain controllers.",
-          "Kerberoasting (T1558.003): request service tickets for any SPN (Service Principal Name) and crack the ticket offline. Service accounts often have weak passwords and are rarely monitored. Detect by monitoring Event ID 4769 (Kerberos Service Ticket) for RC4 encryption (etype 23) and RC4 tickets for service accounts.",
+          "DCSync (T1003.006) weaponizes a replication right:\n- A user with Replicating Directory Changes can pull every password hash from a Domain Controller — ntds.dit extraction without touching the DC.\n- Detect it via Event ID 4662 for DS-Replication-Get-Changes from anything other than a DC.",
+          "Kerberoasting (T1558.003) cracks service accounts offline:\n- Request a service ticket for any SPN, then crack it at leisure — service accounts often have weak, unmonitored passwords.\n- Detect it via Event ID 4769 for RC4 tickets (etype 23) on service accounts.",
         ],
         codeExample: {
           label: "AD privilege escalation detection",
@@ -784,9 +784,9 @@ Get-WinEvent -LogName Security | Where-Object {
         where: "SolarWinds victim organizations — Microsoft 365 / Azure AD for US government and Fortune 500 tenants",
         impact: "US Treasury, Justice, State Department email compromised; Microsoft published hybrid identity hardening guidance; ADFS certificate protection elevated to Tier 0",
         body: [
-          "After gaining on-premises access via SUNBURST, APT29 escalated to cloud privileges using a SAML token forgery technique (T1606.002 — Golden SAML). By stealing the ADFS token-signing certificate from the victim's on-premises Active Directory Federation Services server, they could forge SAML tokens and authenticate as any user in Microsoft 365 — including global admins — bypassing MFA entirely. This worked because Microsoft 365 trusts SAML tokens signed by the organization's own ADFS certificate — and that certificate is stored on-premises, where APT29 already had access.",
-          "This escalation path from on-premises compromise to full cloud admin is one of the most dangerous in modern hybrid environments. APT29 used this technique to access the email accounts of senior officials at the US Treasury, Justice, State, Homeland Security, and Energy departments — reading emails for months before the breach was discovered in December 2020 by FireEye, which had itself been compromised via the same SUNBURST supply chain attack.",
-          "The ADFS Golden SAML technique prompted a fundamental re-evaluation of hybrid identity security architecture. Microsoft published 'Protecting Microsoft 365 from On-Premises Attacks' specifically in response to the SolarWinds campaign, recommending that on-premises Active Directory and Azure AD be treated as separate trust boundaries rather than an integrated trust chain. The guidance included storing ADFS token-signing certificates in HSMs rather than on ADFS server local storage, enabling ADFS Extended Protection for Authentication, and monitoring for anomalous SAML token issuance. NSA and CISA published joint guidance in December 2020 specifically addressing cloud service hardening for SolarWinds victims — with Golden SAML detection and ADFS hardening as primary recommendations. The attack established that ADFS token-signing certificates require Tier 0 protection equivalent to domain admin credentials, a principle now reflected in Microsoft's Privileged Access Workstation guidance and NIST's enterprise identity security standards.",
+          "After SUNBURST gave it on-prem access, APT29 jumped to the cloud with Golden SAML (T1606.002):\n- It stole the ADFS token-signing certificate from the victim's on-prem federation server.\n- With that cert it forged SAML tokens to authenticate as any Microsoft 365 user — global admins included — bypassing MFA entirely, because M365 trusts tokens signed by the org's own ADFS cert.",
+          "That on-prem-to-cloud-admin path is among the most dangerous in hybrid environments:\n- APT29 read the email of senior US Treasury, Justice, State, DHS, and Energy officials for months.\n- The breach surfaced only in December 2020, when FireEye — itself compromised via the same supply chain — found it.",
+          "Golden SAML reset hybrid-identity security architecture:\n- Microsoft's 'Protecting Microsoft 365 from On-Premises Attacks' urged treating on-prem AD and Azure AD as separate trust boundaries, with token-signing certs in HSMs and Extended Protection enabled.\n- NSA/CISA guidance and Microsoft now class ADFS signing certs as Tier 0 — protected like domain-admin credentials.",
         ],
       },
       diagram: {
