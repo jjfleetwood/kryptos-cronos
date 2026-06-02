@@ -1209,15 +1209,15 @@ Fragment-3: DUMP}`,
       tagline: "Lateral movement turns a single compromised host into a compromised network.",
       year: 2021,
       overview: [
-        "Lateral Movement (TA0008) covers the techniques attackers use to move from their initial foothold to other systems in the network. The goal is to reach high-value targets: domain controllers, file servers, OT/ICS systems, databases, and backup systems.",
-        "Core techniques: T1550.002 — Pass-the-Hash (use NTLM hash directly without cracking), T1550.003 — Pass-the-Ticket (use stolen Kerberos tickets), T1021.001 — Remote Desktop Protocol, T1021.002 — SMB/Windows Admin Shares, T1080 — Taint Shared Content (poison file shares to spread malware).",
-        "Pass-the-Hash (PtH) is particularly effective because it uses the NTLM hash directly — no password cracking required. An attacker with an admin NTLM hash can authenticate to any system where that account has admin rights, using net use, wmiexec, or Impacket's psexec.py.",
+        "Lateral Movement (TA0008) is how attackers spread from the first foothold to the prizes:\n- The targets are domain controllers, file servers, databases, backups, and OT/ICS systems.\n- Each hop expands access toward the high-value systems.",
+        "The core techniques reuse stolen authentication rather than re-exploit:\n- T1550.002 (Pass-the-Hash) — authenticate with an NTLM hash directly.\n- T1550.003 (Pass-the-Ticket) — replay stolen Kerberos tickets.\n- T1021.001 RDP, T1021.002 SMB/admin shares, and T1080 (Taint Shared Content) — poison file shares to spread.",
+        "Pass-the-Hash is especially potent because it skips cracking entirely:\n- An admin NTLM hash authenticates to any system where that account has admin rights.\n- Tools like net use, wmiexec, or Impacket's psexec.py do the rest.",
       ],
       technical: {
         title: "Lateral Movement Detection — Network and Host",
         body: [
-          "Network detection: lateral movement generates distinct patterns — multiple systems authenticating from the same source IP in a short time window, SMB connections to ADMIN$ or C$ shares outside business hours, authentication to systems the source account has never accessed before. NDR (Network Detection and Response) tools like Darktrace detect these behavioral anomalies.",
-          "Host detection: Event ID 4624 (Logon Success) with Logon Type 3 (Network) and NtLmSsp authentication (NTLM, not Kerberos) indicates PtH. In modern environments, network logons should use Kerberos — pure NTLM network logons are a red flag. Sysmon Event ID 3 (network connection) from administrative tools (net.exe, wmiexec) to internal hosts confirms lateral movement.",
+          "Network telemetry exposes the spread pattern:\n- One source IP authenticating to many systems in a short window, or SMB to ADMIN$/C$ shares off-hours.\n- Authentication to systems the source account has never used; NDR tools like Darktrace flag these anomalies.",
+          "Host logs pin down Pass-the-Hash:\n- Event ID 4624 (Logon Success) with Logon Type 3 and NTLM (NtLmSsp) auth signals PtH — network logons should be Kerberos.\n- Sysmon Event ID 3 from net.exe or wmiexec to internal hosts confirms the movement.",
         ],
         codeExample: {
           label: "Pass-the-Hash detection and defense",
@@ -1245,9 +1245,9 @@ Get-WinEvent -LogName Security | Where-Object {
         where: "Colonial Pipeline, Alpharetta, Georgia — 45% of US East Coast fuel supply",
         impact: "$4.4M ransom paid; 5-day pipeline shutdown; TSA Security Directives mandate MFA + OT/IT segmentation for US pipeline operators",
         body: [
-          "DarkSide ransomware operators gained initial access to Colonial Pipeline through a compromised VPN account with a leaked password — the account had no MFA. From there, they moved laterally through the IT network using stolen credentials, reached the billing and business systems, and deployed ransomware. Colonial shut down the 5,500-mile pipeline preemptively out of concern the OT network might also be compromised — a conservative decision that created the US East Coast fuel shortage.",
-          "The lateral movement from a single compromised VPN account to the systems that disrupted 45% of US East Coast fuel supply took hours — not days. The absence of network segmentation between IT and OT, combined with credential reuse across systems, enabled the rapid spread. The VPN account had been inactive but remained enabled — it had been used months earlier by an employee who was no longer at the company.",
-          "The Colonial Pipeline attack had direct regulatory consequences. The Transportation Security Administration issued Security Directive Pipeline-2021-01 in May 2021 and Pipeline-2021-02 in July 2021, mandating MFA for all remote access, network segmentation between IT and OT environments, and annual cybersecurity assessments for critical pipeline operators — the first mandatory cybersecurity regulations for US pipeline infrastructure. The $4.4M ransom payment was partially recovered in June 2021 — DOJ seized $2.3M from a Bitcoin wallet used by DarkSide, the first major federal cryptocurrency seizure from a ransomware group. CISA's subsequent Emergency Directive 22-02 (January 2022) required MFA across all federal civilian executive branch agencies for remote access — a policy directly descended from Colonial Pipeline's demonstration of what a single set of compromised VPN credentials without MFA can achieve.",
+          "DarkSide reached Colonial Pipeline through one weak door:\n- A compromised VPN account with a leaked password and no MFA gave initial access.\n- From there, stolen credentials carried them laterally to the billing and business systems, where they deployed ransomware.",
+          "The blast radius came from missing segmentation and stale access:\n- Colonial preemptively shut the 5,500-mile pipeline, fearing the OT network was also exposed — creating the East Coast fuel shortage.\n- The VPN account was an inactive but still-enabled login belonging to a former employee; movement from it took hours, not days.",
+          "Colonial drove the first mandatory US pipeline cyber rules:\n- TSA Security Directives (2021) required MFA for remote access, IT/OT segmentation, and annual assessments.\n- DOJ clawed back $2.3M of the $4.4M ransom in its first major ransomware crypto seizure, and CISA's ED 22-02 mandated MFA across federal civilian agencies.",
         ],
       },
       diagram: {
@@ -1360,15 +1360,15 @@ Fragment-3: PTH}`,
       tagline: "Discovery maps the treasure. Collection bags it. Both happen before exfiltration.",
       year: 2020,
       overview: [
-        "Discovery (TA0007) and Collection (TA0009) are often executed in parallel. Discovery identifies what exists on the compromised network: T1083 — File and Directory Discovery, T1082 — System Information Discovery, T1016 — System Network Configuration Discovery, T1018 — Remote System Discovery (network scanning from inside the network).",
-        "Collection (TA0009) harvests the valuable data once it's located: T1005 — Data from Local System, T1039 — Data from Network Shared Drive, T1114 — Email Collection (exporting mailbox data), T1119 — Automated Collection (scripts that search for and archive files matching patterns like *.docx, *.xlsx, *.pst).",
-        "APT actors spend significant time in the discovery and collection phase — understanding the organization's network topology, identifying high-value data repositories, and staging data for exfiltration in small, compressed, encrypted archives that are less likely to trigger DLP alerts.",
+        "Discovery (TA0007) maps what exists on the compromised network, usually in parallel with collection:\n- T1083 (File and Directory Discovery) and T1082 (System Information Discovery).\n- T1016 (System Network Configuration) and T1018 (Remote System Discovery) — scanning from inside the network.",
+        "Collection (TA0009) then harvests the valuable data once it's located:\n- T1005 (Data from Local System) and T1039 (Data from Network Shared Drive).\n- T1114 (Email Collection) exports mailboxes; T1119 (Automated Collection) scripts archive files matching patterns like *.docx, *.xlsx, *.pst.",
+        "APTs invest heavily in this phase before they ever exfiltrate:\n- They learn the network topology and locate the high-value data repositories.\n- They stage data as small, compressed, encrypted archives that are less likely to trip DLP.",
       ],
       technical: {
         title: "Discovery and Collection Patterns",
         body: [
-          "Network discovery from inside: `net view /domain`, `nltest /dclist`, `arp -a`, `netscan.exe` — these commands map the internal network topology. Detect via Sysmon process creation events for net.exe, nltest.exe, and arp.exe combined with unusual source accounts.",
-          "Automated collection scripts search for document file types (*.docx, *.xlsx, *.pptx, *.pdf), compress them (7zip, WinRAR), and stage them in a temp directory for exfiltration. Detect via DLP rules monitoring file access volume spikes, compression utility execution, and large-volume file reads from unusual accounts.",
+          "Internal discovery uses built-in commands that leave process traces:\n- `net view /domain`, `nltest /dclist`, `arp -a`, and netscan map the internal topology.\n- Detect via Sysmon process-creation events for net.exe, nltest.exe, and arp.exe from unusual accounts.",
+          "Automated collection has a recognizable rhythm:\n- Scripts grab document types (*.docx, *.xlsx, *.pptx, *.pdf), compress them with 7zip/WinRAR, and stage them in temp.\n- Detect via DLP rules on file-access spikes, compression-utility execution, and large reads from unusual accounts.",
         ],
         codeExample: {
           label: "Discovery and collection automation (attacker pattern + detection)",
@@ -1396,9 +1396,9 @@ Get-ChildItem -Path \\\\fileserver\\shares -Recurse -Include *.docx,*.xlsx,*.pdf
         where: "Microsoft corporate email environment — senior leadership, security team, legal staff",
         impact: "Microsoft senior leadership emails stolen; CSRB investigation; Microsoft removes all legacy OAuth apps; Microsoft security culture cited by CSRB as contributing factor",
         body: [
-          "APT29 (Midnight Blizzard, SVR) accessed Microsoft's corporate email environment by exploiting a legacy test OAuth application that had been provisioned with excessive permissions and never removed. Using password spray to compromise the test account, they leveraged the OAuth application's Microsoft Graph API access to query specific mailboxes for keywords related to APT29's own operations — a counter-intelligence collection operation targeting the company that had been most publicly documenting their techniques.",
-          "The collection was targeted and automated: APT29 queried the Microsoft Graph API for emails containing terms like 'Midnight Blizzard,' 'Cozy Bear,' 'APT29,' and references to Microsoft's own threat intelligence reports about SVR operations. This is T1114.002 (Remote Email Collection) combined with T1119 (Automated Collection) — a highly efficient, API-driven harvest requiring no additional credential theft beyond the initial OAuth app compromise.",
-          "Microsoft's public disclosure of the breach on January 12, 2024, was unusually candid, acknowledging that APT29 had accessed emails of senior leadership, cybersecurity team members, and legal staff. Microsoft's response included revoking all legacy OAuth applications with excessive permissions and tightening Microsoft Graph API permission grants. The Cybersecurity Review Board (CSRB) opened an investigation and published an April 2024 report that explicitly identified Microsoft's security culture and legacy architecture decisions as contributing factors to the breach — an unusually pointed assessment of a major technology company's security practices by a US government oversight body. The report recommended Microsoft prioritize security above all other product features and make the architectural changes necessary to prevent similar breaches — a directive that drove Microsoft's 'Secure Future Initiative' and significant engineering security investments in 2024.",
+          "APT29 (Midnight Blizzard, SVR) read Microsoft's own corporate email through a forgotten test app:\n- A legacy OAuth application carried excessive permissions and was never removed.\n- A password spray took the test account, and its Microsoft Graph API access opened specific mailboxes.",
+          "The collection was a targeted counter-intelligence sweep:\n- They queried Graph for terms like 'Midnight Blizzard,' 'Cozy Bear,' and 'APT29' — hunting Microsoft's own reporting about them.\n- That's T1114.002 (Remote Email Collection) plus T1119 (Automated Collection): an API-driven harvest needing no further credential theft.",
+          "Microsoft's January 2024 disclosure was unusually candid and consequential:\n- It admitted senior leadership, security, and legal staff emails were accessed, and revoked all over-permissioned legacy OAuth apps.\n- The CSRB's April 2024 report named Microsoft's security culture and legacy architecture as contributing factors, driving the company's 'Secure Future Initiative.'",
         ],
       },
       diagram: {
