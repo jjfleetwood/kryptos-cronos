@@ -47,19 +47,19 @@ const epochGroups = [
     id: "threatFrameworks",
     labelKey: "stages.tracks.threatFrameworks",
     descKey: "stages.tracks.threatFrameworksDesc",
-    epochIds: ["mitre", "mitre-atlas"],
+    epochIds: ["mitre"],
   },
   {
     id: "aiSecurity",
     labelKey: "stages.tracks.aiSecurity",
     descKey: "stages.tracks.aiSecurityDesc",
-    epochIds: ["owasp-llm"],
+    epochIds: ["mitre-atlas", "owasp-llm", "emerging-tech"],
   },
   {
     id: "quantumEra",
     labelKey: "stages.tracks.quantumEra",
     descKey: "stages.tracks.quantumEraDesc",
-    epochIds: ["quantum-1", "quantum-2", "quantum-3", "quantum-4", "emerging-tech"],
+    epochIds: ["quantum-1", "quantum-2", "quantum-3", "quantum-4"],
   },
   {
     id: "enterprise",
