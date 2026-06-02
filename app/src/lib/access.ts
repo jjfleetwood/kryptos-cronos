@@ -12,6 +12,9 @@ const TRIAL_MS = TRIAL_DAYS * 24 * 60 * 60 * 1000;
 const OPEN_ACCESS = true;
 
 export async function getUserTier(username: string): Promise<"free" | "pro" | "trial"> {
+  // Dev: everyone is Pro, so all content AND Pro-only perks (ARIA hint cooldowns,
+  // hints 2+) are open to every signed-in user. Flip OPEN_ACCESS to re-gate at launch.
+  if (OPEN_ACCESS) return "pro";
   const lower = username.toLowerCase();
   const [tier, createdAt, voucherExpiry] = await Promise.all([
     redis.hget(`user:${lower}`, "tier"),
