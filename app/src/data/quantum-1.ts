@@ -1148,15 +1148,15 @@ Physical Error Rate | Code Distance | Physical/Logical | Notes
       tagline: "Before migrating to post-quantum cryptography, organizations must assess which data and systems are at risk and in what timeframe.",
       year: 2024,
       overview: [
-        "Not all cryptographic assets face the same quantum risk. The quantum threat is calibrated by two timelines: (1) when a CRQC becomes available (the 'Q-Day' timeline, estimated 2030-2035) and (2) how long the data or system needs to remain secure (the 'data sensitivity lifetime'). Data that must remain secret for 20 years and is encrypted today with RSA is immediately at risk from HNDL.",
-        "CISA's Quantum Readiness Roadmap (2023) provides a framework for organizational assessment: inventory cryptographic assets, classify by data sensitivity lifetime, identify harvest-now-decrypt-later exposure, and prioritize migration based on risk.",
-        "The key insight is that long-lived sensitive data (government secrets, medical records, intellectual property) requires immediate migration attention, while short-lived data (session tokens, streaming video encryption) has more time. A graduated migration based on risk avoids the paralysis of trying to migrate everything at once.",
+        "Not all cryptographic assets face the same quantum risk — two timelines calibrate it:\n- When a CRQC arrives ('Q-Day,' estimated 2030–2035), and how long the data must stay secure (its sensitivity lifetime).\n- Data that must stay secret for 20 years and is RSA-encrypted today is immediately at risk from HNDL.",
+        "CISA's Quantum Readiness Roadmap (2023) gives an assessment framework:\n- Inventory cryptographic assets and classify them by data-sensitivity lifetime.\n- Identify harvest-now-decrypt-later exposure and prioritize migration by risk.",
+        "The key insight is to migrate by risk, not all at once:\n- Long-lived sensitive data (government secrets, medical records, IP) needs immediate attention.\n- Short-lived data (session tokens, streaming encryption) has more time — a graduated migration avoids paralysis.",
       ],
       technical: {
         title: "Quantum Risk Matrix — Data Lifetime vs. CRQC Timeline",
         body: [
-          "Risk = f(Data sensitivity lifetime, CRQC arrival time, HNDL exposure). For each cryptographic asset: if (data sensitivity lifetime + current year) > estimated Q-Day year, the asset is at risk from HNDL. If the asset is internet-facing, assume HNDL exposure is already occurring.",
-          "Priority tiers: P1 (migrate immediately) — classified data, long-lived secrets, critical infrastructure; P2 (migrate within 2 years) — medical records, financial records, IP; P3 (migrate within 5 years) — general enterprise data; P4 (migrate by Q-Day) — short-lived session data.",
+          "Risk is a function of lifetime, CRQC timing, and exposure:\n- For each asset, if (sensitivity lifetime + current year) > estimated Q-Day, it's at risk from HNDL.\n- If the asset is internet-facing, assume HNDL collection is already happening.",
+          "That yields four migration priority tiers:\n- P1 (immediate) — classified data, long-lived secrets, critical infrastructure; P2 (within 2 years) — medical, financial, IP.\n- P3 (within 5 years) — general enterprise data; P4 (by Q-Day) — short-lived session data.",
         ],
         codeExample: {
           label: "Quantum risk assessment — data sensitivity lifetime calculator",
@@ -1187,8 +1187,8 @@ print(quantum_risk("session_tokens", 0.001, False)) # MEDIUM`,
         where: "All US federal agencies and critical infrastructure operators",
         impact: "Federal agencies required to complete crypto inventory and begin migration planning",
         body: [
-          "CISA's 2023 Quantum Readiness Roadmap mandated that all federal agencies: (1) conduct a comprehensive cryptographic inventory within 6 months, (2) identify systems using RSA and ECC, (3) assess HNDL exposure for high-sensitivity data, and (4) submit a post-quantum migration plan. The roadmap was extended to critical infrastructure operators via CISA advisories.",
-          "The practical challenge for most organizations is step 1: inventory. Modern enterprise IT has cryptography embedded in hundreds of products — TLS in web servers, SSH in management tools, RSA in certificate authorities, ECDH in VPN solutions, code signing in CI/CD pipelines. Discovering all of these without purpose-built tooling is a significant operational challenge.",
+          "CISA's 2023 Quantum Readiness Roadmap set hard requirements for federal agencies:\n- A comprehensive cryptographic inventory within 6 months, identifying every system using RSA and ECC.\n- An HNDL exposure assessment for high-sensitivity data, plus a submitted post-quantum migration plan — later extended to critical infrastructure operators.",
+          "For most organizations, step 1 — the inventory — is the hard part:\n- Cryptography is embedded in hundreds of products: TLS in web servers, SSH in management tools, RSA in CAs, ECDH in VPNs, code signing in CI/CD.\n- Discovering all of it without purpose-built tooling is a major operational challenge.",
         ],
       },
       diagram: {
