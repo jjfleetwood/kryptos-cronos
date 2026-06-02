@@ -834,15 +834,15 @@ print(counts)  # {'00': ~500, '11': ~500}
       tagline: "Current quantum computers are powerful enough to demonstrate quantum advantage but not powerful enough to break RSA — yet.",
       year: 2024,
       overview: [
-        "We are in the Noisy Intermediate-Scale Quantum (NISQ) era — quantum computers with 50-1000 qubits that lack the error correction needed for cryptographically relevant computations. NISQ devices can solve certain narrow problems faster than classical computers but cannot run Shor's Algorithm at RSA-relevant scale.",
-        "NISQ devices have two fundamental limitations: qubit count and error rates. Current physical qubits have error rates of ~0.1-1% per gate operation. Running Shor's Algorithm on RSA-2048 requires trillions of gate operations — error rates would cause the computation to fail long before completion. Quantum error correction (QEC) requires ~1000 physical qubits per logical qubit.",
-        "Understanding NISQ limitations is important for calibrating the quantum threat timeline. The cryptographic threat is real but not immediate — organizations have time to migrate, but that migration takes years. Starting today is the right posture.",
+        "We're in the Noisy Intermediate-Scale Quantum (NISQ) era:\n- 50–1000 qubits, but without the error correction needed for cryptographically relevant computation.\n- NISQ devices beat classical machines on certain narrow problems, but can't run Shor's at RSA-relevant scale.",
+        "Two hard limits define NISQ — qubit count and error rates:\n- Physical qubits have ~0.1–1% error per gate operation.\n- Shor's on RSA-2048 needs trillions of gates, so errors would derail it long before completion; quantum error correction (QEC) needs ~1000 physical qubits per logical qubit.",
+        "NISQ's limits calibrate the threat timeline:\n- The cryptographic threat is real but not immediate — there's time to migrate.\n- But migration takes years, so starting today is the right posture.",
       ],
       technical: {
         title: "NISQ Limitations — Error Rates and the Road to CRQC",
         body: [
-          "A Cryptographically Relevant Quantum Computer (CRQC) for RSA-2048 requires approximately 4096 logical qubits (using Shor's Algorithm with modern optimizations). With current error rates (~0.1% per gate), each logical qubit needs ~1000 physical qubits for error correction. Total: ~4 million physical qubits.",
-          "IBM's quantum roadmap targets 100,000+ qubits by 2033. Google's Willow chip (2024) demonstrated below-threshold error correction — a key milestone toward fault-tolerant quantum computing. The path to CRQC is not blocked by fundamental physics, only by engineering challenges.",
+          "A CRQC for RSA-2048 is a long way from today's hardware:\n- It needs ~4096 logical qubits (Shor's with modern optimizations).\n- At ~0.1% gate error, each logical qubit needs ~1000 physical qubits — about 4 million physical qubits total.",
+          "The roadmaps show engineering progress, not a physics wall:\n- IBM's roadmap targets 100,000+ qubits by 2033.\n- Google's Willow chip (2024) demonstrated below-threshold error correction — a key milestone toward fault-tolerant quantum computing.",
         ],
         codeExample: {
           label: "NISQ vs CRQC — capability comparison",
@@ -871,8 +871,8 @@ Time estimate:   Hours to days on a CRQC
         where: "Google Quantum AI, Santa Barbara, California",
         impact: "First demonstration of quantum error correction below threshold — major milestone toward fault-tolerant QC",
         body: [
-          "In December 2024, Google published results from their Willow quantum processor demonstrating 'below-threshold' quantum error correction — meaning that increasing the number of error-correction qubits actually decreased the error rate, rather than increasing it (as was the case previously). This is a fundamental milestone on the path to fault-tolerant quantum computing.",
-          "Willow also performed a benchmark computation in 5 minutes that Google estimated would take the fastest classical supercomputer 10^25 years. While this benchmark is narrow and not directly applicable to cryptography, it demonstrates the trajectory of quantum hardware improvement.",
+          "In December 2024, Google's Willow processor hit a fundamental milestone:\n- It demonstrated 'below-threshold' error correction — adding error-correction qubits actually lowered the error rate, instead of raising it as before.\n- That's a key step on the road to fault-tolerant quantum computing.",
+          "Willow also flexed raw quantum advantage:\n- It ran a benchmark in 5 minutes that Google estimated would take the fastest classical supercomputer 10^25 years.\n- The benchmark is narrow and not cryptographically relevant, but it shows the trajectory of quantum hardware.",
         ],
       },
       diagram: {
