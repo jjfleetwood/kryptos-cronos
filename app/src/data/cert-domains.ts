@@ -451,10 +451,91 @@ export const CERT_DOMAINS: Record<string, CertDomain[]> = {
 
 };
 
+// ─── Cert display metadata (single source of truth for badges) ──────────────────
+// `short` is the compact label used on module badges; `badgeCls` mirrors the
+// accent color of the matching card on /certs so the two surfaces stay in sync.
+
+export const CERT_META: Record<CertId, { short: string; badgeCls: string }> = {
+  "comptia-secplus": { short: "Security+", badgeCls: "border-indigo-500/25 bg-indigo-500/8 text-indigo-400 hover:border-indigo-400/50" },
+  "comptia-cysa":    { short: "CySA+",     badgeCls: "border-orange-500/25 bg-orange-500/8 text-orange-400 hover:border-orange-400/50" },
+  "comptia-netplus": { short: "Network+",  badgeCls: "border-blue-500/25 bg-blue-500/8 text-blue-400 hover:border-blue-400/50" },
+  "isc2-cc":         { short: "ISC² CC",   badgeCls: "border-teal-500/25 bg-teal-500/8 text-teal-400 hover:border-teal-400/50" },
+  "isaca-cisa":      { short: "CISA",      badgeCls: "border-yellow-500/25 bg-yellow-500/8 text-yellow-400 hover:border-yellow-400/50" },
+  "isaca-cism":      { short: "CISM",      badgeCls: "border-purple-500/25 bg-purple-500/8 text-purple-400 hover:border-purple-400/50" },
+  "isaca-crisc":     { short: "CRISC",     badgeCls: "border-emerald-500/25 bg-emerald-500/8 text-emerald-400 hover:border-emerald-400/50" },
+  "comptia-aiplus":  { short: "AI+",       badgeCls: "border-sky-500/25 bg-sky-500/8 text-sky-400 hover:border-sky-400/50" },
+};
+
+// Priority order for rendering badges on a module (most foundational first).
+const CERT_ORDER: CertId[] = [
+  "comptia-secplus", "comptia-cysa", "comptia-netplus", "isc2-cc",
+  "isaca-cisa", "isaca-cism", "isaca-crisc", "comptia-aiplus",
+];
+
+// Compact domain labels for badges. Falls back to the full domain name.
+const DOMAIN_SHORT: Record<string, string> = {
+  // Security+
+  "general-security": "General Concepts", "threats-vulns": "Threats & Vulns",
+  "security-architecture": "Security Arch", "security-operations": "Security Ops",
+  "security-program": "Program Mgmt", "cryptography": "Cryptography",
+  // ISC² CC
+  "security-principles": "Security Principles", "bc-dr-ir": "BC/DR & IR",
+  "access-controls": "Access Controls", "network-security": "Network Security",
+  "security-operations-cc": "Security Ops",
+  // Network+
+  "net-fundamentals": "Net Fundamentals", "net-implementations": "Net Implementations",
+  "net-operations": "Net Operations", "net-security": "Net Security",
+  "net-troubleshooting": "Net Troubleshooting",
+  // CySA+
+  "cysa-security-ops": "Security Ops", "cysa-vuln-mgmt": "Vuln Mgmt",
+  "cysa-ir": "Incident Response", "cysa-reporting": "Reporting",
+  // CISA
+  "cisa-audit-process": "Audit Process", "cisa-governance": "Governance",
+  "cisa-acquisition": "Acquisition & Dev", "cisa-operations": "Operations & Resilience",
+  "cisa-protection": "Protection of Assets",
+  // CISM
+  "cism-governance": "Governance", "cism-risk": "Risk Mgmt",
+  "cism-program": "Security Program", "cism-incident": "Incident Mgmt",
+  // CRISC
+  "crisc-governance": "Governance", "crisc-risk-assessment": "Risk Assessment",
+  "crisc-risk-response": "Risk Response", "crisc-it-security": "IT & Security",
+  // AI+
+  "aiplus-concepts": "AI Concepts", "aiplus-data": "Data Science",
+  "aiplus-models": "AI Models", "aiplus-security": "AI Security",
+  "aiplus-infrastructure": "AI Infrastructure",
+};
+
+export function shortDomainName(domainId: string, fallback?: string): string {
+  return DOMAIN_SHORT[domainId] ?? fallback ?? domainId;
+}
+
 // ─── Lookup helpers ────────────────────────────────────────────────────────────
 
 export function getCertDomainsForStage(stageId: string): CertDomain[] {
   return CERT_DOMAINS[stageId] ?? [];
+}
+
+// One badge per cert a stage supports, naming the primary domain it covers,
+// returned in CERT_ORDER. Drives the "which cert does this module support" pills.
+export function getCertBadgesForStage(
+  stageId: string
+): Array<{ certId: CertId; short: string; domain: string; badgeCls: string }> {
+  const byCert = new Map<CertId, string[]>();
+  for (const d of getCertDomainsForStage(stageId)) {
+    const arr = byCert.get(d.certId) ?? [];
+    arr.push(shortDomainName(d.domainId, d.domainName));
+    byCert.set(d.certId, arr);
+  }
+  return CERT_ORDER.filter((c) => byCert.has(c)).map((certId) => {
+    const domains = byCert.get(certId)!;
+    const extra = domains.length > 1 ? ` +${domains.length - 1}` : "";
+    return {
+      certId,
+      short: CERT_META[certId].short,
+      domain: domains[0] + extra,
+      badgeCls: CERT_META[certId].badgeCls,
+    };
+  });
 }
 
 export function getStagesForCert(certId: CertId): string[] {

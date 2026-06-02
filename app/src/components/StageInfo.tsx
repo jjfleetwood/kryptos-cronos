@@ -9,7 +9,7 @@ import type { StageConfig } from "@/data/types";
 import type { StageTranslation } from "@/data/translations/types";
 import { stageDownloads } from "@/data/stage-downloads";
 import { getDomainsForStage } from "@/data/cyberops-domains";
-import { getCertDomainsForStage } from "@/data/cert-domains";
+import { getCertBadgesForStage } from "@/data/cert-domains";
 import { useLocale } from "@/contexts/LocaleContext";
 
 const categoryColors: Record<string, string> = {
@@ -338,35 +338,19 @@ export default function StageInfo({
             );
           })()}
 
-          {/* Cert path badges — deduplicated by certId */}
+          {/* Cert path badges — one per supported cert, naming the domain it covers */}
           {(() => {
-            const certMap: Record<string, { label: string; cls: string }> = {
-              "comptia-secplus": { label: "Security+", cls: "border-indigo-500/25 bg-indigo-500/8 text-indigo-400 hover:border-indigo-400/50" },
-              "isc2-cc":         { label: "ISC² CC",   cls: "border-teal-500/25 bg-teal-500/8 text-teal-400 hover:border-teal-400/50" },
-              "comptia-netplus": { label: "Network+",  cls: "border-blue-500/25 bg-blue-500/8 text-blue-400 hover:border-blue-400/50" },
-              "comptia-cysa":    { label: "CySA+",     cls: "border-orange-500/25 bg-orange-500/8 text-orange-400 hover:border-orange-400/50" },
-            };
-            const certDomains = getCertDomainsForStage(stage.id);
-            const seen = new Set<string>();
-            const badges = certDomains.filter(d => {
-              if (seen.has(d.certId)) return false;
-              seen.add(d.certId);
-              return true;
-            });
+            const badges = getCertBadgesForStage(stage.id);
             if (!badges.length) return null;
             return (
               <div className="flex flex-wrap gap-1.5 mt-1.5 mb-1">
-                {badges.map(d => {
-                  const cfg = certMap[d.certId];
-                  if (!cfg) return null;
-                  return (
-                    <Link key={d.certId} href="/certs"
-                      className={`flex items-center gap-1 text-[10px] px-2 py-0.5 rounded-full border transition-colors ${cfg.cls}`}>
-                      <span>📜</span>
-                      <span className="font-medium">{cfg.label}</span>
-                    </Link>
-                  );
-                })}
+                {badges.map(b => (
+                  <Link key={b.certId} href="/certs"
+                    className={`flex items-center gap-1 text-[10px] px-2 py-0.5 rounded-full border transition-colors ${b.badgeCls}`}>
+                    <span>📜</span>
+                    <span className="font-medium">{b.short} · {b.domain}</span>
+                  </Link>
+                ))}
               </div>
             );
           })()}
