@@ -2,7 +2,7 @@
 
 **Goal:** break dense walls-of-text in **all three briefing sections — `overview`, `technical.body` (Technical Deep-Dive), and `incident.body` (Real-World Incident)** — into scannable **bulleted-with-dialogue** format. Approved by Jacob (style locked).
 
-**Status:** 8 stages reformatted platform-wide (see scanner). The grind is in-scope **security / tech-audit / AI epochs + first-journey + ancient** (~250 stages). Extended curriculum (baseball, driving, french/italian, paris/milan, nails, hair, tapestry — ~210 stages) is **OUT OF SCOPE** unless Jacob says otherwise. **Quiz rollout is DONE (203/203, v1.23.0)** — this is the remaining grind.
+**Status:** 54 stages reformatted platform-wide — ALL four tech-audit epochs fully done (tech-audit-1/2/3/4, 12/12 each), plus owasp-llm llm-09 and stages.ts stage-m01–m05 (see scanner). The grind is in-scope **security / tech-audit / AI epochs + first-journey + ancient** (~250 stages). Extended curriculum (baseball, driving, french/italian, paris/milan, nails, hair, tapestry — ~210 stages) is **OUT OF SCOPE** unless Jacob says otherwise. **Quiz rollout is DONE (203/203, v1.23.0)** — this is the remaining grind.
 
 ## Coloring (shipped in `RichText.tsx` — do NOT re-edit the component)
 - `'single-quoted'` terms → amber pill; backtick `code` → cyan monospace pill.
@@ -27,10 +27,10 @@
 `node scripts/scan-reformat.mjs` (no arg = summary; `<file>.ts` = per-stage detail). A stage counts as DONE at ≥3 `\n- ` bullet sequences across its three briefing sections. **Heuristic only — this checklist is the source of truth.** Trust the repo, not chat memory, after any compaction.
 
 ## Order (worst offenders first) — IN SCOPE
-- [~] tech-audit-3 — audit-a01 ✅, audit-a07 ✅ done; **remaining: a02,a03,a04,a05,a06,a08,a09,a10,a11,a12** (10)
-- [ ] tech-audit-1 — audit-01..12 (12)
-- [ ] tech-audit-2 — audit-t01..t12 (12)
-- [ ] tech-audit-4 — audit-cm01..cm12 (12)
+- [x] tech-audit-3 — ALL 12 DONE (a01–a12) ✅
+- [x] tech-audit-1 — ALL 12 DONE (audit-01..12) ✅
+- [x] tech-audit-2 — ALL 12 DONE (audit-t01..t12) ✅
+- [x] tech-audit-4 — ALL 12 DONE (audit-cm01..cm12) ✅
 - [ ] mitre — mitre-01..12 (12)
 - [ ] mitre-atlas — atlas-01..12 (12)
 - [ ] owasp-llm — llm-09 ✅; remaining llm-01..08, llm-10..12 (11)
