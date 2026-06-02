@@ -1,7 +1,4 @@
 import type { StageConfig, EpochConfig } from "./types";
-import { ancientElementaryStages } from "./ancient-elementary";
-import { ancientJhsStages } from "./ancient-jhs";
-import { ancientUniversityStages } from "./ancient-university";
 import { firstJourneyEpoch, firstJourneyStages } from "./first-journey";
 import { firstJourneyStages2 } from "./first-journey-2";
 import { firstJourneyStages3 } from "./first-journey-3";
@@ -161,9 +158,6 @@ export const stages: StageConfig[] = [
   ...frenchBasicsStages,
   ...italianBasicsStages,
   ...cisco5Stages,
-  ...ancientElementaryStages,
-  ...ancientJhsStages,
-  ...ancientUniversityStages,
 
   // ─── Stage 1: Great Pyramid of Giza — CIA Triad (Quiz) ───────────────────
   {
