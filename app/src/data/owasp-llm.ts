@@ -1188,16 +1188,16 @@ def check_for_hallucinated_citations(llm_response: str) -> dict:
       tagline: "LLM APIs charge per token — and an attacker who can force expensive queries can drain your budget in hours.",
       year: 2024,
       overview: [
-        "LLM10 Unbounded Consumption covers denial-of-service and denial-of-wallet attacks against LLM-powered applications. Unlike traditional DoS, these attacks exploit the pay-per-token pricing model of LLM APIs — flooding an application with expensive requests burns the operator's budget rather than crashing a server.",
-        "Context window stuffing: many LLM applications allow users to provide context (documents, history, prompts). An attacker who submits 100,000-token documents forces the application to pay for processing those tokens. With GPT-4 at $30 per million input tokens, a sustained attack can generate significant costs.",
-        "Recursive elaboration attacks: prompts that cause the LLM to generate extremely long responses ('explain this in the most exhaustive possible detail, then repeat in every human language') maximize output token usage. Combined with automated request flooding, this can exhaust API quotas and generate surprise billing events.",
+        "LLM10 Unbounded Consumption is denial-of-service and denial-of-wallet against LLM apps:\n- Unlike traditional DoS, it exploits the pay-per-token pricing of LLM APIs.\n- Flooding an app with expensive requests burns the operator's budget rather than crashing a server.",
+        "Context-window stuffing weaponizes input tokens:\n- Apps that let users supply context (documents, history, prompts) pay to process whatever's submitted.\n- A 100,000-token document, at GPT-4's ~$30 per million input tokens, makes a sustained attack genuinely costly.",
+        "Recursive elaboration weaponizes output tokens:\n- Prompts like 'explain in exhaustive detail, then repeat in every language' maximize output usage.\n- Paired with automated request flooding, this exhausts API quotas and triggers surprise billing.",
       ],
       technical: {
         title: "LLM Resource Exhaustion Techniques",
         body: [
-          "Context flooding: submit maximum-length inputs to maximize input token costs. For systems accepting file uploads, submit large documents. For conversational systems, append a very long message history. Some systems charge for context tokens even if the content is repetitive padding.",
-          "Output maximization: craft prompts that generate maximum output length — 'Write a 10,000-word essay on X in JSON format with exhaustive subheadings.' Combined with batch requests, this maximizes output token spending.",
-          "Sponge attacks: a specialized variant where inputs are crafted to maximize GPU computation time rather than just token count. Certain prompt structures (e.g., complex reasoning chains, nested instructions) consume disproportionate compute relative to token count.",
+          "Context flooding maximizes input cost:\n- Submit maximum-length inputs — large file uploads, or a very long appended message history.\n- Some systems bill for context tokens even when the content is repetitive padding.",
+          "Output maximization maximizes output cost:\n- Craft prompts that force maximum length — 'write a 10,000-word essay in JSON with exhaustive subheadings.'\n- Batched, this maximizes output-token spend.",
+          "Sponge attacks maximize compute, not just tokens:\n- Inputs are crafted to inflate GPU computation time rather than raw token count.\n- Certain structures (complex reasoning chains, nested instructions) consume disproportionate compute per token.",
         ],
         codeExample: {
           label: "Rate limiting and cost controls for LLM APIs",
@@ -1245,9 +1245,9 @@ class RateLimitedLLMClient:
         where: "Multiple LLM-Powered SaaS Products, Global",
         impact: "Several startups reported unexpected $10,000–$50,000 API bills from coordinated token flooding attacks against their LLM-powered features",
         body: [
-          "Multiple early-stage AI startups reported being targeted by denial-of-wallet attacks in 2024. Attackers scripted automated requests that submitted maximum-length contexts and requested maximum-length responses, targeting free tiers and trial accounts to burn through API quotas.",
-          "One widely reported case involved a coding assistant startup that offered an unlimited free trial — attackers scripted context-flooding requests at thousands per hour, generating API costs orders of magnitude above expected usage. The startup received a $40,000 OpenAI bill within 48 hours.",
-          "The denial-of-wallet attacks drove OpenAI, Anthropic, and Google to add mandatory spending controls to their API offerings: hard monthly budget caps, per-request token limits, and real-time spending alerts are now standard features of enterprise AI API accounts. The LLM security community formalized the threat category: OWASP LLM10 (Unbounded Consumption) in the 2024 Top 10 specifically addressed both denial-of-service and denial-of-wallet attack patterns. LLM Security Posture Management (LLM-SPM) emerged as a new product category in 2024 — tools analogous to CSPM (Cloud Security Posture Management) that continuously monitor LLM application configurations, rate limit adherence, spending anomalies, and prompt injection indicators. For engineering teams building LLM-powered products, the incident established that LLM API rate limiting, token caps, spending alerts, and hard budget limits are security requirements, not optional optimizations — the same discipline applied to any other expensive external API dependency.",
+          "Multiple early-stage AI startups were hit by denial-of-wallet in 2024:\n- Attackers scripted automated requests with maximum-length contexts and maximum-length responses.\n- They targeted free tiers and trial accounts to burn through API quotas.",
+          "One coding-assistant startup learned it the hard way:\n- Its unlimited free trial drew context-flooding requests at thousands per hour.\n- API costs ran orders of magnitude over expectations — a $40,000 OpenAI bill within 48 hours.",
+          "It made spending controls a standard API feature:\n- OpenAI, Anthropic, and Google added hard monthly budget caps, per-request token limits, and real-time spending alerts; OWASP formalized LLM10 in 2024.\n- LLM Security Posture Management (LLM-SPM) emerged as a category, and the lesson stuck: rate limiting, token caps, and budget limits are security requirements, not optional optimizations.",
         ],
       },
       diagram: {
