@@ -494,15 +494,15 @@ HMAC-SHA256     128 bits*           64 bits               WEAKENED*
       tagline: "Nation-states are collecting encrypted traffic today to decrypt it with quantum computers tomorrow — your secrets are already at risk.",
       year: 2023,
       overview: [
-        "Harvest Now, Decrypt Later (HNDL) — also called Store Now, Decrypt Later (SNDL) — is a quantum threat that is actively occurring right now. Nation-state adversaries are intercepting and storing encrypted internet traffic (TLS sessions, VPN data, email, classified communications) with the intention of decrypting it once a CRQC becomes available.",
-        "This threat makes the quantum computing timeline irrelevant for data classified today. Even if CRQCs are 10 years away, any data encrypted with RSA or ECC that an adversary captures today can be decrypted in 10 years. Sensitive data with a classification lifetime beyond 5-10 years must be protected with quantum-resistant algorithms NOW.",
-        "Intelligence agencies from China, Russia, and likely other nations are operating HNDL programs. CISA, NSA, and the Five Eyes have explicitly warned about HNDL in their post-quantum guidance. The window to protect long-lived sensitive data is closing.",
+        "Harvest Now, Decrypt Later (HNDL) — also Store Now, Decrypt Later — is a quantum threat happening right now:\n- Nation-state adversaries intercept and store encrypted traffic today (TLS, VPN, email, classified comms).\n- They intend to decrypt it once a CRQC becomes available.",
+        "This makes the quantum timeline irrelevant for data classified today:\n- Even if CRQCs are 10 years away, RSA/ECC-encrypted data captured now can be decrypted then.\n- Anything with a sensitivity lifetime beyond 5–10 years must move to quantum-resistant algorithms NOW.",
+        "HNDL programs are believed active at nation-state scale:\n- Intelligence agencies in China, Russia, and likely others are running them.\n- CISA, NSA, and the Five Eyes explicitly warn about HNDL — and the window to protect long-lived data is closing.",
       ],
       technical: {
         title: "How HNDL Attacks Work",
         body: [
-          "An HNDL adversary operates a passive collection infrastructure — tapping fiber optic cables, operating rogue BGP nodes, or working with complicit ISPs — to capture encrypted traffic at scale. The ciphertext is stored cheaply (storage costs drop ~50% per year) until a CRQC is operational.",
-          "TLS provides forward secrecy for the session key (via ECDHE), but the session key exchange itself is encrypted under the server's RSA or ECC public key. An adversary with a CRQC can break the key exchange, derive the session key, and decrypt the captured session. Forward secrecy alone does not defeat HNDL.",
+          "An HNDL adversary runs passive collection at scale:\n- Tapping fiber, operating rogue BGP nodes, or working with complicit ISPs to capture encrypted traffic.\n- The ciphertext is stored cheaply (storage costs fall ~50% per year) until a CRQC is operational.",
+          "Forward secrecy alone does not defeat HNDL:\n- TLS gives session-key forward secrecy via ECDHE, but the key exchange is protected under the server's RSA or ECC public key.\n- A CRQC breaks that key exchange, derives the session key, and decrypts the captured session.",
         ],
         codeExample: {
           label: "HNDL threat model — what an adversary stores and later decrypts",
@@ -534,8 +534,8 @@ HMAC-SHA256     128 bits*           64 bits               WEAKENED*
         where: "Global — undersea cables, internet exchange points, ISP infrastructure",
         impact: "Decades of classified and sensitive communications potentially compromised retroactively at Q-Day",
         body: [
-          "Intelligence community assessments (including leaked Snowden documents and public NSA/CISA advisories) confirm that nation-state actors are operating large-scale passive collection programs. The explicit purpose includes future quantum decryption. China's national quantum computing investment exceeds $15 billion, the largest in the world.",
-          "A 2023 CISA advisory stated explicitly: 'Adversaries may be storing encrypted data today with the intent to decrypt it when quantum computers become powerful enough.' This is not speculation — it is an operational reality that security architects must plan around when protecting any data with multi-year sensitivity.",
+          "Intelligence assessments confirm large-scale passive collection is operational:\n- Leaked Snowden documents and public NSA/CISA advisories point to nation-state programs with future quantum decryption as an explicit purpose.\n- China's national quantum-computing investment exceeds $15 billion — the largest in the world.",
+          "A 2023 CISA advisory said it plainly:\n- 'Adversaries may be storing encrypted data today with the intent to decrypt it when quantum computers become powerful enough.'\n- It's not speculation but an operational reality to plan around for any data with multi-year sensitivity.",
         ],
       },
       diagram: {
@@ -654,15 +654,15 @@ HMAC-SHA256     128 bits*           64 bits               WEAKENED*
       tagline: "Entanglement links two qubits so that measuring one instantly determines the other — the foundation of quantum key distribution.",
       year: 2024,
       overview: [
-        "Quantum entanglement is a phenomenon where two qubits become correlated so that the quantum state of one cannot be described independently of the other, regardless of the physical distance separating them. Measuring one entangled qubit instantaneously determines the state of its partner — what Einstein called 'spooky action at a distance.'",
-        "Entanglement is not useful for faster-than-light communication (the measurement outcomes are random), but it is the foundation of quantum key distribution (QKD) protocols like E91. It also underlies quantum teleportation — the transfer of quantum state information between locations — and quantum repeaters that will extend quantum networks.",
-        "For cybersecurity professionals, entanglement matters because QKD schemes using entanglement provide information-theoretic security: eavesdropping on an entangled QKD channel is detectable by physics, not just computational hardness.",
+        "Quantum entanglement correlates two qubits so neither can be described independently:\n- It holds regardless of the physical distance between them.\n- Measuring one instantly determines its partner's state — Einstein's 'spooky action at a distance.'",
+        "Entanglement can't send faster-than-light messages, but it powers quantum networking:\n- Measurement outcomes are random, so no signaling — but it's the foundation of QKD protocols like E91.\n- It also underlies quantum teleportation (transferring quantum state) and the quantum repeaters that will extend quantum networks.",
+        "For security, entanglement enables physics-based guarantees:\n- Entanglement-based QKD provides information-theoretic security.\n- Eavesdropping on the channel is detectable by physics, not merely computational hardness.",
       ],
       technical: {
         title: "Bell States and Entanglement in Cryptography",
         body: [
-          "The simplest entangled state is a Bell state: |Φ+⟩ = (|00⟩ + |11⟩)/√2. When Alice and Bob each hold one qubit of this pair, measuring Alice's qubit (getting 0 or 1) instantly determines Bob's measurement result — both get 0, or both get 1, with 50% probability each. This correlation exists even if they're light-years apart.",
-          "In the E91 QKD protocol, Alice and Bob share entangled pairs and measure them on randomly chosen bases. The correlations between measurements allow them to generate a shared secret key. Any eavesdropper who intercepts and measures the entangled qubits disturbs the quantum state — detectable via Bell inequality violations.",
+          "The simplest entangled state is a Bell state:\n- |Φ+⟩ = (|00⟩ + |11⟩)/√2: when Alice and Bob each hold one qubit, measuring Alice's instantly fixes Bob's.\n- Both get 0 or both get 1, 50/50 — and the correlation persists even light-years apart.",
+          "The E91 QKD protocol turns that correlation into a key:\n- Alice and Bob share entangled pairs and measure on randomly chosen bases.\n- The correlations yield a shared secret; any eavesdropper who measures disturbs the state — detectable via Bell-inequality violations.",
         ],
         codeExample: {
           label: "Qiskit — creating a Bell state (entangled qubit pair)",
@@ -690,8 +690,8 @@ print(counts)  # {'00': ~500, '11': ~500}
         where: "Cisco Quantum Labs, Santa Monica, California",
         impact: "First vendor-agnostic quantum switch operating at room temperature over standard telecom fiber; enables commercial QKD infrastructure without cryogenic hardware",
         body: [
-          "In April 2026, Cisco announced the Universal Quantum Switch — a landmark device that operates at room temperature over standard telecom fiber and is vendor-agnostic, supporting all major quantum computing modalities via patented modality conversion. Developed at Cisco's Santa Monica quantum labs, it includes an integrated quantum entanglement chip and a network-aware Quantum Compiler (Quantum Orchestra) for orchestrating distributed quantum devices using classical network topology.",
-          "The switch bridges post-quantum cryptography (PQC) with quantum key distribution (QKD) via the SKIP interface, allowing Cisco IPsec and MACsec to consume quantum-safe keys from external QKD systems. This means existing Cisco network infrastructure — including Silicon One P200 (800G PQC-capable) and G300 (102.4 Tbit/s) switches — can integrate directly with quantum key material. Cisco's quantum networking strategy is now the most complete enterprise quantum-safe stack available from a single vendor.",
+          "In April 2026, Cisco announced the Universal Quantum Switch:\n- A landmark device operating at room temperature over standard telecom fiber, vendor-agnostic across major quantum modalities via patented modality conversion.\n- Built at Cisco's Santa Monica quantum labs, it integrates a quantum entanglement chip and a network-aware Quantum Compiler ('Quantum Orchestra') to orchestrate distributed quantum devices over classical topology.",
+          "It bridges post-quantum cryptography with QKD via the SKIP interface:\n- Cisco IPsec and MACsec can consume quantum-safe keys from external QKD systems.\n- Existing infrastructure — Silicon One P200 (800G, PQC-capable) and G300 (102.4 Tbit/s) — integrates directly with quantum key material, making Cisco's the most complete single-vendor quantum-safe stack.",
         ],
       },
       diagram: {
