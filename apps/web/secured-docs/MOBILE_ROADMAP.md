@@ -112,6 +112,16 @@ So "is this user Pro?" has one answer regardless of where they paid.
 
 **Exit:** a real user can sign up, complete quiz stages, earn XP, and appear on the leaderboard — entirely on a phone.
 
+### Phase 4 — STATUS: scaffold shipped to branch `phase-4-mobile` 2026-06-03 (NOT merged).
+
+- [x] **`apps/mobile` scaffolded** — Expo SDK 56 / RN 0.85 / expo-router, inside the monorepo. `metro.config.js` (watchFolders = workspace root, `unstable_enablePackageExports`) resolves `@kryptos/core` + `@kryptos/api-client`. React pinned to match web; **web still builds** (verified).
+- [x] **Auth** — `src/lib/supabase.ts` (RN client, AsyncStorage session, url-polyfill), `src/lib/auth.tsx` (AuthProvider: signIn/signUp w/ username metadata → calls `/api/auth/bootstrap`), `src/lib/api.ts` (`createApiClient` w/ bearer token from the Supabase session, baseUrl = prod).
+- [x] **Screens** — auth gate + `login`, tab nav (`stages` grouped by epoch w/ completion ticks · `leaderboard` · `profile` w/ tier/coins/streak/sign-out), minimal `stage/[id]` detail. tsc green.
+- [ ] **NEXT increment — interactive quiz/CTF screen** (the actual learning loop): render `stage.quiz` from `@kryptos/core/stages`, submit via `api.checkAnswer` / `api.checkFlag`, show XP/streak updates, ARIA hint chat over `api.getHint`.
+- [ ] **`typedRoutes` is temporarily OFF** — re-enable in `app.json` after the first `npx expo start` generates `.expo/types`.
+- [ ] **Run it (yours):** `cd apps/mobile && npm install && npx expo start` on a dev machine; set `apps/mobile/.env` (EXPO_PUBLIC_SUPABASE_URL/ANON_KEY). Cannot be run/verified in this environment (no simulator). Merge to `master` only after it runs on a device.
+- Pairs with Phase 3's RevenueCat dashboard setup (the app calls `Purchases.logIn(username)` once IAP screens are added).
+
 ---
 
 ## Phase 5 — Native retention layer · ~1.5 wks
