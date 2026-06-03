@@ -29,15 +29,15 @@ export const quantum3Stages: StageConfig[] = [
       tagline: "BB84 turns quantum mechanics into a security guarantee — any eavesdropper disturbs the channel and is immediately detectable.",
       year: 1984,
       overview: [
-        "In 1984, Charles Bennett and Gilles Brassard published BB84 — the world's first quantum key distribution protocol. Unlike mathematical cryptography, BB84's security is guaranteed by physics: the no-cloning theorem ensures that any attempt to copy a quantum state disturbs it, making eavesdroppers detectable by the laws of nature.",
-        "BB84 uses photon polarization as qubits, transmitted over a quantum channel (fiber or free-space optical). Alice sends photons polarized in random bases; Bob measures in random bases. After transmission, they publicly compare which bases they used (not the bits), and keep only the bits where they used the same basis — the sifted key.",
-        "The quantum bit error rate (QBER) is the key security metric. A clean channel has QBER below 5%. If an eavesdropper (Eve) measures and retransmits photons (intercept-resend attack), she introduces ~25% errors — making her presence statistically detectable. If QBER exceeds 11%, the key exchange is aborted.",
+        "In 1984, Charles Bennett and Gilles Brassard published BB84 — the first quantum key distribution protocol:\n- Unlike mathematical cryptography, its security is guaranteed by physics.\n- The no-cloning theorem ensures any attempt to copy a quantum state disturbs it, making eavesdroppers detectable by the laws of nature.",
+        "BB84 encodes bits in photon polarization over a quantum channel:\n- Alice sends photons polarized in random bases; Bob measures in random bases (fiber or free-space optical).\n- They publicly compare which bases they used — not the bits — and keep only the bits where the bases matched: the sifted key.",
+        "The quantum bit error rate (QBER) is the security metric:\n- A clean channel runs below 5% QBER.\n- An eavesdropper doing intercept-resend injects ~25% errors, making her statistically detectable; above 11% QBER, the exchange is aborted.",
       ],
       technical: {
         title: "BB84 Protocol Mechanics",
         body: [
-          "Alice's polarization bases: rectilinear (+) uses 0°/90°, diagonal (×) uses 45°/135°. Each bit is encoded as: basis+ → 0=→, 1=↑; basis× → 0=↗, 1=↘. Bob randomly chooses measurement bases. After measurement, publicly revealed bases determine the sifted key — bits where bases matched. Privacy amplification then shortens the key to remove any partial information an eavesdropper might have.",
-          "QBER calculation: sample a subset of the sifted key publicly, count disagreements. QBER = errors/sample_size. For an intercept-resend attack, Eve randomly guesses 50% of bases correctly, and re-sends in wrong basis 50% of the time — introducing 25% QBER. Classical noise typically contributes 1-5% QBER. The 11% threshold gives margin above classical noise but detects Eve.",
+          "BB84 uses two polarization bases to encode each bit:\n- Rectilinear (+) uses 0°/90° (0=→, 1=↑); diagonal (×) uses 45°/135° (0=↗, 1=↘); Bob measures in a randomly chosen basis.\n- Publicly revealed bases yield the sifted key (matching-basis bits), and privacy amplification then shortens it to erase any partial info an eavesdropper might hold.",
+          "QBER both detects Eve and bounds her knowledge:\n- Sample a subset of the sifted key publicly and count disagreements: QBER = errors/sample.\n- Intercept-resend guesses the basis right 50% of the time, injecting ~25% QBER; classical noise adds 1–5%, so the 11% threshold clears noise while still catching Eve.",
         ],
         codeExample: {
           label: "BB84 sifted key extraction and QBER calculation (Python)",
@@ -70,8 +70,8 @@ print(f"QBER: {qber:.1%}")  # ~0% without Eve, ~25% with Eve`,
         where: "Beijing ↔ Vienna (7,600 km via Micius satellite)",
         impact: "First quantum-encrypted video call across continents — proves satellite QKD is viable",
         body: [
-          "In June 2017, Chinese and Austrian researchers conducted the first intercontinental quantum-encrypted video call using the Micius satellite. The satellite distributed quantum keys to ground stations in Beijing and Vienna — 7,600 km apart — using a variant of BB84 adapted for satellite free-space links.",
-          "The demonstration proved that QKD can scale beyond metropolitan fiber networks. The Micius satellite (launched 2016) operates at 500km LEO, using downward-pointing telescopes to beam single photons to ground stations. At night, when atmospheric scattering is minimal, the system achieves ~1 kbps key rate — sufficient for session keys but not bulk encryption.",
+          "In June 2017, China's Micius satellite enabled the first intercontinental quantum-encrypted video call:\n- It distributed quantum keys to ground stations in Beijing and Vienna — 7,600 km apart.\n- It used a variant of BB84 adapted for satellite free-space links.",
+          "The demonstration proved QKD can scale past metropolitan fiber:\n- Micius (launched 2016) sits in 500km LEO, beaming single photons to ground via downward-pointing telescopes.\n- At night, when atmospheric scattering is minimal, it reaches ~1 kbps — enough for session keys, not bulk encryption.",
         ],
       },
       diagram: {
@@ -225,15 +225,15 @@ print(f"QBER: {qber:.1%}")  # ~0% without Eve, ~25% with Eve`,
       tagline: "Real-world QKD requires trusted relay nodes — and each node is a classical computer that can be compromised.",
       year: 2023,
       overview: [
-        "2023: Toshiba demonstrates QKD over 600km of standard fiber — shattering the previous distance record. But QKD has a fundamental limitation: photon loss over distance. At 600km, photon loss is extreme (~120 dB), requiring highly sensitive single-photon detectors and sophisticated error correction, achieving key rates of roughly 1 bps.",
-        "For metropolitan QKD networks covering longer distances, trusted relay nodes are used. These intermediate stations terminate the quantum channel, measure the photons, and re-generate a new quantum channel. The key is handed off classically between nodes — meaning the relay nodes must be physically secured classical computers.",
-        "Trusted relay nodes are the Achilles heel of QKD. If a relay node is compromised, the quantum guarantee is void for that link segment. The China Beijing-Shanghai backbone (4,600km) uses 32 trusted relay nodes — 32 potential attack points. Satellite QKD (like Micius) eliminates some relay nodes but introduces new attack surfaces.",
+        "In 2023, Toshiba demonstrated QKD over 600km of standard fiber — shattering the distance record:\n- But QKD has a fundamental limit: photon loss over distance.\n- At 600km, loss is extreme (~120 dB), demanding ultra-sensitive single-photon detectors and heavy error correction, yielding only ~1 bps.",
+        "Longer metropolitan networks bridge the gap with trusted relay nodes:\n- Each intermediate station terminates the quantum channel, measures the photons, and regenerates a new one.\n- The key is handed off classically between nodes — so those relays must be physically secured classical computers.",
+        "Trusted relay nodes are QKD's Achilles heel:\n- Compromise one and the quantum guarantee is void for that link segment.\n- China's Beijing–Shanghai backbone (4,600km) uses 32 trusted relays — 32 attack points; satellite QKD removes some but adds new attack surfaces.",
       ],
       technical: {
         title: "QKD Distance and Trusted Node Architecture",
         body: [
-          "Standard single-mode fiber attenuates light at ~0.2 dB/km. At 50km, loss is 10 dB (90% of photons lost). At 100km, loss is 20 dB (99% lost). At 600km, loss is 120 dB — theoretically impossible, but Toshiba achieved it using twin-field QKD (TF-QKD), where interference between photons at a middle point extends the effective distance without a trusted node.",
-          "Twin-field QKD (TF-QKD) is a breakthrough: instead of end-to-end single photon transmission, both Alice and Bob send photons to a middle relay that measures their interference. The relay is an untrusted measurement device — it learns nothing about the key. This 'measurement-device-independent' property extends range without full trusted nodes.",
+          "Fiber attenuation sets a brutal distance ceiling:\n- Single-mode fiber loses ~0.2 dB/km — 10 dB (90% lost) at 50km, 20 dB (99%) at 100km, 120 dB at 600km.\n- 600km is theoretically impossible end-to-end, but Toshiba reached it with twin-field QKD (TF-QKD), where photon interference at a midpoint extends range without a trusted node.",
+          "Twin-field QKD removes the trusted middle:\n- Instead of end-to-end single-photon transmission, Alice and Bob each send photons to a middle relay that measures their interference.\n- That relay is untrusted — it learns nothing about the key. This 'measurement-device-independent' property extends range without full trusted nodes.",
         ],
         codeExample: {
           label: "Fiber QKD key rate model",
@@ -266,8 +266,8 @@ print(f"600km: {qkd_key_rate(600):.6f} bps")   # ~0.000001 bps (TF-QKD helps)`,
         where: "Cisco Quantum Labs, Santa Monica — enterprise and government deployments",
         impact: "Vendor-agnostic quantum switch at room temperature enables QKD relay without classical key handling — removes trusted node attack surface",
         body: [
-          "China's 4,600km quantum backbone (2021) uses 32 trusted relay nodes — classical computers that hold decrypted key material and represent 32 potential attack points. An attacker who compromises any node can intercept quantum-derived keys without triggering any QBER alarm. For years, trusted nodes were considered the unavoidable Achilles heel of long-haul QKD.",
-          "In April 2026, Cisco's Universal Quantum Switch changed the architecture. Operating at room temperature on standard telecom fiber, the switch performs modality-agnostic quantum state conversion — routing quantum signals without collapsing them to classical bits. Cisco Quantum Orchestra orchestrates distributed quantum devices via classical topology overlays. The SKIP interface bridges QKD key material directly into Cisco IPsec/MACsec, providing a hybrid PQC+QKD stack where even if a classical relay is compromised, the PQC layer (ML-KEM + ML-DSA on Silicon One P200) maintains protection.",
+          "China's 4,600km quantum backbone (2021) shows the trusted-node weakness in full:\n- It uses 32 trusted relay nodes — classical computers holding decrypted key material, i.e. 32 attack points.\n- Compromise any one and an attacker intercepts quantum-derived keys without tripping a QBER alarm — for years, this was QKD's unavoidable Achilles heel.",
+          "In April 2026, Cisco's Universal Quantum Switch changed the architecture:\n- At room temperature on standard fiber, it does modality-agnostic quantum state conversion — routing quantum signals without collapsing them to classical bits, orchestrated by Cisco Quantum Orchestra.\n- Its SKIP interface bridges QKD keys into Cisco IPsec/MACsec for a hybrid PQC+QKD stack — so even if a classical relay falls, the PQC layer (ML-KEM + ML-DSA on Silicon One P200) keeps protection.",
         ],
       },
       diagram: {
