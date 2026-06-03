@@ -1,8 +1,10 @@
 # Technical Design Document — Kryptós CronOS
 
-**Version:** v1.0.0
-**Last Updated:** 2026-05-26
+**Version:** v2.0.0
+**Last Updated:** 2026-06-03
 **Status:** Current
+
+> **Monorepo + cross-platform:** Turborepo with `apps/web` (Next.js, deployed), `apps/mobile` (Expo/RN), `packages/core` (curriculum + types, formerly `src/data`), `packages/api-client`. The API serves both clients — web via HMAC cookie, mobile via Supabase bearer JWT.
 
 ---
 
@@ -29,16 +31,25 @@ flowchart TB
     subgraph DataTier["Data Tier"]
         Redis[("Upstash Redis\nServerless HTTP")]
         SecDocs["secured-docs/\nFile System (Vercel)"]
-        CurriculumData["src/data/*.ts\nStatic Curriculum"]
+        CurriculumData["@kryptos/core\n(packages/core) Static Curriculum"]
     end
 
     subgraph Services["Third-Party Services"]
         Anthropic["Anthropic Claude Haiku"]
         Resend["Resend Email"]
-        Stripe["Stripe Payments"]
+        Stripe["Stripe (web payments)"]
+        RevenueCat["RevenueCat (mobile IAP)"]
+        Supabase["Supabase (auth + mobile JWT)"]
+        Expo["Expo Push"]
+        Plausible["Plausible Analytics"]
+    end
+
+    subgraph MobileTier["Mobile Client"]
+        ExpoApp["Expo / React Native\nbearer JWT → /api/v1"]
     end
 
     Client <-->|HTTPS| Edge
+    MobileTier <-->|HTTPS bearer| Edge
     Edge --> AppServer
     AppServer <--> DataTier
     AppServer --> Services
@@ -76,11 +87,13 @@ Session tokens are `{username}:{HMAC-SHA256(username, SESSION_SECRET)}` stored i
 
 ## 3. Authentication Design
 
+Two client types share the API: **web** (HMAC `session_token` cookie) and **mobile** (Supabase JWT as `Authorization: Bearer`). `getAuthedUsername()` (`src/lib/api-auth.ts`) resolves either. Bearer tokens are verified locally against the Supabase JWKS (`jose`) with a `getUser()` fallback; identity comes from the **verified email claim → `email:{email}` index** (never the user-editable `user_metadata`). Supabase-only (mobile-first) accounts are provisioned in Redis via `POST /api/auth/bootstrap` (`SET NX`). Supabase Auth runs parallel to PBKDF2 (v1.15.0+).
+
 ```mermaid
 flowchart TD
     Register["POST /api/auth/register\n{username, email, password}"]
-    HashPW["PBKDF2-SHA256\n100k iterations + salt"]
-    StoreUser["HSET user:{username}\npasswordHash · email · createdAt · tier: free · skin: standard"]
+    HashPW["PBKDF2-SHA256\n600k iterations + salt"]
+    StoreUser["HSET user:{username}\npasswordHash · email · createdAt · tier: free · skin: standard\n+ parallel Supabase account"]
     IssueSession["HMAC-sign session token\nSet-Cookie: session_token (HttpOnly, 30d)"]
     IssueAdmin{"Is admin\nusername?"}
     IssueAdminCookie["HMAC-sign admin token\nSet-Cookie: admin_token (HttpOnly, 24h)"]
@@ -95,7 +108,7 @@ flowchart TD
 
 **Token format:** `{username}:{hex(HMAC-SHA256(username, secret))}`
 
-**Verification:** `timingSafeEqual` comparison against freshly computed HMAC to prevent timing attacks.
+**Verification:** `timingSafeEqual` comparison against freshly computed HMAC to prevent timing attacks. **Login hardening:** 5 failed attempts → 15-min account lockout (`lockout:user:{username}`); legacy hashes (100k/310k) silently re-hashed to 600k on successful login.
 
 ---
 
@@ -123,10 +136,12 @@ flowchart TD
     IsInTrial -->|No| ShowPaywall
 ```
 
-`canAccessStage()` in `src/lib/access.ts` implements this logic. It is called in:
+`canAccessStage()` / `getUserTier()` in `src/lib/access.ts` implement this logic. It is called in:
 - `/api/check-flag` (before revealing flag validation result)
 - `/api/check-answer` (before validating answer)
 - Stage page server component (before rendering CTF/quiz config)
+
+**Multi-source Pro entitlement:** `getUserTier()` grants Pro if **any** source is active — `proStripe` (web Stripe subscription), `rcProExpiry` (mobile RevenueCat IAP, future-dated), or `voucherExpiry` (voucher/survey reward). Tier is only revoked to `free` when **no** source remains active, so a webhook from one platform never strips access granted by another.
 
 ---
 
@@ -173,25 +188,24 @@ On every stage award, `ZADD ... INCR` atomically adds the XP delta to the member
 
 ```mermaid
 flowchart LR
-    DevWork["Feature Work\nlocal dev branch"]
-    PushDev["git push → dev"]
-    CI["GitHub Actions CI\nlint + tsc + build + audit"]
-    PreviewURL["Vercel Preview URL\ndev branch"]
-    Test["Test on Preview\nlive Redis + Resend stack"]
-    MergePR["Merge dev → master"]
-    CIProd["CI again on master"]
-    ProdDeploy["Vercel Production\nkryptoscronos.com"]
+    DevWork["Feature work\n(monorepo root, turbo)"]
+    PushMaster["git push → master"]
+    CI["GitHub Actions CI (root)\nnpm ci + lint + tsc + build + audit"]
+    ProdDeploy["Vercel Production\nRoot Dir = apps/web\nkryptoscronos.com"]
+    Risky["(risky) feature branch"]
+    PreviewURL["Vercel Preview URL"]
 
-    DevWork --> PushDev
-    PushDev --> CI
-    CI --> PreviewURL
-    PreviewURL --> Test
-    Test --> MergePR
-    MergePR --> CIProd
-    CIProd --> ProdDeploy
+    DevWork --> PushMaster
+    PushMaster --> CI
+    CI --> ProdDeploy
+    DevWork -.risky.-> Risky
+    Risky --> PreviewURL
+    PreviewURL -.validate, fast-forward.-> PushMaster
 ```
 
-**CI gates (must all pass before merge):**
+Single-branch workflow (the `dev` branch was retired 2026-06-03). The mobile app ships separately via EAS.
+
+**CI gates (must all pass):**
 1. `eslint` — 0 errors
 2. `tsc --noEmit --skipLibCheck` — 0 type errors
 3. `next build` — production build completes
@@ -221,7 +235,7 @@ Three email flows via Resend (`noreply@kryptoscronos.com`):
 
 | Trigger | Template | Recipient |
 |---|---|---|
-| New user registration | Welcome email — 438 stages, 36 epochs, trial info | New user + admin alert to `hello@kryptoscronos.com` |
+| New user registration | Welcome email — 458 stages, 38 epochs, trial info | New user + admin alert to `hello@kryptoscronos.com` |
 | Password reset request | Reset link with 1-hour expiry token | User's registered email |
 | Stage completion (new) | XP, badge, streak, next-stage link | User's registered email |
 
@@ -232,10 +246,10 @@ All email sends are fire-and-forget (non-blocking). Failures are logged but do n
 ## 10. Content Security Policy Design
 
 ```
-script-src  'nonce-{per-request-nonce}' 'strict-dynamic'
+script-src  'nonce-{per-request-nonce}' 'strict-dynamic' https://plausible.io
 style-src   'self' 'unsafe-inline'
 img-src     'self' data: blob:
-connect-src 'self' https://api.anthropic.com https://api.resend.com https://js.stripe.com
+connect-src 'self' https://api.resend.com https://js.stripe.com https://plausible.io
 frame-src   https://js.stripe.com
 ```
 

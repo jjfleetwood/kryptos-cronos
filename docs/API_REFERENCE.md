@@ -1,10 +1,15 @@
 # API Reference — Kryptós CronOS
 
-**Version:** v1.0.0
-**Last Updated:** 2026-05-26
+**Version:** v2.0.0
+**Last Updated:** 2026-06-03
 **Base URL:** `https://kryptoscronos.com`
 
-All API routes are Next.js serverless functions. Session authentication uses an HMAC-signed `session_token` HttpOnly cookie. Admin routes require a separate `admin_token` cookie.
+All API routes are Next.js serverless functions (in `apps/web`). **Two client auth methods are supported:**
+
+- **Web** — HMAC-signed `session_token` HttpOnly cookie.
+- **Mobile** — Supabase JWT sent as `Authorization: Bearer <token>`, verified locally against the project JWKS (`jose`) with a `getUser()` fallback; identity resolved from the verified **email** claim → `email:{email}` index.
+
+Gameplay/user routes accept **either** method, resolved by `getAuthedUsername()`. They are additionally exposed under a versioned **`/api/v1/*`** namespace (next.config rewrite → `/api/*`) for the mobile client. Admin routes require a separate `admin_token` cookie (web only). Throughout this doc, "**Auth: session/bearer**" means either method is accepted.
 
 ---
 
@@ -30,12 +35,23 @@ Create a new user account.
 ```json
 { "ok": true }
 ```
-Sets `session_token` cookie (HttpOnly, Secure, 30 days).
+Hashes the password with **PBKDF2-SHA256, 600k iterations**, creates a **parallel Supabase Auth account**, and sets the `session_token` cookie (HttpOnly, Secure, 30 days).
 
 **Error responses:**
 - `400 { "error": "Missing fields" }` — any required field absent
 - `409 { "error": "Username taken" }` — username already registered
 - `429 { "error": "Rate limit" }` — too many registration attempts
+
+---
+
+### POST /api/auth/bootstrap
+
+Provision a Redis user record for a **Supabase-only (mobile-first) account** — used when a user signs up directly through the mobile app's Supabase flow and has no Redis record yet.
+
+**Auth:** Bearer (Supabase JWT) required
+**Rate limit:** 30 requests/IP/min
+
+Idempotent: claims the username via `SET NX`, keyed to the token's verified email. Returns the resolved `{ username }`.
 
 ---
 
@@ -55,10 +71,11 @@ Authenticate an existing user.
 ```json
 { "ok": true }
 ```
-Sets `session_token` (30d) and `admin_token` (24h, admin only).
+Sets `session_token` (30d) and `admin_token` (24h, admin only). Legacy hashes (100k/310k iterations) are silently re-hashed to 600k on success.
 
 **Error responses:**
 - `401 { "error": "Invalid credentials" }`
+- `423 { "error": "Account locked" }` — 5 failed attempts → 15-min lockout
 - `429 { "error": "Rate limit" }`
 
 ---
@@ -489,10 +506,51 @@ Receive Stripe lifecycle events.
 
 | Event | Redis action |
 |---|---|
-| `checkout.session.completed` | `HSET user:{username} tier pro` |
-| `customer.subscription.deleted` | `HSET user:{username} tier free` |
+| `checkout.session.completed` | `tier=pro` + set `proStripe`; clear `voucherExpiry` |
+| `customer.subscription.deleted` | clear `proStripe`; re-evaluate tier (multi-source) |
 
 **Response:** Always `200 { "received": true }` (enables Stripe retry on failure)
+
+> **Multi-source entitlement:** tier downgrades to `free` only when **no** Pro source remains active (`proStripe`, `rcProExpiry`, or `voucherExpiry`). See `getUserTier()` in `src/lib/access.ts`.
+
+---
+
+### POST /api/webhooks/revenuecat
+
+Receive RevenueCat (mobile in-app purchase) lifecycle events. `app_user_id` = username.
+
+**Auth:** `Authorization` header verified against `REVENUECAT_WEBHOOK_AUTH`
+
+**Handled events:**
+
+| Event | Redis action |
+|---|---|
+| `INITIAL_PURCHASE` / `RENEWAL` / `PRODUCT_CHANGE` | `tier=pro` + set `rcProExpiry` (future-dated) |
+| `EXPIRATION` / `CANCELLATION` | re-evaluate tier (multi-source) |
+
+**Response:** `200 { "received": true }`
+
+---
+
+## Push Notifications (mobile)
+
+### POST /api/push/register · DELETE /api/push/register
+
+Store or clear the caller's Expo push token in the `push:tokens` Redis hash.
+
+**Auth:** session/bearer required
+
+**Request (POST):** `{ "token": "ExponentPushToken[...]" }`
+**Response 200:** `{ "ok": true }`
+
+---
+
+### GET /api/push/streak-reminder
+
+Vercel Cron endpoint (scheduled daily in `apps/web/vercel.json`) — pushes streak-at-risk nudges to users via the Expo Push API.
+
+**Auth:** `Authorization: Bearer <CRON_SECRET>`
+**Response 200:** `{ "sent": <count> }`
 
 ---
 
@@ -540,5 +598,19 @@ Record an NDA acceptance.
 ```json
 { "token": "string", "email": "string" }
 ```
+
+**Response 200:** `{ "ok": true }`
+
+---
+
+## Account
+
+### DELETE /api/delete-account
+
+Permanently delete the caller's account.
+
+**Auth:** session/bearer required
+
+Purges the user from Redis (`user:`, `progress:`, `streak:`, leaderboard sets, `nda:`, and the `email:` index) **and** deletes the parallel Supabase Auth account.
 
 **Response 200:** `{ "ok": true }`
