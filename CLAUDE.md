@@ -238,6 +238,7 @@ STRIPE_PRO_YEARLY_PRICE_ID   ← Stripe price ID for $99/yr
 SUPABASE_URL              ← Supabase project URL (server-side; read in src/lib/supabase.ts)
 SUPABASE_ANON_KEY         ← Supabase anon key (server-side; used by the SSR client)
 SUPABASE_SERVICE_ROLE_KEY ← Supabase service role key (server-side only; privileged)
+REVENUECAT_WEBHOOK_AUTH   ← shared secret for the RevenueCat (mobile IAP) webhook; matches the RC dashboard Authorization header
 ```
 
 Local dev: `.env.local` in `app/` (gitignored).
@@ -269,6 +270,7 @@ Local dev: `.env.local` in `app/` (gitignored).
 | `POST /api/stripe/checkout` | Create Stripe checkout session (monthly/yearly); returns `{ url }` |
 | `GET /api/stripe/portal` | Redirect to Stripe customer portal |
 | `POST /api/webhooks/stripe` | `checkout.session.completed` → tier=pro; `subscription.deleted` → tier=free; clears voucherExpiry |
+| `POST /api/webhooks/revenuecat` | Mobile IAP (RevenueCat) — auth-header verified; grant events → tier=pro + rcProExpiry; EXPIRATION → tier=free. `app_user_id` = username |
 | `GET /api/admin/users` | Admin: list all users with tier, coins, stages, badges, streak |
 | `POST /api/admin/set-tier` | Admin: set tier (pro/free/all-star); audit logged |
 | `POST /api/admin/set-group` | Admin: set user group (career/curious); audit logged |

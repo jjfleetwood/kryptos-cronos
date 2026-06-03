@@ -16,16 +16,24 @@ export async function getUserTier(username: string): Promise<"free" | "pro" | "t
   // hints 2+) are open to every signed-in user. Flip OPEN_ACCESS to re-gate at launch.
   if (OPEN_ACCESS) return "pro";
   const lower = username.toLowerCase();
-  const [tier, createdAt, voucherExpiry] = await Promise.all([
+  const [tier, createdAt, voucherExpiry, rcProExpiry] = await Promise.all([
     redis.hget(`user:${lower}`, "tier"),
     redis.hget(`user:${lower}`, "createdAt"),
     redis.hget(`user:${lower}`, "voucherExpiry"),
+    redis.hget(`user:${lower}`, "rcProExpiry"),
   ]);
   // "all-star" was a legacy tier — treat as pro
   if (tier === "pro" || tier === "all-star") {
     // If this pro access came from a voucher, check if it has expired
     if (voucherExpiry && Date.now() > Number(voucherExpiry)) {
       await redis.hset(`user:${lower}`, { tier: "free", voucherExpiry: "" });
+      return "free";
+    }
+    // RevenueCat (mobile IAP) backstop: if the entitlement window has lapsed and
+    // no EXPIRATION webhook arrived, downgrade. (Stripe subs have no client-side
+    // expiry stamp here — they downgrade via the subscription.deleted webhook.)
+    if (rcProExpiry && Date.now() > Number(rcProExpiry)) {
+      await redis.hset(`user:${lower}`, { tier: "free", rcProExpiry: "" });
       return "free";
     }
     return "pro";

@@ -93,6 +93,15 @@ So "is this user Pro?" has one answer regardless of where they paid.
 
 **Exit:** buy on web → Pro on phone; buy on phone → Pro on web; restore purchases works.
 
+### Phase 3 — STATUS: backend foundation shipped 2026-06-03.
+
+- [x] **RevenueCat webhook** — `POST /api/webhooks/revenuecat` (`apps/web/src/app/api/webhooks/revenuecat/route.ts`). Authorization-header verified against `REVENUECAT_WEBHOOK_AUTH` (constant-time). Maps `event.app_user_id` (= our lowercase username) → Redis. Grant events (INITIAL_PURCHASE/RENEWAL/UNCANCELLATION/PRODUCT_CHANGE/NON_RENEWING_PURCHASE) → `tier=pro` + `rcProExpiry` + clears `voucherExpiry`; EXPIRATION/SUBSCRIPTION_PAUSED → `tier=free`. Ignores anonymous `$RCAnonymousID` users. tsc/build green; deployed.
+- [x] **Unified entitlement** — `getUserTier()` already reconciles via the shared `tier` field (Stripe + RevenueCat + voucher all write it); added an `rcProExpiry` lapse backstop mirroring `voucherExpiry`.
+- [x] **Env** — `REVENUECAT_WEBHOOK_AUTH` added to `.env.example` + CI placeholder + CLAUDE.md.
+- [ ] **⚠️ RevenueCat dashboard setup (you, when ready):** create a RevenueCat project; add an entitlement `pro`; create App Store + Play products mirroring $13.99/mo + $99/yr and attach to `pro`; add the webhook (URL `https://kryptoscronos.com/api/webhooks/revenuecat`, Authorization header = `REVENUECAT_WEBHOOK_AUTH` value, also set that env var in Vercel); the Phase 4 app calls `Purchases.logIn(username)` so `app_user_id` = our username.
+- [ ] **Known limitation:** a user paying on BOTH web (Stripe) and mobile (RevenueCat) could be downgraded by one channel's revoke event while the other is still active. Acceptable now (single-platform payers dominate); proper fix = per-source entitlement fields with a computed tier. Logged for later.
+- Note: most of Phase 3 only goes *live* once Phase 4 (the app) exists and the RC dashboard is configured — this is the backend foundation, same as Phase 1 auth preceded the app.
+
 ---
 
 ## Phase 4 — Mobile MVP (Expo) · ~3–4 wks
