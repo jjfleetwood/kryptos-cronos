@@ -219,9 +219,9 @@ STRIPE_SECRET_KEY         ← Stripe secret key (sk_live_... or sk_test_...)
 STRIPE_WEBHOOK_SECRET     ← Stripe webhook signing secret (whsec_...)
 STRIPE_PRO_MONTHLY_PRICE_ID  ← Stripe price ID for $13.99/mo
 STRIPE_PRO_YEARLY_PRICE_ID   ← Stripe price ID for $99/yr
-NEXT_PUBLIC_SUPABASE_URL  ← Supabase project URL
-NEXT_PUBLIC_SUPABASE_ANON_KEY ← Supabase anon key
-SUPABASE_SERVICE_ROLE_KEY ← Supabase service role key (server-side only)
+SUPABASE_URL              ← Supabase project URL (server-side; read in src/lib/supabase.ts)
+SUPABASE_ANON_KEY         ← Supabase anon key (server-side; used by the SSR client)
+SUPABASE_SERVICE_ROLE_KEY ← Supabase service role key (server-side only; privileged)
 ```
 
 Local dev: `.env.local` in `app/` (gitignored).
