@@ -66,22 +66,22 @@ export function createApiClient(config: ApiClientConfig = {}) {
     /** Escape hatch for endpoints without a typed wrapper yet. */
     request,
 
-    getMe: () => request<Me>("/api/auth/me"),
-    bootstrap: () => request<BootstrapResult>("/api/auth/bootstrap", { method: "POST" }),
+    getMe: () => request<Me>("/api/v1/auth/me"),
+    bootstrap: () => request<BootstrapResult>("/api/v1/auth/bootstrap", { method: "POST" }),
 
-    getProgress: () => request<Progress | null>("/api/progress"),
+    getProgress: () => request<Progress | null>("/api/v1/progress"),
     awardStage: (stageId: string, badgeId?: string) =>
-      request<{ ok: true; progress: Progress }>("/api/progress", { method: "POST", json: { stageId, badgeId } }),
+      request<{ ok: true; progress: Progress }>("/api/v1/progress", { method: "POST", json: { stageId, badgeId } }),
 
     getLeaderboard: (period: LeaderboardPeriod = "alltime") =>
-      request<LeaderboardPlayer[]>(`/api/leaderboard?period=${period}`),
+      request<LeaderboardPlayer[]>(`/api/v1/leaderboard?period=${period}`),
 
     checkFlag: (input: CheckFlagInput) =>
-      request<CheckFlagResult>("/api/check-flag", { method: "POST", json: input }),
+      request<CheckFlagResult>("/api/v1/check-flag", { method: "POST", json: input }),
     checkAnswer: (input: CheckAnswerInput) =>
-      request<CheckAnswerResult>("/api/check-answer", { method: "POST", json: input }),
+      request<CheckAnswerResult>("/api/v1/check-answer", { method: "POST", json: input }),
     getHint: (input: HintInput) =>
-      request<HintResult>("/api/hint", { method: "POST", json: input }),
+      request<HintResult>("/api/v1/hint", { method: "POST", json: input }),
   };
 }
 

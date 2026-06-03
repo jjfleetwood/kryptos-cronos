@@ -16,24 +16,34 @@ export async function getUserTier(username: string): Promise<"free" | "pro" | "t
   // hints 2+) are open to every signed-in user. Flip OPEN_ACCESS to re-gate at launch.
   if (OPEN_ACCESS) return "pro";
   const lower = username.toLowerCase();
-  const [tier, createdAt, voucherExpiry, rcProExpiry] = await Promise.all([
+  const [tier, createdAt, voucherExpiry, rcProExpiry, proStripe] = await Promise.all([
     redis.hget(`user:${lower}`, "tier"),
     redis.hget(`user:${lower}`, "createdAt"),
     redis.hget(`user:${lower}`, "voucherExpiry"),
     redis.hget(`user:${lower}`, "rcProExpiry"),
+    redis.hget(`user:${lower}`, "proStripe"),
   ]);
   // "all-star" was a legacy tier — treat as pro
   if (tier === "pro" || tier === "all-star") {
-    // If this pro access came from a voucher, check if it has expired
-    if (voucherExpiry && Date.now() > Number(voucherExpiry)) {
-      await redis.hset(`user:${lower}`, { tier: "free", voucherExpiry: "" });
-      return "free";
-    }
-    // RevenueCat (mobile IAP) backstop: if the entitlement window has lapsed and
-    // no EXPIRATION webhook arrived, downgrade. (Stripe subs have no client-side
-    // expiry stamp here — they downgrade via the subscription.deleted webhook.)
-    if (rcProExpiry && Date.now() > Number(rcProExpiry)) {
-      await redis.hset(`user:${lower}`, { tier: "free", rcProExpiry: "" });
+    const now = Date.now();
+    // Multi-source entitlement: Pro stands if ANY source is still active —
+    // Stripe (web), RevenueCat (mobile, with expiry), or a voucher (with expiry).
+    const stripeActive = proStripe === "1";
+    const voucherActive = !!voucherExpiry && now < Number(voucherExpiry);
+    const rcActive = !!rcProExpiry && now < Number(rcProExpiry);
+    if (stripeActive || voucherActive || rcActive) return "pro";
+
+    // No active source. If a time-boxed source (voucher / RevenueCat) has a
+    // *lapsed* stamp, that was the thing granting Pro — downgrade and clear it.
+    // (A pro tier with no source stamps at all is an admin grant → stays pro.)
+    const voucherExpired = !!voucherExpiry && now >= Number(voucherExpiry);
+    const rcExpired = !!rcProExpiry && now >= Number(rcProExpiry);
+    if (voucherExpired || rcExpired) {
+      await redis.hset(`user:${lower}`, {
+        tier: "free",
+        ...(voucherExpired ? { voucherExpiry: "" } : {}),
+        ...(rcExpired ? { rcProExpiry: "" } : {}),
+      });
       return "free";
     }
     return "pro";

@@ -38,7 +38,7 @@ export async function registerForPush(): Promise<void> {
 
     const projectId = Constants.expoConfig?.extra?.eas?.projectId as string | undefined;
     const tokenData = await Notifications.getExpoPushTokenAsync(projectId ? { projectId } : undefined);
-    await api.request("/api/push/register", { method: "POST", json: { token: tokenData.data } });
+    await api.request("/api/v1/push/register", { method: "POST", json: { token: tokenData.data } });
   } catch {
     // best-effort — push registration must never break sign-in
   }
@@ -46,7 +46,7 @@ export async function registerForPush(): Promise<void> {
 
 export async function unregisterPush(): Promise<void> {
   try {
-    await api.request("/api/push/register", { method: "DELETE" });
+    await api.request("/api/v1/push/register", { method: "DELETE" });
   } catch {
     // ignore
   }

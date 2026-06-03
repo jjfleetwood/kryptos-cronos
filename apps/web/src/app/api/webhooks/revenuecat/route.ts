@@ -64,7 +64,16 @@ export async function POST(req: NextRequest) {
       voucherExpiry: "", // a real purchase supersedes any voucher window
     });
   } else if (REVOKE_EVENTS.has(event.type)) {
-    await redis.hset(`user:${lower}`, { tier: "free", rcProExpiry: "" });
+    await redis.hset(`user:${lower}`, { rcProExpiry: "" });
+    // Only downgrade if no OTHER source still grants Pro (Stripe / voucher).
+    const [proStripe, voucherExpiry] = await Promise.all([
+      redis.hget(`user:${lower}`, "proStripe"),
+      redis.hget(`user:${lower}`, "voucherExpiry"),
+    ]);
+    const voucherActive = !!voucherExpiry && Date.now() < Number(voucherExpiry);
+    if (proStripe !== "1" && !voucherActive) {
+      await redis.hset(`user:${lower}`, { tier: "free" });
+    }
   }
   // Other event types (TEST, CANCELLATION, BILLING_ISSUE, TRANSFER, etc.) are
   // acknowledged without a tier change.

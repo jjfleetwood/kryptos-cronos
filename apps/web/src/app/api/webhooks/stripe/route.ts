@@ -27,6 +27,7 @@ export async function POST(req: NextRequest) {
       const lower = username.toLowerCase();
       await redis.hset(`user:${lower}`, {
         tier: "pro",
+        proStripe: "1", // entitlement source flag (see getUserTier multi-source logic)
         stripeCustomerId: session.customer ?? "",
         stripeSubscriptionId: session.subscription ?? "",
         voucherExpiry: "", // clear any prior voucher expiry so Stripe Pro isn't auto-downgraded
@@ -118,7 +119,19 @@ export async function POST(req: NextRequest) {
     const sub = event.data.object as Stripe.Subscription;
     const username = sub.metadata?.username;
     if (username) {
-      await redis.hset(`user:${username.toLowerCase()}`, { tier: "free" });
+      const lower = username.toLowerCase();
+      await redis.hset(`user:${lower}`, { proStripe: "", stripeSubscriptionId: "" });
+      // Only downgrade if no OTHER source still grants Pro (RevenueCat / voucher).
+      const [rcProExpiry, voucherExpiry] = await Promise.all([
+        redis.hget(`user:${lower}`, "rcProExpiry"),
+        redis.hget(`user:${lower}`, "voucherExpiry"),
+      ]);
+      const now = Date.now();
+      const rcActive = !!rcProExpiry && now < Number(rcProExpiry);
+      const voucherActive = !!voucherExpiry && now < Number(voucherExpiry);
+      if (!rcActive && !voucherActive) {
+        await redis.hset(`user:${lower}`, { tier: "free" });
+      }
     }
   }
 
