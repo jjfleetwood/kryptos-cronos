@@ -133,6 +133,14 @@ So "is this user Pro?" has one answer regardless of where they paid.
 
 **Exit:** streak reminders measurably lift D1/D7 retention in PostHog.
 
+### Phase 5 — STATUS: push notifications shipped to branch `phase-4-mobile` 2026-06-03.
+
+- [x] **Mobile registration** — `src/lib/notifications.ts` (expo-notifications): permission prompt → Expo push token → `POST /api/push/register`. Wired into `auth.tsx` (registers on sign-in/app-start; `unregisterPush` on sign-out). Plugin added to `app.json`.
+- [x] **Backend** — `src/lib/push.ts` (Expo Push API sender), `POST/DELETE /api/push/register` (stores token in `push:tokens` hash, auth'd), and `GET /api/push/streak-reminder` (CRON_SECRET-bearer guarded): enumerates `push:tokens`, finds users whose streak `lastDate` == yesterday with `current >= 1`, and nudges them.
+- [x] **Schedule** — `apps/web/vercel.json` cron at `0 23 * * *` (daily 23:00 UTC) hits the reminder. Env: `CRON_SECRET` (added to `.env.example` + CI + CLAUDE.md). tsc + web build green.
+- [ ] **You, before it fires:** set `CRON_SECRET` in Vercel; run `eas init` so the app gets a real `projectId` for Expo push tokens (dev works on a physical device). Vercel Cron requires the appropriate plan.
+- [ ] **Deferred:** daily-challenge / new-content notifications, offline caching, deep links (the streak nudge is the highest-leverage one and is done).
+
 ---
 
 ## Phase 6 — Store launch · ~1–1.5 wks (incl. review latency)

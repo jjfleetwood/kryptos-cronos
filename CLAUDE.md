@@ -239,6 +239,7 @@ SUPABASE_URL              ← Supabase project URL (server-side; read in src/lib
 SUPABASE_ANON_KEY         ← Supabase anon key (server-side; used by the SSR client)
 SUPABASE_SERVICE_ROLE_KEY ← Supabase service role key (server-side only; privileged)
 REVENUECAT_WEBHOOK_AUTH   ← shared secret for the RevenueCat (mobile IAP) webhook; matches the RC dashboard Authorization header
+CRON_SECRET               ← Vercel Cron bearer for /api/push/streak-reminder (daily streak push)
 ```
 
 Local dev: `.env.local` in `app/` (gitignored).
@@ -271,6 +272,8 @@ Local dev: `.env.local` in `app/` (gitignored).
 | `GET /api/stripe/portal` | Redirect to Stripe customer portal |
 | `POST /api/webhooks/stripe` | `checkout.session.completed` → tier=pro; `subscription.deleted` → tier=free; clears voucherExpiry |
 | `POST /api/webhooks/revenuecat` | Mobile IAP (RevenueCat) — auth-header verified; grant events → tier=pro + rcProExpiry; EXPIRATION → tier=free. `app_user_id` = username |
+| `POST/DELETE /api/push/register` | Store/clear the caller's Expo push token in `push:tokens` hash (auth required) |
+| `GET /api/push/streak-reminder` | Vercel Cron (daily, `CRON_SECRET` bearer) — pushes streak-at-risk nudges via Expo Push API; `apps/web/vercel.json` schedules it |
 | `GET /api/admin/users` | Admin: list all users with tier, coins, stages, badges, streak |
 | `POST /api/admin/set-tier` | Admin: set tier (pro/free/all-star); audit logged |
 | `POST /api/admin/set-group` | Admin: set user group (career/curious); audit logged |

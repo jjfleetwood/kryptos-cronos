@@ -2,6 +2,7 @@ import { createContext, useContext, useEffect, useState, type ReactNode } from "
 import type { Session } from "@supabase/supabase-js";
 import { supabase } from "./supabase";
 import { api } from "./api";
+import { registerForPush, unregisterPush } from "./notifications";
 
 type AuthState = {
   session: Session | null;
@@ -21,6 +22,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     supabase.auth.getSession().then(({ data }) => {
       setSession(data.session);
       setLoading(false);
+      if (data.session) registerForPush();
     });
     const { data: sub } = supabase.auth.onAuthStateChange((_event, s) => setSession(s));
     return () => sub.subscription.unsubscribe();
@@ -31,6 +33,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     if (error) return { error: error.message };
     // Ensure a Redis user record exists (mobile bypasses /api/auth/register).
     await api.bootstrap().catch(() => {});
+    registerForPush();
     return {};
   }
 
@@ -44,10 +47,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     // If the project returns a session immediately (email confirmation off),
     // provision the Redis record now; otherwise it happens on first signIn.
     await api.bootstrap().catch(() => {});
+    registerForPush();
     return {};
   }
 
   async function signOut() {
+    await unregisterPush(); // clear the token server-side while the session is still valid
     await supabase.auth.signOut();
   }
 
