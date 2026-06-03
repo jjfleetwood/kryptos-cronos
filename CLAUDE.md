@@ -269,7 +269,7 @@ Local dev: `.env.local` in `app/` (gitignored).
 | `POST /api/admin/downloads-access` | Admin: set downloads access (Off/Allowlist/All); per-user toggles (requires admin token) |
 | `POST /api/survey` | Store survey response in Redis; awards 30-day Pro to free/trial users (one-time) |
 | `POST /api/resume/generate` | Generate PDF resume with epoch-based skills; returns PDF buffer |
-| `POST /api/delete-account` | Purge user record from Redis |
+| `DELETE /api/delete-account` | Purge user from Redis (user/progress/streak/leaderboard/nda + email index) and delete the parallel Supabase auth account |
 
 ---
 
