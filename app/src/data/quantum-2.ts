@@ -693,15 +693,15 @@ with oqs.Signature("Dilithium3") as signer:
       tagline: "SLH-DSA relies only on hash function security — the most conservative PQC choice with the simplest security assumptions.",
       year: 2024,
       overview: [
-        "SLH-DSA (Stateless Hash-based Digital Signature Algorithm), standardized as NIST FIPS 205 in August 2024, is based on SPHINCS+ and has the most conservative security assumptions of all PQC signature schemes. Its security relies solely on the collision resistance and second-preimage resistance of the underlying hash function (SHA-256 or SHAKE-256) — not on any algebraic hardness assumption.",
-        "This makes SLH-DSA uniquely trustworthy: if SHA-256 is not broken, SLH-DSA is secure. Even if lattice problems turn out to be easier than expected, SLH-DSA remains secure. For root CAs, firmware signing, and other long-lived high-security applications where maximum conservatism is warranted, SLH-DSA is the recommended choice.",
-        "The tradeoff: SLH-DSA signatures are large (7856-49856 bytes depending on parameter set) and signing is slow (milliseconds to seconds for some parameter sets). For applications where signature size or speed is critical, ML-DSA is preferred. For root-of-trust signing (done infrequently, permanent consequences), SLH-DSA's conservative security justifies the overhead.",
+        "SLH-DSA (Stateless Hash-based Digital Signature Algorithm), NIST FIPS 205 (Aug 2024), has the most conservative assumptions of any PQC signature scheme:\n- Based on SPHINCS+, it rests solely on hash-function security — collision and second-preimage resistance of SHA-256 or SHAKE-256.\n- It depends on no algebraic hardness assumption at all.",
+        "That makes SLH-DSA uniquely trustworthy:\n- If SHA-256 isn't broken, SLH-DSA is secure — even if lattice problems turn out easier than expected.\n- For root CAs, firmware signing, and other long-lived high-security uses where maximum conservatism is warranted, it's the recommended choice.",
+        "The tradeoff is size and speed:\n- Signatures are large (7856–49856 bytes) and signing is slow (milliseconds to seconds depending on parameter set).\n- Where size or speed is critical, ML-DSA wins; for infrequent root-of-trust signing with permanent consequences, SLH-DSA's conservatism justifies the overhead.",
       ],
       technical: {
         title: "How SPHINCS+ Works — Hypertree of Merkle Trees",
         body: [
-          "SPHINCS+ builds a hypertree: a tree of Merkle trees. Each leaf node signs one message using a one-time signature scheme (WOTS+). The Merkle tree authenticates the WOTS+ key pair. The hypertree provides statefulness-free operation: the signer chooses a random leaf for each signature, so no state tracking is needed (unlike classic stateful hash-based signatures like XMSS).",
-          "Security proof: breaking SLH-DSA requires either finding a collision in the hash function or solving a second-preimage problem — both are hard even for quantum computers (Grover's gives only O(√N) speedup, doubled by using SHA-256/512 with adequate output size).",
+          "SPHINCS+ is a hypertree — a tree of Merkle trees:\n- Each leaf signs one message with a one-time signature (WOTS+), and the Merkle tree authenticates that WOTS+ key pair.\n- The signer picks a random leaf per signature, so it needs no state tracking (unlike stateful schemes like XMSS) — hence 'stateless.'",
+          "Its security proof reduces straight to hashing:\n- Breaking SLH-DSA requires finding a hash collision or solving a second-preimage problem.\n- Both are hard even for quantum computers — Grover's gives only an O(√N) speedup, offset by using SHA-256/512 with adequate output size.",
         ],
         codeExample: {
           label: "SLH-DSA parameter sets — size and speed tradeoffs",
@@ -732,8 +732,8 @@ SLH-DSA-SHAKE-128f Level1  32B     64B       17088B    0.22s
         where: "Root Certificate Authorities globally — Mozilla, Microsoft, Apple trust stores",
         impact: "Root CA signatures must remain valid for 25+ years — SLH-DSA is the only option that can guarantee this",
         body: [
-          "Root Certificate Authority (CA) signing keys have 25-year lifetimes — the root's signature on intermediate certificates must remain valid for decades. With RSA and ECDSA scheduled for deprecation by 2035, root CAs must begin migrating their signing algorithms now.",
-          "SLH-DSA is the preferred choice for root CA signing because its security assumptions (hash function collision resistance) are the most conservative and longest-standing in cryptography. Even if lattice problems are found to be easier than expected, SLH-DSA root CA signatures remain secure. Mozilla, Microsoft, and Apple are evaluating PQC root CA certificates that will need to be deployed into all major trust stores.",
+          "Root CA signing keys carry 25-year lifetimes:\n- A root's signature on intermediate certificates must stay valid for decades.\n- With RSA and ECDSA scheduled for deprecation by 2035, root CAs have to start migrating their signing algorithms now.",
+          "SLH-DSA is the preferred choice for that role:\n- Its assumptions — hash-function collision resistance — are the most conservative and longest-standing in cryptography, so the signatures stay secure even if lattice problems weaken.\n- Mozilla, Microsoft, and Apple are evaluating PQC root CA certificates to deploy across every major trust store.",
         ],
       },
       diagram: {
