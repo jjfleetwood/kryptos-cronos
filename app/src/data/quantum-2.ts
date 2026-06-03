@@ -28,15 +28,15 @@ export const quantum2Stages: StageConfig[] = [
       tagline: "NIST's 8-year post-quantum cryptography competition produced the algorithms that will secure the internet for the next century.",
       year: 2024,
       overview: [
-        "In 2016, NIST launched its Post-Quantum Cryptography Standardization project — an open competition to identify and standardize cryptographic algorithms resistant to quantum computers. 69 algorithms were submitted from research teams worldwide. After 3 rounds of public analysis, cryptanalysis, and performance evaluation, NIST selected 4 algorithms for standardization.",
-        "In August 2024, NIST published the first PQC standards: FIPS 203 (ML-KEM, based on CRYSTALS-Kyber), FIPS 204 (ML-DSA, based on CRYSTALS-Dilithium), and FIPS 205 (SLH-DSA, based on SPHINCS+). FALCON (FN-DSA) will be standardized separately. These algorithms are now the mandatory replacements for RSA and ECC in all US federal systems.",
-        "The 8-year standardization process was unusually transparent — all submissions, cryptanalysis reports, and evaluation criteria were published publicly. Several submitted algorithms were broken during the process (Rainbow, SIDH/SIKE), validating the competitive process. The surviving algorithms have been extensively analyzed by the world's cryptographic community.",
+        "In 2016, NIST launched its Post-Quantum Cryptography Standardization project:\n- An open competition to find and standardize quantum-resistant algorithms, with 69 submissions from teams worldwide.\n- After 3 rounds of public analysis, cryptanalysis, and performance evaluation, NIST selected 4 to standardize.",
+        "In August 2024, NIST published the first PQC standards:\n- FIPS 203 (ML-KEM, from CRYSTALS-Kyber), FIPS 204 (ML-DSA, from CRYSTALS-Dilithium), and FIPS 205 (SLH-DSA, from SPHINCS+); FALCON (FN-DSA) follows separately.\n- These are now the mandatory replacements for RSA and ECC across US federal systems.",
+        "The 8-year process was unusually transparent — and that's the point:\n- All submissions, cryptanalysis reports, and criteria were public.\n- Several entrants were broken during the process (Rainbow, SIDH/SIKE), validating the competition; the survivors have been exhaustively analyzed by the global cryptographic community.",
       ],
       technical: {
         title: "NIST PQC Algorithm Families",
         body: [
-          "The winning algorithms fall into three mathematical families: (1) Lattice-based: ML-KEM and ML-DSA rely on the hardness of lattice problems (Learning With Errors, Module-LWE) — believed resistant to both classical and quantum attacks; (2) Hash-based: SLH-DSA relies only on the collision resistance of hash functions — minimal security assumptions; (3) Code-based: HQC is being evaluated as an alternate KEM.",
-          "Each family has different performance characteristics. Lattice-based algorithms are fastest but have larger key/signature sizes than classical algorithms. Hash-based signatures (SPHINCS+) are slower but have the most conservative security assumptions. The selection provides diversity against future cryptanalytic breakthroughs.",
+          "The winners span three mathematical families:\n- Lattice-based — ML-KEM and ML-DSA rest on hard lattice problems (Learning With Errors, Module-LWE), believed resistant to classical and quantum attack.\n- Hash-based — SLH-DSA relies only on hash collision resistance (minimal assumptions); code-based — HQC is being evaluated as an alternate KEM.",
+          "Each family trades performance against conservatism:\n- Lattice algorithms are fastest but carry larger keys/signatures than classical ones.\n- Hash-based signatures (SPHINCS+) are slower but make the most conservative assumptions — the diversity hedges against a future cryptanalytic breakthrough.",
         ],
         codeExample: {
           label: "NIST PQC algorithm comparison — key sizes and performance",
@@ -67,8 +67,8 @@ SLH-DSA-128 Sig         32 bytes   64 bytes   7856 bytes  100x slower
         where: "NIST PQC Round 4 finalist SIKE/SIDH",
         impact: "Round 4 finalist broken by a single researcher on a laptop — validates NIST's competitive process",
         body: [
-          "In July 2022, Microsoft researcher Wouter Castryck and Thomas Decru broke SIKE (Supersingular Isogeny Key Encapsulation) — a NIST Round 4 finalist — in about 1 hour using a single laptop and a mathematical technique from the 1990s. SIKE had been one of the most promising PQC candidates and had survived years of public scrutiny.",
-          "This dramatic cryptanalysis validated the NIST competition model: public analysis over years is the only way to build confidence in new cryptographic algorithms. It also illustrates why the winning algorithms' multiple mathematical approaches provide resilience — if lattice problems were broken tomorrow, hash-based SLH-DSA would still stand.",
+          "In July 2022, SIKE fell in about an hour:\n- Microsoft's Wouter Castryck and Thomas Decru broke SIKE (Supersingular Isogeny Key Encapsulation) — a NIST Round 4 finalist — on a single laptop using a 1990s mathematical technique.\n- SIKE had been one of the most promising PQC candidates and had survived years of scrutiny.",
+          "The break validated the whole competition model:\n- Years of public analysis are the only way to build confidence in new cryptography.\n- It also shows why multiple mathematical families matter — if lattice problems fell tomorrow, hash-based SLH-DSA would still stand.",
         ],
       },
       diagram: {
@@ -189,15 +189,15 @@ SLH-DSA-128 Sig         32 bytes   64 bytes   7856 bytes  100x slower
       tagline: "The Learning With Errors problem is so hard that both classical and quantum computers struggle with it — the bedrock of post-quantum cryptography.",
       year: 2024,
       overview: [
-        "The Learning With Errors (LWE) problem, introduced by Oded Regev in 2005, is the mathematical foundation of the most important post-quantum cryptographic algorithms. LWE is: given a series of noisy linear equations over a finite field, find the secret vector s. The noise makes this exponentially harder than solving a system of linear equations.",
-        "Regev proved a worst-case hardness reduction: solving random LWE instances is at least as hard as solving certain lattice problems (Shortest Vector Problem — SVP) in the worst case. The SVP on high-dimensional lattices is believed to be hard for both classical and quantum computers — no quantum algorithm achieves more than polynomial speedup.",
-        "ML-KEM and ML-DSA use the Module variant (Module-LWE), which offers better performance while maintaining the same hardness guarantees. The 'Module' structure means the secret and error are structured in a way that enables efficient computation.",
+        "Learning With Errors (LWE), introduced by Oded Regev in 2005, is the foundation of the most important PQC algorithms:\n- The problem: given a series of noisy linear equations over a finite field, find the secret vector s.\n- The added noise makes this exponentially harder than solving an ordinary linear system.",
+        "Regev proved a worst-case hardness reduction that anchors its security:\n- Solving random LWE instances is at least as hard as solving certain lattice problems (Shortest Vector Problem, SVP) in the worst case.\n- High-dimensional SVP is believed hard for both classical and quantum computers — no quantum algorithm beats a polynomial speedup.",
+        "ML-KEM and ML-DSA use the Module variant (Module-LWE):\n- It delivers better performance while keeping the same hardness guarantees.\n- The 'Module' structure organizes the secret and error to enable efficient computation.",
       ],
       technical: {
         title: "LWE Problem Definition and Cryptographic Use",
         body: [
-          "LWE problem: given (A, b) where A is a random matrix mod q, b = As + e mod q, s is a secret vector, and e is a small error vector, find s. Even with unlimited samples (A_i, b_i), recovering s is computationally infeasible for large n and q.",
-          "For encryption: treat s as the private key, A as a public parameter. To encrypt bit m: choose random r, output (A^T r, b^T r + m·⌊q/2⌋). The error e makes decryption of the secret impossible without s, but the message m can be recovered because the noise is small enough not to flip the message bit.",
+          "The LWE problem is simple to state and hard to solve:\n- Given (A, b) where A is a random matrix mod q, b = As + e mod q, with secret vector s and small error e — find s.\n- Even with unlimited samples (A_i, b_i), recovering s is computationally infeasible for large n and q.",
+          "Turning LWE into encryption uses the noise as the lock:\n- Treat s as the private key and A as a public parameter; to encrypt bit m, pick random r and output (A^T r, b^T r + m·⌊q/2⌋).\n- The error e makes recovering the secret impossible without s, but m survives because the noise is too small to flip the message bit.",
         ],
         codeExample: {
           label: "LWE encryption — simplified Python implementation",
@@ -229,8 +229,8 @@ print("Decrypted:", 1 if abs(decrypted - q//2) < q//4 else 0)  # → 1`,
         where: "Academic cryptography → global PKI replacement",
         impact: "The mathematical foundation that will secure the post-quantum internet",
         body: [
-          "Oded Regev introduced LWE in his 2005 STOC paper, proving that it was as hard as solving certain lattice problems in the worst case — a remarkable average-case to worst-case reduction that cryptographers had sought for decades. This hardness guarantee made LWE uniquely trustworthy for cryptographic use.",
-          "From Regev's paper in 2005 to NIST FIPS 203 in 2024 — 19 years of academic cryptography, performance optimization, parameter selection, and competitive evaluation produced the algorithm that will be used in billions of devices. ML-KEM (the standard) is a highly optimized variant of Kyber, which is itself a carefully designed LWE-based scheme.",
+          "Oded Regev introduced LWE in his 2005 STOC paper with a landmark proof:\n- He showed LWE is as hard as certain lattice problems in the worst case — the average-case-to-worst-case reduction cryptographers had sought for decades.\n- That hardness guarantee made LWE uniquely trustworthy for cryptographic use.",
+          "From paper to global standard took 19 years:\n- 2005 (Regev) → 2024 (NIST FIPS 203): academic work, performance optimization, parameter selection, and competitive evaluation.\n- The result, ML-KEM, is a highly optimized variant of Kyber — itself a carefully designed LWE-based scheme — headed for billions of devices.",
         ],
       },
       diagram: {
