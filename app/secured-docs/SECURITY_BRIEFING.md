@@ -1,10 +1,14 @@
 # Kryptós CronOS — Security Briefing
 **Classification:** Internal  
-**Version:** 5.2  
-**Date:** 2026-05-30  
-**Current version:** v1.23.0
+**Version:** 5.3  
+**Date:** 2026-06-03  
+**Current version:** v1.24.0
 
 ---
+
+## Changelog — v5.3 (2026-06-03) — AWS AIP + GCP PMLE cert paths (v1.24.0)
+
+No new attack surface. This release adds two certificate paths (AWS Certified AI Practitioner, Google Cloud Professional ML Engineer) by extending the existing `cert-domains.ts` data table and the `/certs` page config — render-only, no backend changes. The two new `CertId`s were added to the pre-existing `VALID_CERTS` allowlist in `POST /api/exam` and to the local `CERT_META` in the `/exam/cert/[certId]` page; the exam route's auth, grading, and answer-key isolation (`server-only` exam-banks pulling from full stage data) are unchanged. No new API routes, Redis keys, env vars, or client-exposed secrets. Practice-exam pools for the new certs are derived from existing stage quizzes already validated server-side.
 
 ## Changelog — v5.2 (2026-05-30) — Dual-mode quiz rollout + brand/UI refresh (v1.23.0)
 

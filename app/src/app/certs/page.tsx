@@ -215,6 +215,50 @@ const CERTS: CertConfig[] = [
     bgClass: "bg-sky-500/5",
     badgeClass: "bg-sky-500/15 border-sky-500/30 text-sky-300",
   },
+  {
+    id: "aws-aip",
+    name: "AWS Certified AI Practitioner",
+    examCode: "AIF-C01",
+    emoji: "☁️",
+    tagline: "AWS's foundational AI credential. Validates fluency in AI/ML concepts, generative AI, foundation-model applications, and — heavily — responsible AI and AI security. No coding required; built for any professional working alongside AI on AWS.",
+    examUrl: "https://aws.amazon.com/certification/certified-ai-practitioner/",
+    salaryRange: "$100k – $140k",
+    jobCount: "300k+ open roles",
+    cost: "$100 USD",
+    questions: "65 (50 scored)",
+    passingScore: "700 / 1000",
+    prerequisites: "None (up to 6 months of AWS/AI exposure recommended)",
+    studyHours: "20–40 hours",
+    gradient: "linear-gradient(135deg, rgba(244,63,94,0.08) 0%, rgba(251,113,133,0.06) 100%)",
+    ringColor: "#fb7185",
+    accentClass: "text-rose-400",
+    barClass: "bg-rose-500",
+    borderClass: "border-rose-500/30",
+    bgClass: "bg-rose-500/5",
+    badgeClass: "bg-rose-500/15 border-rose-500/30 text-rose-300",
+  },
+  {
+    id: "gcp-pmle",
+    name: "Google Cloud Professional ML Engineer",
+    examCode: "PMLE",
+    emoji: "🧠",
+    tagline: "Google Cloud's flagship ML credential. Covers the full ML lifecycle — architecting solutions, managing data and models, scaling and serving, automating pipelines, and monitoring AI in production. The professional-tier target for ML engineers.",
+    examUrl: "https://cloud.google.com/learn/certification/machine-learning-engineer",
+    salaryRange: "$130k – $180k",
+    jobCount: "250k+ open roles",
+    cost: "$200 USD",
+    questions: "50–60",
+    passingScore: "Not disclosed (~70%)",
+    prerequisites: "3+ yrs industry experience incl. 1 yr building on Google Cloud (recommended)",
+    studyHours: "60–100 hours",
+    gradient: "linear-gradient(135deg, rgba(34,197,94,0.08) 0%, rgba(16,185,129,0.06) 100%)",
+    ringColor: "#22c55e",
+    accentClass: "text-green-400",
+    barClass: "bg-green-500",
+    borderClass: "border-green-500/30",
+    bgClass: "bg-green-500/5",
+    badgeClass: "bg-green-500/15 border-green-500/30 text-green-300",
+  },
 ];
 
 // ─── Stage lookup helpers ──────────────────────────────────────────────────────
@@ -603,11 +647,11 @@ export default function CertsPage() {
             <span className="text-xs px-2.5 py-1 rounded-full border text-indigo-400 bg-indigo-400/10 border-indigo-400/30 font-semibold">
               Certification Paths
             </span>
-            <span className="text-xs text-gray-600">Network+ · Security+ · ISC² CC · CySA+</span>
+            <span className="text-xs text-gray-600">Security+ · CySA+ · CISA · AI+ · AWS · Google Cloud</span>
           </div>
           <h1 className="text-3xl sm:text-4xl font-black text-white mb-2">Certificate Paths</h1>
           <p className="text-gray-400 leading-relaxed max-w-2xl">
-            Track your readiness for four industry-leading certifications. Every stage you complete maps
+            Track your readiness for ten industry-recognized certifications. Every stage you complete maps
             to real exam domains — see exactly where you stand and which stages to tackle next.
             Also check the <Link href="/cyberops" className="text-cyan-400 hover:text-cyan-300 transition-colors">CyberOps Associate tracker</Link> for the Cisco-specific path, or build a <Link href="/resume" className="text-cyan-400 hover:text-cyan-300 transition-colors">resume</Link> from your completed stages.
           </p>
@@ -686,7 +730,7 @@ export default function CertsPage() {
             </div>
 
             <p className="mt-8 text-center text-gray-700 text-xs leading-relaxed">
-              Stage-to-domain mappings reflect official exam blueprints (SY0-701, N10-009, CS0-003, CC v1.0).
+              Stage-to-domain mappings reflect official exam blueprints (SY0-701, N10-009, CS0-003, CC v1.0, AI+, AIF-C01, GCP PMLE).
               Completing all mapped stages does not guarantee exam passage — use this as a readiness guide alongside
               official study materials and practice exams.
             </p>

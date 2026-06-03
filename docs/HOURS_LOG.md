@@ -7,16 +7,16 @@
 
 ---
 
-## Summary (as of 2026-05-30)
+## Summary (as of 2026-06-03)
 
 | Metric | Value |
 |---|---|
-| **Total hours logged** | 56.0 h |
-| **Sessions logged** | 9 |
-| **Equivalent developer cost** | $8,400 (56h × $150/hr) |
-| **Estimated AI cost to date** | ~$90 (9 sessions × $10/session) |
-| **Estimated AI cost this month (May 2026)** | ~$90 (9 sessions × $10/session) |
-| **AI leverage ratio** | ~93× (developer equivalent ÷ AI cost) |
+| **Total hours logged** | 58.0 h |
+| **Sessions logged** | 10 |
+| **Equivalent developer cost** | $8,700 (58h × $150/hr) |
+| **Estimated AI cost to date** | ~$100 (10 sessions × $10/session) |
+| **Estimated AI cost this month (June 2026)** | ~$10 (1 session × $10/session) |
+| **AI leverage ratio** | ~87× (developer equivalent ÷ AI cost) |
 
 ---
 
@@ -24,6 +24,7 @@
 
 | Date | Version | Hours | Summary | Cumulative |
 |---|---|---|---|---|
+| 2026-06-03 | v1.24.0 | 2.0 h | AI cloud certifications on /certs — AWS Certified AI Practitioner (AIF-C01, 5 domains, rose) + Google Cloud Professional ML Engineer (PMLE, 6 domains, green). New aws-aip/gcp-pmle CertIds + domain defs + builders in cert-domains.ts; AI_PLATFORM_CERT_DOMAINS table (AWS→49 AI-native stages, GCP→~33 ML-lifecycle stages) merged into CERT_DOMAINS at load; practice exams auto-populate via getStagesForCert; allowlisted in exam route + exam page. Full /deploy: tsc+eslint+npm audit gates, vercel --prod, version bump, all docs stamped, security audit, commit + push dev | 58.0 h |
 | 2026-05-30 | v1.23.0 | 6.0 h | Completed dual-mode quiz rollout — final 69 CTF stages across 6 batches (quantum-3 QKD, quantum-4 risk-mgmt, cisco-2..5, umbrella, ancient stages.ts), reaching 203/203 every CTF stage now Quiz+CTF; idempotent inject-quizzes.mjs tooling. New brand logo (guilloché watch dial, replaces 🛡️) + favicon; playable homepage mini-CTF hero; certs left-sidebar + CyberOps-first + Resume relocated; RichText backtick/single-quote highlighting + chilled lead colors. Full /deploy: tsc+eslint+npm audit gates, version bump, all docs updated, security audit, commit + push dev | 56.0 h |
 | 2026-05-29 | v1.22.0 | 8.0 h | quantum-4 epoch (10 CTF stages — CBOM, HNDL, FIPS 203/204/205, CNSA 2.0, migration roadmap, sector risk, board briefing, hybrid crypto, quantum-safe arch, supply chain); emerging-tech epoch (10 quiz stages — adversarial ML, foundation model supply chain, FL gradient inversion, deepfakes, AI-augmented threats, edge AI, EU AI Act, agentic AI, quantum-AI, ERM); cert-domain AI+ merge fix; CLAUDE.md + RELEASE_NOTES + all UI/i18n/email counts updated (438→458, 36→38, 6 languages); deploy + security audit | 50.0 h |
 | 2026-05-29 | v1.21.0 | 17.0 h | Full security stage rewrite sprint — all 8 epochs upgraded to HS/University standard (cisco-core, ancient, cisco-enterprise, cisco-secops, cisco-advanced, mitre, mitre-atlas, owasp-llm): 3-paragraph historically-grounded incidents with attribution, policy/regulatory aftermath, specific CVE mechanics; step-structured STEP/DETECTION/REMEDIATION code blocks. Fixed CI build (2 ESLint errors). Added CompTIA AI+ cert path (/certs): 5 domains, 67 stages mapped (atlas-01..12, llm-01..12, quantum epochs, XDR stages). ISACA CISA/CISM/CRISC and Network+/CySA+ cert expansions from prior session. | 42.0 h |

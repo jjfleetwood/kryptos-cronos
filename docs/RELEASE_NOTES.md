@@ -2,6 +2,19 @@
 
 ---
 
+## v1.24.0 — 2026-06-03
+
+**AI cloud certifications: AWS AI Practitioner + Google Cloud Professional ML Engineer**
+
+- **Two new certificate paths on `/certs`** — AWS Certified AI Practitioner (AIF-C01) and Google Cloud Professional Machine Learning Engineer (PMLE). Brings the tracked-cert count to ten (plus the CyberOps Associate tracker).
+- **AWS Certified AI Practitioner (AIF-C01)** — 5 official domains (AI/ML Fundamentals 20%, Generative AI 24%, Foundation Models 28%, Responsible AI 14%, AI Security & Governance 14%); rose card. Mapped to 49 AI-native stages: all MITRE ATLAS (atlas-01..12), all OWASP LLM (llm-01..12), all Emerging Tech (emerging-01..10), all Agentic AI audit (audit-a01..a12), plus Cisco AI-security stages m42/m43/m50.
+- **Google Cloud Professional ML Engineer (PMLE)** — 6 official domains (Low-Code 13%, Data & Model Mgmt 14%, Scaling 18%, Serving 20%, Pipelines 22%, Monitoring 13%); green card. Mapped to ~33 ML-lifecycle stages across ATLAS/LLM/Emerging plus the agentic + continuous-monitoring audit stages.
+- **Implementation** — new `aws-aip`/`gcp-pmle` `CertId`s with domain defs + builder fns in `cert-domains.ts`; mappings live in a self-contained `AI_PLATFORM_CERT_DOMAINS` table merged into `CERT_DOMAINS` at module load (additive — leaves the existing security-cert table untouched). Quantum/crypto and pure-security stages intentionally excluded so the readiness rings stay credible.
+- **Practice exams auto-populate** — both certs draw question pools from their mapped stages' quizzes via `getStagesForCert`; allowlisted in `api/exam/route.ts` and `exam/cert/[certId]/page.tsx`. No new API routes, Redis keys, or env vars.
+- Cards use rose (AWS) and green (Google) rather than brand orange/blue to avoid clashing with the existing CySA+ (orange) and Network+ (blue) cards.
+
+---
+
 ## v1.23.0 — 2026-05-30
 
 **Every CTF stage is now dual-mode (Quiz + CTF) + brand & homepage refresh**

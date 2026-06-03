@@ -6,7 +6,7 @@ Gamified cybersecurity + AI training platform. 38 curriculum epochs, 458 CTF/qui
 
 **Live:** kryptoscronos.com  
 **Repo:** github.com/jjfleetwood/kryptos-cronos  
-**Current version:** v1.23.0 (as of 2026-05-30)
+**Current version:** v1.24.0 (as of 2026-06-03)
 
 ---
 
@@ -162,7 +162,7 @@ Back navigation: `BackLink` uses `backHref` prop (passed from `StageContainer`) 
 | `src/data/stages.ts` | Epoch registry + stage array — import all epoch files here; NOT for "use client" listing pages |
 | `src/data/stages-meta.ts` | Client-safe listing metadata (no ctf/quiz/info) — import this in "use client" listing pages |
 | `src/data/stage-flags.ts` | Server-only flag store (`import "server-only"`) — used only by `/api/check-flag` |
-| `src/data/cert-domains.ts` | CompTIA Security+ SY0-701, ISC² CC, CompTIA Network+ N10-009, CySA+ CS0-003, CompTIA AI+, ISACA CISA/CISM/CRISC domain mappings; `computeCertReadiness()` |
+| `src/data/cert-domains.ts` | CompTIA Security+ SY0-701, ISC² CC, CompTIA Network+ N10-009, CySA+ CS0-003, CompTIA AI+, ISACA CISA/CISM/CRISC, AWS AI Practitioner (AIF-C01), Google Cloud Professional ML Engineer domain mappings; AI-cloud certs live in `AI_PLATFORM_CERT_DOMAINS` (merged into `CERT_DOMAINS` at load); `computeCertReadiness()` |
 | `src/data/cyberops-domains.ts` | Cisco CBROPS 200-201 domain mappings (5 domains); `computeCyberOpsReadiness()` |
 | `src/data/content-flags.ts` | Per-epoch IP risk registry (risk level, license, attribution text) — drives epoch-page banners |
 | `src/lib/auth.ts` | Client-side session cache (sessionStorage) |
@@ -311,6 +311,13 @@ Local dev: `.env.local` in `app/` (gitignored).
 - **Target sponsors:** CrowdStrike, AWS, SentinelOne, CompTIA, ISC²
 
 ---
+
+## What's Shipped (v1.24.0)
+
+- ✅ **AI cloud certifications on `/certs`** — added AWS Certified AI Practitioner (AIF-C01, 5 domains, rose card) and Google Cloud Professional ML Engineer (PMLE, 6 domains, green card); tracked-cert count now 10 + CyberOps tracker
+- ✅ **AWS AIP mapped to 49 AI-native stages** — all MITRE ATLAS, OWASP LLM, Emerging Tech, Agentic AI audit, plus Cisco AI-security m42/m43/m50; **GCP PMLE mapped to ~33 ML-lifecycle stages** across ATLAS/LLM/Emerging + agentic/continuous-monitoring audit
+- ✅ **`AI_PLATFORM_CERT_DOMAINS`** — new `aws-aip`/`gcp-pmle` `CertId`s + domain defs + builder fns in `cert-domains.ts`; mappings in a self-contained table merged into `CERT_DOMAINS` at module load (additive, leaves the security-cert table untouched); quantum/crypto + pure-security stages excluded for ring credibility
+- ✅ **Practice exams auto-populate** — both certs draw pools from mapped stages' quizzes via `getStagesForCert`; allowlisted in `api/exam/route.ts` + `exam/cert/[certId]/page.tsx`; no new API routes/Redis keys/env vars
 
 ## What's Shipped (v1.23.0)
 

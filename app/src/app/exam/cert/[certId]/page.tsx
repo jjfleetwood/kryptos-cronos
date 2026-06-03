@@ -13,6 +13,8 @@ const CERT_META: Record<string, CertMeta> = {
   "isaca-cism": { name: "ISACA CISM", code: "Certified Information Security Manager", hex: "#a78bfa", text: "text-purple-400", btn: "bg-purple-500 hover:bg-purple-400", border: "border-purple-500/40" },
   "isaca-crisc": { name: "ISACA CRISC", code: "Risk and Information Systems Control", hex: "#2dd4bf", text: "text-teal-400", btn: "bg-teal-500 hover:bg-teal-400", border: "border-teal-500/40" },
   "comptia-aiplus": { name: "CompTIA AI+", code: "2024 blueprint", hex: "#38bdf8", text: "text-sky-400", btn: "bg-sky-500 hover:bg-sky-400", border: "border-sky-500/40" },
+  "aws-aip": { name: "AWS Certified AI Practitioner", code: "AIF-C01", hex: "#fb7185", text: "text-rose-400", btn: "bg-rose-500 hover:bg-rose-400", border: "border-rose-500/40" },
+  "gcp-pmle": { name: "Google Cloud Professional ML Engineer", code: "PMLE", hex: "#22c55e", text: "text-green-400", btn: "bg-green-500 hover:bg-green-400", border: "border-green-500/40" },
 };
 
 export default async function CertExamPage({ params }: { params: Promise<{ certId: string }> }) {

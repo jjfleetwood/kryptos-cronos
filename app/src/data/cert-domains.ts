@@ -1,6 +1,7 @@
 // Certificate path domain mappings.
 // Covers: CompTIA Security+ SY0-701, ISC² CC, CompTIA Network+ N10-009, CompTIA CySA+ CS0-003,
-//         ISACA CISA, ISACA CISM, ISACA CRISC, CompTIA AI+ (2024).
+//         ISACA CISA, ISACA CISM, ISACA CRISC, CompTIA AI+ (2024),
+//         AWS Certified AI Practitioner (AIF-C01), Google Cloud Professional ML Engineer.
 // Stage → domain weights match official exam blueprints.
 
 export type CertId =
@@ -11,7 +12,9 @@ export type CertId =
   | "isaca-cisa"
   | "isaca-cism"
   | "isaca-crisc"
-  | "comptia-aiplus";
+  | "comptia-aiplus"
+  | "aws-aip"
+  | "gcp-pmle";
 
 export type CertDomain = {
   certId: CertId;
@@ -95,6 +98,25 @@ export const CRISC_DOMAINS: CertDomainDef[] = [
   { id: "crisc-it-security",     name: "Information Technology & Security", weight: 22 },
 ];
 
+// AWS Certified AI Practitioner (AIF-C01, launched 2024 — foundational AI/ML)
+export const AWS_AIP_DOMAINS: CertDomainDef[] = [
+  { id: "awsaip-ai-ml",       name: "Fundamentals of AI and ML",                 weight: 20 },
+  { id: "awsaip-genai",       name: "Fundamentals of Generative AI",             weight: 24 },
+  { id: "awsaip-foundation",  name: "Applications of Foundation Models",         weight: 28 },
+  { id: "awsaip-responsible", name: "Guidelines for Responsible AI",             weight: 14 },
+  { id: "awsaip-security",    name: "Security, Compliance & Governance for AI",  weight: 14 },
+];
+
+// Google Cloud Professional Machine Learning Engineer (2024 exam guide)
+export const GCP_PMLE_DOMAINS: CertDomainDef[] = [
+  { id: "gcpml-lowcode",     name: "Architecting Low-Code AI Solutions",            weight: 13 },
+  { id: "gcpml-collaborate", name: "Collaborating to Manage Data & Models",         weight: 14 },
+  { id: "gcpml-scaling",     name: "Scaling Prototypes into ML Models",             weight: 18 },
+  { id: "gcpml-serving",     name: "Serving & Scaling Models",                      weight: 20 },
+  { id: "gcpml-pipelines",   name: "Automating & Orchestrating ML Pipelines",       weight: 22 },
+  { id: "gcpml-monitoring",  name: "Monitoring AI Solutions",                       weight: 13 },
+];
+
 // ─── Helper builders ────────────────────────────────────────────────────────────
 
 function sp(...domainIds: string[]): CertDomain[] {
@@ -150,6 +172,20 @@ function ai(...domainIds: string[]): CertDomain[] {
   return domainIds.map((id) => {
     const def = AIPLUS_DOMAINS.find((d) => d.id === id)!;
     return { certId: "comptia-aiplus" as CertId, domainId: id, domainName: def.name };
+  });
+}
+
+function awsaip(...domainIds: string[]): CertDomain[] {
+  return domainIds.map((id) => {
+    const def = AWS_AIP_DOMAINS.find((d) => d.id === id)!;
+    return { certId: "aws-aip" as CertId, domainId: id, domainName: def.name };
+  });
+}
+
+function gcpml(...domainIds: string[]): CertDomain[] {
+  return domainIds.map((id) => {
+    const def = GCP_PMLE_DOMAINS.find((d) => d.id === id)!;
+    return { certId: "gcp-pmle" as CertId, domainId: id, domainName: def.name };
   });
 }
 
@@ -451,6 +487,88 @@ export const CERT_DOMAINS: Record<string, CertDomain[]> = {
 
 };
 
+// ─── AI-platform cert mappings (AWS AIP + GCP PMLE) ─────────────────────────────
+// Kept in a separate table from the security-cert mappings above for clarity, then
+// merged into CERT_DOMAINS at module load. These two certs only cover the AI-native
+// epochs (MITRE ATLAS, OWASP LLM, Emerging Tech, Agentic/Continuous-Monitoring audit,
+// and the AI-security Cisco stages) — quantum/crypto and pure-security stages are
+// intentionally excluded so the readiness rings stay credible.
+
+const AI_PLATFORM_CERT_DOMAINS: Record<string, CertDomain[]> = {
+
+  // ── MITRE ATLAS (atlas-01 → atlas-12) — adversarial ML / model attacks ────────
+  "atlas-01": combine(awsaip("awsaip-security", "awsaip-foundation")),
+  "atlas-02": combine(awsaip("awsaip-security", "awsaip-foundation"), gcpml("gcpml-scaling")),
+  "atlas-03": combine(awsaip("awsaip-security", "awsaip-foundation"), gcpml("gcpml-pipelines")),
+  "atlas-04": combine(awsaip("awsaip-security", "awsaip-foundation"), gcpml("gcpml-serving")),
+  "atlas-05": combine(awsaip("awsaip-security", "awsaip-foundation"), gcpml("gcpml-serving")),
+  "atlas-06": combine(awsaip("awsaip-security"),                      gcpml("gcpml-monitoring")),
+  "atlas-07": combine(awsaip("awsaip-security", "awsaip-foundation"), gcpml("gcpml-collaborate")),
+  "atlas-08": combine(awsaip("awsaip-security", "awsaip-foundation"), gcpml("gcpml-serving")),
+  "atlas-09": combine(awsaip("awsaip-security", "awsaip-foundation"), gcpml("gcpml-scaling")),
+  "atlas-10": combine(awsaip("awsaip-security", "awsaip-foundation"), gcpml("gcpml-serving")),
+  "atlas-11": combine(awsaip("awsaip-security", "awsaip-foundation"), gcpml("gcpml-collaborate")),
+  "atlas-12": combine(awsaip("awsaip-security", "awsaip-ai-ml")),
+
+  // ── OWASP LLM Top 10 (llm-01 → llm-12) — generative-AI app security ───────────
+  "llm-01": combine(awsaip("awsaip-genai", "awsaip-foundation", "awsaip-security"), gcpml("gcpml-lowcode")),
+  "llm-02": combine(awsaip("awsaip-genai", "awsaip-foundation", "awsaip-security"), gcpml("gcpml-serving")),
+  "llm-03": combine(awsaip("awsaip-foundation", "awsaip-security"),                 gcpml("gcpml-collaborate")),
+  "llm-04": combine(awsaip("awsaip-foundation", "awsaip-security"),                 gcpml("gcpml-serving")),
+  "llm-05": combine(awsaip("awsaip-foundation", "awsaip-security"),                 gcpml("gcpml-pipelines")),
+  "llm-06": combine(awsaip("awsaip-genai", "awsaip-security"),                      gcpml("gcpml-lowcode")),
+  "llm-07": combine(awsaip("awsaip-foundation", "awsaip-security")),
+  "llm-08": combine(awsaip("awsaip-foundation", "awsaip-responsible", "awsaip-security"), gcpml("gcpml-serving")),
+  "llm-09": combine(awsaip("awsaip-responsible", "awsaip-security")),
+  "llm-10": combine(awsaip("awsaip-foundation", "awsaip-security"),                 gcpml("gcpml-serving")),
+  "llm-11": combine(awsaip("awsaip-genai", "awsaip-security")),
+  "llm-12": combine(awsaip("awsaip-foundation", "awsaip-security")),
+
+  // ── Emerging Tech & Deep Learning Risk (emerging-01 → emerging-10) ────────────
+  "emerging-01": combine(awsaip("awsaip-ai-ml", "awsaip-security"),                 gcpml("gcpml-scaling")),
+  "emerging-02": combine(awsaip("awsaip-foundation", "awsaip-security"),            gcpml("gcpml-pipelines")),
+  "emerging-03": combine(awsaip("awsaip-ai-ml", "awsaip-security"),                 gcpml("gcpml-scaling", "gcpml-collaborate")),
+  "emerging-04": combine(awsaip("awsaip-genai", "awsaip-responsible"),              gcpml("gcpml-lowcode")),
+  "emerging-05": combine(awsaip("awsaip-genai", "awsaip-security")),
+  "emerging-06": combine(awsaip("awsaip-foundation", "awsaip-security"),            gcpml("gcpml-serving")),
+  "emerging-07": combine(awsaip("awsaip-responsible", "awsaip-security"),           gcpml("gcpml-collaborate")),
+  "emerging-08": combine(awsaip("awsaip-foundation", "awsaip-security")),
+  "emerging-09": combine(awsaip("awsaip-ai-ml", "awsaip-security")),
+  "emerging-10": combine(awsaip("awsaip-responsible", "awsaip-security"),           gcpml("gcpml-monitoring")),
+
+  // ── Agentic AI audit (audit-a01 → audit-a12) — governance + orchestration ─────
+  "audit-a01": combine(awsaip("awsaip-responsible", "awsaip-security")),
+  "audit-a02": combine(awsaip("awsaip-responsible", "awsaip-security")),
+  "audit-a03": combine(awsaip("awsaip-responsible", "awsaip-security")),
+  "audit-a04": combine(awsaip("awsaip-responsible", "awsaip-security")),
+  "audit-a05": combine(awsaip("awsaip-responsible", "awsaip-security")),
+  "audit-a06": combine(awsaip("awsaip-responsible", "awsaip-security"), gcpml("gcpml-pipelines")),
+  "audit-a07": combine(awsaip("awsaip-responsible", "awsaip-security")),
+  "audit-a08": combine(awsaip("awsaip-responsible", "awsaip-security")),
+  "audit-a09": combine(awsaip("awsaip-responsible", "awsaip-security"), gcpml("gcpml-pipelines")),
+  "audit-a10": combine(awsaip("awsaip-responsible", "awsaip-security")),
+  "audit-a11": combine(awsaip("awsaip-responsible", "awsaip-security"), gcpml("gcpml-monitoring")),
+  "audit-a12": combine(awsaip("awsaip-responsible", "awsaip-security"), gcpml("gcpml-pipelines")),
+
+  // ── Continuous monitoring (ML-specific stages) — GCP monitoring/pipelines ─────
+  "audit-cm02": combine(gcpml("gcpml-monitoring")),
+  "audit-cm03": combine(gcpml("gcpml-monitoring")),
+  "audit-cm11": combine(gcpml("gcpml-pipelines")),
+  "audit-cm12": combine(gcpml("gcpml-monitoring")),
+
+  // ── Cisco: Advanced Defense — AI-security stages (m42, m43, m50) ──────────────
+  "stage-m42": combine(awsaip("awsaip-security")),
+  "stage-m43": combine(awsaip("awsaip-security")),
+  "stage-m50": combine(awsaip("awsaip-security")),
+
+};
+
+// Merge the AI-platform mappings into the main table (additive — appends domains
+// to any stage that also has security-cert mappings).
+for (const [stageId, doms] of Object.entries(AI_PLATFORM_CERT_DOMAINS)) {
+  CERT_DOMAINS[stageId] = [...(CERT_DOMAINS[stageId] ?? []), ...doms];
+}
+
 // ─── Cert display metadata (single source of truth for badges) ──────────────────
 // `short` is the compact label used on module badges; `badgeCls` mirrors the
 // accent color of the matching card on /certs so the two surfaces stay in sync.
@@ -464,12 +582,15 @@ export const CERT_META: Record<CertId, { short: string; badgeCls: string }> = {
   "isaca-cism":      { short: "CISM",      badgeCls: "border-purple-500/25 bg-purple-500/8 text-purple-400 hover:border-purple-400/50" },
   "isaca-crisc":     { short: "CRISC",     badgeCls: "border-emerald-500/25 bg-emerald-500/8 text-emerald-400 hover:border-emerald-400/50" },
   "comptia-aiplus":  { short: "AI+",       badgeCls: "border-sky-500/25 bg-sky-500/8 text-sky-400 hover:border-sky-400/50" },
+  "aws-aip":         { short: "AWS AIP",   badgeCls: "border-rose-500/25 bg-rose-500/8 text-rose-400 hover:border-rose-400/50" },
+  "gcp-pmle":        { short: "GCP MLE",   badgeCls: "border-green-500/25 bg-green-500/8 text-green-400 hover:border-green-400/50" },
 };
 
 // Priority order for rendering badges on a module (most foundational first).
 const CERT_ORDER: CertId[] = [
   "comptia-secplus", "comptia-cysa", "comptia-netplus", "isc2-cc",
   "isaca-cisa", "isaca-cism", "isaca-crisc", "comptia-aiplus",
+  "aws-aip", "gcp-pmle",
 ];
 
 // Compact domain labels for badges. Falls back to the full domain name.
@@ -503,6 +624,14 @@ const DOMAIN_SHORT: Record<string, string> = {
   "aiplus-concepts": "AI Concepts", "aiplus-data": "Data Science",
   "aiplus-models": "AI Models", "aiplus-security": "AI Security",
   "aiplus-infrastructure": "AI Infrastructure",
+  // AWS AI Practitioner
+  "awsaip-ai-ml": "AI/ML Fundamentals", "awsaip-genai": "Generative AI",
+  "awsaip-foundation": "Foundation Models", "awsaip-responsible": "Responsible AI",
+  "awsaip-security": "AI Security & Governance",
+  // Google Professional ML Engineer
+  "gcpml-lowcode": "Low-Code AI", "gcpml-collaborate": "Data & Model Mgmt",
+  "gcpml-scaling": "Scaling Prototypes", "gcpml-serving": "Serving & Scaling",
+  "gcpml-pipelines": "ML Pipelines", "gcpml-monitoring": "Monitoring",
 };
 
 export function shortDomainName(domainId: string, fallback?: string): string {
@@ -553,6 +682,8 @@ export function getDomainsForCert(certId: CertId): CertDomainDef[] {
   if (certId === "isaca-cism") return CISM_DOMAINS;
   if (certId === "isaca-crisc") return CRISC_DOMAINS;
   if (certId === "comptia-aiplus") return AIPLUS_DOMAINS;
+  if (certId === "aws-aip") return AWS_AIP_DOMAINS;
+  if (certId === "gcp-pmle") return GCP_PMLE_DOMAINS;
   return [];
 }
 
