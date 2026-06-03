@@ -65,7 +65,7 @@ Resend handles all outbound transactional emails. Called fire-and-forget from se
 - Admin notification when a new user registers (`/api/notify-registration`)
 
 **Integration:** HTTP API calls to `https://api.resend.com` using `RESEND_API_KEY`  
-**CSP note:** `connect-src` in `src/middleware.ts` explicitly allows `https://api.resend.com` (server-side only; Anthropic API calls are also server-side and do not require CSP `connect-src` entries)  
+**CSP note:** `connect-src` in `apps/web/src/proxy.ts` explicitly allows `https://api.resend.com` (server-side only; Anthropic API calls are also server-side and do not require CSP `connect-src` entries)  
 **Limits (Free):** 3,000 emails/month, 100 emails/day  
 **Upgrade trigger:** Pro ($20/month) when email volume grows or custom domain required for deliverability
 
@@ -104,6 +104,25 @@ Anthropic's Claude Haiku model powers ARIA, the in-platform AI hint assistant. A
 **Integration:** Anthropic SDK with `ANTHROPIC_API_KEY`; model: `claude-haiku-*`  
 **CSP note:** All Anthropic calls are server-side only (`/api/hint` route); browser never contacts Anthropic directly, so no CSP `connect-src` entry required  
 **Cost:** Pay-per-token; kept low by rate limiting and the Haiku model tier
+
+---
+
+## Payments, Auth, Mobile & Analytics
+
+### Stripe — Web Payments
+Web Pro subscriptions ($13.99/mo, $99/yr) via Checkout. `POST /api/webhooks/stripe` (signature-verified) sets tier on `checkout.session.completed` and downgrades on `customer.subscription.deleted`. Env: `STRIPE_SECRET_KEY`, `STRIPE_WEBHOOK_SECRET`, price IDs.
+
+### Supabase — Auth (web parallel + mobile identity)
+Runs parallel to PBKDF2 on web and is the identity source for mobile: the app signs in via the Supabase SDK and sends the JWT as `Authorization: Bearer`; the API verifies it locally against the project JWKS (`jose`) with a `getUser()` fallback, resolving identity from the verified email claim. Env: `SUPABASE_URL`, `SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY`.
+
+### RevenueCat — Mobile In-App Purchases
+Manages App Store / Play subscriptions for mobile, mirroring the Stripe Pro products. `POST /api/webhooks/revenuecat` (Authorization-header verified via `REVENUECAT_WEBHOOK_AUTH`) reconciles entitlement server-side with Stripe so Pro is one source of truth across platforms. The app calls `Purchases.logIn(username)` so `app_user_id` matches.
+
+### Expo / EAS — Mobile App
+The native iOS/Android app is built with Expo (SDK 56) / React Native and shipped via EAS build/submit. Expo also powers push notifications, used by the daily streak-reminder cron (`/api/push/streak-reminder`, `CRON_SECRET`-guarded via `apps/web/vercel.json`).
+
+### Plausible — Analytics
+Privacy-friendly, GDPR-compliant analytics (no cookies/PII). Installed 2026-06-03; `apps/web/src/proxy.ts` CSP allows `plausible.io`.
 
 ---
 

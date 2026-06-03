@@ -13,6 +13,13 @@
 | **Resend** | Transactional email | resend.com/dashboard | Free tier |
 | **GitHub** | Source control, CI trigger | github.com/jjfleetwood/kryptos-cronos | Free |
 | **Anthropic** | Claude Haiku — ARIA AI hint chatbot | console.anthropic.com | API key required |
+| **Supabase** | Auth (web parallel + mobile JWT identity) | supabase.com/dashboard | Free tier |
+| **Stripe** | Web payments — Pro subscriptions | dashboard.stripe.com | Per-transaction |
+| **RevenueCat** | Mobile in-app purchases (iOS/Android), unified with Stripe | app.revenuecat.com | Free < $2.5k/mo |
+| **Expo / EAS** | Mobile app builds + push notifications | expo.dev | Free tier |
+| **Plausible** | Privacy-friendly analytics | plausible.io | ~$9/mo |
+
+> **Repo layout:** Turborepo monorepo — `apps/web` (Next.js + API, deployed) · `apps/mobile` (Expo, not deployed by Vercel) · `packages/core` + `packages/api-client`. Vercel **Root Directory = `apps/web`**.
 
 ---
 
@@ -30,8 +37,14 @@
 | `RESEND_API_KEY` | From Resend dashboard → API Keys |
 | `ADMIN_EMAIL` | Email that receives new-user registration alerts |
 | `ADMIN_USERNAME` | Admin dashboard username |
-| `ADMIN_SECRET` | 32+ char random string — used for HMAC signing of both session_token and kryptos_admin cookies |
+| `ADMIN_SECRET` | 32+ char random string — HMAC signing of the admin_token cookie |
+| `SESSION_SECRET` | 32+ char random string — HMAC signing of session_token (separate from ADMIN_SECRET) |
 | `ANTHROPIC_API_KEY` | From console.anthropic.com → API Keys — powers ARIA chatbot |
+| `STRIPE_SECRET_KEY` / `STRIPE_WEBHOOK_SECRET` | Stripe web payments + webhook verification |
+| `STRIPE_PRO_MONTHLY_PRICE_ID` / `STRIPE_PRO_YEARLY_PRICE_ID` | Stripe price IDs ($13.99/mo, $99/yr) |
+| `SUPABASE_URL` / `SUPABASE_ANON_KEY` / `SUPABASE_SERVICE_ROLE_KEY` | Supabase auth (server-side); JWT verification for the mobile client |
+| `REVENUECAT_WEBHOOK_AUTH` | Shared secret for the `/api/webhooks/revenuecat` Authorization header (mobile IAP) |
+| `CRON_SECRET` | Bearer for the Vercel Cron `/api/push/streak-reminder` (daily streak push) |
 
 **Rotation:** If you rotate any of these, redeploy immediately (Vercel redeploy button) — the old values stay live until the next deploy.
 
@@ -162,10 +175,10 @@ Or use the admin login form at `/admin`.
 
 ## Secured Documents
 
-Documents in `app/secured-docs/` are served via `/api/docs/[file]` which requires a valid admin cookie. They are **never served from `public/`**.
+Documents in `apps/web/secured-docs/` are served via `/api/docs/[file]` which requires a valid admin cookie. They are **never served from `public/`**.
 
 To add a new secured document:
-1. Place the `.md` file in `app/secured-docs/`
+1. Place the `.md` file in `apps/web/secured-docs/`
 2. The `outputFileTracingIncludes` config in `next.config.ts` ensures Vercel bundles the folder
 3. It will appear in the admin docs viewer automatically
 
