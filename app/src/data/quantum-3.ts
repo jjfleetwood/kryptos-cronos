@@ -753,15 +753,15 @@ def pack_ciphertext(algo_id: AlgoID, version: int, ct: bytes) -> bytes:
       tagline: "VPN traffic recorded today will be decryptable at Q-Day — HNDL makes VPN migration the highest-priority PQC task for most enterprises.",
       year: 2024,
       overview: [
-        "VPNs are the most widely-deployed cryptographic infrastructure in enterprise networking. Traditional VPNs use Diffie-Hellman or ECDH for key exchange — both broken by Shor's algorithm on a CRQC. An adversary recording today's VPN traffic can decrypt it the day a cryptographically-relevant quantum computer exists.",
-        "The IETF PQUIP (Post-Quantum Use in Protocols) working group is standardizing PQC for VPN protocols. WireGuard is leading adoption. Mullvad VPN deployed WireGuard + post-quantum KEM in production in 2023 — the first commercial VPN to do so. OpenVPN and StrongSwan (IKEv2) also have PQC extensions in draft.",
-        "The hybrid approach is essential: combining X25519 (classical) with ML-KEM-768 (PQC) means neither algorithm alone determines security. If ML-KEM has an undiscovered weakness, X25519 still provides classical security. If X25519 is broken by a quantum computer, ML-KEM provides PQC security. Both must fail simultaneously to break the hybrid.",
+        "VPNs are the most widely-deployed cryptographic infrastructure in enterprise networking — and quantum-vulnerable:\n- Traditional VPNs use Diffie-Hellman or ECDH for key exchange, both broken by Shor's on a CRQC.\n- An adversary recording today's VPN traffic can decrypt it the day a CRQC exists.",
+        "The IETF PQUIP working group is standardizing PQC for VPN protocols, and adoption has started:\n- WireGuard leads; Mullvad VPN shipped WireGuard + a post-quantum KEM in production in 2023 — the first commercial VPN to do so.\n- OpenVPN and StrongSwan (IKEv2) also have PQC extensions in draft.",
+        "The hybrid approach is essential here:\n- Combining X25519 (classical) with ML-KEM-768 (PQC) means neither algorithm alone determines security.\n- If ML-KEM has an undiscovered weakness, X25519 holds; if a quantum computer breaks X25519, ML-KEM holds — both must fail at once to break the hybrid.",
       ],
       technical: {
         title: "WireGuard + ML-KEM Hybrid Key Exchange",
         body: [
-          "WireGuard uses the Noise protocol framework (Noise_IKpsk2) for key exchange. The base protocol uses Curve25519 ECDH. The PQC extension adds an ML-KEM-768 layer: both peers exchange ML-KEM public keys during handshake, and the resulting shared secrets are combined via KDF: shared_secret = KDF(X25519_output || ML-KEM-768_output).",
-          "Authentication in quantum-safe WireGuard uses ML-DSA-65 (FIPS 204) peer certificates, replacing RSA-2048 x.509 certificates. The CA is migrated to ML-DSA-87 root (FIPS 204 level 5). Performance impact: handshake adds ~2ms for ML-KEM KEM operation; ~1.5KB additional key material per session; bulk throughput via AES-256-GCM is unchanged.",
+          "WireGuard layers ML-KEM onto its Noise handshake:\n- The base protocol (Noise_IKpsk2) uses Curve25519 ECDH; the PQC extension adds an ML-KEM-768 layer.\n- Both peers exchange ML-KEM public keys during the handshake and combine the shared secrets via KDF: shared = KDF(X25519_output || ML-KEM-768_output).",
+          "Quantum-safe WireGuard also upgrades authentication, at modest cost:\n- ML-DSA-65 (FIPS 204) peer certificates replace RSA-2048 x.509, with the CA migrated to an ML-DSA-87 root.\n- Performance impact is small: ~2ms added handshake for the ML-KEM operation, ~1.5KB extra key material per session, and AES-256-GCM bulk throughput unchanged.",
         ],
         codeExample: {
           label: "WireGuard PQC hybrid key exchange (configuration)",
@@ -790,8 +790,8 @@ Endpoint = peer.example.com:51820
         where: "Mullvad VPN — global commercial service",
         impact: "First commercial VPN to deploy post-quantum key exchange in production for all users",
         body: [
-          "In December 2023, Mullvad VPN deployed WireGuard with post-quantum key exchange using McEliece + Curve25519 hybrid for all of its users. McEliece is an older code-based PQC algorithm not selected by NIST (too large for certificates) but well-studied. Mullvad's implementation makes ~1.5MB McEliece public keys work by exchanging them separately from the WireGuard handshake.",
-          "The deployment proves enterprise viability: millions of users experience quantum-safe VPN with no noticeable performance impact. Mullvad is transitioning to ML-KEM as FIPS 203 implementations stabilize. This real-world deployment provides valuable production experience ahead of the broader enterprise migration wave.",
+          "In December 2023, Mullvad shipped post-quantum key exchange to all users:\n- It deployed WireGuard with a McEliece + Curve25519 hybrid — McEliece being an older, well-studied code-based PQC algorithm NIST didn't select (certificates too large).\n- Mullvad makes its ~1.5MB McEliece public keys work by exchanging them separately from the WireGuard handshake.",
+          "The deployment proves enterprise viability:\n- Millions of users get a quantum-safe VPN with no noticeable performance impact.\n- Mullvad is transitioning to ML-KEM as FIPS 203 implementations stabilize, providing valuable production experience ahead of the broader enterprise migration.",
         ],
       },
       diagram: {
