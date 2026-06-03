@@ -6,7 +6,7 @@ Gamified cybersecurity + AI training platform. 38 curriculum epochs, 458 CTF/qui
 
 **Live:** kryptoscronos.com  
 **Repo:** github.com/jjfleetwood/kryptos-cronos  
-**Current version:** v1.25.0 (as of 2026-06-03)
+**Current version:** v1.26.0 (as of 2026-06-03)
 
 ---
 
@@ -335,6 +335,15 @@ Local dev: `.env.local` in `app/` (gitignored).
 - **Target sponsors:** CrowdStrike, AWS, SentinelOne, CompTIA, ISC²
 
 ---
+
+## What's Shipped (v1.26.0)
+
+- ✅ **Cross-platform.** Turborepo monorepo (`apps/web` + `apps/mobile` + `packages/core` + `packages/api-client`); native Expo/RN app (Supabase login, stages, quiz, ARIA, upgrade) authing via bearer JWT against `/api/v1`
+- ✅ **JWKS bearer verification** (`jose`, local verify + `getUser()` fallback); identity from verified email claim
+- ✅ **Mobile billing & multi-source entitlement** — RevenueCat IAP + `/api/webhooks/revenuecat`; `getUserTier()` grants Pro from any of `proStripe`/`rcProExpiry`/`voucherExpiry`, revokes only when none active
+- ✅ **Push** — `/api/push/register` (Expo tokens) + `/api/push/streak-reminder` Vercel Cron (`CRON_SECRET`)
+- ✅ **Single-branch workflow** (`dev` retired) + **Plausible analytics** (cookieless, CSP-allowlisted)
+- ✅ New env vars: `REVENUECAT_WEBHOOK_AUTH`, `CRON_SECRET`
 
 ## What's Shipped (v1.25.0)
 

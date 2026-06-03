@@ -2,6 +2,25 @@
 
 ---
 
+## v1.26.0 — 2026-06-03
+
+**Cross-platform: native mobile app, monorepo, mobile billing & analytics**
+
+Building on v1.25.0's bearer-auth backend, this release makes Kryptós CronOS a true cross-platform product.
+
+- **Turborepo monorepo.** Repo restructured into npm workspaces: `apps/web` (the Next.js app + API, deployed by Vercel — was `app/`), `apps/mobile` (Expo / React Native), `packages/core` (`@kryptos/core` — all curriculum content + types, was `app/src/data`), and `packages/api-client` (`@kryptos/api-client` — a framework-agnostic typed API client shared by web + mobile). Vercel Root Directory = `apps/web`; `transpilePackages: ["@kryptos/core"]`.
+- **Native mobile app (`apps/mobile`).** Expo SDK 56 + Expo Router client: Supabase login, stage list/detail, quiz play, ARIA hints, upgrade screen. Auths via Supabase JWT bearer against the existing API (`/api/v1`). Shipped via EAS (store submission pending).
+- **JWKS bearer verification.** `verifySupabaseJwt()` now verifies tokens locally against the Supabase project JWKS (`jose`) with a `getUser()` fallback — no network round-trip per request. Identity still resolved only from the verified email claim.
+- **Versioned `/api/v1/*` namespace** (next.config rewrite → `/api/*`) for the mobile client.
+- **Mobile in-app purchases (RevenueCat).** `react-native-purchases` on device + `POST /api/webhooks/revenuecat` (auth-header verified). `app_user_id` = username so it reconciles with Stripe.
+- **Multi-source entitlement.** `getUserTier()` now grants Pro if any of `proStripe` (web), `rcProExpiry` (mobile IAP), or `voucherExpiry` is active, and downgrades only when none remain — so one platform's webhook can't strip access granted by another.
+- **Push notifications.** `POST/DELETE /api/push/register` (Expo push tokens in `push:tokens`) + `GET /api/push/streak-reminder` Vercel Cron (daily streak-at-risk nudge, `CRON_SECRET`-guarded).
+- **Single-branch workflow.** The `dev` branch was retired; `master` is the single deploy source (CI from the monorepo root; risky changes use a short-lived feature branch + Vercel Preview).
+- **Plausible analytics** — privacy-friendly, cookieless, no PII; allowlisted in the `proxy.ts` nonce CSP.
+- New env vars: `REVENUECAT_WEBHOOK_AUTH`, `CRON_SECRET`. Mobile uses `apps/mobile/.env` (`EXPO_PUBLIC_*`).
+
+---
+
 ## v1.25.0 — 2026-06-03
 
 **Mobile roadmap Phase 1: multi-client token auth (backend)**
