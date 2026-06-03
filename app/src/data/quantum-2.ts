@@ -520,15 +520,15 @@ with oqs.KeyEncapsulation("Kyber768") as kem:
       tagline: "ML-DSA replaces RSA and ECDSA signatures — for TLS certificates, code signing, and PKI.",
       year: 2024,
       overview: [
-        "ML-DSA (Module Lattice-based Digital Signature Algorithm), standardized as NIST FIPS 204 in August 2024, is the primary replacement for RSA-PSS and ECDSA digital signatures. It is used for TLS certificate signing, code signing, authentication tokens, and any other system requiring digital signatures.",
-        "ML-DSA is based on CRYSTALS-Dilithium and uses the Module-LWE and Module-SIS (Short Integer Solution) hardness assumptions. The signing algorithm uses a rejection sampling technique to ensure that signatures don't leak information about the private key — a critical security property for signature schemes.",
-        "ML-DSA parameter sets: ML-DSA-44 (NIST level 2), ML-DSA-65 (level 3, recommended), ML-DSA-87 (level 5). Signatures are larger than RSA or ECDSA (2420-4595 bytes vs 64-512 bytes for ECDSA) but verification is fast and the security is quantum-resistant.",
+        "ML-DSA (Module Lattice-based Digital Signature Algorithm), NIST FIPS 204 (Aug 2024), is the primary replacement for RSA-PSS and ECDSA signatures:\n- It covers TLS certificate signing, code signing, and authentication tokens.\n- Anywhere a system needs a digital signature, ML-DSA is the quantum-safe choice.",
+        "It's the standardized form of CRYSTALS-Dilithium:\n- Its security rests on Module-LWE and Module-SIS (Short Integer Solution) hardness.\n- Signing uses rejection sampling so signatures don't leak information about the private key — a critical property for any signature scheme.",
+        "ML-DSA comes in three parameter sets, trading size for assurance:\n- ML-DSA-44 (level 2), ML-DSA-65 (level 3, recommended), and ML-DSA-87 (level 5).\n- Signatures are larger than RSA/ECDSA (2420–4595 bytes vs 64–512), but verification is fast and quantum-resistant.",
       ],
       technical: {
         title: "ML-DSA — How Lattice-Based Signing Works",
         body: [
-          "ML-DSA signing: the signer commits to a random mask y, computes a challenge hash c from the message and commitment, then computes a response z = y + c·s (where s is the private key). The signature is (c, z). The rejection sampling step ensures z doesn't reveal s: if z is too large, the signer restarts, ensuring z looks uniform regardless of s.",
-          "Verification: given (c, z), the verifier recomputes the commitment as Az - c·t (where t = As is the public key) and checks that the hash c matches the message and commitment. Security relies on Module-SIS: finding a short vector z such that Az = c·t mod q is as hard as the shortest vector problem on lattices.",
+          "ML-DSA signing builds a commitment-challenge-response signature:\n- The signer commits to a random mask y, hashes the message and commitment into a challenge c, then computes z = y + c·s (s = private key); the signature is (c, z).\n- Rejection sampling ensures z doesn't reveal s — if z is too large, the signer restarts so z looks uniform regardless of s.",
+          "Verification recomputes the commitment and leans on Module-SIS:\n- Given (c, z), the verifier recomputes Az − c·t (t = As is the public key) and checks that c matches the message and commitment.\n- Security rests on Module-SIS: finding a short z with Az = c·t mod q is as hard as the shortest-vector problem on lattices.",
         ],
         codeExample: {
           label: "ML-DSA signing and verification (liboqs)",
@@ -563,8 +563,8 @@ with oqs.Signature("Dilithium3") as signer:
         where: "Cisco enterprise and carrier infrastructure globally",
         impact: "First major network vendor to embed ML-DSA in hardware boot chain, IPsec, MACsec, and TLS simultaneously — full stack quantum-safe",
         body: [
-          "Cisco's full-stack PQC architecture — announced at Cisco Live 2026 Amsterdam — implements ML-DSA (FIPS 204) across three security domains simultaneously: device boot integrity (ML-DSA signatures verify firmware on every boot), data in transit (ML-DSA in IKEv2/IPsec and MACsec for authentication), and certificate management (ML-DSA-signed device certificates). This is the first enterprise networking vendor to deploy ML-DSA across the entire stack rather than just key exchange.",
-          "The Silicon One P200 ASIC (October 2025) provides hardware-accelerated ML-DSA at 800G line rate — no software performance penalty. The SKIP interface accepts quantum-derived key material from Cisco's Universal Quantum Switch and injects it into IPsec SAs, enabling hybrid PQC+QKD authentication. Signal and Apple proved ML-DSA viable in messaging; Cisco proved it viable in network infrastructure.",
+          "Cisco's full-stack PQC architecture (Cisco Live 2026 Amsterdam) puts ML-DSA (FIPS 204) across three domains at once:\n- Device boot integrity — ML-DSA signatures verify firmware on every boot; data in transit — ML-DSA authenticates IKEv2/IPsec and MACsec.\n- Certificate management — ML-DSA-signed device certificates. It's the first enterprise networking vendor to deploy ML-DSA across the entire stack, not just key exchange.",
+          "Hardware acceleration and QKD integration round it out:\n- The Silicon One P200 ASIC (Oct 2025) runs ML-DSA at 800G line rate with no software penalty.\n- The SKIP interface accepts quantum-derived keys from Cisco's Universal Quantum Switch into IPsec SAs for hybrid PQC+QKD authentication — Signal and Apple proved ML-DSA in messaging, Cisco proved it in network infrastructure.",
         ],
       },
       diagram: {
