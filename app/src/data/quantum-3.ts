@@ -402,15 +402,15 @@ print(f"600km: {qkd_key_rate(600):.6f} bps")   # ~0.000001 bps (TF-QKD helps)`,
       tagline: "If quantum-secured communications become nation-state infrastructure, classical SIGINT — cable taps and fiber splices — stops working.",
       year: 2021,
       overview: [
-        "2016: China launches Micius (墨子号) — the world's first quantum communications satellite, named after the ancient philosopher Mo-tzu. By 2021, China has a 4,600km quantum backbone connecting major cities — the largest QKD network ever built.",
-        "The strategic implications are profound. Classical SIGINT collection relies heavily on passive interception of fiber traffic (cable taps, fiber splices, bulk collection). Against a quantum-secured channel protected by BB84, these techniques are physically impossible — any measurement disturbs the photons and raises QBER.",
-        "The Five Eyes intelligence community faces a fundamental shift: passive collection becomes impossible against QKD-protected links. Collection must shift to active endpoint operations — more expensive, higher attribution risk, and legally more complex. This is one reason NSA issued CNSA 2.0 in 2022.",
+        "In 2016, China launched Micius (墨子号) — the first quantum communications satellite, named after the philosopher Mo-tzu:\n- By 2021, China had a 4,600km quantum backbone connecting major cities.\n- It's the largest QKD network ever built.",
+        "The strategic implications are profound:\n- Classical SIGINT leans on passive interception of fiber (cable taps, fiber splices, bulk collection).\n- Against a BB84-protected channel, those techniques are physically impossible — any measurement disturbs the photons and raises QBER.",
+        "That forces a fundamental shift for signals intelligence:\n- Passive collection becomes impossible against QKD-protected links, pushing collection to active endpoint operations.\n- Active operations are more expensive, higher-attribution, and legally more complex — one reason the NSA issued CNSA 2.0 in 2022.",
       ],
       technical: {
         title: "How Micius Works",
         body: [
-          "Micius is a 632kg satellite in sun-synchronous LEO at 500km altitude. It carries a quantum key source, entangled photon source, and downward-pointing Cassegrain telescopes. At night, atmospheric scattering is low enough to transmit single photons to ground station telescopes. During the day, solar photon background noise overwhelms the signal.",
-          "The satellite performs quantum key distribution to two ground stations simultaneously using entanglement-based QKD (E91 protocol variant). Each ground station receives entangled photons; their correlated measurements establish a shared key that neither the satellite nor any interceptor can read — even if the satellite itself is compromised (in principle).",
+          "Micius is a 632kg satellite in 500km sun-synchronous LEO:\n- It carries a quantum key source, an entangled-photon source, and downward-pointing Cassegrain telescopes.\n- At night, atmospheric scattering is low enough to send single photons to ground telescopes; by day, solar background noise overwhelms the signal.",
+          "It distributes keys to two ground stations at once via entanglement-based QKD (an E91 variant):\n- Each station receives entangled photons, and their correlated measurements establish a shared key.\n- Neither the satellite nor any interceptor can read it — in principle, even if the satellite itself is compromised.",
         ],
         codeExample: {
           label: "Satellite QKD atmospheric loss model",
@@ -446,8 +446,8 @@ satellite_qkd_loss(500, 0)   # 500km altitude, directly overhead`,
         where: "Beijing, China ↔ Vienna, Austria (7,600 km)",
         impact: "Demonstrated quantum-secured communication across continents for the first time",
         body: [
-          "Chinese Academy of Sciences President Chunli Bai and Austrian Academy of Sciences President Anton Zeilinger held the first quantum-encrypted video call, with quantum keys distributed by Micius over 7,600km. The call lasted 75 minutes and demonstrated live video conferencing over a quantum-secured channel.",
-          "The keys were distributed in two segments: Micius to a Chinese ground station, and Micius to a Vienna ground station. The quantum keys were independently generated for each segment, then combined using one-time pad encryption for the call. The Micius satellite was the trusted relay — neither ground station knew the other's raw key.",
+          "In September 2017, China and Austria held the first quantum-encrypted video call:\n- Chunli Bai (Chinese Academy of Sciences) and Anton Zeilinger (Austrian Academy) talked with quantum keys distributed by Micius over 7,600km.\n- The call ran 75 minutes — live video conferencing over a quantum-secured channel.",
+          "The keys were distributed in two satellite-to-ground segments:\n- Micius generated independent keys to a Chinese ground station and to a Vienna ground station, then they were combined as a one-time pad for the call.\n- Micius was the trusted relay — neither ground station knew the other's raw key.",
         ],
       },
       diagram: {
