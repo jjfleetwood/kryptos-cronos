@@ -1,0 +1,10 @@
+{
+  "name": "@kryptos/api-client",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Cross-platform typed client for the Kryptós CronOS API (web + mobile). Framework-agnostic; bearer-token (mobile) or cookie (web) auth.",
+  "exports": {
+    ".": "./src/index.ts",
+    "./*": "./src/*.ts"
+  }
+}
