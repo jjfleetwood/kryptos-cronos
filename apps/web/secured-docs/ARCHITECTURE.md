@@ -1,13 +1,13 @@
 # Kryptós CronOS — Technical Architecture
-**Version:** 4.0  
-**Date:** 2026-05-22  
+**Version:** 5.0  
+**Date:** 2026-06-03  
 **Codebase:** github.com/jjfleetwood/kryptos-cronos
 
 ---
 
 ## 1. System Overview
 
-Kryptós CronOS is a Next.js 16 App Router application with serverless API routes, a Redis data layer (Upstash), server-side authentication via HMAC-signed HttpOnly cookies, an Anthropic Claude Haiku AI chatbot (ARIA), and Stripe billing. The browser handles all interactive UI; API routes handle auth, progress, leaderboard, AI hints, NDA clickwrap, shop/trophies, and admin operations.
+Kryptós CronOS is a **Turborepo monorepo** with two clients on one backend: the **Next.js 16** web app (`apps/web`, deployed) and a native **Expo / React Native** iOS+Android app (`apps/mobile`, in development), sharing content/types via `@kryptos/core` and a typed client `@kryptos/api-client`. The API (serverless routes in `apps/web`) is backed by Upstash Redis, with **dual auth** — HMAC-signed HttpOnly cookies (web) and Supabase JWTs verified via local JWKS (mobile, `Authorization: Bearer`). It integrates Anthropic Claude Haiku (ARIA), **Stripe (web) + RevenueCat (mobile IAP)** with unified server-side entitlement, Resend email, Expo push notifications, and Plausible analytics. The mobile client pins to a versioned `/api/v1/*` namespace.
 
 ```
 ┌─────────────────────────────────────────────────────────┐
@@ -48,10 +48,18 @@ Kryptós CronOS is a Next.js 16 App Router application with serverless API route
 
 ## 2. Repository Structure
 
+**Turborepo monorepo (npm workspaces):**
+- `apps/web/` — Next.js 16 app + API (Vercel Root Directory; detailed tree below)
+- `apps/mobile/` — Expo / React Native iOS+Android app (not deployed by Vercel)
+- `packages/core/` — `@kryptos/core`: all stage data (38 epochs) + shared types
+- `packages/api-client/` — `@kryptos/api-client`: typed cross-platform API client
+- root: `package.json` (workspaces) · `turbo.json` · single `package-lock.json`
+
+The tree below details **`apps/web/`** (paths shown as `src/…` are `apps/web/src/…`):
+
 ```
-cyberquest/
-├── app/                              # Next.js application root (Vercel root dir)
-│   ├── src/
+apps/web/                             # Next.js app + API (Vercel root dir)
+├── src/
 │   │   ├── proxy.ts                  # Edge middleware (admin gating)
 │   │   ├── app/                      # App Router pages
 │   │   │   ├── layout.tsx            # Root layout + Nav + OG/Twitter meta
@@ -212,17 +220,18 @@ export const config = {
 
 ---
 
-## 4. Auth System (v1.8.0+, Fully Server-Side)
+## 4. Auth System (v1.8.0+, server-side; dual-client since v1.25.0)
 
-All authentication is server-side. No credentials or user data are stored in localStorage or sessionStorage.
+All authentication is server-side. No credentials or user data are stored in localStorage or sessionStorage. Two client types are supported: **web** (HMAC `session_token` cookie) and **mobile** (Supabase JWT as `Authorization: Bearer`). Supabase Auth runs parallel to PBKDF2 (v1.15.0+).
 
 ### 4.1 Registration Flow
 
 ```
 Client sends: { username, email, password } over HTTPS
     → POST /api/auth/register
-    → Server: generateSalt() → PBKDF2-SHA-256, 310,000 iterations
-    → Store { email, passwordHash, salt, hashIterations: 310000, createdAt } in Redis user:{username}
+    → Server: generateSalt() → PBKDF2-SHA-256, 600,000 iterations (OWASP 2024)
+    → Store { email, passwordHash, salt, hashIterations: 600000, createdAt } in Redis user:{username}
+    → Create a parallel Supabase Auth account (identity source for the mobile client)
     → Issue HMAC-signed session_token cookie (SESSION_SECRET, HttpOnly, 30 days)
     → If username matches ADMIN_USERNAME: also issue kryptos_admin cookie (ADMIN_SECRET, 24h)
     → POST /api/notify-registration (rate-limited email alert to admin)
@@ -233,18 +242,19 @@ Client sends: { username, email, password } over HTTPS
 ```
 Client sends: { username, password } over HTTPS
     → POST /api/auth/login (rate-limited: 5/IP/15min)
+    → Check lockout:user:{username} — 5 failed attempts → 15-min lock → 423
     → Server: HGETALL user:{username} from Redis → retrieve salt + passwordHash + hashIterations
     → storedIterations = hashIterations ?? 100_000  (legacy accounts pre-v1.8.0)
     → PBKDF2(password, salt, storedIterations) → computedHash
-    → computedHash !== storedHash → 401
-    → If storedIterations < 310_000: silently re-hash with 310k and update Redis
+    → computedHash !== storedHash → 401 (increment failed-attempt counter)
+    → If storedIterations < 600_000: silently re-hash with 600k and update Redis
     → Issue HMAC-signed session_token cookie (HttpOnly, 30 days)
     → If admin: also issue kryptos_admin cookie (24h)
 ```
 
-Transparent migration: legacy accounts (100k iterations) are silently upgraded to 310k on next successful login with no user-visible change.
+Transparent migration: legacy accounts (100k/310k iterations) are silently upgraded to 600k on next successful login with no user-visible change. **Account lockout:** 5 failed attempts → 15-min lock per username.
 
-### 4.3 Session Resolution
+### 4.3 Session Resolution (dual-client)
 
 All client components that need user identity call:
 ```
@@ -255,6 +265,16 @@ GET /api/auth/me
 ```
 
 No user data persists in the browser beyond the HttpOnly cookie.
+
+**Mobile (bearer) path** — gameplay/user API routes resolve identity via `getAuthedUsername(req)` (`src/lib/api-auth.ts`):
+```
+Authorization: Bearer <supabase-jwt>
+    → verifySupabaseJwt(): verify signature locally against the project JWKS (jose),
+      with a supabase.auth.getUser() fallback
+    → identity from the verified email claim → email:{email} index (NOT user_metadata — not spoofable)
+    → Supabase-only (mobile-first) accounts are provisioned in Redis via POST /api/auth/bootstrap (SET NX)
+```
+Routes accept **either** the cookie (web) or the bearer (mobile). Served under `/api/*` and `/api/v1/*` (next.config rewrite).
 
 ### 4.4 Cookie Specification
 
@@ -273,8 +293,8 @@ POST /api/forgot-password (rate: 3/IP/15min)
     → send email via Resend with reset link
 
 User clicks link → POST /api/reset-password (rate: 5/IP/hour)
-    → validate token in Redis → PBKDF2 hash new password (310k iterations)
-    → update Redis user:{username}: passwordHash, salt, hashIterations: 310000
+    → validate token in Redis → PBKDF2 hash new password (600k iterations)
+    → update Redis user:{username}: passwordHash, salt, hashIterations: 600000
     → delete reset token (single-use)
 ```
 
@@ -282,7 +302,7 @@ User clicks link → POST /api/reset-password (rate: 5/IP/hour)
 
 ## 5. Epoch / Stage System
 
-### 5.1 Epochs (32 total, 358 stages)
+### 5.1 Epochs (38 total, 458 stages)
 
 | # | Epoch ID | Name | Stages | ID Range | Color |
 |---|---|---|---|---|---|
@@ -403,14 +423,17 @@ On stage completion:
 
 ## 7. API Routes
 
+> **Versioning + dual auth:** gameplay/user routes are also served under `/api/v1/*` (next.config rewrite → `/api/*`) for the mobile client, and accept **either** the HMAC `session_token` cookie (web) **or** an `Authorization: Bearer <supabase-jwt>` (mobile) via `getAuthedUsername()` (local JWKS verify + `getUser()` fallback; identity from the verified email claim).
+
 ### Auth
 
 | Route | Method | Auth | Purpose |
 |---|---|---|---|
-| `/api/auth/register` | POST | None | PBKDF2-310k registration; sets session + admin cookies |
-| `/api/auth/login` | POST | None (rate: 5/IP/15min) | PBKDF2 login with transparent re-hash migration |
+| `/api/auth/register` | POST | None | PBKDF2-600k registration (+ parallel Supabase); sets session + admin cookies |
+| `/api/auth/login` | POST | None (rate: 5/IP/15min) | PBKDF2 login, transparent re-hash, account lockout |
+| `/api/auth/bootstrap` | POST | Bearer JWT | Provision a Redis record for Supabase-only (mobile) accounts |
 | `/api/auth/session` | DELETE | Session cookie | Logout — clears session_token |
-| `/api/auth/me` | GET | Session cookie | Returns `{ username, email, isAdmin }` |
+| `/api/auth/me` | GET | Cookie or Bearer | Returns `{ username, email, isAdmin, tier, … }` |
 
 ### Platform
 
@@ -429,16 +452,19 @@ On stage completion:
 | `/api/trophies` | GET/POST | Session cookie | Fetch/purchase trophies |
 | `/api/skin` | POST | Session cookie | Set UI skin preference |
 | `/api/feedback` | POST | Session cookie | Submit user feedback |
-| `/api/delete-account` | POST | Session cookie | Delete user account and Redis records |
+| `/api/delete-account` | DELETE | Cookie or Bearer | Purge user (Redis + email index) + delete Supabase account |
 | `/api/notify-registration` | POST | None (rate: 5/IP/hour) | Admin email alert on new user |
 | `/api/sync-user` | POST | None | Legacy first-write-wins user record (compatibility) |
 
-### Stripe Billing
+### Billing, Mobile & Webhooks
 
 | Route | Method | Auth | Purpose |
 |---|---|---|---|
-| `/api/stripe/checkout` | POST | Session cookie | Create Stripe checkout session |
-| `/api/webhooks/stripe` | POST | Stripe signature | Handle subscription events (paid/cancelled) |
+| `/api/stripe/checkout` | POST | Session cookie | Create Stripe checkout session (web) |
+| `/api/webhooks/stripe` | POST | Stripe signature | Web subscription events → tier + `proStripe` |
+| `/api/webhooks/revenuecat` | POST | RC auth header | Mobile IAP events → tier + `rcProExpiry` (unified entitlement) |
+| `/api/push/register` | POST/DELETE | Cookie or Bearer | Store/clear Expo push token (`push:tokens`) |
+| `/api/push/streak-reminder` | GET | `CRON_SECRET` bearer | Vercel Cron — daily streak-at-risk push |
 
 ### Admin
 
@@ -459,7 +485,8 @@ On stage completion:
 
 | Route | Method | Auth | Purpose |
 |---|---|---|---|
-| `/api/webhooks/stripe` | POST | Stripe signature | Stripe subscription lifecycle |
+| `/api/webhooks/stripe` | POST | Stripe signature | Web subscription lifecycle → `proStripe` |
+| `/api/webhooks/revenuecat` | POST | RC auth header | Mobile IAP lifecycle → `rcProExpiry` |
 
 ---
 
@@ -475,18 +502,24 @@ ARIA is the in-platform AI hint assistant powered by Anthropic Claude Haiku via 
 
 ---
 
-## 9. Stripe Billing
+## 9. Billing & Entitlement (Stripe + RevenueCat)
 
-Pro tier pricing: $5.99/month or $55.99/year.
+Pro tier pricing: **$13.99/month or $99/year**. Two billing sources feed one unified entitlement:
 
-**Flow:**
+**Web (Stripe):**
 1. User clicks upgrade → POST `/api/stripe/checkout` → returns Stripe Checkout URL
 2. User completes payment on Stripe-hosted page
-3. Stripe POSTs webhook to `/api/webhooks/stripe`
-4. Server verifies signature (`STRIPE_WEBHOOK_SECRET`) → sets `tier: "pro"` in Redis user hash
-5. Pro users: 7-day trial on registration; admin can toggle tier manually via `/api/admin/set-tier`
+3. Stripe POSTs webhook to `/api/webhooks/stripe` → verify signature (`STRIPE_WEBHOOK_SECRET`) → set `tier: "pro"` + `proStripe`
+4. `customer.subscription.deleted` → re-evaluate (see multi-source below); clears `voucherExpiry`
 
-**Required env vars:** `STRIPE_SECRET_KEY`, `STRIPE_WEBHOOK_SECRET`, `STRIPE_PRO_MONTHLY_PRICE_ID`, `STRIPE_PRO_YEARLY_PRICE_ID`
+**Mobile (RevenueCat / App Store + Play IAP):**
+1. App purchases via `react-native-purchases`; RevenueCat `app_user_id` = username (`Purchases.logIn`)
+2. RevenueCat POSTs webhook to `/api/webhooks/revenuecat` → Authorization-header verified (`REVENUECAT_WEBHOOK_AUTH`)
+3. Grant/renewal events → `tier: "pro"` + `rcProExpiry`; `EXPIRATION` → re-evaluate
+
+**Multi-source entitlement (`src/lib/access.ts` → `getUserTier()`):** Pro is granted if **any** source is active — `proStripe` (web subscription), `rcProExpiry` (mobile IAP, future-dated), or `voucherExpiry` (voucher/survey reward). Tier is only revoked to `free` when **no** source remains active, so a webhook from one platform never strips access granted by another. 7-day trial on registration; admin override via `/api/admin/set-tier`.
+
+**Required env vars:** `STRIPE_SECRET_KEY`, `STRIPE_WEBHOOK_SECRET`, `STRIPE_PRO_MONTHLY_PRICE_ID`, `STRIPE_PRO_YEARLY_PRICE_ID`, `REVENUECAT_WEBHOOK_AUTH`
 
 ---
 
@@ -501,34 +534,33 @@ Configured in `next.config.ts`, applied to all routes:
 | `X-Content-Type-Options` | `nosniff` |
 | `Referrer-Policy` | `strict-origin-when-cross-origin` |
 | `Permissions-Policy` | `camera=(), microphone=(), geolocation=()` |
-| `Content-Security-Policy` | `default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self'; connect-src 'self' https://api.resend.com https://api.anthropic.com; frame-ancestors 'none'` |
+| `Content-Security-Policy` | Set **per-request in `proxy.ts`** with a nonce (no `unsafe-inline` in `script-src`); `connect-src` allows `https://api.resend.com`, `https://plausible.io`; `script-src` allows the Plausible script |
 
-**Note:** `unsafe-inline` is required by Next.js 16 for hydration. A nonce-based CSP would eliminate this and requires Next.js App Router nonce support via `proxy.ts`.
+**Note:** CSP is generated dynamically in `apps/web/src/proxy.ts` with a per-request nonce (nonce-based, not `unsafe-inline`). Static headers (HSTS, X-Frame-Options, etc.) live in `next.config.ts`. Plausible analytics (added 2026-06-03) is allowlisted in the CSP.
 
 ---
 
 ## 12. CI/CD Pipeline
 
 ```
-Developer workflow:
-  git push origin dev
+Single-branch workflow (dev branch retired 2026-06-03):
+  git push origin master
        │
-       ├── GitHub Actions (ci.yml) — triggers on both dev and master
-       │       ├── npm ci (Node 24.x)
-       │       ├── npm run lint (ESLint)
-       │       ├── npx tsc --noEmit --skipLibCheck
-       │       ├── npm run build (Next.js production build)
-       │       └── npm audit --audit-level=moderate
+       ├── GitHub Actions (ci.yml) — triggers on master (push + PR), from the monorepo root
+       │       ├── npm ci (Node 24.x) — installs all workspaces
+       │       ├── npm run lint (turbo → @kryptos/web)
+       │       ├── npx tsc --noEmit --skipLibCheck -p apps/web/tsconfig.json
+       │       ├── npm run build (turbo → Next.js production build)
+       │       └── npm audit
        │
-       └── Test on dev preview URL
-               │
-               └── git push origin master (or PR merge)
-                       │
-                       └── Vercel GitHub App (auto-trigger on master)
-                               ├── npm install (Node 24.x)
-                               ├── next build (Turbopack)
-                               ├── Bundle secured-docs/ via outputFileTracingIncludes
-                               └── Deploy to iad1 → kryptoscronos.com (~90s)
+       └── Vercel GitHub App (auto-trigger on master)
+               ├── Root Directory = apps/web ("Include files outside root" ON for the workspace lockfile)
+               ├── next build (Turbopack)
+               ├── Bundle secured-docs/ via outputFileTracingIncludes
+               └── Deploy to iad1 → kryptoscronos.com (~60–90s)
+
+  Risky changes: push a short-lived feature branch → validate the Vercel Preview → fast-forward master.
+  Mobile (apps/mobile) is built/shipped separately via EAS, not by Vercel.
 
 Manual production deploy:
   npx vercel --prod --project kryptos-cronos
@@ -543,7 +575,11 @@ Manual production deploy:
 | Upstash Redis | REST token | `UPSTASH_REDIS_REST_URL`, `UPSTASH_REDIS_REST_TOKEN` | Free tier |
 | Resend | API key | `RESEND_API_KEY` | Free tier |
 | Anthropic Claude Haiku | API key | `ANTHROPIC_API_KEY` | Pay-per-token |
-| Stripe | API key + webhook | `STRIPE_*` (4 vars) | Pay-per-transaction |
+| Stripe (web payments) | API key + webhook | `STRIPE_*` (4 vars) | Pay-per-transaction |
+| Supabase (auth + mobile JWT) | service/anon keys + JWKS | `SUPABASE_URL`, `SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY` | Free tier |
+| RevenueCat (mobile IAP) | webhook auth header | `REVENUECAT_WEBHOOK_AUTH` | Free < $2.5k/mo |
+| Expo / EAS (mobile + push) | — | `EXPO_PUBLIC_*` (mobile) | Free tier |
+| Plausible (analytics) | script tag (no key) | — | ~$9/mo |
 | Vercel | GitHub App (auto) | — | Free Hobby plan |
 | GitHub Actions | GitHub App (auto) | — | Free |
 
@@ -562,9 +598,14 @@ Manual production deploy:
 | `ANTHROPIC_API_KEY` | ✅ | ARIA AI hints |
 | `STRIPE_SECRET_KEY` | ⚠️ | Stripe billing (go-live pending) |
 | `STRIPE_WEBHOOK_SECRET` | ⚠️ | Stripe webhook verification |
-| `STRIPE_PRO_MONTHLY_PRICE_ID` | ⚠️ | $5.99/month price ID |
-| `STRIPE_PRO_YEARLY_PRICE_ID` | ⚠️ | $55.99/year price ID |
-See `.env.example` for all variables with generation instructions.
+| `STRIPE_PRO_MONTHLY_PRICE_ID` | ⚠️ | $13.99/month price ID |
+| `STRIPE_PRO_YEARLY_PRICE_ID` | ⚠️ | $99/year price ID |
+| `SUPABASE_URL` | ✅ | Supabase project URL (auth + mobile JWT verify) |
+| `SUPABASE_ANON_KEY` | ✅ | Supabase anon key |
+| `SUPABASE_SERVICE_ROLE_KEY` | ✅ | Supabase service role (server-side `getUser` fallback) |
+| `REVENUECAT_WEBHOOK_AUTH` | ⚠️ | Authorization header secret for `/api/webhooks/revenuecat` |
+| `CRON_SECRET` | ⚠️ | Bearer for the Vercel Cron push streak-reminder |
+See `apps/web/.env.example` for all variables. Mobile uses its own `apps/mobile/.env` (`EXPO_PUBLIC_SUPABASE_URL`, `EXPO_PUBLIC_SUPABASE_ANON_KEY`, `EXPO_PUBLIC_API_BASE`, RevenueCat public keys).
 
 ---
 
