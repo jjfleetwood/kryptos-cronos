@@ -11,12 +11,12 @@
 
 | Metric | Value |
 |---|---|
-| **Total hours logged** | 58.0 h |
-| **Sessions logged** | 10 |
-| **Equivalent developer cost** | $8,700 (58h × $150/hr) |
-| **Estimated AI cost to date** | ~$100 (10 sessions × $10/session) |
-| **Estimated AI cost this month (June 2026)** | ~$10 (1 session × $10/session) |
-| **AI leverage ratio** | ~87× (developer equivalent ÷ AI cost) |
+| **Total hours logged** | 60.5 h |
+| **Sessions logged** | 11 |
+| **Equivalent developer cost** | $9,075 (60.5h × $150/hr) |
+| **Estimated AI cost to date** | ~$110 (11 sessions × $10/session) |
+| **Estimated AI cost this month (June 2026)** | ~$20 (2 sessions × $10/session) |
+| **AI leverage ratio** | ~82× (developer equivalent ÷ AI cost) |
 
 ---
 
@@ -24,6 +24,7 @@
 
 | Date | Version | Hours | Summary | Cumulative |
 |---|---|---|---|---|
+| 2026-06-03 | v1.25.0 | 2.5 h | Mobile roadmap Phase 1 — multi-client token auth. New getAuthedUsername resolver (bearer Supabase JWT → session cookie) + verifySupabaseJwt (email-claim identity, not spoofable user_metadata) + POST /api/auth/bootstrap (provision Supabase-only accounts) + migrated 16 gameplay routes + origin-allowlisted CORS in proxy.ts. Caught + fixed a self-introduced metadata-spoofing takeover vector during review. Verified live (preflight/401/origin). Also authored MOBILE_ROADMAP.md (7-phase plan) earlier in the session. Deployed + dev/master | 60.5 h |
 | 2026-06-03 | v1.24.0 | 2.0 h | AI cloud certifications on /certs — AWS Certified AI Practitioner (AIF-C01, 5 domains, rose) + Google Cloud Professional ML Engineer (PMLE, 6 domains, green). New aws-aip/gcp-pmle CertIds + domain defs + builders in cert-domains.ts; AI_PLATFORM_CERT_DOMAINS table (AWS→49 AI-native stages, GCP→~33 ML-lifecycle stages) merged into CERT_DOMAINS at load; practice exams auto-populate via getStagesForCert; allowlisted in exam route + exam page. Full /deploy: tsc+eslint+npm audit gates, vercel --prod, version bump, all docs stamped, security audit, commit + push dev | 58.0 h |
 | 2026-05-30 | v1.23.0 | 6.0 h | Completed dual-mode quiz rollout — final 69 CTF stages across 6 batches (quantum-3 QKD, quantum-4 risk-mgmt, cisco-2..5, umbrella, ancient stages.ts), reaching 203/203 every CTF stage now Quiz+CTF; idempotent inject-quizzes.mjs tooling. New brand logo (guilloché watch dial, replaces 🛡️) + favicon; playable homepage mini-CTF hero; certs left-sidebar + CyberOps-first + Resume relocated; RichText backtick/single-quote highlighting + chilled lead colors. Full /deploy: tsc+eslint+npm audit gates, version bump, all docs updated, security audit, commit + push dev | 56.0 h |
 | 2026-05-29 | v1.22.0 | 8.0 h | quantum-4 epoch (10 CTF stages — CBOM, HNDL, FIPS 203/204/205, CNSA 2.0, migration roadmap, sector risk, board briefing, hybrid crypto, quantum-safe arch, supply chain); emerging-tech epoch (10 quiz stages — adversarial ML, foundation model supply chain, FL gradient inversion, deepfakes, AI-augmented threats, edge AI, EU AI Act, agentic AI, quantum-AI, ERM); cert-domain AI+ merge fix; CLAUDE.md + RELEASE_NOTES + all UI/i18n/email counts updated (438→458, 36→38, 6 languages); deploy + security audit | 50.0 h |

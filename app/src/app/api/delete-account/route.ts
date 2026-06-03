@@ -1,9 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 import { redis } from "@/lib/redis";
-import { getServerSession } from "@/lib/server-session";
+import { getAuthedUsername } from "@/lib/api-auth";
 
 export async function DELETE(req: NextRequest) {
-  const username = getServerSession(req);
+  const username = await getAuthedUsername(req);
   if (!username) {
     return NextResponse.json({ error: "unauthorized" }, { status: 401 });
   }

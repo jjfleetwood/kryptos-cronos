@@ -2,6 +2,19 @@
 
 ---
 
+## v1.25.0 — 2026-06-03
+
+**Mobile roadmap Phase 1: multi-client token auth (backend)**
+
+- **Bearer-token auth on the API.** New `getAuthedUsername()` resolver (`src/lib/api-auth.ts`) accepts an `Authorization: Bearer <supabase-jwt>` (for mobile clients) and falls back to the existing HMAC `session_token` cookie (web). The legacy sync `getServerSession()` is unchanged for SSR pages. This is the keystone that lets a phone talk to the existing backend.
+- **JWT verification** (`src/lib/supabase-jwt.ts`) via the official `supabaseAdmin.auth.getUser(token)` — algorithm-agnostic across Supabase's symmetric→asymmetric key migration. **Identity is resolved from the token's verified top-level `email` claim → the `email:{email}` reverse index, NOT from `user_metadata.username`** (which is user-editable and would allow account takeover).
+- **`POST /api/auth/bootstrap`** — provisions a Redis user record for Supabase-only (mobile-registered) accounts that never hit `/api/auth/register`. Idempotent; keys the account to the verified email and enforces username uniqueness on first claim (atomic `SET NX` on the email binding).
+- **16 gameplay/user-data routes migrated** to `getAuthedUsername` (progress, quiz-progress, check-flag, check-answer, hint, trophies, shop, skin, user-group, redeem, survey, resume, delete-account, auth/me, downloads/check, progress/certificate). Admin and Stripe routes intentionally unchanged.
+- **CORS for `/api`** in `proxy.ts` — origin-allowlisted (production + localhost/Expo dev), credential-less (cross-origin clients use bearer tokens, not cookies), with `OPTIONS` preflight handling. Disallowed origins are not reflected.
+- No new env vars; no user-facing change. Verified live: preflight returns 204 + correct CORS headers, bogus bearer tokens are rejected (401), disallowed origins are not reflected.
+
+---
+
 ## v1.24.0 — 2026-06-03
 
 **AI cloud certifications: AWS AI Practitioner + Google Cloud Professional ML Engineer**

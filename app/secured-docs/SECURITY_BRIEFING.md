@@ -1,10 +1,21 @@
 # Kryptós CronOS — Security Briefing
 **Classification:** Internal  
-**Version:** 5.3  
+**Version:** 5.4  
 **Date:** 2026-06-03  
-**Current version:** v1.24.0
+**Current version:** v1.25.0
 
 ---
+
+## Changelog — v5.4 (2026-06-03) — Multi-client bearer-token auth (v1.25.0)
+
+**New authenticated surface — reviewed and hardened.** This release lets the API accept a Supabase JWT via `Authorization: Bearer` (for the planned mobile client) in addition to the HMAC session cookie. Security-relevant design decisions:
+
+- **Identity is NOT derived from `user_metadata`.** Supabase `user_metadata` is user-editable (`auth.updateUser({ data })`), so trusting `user_metadata.username` would permit account takeover by metadata spoofing. Instead, `verifySupabaseJwt()` resolves identity from the token's **verified top-level `email` claim**, then maps it through the existing `email:{email}` reverse index. The email claim reflects `auth.users.email` and cannot change without Supabase re-verification.
+- **Token verification** uses `supabaseAdmin.auth.getUser(token)` (server-side, service-role) — validates signature/expiry/revocation regardless of signing algorithm. Invalid/expired/forged tokens resolve to null → 401 (verified live).
+- **No privilege widening.** `getAuthedUsername()` is bearer → session-cookie only; it deliberately does NOT add an admin-cookie fallback. Routes that previously had an explicit `extractAdminUsername` fallback keep it explicitly. Admin and Stripe routes were not migrated.
+- **`POST /api/auth/bootstrap`** is rate-limited (30/min/IP), requires a valid token, keys the new record to the verified email, enforces username uniqueness, and atomically claims the email→username binding with `SET NX`. First-write-wins — cannot overwrite an existing account.
+- **CORS** (`proxy.ts`, `/api` only) is origin-allowlisted and **credential-less** (cross-origin clients authenticate with bearer tokens, never cookies), so it cannot be used to ride a victim's cookie session. Disallowed origins receive no `Access-Control-Allow-Origin` (verified live). The per-request nonce CSP for HTML pages is unchanged.
+- No new env vars; XP/flag validation remains server-side; no new client-exposed secrets.
 
 ## Changelog — v5.3 (2026-06-03) — AWS AIP + GCP PMLE cert paths (v1.24.0)
 

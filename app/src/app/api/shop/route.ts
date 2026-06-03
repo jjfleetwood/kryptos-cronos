@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createHmac, timingSafeEqual } from "crypto";
 import { redis } from "@/lib/redis";
-import { getServerSession } from "@/lib/server-session";
+import { getAuthedUsername } from "@/lib/api-auth";
 import { SHOP_ITEMS, getItem } from "@/data/shop-items";
 
 function verifyAdminToken(token: string): boolean {
@@ -23,7 +23,7 @@ function verifyAdminToken(token: string): boolean {
 
 /** GET /api/shop — returns shop catalog + user's inventory and spendable balance */
 export async function GET(req: NextRequest) {
-  const username = getServerSession(req);
+  const username = await getAuthedUsername(req);
   if (!username) return NextResponse.json({ error: "unauthorized" }, { status: 401 });
 
   const adminToken = req.cookies.get("admin_token")?.value ?? "";
@@ -57,7 +57,7 @@ export async function GET(req: NextRequest) {
 
 /** POST /api/shop — purchase an item */
 export async function POST(req: NextRequest) {
-  const username = getServerSession(req);
+  const username = await getAuthedUsername(req);
   if (!username) return NextResponse.json({ error: "unauthorized" }, { status: 401 });
 
   const body = await req.json().catch(() => null);
@@ -109,7 +109,7 @@ export async function POST(req: NextRequest) {
 
 /** PATCH /api/shop — equip or unequip an item */
 export async function PATCH(req: NextRequest) {
-  const username = getServerSession(req);
+  const username = await getAuthedUsername(req);
   if (!username) return NextResponse.json({ error: "unauthorized" }, { status: 401 });
 
   const body = await req.json().catch(() => null);

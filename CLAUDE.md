@@ -6,7 +6,7 @@ Gamified cybersecurity + AI training platform. 38 curriculum epochs, 458 CTF/qui
 
 **Live:** kryptoscronos.com  
 **Repo:** github.com/jjfleetwood/kryptos-cronos  
-**Current version:** v1.24.0 (as of 2026-06-03)
+**Current version:** v1.25.0 (as of 2026-06-03)
 
 ---
 
@@ -166,7 +166,9 @@ Back navigation: `BackLink` uses `backHref` prop (passed from `StageContainer`) 
 | `src/data/cyberops-domains.ts` | Cisco CBROPS 200-201 domain mappings (5 domains); `computeCyberOpsReadiness()` |
 | `src/data/content-flags.ts` | Per-epoch IP risk registry (risk level, license, attribution text) — drives epoch-page banners |
 | `src/lib/auth.ts` | Client-side session cache (sessionStorage) |
-| `src/lib/server-session.ts` | HMAC session token sign/verify; `getServerSession()` |
+| `src/lib/server-session.ts` | HMAC session token sign/verify; `getServerSession()` (sync, cookie-only — for SSR pages) |
+| `src/lib/api-auth.ts` | Multi-client resolver `getAuthedUsername(req)` — bearer Supabase JWT → session cookie; `extractAdminUsername(req)`. Used by gameplay API routes (mobile-ready) |
+| `src/lib/supabase-jwt.ts` | `verifySupabaseJwt()` — verifies a Supabase access token via `getUser()`; resolves identity from the verified **email** claim → `email:{email}` index (NOT user-editable `user_metadata`) |
 | `src/lib/crypto-utils.ts` | PBKDF2-SHA256 (600k iterations); auto-rehash on login |
 | `src/lib/supabase.ts` | Supabase parallel auth client — `supabaseAdmin`, `createSupabaseServerClient()` |
 | `src/lib/redis.ts` | Upstash client — needs `UPSTASH_REDIS_*` env vars |
@@ -231,6 +233,7 @@ Local dev: `.env.local` in `app/` (gitignored).
 | Route | Purpose |
 |---|---|
 | `POST /api/auth/register` | Server-side PBKDF2 registration; sets session + admin cookies; parallel Supabase account |
+| `POST /api/auth/bootstrap` | Provisions a Redis user record for Supabase-only (mobile) accounts; keyed to verified email; idempotent, `SET NX` username claim; rate-limited 30/min/IP |
 | `POST /api/auth/login` | PBKDF2 login with 5-attempt lockout (15 min); auto-rehash to 600k iterations; Supabase parallel |
 | `DELETE /api/auth/session` | Clear session cookie (logout); Supabase signOut |
 | `GET /api/auth/me` | Returns `{ username, email, isAdmin }` from session cookie |
@@ -311,6 +314,14 @@ Local dev: `.env.local` in `app/` (gitignored).
 - **Target sponsors:** CrowdStrike, AWS, SentinelOne, CompTIA, ISC²
 
 ---
+
+## What's Shipped (v1.25.0)
+
+- ✅ **Mobile roadmap Phase 1 — multi-client token auth (backend).** API now accepts `Authorization: Bearer <supabase-jwt>` (mobile) alongside the HMAC session cookie (web), via new `getAuthedUsername()` (`src/lib/api-auth.ts`)
+- ✅ **Spoof-safe identity** — `verifySupabaseJwt()` resolves the username from the token's verified **email** claim → `email:{email}` index, never from user-editable `user_metadata`
+- ✅ **`POST /api/auth/bootstrap`** — provisions Redis records for Supabase-only (mobile) accounts; idempotent, email-keyed, `SET NX` username claim, rate-limited
+- ✅ **16 gameplay routes migrated** to the bearer-aware resolver; admin + Stripe routes unchanged. **CORS** for `/api` (origin-allowlisted, credential-less, OPTIONS preflight) in `proxy.ts`
+- ✅ Verified live: preflight 204 + CORS headers; bogus bearer → 401; disallowed origin not reflected. Plan: `MOBILE_ROADMAP.md`
 
 ## What's Shipped (v1.24.0)
 

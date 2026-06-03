@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createHmac, timingSafeEqual } from "crypto";
 import { redis } from "@/lib/redis";
-import { getServerSession } from "@/lib/server-session";
+import { getAuthedUsername } from "@/lib/api-auth";
 
 function verifyAdminToken(token: string): boolean {
   const secret = process.env.ADMIN_SECRET;
@@ -29,7 +29,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Survey body too large." }, { status: 413 });
   }
   const body = JSON.parse(raw) as Record<string, unknown>;
-  const username = getServerSession(req) ?? "anonymous";
+  const username = await getAuthedUsername(req) ?? "anonymous";
   const ts = Date.now();
   const key = `survey:${ts}:${username}`;
 

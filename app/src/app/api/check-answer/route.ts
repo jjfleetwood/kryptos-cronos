@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { quizStage01 } from "@/data/quiz-stage-01";
-import { getServerSession } from "@/lib/server-session";
+import { getAuthedUsername } from "@/lib/api-auth";
 import { awardStageInRedis, awardQuizStageInRedis } from "@/lib/server-progress";
 import { getStage } from "@/data/stages";
 import { canAccessStage } from "@/lib/access";
@@ -24,7 +24,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ correct: false }, { status: 400 });
   }
 
-  const username = getServerSession(req);
+  const username = await getAuthedUsername(req);
   if (!await canAccessStage(body.stageId, username)) {
     return NextResponse.json({ correct: false }, { status: 403 });
   }

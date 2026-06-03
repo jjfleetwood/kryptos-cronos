@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { createHmac, timingSafeEqual } from "crypto";
 import { stages } from "@/data/stages";
 import { stageFlags } from "@/data/stage-flags";
-import { getServerSession } from "@/lib/server-session";
+import { getAuthedUsername } from "@/lib/api-auth";
 import { awardStageInRedis } from "@/lib/server-progress";
 import { canAccessStage } from "@/lib/access";
 import { redis } from "@/lib/redis";
@@ -45,7 +45,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ correct: false }, { status: 404 });
   }
 
-  const sessionUsername = getServerSession(req);
+  const sessionUsername = await getAuthedUsername(req);
   const adminUsername = verifyAdminToken(req.cookies.get("admin_token")?.value ?? "");
   const isAdmin = adminUsername !== null;
   const username = sessionUsername ?? adminUsername;

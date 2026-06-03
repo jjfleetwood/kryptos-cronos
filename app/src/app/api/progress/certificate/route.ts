@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { redis } from "@/lib/redis";
-import { getServerSession } from "@/lib/server-session";
+import { getAuthedUsername } from "@/lib/api-auth";
 import { renderToBuffer, Document, Page, View, Text, StyleSheet, Font } from "@react-pdf/renderer";
 import { createElement as h } from "react";
 import { epochs, stages } from "@/data/stages";
@@ -126,7 +126,7 @@ const styles = StyleSheet.create({
 });
 
 export async function GET(req: NextRequest) {
-  const username = getServerSession(req);
+  const username = await getAuthedUsername(req);
   if (!username) return NextResponse.json({ error: "unauthorized" }, { status: 401 });
 
   const lower = username.toLowerCase();

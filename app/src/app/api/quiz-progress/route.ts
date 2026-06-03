@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { redis } from "@/lib/redis";
-import { getServerSession } from "@/lib/server-session";
+import { getAuthedUsername } from "@/lib/api-auth";
 import { awardQuizStageInRedis } from "@/lib/server-progress";
 
 function parseArr(val: unknown): string[] {
@@ -11,7 +11,7 @@ function parseArr(val: unknown): string[] {
 }
 
 export async function GET(req: NextRequest) {
-  const username = getServerSession(req);
+  const username = await getAuthedUsername(req);
   if (!username) return NextResponse.json({ quizCompletedStages: [] });
 
   const raw = await redis.hget(`progress:${username.toLowerCase()}`, "quizStages");
@@ -19,7 +19,7 @@ export async function GET(req: NextRequest) {
 }
 
 export async function POST(req: NextRequest) {
-  const username = getServerSession(req);
+  const username = await getAuthedUsername(req);
   if (!username) return NextResponse.json({ error: "unauthorized" }, { status: 401 });
 
   const body = await req.json().catch(() => null);

@@ -1,11 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
 import { redis } from "@/lib/redis";
-import { getServerSession } from "@/lib/server-session";
+import { getAuthedUsername } from "@/lib/api-auth";
 
 const VALID_SKINS = new Set(["youth", "standard", "mature"]);
 
 export async function GET(req: NextRequest) {
-  const username = getServerSession(req);
+  const username = await getAuthedUsername(req);
   if (!username) return NextResponse.json({ skin: null });
 
   const data = await redis.hgetall(`progress:${username.toLowerCase()}`);
@@ -14,7 +14,7 @@ export async function GET(req: NextRequest) {
 }
 
 export async function POST(req: NextRequest) {
-  const username = getServerSession(req);
+  const username = await getAuthedUsername(req);
   if (!username) return NextResponse.json({ ok: false }, { status: 401 });
 
   const body = await req.json().catch(() => null);

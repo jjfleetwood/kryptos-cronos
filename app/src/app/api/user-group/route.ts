@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { redis } from "@/lib/redis";
-import { getServerSession } from "@/lib/server-session";
+import { getAuthedUsername } from "@/lib/api-auth";
 
 const VALID_GROUPS = new Set(["elementary", "junior-hs", "high-school", "university", "career", "curious"]);
 const DEFAULT_GROUPS = ["career", "curious"];
@@ -11,7 +11,7 @@ function parseGroups(val: unknown): string[] {
 }
 
 export async function GET(req: NextRequest) {
-  const username = getServerSession(req);
+  const username = await getAuthedUsername(req);
   if (!username) return NextResponse.json({ groups: DEFAULT_GROUPS });
 
   const raw = await redis.hget(`user:${username.toLowerCase()}`, "userGroups");
@@ -20,7 +20,7 @@ export async function GET(req: NextRequest) {
 }
 
 export async function POST(req: NextRequest) {
-  const username = getServerSession(req);
+  const username = await getAuthedUsername(req);
   if (!username) return NextResponse.json({ ok: false }, { status: 401 });
 
   const body = await req.json().catch(() => null);

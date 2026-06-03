@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { redis } from "@/lib/redis";
-import { getServerSession } from "@/lib/server-session";
+import { getAuthedUsername } from "@/lib/api-auth";
 import { renderToBuffer, Document, Page, View, Text, StyleSheet } from "@react-pdf/renderer";
 import { createElement as h } from "react";
 import { stagesMeta } from "@/data/stages-meta";
@@ -67,7 +67,7 @@ const s = StyleSheet.create({
 });
 
 export async function POST(req: NextRequest) {
-  const username = getServerSession(req);
+  const username = await getAuthedUsername(req);
   if (!username) return NextResponse.json({ error: "unauthorized" }, { status: 401 });
 
   const body = await req.json() as ResumePayload;

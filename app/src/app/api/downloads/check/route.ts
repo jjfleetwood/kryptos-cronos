@@ -1,12 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
 import { redis } from "@/lib/redis";
-import { getServerSession } from "@/lib/server-session";
+import { getAuthedUsername } from "@/lib/api-auth";
 
 const MODE_KEY = "feature:downloads:mode";
 const ALLOWLIST_KEY = "feature:downloads:allowlist";
 
 export async function GET(req: NextRequest) {
-  const username = getServerSession(req);
+  const username = await getAuthedUsername(req);
 
   const mode = ((await redis.get(MODE_KEY)) as string) ?? "off";
 

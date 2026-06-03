@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createHmac, timingSafeEqual } from "crypto";
 import { redis } from "@/lib/redis";
-import { getServerSession } from "@/lib/server-session";
+import { getAuthedUsername } from "@/lib/api-auth";
 import { TROPHIES, getTrophy, dailyShopTrophies } from "@/data/trophies";
 import { stages } from "@/data/stages";
 import { milestoneBadges } from "@/data/milestone-badges";
@@ -40,7 +40,7 @@ async function getClaimedCounts(ids: string[]): Promise<Record<string, number>> 
  *  User:  daily shop rotation (10) + their owned trophies
  */
 export async function GET(req: NextRequest) {
-  const username = getServerSession(req);
+  const username = await getAuthedUsername(req);
   if (!username) return NextResponse.json({ error: "unauthorized" }, { status: 401 });
   const lower = username.toLowerCase();
 
@@ -103,7 +103,7 @@ export async function GET(req: NextRequest) {
  *  Buy a trophy from the daily shop rotation
  */
 export async function POST(req: NextRequest) {
-  const username = getServerSession(req);
+  const username = await getAuthedUsername(req);
   if (!username) return NextResponse.json({ error: "unauthorized" }, { status: 401 });
   const lower = username.toLowerCase();
 

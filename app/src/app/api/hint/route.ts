@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { redis } from "@/lib/redis";
-import { getServerSession } from "@/lib/server-session";
+import { getAuthedUsername } from "@/lib/api-auth";
 import { trackHint, getSkillLevel, adaptiveCooldownSeconds } from "@/lib/difficulty";
 
 async function isRateLimited(ip: string): Promise<boolean> {
@@ -17,7 +17,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Too many requests. Take a breather and try again." }, { status: 429 });
   }
 
-  const username = getServerSession(req);
+  const username = await getAuthedUsername(req);
 
   const body = await req.json().catch(() => null) as {
     message?: string;

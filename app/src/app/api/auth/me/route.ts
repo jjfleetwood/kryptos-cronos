@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { redis } from "@/lib/redis";
-import { getServerSession } from "@/lib/server-session";
+import { getAuthedUsername } from "@/lib/api-auth";
 import { createHmac, timingSafeEqual } from "crypto";
 
 function verifyAdminToken(token: string): boolean {
@@ -21,7 +21,7 @@ function verifyAdminToken(token: string): boolean {
 }
 
 export async function GET(req: NextRequest) {
-  let username = getServerSession(req);
+  let username = await getAuthedUsername(req);
   const adminToken = req.cookies.get("admin_token")?.value ?? "";
   const isAdmin = verifyAdminToken(adminToken);
 

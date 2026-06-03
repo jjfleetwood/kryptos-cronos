@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createHmac, timingSafeEqual } from "crypto";
 import { redis } from "@/lib/redis";
-import { getServerSession } from "@/lib/server-session";
+import { getAuthedUsername } from "@/lib/api-auth";
 import { awardStageInRedis } from "@/lib/server-progress";
 
 function extractAdminUsername(req: NextRequest): string | null {
@@ -23,7 +23,7 @@ function extractAdminUsername(req: NextRequest): string | null {
 }
 
 export async function GET(req: NextRequest) {
-  const username = getServerSession(req) ?? extractAdminUsername(req);
+  const username = await getAuthedUsername(req) ?? extractAdminUsername(req);
   if (!username) return NextResponse.json({ error: "unauthorized" }, { status: 401 });
 
   const lower = username.toLowerCase();
@@ -53,7 +53,7 @@ export async function GET(req: NextRequest) {
 
 export async function POST(req: NextRequest) {
   // Session cookie required — username is taken from the verified token, not the body
-  const username = getServerSession(req);
+  const username = await getAuthedUsername(req);
   if (!username) {
     return NextResponse.json({ error: "unauthorized" }, { status: 401 });
   }
