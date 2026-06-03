@@ -26,13 +26,13 @@ Findings from a structural + sampled read of the curriculum. Ranked by leverage.
 
 | # | Item | Effort | Priority | Status |
 |---|---|---|---|---|
-| G | **Analytics — install Plausible or PostHog** | 2 hours | P1 | ⚠️ OPEN. Cannot pitch to investors without user data. $9/mo Plausible recommended (privacy-compliant, GDPR). Install before public launch. |
-| H | **83(b) election filing** | Legal | P1 | ⚠️ CONFIRM with attorney. Deadline ~June 22, 2026 (30 days from May 23 incorporation). Missing this has catastrophic tax consequences on future vesting. |
+| G | **Analytics — install Plausible or PostHog** | 2 hours | P1 | ✅ **DONE 2026-06-03 — Plausible installed.** Privacy-friendly, GDPR-compliant. Closes the "can't pitch without user data" gap. |
+| H | **83(b) election filing** | Legal | P1 | ✅ Likely **FILED ~2026-05-30** (tracking …40418197); founder election reviewed 2026-06-03, complete per §1.83-2(e). Confirm USPS receipt. (30-day clock from the 2026-05-27 transfer → ~June 26.) |
 | I | **Public launch campaign** | 1 day | P1 | r/netsec, DEF CON Discord, HackerNews Show HN, security Twitter/LinkedIn. First 1,000 MAU is the only thing that makes this fundable. |
 | J | **First paying user** | At launch | P1 | Even $13.99/mo from one real user changes the conversation from "$0 revenue" to "revenue exists." |
 | K | **Named advisor** | 1–3 conversations | P2 | A CISO, security researcher, or recognized practitioner willing to be named publicly. Changes single-founder risk perception for investors. |
 | L | **One enterprise pilot conversation** | 2–4 weeks outreach | P2 | A community college cybersecurity program, regional MSSP, or corporate SOC team willing to pilot. Even an LOI counts. |
-| M | **Cross-platform / mobile app** | ~3 months | P2 | 📱 Sequenced plan in `MOBILE_ROADMAP.md` (added 2026-06-03). Turborepo monorepo → Next.js web + Expo mobile sharing one backend → RevenueCat (mobile IAP) + Stripe (web) → Supabase as single identity. Keystone is Phase 1 (token auth on the API); ship Quiz-mode first, defer the CTF terminal to web/tablet. Mobile = B2C retention channel (native push for streaks); B2B stays web. |
+| M | **Cross-platform / mobile app** | ~3 months | P2 | 🟡 **Code-complete, in dev (branch merged to master).** Phases 1–6 + IAP done: Turborepo monorepo, Supabase bearer auth, Expo app (auth/quiz/ARIA/push/RevenueCat paywall), EAS build config. See `MOBILE_ROADMAP.md`. **Remaining (yours):** device run, `eas init` + `eas build`, RevenueCat dashboard, store listings, Vercel envs (CRON_SECRET, REVENUECAT_WEBHOOK_AUTH). Dev server runs (`expo start` → web `w`); Expo Go can't host SDK 56 → phone needs a dev build. |
 
 ## Completed Items — Added 2026-05-28, Done 2026-05-29
 
