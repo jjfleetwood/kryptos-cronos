@@ -1097,15 +1097,15 @@ openssl x509 -in root-ca-mldsa65.crt -text -noout | head -30
       tagline: "liboqs is the reference C library for post-quantum algorithms — integrated into OpenSSL, nginx, curl, and Chromium for testing.",
       year: 2024,
       overview: [
-        "The Open Quantum Safe (OQS) project, led from the University of Waterloo, provides liboqs — the reference C library implementing NIST PQC algorithms. Before the FIPS standards were finalized, liboqs was the primary way researchers and engineers could experiment with PQC. Now it is integrated into OpenSSL (via oqs-provider), nginx, curl, and Chromium for testing.",
-        "liboqs supports all NIST-standardized algorithms: ML-KEM (FIPS 203), ML-DSA (FIPS 204), SLH-DSA (FIPS 205), and FN-DSA/FALCON. It also supports hybrid key exchange groups (X25519MLKEM768) for use in TLS. Language bindings exist for C, Python, Go, Java, Rust, and .NET.",
-        "While liboqs is the reference implementation and is widely used for testing, it is not FIPS 140-3 validated. For production federal deployments, validated modules (AWS-LC cert #4800, Microsoft SymCrypt) are required. liboqs is appropriate for research, testing, and non-federal production use.",
+        "The Open Quantum Safe (OQS) project, led from the University of Waterloo, provides liboqs — the reference C library for NIST PQC algorithms:\n- Before the FIPS standards were final, liboqs was the primary way to experiment with PQC.\n- It's now integrated into OpenSSL (via oqs-provider), nginx, curl, and Chromium for testing.",
+        "liboqs covers every NIST-standardized algorithm:\n- ML-KEM (FIPS 203), ML-DSA (FIPS 204), SLH-DSA (FIPS 205), and FN-DSA/FALCON, plus hybrid groups (X25519MLKEM768) for TLS.\n- Language bindings exist for C, Python, Go, Java, Rust, and .NET.",
+        "It's the reference implementation, but not FIPS-validated:\n- liboqs is widely used for testing but is not FIPS 140-3 validated.\n- Production federal deployments need validated modules (AWS-LC cert #4800, Microsoft SymCrypt); liboqs suits research, testing, and non-federal production.",
       ],
       technical: {
         title: "liboqs KEM API and Integration",
         body: [
-          "The liboqs KEM API follows a keypair → encapsulate → decapsulate flow. ML-KEM-768 key sizes: public key 1184 bytes, secret key 2400 bytes, ciphertext 1088 bytes, shared secret 32 bytes. The oqs-provider integrates liboqs into OpenSSL 3.x as a drop-in provider, enabling PQC in all OpenSSL-based applications (nginx, curl, Python ssl module).",
-          "Critical security considerations for liboqs use: (1) Always use OQS_MEM_secure_free() for secret keys and shared secrets (zeroes memory before freeing). (2) Return values must be checked — OQS_ERROR (-1) indicates failure. (3) Heap-allocate all key buffers (2400-byte secret key on stack risks overflow). (4) Use constant-time implementations — liboqs provides these by default, but wrapper code must also avoid branches on secret data.",
+          "The liboqs KEM API follows a keypair → encapsulate → decapsulate flow:\n- ML-KEM-768 sizes: 1184-byte public key, 2400-byte secret key, 1088-byte ciphertext, 32-byte shared secret.\n- The oqs-provider drops liboqs into OpenSSL 3.x, enabling PQC in all OpenSSL-based apps (nginx, curl, Python's ssl module).",
+          "Safe liboqs use comes down to a few rules:\n- Always OQS_MEM_secure_free() secret keys and shared secrets (zeroes memory), and check return values — OQS_ERROR (-1) means failure.\n- Heap-allocate key buffers (a 2400-byte secret key on the stack risks overflow), and keep wrapper code constant-time (liboqs already is; don't branch on secret data).",
         ],
         codeExample: {
           label: "liboqs ML-KEM-768 key encapsulation (C)",
@@ -1145,8 +1145,8 @@ int generate_session_key(uint8_t *session_key, size_t key_len,
         where: "Google Chrome 124, worldwide",
         impact: "First mass-market PQC deployment — TLS key exchange secured against future quantum computers for billions of users",
         body: [
-          "In May 2024, Google Chrome 124 deployed X25519MLKEM768 (X25519 + ML-KEM-768 hybrid) as the default key agreement for TLS connections, using the oqs-provider / BoringSSL implementation. This made Chrome the first major browser to deploy PQC key exchange at scale — protecting billions of TLS sessions against Harvest Now, Decrypt Later attacks.",
-          "Chrome's deployment was specifically motivated by HNDL: recorded Chrome TLS sessions from 2024 would be protected against a quantum attacker in 2035. The X25519 classical component ensures no regression if ML-KEM has an undiscovered weakness. Google reported no performance or compatibility issues in the rollout.",
+          "In May 2024, Chrome 124 made hybrid PQC the default TLS key agreement:\n- It shipped X25519MLKEM768 (X25519 + ML-KEM-768) via the oqs-provider / BoringSSL implementation.\n- That made Chrome the first major browser to deploy PQC key exchange at scale — protecting billions of TLS sessions against Harvest Now, Decrypt Later.",
+          "HNDL specifically motivated the rollout:\n- Recorded 2024 Chrome TLS sessions are protected against a quantum attacker in 2035, with the X25519 component guaranteeing no regression if ML-KEM has a hidden weakness.\n- Google reported no performance or compatibility issues.",
         ],
       },
       diagram: {
