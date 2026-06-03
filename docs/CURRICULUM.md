@@ -1,7 +1,7 @@
 # Kryptós CronOS — Curriculum Reference
-**Version:** 3.6  
-**Date:** 2026-05-29  
-**Total stages:** 458 across 38 epochs
+**Version:** 3.7  
+**Date:** 2026-06-03  
+**Total stages:** 458 across 38 epochs (delivered on **web + native mobile** from the shared `@kryptos/core` content package)
 
 ---
 
@@ -407,6 +407,7 @@ Every stage follows this four-part flow:
 - Stage-specific commands implemented as TypeScript closures in stage data files
 - Progressive hints: up to 3, revealed one at a time via `hint`
 - ARIA chatbot available for AI-assisted coaching
+- **Dual-mode (v1.23.0):** every CTF stage (203/203) also has an 8-question multiple-choice quiz. The quiz is a cosmetic half-clear (0 XP, no unlock); the CTF is the full clear. Learners can choose either path into a stage.
 
 ### 3. Reference Drawer
 - Slide-in panel available during CTF — full briefing accessible without leaving the terminal
