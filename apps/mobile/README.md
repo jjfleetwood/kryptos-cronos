@@ -1,56 +1,108 @@
-# Welcome to your Expo app 👋
+# Kryptós CronOS — Mobile App
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+The iOS/Android app, part of the Kryptós CronOS Turborepo monorepo. Built with
+**Expo (SDK 56) + Expo Router + React Native**. It talks to the production API at
+`kryptoscronos.com` and shares content/types via the workspace packages — it does
+**not** have its own backend.
 
-## Get started
+- **Shared packages:** `@kryptos/core` (stage data + types), `@kryptos/api-client`
+  (typed client; bearer-token auth).
+- **Auth:** Supabase (RN SDK) → access token sent as `Authorization: Bearer` to the API.
+- **Native features:** push notifications (`expo-notifications`) and IAP (`react-native-purchases`)
+  — these require a **dev build**, not Expo Go.
 
-1. Install dependencies
+## Prerequisites
 
-   ```bash
-   npm install
-   ```
+- Node 20+ and npm.
+- A physical device (or simulator) with the **Expo Go** app for quick UI work, **or**
+  an EAS **dev build** to exercise push + in-app purchases (those native modules don't
+  run in Expo Go).
 
-2. Start the app
-
-   ```bash
-   npx expo start
-   ```
-
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
+## 1. Install (from the monorepo root)
 
 ```bash
-npm run reset-project
+cd <repo-root>          # C:\Users\Ajax\Projects\cyberquest
+npm install             # installs all workspaces (web + mobile + packages)
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+> Install from the **repo root**, not `apps/mobile` — this is an npm-workspaces monorepo
+> and Metro is configured (`metro.config.js`) to resolve `@kryptos/*` from the workspace root.
 
-### Other setup steps
+## 2. Configure env
 
-- To set up ESLint for linting, run `npx expo lint`, or follow our guide on ["Using ESLint and Prettier"](https://docs.expo.dev/guides/using-eslint/)
-- If you'd like to set up unit testing, follow our guide on ["Unit Testing with Jest"](https://docs.expo.dev/develop/unit-testing/)
-- Learn more about the TypeScript setup in this template in our guide on ["Using TypeScript"](https://docs.expo.dev/guides/typescript/)
+```bash
+cd apps/mobile
+cp .env.example .env
+```
 
-## Learn more
+Fill in (`EXPO_PUBLIC_*` values are inlined into the app at build time; the Supabase
+anon key and RevenueCat SDK keys are public and safe to ship):
 
-To learn more about developing your project with Expo, look at the following resources:
+| Var | Purpose |
+|---|---|
+| `EXPO_PUBLIC_SUPABASE_URL` / `EXPO_PUBLIC_SUPABASE_ANON_KEY` | Supabase auth (same project as the web app) |
+| `EXPO_PUBLIC_API_BASE` | API origin — defaults to `https://www.kryptoscronos.com` |
+| `EXPO_PUBLIC_REVENUECAT_IOS_KEY` / `_ANDROID_KEY` | RevenueCat SDK keys (IAP) |
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+## 3. Run
 
-## Join the community
+```bash
+cd apps/mobile
+npx expo start          # press i / a, or scan the QR with Expo Go
+```
 
-Join our community of developers creating universal apps.
+Quizzes, ARIA hints, leaderboard, and profile work in Expo Go. **Push notifications and
+in-app purchases need a dev build** (next section).
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+## 4. Dev / production builds (EAS)
+
+Push and IAP are native — build with EAS to test them on a device:
+
+```bash
+npm i -g eas-cli
+eas login
+cd apps/mobile
+eas init                                   # creates the Expo project + writes extra.eas.projectId
+eas build --profile development --platform ios   # or android / all  (see eas.json)
+# install the resulting build on your device, then:
+npx expo start --dev-client
+```
+
+Production / submission:
+
+```bash
+eas build  --profile production --platform all
+eas submit --profile production --platform all
+```
+
+Build profiles live in `eas.json`. Store identifiers (`com.kryptoscronos.app`) and the
+launch checklist are in `app.json` and `docs/MOBILE_ROADMAP.md` (Phase 6).
+
+## Project layout
+
+```
+apps/mobile/
+├── app.json            ← Expo config (bundle ids, plugins, splash)
+├── eas.json            ← EAS build/submit profiles
+├── metro.config.js     ← monorepo resolution (@kryptos/* + workspace root)
+├── src/
+│   ├── app/            ← Expo Router routes
+│   │   ├── _layout.tsx     auth gate (Stack) + RevenueCat config
+│   │   ├── login.tsx       sign in / sign up
+│   │   ├── (tabs)/         Stages · Leaderboard · Profile
+│   │   ├── stage/[id].tsx  interactive quiz + ARIA hint button
+│   │   └── upgrade.tsx     RevenueCat paywall
+│   ├── components/AriaChat.tsx   ARIA hint chat (→ /api/hint)
+│   └── lib/            supabase · api (bearer) · auth · notifications · purchases
+```
+
+## Notes / gotchas
+
+- **`typedRoutes` is temporarily disabled** in `app.json`. Re-enable it after running
+  `npx expo start` once (which generates `.expo/types` for typed route hrefs).
+- **Push + IAP backend** must be configured for full functionality: set `CRON_SECRET`
+  and `REVENUECAT_WEBHOOK_AUTH` in Vercel, create RevenueCat products/offering (entitlement
+  `pro`) + the webhook. See `docs/MOBILE_ROADMAP.md` (Phases 3, 5, 6).
+- The app calls `Purchases.logIn(username)` so RevenueCat's `app_user_id` matches the
+  backend's username — the `/api/webhooks/revenuecat` webhook keys off it.
+- Typecheck: `npx tsc --noEmit` from `apps/mobile`.
