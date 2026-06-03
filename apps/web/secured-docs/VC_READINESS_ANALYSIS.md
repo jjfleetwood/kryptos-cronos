@@ -26,7 +26,8 @@ The previous analysis (2026-05-22) identified two critical blockers. Here is the
 | v2.0 Blocker | Status |
 |---|---|
 | Stripe not configured | ✅ **Fixed** — Stripe live, voucher system active, webhooks tested |
-| Zero analytics | ❌ **Still open** — No Plausible, no PostHog, no user tracking |
+| Zero analytics | ✅ **Fixed (2026-06-03)** — Plausible installed; measurement layer live (still need users + time for data) |
+| Web-only product | ✅ **Addressed** — cross-platform now: native iOS/Android app (Expo) code-complete in the monorepo, pre-store; RevenueCat IAP wired alongside Stripe |
 
 The Stripe fix is significant. The platform can now accept real money. Every other item from v2.0 has been resolved or superseded.
 
@@ -40,7 +41,8 @@ A VC will spend 20 minutes on the product before meeting 1. Here is what they wi
 
 | Observation | Why It Matters |
 |---|---|
-| 438 stages across 36 epochs, all loading cleanly | 6–12 months of content effort, hard to replicate fast |
+| 458 stages across 38 epochs, all loading cleanly | 6–12 months of content effort, hard to replicate fast |
+| Cross-platform — Next.js web (live) + native iOS/Android app (Expo, code-complete) sharing one backend via a typed client | Monorepo with shared `@kryptos/core`; mobile expands TAM + retention (push streak nudges) |
 | ARIA AI tutor in-production with Socratic framing | No competitor has this working in prod; Anthropic SDK wired correctly |
 | Adaptive difficulty engine — XP bonus, skill tracking, recommended next | Shows product thinking beyond a content dump |
 | Cert paths (/certs) — CompTIA Security+ + ISC² CC | Transforms entertainment into career utility; genuinely differentiating |
@@ -61,9 +63,9 @@ Be ready for all of these. "We'll figure it out later" is not an acceptable answ
 
 This is not a gap in a spreadsheet — it is the entire story. A VC cannot price risk without behavioral data. Conversion rate? Unknown. Retention? Unknown. Which content track drives completion? Unknown. Do users churn after trial expiry or before? Unknown. The product may be exceptional and no one may use it. Until you have 500 weekly active users and 60 days of data, you cannot make a credible claim about product-market fit.
 
-**2. No analytics installed.**
+**2. Analytics installed (2026-06-03) — but no data yet.**
 
-You cannot tell an investor what your DAU is. You cannot show a cohort chart. You cannot show conversion funnel data. You are asking them to trust your assertions about a product that has no measurement layer. This is a first-meeting killer. Install Plausible Analytics ($9/mo, privacy-compliant) before the first investor conversation. It takes two hours. There is no excuse.
+The measurement layer now exists: Plausible Analytics is live (privacy-compliant, GDPR). The remaining gap is *data*, not tooling — you still can't show a DAU trend, cohort chart, or conversion funnel until real users move through the funnel over 60+ days. Installing tracking was the prerequisite; the honest work now is acquisition + retention so the numbers exist to show.
 
 **3. The non-security content problem.**
 
@@ -164,9 +166,9 @@ In priority order, here is what moves this from "interesting product" to "let's 
 
 | # | Action | Time | Impact |
 |---|---|---|---|
-| 1 | **Install Plausible Analytics** — privacy-compliant, $9/mo; add tracking to all pages | 2 hours | Without this you cannot show DAU, conversion funnel, or retention |
+| 1 | ✅ **Plausible Analytics installed** (2026-06-03) — privacy-compliant tracking live; now accumulate real usage data | Done | Measurement layer in place; need users + time for the numbers |
 | 2 | **Public launch** — r/netsec, DEF CON Discord, HackerNews Show HN, security Twitter/LinkedIn, r/cybersecurity | 1 day | First users are everything |
-| 3 | **File 83(b) election** (if not done) — IRS Form 83(b) within 30 days of incorporation | Legal review | Missing this has catastrophic tax consequences |
+| 3 | ✅ **83(b) election** — filed ~2026-05-30 (confirm USPS receipt) | Done | Catastrophic tax consequences if missed; appears handled |
 | 4 | **Rewrite bt-01–bt-30 for beginners** (in progress) | 3 days | First-journey is the flagship onboarding; it must work |
 
 ### Tier 2 — Must Have Before Investor Meeting (Days 30–90)
@@ -216,7 +218,7 @@ a16z, General Catalyst, Greylock — Series A territory.
 | Risk | Likelihood | Impact | Status |
 |---|---|---|---|
 | Zero traction at launch | Medium | Critical | Mitigation: targeted community outreach to cybersecurity communities |
-| No analytics = no traction proof | **High** | **Critical** | **Open — install Plausible before launch** |
+| No analytics = no traction proof | Medium | High | **Mitigated — Plausible installed 2026-06-03**; remaining risk is accumulating real usage data |
 | Single founder execution | High | High | Mitigation: named advisor, clear scope reduction if needed |
 | Non-security content dilutes brand | Medium | Medium | Mitigation: hidden from public nav; prepare clear narrative for investor Q |
 | Enterprise requires dedicated sales | High | High | Mitigation: founder-led first 5 customers |

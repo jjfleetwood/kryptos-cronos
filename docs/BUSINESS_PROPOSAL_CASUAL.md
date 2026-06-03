@@ -28,15 +28,17 @@ It's a game. It's also real security training. And that combination is genuinely
 
 ---
 
-## What exists today (v1.17.0 — live at kryptoscronos.com)
+## What exists today (v1.25.0 — web live at kryptoscronos.com; native mobile app in development)
 
 This isn't a pitch deck with a mockup. It's a working product:
 
 - **458 fully built stages** across 38 curriculum epochs and 10 learning tracks
+- **Cross-platform** — the Next.js web app (live) plus a native **iOS/Android app** (Expo, code-complete, pre-store) sharing one backend; mobile adds push streak-nudges and RevenueCat in-app purchases
+- **Privacy-friendly analytics** — Plausible, live (GDPR-compliant) — so we can actually measure traffic, funnels, and retention
 - **7-day free trial → Pro paywall** — Stripe checkout (monthly $13.99 / annual $99, SAVE 41%); webhook lifecycle handling; no credit card required to start
 - **ARIA AI tutor** — live in production, powered by Claude Haiku, uses Socratic coaching (guides thinking, doesn't give away answers)
 - **Adaptive difficulty engine** — `computeStageScore` (time + hints + attempts), +20% XP bonus for clean solves, adaptive ARIA cooldown for Pro users
-- **Certificate paths** — live at `/certs`; structured learning paths aligned to CompTIA Security+ and ISC² CC certification objectives
+- **Certificate paths** — live at `/certs`; readiness tracking for **10 certs** (CompTIA Security+/CySA+/Network+/AI+, ISC² CC, ISACA CISA/CISM/CRISC, AWS AI Practitioner, Google Cloud PMLE)
 - **CyberOps Associate exam readiness tracker** — live at `/cyberops`; maps 50+ Cisco stages to the 5 CBROPS 200-201 exam domains; weighted readiness ring; direct Cisco exam CTA
 - **Full internationalization** — 7 languages: English, Spanish, French, German, Hindi, Portuguese, Polish
 - **Daily streaks and milestone badges** — engagement loop that works

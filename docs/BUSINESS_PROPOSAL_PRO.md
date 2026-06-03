@@ -84,9 +84,13 @@ The platform ships with 458 fully built stages organized into 38 curriculum epoc
 
 - **ARIA AI Tutor** — Claude Haiku, Socratic coaching, stage-aware context, 10-message session cap, rate-limited
 - **Adaptive Difficulty Engine** — `computeStageScore` (time + hints + attempts), +20% XP bonus for clean solves, adaptive ARIA cooldown for Pro (0s/15s/30s by skill), recommended next stage post-flag
-- **Certificate Paths** — Live at `/certs`; structured learning paths aligned to CompTIA Security+ and ISC² CC certification objectives
+- **Certificate Paths** — Live at `/certs`; readiness tracking for **10 industry certs** — CompTIA Security+/CySA+/Network+/AI+, ISC² CC, ISACA CISA/CISM/CRISC, AWS AI Practitioner, and Google Cloud Professional ML Engineer — with per-domain progress rings and practice exams
 - **CyberOps Associate Exam Readiness Tracker** — Live at `/cyberops`; weighted readiness ring across 5 CBROPS 200-201 domains; 50 stages mapped; direct Cisco exam CTA
 - **7-Day Free Trial → Pro Paywall** — Stripe checkout, monthly/annual billing, webhook lifecycle handling; admin tier override; no credit card required to start
+- **Cross-Platform** — Turborepo monorepo: the Next.js web app (live) **plus a native iOS/Android app** (Expo/React Native, code-complete, pre-store) sharing one backend via a typed client and identical content from `@kryptos/core`
+- **Unified mobile monetization** — RevenueCat in-app purchases (iOS/Android) reconciled server-side with Stripe (web) so Pro entitlement is one source of truth across platforms
+- **Push notifications** — Expo push + a daily streak-reminder cron (the native retention lever a web app can't pull)
+- **Privacy-friendly analytics** — Plausible (GDPR-compliant) traffic + funnel measurement, live across the platform
 - **Full Internationalization** — Platform available in 7 languages: English, Spanish, French, German, Hindi, Portuguese, and Polish
 - **Daily Streaks** — Redis-backed streak tracking with streak-based milestone badges
 - **Milestone Badges** — XP and streak milestones (`m-xp-1k`, `m-xp-5k`, `m-streak-3`, `m-streak-7`)
@@ -117,7 +121,7 @@ The platform ships with 458 fully built stages organized into 38 curriculum epoc
 ### B2C (Direct to Learner)
 - **Free tier:** Stages 1–3 (acquisition funnel)
 - **7-day free trial** — full access; converts to paywall after 7 days; no credit card required to start
-- **Pro:** $13.99/month or $99/year (SAVE 41%) — full curriculum + adaptive AI + badge certificates
+- **Pro:** $13.99/month or $99/year (SAVE 41%) — full curriculum + adaptive AI + badge certificates. Billing via **Stripe (web) + RevenueCat (iOS/Android IAP)**, unified entitlement
 - **Team:** $12/seat/month (10+ seats) — cohort dashboards, completion reporting
 
 #### Ad-Supported Hints — Revenue Model Detail
@@ -235,7 +239,11 @@ Our differentiation: the only platform combining structured multi-track curricul
 | **Upstash** | Serverless Redis — users, progress, leaderboard, streaks, NDAs | Active — Free tier |
 | **Resend** | Transactional email — welcome, stage completion, password reset | Active — Free tier |
 | **Anthropic** | Claude Haiku — ARIA AI tutor | Active — Pay-per-token |
-| **Stripe** | Payment processing — Pro subscriptions (monthly/yearly); webhook lifecycle | Active |
+| **Stripe** | Web payment processing — Pro subscriptions (monthly/yearly); webhook lifecycle | Active |
+| **Supabase** | Auth (parallel to PBKDF2); JWT identity for the mobile client | Active |
+| **RevenueCat** | Mobile in-app purchases (iOS/Android), unified with Stripe; webhook → entitlement | Wired (pre-store) |
+| **Expo / EAS** | React Native mobile app build + push notifications | Wired (pre-build) |
+| **Plausible** | Privacy-friendly analytics (GDPR-compliant) | Active |
 | **GitHub** | Source control + CI pipeline trigger | Active — Free |
 
 ---

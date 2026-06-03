@@ -35,7 +35,7 @@ AI-assisted development compresses build time dramatically but produces real eco
 | **Equivalent developer cost** | $3,750 (25 h × $150/hr market rate) |
 | **Actual AI tool cost** | ~$60 (Claude Code MAX amortized) |
 | **AI leverage ratio** | ~62× value created per dollar spent |
-| **Platform features shipped** | 438 stages, 36 epochs, 4 cert paths, resume builder, adaptive AI tutor, voucher system, Stripe payments, full security audit |
+| **Platform features shipped** | 458 stages, 38 epochs, 10 cert paths, resume builder, adaptive AI tutor, voucher system, Stripe + RevenueCat payments, **cross-platform monorepo + native iOS/Android app (Expo, pre-store)**, Supabase auth, push notifications, Plausible analytics, full security audit |
 
 **Total R&D investment (cash + sweat equity equivalent): ~$3,810**
 
@@ -64,10 +64,14 @@ What the company spends every month right now, as of May 2026.
 | Anthropic API (production) | ARIA chatbot (Claude Haiku, rate-limited) | ~$0–5 | Pay-per-token. Rate limiting keeps this near-zero at current traffic. |
 | GitHub | Source control + CI | $0 | Free |
 | DocuSign | ~~Removed~~ | — | NDA eSignature integration removed; clickwrap via /demo retained |
-| Stripe | Payment processing | $0* | No monthly fee. *2.9% + $0.30 per transaction once revenue begins. |
+| Stripe | Web payment processing | $0* | No monthly fee. *2.9% + $0.30 per transaction once revenue begins. |
+| Supabase | Auth (web parallel + mobile JWT identity) | $0 | Free tier. **Upgrade trigger:** >50k MAU → Pro at $25/mo |
+| RevenueCat | Mobile IAP management (iOS/Android) | $0 | Free up to $2,500/mo tracked revenue, then 1% |
+| Plausible | Privacy-friendly analytics | ~$9 | Starter plan. Installed 2026-06-03 |
+| Expo / EAS | Mobile builds + push notifications | $0 | Free tier (limited builds/mo). **Upgrade trigger:** frequent builds → Production at $99/mo |
 | Cloudflare | Domain + email routing | ~$0.83 | $10/year amortized. Email routing is free. |
 
-**Current monthly burn: ~$200–205**
+**Current monthly burn: ~$210–215** (adds ~$9/mo Plausible)
 
 ---
 
