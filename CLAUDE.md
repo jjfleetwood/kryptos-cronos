@@ -10,43 +10,52 @@ Gamified cybersecurity + AI training platform. 38 curriculum epochs, 458 CTF/qui
 
 ---
 
-## Project Root
+## Project Root — Turborepo monorepo (since 2026-06-03)
 
 ```
 C:\Users\Ajax\Projects\cyberquest\
-├── app/              ← Next.js application (work happens here)
-├── docs/             ← Full documentation suite
+├── apps/
+│   └── web/          ← the Next.js app + API (was app/) — most work happens here
+├── packages/
+│   ├── core/         ← @kryptos/core — ALL content data + types (was app/src/data)
+│   └── api-client/   ← @kryptos/api-client — typed cross-platform API client (web + mobile)
+├── docs/             ← Full documentation suite (synced → apps/web/secured-docs)
+├── package.json      ← root: npm workspaces + turbo scripts
+├── turbo.json
 └── CLAUDE.md         ← This file
 ```
 
-All code lives in `app/`. Run all npm commands from `app/`.
+npm **workspaces** + **Turborepo**. App code lives in `apps/web/` (run app commands there, or use `turbo` from the root). Shared content/types live in `packages/core` and are imported as `@kryptos/core/<module>`. Vercel **Root Directory = `apps/web`**.
 
 ---
 
 ## Dev Commands
 
 ```bash
-cd C:\Users\Ajax\Projects\cyberquest\app
+# From the repo root (turbo orchestrates the workspace):
+cd C:\Users\Ajax\Projects\cyberquest
+npm run build        # turbo run build (builds @kryptos/web)
+npm run lint         # turbo run lint
+npm run dev          # turbo run dev → localhost:3000
 
-npm run dev          # Start dev server → localhost:3000
-npm run build        # Production build (verify before push)
-npx tsc --noEmit     # Type check
-npm run lint         # ESLint
-npx vercel --prod --project kryptos-cronos    # Deploy to kryptoscronos.com (MUST include --project flag)
+# Or from the app workspace directly:
+cd C:\Users\Ajax\Projects\cyberquest\apps\web
+npm run dev
+npx tsc --noEmit --skipLibCheck -p tsconfig.json    # type check (CI uses -p apps/web/tsconfig.json from root)
+
+# Deploy: prefer `git push origin master` (auto-deploys prod). Manual:
+npx vercel --prod --project kryptos-cronos          # run from apps/web; needs Vercel Root Directory = apps/web
 ```
+
+> ⚠️ The Vercel CLI may hit a 100 MB upload limit deploying from local — prefer `git push origin master` (git-clone build) for production.
 
 ---
 
 ## Dev → Prod Workflow
 
-Branch strategy: `dev` → `master`
+**Single branch: `master`** (the old `dev` branch was retired 2026-06-03 — the repo now has only `master`). Push to `master` → CI runs + Vercel auto-deploys production. For risky changes, push a short-lived feature branch first to get a Vercel **Preview** build, validate it, then fast-forward `master`.
 
-1. **Work on `dev`** — all feature development, bug fixes, and CI experiments
-2. **Push to `dev`** → GitHub Actions CI runs automatically (lint + tsc + build + audit); Vercel generates a preview URL for the dev branch
-3. **Test on preview URL** — validate the feature against the live Redis/Resend stack
-4. **Merge `dev` → `master`** → CI runs again; Vercel auto-deploys to kryptoscronos.com (production)
-
-CI runs on: pushes to `dev` or `master`, and PRs targeting `master`. Config: `.github/workflows/ci.yml`.
+CI runs on: pushes to `master` and PRs targeting `master`. Config: `.github/workflows/ci.yml` (runs from the workspace root: `npm ci` → lint/typecheck/build for `@kryptos/web`).
 
 **GitHub repo secrets required for CI build:**
 - `UPSTASH_REDIS_REST_URL`
@@ -54,25 +63,26 @@ CI runs on: pushes to `dev` or `master`, and PRs targeting `master`. Config: `.g
 
 (All other env vars are stubbed with `ci-placeholder` in the workflow file for the build step.)
 
-**Vercel setup (one-time, in dashboard):**
+**Vercel (one-time, in dashboard):**
 - Connect GitHub repo → auto-deploy `master` → production
-- Auto-deploy `dev` → preview URL
+- **Root Directory = `apps/web`** with “Include files outside the root directory” ON (needed for the workspace root lockfile)
+- Production env has the real secrets; **Preview env does not have the Supabase vars** — which is why `supabaseAdmin` is lazily constructed (see Architecture)
 
 ---
 
 ## Architecture in One Page
 
-**Stack:** Next.js 16 App Router + Upstash Redis + Resend email  
-**Middleware:** `src/proxy.ts` — admin protection + per-request CSP nonce generation (Next.js 16 Turbopack uses `proxy` export)  
+**Stack:** Next.js 16 App Router (in `apps/web`) + Upstash Redis + Resend email; content/types in `@kryptos/core`  
+**Middleware:** `apps/web/src/proxy.ts` — admin protection + per-request CSP nonce + CORS for `/api` (Next.js 16 Turbopack uses `proxy` export)  
 **Admin:** HMAC cookie via `/api/admin-session`; `/admin/**` blocked at edge  
-**Auth:** PBKDF2-SHA-256 (600k iterations), server-side; Supabase Auth parallel (v1.15.0+); user records in Redis  
+**Auth:** PBKDF2-SHA-256 (600k iterations), server-side; Supabase Auth parallel (v1.15.0+); user records in Redis. API routes accept **either** the HMAC `session_token` cookie (web) **or** an `Authorization: Bearer <supabase-jwt>` (mobile) via `getAuthedUsername()` — bearer identity resolved from the verified `email` claim → `email:{email}` index (not spoofable `user_metadata`)  
 **Sessions:** HMAC-signed HttpOnly `session_token` cookie (30 days) + `admin_token` (24h)  
 **Account lockout:** 5 failed logins → 15-min lock (`lockout:user:{username}`)  
 **Leaderboard:** Upstash Redis sorted sets (`leaderboard`, `lb:d:YYYY-MM-DD`, `lb:w:YYYY-MM-DD`)  
 **Progress:** Redis (`progress:<username>`) — XP computed server-side  
 **Email:** Resend API for registration alerts + password reset  
 **AI:** Claude Haiku (`claude-haiku-4-5`) for ARIA chatbot via `/api/hint`  
-**Docs:** `app/secured-docs/` — gated behind admin cookie via `/api/docs/[file]`  
+**Docs:** `apps/web/secured-docs/` — gated behind admin cookie via `/api/docs/[file]`  
 **Audit log:** Redis list `audit:log` (max 1000 entries) — all mutating admin actions logged via `src/lib/audit.ts`  
 **Vouchers:** `voucher:{CODE}` hash + `voucher:redeemers:{CODE}` set — atomic SADD dedup + HINCRBY supply  
 
@@ -156,49 +166,55 @@ Back navigation: `BackLink` uses `backHref` prop (passed from `StageContainer`) 
 
 ## Key Files
 
+> Paths: shared content/types live in **`packages/core/src/`** (imported as `@kryptos/core/<module>`); everything else is under **`apps/web/`**.
+
+**`packages/core` (`@kryptos/core`) — content + types:**
+
 | File | Why it matters |
 |---|---|
-| `src/proxy.ts` | Active Turbopack proxy — admin protection + nonce-based CSP per request (`proxy` export) |
-| `src/data/stages.ts` | Epoch registry + stage array — import all epoch files here; NOT for "use client" listing pages |
-| `src/data/stages-meta.ts` | Client-safe listing metadata (no ctf/quiz/info) — import this in "use client" listing pages |
-| `src/data/stage-flags.ts` | Server-only flag store (`import "server-only"`) — used only by `/api/check-flag` |
-| `src/data/cert-domains.ts` | CompTIA Security+ SY0-701, ISC² CC, CompTIA Network+ N10-009, CySA+ CS0-003, CompTIA AI+, ISACA CISA/CISM/CRISC, AWS AI Practitioner (AIF-C01), Google Cloud Professional ML Engineer domain mappings; AI-cloud certs live in `AI_PLATFORM_CERT_DOMAINS` (merged into `CERT_DOMAINS` at load); `computeCertReadiness()` |
-| `src/data/cyberops-domains.ts` | Cisco CBROPS 200-201 domain mappings (5 domains); `computeCyberOpsReadiness()` |
-| `src/data/content-flags.ts` | Per-epoch IP risk registry (risk level, license, attribution text) — drives epoch-page banners |
-| `src/lib/auth.ts` | Client-side session cache (sessionStorage) |
-| `src/lib/server-session.ts` | HMAC session token sign/verify; `getServerSession()` (sync, cookie-only — for SSR pages) |
-| `src/lib/api-auth.ts` | Multi-client resolver `getAuthedUsername(req)` — bearer Supabase JWT → session cookie; `extractAdminUsername(req)`. Used by gameplay API routes (mobile-ready) |
-| `src/lib/supabase-jwt.ts` | `verifySupabaseJwt()` — verifies a Supabase access token via `getUser()`; resolves identity from the verified **email** claim → `email:{email}` index (NOT user-editable `user_metadata`) |
-| `src/lib/crypto-utils.ts` | PBKDF2-SHA256 (600k iterations); auto-rehash on login |
-| `src/lib/supabase.ts` | Supabase parallel auth client — `supabaseAdmin`, `createSupabaseServerClient()` |
-| `src/lib/redis.ts` | Upstash client — needs `UPSTASH_REDIS_*` env vars |
-| `src/lib/audit.ts` | Admin audit log — `logAdminAction()` writes to `audit:log` Redis list |
-| `src/lib/access.ts` | Server-only tier gate — `getUserTier()`, `canAccessStage()` |
-| `src/lib/difficulty.ts` | Adaptive difficulty engine — `computeStageScore()`, `computeBonusXp()`, `getRecommendedNext()` |
-| `src/app/api/progress/route.ts` | GET reads from session cookie (not query param); POST awards stage in Redis |
-| `src/app/api/admin/vouchers/route.ts` | GET list / POST generate / PATCH revoke vouchers; requires admin token |
-| `src/app/api/redeem/route.ts` | POST redeem voucher code — atomic SADD dedup + HINCRBY supply |
-| `src/app/api/resume/generate/route.ts` | POST → PDF via @react-pdf/renderer; skills from completed epochs |
-| `src/data/trophies.ts` | 51 trophies across 8 tiers; `dailyShopTrophies()` seeded Fisher-Yates shuffle |
-| `src/app/trophies/page.tsx` | Owned trophy collection vault; admin sees full library with tier filter |
-| `src/app/shop/page.tsx` | 🛒 Shop (avatar items) + 💎 Treasures (daily trophy showcase + buy) |
-| `src/app/avatar/page.tsx` | Avatar equip/unequip page |
-| `src/app/certs/page.tsx` | CompTIA Security+ + ISC² CC readiness rings, per-domain progress |
-| `src/app/resume/page.tsx` | Resume builder form — guided input + PDF export |
-| `src/app/cyberops/page.tsx` | CyberOps Associate exam readiness dashboard |
-| `src/app/admin/page.tsx` | Admin dashboard — fixed left-nav sidebar; sections anchored with IDs |
-| `next.config.ts` | Static security headers (HSTS, X-Frame-Options, etc.) + secured-docs file tracing. CSP set dynamically in middleware. |
-| `secured-docs/` | Admin-only docs — never move to public/ |
+| `packages/core/src/stages.ts` | Epoch registry + stage array — imports all epoch files; NOT for "use client" listing pages. Import as `@kryptos/core/stages` |
+| `packages/core/src/stages-meta.ts` | Client-safe listing metadata (no ctf/quiz/info) — import this in "use client" listing pages |
+| `packages/core/src/stage-flags.ts` | Server-only flag store (`import "server-only"`) — used only by `/api/check-flag`. NEVER barrel-export from core |
+| `packages/core/src/cert-domains.ts` | Security+/ISC² CC/Network+/CySA+/AI+/CISA/CISM/CRISC + AWS AIP + GCP PMLE domain mappings; AI-cloud certs in `AI_PLATFORM_CERT_DOMAINS` (merged into `CERT_DOMAINS` at load); `computeCertReadiness()` |
+| `packages/core/src/cyberops-domains.ts` | Cisco CBROPS 200-201 domain mappings; `computeCyberOpsReadiness()` |
+| `packages/core/src/content-flags.ts` | Per-epoch IP risk registry — drives epoch-page banners |
+| `packages/core/src/trophies.ts` | 51 trophies across 8 tiers; `dailyShopTrophies()` seeded Fisher-Yates shuffle |
+| `packages/core/src/types.ts` | Shared `StageConfig` / `EpochConfig` / `QuizQuestion` types |
+
+**`packages/api-client` (`@kryptos/api-client`):** framework-agnostic `createApiClient({ baseUrl, getToken, fetch })` — bearer (mobile) or cookie (web) auth; typed methods (getMe, bootstrap, getProgress, awardStage, leaderboard, checkFlag/Answer, getHint). Mobile is the first consumer (Phase 4).
+
+**`apps/web` — the Next.js app + API:**
+
+| File | Why it matters |
+|---|---|
+| `apps/web/src/proxy.ts` | Active Turbopack proxy — admin protection + nonce-based CSP + CORS for `/api` (`proxy` export) |
+| `apps/web/src/lib/auth.ts` | Client-side session cache (sessionStorage) |
+| `apps/web/src/lib/server-session.ts` | HMAC session token sign/verify; `getServerSession()` (sync, cookie-only — for SSR pages) |
+| `apps/web/src/lib/api-auth.ts` | Multi-client resolver `getAuthedUsername(req)` — bearer Supabase JWT → session cookie; `extractAdminUsername(req)`. Used by gameplay API routes |
+| `apps/web/src/lib/supabase-jwt.ts` | `verifySupabaseJwt()` — validates a Supabase token via `getUser()`; identity from verified **email** claim → `email:{email}` index (NOT `user_metadata`) |
+| `apps/web/src/lib/supabase.ts` | Supabase clients — **`supabaseAdmin` is a lazy Proxy** (constructed on first use, so `next build` doesn't need Supabase env); `createSupabaseServerClient()` |
+| `apps/web/src/lib/crypto-utils.ts` | PBKDF2-SHA256 (600k iterations); auto-rehash on login |
+| `apps/web/src/lib/redis.ts` | Upstash client — needs `UPSTASH_REDIS_*` env vars |
+| `apps/web/src/lib/audit.ts` | Admin audit log — `logAdminAction()` → `audit:log` Redis list |
+| `apps/web/src/lib/access.ts` | Server-only tier gate — `getUserTier()`, `canAccessStage()` |
+| `apps/web/src/lib/difficulty.ts` | Adaptive difficulty engine — `computeStageScore()`, `computeBonusXp()`, `getRecommendedNext()` |
+| `apps/web/src/app/api/progress/route.ts` | GET reads identity from auth (not query param); POST awards stage in Redis |
+| `apps/web/src/app/api/auth/bootstrap/route.ts` | Provisions a Redis record for Supabase-only (mobile) accounts; email-keyed, `SET NX` |
+| `apps/web/src/app/api/redeem/route.ts` | POST redeem voucher — atomic SADD dedup + HINCRBY supply |
+| `apps/web/src/app/certs/page.tsx` | Cert readiness rings (10 certs), per-domain progress |
+| `apps/web/src/app/admin/page.tsx` | Admin dashboard — fixed left-nav sidebar; anchored sections |
+| `apps/web/next.config.ts` | Static security headers + secured-docs file tracing + `transpilePackages: ["@kryptos/core"]`. CSP set dynamically in middleware |
+| `apps/web/secured-docs/` | Admin-only docs — never move to public/ |
 
 ---
 
 ## Adding a New Epoch — Checklist
 
-1. Create `src/data/<epoch-id>.ts` — export `<name>Epoch: EpochConfig` and `<name>Stages: StageConfig[]`
-2. Add import + epoch entry + stage spread to `src/data/stages.ts`
-3. Add `epochAccent`, `cardBorder`, `cardEmojiBg` entries to `src/app/stages/epoch-theme.ts`
-4. Add epoch ID to the appropriate group in `epochGroups` in `src/app/stages/page.tsx`
-5. `npx tsc --noEmit` then `npm run build`
+1. Create `packages/core/src/<epoch-id>.ts` — export `<name>Epoch: EpochConfig` and `<name>Stages: StageConfig[]` (import types from `./types`)
+2. Add import + epoch entry + stage spread to `packages/core/src/stages.ts`
+3. Add `epochAccent`, `cardBorder`, `cardEmojiBg` entries to `apps/web/src/app/stages/epoch-theme.ts`
+4. Add epoch ID to the appropriate group in `epochGroups` in `apps/web/src/app/stages/page.tsx`
+5. From repo root: `npm run build` (turbo) + `npx tsc --noEmit --skipLibCheck -p apps/web/tsconfig.json`
 
 ---
 
@@ -460,9 +476,10 @@ Local dev: `.env.local` in `app/` (gitignored).
 
 - TypeScript strict mode — no `any` types
 - Tailwind CSS for all styling — no external CSS frameworks
-- Components in `src/components/`, pages in `src/app/`
+- Components in `apps/web/src/components/`, pages in `apps/web/src/app/`; shared content/types in `packages/core/src/` (import via `@kryptos/core/...`)
+- Server-only modules (`redis`, `supabase`, `crypto-utils`, `server-session`, `api-auth`, `stage-flags`, `audit`) stay in `apps/web` (or are import-`"server-only"`); never let them into a client bundle or into `@kryptos/core`'s client-reachable graph
 - REST conventions for API routes under `/api/`
 - No comments unless the WHY is non-obvious
 - No Co-Authored-By lines in git commits
-- When editing docs, always sync `docs/` → `app/secured-docs/` for updated files
-- New `.md` docs require: API allowlist entry in `/api/docs/[file]/route.ts` + DocsViewer tab in `src/components/DocsViewer.tsx` + file placed in `app/secured-docs/`
+- When editing docs, always sync `docs/` → `apps/web/secured-docs/` for updated files (`cp docs/*.md apps/web/secured-docs/`)
+- New `.md` docs require: API allowlist entry in `apps/web/src/app/api/docs/[file]/route.ts` + DocsViewer tab in `apps/web/src/components/DocsViewer.tsx` + file placed in `apps/web/secured-docs/`
