@@ -32,6 +32,7 @@ Findings from a structural + sampled read of the curriculum. Ranked by leverage.
 | J | **First paying user** | At launch | P1 | Even $13.99/mo from one real user changes the conversation from "$0 revenue" to "revenue exists." |
 | K | **Named advisor** | 1–3 conversations | P2 | A CISO, security researcher, or recognized practitioner willing to be named publicly. Changes single-founder risk perception for investors. |
 | L | **One enterprise pilot conversation** | 2–4 weeks outreach | P2 | A community college cybersecurity program, regional MSSP, or corporate SOC team willing to pilot. Even an LOI counts. |
+| M | **Cross-platform / mobile app** | ~3 months | P2 | 📱 Sequenced plan in `MOBILE_ROADMAP.md` (added 2026-06-03). Turborepo monorepo → Next.js web + Expo mobile sharing one backend → RevenueCat (mobile IAP) + Stripe (web) → Supabase as single identity. Keystone is Phase 1 (token auth on the API); ship Quiz-mode first, defer the CTF terminal to web/tablet. Mobile = B2C retention channel (native push for streaks); B2B stays web. |
 
 ## Completed Items — Added 2026-05-28, Done 2026-05-29
 

@@ -22,6 +22,7 @@ const ALLOWED_FILES = new Set([
   "COPYRIGHT_FILING.md",
   "VC_READINESS_ANALYSIS.md",
   "FINANCIALS.md",
+  "MOBILE_ROADMAP.md",
   // Architecture suite (v1.0.0, added 2026-05-26)
   "DATA_DIAGRAM.md",
   "TECH_BOM.md",

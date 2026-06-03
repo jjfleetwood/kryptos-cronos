@@ -81,6 +81,11 @@ const DOCS: DocEntry[] = [
     description: "10 Architecture Decision Records documenting key technology choices, rationale, rejected alternatives, and constraints",
     version: "v1.0.0", updated: "2026-05-26",
   },
+  {
+    id: "mobile-roadmap", label: "Mobile Roadmap", file: "MOBILE_ROADMAP.md", icon: "📱", color: "text-pink-400", group: "architecture",
+    description: "Sequenced roadmap to a real cross-platform product: Next.js web + Expo mobile, shared backend, RevenueCat + Stripe, Supabase token auth — 7 phases, ~3 months to a store-launched MVP",
+    version: "v1.0.0", updated: "2026-06-03",
+  },
   // Architecture — existing technical docs surfaced in Architecture section
   {
     id: "architecture", label: "Architecture Overview", file: "ARCHITECTURE.md", icon: "🗺️", color: "text-cyan-300", group: "architecture",
