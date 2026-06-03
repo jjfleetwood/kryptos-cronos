@@ -73,6 +73,14 @@ packages/
 
 **Exit:** web builds/deploys unchanged from the monorepo; `packages/core` imports cleanly with zero server-only leakage.
 
+### Phase 2 — STATUS: built on branch `phase-2a-monorepo` (2026-06-03), NOT yet merged/deployed.
+
+- [x] **2a — monorepo skeleton.** `app/ → apps/web` (rename kept `node_modules`/`.env.local` intact), root npm workspaces + `turbo.json` (`packageManager` pinned), lockfile at root, `@kryptos/web` package, CI rewritten for workspaces, `/deploy` skill paths updated, hardened root `.gitignore`. Build/tsc/lint green.
+- [x] **2b — `packages/core`.** Whole `src/data` layer moved (51 `.ts` + json + batch dirs, 200 files); 91 `@/data/*` refs across 38 web files rewired to `@kryptos/core/*`. Consumed via `transpilePackages` + `@kryptos/core/*` tsconfig path + source `exports` (`./*` wildcard handles nested `translations/*`; explicit entries for the two `.json`). **Server-only boundary holds** — `stage-flags.ts` lives in core but only the `check-flag` server route imports it (build would fail on a client leak). Build/tsc/lint green.
+- [x] **2c — `packages/api-client`.** Framework-agnostic `createApiClient({ baseUrl, getToken, fetch })` — bearer token (mobile) or cookies (web); typed methods: `getMe`, `bootstrap`, `getProgress`, `awardStage`, `getLeaderboard`, `checkFlag`, `checkAnswer`, `getHint` + generic `request<T>` escape hatch. Types mirror the live route handlers. tsc green. (Web keeps its direct fetches; mobile is the first consumer in Phase 4.)
+- [ ] **2d — shared tsconfig/eslint config package** — optional, skipped for now.
+- [ ] **⚠️ Vercel root-dir cutover + merge — NEEDS DASHBOARD ACCESS.** Settings → Root Directory `app` → `apps/web`; confirm branch Preview builds green; merge `phase-2a-monorepo → dev → master`; verify prod. Rollback: revert root dir + merge. Do this **before** stacking further structural change.
+
 ---
 
 ## Phase 3 — Unify subscriptions · ~1 wk
