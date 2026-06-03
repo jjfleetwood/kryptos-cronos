@@ -1284,15 +1284,15 @@ int generate_session_key(uint8_t *session_key, size_t key_len,
       tagline: "FIPS 203 was published in August 2024 — but CMVP validation takes 12-18 months, creating a compliance gap for federal agencies.",
       year: 2025,
       overview: [
-        "FIPS 140-3 is the US federal standard for cryptographic module validation. For federal agencies and contractors, every cryptographic module must be FIPS 140-3 validated before deployment. Post-quantum algorithms must go through the Cryptographic Module Validation Program (CMVP) before federal use is mandated.",
-        "This creates a timing tension: FIPS 203, 204, and 205 were published in August 2024, but CMVP validation takes 12-18 months. Federal agencies need PQC now (OMB M-23-02 mandates high-priority system migration by FY2025), but validated PQC modules are just beginning to emerge. AWS-LC (Amazon's libcrypto) received FIPS 140-3 certificate #4800 for ML-KEM in Q1 2025.",
-        "The practical compliance path: use ML-KEM for key exchange (AWS-LC validated), continue using RSA-3072 or ECDSA P-384 for signatures (validated, though not quantum-safe), document exceptions for pre-validation ML-DSA use where needed, and transition ML-DSA signatures when validation certificates are issued.",
+        "FIPS 140-3 is the US federal standard for cryptographic-module validation:\n- For agencies and contractors, every cryptographic module must be FIPS 140-3 validated before deployment.\n- Post-quantum algorithms must clear the Cryptographic Module Validation Program (CMVP) before federal use is mandated.",
+        "That creates a timing tension between need and validation:\n- FIPS 203/204/205 published in August 2024, but CMVP validation takes 12–18 months.\n- Agencies need PQC now (OMB M-23-02 mandates high-priority migration by FY2025), yet validated modules are just emerging — AWS-LC earned FIPS 140-3 cert #4800 for ML-KEM in Q1 2025.",
+        "The practical compliance path mixes validated and pre-validation pieces:\n- Use ML-KEM for key exchange (AWS-LC validated), and keep RSA-3072 or ECDSA P-384 for signatures (validated, though not quantum-safe).\n- Document exceptions for pre-validation ML-DSA where needed, and transition ML-DSA signatures once validation certificates issue.",
       ],
       technical: {
         title: "FIPS 140-3 PQC Validation Status and Strategy",
         body: [
-          "CMVP certification covers the cryptographic module implementation — not just the algorithm. A FIPS 140-3 certificate confirms that a specific library version, on a specific platform, implements the algorithm correctly with appropriate physical and logical security. AWS-LC certificate #4800 covers AWS Lambda, EC2, and managed services. Microsoft SymCrypt #4825 covers Azure and Windows CNG.",
-          "Exception handling: agencies can deploy non-validated PQC modules under an Alternate Security Authority (ASA) exception with CISO/ISSM approval. The exception requires using only NIST reference implementations, implementing hybrid construction (validated classical + non-validated PQC), limiting to non-NSS systems, and periodic review until validation is achieved.",
+          "CMVP certifies the module implementation, not just the algorithm:\n- A FIPS 140-3 certificate confirms a specific library version on a specific platform implements the algorithm correctly with appropriate physical and logical security.\n- AWS-LC cert #4800 covers Lambda, EC2, and managed services; Microsoft SymCrypt #4825 covers Azure and Windows CNG.",
+          "Exception handling lets agencies deploy ahead of validation:\n- Non-validated PQC modules can ship under an Alternate Security Authority (ASA) exception with CISO/ISSM approval.\n- It requires NIST reference implementations, a hybrid construction (validated classical + non-validated PQC), restriction to non-NSS systems, and periodic review until validation lands.",
         ],
         codeExample: {
           label: "AWS-LC FIPS 140-3 validated ML-KEM usage (Python / boto3)",
@@ -1322,8 +1322,8 @@ kms = boto3.client('kms', region_name='us-east-1')
         where: "All US federal civilian agencies (non-NSS)",
         impact: "Federal agencies required to inventory cryptographic use and begin PQC migration by FY2025",
         body: [
-          "Office of Management and Budget (OMB) Memorandum M-23-02 directed all federal agencies to inventory their systems' cryptographic dependencies and develop quantum-migration plans by May 2023, and to begin migrating high-priority systems by FY2025. The memo cited both the HNDL threat and NIST's PQC standardization progress.",
-          "The practical challenge: OMB M-23-02 predated FIPS 203/204/205 publication by 18 months. Agencies had to plan migrations to algorithms that weren't yet standardized, with validation timelines unclear. This is why CISA published the CISA Post-Quantum Cryptography Initiative to help agencies navigate the gap between the mandate and available validated implementations.",
+          "OMB Memorandum M-23-02 set the federal PQC migration mandate:\n- It directed every agency to inventory cryptographic dependencies and develop quantum-migration plans by May 2023.\n- And to begin migrating high-priority systems by FY2025, citing both the HNDL threat and NIST's PQC progress.",
+          "The catch: the mandate arrived before the standards:\n- M-23-02 predated FIPS 203/204/205 by 18 months, so agencies had to plan migrations to algorithms that weren't yet standardized, with unclear validation timelines.\n- CISA launched its Post-Quantum Cryptography Initiative to help agencies bridge the gap between the mandate and available validated implementations.",
         ],
       },
       diagram: {
