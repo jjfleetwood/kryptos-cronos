@@ -11,12 +11,12 @@
 
 | Metric | Value |
 |---|---|
-| **Total hours logged** | 72.5 h |
-| **Sessions logged** | 12 |
-| **Equivalent developer cost** | $10,875 (72.5h × $150/hr) |
-| **Estimated AI cost to date** | ~$120 (12 sessions × $10/session) |
-| **Estimated AI cost this month (June 2026)** | ~$30 (3 sessions × $10/session) |
-| **AI leverage ratio** | ~91× (developer equivalent ÷ AI cost) |
+| **Total hours logged** | 74.5 h |
+| **Sessions logged** | 13 |
+| **Equivalent developer cost** | $11,175 (74.5h × $150/hr) |
+| **Estimated AI cost to date** | ~$130 (13 sessions × $10/session) |
+| **Estimated AI cost this month (June 2026)** | ~$40 (4 sessions × $10/session) |
+| **AI leverage ratio** | ~86× (developer equivalent ÷ AI cost) |
 
 ---
 
@@ -24,6 +24,7 @@
 
 | Date | Version | Hours | Summary | Cumulative |
 |---|---|---|---|---|
+| 2026-06-03 | api-hardening | 2.0 h | API/auth hardening (3 backend TODOs). #7: local JWKS JWT verification (jose, cached) with getUser fallback in verifySupabaseJwt — drops the per-request network call, never less correct. #8: `/api/v1` namespace (next.config rewrite + @kryptos/api-client pinned) for a freezable mobile contract (future breaks → /api/v2). #9: multi-source entitlement (proStripe / rcProExpiry / voucherExpiry) — both revoke webhooks + getUserTier only downgrade when no other source is active, fixing the Stripe↔RevenueCat cross-downgrade. Branch → Vercel preview verified green → merged to master + branch deleted; prod verified (rewrite 401, bogus bearer 401). Also refreshed apps/mobile README. | 74.5 h |
 | 2026-06-03 | monorepo+mobile | 12.0 h | Mobile roadmap Phases 2–6 + cross-platform foundation. **Phase 2:** Turborepo monorepo — relocated app→apps/web, extracted @kryptos/core (whole data layer, 91 refs rewired) + @kryptos/api-client (typed cross-platform client); Vercel root-dir cutover + merge to prod (lazy-supabaseAdmin build fix); single-branch collapse. **Phase 3:** RevenueCat webhook (/api/webhooks/revenuecat) + rcProExpiry entitlement; deployed. **Phases 4–6:** scaffolded Expo (SDK 56) app in monorepo — Supabase RN auth + bearer api-client, auth-gated tabs (stages/leaderboard/profile), interactive server-validated quiz, ARIA hint chat, push notifications (mobile + /api/push/* + streak-reminder cron + vercel.json), RevenueCat IAP paywall, EAS build config + store identifiers. Plus: live bearer-auth E2E verification on prod (throwaway account), delete-account hardening (email-index + Supabase cleanup), CLAUDE.md monorepo refresh, env reconciliation. All tsc/build green; merged phase-4-mobile→master (943f205, preview-verified) + prod healthy. Mobile NOT yet device-run. | 72.5 h |
 | 2026-06-03 | v1.25.0 | 2.5 h | Mobile roadmap Phase 1 — multi-client token auth. New getAuthedUsername resolver (bearer Supabase JWT → session cookie) + verifySupabaseJwt (email-claim identity, not spoofable user_metadata) + POST /api/auth/bootstrap (provision Supabase-only accounts) + migrated 16 gameplay routes + origin-allowlisted CORS in proxy.ts. Caught + fixed a self-introduced metadata-spoofing takeover vector during review. Verified live (preflight/401/origin). Also authored MOBILE_ROADMAP.md (7-phase plan) earlier in the session. Deployed + dev/master | 60.5 h |
 | 2026-06-03 | v1.24.0 | 2.0 h | AI cloud certifications on /certs — AWS Certified AI Practitioner (AIF-C01, 5 domains, rose) + Google Cloud Professional ML Engineer (PMLE, 6 domains, green). New aws-aip/gcp-pmle CertIds + domain defs + builders in cert-domains.ts; AI_PLATFORM_CERT_DOMAINS table (AWS→49 AI-native stages, GCP→~33 ML-lifecycle stages) merged into CERT_DOMAINS at load; practice exams auto-populate via getStagesForCert; allowlisted in exam route + exam page. Full /deploy: tsc+eslint+npm audit gates, vercel --prod, version bump, all docs stamped, security audit, commit + push dev | 58.0 h |
