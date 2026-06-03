@@ -1,17 +1,31 @@
 # Kryptós CronOS — Security Briefing
 **Classification:** Internal  
-**Version:** 5.4  
+**Version:** 5.5  
 **Date:** 2026-06-03  
 **Current version:** v1.25.0
 
 ---
+
+## Changelog — v5.5 (2026-06-03) — Mobile IAP, push, analytics & monorepo
+
+**New authenticated surfaces — reviewed.** Building on v5.4's bearer auth, the mobile rollout adds:
+
+- **`POST /api/webhooks/revenuecat`** (mobile IAP) — verified via a shared-secret `Authorization` header (`REVENUECAT_WEBHOOK_AUTH`); rejects missing/wrong auth with 401. Writes only `tier`/`rcProExpiry`; never trusts a request-supplied tier. `app_user_id` is set to the username by the app (`Purchases.logIn`).
+- **Multi-source entitlement** — `getUserTier()` (`src/lib/access.ts`) treats `proStripe`, `rcProExpiry`, and `voucherExpiry` as independent sources and downgrades to `free` only when **none** is active. This prevents one platform's webhook (e.g. a Stripe cancellation) from stripping access a user still holds via mobile IAP. Each webhook writes only its own source field, then re-evaluates.
+- **Push routes** — `POST/DELETE /api/push/register` require session/bearer auth and only touch the caller's own entry in the `push:tokens` hash. `GET /api/push/streak-reminder` is a Vercel Cron endpoint gated by a `CRON_SECRET` bearer (rejects without it) — not reachable by ordinary clients.
+- **Bearer verification hardening** — `verifySupabaseJwt()` now verifies the token **locally against the Supabase project JWKS** (`jose`) with a `supabase.auth.getUser()` fallback, avoiding a network round-trip per request while preserving signature/expiry validation. Identity is still taken only from the verified `email` claim.
+- **`/api/v1/*` namespace** — a next.config rewrite to `/api/*` for the mobile client; it adds no new handlers or auth bypass — the same route code and `getAuthedUsername()` gate apply.
+- **Plausible analytics** — privacy-friendly, cookieless, no PII. The only third-party script tag on the site; allowlisted in the `proxy.ts` nonce CSP (`script-src` + `connect-src` for `https://plausible.io`). No first-party data shared beyond standard pageview telemetry.
+- **Monorepo / single-branch** — code reorganized into Turborepo workspaces (`apps/web`, `apps/mobile`, `packages/*`); server-only modules remain confined to `apps/web` (or `import "server-only"`). The `dev` branch was retired; `master` is the single deploy source. No change to the runtime trust boundary.
+
+New env vars: `REVENUECAT_WEBHOOK_AUTH`, `CRON_SECRET` (both server-side secrets). XP/flag validation remains server-side.
 
 ## Changelog — v5.4 (2026-06-03) — Multi-client bearer-token auth (v1.25.0)
 
 **New authenticated surface — reviewed and hardened.** This release lets the API accept a Supabase JWT via `Authorization: Bearer` (for the planned mobile client) in addition to the HMAC session cookie. Security-relevant design decisions:
 
 - **Identity is NOT derived from `user_metadata`.** Supabase `user_metadata` is user-editable (`auth.updateUser({ data })`), so trusting `user_metadata.username` would permit account takeover by metadata spoofing. Instead, `verifySupabaseJwt()` resolves identity from the token's **verified top-level `email` claim**, then maps it through the existing `email:{email}` reverse index. The email claim reflects `auth.users.email` and cannot change without Supabase re-verification.
-- **Token verification** uses `supabaseAdmin.auth.getUser(token)` (server-side, service-role) — validates signature/expiry/revocation regardless of signing algorithm. Invalid/expired/forged tokens resolve to null → 401 (verified live).
+- **Token verification** uses local JWKS signature verification (`jose`, against the Supabase project JWKS) with a `supabaseAdmin.auth.getUser(token)` fallback — validates signature/expiry/revocation. Invalid/expired/forged tokens resolve to null → 401 (verified live).
 - **No privilege widening.** `getAuthedUsername()` is bearer → session-cookie only; it deliberately does NOT add an admin-cookie fallback. Routes that previously had an explicit `extractAdminUsername` fallback keep it explicitly. Admin and Stripe routes were not migrated.
 - **`POST /api/auth/bootstrap`** is rate-limited (30/min/IP), requires a valid token, keys the new record to the verified email, enforces username uniqueness, and atomically claims the email→username binding with `SET NX`. First-write-wins — cannot overwrite an existing account.
 - **CORS** (`proxy.ts`, `/api` only) is origin-allowlisted and **credential-less** (cross-origin clients authenticate with bearer tokens, never cookies), so it cannot be used to ride a victim's cookie session. Disallowed origins receive no `Access-Control-Allow-Origin` (verified live). The per-request nonce CSP for HTML pages is unchanged.
@@ -148,7 +162,7 @@ Kryptós CronOS is a Next.js 16 application with serverless API routes, Redis-ba
 | # | Category | Status | Notes |
 |---|---|---|---|
 | A01 | Broken Access Control | ✅ Resolved | All admin routes now require HMAC `admin_token` cookie. Session-only routes verified to not perform privileged actions. |
-| A02 | Cryptographic Failures | ✅ Resolved | PBKDF2-SHA256 310k iterations; HMAC-signed session + admin cookies; HttpOnly/Secure/SameSite; no plaintext secrets. |
+| A02 | Cryptographic Failures | ✅ Resolved | PBKDF2-SHA256 600k iterations (OWASP 2024); HMAC-signed session + admin cookies; HttpOnly/Secure/SameSite; Supabase JWT verified via JWKS; no plaintext secrets. |
 | A03 | Injection | ✅ No issues | All Redis keys use fixed prefixes + lowercase user input. No eval/exec/dangerouslySetInnerHTML. |
 | A04 | Insecure Design | ✅ Resolved | Voucher race condition fixed; Stripe origin header whitelisted; rate limits on all write endpoints. |
 | A05 | Security Misconfiguration | ✅ Resolved | Leaderboard rate-limited; nonce-based CSP; HSTS + security headers; Stripe success/cancel URLs whitelisted. |
@@ -164,11 +178,11 @@ Kryptós CronOS is a Next.js 16 application with serverless API routes, Redis-ba
 
 ### 1.1 Password Hashing — ✅ RESOLVED (v0.2.0)
 
-**Status:** PBKDF2-SHA-256 with 310,000 iterations and a 16-byte random salt via Web Crypto API. Transparent re-hash on login upgrades existing users to the current iteration count.
+**Status:** PBKDF2-SHA-256 with 600,000 iterations (OWASP 2024) and a 16-byte random salt via Web Crypto API. Transparent re-hash on login upgrades existing users (legacy 100k/310k) to the current iteration count.
 
 ```typescript
 const keyMaterial = await crypto.subtle.importKey("raw", encoder.encode(password), "PBKDF2", false, ["deriveBits"]);
-const bits = await crypto.subtle.deriveBits({ name: "PBKDF2", salt: encoder.encode(salt), iterations: 310_000, hash: "SHA-256" }, keyMaterial, 256);
+const bits = await crypto.subtle.deriveBits({ name: "PBKDF2", salt: encoder.encode(salt), iterations: 600_000, hash: "SHA-256" }, keyMaterial, 256);
 ```
 
 ### 1.2 Admin Authentication — ✅ RESOLVED (v0.4.1)
@@ -257,7 +271,7 @@ All internal documents in `app/secured-docs/`. Served only via `/api/docs/[file]
 
 ## 5. CTF Flag Visibility — ✅ RESOLVED (v1.7.1)
 
-- `src/data/stage-flags.ts` — `import "server-only"` — never sent to any client.
+- `packages/core/src/stage-flags.ts` — `import "server-only"` — never sent to any client.
 - `/api/check-flag` — validates server-side; returns only `{ correct: true/false }`.
 - `stages-meta.ts` — client-safe listing metadata with no `ctf`, `quiz`, or `info` fields.
 - Client-side CTF commands that reveal flags are an accepted mechanic — the canonical flag store is server-only, and all submission validation is server-side.
