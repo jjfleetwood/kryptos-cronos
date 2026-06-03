@@ -853,15 +853,15 @@ SLH-DSA-SHAKE-128f Level1  32B     64B       17088B    0.22s
       tagline: "FALCON offers the smallest post-quantum signatures of any NIST standard — at the cost of complex, subtle implementation requirements.",
       year: 2024,
       overview: [
-        "FN-DSA (Fast-Fourier NTRU-based Digital Signature Algorithm), standardized as FALCON in NIST's upcoming FIPS standard, provides the most compact signatures of any NIST PQC algorithm. FALCON-512 produces 666-byte signatures (vs 3293 for ML-DSA-65) and FALCON-1024 produces 1280-byte signatures — closer to RSA in size.",
-        "FALCON is based on the NTRU lattice problem and uses the Fast Fourier Transform for efficient Gaussian sampling in polynomial rings. This Gaussian sampling is what enables the compact signatures — but it also makes FALCON significantly harder to implement correctly than ML-DSA.",
-        "FALCON's complexity is its main limitation: side-channel attacks against FALCON implementations are a genuine concern. Constant-time Gaussian sampling is notoriously difficult to implement. For most deployments, ML-DSA is preferred for its implementation simplicity. FALCON is recommended for size-constrained environments like IoT devices, embedded systems, and bandwidth-limited protocols.",
+        "FN-DSA (Fast-Fourier NTRU-based Digital Signature Algorithm), standardized as FALCON, produces the most compact signatures of any NIST PQC algorithm:\n- FALCON-512 signatures are 666 bytes (vs 3293 for ML-DSA-65); FALCON-1024 are 1280 bytes.\n- That's closer to RSA in size than any other PQC signature.",
+        "FALCON gets its compactness from NTRU lattices and FFT sampling:\n- It's based on the NTRU lattice problem and uses the Fast Fourier Transform for efficient Gaussian sampling in polynomial rings.\n- That Gaussian sampling is what enables the small signatures — but it also makes FALCON far harder to implement correctly than ML-DSA.",
+        "Implementation complexity is its main limitation:\n- Side-channel attacks against FALCON implementations are a genuine concern, and constant-time Gaussian sampling is notoriously hard.\n- ML-DSA is preferred for most deployments; FALCON suits size-constrained environments — IoT, embedded systems, and bandwidth-limited protocols.",
       ],
       technical: {
         title: "FALCON — NTRU Lattices and Fast-Fourier Sampling",
         body: [
-          "FALCON signing uses a trapdoor function based on the NTRU problem over polynomial rings. The private key provides a short basis for an NTRU lattice. Signing involves sampling a short vector from a Gaussian distribution over this lattice — using the short basis as the trapdoor. The Fast Fourier Transform makes this sampling efficient.",
-          "The critical security property is that the Gaussian sampling must be perfectly discrete — any deviation (due to floating-point rounding, timing variations, or distribution skew) can leak the private key. This is why FALCON requires careful, validated implementations. Open Quantum Safe (liboqs) provides a reference implementation that addresses these concerns.",
+          "FALCON signing is a trapdoor over NTRU lattices:\n- The private key is a short basis for an NTRU lattice; signing samples a short vector from a Gaussian distribution over that lattice, using the short basis as the trapdoor.\n- The Fast Fourier Transform makes the sampling efficient.",
+          "The Gaussian sampling must be perfect, or it leaks the key:\n- Any deviation — floating-point rounding, timing variation, or distribution skew — can expose the private key.\n- That's why FALCON demands careful, validated implementations; Open Quantum Safe (liboqs) provides a reference one that addresses these concerns.",
         ],
         codeExample: {
           label: "FALCON vs ML-DSA comparison — size-critical applications",
@@ -894,8 +894,8 @@ with oqs.Signature("Dilithium2") as dilithium:
         where: "Academic research — multiple implementation attacks on lattice signatures",
         impact: "Demonstrates why FALCON requires validated implementations — DIY implementations dangerous",
         body: [
-          "Multiple academic papers (2019-2023) demonstrated practical side-channel attacks against naive FALCON implementations — recovering the private key from timing variations or power traces during Gaussian sampling. These attacks were feasible against first-principle implementations that didn't account for timing side-channels.",
-          "The FALCON specification includes a reference implementation with careful attention to constant-time Gaussian sampling. Security engineers should use only validated, audited implementations (liboqs, BoringSSL with PQC patches) — never roll their own FALCON implementation. This contrasts with ML-DSA, which is simpler to implement correctly.",
+          "Academic work (2019–2023) showed naive FALCON implementations leak the private key:\n- Multiple papers recovered the key from timing variations or power traces during Gaussian sampling.\n- The attacks were feasible against first-principle implementations that ignored timing side-channels.",
+          "The lesson: never roll your own FALCON:\n- The specification ships a reference implementation with careful constant-time Gaussian sampling — use only validated, audited builds (liboqs, BoringSSL with PQC patches).\n- That contrasts with ML-DSA, which is far simpler to implement correctly.",
         ],
       },
       diagram: {
