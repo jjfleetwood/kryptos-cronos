@@ -1,0 +1,9 @@
+{
+  "name": "@kryptos/core",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Framework-agnostic shared core for Kryptós CronOS (web + mobile): types, content data, cert mappings. No server-only or framework deps.",
+  "exports": {
+    "./*": "./src/*.ts"
+  }
+}

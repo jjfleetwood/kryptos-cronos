@@ -9,7 +9,7 @@ import type { StageConfig } from "@/data/types";
 import type { StageTranslation } from "@/data/translations/types";
 import { stageDownloads } from "@/data/stage-downloads";
 import { getDomainsForStage } from "@/data/cyberops-domains";
-import { getCertBadgesForStage } from "@/data/cert-domains";
+import { getCertBadgesForStage } from "@kryptos/core/cert-domains";
 import { useLocale } from "@/contexts/LocaleContext";
 
 const categoryColors: Record<string, string> = {

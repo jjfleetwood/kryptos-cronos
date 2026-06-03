@@ -11,6 +11,7 @@ const securityHeaders = [
 ];
 
 const nextConfig: NextConfig = {
+  transpilePackages: ["@kryptos/core"],
   outputFileTracingIncludes: {
     "/api/docs/(.*)": ["./secured-docs/**"],
   },

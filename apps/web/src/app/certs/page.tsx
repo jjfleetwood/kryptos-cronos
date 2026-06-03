@@ -10,7 +10,7 @@ import {
   type CertId,
   type CertDomain,
   type CertDomainDef,
-} from "@/data/cert-domains";
+} from "@kryptos/core/cert-domains";
 import { stagesMeta } from "@/data/stages-meta";
 
 // ─── Cert configuration ────────────────────────────────────────────────────────

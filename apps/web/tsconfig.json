@@ -19,7 +19,8 @@
       }
     ],
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@kryptos/core/*": ["../../packages/core/src/*"]
     }
   },
   "include": [

@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getExamBank, gradeQuestion, type ExamMode } from "@/lib/exam-banks";
-import type { CertId } from "@/data/cert-domains";
+import type { CertId } from "@kryptos/core/cert-domains";
 
 const VALID_CERTS: CertId[] = [
   "comptia-secplus", "isc2-cc", "comptia-netplus", "comptia-cysa",
