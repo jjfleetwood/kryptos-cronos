@@ -1,10 +1,12 @@
 # Data Diagram — Kryptós CronOS
 
-**Version:** v1.0.0
-**Last Updated:** 2026-05-26
+**Version:** v2.0.0
+**Last Updated:** 2026-06-03
 **Status:** Current
 
 All persistent state lives in Upstash Redis. There is no relational database. The diagrams below model logical entities, Redis key schemas, data flow, and session/XP update sequences.
+
+> **Auth note:** Supabase Auth runs parallel to PBKDF2 — Supabase is the identity store for the **mobile** client (JWT bearer), while user gameplay data remains in Redis, joined by the `email:{email}` index. Pro entitlement is multi-source (Stripe / RevenueCat / voucher).
 
 ---
 
@@ -14,10 +16,13 @@ All persistent state lives in Upstash Redis. There is no relational database. Th
 erDiagram
     USER {
         string username PK "Redis hash: user:{username}"
-        string passwordHash "PBKDF2-SHA256 100k iters"
-        string email
+        string passwordHash "PBKDF2-SHA256 600k iters"
+        string email "indexed by email:{email}"
         string createdAt "ISO 8601"
-        string tier "free or pro"
+        string tier "free or pro (derived, multi-source)"
+        string proStripe "web Stripe subscription active"
+        string rcProExpiry "mobile RevenueCat IAP expiry"
+        string voucherExpiry "voucher/survey Pro expiry"
         string skin "standard or youth or mature"
     }
     PROGRESS {
@@ -70,8 +75,14 @@ erDiagram
 
 | Key Pattern | Type | TTL | Purpose |
 |---|---|---|---|
-| `user:{username}` | Hash | None | User record — auth fields + profile |
+| `user:{username}` | Hash | None | User record — auth fields, profile, tier sources |
+| `email:{email}` | String | None | Email → username index (bearer identity resolution) |
 | `progress:{username}` | Hash | None | XP, coins, stages, badges, streak |
+| `push:tokens` | Hash | None | username → Expo push token (mobile) |
+| `lockout:user:{username}` | String | 15 min | Failed-login counter / account lockout |
+| `voucher:{CODE}` | Hash | None | Voucher definition (supply, expiry, uses) |
+| `voucher:redeemers:{CODE}` | Set | None | Atomic dedup of voucher redeemers |
+| `audit:log` | List | None (cap 1000) | Admin action audit trail |
 | `leaderboard` | Sorted Set | None | All-time XP ranking |
 | `lb:d:{YYYY-MM-DD}` | Sorted Set | 8 days | Daily XP ranking |
 | `lb:w:{YYYY-MM-DD}` | Sorted Set | 35 days | Weekly XP ranking |
@@ -122,7 +133,10 @@ flowchart TD
     subgraph External["External Services"]
         Anthropic["Anthropic API\nClaude Haiku-4-5"]
         Resend["Resend Email"]
-        Stripe["Stripe Payments"]
+        Stripe["Stripe (web payments)"]
+        RevenueCat["RevenueCat (mobile IAP)"]
+        Supabase["Supabase (auth + mobile JWT)"]
+        Expo["Expo Push"]
     end
 
     Browser -->|HTTPS| Edge
@@ -160,9 +174,12 @@ sequenceDiagram
     E->>A: Forward + x-nonce header
     A->>R: HGETALL user:{username}
     R-->>A: {passwordHash, tier, ...}
-    A->>A: PBKDF2-SHA256 verify (100k iters)
+    A->>A: PBKDF2-SHA256 verify (600k iters); re-hash if legacy
     A->>A: HMAC-SHA256 sign session token
     A-->>B: Set-Cookie: session_token (HttpOnly 30d)
+
+    Note over B,A: Mobile client uses Supabase JWT instead
+    Note over A,R: getAuthedUsername(): verify bearer (JWKS) → email claim → email:{email}
 
     Note over B,E: Subsequent admin request
     B->>E: GET /admin

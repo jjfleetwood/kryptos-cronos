@@ -1,10 +1,88 @@
 # Architecture Decision Records — Kryptós CronOS
 
-**Version:** v1.1.0
-**Last Updated:** 2026-05-26
+**Version:** v2.0.0
+**Last Updated:** 2026-06-03
 **Status:** Current
 
 Each ADR records a significant technical decision: what was decided, why, what was rejected, and what constraints it creates going forward. Ordered most recent first.
+
+---
+
+## ADR-014 — Turborepo Monorepo (apps/web + apps/mobile + packages)
+
+**Date:** 2026-06-03
+**Status:** Accepted
+
+### Decision
+Restructure the single Next.js app into a **Turborepo monorepo** with npm workspaces: `apps/web` (Next.js + API, deployed), `apps/mobile` (Expo / React Native), `packages/core` (`@kryptos/core` — all curriculum content + types, formerly `app/src/data`), and `packages/api-client` (`@kryptos/api-client` — a framework-agnostic typed API client used by both web and mobile).
+
+### Rationale
+- A native mobile client needs to share curriculum content, types, and API calls with web — duplicating them would guarantee drift
+- `packages/core` makes content the single source of truth for both platforms
+- Turborepo caches build/lint/typecheck across workspaces
+- Vercel deploys only `apps/web` (Root Directory = `apps/web`, "Include files outside root" ON for the workspace lockfile)
+
+### Constraints
+- Server-only modules (redis, supabase, crypto-utils, api-auth, stage-flags, audit) must stay in `apps/web` (or be `import "server-only"`) — never into `@kryptos/core`'s client-reachable graph
+- `transpilePackages: ["@kryptos/core"]` required in `next.config.ts`
+- Install from the repo root; app commands run via `turbo` or `-w @kryptos/web`
+
+---
+
+## ADR-013 — Dual-Client Auth: Supabase Bearer JWT (mobile) alongside HMAC cookie (web)
+
+**Date:** 2026-06-01
+**Status:** Accepted — **supersedes ADR-009**
+
+### Decision
+Adopt **Supabase Auth** as the identity provider for the **mobile** client. API gameplay/user routes accept **either** the HMAC `session_token` cookie (web) **or** an `Authorization: Bearer <supabase-jwt>` (mobile), resolved by a single `getAuthedUsername()` helper. Bearer tokens are verified **locally against the project JWKS** (`jose`) with a `supabase.auth.getUser()` fallback. Routes are also exposed under a versioned `/api/v1/*` namespace.
+
+### Rationale
+- Mobile cannot use HttpOnly web cookies; a bearer token is the native pattern
+- Supabase already ran parallel to PBKDF2 (ADR-009 era) — promoting it to the mobile identity source avoids a second auth system
+- Local JWKS verification avoids a network round-trip to Supabase on every request
+- **Spoof-safe identity:** username is resolved from the token's verified **email** claim → `email:{email}` index, never the user-editable `user_metadata`
+
+### Constraints
+- A verified-email claim is required; mobile-only accounts are provisioned in Redis via `POST /api/auth/bootstrap` (`SET NX`)
+- CORS for `/api` must allow the mobile origin (origin-allowlisted, credential-less) in `proxy.ts`
+- The `/api/v1` rewrite must stay in sync with the canonical `/api` routes
+
+---
+
+## ADR-012 — Multi-Source Pro Entitlement (Stripe + RevenueCat + Voucher)
+
+**Date:** 2026-06-01
+**Status:** Accepted
+
+### Decision
+Pro tier is derived from **multiple independent sources**: `proStripe` (web Stripe subscription), `rcProExpiry` (mobile RevenueCat IAP), and `voucherExpiry` (voucher/survey reward). `getUserTier()` grants Pro if **any** source is active and only revokes to `free` when **none** remain. RevenueCat handles App Store / Play IAP, with `app_user_id` = username so it reconciles with Stripe.
+
+### Rationale
+- A user may pay on web (Stripe) and also be entitled via mobile IAP — a webhook from one platform must never strip access granted by another
+- App Store / Play billing rules require IAP on mobile; Stripe Checkout is not allowed in-app
+
+### Constraints
+- Every webhook (`/api/webhooks/stripe`, `/api/webhooks/revenuecat`) must write only its own source field and then re-evaluate, never hard-set `tier=free`
+- `REVENUECAT_WEBHOOK_AUTH` guards the RevenueCat webhook
+
+---
+
+## ADR-011 — Single-Branch (`master`) Workflow
+
+**Date:** 2026-06-03
+**Status:** Accepted
+
+### Decision
+Retire the long-lived `dev` branch. `master` is the single source of truth: push to `master` → CI + Vercel auto-deploy to production. Risky changes use a short-lived feature branch validated on a Vercel Preview, then fast-forwarded into `master`.
+
+### Rationale
+- Solo/small-team velocity — the dev→master PR ceremony added latency without catching issues that Preview builds don't
+- Vercel Preview per feature branch already provides pre-merge validation when needed
+
+### Constraints
+- CI runs on `master` push + PR; there is no separate integration branch
+- Discipline required: most pushes go straight to production, so local CI gates matter
 
 ---
 
@@ -37,7 +115,9 @@ Use the `mermaid` npm package (v11) for rendering architecture diagrams in the a
 ## ADR-009 — Auth Migration Deferred (Redis → Supabase Auth)
 
 **Date:** 2026-05-22
-**Status:** Accepted (deferred)
+**Status:** ~~Accepted (deferred)~~ **Superseded by ADR-013 (2026-06-01)**
+
+> **Update:** This deferral was revisited when the mobile client was built. Supabase Auth was adopted as the **mobile** identity source (bearer JWT) while the web client keeps the HMAC cookie. PBKDF2 was also raised to 600k iterations. See **ADR-013**. The text below is retained for historical context.
 
 ### Decision
 The current PBKDF2 + HMAC cookie auth system remains in place for the MVP and early growth phase. Migration to Supabase Auth or Lucia is planned but explicitly deferred.
@@ -130,7 +210,7 @@ Generate a cryptographic nonce per request in `proxy.ts`. Apply the nonce to the
 **Status:** Accepted
 
 ### Decision
-CTF flag values live in `src/data/stage-flags.ts` which has `import "server-only"` at the top. This causes a Next.js build error if the module is accidentally imported in a client component.
+CTF flag values live in `packages/core/src/stage-flags.ts` (formerly `src/data/stage-flags.ts`) which has `import "server-only"` at the top. This causes a Next.js build error if the module is accidentally imported in a client component.
 
 ### Rationale
 - Zero possibility of flag values reaching the browser bundle
@@ -191,6 +271,7 @@ Implement sessions as HMAC-SHA256 signed cookies. No JWT. No Redis session store
 - Tokens cannot be revoked before expiry (session invalidation requires cookie deletion client-side — no server-side blacklist)
 - Username changes would invalidate existing tokens (username changes not supported)
 - Two separate secrets required: `SESSION_SECRET` and `ADMIN_SECRET`
+- **Web only:** the mobile client uses a Supabase bearer JWT instead of this cookie (see ADR-013). "No JWT" applies to the web session scheme, not the platform as a whole.
 
 ---
 
