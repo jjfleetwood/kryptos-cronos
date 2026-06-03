@@ -35,7 +35,7 @@
 - [x] mitre-atlas — ALL 12 DONE (atlas-01..12) ✅
 - [x] owasp-llm — ALL 12 DONE (llm-01..12) ✅
 - [x] quantum-1 — ALL 10 DONE (quantum-01..10) ✅
-- [ ] quantum-2 — quantum-b01..b10 (10)
+- [x] quantum-2 — ALL 10 DONE (quantum-b01..b10) ✅
 - [ ] quantum-3 — quantum-c01..c10 (10)
 - [ ] quantum-4 — quantum-d01..d10 (10)
 - [ ] emerging-tech — emerging-01..10 (10)

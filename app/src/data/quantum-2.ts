@@ -1508,15 +1508,15 @@ for f in findings:
       tagline: "A post-quantum algorithm is only as secure as its implementation — validate, test, and audit PQC code before trusting it.",
       year: 2025,
       overview: [
-        "Post-quantum cryptographic algorithms are more complex than RSA and ECDSA. Implementation mistakes — improper rejection sampling, non-constant-time operations, incorrect parameter validation — can completely undermine the quantum security guarantees. Multiple PQC implementation vulnerabilities have been discovered since the NIST competition began.",
-        "NIST, ACVTS (Automated Cryptographic Validation Testing System), and FIPS 140-3 testing labs provide validation programs for PQC implementations. Organizations must use FIPS 140-3 validated modules for federal systems — and should prefer validated implementations for all high-security applications.",
-        "Key testing areas: (1) Known-answer tests (KAT) — verify algorithm produces correct output for known inputs; (2) Interoperability testing — verify cross-library compatibility; (3) Side-channel testing — verify constant-time operation; (4) Fault injection — verify behavior under hardware faults.",
+        "PQC algorithms are more complex than RSA and ECDSA, so implementation mistakes are dangerous:\n- Improper rejection sampling, non-constant-time operations, or incorrect parameter validation can fully undermine the quantum-security guarantees.\n- Multiple PQC implementation vulnerabilities have surfaced since the NIST competition began.",
+        "Formal validation programs exist to catch these:\n- NIST's ACVTS (Automated Cryptographic Validation Testing System) and FIPS 140-3 labs validate PQC implementations.\n- Federal systems must use FIPS 140-3 validated modules — and any high-security application should prefer validated implementations.",
+        "Validation covers four key testing areas:\n- Known-answer tests (KAT) verify correct output for known inputs; interoperability testing verifies cross-library compatibility.\n- Side-channel testing verifies constant-time operation; fault injection verifies behavior under hardware faults.",
       ],
       technical: {
         title: "PQC Validation — NIST ACVTS and FIPS 140-3",
         body: [
-          "NIST's Automated Cryptographic Validation Testing System (ACVTS) provides Known-Answer Tests (KAT) for all FIPS PQC algorithms. An implementation must pass all KATs before claiming FIPS conformance. The ACVTS generates test vectors for all parameter sets and edge cases.",
-          "Side-channel validation is particularly important for ML-KEM and FALCON. Timing side-channels occur when the execution time of a cryptographic operation depends on secret data. Constant-time implementations run in identical time regardless of secret values. FALCON's Gaussian sampling is especially prone to timing variations.",
+          "ACVTS anchors conformance with known-answer tests:\n- It provides KATs for all FIPS PQC algorithms, and an implementation must pass every one before claiming FIPS conformance.\n- The system generates test vectors for all parameter sets and edge cases.",
+          "Side-channel validation matters most for ML-KEM and FALCON:\n- Timing side-channels arise when an operation's execution time depends on secret data; constant-time implementations run identically regardless of secret values.\n- FALCON's Gaussian sampling is especially prone to timing variation.",
         ],
         codeExample: {
           label: "PQC validation — running KAT tests on ML-KEM implementation",
@@ -1557,8 +1557,8 @@ def validate_mlkem768(kat_file="kem_kat_ml-kem-768.json"):
         where: "Academic research — Kyber-90s (SHA-3 variant of Kyber)",
         impact: "Timing attack on non-constant-time SHA-3 reduced key recovery to minutes",
         body: [
-          "In 2022, researchers published a timing side-channel attack against a non-constant-time implementation of Kyber-90s (a SHA-3 based Kyber variant). The attack exploited timing variations in the SHA-3 implementation to recover the private key with as few as 200,000 measurements on a local machine.",
-          "The main Kyber/ML-KEM specification was not affected — only the Kyber-90s variant with non-constant-time SHA-3. The incident reinforced that post-quantum algorithms, like all cryptographic algorithms, require constant-time implementations and should be validated before deployment.",
+          "In 2022, researchers broke a non-constant-time Kyber implementation via timing:\n- The attack targeted Kyber-90s (a SHA-3-based Kyber variant) and exploited timing variations in its SHA-3 code.\n- It recovered the private key with as few as 200,000 measurements on a local machine.",
+          "The break was an implementation flaw, not an algorithm flaw:\n- The main Kyber/ML-KEM spec was unaffected — only the Kyber-90s variant with non-constant-time SHA-3.\n- The lesson: PQC algorithms, like all cryptography, require constant-time implementations and must be validated before deployment.",
         ],
       },
       diagram: {
