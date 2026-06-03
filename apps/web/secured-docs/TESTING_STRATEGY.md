@@ -1,8 +1,10 @@
 # Testing Strategy — Kryptós CronOS
 
-**Version:** v1.0.0
-**Last Updated:** 2026-05-26
+**Version:** v2.0.0
+**Last Updated:** 2026-06-03
 **Status:** Current
+
+> Monorepo paths: app/lib under `apps/web/src/`; curriculum/types under `packages/core/src/`. API routes accept the web cookie **or** a mobile Supabase bearer JWT, so auth tests cover both.
 
 ---
 
@@ -49,17 +51,23 @@ graph TB
 
 **Target:** Pure functions with no external dependencies.
 
-### 3.1 Auth Library (`src/lib/auth.ts`)
+### 3.1 Auth Libraries (`src/lib/crypto-utils.ts`, `src/lib/server-session.ts`, `src/lib/api-auth.ts`, `src/lib/supabase-jwt.ts`)
 
 | Test | Description |
 |---|---|
 | `hashPassword` returns different salts each call | Salt randomness verified |
+| `hashPassword` uses 600k iterations | OWASP 2024 parameter |
 | `verifyPassword` returns true for matching password | Round-trip hash/verify |
 | `verifyPassword` returns false for wrong password | Negative case |
+| Legacy hash (100k/310k) re-hashed to 600k on login | Transparent migration |
 | `signToken` produces `username:hex` format | Token format validation |
 | `verifyToken` returns true for valid token | HMAC verify round-trip |
 | `verifyToken` returns false for tampered token | Security — bit flip detection |
 | `verifyToken` uses `timingSafeEqual` | Timing attack resistance |
+| `verifySupabaseJwt` accepts a valid JWKS-signed token | Bearer happy path |
+| `verifySupabaseJwt` rejects a forged/expired token | Bearer negative case |
+| Bearer identity resolved from email claim, not `user_metadata` | Spoof-safety |
+| `getAuthedUsername` resolves cookie OR bearer | Dual-client resolver |
 
 ### 3.2 Access Library (`src/lib/access.ts`)
 
@@ -71,7 +79,17 @@ graph TB
 | Trial expired (>7 days) + free tier returns `canAccess: false` | Paywall trigger |
 | `createdAt` exactly 7 days ago is still in trial | Boundary condition |
 
-### 3.3 Trophy Logic (`src/data/trophies.ts`)
+### 3.2b Tier Entitlement (`src/lib/access.ts` → `getUserTier`)
+
+| Test | Description |
+|---|---|
+| `proStripe` active → Pro | Web subscription source |
+| `rcProExpiry` future-dated → Pro | Mobile IAP source |
+| `voucherExpiry` future-dated → Pro | Voucher source |
+| Only revokes to free when no source active | Multi-source non-clobber |
+| One source expiring while another active keeps Pro | Cross-platform safety |
+
+### 3.3 Trophy Logic (`packages/core/src/trophies.ts`)
 
 | Test | Description |
 |---|---|
@@ -109,7 +127,12 @@ graph TB
 | Login rate limit | POST /api/auth/login (6× same IP) | 429 |
 | Logout clears cookies | DELETE /api/auth/session | Cookies absent in response |
 | Auth/me with valid cookie | GET /api/auth/me | 200, correct payload |
+| Auth/me with valid bearer JWT | GET /api/auth/me (Authorization header) | 200, correct payload |
+| Auth/me with bogus bearer | GET /api/auth/me | 401 |
 | Auth/me without cookie | GET /api/auth/me | 401 |
+| Account lockout after 5 fails | POST /api/auth/login (×6) | 423 on 6th |
+| Bootstrap provisions Supabase-only account | POST /api/auth/bootstrap (bearer) | `user:{u}` + `email:{e}` in Redis |
+| `/api/v1/*` reaches the same handler | GET /api/v1/auth/me | identical to `/api/auth/me` |
 
 ### 4.2 Progress Routes
 
@@ -146,9 +169,19 @@ graph TB
 
 | Test | Route | Verify |
 |---|---|---|
-| Valid `checkout.session.completed` | POST /api/webhooks/stripe | `tier: pro` in Redis |
-| Valid `subscription.deleted` | POST /api/webhooks/stripe | `tier: free` in Redis |
+| Valid `checkout.session.completed` | POST /api/webhooks/stripe | `tier: pro` + `proStripe` in Redis |
+| Valid `subscription.deleted` (no other source) | POST /api/webhooks/stripe | `tier: free` in Redis |
+| `subscription.deleted` while RevenueCat active | POST /api/webhooks/stripe | stays `tier: pro` (multi-source) |
 | Invalid signature rejected | POST /api/webhooks/stripe | 400 |
+
+### 4.5b RevenueCat Webhook & Push
+
+| Test | Route | Verify |
+|---|---|---|
+| Valid grant event | POST /api/webhooks/revenuecat | `tier: pro` + `rcProExpiry` set |
+| Bad/missing auth header | POST /api/webhooks/revenuecat | 401 |
+| Register push token | POST /api/push/register | token stored in `push:tokens` |
+| Streak cron without `CRON_SECRET` | GET /api/push/streak-reminder | 401 |
 
 ---
 
@@ -208,7 +241,7 @@ graph TB
 ## 6. User Acceptance Testing (UAT)
 
 **Owner:** Ajax Bolotin (Product Owner)  
-**Environment:** Vercel preview URL (dev branch)
+**Environment:** Vercel Preview URL (feature branch) for risky changes; otherwise local + production smoke after a `master` push
 
 ### UAT Process
 
@@ -239,11 +272,12 @@ Before any production deploy:
 ### Automated Regression Checklist (CI)
 
 ```yaml
-# .github/workflows/ci.yml — gates in order
-1. npm run lint          # 0 ESLint errors
-2. npx tsc --noEmit      # 0 TypeScript errors
-3. npm run build         # production build succeeds
-4. npm audit             # no critical CVEs
+# .github/workflows/ci.yml — gates in order (run from monorepo root)
+1. npm ci                                              # all workspaces
+2. npm run lint                                        # turbo → 0 ESLint errors
+3. npx tsc --noEmit --skipLibCheck -p apps/web/tsconfig.json  # 0 TS errors
+4. npm run build                                       # turbo production build
+5. npm audit                                           # no critical CVEs
 ```
 
 ### Manual Regression Areas (run after significant changes)
@@ -272,6 +306,9 @@ Before any production deploy:
 | Secured docs direct access | `GET /secured-docs/README.md` → verify 404 | Per release |
 | SQL injection (N/A) | Not applicable — no SQL database | — |
 | Stripe signature bypass | Fake webhook without `Stripe-Signature` → verify 400 | Per release |
+| RevenueCat webhook auth bypass | POST without/with wrong Authorization → verify 401 | Per release |
+| Bearer JWT forgery | Self-signed/expired Supabase JWT → verify 401 | Per release |
+| CORS for `/api` | Disallowed origin not reflected; preflight 204 | Per release |
 
 Security tests are run as part of the deploy skill's 6-pass audit documented in `CICD_PIPELINE.md`.
 

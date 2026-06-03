@@ -1,14 +1,16 @@
 # Technical Specifications — Kryptós CronOS
 
-**Version:** v1.0.0
-**Last Updated:** 2026-05-26
+**Version:** v2.0.0
+**Last Updated:** 2026-06-03
 **Status:** Current
+
+> **Monorepo:** shared types + curriculum live in `packages/core` (`@kryptos/core`); the web app + API live in `apps/web`; the native app in `apps/mobile`. API routes accept **either** the web HMAC cookie **or** a mobile Supabase bearer JWT (`getAuthedUsername()`), and are also served under `/api/v1/*`.
 
 ---
 
 ## 1. Type System Overview
 
-All types live in `src/types.ts` (shared) or colocated with their modules.
+All shared types live in `packages/core/src/types.ts` (`@kryptos/core/types`) or colocated with their modules.
 
 ### 1.1 Core Stage Types
 
@@ -79,10 +81,13 @@ interface EpochConfig {
 
 ```typescript
 interface UserRecord {
-  passwordHash: string;
-  email: string;
+  passwordHash: string;            // PBKDF2-SHA256, 600k iterations
+  email: string;                   // also indexed by email:{email}
   createdAt: string;               // ISO 8601
-  tier: "free" | "pro";
+  tier: "free" | "pro";            // derived from the sources below
+  proStripe?: string;              // web Stripe subscription active
+  rcProExpiry?: string;            // mobile RevenueCat IAP expiry (ISO)
+  voucherExpiry?: string;          // voucher/survey Pro expiry (ISO)
   skin: "standard" | "youth" | "mature";
 }
 
@@ -355,10 +360,35 @@ interface Trophy {
 **Events handled:**
 | Event | Action |
 |---|---|
-| `checkout.session.completed` | `HSET user:{username} tier pro` |
-| `customer.subscription.deleted` | `HSET user:{username} tier free` |
+| `checkout.session.completed` | `tier=pro` + set `proStripe`; clear `voucherExpiry` |
+| `customer.subscription.deleted` | clear `proStripe`; re-evaluate tier (multi-source) |
 
 **Response:** Always `{ "received": true }` with 200 (Stripe retry safety)
+
+---
+
+### 2.12 POST /api/webhooks/revenuecat
+
+**Auth:** `Authorization` header verified against `REVENUECAT_WEBHOOK_AUTH`
+
+**Events handled (mobile IAP; `app_user_id` = username):**
+| Event | Action |
+|---|---|
+| `INITIAL_PURCHASE` / `RENEWAL` / `PRODUCT_CHANGE` | `tier=pro` + set `rcProExpiry` |
+| `EXPIRATION` / `CANCELLATION` | re-evaluate tier (multi-source) |
+
+> **Multi-source entitlement:** `getUserTier()` grants Pro if any of `proStripe`, `rcProExpiry`, `voucherExpiry` is active; revokes only when none remain.
+
+---
+
+### 2.13 Mobile & Push (summary)
+
+| Route | Auth | Purpose |
+|---|---|---|
+| `POST /api/auth/bootstrap` | Bearer | Provision Redis record for Supabase-only accounts (`SET NX`) |
+| `POST/DELETE /api/push/register` | session/bearer | Store/clear Expo push token (`push:tokens`) |
+| `GET /api/push/streak-reminder` | `CRON_SECRET` bearer | Vercel Cron daily streak push |
+| `DELETE /api/delete-account` | session/bearer | Purge Redis user + delete Supabase account |
 
 ---
 
@@ -376,14 +406,21 @@ interface Trophy {
 | `ANTHROPIC_API_KEY` | Yes | `sk-ant-...` | `/api/hint` |
 | `STRIPE_SECRET_KEY` | Yes | `sk_live_...` or `sk_test_...` | Stripe API calls |
 | `STRIPE_WEBHOOK_SECRET` | Yes | `whsec_...` | Webhook signature verification |
-| `STRIPE_PRO_MONTHLY_PRICE_ID` | Yes | `price_...` | Checkout session |
-| `STRIPE_PRO_YEARLY_PRICE_ID` | Yes | `price_...` | Checkout session |
+| `STRIPE_PRO_MONTHLY_PRICE_ID` | Yes | `price_...` ($13.99/mo) | Checkout session |
+| `STRIPE_PRO_YEARLY_PRICE_ID` | Yes | `price_...` ($99/yr) | Checkout session |
+| `SUPABASE_URL` | Yes | `https://...supabase.co` | `src/lib/supabase.ts`, JWT verify |
+| `SUPABASE_ANON_KEY` | Yes | anon key | Supabase SSR client |
+| `SUPABASE_SERVICE_ROLE_KEY` | Yes | service role key | `getUser()` fallback (server-only) |
+| `REVENUECAT_WEBHOOK_AUTH` | For mobile IAP | shared secret | `/api/webhooks/revenuecat` |
+| `CRON_SECRET` | For push cron | bearer string | `/api/push/streak-reminder` |
+
+Mobile (`apps/mobile/.env`): `EXPO_PUBLIC_SUPABASE_URL`, `EXPO_PUBLIC_SUPABASE_ANON_KEY`, `EXPO_PUBLIC_API_BASE`, RevenueCat public SDK keys.
 
 ---
 
 ## 4. Curriculum Data Specifications
 
-### Epoch Registration (`src/data/stages.ts`)
+### Epoch Registration (`packages/core/src/stages.ts`)
 
 Every epoch must be registered in `stages.ts` with:
 1. An `EpochConfig` object exported from its data file
