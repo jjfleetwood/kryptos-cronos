@@ -1341,15 +1341,15 @@ oqs-provider/openssl s_client -connect example.com:443 \\
       tagline: "You can't migrate what you haven't found — crypto discovery is the most important and most underestimated step in PQC migration.",
       year: 2025,
       overview: [
-        "Post-quantum cryptography migration begins with a comprehensive inventory of all cryptographic assets in the organization. Modern enterprise IT has cryptography embedded in thousands of places: TLS certificates in load balancers, SSH keys in CI/CD pipelines, RSA keys in VPN solutions, ECDSA in code signing, x509 certificates in API gateways, and hardware security modules throughout the infrastructure.",
-        "Cryptographic discovery tools scan codebases (CBOM — Cryptography Bill of Materials), certificate inventories, network traffic, and configuration files to identify all cryptographic usage. NIST, CISA, and ISO are developing CBOM standards analogous to SBOM (Software Bill of Materials) to enable systematic cryptographic asset management.",
-        "The discovery phase is harder than it seems: cryptography is often buried in dependencies, embedded in binary firmware, or hidden in vendor-managed infrastructure. Organizations that attempt migration without complete discovery find crypto assets that were missed and must restart the migration process.",
+        "PQC migration starts with a comprehensive inventory of every cryptographic asset:\n- Modern enterprise IT embeds cryptography in thousands of places — TLS certs in load balancers, SSH keys in CI/CD, RSA in VPNs.\n- Plus ECDSA in code signing, x509 in API gateways, and HSMs throughout the infrastructure.",
+        "Cryptographic discovery tools find it all:\n- They scan codebases (producing a CBOM — Cryptography Bill of Materials), certificate inventories, network traffic, and config files.\n- NIST, CISA, and ISO are developing CBOM standards analogous to SBOM for systematic crypto asset management.",
+        "Discovery is harder than it looks:\n- Cryptography hides in dependencies, binary firmware, and vendor-managed infrastructure.\n- Organizations that migrate without complete discovery keep finding missed assets and have to restart the process.",
       ],
       technical: {
         title: "Crypto Discovery Tools and CBOM",
         body: [
-          "Tools for cryptographic discovery: (1) IBM Cryptography Bill of Materials (CBOM) generator — scans codebases for crypto usage; (2) CISA's Crypto Inventory Template — structured assessment spreadsheet; (3) Network scanning tools (e.g., SSL Labs, Qualys SSL) — enumerate certificates; (4) Cryptosense Analyzer — discovers crypto in Java/Python code; (5) OQS-TLS scanner — identifies PQC-ready vs classical-only TLS.",
-          "A complete CBOM includes: algorithm used, key size, key type (symmetric/asymmetric/hash), protocol, data sensitivity, renewal schedule, owner, and migration priority. This feeds directly into the migration prioritization model.",
+          "Several tools cover the discovery surface:\n- IBM's CBOM generator scans codebases; CISA's Crypto Inventory Template structures the assessment; SSL Labs / Qualys enumerate certificates.\n- Cryptosense Analyzer finds crypto in Java/Python code, and OQS-TLS scanner flags PQC-ready vs classical-only TLS.",
+          "A complete CBOM captures the full picture per asset:\n- Algorithm, key size, key type (symmetric/asymmetric/hash), protocol, data sensitivity, renewal schedule, owner, and migration priority.\n- That feeds directly into the migration-prioritization model.",
         ],
         codeExample: {
           label: "CBOM generation — scanning a codebase for cryptographic usage",
@@ -1386,8 +1386,8 @@ for f in findings:
         where: "Global — all OpenSSL-using systems",
         impact: "Heartbleed showed organizations didn't know what used OpenSSL; PQC migration requires not making the same mistake",
         body: [
-          "The 2014 Heartbleed vulnerability (CVE-2014-0160 in OpenSSL) caused widespread panic because organizations didn't know which systems used OpenSSL and thus which systems were affected. Many large organizations took weeks to identify all affected systems — during which time attackers had full access to their private keys.",
-          "PQC migration is a 'slow Heartbleed': organizations that don't maintain a current cryptographic inventory will face the same discovery problem when migrating. The lesson is to build continuous crypto discovery into the security program now, so that when Q-Day approaches, the inventory already exists and migration can proceed rapidly.",
+          "The 2014 Heartbleed bug (CVE-2014-0160 in OpenSSL) showed how blind organizations are to their own crypto:\n- The panic came because nobody knew which systems used OpenSSL, and thus which were affected.\n- Many large organizations took weeks to find every affected system — while attackers had full access to their private keys.",
+          "PQC migration is a 'slow Heartbleed':\n- Organizations without a current cryptographic inventory will hit the same discovery problem when migrating.\n- The lesson: build continuous crypto discovery into the security program now, so the inventory already exists when Q-Day approaches and migration can move fast.",
         ],
       },
       diagram: {
