@@ -1178,16 +1178,16 @@ with oqs.KeyEncapsulation("Kyber768") as kem:
       tagline: "TLS is the most deployed security protocol on earth — migrating it to post-quantum algorithms requires changes at every layer.",
       year: 2025,
       overview: [
-        "TLS (Transport Layer Security) secures HTTPS, SMTP, VPNs, and hundreds of other protocols. Migrating TLS to post-quantum cryptography requires changes at three layers: (1) key exchange — replace RSA/ECDH with ML-KEM (or hybrid), (2) certificate signatures — replace RSA/ECDSA with ML-DSA in certificates, (3) handshake authentication — replace ECDSA with ML-DSA for client/server authentication.",
-        "TLS 1.3 is well-positioned for PQC migration: its clean separation of key exchange, authentication, and encryption makes ciphersuite changes straightforward. The main challenges are library support, certificate chain size increases, and backward compatibility with TLS 1.2 deployments.",
-        "Current library status: BoringSSL (Google) supports ML-KEM-768 hybrid; OpenSSL 3.x has PQC support via OQS provider; wolfSSL has native PQC support. CloudFlare, Chrome, and Firefox have shipped hybrid PQC in production. Let's Encrypt is evaluating PQC certificate issuance.",
+        "TLS secures HTTPS, SMTP, VPNs, and hundreds of other protocols — and PQC migration touches three layers:\n- Key exchange — replace RSA/ECDH with ML-KEM (or hybrid); certificate signatures — replace RSA/ECDSA with ML-DSA.\n- Handshake authentication — replace ECDSA with ML-DSA for client/server auth.",
+        "TLS 1.3 is well-positioned for the move:\n- Its clean separation of key exchange, authentication, and encryption makes ciphersuite changes straightforward.\n- The main challenges are library support, larger certificate chains, and backward compatibility with TLS 1.2.",
+        "Library and ecosystem support is already real:\n- BoringSSL supports ML-KEM-768 hybrid; OpenSSL 3.x via the OQS provider; wolfSSL natively.\n- Cloudflare, Chrome, and Firefox ship hybrid PQC in production, and Let's Encrypt is evaluating PQC certificate issuance.",
       ],
       technical: {
         title: "TLS PQC Migration — Three Layers",
         body: [
-          "Layer 1 (Key Exchange): Replace ECDHE with hybrid X25519MLKEM768 or pure MLKEM768. This is the most urgent change — protects against HNDL attacks on today's sessions. No certificate change needed. Deployable immediately using existing CA infrastructure.",
-          "Layer 2 (Certificates): Replace RSA/ECDSA signing in leaf certificates, intermediate CAs, and root CAs with ML-DSA. This requires CA cooperation and browser trust store changes. Larger certificate sizes (ML-DSA: 2420+ byte signatures vs 64-byte ECDSA) increase TLS handshake sizes by ~3-4KB.",
-          "Layer 3 (Mutual TLS): Replace ECDSA client certificates with ML-DSA. Required for mTLS in zero-trust architectures. Same signature size concerns as server certificates.",
+          "Layer 1 (key exchange) is the urgent, easy win:\n- Replace ECDHE with hybrid X25519MLKEM768 or pure MLKEM768 — this protects today's sessions against HNDL.\n- No certificate change is needed; it's deployable immediately on existing CA infrastructure.",
+          "Layer 2 (certificates) is the harder lift:\n- Replace RSA/ECDSA signing in leaf, intermediate, and root certificates with ML-DSA — needing CA cooperation and browser trust-store changes.\n- Larger signatures (ML-DSA 2420+ bytes vs 64 for ECDSA) inflate handshakes by ~3–4KB.",
+          "Layer 3 (mutual TLS) extends it to clients:\n- Replace ECDSA client certificates with ML-DSA for mTLS in zero-trust architectures.\n- It carries the same signature-size concerns as server certificates.",
         ],
         codeExample: {
           label: "OpenSSL with OQS provider — PQC TLS server configuration",
@@ -1220,8 +1220,8 @@ oqs-provider/openssl s_client -connect example.com:443 \\
         where: "Let's Encrypt — 400+ million active certificates globally",
         impact: "PQC certificate issuance at scale — largest PKI migration in history",
         body: [
-          "Let's Encrypt issues over 400 million certificates globally — the largest CA by volume. Migrating to PQC certificate signatures (ML-DSA) represents the largest PKI migration in internet history. Let's Encrypt has begun evaluating PQC certificate issuance, with phased rollout planned for 2025-2027.",
-          "The main challenges: ML-DSA certificates are ~3-4KB larger than ECDSA certificates (due to 2420+ byte signatures), affecting TLS handshake sizes and mobile performance. Root store changes (adding PQC root CAs to browser trust stores) require coordination with Mozilla, Apple, Microsoft, and Google — a multi-year process.",
+          "Let's Encrypt issues 400M+ certificates globally — the largest CA by volume:\n- Migrating its certificate signatures to ML-DSA would be the largest PKI migration in internet history.\n- It's begun evaluating PQC certificate issuance, with a phased rollout planned for 2025–2027.",
+          "Two challenges dominate the migration:\n- ML-DSA certificates are ~3–4KB larger than ECDSA (2420+ byte signatures), hitting handshake sizes and mobile performance.\n- Adding PQC root CAs to browser trust stores requires coordinating Mozilla, Apple, Microsoft, and Google — a multi-year process.",
         ],
       },
       diagram: {
