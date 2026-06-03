@@ -153,6 +153,22 @@ So "is this user Pro?" has one answer regardless of where they paid.
 
 **Exit:** live in both stores.
 
+### Phase 6 — STATUS: build config scaffolded 2026-06-03 (branch `phase-4-mobile`). The rest needs your accounts.
+
+**Done (config in repo):**
+- [x] `apps/mobile/eas.json` — build profiles (`development` dev-client, `preview` internal, `production` autoIncrement) + `submit.production` placeholder.
+- [x] `app.json` store identifiers — `ios.bundleIdentifier` + `android.package` = `com.kryptoscronos.app`, `buildNumber`/`versionCode` = 1, `ITSAppUsesNonExemptEncryption: false` (skips the export-compliance prompt). Plugins for splash / secure-store / notifications already set.
+
+**You run (needs Expo + Apple + Google accounts — external, can't be done from here):**
+1. `npm i -g eas-cli` → `eas login` → from `apps/mobile`: `eas init` (creates the Expo project; writes `extra.eas.projectId` — also the real push `projectId`).
+2. Set EAS env/secrets: `EXPO_PUBLIC_SUPABASE_*`, `EXPO_PUBLIC_API_BASE`, `EXPO_PUBLIC_REVENUECAT_*` (e.g. `eas env:create` or an `.env` for the build profile).
+3. `eas build --profile preview --platform all` → install the dev/preview build on a device (RevenueCat + push need a real build, not Expo Go). **Re-enable `typedRoutes` in `app.json` and run `expo start` once to generate `.expo/types`.**
+4. App Store Connect + Google Play Console: create the app, the **IAP products** ($13.99/mo, $99/yr) and link them to the RevenueCat `pro` entitlement/offering; set the RC dashboard webhook + `REVENUECAT_WEBHOOK_AUTH` + Vercel `CRON_SECRET`.
+5. Store listing: screenshots, description, **privacy nutrition labels**, demo reviewer account, IAP review notes. In-app **account deletion** already exists (Profile → … or via API) — Apple requires it.
+6. `eas submit --profile production --platform all` → phased rollout. Fires TODO **I (launch campaign)** + **J (first paying user)**.
+
+**Note:** wiring EAS build into GitHub Actions is deferred — do manual `eas build` first; automate once the pipeline is proven.
+
 ---
 
 ## Phase 7 — B2B track (parallel, stays on web)
