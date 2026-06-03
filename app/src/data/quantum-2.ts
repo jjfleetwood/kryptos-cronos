@@ -351,15 +351,15 @@ print("Decrypted:", 1 if abs(decrypted - q//2) < q//4 else 0)  # → 1`,
       tagline: "ML-KEM is the drop-in replacement for RSA and ECDH key exchange — the most important algorithm in post-quantum cryptography.",
       year: 2024,
       overview: [
-        "ML-KEM (Module Lattice-based Key Encapsulation Mechanism), standardized as NIST FIPS 203 in August 2024, is the primary replacement for RSA and ECDH in key exchange protocols. It replaces the TLS key exchange, VPN key establishment, and any other system where two parties need to establish a shared secret.",
-        "ML-KEM is based on CRYSTALS-Kyber, designed by a team including IBM, NXP, and academic researchers. It uses the Module-LWE problem — specifically the MLWE assumption on module lattices over polynomial rings. The algorithm is efficient enough for all TLS deployments and has been adopted by CloudFlare, Google, and major TLS libraries.",
-        "ML-KEM comes in three parameter sets: ML-KEM-512 (NIST security level 1, equivalent to AES-128), ML-KEM-768 (level 3, equivalent to AES-192), and ML-KEM-1024 (level 5, equivalent to AES-256). For most applications, ML-KEM-768 is recommended.",
+        "ML-KEM (Module Lattice-based Key Encapsulation Mechanism), NIST FIPS 203 (Aug 2024), is the primary replacement for RSA and ECDH in key exchange:\n- It swaps in for the TLS key exchange, VPN key establishment, and anywhere two parties need a shared secret.\n- It's the workhorse of the quantum-safe transition for key agreement.",
+        "It's the standardized form of CRYSTALS-Kyber:\n- Designed by a team including IBM, NXP, and academics, it uses the Module-LWE assumption on module lattices over polynomial rings.\n- It's efficient enough for all TLS deployments and is already adopted by Cloudflare, Google, and major TLS libraries.",
+        "ML-KEM ships in three parameter sets:\n- ML-KEM-512 (level 1, ~AES-128), ML-KEM-768 (level 3, ~AES-192), and ML-KEM-1024 (level 5, ~AES-256).\n- For most applications, ML-KEM-768 is recommended.",
       ],
       technical: {
         title: "ML-KEM Operation — KeyGen, Encapsulate, Decapsulate",
         body: [
-          "ML-KEM is a Key Encapsulation Mechanism (KEM): Alice generates a key pair (public key, private key). Bob uses Alice's public key to encapsulate a random shared secret, producing a ciphertext. Alice uses her private key to decapsulate the ciphertext and recover the same shared secret. Neither party needs to send the secret itself.",
-          "The security relies on the difficulty of distinguishing the ciphertext from random without the private key. The encapsulation introduces LWE noise that prevents recovery of the secret without the private key. The shared secret K is derived via a hash function, providing security even if the underlying MLWE problem has partial information leakage.",
+          "ML-KEM is a Key Encapsulation Mechanism, not a direct cipher:\n- Alice generates a key pair; Bob uses her public key to encapsulate a random shared secret, producing a ciphertext.\n- Alice decapsulates with her private key to recover the same secret — neither party ever transmits the secret itself.",
+          "Its security rests on indistinguishability plus a hash:\n- The encapsulation adds LWE noise so the ciphertext is indistinguishable from random without the private key.\n- The shared secret K is derived through a hash function, staying secure even if the MLWE problem leaks partial information.",
         ],
         codeExample: {
           label: "ML-KEM key exchange using liboqs (Open Quantum Safe)",
@@ -389,8 +389,8 @@ with oqs.KeyEncapsulation("Kyber768") as kem:
         where: "Cisco Silicon One P200 ASIC, deployed in enterprise and carrier backbone networks",
         impact: "First 800G network ASIC with hardware-embedded ML-KEM and ML-DSA — quantum-safe encryption at line rate without performance penalty",
         body: [
-          "In October 2025, Cisco announced Silicon One P200 with 800G ports delivering line-rate quantum-safe encryption — the first major networking ASIC to embed NIST-standard PQC (ML-KEM for key establishment, ML-DSA for signing) directly in hardware. This means quantum-safe IPsec and MACsec run at full 800G speeds without external encryption appliances. CloudFlare and Google had proven ML-KEM viable in software; Cisco proved it viable in silicon.",
-          "The follow-on Silicon One G300 (February 2026) scales to 102.4 Tbit/s Ethernet capacity with the same PQC capabilities. Cisco's full-stack PQC architecture — announced at Cisco Live 2026 Amsterdam — covers device boot integrity, data in transit, and key management. The SKIP interface bridges QKD-derived key material directly into IPsec/MACsec sessions, enabling hybrid PQC+QKD security on existing infrastructure.",
+          "In October 2025, Cisco shipped Silicon One P200 with line-rate quantum-safe encryption at 800G:\n- It's the first major networking ASIC to embed NIST-standard PQC (ML-KEM for key establishment, ML-DSA for signing) directly in hardware.\n- Quantum-safe IPsec and MACsec now run at full 800G without external appliances — Cloudflare and Google proved ML-KEM in software, Cisco proved it in silicon.",
+          "The architecture scaled and broadened from there:\n- The follow-on Silicon One G300 (Feb 2026) reaches 102.4 Tbit/s with the same PQC capabilities.\n- Cisco's full-stack PQC (Cisco Live 2026 Amsterdam) spans boot integrity, data in transit, and key management, and its SKIP interface bridges QKD-derived keys into IPsec/MACsec for hybrid PQC+QKD on existing infrastructure.",
         ],
       },
       diagram: {
