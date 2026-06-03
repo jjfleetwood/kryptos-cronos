@@ -1,1 +1,21 @@
 .vercel
+
+# Dependencies (npm workspaces hoist to root)
+node_modules/
+
+# Turborepo cache
+.turbo/
+
+# Build output
+.next/
+dist/
+out/
+
+# Env files
+.env
+.env.local
+.env*.local
+
+# Logs / OS
+*.log
+.DS_Store
