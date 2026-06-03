@@ -1,7 +1,7 @@
 # Business Requirements Document — Kryptós CronOS
 
-**Version:** v1.0.0
-**Last Updated:** 2026-05-26
+**Version:** v2.0.0
+**Last Updated:** 2026-06-03
 **Status:** Current
 
 ---
@@ -63,18 +63,21 @@ Kryptós CronOS is a gamified cybersecurity and AI training platform — "Duolin
 | ID | Requirement | Priority |
 |---|---|---|
 | FR-AUTH-01 | Users must be able to register with username, email, and password | Must Have |
-| FR-AUTH-02 | Passwords hashed with PBKDF2-SHA256 (100k+ iterations) server-side | Must Have |
+| FR-AUTH-02 | Passwords hashed with PBKDF2-SHA256 (600k iterations, OWASP 2024) server-side; auto-rehash on login | Must Have |
 | FR-AUTH-03 | Session maintained via HMAC-signed HttpOnly cookie (30-day expiry) | Must Have |
 | FR-AUTH-04 | Logout must clear all session and admin cookies | Must Have |
 | FR-AUTH-05 | Password reset via email link with 1-hour expiry token | Must Have |
 | FR-AUTH-06 | Admin account distinguished by `ADMIN_USERNAME` env var | Must Have |
 | FR-AUTH-07 | Admin access requires separate HMAC admin cookie (24h expiry) | Must Have |
+| FR-AUTH-08 | Account lockout — 5 failed logins → 15-min lock per username | Must Have |
+| FR-AUTH-09 | Mobile client authenticates via Supabase JWT (`Authorization: Bearer`), verified server-side via JWKS; API accepts cookie **or** bearer | Must Have |
+| FR-AUTH-10 | Spoof-safe identity — bearer username resolved from verified email claim, never `user_metadata` | Must Have |
 
 ### 5.2 Curriculum & Stages
 
 | ID | Requirement | Priority |
 |---|---|---|
-| FR-CUR-01 | Platform must offer 36 epochs containing 438 total stages | Must Have |
+| FR-CUR-01 | Platform must offer 38 epochs containing 458 total stages | Must Have |
 | FR-CUR-02 | Each stage is either a CTF challenge or a quiz | Must Have |
 | FR-CUR-03 | CTF stages use a simulated terminal with filesystem commands | Must Have |
 | FR-CUR-04 | CTF flags validated server-side; never exposed to client | Must Have |
@@ -101,10 +104,12 @@ Kryptós CronOS is a gamified cybersecurity and AI training platform — "Duolin
 |---|---|---|
 | FR-PAY-01 | 7-day free trial based on account `createdAt` | Must Have |
 | FR-PAY-02 | Trial expiry triggers ProPaywall for stage access | Must Have |
-| FR-PAY-03 | Stripe checkout for monthly and yearly subscriptions | Must Have |
-| FR-PAY-04 | Stripe webhook sets `tier: pro` on successful payment | Must Have |
-| FR-PAY-05 | Stripe webhook sets `tier: free` on subscription cancellation | Must Have |
+| FR-PAY-03 | Stripe checkout for monthly and yearly subscriptions (web) | Must Have |
+| FR-PAY-04 | Stripe webhook sets Pro on successful payment (`proStripe`) | Must Have |
+| FR-PAY-05 | Tier downgrades only when no Pro source remains (multi-source) | Must Have |
 | FR-PAY-06 | Admin can manually set user tier (comp override) | Must Have |
+| FR-PAY-07 | Mobile in-app purchases via RevenueCat (App Store / Play); webhook sets `rcProExpiry`; `app_user_id` = username | Must Have |
+| FR-PAY-08 | Unified entitlement across web + mobile (`getUserTier()` — Stripe / RevenueCat / voucher) | Must Have |
 
 ### 5.5 Trophy & Shop System
 
@@ -150,7 +155,9 @@ Kryptós CronOS is a gamified cybersecurity and AI training platform — "Duolin
 | NFR-05 | CTF flag validation | Zero false positives |
 | NFR-06 | Mobile responsiveness | All pages usable on 375px viewport |
 | NFR-07 | WCAG accessibility | AA compliance on core pages |
-| NFR-08 | CI pipeline | All pushes to dev/master must pass lint + tsc + build |
+| NFR-08 | CI pipeline | All pushes to `master` (single branch) must pass lint + tsc + build + audit |
+| NFR-09 | Cross-platform | Native iOS + Android client (Expo) sharing one API + curriculum (`@kryptos/core`) |
+| NFR-10 | Analytics | Privacy-friendly product analytics (Plausible — no cookies/PII) |
 
 ---
 
@@ -160,7 +167,8 @@ Kryptós CronOS is a gamified cybersecurity and AI training platform — "Duolin
 |---|---|
 | Serverless runtime | All API routes are Next.js serverless functions — no persistent in-memory state |
 | Redis-only persistence | No SQL database; all state via Upstash Redis HTTP API |
-| No SSR auth tokens | Session tokens in HttpOnly cookies only — no localStorage credentials |
+| No web localStorage credentials | Web session tokens in HttpOnly cookies only; mobile uses Supabase bearer JWT (AsyncStorage on device) |
+| Monorepo | Turborepo workspaces — `apps/web` (deployed), `apps/mobile` (Expo, EAS), `packages/core` + `packages/api-client` |
 | TypeScript strict mode | No `any` types; all code must pass `tsc --noEmit` |
 | Vercel hosting | Deployment target is Vercel; `proxy.ts` uses Next.js 16 Turbopack `proxy` export |
 | No client-side XP | XP values submitted by clients are ignored; server recomputes from stage map |
@@ -170,9 +178,11 @@ Kryptós CronOS is a gamified cybersecurity and AI training platform — "Duolin
 
 ## 8. Out of Scope (Current Phase)
 
-- Native mobile apps (iOS/Android)
 - Real-time multiplayer challenges
 - Video content delivery
 - LMS integrations (Canvas, Moodle)
 - SAML/SSO enterprise auth (planned with B2B expansion)
-- Adaptive difficulty engine (planned v0.8.0)
+
+**Now in scope / shipped (previously out of scope):**
+- ✅ Native mobile apps (iOS/Android) — Expo / React Native client, code-complete (pending store submission via EAS)
+- ✅ Adaptive difficulty engine — shipped v1.12.0

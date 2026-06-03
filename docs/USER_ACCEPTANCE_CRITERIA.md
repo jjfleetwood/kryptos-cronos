@@ -1,7 +1,7 @@
 # User Acceptance Criteria — Kryptós CronOS
 
-**Version:** v1.0.0
-**Last Updated:** 2026-05-26
+**Version:** v2.0.0
+**Last Updated:** 2026-06-03
 **Status:** Current
 
 Each criterion follows the format: **Given** (precondition) / **When** (action) / **Then** (observable outcome). All server-side validations are verified by inspecting API responses, not client state.
@@ -49,6 +49,21 @@ Each criterion follows the format: **Given** (precondition) / **When** (action) 
 **Given** a non-admin user session  
 **When** they navigate to `/admin`  
 **Then** `proxy.ts` returns 302 to `/stages` before the page renders
+
+### UAC-AUTH-09 — Account Lockout
+**Given** a username with 5 failed login attempts  
+**When** a 6th attempt is made within the lockout window  
+**Then** the API returns 423 (locked) for 15 minutes regardless of whether the password is correct; `lockout:user:{username}` exists in Redis
+
+### UAC-AUTH-10 — Mobile Bearer Authentication
+**Given** the mobile client holding a valid Supabase JWT  
+**When** it calls a gameplay route with `Authorization: Bearer <jwt>` (e.g. `/api/v1/auth/me`)  
+**Then** the API verifies the token against the Supabase JWKS, resolves the username from the **verified email claim**, and returns the same payload as the cookie path; a forged/expired token returns 401
+
+### UAC-AUTH-11 — Mobile Account Bootstrap
+**Given** a user who signed up directly via the mobile app's Supabase flow (no Redis record)  
+**When** the app calls `POST /api/auth/bootstrap` with its bearer token  
+**Then** a `user:{username}` hash and `email:{email}` index are created (`SET NX`); the call is idempotent on repeat
 
 ---
 
@@ -120,15 +135,20 @@ Each criterion follows the format: **Given** (precondition) / **When** (action) 
 **When** they click Upgrade for monthly or yearly plan  
 **Then** a Stripe Checkout Session is created and the user is redirected to the Stripe-hosted payment page
 
-### UAC-PRO-05 — Subscription Activation
+### UAC-PRO-05 — Subscription Activation (Web)
 **Given** a user who completes Stripe payment  
 **When** the `checkout.session.completed` webhook fires  
-**Then** `HSET user:{username} tier pro` is executed; subsequent stage access is granted
+**Then** `tier: pro` + `proStripe` are set; subsequent stage access is granted
 
-### UAC-PRO-06 — Subscription Cancellation
-**Given** a Pro user who cancels their subscription  
+### UAC-PRO-06 — Subscription Cancellation (Multi-Source)
+**Given** a Pro user who cancels their Stripe subscription  
 **When** the `customer.subscription.deleted` webhook fires  
-**Then** `HSET user:{username} tier free` is executed; ProPaywall is shown on next stage access
+**Then** `proStripe` is cleared and tier is **re-evaluated** — it downgrades to `free` only if no other source (`rcProExpiry`, `voucherExpiry`) is active; otherwise Pro is retained
+
+### UAC-PRO-08 — Mobile In-App Purchase (RevenueCat)
+**Given** a user who completes an App Store / Play in-app purchase  
+**When** the RevenueCat grant webhook fires (`Authorization` verified)  
+**Then** `tier: pro` + `rcProExpiry` are set; Pro access is granted on both mobile and web (unified entitlement, `app_user_id` = username)
 
 ### UAC-PRO-07 — Admin Bypass
 **Given** the admin user (matching `ADMIN_USERNAME`)  
