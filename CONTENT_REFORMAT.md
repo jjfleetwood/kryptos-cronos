@@ -36,7 +36,7 @@
 - [x] owasp-llm — ALL 12 DONE (llm-01..12) ✅
 - [x] quantum-1 — ALL 10 DONE (quantum-01..10) ✅
 - [x] quantum-2 — ALL 10 DONE (quantum-b01..b10) ✅
-- [ ] quantum-3 — quantum-c01..c10 (10)
+- [x] quantum-3 — ALL 10 DONE (quantum-c01..c10) ✅
 - [ ] quantum-4 — quantum-d01..d10 (10)
 - [ ] emerging-tech — emerging-01..10 (10)
 - [ ] cisco-2 — stage-m13..m25 (13)

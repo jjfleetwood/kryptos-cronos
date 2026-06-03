@@ -1642,15 +1642,15 @@ for asset, data in assets.items():
       tagline: "The quantum transition is not a destination — it is continuous. The cryptographic future belongs to those who plan today.",
       year: 2025,
       overview: [
-        "You have traveled from qubits to board presentations. The quantum threat is not a future problem — Harvest Now, Decrypt Later campaigns are active. Nation-state adversaries are recording TLS traffic today, waiting for the quantum computer that will decrypt it. The cryptographic transition to post-quantum algorithms is the largest infrastructure migration in the history of computing.",
-        "The quantum-safe stack spans 10 layers: threat intelligence → crypto inventory → algorithm selection → primitives → key distribution → PKI → transport → applications → governance → compliance. Every layer must be addressed; a failure at any layer undermines the security of the layers above it.",
-        "The good news: the tools exist. FIPS 203/204/205 are published. Validated libraries (AWS-LC, SymCrypt) are available. Production deployments (Chrome, Mullvad, Signal, Apple PQ3) prove viability. The work now is execution — systematic migration of infrastructure guided by risk prioritization and cryptographic agility principles.",
+        "You've traveled from qubits to board presentations — and the quantum threat is not a future problem:\n- Harvest Now, Decrypt Later campaigns are active; nation-state adversaries are recording TLS traffic today, waiting for the computer that will decrypt it.\n- The transition to post-quantum algorithms is the largest infrastructure migration in computing history.",
+        "The quantum-safe stack spans 10 layers:\n- Threat intelligence → crypto inventory → algorithm selection → primitives → key distribution → PKI → transport → applications → governance → compliance.\n- Every layer must be addressed; a failure at any one undermines the security of those above it.",
+        "The good news: the tools exist, so the work is now execution:\n- FIPS 203/204/205 are published, validated libraries (AWS-LC, SymCrypt) are available, and production deployments (Chrome, Mullvad, Signal, Apple PQ3) prove viability.\n- What remains is systematic migration guided by risk prioritization and cryptographic-agility principles.",
       ],
       technical: {
         title: "The Complete Quantum-Safe Stack",
         body: [
-          "Stack layers and their status: L0 Threat Intelligence (CISA advisories, Q-Day monitoring) → L1 Crypto Inventory (CBOM via Syft/CycloneDX) → L2 Algorithms (FIPS 203/204/205, hybrid schemes) → L3 Primitives (AWS-LC #4800, liboqs, oqs-provider) → L4 Key Distribution (X25519+ML-KEM for enterprise, QKD for government) → L5 PKI (ML-DSA-87 roots, dual-stack certs) → L6 Transport (TLS 1.3 + X25519MLKEM768) → L7 Applications (WireGuard PQ, ML-DSA code signing) → L8 Governance (5-year CISO program) → L9 Compliance (FIPS 140-3, SP 800-131A, FFIEC).",
-          "Migration order by HNDL priority: (1) High-sensitivity data in transit (VPN, TLS for M&A, government) — immediate. (2) Long-lived data at rest (archives encrypted with RSA key transport) — 6-12 months. (3) Authentication infrastructure (PKI, code signing) — 12-24 months. (4) Everything else — 24-60 months. HNDL exposure, not algorithm deprecation timelines, drives the priority.",
+          "The full stack runs from intelligence to compliance:\n- L0 Threat Intel (CISA advisories) → L1 Crypto Inventory (CBOM via Syft/CycloneDX) → L2 Algorithms (FIPS 203/204/205, hybrids) → L3 Primitives (AWS-LC #4800, liboqs) → L4 Key Distribution (X25519+ML-KEM enterprise, QKD government).\n- L5 PKI (ML-DSA-87 roots, dual-stack certs) → L6 Transport (TLS 1.3 + X25519MLKEM768) → L7 Applications (WireGuard PQ, ML-DSA code signing) → L8 Governance (5-year CISO program) → L9 Compliance (FIPS 140-3, SP 800-131A, FFIEC).",
+          "Migration order is set by HNDL priority, not deprecation dates:\n- High-sensitivity data in transit (VPN, TLS for M&A, government) — immediate; long-lived data at rest (RSA-key-transport archives) — 6–12 months.\n- Authentication infrastructure (PKI, code signing) — 12–24 months; everything else — 24–60 months.",
         ],
         codeExample: {
           label: "Quantum-safe stack validation checklist",
@@ -1696,8 +1696,8 @@ for name, check in checks.items():
         where: "Apple iMessage — 1+ billion users worldwide",
         impact: "First mass-market messaging app to deploy post-quantum key establishment for all users",
         body: [
-          "In February 2024, Apple deployed PQ3 — a new hybrid post-quantum cryptographic protocol for iMessage. PQ3 uses ML-KEM-768 for key establishment combined with ECC (X25519), providing what Apple calls 'Level 3' security — the highest level in messaging security. Signal Protocol had previously claimed the top spot; PQ3 pushed both products to new security heights.",
-          "The PQ3 design includes periodic re-keying with post-quantum keys, ensuring that even if an attacker harvests ciphertexts today, they receive new ML-KEM-protected keys frequently — limiting the value of any single HNDL collection window. Apple's decision to deploy PQ3 for iMessage (not just opt-in) demonstrates that PQC is production-ready for consumer scale.",
+          "In February 2024, Apple deployed PQ3 — a hybrid post-quantum protocol for iMessage:\n- It uses ML-KEM-768 for key establishment combined with ECC (X25519), giving what Apple calls 'Level 3' security — the highest messaging tier.\n- Signal Protocol had held the top spot; PQ3 pushed both products to new security heights.",
+          "PQ3's design specifically blunts HNDL:\n- It periodically re-keys with post-quantum keys, so even an attacker harvesting ciphertexts today keeps getting fresh ML-KEM-protected keys — limiting any single collection window's value.\n- Deploying PQ3 for all of iMessage (not opt-in) shows PQC is production-ready at consumer scale.",
         ],
       },
       diagram: {
