@@ -48,11 +48,10 @@ flowchart LR
 
 | Branch | Purpose | CI Trigger | Vercel Target |
 |---|---|---|---|
-| `dev` | All feature development | Push + PR | Preview URL |
-| `master` | Production source of truth | Push + PR | kryptoscronos.com |
-| `feature/*` | Optional feature isolation | Push (if added to CI) | None |
+| `master` | Single source of truth + production | Push + PR | kryptoscronos.com |
+| `<feature>/*` | Short-lived branches for risky/structural changes | Push | Preview URL |
 
-**Rule:** Never commit directly to `master`. All changes flow through `dev` → PR → merge.
+**Workflow (single-branch, as of 2026-06-03):** push to `master` → CI + Vercel auto-deploy to production. For risky changes, push a short-lived feature branch, validate the Vercel **Preview** build, then fast-forward `master` and delete the branch. The old `dev` branch was retired. CI runs from the **monorepo root** (`npm ci` + workspace-scoped lint/typecheck/build); Vercel Root Directory = `apps/web`.
 
 ---
 
@@ -65,7 +64,7 @@ name: CI
 
 on:
   push:
-    branches: [dev, master]
+    branches: [master]
   pull_request:
     branches: [master]
 

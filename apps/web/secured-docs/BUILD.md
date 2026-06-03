@@ -1,6 +1,8 @@
 # Kryptós CronOS — Build Guide
-**Version:** 3.1  
-**Date:** 2026-05-20
+**Version:** 4.0
+**Date:** 2026-06-03
+
+> Turborepo monorepo: **`apps/web`** (Next.js 16 + API, deployed) · **`apps/mobile`** (Expo, not deployed by Vercel) · **`packages/core`** (`@kryptos/core` — content + types) · **`packages/api-client`** (`@kryptos/api-client`). Always install from the **repo root** (npm workspaces).
 
 ---
 
@@ -8,245 +10,127 @@
 
 | Tool | Version | Purpose |
 |---|---|---|
-| Node.js | 24.x | Runtime (matches Vercel build) |
-| npm | bundled with Node | Package manager |
+| Node.js | 20.x+ (CI uses 24.x) | Runtime |
+| npm | 10+ (bundled) | Package manager + workspaces |
 | Git | any | Source control |
+| eas-cli | latest (mobile only) | Expo build/submit (`npm i -g eas-cli`) |
 
 ---
 
 ## Local Development Setup
 
-### 1. Clone the repo
+### 1. Clone + install (from the repo root)
 
 ```bash
 git clone https://github.com/jjfleetwood/kryptos-cronos.git
 cd kryptos-cronos
+npm install          # installs ALL workspaces (web + mobile + packages)
 ```
 
-### 2. Install dependencies
-
-```bash
-cd app
-npm install
-```
-
-### 3. Configure environment variables
-
-Create `app/.env.local` (never commit this file):
+### 2. Web env vars — `apps/web/.env.local` (never commit)
 
 ```env
-# Upstash Redis — required for users, progress, leaderboard, streaks, NDA records, rate limiting
-UPSTASH_REDIS_REST_URL=https://<your-instance>.upstash.io
-UPSTASH_REDIS_REST_TOKEN=<your-token>
-
-# Resend — required for registration email and password reset
-RESEND_API_KEY=re_<your-key>
-ADMIN_EMAIL=<email to receive registration alerts>
-
-# Admin auth — required for /admin dashboard
-ADMIN_USERNAME=<admin username>
-ADMIN_SECRET=<32+ char random secret for HMAC signing>
-
-# Anthropic — required for ARIA AI hint chatbot (/api/hint)
-ANTHROPIC_API_KEY=sk-ant-<your-key>
+# Redis (Upstash)
+UPSTASH_REDIS_REST_URL=...
+UPSTASH_REDIS_REST_TOKEN=...
+# Auth secrets (32+ char each; SESSION_SECRET separate from ADMIN_SECRET)
+ADMIN_SECRET=...
+SESSION_SECRET=...
+ADMIN_USERNAME=...
+ADMIN_EMAIL=...
+# Email / AI
+RESEND_API_KEY=...
+ANTHROPIC_API_KEY=...
+# Supabase (auth + mobile JWT verification)
+SUPABASE_URL=...
+SUPABASE_ANON_KEY=...
+SUPABASE_SERVICE_ROLE_KEY=...
+# Stripe (web payments)
+STRIPE_SECRET_KEY=...
+STRIPE_WEBHOOK_SECRET=...
+STRIPE_PRO_MONTHLY_PRICE_ID=...
+STRIPE_PRO_YEARLY_PRICE_ID=...
+# Mobile IAP webhook + cron
+REVENUECAT_WEBHOOK_AUTH=...
+CRON_SECRET=...
 ```
+See `apps/web/.env.example` for the canonical list.
 
-### 4. Start the dev server
+### 3. Run the web app
 
 ```bash
-cd app
-npm run dev
+npm run dev                 # from repo root (turbo) → http://localhost:3000
+# or: cd apps/web && npm run dev
 ```
 
-Opens at `http://localhost:3000`. Hot reload is on via Turbopack.
+### 4. Run the mobile app (optional)
+
+```bash
+cd apps/mobile
+cp .env.example .env        # set EXPO_PUBLIC_SUPABASE_* (+ API base, RevenueCat keys)
+npx expo start              # press w (browser), or use a dev build for a device
+```
+RevenueCat + push need a **dev build** (`eas build`), not Expo Go. See `apps/mobile/README.md`.
 
 ---
 
-## Available Scripts
+## Scripts
 
-Run from `app/`:
+From the **repo root** (Turborepo orchestrates):
 
 | Command | What it does |
 |---|---|
-| `npm run dev` | Start local dev server (port 3000, Turbopack HMR) |
-| `npm run build` | Production build — catches type errors and route issues |
-| `npm run start` | Serve the production build locally |
-| `npm run lint` | ESLint check across all source files |
-| `npx tsc --noEmit` | Type-check without emitting (run before PRs) |
-| `npm audit` | Dependency vulnerability scan |
+| `npm run build` | `turbo run build` (builds `@kryptos/web`) |
+| `npm run lint` | `turbo run lint` |
+| `npm run dev` | `turbo run dev` |
 
----
+Per-workspace: `npm run <script> -w @kryptos/web`. Type-check: `npx tsc --noEmit --skipLibCheck -p apps/web/tsconfig.json` (web) or `cd apps/mobile && npx tsc --noEmit`.
 
-## Build Verification Checklist
-
-Before pushing to `master` (which triggers a Vercel deploy):
+## Pre-push verification
 
 ```bash
-cd app
-
-# 1. Type check
-npx tsc --noEmit
-
-# 2. Lint
-npm run lint
-
-# 3. Production build (catches Next.js-specific issues)
-npm run build
-
-# 4. Dependency scan
-npm audit
+npm run lint -w @kryptos/web
+npx tsc --noEmit --skipLibCheck -p apps/web/tsconfig.json
+npm run build                 # turbo build
+npm audit --audit-level=high
 ```
-
-A clean `npm run build` output will show:
-```
-Route (app)                    Size     First Load JS
-┌ ○ /                          ...
-├ ○ /login                     ...
-├ ○ /stages                    ...
-...
-ƒ Proxy (Middleware)           ...
-```
-
-The `ƒ Proxy (Middleware)` line confirms `proxy.ts` is active.
+A clean build shows `ƒ Proxy (Middleware)` — confirms `apps/web/src/proxy.ts` is active.
 
 ---
 
-## Project Structure (from app/)
+## Project Structure
 
 ```
-app/
-├── src/
-│   ├── proxy.ts              ← Next.js 16 middleware (NOT middleware.ts)
-│   ├── app/                  ← App Router: pages + API routes
-│   ├── components/           ← React components
-│   ├── data/                 ← Stage configs (TypeScript, all 9 epochs)
-│   └── lib/                  ← Auth, progress, Redis utilities
-├── secured-docs/             ← Admin-only markdown docs (gated via /api/docs)
-├── public/                   ← Static assets
-├── next.config.ts            ← Security headers, file tracing config
-├── tailwind.config.ts        ← Tailwind CSS configuration
-├── tsconfig.json             ← TypeScript strict mode
-└── package.json
+kryptos-cronos/                ← repo root (npm workspaces + turbo.json)
+├── apps/
+│   ├── web/                   ← Next.js 16 app + API (deployed; Vercel Root Directory)
+│   │   ├── src/proxy.ts       ← middleware (NOT middleware.ts) — admin gate + CSP + CORS
+│   │   ├── src/app/           ← App Router: pages + /api routes
+│   │   ├── src/lib/           ← server: auth, api-auth, supabase, supabase-jwt, redis, push, access
+│   │   ├── secured-docs/      ← admin-only docs (gated via /api/docs)
+│   │   └── next.config.ts     ← headers + transpilePackages + /api/v1 rewrite
+│   └── mobile/                ← Expo / React Native app (auth, quiz, ARIA, push, IAP)
+├── packages/
+│   ├── core/                  ← @kryptos/core — all stage data (38 epochs) + types
+│   └── api-client/            ← @kryptos/api-client — typed cross-platform client
+├── docs/                      ← this documentation suite
+├── package.json · turbo.json · package-lock.json
 ```
 
 ---
 
-## CI/CD Pipeline
+## CI/CD
 
-### Current (Automatic)
-
-```
-git push origin master
-        │
-        ├── GitHub Actions (ci.yml) — runs on every push
-        │       ├── npm ci (Node 24.x)
-        │       ├── npm run lint
-        │       ├── npx tsc --noEmit
-        │       ├── npm run build
-        │       └── npm audit --audit-level=moderate
-        │
-        └── Vercel GitHub App detects push
-                ├── Installs: npm install (Node 24.x)
-                ├── Builds: next build (Turbopack)
-                ├── Bundles secured-docs/ via outputFileTracingIncludes
-                └── Deploys to: kryptoscronos.com (iad1)
-```
-
-Deploy takes approximately 60–90 seconds. Monitor at vercel.com/dashboard.
-
-### CI Configuration (`.github/workflows/ci.yml`)
-
-```yaml
-name: CI
-on: [push, pull_request]
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with: { node-version: '24' }
-      - run: cd app && npm ci
-      - run: cd app && npm run lint
-      - run: cd app && npx tsc --noEmit
-      - run: cd app && npm run build
-      - run: cd app && npm audit --audit-level=moderate
-```
-
----
-
-## Environment Variables Reference
-
-### Runtime (Vercel Production)
-
-Set at: vercel.com → Project → Settings → Environment Variables
-
-| Variable | Required | Description |
-|---|---|---|
-| `UPSTASH_REDIS_REST_URL` | Yes | Upstash Redis REST endpoint |
-| `UPSTASH_REDIS_REST_TOKEN` | Yes | Upstash Redis auth token |
-| `RESEND_API_KEY` | Yes | Resend API key for email |
-| `ADMIN_EMAIL` | Yes | Admin notification recipient |
-| `ADMIN_USERNAME` | Yes | Admin dashboard login username |
-| `ADMIN_SECRET` | Yes | 32+ char secret for HMAC cookie signing (session + admin) |
-| `ANTHROPIC_API_KEY` | Yes | Anthropic API key for ARIA chatbot (Claude Haiku) |
-
-### Local Only
-
-| Variable | Required | Description |
-|---|---|---|
-| All of the above in `.env.local` | Yes | Same as production |
-
----
-
-## Key Files to Know
-
-| File | Why it matters |
-|---|---|
-| `src/proxy.ts` | Active Next.js middleware — wrong name = middleware not running |
-| `src/app/api/auth/register/route.ts` | Server-side PBKDF2 registration + cookie issuance |
-| `src/app/api/auth/login/route.ts` | Server-side PBKDF2 login + cookie issuance |
-| `src/app/api/auth/me/route.ts` | Cookie-to-identity resolver used by all client components |
-| `src/app/api/hint/route.ts` | ARIA chatbot — Claude Haiku integration |
-| `src/data/stages.ts` | Epoch registry — imports and re-exports all 18 epochs |
-| `src/data/first-journey*.ts` | Our First Journey epoch (30 stages, 3 files) |
-| `src/data/tech-audit-[1-4].ts` | Tech Audit epochs (48 stages total) |
-| `src/data/tech-audit-3.ts` | Agentic Continuous Monitoring (12 stages) |
-| `src/data/tech-audit-4.ts` | Continuous Monitoring 2.0 (12 stages) |
-| `src/data/mitre.ts` + `mitre-atlas.ts` | MITRE ATT&CK + ATLAS (24 stages) |
-| `src/data/owasp-llm.ts` | OWASP LLM Top 10 (12 stages) |
-| `src/data/stage-flags.ts` | CTF flag answers — `server-only`, never bundled to client |
-| `src/app/stages/epoch-theme.ts` | Color theme records for all 18 epochs |
-| `src/lib/auth.ts` | PBKDF2 hashing + HMAC cookie utilities |
-| `src/lib/redis.ts` | Upstash client — requires env vars at runtime |
-| `next.config.ts` | Security headers + `outputFileTracingIncludes` for secured-docs |
-| `secured-docs/` | Never move to `public/` — gated behind admin HMAC cookie |
+- **Single branch: `master`.** `git push origin master` → GitHub Actions (`.github/workflows/ci.yml`: `npm ci` + lint + tsc + build + audit, from the workspace root) **and** Vercel auto-deploys production. For risky changes, push a short-lived branch → Vercel Preview → fast-forward `master`.
+- **Vercel:** Root Directory = `apps/web`, "Include files outside root directory" ON (for the workspace lockfile). Deploy ~60–90s.
+- **Mobile:** `eas build` / `eas submit` (separate from Vercel).
 
 ---
 
 ## Troubleshooting
 
-**Middleware not running:**
-- Confirm the file is named `src/proxy.ts` (not `middleware.ts`)
-- Build output must show `ƒ Proxy (Middleware)`
-
-**Login / registration failing:**
-- Confirm all `UPSTASH_REDIS_*` and `ADMIN_SECRET` vars are set in Vercel
-- Auth is fully server-side — no localStorage fallback exists
-
-**Leaderboard empty / progress not syncing:**
-- Check `UPSTASH_REDIS_REST_URL` and `UPSTASH_REDIS_REST_TOKEN` in Vercel env vars
-- Verify Upstash instance is active at console.upstash.com
-
-**Emails not sending:**
-- Check `RESEND_API_KEY` is set and the sending domain is verified in Resend
-- Rate limits: forgot-password (3/IP/15min), notify-registration (5/IP/hour)
-
-**ARIA chatbot not responding:**
-- Confirm `ANTHROPIC_API_KEY` is set in Vercel env vars
-- Check `/api/hint` logs in Vercel Functions for API errors
-- Rate limit: 15 requests per IP per 15 minutes
-
-**Admin dashboard locked out:**
-- POST `/api/admin-session` with `{ username, password }` to re-issue cookie
-- Confirm `ADMIN_USERNAME` and `ADMIN_SECRET` match what was set during setup
+- **Middleware not running:** file must be `apps/web/src/proxy.ts`; build output shows `ƒ Proxy (Middleware)`.
+- **Auth failing:** confirm `UPSTASH_REDIS_*`, `ADMIN_SECRET`, `SESSION_SECRET`, `SUPABASE_*` set in Vercel.
+- **Mobile dev server crash on `expo start`:** ensure `expo-router` is pinned to the version matching `@expo/cli` (see `apps/mobile/package.json`); Expo Go can't host SDK 56 → use a dev build.
+- **ARIA down:** confirm `ANTHROPIC_API_KEY`; rate limit 15/IP/15min.
+- **Build pulls mobile deps on Vercel:** expected (workspace install); harmless — only `apps/web` is built.
