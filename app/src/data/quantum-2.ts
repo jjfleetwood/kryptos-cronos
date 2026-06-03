@@ -1013,15 +1013,15 @@ with oqs.Signature("Dilithium2") as dilithium:
       tagline: "Hybrid schemes combine classical and post-quantum algorithms — secure against both today's attackers and tomorrow's quantum computers.",
       year: 2024,
       overview: [
-        "During the transition from classical to post-quantum cryptography, hybrid schemes are essential. A hybrid key exchange (e.g., X25519 + ML-KEM-768) combines a classical algorithm with a PQC algorithm. The shared secret is derived from both: security holds if either algorithm is secure — quantum attackers can't break ML-KEM, classical attackers can't break X25519.",
-        "Hybrid schemes solve the deployment chicken-and-egg problem: organizations can deploy hybrid PQC before their entire ecosystem has verified PQC algorithm implementations. If ML-KEM has an undiscovered vulnerability, X25519 still protects the session. If a CRQC breaks X25519, ML-KEM still protects against quantum attackers.",
-        "TLS 1.3 hybrid ciphersuites are already in use: X25519Kyber768Draft00 (CloudFlare/Google, 2023), X25519MLKEM768 (IETF draft, 2024). NIST recommends hybrid during the migration period, with pure PQC as the end goal once algorithm confidence is established.",
+        "During the classical-to-PQC transition, hybrid schemes are essential:\n- A hybrid key exchange (e.g., X25519 + ML-KEM-768) combines a classical algorithm with a PQC one.\n- The shared secret derives from both, so security holds if either is secure — quantum attackers can't break ML-KEM, classical attackers can't break X25519.",
+        "Hybrids solve the deployment chicken-and-egg problem:\n- Organizations can deploy hybrid PQC before the whole ecosystem has verified PQC implementations.\n- If ML-KEM has an undiscovered flaw, X25519 still protects the session; if a CRQC breaks X25519, ML-KEM still stops the quantum attacker.",
+        "Hybrid TLS 1.3 ciphersuites are already deployed:\n- X25519Kyber768Draft00 (Cloudflare/Google, 2023) and X25519MLKEM768 (IETF draft, 2024).\n- NIST recommends hybrid during migration, with pure PQC as the end goal once algorithm confidence is established.",
       ],
       technical: {
         title: "Hybrid Key Derivation — Combining Classical and PQC Shared Secrets",
         body: [
-          "The hybrid shared secret K = KDF(K_classical || K_pqc) where KDF is a secure key derivation function (HKDF-SHA384). This construction is secure if either K_classical or K_pqc is indistinguishable from random — an attacker must break both algorithms simultaneously to recover K.",
-          "For TLS 1.3 hybrid: the client sends both an X25519 key share and an ML-KEM public key in the ClientHello. The server performs X25519 key agreement and ML-KEM encapsulation, returning the ML-KEM ciphertext. Both parties derive the session keys using both shared secrets as input to HKDF.",
+          "The hybrid secret combines both inputs through a KDF:\n- K = KDF(K_classical || K_pqc), with a secure KDF like HKDF-SHA384.\n- It's secure if either K_classical or K_pqc is indistinguishable from random — an attacker must break both algorithms at once to recover K.",
+          "TLS 1.3 carries both key shares in one handshake:\n- The client sends both an X25519 key share and an ML-KEM public key in the ClientHello.\n- The server does X25519 agreement plus ML-KEM encapsulation, returns the ML-KEM ciphertext, and both sides feed both secrets into HKDF for the session keys.",
         ],
         codeExample: {
           label: "Hybrid X25519 + ML-KEM-768 key exchange",
@@ -1058,8 +1058,8 @@ with oqs.KeyEncapsulation("Kyber768") as kem:
         where: "IETF TLS Working Group — global TLS standard",
         impact: "Hybrid PQC will be standardized in TLS 1.3 — protecting billions of connections",
         body: [
-          "The IETF TLS working group is standardizing hybrid post-quantum key exchange for TLS 1.3. Draft RFCs define X25519MLKEM768 and SecP256r1MLKEM768 ciphersuites, with planned inclusion in TLS 1.4. These ciphersuites have already been deployed by CloudFlare (protecting 25M+ websites) and Google Chrome (3B+ users) using pre-standard draft versions.",
-          "The IETF approach validates the hybrid strategy: deploy now with draft hybrid ciphersuites, protecting current TLS sessions from HNDL attacks, while the pure PQC standards mature. Once implementation confidence is established (2025-2027), pure ML-KEM ciphersuites will be standardized and hybrid ciphersuites will be phased out.",
+          "The IETF TLS working group is standardizing hybrid PQC key exchange for TLS 1.3:\n- Draft RFCs define X25519MLKEM768 and SecP256r1MLKEM768 ciphersuites, slated for TLS 1.4.\n- Cloudflare (protecting 25M+ websites) and Google Chrome (3B+ users) already deploy pre-standard draft versions.",
+          "The approach validates the hybrid strategy:\n- Deploy now with draft hybrid ciphersuites to protect current TLS sessions from HNDL, while the pure-PQC standards mature.\n- Once implementation confidence is established (2025–2027), pure ML-KEM ciphersuites will be standardized and hybrids phased out.",
         ],
       },
       diagram: {
