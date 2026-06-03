@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useLocale } from "@/contexts/LocaleContext";
-import type { CtfQuizEntry, CtfQuizQuestion } from "@/data/types";
+import type { CtfQuizEntry, CtfQuizQuestion } from "@kryptos/core/types";
 
 type TranslatedQuestion = { q: string; options: [string, string] };
 

@@ -1,6 +1,6 @@
 import "server-only";
 import { redis } from "@/lib/redis";
-import type { StageConfig } from "@/data/types";
+import type { StageConfig } from "@kryptos/core/types";
 
 // ── Access control ────────────────────────────────────────────────────────────
 

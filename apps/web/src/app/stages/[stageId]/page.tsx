@@ -1,32 +1,32 @@
-import { getStage } from "@/data/stages";
+import { getStage } from "@kryptos/core/stages";
 import StageContainer from "@/components/StageContainer";
-import type { StageConfig, CtfQuizEntry } from "@/data/types";
-import type { StageTranslation } from "@/data/translations/types";
-import ctfQuizData from "@/data/ctf-quiz-data.json";
-import type { AuditQuizEntry } from "@/data/types";
-import ctfQuizEs from "@/data/translations/ctf-quiz-es.json";
-import ctfQuizFr from "@/data/translations/ctf-quiz-fr.json";
-import ctfQuizDe from "@/data/translations/ctf-quiz-de.json";
-import ctfQuizHi from "@/data/translations/ctf-quiz-hi.json";
-import ctfQuizPt from "@/data/translations/ctf-quiz-pt.json";
-import ctfQuizPl from "@/data/translations/ctf-quiz-pl.json";
+import type { StageConfig, CtfQuizEntry } from "@kryptos/core/types";
+import type { StageTranslation } from "@kryptos/core/translations/types";
+import ctfQuizData from "@kryptos/core/ctf-quiz-data.json";
+import type { AuditQuizEntry } from "@kryptos/core/types";
+import ctfQuizEs from "@kryptos/core/translations/ctf-quiz-es.json";
+import ctfQuizFr from "@kryptos/core/translations/ctf-quiz-fr.json";
+import ctfQuizDe from "@kryptos/core/translations/ctf-quiz-de.json";
+import ctfQuizHi from "@kryptos/core/translations/ctf-quiz-hi.json";
+import ctfQuizPt from "@kryptos/core/translations/ctf-quiz-pt.json";
+import ctfQuizPl from "@kryptos/core/translations/ctf-quiz-pl.json";
 import { getStageOverride, applyStageOverride, canAccessEpoch } from "@/lib/cms";
 import { canAccessStage, getUserTier } from "@/lib/access";
 import { getSessionFromCookies } from "@/lib/server-session";
 import ProPaywall from "@/components/ProPaywall";
 import Link from "next/link";
 import { cookies } from "next/headers";
-import esTranslations from "@/data/translations/es.json";
-import frTranslations from "@/data/translations/fr.json";
-import deTranslations from "@/data/translations/de.json";
-import hiTranslations from "@/data/translations/hi.json";
-import ptTranslations from "@/data/translations/pt.json";
-import metaEs from "@/data/translations/meta-es.json";
-import metaFr from "@/data/translations/meta-fr.json";
-import metaDe from "@/data/translations/meta-de.json";
-import metaHi from "@/data/translations/meta-hi.json";
-import metaPt from "@/data/translations/meta-pt.json";
-import metaPl from "@/data/translations/meta-pl.json";
+import esTranslations from "@kryptos/core/translations/es.json";
+import frTranslations from "@kryptos/core/translations/fr.json";
+import deTranslations from "@kryptos/core/translations/de.json";
+import hiTranslations from "@kryptos/core/translations/hi.json";
+import ptTranslations from "@kryptos/core/translations/pt.json";
+import metaEs from "@kryptos/core/translations/meta-es.json";
+import metaFr from "@kryptos/core/translations/meta-fr.json";
+import metaDe from "@kryptos/core/translations/meta-de.json";
+import metaHi from "@kryptos/core/translations/meta-hi.json";
+import metaPt from "@kryptos/core/translations/meta-pt.json";
+import metaPl from "@kryptos/core/translations/meta-pl.json";
 import enMessages from "@/messages/en.json";
 import esMessages from "@/messages/es.json";
 import frMessages from "@/messages/fr.json";
@@ -34,7 +34,7 @@ import deMessages from "@/messages/de.json";
 import hiMessages from "@/messages/hi.json";
 import ptMessages from "@/messages/pt.json";
 import plMessages from "@/messages/pl.json";
-import plTranslations from "@/data/translations/pl.json";
+import plTranslations from "@kryptos/core/translations/pl.json";
 
 const TRANSLATION_MAPS: Record<string, Record<string, StageTranslation>> = {
   es: esTranslations as Record<string, StageTranslation>,
@@ -197,7 +197,7 @@ export default async function StagePage({
   if (safeStage?.epochId?.startsWith("tech-audit-")) {
     try {
       // Dynamic import so a missing file doesn't break non-audit stages
-      const auditData = await import("@/data/audit-quiz-data.json").then(
+      const auditData = await import("@kryptos/core/audit-quiz-data.json").then(
         (m) => m.default as Record<string, AuditQuizEntry>
       ).catch(() => null);
       auditQuiz = auditData?.[stageId];

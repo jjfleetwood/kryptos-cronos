@@ -1,7 +1,7 @@
 import "server-only";
-import { stages } from "@/data/stages";
+import { stages } from "@kryptos/core/stages";
 import { getStagesForCert, type CertId } from "@kryptos/core/cert-domains";
-import type { QuizQuestion } from "@/data/types";
+import type { QuizQuestion } from "@kryptos/core/types";
 
 // Server-only aggregation of quiz questions into practice-exam pools. Pulls from
 // the full stages data (which still carries correctIndex) so exams can be built

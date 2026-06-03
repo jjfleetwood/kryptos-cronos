@@ -7,7 +7,7 @@ import {
   grantEpochAccess,
   revokeEpochAccess,
 } from "@/lib/cms";
-import { epochs } from "@/data/stages";
+import { epochs } from "@kryptos/core/stages";
 
 function verifyAdmin(req: NextRequest): boolean {
   const token = req.cookies.get("admin_token")?.value;

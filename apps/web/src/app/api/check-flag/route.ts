@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createHmac, timingSafeEqual } from "crypto";
-import { stages } from "@/data/stages";
-import { stageFlags } from "@/data/stage-flags";
+import { stages } from "@kryptos/core/stages";
+import { stageFlags } from "@kryptos/core/stage-flags";
 import { getAuthedUsername } from "@/lib/api-auth";
 import { awardStageInRedis } from "@/lib/server-progress";
 import { canAccessStage } from "@/lib/access";

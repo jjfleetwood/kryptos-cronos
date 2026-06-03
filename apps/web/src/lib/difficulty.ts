@@ -1,6 +1,6 @@
 import "server-only";
 import { redis } from "@/lib/redis";
-import { stages } from "@/data/stages";
+import { stages } from "@kryptos/core/stages";
 
 const histKey = (u: string) => `diff:${u.toLowerCase()}:history`;
 const levelKey = (u: string) => `diff:${u.toLowerCase()}:level`;

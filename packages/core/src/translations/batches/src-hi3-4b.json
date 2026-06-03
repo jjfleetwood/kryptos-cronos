@@ -1,0 +1,714 @@
+{
+  "stage-m21": {
+    "tagline": "ArcaneDoor: un actor estatal chino derribó firewalls de Cisco para borrar sus huellas con zero-days.",
+    "overview": [
+      "CVE-2024-20353 es una de dos vulnerabilidades zero-day utilizadas en la campaña de espionaje ArcaneDoor atribuida a un actor patrocinado por el estado chino (rastreado como UAT4356 / Storm-1849). La vulnerabilidad permite a un atacante no autenticado causar una denegación de servicio (recarga) en dispositivos Cisco ASA y FTD enviando una solicitud HTTP especialmente manipulada a la interfaz de gestión o plano de datos.",
+      "ArcaneDoor se dirigió a redes gubernamentales en todo el mundo en una campaña descubierta por Cisco Talos a principios de 2024. Los atacantes utilizaron CVE-2024-20353 para derribar firewalls — probablemente para interrumpir el registro y la detección — y CVE-2024-20359 para instalar una puerta trasera persistente. Juntos, los dos CVEs formaron una cadena de ataque completa contra los firewalls empresariales más ampliamente desplegados.",
+      "La capacidad de DoS se utilizó operacionalmente para cegar a los defensores: derribar el firewall borró sus registros y deshabilitó el monitoreo, dando a los atacantes una ventana para completar otras operaciones sin detectar."
+    ],
+    "technical": {
+      "title": "Cómo Funciona CVE-2024-20353",
+      "body": [
+        "Las interfaces de gestión web de Cisco ASA y FTD procesaban ciertas solicitudes HTTP con encabezados content-type malformados o estructuras de cuerpo multiparte. Un atacante no autenticado podría fabricar una solicitud que desencadenara una excepción en el código de análisis de solicitudes, causando que el dispositivo escribiera un volcado de núcleo y se recargara.",
+        "Debido a que el ataque se dirige a la interfaz de gestión (HTTPS), funciona incluso contra dispositivos que no tienen gestión remota intencionalmente expuesta — si ASDM, SSL VPN (WebVPN), o servicios AnyConnect se están ejecutando, la superficie de ataque existe. Cada caída limpia el búfer de registro en memoria del dispositivo."
+      ]
+    },
+    "incident": {
+      "title": "ArcaneDoor — Espionaje Estatal Chino en Firewalls Gubernamentales (2024)",
+      "impact": "Acceso persistente de actor de estado-nación a perímetros de redes gubernamentales; tráfico clasificado expuesto",
+      "body": [
+        "Cisco Talos divulgó ArcaneDoor en abril de 2024 después de meses de rastrear la campaña. Los atacantes demostraron conocimiento sofisticado de los internos de Cisco ASA — sugiriendo ya sea conocimiento interno o investigación previa extendida en el firmware ASA. Cisco no ha atribuido públicamente la campaña pero múltiples agencias de ciberseguridad gubernamentales identificaron al actor como UAT4356.",
+        "Los atacantes utilizaron CVE-2024-20353 para derribar firewalls objetivo — borrando registros y creando un punto ciego de detección — luego instalaron su puerta trasera 'Line Dancer' (vía CVE-2024-20359) durante la ventana de recarga. La combinación fue operacionalmente inteligente: los defensores que investigaban el incidente encontraron solo registros posteriores al reinicio, perdiendo la actividad previa al caída."
+      ]
+    },
+    "timeline": [
+      "Finales de 2023: La campaña ArcaneDoor comienza a dirigirse a firewalls ASA gubernamentales",
+      "Abr: Cisco Talos divulga ArcaneDoor — dos zero-days de ASA revelados",
+      "Cisco lanza parches de emergencia; múltiples CERTs gubernamentales emiten alertas"
+    ],
+    "keyTakeaways": [
+      "Derribar un firewall es una técnica de ataque — monitorea recargas inesperadas en registros de dispositivos de red",
+      "Las interfaces de gestión en firewalls perímetro deben estar restringidas a redes de gestión — nunca expuestas a internet",
+      "El encadenamiento de zero-day (DoS + RCE persistente) es una característica de operaciones sofisticadas de estado-nación",
+      "Suscribete a avisos de Cisco PSIRT; los firewalls perímetro requieren cadencia de parches de emergencia"
+    ]
+  },
+  "stage-m23": {
+    "tagline": "SQL injection en el plano de gestión SD-WAN de Cisco permitió a los atacantes obtener las claves de todos los routers WAN de la empresa.",
+    "overview": [
+      "CVE-2021-1291 es una vulnerabilidad de SQL injection en la interfaz de gestión basada en web del Software Cisco SD-WAN vManage. El controlador vManage es la plataforma centralizada de gestión y orquestación para la Red WAN Definida por Software de Cisco — configura, monitorea y controla todos los routers SD-WAN edge (vEdge, cEdge) en toda la WAN de una organización.",
+      "Un atacante autenticado con privilegios de lectura podría explotar la SQL injection para ejecutar sentencias SQL arbitrarias contra la base de datos subyacente, potencialmente leyendo datos de configuración sensibles, credenciales y parámetros de túnel para todos los routers WAN. En algunas configuraciones, el acceso a la base de datos podría escalarse a ejecución de comandos del SO.",
+      "La severidad de comprometer vManage no puede ser exagerada: es el 'único panel de control' para SD-WAN. Un atacante que controle vManage controla todos los routers, todas las políticas WAN y todos los límites de segmentación de red en toda la organización."
+    ],
+    "technical": {
+      "title": "Cómo funciona CVE-2021-1291",
+      "body": [
+        "La interfaz web de Cisco vManage pasaba entrada suministrada por el usuario (como parámetros de filtro en vistas de lista o campos de búsqueda) a consultas SQL sin la parametrización adecuada. Al inyectar sintaxis SQL en estos campos, un usuario autenticado con bajos privilegios podría leer datos de tablas a las que no debería tener acceso — incluyendo credenciales de routers vEdge y claves precompartidas IPsec.",
+        "La inyección estaba en parámetros HTTP GET para la interfaz de gestión. Como vManage se ejecutaba en un host Linux, en algunas versiones la SQL injection podría encadenarse con procedimientos almacenados que permitían ejecución de comandos del SO, escalando de lectura de base de datos a shell root en el servidor vManage."
+      ]
+    },
+    "incident": {
+      "title": "Compromiso del Plano de Gestión SD-WAN — Toma de Control de WAN Empresarial (2021)",
+      "impact": "Credenciales de router WAN y PSKs expuestas; posible bypass de segmentación de red",
+      "body": [
+        "Cisco divulgó una serie de vulnerabilidades SD-WAN en enero de 2021, incluyendo CVE-2021-1291. La plataforma vManage tenía múltiples fallos de inyección que, cuando se encadenaban, permitían a atacantes con cualquier acceso autenticado escalar a control total de vManage.",
+        "El impacto práctico fue severo para organizaciones que usan SD-WAN: un atacante que comprometiera una única cuenta vManage con bajos privilegios podría extraer PSKs IPsec para todos los routers de sucursales, entonces usar esas PSKs para interceptar o inyectar tráfico en cualquier enlace WAN de la empresa. El beneficio de centralización de SD-WAN se convirtió en un único punto de falla catastrófica."
+      ]
+    },
+    "timeline": [
+      "Ene: Cisco divulga múltiples vulnerabilidades SD-WAN incluyendo CVE-2021-1291",
+      "Cisco lanza vManage 20.5.1 con correcciones de parametrización SQL",
+      "Empresas parchean vManage; rotan todas las PSKs de router WAN como precaución"
+    ],
+    "keyTakeaways": [
+      "Las plataformas de gestión centralizada (vManage, APIC) son joyas de la corona — protéjalas con MFA e aislamiento de red",
+      "SQL injection es prevenible: siempre use consultas parametrizadas o sentencias preparadas",
+      "El privilegio mínimo en interfaces de gestión importa: solo lectura no debería exponer datos de clase escritura mediante SQL injection",
+      "Después de compromiso de SD-WAN, rote TODAS las PSKs de router y credenciales de túnel — asuma que todas fueron expuestas"
+    ]
+  },
+  "stage-m25": {
+    "tagline": "Un path traversal sin autenticación en Cisco ASA podría bloquear el firewall o filtrar listados de directorios.",
+    "overview": [
+      "CVE-2018-0296 es una vulnerabilidad en la interfaz web del Cisco Adaptive Security Appliance (ASA) que permite a un atacante remoto sin autenticación causar una denegación de servicio (recarga del dispositivo) o ver un listado del directorio del dispositivo. La vulnerabilidad fue causada por el manejo inadecuado de solicitudes HTTP URL.",
+      "Al enviar una solicitud HTTP especialmente elaborada a un dispositivo afectado, un atacante podría desencadenar una recarga del dispositivo — derribando el firewall empresarial e inhabilitando la aplicación de toda seguridad en el perímetro de la red. La misma solicitud también podría usarse para enumerar la estructura de directorios del dispositivo, proporcionando información útil para una explotación adicional.",
+      "La combinación de acceso sin autenticación, impacto en el perímetro y la simplicidad de la explotación hizo que esto fuera un hallazgo de severidad alta. El ataque requería solo una solicitud HTTP GET — accesible para cualquier scanner o script kiddie con acceso de red a la interfaz de administración del ASA."
+    ],
+    "technical": {
+      "title": "Cómo funciona CVE-2018-0296",
+      "body": [
+        "La interfaz web de Cisco ASA procesaba rutas URL que podían incluir caracteres especiales como %2F (barra inclinada codificada) o secuencias de path traversal. Al enviar una solicitud con una URL elaborada a la interfaz de servicios web (rutas /+CSCOE+/ o /+CSCOT+/), un atacante podría bloquear el proceso de servicios web (causando una recarga del dispositivo) o recibir información de listado de directorios.",
+        "La misma solicitud que bloquea el firewall funciona igualmente como herramienta de reconocimiento — el listado de directorios revela qué módulos, plugins VPN y características están instaladas en el ASA, permitiendo una explotación de seguimiento dirigida. Con una CVSS de 8.6, esto fue calificado como crítico para entornos de alta disponibilidad donde un bloqueo del firewall significa una interrupción de red."
+      ]
+    },
+    "incident": {
+      "title": "Bloqueo de interfaz web ASA — Interrupciones del firewall perimetral (2018)",
+      "impact": "Bloqueos de firewall sin autenticación; interrupciones de red; información de directorio divulgada",
+      "body": [
+        "Cisco divulgó CVE-2018-0296 en junio de 2018. La simplicidad del exploit — una única solicitud HTTP GET — significó que dentro de días de la divulgación, los scanners automatizados estuvieran sondeando internet en busca de dispositivos ASA vulnerables. Las organizaciones que no habían aplicado parches experimentaron recargas inesperadas del firewall que inicialmente parecían ser fallas de hardware.",
+        "La vulnerabilidad fue ampliamente explotada en los días posteriores a la divulgación. Múltiples organizaciones informaron de bloqueos ASA inexplicables que luego se atribuyeron a la explotación de CVE-2018-0296. La capacidad de listado de directorios fue utilizada por atacantes para mapear configuraciones de ASA antes de lanzar ataques más sofisticados."
+      ]
+    },
+    "timeline": [
+      "Jun: Cisco divulga CVE-2018-0296 con parches para ASA",
+      "El escaneo automatizado masivo comienza dentro de 48 horas de la divulgación",
+      "Múltiples organizaciones informan de bloqueos ASA inexplicables atribuidos a la explotación"
+    ],
+    "keyTakeaways": [
+      "Nunca expongas la administración web de ASA a internet — usa ACLs para restringir a redes de administración",
+      "El listado de directorios en un firewall es una mina de oro de reconocimiento previo a la explotación",
+      "Un firewall bloqueado es una interrupción de red — trata los CVEs de DoS como críticos para la disponibilidad",
+      "El escaneo automatizado de CVE-2018-0296 comenzó dentro de días — aplica parches dentro de horas de avisos críticos"
+    ]
+  },
+  "stage-m27": {
+    "tagline": "Una secuencia TCP elaborada atravesó completamente sin ser detectada el motor IPS Snort de Cisco.",
+    "overview": [
+      "CVE-2021-1224 afecta el motor de detección Snort integrado en Cisco IOS XE, Cisco ASA con Firepower Services y Cisco FTD. La vulnerabilidad estaba en cómo Snort reensambló los flujos TCP: una secuencia especialmente elaborada de paquetes TCP con segmentos superpuestos activó un reensamblaje de flujo incorrecto, causando que Snort analizara un flujo de bytes diferente al que el host final realmente recibió.",
+      "Los Sistemas de Prevención de Intrusiones detectan ataques inspeccionando flujos TCP reensamblados contra firmas de ataque conocidas. Si el IPS reensambla el flujo de manera diferente que el host objetivo, las firmas no coincidirán — el ataque pasa sin inspección, generando cero alertas.",
+      "Esta clase de vulnerabilidad — evasión TCP o bypass de IPS — ha sido conocida desde el artículo de Ptacek & Newsham de 1998 pero continúa apareciendo en productos IPS de producción. CVE-2021-1224 demostró que en 2021, las brechas de normalización de flujo aún permitían la evasión de la plataforma de seguridad insignia de Cisco."
+    ],
+    "technical": {
+      "title": "Reensamblaje de Flujos TCP y Evasión",
+      "body": [
+        "TCP es un protocolo de flujo: los datos llegan en segmentos que pueden superponerse, llegar fuera de orden o ser retransmitidos. Tanto el IPS como el host final deben aplicar las mismas reglas de reensamblaje para ver los mismos datos. Cuando llega un paquete con un número de secuencia superpuesto, hay dos interpretaciones: favorecer los datos recibidos primero (comportamiento BSD) o favorecer los datos posteriores (comportamiento Linux/Windows).",
+        "Si el IPS y el host utilizan políticas de superposición diferentes, un atacante puede elaborar paquetes que parecen benignos para el IPS pero entregan contenido malicioso al host. CVE-2021-1224 expuso un caso donde el motor Snort de Cisco falló al manejar correctamente un escenario específico de reensamblaje de segmentos fuera de orden, dejando cargas de ataque divididas en límites de segmento específicos sin detectar."
+      ]
+    },
+    "incident": {
+      "title": "Evasión de Firepower IPS — Capa de Seguridad de Red Eludida",
+      "impact": "Los atacantes podrían entregar cargas de exploits, establecer C2 o exfiltrar datos a través de Cisco Firepower sin generar ninguna alerta del IPS",
+      "body": [
+        "Cisco divulgó CVE-2021-1224 en enero de 2021 con una puntuación CVSS de 8.6. La vulnerabilidad no requería autenticación — cualquier atacante con acceso a la red a una red protegida por Firepower podría elaborar el flujo TCP evasivo. El único requisito previo era conocimiento de la política de reensamblaje TCP del sistema operativo objetivo.",
+        "Cisco lanzó actualizaciones del motor Snort para corregir la lógica de reensamblaje. La lección más amplia es que la evasión de IPS es una amenaza perenne; la defensa en profundidad con EDR, NetFlow y análisis de comportamiento SIEM asegura que incluso un IPS eludido no signifique una defensa eludida."
+      ]
+    },
+    "timeline": [
+      "Ptacek & Newsham publican artículo fundamental sobre técnicas de evasión TCP en IPS",
+      "Enero: Cisco divulga CVE-2021-1224 — bypass de reensamblaje TCP en Snort en IOS XE, ASA, FTD",
+      "Cisco lanza actualización del motor Snort (3.0.3) corrigiendo el manejo de superposiciones"
+    ],
+    "keyTakeaways": [
+      "Un IPS que ve un flujo TCP diferente al del host objetivo no proporciona protección contra cargas evasivas",
+      "La política de reensamblaje de flujo Snort debe coincidir con la política de manejo de superposición TCP del sistema operativo objetivo",
+      "Los ataques de bypass de IPS se han documentado desde 1998 — la defensa en profundidad es obligatoria",
+      "Complementar IPS con EDR, NetFlow y líneas base de comportamiento SIEM para detectar lo que el IPS pierde"
+    ]
+  },
+  "stage-m29": {
+    "tagline": "Integrar todas las herramientas de seguridad en un único panel de control también crea un único punto de falla.",
+    "overview": [
+      "Cisco SecureX (ahora Cisco XDR) es una plataforma de operaciones de seguridad nativa en la nube que agrega telemetría de toda la cartera de seguridad de Cisco — Umbrella, Firepower, Secure Endpoint (AMP), Secure Email, Duo MFA y herramientas de terceros — en un panel unificado para detección, investigación y respuesta automatizada.",
+      "Las plataformas de Detección y Respuesta Extendida (XDR) representan un cambio arquitectónico importante: en lugar de que los analistas correlacionen manualmente alertas de docenas de herramientas desconectadas, XDR ingiere, normaliza y correlaciona telemetría a escala, proporcionando cronogramas de incidentes entre productos y ejecución de libros de jugadas automatizados.",
+      "La centralización introduce nuevos vectores de riesgo. Un token de API XDR comprometido expone telemetría de toda la pila de seguridad. Las integraciones OAuth mal configuradas pueden permitir acceso no autorizado de terceros. Los libros de jugadas de respuesta automatizados que deshabilitan reglas de firewall o ponen en cuarentena puntos finales pueden ser aprovechados si un atacante obtiene acceso a la capa de orquestación."
+    ],
+    "technical": {
+      "title": "Arquitectura de Cisco XDR y Superficie de Riesgo",
+      "body": [
+        "Cisco XDR utiliza APIs REST y OAuth 2.0 para integración. Cada producto conectado publica un módulo de API; el motor de orquestación XDR llama a estas APIs para consultar telemetría y ejecutar acciones de respuesta. Los tokens de API con alcance XDR tienen permisos de lectura amplios en todos los productos integrados.",
+        "Una clave de API XDR filtrada puede exponer consultas DNS de red, telemetría de procesos de puntos finales, datos de amenazas de correo electrónico y registros de sesiones VPN simultáneamente — un radio de impacto mucho mayor que la filtración de credenciales de un único producto.",
+        "Los libros de jugadas automatizados pueden ejecutar acciones de alto privilegio: bloquear IPs en Umbrella, poner en cuarentena puntos finales a través de Secure Endpoint, restablecer sesiones en Duo. Un atacante que obtiene acceso a la capa de orquestación XDR puede desencadenar estos libros de jugadas para interrumpir la propia infraestructura del defensor."
+      ]
+    },
+    "incident": {
+      "title": "Dispersión de Tokens XDR — La Plataforma de Seguridad se Convierte en Superficie de Ataque",
+      "impact": "Se encontraron tokens XDR filtrados en repositorios públicos de GitHub, telemetría expuesta de pilas de seguridad completas; en varios casos, los atacantes desencadenaron libros de jugadas para poner en cuarentena estaciones de trabajo de analistas",
+      "body": [
+        "Múltiples informes de equipos rojos e investigaciones de incidentes han encontrado tokens de API de Cisco SecureX y XDR codificados en scripts de automatización, archivos de configuración de canalizaciones CI/CD y repositorios de infraestructura como código que fueron accidentalmente publicados. Debido a que los tokens XDR abarcan toda la pila de seguridad, una única credencial filtrada expuso mucho más que una clave de API típica.",
+        "En un caso documentado, un atacante que obtuvo credenciales de administrador XDR a través de una campaña de phishing desencadenó múltiples libros de jugadas de respuesta automatizados — poniendo en cuarentena 40 puntos finales y bloqueando un rango de direcciones IP corporativas — antes de que los defensores pudieran revocar el acceso. Los libros de jugadas diseñados para proteger la organización se convirtieron en armas en su contra."
+      ]
+    },
+    "timeline": [
+      "Lanzamiento de Cisco SecureX — plataforma unificada de operaciones de seguridad",
+      "Primeros casos reportados de filtraciones de tokens de API XDR en repositorios públicos de GitHub",
+      "Cambio de marca de Cisco XDR desde SecureX; publicación de guía de integración PAM mejorada",
+      "Guía de CISA: tratar las credenciales de plataforma XDR/SIEM como activos de Nivel-0"
+    ],
+    "keyTakeaways": [
+      "Los tokens de API XDR con alcance amplio son objetivos de valor extremadamente alto — trátelos como credenciales de Nivel-0",
+      "Siempre establezca el alcance de los tokens de integración XDR en los permisos mínimos requeridos (solo lectura cuando sea posible)",
+      "Almacene credenciales XDR en un almacén de secretos (HashiCorp Vault, AWS Secrets Manager) — nunca en scripts o Git",
+      "Los libros de jugadas de respuesta automatizados son potentes — audite sus registros de ejecución y requiera aprobación MFA para acciones de alto impacto"
+    ]
+  },
+  "stage-m31": {
+    "tagline": "La automatización de tu red con APIs expone tu infraestructura a ataques a nivel de API.",
+    "overview": [
+      "Cisco DevNet es el programa de desarrolladores y el ecosistema de API para la cartera de redes de Cisco. A través de DevNet, los ingenieros automatizan redes utilizando REST APIs, modelos de datos YANG, NETCONF/RESTCONF, y SDKs específicos de Cisco para DNA Center, Catalyst Center, Meraki, APIC-EM, y NSO (Network Services Orchestrator).",
+      "La automatización de redes introduce una superficie de ataque crítica y nueva: credenciales de REST API, scripts de automatización, y tuberías CI/CD interactuando con infraestructura de red en producción. Un token de API de Cisco DNA Center filtrado otorga a un atacante la capacidad de reconfigurar toda la red del campus — cambiando VLANs, ACLs, políticas de enrutamiento, y configuraciones de QoS — con la misma autoridad que un administrador de red.",
+      "Las mejores prácticas de DevNet enfatizan asegurar tokens de API utilizando almacenamiento en bóveda, aplicar tiempos de vida cortos para los tokens, implementar RBAC en los alcances de la API, y auditar todas las llamadas de API mediante YANG Telemetry y syslog."
+    ],
+    "technical": {
+      "title": "Arquitectura de Seguridad de API de DevNet",
+      "body": [
+        "Las plataformas de gestión de redes de Cisco (DNA Center, Meraki, APIC) utilizan OAuth 2.0 o autenticación basada en tokens. Los tokens de API son típicamente tokens portadores: cualquier solicitud que presente el token recibe acceso sin verificación adicional.",
+        "Fallos comunes de seguridad de tokens: codificados en scripts de automatización, almacenados en texto plano en repositorios de Git, otorgados con alcance excesivo (lectura-escritura cuando solo lectura es suficiente), tiempos de vida largos o sin expiración, y sin política de rotación.",
+        "YANG (Yet Another Next Generation) es el lenguaje de modelado de datos utilizado en NETCONF y RESTCONF. Los modelos YANG definen el esquema para la configuración de dispositivos de red — comprender YANG es esencial para auditar qué cambiará una llamada de API dada en un dispositivo."
+      ]
+    },
+    "incident": {
+      "title": "Fuga de Token de DNA Center — Reconfiguración de Red de Campus por Atacante",
+      "impact": "Tokens filtrados encontrados en GitHub; atacantes demostraron capacidad de modificar configuraciones de VLAN y ACLs en toda la red del campus",
+      "body": [
+        "Múltiples compromisos de pruebas de penetración y ejercicios de equipo rojo han encontrado tokens de API de Cisco DNA Center y Meraki codificados en repositorios de infraestructura como código, configuraciones de tuberías CI/CD, y scripts de monitoreo que fueron accidentalmente expuestos públicamente. Debido a que estos tokens llevan autoridad de administrador de red, el radio de impacto es mucho mayor que una clave de API de aplicación típica.",
+        "En un ejercicio de equipo rojo documentado, los evaluadores utilizaron un token de lectura-escritura de DNA Center encontrado en un repositorio público de GitHub para modificar configuraciones de VLAN y reglas de ACL en más de 200 switches en 15 minutos — demostrando control completo de la red del campus sin necesidad de otras credenciales. La organización no tenía monitoreo de la actividad de la API de DNA Center."
+      ]
+    },
+    "timeline": [
+      "API de Cisco DNA Center lanzada — automatización completa de red mediante REST",
+      "Primeros casos documentados de tokens de DNA Center filtrados en repositorios públicos de GitHub",
+      "Cisco DevNet publica guía de mejores prácticas de seguridad de API; CISA emite orientación sobre higiene de credenciales de automatización de redes"
+    ],
+    "keyTakeaways": [
+      "Los tokens de API de automatización de redes llevan autoridad de administrador de red — almacénalos en una bóveda de secretos, nunca en scripts o Git",
+      "Delimita el alcance de los tokens al mínimo de permisos requeridos: solo lectura para monitoreo, escritura limitada para gestión de cambios",
+      "Monitorea toda la actividad de la API de DNA Center en tu SIEM — debe tratarse como actividad de usuario privilegiado",
+      "Utiliza NETCONF/RESTCONF con modelos YANG para automatización compatible con estándares que sea auditable y reproducible"
+    ]
+  },
+  "stage-m33": {
+    "tagline": "Los cazadores de amenazas no esperan alertas — asumen el compromiso y buscan evidencia.",
+    "overview": [
+      "La búsqueda de amenazas es la disciplina proactiva de detectar actividad de atacantes que ha eludido la detección automatizada. A diferencia de la respuesta a incidentes reactiva desencadenada por alertas SIEM, los cazadores de amenazas forman hipótesis basadas en inteligencia de amenazas, TTPs de adversarios de MITRE ATT&CK y anomalías en telemetría — luego consultan activamente registros, datos de puntos finales y capturas de red para confirmar o refutar.",
+      "Los Indicadores de Compromiso (IOCs) son artefactos forenses que sugieren que un sistema ha sido comprometido: direcciones IP maliciosas, hashes de archivos de malware conocido, claves de registro sospechosas, consultas DNS anómalas y conexiones salientes inusuales. Los IOCs se organizan en plataformas de inteligencia de amenazas como Cisco SecureX Threat Intelligence, MISP y VirusTotal.",
+      "Cisco CyberOps Associate cubre la metodología de búsqueda: construir hipótesis a partir de TTPs de ATT&CK, consultar telemetría de puntos finales, identificar movimiento lateral en registros de autenticación y detectar beaconing C2 mediante análisis de DNS y NetFlow."
+    ],
+    "technical": {
+      "title": "Metodología de Búsqueda y Detección de C2",
+      "body": [
+        "Una búsqueda de amenazas comienza con una hipótesis: 'Asumir que un atacante obtuvo acceso inicial mediante phishing. ¿Qué evidencia dejarían en consultas DNS, registros de ejecución de procesos y flujos de red?' El cazador consulta fuentes de datos para confirmar o refutar esa hipótesis.",
+        "El beaconing de Command-and-Control (C2) es un objetivo de búsqueda de alto valor. El malware se comunica con un servidor C2 a intervalos regulares usando HTTP/HTTPS o DNS. El beaconing deja patrones distintivos: intervalos de conexión regulares (por ejemplo, cada 60 segundos), conexiones a dominios registrados recientemente o consultas DNS con nombres de alta entropía de malware DGA (Domain Generation Algorithm).",
+        "El movimiento lateral produce artefactos de autenticación: pass-the-hash aparece como autenticación NTLM a múltiples hosts en una ventana corta; pass-the-ticket aparece como solicitudes Kerberos TGS para cuentas de servicio; el movimiento lateral RDP aparece como Event ID 4624 (tipo de logon 10) en hosts de destino."
+      ]
+    },
+    "incident": {
+      "title": "Beaconing C2 de APT — 200 Días Antes del Descubrimiento por Búsqueda",
+      "impact": "El grupo APT mantuvo acceso C2 durante 187 días mediante beaconing DGA tunelizado por DNS; descubierto solo mediante búsqueda proactiva de amenazas, no por alertas SIEM",
+      "body": [
+        "Un equipo de búsqueda de amenazas investigando volumen DNS anómalo identificó una estación de trabajo realizando consultas DNS a nombres de dominio de alta entropía a intervalos de 58 segundos — consistente con beaconing C2 basado en DGA. El SIEM nunca había generado una alerta: el volumen de beaconing estaba por debajo de los umbrales de reglas y los dominios no estaban en ningún feed de amenazas.",
+        "La investigación reveló que el host había sido comprometido 187 días antes a través de un archivo adjunto de phishing dirigido. El atacante había mantenido acceso persistente a través de un marco C2 usando DGA para generar dominios frescos diariamente, previniendo detección basada en listas de bloqueo. Solo el análisis de consultas basado en entropía del cazador de amenazas evidenció la actividad."
+      ]
+    },
+    "timeline": [
+      "Mandiant populariza la metodología 'asumir compromiso' — fundación de la búsqueda moderna de amenazas",
+      "Cisco CyberOps Associate añade módulo de búsqueda de amenazas; marcos de búsqueda ATT&CK publicados",
+      "Industria: tiempo de permanencia promedio de atacante 197 días; búsqueda proactiva reduce a <60 días en programas maduros",
+      "Cisco XDR añade automatización de búsqueda asistida por IA; detección DGA integrada en capa DNS de Umbrella"
+    ],
+    "keyTakeaways": [
+      "La búsqueda de amenazas es proactiva — asumir compromiso y buscar evidencia en lugar de esperar alertas",
+      "El beaconing C2 basado en DGA elude listas de bloqueo; buscar con análisis de entropía DNS y detección de intervalos de beacon",
+      "Windows Event ID 4624 Logon Type 10 es el artefacto clave de movimiento lateral para pivoteo basado en RDP",
+      "Tiempo de permanencia promedio de atacante sin búsqueda proactiva: 197 días; con búsqueda: menos de 60 días"
+    ]
+  },
+  "stage-m34": {
+    "tagline": "Una única solicitud HTTP sin autenticación convirtió 50,000 enrutadores en nodos de red controlados por atacantes.",
+    "overview": [
+      "CVE-2023-20198 es una vulnerabilidad CVSS 10.0 — la puntuación máxima posible — en la interfaz web de Cisco IOS XE. Cuando la interfaz de administración web está habilitada (`ip http server` o `ip http secure-server`), un atacante remoto sin autenticación puede crear una nueva cuenta de usuario local con nivel de privilegio 15 (administrador completo) enviando una solicitud HTTP especialmente elaborada a la interfaz de administración.",
+      "La vulnerabilidad fue explotada como un zero-day a partir de finales de septiembre de 2023. Para octubre de 2023, investigadores de seguridad identificaron más de 50,000 dispositivos Cisco IOS XE en todo el mundo que habían sido comprometidos, con el implante activo y esperando comandos del atacante. Cisco publicó su primer aviso el 16 de octubre de 2023 — semanas después de que la explotación masiva ya estuviera en curso.",
+      "IOS XE se ejecuta en switches Catalyst de Cisco, enrutadores ISR, enrutadores ASR y otra infraestructura de redes empresariales. Una cuenta de nivel 15 en estos dispositivos le da a un atacante control total: manipulación de tablas de enrutamiento, interceptación de tráfico, movimiento lateral hacia redes de administración, y la capacidad de instalar implantes persistentes — todo sin activar registros de autenticación estándar."
+    ],
+    "technical": {
+      "title": "Escalada de Privilegios del Servidor HTTP de IOS XE — Creación de Cuenta sin Autenticación",
+      "body": [
+        "La interfaz web de IOS XE se basa en un servidor HTTP/HTTPS incrustado. Cuando está habilitada, expone una interfaz de administración en la dirección IP de administración del dispositivo. La vulnerabilidad existía en una ruta URL específica utilizada por la interfaz web durante el flujo de trabajo de registro. Enviar una solicitud POST elaborada a esta ruta con parámetros específicos causó que el servidor HTTP creara una cuenta de usuario local con nivel de privilegio 15 antes de verificar la autenticación.",
+        "El nivel de privilegio 15 en Cisco IOS es equivalente a root — concede acceso a todos los comandos EXEC privilegiados incluyendo `write memory`, `reload`, `configure terminal`, y configuración completa de enrutamiento. Un atacante con una cuenta de nivel 15 puede modificar cada aspecto de la configuración del dispositivo.",
+        "Encadenado con CVE-2023-20273 (una inyección de comandos separada de la interfaz web), los atacantes utilizaron la cuenta de nivel 15 para ejecutar comandos a nivel de SO e instalar un complemento Lua malicioso como un implante persistente. El complemento se disfrazó como parte de la configuración normal de IOS XE y sobrevivió a los reinicios del dispositivo."
+      ]
+    },
+    "incident": {
+      "title": "Explotación Masiva de Zero-Day de IOS XE — 50,000 Dispositivos Implantados",
+      "impact": "50,000+ dispositivos comprometidos; implantes instalados; CISA emitió orientación de emergencia; Cisco retrasó la divulgación durante semanas mientras se desarrollaba el parche",
+      "body": [
+        "Investigadores de seguridad en VulnCheck publicaron por primera vez hallazgos el 16 de octubre de 2023 — el mismo día que Cisco lanzó su aviso. Para ese momento, más de 50,000 dispositivos Cisco IOS XE ya habían sido comprometidos con un implante HTTP esperando comandos. La escala de explotación fue extraordinaria: los atacantes automatizaron el ataque y escanearon toda Internet en busca de dispositivos vulnerables dentro de días de descubrir el zero-day.",
+        "CISA emitió la Directiva de Emergencia 24-01, requiriendo que las agencias federales de EE.UU. identificaran y remediaran todos los dispositivos IOS XE afectados dentro de 48 horas. El incidente demostró el peligro de exponer interfaces de administración de dispositivos de red a Internet — una configuración errónea común que convierte la infraestructura crítica en un objetivo fácilmente explotable.",
+        "El actor de la amenaza detrás de la campaña (rastreado por Cisco Talos) desplegó dos etapas de malware. La primera utilizó CVE-2023-20198 para crear la cuenta de administrador. La segunda utilizó CVE-2023-20273 para ejecutar comandos e instalar un implante basado en Lua en el sistema de archivos de IOS XE. El implante proporcionó acceso persistente que sobrevivió a los reinicios del dispositivo y habría sido invisible para los administradores verificando usuarios autorizados."
+      ]
+    },
+    "timeline": [
+      "28 sep: Explotación de zero-day comienza; atacantes escanean y comprometen dispositivos IOS XE globalmente",
+      "16 oct: Cisco publica aviso cisco-sa-iosxe-webui-privesc-j22SaA4Z; 50,000+ dispositivos ya implantados",
+      "16 oct: CISA emite Directiva de Emergencia 24-01 a todas las agencias federales de EE.UU.",
+      "23 oct: Cisco actualiza aviso para incluir CVE-2023-20273 (inyección de comandos encadenada); parches lanzados",
+      "Exposición del servidor HTTP de IOS XE se convierte en un hallazgo estándar en auditorías de seguridad empresarial"
+    ],
+    "keyTakeaways": [
+      "Nunca exponga la interfaz de administración de IOS XE a redes no confiables — use VLAN de administración fuera de banda con ACL",
+      "Deshabilite `ip http server` e `ip http secure-server` en todos los dispositivos de producción a menos que sea absolutamente necesario",
+      "Monitoree usuarios inesperados de nivel 15 en running-config: `show running-config | include username`",
+      "CVSS 10.0 significa sin autenticación, sin interacción del usuario, y compromiso completo — trate como emergencia inmediata"
+    ]
+  },
+  "stage-m35": {
+    "tagline": "El primer zero-day creó la puerta. El segundo zero-day instaló una cerradura que solo el atacante podía abrir.",
+    "overview": [
+      "CVE-2023-20273 es una vulnerabilidad de inyección de comandos en la interfaz web de Cisco IOS XE que se utilizó en combinación con CVE-2023-20198 en la campaña de explotación masiva de octubre de 2023. Una vez que un atacante utilizó CVE-2023-20198 para crear una cuenta de privilegio-15 en el dispositivo, utilizó CVE-2023-20273 para inyectar comandos a nivel del sistema operativo en el sistema operativo subyacente de IOS XE, no solo en la capa IOS EXEC.",
+      "El ataque encadenado permitió al actor de amenaza desplegar un complemento Lua malicioso como un implante persistente. El complemento Lua se instaló en el sistema de archivos de IOS XE y se cargó al iniciar el dispositivo, proporcionando acceso persistente de comando y control que sobrevivió a los reinicios del dispositivo. El implante interceptó paquetes HTTPS específicos y ejecutó shellcode incrustado, convirtiendo efectivamente el enrutador en un tap de red encubierto.",
+      "Cisco actualizó su aviso del 16 de octubre de 2023 el 23 de octubre para agregar los detalles de CVE-2023-20273 después del análisis del implante que reveló la segunda vulnerabilidad en la cadena de ataque. Los parches se lanzaron para ambas vulnerabilidades simultáneamente."
+    ],
+    "technical": {
+      "title": "Inyección de comandos de interfaz web — Ejecución de comandos del sistema operativo a través de sesión de administrador",
+      "body": [
+        "CVE-2023-20273 explota la validación de entrada insuficiente en un punto de conexión diferente de la interfaz web de IOS XE. Después de autenticarse con la cuenta de nivel-15 creada a través de CVE-2023-20198, el atacante envía una solicitud manipulada que contiene metacaracteres de shell (`;`, `|`, `&&`) a un punto de conexión de gestión de la interfaz web. La interfaz web pasa estos caracteres a un comando shell subyacente sin desinfectarlos, lo que resulta en la ejecución arbitraria de comandos del sistema operativo.",
+        "A diferencia de CVE-2023-20198 (que apunta a la base de datos de usuarios de IOS XE), CVE-2023-20273 irrumpe en el sistema operativo subyacente basado en Linux en el que se ejecuta IOS XE. Los comandos inyectados a través de esta vulnerabilidad se ejecutan como root a nivel del sistema operativo, no como una sesión de privilegio-15 de IOS EXEC. Este es un nivel de acceso categorialmente más profundo.",
+        "El actor de amenaza utilizó acceso de comandos del sistema operativo para escribir un script Lua malicioso en el disco e registrarlo como un complemento de IOS XE. Lua es compatible de forma nativa en IOS XE para automatización de redes. Los complementos maliciosos pueden interceptar comandos CLI, modificar decisiones de enrutamiento y comunicarse a través de la interfaz de gestión, todo mientras aparentan ser funcionalidad legítima de IOS XE."
+      ]
+    },
+    "incident": {
+      "title": "Implante Lua de IOS XE — Puerta trasera de enrutador persistente desplegada a gran escala",
+      "impact": "Los implantes persistentes sobrevivieron a los reinicios; canal C2 incrustado en tráfico de gestión HTTPS; implantes encontrados en dispositivos en redes gubernamentales, financieras y de telecomunicaciones de EE.UU.",
+      "body": [
+        "Después de crear la cuenta de administrador a través de CVE-2023-20198, el actor de amenaza automatizó la explotación de CVE-2023-20273 para desplegar el implante Lua en miles de dispositivos. El implante fue diseñado para ser difícil de detectar: aparecía en la lista de complementos de IOS XE como un elemento de configuración legítimo, utilizaba el mismo puerto de gestión HTTPS que el tráfico normal, y requería una contraseña específica en el cliente HTTP para activarse, asegurando que los respondedores aleatorios no lo activaran accidentalmente.",
+        "Cisco Talos realizó ingeniería inversa del implante y confirmó que podía: interceptar todos los comandos CLI, modificar o suprimir entradas de registro, exfiltrar configuraciones en ejecución, y canalizar el tráfico del atacante a través del enrutador comprometido. Para un atacante dirigido a instituciones financieras o redes gubernamentales, un enrutador BGP comprometido es extraordinariamente valioso, ya que controla el enrutamiento de todo el tráfico que pasa a través de él."
+      ]
+    },
+    "timeline": [
+      "28 de sep: El actor de amenaza comienza a explotar la cadena CVE-2023-20198 + 20273 en campaña masiva",
+      "16 de oct: Cisco divulga CVE-2023-20198; el análisis del implante revela el segundo zero-day",
+      "23 de oct: Cisco actualiza el aviso con detalles de CVE-2023-20273; se lanzan parches para ambas CVE",
+      "Post-incidente: Se publica orientación de CISA sobre auditoría de dispositivos IOS XE para implantes Lua",
+      "El abuso de complementos Lua se agregó a MITRE ATT&CK como técnica de amenaza documentada"
+    ],
+    "keyTakeaways": [
+      "Un exploit encadenado es a menudo más peligroso que cualquiera de sus componentes por separado — evalúe las cadenas de vulnerabilidades, no solo CVE individuales",
+      "La inyección de comandos de IOS XE a nivel del sistema operativo (no IOS EXEC) sale del modelo de privilegios de Cisco completamente",
+      "Los complementos Lua persistentes en IOS XE son un mecanismo de implante novedoso — audite `dir flash:*.lua` después de cualquier compromiso sospechoso",
+      "Aplique parches para CVE-2023-20198 y CVE-2023-20273 juntos — la cadena solo funciona si ambas están presentes"
+    ]
+  },
+  "stage-m36": {
+    "tagline": "Un actor de estado-nación pasó meses dentro de dispositivos de seguridad perimetral — utilizando dos zero-days para instalar implantes que sobrevivieron restablecimientos de fábrica.",
+    "overview": [
+      "ArcaneDoor es una campaña de espionaje de estado-nación nombrada por Cisco Talos divulgada el 24 de abril de 2024. El actor de amenaza (rastreado como UAT4356, y por Microsoft como STORM-1849) dirigió organizaciones de gobierno e infraestructura crítica a nivel mundial explotando dos vulnerabilidades zero-day en Cisco Adaptive Security Appliance (ASA) y Firepower Threat Defense (FTD) — exactamente los dispositivos de seguridad perimetral diseñados para proteger redes de amenazas externas.",
+      "CVE-2024-20353 es una vulnerabilidad CVSS 8.6 de denegación de servicio y potencial ejecución remota de código en las interfaces de administración y datos de ASA/FTD que permitía a atacantes no autenticados provocar una recarga o, en algunas configuraciones, ejecutar código. CVE-2024-20359 es una vulnerabilidad CVSS 6.0 de ejecución de código local persistente autenticada que permitía que el implante sobreviviera reinicios y actualizaciones de dispositivos — una capacidad excepcionalmente rara para malware de dispositivos de red.",
+      "La campaña desplegó dos familias de malware: Line Dancer (un implante shellcode en memoria que utilizaba paquetes de administración HTTPS elaborados como canal C2 encubierto) y Line Runner (una puerta trasera basada en HTTP que utilizaba el mecanismo del plugin ASDM para sobrevivir reinicios). Cisco recomendó a todos los clientes que trataran cualquier exposición de interfaz de administración de ASA/FTD como una amenaza activa."
+    ],
+    "technical": {
+      "title": "Line Dancer & Line Runner — Arquitectura de Implante de Dispositivo Perimetral",
+      "body": [
+        "Line Dancer es un sofisticado implante shellcode en memoria para Cisco ASA. Se engancha en la canalización de procesamiento de SSL VPN de ASA para interceptar paquetes HTTPS específicos destinados a la interfaz de administración. Los paquetes que contienen un encabezado secreto específico eluden el procesamiento normal y en su lugar entregan cargas útiles de shellcode — creando efectivamente un canal C2 encubierto que se mezcla con tráfico de administración HTTPS legítimo.",
+        "Line Runner explota CVE-2024-20359, que abusa del mecanismo de carga del plugin ASDM (Adaptive Security Device Manager) del ASA. Los plugins de ASDM son archivos ZIP que extienden la interfaz de administración. Line Runner se instala a sí mismo como un plugin malicioso que se carga al arrancar — sobreviviendo recargas de dispositivo, actualizaciones de software y restablecimientos de fábrica que preservan el directorio de plugins.",
+        "La combinación es devastadora: Line Runner asegura persistencia en todos los pasos de remediación estándar, mientras que Line Dancer proporciona un canal C2 encubierto invisible en registros de red estándar. Solo Line Dancer necesita conectividad de red activa; Line Runner está inactivo hasta que Line Dancer lo reactiva."
+      ]
+    },
+    "incident": {
+      "title": "ArcaneDoor — Campaña Zero-Day de Estado-Nación Contra Dispositivos Perimetrales",
+      "impact": "Implantes persistentes a nivel de firmware en dispositivos perimetrales ASA/FTD; C2 encubierto en tráfico de administración; implantes sobrevivieron remediación estándar incluyendo actualizaciones de software",
+      "body": [
+        "Cisco Talos identificó ArcaneDoor a principios de 2024 durante respuesta a incidentes en clientes gubernamentales. La campaña mostró características de un actor de estado-nación con seguridad operacional avanzada: el atacante tenía conocimiento profundo de internos de ASA, utilizó zero-days que requirieron investigación sustancial para descubrir, e implementó un implante de dos etapas diseñado para mantener persistencia a través de todos los pasos de respuesta a incidentes estándar.",
+        "La elección de dispositivos de seguridad perimetral como objetivos fue deliberada. Los firewalls ASA se sitúan en el límite de redes internas — tienen visibilidad de todo tráfico norte-sur, procesan sesiones VPN para acceso remoto, y se conectan a redes de administración que alcanzan toda la infraestructura interna. Un implante persistente en un ASA es un implante persistente en toda la red.",
+        "CISA publicó un aviso junto con la divulgación de Cisco, señalando la similitud de la campaña con otra actividad patrocinada por estados dirigida a dispositivos de borde de red (haciendo referencia a campañas similares contra Ivanti, FortiGate, y Pulse Secure). El patrón es claro: dispositivos de red perimetral ejecutando firmware no auditado son un objetivo principal para infraestructura de espionaje de estado-nación."
+      ]
+    },
+    "timeline": [
+      "Principios de 2024: Cisco Talos identifica ArcaneDoor en compromisos de respuesta a incidentes gubernamentales",
+      "24 de abril: Cisco divulga CVE-2024-20359 + CVE-2024-20353; familias de malware Line Dancer + Line Runner publicadas",
+      "24 de abril: Aviso CISA — recomienda restringir interfaces de administración de ASA; parches requeridos",
+      "Campaña vinculada a patrón de estado más amplio: TTPs similares observados en targeting de Ivanti, FortiGate, Pulse Secure",
+      "CISA y NSA publican guía conjunta: 'Hardening Network Devices against Nation-State Targeting'"
+    ],
+    "keyTakeaways": [
+      "Los dispositivos de seguridad perimetral son objetivos de estado-nación de alto valor — sus interfaces de administración deben ser restringidas y auditadas",
+      "Line Runner demuestra que 'restablecimiento de fábrica' no siempre es remediación suficiente para implantes avanzados — audite directorios de plugins post-incidente",
+      "Los implantes en memoria como Line Dancer dejan artefactos forenses mínimos — análisis forense de memoria y captura de paquetes de red son requeridos para detección",
+      "Restrinja la administración de ASA a redes de administración dedicadas fuera de banda con ACLs estrictos — la interfaz externa de ASA nunca debe alcanzar el plano de administración"
+    ]
+  },
+  "stage-m37": {
+    "tagline": "Una función de conveniencia para ingenieros de red se convirtió en una llave maestra para 250,000 enrutadores en todo el mundo.",
+    "overview": [
+      "CVE-2018-0171 es un desbordamiento de búfer crítico en el protocolo Cisco Smart Install (SMI), una función de enchufar y listo que permite a nuevos conmutadores Cisco descargar automáticamente su configuración e imagen de IOS desde un Director Smart Install en el puerto TCP 4786. La vulnerabilidad permite a un atacante remoto sin autenticación ejecutar código arbitrario en cualquier dispositivo que ejecute el Cliente Smart Install, que está habilitado por defecto en muchos dispositivos Cisco IOS e IOS XE.",
+      "La vulnerabilidad fue divulgada en marzo de 2018. Dentro de meses, CISA y el FBI emitieron una alerta conjunta atribuyendo la explotación masiva a actores estatales rusos, específicamente APT28 (Unidad GRU 26165, también conocida como Fancy Bear), que había estado utilizando CVE-2018-0171 para comprometer enrutadores en Estados Unidos, Reino Unido, Alemania y Ucrania. Un grupo de amenazas iraní separado también explotó la misma vulnerabilidad de forma independiente.",
+      "En la máxima exposición, investigadores de seguridad identificaron más de 250,000 dispositivos con el puerto TCP 4786 abiertamente accesible en internet, una función de conveniencia para administradores de red que nunca fue diseñada teniendo en cuenta modelos de amenaza externos. Los ataques comprometieron enrutadores en infraestructura crítica incluyendo redes de energía, telecomunicaciones y gobiernos."
+    ],
+    "technical": {
+      "title": "Desbordamiento de Búfer del Protocolo Smart Install — RCE sin Autenticación en TCP/4786",
+      "body": [
+        "Smart Install utiliza un protocolo Cisco propietario sobre el puerto TCP 4786. El protocolo fue diseñado para aprovisionamiento sin tocar: un nuevo conmutador se enciende, busca un Director Smart Install y recibe automáticamente su configuración. No hay autenticación — Smart Install asume que todos los dispositivos en la red local son de confianza.",
+        "CVE-2018-0171 es un desbordamiento de búfer basado en pila en el analizador de mensajes Smart Install. Al crear un mensaje Smart Install malformado y enviarlo al puerto TCP 4786, un atacante sin autenticación puede desbordar un búfer de pila en el dispositivo objetivo y lograr la ejecución de código arbitrario. En un enrutador Cisco, esto significa control administrativo completo, equivalente al privilegio 15 con acceso al sistema operativo.",
+        "El ataque es completamente silencioso: el paquete malformado dispara el desbordamiento antes de que se compruebe la autenticación, no deja entrada de registro estándar y puede modificar la configuración en ejecución en memoria sin escribir en flash, haciendo que la detección forense sea extremadamente difícil."
+      ]
+    },
+    "incident": {
+      "title": "Campaña APT28 / GRU Smart Install — Compromiso de Enrutadores de Infraestructura Crítica",
+      "impact": "Cientos de dispositivos de red comprometidos; configuraciones de enrutador robadas; acceso persistente GRU a infraestructura adyacente a SCADA; Alerta de Emergencia CISA emitida",
+      "body": [
+        "El FBI y CISA emitieron una Alerta Técnica conjunta (TA18-106A) en abril de 2018 atribuyendo la explotación de Smart Install a actores estatales rusos. El aviso señaló que la GRU había estado utilizando la vulnerabilidad desde al menos 2016 para comprometer enrutadores de infraestructura Cisco, muchos en entornos de sistemas de control adyacentes a redes SCADA industriales.",
+        "APT28 utilizó enrutadores comprometidos como objetivos y plataformas de pivoteo. El compromiso de enrutadores permitió acceso a todo el tráfico que atravesaba el dispositivo, la capacidad de manipular el enrutamiento para redirigir tráfico y una presencia persistente en redes que típicamente tienen monitoreo de puntos finales más débil que servidores o estaciones de trabajo. Varios dispositivos comprometidos eran infraestructura ISP, un único compromiso daba visibilidad en tráfico para cientos de organizaciones descendentes.",
+        "Simultáneamente, actores de amenaza iraní descubrieron independientemente y explotaron CVE-2018-0171 en ataques dirigidos contra redes de Oriente Medio. La coincidencia resaltó cómo una única función de dispositivo de red sin parches podría atraer simultáneamente a múltiples adversarios de nivel estatal."
+      ]
+    },
+    "timeline": [
+      "APT28 comienza a explotar CVE-2018-0171 en ataques infraestructurales dirigidos",
+      "Mar: Cisco divulga CVE-2018-0171 y libera parches para IOS/IOS XE",
+      "Abr: Alerta conjunta FBI/CISA TA18-106A — atribuye explotación de Smart Install a actores estatales rusos",
+      "Abr: Actores de amenaza iraní explotan independientemente CVE-2018-0171 en campaña de Oriente Medio",
+      "250,000+ dispositivos encontrados con puerto 4786 expuesto; CERT-UK, CERT-DE emiten advertencias paralelas",
+      "Cliente Smart Install deshabilitado por defecto en IOS XE 16.11.1+"
+    ],
+    "keyTakeaways": [
+      "Las características de aprovisionamiento sin tocar sin autenticación son una superficie de ataque crítica — deshabilite `vstack` en todos los dispositivos que no sean de aprovisionamiento",
+      "El puerto TCP 4786 nunca debe ser alcanzable desde redes no confiables; bloquee en cortafuegos perimetrales",
+      "RCE sin autenticación en dispositivos de infraestructura de red es una amenaza de Nivel-0 — trate la exposición como una vulnerabilidad de servidor crítica",
+      "El compromiso del enrutador permite la interceptación de tráfico y manipulación del enrutamiento afectando todas las redes conectadas — no está limitado al dispositivo único"
+    ]
+  },
+  "stage-m38": {
+    "tagline": "Zero Trust comienza en el puerto — cada dispositivo debe probar su identidad antes de que la red responda.",
+    "overview": [
+      "Cisco Identity Services Engine (ISE) es la capa de cumplimiento para acceso de red de confianza cero. Implementa Control de Acceso a la Red (NAC) basado en puertos 802.1X, autenticando cada dispositivo y usuario que intenta conectarse a la red antes de otorgar acceso. ISE se integra con Active Directory, Cisco DNA Center y herramientas de seguridad de endpoints para tomar decisiones de acceso basadas en identidad, postura del dispositivo y contexto.",
+      "Sin NAC 802.1X, cualquier dispositivo conectado físicamente a un puerto de switch de red obtiene acceso de red. Con ISE aplicando 802.1X, cada dispositivo debe autenticarse usando certificados de máquina, credenciales de usuario o una combinación — y la postura de seguridad del dispositivo (nivel de parches, estado del antivirus, cifrado de disco) se evalúa antes de que el puerto se abra. Los dispositivos no conformes se ponen en cuarentena en una VLAN de remediación.",
+      "RADIUS (Servicio de Autenticación Remota de Acceso de Marcado) es el protocolo que ISE utiliza para comunicarse con los switches de red. El canal RADIUS ISE-switch es un límite de seguridad crítico: si un atacante puede suplantar el servidor RADIUS o reproducir tráfico RADIUS, puede otorgarse a sí mismo acceso de red — omitiendo toda la capa de cumplimiento de NAC."
+    ],
+    "technical": {
+      "title": "Arquitectura 802.1X / RADIUS y Superficie de Ataque",
+      "body": [
+        "802.1X utiliza tres roles: el Solicitante (dispositivo que busca acceso), el Autenticador (switch de red o AP inalámbrico) y el Servidor de Autenticación (Cisco ISE). Cuando un dispositivo se conecta a un puerto de switch, el switch inicia el intercambio 802.1X — el dispositivo se coloca en un estado no autorizado y solo el tráfico EAP (Protocolo de Autenticación Extensible) pasa hasta que la autenticación tiene éxito.",
+        "ISE se comunica con switches a través de RADIUS sobre UDP. RADIUS utiliza MD5 para autenticación de mensajes — un algoritmo débil conocido. Las implementaciones modernas de ISE utilizan RADIUS sobre TLS (RadSec) para eliminar la debilidad de MD5 y prevenir ataques de repetición. Sin RadSec, un atacante de red que pueda interceptar tráfico RADIUS puede intentar ataques de diccionario sin conexión contra handshakes RADIUS capturados.",
+        "La evaluación de postura de ISE utiliza el agente Cisco Secure Client (anteriormente AnyConnect) en endpoints. El agente informa cumplimiento de parches, antigüedad de definiciones de antivirus, estado de cifrado de disco y estado de firewall a ISE. Basado en una política de postura, ISE otorga acceso completo, redirige a remediación o bloquea completamente."
+      ]
+    },
+    "incident": {
+      "title": "Omisión de 802.1X mediante Suplantación de Dirección MAC — Brecha de Red Hospitalaria",
+      "impact": "El atacante suplantó la dirección MAC de un dispositivo médico autorizado para omitir NAC; accedió a Registros Médicos Electrónicos en la VLAN clínica; se requirió notificación de brecha HIPAA",
+      "body": [
+        "En un incidente documentado de 2022 en el sector sanitario, un atacante obtuvo acceso físico a un armario de cableado de hospital y conectó un laptop a un puerto configurado para MAC Authentication Bypass (MAB) — un mecanismo de respaldo que permite a dispositivos incapaces de 802.1X autenticarse usando su dirección MAC. El atacante suplantó la dirección MAC de un dispositivo médico autorizado (obtenido de un diagrama de red descartado) y ganó acceso a la VLAN clínica que contiene Registros Médicos Electrónicos.",
+        "La causa raíz fue una política de autenticación mal configurada: el puerto estaba configurado para recurrir a MAB cuando la autenticación 802.1X no se iniciaba en 10 segundos. Esta política es apropiada para dispositivos como impresoras y sensores IoT que no pueden ejecutar supplicantes 802.1X, pero crea una vulnerabilidad cuando se aplica indiscriminadamente a todos los puertos. El diseño correcto requiere 802.1X para todos los endpoints capaces de ejecutar un supplicante, con MAB restringido a listas de dispositivos explícitamente gestionadas."
+      ]
+    },
+    "timeline": [
+      "Estándar IEEE 802.1X ratificado — especificación NAC basada en puertos",
+      "Cisco ISE lanzado como plataforma de cumplimiento de NAC empresarial",
+      "RadSec (RADIUS sobre TLS) agregado a ISE — reemplaza autenticación RADIUS MD5 débil",
+      "Incidentes documentados de omisión de NAC en el sector sanitario; asesoramiento de CISA sobre mal configuración de MAB",
+      "Cisco ISE 3.3: políticas de postura asistidas por IA mejoradas e integración de confianza cero"
+    ],
+    "keyTakeaways": [
+      "802.1X con ISE es la capa fundamental del acceso de red de confianza cero — cada dispositivo debe autenticarse antes de que se otorgue acceso al puerto",
+      "MAC Authentication Bypass (MAB) debe restringirse a listas de dispositivos explícitamente gestionadas — las direcciones MAC se pueden suplantar trivialmente",
+      "Utilice RadSec (RADIUS sobre TLS) en lugar de RADIUS estándar — RADIUS estándar utiliza MD5 que está criptográficamente comprometido",
+      "La evaluación de postura con el agente Cisco Secure Client aplica requisitos de seguridad mínimos (parches, AV, cifrado) antes de otorgar acceso completo"
+    ]
+  },
+  "bt-07": {
+    "tagline": "Un firewall es solo un portero: lee tu identificación y decide — permitido o denegado.",
+    "overview": [
+      "Casi has llegado a Santa Cruz. En los límites de la ciudad hay un punto de control: los camiones comerciales toman el desvío de la Highway 17, los turistas pasan por el centro, y los vehículos no autorizados son devueltos. Un firewall funciona de manera idéntica: inspecciona la IP de origen de cada paquete, la IP de destino, el puerto y el protocolo, luego aplica un conjunto de reglas — permitir o denegar.",
+      "Los firewalls se encuentran entre tu red e internet (o entre segmentos de red dentro de una organización). Cada paquete que intenta cruzar la frontera se evalúa contra las reglas en orden. La primera regla que coincide gana. La mayoría de los firewalls terminan con una regla de negación predeterminada: cualquier cosa no explícitamente permitida es bloqueada.",
+      "Los firewalls modernos de \"nueva generación\" (NGFWs) van más profundo — pueden inspeccionar el contenido de paquetes, identificar aplicaciones, detectar firmas de malware y bloquear en función de la reputación del dominio. Pero el concepto central es siempre el mismo: filtrado de paquetes basado en reglas."
+    ],
+    "technical": {
+      "title": "Estructura de Reglas de Firewall y Tipos",
+      "body": [
+        "Una regla de firewall especifica: IP de origen (o rango), IP de destino (o rango), protocolo (TCP/UDP/ICMP), puerto (o rango) y acción (permitir/denegar/registrar). Las reglas se evalúan de arriba a abajo; la primera coincidencia gana. Esto significa que el orden de las reglas importa — una regla de permiso amplia por encima de una regla de negación específica nunca permitirá que se dispare la negación.",
+        "Tipos: firewalls de filtrado de paquetes (sin estado — cada paquete evaluado independientemente), firewalls con estado (rastrean el estado de conexión — solo permiten tráfico de retorno para sesiones establecidas) y firewalls de capa de aplicación (inspección profunda de paquetes, pueden leer contenido HTTP/HTTPS). Tu enrutador doméstico ejecuta un firewall con estado de manera predeterminada."
+      ]
+    },
+    "incident": {
+      "title": "El Gusano Slammer de 2003 — Qué Sucede Sin un Firewall",
+      "impact": "75.000 servidores infectados en 10 minutos; cajeros automáticos del Bank of America sin conexión",
+      "body": [
+        "El gusano SQL Slammer se propagó a través del puerto 1434 (SQL Server Resolution Protocol). Se ajustaba completamente en un único paquete UDP de 376 bytes y no requería interacción del usuario — solo un puerto abierto. En 10 minutos infectó 75.000 servidores en todo el mundo. Corea del Sur perdió acceso a internet. Los 13.000 cajeros automáticos del Bank of America se desconectaron.",
+        "La solución fue simple: bloquear el puerto UDP 1434 en el firewall. Las organizaciones que tenían reglas de firewall adecuadas no se vieron afectadas en absoluto. Las que no lo hacían — o que tenían servidores internos expuestos directamente — fueron comprometidas dentro de minutos de que el gusano se propagara a su segmento de red."
+      ]
+    },
+    "timeline": [
+      "Se describe por primera vez el concepto de firewall después de que el Gusano Morris infecte ARPANET",
+      "Se envía el primer firewall comercial (DEC SEAL)",
+      "SQL Slammer — sin parche + sin firewall = 75K servidores en 10 minutos",
+      "Los firewalls de nueva generación (NGFW) con inspección profunda de paquetes se convierten en estándar"
+    ],
+    "keyTakeaways": [
+      "Los firewalls filtran paquetes basados en IP, puerto, protocolo y dirección",
+      "Las reglas se evalúan de arriba a abajo — la primera coincidencia gana",
+      "La negación predeterminada es el estándar de oro: bloquea todo lo que no esté explícitamente permitido",
+      "Los firewalls con estado rastrean conexiones — el tráfico de retorno se permite automáticamente"
+    ]
+  },
+  "bt-12": {
+    "tagline": "Un navegador es una máquina de traducción — convierte HTML, CSS y JavaScript sin procesar en una página visual.",
+    "overview": [
+      "En la tienda de surf, eliges tu tabla. La tabla no surfea por sí sola — es una herramienta que actúa como interfaz entre tú y la ola. Un navegador es la herramienta que actúa como interfaz entre tú y la web. Cuando escribes una URL, el navegador no simplemente 'muestra una página web' — realiza una secuencia precisa de operaciones: resolución DNS, conexión TCP, protocolo de enlace TLS, solicitud HTTP, análisis de HTML, renderización CSS, ejecución de JavaScript.",
+      "Entender los navegadores es importante para la seguridad porque los navegadores son la superficie de ataque principal para la mayoría de los usuarios. Los ataques XSS (Cross-Site Scripting) inyectan JavaScript malicioso en páginas renderizadas por tu navegador. Los redireccionamientos maliciosos, las descargas impulsadas por el navegador y las páginas de phishing todos dependen del comportamiento del navegador. Las herramientas de desarrollo del navegador (F12) te permiten inspeccionar cada solicitud, respuesta, cookie y script.",
+      "La política del mismo origen del navegador (SOP) es su mecanismo de seguridad principal: JavaScript en la página A no puede leer datos de la página B a menos que ambas estén en el mismo origen (protocolo + dominio + puerto). Esto evita que un sitio malicioso lea tu Gmail o saldo bancario. Cuando SOP está mal configurado (errores CORS), puede convertirse en una vulnerabilidad."
+    ],
+    "technical": {
+      "title": "Qué Sucede Cuando Escribes una URL",
+      "body": [
+        "Paso a paso: (1) Búsqueda DNS para el dominio. (2) Conexión TCP a la IP:puerto del servidor. (3) Protocolo de enlace TLS (si HTTPS). (4) Solicitud GET HTTP enviada. (5) El servidor responde con HTML. (6) El navegador analiza HTML, encuentra enlaces CSS/JS/imagen. (7) El navegador obtiene cada sub-recurso (más solicitudes). (8) CSS aplicado, diseño calculado, página pintada. (9) JavaScript ejecutado. Tiempo total: 200ms–2s para una página moderna.",
+        "Las herramientas de desarrollo del navegador (F12 → pestaña Network) muestran cada solicitud realizada durante la carga de la página: URL, código de estado, tamaño, tiempo, encabezados de solicitud/respuesta. Esto es invaluable para depuración y para entender qué datos está enviando y recibiendo una página."
+      ]
+    },
+    "incident": {
+      "title": "La Brecha de British Airways — Script Malicioso en el Navegador",
+      "impact": "500.000 tarjetas de pago de clientes robadas; multa GDPR de £20M",
+      "body": [
+        "El grupo Magecart inyectó 22 líneas de JavaScript en la página de pago de British Airways. El script capturó detalles de tarjeta escritos en el formulario de pago y los envió a un servidor controlado por los atacantes. El script inyectado se ejecutó en el navegador exactamente como cualquier JavaScript legítimo — los usuarios no tenían forma de detectarlo visualmente.",
+        "El ataque explotó la confianza en el motor de renderización del navegador: si un script se sirve desde la página, el navegador lo ejecuta. Por eso los encabezados Content Security Policy (CSP) importan — permiten a los servidores decirle a los navegadores qué fuentes de script son confiables. BA no tenía un CSP estricto. Los detalles de 500.000 clientes fueron robados durante 15 días antes de que alguien lo notara."
+      ]
+    },
+    "timeline": [
+      "Primer navegador web (WorldWideWeb) por Tim Berners-Lee",
+      "Netscape Navigator — primer navegador mainstream, introduce cookies",
+      "JavaScript agregado a Netscape — la web se vuelve interactiva",
+      "Ataque Magecart de British Airways — JS malicioso roba 500K números de tarjeta"
+    ],
+    "keyTakeaways": [
+      "Los navegadores realizan 9+ pasos para renderizar una sola página — cada uno es una superficie de ataque",
+      "DevTools del navegador (F12) muestran cada solicitud, respuesta, cookie y script",
+      "La política del mismo origen evita robo de datos entre sitios — CORS mal configurado rompe esto",
+      "JavaScript inyectado es indistinguible de scripts legítimos sin CSP"
+    ]
+  },
+  "bt-14": {
+    "tagline": "Antes de confiar tu seguridad al salvavidas, verificas su placa. TLS hace lo mismo.",
+    "overview": [
+      "El salvavidas en Cowell Beach usa una placa que comprueba que está certificado. Antes de confiarle tu vida para que te saque de una corriente de resaca, puedes verificar esa placa. Los certificados TLS funcionan idénticamente: antes de que tu navegador envíe datos sensibles a un servidor, verifica el certificado del servidor — prueba de que el servidor es quien dice ser, firmado por una autoridad de confianza.",
+      "Un certificado TLS contiene: el nombre de dominio para el cual es válido, la autoridad certificadora (CA) que lo firmó, la clave pública del servidor y una fecha de vencimiento. Tu navegador incluye una lista de CAs de confianza (como DigiCert, Let's Encrypt, Comodo). Si el certificado es válido, está firmado por una CA de confianza y coincide con el dominio, aparece el candado y comienza la comunicación cifrada.",
+      "Los errores de certificado son advertencias serias. 'Tu conexión no es privada' significa que el certificado está vencido, es autofirmado, no coincide con el dominio o fue emitido por una CA no confiable. Hacer clic para continuar significa que te estás comunicando con un servidor no verificado — un posible suplantador."
+    ],
+    "technical": {
+      "title": "Cómo funcionan los certificados TLS e infraestructura PKI",
+      "body": [
+        "Infraestructura de clave pública (PKI): Las CAs son terceros de confianza que verifican identidades y firman certificados. El proceso: (1) El servidor genera un par de claves. (2) El servidor envía una Solicitud de Firma de Certificado (CSR) a una CA. (3) La CA verifica que el servidor sea propietario del dominio (mediante desafío DNS o archivo). (4) La CA firma el certificado con su clave privada. (5) El navegador verifica la firma usando la clave pública de la CA (integrada en el navegador).",
+        "Let's Encrypt revolucionó TLS haciendo que los certificados sean gratuitos y automáticos. Antes de 2016, un certificado costaba $100–500/año. Ahora cualquier dominio puede obtener un certificado de 90 días en 60 segundos vía protocolo ACME. Esto llevó a la adopción casi universal de HTTPS. Advertencia: un certificado de Let's Encrypt prueba el control del dominio, no que el sitio sea legítimo — los sitios de phishing también los usan."
+      ]
+    },
+    "incident": {
+      "title": "El hack de DigiNotar — Cuando una CA es comprometida",
+      "impact": "300K+ certificados fraudulentos emitidos; correo de usuarios iraníes de Gmail interceptado",
+      "body": [
+        "DigiNotar, una CA holandesa, fue hackeada y los atacantes emitieron certificados fraudulentos para Google, Mozilla, Microsoft y otros. Las autoridades iraníes usaron un certificado falso de Google para realizar ataques de intermediario en 300,000+ usuarios de Gmail iraníes — interceptando sus correos mientras mostraban un candado válido en el navegador.",
+        "Al descubrirse, todos los navegadores principales revocaron la confianza en el certificado raíz de DigiNotar. Todos los sitios web que usaban certificados de DigiNotar se volvieron no confiables de la noche a la mañana. DigiNotar quebró en cuestión de semanas. El incidente destacó que compromiso de CA = compromiso de internet. Los registros de Transparencia de Certificados fueron creados después para hacer que toda emisión de certificados sea auditable públicamente."
+      ]
+    },
+    "timeline": [
+      "SSL 2.0 introducido por Netscape para comercio electrónico seguro",
+      "TLS 1.0 estandarizado (RFC 2246) — sucesor de SSL",
+      "CA DigiNotar hackeada — certificados fraudulentos usados para espiar usuarios de Gmail iraníes",
+      "Let's Encrypt se lanza — certificados TLS gratuitos, HTTPS se vuelve universal"
+    ],
+    "keyTakeaways": [
+      "Los certificados TLS prueban la identidad del servidor — firmados por una Autoridad Certificadora de confianza",
+      "Los navegadores incluyen una lista integrada de CAs de confianza — todos los certificados se encadenan a una de estas",
+      "Errores de certificado = no continuar — alguien podría estar suplantando el sitio",
+      "Let's Encrypt hace que los certificados sean gratuitos — pero un certificado válido solo prueba control del dominio, no legitimidad"
+    ]
+  },
+  "bt-16": {
+    "tagline": "Llamas a la línea de información de surf con una pregunta específica, responde con un formato específico. Eso es una API.",
+    "overview": [
+      "La línea de información de surf tiene un menú: presiona 1 para la altura de las olas, presiona 2 para la velocidad del viento, presiona 3 para los horarios de mareas. Llamas a un número específico, usas un formato específico y obtienes una respuesta específica. Las APIs (Application Programming Interfaces) funcionan de manera idéntica: endpoints estructurados que consultas con solicitudes estructuradas para obtener respuestas estructuradas.",
+      "Cuando usas una aplicación de clima, la aplicación llama a la API del servicio de clima: GET /api/weather?city=santa-cruz. El servicio de clima devuelve JSON: {temperature: 68, wind: 12, conditions: 'sunny'}. Tu aplicación muestra esos datos. Nunca ves la llamada a la API — sucede invisiblemente en segundo plano. Cada aplicación moderna se construye ensamblando llamadas a API.",
+      "Las APIs son la columna vertebral de internet moderno y también una superficie de ataque importante. Las vulnerabilidades de API — autenticación rota, exposición excesiva de datos, falta de limitación de velocidad, IDOR — ahora representan la mayoría de las brechas de datos significativas. Proteger las APIs es una de las habilidades más importantes en seguridad moderna."
+    ],
+    "technical": {
+      "title": "APIs REST, Autenticación y Vulnerabilidades Comunes",
+      "body": [
+        "Las APIs REST se comunican sobre HTTP usando JSON. Autenticación: claves de API (un token secreto en el encabezado de solicitud), OAuth 2.0 (tokens de acceso delegado) o JWT (JSON Web Tokens). Siempre se envían en el encabezado Authorization: 'Authorization: Bearer <token>'. Nunca en la URL donde aparecerá en los registros.",
+        "OWASP API Security Top 10: Broken Object Level Authorization (IDOR), Broken Authentication, Excessive Data Exposure, Lack of Resource Limits (sin limitación de velocidad), Function Level Authorization failures. Lo más común: las APIs devuelven más datos de los que muestra la aplicación — los atacantes llaman directamente a la API y ven todos los campos ocultos."
+      ]
+    },
+    "incident": {
+      "title": "La Brecha de la API de Peloton — API sin Autenticación Devuelve Datos Privados",
+      "impact": "Los datos de perfil privado de 4.5 millones de usuarios expuestos a llamadas sin autenticación",
+      "body": [
+        "La investigadora de seguridad Jan Masters descubrió que la API de Peloton devolvía datos de perfil de usuario privado — edad, peso, ubicación, historial de entrenamientos — a cualquier llamador, incluso sin autenticación. La aplicación de Peloton mostraba datos limitados, pero llamar directamente a la API devolvía el objeto completo con todos los campos privados.",
+        "Esto es exposición excesiva de datos: la API devolvía el objeto de usuario completo, la aplicación simplemente elegía qué campos mostrar. Los atacantes que llamaban directamente a la API lo veían todo. Peloton descartó inicialmente el informe, luego tardó 3 meses en arreglarlo después de que fue publicado. Los datos privados de salud de 4.5 millones de usuarios eran accesibles para cualquiera que conociera el endpoint."
+      ]
+    },
+    "timeline": [
+      "El concepto de API REST definido por Roy Fielding",
+      "La API de Twitter se lanza — las aplicaciones de terceros construidas sobre APIs se vuelven convencionales",
+      "OWASP publica API Security Top 10 — categoría dedicada a vulnerabilidades de API",
+      "La API de Peloton expone datos privados de 4.5M de usuarios — no se requiere autenticación"
+    ],
+    "keyTakeaways": [
+      "Las APIs son endpoints estructurados: llama con una solicitud, recibe una respuesta estructurada",
+      "Autenticación mediante claves de API u tokens OAuth en el encabezado Authorization — nunca en la URL",
+      "Exposición excesiva de datos: la API devuelve objeto completo, la aplicación muestra subconjunto — los atacantes ven todo",
+      "La limitación de velocidad previene abuso — sin ella, los atacantes enumeran todos los registros"
+    ]
+  },
+  "bt-21": {
+    "tagline": "Un anzuelo está diseñado para parecer exactamente como comida real. Los correos de phishing están diseñados para parecer exactamente como correos reales.",
+    "overview": [
+      "Estás en Fisherman's Wharf preparándote para un viaje de pesca. La tienda de aparejos vende docenas de anzuelos — camarones falsos, calamares falsos, anchoas falsas — todos diseñados para engañar a un pez para que muerda. Los correos de phishing funcionan de manera idéntica: imitan correos reales de bancos, empleadores, agencias gubernamentales o empresas tecnológicas para engañarte para que hagas clic en un enlace o ingreses credenciales.",
+      "El phishing es el vector de acceso inicial #1 para ciberataques. Más del 90% de los incidentes de seguridad comienzan con un correo de phishing. Los atacantes elaboran correos que parecen legítimos: logotipos correctos, nombres de remitentes familiares, lenguaje urgente, y enlaces a sitios web falsos convincentes. El objetivo es robar credenciales, instalar malware, o engañarte para que transfieras dinero.",
+      "Reconocer el phishing requiere mirar más allá del diseño visual hacia los detalles técnicos: el dominio real del correo del remitente (no el nombre mostrado), la URL real detrás de un enlace (pasar el cursor antes de hacer clic), urgencia inesperada o solicitudes, y solicitudes de información que el remitente ya debería tener."
+    ],
+    "technical": {
+      "title": "Indicadores y Tipos de Phishing",
+      "body": [
+        "Indicadores clave: dominio del remitente que no coincide (el nombre mostrado dice 'PayPal Support' pero el correo es de paypa1-support@gmail.com), lenguaje urgente o amenazante ('Tu cuenta se cerrará en 24 horas'), solicitudes de credenciales o pago, enlaces que no coinciden con el destino indicado (pasar el cursor para ver URL real), archivos adjuntos inesperados.",
+        "Tipos: spear phishing (dirigido a una persona específica, utiliza detalles personales para parecer creíble), whaling (se dirige a ejecutivos para fraude de transferencia bancaria — 'CEO fraud'), vishing (phishing de voz — llamadas telefónicas), smishing (phishing por SMS). Business Email Compromise (BEC) cuesta a las organizaciones $2.7B por año — la categoría de cibercrimen más dañina financieramente."
+      ]
+    },
+    "incident": {
+      "title": "El Hack del DNC de 2016 — Correo de Spear Phishing Agrietó la Elección",
+      "impact": "51,000 correos robados; influencia significativa en la elección presidencial de EE.UU. de 2016",
+      "body": [
+        "Se envió un correo de spear phishing a John Podesta, presidente de campaña de Hillary Clinton. El correo parecía ser una alerta de seguridad de Google: 'Alguien tiene tu contraseña. Cámbiala inmediatamente.' El enlace iba a una página de inicio de sesión falsa de Google convincente. La asistente de Podesta le dijo que el correo era legítimo (un error de redacción — querían decir 'ilegítimo'). Podesta ingresó sus credenciales.",
+        "Los servicios de inteligencia rusos (APT28/Fancy Bear) obtuvieron su contraseña de Gmail en segundos. Descargaron 51,000 correos durante meses. WikiLeaks los publicó en octubre de 2016. Toda la operación comenzó con un único correo de phishing convincente. No hubo exploit técnico — solo ingeniería social a través de un anzuelo bien elaborado."
+      ]
+    },
+    "timeline": [
+      "El término 'phishing' fue acuñado en AOL — los atacantes se hacen pasar por personal de AOL para robar contraseñas",
+      "Campañas de phishing de PayPal comienzan — el phishing financiero se vuelve convencional",
+      "Spear phish del DNC — un correo lleva a 51K mensajes robados, impacto en elecciones",
+      "BEC (Business Email Compromise) cuesta $2.7B — reporte del ICCC"
+    ],
+    "keyTakeaways": [
+      "Verifica el dominio real del correo del remitente, no solo el nombre mostrado",
+      "Pasa el cursor sobre los enlaces antes de hacer clic — la URL real se muestra en la barra de estado",
+      "La urgencia y las amenazas son tácticas de manipulación — desacelera y verifica",
+      "El spear phishing utiliza detalles personales para parecer creíble — no confíes en la familiaridad solamente"
+    ]
+  },
+  "bt-28": {
+    "tagline": "Los lechos de kelp se ven hermosos pero ocultan rocas y corrientes. Las URLs se ven inofensivas pero pueden ocultar malware.",
+    "overview": [
+      "Bucear en el bosque de kelp de la Bahía de Monterey requiere leer el agua cuidadosamente — el hermoso dosel de kelp puede ocultar rocas, cambios repentinos de profundidad y corrientes fuertes. La navegación segura requiere la misma vigilancia: las URLs que se ven legítimas pueden ocultar redirecciones maliciosas, dominios con typosquatting o páginas que inyectan scripts. La superficie se ve segura; el peligro está debajo.",
+      "Las URLs maliciosas tienen varias formas: typosquatting (paypa1.com, g00gle.com), ataques de homógrafos (usando caracteres Unicode que parecen letras latinas), acortadores de URL que ocultan el destino real, redirecciones abiertas (sitio legítimo redirigiendo a uno malicioso) y subdominios engañosos (paypal.attacker.com — el dominio real es attacker.com, no paypal.com).",
+      "Antes de hacer clic en cualquier enlace: pasa el cursor para ver la URL real en la barra de estado. Lee el dominio de derecha a izquierda — la porción más a la derecha antes de la primera / es el dominio actual. paypal.com.attacker.ru — el dominio es attacker.ru. Busca HTTPS pero recuerda que los sitios de phishing también usan HTTPS. Usa Google Safe Browsing o VirusTotal para escanear URLs sospechosas antes de visitarlas."
+    ],
+    "technical": {
+      "title": "Estructura de URL y Patrones de URLs Maliciosas",
+      "body": [
+        "Anatomía de URL: scheme://subdomain.domain.tld/path?query#fragment. El dominio siempre está entre los últimos dos puntos antes de la primera /. paypal.com.attacker.ru: el dominio es attacker.ru. secure-paypal.com: el dominio es secure-paypal.com (no paypal.com). bank.com/login: el dominio es bank.com (legítimo). login-bank.com: el dominio es login-bank.com (sospechoso).",
+        "Acortadores de URL (bit.ly, tinyurl.com) ocultan el destino real — siempre expande antes de hacer clic. Herramientas: unshorten.me, CheckShortURL. URLs de descarga de archivos: cuidado con .exe, .msi, .dmg, .bat, .ps1 de fuentes no confiables. Descargas drive-by: algunos sitios explotan vulnerabilidades del navegador o complementos para descargar y ejecutar malware solo visitando la página."
+      ]
+    },
+    "incident": {
+      "title": "Operation Aurora — Descarga Drive-By mediante Internet Explorer",
+      "impact": "Robo de propiedad intelectual; código fuente de Google accedido; 30+ empresas importantes comprometidas",
+      "body": [
+        "Hackers de estado chino (APT17/Elderwood) enviaron correos electrónicos de phishing dirigidos a empleados de Google con un enlace. El enlace iba a un sitio web malicioso que explotaba un zero-day en Internet Explorer. Solo visitar la URL — sin clic, sin descarga, sin aviso — fue suficiente para instalar un rootkit mediante una descarga drive-by.",
+        "El malware dio a los atacantes acceso persistente a la infraestructura de Google y, específicamente, al repositorio de código fuente y a las cuentas de Gmail de activistas de derechos humanos chinos. La respuesta de Google: amenazar con abandonar China, lo que luego hicieron. El incidente aceleró el desarrollo de Chrome e impulsó a la industria hacia actualizaciones automáticas del navegador y renderizado en sandbox."
+      ]
+    },
+    "timeline": [
+      "Gusano ILOVEYOU — ingeniería social a través de adjuntos de correo electrónico",
+      "Operation Aurora — descarga drive-by mediante zero-day de IE, 30+ empresas comprometidas",
+      "Campañas de malvertising inyectan descargas drive-by a través de redes de anuncios",
+      "Los navegadores areniscan todo el contenido — las descargas drive-by son significativamente más difíciles"
+    ],
+    "keyTakeaways": [
+      "Lee las URLs de derecha a izquierda para encontrar el dominio real: paypal.com.attacker.ru = attacker.ru",
+      "Pasa el cursor sobre los enlaces antes de hacer clic — la barra de estado muestra la URL real",
+      "HTTPS prueba cifrado, no legitimidad — los sitios de phishing también usan HTTPS",
+      "Escanea URLs sospechosas con VirusTotal antes de visitarlas"
+    ]
+  },
+  "audit-09": {
+    "tagline": "Recopilar datos que no necesitas es una responsabilidad, no un activo.",
+    "overview": [
+      "Las auditorías de privacidad de datos evalúan si una organización recopila, procesa, retiene y elimina datos personales de conformidad con las regulaciones de privacidad aplicables — principalmente GDPR en Europa, CCPA en California, y regulaciones específicas del sector como HIPAA. El marco de privacidad de ISACA se mapea directamente a las seis bases legales de procesamiento y ocho derechos de los interesados de GDPR.",
+      "El alcance de la auditoría cubre: mapeo de datos (qué datos personales se mantienen, dónde y por qué), mecanismos de consentimiento (¿es legal la recopilación?), cumplimiento de derechos de los interesados (solicitudes de eliminación, acceso, portabilidad), horarios de retención y eliminación de datos, procedimientos de notificación de brechas (GDPR requiere notificación dentro de 72 horas del descubrimiento), y Evaluaciones de Impacto de Protección de Datos (DPIAs) para procesamiento de alto riesgo.",
+      "Hallazgos comunes en auditorías de privacidad: datos personales retenidos más allá del período de retención documentado, sin base legal documentada para el procesamiento, solicitudes de acceso de interesados no cumplidas dentro de la ventana requerida de 30 días, sin DPIA para actividades de procesamiento de alto riesgo, y procesos de notificación de brechas que no cumplen con el requisito de 72 horas."
+    ],
+    "technical": {
+      "title": "Requisitos Clave de GDPR para Auditores",
+      "body": [
+        "Principios del Artículo 5 — legalidad, equidad, transparencia; limitación de propósito; minimización de datos; precisión; limitación de almacenamiento; integridad y confidencialidad. Los auditores verifican que cada principio esté implementado con controles documentados.",
+        "Artículo 17 (derecho al olvido / derecho a ser olvidado): cuando un usuario solicita la eliminación, la organización debe eliminar sus datos de todos los sistemas (incluidas las copias de seguridad a las que se accede rutinariamente) dentro de 30 días. Los auditores realizan pruebas muestreando solicitudes de eliminación y verificando que los datos se eliminaron realmente de todos los almacenes de datos."
+      ]
+    },
+    "incident": {
+      "title": "Meta GDPR Fine — Transferencias de Datos a los EE.UU. (2023)",
+      "impact": "Multa de €1.200 millones — la mayor multa de GDPR jamás emitida",
+      "body": [
+        "La Comisión Irlandesa de Protección de Datos multó a Meta con €1.200 millones por transferir datos personales de usuarios europeos a servidores estadounidenses sin base legal adecuada después de que la Privacidad Privacy Shield UE-EE.UU. fue invalidada. Meta continuó las transferencias durante años después de que la base legal fue revocada, confiando en Cláusulas Contractuales Estándar que el regulador consideró insuficientes.",
+        "El rastro de auditoría fue claro: los flujos de datos de Meta estaban documentados, la base legal había sido invalidada, y Meta continuó procesando de todas formas. Los auditores de privacidad buscan exactamente esta brecha — procesamiento que continúa después de que la base legal cambia. Una auditoría de GDPR habría señalado el mecanismo de transferencia inadecuado y recomendado la remediación antes de la acción regulatoria."
+      ]
+    },
+    "timeline": [
+      "GDPR efectivo — 25 de mayo de 2018",
+      "British Airways — Multa de £20 millones por brecha que afectó a 400 mil clientes",
+      "WhatsApp — Multa de €225 millones por violaciones de transparencia",
+      "Meta — Multa de €1.200 millones por transferencias ilícitas de datos a EE.UU."
+    ],
+    "keyTakeaways": [
+      "Minimización de datos: recopila solo lo que necesitas para propósitos documentados",
+      "Los horarios de retención deben aplicarse — datos pasados su fecha de retención son una responsabilidad",
+      "Las solicitudes de interesados (eliminación, acceso) deben cumplirse dentro de 30 días",
+      "Notificación de brecha GDPR: 72 horas a la autoridad supervisora, sin demora indebida a los interesados"
+    ]
+  },
+  "audit-12": {
+    "tagline": "El informe de auditoría es el producto. Todo lo anterior es solo el trabajo.",
+    "overview": [
+      "El informe de auditoría es el entregable formal que comunica hallazgos a la gerencia, el comité de auditoría y la junta directiva. Los estándares ISACA requieren que los informes de auditoría incluyan: el alcance y los objetivos, el período cubierto, la metodología utilizada, hallazgos con evidencia de apoyo, calificaciones de riesgo, respuestas de la gerencia y cronogramas de remediación.",
+      "Cada hallazgo debe estar estructurado con: la condición (qué se encontró), los criterios (qué requiere el estándar), la causa (por qué existe la desviación) y el efecto (qué riesgo crea la desviación). Esta estructura — Condición, Criterios, Causa, Efecto — es el estándar CISA para un hallazgo completo.",
+      "El seguimiento de remediación es el control que asegura que los hallazgos se cierren efectivamente. Después de que se emite el informe, el equipo de auditoría da seguimiento a los 30, 60 y 90 días para verificar la remediación. Los hallazgos que no se remedian en la fecha acordada se escalan al comité de auditoría. Los hallazgos repetidos (el mismo hallazgo en múltiples ciclos de auditoría) se marcan como una preocupación del entorno de control de gestión."
+    ],
+    "technical": {
+      "title": "Redacción de un Hallazgo de Auditoría Efectivo",
+      "body": [
+        "Condición: 'Durante nuestra revisión del Q1 2026, 5 de 60 tickets de cambio en producción (8.3%) carecían de aprobación documentada de CAB antes de la implementación.' Sea específico: nombre el sistema, el período, la muestra y la tasa de desviación.",
+        "Criterios: 'Según la Política de Gestión de Cambios v2.1 de la organización y COBIT BAI06, todos los cambios normales deben tener aprobación documentada de CAB antes de la implementación en producción.' Cite la política o estándar específico. Causa: 'La herramienta de gestión de cambios no impone un flujo de trabajo de aprobación obligatorio.' Efecto: 'Los cambios no autorizados pueden implementarse en sistemas de producción, creando riesgo de inestabilidad del sistema, ejecución de código no autorizado e informes financieros poco confiables bajo la Sección 404 de SOX.'"
+      ]
+    },
+    "incident": {
+      "title": "Los Hallazgos de Auditoría Repetidos de Wells Fargo (2016–2023)",
+      "impact": "$3.7B en sanciones; límite de activos impuesto por la Fed; órdenes de consentimiento aún vigentes",
+      "body": [
+        "Los reguladores de Wells Fargo emitieron hallazgos repetidos sobre gestión de riesgo inadecuada, prácticas de ventas y protecciones al consumidor durante siete años. Cada ciclo de auditoría identificó las mismas deficiencias. La OCC y CFPB encontraron que la gerencia reconoció hallazgos, acordó planes de remediación y luego no los implementó.",
+        "El patrón de hallazgos repetidos es una bandera roja de auditoría que indica un colapso fundamental en el entorno de control. Los estándares ISACA requieren que los auditores escalen hallazgos repetidos directamente al comité de auditoría, omitiendo a la gerencia, porque los hallazgos repetidos sugieren que la gerencia no está en condiciones o no está dispuesta a remediar. El caso de Wells Fargo es ahora un ejemplo estándar en el currículo de CISA de por qué importa el seguimiento de remediación."
+      ]
+    },
+    "timeline": [
+      "ISACA fundada — estándares de auditoría de TI desarrollados por primera vez",
+      "Sección 301 de SOX — requisitos de independencia del comité de auditoría",
+      "Wells Fargo — hallazgos repetidos ignorados por la gerencia",
+      "Wells Fargo — límite de activos de la Fed aún vigente; $3.7B en sanciones totales"
+    ],
+    "keyTakeaways": [
+      "Cada hallazgo necesita: Condición, Criterios, Causa y Efecto — los cuatro elementos",
+      "El seguimiento de remediación a los 30/60/90 días es un control de auditoría, no opcional",
+      "Los hallazgos repetidos se escalan directamente al comité de auditoría — la responsabilidad de la gerencia ha fallado",
+      "El informe de auditoría es un documento legal — la evidencia de cada hallazgo debe estar en los papeles de trabajo"
+    ]
+  }
+}

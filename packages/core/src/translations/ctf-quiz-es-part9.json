@@ -1,0 +1,392 @@
+{
+  "umbrella-01": {
+    "questions": [
+      {
+        "q": "Cisco Umbrella bloquea amenazas en la capa DNS — antes de que se establezca cualquier conexión TCP/UDP.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "¿Cuáles son las direcciones IP de los resolvers DNS primarios de Umbrella?",
+        "options": [
+          "8.8.8.8 y 8.8.4.4",
+          "208.67.222.222 y 208.67.220.220"
+        ]
+      },
+      {
+        "q": "¿Umbrella requiere descifrado TLS para bloquear tráfico C2 HTTPS cifrado?",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "¿En qué año adquirió Cisco OpenDNS (ahora Umbrella) por aproximadamente 635 millones de dólares?",
+        "options": [
+          "2015",
+          "2010"
+        ]
+      },
+      {
+        "q": "En el escenario de eliminación de Trickbot en octubre de 2020, ¿qué actor de amenaza operaba la infraestructura C2 de Trickbot?",
+        "options": [
+          "LAZARUS GROUP",
+          "WIZARD SPIDER"
+        ]
+      }
+    ]
+  },
+  "umbrella-02": {
+    "questions": [
+      {
+        "q": "El tunelado DNS codifica datos en etiquetas de subdominio y funciona a través de firewalls estrictos porque el puerto UDP 53 raramente está bloqueado.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "Un usuario normal genera aproximadamente 2.000 consultas DNS por día — aproximadamente la misma cantidad que un túnel DNS.",
+        "options": [
+          "Falso",
+          "Verdadero"
+        ]
+      },
+      {
+        "q": "¿Qué huella de herramienta se identificó en el escenario del túnel DNS del banco de Singapur?",
+        "options": [
+          "dnscat2 v0.07",
+          "iodine v0.7"
+        ]
+      },
+      {
+        "q": "OilRig (APT34) utilizó principalmente qué tipo de registro DNS para sus túneles de exfiltración?",
+        "options": [
+          "Registros MX",
+          "Registros TXT"
+        ]
+      },
+      {
+        "q": "Bloquear un dominio de túnel a nivel NXDOMAIN es más robusto que filtrar por longitud de etiqueta de subdominio.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      }
+    ]
+  },
+  "umbrella-03": {
+    "questions": [
+      {
+        "q": "El malware DGA genera cientos de dominios por día, pero el atacante solo necesita registrar uno o dos para mantener el acceso C2.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "Conficker, la primera botnet DGA generalizada, generaba aproximadamente ¿cuántos dominios por día?",
+        "options": [
+          "2.500",
+          "250"
+        ]
+      },
+      {
+        "q": "Bloquear un solo dominio generado por DGA es suficiente para detener una botnet basada en DGA.",
+        "options": [
+          "Falso",
+          "Verdadero"
+        ]
+      },
+      {
+        "q": "En el escenario del hospital NHS, ¿qué payload de ransomware intentaba entregar Emotet?",
+        "options": [
+          "LockBit",
+          "Ryuk"
+        ]
+      },
+      {
+        "q": "La detección DGA basada en ML de Umbrella señala tormentas NXDOMAIN combinadas con nombres de dominio de alta entropía (de apariencia generada por máquina).",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      }
+    ]
+  },
+  "umbrella-04": {
+    "questions": [
+      {
+        "q": "En el fast flux de flujo simple, el nombre de dominio en sí rota cada pocos minutos junto con las direcciones IP.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "El flujo doble (double-flux) extiende el flujo simple rotando también qué tipo de registro DNS además de los registros A?",
+        "options": [
+          "Registros CNAME",
+          "Registros NS (nameserver)"
+        ]
+      },
+      {
+        "q": "Las listas de bloqueo basadas en IP son una defensa eficaz a largo plazo contra las redes fast flux.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "Umbrella derrota el fast flux bloqueando a nivel de nombre de dominio, haciendo irrelevante la rotación de IP.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "En el escenario de la empresa de trading, ¿a cuántas direcciones IP únicas resolvió el dominio flux-c2.net en 24 horas?",
+        "options": [
+          "28",
+          "287"
+        ]
+      }
+    ]
+  },
+  "umbrella-05": {
+    "questions": [
+      {
+        "q": "El ataque de DNS rebinding funciona cambiando el registro DNS de un dominio a una IP privada después de que expira el TTL, engañando al navegador para que trate el recurso interno como mismo origen.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "Umbrella detecta el DNS rebinding señalando dominios públicos que devuelven direcciones IP privadas RFC-1918 en sus respuestas DNS.",
+        "options": [
+          "Falso",
+          "Verdadero"
+        ]
+      },
+      {
+        "q": "Después de un DNS rebind exitoso, el navegador bloquea la solicitud al recurso interno porque detecta una violación de origen cruzado.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "Un ataque de DNS rebinding requiere que el atacante controle el nameserver autoritativo del dominio malicioso.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "En el escenario del laboratorio IoT, ¿qué tipo de dispositivo estaba expuesto en 192.168.10.1?",
+        "options": [
+          "Cámara IP",
+          "Router de laboratorio (TP-Link AX3000)"
+        ]
+      }
+    ]
+  },
+  "umbrella-06": {
+    "questions": [
+      {
+        "q": "Los ataques de homógrafo IDN utilizan caracteres Unicode visualmente idénticos a letras ASCII, haciendo que el dominio malicioso sea indetectable a simple vista en navegadores antiguos.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "Un certificado TLS de Let's Encrypt en un dominio similar (lookalike) es un indicador de confianza confiable que confirma que el sitio es legítimo.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "La detección de dominios similares (lookalike) de Umbrella solo puede detectar dominios con coincidencia exacta — no puede identificar typosquats de un solo carácter.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "En el escenario del contratista del Pentágono, ¿qué sustitución de caracteres hizo que el dominio similar fuera difícil de detectar?",
+        "options": [
+          "Cero ('0') reemplazando la letra 'a' en la posición 8",
+          "Cirílic 'с' reemplazando la 'c' latina en la posición 1"
+        ]
+      },
+      {
+        "q": "NOBELIUM (APT29) es atribuido a ¿qué servicio de inteligencia de estado nación?",
+        "options": [
+          "MSS chino",
+          "SVR ruso"
+        ]
+      }
+    ]
+  },
+  "umbrella-07": {
+    "questions": [
+      {
+        "q": "En la jerarquía de políticas de Umbrella, una entrada de lista de permitidos personalizada anula los bloqueos de categorías de seguridad como Malware y C2.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "¿Qué tipo de entrada de lista de permitidos es más segura y sigue las mejores prácticas de Umbrella?",
+        "options": [
+          "*.update-service.io sin fecha de expiración aplicada globalmente",
+          "pkg.update-service.io con fecha de expiración limitada al grupo WORKSTATIONS"
+        ]
+      },
+      {
+        "q": "La regla de lista de permitidos fraudulenta (RULE-2023-0092) en el escenario del distrito escolar fue agregada por una cuenta que aún estaba activa en el momento del incidente.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "Los operadores de LockBit explotaron la entrada de lista de permitidos con comodín registrando un subdominio bajo el dominio comodín permitido.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "¿Cuánto costó finalmente el ataque LockBit al distrito escolar en rescate y recuperación?",
+        "options": [
+          "2,1 millones de dólares",
+          "21 millones de dólares"
+        ]
+      }
+    ]
+  },
+  "umbrella-08": {
+    "questions": [
+      {
+        "q": "Cuando el malware usa DoH (DNS over HTTPS) con una IP de resolver codificada como 1.1.1.1:443, el resolver DNS estándar de Cisco Umbrella ve y bloquea las consultas.",
+        "options": [
+          "Falso",
+          "Verdadero"
+        ]
+      },
+      {
+        "q": "Godlua (2019) fue el primer malware confirmado en usar DoH para evasión C2. ¿A qué tipo de sistemas atacó?",
+        "options": [
+          "Estaciones de trabajo Windows en redes financieras",
+          "Servidores Linux y Windows en Asia-Pacífico"
+        ]
+      },
+      {
+        "q": "El cliente roaming de Umbrella bloquea todas las conexiones DoH, incluidas las que van al endpoint DoH en la nube de Umbrella (208.67.222.222:443).",
+        "options": [
+          "Falso",
+          "Verdadero"
+        ]
+      },
+      {
+        "q": "En el escenario de Tokio, el proceso sospechoso que realizaba conexiones DoH se llamaba svchost32.exe — un proceso legítimo del sistema Windows.",
+        "options": [
+          "Falso",
+          "Verdadero"
+        ]
+      },
+      {
+        "q": "El payload DoH decodificado en el escenario de Tokio reveló una consulta DNS para ¿qué dominio?",
+        "options": [
+          "c2-prime.net",
+          "volt-stage.net"
+        ]
+      }
+    ]
+  },
+  "umbrella-09": {
+    "questions": [
+      {
+        "q": "El DNS pasivo registra resoluciones DNS históricas, permitiendo a los analistas descubrir dominios que compartieron IPs con servidores C2 conocidos.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "Talos envía dominios maliciosos confirmados a Umbrella globalmente en aproximadamente 4 horas tras la confirmación del analista.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "En la campaña Scattered Spider (UNC3944), Talos bloqueó la infraestructura de la campaña después de que la mayoría de los ataques ya habían tenido éxito.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "¿Cuántos dominios se identificaron en la infraestructura de la campaña Scattered Spider 2023 mediante pivoteo de DNS pasivo?",
+        "options": [
+          "147",
+          "47"
+        ]
+      },
+      {
+        "q": "En el escenario, los 47 dominios de la campaña Scattered Spider fueron registrados en el mismo registrador en pocos días usando pago en criptomoneda.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      }
+    ]
+  },
+  "umbrella-10": {
+    "questions": [
+      {
+        "q": "Los registros DNS pueden identificar hosts comprometidos — incluidos dispositivos OT/SCADA no gestionados — más rápido que la telemetría EDR sola.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "VOLT TYPHOON (APT chino) utilizó principalmente malware personalizado con una gran huella de exploits para persistencia en infraestructura crítica de EE. UU.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "La contención DNS bloquea los dominios C2 para todos los hosts infectados simultáneamente, incluidos los dispositivos OT y SCADA no gestionados.",
+        "options": [
+          "Falso",
+          "Verdadero"
+        ]
+      },
+      {
+        "q": "En el escenario de ERCOT, ¿cuántos hosts OT se encontraron consultando el dominio C2 de VOLT TYPHOON?",
+        "options": [
+          "3",
+          "7"
+        ]
+      },
+      {
+        "q": "Las Directrices de Protección de Infraestructura Crítica de CISA (CPG 2.S) recomiendan la seguridad en la capa DNS como control básico para los operadores de infraestructura crítica.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      }
+    ]
+  }
+}

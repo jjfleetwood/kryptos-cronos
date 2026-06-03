@@ -1,0 +1,744 @@
+{
+  "baseball-5-06": {
+    "tagline": "Una base robada regalada no es diferente de un base por bolas — los mejores lanzadores son tan peligrosos con la bola a su lado como con ella en su mano.",
+    "overview": [
+      "Con corredores en base, el trabajo del lanzador cambia fundamentalmente. Mantener a los corredores — prevenir robos de base y limitar oportunidades de avance — se vuelve tan importante como la calidad del lanzamiento. La posición de estiramiento es la herramienta principal: el envío comprimido reduce el tiempo de lanzamiento del receptor e limita el arranque del corredor. Pero el estiramiento solo no siempre es suficiente; los lanzadores élite también utilizan movimientos de pickoff, pasos deslizantes y tiempos variados para mantener a los corredores honestos.",
+      "El movimiento de pickoff es un lanzamiento deceptivo legal a una base para atrapar a un corredor fuera de base o forzarlo a regresar, reduciendo su ventaja secundaria. Hay reglas distintas que rigen los movimientos de pickoff a primera base (el lanzador debe dar un paso hacia primera antes de lanzar), segunda base (múltiples enfoques legales) y tercera base (paso directo hacia tercera). Un movimiento de pickoff ilegal — o cualquier número de otras violaciones mecánicas durante el movimiento de viento o estiramiento — se llama balk, avanzando todos los corredores una base.",
+      "Los lanzadores de Dodgers en la era de Dave Roberts han sido entrenados extensivamente en la mecánica de mantener corredores. Los Dodgers de la Serie Mundial 2020 enfrentaron oponentes de playoff con corredores rápidos, y lanzadores como Clayton Kershaw, Walker Buehler y Julio Urias hicieron uso deliberado de tiempos variados, pasos deslizantes y pickoffs de primer movimiento para neutralizar el juego de carreras. Entender la interacción entre el tiempo de envío, la efectividad del pickoff y la calidad del lanzamiento es una habilidad de nivel de posgrado que separa a los lanzadores completos de los tiradores unidimensionales."
+    ],
+    "technical": {
+      "title": "Reglas de Balk — La Regla Más Incomprendida en el Béisbol",
+      "body": [
+        "Se llama balk cuando un lanzador hace un movimiento ilegal durante un envío o intento de pickoff mientras hay corredores en base. Los balks más comunes son: comenzar el movimiento de viento y detenerse (un lanzador que comienza cualquier movimiento hacia el plato debe completar el lanzamiento), no venir a una parada establecida en el estiramiento, dar un paso hacia una base y lanzar a otra, soltar la bola en el rubber, lanzar desde adelante del rubber sin tener el pie en él, e hacer un lanzamiento falso a primera base (que es ilegal — lanzar a primera requiere un paso real).",
+        "El paso deslizante es un envío modificado donde el lanzador usa un levantamiento de pierna muy pequeño — esencialmente deslizando el pie de zancada hacia la zancada en lugar de un movimiento de pierna completo. Esto reduce significativamente el tiempo de envío de aproximadamente 1.4 segundos (estiramiento completo) a menos de 1.2 segundos — a menudo por debajo del umbral necesario para intentos exitosos de robo de base. El compromiso es una velocidad ligeramente reducida (típicamente 2–3 mph menos) porque el movimiento de pierna genera carga de cadera. Los lanzadores típicamente usan el paso deslizante solo cuando es necesario — con corredores rápidos o en situaciones críticas."
+      ]
+    },
+    "incident": {
+      "title": "Dodgers Ganan la Serie Mundial 2020 — Kershaw Mantiene Corredores de Rays",
+      "impact": "Los Tampa Bay Rays, uno de los equipos más rápidos de la Liga Americana en 2020, tuvieron su juego de carreras neutralizado en la Serie Mundial por el lanzamiento de Dodgers. Clayton Kershaw específicamente varió su tiempo de envío y utilizó lanzamientos de pickoff a primera base para neutralizar la velocidad de los Rays, contribuyendo al primer campeonato de los Dodgers desde 1988.",
+      "body": [
+        "La Serie Mundial 2020 entre los Dodgers y los Tampa Bay Rays fue un enfrentamiento del mejor ataque de la Liga Nacional contra el equipo más analíticamente avanzado de la Liga Americana. El plan de juego de los Rays incluyó usar velocidad para crear presión — su tasa de robo de base durante la temporada regular fue una de las más altas en el béisbol. El personal de lanzamiento de los Dodgers contrarrestó con atención deliberada al tiempo de envío y la disrupción de corredores.",
+        "Kershaw, a pesar de las críticas de su récord de postemporada en años anteriores, se desempeñó en la serie de 2020. Su capacidad de variar el tiempo — a veces manteniendo la posición establecida por dos segundos, a veces entregando rápidamente después de una mirada — mantuvo a los corredores de Rays sin poder obtener lecturas cómodas de su envío. Su movimiento de pickoff a primera base, aunque no es su arma más temida, fue disciplinado lo suficiente para prevenir que los Rays tomaran libertades. Los Dodgers ganaron su primera Serie Mundial desde 1988, y la gestión de corredores del personal de lanzamiento fue específicamente notada por analistas como un factor contribuyente."
+      ]
+    },
+    "timeline": [
+      "La regla de balk se estandariza por primera vez en las reglas oficiales de béisbol",
+      "Jim Gilliam y Dodgers usan carreras agresivas — lanzadores comienzan contra-estrategias",
+      "Maury Wills roba 104 bases para los Dodgers — lanzadores obligados a desarrollar mecánica de retención",
+      "Dodgers ganan la Serie Mundial — Orel Hershiser contiene el juego de carreras de Oakland A's",
+      "MLB comienza a rastrear tiempo de envío al plato — paso deslizante cuantificado como estándar sub-1.2 seg",
+      "Dodgers ganan la Serie Mundial — tiempos variados neutralizan juego de velocidad de Rays"
+    ],
+    "keyTakeaways": [
+      "El paso deslizante reduce el tiempo de envío a menos de 1.2 segundos — por debajo del umbral para la mayoría de intentos exitosos de robo de base",
+      "Un balk avanza todos los corredores una base — los disparadores más comunes son detener a mitad del envío y no detenerse completamente en la posición establecida",
+      "Variar el tiempo (sostener, rápido, sostener, variar) previene que los corredores obtengan una lectura limpia del envío",
+      "Máximo dos miradas antes de entregar — pasar demasiada atención a los corredores degrada la calidad del lanzamiento"
+    ]
+  },
+  "baseball-5-07": {
+    "tagline": "Greg Maddux nunca lanzó a 90 mph y ganó 355 juegos — porque entendió algo que la mayoría de los lanzadores nunca aprenden.",
+    "overview": [
+      "La velocidad es el atributo más visible y más fetichizado en el lanzamiento. Una lectura de radar gun de 95 mph crea entusiasmo; una lectura de 84 mph crea duda. Pero la relación entre velocidad y efectividad es mucho más compleja de lo que el radar gun sugiere. Algunos de los lanzadores más dominantes en la historia del béisbol — Greg Maddux, Tom Glavine, Jamie Moyer, el especialista en ubicación Kyle Hendricks — construyeron carreras excepcionales sin velocidad de élite. Mientras tanto, lanzadores que tiran fuerte pero no pueden controlar su fastball reciben golpes tan duros como los lanzadores suaves que erran en la zona.",
+      "La velocidad se determina por varios factores biomecánicos: velocidad de rotación de cadera (el impulsor principal), impulso de pierna desde la goma, eficiencia de la trayectoria del brazo (una trayectoria limpia no desperdicia energía), masa corporal (más masa moviéndose hacia el plato = más fuerza), y flexibilidad (un lanzador más flexible puede lograr mayor rotación externa, lo que aumenta la ventana de aceleración). La mayoría de estos factores pueden mejorarse con entrenamiento — la velocidad no es completamente genética, aunque hay un techo para cada individuo.",
+      "En niveles juveniles, la ubicación casi siempre vence a la velocidad. Un lanzador que lanza a 75 mph pero ubica consistentemente en las esquinas superará a un lanzador que lanza a 85 mph por el centro. Los bateadores juveniles están entrenados para hacer contacto con la bola donde sea — su capacidad de ser disciplinados acerca de la ubicación de lanzamientos está mucho menos desarrollada que su capacidad de reaccionar a un lanzamiento bateble. Un lanzador de 72 mph ubicado consistentemente no solo es más efectivo sino también más saludable — la generación de velocidad basada en el esfuerzo es la causa principal de lesiones en el brazo de lanzadores juveniles."
+    ],
+    "technical": {
+      "title": "El Principio de Maddux — Eficiencia de Lanzamiento Sobre Poder",
+      "body": [
+        "Greg Maddux ganó cuatro Premios Cy Young consecutivos (1992–1995) y terminó con 355 victorias en su carrera mientras rara vez superaba 91 mph en su fastball. Su enfoque se construyó sobre tres principios: (1) lanzar la menor cantidad de lanzamientos posible generando roletazos y contacto débil temprano en los conteos, (2) cambiar velocidad para interrumpir el tiempo en lugar de dominar a los bateadores, y (3) ubicar con precisión en las esquinas para forzar a los bateadores a swing en lanzamientos que no pueden impulsar.",
+        "El promedio de carrera de Maddux de 76 lanzamientos por inicio — comparado con el promedio de MLB de 95+ — significaba que era significativamente más eficiente que sus pares. Esta eficiencia preservó su brazo durante una carrera de 23 años y le permitió lanzar profundamente en juegos consistentemente. Su filosofía se resume en una cita famosa: 'No me importa qué lectura da el radar gun. Si el lanzamiento está donde quiero que esté y el bateador no puede impulsarlo, he triunfado.'"
+      ]
+    },
+    "incident": {
+      "title": "La Temporada Cy Young de Greg Maddux en 1995 — Dominancia Pura Sin Poder",
+      "impact": "La temporada de 1995 de Greg Maddux produjo una ERA de 1.63 — la más baja desde Bob Gibson de 1.12 en 1968. Lanzó 209.2 innings y caminó solo a 23 bateadores en toda la temporada. Su velocidad máxima ese año fue medida a 90 mph. La temporada se mantiene como la prueba definitiva de que la ubicación, el movimiento y la eficiencia de lanzamiento vencen a la velocidad bruta.",
+      "body": [
+        "La temporada de 1995 de Maddux con los Braves se estudia en clínicas de lanzamiento como la demostración del mundo real más extrema de control sobre velocidad. Su ERA de 1.63 en 209.2 innings — incluyendo los playoffs — fue construida sobre un fundamento: lanzar la bola exactamente donde quería, cada vez, con movimiento que hacía que los bateadores erren por una fracción de pulgada. Los bateadores que enfrentaron a Maddux frecuentemente reportaban que parecía que él sabía exactamente qué estaban pensando: si se sentaban en el fastball, lanzaba un changeup; si se ajustaban al lanzamiento off-speed, iba con fastball en la esquina.",
+        "El principio de Maddux se traduce directamente al béisbol juvenil. Los bateadores juveniles no han desarrollado el reconocimiento de lanzamientos y disciplina de zona de los profesionales — harán swing a lanzamientos límite y perseguirán bolas rompientes porque reaccionan a la bola, no a su ubicación. Un lanzador que puede controlar a 72 mph generará más strikeouts y contacto débil a nivel juvenil que un lanzador de la misma edad que tira fuerte pero no puede ubicarse. Más importante aún, los hábitos mecánicos del lanzamiento de control primero producen brazos más saludables."
+      ]
+    },
+    "timeline": [
+      "Walter Johnson promedió 90+ mph — primera medición documentada de velocidad de fastball",
+      "Se introducen los radar guns al béisbol profesional — obsesión por velocidad comienza",
+      "Maddux comienza racha de cuatro Cy Young — filosofía de ubicación primero documentada",
+      "Temporada ERA de 1.63 de Maddux — prueba definitiva de que ubicación vence velocidad",
+      "Comienza era de inflación de velocidad — el fastball promedio de los iniciadistas de MLB alcanza 91 mph",
+      "El fastball promedio de MLB supera 94 mph; el control y spin aún se clasifican como los principales predictores de ERA"
+    ],
+    "keyTakeaways": [
+      "La velocidad se genera por rotación de cadera, impulso de pierna y eficiencia de trayectoria de brazo — la mayoría de factores son entrenables hasta un techo",
+      "Alta velocidad con pobre ubicación es muy bateble; velocidad baja a media con excelente ubicación es muy efectiva (Maddux)",
+      "En niveles juveniles, lanzamientos ubicados consistentemente a cualquier velocidad superan lanzadores que tiran fuerte sin control",
+      "Eficiencia de lanzamiento (menos lanzamientos por out) extiende innings, reduce estrés del brazo, y gana más juegos que conteos de strikeouts"
+    ]
+  },
+  "baseball-5-08": {
+    "tagline": "Un límite de conteo de lanzamientos no es una restricción en la grandeza — es la regla que hace posible la grandeza a lo largo de una carrera completa.",
+    "overview": [
+      "Little League Baseball adoptó reglas obligatorias de conteo de lanzamientos comenzando con los cambios de reglas de 2006–2007, estableciendo máximos de lanzamientos por día según grupo de edad y períodos de descanso obligatorios antes de que un lanzador pueda lanzar de nuevo. Estas reglas no fueron arbitrarias — fueron implementadas en respuesta directa a un aumento en lesiones de brazos en jóvenes, particularmente desgarros del UCL que requieren cirugía de Tommy John, que investigadores del American Sports Medicine Institute vincularon al sobreuso comenzando a los nueve y diez años de edad.",
+      "Las reglas de conteo de lanzamientos se aplican a todos los niveles del juego organizado de Little League y son aplicadas por árbitros. Un gerente que retira a un lanzador que ha lanzado más que el límite diario enfrenta expulsión. Las reglas distinguen entre diferentes grupos de edad con diferentes límites y diferentes requisitos de descanso — porque los brazos en desarrollo en jugadores de 7–8 años son biomecánicamente diferentes a los de jugadores de 15–16 años, y las reglas reflejan ese gradiente.",
+      "A nivel profesional, los Dodgers bajo el gerente general Andrew Friedman y el manager Dave Roberts han implementado su propia filosofía sofisticada de gestión de carga. Los lanzadores abridores se rastrean por innings lanzados, conteo de lanzamientos, días de descanso, y declinación acumulada de velocidad del fastball dentro de aperturas. Lanzadores abridores que muestran caídas de velocidad de más de 2 mph en su fastball son removidos sin importar el conteo de lanzamientos — la caída de velocidad es un indicador objetivo de fatiga del brazo antes de que el lanzador la sienta conscientemente."
+    ],
+    "technical": {
+      "title": "Reglas de Conteo de Lanzamientos de Little League — Por Grupo de Edad",
+      "body": [
+        "Los siguientes límites de conteo de lanzamientos se aplican a Little League Baseball (según las reglas actuales): Edades 7–8: 50 lanzamientos máximo por día. Edades 9–10: 75 lanzamientos máximo por día. Edades 11–12: 85 lanzamientos máximo por día. Edades 13–16: 95 lanzamientos máximo por día. Edades 17–18: 105 lanzamientos máximo por día.",
+        "Los requisitos de descanso se escalonan según el número de lanzamientos realizados. Para edades 14 y menores: 1–20 lanzamientos = 0 días calendario de descanso (puede lanzar al día siguiente); 21–35 lanzamientos = 1 día calendario de descanso; 36–50 lanzamientos = 2 días calendario de descanso; 51–65 lanzamientos = 3 días calendario de descanso; 66+ lanzamientos = 4 días calendario de descanso. Para edades 15–18, los límites son ligeramente más permisivos. Un lanzador que es retirado de un juego no puede volver a lanzar en ese juego, sin importar los lanzamientos realizados."
+      ]
+    },
+    "incident": {
+      "title": "La Epidemia de Tommy John — La Investigación ASMI Cambia el Béisbol Juvenil",
+      "impact": "Para principios de los años 2000, la tasa de cirugías de Tommy John en lanzadores jóvenes había alcanzado niveles de crisis. El Dr. James Andrews del American Sports Medicine Institute publicó investigación fundamental que mostró que la especialización de lanzamiento durante todo el año combinada con ningún límite de conteo de lanzamientos estaba causando directamente daño al UCL en niños tan jóvenes como nueve años. Los cambios de reglas de Little League de 2006 fueron la respuesta organizacional.",
+      "body": [
+        "El Dr. James Andrews, el cirujano ortopédico que realizó más cirugías de Tommy John que cualquier otro médico en la historia del béisbol, publicó investigación ASMI que mostró que lanzadores jóvenes que lanzaron más de 100 innings competitivos por año tenían una tasa estadísticamente significativa más alta de lesiones graves del brazo. Específicamente, lanzadores que jugaban todo el año (ningún período de descanso de tres meses) y que lanzaban en juegos consecutivos sin descanso adecuado estaban desarrollando el mismo daño al UCL que exhibían los lanzadores profesionales — en cuerpos que aún no habían terminado de crecer.",
+        "La respuesta de Little League Baseball fue el cambio de regla más significativo en la historia moderna de la organización: límites obligatorios de conteo de lanzamientos por grupo de edad, con requisitos de descanso aplicados por árbitros que fueron autorizados para expulsar a gerentes por violaciones. El programa PitchSmart, lanzado conjuntamente por Little League y MLB en 2014, extendió estas directrices al béisbol de viaje, programas de escuelas secundarias, y más allá. La epidemia no ha terminado — pero la investigación muestra que los lanzadores que siguen las directrices de conteo de lanzamientos tienen tasas significativamente más bajas de Tommy John que aquellos que no lo hacen."
+      ]
+    },
+    "timeline": [
+      "Primera cirugía de UCL de Tommy John — la cirugía se convierte en tratamiento viable",
+      "La investigación ASMI comienza vinculando el sobreuso a nivel juvenil con tasas de lesión del UCL a nivel adulto",
+      "El Dr. Andrews publica un estudio fundamental sobre sobreuso de lanzamiento juvenil y daño del UCL",
+      "Little League adopta reglas obligatorias de conteo de lanzamientos por grupo de edad",
+      "El programa MLB PitchSmart extiende directrices al béisbol de viaje y escuelas secundarias",
+      "Los Dodgers implementan monitoreo de declinación de velocidad como suplemento de conteo de lanzamientos en MLB"
+    ],
+    "keyTakeaways": [
+      "Los límites de conteo de lanzamientos de Little League varían de 50 lanzamientos por día (edades 7-8) a 105 lanzamientos por día (edades 17-18)",
+      "Los requisitos de descanso se escalonan: lanzar 66+ lanzamientos en edades 14 y menores requiere 4 días calendario de descanso antes de lanzar de nuevo",
+      "Las reglas fueron creadas en respuesta a una epidemia documentada de lesiones del UCL en lanzadores jóvenes por sobreuso",
+      "A nivel MLB, los Dodgers utilizan la declinación de velocidad (>2 mph de caída) como desencadenante objetivo para remover lanzadores abridores sin importar el conteo de lanzamientos"
+    ]
+  },
+  "baseball-5-09": {
+    "tagline": "Después de que la pelota sale de tu mano, eres un fildeador — y el juego no ha terminado.",
+    "overview": [
+      "Los lanzadores son el décimo jugador en un equipo de béisbol en cierto sentido — después de lanzar, se convierten en fildeadores. El entrenamiento de fildeo para lanzadores (PFP) es un componente específico del entrenamiento de primavera y la práctica regular que cubre las responsabilidades de fildeo únicas de los lanzadores: cubrir primera base en rodados golpeados al lado derecho, fildeando rebotes (pelotas golpeadas fuertemente de regreso al montículo), respaldando bases, defendiendo toques de bola, y posicionándose para jugadas de reducción de diferencia.",
+      "Cubrir primera base es la habilidad PFP más común y más crítica. En cualquier rodado golpeado al primera base o segunda base con el primera base atraído hacia la línea, el lanzador debe correr inmediatamente hacia la bolsa de primera base, recibir el lanzamiento del fildeador, y registrar el out. Esta es una ruta de carrera practicada — desde la posición de aterrizaje en el montículo, el lanzador corre hacia la línea pasto-tierra a aproximadamente 45 pies de home, corre paralelo a la línea de falta, y llega a la bolsa a tiempo para recibir el lanzamiento. La falta de correr inmediatamente en cualquier rodado del lado derecho es un out automático para la ofensiva.",
+      "Los rebotes — rodados o líneas de fuego golpeados directamente de regreso al lanzador — presentan tanto una oportunidad como un peligro. Un lanzador que fildea un rebote fuerte limpiamente puede hacer un doble play o registrar un out rápido. Un lanzador que no está en una posición de fildeo adecuada después de su seguimiento es vulnerable a lesiones. El seguimiento termina con el lanzador en una posición de fildeo atlética: ambos pies aproximadamente al ancho de los hombros, rodillas ligeramente dobladas, guante al frente — listo para fildeador. Esto no es accidental; es la razón por la cual la mecánica adecuada de seguimiento enseña al lanzador a llegar en una posición de fildeo atlética."
+    ],
+    "technical": {
+      "title": "Responsabilidades PFP por Situación",
+      "body": [
+        "Las responsabilidades de fildeo del lanzador varían según la situación de bases y la ubicación de la pelota. En un rodado al lado derecho (área de primera o segunda base), el lanzador corre hacia primera base inmediatamente — la señal clave es 'cualquier pelota a mi derecha, corro.' En un rodado a tercera base con un corredor en primera, el lanzador cubre el home en caso de un lanzamiento. En un toque de bola con corredores en base, el lanzador fildea el toque (si es alcanzable) y hace el lanzamiento de opción del fildeador; el posicionamiento para defensa de toque es predeterminado por el esquema defensivo del equipo.",
+        "Respaldar bases es una responsabilidad crítica pero a menudo ignorada. Con un corredor en primera y un golpe al jardín, el lanzador corre para respaldar tercera base en caso de un lanzamiento errado. Con corredores en posición de anotar, el lanzador cubre home en cualquier lanzamiento del jardín. La asignación de respaldo siempre es a la base hacia la cual se lanza la pelota, posicionado a 20–30 pies detrás de la base para atrapar lanzamientos errados. Un lanzador que se queda de pie en el montículo observando jugadas en el jardín está renunciando a outs potenciales."
+      ]
+    },
+    "incident": {
+      "title": "Entrenamiento PFP de Walker Buehler — Dodgers Primavera 2021",
+      "impact": "Durante el entrenamiento de primavera de los Dodgers en 2021 en Camelback Ranch, el personal de lanzadores bajo el entrenador Mark Prior pasó dos sesiones completas por semana exclusivamente en PFP. Walker Buehler, viniendo de su inicio de la Serie Mundial 2020, lideró lo que los entrenadores llamaron 'el grupo PFP más detallado en años' — con énfasis en cubrir primera base, asignaciones de respaldo, y escenarios de defensa de toque de bola.",
+      "body": [
+        "El programa PFP de los Dodgers en 2021 fue notable por su enfoque en la toma de decisiones bajo presión de juego, no solo en la ejecución física. Buehler y el personal ejecutaron escenarios donde el mismo rodado al lado derecho tenía diferentes situaciones de bases — corredor en primera, corredor en segunda, bases llenas — y el lanzador tenía que hacer la lectura correcta y la ejecución en cada una. El entrenamiento enfatizó que PFP no es repetición mecánica sino inteligencia situacional: saber antes del lanzamiento a dónde irás si la pelota es golpeada en cada dirección.",
+        "El uso de los Dodgers de datos avanzados de posicionamiento defensivo (de Statcast) informó su entrenamiento PFP. Sabían de los datos que los lanzadores en su sistema habían fallado más frecuentemente en cubrir primera en rodados golpeados al lado de segunda base en lugar del lado de primera base — una ruta que requería un sprint más largo. Las sesiones de entrenamiento en 2021 específicamente sobre-ponderaron escenarios de rodado de segunda base para abordar esta debilidad documentada. El resultado: el personal de lanzadores de los Dodgers en 2021 terminó en los cinco primeros en métricas de fildeo de lanzadores en toda la Liga Nacional."
+      ]
+    },
+    "timeline": [
+      "PFP se formaliza por primera vez como parte del currículo de entrenamiento de primavera en el béisbol profesional",
+      "Don Newcombe gana tanto 20 juegos como un Guante de Oro — modelo de lanzamiento-fildeo de los Dodgers",
+      "Bob Gibson y Tom Seaver citados en retrospectiva como el mejor dúo de lanzadores fildeadores de la era",
+      "Greg Maddux gana su 18º Guante de Oro consecutivo — la excelencia PFP definida para una generación",
+      "Statcast comienza a rastrear métricas de fildeo de lanzadores — los datos PFP entran en el pipeline de análisis",
+      "Los Dodgers implementan entrenamiento PFP impulsado por datos dirigido a patrones de debilidad documentados"
+    ],
+    "keyTakeaways": [
+      "En cualquier rodado al lado derecho del cuadro, el lanzador debe correr inmediatamente hacia primera base",
+      "El seguimiento coloca al lanzador en una posición de fildeo atlética — esto es funcional, no cosmético",
+      "Respaldar bases (tercera en golpes al jardín, home en lanzamientos desde el jardín) es una asignación requerida, no opcional",
+      "PFP es inteligencia situacional: conoce tu asignación antes de que se lance, no después de que la pelota sea golpeada"
+    ]
+  },
+  "baseball-5-10": {
+    "tagline": "Lo mejor que puedes lanzar después de un mal lanzamiento es el siguiente — y lanzarlo bien requiere olvidar el anterior completamente.",
+    "overview": [
+      "El juego mental del lanzamiento es tan exigente como el físico. Un lanzador está solo en el montículo, responsable de cada lanzamiento, visible para miles de personas, con un defecto físico o un mal lanzamiento que inmediatamente resulta en un ponche o en una bola fuera del parque. Las demandas psicológicas — manejar el fracaso, mantener el enfoque bajo presión, adaptarse a la adversidad — son únicas en los deportes de equipo. Un lanzador que no puede manejar el juego mental no puede mantener su mecánica física bajo el estrés que produce el lanzamiento competitivo.",
+      "Todo gran lanzador tiene un marco para lidiar con lanzamientos malos, entradas malas y salidas malas. Clayton Kershaw ha descrito su enfoque como una filosofía de un-lanzamiento-a-la-vez: en el momento en que un lanzamiento sale de su mano, libera el apego al resultado y comienza a prepararse para el siguiente lanzamiento. Esto no es indiferencia — Kershaw es famosamente intenso y competitivo — es enfoque controlado. El apego emocional a un lanzamiento malo (ira, vergüenza, ansiedad) corrompe la rutina mecánica del siguiente lanzamiento.",
+      "La técnica de respiración es la herramienta fisiológica que une el estado mental y la ejecución física. La respiración diafragmática profunda (respirar hacia el vientre, no el pecho) activa el sistema nervioso parasimpático — reduciendo la frecuencia cardíaca, bajando el cortisol, y restaurando el control motor fino. Un lanzador que respira lenta y deliberadamente detrás del montículo después de una entrada mala no está mostrando debilidad — está ejecutando un reinicio fisiológico documentado que devuelve el brazo y el cuerpo al estado óptimo de desempeño."
+    ],
+    "technical": {
+      "title": "Trabajar Rápido vs. Trabajar Lento — El Ritmo como Arma",
+      "body": [
+        "El ritmo de juego en el montículo es una variable estratégica, no meramente una preferencia personal. Trabajar rápido (lanzar lanzamientos dentro de 15–20 segundos de recibir la pelota del receptor) mantiene la defensa alerta, interrumpe la rutina del bateador entre lanzamientos, y mantiene el propio impulso del lanzador. Los trabajadores rápidos tienden a producir mejor juego defensivo detrás de ellos porque los fildeadores se mantienen comprometidos. Kershaw de trabajo rápido y Walker Buehler son ejemplos de abridores de los Dodgers que usan el ritmo como herramienta competitiva.",
+        "Trabajar lentamente — salirse, caminar alrededor del montículo, tomar pausas largas entre lanzamientos — puede ser efectivo en situaciones específicas: después de un error que interrumpe el flujo de la entrada, después de un jonrón para reiniciarse mentalmente, o cuando se enfrenta a un bateador particularmente peligroso que prospera en el ritmo de lanzamientos rápidos. Sin embargo, como enfoque por defecto, trabajar lento invita a la defensa a perder enfoque y tiende a romper el ritmo mecánico propio del lanzador. Lo ideal es trabajar a un ritmo consistente y confiado con desaceleración deliberada solo en momentos específicos de alta presión."
+      ]
+    },
+    "incident": {
+      "title": "Clayton Kershaw — 2022 NLCS Resiliencia",
+      "impact": "Clayton Kershaw tuvo un historial postemporal complicado — incluyendo varios momentos difíciles en juegos de playoff de alta presión a lo largo de su carrera. El NLCS 2022 contra los Padres mostró tanto la lucha como la mentalidad de competidor: después de permitir carreras en el Juego 1, Kershaw regresó en el Juego 5 con una actuación dominante que extendió la serie, demostrando el reinicio mental que define el lanzamiento de élite.",
+      "body": [
+        "La carrera postemporal de Clayton Kershaw ha sido marcada por momentos de brillantez y momentos de adversidad — un perfil inusualmente humano para un lanzador tan dominante en la temporada regular. Los críticos señalaron sus luchas como evidencia de un 'bloqueo' mental en la postemporal. Lo que los entrenadores observaron fue diferente: Kershaw respondió a la adversidad en la postemporal con el mismo instinto competidor que lo hizo grande en la temporada regular — nunca se alejó del momento, nunca pidió salir, y nunca cambió su enfoque después de una entrada mala.",
+        "En el Juego 5 del NLCS 2022, con los Dodgers enfrentando la eliminación, Kershaw comenzó y limitó a los Padres a dos carreras en cinco entradas, dándole a los Dodgers una oportunidad de extender la serie. La disciplina mental que permitió este desempeño — lanzar en un juego de eliminación después de un Juego 1 difícil — es lo que los entrenadores de los Dodgers citaron consistentemente como el atributo más subestimado de Kershaw. Su presencia en el montículo bajo presión, su capacidad de mantener la solidez mecánica después de lanzamientos malos, y su compromiso de atacar a los bateadores incluso en situaciones de juego vulnerables, definieron su legado tanto como sus estadísticas."
+      ]
+    },
+    "timeline": [
+      "La compostura mental de Sandy Koufax después de la imprecisión de carrera temprana se convierte en legendaria",
+      "La racha de 59 entradas sin carreras de Orel Hershiser requiere enfoque mental sostenido — los entrenadores estudian su presencia en el montículo",
+      "La psicología deportiva se vuelve convencional en la MLB — protocolos de atención plena y respiración introducidos",
+      "Temporada MVP 2014 de Kershaw — el entrenador de lanzamientos Rick Honeycutt atribuye la disciplina mental como diferenciador clave",
+      "Kershaw gana su primera Serie Mundial — el arco de redención postemporal se estudia por resiliencia mental",
+      "Juego 5 del NLCS de Kershaw después de la lucha del Juego 1 — la mentalidad de competidor en exhibición"
+    ],
+    "keyTakeaways": [
+      "El reinicio mental después de un lanzamiento malo: gírate, respira por 4 segundos, usa una palabra clave, luego comprométete completamente al siguiente lanzamiento",
+      "El apego emocional a lanzamientos malos corrompe la rutina mecánica del lanzamiento que sigue",
+      "Trabajar a un ritmo consistente mantiene la defensa comprometida y mantiene el propio ritmo mecánico del lanzador",
+      "La mentalidad de competidor de Kershaw — atacar incluso después de la adversidad, mantener el mismo enfoque independientemente del marcador — es el modelo de presencia en el montículo"
+    ]
+  },
+  "baseball-6-01": {
+    "tagline": "El fastball de cuatro costuras es la base de todo arsenal — domínalo primero, y todos los demás lanzamientos serán mejores porque dependen de él.",
+    "overview": [
+      "El fastball de cuatro costuras es el lanzamiento más común en béisbol y la base del arsenal de todo lanzador. Su agarre es simple: los dedos índice y medio se colocan en la costura de herradura de la pelota para que cuatro costuras roten en el aire en cada revolución. El pulgar descansa debajo para el control, y la pelota se sostiene con presión de las puntas de los dedos en lugar de profundamente en la palma — manteniendo la muñeca suelta y maximizando el snap en la liberación.",
+      "La física del four-seamer es impulsada por el backspin. Cuando el lanzador hace snap de su muñeca hacia abajo en la liberación, la pelota genera backspin puro — rotación opuesta a la dirección del viaje. Este backspin crea el Magnus Effect: la pelota giratoria empuja aire hacia abajo en su superficie, y en reacción, el aire empuja la pelota hacia arriba. La pelota no literalmente 'sube', pero cae menos de lo que la gravedad predice — creando el efecto de subida perceptual que hace que los four-seamers de élite sean tan difíciles de golpear en la parte superior de la zona.",
+      "Los puntos de referencia de velocidad varían por edad. Un four-seamer dominante de 12 años se sitúa entre 60–68 mph. A los 14, los brazos de élite alcanzan 70–78 mph. Los abridores de preparatoria varsity promedian 78–85 mph. Los abridores de universidad promedian 86–91 mph. El promedio de MLB es 93–94 mph, con lanzadores de poder de élite alcanzando 99–103 mph. Para los abridores de los Dodgers, el four-seamer es el lanzamiento que establece presencia: Yoshinobu Yamamoto, Tyler Glasnow y Walker Buehler lanzan four-seamers en la parte superior de la zona al inicio de los conteos para adelantarse y hacer que los bateadores respeten la velocidad."
+    ],
+    "technical": {
+      "title": "Física del Backspin — Por qué el Four-Seam Sube",
+      "body": [
+        "Spin rate es el número de revoluciones por minuto (rpm) que la pelota hace en vuelo. Un four-seamer con alto spin rate (2,500+ rpm) crea un Magnus Effect más fuerte — más subida perceptual, más swing-and-miss en la parte superior de la zona. Un four-seamer con bajo spin rate (2,000 rpm o menos) se comportará más como un sinker y será golpeado más duro si está localizado en el medio de la zona. Rapsodo y Statcast miden el spin rate y el spin axis, permitiendo a los entrenadores modernos de pitcheo optimizar ajustes de agarre para máxima eficiencia de backspin.",
+        "Spin efficiency (también llamado 'active spin') es el porcentaje de spin total que contribuye al movimiento en lugar del gyroscopic spin. Un fastball con 2,600 rpm y 95% de spin efficiency crea movimiento masivo; el mismo 2,600 rpm con 65% de eficiencia (más gyro spin) produce mucho menos movimiento. El agarre, la presión de los dedos y el ángulo de la muñeca afectan la spin efficiency — por eso dos lanzadores pueden tener el mismo spin rate pero resultados completamente diferentes en el plato."
+      ]
+    },
+    "incident": {
+      "title": "Tyler Glasnow y el Compromiso de Velocidad de los Dodgers — 2024",
+      "impact": "Cuando los Dodgers adquirieron a Tyler Glasnow de Tampa Bay en diciembre de 2023, estaban adquiriendo uno de los brazos de four-seam fastball de élite del béisbol — un lanzador cuyo heater de 98–100 mph con elite spin rate hacía mejor todo su arsenal porque los bateadores tenían que sentarse sobre él primero. La capacidad de Glasnow para establecer el four-seamer al inicio de los conteos fue central en su dominio de 2024.",
+      "body": [
+        "El fastball de cuatro costuras de Tyler Glasnow promedió 98.5 mph en 2024 con un spin rate consistentemente por encima de 2,500 rpm, generando uno de los efectos de subida más altos en la Liga Nacional. Su enfoque fue deliberadamente fastball-first en conteos nuevos: estableció el four-seamer en la parte superior de la zona al inicio, forzó a los bateadores a comprometer su timing a su velocidad, luego introdujo su devastadora curveball como un cambio de velocidad y forma. Esta filosofía de secuenciamiento — construir sobre el fastball, todo lo demás es contraste — es el modelo que el coordinador de pitcheo de los Dodgers Mark Prior enseña en toda la organización.",
+        "La temporada de 2024 de Glasnow (185 strikeouts en 134 innings) demostró qué puede hacer un four-seamer premium cuando se lanza con convicción y excelente localización. Su relación de strikes a bolas en primeros lanzamientos fue de élite — significando que se adelantaba regularmente y forzaba a los bateadores a protegerse contra 99 mph. La lección para lanzadores en desarrollo: antes de añadir todas las variaciones off-speed, haz del four-seamer un arma genuina que los bateadores teman. Cada otro lanzamiento en el arsenal se vuelve mejor cuando los bateadores no pueden dejar de pensar en el heater."
+      ]
+    },
+    "timeline": [
+      "Comienza la era de la pelota viva — la velocidad del fastball se convierte en un arma premium en el béisbol",
+      "Los Dodgers se mudan a LA — Sandy Koufax comienza a perfeccionar su fastball en el Dodger Stadium",
+      "El four-seamer de 98-mph de Dwight Gooden con elite spin redefine los estándares de strikeout",
+      "La medición de spin rate de Statcast revela la eficiencia de backspin como una variable de fastball clave",
+      "Trevor Bauer comparte públicamente investigación de optimización de spin rate — los agarres se vuelven científicos",
+      "Glasnow promedia 98.5 mph como Dodger — dominio de fastball de spin-rate en su apogeo"
+    ],
+    "keyTakeaways": [
+      "Agarra con las puntas de los dedos sobre la costura de herradura — cuatro costuras rotan en cada revolución para máximo backspin",
+      "Alto spin rate (2,500+ rpm) crea el Magnus Effect rise que hace que los four-seamers en la parte superior de la zona sean devastadores",
+      "Establece el fastball al inicio de los conteos — cada lanzamiento off-speed es más efectivo cuando los bateadores temen al heater",
+      "Los puntos de referencia de velocidad dependen de la edad: enfócate en mecánica y spin efficiency antes de perseguir velocidad"
+    ]
+  },
+  "baseball-6-02": {
+    "tagline": "El lanzamiento de dos costuras no falla en alcanzar los bates — falla en alcanzar los barriles. Cuando los bateadores hacen contacto, la pelota va al terreno.",
+    "overview": [
+      "El fastball de dos costuras agarra la pelota a lo largo (en lugar de atravesando) la brecha de costura estrecha — las dos costuras que corren paralelas en un lado de la pelota. El dedo índice y el dedo medio se colocan sobre o justo dentro de las dos costuras estrechas, con el pulgar debajo. Esta alineación cambia la orientación de las costuras durante el vuelo, creando efecto lateral junto con efecto de retroceso. El resultado es un lanzamiento que se inclina hacia el lado del brazo del lanzador (hacia abajo y adentro contra un bateador diestro de un lanzador diestro) y cae más que un fastball de cuatro costuras.",
+      "El sinker es un lanzamiento relacionado — a veces considerado una variante del lanzamiento de dos costuras, a veces enseñado como un lanzamiento distinto. Ambos comparten la acción de inclinación y hundimiento, pero el sinker se lanza con presión descendente ligeramente más deliberada al soltar para maximizar la acción de hundimiento a expensas de la velocidad pura. El sinker es la máquina de bolas rodadas del mundo del lanzamiento: cuando se lanza a la mitad inferior de la zona de strike, genera contacto débil en la mitad superior de la pelota, produciendo bolas rodadas hacia los fildeadores del cuadro.",
+      "Trevor Bauer, quien lanzó para los Dodgers en 2021, se convirtió en uno de los defensores más públicos del béisbol para la experimentación de agarre. Bauer documentó extensamente sus esfuerzos para aumentar artificialmente la velocidad de giro y el movimiento de su lanzamiento de dos costuras usando cambios de agarre, señalando que incluso pequeños ajustes en la colocación de los dedos — desplazarse un milímetro a lo largo de la costura — podría cambiar significativamente el movimiento de la pelota. Su trabajo ayudó a normalizar la idea de los lanzadores como científicos de sus propios agarres."
+    ],
+    "technical": {
+      "title": "Dos Costuras vs. Cuatro Costuras — La Diferencia de Agarre",
+      "body": [
+        "La diferencia crítica entre un lanzamiento de dos costuras y uno de cuatro costuras es la orientación de las costuras y el eje de giro resultante. Un lanzamiento de cuatro costuras tiene retroceso puro — el eje de giro es horizontal, perpendicular a la dirección del viaje. Un lanzamiento de dos costuras tiene un eje de giro inclinado — algo de retroceso, algo de efecto lateral — porque los dedos se alinean a lo largo en lugar de atravesando la costura. Este eje inclinado crea el Efecto Magnus en múltiples direcciones: algo de elevación (componente de retroceso) y algo de inclinación (componente de efecto lateral).",
+        "El movimiento del lado del brazo es la característica de movimiento que define el lanzamiento de dos costuras. Para un lanzador diestro lanzando a un bateador diestro, la pelota se inclina hacia adentro y hacia abajo, cortando el mango del bate del bateador y produciendo contacto débil. Para un lanzador diestro enfrentando a un bateador zurdo, corre hacia afuera y hacia abajo en la esquina exterior — generando bolas rodadas débiles o ponches persiguiendo. Por eso los lanzadores que enfrentan una alineación de bateadores del mismo lado particularmente aman el lanzamiento de dos costuras."
+      ]
+    },
+    "incident": {
+      "title": "Los Experimentos de Agarre de Trevor Bauer — La Ciencia del Lanzamiento de Dos Costuras",
+      "impact": "La documentación pública de Trevor Bauer de sus experimentos de agarre durante su tiempo con los Dodgers llevó la ciencia del agarre a la instrucción principal del lanzamiento. Su disposición a compartir datos de giro, ajustes de agarre y perfiles de movimiento ayudó a los entrenadores y jugadores de todos los niveles a entender que el movimiento del lanzamiento es controlable — no solo un producto de la habilidad natural.",
+      "body": [
+        "En 2021, Bauer fue quizás el lanzador más sofisticado analíticamente en el béisbol. Durante su entrenamiento de primavera en Camelback Ranch, trabajó con dispositivos Rapsodo para medir cómo los pequeños cambios de agarre en su lanzamiento de dos costuras afectaron la velocidad de giro y el movimiento. Mover su dedo índice hacia adentro por solo unos pocos milímetros a lo largo de la costura produjo lecturas de eje de giro significativamente diferentes, y esos cambios de eje se tradujeron directamente en perfiles de movimiento de pelota diferentes en el plato.",
+        "El trabajo de Bauer ayudó a codificar un principio ahora enseñado en Camelback Ranch durante el entrenamiento de primavera de los Dodgers: el agarre es una habilidad de precisión, no solo 'sostenlo de esta manera.' Los lanzadores ahora son alentados a experimentar con pequeñas variaciones de agarre y medir los resultados en Rapsodo en lugar de confiar únicamente en la sensación. La lección es que el lanzamiento de dos costuras natural de un lanzador es un punto de partida — el agarre final es el que produce el mayor movimiento para la talla de mano específica, la longitud de dedo y la acción del brazo de ese lanzador."
+      ]
+    },
+    "timeline": [
+      "El fastball de dos costuras se convierte en una categoría de lanzamiento nombrado en el vocabulario de exploración de MLB",
+      "La dominancia del fastball cortado de Mariano Rivera atrae la atención hacia la manipulación de lanzamientos basada en costuras",
+      "Statcast comienza a rastrear perfiles de movimiento para lanzamientos de dos costuras vs. cuatro costuras en todos los parques de MLB",
+      "El uso del sinker cae a un mínimo de 20 años mientras que la revolución de velocidad de giro favorece los lanzamientos de cuatro costuras y los lanzamientos de alto RPM",
+      "Trevor Bauer documenta públicamente experimentos de agarre en Camelback Ranch — la ciencia del agarre es principal",
+      "El personal de los Dodgers utiliza pruebas de agarre Rapsodo para cada lanzador de las ligas menores en el entrenamiento de primavera"
+    ],
+    "keyTakeaways": [
+      "El agarre de dos costuras coloca los dedos a lo largo (no atravesando) la brecha de costura estrecha, creando efecto lateral que se inclina hacia el lado del brazo",
+      "El sinker es una variante que enfatiza la presión descendente al soltar para maximizar la acción de hundimiento y la tasa de bola rodada",
+      "Los lanzamientos de dos costuras inducen contacto débil al cortar el mango del bate — el objetivo es bolas rodadas, no ponches",
+      "La experimentación de agarre (la contribución de Bauer) probó que pequeños ajustes de dedos cambian significativamente el eje de giro y el movimiento"
+    ]
+  },
+  "baseball-6-03": {
+    "tagline": "El changeup es el gran ecualizador — lánzalo con la velocidad del brazo del fastball y mira cómo se desmorona el timing del bateador.",
+    "overview": [
+      "El changeup es ampliamente considerado el lanzamiento más importante fuera de velocidad en el béisbol, y el único lanzamiento secundario más importante para que los lanzadores en desarrollo aprendan. Su efectividad proviene enteramente del engaño: la velocidad del brazo, el ángulo del brazo y el punto de liberación son idénticos al fastball. La única diferencia es la velocidad — el changeup llega 10–15 mph más lento que el fastball del lanzador. Cuando el cerebro del bateador procesa 'acción de brazo de fastball', se compromete con el timing del fastball. Cuando la pelota llega tarde, el bateador ya ha completado el swing.",
+      "Los tres agares principales del changeup producen perfiles de movimiento ligeramente diferentes. El changeup circular es el más común: el pulgar e índice forman un círculo en el lateral de la pelota, y los tres dedos restantes se extienden por la parte superior. Este agarre reduce la velocidad por arrastre mientras se mantiene la velocidad del brazo. El palmball agarra la pelota profundamente en la palma con todos los dedos envueltos alrededor — mayor reducción de velocidad, pero más difícil de mantener la velocidad del brazo de fastball sin telegrafiar. El changeup vulcano divide los dedos medio y anular alrededor del ecuador de la pelota, produciendo una acción de tumbling con fade tardío.",
+      "El diferencial de velocidad es la medida clave. Una diferencia de 10–15 mph entre fastball y changeup es óptima — suficiente para interrumpir el timing, pero no tan extrema que el bateador pueda identificarla temprano. Para un lanzador juvenil que lanza 72 mph, un changeup a 58–62 mph es ideal. Para un abridor de MLB a 94 mph, un changeup a 80–84 mph es el objetivo. Kenley Jansen, el cerrador de los Dodgers durante años, combinó su elite cut fastball con un changeup específicamente para mantener desequilibrados a los bateadores zurdos del mismo lado después de construir una carrera basada únicamente en el cutter."
+    ],
+    "technical": {
+      "title": "Engaño de la Velocidad del Brazo — Por Qué Funciona el Changeup",
+      "body": [
+        "El cerebro procesa información visual sobre la velocidad del lanzamiento a través de múltiples indicios: velocidad del brazo en la liberación, ángulo de la mano, snap de la muñeca y la trayectoria inicial de la pelota. Cuando la velocidad del brazo del lanzador es idéntica en el fastball y el changeup, el cerebro malinterpreta el lanzamiento y establece el timing del cuerpo para una llegada más rápida. El swing se dispara temprano — las caderas giran, las manos se liberan — y cuando la pelota realmente llega, el bateador ya está más allá del punto de contacto óptimo. Por eso los especialistas fuera de velocidad dicen 'déjalos que se derroten a sí mismos'.",
+        "El error más común que cometen los lanzadores jóvenes es ralentizar su brazo cuando lanzan un changeup — un ajuste inconsciente que telegrafía el lanzamiento antes de que la pelota salga de la mano. Los bateadores avanzados pueden detectar la ralentización del brazo visualmente desde el círculo de on-deck y se sentarán en el changeup. La cura: lanza el changeup con intención agresiva de fastball, y deja que el agarre haga todo el trabajo de reducción de velocidad. Si piensas 'lento' mientras lo lanzas, tu brazo se ralentizará."
+      ]
+    },
+    "incident": {
+      "title": "Changeup de Kenley Jansen — Expandiéndose Más Allá del Cutter",
+      "impact": "Kenley Jansen construyó una de las carreras de cerrador más dominantes en la historia de los Dodgers casi enteramente sobre un solo lanzamiento: el cut fastball. Cuando los bateadores zurdos comenzaron a cronometrar su cutter en el período 2017–2019, los Dodgers trabajaron con Jansen para desarrollar un changeup para mantenerlos desequilibrados — demostrando cómo agregar incluso un lanzamiento secundario puede rescatar una carrera.",
+      "body": [
+        "El cutter de Kenley Jansen era tan bueno — 93–94 mph con movimiento lateral élite — que dominó durante años contra bateadores tanto zurdos como diestros. Pero el scouting avanzado eventualmente reveló que los bateadores zurdos podían anticipar el fade del lado del brazo del cutter y sentarse en él middle-away. Su rendimiento de la Serie Mundial 2017 mostró vulnerabilidad contra bateadores zurdos, y el personal de pitcheo de los Dodgers trabajó para agregar un changeup a su arsenal.",
+        "El changeup le dio a Jansen una opción de movimiento-diferente-a-la-misma-velocidad contra zurdos: en lugar de ver dos lanzamientos que se ven idénticamente con quiebre ligeramente diferente, ahora enfrentaban un lanzamiento que llegaba 12 mph más lento con una trayectoria diferente. El changeup de Jansen nunca fue un lanzamiento para eliminar — pero obligó a los bateadores a considerar dos posibilidades en lugar de una, haciendo su cutter más efectivo nuevamente. La lección: a veces un lanzamiento secundario no necesita ser dominante; solo necesita existir lo suficientemente convincentemente para afectar el enfoque del bateador."
+      ]
+    },
+    "timeline": [
+      "El changeup se convierte en un estándar como el tercer lanzamiento principal enseñado en el desarrollo profesional",
+      "El changeup circular de Pedro Martinez se convierte en el referente — diferencial de 15 mph a 90+ mph",
+      "La dominancia del changeup de Johan Santana reaviva el enfoque en la mecánica del agarre en la instrucción juvenil",
+      "Rapsodo comienza a medir el fade y tumble del changeup como perfiles de movimiento distintos",
+      "El personal de los Dodgers trabaja con Jansen en el changeup para contrarrestar estrategias de alineación zurda",
+      "Los programas de pitcheo juvenil enseñan universalmente el changeup antes que el slider o curveball para la salud y desarrollo"
+    ],
+    "keyTakeaways": [
+      "La velocidad del brazo debe ser idéntica al fastball — el agarre hace todo el trabajo de reducción de velocidad",
+      "Un diferencial de velocidad de 10–15 mph es óptimo: suficiente para interrumpir el timing, pero no tan extremo que sea identificable temprano",
+      "El changeup circular es el agarre más enseñable — círculo de pulgar e índice, tres dedos por la parte superior",
+      "Incluso un changeup imperfecto cambia la ecuación mental del bateador, haciendo el fastball más efectivo"
+    ]
+  },
+  "baseball-6-04": {
+    "tagline": "La curva de Clayton Kershaw no solo terminaba turnos al bate — terminaba la confianza de alineaciones completas.",
+    "overview": [
+      "La curva es el lanzamiento más dramático en el béisbol — una pelota que parece dirigirse hacia el centro de la zona de strike y luego cae precipitadamente hacia la tierra, atrapando a los bateadores en las posiciones más vergonzosas: completamente extendidos en un swing a un pie por encima de donde la pelota realmente cruzó home plate. Su física es la inversa del four-seamer: en lugar de backspin luchando contra la gravedad, la curva genera topspin, que se suma a la gravedad y crea un Magnus Effect descendente que acelera la caída de la pelota.",
+      "La curva 12-a-6 (nombrada por la dirección de la aguja del reloj) cae directamente hacia abajo — el plano ideal para un breaking ball de alto a bajo que comienza en la cintura y termina en las rodillas o en la tierra. La curva 11-a-5 (o 10-a-4) tiene movimiento descendente y lateral — barre lejos de bateadores del mismo lado mientras cae. La knuckle curveball agarra la pelota con el nudillo del dedo índice en la costura en lugar de la punta del dedo, produciendo topspin más apretado y un quiebre más agudo y tardío.",
+      "Los lanzadores jóvenes deben esperar hasta aproximadamente los 13–14 años antes de lanzar curvas regularmente — específicamente cuando las placas de crecimiento en el codo se acercan al cierre. La investigación del American Sports Medicine Institute, dirigida por el Dr. James Andrews, encontró que el lanzamiento temprano de curva (antes de los 13 años) se correlaciona con tasas significativamente más altas de lesiones de codo más adelante en la carrera. El 'El Diablo' de Clayton Kershaw — su curva martillo 12-6 — es el punto de referencia: lanzada con la misma velocidad de brazo y punto de liberación que su fastball, cae hasta 20 pulgadas verticalmente desde la liberación hasta home plate."
+    ],
+    "technical": {
+      "title": "Física del Topspin — Por Qué Cae la Curva",
+      "body": [
+        "El topspin de la curva crea un Magnus Effect opuesto al four-seamer. Con topspin, la pelota giratoria jala aire hacia abajo desde su superficie superior — y la fuerza de reacción empuja la pelota hacia abajo, además de la gravedad. Una curva bien lanzada experimenta hasta 30% más fuerza descendente de lo que experimentaría una pelota sin tocar en caída libre solo por gravedad. Esto crea la caída dramática que hace parecer que la pelota 'cae de una mesa' en lugar de seguir un arco gradual.",
+        "El eje de rotación es la variable más importante para el movimiento de la curva. Un eje de rotación perfectamente vertical (rotación 12-a-6) crea movimiento descendente puro — el quiebre 12-6 ideal. Un eje inclinado crea un quiebre diagonal — 11-5 o 1-7 dependiendo de la dirección. Cuanto más apretado el spin (más revoluciones por minuto con un eje topspinning puro), más agudo el quiebre al final del vuelo de la pelota. Esto es por qué la knuckle curve a menudo produce un quiebre más tardío y agudo que el agarre estándar — el punto de contacto del nudillo crea una orientación de costura diferente que puede generar topspin más eficiente."
+      ]
+    },
+    "incident": {
+      "title": "El Diablo de Kershaw — La Curva Más Famosa en la Historia de los Dodgers",
+      "impact": "La curva 12-6 de Clayton Kershaw, apodada 'El Diablo' por compañeros y oponentes por igual, fue responsable de un número desproporcionado de sus 2,725 strikeouts en su carrera. En sus temporadas ganador del Cy Young, fue el pitch de strikeout que complementó su fastball de cuatro costuras como ningún breaking ball en una generación — una combinación brutal de velocidad élite y profundidad élite.",
+      "body": [
+        "La curva de Kershaw fue única por varias razones. Primero, su eje de rotación era casi perfectamente vertical — un quiebre excepcionalemente raro 12-a-6 que caía directamente hacia abajo en lugar de diagonalmente. Segundo, la lanzaba con velocidad de brazo y punto de liberación idénticos a su fastball, haciendo que fuera casi imposible identificarla hasta que ocurriera el quiebre. Tercero, su spin rate en la curva consistentemente superaba 2,800 rpm — élite incluso por estándares de MLB — que creó la caída aguda y tardía que le valió su apodo.",
+        "Durante su temporada MVP y Cy Young de 2014 — posiblemente la mayor temporada de pitcheo en las últimas tres décadas — la tasa de whiff de la curva de Kershaw fue superior a 50%. Los bateadores se perdieron en más de la mitad de sus swings contra ella. El pitch fue tan efectivo que los bateadores oponentes admitieron comenzar su turno al bate ya mentalmente debilitados sabiendo que venía. 'El Diablo' no fue solo un pitch; fue un arma psicológica. Entrenadores de jóvenes que estudian a Kershaw notan que el engaño de velocidad de brazo es el elemento aprendible — la profundidad del quiebre viene de eso."
+      ]
+    },
+    "timeline": [
+      "Curva documentada formalmente — Candy Cummings acreditado con su invención en los 1870s",
+      "Sandy Koufax comienza desarrollando su curva a los 19 años — se convierte en una de las mejores jamás lanzadas",
+      "Temporada final de Koufax — su combinación curva-fastball produce una ERA de 1.73 en 323 innings",
+      "El Diablo de Kershaw alcanza dominancia total — 50%+ whiff rate en temporada 2014",
+      "Las directrices de ASMI en curvas para lanzadores jóvenes se convierten en estándar en educación de entrenadores de Little League",
+      "Lanzadores de próxima generación de los Dodgers (Yamamoto, Gavin Stone) continúan la tradición de la curva en Dodger Stadium"
+    ],
+    "keyTakeaways": [
+      "El topspin de la curva se suma a la gravedad vía Magnus Effect — curvas bien lanzadas caen 10–22 pulgadas verticalmente",
+      "El quiebre 12-a-6 es el quiebre descendente más puro; 11-a-5 quiebra diagonalmente — ambos son efectivos con diferentes aplicaciones de matchup",
+      "Iguala la velocidad de brazo y punto de liberación al fastball — el quiebre ocurre desde el spin, no desde ningún movimiento telegrafista",
+      "Los 13–14 años es la directriz para comenzar el desarrollo de la curva; el uso más temprano se correlaciona con riesgo de lesión de codo"
+    ]
+  },
+  "baseball-6-05": {
+    "tagline": "El slider es el lanzamiento más peligroso en el béisbol — peligroso para los bateadores, y peligroso para los lanzadores que lo lanzan incorrectamente.",
+    "overview": [
+      "El slider es el segundo lanzamiento más común en el béisbol y uno de los lanzamientos más efectivos para provocar fallos en el swing del juego. Se sitúa en velocidad entre el fastball (90-95 mph) y la curveball (75-82 mph), típicamente lanzado a 82–90 mph, con movimiento lateral lejos de los bateadores del mismo lado. Su agarre distintivo coloca los dedos índice y medio fuera del centro en un lado de la pelota, creando una combinación de tipos de spin — principalmente gyro spin (bullet spin, que no produce movimiento Magnus Effect) con sidespin — que produce un quiebre lateral apretado y tardío en lugar del arco barredor gradual de una curveball.",
+      "El cut slider ('cutter') y el sweep slider representan los extremos opuestos del espectro del slider. El cut slider (cubierto en profundidad en la próxima etapa) se lanza más fuerte, más cerca de la velocidad del fastball, con menor quiebre lateral. El sweep slider se lanza con máximo quiebre lateral — algunas veces 18–22 pulgadas de movimiento horizontal — al costo de algo de velocidad. Ambos lanzamientos se llaman 'sliders,' pero sus objetivos pretendidos difieren: el cutter atrapa a los bateadores, el sweeper falla los bates en la esquina exterior.",
+      "La evolución del slider de Kershaw es una de las historias de desarrollo de lanzamientos más documentadas en la historia del béisbol. Temprano en su carrera, su slider ya estaba por encima del promedio — pero tenía movimiento horizontal limitado y ocasionalmente se dejaba alto en la zona donde los bateadores podían dañarlo. A través de ajustes en su agarre y ángulo de muñeca a partir de 2012 en adelante, Kershaw transformó su slider en un verdadero arma de swing-and-miss con 4–6 pulgadas de quiebre horizontal tardío y una tasa de whiff de 50%+. La combinación de este slider con su curveball y fastball lo convirtieron en el lanzador más dominante de su era."
+    ],
+    "technical": {
+      "title": "Mecánicas de Agarre del Slider — Cut vs. Sweep",
+      "body": [
+        "El agarre del cut slider coloca los dedos índice y medio ligeramente fuera del centro hacia el lado del dedo índice de la pelota, con presión aplicada principalmente por el dedo índice. El pulgar está debajo y ligeramente hacia adentro. Este agarre fuera del centro crea un eje de spin inclinado desde el topspin vertical de la curveball estándar — el spin resultante es parcialmente giroscópico (sin producir movimiento) y parcialmente sidespin (produciendo quiebre lateral). Porque el gyro spin no produce fuerzas de Magnus Effect, el slider llega con menos movimiento total que su spin rate sugiere — pero el movimiento que tiene ocurre muy tarde, cuando la pelota ha cruzado el umbral de decisión.",
+        "La mecánica incorrecta del slider — particularmente lanzar con excesiva supinación de muñeca (girar la muñeca hacia afuera) o forzar el quiebre en lugar de dejar que el agarre lo cree — está asociada con estrés del codo medial. La mecánica correcta del slider usa un movimiento de pronación o 'karate chop' a través del release, manteniendo el codo en posición neutral. Los lanzadores jóvenes que aprenden sliders incorrectamente contorsionando su muñeca sufren estrés del UCL que se acumula invisiblemente durante meses antes de causar lesión repentina. Por eso muchos entrenadores de las ligas menores prohíben sliders hasta la edad de 16 años."
+      ]
+    },
+    "incident": {
+      "title": "Transformación del Slider de Kershaw — 2012 a 2014 Cy Young",
+      "impact": "La transformación del slider de Clayton Kershaw entre 2012 y 2014 convirtió un lanzamiento que ya era bueno en una de las armas de swing-and-miss más dominantes en la historia del béisbol. En su temporada de MVP/Cy Young de 2014, su tasa de whiff del slider excedió 50% — significando que los bateadores fallaban más a menudo que hacían contacto cuando hacían swing a él. La transformación fue producto de ajuste deliberado de agarre, no solo desarrollo natural.",
+      "body": [
+        "El slider de Kershaw en 2012 era un lanzamiento sólido — los bateadores bateaban aproximadamente .200 contra él con una tasa de whiff de 30%. Pero trabajando con los entrenadores de lanzadores de los Dodgers, hizo un ajuste de agarre que movió sus dedos ligeramente más fuera del centro, aumentando el componente gyro spin y creando quiebre lateral más apretado y tardío. Para 2014, los bateadores describían su slider como pareciendo ser un fastball en la mitad interior antes de quiebrarse bruscamente sobre la esquina exterior — la ilusión de túnel perfecta.",
+        "La evolución del slider también cambió cómo Kershaw secuenciaba lanzamientos. Su enfoque pre-2012 se basaba fuertemente en su combinación fastball-curveball. Post-2012, tenía tres lanzamientos distintos operando en diferentes planos — fastball (arriba y recto), curveball (abajo y vertical), slider (lateral) — creando un problema tridimensional para los bateadores que ningún ajuste de plano de swing único podría resolver. Su ERA de 2014–2016 — 1.77, 2.13, 1.69 — refleja lo que un arsenal de tres lanzamientos de élite puede hacer cuando el slider completa el cubo."
+      ]
+    },
+    "timeline": [
+      "El slider de Steve Carlton se convierte en el arma secundaria definitiva del lanzador",
+      "El slider de Randy Johnson a 90+ mph con 15 pulgadas de quiebre redefine lo que los sliders pueden hacer",
+      "Kershaw modifica agarre del slider — agrega componente gyro para quiebre más apretado y tardío",
+      "El arsenal de tres lanzamientos de Kershaw (FB/CRV/SL) domina la NL — MVP y Cy Young",
+      "El sweeper slider se vuelve convencional — Yu Darvish y otros normalizan 18+ pulgadas de quiebre horizontal",
+      "El personal de los Dodgers lidera la NL en tasa de whiff del slider — compromiso organizacional con mecánicas de agarre fuera del centro"
+    ],
+    "keyTakeaways": [
+      "El agarre del slider está fuera del centro, dominante por dedo índice, con un release de pronación (karate-chop) — NO supinación de muñeca",
+      "Cut slider: quiebre lateral apretado a mayor velocidad; sweeper: máximo quiebre lateral a menor velocidad",
+      "El slider difiere de la curveball en dirección de quiebre (lateral vs. vertical) y tipo de spin (gyro vs. topspin)",
+      "La mecánica de muñeca incorrecta en el slider causa estrés del UCL — la pauta de edad 16+ protege a los lanzadores en desarrollo"
+    ]
+  },
+  "baseball-6-06": {
+    "tagline": "Mariano Rivera lanzó un solo lanzamiento durante toda su carrera. Se retiró con la mayoría de salvamentos en la historia del béisbol. Un lanzamiento fue todo lo que necesitó.",
+    "overview": [
+      "El corte de fastball (cutter) ocupa un espacio único en el espectro de lanzamientos: se lanza con velocidad de fastball (88-96 mph) pero agarrado fuera del centro, produciendo un movimiento lateral tardío pequeño pero afilado — típicamente 2-5 pulgadas — hacia el lado del guante del lanzador. Es más rápido que un slider pero con menos movimiento, y comparte la misma velocidad de brazo y punto de liberación que un fastball de cuatro costuras. El resultado es un lanzamiento que se ve exactamente como un fastball hasta los últimos pies de vuelo, cuando se corta bruscamente.",
+      "El cutter de Mariano Rivera es el lanzamiento individual más famoso en la historia del béisbol. Rivera lo lanzaba a 93-95 mph con una consistencia notable, y se movía 4-5 pulgadas hacia su lado del guante en el último momento. Contra bateadores zurdos, este corte significaba que la pelota corría hacia sus manos — serruchando innumerables mangos de bate durante 19 temporadas. Contra bateadores diestros, se alejaba de sus bates. El cutter de Rivera era tan singular que los bateadores reportaban prepararse exclusivamente para él — y aun así no podían batearlo. Salvó 652 juegos en su carrera esencialmente con un solo lanzamiento.",
+      "Kenley Jansen, el cerrador de los Dodgers por mucho tiempo, construyó una carrera equivalente como un relevista dominante de un solo lanzamiento con su cutter. El corte de fastball de Jansen se posicionaba a 93-96 mph con el mismo movimiento tardío afilado hacia las manos de los bateadores zurdos, generando bates rotos y contacto forzado a una tasa que lideró la Liga Nacional durante múltiples temporadas. La decisión de los Dodgers de desarrollar su changeup más tarde en su carrera demuestra que incluso los especialistas más dominantes de un solo lanzamiento deben eventualmente diversificarse."
+    ],
+    "technical": {
+      "title": "Agarre de Cutter — Cuatro Costuras Fuera del Centro",
+      "body": [
+        "El agarre de cutter es el más sutil en el lanzamiento — comienza como un agarre de fastball de cuatro costuras estándar y se desplaza ligeramente. Los dedos índice y medio se mueven fuera del centro hacia el lado del dedo índice, con el dedo índice aplicando presión en el lado de la pelota en lugar de sobre la parte superior. El punto de contacto de la costura se desplaza de la línea central. El pulgar se mueve ligeramente hacia el lado del dedo medio debajo. Este cambio sutil crea un componente de corte-spin sin requerir manipulación de la muñeca — la presión de dedo fuera del centro naturalmente crea sidespin en la liberación.",
+        "La característica distintiva de un gran cutter es el movimiento tardío. Un slider con 8 pulgadas de movimiento distribuidas en 50 pies es legible — comienza a girar lo suficientemente temprano que los bateadores ven la trayectoria. Un cutter con 4 pulgadas de movimiento en los últimos 6 pies de vuelo no da al bateador pista temprana alguna — se ve como un fastball durante el 90% del viaje del lanzamiento, y solo el último pie de vuelo revela el corte. El cutter de Rivera fue famoso por esto: los bateadores juraban que era un fastball hasta que no lo era, y para entonces ya se habían comprometido."
+      ]
+    },
+    "incident": {
+      "title": "El Cutter de Rivera — El Lanzamiento Más Icónico en la Historia de la Serie Mundial",
+      "impact": "El corte de fastball de Mariano Rivera es el lanzamiento individual más celebrado en la historia del béisbol. Solo en la Serie Mundial de 2000, Rivera rompió nueve bates en tres juegos. Es el único jugador elegido unánimemente al Salón de la Fama del Béisbol en la primera votación. Su carrera se construyó en un lanzamiento lanzado con control perfecto — una lección en maestría sobre variedad.",
+      "body": [
+        "Rivera descubrió su cutter accidentalmente durante una sesión de bullpen en 1997 en el entrenamiento de primavera, cuando notó que un 'fastball recto' se movía bruscamente hacia los bateadores zurdos. En lugar de intentar eliminar el movimiento, el coach de lanzadores Mel Stottlemyre lo alentó a abrazarlo y refinarlo. Rivera pasó los siguientes 16 años perfeccionando un solo lanzamiento — nunca desarrollando un curveball, rara vez confiando en su changeup — y se convirtió en el mejor cerrador en la historia del deporte.",
+        "El impacto psicológico del cutter de Rivera se extendió más allá de los bates rotos. Los bateadores zurdos que lo enfrentaron en la postemporada rutinariamente reportaban que incluso sabiendo que el cutter llegaba, conociendo su camino, sabiendo dónde mirar — aun así no podían batearlo. Dos veces en la ALCS de 2003, los bateadores zurdos de los Red Sox de Boston rompieron sus bates en lanzamientos consecutivos. Los fabricantes de bates reportaron suministrar a los equipos tres veces la asignación normal de bates para apariciones de postemporada de Rivera. Un lanzamiento. La mayoría de salvamentos en la historia."
+      ]
+    },
+    "timeline": [
+      "Rivera descubre su cutter accidentalmente en el entrenamiento de primavera — cambia su carrera y el deporte",
+      "Rivera rompe nueve bates en la Serie Mundial — la dominancia del cutter se convierte en leyenda",
+      "Rivera se retira con 652 salvamentos — selección unánime del Salón de la Fama (2019)",
+      "Kenley Jansen se establece como el equivalente de Rivera en la Liga Nacional con un cutter de 96 mph",
+      "El corte de fastball de Jansen promedia 93 mph — los Dodgers lideran la Liga Nacional en ERA de cerrador",
+      "Los Dodgers continúan énfasis organizacional en mecánica de cutter en desarrollo de lanzadores"
+    ],
+    "keyTakeaways": [
+      "El agarre de cutter desplaza los dedos fuera del centro desde una base de cuatro costuras — presión del dedo índice en el lado de la pelota",
+      "El movimiento tardío del cutter (últimos 6-8 pies) es lo que lo hace indetectable — se ve como un fastball hasta que no lo es",
+      "Contra bateadores del mismo lado, el cutter corre hacia las manos — produciendo bates rotos y roletas forzadas",
+      "Los 652 salvamentos de Rivera en un lanzamiento prueban que la maestría de un solo lanzamiento élite supera la variedad sin excelencia"
+    ]
+  },
+  "baseball-6-07": {
+    "tagline": "Hideo Nomo llegó desde Japón en 1995 con un lanzamiento que nadie en la Liga Nacional había visto antes — e inmediatamente se convirtió en una sensación en el Dodger Stadium.",
+    "overview": [
+      "El fastball dividido (splitter) y el forkball son los más dramáticos de los lanzamientos de la 'familia del fastball' — agarrados con los dedos separados ampliamente a cada lado de la pelota, lo que reduce la velocidad, elimina el backspin, y crea una acción de tumble que causa que la pelota se lance bruscamente hacia abajo en los últimos pies antes del plato. Desde la perspectiva del bateador, un splitter bien lanzado se parece a un fastball — la misma velocidad del brazo, trayectoria inicial similar — hasta que cae abruptamente fuera de la zona, produciendo swings por encima o swings detenidos hacia la tierra.",
+      "El splitter y el forkball difieren principalmente en la profundidad de la colocación de los dedos. El splitter separa los dedos índice y medio a lo largo de la costura a cada lado de la pelota sin forzarlos hasta los nudillos — un agarre de profundidad media. El forkball fuerza los dedos más separados y más profundos, entre los nudillos, produciendo una reducción de velocidad más extrema (a menudo 15–20 mph por debajo del fastball) y un dive más dramático, pero al costo del control y estrés del brazo. Ambos lanzamientos generan un spin de tumble hacia adelante — lo opuesto al backspin — que se suma al componente de gravedad y produce el dive de ruptura tardía dramática.",
+      "El forkball de Hideo Nomo fue el lanzamiento que lo hizo una celebridad cuando se unió a los Dodgers en 1995. El forkball de estilo japonés de Nomo — a veces llamado un 'fork drop' — produjo un diferencial de velocidad de 20+ mph desde su fastball mientras se lanzaba bruscamente en el último momento posible. Lideró la NL en strikeouts en su primera temporada, fue seleccionado al All-Star Game como novato, y convirtió a Dodger Stadium en un fenómeno mientras 'Nomomania' envolvía Los Ángeles. Su forkball fue un embajador cultural tanto como un lanzamiento de béisbol."
+    ],
+    "technical": {
+      "title": "Mecánica del Agarre — Por Qué la Colocación Profunda Mata el Spin",
+      "body": [
+        "Tanto el splitter como el forkball funcionan al eliminar el componente de snap del lanzamiento. Un lanzamiento de fastball normal implica un snap de muñeca que imparte backspin. Cuando los dedos están separados ampliamente y colocados profundamente en los lados de la pelota, el snap se inhibe — los dedos se deslizan por los lados en lugar de hacer snap sobre la parte superior. El resultado es velocidad reducida (menos fuerza de snap) y backspin reducido (no snap de muñeca = sin backspin impartido). Con spin mínimo, la gravedad actúa más fuertemente sobre la pelota — cae más de lo que el bateador espera.",
+        "El spin de tumble que resulta del agarre de un splitter es hacia adelante (topspin-adyacente) en lugar de backspin o sidespin. El tumble hacia adelante añade un pequeño componente de Efecto Magnus en la dirección hacia abajo mientras también crea vuelo inestable — la pelota se tambalea ligeramente debido a un eje de spin inconsistente, haciendo que su ubicación exacta de dive sea impredecible incluso para el lanzador. Esta impredecibilidad es parte de por qué los splitters son tan difíciles de golpear — incluso el catcher a veces tiene dificultad prediciendo exactamente dónde terminará la pelota. También explica por qué los splitters son difíciles de controlar y peligrosos para brazos jóvenes: el agarre profundo coloca estrés lateral en el UCL."
+      ]
+    },
+    "incident": {
+      "title": "Nomomania — El Debut de Hideo Nomo en 1995 en Dodger Stadium",
+      "impact": "La temporada de Hideo Nomo con los Dodgers en 1995 fue más que un logro atlético — fue un momento cultural que conectó a los aficionados de béisbol japoneses con las Grandes Ligas por primera vez, impulsó un flujo de talento japonés a los Dodgers que culminó en Shohei Ohtani, e introdujo a los bateadores americanos a un estilo de forkball que nunca habían visto antes.",
+      "body": [
+        "Cuando Nomo hizo su debut en las MLB el 2 de mayo de 1995 en Dodger Stadium, los scouts habían advertido que su distintivo windup tornado y su forkball de estilo japonés podrían no traducirse a los bateadores americanos. Dentro de tres salidas, fue claro que las advertencias estaban equivocadas. Su forkball se lanzaba tan dramáticamente — tan lejos por debajo de donde los bateadores esperaban que llegara un lanzamiento — que los bateadores estaban balanceándose a strikes en la tierra o de pie en shock mientras la pelota se lanzaba a través de la zona de strike en sus rodillas después de parecer que se dirigía al medio del plato.",
+        "Nomomania se convirtió en un fenómeno en Los Ángeles. Decenas de miles de aficionados japoneses volaron a Dodger Stadium para verlo lanzar. Su uniforme fue el más vendido en el béisbol durante meses. En el Juego de Estrellas de 1995, ponchó a tres bateadores consecutivos con su forkball en la primera entrada. Nomo continuó lanzando dos no-hitters en su carrera, uno de los cuales (Colorado, 1996) fue lanzado en el parque de bateadores más extremo en la historia del béisbol — en gran parte gracias a su forkball haciendo que los bateadores persiguieran lanzamientos en la tierra en aire delgado. Su legado en los Dodgers vive a través de la relación continua de la organización con el talento japonés que eventualmente trajo a Yoshinobu Yamamoto y Shohei Ohtani a Los Ángeles."
+      ]
+    },
+    "timeline": [
+      "Elroy Face pionero del split-fingered fastball para los Pittsburgh Pirates — primer uso efectivo documentado",
+      "Roger Craig enseña el splitter a los Detroit Tigers — inicia la locura del splitter de los 1980s en las MLB",
+      "Hideo Nomo debuta con los Dodgers — el estilo de forkball japonés cautiva a los aficionados americanos del béisbol",
+      "Nomo lanza no-hitter en Coors Field — forkball dominante incluso en aire delgado de Colorado",
+      "Datos de ASMI muestran que splitter/forkball se correlaciona con estrés del UCL — restricción de jóvenes comienza",
+      "Yoshinobu Yamamoto se une a los Dodgers — tradición de repertorio de lanzamientos japonés continúa en Los Ángeles"
+    ],
+    "keyTakeaways": [
+      "Splitter y forkball funcionan al eliminar backspin a través de colocación profunda de dedos — gravedad y tumble crean el dive dramático",
+      "Forkball es más extremo que splitter: agarre más profundo, reducción de velocidad más extrema, peor control, riesgo de brazo más alto",
+      "El forkball de Nomo introdujo acción de dive de diferencial de 20-mph a bateadores americanos que nunca habían visto el lanzamiento antes",
+      "Ambos lanzamientos no se recomiendan para lanzadores menores de 17 años — el agarre profundo causa estrés al UCL y estructuras de crecimiento del antebrazo"
+    ]
+  },
+  "baseball-6-08": {
+    "tagline": "El Rapsodo no miente — te muestra exactamente qué está haciendo tu pelota, y por qué.",
+    "overview": [
+      "La velocidad de rotación se mide en revoluciones por minuto (rpm) y cuantifica la rapidez con la que gira la pelota de béisbol en vuelo. Pero la velocidad de rotación bruta por sí sola no determina el movimiento del lanzamiento — el eje de rotación y la eficiencia de rotación (la proporción de rotación total que contribuye al movimiento de Fuerza Magnus versus rotación giroscópica) son igualmente importantes. Dos lanzadores con velocidades de rotación idénticas pueden producir movimientos de lanzamiento dramáticamente diferentes basados en su eje de rotación y eficiencia.",
+      "Statcast (implementado en todos los parques de las Grandes Ligas en 2015) y Rapsodo (un monitor de lanzamiento portátil ahora disponible para programas de preparatoria y universidad) miden tres variables clave de rotación: velocidad de rotación total (rpm), eje de rotación (expresado como un ángulo de cara de reloj, por ejemplo, 12:00 = rotación pura hacia atrás, 6:00 = rotación pura hacia adelante), y eficiencia de rotación (el porcentaje de rotación total que contribuye al movimiento). Juntos, estos tres números explican exactamente por qué un lanzamiento se mueve de la manera que lo hace.",
+      "La organización de los Dodgers fue una de las primeras equipos en desplegar sistemáticamente dispositivos Rapsodo en sus instalaciones de ligas menores y el complejo de entrenamiento de primavera Camelback Ranch. El coordinador de lanzadores de los Dodgers Mark Prior y su equipo usan datos de rotación para optimizar el agarre de cada lanzador, identificando la orientación específica de la mano que maximiza la eficiencia de rotación para su acción de brazo individual. Un lanzador que genera naturalmente 2,400 rpm podría producir solo 75% de eficiencia de rotación — pero con un ajuste de agarre encontrado a través de pruebas de Rapsodo, podrían lograr 90% de eficiencia, añadiendo efectivamente 360 rpm 'activos' sin cambiar ninguna otra variable."
+    ],
+    "technical": {
+      "title": "Rotación Activa vs. Rotación Giroscópica — La Ecuación de Eficiencia",
+      "body": [
+        "La velocidad de rotación total incluye dos componentes: rotación activa (también llamada rotación Magnus) y rotación giroscópica (también llamada rotación gyro). La rotación activa es el componente de rotación que tiene su eje perpendicular a la dirección de viaje de la pelota — esta rotación empuja el aire y crea movimiento de Fuerza Magnus. La rotación giroscópica tiene su eje paralelo a la dirección de viaje — como el rayado de una bala — y no produce ningún movimiento de Fuerza Magnus. Un lanzamiento con 100% rotación activa (cero gyro) produce el máximo movimiento posible para sus rpm. Un lanzamiento con 50% rotación activa produce la mitad del movimiento máximo.",
+        "La eficiencia de rotación se expresa como un porcentaje. Un fastball de cuatro costuras con 95% de eficiencia de rotación a 2,500 rpm produce efecto de elevación casi máximo — las costuras están cortando limpiamente a través del aire con casi pura rotación hacia atrás. Un splitter puede tener 40% de eficiencia — la mayor parte de su rotación es giroscópica, lo que explica por qué 'cae fuera de' la trayectoria de vuelo de la pelota en lugar de ser impulsado por Fuerza Magnus. Entender qué lanzamientos se benefician de alta eficiencia (fastballs, curveballs) y cuáles tienen baja eficiencia intencionalmente (sliders usan rotación gyro para 'agarre') ayuda a los lanzadores a optimizar cada lanzamiento por separado."
+      ]
+    },
+    "incident": {
+      "title": "La Revolución Rapsodo de los Dodgers — Laboratorio de Datos de Camelback Ranch",
+      "impact": "El despliegue de dispositivos Rapsodo por los Dodgers en Camelback Ranch comenzando alrededor de 2018 creó un pipeline de desarrollo de lanzamientos impulsado por datos que ha ayudado a desarrollar lanzadores de ligas menores en contribuyentes de las Grandes Ligas más rápido que en cualquier otro punto en la historia de la franquicia. Su enfoque sistemático de optimización de agarre usando datos de rotación ahora se considera uno de los más sofisticados en el béisbol profesional.",
+      "body": [
+        "En Camelback Ranch, el personal de desarrollo de lanzadores de los Dodgers configura unidades Rapsodo detrás del home en múltiples montículos de bullpen durante el entrenamiento de primavera. Cada lanzamiento de cada lanzador en la organización pasa por análisis de velocidad de rotación y eje en algún momento durante el campamento. Los lanzadores comienzan lanzando sus agarres naturales, luego trabajan a través de ajustes micro-agarres — posición de dedos, contacto de costuras, colocación de pulgar — midiendo la eficiencia de rotación en cada variante. Para muchos lanzadores, el agarre óptimo difiere significativamente de lo que aprendieron en la preparatoria.",
+        "El proceso también revela qué lanzamientos puede optimizar cada lanzador más eficientemente. Algunos lanzadores tienen tamaños de mano y ángulos de muñeca que generan naturalmente rotación de fastball de élite — esos lanzadores son alentados a convertir su four-seamer en un arma. Otros generan una eficiencia de rotación de curveball inusual — esos lanzadores se construyen alrededor de su lanzamiento de quiebre. Rapsodo hace objetivo lo que previamente era subjetivo: en lugar de que un entrenador de lanzadores diga 'Creo que tu curva es tu mejor lanzamiento,' los datos muestran exactamente cuánta rotación activa genera cada lanzamiento y cuál será el perfil de movimiento resultante a nivel de las Grandes Ligas."
+      ]
+    },
+    "timeline": [
+      "Las cámaras de alta velocidad temprana comienzan a cuantificar la investigación de velocidad de rotación a nivel universitario",
+      "Statcast implementado en las Grandes Ligas — la velocidad de rotación se convierte en una métrica disponible públicamente para cada lanzamiento",
+      "Los modelos de béisbol Rapsodo se vuelven asequibles para programas de universidad y preparatoria",
+      "Los Dodgers establecen laboratorio de datos de Camelback Ranch — optimización sistemática de rotación para todos los lanzadores de ligas menores",
+      "Controversia de sustancia pegajosa — saltos de velocidad de rotación en toda la liga provocan investigación de las Grandes Ligas",
+      "La eficiencia de rotación se convierte en un término de desarrollo de lanzadores convencional en entrenamiento de juventud y universidad"
+    ],
+    "keyTakeaways": [
+      "La velocidad de rotación (rpm) solo es significativa en el contexto del eje de rotación y eficiencia — las tres variables determinan el movimiento",
+      "La rotación activa crea movimiento de Fuerza Magnus; la rotación giroscópica no crea movimiento — la eficiencia es la relación de rotación activa a rotación total",
+      "Un fastball con rpm más bajo pero mayor eficiencia puede superar a uno con rpm más alto pero más rotación giroscópica",
+      "Rapsodo permite a los lanzadores probar objetivamente variaciones de agarre y encontrar la posición específica de la mano que maximiza su eficiencia de rotación natural"
+    ]
+  },
+  "baseball-6-09": {
+    "tagline": "El lanzamiento más peligroso en el béisbol es el que se ve exactamente igual al lanzamiento anterior — hasta que no es así.",
+    "overview": [
+      "El pitch tunneling es la ciencia de hacer que dos o más lanzamientos se vean idénticos durante el mayor tiempo posible antes de que diverjan hacia diferentes perfiles de movimiento. El 'túnel' es la trayectoria de vuelo compartida por la que todos los lanzamientos de un lanzador determinado deben pasar — típicamente los primeros 20–25 pies después del lanzamiento. Un bateador no puede identificar el tipo de lanzamiento hasta que la pelota sale del túnel, lo que ocurre aproximadamente a 20–25 pies del punto de lanzamiento, dejando aproximadamente 175 milisegundos para que el bateador identifique, decida y golpee.",
+      "Un lanzador con un excelente tunneling lanza cada pitch con el mismo punto de lanzamiento, el mismo ángulo de brazo y la misma trayectoria inicial. Ya sea un fastball, curveball, slider o changeup, todos los lanzamientos salen de la mano del lanzador en el mismo camino. La divergencia — el punto donde la física causa que el movimiento de cada lanzamiento se diferencie — sucede lo más tarde posible. Cuanto más corto sea el túnel (lo que significa que los lanzamientos divergen antes), más tiempo tiene el bateador para identificar el tipo de lanzamiento entrante y ajustarse. Cuanto más largo sea el túnel (los lanzamientos comparten el mismo camino más lejos), menos tiempo queda después de la divergencia para ajustarse.",
+      "Crear un arsenal cohesivo significa diseñar deliberadamente cada lanzamiento para maximizar el compartir del túnel. Esta es la razón por la que los entrenadores de desarrollo de lanzadores en la organización de los Dodgers enseñan que cada lanzamiento debe ser lanzado desde el mismo slot de brazo y punto de lanzamiento — no porque sea consistente estilísticamente, sino porque desviar el slot de brazo entre un fastball y un curveball permite al bateador identificar el lanzamiento solo por la acción del brazo, antes de que la pelota salga de la mano. El túnel colapsa cuando los ángulos de brazo difieren."
+    ],
+    "technical": {
+      "title": "El Punto del Túnel — Física y Ventanas de Decisión",
+      "body": [
+        "El punto del túnel se define como el momento en que la trayectoria de un lanzamiento diverge lo suficiente de la trayectoria de línea recta de base como para ser visualmente distinguible. La investigación utilizando datos de cámara de alta velocidad y modelado de tiempo de reacción (notablemente trabajo de Jeremy Greenhouse, uno de los investigadores originales de Statcast) muestra que los bateadores no pueden distinguir tipos de lanzamientos en los primeros 23 pies de vuelo. Después del punto del túnel — aproximadamente a 23–28 pies dependiendo del lanzamiento — los bateadores tienen entre 125 y 175 milisegundos para comprometerse con su decisión de swing.",
+        "Los lanzadores que maximizan el compartir del túnel fuerzan al bateador en el peor escenario de decisión posible: tiempo mínimo desde la identificación hasta la iniciación del swing requerida. La relación matemática funciona así: si un fastball y un curveball comparten el mismo punto de túnel a 23 pies, el bateador tiene tiempo de identificación completo (175 ms) para ambos pero aún debe comprometerse bajo igual presión. Si el curveball sale del túnel a 15 pies (tunneling deficiente), el bateador ve el quiebre anterior y tiene 225 ms para ajustarse — una ventaja significativa. Esa diferencia de 50 milisegundos puede significar la diferencia entre un swing-and-miss y un golpe bien cronometrado."
+      ]
+    },
+    "incident": {
+      "title": "El Túnel de Tres Lanzamientos de Kershaw — El Arsenal Más Cohesivo en el Béisbol Moderno",
+      "impact": "El arsenal de Clayton Kershaw durante su pico de 2013–2016 es ampliamente citado por investigadores de lanzadores como el punto de referencia moderno para pitch tunneling. Su fastball, curveball y slider salieron todos de su mano desde el mismo punto de lanzamiento y slot de brazo — creando un único túnel por el que tres lanzamientos completamente diferentes tuvieron que viajar antes de divergir, dejando a los bateadores con la ventana de identificación mínima posible para cada uno.",
+      "body": [
+        "El análisis de cámara de alta velocidad del lanzamiento de Kershaw durante sus años de Cy Young muestra datos de punto de lanzamiento notablemente consistentes en los tres tipos de lanzamiento. Su ángulo de brazo, posición de muñeca y ubicación de lanzamiento de mano difirieron por menos de dos pulgadas en su fastball, curveball y slider — una consistencia física tan precisa que los entrenadores de bateo de equipos rivales reportaron ser incapaces de identificar ninguna pista pre-lanzamiento de su entrega. Todo se veía idéntico hasta que la pelota estaba 20+ pies en el aire.",
+        "La consecuencia para los bateadores fue un problema compuesto de engaño: sabían los tipos de lanzamientos de Kershaw y velocidades aproximadas, pero no podían identificar cuál venía hasta que la pelota ya había viajado 23 pies — dejando 175 ms o menos para identificación y decisión. Tres planos diferentes de movimiento (recto-con-elevación, caída-vertical, corte-lateral), tres velocidades diferentes, todos de un túnel indistinguible. Los bateadores avanzados que estudiaron video notaron que la única pista confiable era la dirección del vuelo de la pelota en la zona del túnel — pero esa información llega demasiado tarde para ayudarles. Este es el ideal: hacer que cada lanzamiento se vea idéntico durante el mayor tiempo posible."
+      ]
+    },
+    "timeline": [
+      "La primera investigación académica cuantifica la distancia del punto del túnel y las ventanas de identificación del bateador",
+      "Statcast permite la cartografía precisa de la trayectoria de todos los lanzamientos — la investigación del túnel se vuelve predominante",
+      "Jeremy Greenhouse publica análisis del punto del túnel — el 'tunnel score' se convierte en una métrica de evaluación de lanzadores",
+      "Los equipos de MLB comienzan a contratar analistas de túnel — los Dodgers entre los primeros en aplicar datos a la instrucción de entrenamiento de primavera",
+      "El personal de lanzadores de los Dodgers lidera la NL en puntuaciones de túnel — el énfasis organizacional en la consistencia del punto de lanzamiento da sus frutos",
+      "La ciencia del túnel ahora se enseña a nivel universitario — los programas de escuela secundaria comienzan a integrarla"
+    ],
+    "keyTakeaways": [
+      "El túnel es los primeros 23+ pies de trayectoria de vuelo compartida — los bateadores no pueden identificar el tipo de lanzamiento hasta que el túnel termina",
+      "El mismo slot de brazo y punto de lanzamiento para cada lanzamiento es el requisito físico para un túnel largo y efectivo",
+      "Los lanzamientos que divergen temprano (tunneling deficiente) dan a los bateadores más tiempo de identificación — 50 milisegundos extra es un cambia-juegos",
+      "Un arsenal cohesivo significa que cada lanzamiento se ve idéntico hasta que el spin los diferencia — el quiebre, no el brazo, revela el lanzamiento"
+    ]
+  },
+  "baseball-6-10": {
+    "tagline": "El arsenal de cada gran lanzador se construyó un lanzamiento a la vez, en el orden correcto, a la edad correcta — los Dodgers tienen un sistema para esto.",
+    "overview": [
+      "Construir un arsenal de lanzamientos es un proyecto de desarrollo multianual que debe ser secuenciado por madurez física, cimiento mecánico y contexto competitivo. Lanzar pitches antes de que el cuerpo esté listo — o antes de que el cimiento mecánico sea sólido — crea riesgo de lesión, malos hábitos y desarrollo atrofiado. Los mejores programas de pitcheo en las Grandes Ligas (incluyendo el sistema de los Dodgers) siguen una progresión estructurada que prioriza el control del fastball primero, agrega el changeup segundo, e introduce quiebres solo cuando los requisitos físicos y mecánicos estén establecidos.",
+      "Las guías basadas en edad del American Sports Medicine Institute, Pitch Smart (una iniciativa conjunta de MLB/USA Baseball) y numerosos programas de desarrollo de organizaciones profesionales convergen en un consenso: control antes de velocidad, changeup antes de curveball, curveball antes de slider, splitter/forkball último (si es que). La razón es tanto fisiológica (las placas de crecimiento se cierran en secuencia de abajo hacia arriba del brazo, con el codo cerrándose alrededor de 15–17 y el hombro alrededor de 18–21) como mecánica (lanzar quiebres antes de un cimiento de mecánica de fastball sólido crea patrones compensatorios que persisten por años).",
+      "El sistema de desarrollo de pitcheo de ligas menores de Los Angeles Dodgers en Camelback Ranch está organizado alrededor de esta misma progresión. Los lanzadores de ligas menores que entran al sistema — muchos de los cuales ya lanzan múltiples tipos de pitch — se someten a una sesión de evaluación Rapsodo, y los entrenadores de desarrollo evalúan qué pitches son mecánicamente sólidos versus cuáles fueron desarrollados incorrectamente o están siendo lanzados de maneras que crean riesgo de lesión. Los pitches que son potencialmente dañinos se pausan, reconstruyen o se eliminan. El desarrollo es paciente — la organización preferiría pasar dos años construyendo un slider mecánicamente sólido que un año permitiendo que un slider dañino continúe por el bien del desempeño competitivo a corto plazo."
+    ],
+    "technical": {
+      "title": "La Progresión del Arsenal — De 8 a 18+",
+      "body": [
+        "Edad 8–10 (años de cimiento): El único pitch que debe lanzarse es el fastball de cuatro costuras, con un occasional two-seamer si el lanzador es mecánicamente avanzado. A esta edad, el objetivo no es amplitud de repertorio — es dominio de mecánicas. Dirección de zancada, trayectoria del brazo, rotación de cadera y consistencia del punto de liberación son el enfoque completo. Un niño de 10 años con un fastball mecánicamente perfecto está mucho mejor preparado para el éxito a largo plazo que uno con un fastball, changeup y 'curve' que son todos mecánicamente defectuosos.",
+        "Edad 11–13 (introducción del changeup): El circle changeup se introduce junto al fastball establecido. La combinación de dos pitches — control de fastball más engaño de changeup — es suficiente para el éxito competitivo en este nivel y prepara el brazo para décadas de pitcheo saludable. La experimentación con curveball puede comenzar a los 13 años, pero solo en configuraciones de bullpen con supervisión mecánica cuidadosa y bajo volumen. Sin sliders. Sin splitters.",
+        "Edad 14–16 (desarrollo del curveball): Con las placas de crecimiento en el codo aproximándose al cierre, el curveball se introduce formalmente en configuraciones competitivas. Las mecánicas se monitorean de cerca para indicadores de estrés muñeca/codo. El slider puede introducirse a los 15–16 años con mecánicas de pronación apropiadas pero debe permanecer con bajo volumen. Los lanzadores de preparatoria que pueden controlar fastball, changeup y un quiebre tienen un arsenal competitivo completo.",
+        "Edad 17–18+ (completitud del arsenal): El slider se desarrolla completamente. Para lanzadores con manos grandes y madurez física apropiada, el splitter puede introducirse. El cutter puede ser agregado por cualquier lanzador que pueda mantener velocidad de fastball cerca del 100% — ya que el cambio de grip es mínimo, el estrés del brazo es similar a un fastball. Los límites de conteo de pitches y requisitos de descanso permanecen críticos incluso cuando el repertorio se expande."
+      ]
+    },
+    "incident": {
+      "title": "Yoshinobu Yamamoto y la Filosofía de Desarrollo de Pitches de los Dodgers",
+      "impact": "La llegada de Yoshinobu Yamamoto a los Dodgers trajo uno de los arsenales de pitcheo más completos en las Grandes Ligas a Los Ángeles — un lanzador de cuatro pitches que pasó por el sistema de desarrollo estructurado de Japón que prioriza mecánicas, eficiencia de spin y desarrollo de pitch secuencial. Su ejemplo demuestra lo que se ve un arsenal completamente realizado construido a través de progresión estructurada en su punto máximo.",
+      "body": [
+        "El desarrollo de Yamamoto en el sistema Nippon Professional Baseball refleja la filosofía de ligas menores de los Dodgers de maneras sorprendentes. Dominó un fastball de cuatro costuras premium primero, desarrolló un splitter élite como su pitch de eliminación de firma (la versión de Japón del rol del changeup en el desarrollo estadounidense) y agregó un slider y curveball durante años de progresión cuidadosa. El resultado es un lanzador que a los 25 años lanza cuatro pitches distintos en cuatro planos con control élite de cada uno — el producto de una filosofía de desarrollo que valora hacer cada pitch correctamente sobre agregar pitches rápidamente.",
+        "Cuando Yamamoto llegó a Camelback Ranch para su primer spring training de los Dodgers, el personal de desarrollo de pitcheo ejecutó su arsenal a través de la evaluación Rapsodo — no para arreglarlo, sino para establecer una línea de base precisa de sus spin rates, axes y perfiles de eficiencia que pudieran ser monitoreados a lo largo de un contrato de 12 años. El interés de los Dodgers en continuidad de datos junto con el modelo de desarrollo japonés de Yamamoto es en sí mismo una declaración de filosofía: los mejores lanzadores no son aquellos que lanzan los más pitches, sino aquellos que lanzan cada pitch con la más alta calidad, construido uno a la vez a través de una progresión paciente y estructurada."
+      ]
+    },
+    "timeline": [
+      "La iniciativa Pitch Smart comienza — MLB y USA Baseball formalizan guías de pitches apropiadas por edad",
+      "La investigación ASMI vincula tipos de pitch específicos a tasas de lesiones por edad — datos de curveball y slider publicados",
+      "Los Dodgers establecen programa estructurado de desarrollo de pitch de ligas menores en Camelback Ranch",
+      "Las guías Pitch Smart son adoptadas por la mayoría de organizaciones de béisbol juvenil en EE.UU.",
+      "Yamamoto firma con los Dodgers — arsenal completo de 4-pitch del desarrollo estructurado japonés",
+      "El sistema de ligas menores de los Dodgers produce múltiples lanzadores listos para MLB a través de progresión de arsenal estructurada"
+    ],
+    "keyTakeaways": [
+      "Las mecánicas del fastball de cuatro costuras vienen primero — ningún otro pitch es útil sin un cimiento de fastball sólido",
+      "El changeup es el segundo pitch más seguro e importante: misma acción de brazo, sin estrés adicional del codo",
+      "Curveball a los 13–14, slider a los 15–16, splitter/forkball a los 17+ — la fisiología determina la progresión, no la impaciencia",
+      "El sistema de los Dodgers audita las mecánicas de cada lanzador en la entrada — cualquier pitch con riesgo de lesión se pausa y se reconstruye antes de que el desarrollo continúe"
+    ]
+  },
+  "baseball-7-01": {
+    "tagline": "Un lanzador que observa antes de lanzar gana la mitad de la batalla antes de que la bola abandone su mano.",
+    "overview": [
+      "Antes de que se lance una pitch, un lanzador y un receptor pueden recopilar información enorme de la configuración del bateador en la caja. El ancho de la postura, la distribución del peso, la altura de las manos, la rigidez del agarre en el bate, las tendencias de dirección de la zancada y qué tan profundo o superficial se para el bateador en relación con el plato de home proporcionan pistas sobre las preferencias, vulnerabilidades y debilidades probables de ese bateador. Esto no es adivinanza — es observación sistemática que los lanzadores y receptores profesionales entrenan durante años.",
+      "Un bateador que se para profundo en la caja (hacia el receptor) típicamente intenta comprar más tiempo en bolas rota — una señal de que pueden tener dificultades con fastballs duros arriba en la zona. Un bateador que se aprieta contra el plato y se para cerca de él frecuentemente tiene problemas con pitches en la mitad interior — están invitando al lanzador a ir adentro. Un bateador con una postura abierta (pie delantero angled hacia el lanzador) puede tener dificultad cubriendo la mitad exterior porque sus caderas están pre-rotadas.",
+      "Los receptores de los Dodgers estudian los alineamientos rivales extensamente antes de cada serie, construyendo un modelo mental de las tendencias de cada bateador con su propia preparación de Statcast y video. Detrás del plato, el receptor sirve como el estratega del lanzador — colocando el guante en ubicaciones específicas basado en todo lo que saben sobre un bateador dado. Cuando Clayton Kershaw vio a un receptor establecerse afuera contra un bateador zurdo que había estado jalando todo, entendió inmediatamente: vete afuera, hazlos expandir, luego vuelve adentro."
+    ],
+    "technical": {
+      "title": "Señales Físicas y Lo Que Significan",
+      "body": [
+        "La rigidez del agarre es uno de los indicadores más reveladores del estado mental e intención de un bateador. Un bateador que agarra el bate tan fuerte que sus antebrazos están visiblemente tensos frecuentemente está mentalizado — están intentando golpear la bola con fuerza, lo que significa que sobreoscilarán en cualquier cosa off-speed. Este es el momento para lanzar un changeup o curveball temprano en la cuenta. Un agarre relajado usualmente significa un bateador disciplinado y paciente — el tipo que no perseguirá.",
+        "Las señales de dirección de zancada son igualmente valiosas. Un bateador que zancada hacia el receptor (pisando hacia la banca) durante su swing probablemente tendrá problemas con pitches en la mitad exterior — su zancada los aleja de pitches afuera. Un bateador que zancada hacia la loma (pisando dentro de la pitch) frecuentemente tiene problemas con cosas duras adentro — se mueven hacia ella sin tiempo para conseguir las manos dentro. La distribución del peso — si un bateador carga pesadamente en el pie trasero o apenas carga nada — predice timing. Los cargadores de pie trasero pesado aman fastballs porque la carga genera potencia; típicamente luchan con off-speed que disrumpe esa carga."
+      ]
+    },
+    "incident": {
+      "title": "Sandy Koufax en Chavez Ravine — El Juego Perfecto, 1965",
+      "impact": "El juego perfecto de Sandy Koufax contra los Chicago Cubs el 9 de septiembre de 1965 — ponchando a 14 — fue construido en un plan de juego que apenas variaba: fastball arriba-y-adentro temprano en la cuenta para preparar su curveball bajo-y-afuera. El receptor Jeff Torborg llamó el juego casi exclusivamente en la lectura de que los bateadores de los Cubs estaban cargando para el fastball, lo que hizo la curveball de Koufax completamente ininflable.",
+      "body": [
+        "El 9 de septiembre de 1965, Sandy Koufax caminó a nadie y ponchó a 14 bateadores en un juego perfecto 1-0 contra los Chicago Cubs. La hazaña fue notable no solo por los resultados sino por la claridad estratégica detrás: Torborg y Koufax habían estudiado el alineamiento de los Cubs y notaron que casi todos los bateadores cargaban su peso agresivamente en el pie trasero — una señal de que estaban esperando la velocidad del fastball de Koufax. Entonces Koufax usó el fastball para establecer la cuenta, luego enterró su curva bajo-y-afuera cuando los bateadores estaban comprometidos hacia adelante.",
+        "La elegancia del enfoque de Koufax esa noche fue su simplicidad. No necesitaba secuenciamiento elaborado porque sus dos pitches eran tan dominantes que leer la distribución de peso del bateador era suficiente para saber cuál usar. Cuando los bateadores de los Cubs cargaban pesadamente, recibían la curveball. Cuando parecían sentarse atrás, recibían el fastball alto. Torborg lo describió después como 'el juego más fácil que jamás he capturado — Sandy sabía lo que querían y les dio lo opuesto.' El juego perfecto se mantiene como la mejor actuación de lectura-y-reacción en el lanzamiento en la historia de los Dodgers."
+      ]
+    },
+    "timeline": [
+      "Los receptores de los Dodgers bajo el manager Walter Alston formalizan programas de estudio de bateadores pre-juego",
+      "El juego perfecto de Koufax — 14 Ks, leyendo las cargas de los bateadores de los Cubs toda la noche",
+      "Las 59 entradas sin anotar de Orel Hershiser — lectura sistemática de bateadores a través de 8 salidas",
+      "El análisis de video trae datos de tendencia de bateadores a la rutina pre-juego de los receptores",
+      "Statcast comienza a cuantificar tendencias de jalón de bateadores y gráficos de spray por zona",
+      "El receptor de los Dodgers Will Smith usa datos de tableta en tiempo real para ajustar la setup pitch-a-pitch"
+    ],
+    "keyTakeaways": [
+      "La profundidad de postura te dice si un bateador está buscando tiempo en bolas rotas (profundo) o intentando atacar temprano (superficial)",
+      "El hacinamiento del plato señala vulnerabilidad de la mitad interior — vete afuera para preparar adentro, o aprieta inmediatamente",
+      "Los cargadores de pie trasero pesado favorecen timing de fastball — son vulnerables a changeups que disrupten la carga",
+      "La rigidez del agarre predice estado mental: los bateadores que agarran fuerte expandirán su zona; los bateadores relajados te harán lanzar strikes"
+    ]
+  },
+  "baseball-7-02": {
+    "tagline": "El conteo no es solo un marcador — es el marcador del turno al bate, y el lanzador que lo controla controla el resultado.",
+    "overview": [
+      "La gestión del conteo es uno de los aspectos del lanzamiento más estudiados analíticamente. La investigación demuestra consistentemente que los bateadores golpean dramáticamente mejor en conteos favorables al bateador (2-0, 3-1, 3-2 desde la perspectiva del bateador) y dramáticamente peor en conteos favorables al lanzador (0-2, 1-2). Un strike en el primer lanzamiento es el lanzamiento más importante en cualquier turno al bate: desplaza el conteo a favor del lanzador antes de que el bateador haya tenido oportunidad de leer tendencias o hacer ajustes. Los lanzadores que consistentemente lanzan strikes en el primer lanzamiento dominan; aquellos que se atrasan consistentemente luchan.",
+      "El conteo 0-2 es un regalo para el lanzador — el bateador debe proteger la zona de strike, y el lanzador tiene una enorme libertad para lanzar bolas fuera de la zona (lanzamientos de desecho) o atacar agresivamente. Un lanzamiento de desecho en un conteo 0-2 es típicamente un lanzamiento justo fuera de la zona de strike — una bola rápida a la altura de los ojos por encima de la zona, o una curva en la suciedad — diseñado para que el bateador la persiga. Si batea y falla, el turno termina. Si no batea, el conteo es 1-2 y el lanzador aún tiene la ventaja.",
+      "El ciclo de fracaso que define el mal lanzamiento es ir de 0-2 a 3-2. Este es el equivalente de lanzamiento de un regalo que es devuelto: comenzar con una ventaja dominante de 0-2 y permitir que el bateador se recupere a 3-2 significa cuatro outs consecutivos no logrados — el lanzador perdió su oportunidad. La legendaria competitividad de Clayton Kershaw se construyó parcialmente en su negativa a desperdiciar conteos 0-2; Walker Buehler, por el contrario, a veces tuvo dificultades cuando estaba adelante por intentar ser demasiado preciso en lugar de atacar."
+    ],
+    "technical": {
+      "title": "Apalancamiento del Conteo — Cómo Cada Conteo Afecta los Resultados",
+      "body": [
+        "La investigación de MLB muestra que el promedio de bateo, porcentaje de slugging y porcentaje en base cambian dramáticamente según el conteo. En conteos 3-0, los bateadores conectan por encima de .400 — el lanzador debe lanzar un strike y virtualmente todos saben que es una bola rápida. En conteos 0-2, los bateadores conectan por debajo de .170 — están defensivos, protegiendo la zona de strike, y pueden ser atacados con lanzamientos que no pueden manejar. El apalancamiento del conteo es por qué el porcentaje de strikes en el primer lanzamiento es una de las métricas más predictivas del éxito del lanzador: establece el conteo a tu favor antes de que el bateador tenga información alguna.",
+        "El enfoque de Kershaw para la gestión del conteo era agresivo: quería strikes en el primer lanzamiento en más del 65% de los turnos. Comenzaría a los bateadores con una curva tan a menudo como con una bola rápida — impidiendo que los bateadores esperaran su bola rápida en 0-0. Su enfoque en 0-2 era devolver inmediatamente con la curva en la suciedad, no un lanzamiento de desecho lejos de la zona de strike, confiando en que la configuración de su bola rápida había creado la expectativa necesaria para que la siguiente bola rota fuera perseguida."
+      ]
+    },
+    "incident": {
+      "title": "Dominio del Primer Strike de Clayton Kershaw — Cy Young 2011",
+      "impact": "En 2011, Clayton Kershaw ganó tanto el Cy Young de la Liga Nacional como el MVP de la Liga Nacional — el primer lanzador en ganar ambos desde Bob Gibson en 1968. Su porcentaje de strikes en el primer lanzamiento ese año fue del 66%, muy por encima del promedio de la liga del 59%. Combinado con una ERA de 2.28 y 248 ponches, su gestión del conteo fue el motor que hizo que todo lo demás funcionara.",
+      "body": [
+        "La temporada 2011 de Kershaw fue el resultado de un compromiso filosófico deliberado con el control del conteo. Entrando en el entrenamiento de primavera en Camelback Ranch, sus entrenadores de pitcheo trabajaron con él en secuencias de ataque de primer lanzamiento — específicamente lanzando su curva más a menudo en 0-0 para prevenir que los bateadores esperaran la bola rápida. El resultado fue que los bateadores nunca podrían adivinar confiablemente su lanzamiento en la primera oferta, lo que llevó a más conteos 0-1 y 0-2 y menos situaciones 1-0 y 2-0 donde los bateadores podrían ser selectivos.",
+        "Cuando Kershaw llegaba a 0-2, su enfoque era atacar en lugar de desperdiciar: devolver con la curva en la suciedad — que los bateadores que acababan de ver dos bolas rápidas perseguirían — o una bola rápida en la línea a la altura de las rodillas. Su relación de ponches a bases por bolas ese año fue de 9.58:1, la mejor en las Grandes Ligas, reflejando un lanzador que generaba ponches y evitaba las bases por bolas que vienen de atrasarse en conteos. La gestión del conteo fue la fundación de su dominio."
+      ]
+    },
+    "timeline": [
+      "Última temporada de Koufax — 87% de strikes en el primer lanzamiento, la tasa más alta de su era",
+      "Hershiser utiliza disciplina de conteo como base de su racha de 59 entradas sin anotar",
+      "Bill James publica investigación mostrando apalancamiento del conteo — strikes en el primer lanzamiento cuantificados",
+      "Kershaw gana Cy Young y MVP basado en control de conteo de élite",
+      "Statcast comienza a rastrear tasas de strikes en el primer lanzamiento para todos los lanzadores en MLB",
+      "Walker Buehler regresa de cirugía TJ — gestión del conteo reconstruida en Camelback Ranch"
+    ],
+    "keyTakeaways": [
+      "Los strikes en el primer lanzamiento son los lanzamientos más importantes en un turno al bate — desplazan cada conteo subsecuente a favor del lanzador",
+      "0-2 es un regalo: o desecha un lanzamiento justo fuera de la zona o ataca la debilidad del bateador inmediatamente — no regales el conteo",
+      "Ir de 0-2 a 3-2 es un fracaso estratégico — significa perder cuatro oportunidades consecutivas para terminar el turno",
+      "Varía tu selección de lanzamiento en 0-0 (mezcla curva y bola rápida) para que los bateadores no puedan esperar un primer lanzamiento predecible"
+    ]
+  },
+  "baseball-7-03": {
+    "tagline": "Cada lanzamiento que haces es una mentira en la que planeas cobrar después — la secuenciación es el arte de la preparación.",
+    "overview": [
+      "La secuenciación de lanzamientos es el arte de usar un lanzamiento para crear las condiciones que hacen que un lanzamiento posterior sea más efectivo. El ejemplo clásico es la secuencia de bola rápida adentro — curva afuera: establecer que puedes poner una bola rápida en la mitad interior, hacer que el bateador la respete (y proteja adentro), luego lanzar una curva o cambio que comienza viéndose adentro antes de desviarse afuera. El cuerpo y la mente del bateador están comprometidos a proteger adentro; la bola termina en la mitad exterior, donde no pueden alcanzarla.",
+      "El lanzamiento de preparación es cualquier lanzamiento lanzado principalmente para crear una expectativa o un ajuste mecánico en el cuerpo del bateador en lugar de lograr un out. Un lanzador que lanza tres bolas rápidas seguidas en la mitad exterior no necesariamente está intentando lograr tres outs con esos lanzamientos — pueden estar estableciendo un patrón que hace que el cuarto lanzamiento (una curva que comienza en la mitad exterior y se desvía más afuera, o una bola rápida adentro después de tres afuera) sea dramáticamente más efectiva. La memoria corporal del bateador y su mecanismo de timing se convierten en un activo para el lanzador.",
+      "Los abridor de los Dodgers que enfrentan un orden varias veces en un juego piensan en secuencias a través de turnos al bate completos y a través de entradas. Si Kershaw obtuvo un groundout de un bateador en una curva baja en la primera entrada, almacenó esa información. En la cuarta entrada con dos strikes, volvería a esa misma curva — pero ahora el bateador también la está buscando. El contador de Kershaw: lanzar la bola rápida al mismo nivel de los ojos que el punto de entrada de la curva, generando un swing basado en el patrón establecido."
+    ],
+    "technical": {
+      "title": "El Lanzamiento de Preparación — Invirtiendo un Lanzamiento para un Retorno Posterior",
+      "body": [
+        "Los secuenciadores más efectivos en el béisbol — Greg Maddux, Tom Seaver, y en el contexto de los Dodgers Kershaw y Hershiser — todos entendieron que los lanzamientos individuales no se evalúan de forma aislada. Una bola rápida en la mitad interior que se golpea afuera no es un lanzamiento fallido si hizo que el bateador proteja adentro. Ese lanzamiento dio dividendos dos lanzamientos después cuando la curva afuera fue golpeada temprano. Los entrenadores de lanzadores llaman a esto 'invertir en el turno al bate.'",
+        "El lanzamiento rápido-adentro-a-bola-que-quiebra-afuera es la secuencia de preparación más común. Su efectividad proviene de una realidad física: cuando un bateador es atrapado por un lanzamiento adentro, su reacción defensiva natural es mantener sus manos cerca de su cuerpo en el siguiente lanzamiento. Una bola que quiebra que comienza adentro (como si fuera otro lanzamiento de trampa) pero se quiebra hacia la mitad exterior explota esa postura defensiva — las manos del bateador nunca se extienden, y hacen contacto débil o dan un swing en vacío. Los abridores de los Dodgers que pasaron por órdenes tres veces en una noche usaron esta secuencia repetidamente, variando solo el timing y el tipo de lanzamiento de preparación."
+      ]
+    },
+    "incident": {
+      "title": "Las 59 Entradas sin Carreras de Orel Hershiser — 1988",
+      "impact": "El récord de 59 entradas consecutivas sin carreras de Orel Hershiser en 1988 no fue construido sobre velocidad abrumadora — promedió alrededor de 86 mph. Fue construido enteramente en secuenciación: una combinación de bola sinker/slider que preparó la mitad exterior, seguida por una curva que comienza en la mitad exterior y se quiebra más afuera. Los bateadores que habían visto tres o cuatro lanzamientos afuera estaban completamente desprevenidos cuando vino adentro con una bola rápida.",
+      "body": [
+        "La racha sin carreras de Hershiser del 30 de agosto al 28 de septiembre de 1988 rompió el récord de 58 entradas de Don Drysdale. Durante la racha, Hershiser promedió menos de 90 lanzamientos por juego — extraordinario para un lanzador que se iba profundo en los juegos. La eficiencia fue completamente un producto de la secuenciación: no intentó abrumar a los bateadores ni trabajar en conteos profundos. Estableció la mitad exterior con su sinker, movió la bola alrededor de la zona en patrones en los que los bateadores no podían sentarse, y luego atacó su debilidad.",
+        "En la Serie de Campeonato de la Liga Nacional de 1988, Hershiser continuó su brillantez contra los Mets, luego cerró los Oakland Athletics en la Serie Mundial — ganando MVP. Su secuenciación en postemporada fue descrita por el receptor Mike Scioscia como 'ajedrez tridimensional: sabía qué haría el bateador con cada lanzamiento antes de lanzarlo, y usó ese conocimiento para preparar lanzamientos que nunca esperaban.' La racha de Hershiser sigue siendo el modelo de lo que la secuenciación inteligente puede lograr sin un material abrumador."
+      ]
+    },
+    "timeline": [
+      "Sandy Koufax secuencia bola rápida/curva a la perfección — 14 Ks en juego perfecto",
+      "Las 59 entradas sin carreras de Hershiser construidas enteramente en maestría de secuenciación",
+      "Hershiser gana MVP de la Serie Mundial — secuenciación a través de tres aperturas de postemporada",
+      "El análisis de video permite a los lanzadores estudiar sus propios patrones de secuenciación y ajustar",
+      "El primer Cy Young de Kershaw — las secuencias de túnel de curva/bola rápida dominan a los bateadores de la Liga Nacional",
+      "Tyler Anderson lidera la Liga Nacional en tasa de groundout usando secuenciación de sinker-afuera/curva-abajo"
+    ],
+    "keyTakeaways": [
+      "Cada lanzamiento de preparación es una inversión — crea una expectativa de bateador que explotarás con el siguiente lanzamiento",
+      "Bola rápida adentro seguida de bola que quiebra afuera es la secuencia más confiable en el béisbol: el miedo adentro abre la mitad exterior",
+      "Mostrar un lanzamiento temprano en el juego crea un patrón que atacarás tarde — los bateadores construyen memoria corporal a través de turnos al bate",
+      "Los secuenciadores de élite como Hershiser ganan con velocidad por debajo del promedio al ser más inteligentes que los bateadores durante nueve entradas"
+    ]
+  },
+  "baseball-7-04": {
+    "tagline": "La tercera vez que se completa el orden es donde los lanzadores novatos ganan su dinero — y donde la mayoría de ellos se quedan sin él.",
+    "overview": [
+      "Uno de los hallazgos analíticos más significativos en el béisbol moderno es la 'penalización por vueltas al orden' — un aumento consistente y medible en el desempeño ofensivo contra un lanzador abridor cada vez sucesiva que pasa por la alineación. La primera vez que pasan por el orden, los bateadores no tienen información sobre velocidad, movimiento o patrones de secuencias. Para la tercera vez, han visto cada lanzamiento en el arsenal del abridor en múltiples conteos y ubicaciones — y se han ajustado. El OPS contra abridores típicamente aumenta 15–20 puntos cada vez que se completa el orden.",
+      "Dave Roberts y los Dodgers se convirtieron en uno de los equipos más agresivos del béisbol en manejar esta penalización. Roberts fue un adoptante temprano de los datos de 'vueltas al orden' y rutinariamente sacaba abridores antes de la tercera vuelta, especialmente en situaciones de alto riesgo. Este enfoque atrajo crítica cuando funcionaba imperfectamente pero fue validado cuando los Dodgers utilizaron una estrategia de juego de bullpen completo en la Serie Mundial 2020 — comenzando con el modelo de abridor y utilizando sus mejores relevistas en los momentos de mayor riesgo en lugar de en el orden tradicional 7°, 8°, 9°.",
+      "La estrategia del Abridor — comenzar un relevista por uno o dos innings antes de transferir el juego a un relevista de largo alcance — fue pionera del Tampa Bay Rays pero adoptada en todo el béisbol incluyendo por los Dodgers en su carrera por el campeonato 2020. El concepto es simple: optimizar los enfrentamientos en la primera entrada al comenzar con el lanzador que tiene la mejor ventaja posicional contra la parte superior de la alineación rival, luego hacer la transición al 'lanzador de volumen' que puede manejar los innings 2 al 5."
+    ],
+    "technical": {
+      "title": "La Penalización por Vueltas al Orden — Números y Causas",
+      "body": [
+        "La investigación de Fangraphs y Baseball Prospectus muestra consistentemente que los bateadores baten aproximadamente .015 mejor en OBP y .020–.025 mejor en SLG cada vez que pasan por el orden contra el mismo lanzador abridor. Para la tercera vuelta, la desventaja agregada para el lanzador es aproximadamente equivalente a enfrentar una alineación que está un nivel de talento superior al nueve original. La causa es la información: los bateadores comparten tendencias en la dugout entre turnos al bate, comparan notas sobre el movimiento del lanzamiento, y construyen un modelo mental de los patrones del lanzador.",
+        "El componente de fatiga física es secundario al componente de información. Un lanzador cuya velocidad cae 2 mph para la quinta entrada está parcialmente lidiando con fatiga física pero principalmente lidiando con bateadores que ahora han visto 15+ lanzamientos y saben cómo se ve cada uno de sus lanzamientos desde la mano. La capacidad de Kershaw para lanzar profundo en juegos a pesar de esta penalización fue producto de su creatividad en secuencias — consistentemente cambió sus patrones la tercera vez que pasaba por el orden, lanzando lanzamientos en conteos y ubicaciones que había evitado anteriormente para prevenir que la ventaja de información se compoundiera."
+      ]
+    },
+    "incident": {
+      "title": "El Juego de Bullpen de la Serie Mundial 2020 — Dodgers Vencen a Tampa Bay",
+      "impact": "La Serie Mundial 2020 presentó a dos de los equipos más sofisticados analíticamente del béisbol empleando versiones opuestas del mismo concepto: los Tampa Bay Rays fueron pioneros del Abridor; los Dodgers respondieron con un enfoque flexible de manejo del bullpen que igualaba las innovaciones de Tampa. Los Dodgers ganaron en seis juegos, con el Juego 6 decidido parcialmente por las decisiones agresivas de bullpen de Dave Roberts.",
+      "body": [
+        "En la Serie Mundial 2020, Dave Roberts manejó sus lanzadores abridores con un marco explícito de vueltas al orden. Clayton Kershaw abrió el Juego 1 y fue sacado después de 5.2 innings y 78 lanzamientos a pesar de permitir solo dos carreras — Roberts no quería que enfrentara la parte superior de la alineación de los Rays por tercera vez. Esta decisión fue criticada en el momento pero fue validada: el bullpen de los Dodgers mantuvo la ventaja. Kershaw abrió el Juego 5 y nuevamente lanzó eficientemente antes de hacer la transición al bullpen de los Dodgers.",
+        "El Juego 6 fue el más significativo estratégicamente: Roberts utilizó a Julio Urias como el lanzador de cierre — lanzándolo en la octava entrada específicamente para explotar enfrentamientos posicionales favorables contra bateadores zurdos de Tampa, en lugar de esperar hasta la situación tradicional de salvamento en la novena entrada. Urias apagó la alineación de Tampa en orden, y los Dodgers ganaron la Serie Mundial. La decisión reflejó exactamente la filosofía de vueltas al orden: usa tu mejor lanzador en el momento en que más se necesita, no en el lugar tradicional que sugiere el reglamento de la convención."
+      ]
+    },
+    "timeline": [
+      "Tommy Lasorda maneja el bullpen de 1988 WS cuidadosamente — decisiones tácticas de la era Kirk Gibson",
+      "Fangraphs publica el primer análisis de penalización por vueltas al orden — los datos llegan a las oficinas de dirección",
+      "Tampa Bay Rays despliega por primera vez la estrategia del Abridor — Blake Snell precede al lanzador de volumen",
+      "Dodgers ganan WS usando manejo flexible del bullpen — Roberts es acreditado con maestría táctica",
+      "Los 30 equipos de MLB ahora rastrean formalmente datos de vueltas al orden en tiempo real durante los juegos",
+      "Dodgers usan abridor en postemporada para optimizar enfrentamientos contra los mejores bateadores del oponente"
+    ],
+    "keyTakeaways": [
+      "Los bateadores mejoran 15–20 puntos de OPS cada vez que pasan por el orden — la acumulación de información es la causa primaria",
+      "Los abridores deben variar sus secuencias la tercera vez que pasan por el orden o enfrentar bateadores que conocen íntimamente sus patrones",
+      "Dave Roberts hizo decisiones agresivas de vueltas al orden la piedra angular de la carrera por la Serie Mundial 2020",
+      "La estrategia del Abridor elimina la ventaja de enfrentamiento de primera entrada más predecible de la alineación rival"
+    ]
+  },
+  "baseball-7-05": {
+    "tagline": "Todo corredor en base es un segundo oponente — el lanzador que los ignora regala outs que nunca entregó.",
+    "overview": [
+      "Lanzar desde el estiramiento cambia casi todo en el ritmo, la mecánica y el proceso mental del lanzador. Desde la mecánica de viento, un lanzador puede usar un impulso de pierna completo que genera la máxima velocidad y movimiento. Desde el estiramiento, la entrega debe ser lo suficientemente abreviada como para dar al receptor la oportunidad de sacar a un posible robador de bases, lo que típicamente significa un impulso de pierna reducido, una entrega más rápida y un mecanismo de tiempo diferente. El trueque: los lanzadores frecuentemente pierden 1-3 millas por hora de velocidad desde el estiramiento, y el movimiento de su curva puede reducirse.",
+      "La lista de verificación mental al lanzar con corredores en base es multicapa: Verificar al corredor. Decidir la variación de tempo (entrega rápida vs. tempo regular). Determinar si un intento de sorpresa está justificado. Leer las señales del receptor mientras se es consciente del avance primario del corredor. Decidir si variar el tiempo entre señales y entrega para alterar el timing del corredor. Todo esto ocurre antes de que el lanzamiento sea hecho, y todo debe ocurrir sin perder el enfoque en el bateador, quien sigue siendo la amenaza primaria.",
+      "El movimiento de sorpresa zurdo de Clayton Kershaw es considerado uno de los más efectivos en la historia moderna del béisbol. Porque los zurdos enfrentan la primera base desde su posición natural, su movimiento de sorpresa — pisar hacia primera y lanzar — es mucho más difícil para los corredores de base leer que los diestros que deben girar todo su cuerpo. El movimiento de Kershaw era tan rápido y engañoso que los corredores que habían sido seguros robando contra otros lanzadores repetidamente se encontraban siendo sorprendidos contra él, alterando completamente los juegos de robo de los equipos contrarios."
+    ],
+    "technical": {
+      "title": "Variando el Tempo de Entrega — Alterando el Timing del Corredor",
+      "body": [
+        "El impulso de un corredor de base se construye sobre la lectura del tempo de entrega del lanzador. Si un lanzador comienza la entrega a la placa en el mismo momento en cada lanzamiento, un buen corredor de base cronometrará el impulso al momento exacto en que la pierna del lanzador se levanta o sus manos se separan. Variar el tempo de entrega — a veces manteniendo la posición por 1.5 segundos, a veces yendo rápidamente — obliga al corredor a adivinar en lugar de cronometrar. Un corredor que adivina mal sale demasiado pronto (y es sorprendido o sacado) o sale demasiado tarde (y es sacado por el receptor).",
+        "El paso de deslizamiento — una modificación de entrega donde el lanzador no levanta su pierna delantera sino que la desliza hacia la placa — reduce el tiempo de entrega aproximadamente 0.2–0.3 segundos. El trueque es velocidad (típicamente una pérdida de 2–3 millas por hora) y efectividad de la curva. Los lanzadores usan el paso de deslizamiento principalmente contra ladrones de bases con excelente velocidad o en situaciones donde un robo de base cambiaría significativamente el contexto del juego. Sobreusar el paso de deslizamiento es un error: los bateadores lo reconocen y ajustan su timing en consecuencia."
+      ]
+    },
+    "incident": {
+      "title": "Sorpresa de Kershaw en la NLDS 2014 — Silenciando a los Cardenales",
+      "impact": "En el Juego 1 de la NLDS 2014, Clayton Kershaw usó su movimiento de sorpresa zurdo para sacar al corredor de los Cardenales en primera base, terminando un rally que amenazaba con extender el juego. La sorpresa demostró cómo la capacidad de un lanzador para controlar el juego de robo se traduce directamente en controlar la puntuación — fue un movimiento que cambió el momentum en un juego cerrado.",
+      "body": [
+        "Los Cardenales de 2014 fueron uno de los equipos con robo de bases más agresivos de la Liga Nacional, regularmente presionando a los lanzadores tomando avances agresivos e intentando robar en momentos clave. La respuesta de Kershaw durante toda la postemporada de 2014 fue usar su movimiento de sorpresa más que lo usual — no necesariamente para registrar outs sino para alterar el timing. Él se apartaría, variaría su tempo, y lanzaría suficientemente veces que los corredores comenzaron a tomar avances más conservadores.",
+        "La efectividad de sorpresa de Kershaw provino de la ventaja fundamental de ser zurdo: su posición natural en la parte superior de su entrega de estiramiento lo tiene enfrentando primera base directamente, haciendo imposible para el corredor leer la separación de caderas (la señal primaria de que un lanzador comienza una entrega a la placa). El giro de cadera de un lanzador diestro es visible para el corredor de base; el de Kershaw no lo era. Combinado con su variación de tempo de élite — a veces manteniendo el estiramiento por cuatro segundos, a veces yendo inmediatamente — los corredores contra Kershaw esencialmente adivinaban en lugar de cronometrar. Este dominio de sorpresa lo hizo dramáticamente más efectivo en situaciones de estiramiento de alto riesgo que sus contrapartes diestros."
+      ]
+    },
+    "timeline": [
+      "El movimiento de sorpresa zurdo de Koufax lo hace uno de los mejores controladores en MLB",
+      "Hershiser controla el juego de robo de los Cardenales en la NLCS usando variación de tempo",
+      "El paso de deslizamiento se cuantifica — la investigación muestra que una entrega 0.25s más rápida reduce el éxito de robo",
+      "La sorpresa de Kershaw en la NLDS silencia el juego de robo de los Cardenales",
+      "MLB instituye nuevas reglas limitando intentos de sorpresa — la estrategia se adapta a la variación de tempo",
+      "Las reglas del reloj de lanzamiento cambian la dinámica del estiramiento — nuevas restricciones de tiempo afectan la estrategia de estiramiento"
+    ],
+    "keyTakeaways": [
+      "Variar el tempo de entrega altera el mecanismo de timing del corredor de base — la impredecibilidad es más efectiva que la velocidad pura",
+      "El paso de deslizamiento reduce el tiempo de entrega por 0.2–0.3 segundos pero cuesta velocidad y efectividad de la curva — úsalo selectivamente",
+      "Los lanzadores zurdos tienen una ventaja natural de sorpresa porque su posición ya enfrenta primera base sin un giro de cadera legible",
+      "La lista de verificación mental (verificar corredor, variar tempo, decidir tipo de entrega) debe completarse sin perder el enfoque en el bateador"
+    ]
+  }
+}

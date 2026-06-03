@@ -1,6 +1,6 @@
 import "server-only";
 import { redis } from "@/lib/redis";
-import { stagesMeta } from "@/data/stages-meta";
+import { stagesMeta } from "@kryptos/core/stages-meta";
 
 const TRIAL_DAYS = 7;
 const TRIAL_MS = TRIAL_DAYS * 24 * 60 * 60 * 1000;

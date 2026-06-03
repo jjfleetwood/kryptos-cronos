@@ -4,6 +4,8 @@
   "private": true,
   "description": "Framework-agnostic shared core for Kryptós CronOS (web + mobile): types, content data, cert mappings. No server-only or framework deps.",
   "exports": {
+    "./ctf-quiz-data": "./src/ctf-quiz-data.json",
+    "./audit-quiz-data": "./src/audit-quiz-data.json",
     "./*": "./src/*.ts"
   }
 }

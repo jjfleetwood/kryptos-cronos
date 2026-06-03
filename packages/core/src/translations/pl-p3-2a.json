@@ -1,0 +1,743 @@
+{
+  "baseball-1-06": {
+    "tagline": "Dobra defensywa w polu wewnętrznym to nie tylko trudne zagrania — to robienie właściwego zagrania za każdym razem.",
+    "overview": [
+      "Pozycje w polu wewnętrznym mają konkretne obowiązki wykraczające poza obronę piłek trafionych w ich kierunku. Pierwsza baza jest kotwicą każdego rzutu z pola wewnętrznego — zawodnicy muszą nauczyć się wyciągać się po zbłąkane rzuty, utrzymując stopę na bazie, co jest zarówno techniką, jak i umiejętnością zapobiegającą zamianie wielu błędów w uderzenia. Obrońca skrótu i druga baza muszą opanować obrót przy podwójnym zagraniu — mechanikę przyjęcia piłki na drugiej bazie i szybkiego przekazania rzutu do pierwszej.",
+      "Komunikacja to kluczowa, często niedoceniana umiejętność w polu wewnętrznym. Gdy piłka jest trafiona lub rzucona w niejednoznaczne miejsce, zawodnik krzyczący „Mam to!” musi być słyszalny ponad tłumem i musi krzyczeć wcześnie — nie w ostatniej chwili. Jeśli dwóch zawodników zbiegnie się przy fly-ballu bez okrzyku, kolizja może spowodować urazy. Zasada jest prosta: kto krzyczy pierwszy, ma pierwszeństwo; pozostali zawodnicy ustępują. Krzycz wcześnie i głośno.",
+      "Krycie to nawyk przemieszczania się za zagraniem na wypadek przerzucenia lub dzikiego rzutu. Każdy zawodnik na boisku powinien się poruszać przy każdym zagraniu — nawet jeśli piłka nie jest trafiona w jego kierunku. Miotacz kryje trzecią bazę i pole główne przy rzutach z zewnętrznego pola. Środkowy obrońca zewnętrzny kryje drugą bazę. Każdy zawodnik ma obowiązek znaleźć się w użytecznym miejscu przy każdym rzucie."
+    ],
+    "technical": {
+      "title": "Podwójne zagranie — mechanika 6-4-3",
+      "body": [
+        "Dla drugiej bazy przyjmującej rzut na drugiej bazie (pozycja 4 w układzie 6-4-3): złap piłkę, przeciągnij tylną stopę przez bazę podczas rzucania (lub dotknij stopą tuż przed złapaniem) i zejdź z drogi biegacza. Kluczowe jest: najpierw złap piłkę, potem rzuć — nigdy nie pośpieszaj z przekazaniem tak bardzo, że oba zagrania zostaną stracone.",
+        "Dla obrońcy skrótu rzucającego do drugiej bazy (pozycja 6 w układzie 6-4-3): oceń odległość biegacza, rzuć w stałe miejsce (nieco po stronie pierwszej bazy, na wysokości klatki piersiowej) i pozwól drugiej bazie wykonać obrót. Dobry rzut obrońcy skrótu znacznie ułatwia pracę drugiej bazie — zły rzut w oczy biegacza lub w ziemię sprawia, że jest ona niemal niemożliwa."
+      ]
+    },
+    "incident": {
+      "title": "Pole wewnętrzne Yankees z 1927 roku — ustalenie standardu",
+      "impact": "Yankees z 1927 roku, często nazywani najlepszą drużyną baseballową wszech czasów, mieli na pierwszej bazie Lou Gehriga — słynnego z wyciągania się po niedokładne rzuty i utrzymywania biegaczy poza bazą. Jego technika stała się wzorcem nauczanym pierwszym bazom przez pokolenia.",
+      "body": [
+        "Kadencja Lou Gehriga na pierwszej bazie New York Yankees (1923–1939) zbiegła się z erą formalnego kodyfikowania techniki pierwszej bazy. Gehrig, znany z konsekwentnej doskonałości, rozwinął pełne wyciągnięcie na pierwszej bazie do rangi sztuki — potrafił sięgać po rzuty, które w innym przypadku wyprowadzałyby innych graczy z bazy, zamieniając potencjalne uderzenia w auty.",
+        "Trenerzy baseballowi studiujący Yankees z 1927 roku — którzy zakończyli sezon z bilansem 110-44 i wygrali Serię Światową — zauważyli, że wykonanie ich pola wewnętrznego w równym stopniu przyczyniło się do sukcesu jak słynny atak z Babe Ruthem. Zasada „ratowania złego rzutu, gdy tylko możliwe, przy jednoczesnym utrzymaniu stopy na bazie” pozostaje do dziś standardową instrukcją dla pierwszych baz na każdym szczeblu, od Little League do Major League."
+      ]
+    },
+    "timeline": [
+      "Profesjonalny baseball kodyfikuje obowiązki pozycyjne w polu wewnętrznym w podręcznikach treningowych",
+      "Yankees z 1927 roku ustanawiają standard defensywny — wykonanie pola wewnętrznego jest studiowane przez pokolenia",
+      "Mechanika obrotu przy podwójnym zagraniu staje się standardowym programem nauczania w treningach dla młodych zawodników",
+      "Podręczniki Little League po raz pierwszy uwzględniają protokoły komunikacji przy fly-ballach",
+      "Defensywne zmiany w polu wewnętrznym stają się powszechne w profesjonalnym baseballe — ustawienie defensywne ewoluuje",
+      "MLB zakazuje ekstremalnych zmian w polu wewnętrznym — przywrócone zostaje tradycyjne ustawienie"
+    ],
+    "keyTakeaways": [
+      "Pierwsza baza: wyciągaj się w pełni po rzut, utrzymując stopę na bazie — ratuj każdy osiągalny rzut",
+      "Komunikacja jest kluczowa — krzycz „Mam to!” wcześnie i głośno; kto krzyczy, ma pierwszeństwo, pozostali ustępują",
+      "Przy podwójnym zagraniu najpierw złap piłkę — nigdy nie pośpieszaj z przekazaniem tak bardzo, że stracisz oba zagrania",
+      "Wszyscy kryją każdy rzut — jeśli nie jesteś zaangażowany w główne zagranie, znajdź pozycję krycia"
+    ]
+  },
+  "baseball-1-07": {
+    "tagline": "Zewnętrzne pole to nie miejsce do odpoczynku — to tam ratuje się mecz.",
+    "overview": [
+      "Obrońcy zewnętrzni muszą szybko pokrywać duże połacie terenu, precyzyjnie oceniać fly-balle, rzucać z siłą i dokładnością oraz nieustannie się ze sobą komunikować. Najważniejszą umiejętnością jest czytanie dźwięku kija — odgłos kontaktu natychmiast mówi obrońcy, czy piłka zostanie uderzona słabo (trzon, koniec kija) czy mocno (środek kija), a kąt kontaktu wskazuje z grubsza, w którym kierunku poleci. Doświadczeni obrońcy zewnętrzni stawiają już pierwszy krok, zanim piłka minie pole wewnętrzne.",
+      "Drop step to podstawowa technika przy piłkach uderzonych nad głową obrońcy zewnętrznego. Gdy piłka leci do tyłu, obróć się na stopie bliższej kierunkowi lotu piłki (cofnij tę stopę za siebie), odwróć ciało i biegnij z pełną prędkością do punktu lądowania — nigdy nie cofaj się. Drop step pozwala osiągnąć pełną prędkość w dwa kroki zamiast kilku kroków do tyłu.",
+      "Rzucanie do zawodnika pośredniego — obrońcy wewnętrznego ustawiającego się na trasie między obrońcą zewnętrznym a bazą — jest standardem przy większości rzutów z zewnętrznego pola. Rzucanie przez zawodnika pośredniego zamiast bezpośrednio do bazy pozwala mu zmienić kierunek, jeśli sytuacja w grze się zmieni, i zapobiega przetoczeniu się słabego rzutu do ogrodzenia. Wyjątek: gdy rzut jest wystarczająco silny, by ominąć biegacza bezpośrednio, a zawodnik pośredni ustępuje.",
+      "Obrońcy zewnętrzni komunikują się nieustannie: sygnalizując fly-balle, wskazując pozycje zawodników pośrednich, ostrzegając towarzyszy o ogrodzeniu. Środkowy obrońca zewnętrzny jest zazwyczaj kapitanem zewnętrznego pola — ma pierwszeństwo przy piłkach uderzonych w którąkolwiek z luk. Jeśli środkowy obrońca zewnętrzny zgłasza piłkę, obrońca narożny odpuszcza, nawet jeśli był bliżej."
+    ],
+    "technical": {
+      "title": "Komunikacja w zewnętrznym polu i świadomość ogrodzenia",
+      "body": [
+        "Obrońcy zewnętrzni komunikują się nieustannie: sygnalizując fly-balle, wskazując pozycje zawodników pośrednich, ostrzegając towarzyszy o ogrodzeniu. Środkowy obrońca zewnętrzny jest zazwyczaj kapitanem zewnętrznego pola — ma pierwszeństwo przy piłkach trafionych w którąkolwiek z luk. Jeśli środkowy obrońca zewnętrzny zgłasza piłkę, obrońca narożny odpuszcza, nawet jeśli był bliżej.",
+        "Świadomość ogrodzenia to kwestia bezpieczeństwa i skuteczności. Należy wiedzieć, gdzie jest pas ostrzegawczy — pas ziemi lub żwiru przed większością ogrodzeń zewnętrznego pola, który sygnalizuje obrońcy zbliżanie się do ogrodzenia. Gdy poczujesz pas ostrzegawczy pod stopami, spójrz w górę, by zlokalizować ogrodzenie, zanim będziesz kontynuować bieg. Nigdy nie biegnij z pełną prędkością w kierunku ogrodzenia, żeby złapać piłkę, jeśli nie masz wystarczającego doświadczenia, by dokładnie wiedzieć, jak daleko jest ogrodzenie. Trenerzy w ligach młodzieżowych powinni na początku każdego sezonu zabrać zawodników na pas ostrzegawczy, by poczuli, jak to jest."
+      ]
+    },
+    "incident": {
+      "title": "Willie Mays i „The Catch” — Polo Grounds, 1954",
+      "impact": "Złapanie przez Willie Maysa przez ramię uderzenia Vica Wertzego na 420 stóp w Serii Światowej 1954 uważane jest za największe zagranie defensywne w historii baseballa — pokaz drop stepu, czytania piłki z kija i czystego atletyzmu, które stało się definiującym momentem gry w zewnętrznym polu.",
+      "body": [
+        "W Meczu 1 Serii Światowej 1954 na Polo Grounds, Vic Wertz z Cleveland uderzył piłkę na 420 stóp w głąb środkowego zewnętrznego pola z dwoma biegaczami na bazach. Willie Mays obrócił się na dźwięk kija i pobiegł w kierunku ogrodzenia środkowego zewnętrznego pola — z pełną prędkością, plecami do pola wewnętrznego. Mniej więcej przy znaczniku 460 stóp złapał piłkę przez ramię, obrócił się i wykonał niezwykły rzut do pola wewnętrznego, uniemożliwiając obydwu biegaczom zdobycie punktu.",
+        "Zagranie, zwane po prostu „The Catch”, zostało uchwycone na filmie i jest oglądane przez fanów baseballa 70 lat później. Zademonstrowano w nim wszystkie elementy gry w zewnętrznym polu na najwyższym poziomie: czytanie kija, natychmiastowy drop step, pełny bieg do punktu lądowania i precyzyjny, silny rzut po niemal niemożliwym złapaniu. Willie Mays powiedział potem, że nie było to najtrudniejsze złapanie, jakiego kiedykolwiek dokonał — było po prostu najbardziej słynne. New York Giants wygrali Serię Światową w czterech meczach."
+      ]
+    },
+    "timeline": [
+      "Willie Mays wykonuje „The Catch” w Serii Światowej — gra w zewnętrznym polu zmienia się na zawsze",
+      "Dodgers przenoszą się do Los Angeles — Dodger Stadium staje się wzorcem rozpoznawalności zewnętrznego pola",
+      "Protokoły komunikacji w zewnętrznym polu są formalnie wprowadzane do podręczników treningowych dla dzieci",
+      "Wymagania dotyczące pasa ostrzegawczego zostają ujednolicone we wszystkich specyfikacjach boisk do baseballa dla dzieci",
+      "Ćwiczenia drop step stają się standardem w programach treningowych zewnętrznego pola dla dzieci",
+      "Metryki Statcast dla zewnętrznego pola kwantyfikują czas reakcji i efektywność trasy na poziomie Major League"
+    ],
+    "keyTakeaways": [
+      "Czytaj piłkę z kija — dźwięk i kąt mówią, dokąd się udać, zanim piłka stanie się widoczna",
+      "Drop step przy piłkach nad głową — odwróć się i biegnij, nigdy się nie cofaj",
+      "Rzucaj na klatkę piersiową zawodnika pośredniego przy większości rzutów — może zmienić kierunek, jeśli sytuacja się zmieni",
+      "Wiedz, gdzie jest pas ostrzegawczy przed każdym meczem — sygnalizuje bliskość ogrodzenia"
+    ]
+  },
+  "baseball-1-08": {
+    "tagline": "Inteligentna kradzież baz zdobywa więcej punktów niż surowa prędkość — wiedzieć, kiedy biec, to właśnie jest ta umiejętność.",
+    "overview": [
+      "Kradzież baz jest jedną z najbardziej niedocenianych i strategicznych umiejętności w baseballa. Drużyna biegnąca po bazach agresywnie i z głową wywiera ogromną presję na obronę — każde potencjalne uderzenie może stać się wielobazowym, a każdy fly ball to okazja do zdobycia punktu. Podstawy zaczynają się od wiedzy, kiedy startować: biegacze ruszają przy kontakcie z ziemią (gdy piłka jest w grze), a nie na dźwięk kija.",
+      "Zaokrąglanie bazy oznacza uderzenie wewnętrznego narożnika bazy stopą, co pozwala utrzymać rozpęd w łukowym ruchu zamiast zatrzymywać się i ruszać od nowa. Technika: biegnąc do pierwszej bazy po uderzeniu, które może okazać się wielobazowe, obierz zakrzywione podejście — odbij w stronę strefy faul około 15–20 stóp przed bazą, uderz wewnętrzny narożnik bazy prawą stopą i kontynuuj zakrzywionym torem do drugiej bazy. Jest to szybsze niż bieg po linii prostej i ostry skręt o 90 stopni.",
+      "Trener na trzeciej bazie jest oczami zawodnika biegnącego między drugą a trzecią bazą i od trzeciej do bazy głównej. Trener używa sygnałów — uniesione ręce (stój), ramię zataczające kręgi (biegnij), ręce bijące w dół (wślizguj się) lub ręce skrzyżowane na ciele (stój). Po kontakcie zadaniem biegacza jest biec mocno i czytać trenera — nie podejmować decyzji samodzielnie. Ufaj trenerowi. On widzi to, czego ty nie widzisz."
+    ],
+    "technical": {
+      "title": "Technika wślizgu — bezpieczeństwo i wykonanie",
+      "body": [
+        "Wślizg haczykiem (ze zgiętą nogą): zbliżając się do bazy, opadnij na ziemię, zginając dolną nogę pod sobą, jednocześnie wyciągając drugą nogę w kierunku bazy. Ciało opada na ziemię i ślizgasz się na biodrze i udzie, wyciągając przednią nogę, by dotknąć bazy. Zaleta: pozostajesz nisko i trudny do tagowania, a wślizg chroni przed kolizjami. Zawsze wślizguj się jak najdalej od tagu — celuj w narożnik bazy najdalej od kierunku rzutu.",
+        "Wślizg pop-up: tak samo jak ze zgiętą nogą, ale zawodnik używa rozpędu wślizgu, by podskoczyć z powrotem na nogi — idealny przy pierwszej bazie w bliskim zagraniu, gdy biegacz chce kontynuować do drugiej bazy, jeśli rzut był dziki. Nigdy nie wykonuj wślizgu pop-up do bazy głównej ani do drugiej bazy, gdy obrońca blokuje drogę — użyj wślizgu haczykiem, by wyminąć tag."
+      ]
+    },
+    "incident": {
+      "title": "Lou Brock i nauka rekordów kradzieży baz",
+      "impact": "Lou Brock ustanowił rekord wszech czasów w kradzieży baz (938 skradzionych baz w karierze), studiując ruchy miotaczy, mierząc czas swoich startów i udowadniając, że kradzież baz to w równej mierze nauka, co atletyzm — zmieniając sposób nauczania tej umiejętności na wszystkich poziomach.",
+      "body": [
+        "Lou Brock, który grał dla St. Louis Cardinals od 1964 do 1979 roku, posiadał rekord wszech czasów w kradzieży baz (938 skradzionych baz w karierze, później pobity przez Rickeya Hendersona) i zrewolucjonizował podejście do kradzieży baz. Brock prowadził szczegółowe notatki o każdym miotaczu, z którym się mierzył — czas jego podania do bazy, ruch w kierunku pierwszej bazy, preferowany rzut w sytuacjach kradzieży. Zredukował swoją przewagę, start i trasę do drugiej bazy do nauki ścisłej.",
+        "Wkład Brocka w baseball nie ograniczał się do samych kradzieży baz, lecz polegał na intelektualnym podejściu, które wniósł do tej umiejętności. Udowodnił, że inteligentna kradzież baz — czytanie miotaczy, precyzyjne mierzenie czasu startów, wybieranie właściwego kąta — jest możliwa do nauczenia i powtarzalna. Jego praca wpłynęła na to, jak trenerzy uczą kradzieży baz po dziś dzień: czytaj miotacza, mierz czas startu i biegnij mądrze, nie tylko szybko."
+      ]
+    },
+    "timeline": [
+      "Maury Wills kradnie 104 bazy — zaczyna się nowoczesna era kradzieży baz",
+      "Lou Brock rozpoczyna naukowe podejście do kradzieży baz w St. Louis",
+      "Brock pobija rekord kariery Ty Cobba w kradzieży baz",
+      "Rickey Henderson kradnie 130 baz w jednym sezonie — rekord wszech czasów do dziś",
+      "Henderson pobija rekord kariery Brocka w kradzieży baz",
+      "Little League aktualizuje zasady kradzieży baz — ograniczenia kradzieży z opóźnieniem w ligach dla młodych"
+    ],
+    "keyTakeaways": [
+      "Ruszaj z bazy przy kontakcie piłki z ziemią, nie na dźwięk kija — to nieco różne momenty",
+      "Zaokrąglaj bazy, uderzając wewnętrzny narożnik — skręcaj wcześnie i utrzymuj łukowy tor zamiast robić ostre zakręty",
+      "Zawsze czytaj i ufaj trenerowi na trzeciej bazie — on widzi to, czego ty nie widzisz, biegnąc mocno z plecami do boiska",
+      "Wślizguj się wcześnie i nisko — celuj w narożnik bazy z dala od tagu"
+    ]
+  },
+  "baseball-1-09": {
+    "tagline": "Łapacz kieruje obroną — widzi całe boisko i kontroluje ruch przy każdym rzucie.",
+    "overview": [
+      "Łapacz to pozycja najbardziej wymagająca fizycznie i strategicznie w baseballa. Nosi więcej sprzętu niż jakikolwiek inny zawodnik: ochraniacz klatki piersiowej, kask z ochraniaczem twarzy (czapka lub kask), ochraniacze goleni i suspensorium (obowiązkowe dla łapaczy-mężczyzn). Sprzęt chroni przed foul tipami, dzikimi rzutami i kolizjami przy bazie głównej. Łapacz jest jedynym obrońcą, który przez cały mecz jest zwrócony twarzą do całego boiska.",
+      "Łapacze dają miotaczowi sygnały do każdego rzutu za pomocą gestów palcami: jeden palec to fastball, dwa to curveball, trzy to changeup (lub system specyficzny dla danej drużyny). Łapacz musi też ustawić się (pozycjonować ciało) w miejscu, gdzie chce, by piłka wylądowała, dając miotaczowi cel. System sygnałów musi się zmienić, gdy na bazach są biegacze (by biegacz na drugiej bazie nie przekazywał sygnałów pałkarzowi).",
+      "Pitch framing to umiejętność przyjmowania rzutów na granicy strefy strike w sposób, który ułatwia sędziemu zaliczenie ich jako strike. Technika: trzymaj rękawicę stosunkowo nieruchomo, gdy piłka wpada do rękawicy, z subtelnym wewnętrznym obrotem przy granicznych rzutach. Nigdy nie „przebijaj” piłki ani nie wykonuj dramatycznych ruchów przy łapaniu — to przyciąga uwagę sędziego do faktu, że rzut był na zewnątrz. Dobrzy specjaliści od framingu mogą zdobyć dla swojej drużyny 15–20 dodatkowych strike'ów na mecz."
+    ],
+    "technical": {
+      "title": "Blokowanie piłek przy ziemi",
+      "body": [
+        "Blokowanie jest niezbędne, gdy miotacz rzuca piłkę w ziemię z biegaczami na bazach. Technika: opuść obydwa kolana na ziemię jednocześnie (nie rzucaj się), wciśnij brodę w klatkę piersiową, wygnij ciało do przodu, tworząc kształt „miseczki”, i pozwól, by piłka uderzyła w ochraniacz klatki piersiowej i opadła przed bazą główną — nie na boki. Celem jest utrzymanie piłki przed sobą, dając czas na podniesienie jej i ewentualny rzut.",
+        "Pozycja rzutu: z pozycji kucającej, łapacze rzucają szybkim i zwartym ruchem ramienia — bez długiego zamachu. Rzut do drugiej bazy jest najważniejszym rzutem defensywnym łapacza. Technika: przesuń ciężar nieco do przodu, unieś ramię wysoko i rzuć znad ucha — crispy four-seam fastball prosto nad poduszką drugiej bazy. Czas od złapania do wypuszczenia piłki mierzony jest w ułamkach sekundy."
+      ]
+    },
+    "incident": {
+      "title": "Johnny Bench i rewolucja łapania jedną ręką",
+      "impact": "Johnny Bench wprowadził technikę łapania jedną ręką w 1968 roku, trzymając nagą rękę rzucającą za plecami zamiast obok rękawicy. Wyeliminowało to tysiące urazów palców od foul tipów i w ciągu pięciu lat stało się powszechnym standardem.",
+      "body": [
+        "Zanim Johnny Bench trafił do Cincinnati w 1968 roku, łapacze łapali piłkę obiema rękami — rękę rzucającą kładli obok rękawicy, by zabezpieczyć piłkę i umożliwić szybkie przekazanie. Problem: foul tipy regularnie trafiały w nieosłoniętą rękę rzucającą, łamiąc palce. Każdy łapacz tamtej ery ma swoją historię o złamanych palcach.",
+        "Bench zauważył, że przekazanie piłki z rękawicy do ręki rzucającej jest wystarczająco szybkie bez trzymania nagiej ręki obok rękawicy przy każdym rzucie. Zaczął trzymać rękę rzucającą za plecami aż do momentu przekazania. W ciągu kilku sezonów praktycznie wszyscy łapacze w profesjonalnym baseballa przyjęli tę technikę. Dziś łapanie obiema rękami uczy się jedynie jako końcowy ruch zabezpieczający — nigdy przy przyjmowaniu rzutów. Bench jest uważany za najlepszego łapacza w historii baseballa, po części dlatego, że zrewolucjonizował tę pozycję."
+      ]
+    },
+    "timeline": [
+      "Sprzęt łapacza zostaje ustandaryzowany — ochraniacze goleni, ochraniacz klatki piersiowej, czapka",
+      "Łapanie obiema rękami jest standardem — epidemia urazów palców od foul tipów",
+      "Johnny Bench wprowadza łapanie jedną ręką — powszechna adopcja następuje",
+      "Pitch framing jest po raz pierwszy kwantyfikowany jako wkład statystyczny w akademickim badaniu baseballa",
+      "Statcast zaczyna mierzyć wartość pitch framingu — defensywny wkład łapaczy zostaje skwantyfikowany",
+      "Kaski z pełną ochroną (certyfikowane pod kątem wstrząśnień mózgu) stają się standardem dla łapaczy na wszystkich poziomach"
+    ],
+    "keyTakeaways": [
+      "Łapacze muszą nosić ochraniacz klatki piersiowej, kask, ochraniacze goleni i suspensorium — wszystko obowiązkowe przed każdym meczem",
+      "Jeden palec = fastball; dwa = curveball; trzy = changeup — zmień system sygnałów, gdy jest biegacz na drugiej bazie",
+      "Framuj graniczne rzuty spokojną, stabilną rękawicą — nigdy nie przebijaj ani nie rób dramatycznych ruchów na granicy strefy",
+      "Blokuj piłki przy ziemi, opuszczając obydwa kolana i wyginając ciało do przodu — utrzymaj piłkę przed sobą"
+    ]
+  },
+  "baseball-1-10": {
+    "tagline": "Najlepsi zawodnicy świata wciąż dają z siebie wszystko w każdym meczu — bo tak zachowują się dobrzy koledzy z drużyny.",
+    "overview": [
+      "Fair play to nie „miękka” umiejętność — to fundament tego, co sprawia, że baseball jest wart grania. Staranie się przy każdym zagraniu, zachęcanie kolegów po błędach, szanowanie sędziów i podanie ręki po meczu to nie opcjonalne dodatki do gry — to jest ta gra. Drużyny grające z charakterem i duchem sportowym są trudniejsze do pokonania, przyjemniejsze we współpracy i pozostawiają lepsze wrażenie długo po tym, jak wynik końcowy zostanie zapomniany.",
+      "Staranie się oznacza bieg po każdej piłce bez wyjątku, bez względu na to, jak rutynowe jest zagranie. Bieg do pierwszej bazy przy rutynowym odbiciowym nie kosztuje nic, a od czasu do czasu przynosi bezpieczne uderzenie, gdy pierwsza baza się spieszy. Brak starania kosztuje drużynę potencjalną szansę i wysyła sygnał, że zależy ci tylko wtedy, gdy jest łatwo. Zawodnicy Major League truchtający do pierwszej bazy przy odbiciowych są powszechnie krytykowani — na każdym poziomie uważa się to za fundamentalny brak zaangażowania.",
+      "Sędziowie są ludźmi. Będą popełniać błędy w decyzjach. Właściwą reakcją jest brak reakcji — wróć spokojnie do ławki, zachęcaj kolegów i skup się na następnym zagraniu. Kłótnia z sędziami w baseballu młodzieżowym nie przynosi nic pozytywnego: nie zmieni decyzji, może skutkować wyrzuceniem z boiska i daje zły przykład drużynie. Nawet gdy sędzia wyraźnie się myli, zadaniem zawodnika jest kontynuowanie gry ze skupieniem i intensywnością — nie protestowanie."
+    ],
+    "technical": {
+      "title": "Linia podziękowania po meczu",
+      "body": [
+        "Linia podziękowania po meczu to jedna z najbardziej znaczących tradycji w baseballa. Obie drużyny ustawiają się w rzędzie i mijają się, podając sobie ręce (lub uderzając pięściami na poziomie młodzieżowym) i mówiąc „dobry mecz”. Dotyczy to zarówno wygranej dwunastoma punktami, jak i przegranej po home runie w dogrywce. Podziękowanie uczy przyjmowania porażki z klasą i wygrywania z pokorą — obu niezbędnych do kształtowania charakteru w sporcie i w życiu.",
+        "Co dobrzy koledzy z drużyny robią po błędzie kolegi: nie mówią nic o błędzie w danej chwili, zachęcają do następnego zagrania („zapomnij, masz następne”) i pamiętają, że błędy są częścią gry — każdy zawodnik na każdym poziomie popełnia błędy. Co doskonali koledzy robią po własnym błędzie: biorą głęboki oddech, skupiają się na nowo i z całych sił walczą o kolejne zagranie. Wielcy koledzy z drużyny są pamiętani za charakter, nie za statystyki."
+      ]
+    },
+    "incident": {
+      "title": "Moment fair play na Serii Światowej Little League — 2014",
+      "impact": "Podczas LLWS 2014 zawodnik przegranej drużyny pocieszył płaczącego przeciwnika — zdjęcie stało się viralem i zostało przytoczone przez Little League International jako uosobienie tego, o co naprawdę chodzi w tym turnieju.",
+      "body": [
+        "Podczas Serii Światowej Little League 2014 w Williamsport zawodnik jednej z drużyn zauważył, że zawodnik przeciwnej drużyny płacze po trudnej porażce. Bez wahania podszedł i objął go ramieniem, pocieszając go. Fotograf uchwycił ten moment. Zdjęcie rozeszło się po całym świecie i pojawiło się w głównych mediach sportowych na całym globie.",
+        "Little League International wykorzystało to zdjęcie w swoich materiałach edukacyjnych, podkreślając, że oddaje ono ideał tego, czym naprawdę jest baseball dla młodych — nie wygrywaniem i przegrywaniem, lecz uczeniem się, jak traktować innych ludzi. Dwaj chłopcy z różnych krajów właśnie walczyli przeciwko sobie z całych sił, a kilka minut później jeden pocieszał drugiego. Żaden trener im tego nie powiedział. To właśnie jest fair play."
+      ]
+    },
+    "timeline": [
+      "Baseball Little League założony na zasadach pracy zespołowej i charakteru, Williamsport PA",
+      "Pierwsza Seria Światowa Little League — ustanowiona tradycja podziękowania po meczu",
+      "Little League otwiera się na dziewczynki — zasady fair play są kodyfikowane we wszystkich programach",
+      "Przysięga Little League International kładzie nacisk na fair play ponad wygrywaniem",
+      "Moment fair play na LLWS staje się viralem — na nowo rozpalając dyskusję o charakterze w sporcie młodzieżowym",
+      "Little League nawiązuje współpracę z Positive Coaching Alliance — zdrowie psychiczne i fair play"
+    ],
+    "keyTakeaways": [
+      "Staraj się przy każdym zagraniu — co najmniej truchtaj, biegnij, gdy to stosowne; nigdy nie chodź po piłce",
+      "Zachęcaj kolegów po błędach krótkim, konkretnym wsparciem — „masz następne” — a potem graj twardo",
+      "Nigdy nie kłóć się z sędziami — wróć spokojnie na swoje miejsce; niech trener zajmie się ewentualnym sporem",
+      "Linia podziękowania po meczu obowiązuje bez względu na wynik — przejdź ją z energią i klasą"
+    ]
+  },
+  "baseball-2-01": {
+    "tagline": "Każdy świetny swing zaczyna się, zanim piłka opuści rękę miotacza — zaczyna się od tego, jak stoisz.",
+    "overview": [
+      "Postawa przy uderzeniu to podstawa każdego swingu. Nie istnieje jedna idealna postawa — Mookie Betts używa delikatnego toe-tapu, by zsynchronizować obciążenie, Shohei Ohtani stosuje dramatyczne uniesienie nogi, by wygenerować skręt, a niektórzy z najlepszych pałkarzy kontaktowych w historii ledwo ruszali stopami. Wszystkie wielkie postawy mają ze sobą dwie wspólne cechy: równowagę, wyraźny widok miotacza i niezawodny sposób na uruchomienie swingu w odpowiednim czasie.",
+      "Stopy powinny być rozstawione nieco szerzej niż szerokość ramion, skierowane w stronę strefy uderzeń lub lekko otwarte. Kolana są ugięte, by biodra były załadowane i gotowe do wystrzelenia. Ciężar ciała rozkłada się równomiernie na podeszwach obu stóp — ani na piętach (co powoduje powolną reakcję), ani na palcach (co powoduje nagłe wychylenie do przodu). Ciało jest obrócone w stronę strefy uderzeń pod kątem około 45 stopni do miotacza, z obydwoma oczami skierowanymi do przodu.",
+      "Pozycja rąk jest kluczowa. Ręce zaczynają blisko tylnego ramienia, kij pod kątem około 45 stopni za głową. Uchwyt jest pewny, ale zrelaksowany — napięcie w dłoniach przenosi się na przedramiona i zabija prędkość kija. Kostki uderzeniowe (środkowe kostki obydwu rąk) są wyrównane na kiju. Z tej pozycji pałkarz może się załadować do tyłu i wystrzelić do przodu na każdy rzut w strefie uderzeń."
+    ],
+    "technical": {
+      "title": "Trigger — style obciążenia i dlaczego działają",
+      "body": [
+        "„Trigger” to każdy ruch przed swingiem, który pomaga pałkarzowi zsynchronizować się z rzutem i załadować energię w swingtrigger. Najczęstsze triggery to: toe-tap (przednia stopa unosi się i opada, gdy miotacz wchodzi w rzut — stosowany przez Mookie Bettsa i wielu czołowych pałkarzy), uniesienie nogi (przednia noga unosi się dramatycznie, by wygenerować skręt bioder — Shohei Ohtani, Josh Hamilton), zmiana ciężaru (lekkie przeniesienie ciężaru na tylną stopę bez unoszenia nogi — powszechne u pałkarzy kontaktowych) i brak triggera (spokojna postawa z minimalnym ruchem — stosowana przez niektórych czołowych pałkarzy kontaktowych).",
+        "Celem każdego triggera jest synchronizacja i obciążenie: przeniesienie ciężaru na tylną stronę we właściwym momencie, by biodra i ręce mogły wystrzelić do przodu zsynchronizowane z rzutem. Dobry trigger jest konsekwentny — ten sam ruch przy każdym rzucie — by reszta swingu była niezawodna. Młodzi zawodnicy powinni eksperymentować, by znaleźć prosty i powtarzalny trigger, zamiast kopiować skomplikowane uniesienie nogi z Major League, które jest trudne do zsynchronizowania."
+      ]
+    },
+    "incident": {
+      "title": "Mookie Betts i powrót do Dodger Stadium — 2020",
+      "impact": "Gdy Dodgers zawarli transakcję z Mookie Bettsem w lutym 2020 roku, skauci chwalili jego toe-tap trigger jako jeden z najbardziej konsekwentnych i powtarzalnych mechanizmów synchronizacji w grze. Betts poprowadził Dodgers do tytułu Serii Światowej 2020, bijąc na poziomie .304 z kluczowymi uderzeniami przez całą postseason.",
+      "body": [
+        "Postawa uderzeniowa Mookie Bettsa jest studiowana i nauczana w programach baseballa młodzieżowego w całym kraju. Jego toe-tap — delikatne uniesienie przedniej stopy opadającej dokładnie wtedy, gdy miotacz rozpoczyna rzut — tworzy idealnie zsynchronizowane obciążenie na tylnej nodze. Ruch jest mały, kontrolowany i identyczny przy każdym rzucie, niezależnie czy jest to 99 mph fastball, czy 75 mph curveball. Konsekwentność jego triggera jest jednym z powodów, dla których jego mechanika uderzenia tak dobrze przekłada się na pałkarzy każdej postury.",
+        "Gdy Betts trafił do Los Angeles w 2020 roku, koordynator uderzenia Robert Van Scoyoc zauważył, że podejście Bettsa łączy elitarną prędkość kija z wyjątkową dyscypliną synchronizacji. Rzadko dał się zaskoczyć rzutami bez prędkości, ponieważ jego trigger utrzymywał go wystarczająco z tyłu, by odczytać rzut. Trenerzy młodzieżowi studiujący postawę Bettsa zauważają, że jego toe-tap jest wystarczająco mały, by mógł go naśladować zawodnik w każdym wieku — to jeden z najbardziej nauczalnych triggerów w profesjonalnym baseballa."
+      ]
+    },
+    "timeline": [
+      "Szeroka, otwarta postawa Babe Rutha na nowo definiuje postawę mocy dla całego pokolenia",
+      "Zamknięta, zgarbiona postawa Teda Williamsa udowadnia elitarną wizję i równowagę",
+      "Dodgers przenoszą się do Los Angeles — Dodger Stadium staje się laboratorium rozwoju techniki uderzenia",
+      "Badania biomechaniczne zaczynają analizować postawę i mechanikę obciążenia w rozwoju zawodników młodzieżowych",
+      "Statcast mierzy prędkość kija i kąt wylotu — mechanika postawy powiązana z danymi prędkości wyjściowej",
+      "Mookie Betts dołącza do Dodgers — toe-tap trigger staje się jedną z najbardziej studiowanych postaw w MLB"
+    ],
+    "keyTakeaways": [
+      "Stopy nieco szersze niż szerokość ramion, ciężar na podeszwach, kolana ugięte dla załadowanej pozycji bioder",
+      "Ręce blisko tylnego ramienia z wyrównanymi kostkami uderzeniowymi — pewny uchwyt bez napięcia w przedramionach",
+      "Wybierz konsekwentny trigger (toe-tap, uniesienie nogi lub zmiana ciężaru), który powtarza się identycznie przy każdym rzucie",
+      "Obydwa oczy muszą być skierowane ku miotaczowi — zamknięta lub obrócona postawa ogranicza rozpoznawanie rzutów i pokrycie zewnętrznej części strefy"
+    ]
+  },
+  "baseball-2-02": {
+    "tagline": "Gdy fastball z 95 mph przecina bazę główną, masz mniej niż 400 milisekund na decyzję — a decyzja ta zapada, zanim piłka dotrze do połowy drogi.",
+    "overview": [
+      "Fastball z 95 mph przebywa drogę od punktu wyrzutu miotacza do rękawicy łapacza w około 400 milisekund. Badania pokazują, że pałkarze muszą zacząć podejmować decyzję o swingu, gdy piłka jest mniej więcej w połowie drogi do bazy głównej — zostawiając jedynie około 175 milisekund na identyfikację typu rzutu, lokalizacji i prędkości. To nie jest czas wystarczający na świadome myślenie analityczne. Elitarni pałkarze rozwijają rozpoznawanie wzorców tak głęboko wytrenowane, że identyfikacja rzutu jest niemal automatyczna.",
+      "Tunnel point to koncepcja wyjaśniająca, jak miotacze mylą pałkarzy. Wszystkie rzuty — fastball, curveball, slider, changeup — zaczynają się na niemal identycznych trajektoriach z ręki miotacza. Przez pierwsze 20–25 stóp lecą wspólnym „tunelem”. Dopiero potem efekt i fizyka powodują ich rozejście się. Miotacz utrzymujący wszystkie rzuty w tym samym ciasnym tunelu jest znacznie skuteczniejszy, bo pałkarz nie może zidentyfikować rzutu, dopóki nie rozejdzie się on z tunelem — dając mu znacznie mniej czasu na dostosowanie.",
+      "Freddie Freeman, pierwsza baza Dodgers i jeden z czołowych pałkarzy swojej ery, słynie z podejścia do bazy głównej. Intensywnie studiuje miotaczy przed każdym meczem, śledząc ich tendencje: jaki rzut rzucają przy stanie 2-0, gdzie umieszczają fastballe, gdy prowadzą, jak różni się ich punkt wyrzutu przy curveballa. To przygotowanie pozwala mu zawęzić mentalny model nadchodzącego rzutu — efektywnie dając sobie więcej czasu przez redukcję niepewności."
+    ],
+    "technical": {
+      "title": "Identyfikacja obrotu — czytanie szwów",
+      "body": [
+        "Zaawansowani pałkarze uczą się identyfikować obrót rzutu na podstawie rotacji szwów widocznej z ręki miotacza. Four-seam fastball obraca się z czystym backspinem — szwy wyglądają jak solidny pierścień rotacji (czasem nazywany „kropką”, której szukają pałkarze). Curveball ma obrót do góry — szwy obracają się do przodu nad górną częścią piłki. Slider ma ciasny, żyroskopowy obrót z bocznym i dolnym skrętem — często opisywany jako kręcące się kółko lub punkt, ale mniejszy i z bocznym nachyleniem.",
+        "Changeupy są szczególnie zdradliwe, ponieważ mają prędkość ramienia fastballa i podobny profil obrotu — różnica leży w prędkości, którą pałkarz może wykryć dopiero w ostatnich milisekundach. Dlatego changeupy są tak skuteczne: mózg pałkarza mówi „fastball” i inicjuje swing, ale piłka dochodzi 8–12 mph wolniej, powodując przedwczesne zaangażowanie i słaby kontakt lub całkowity pudel."
+      ]
+    },
+    "incident": {
+      "title": "Grand slam Freddiego Freemana w 10. inningu — Mecz 1 Serii Światowej 2024",
+      "impact": "Grand slam Freddiego Freemana w 10. inningu przeciw New York Yankees w Meczu 1 Serii Światowej był możliwy wyłącznie dzięki jego głębokiej znajomości relievera Yankees, Nestora Cortesa. Freeman przestudiował tendencje Cortesa tak dokładnie, że mógł czekać na konkretny rzut w konkretne miejsce — i gdy przyszedł, nie spudłował.",
+      "body": [
+        "Freddie Freeman stanął przy bazie głównej w 10. inningu Meczu 1 Serii Światowej przeciw Yankees, przegrywając 3-2, z pełnymi bazami. Przez całe play-offy grał z naskórkiem stawu skokowego, ale nadal wnosił wkład. Freeman zmierzył się wcześniej z Nestorem Cortesem i znał jego tendencje — Cortes lubił wychodzić na prowadzenie fastballami przed wprowadzeniem two-seamera. Freeman czekał na rzut, który mógł solidnie uderzyć, i gdy Cortes posłał fastball w wewnętrzną połowę, Freeman posłał grand slam walk-off, dając Dodgers zwycięstwo 6-3.",
+        "Przygotowanie, które umożliwiło ten moment, było niewidoczne: godziny analizy wideo, rozmowy z trenerami uderzenia, mentalna mapa tego, co Cortes zrobi w tej sytuacji. Rozpoznawanie rzutu Freemana w tej zmianie nie było szczęściem — było wyuczonym antycypowaniem. Grand slam stał się jednym z najbardziej celebrowanych momentów w historii play-offów Dodgers i był cytowany przez trenerów uderzenia w całym kraju jako podręcznikowy przykład, jak przygotowanie do rzutów wygrywa mecze."
+      ]
+    },
+    "timeline": [
+      "Ted Williams po raz pierwszy publikuje podejście do rzutów strefami — wczesna nauka czytania rzutów",
+      "Analiza wideo wprowadzona na poziomie MLB — pałkarze zaczynają systematyczne przygotowanie przed meczem",
+      "Kamery szybkiego zapisu po raz pierwszy użyte do badania rotacji piłki i fizyki tunnel point",
+      "Dane śledzenia Statcast umożliwiają kwantyfikację tuneli rzutów i zwodniczości",
+      "Aplikacje do treningu rozpoznawania rzutów trafiają do głównego nurtu w programach dla młodych i na uczelniach",
+      "Grand slam Freemana w Serii Światowej — przygotowanie do rzutów w swoim najbardziej dramatycznym momencie"
+    ],
+    "keyTakeaways": [
+      "Fastball z 95 mph daje mniej niż 400 milisekund — rozpoznawanie rzutu musi być automatyczne, nie analityczne",
+      "Tunnel point to powód, dla którego miotacze mylą: wszystkie rzuty wyglądają tak samo przez pierwsze 20 stóp lotu",
+      "Studiuj miotaczy przed meczami — znajomość tendencji (co rzucają przy stanie 2-0, jak się przygotowują) redukuje niepewność",
+      "Szukaj obrotu wcześnie: backspin = fastball, topspin = curveball, ciasny skośny obrót = slider"
+    ]
+  },
+  "baseball-2-03": {
+    "tagline": "Dobry swing to łańcuch kinetyczny — każde ogniwo, od ziemi w górę, aktywuje się sekwencyjnie, by dostarczyć maksymalną siłę w strefę kontaktu.",
+    "overview": [
+      "Nowoczesne rozumienie mechaniki swingu zostało zrewolucjonizowane przez dane Statcast, który mierzy prędkość kija, kąt wylotu i prędkość wyjściową przy każdej uderzonej piłce w Major League Baseball. Kluczowe odkrycie: najbardziej wartościowy kontakt — twarde linie i fly-balle — pochodzi ze swingu w płaszczyźnie odpowiadającej opadającej trajektorii rzutu, tworząc większą, a nie mniejszą strefę kontaktu. Dlatego stara wskazówka trenerska „bij w dół piłkę” jest teraz rozumiana jako tworząca zły kontakt, nie dobry.",
+      "Rotacja bioder pozostaje silnikiem swingu. Gdy stopa kroku ląduje, tylne biodro wyrzuca się do przodu i w górę (czasem opisywane jako „czyszczenie bioder”), ciągnąc ręce i kij do strefy kontaktu. Sekwencja jest od dołu do góry: tylna stopa zasadza się, kostka się obraca („miażdżenie robaka”), kolano wpycha się do środka, biodro wyrzuca, rdzeń się obraca, ramiona przechodzą, ręce pozostają dłonią ku górze i ku dołowi przez kontakt, głowa kija dochodzi do piłki. Przerwanie łańcucha w jakimkolwiek ogniwie redukuje moc.",
+      "Strefa kontaktu — miejsce zetknięcia kija z piłką — idealnie jest z przodu ciała przy rzutach w wewnętrzną połowę, na krawędzi bazy głównej przy rzutach środkowych, i głęboko (blisko tylnego biodra) przy rzutach zewnętrznych. Pałkarze próbujący wyciągać wszystko kontaktują zbyt wcześnie lub zbyt późno przy rzutach zewnętrznych; pałkarze pozostający głęboko kontaktują zbyt daleko z tyłu przy rzutach wewnętrznych. Odczytywanie lokalizacji rzutu i dostosowywanie punktu kontaktu to umiejętność rozwijana przez tysiące powtórzeń."
+    ],
+    "technical": {
+      "title": "Kąt wylotu — nowoczesna rewolucja uderzenia",
+      "body": [
+        "Kąt wylotu to pionowy kąt, pod jakim piłka opuszcza kij. Badania Statcast pokazują, że piłki uderzone pod kątem 10–30 stopni przynoszą najwyższe średnie uderzenia i slugging percentage — to twarde linie i średnie fly-balle, które albo spadają jako uderzenia, albo wychodzą z parku. Piłki uderzone pod kątem 0 stopni (idealnie płaskie) to zazwyczaj odbiciowe, łatwe auty. Piłki uderzone powyżej 30 stopni to popsy — wysokie i łatwe do złapania.",
+        "Osiągnięcie optymalnego kąta wylotu wymaga nieznacznie wznoszącej się płaszczyzny swingu — kij poruszający się lekko ku górze przez strefę kontaktu, by dopasować się do opadającego kąta rzutu. Tworzy to maksymalne nakładanie między kijem a piłką w momencie kontaktu. Stara wskazówka „bij w dół” miała zapobiegać popsom, ale w rzeczywistości produkowała odbiciowe. Nowoczesna instrukcja koncentruje się na „kącie ataku” — dopasowaniu trajektorii kija do kąta zbliżania się rzutu dla jak największej możliwej strefy kontaktu."
+      ]
+    },
+    "incident": {
+      "title": "Rewolucja Statcast — jak Dodgers zbudowali swoją lineup",
+      "impact": "Gdy MLB wdrożyła śledzenie Statcast we wszystkich 30 stadionach w 2015 roku, Dodgers znaleźli się wśród pierwszych organizacji używających danych prędkości wyjściowej i kąta wylotu do restrukturyzacji instrukcji uderzenia. Ich nacisk na twardy kontakt pod optymalnymi kątami wylotu stał się modelem integracji analityki i mechaniki w zwycięskiej lineupie.",
+      "body": [
+        "W 2015 roku Statcast zaczął mierzyć każdą uderzoną piłkę w Major League Baseball z bezprecedensową precyzją — prędkość wyjściową, kąt wylotu, prędkość sprintu, siłę ramienia. Dodgers, pod zarządem Davea Robertsa i analitycznie nastawionego kierownictwa, zaczęli używać tych danych do informowania sposobu trenowania pałkarzy. Zamiast prosić zawodników, by „po prostu robili kontakt”, zaczęli pracować nad konkretną jakością kontaktu: piłki uderzone twardo pod kątami wylotu między 10 a 30 stopni.",
+        "Wyniki te przeobraziły lineupu Dodgers przez całe późne lata 2010. i 2020. Zawodnicy byli trenowani, by częściej wyciągać piłkę w górę, unikać słabych odbiciowych po stronie pull i dopasowywać płaszczyznę swingu do kątów rzutu zamiast „bić w dół”, jak wymagała przestarzała instrukcja. Trwały sukces Dodgers — i ich zdolność do rozwijania pałkarzy, którzy poprawiali się z roku na rok — był po części efektem tego opartego na danych podejścia do mechaniki swingu."
+      ]
+    },
+    "timeline": [
+      "„The Science of Hitting” Teda Williamsa opisuje optymalne strefy kontaktu w ujęciu naukowym",
+      "Drużyny MLB zaczynają używać podstawowej analizy wideo do przeglądu mechaniki swingu",
+      "Kamery szybkiego zapisu w klatkach uderzeniowych umożliwiają analizę łańcucha kinetycznego klatka po klatce",
+      "Statcast wdrożony na wszystkich parkach MLB — dane kąta wylotu i prędkości wyjściowej stają się publiczne",
+      "„Rewolucja kąta wylotu” dociera do baseballa młodzieżowego — stare wskazówki „bij w dół” zostają porzucone",
+      "Dodgers wygrywają Serię Światową z lineupem zbudowanym na twardym kontakcie i optymalnych kątach wylotu"
+    ],
+    "keyTakeaways": [
+      "Łańcuch kinetyczny aktywuje się od dołu do góry: stopa, kostka, kolano, biodro, rdzeń, ramiona, ręce — w tej kolejności",
+      "Biodra wystrzelają przed rękami — „separacja biodra-ręce” to właśnie to, co generuje efekt biczowania w mocnym swingu",
+      "Optymalny kąt wylotu to 10–30 stopni — nie odbiciowe, nie popsy, lecz twarde linie i fly-balle",
+      "Punkt kontaktu dostosowuje się do lokalizacji rzutu: z przodu przy rzutach wewnętrznych, głęboko przy biodrze przy rzutach zewnętrznych"
+    ]
+  },
+  "baseball-2-04": {
+    "tagline": "Najlepszy rzut do uderzenia to ten, który wybierasz — nie ten, na który reagujesz. Dyscyplina strefy oznacza wiedzę o tej różnicy.",
+    "overview": [
+      "Dyscyplina strefy to zdolność do uderzania strike'ów i przepuszczania boli — i robienia tego konsekwentnie pod presją pełnego stanu przy dwóch autach w siódmym inningu. Brzmi prosto, ale to jedna z najtrudniejszych mentalnych umiejętności w uderzeniu. Pałkarze goniący rzuty poza strefą dają miotaczom darmowe auty. Pałkarze przepuszczający rzuty na granicy strefy dają miotaczom darmowe strike'i. Elitarny pałkarz nie robi żadnego z tych: uderza strike'i, które może wyprowadzić, a resztę przepuszcza.",
+      "On-base percentage (OBP) to jedna z najważniejszych statystyk ofensywnych w nowoczesnym baseballa, bo mierzy każdy przypadek uniknięcia autu przez pałkarza — uderzenia, bazy za piłki i trafienia przez rzut. Pałkarz bijący .280 z OBP .380 (dzięki wielu bazom za piłki) jest znacznie cenniejszy niż pałkarz bijący .310 z OBP .330 (rzadko wyciągający bazy za piłki). Dodgers pod zarządem Davea Robertsa konsekwentnie stawiają OBP i wskaźnik baz za piłki jako centralne wartości ofensywne.",
+      "Dźwignia stanu to koncepcja, że różne stany faworyzują różne strategie. Przy stanach korzystnych dla pałkarza (2-0, 3-0, 3-1) miotacz jest z tyłu i bardziej skłonny rzucić fastball do strefy — pałkarz może szukać konkretnego rzutu do wyprowadzenia. Przy stanach korzystnych dla miotacza (0-2, 1-2) pałkarz musi chronić strefę — uderzać wszystko w pobliżu strefy lub ryzykować podpalone bycie strikeoutem. Mentalna gra zarządzania stanem — wyprzedzanie przez rzadsze przepuszczanie strike'ów przy pierwszym rzucie lub praca głęboko w stanach — odróżnia dobrych pałkarzy od wielkich."
+    ],
+    "technical": {
+      "title": "Strefa strike — oficjalna, rzeczywista i sędziowska",
+      "body": [
+        "Oficjalna strefa strike, zgodnie z regulaminem, rozciąga się od punktu środkowego między górną częścią ramion a górną częścią spodni munduru (mniej więcej na wysokości liter) do rzepki, i od wewnętrznej krawędzi bazy głównej do zewnętrznej. W praktyce sędziowie MLB zaliczają wysoki strike mniej więcej na wysokości pasa, a niski strike na dole kolan. Narożniki — wewnętrzna i zewnętrzna krawędź — to obszar najbardziej kontrowersyjny.",
+        "Pokrycie strefy oznacza, że pałkarz musi być mechanicznie zdolny do kontaktu przy rzutach w całej strefie — wewnątrz, na zewnątrz, górą i dołem. Pałkarz niepotrafiący pokryć wewnętrznego narożnika będzie miał miotaczy atakujących go przez cały dzień. Pałkarz niepotrafiący czekać na rzuty na wysokości kolan będzie gonił niskie curveballe. Rozwijanie pokrycia strefy przez pracę na tee i żywą praktykę uderzenia na wszystkich lokalizacjach rzutów jest niezbędne do stania się zdyscyplinowanym pałkarzem."
+      ]
+    },
+    "incident": {
+      "title": "Kultura baz za piłki Dodgers — era Davea Robertsa",
+      "impact": "Pod zarządem Davea Robertsa Dodgers konsekwentnie plasowali się wśród liderów ligi w wskaźniku baz za piłki i OBP, traktując bazę za piłki jako broń strategiczną, a nie niepowodzenie przy uderzaniu. Ta filozofia — zaczerpnięta z biura kierowniczego pod wpływem Moneyball — zaowocowała jednym z najbardziej konsekwentnych ataków w Lidze Narodowej.",
+      "body": [
+        "Gdy Dave Roberts został menedżerem Dodgers w 2016 roku, analitycznie napędzane biuro kierownicze organizacji zbudowało już filozofię wokół dyscypliny strefy. Dodgers instruowali pałkarzy, by pracowali głęboko w stanach, szukali rzutów w swojej strefie i traktowali bazy za piłki jako równoważne pod względem wartości singlesowi dla celów on-base percentage. Pałkarze tacy jak Corey Seager, Justin Turner, a później Freddie Freeman ucieleśniali to podejście — cierpliwi, selektywni, gotowi wziąć bazę za piłki, gdy miotacz nie posyłał strike'a.",
+        "Wyniki przyniosły konsekwentne serie play-offowe i jedne z najbardziej efektywnych ataków w baseballa. Dodgers skorzystali też na efekcie ubocznym: miotacze zmuszeni do posyłania większej liczby strike'ów, by uniknąć baz za piłki, zwiększali liczbę rzutów szybciej, wcześniej się męcząc. Lineup wyciągający wiele baz za piłki zmusza rywalizujących miotaczy głębiej w stan, co oznacza więcej błędów w lokalizacjach korzystnych dla pałkarza. Dyscyplina strefy nie jest pasywna — to agresywna strategia ofensywna."
+      ]
+    },
+    "timeline": [
+      "Duke Snider z Dodgers wyciąga 100+ baz za piłki w sezonie — wczesny nacisk na dyscyplinę strefy",
+      "Siatka strefy strike Williamsa opublikowana — pierwszy wizualny model wartości rzutu według lokalizacji",
+      "Moneyball opublikowane — OBP i bazy za piłki stają się głównym nurtem filozofii ofensywnej",
+      "Era Davea Robertsa się zaczyna — Dodgers wdrażają nacisk na wskaźnik baz za piłki w całym lineupie",
+      "OBP .366 Mookie Bettsa przyczynia się do tytułu Serii Światowej Dodgers",
+      "Dodgers prowadzą NL pod względem baz za piłki i OBP w drodze do mistrzostwa Serii Światowej"
+    ],
+    "keyTakeaways": [
+      "OBP obejmuje bazy za piłki — pałkarz dochodzący do bazy za piłki wnosi taki sam wkład jak ten, który bije singla",
+      "Przy stanach korzystnych dla pałkarza (2-0, 3-1) szukaj konkretnego rzutu do wyprowadzenia — miotacz potrzebuje strike'a",
+      "Przy stanach korzystnych dla miotacza (0-2, 1-2) chroń strefę — strefa się rozszerza, uderzaj wszystko na granicy",
+      "Gonić rzuty poza strefą to najpowszechniejszy sposób, w jaki pałkarze dają miotaczom darmowe auty — bądź zdyscyplinowany"
+    ]
+  },
+  "baseball-2-05": {
+    "tagline": "Moc nie zależy od tego, jak dużą masz sylwetkę — lecz od tego, jak efektywnie przenosisz siłę z ziemi przez kij w odpowiednim momencie.",
+    "overview": [
+      "Nowoczesny baseball przeszedł rewolucję siły. Połączenie analityki Statcast pokazującej wartość twardego kontaktu pod optymalnymi kątami wylotu, bardziej agresywnych programów kondycyjnych i dopracowanej instrukcji uderzenia przyniosło epokę największej mocy w historii baseballa. Prędkości wyjściowe powyżej 100 mph są teraz powszechne na poziomie profesjonalnym, a wskaźniki home runów utrzymują się na historycznie wysokim poziomie mimo kilku korekt sprzętu.",
+      "Prędkość kija jest bezpośrednim czynnikiem napędzającym prędkość wyjściową — im szybciej kij porusza się w momencie kontaktu, tym twardziej wychodzi piłka. Prędkość kija jest generowana przede wszystkim przez prędkość rotacji bioder, separację biodra-ręce oraz długość i efektywność trajektorii swingu. Cięższe kije nie generują automatycznie większej prędkości wyjściowej — pałkarz, który może szybko swingować lżejszym kijem, często wyprzedzi kogoś, kto z trudem przeprowadza ciężki kij przez strefę.",
+      "Dodgers budowali swoją lineup wokół mocy od połowy lat 2010. Cody Bellinger, Max Muncy, Corey Seager, Justin Turner i Shohei Ohtani byli produktami filozofii ceniącej twardy kontakt na wszystkie pola, a szczególnie w powietrze po zewnętrznej stronie. Rozumienie różnicy między mocą pull (korzystna dla pałkarza, wysoka prędkość wyjściowa przez wczesny kontakt) a mocą po zewnętrznej stronie pola (wymaga elitarnej prędkości kija, by z mocą pchnąć piłkę na drugą stronę) jest kluczowe dla rozwijania podejścia mocy."
+    ],
+    "technical": {
+      "title": "Moc pull a moc po zewnętrznej stronie pola",
+      "body": [
+        "Moc pull jest generowana przez wczesne wprowadzanie głowicy kija do piłki — kontakt z przodu bazy głównej przy rzutach w wewnętrzną połowę. Ponieważ swing wciąż przyspiesza w tym punkcie kontaktu (kij nie wyhamował jeszcze w pełni) i ponieważ głowica ma więcej siły odśrodkowej z przodu swingu, kontakt pull przynosi najwyższe prędkości wyjściowe. Dlatego większość home runów jest wyciągana — fizyka to faworyzuje.",
+        "Moc po zewnętrznej stronie pola to znak elitarnej prędkości kija. By z mocą wysłać zewnętrzny rzut na przeciwne pole, pałkarz musi czekać dłużej (głębszy kontakt w strefie, blisko tylnego biodra), utrzymać rotację bioder przez kontakt i w pełni wyprostować ramiona przez piłkę ku drugiej stronie. Pałkarze z wolniejszą prędkością kija próbujący wyciągać zewnętrzne rzuty produkują słabe odbiciowe po stronie obrońcy skrótu. Pozostawanie z tyłu i z mocą pchnięcie na drugą stronę wymaga zarówno doskonałości mechanicznej, jak i prawdziwej prędkości kija."
+      ]
+    },
+    "incident": {
+      "title": "Shohei Ohtani dołącza do Dodgers — 2024",
+      "impact": "Podpisanie kontraktu przez Shohei Otaniego z Dodgers przywiozło do Los Angeles najbardziej dominującego pałkarza-miotacza w historii baseballa. Jego 54 home runy w 2024 roku — druga najlepsza liczba w historii MLB dla zawodnika, który również miotał — udowodniły, że jego podejście do mocy (uniesienie nogi, elitarna prędkość kija, skuteczność po zewnętrznej stronie pola) reprezentuje szczyt nowoczesnej mocy w baseballa.",
+      "body": [
+        "Sezon Otaniego w 2024 roku był historycznie niezwykły: 54 home runy, 59 skradzionych baz (pierwszy sezon „50-50” w historii baseballa) i średnia .310 — a to podczas powrotu po operacji Tommy'ego Johna jako miotacz. Jego moc pochodzi z połączenia wyjątkowo wysokiego uniesienia nogi generującego ogromny skręt bioder, elitarnej prędkości kija szacowanej na ponad 80 mph w momencie kontaktu oraz płaszczyzny swingu produkującej optymalne kąty wylotu przy rzutach w wewnętrzną połowę.",
+        "Dodger Stadium, z jego umiarkowanie korzystnymi dla miotaczy wymiarami, mógłby się wydawać dziwnym wyborem dla najbardziej groźnego pałkarza mocy w grze. Jednak budowa lineupu Dodgers wokół Otaniego — z Freemanem przed nim i Teoscarem Hernándezem za nim — zapewniała mu rzuty do uderzenia. Połączenie to przyniosło 127 home runów łącznie w lineupie Dodgers w 2024 roku, jeden z najpotężniejszych ataków w historii franczyzy."
+      ]
+    },
+    "timeline": [
+      "Babe Ruth uderza 60 home runów — pierwszy punkt odniesienia nowoczesnego sezonu mocy",
+      "Mark McGwire uderza 70 home runów — era mocy osiąga szczyt (później skompromitowany ujawnieniami dotyczącymi PED)",
+      "Debiut Statcast — prędkość wyjściowa i kąt wylotu stają się kwantyfikowalnymi metrykami mocy",
+      "Freddie Freeman z Dodgers prowadzi drużynę w wskaźniku twardego kontaktu na poziomie powyżej .400 w sezonie",
+      "Ohtani zdobywa MVP NL — podpisuje 10-letni kontrakt z Dodgers w grudniu",
+      "Ohtani uderza 54 home runy z Dodgers — pierwszy sezon 50-50 w historii MLB"
+    ],
+    "keyTakeaways": [
+      "Prędkość kija to główny czynnik napędzający prędkość wyjściową — szybsza prędkość kija ważniejsza jest od jego wagi",
+      "Moc pull jest bardziej dostępna, bo kontakt następuje z przodu bazy głównej, gdzie głowica przyspiesza najszybciej",
+      "Moc po zewnętrznej stronie pola wymaga elitarnej prędkości kija — pałkarze pozostający z tyłu i z mocą wysyłający zewnętrzne rzuty na drugą stronę są naprawdę wyjątkowi",
+      "Dąż do prędkości wyjściowej powyżej 95 mph — piłki twardego kontaktu powyżej tego progu przynoszą dramatycznie lepsze wyniki"
+    ]
+  },
+  "baseball-2-06": {
+    "tagline": "Trafienie trzy razy na dziesięć prób czyni cię świetnym pałkarzem. To znaczy, że najlepsi na świecie zawodzą siedem razy — to, jak dostosujesz się przy dwóch strike'ach, decyduje, czy zawodzisz na własnych warunkach.",
+    "overview": [
+      "Kontakt uderzeniowy — robienie konsekwentnego, solidnego kontaktu kijem w grubej jego części — jest podstawą efektywnego ataku niezależnie od mocy. Na poziomie młodzieżowym kontakt jest najważniejszy: zawodnik rozkładający linie na wszystkie pola i konsekwentnie wprowadzający piłkę do gry jest cenniejszy niż zawodnik, który strikeoutuje połowę czasu, ale od czasu do czasu uderza daleko. Rozwijanie umiejętności kontaktowych przez pracę na tee, soft toss i żywą praktykę uderzenia buduje koordynację oko-ręka, która napędza wszystkie pozostałe aspekty uderzenia.",
+      "Dostosowanie przy dwóch strike'ach to jedna z najważniejszych umiejętności w uderzeniu. Bez strike'ów lub z jednym strike'em pałkarz może być selektywny — ma przestrzeń na przepuszczanie rzutów i szukanie czegoś konkretnego. Przy dwóch strike'ach zmiana przy zmianie: pałkarz musi chronić bazę główną. Standardowe dostosowanie przy dwóch strike'ach obejmuje przesunięcie chwytu wyżej (przesunięcie rąk o 1–2 cale w górę na rękojeści), skrócenie swingu, rozszerzenie strefy strike i skupienie się na kontakcie zamiast na wypchnięciu piłki.",
+      "Średnia uderzenia .300 oznacza trafienie w 30% zmian. Nawet najlepsi pałkarze w historii baseballa nie trafiali w 70% zmian. Zrozumienie tego wskaźnika porażek jest niezbędne dla mentalnej gry w uderzeniu: każdy wielki pałkarz zaliczał serie 0-4, 0-10, 0-20. Złe serie są nieuniknione. Mentalna reakcja — pozostanie krótkim, zdyscyplinowanym, niezmienienie wszystkiego po złej serii — decyduje o tym, jak szybko pałkarz się podnosi."
+    ],
+    "technical": {
+      "title": "Przesunięcie chwytu wyżej — najbardziej niedoceniane narzędzie w baseballa",
+      "body": [
+        "Przesunięcie chwytu o 1–2 cale w górę od nakrętki skraca efektywną długość kija, zwiększa kontrolę i — co może się wydawać nieoczekiwane — często zwiększa prędkość kija, bo dźwignia jest krótsza. Kompromisem jest niewielka redukcja mocy: gruba część jest bliżej rąk, więc efekt biczowania jest zmniejszony. Ale uderzenie przy dwóch strike'ach dotyczy kontaktu, nie mocy. Piłka trafiona czubkiem kija lub zbyt blisko rąk to aut. Piłka trafiona w grubą część z przesuniętym wyżej uchwytem to uderzenie.",
+        "Technika szybkiego uderzenia — stosowana przez specjalistów kontaktowych, switch-hitterów i niektórych leworęcznych pałkarzy — polega na krótszej ścieżce swingu priorytetyzującej kontakt i szybkie wyjście z boksu uderzeniowego, często celując w lewą stronę wewnętrznego pola lub na zewnętrzne pole. Tony Gwynn, jeden z wielkich pałkarzy kontaktowych w historii (średnia .338 w karierze), był mistrzem krótkiego i szybkiego uderzenia na zewnętrzne pole, często w kierunku tego, co dziś nazywa się „strefą Williamsa”."
+      ]
+    },
+    "incident": {
+      "title": "Tony Gwynn kontra zmiana ustawienia obrony — oryginalny mistrz kontaktu",
+      "impact": "Tony Gwynn, który bił na poziomie .338 przez 20-letnią karierę — w tym osiem tytułów uderzeniowych — był tak precyzyjny w trafianiu piłki na zewnętrzne pole lewej-centrum przy zmianie ustawienia, że stworzył to, co trenerzy dziś nazywają „strefą Gwynna”. Jego studiowanie filmów, ćwiczenia z patyczkami i obsesja na punkcie mechaniki kontaktu pozostają standardem nauczania uderzenia kontaktowego.",
+      "body": [
+        "Tony Gwynn był znany jako pierwszy zawodnik szeroko stosujący analizę wideo do studiowania własnego swingu i rywalizujących miotaczy. Woził ze sobą odtwarzacz VHS w wyjazdach przez dekady, zanim studiowanie wideo stało się powszechne. Zidentyfikował, że jego najbardziej efektywna strefa kontaktu to rzut niski i zewnętrzny — który mógł konsekwentnie kierować na zewnętrzne pole lewej-centrum. Gdy obrony przesuwały się w jego stronę pull, po prostu grał bardziej na zewnętrzne pole i dalej bił.",
+        "Podejście Gwynna do uderzenia przy dwóch strike'ach było szczególnie pouczające: skracał swing, nieznacznie przesuwał chwyt wyżej i priorytetyzował kontakt gdziekolwiek w strefie strike nad próbą wypchnięcia piłki. Jego wskaźnik kontaktu przy dwóch strike'ach był nadzwyczajny — prawie nigdy nie podpalał patrząc. Zakończył karierę ze wskaźnikiem strikeoutów poniżej 4%, co pałkarze nowoczesni z zaawansowaną analityką studiują jako standard elitarnych umiejętności kontaktowych."
+      ]
+    },
+    "timeline": [
+      "Ted Williams bije .406 — ostatni sezon .400 w historii Major League",
+      "Era Brooklyn Dodgers — Duke Snider i Jackie Robinson modelują równowagę kontakt + moc",
+      "Tony Gwynn rozpoczyna karierę — pionier studiowania wideo i podejścia „kontakt na pierwszym miejscu”",
+      "Gwynn bije .394 — najbliższe zbliżenie do .400 w epoce post-Williams",
+      "Wskaźnik kontaktu i wskaźnik strikeoutów stają się powszechnymi miarami analitycznymi",
+      "Średni wskaźnik strikeoutów w MLB osiąga 22% — uderzenie kontaktowe jest coraz rzadsze i cenniejsze"
+    ],
+    "keyTakeaways": [
+      "Przesunięcie chwytu o 1–2 cale zwiększa kontrolę i często prędkość kija — stosuj przy dwóch strike'ach",
+      "Skupienie przy dwóch strike'ach: skróć swing, rozszerz strefę, chroń bazę główną — kontakt ponad moc",
+      "Średnia .300 oznacza 7 na 10 zmian bez uderzenia — złe serie są normalne, nie katastrofalne",
+      "Filozofia kontaktowa Tony'ego Gwynna: znajdź swoją strefę, graj na zewnętrzne pole, nigdy nie oddawaj zmian"
+    ]
+  },
+  "baseball-2-08": {
+    "tagline": "Rzuty łamiące się są zaprojektowane, by cię ośmieszyć. Pozostawanie z tyłu jest antidotum — cierpliwość to właśnie ta umiejętność.",
+    "overview": [
+      "Rzuty łamiące się — curveballe, slidery, changeupy i ich warianty — są zaprojektowane, by eksploatować timing pałkarza. Wszystkie zaczynają się z trajektoriami podobnymi do fastballów (zasada tunnel point), ale docierają wolniej i/lub w innych miejscach. Najczęstszy błąd pałkarzy przeciw rzutom łamiącym się to przedwczesne zaangażowanie: rotacja bioder przed pełną identyfikacją rzutu, produkująca swing zbyt wczesny (odbiciowy) lub zbyt z przodu (wielki pudel).",
+      "Curveball to klasyczna pułapka przedwczesnego zaangażowania. Zaczyna się wysoko, wyglądając jak fastball w górnej strefie, po czym dramatycznie spada do strefy strike lub poniżej niej. Pałkarze reagujący na początkową trajektorię „wysokiego fastballa” wyciągają za wcześnie i swingują tam, gdzie piłka zaczęła lot — nie tam, gdzie kończy. Kluczem do uderzania curveballi jest pozostawanie z tyłu: opóźnienie rotacji bioder do momentu zidentyfikowania złamania piłki, a następnie krótszy, dostosowany swing do rzeczywistego miejsca dotarcia piłki.",
+      "Slider jest najbardziej zdradliwym rzutem na poziomie profesjonalnym, bo najtrudniej odróżnić go od fastballa. Slidery mają ciasny obrót wyglądający jak backspin fastballa, ale z bocznym nachyleniem — piłka tnie w stronę rękawicy. Wielu pałkarzy opisuje slidery jako „fastballe, które znikają” w ostatnich 10–15 stopach. Changeup, z kolei, wygląda jak fastball z założenia — ta sama prędkość ramienia, ta sama trajektoria — ale dociera 8–12 mph wolniej. Przedwczesne zaangażowanie jest fatalne przeciw obu."
+    ],
+    "technical": {
+      "title": "Curveball a slider a changeup — kluczowe różnice",
+      "body": [
+        "Curveball: oś obrotu 12-do-6 lub 11-do-5, duży pionowy spadek, typowo 10–15 mph wolniej niż fastball. Złamanie jest duże i zaczyna się wcześnie. Pałkarze wystarczająco z tyłu, by zobaczyć złamanie, mogą je zidentyfikować w punkcie rozejścia się tunelu. Klucz: nie angażuj się w wysoką trajektorię — poczekaj, aż piłka ujawni swoje rzeczywiste miejsce dotarcia.",
+        "Slider: ciasny, żyroskopowy obrót z bocznym i dolnym złamaniem, typowo 5–8 mph wolniej niż fastball. Złamanie jest ostre i późne — wygląda jak fastball do ostatnich 10–15 stóp. To późne działanie sprawia, że slidery są bardzo trudne do uderzenia. Wskazówka: slidery tną w stronę ręki rzucającej na końcu; piłka zaczynająca się w środku i wyglądająca, jakby opadała do środka (dla lewego pałkarza przeciw lewemu miotaczowi) to slider. Changeup: trajektoria fastballa z prędkością ramienia fastballa, ale 8–12 mph wolniejszy. Grawitacja sprawia, że opada bardziej niż fastball, często łamiąc się z dala od pałkarzy tego samego boku. Wskazówka: jeśli rzut wygląda jak fastball, ale twój timing mówi „zbyt wcześnie”, to prawdopodobnie changeup."
+      ]
+    },
+    "incident": {
+      "title": "Curveball Claytona Kershawa — największa broń Dodgers",
+      "impact": "Curveball Claytona Kershawa — ochrzczony „El Diablo” przez Vina Scully'ego — był uznawany za najlepszy w Major League przez ponad dekadę. Ze średnim spadkiem 58 cali (prawie pięć stóp pionowego ruchu) i ciasnym tunelem z fastballem, reprezentuje dokładnie ten rzut, który zmusza pałkarzy do zrozumienia, dlaczego pozostawanie z tyłu jest tak ważne.",
+      "body": [
+        "Curveball Claytona Kershawa wchodzi do tunelu na około 80 stopach od bazy głównej, wyglądając dokładnie jak jego fastball z 92–94 mph. Oba rzuty zaczynają się z tego samego punktu wyrzutu, na tej samej trajektorii. Na około 40 stopach od bazy — gdzie tunel się rozchodzi — curveball zaczyna swój katastrofalny pionowy spadek o 58 cali, podczas gdy fastball kontynuuje w prostej linii. Pałkarze angażujący rotację bioder wcześnie, czytając „fastball”, już wyciągają, gdy piłka zaczyna opadać.",
+        "Najczęstszym wynikiem zmylenia przez curveball Kershawa jest dziki swing nad górną częścią piłki — czasem chybiający o ponad dwie stopy. Lekcja dla pałkarzy: zidentyfikuj obrót w punkcie tunelu, pozostań z tyłu i wykonaj krótki, dostosowany swing. Pałkarze odnoszący największe sukcesy przeciw Kershawowi to ci, którzy potrafią wystarczająco długo pozostać z tyłu przy curveballa, by go zidentyfikować i zareagować na jego końcową lokalizację — umiejętność wymagająca wyjątkowej cierpliwości i szybkiego dostosowania odruchów."
+      ]
+    },
+    "timeline": [
+      "Curveball Sandy'ego Koufaxa dominuje w NL — uczy pokolenie, jak pozostawać z tyłu",
+      "Slider Orela Hershisera prowadzi Dodgers do Serii Światowej — studium podejścia do rzutów łamiących się",
+      "Slider staje się najczęstszym rzutem strikeout w Major League",
+      "Kershaw zdobywa pierwszą nagrodę Cy Young — curveball corocznie oceniany jako Nr 1 w MLB",
+      "Statcast mierzy złamanie curveball w calach — 58-calowy spadek Kershawa zostaje skwantyfikowany",
+      "Slider pozostaje głównym rzutem strikeout — pałkarze Dodgers opracowują protokoły dla rzutów łamiących się"
+    ],
+    "keyTakeaways": [
+      "Pozostań z tyłu przy wszystkich rzutach łamiących się — przedwczesne zaangażowanie bioder to przyczyna niemal wszystkich błędów przy rzutach łamiących się",
+      "Curveball: duży, wczesny spadek — poczekaj, aż piłka pokaże swoją lokalizację, zanim się zaangażujesz",
+      "Slider: późne, ostre cięcie — wygląda jak fastball do ostatnich 10–15 stóp, śledź go do końca",
+      "Changeup: ta sama prędkość ramienia, wolniejsza piłka — jeśli twój timing mówi „zbyt wcześnie”, dostosuj się i kontynuuj przez piłkę"
+    ]
+  },
+  "baseball-2-09": {
+    "tagline": "Franczyza Dodgers przez całą historię baseballa wydała na świat jedne z najbardziej wyrazistych i pouczających podejść ofensywnych — każda era ucząc innej lekcji o rzemiośle.",
+    "overview": [
+      "Brooklyn i Los Angeles Dodgers prezentowali legendarnych pałkarzy w każdej erze baseballa. Jackie Robinson (1947–1956) nie był najpotężniejszym pałkarzem, ale być może najbardziej kompletnym: wyjątkowa kontrola kija, niezwykłe bieganie po bazach, uderzanie w kluczowych momentach i siła mentalna do działania pod intensywną zewnętrzną presją, jakiej żaden inny baseballista nie doświadczył. Duke Snider uderzył 407 home runów w karierze i był jednym z wielkich lewostronnych pałkarzy pull w latach 50., częścią triady środkowych obrońców zewnętrznych w Nowym Jorku (obok Willie Maysa i Mickeya Mantle'a) generującej niekończące się debaty o tym, kto był najlepszy.",
+      "Mike Piazza, który przebił się przez system Dodgers w 1992 roku, stał się jednym z największych ofensywnych łapaczy w historii baseballa — prawostronny pałkarz pull z wyjątkową prędkością kija, który z mocą kierował wszystko na lewą stronę. Adrian Beltre, grający dla Dodgers od 1998 do 2004 roku, słynął z uderzania świetnych piłek w ziemię — unikalnej umiejętności generowania mocy przy rzutach poza strefą strike, co dezorientowało wszystkich miotaczy próbujących go wystrzelić nisko.",
+      "Cody Bellinger (2017–2022 z Dodgers) miał jeden z najbardziej estetycznie wyrazistych swingów w nowoczesnej historii Dodgers — dramatyczne uniesienie nogi połączone z wysoką pozycją rąk i ekstremalnym podejściem pull/piłki w powietrzu, które przyniosło sezon MVP NL w 2019 roku z 47 home runami. Mechanika Freddiego Freemana jest wzorcem równowagi i konsekwencji w nowoczesnym uderzeniu. A wynik Shohei Otaniego w 2024 roku — 54 home runy i 59 skradzionych baz — plasuje się wśród historycznie najbardziej dominujących sezonów ofensywnych w historii baseballa."
+    ],
+    "technical": {
+      "title": "Kontrola kija Jackie'ego Robinsona — najbardziej niedoceniana umiejętność uderzeniowa",
+      "body": [
+        "Podejście uderzeniowe Jackie'ego Robinsona definiowała wyjątkowa kontrola kija: umiejętność kierowania piłki tam, gdzie chciał, buntowania, gdy zachodziła potrzeba, uderzania na zewnętrzne pole, gdy wymagała tego sytuacja, i pchnięcia piłki z mocą, gdy miał szukany rzut. Bił na .311 w karierze, mimo że grał swój pierwszy sezon w Major League jako 28-latek po latach w Ligach Murzyńskich. Jego dyscyplina przy bazie głównej i kontrola kija były nauczane przez trenerów Dodgers jako wzorzec uderzenia pozycyjnego.",
+        "Sezon Robinsona w 1949 roku — gdy wygrał tytuł uderzeniowy NL ze średnią .342, dodał 16 home runów i ukradł 37 baz — reprezentuje kompletny pakiet podejścia uderzeniowego priorytetyzującego on-base percentage, kontakt, uderzanie sytuacyjne i dokładnie tyle mocy, by utrzymywać obrony w gotowości. Nowocześni analitycy studiujący uderzenie Dodgers z lat 40.–50. często wskazują Robinsona jako najczystszego pałkarza w historii franczyzy — nie przez moc, lecz przez integralność rzemiosła."
+      ]
+    },
+    "incident": {
+      "title": "Cztery home runy Duke'a Snidera w Serii Światowej — 1955",
+      "impact": "Duke Snider uderzył cztery home runy w Serii Światowej 1955 — pomagając Brooklyn Dodgers zdobyć jedyne mistrzostwo jako franczyza z Brooklynu. Jego podejście pull-power i wyjątkowa prędkość kija w latach 50. ustanowiły go jednym z czołowych pałkarzy mocy epoki i udowodniły, jak leworęczny pałkarz pull może dominować nad praworęcznym miotaniem.",
+      "body": [
+        "Brooklyn Dodgers 1955 wygrali swój pierwszy i jedyny tytuł Serii Światowej, pokonując New York Yankees w siedmiu meczach. Duke Snider, środkowy obrońca zewnętrzny, był katalizatorem ofensywnym — uderzając cztery home runy w serii, z których najbardziej dramatyczny padł w Meczu 5. Swing Snidera był wzorcem leworęcznej mocy pull: krótkie i zwarte obciążenie, wybuchowa rotacja bioder i ścieżka swingu produkująca wysokie fly-balle na prawą stronę pola i środek.",
+        "Snider uderzył cztery home runy zarówno w Serii Światowej 1952, jak i 1955 — jedynym zawodniku, który dokonał tego wyczynu dwukrotnie. Jego podejście przy bazie głównej było całkowicie pull-skoncentrowane, i pracował z instruktorami uderzenia Dodgers nad selekcją rzutów, by niezawodnie znajdować te rzuty po pull stronie. Dziedzictwo uderzenia mocy Snidera wpłynęło na to, jak trenerzy Dodgers przez pokolenia rozwijali leworęcznych pałkarzy pull — wpływ widoczny nawet w tym, jak Cody Bellinger i inni byli instruowani w nowoczesnej erze."
+      ]
+    },
+    "timeline": [
+      "Jackie Robinson przełamuje barierę rasową w MLB — dołącza do Brooklyn Dodgers",
+      "Robinson zdobywa tytuł uderzeniowy NL (.342) — filozofia uderzenia Dodgers zostaje ustalona",
+      "Duke Snider uderza 4 HR — Brooklyn zdobywa pierwszą i jedyną Serię Światową",
+      "Mike Piazza przebija się do lineupu Dodgers — największy ofensywny łapacz w historii franczyzy",
+      "Mookie Betts i Corey Seager prowadzą Dodgers do tytułu Serii Światowej",
+      "Ohtani 54 HR + grand slam walk-off Freemana — najlepszy sezon uderzeniowy Dodgers od 70 lat"
+    ],
+    "keyTakeaways": [
+      "Kontrola kija i dyscyplina przy bazie głównej Jackie'ego Robinsona pozostają wzorcem kompletnego uderzenia — nie tylko mocy",
+      "Podejście pull-power Duke'a Snidera w Serii Światowej 1955 ustanowiło tradycję uderzenia mocy Dodgers",
+      "Mike Piazza udowodnił, że łapacze mogą być elitarnymi siłami ofensywnymi — OPS powyżej 1.000 przez wiele sezonów",
+      "Sezon Otaniego 2024 (54 HR, 59 SB) to najbardziej kompletny wynik ofensywny w nowoczesnej historii Dodgers"
+    ]
+  },
+  "baseball-2-10": {
+    "tagline": "Różnica między dobrym pałkarzem a doskonałym to nie tylko talent — to to, co robią, gdy nikt nie patrzy.",
+    "overview": [
+      "Profesjonalni pałkarze wykonują 200–500 uderzeń treningowych dziennie — nie wliczając oficjalnych zmian. Taka objętość treningowa sprawia, że mechanika staje się automatyczna, timing niezawodny, a korekty utrwalają się w pamięci mięśniowej. Dla zawodników Little League skala jest mniejsza, ale zasada ta sama: konsekwentny, celowy trening z konkretnymi celami w każdej sesji przynosi znacznie lepsze wyniki niż przypadkowe uderzenia na podwórku raz w tygodniu.",
+      "Dobrze ustrukturyzowana rutyna uderzeniowa ma wiele składowych: praca na tee (nieruchoma piłka, skupienie na czystej mechanice), soft toss (timing z poruszającą się piłką z krótkiej odległości), front toss (timing z bardziej realistyczną trajektorią), żywa BP (pełny timing contra rzuty miotacza) i przegląd wideo (porównanie mechaniki z celami i z profesjonalistami). Każdy składnik buduje inny aspekt zestawu umiejętności uderzeniowych.",
+      "Analiza wideo nie jest już zarezerwowana wyłącznie dla profesjonalistów. Każdy smartfon może nagrywać z 240 klatkami na sekundę — wystarczająco, by w zwolnionym tempie analizować mechanikę swingu. Zawodnicy i trenerzy systemowo używający wideo — porównujący mechanikę sprzed sesji z mechaniką po, śledząc postępy przez tygodnie i miesiące — rozwijają pałkarzy znacznie szybciej niż ci opierający się wyłącznie na intuicji. Klucz: oglądaj wideo z konkretnym celem (rotacja bioder, trajektoria rąk, pozycja głowy) zamiast ogólnego przeglądu."
+    ],
+    "technical": {
+      "title": "Praca na tee — najbardziej niedoceniane narzędzie uderzeniowe",
+      "body": [
+        "Tee uderzeniowe pozwala pałkarzowi „zamrozić” piłkę w dowolnej lokalizacji — wewnętrzna połowa, zewnętrzna połowa, wysoko, nisko — i wykonać 50 uderzeń dokładnie w tej lokalizacji bez żadnego elementu timingowego. To całkowicie izoluje mechanikę. Pałkarz z problemami przy rzutach wewnętrznych może wykonać 100 powtórzeń na tee z piłką w wewnętrznej jednej trzeciej bazy, utrwalając wymaganą rotację bioder i wczesny punkt kontaktu. Żadne inne ćwiczenie nie oferuje takiej precyzji.",
+        "Ćwiczenia na tee dla konkretnego rozwoju: (1) Ćwiczenie wewnętrznej połowy — tee ustawiony z przodu bazy, wewnętrzna połowa, skupienie na rotacji bioder i wczesnym kontakcie; (2) Ćwiczenie zewnętrznej połowy — tee ustawiony na tylnej krawędzi bazy, zewnętrzna połowa, skupienie na pozostawaniu z tyłu i pchnięciu na zewnętrzne pole; (3) Ćwiczenie wysokiego fastballa — tee na wysokości ramienia, skupienie na krótkiej ścieżce swingu i utrzymaniu się nad piłką; (4) Ćwiczenie niskiego rzutu — tee na wysokości kolana, skupienie na obniżeniu płaszczyzny swingu bez utraty rotacji bioder."
+      ]
+    },
+    "incident": {
+      "title": "Jak Dodgers budują pałkarzy — Robert Van Scoyoc i analityka",
+      "impact": "Infrastruktura rozwoju uderzenia Dodgers pod trenerami takimi jak Robert Van Scoyoc (pracujący z Mookie Bettsem, Claytonem Kershawem w zakresie mechaniki uderzenia i innymi) połączyła dane Statcast z tradycyjną pracą na tee i w klatce, tworząc jeden z najbardziej systematycznych programów rozwoju pałkarzy w profesjonalnym baseballa.",
+      "body": [
+        "Podejście Dodgers do rozwoju uderzenia integruje dane i tradycyjną pracę w sposób bardziej przemyślany niż niemal jakakolwiek inna franczyza. W czasie obozu wiosennego i regularnego sezonu pałkarze otrzymują codzienne raporty Statcast — prędkość wyjściowa według strefy rzutu, rozkład kątów wylotu, wskaźnik swingu według typu rzutu. Te dane informują o tym, jakie ćwiczenia na tee wykonać danego dnia: jeśli prędkość wyjściowa pałkarza przy rzutach zewnętrznej połowy spada, wykonuje się sesje tee zewnętrznej połowy. Jeśli kąt wylotu spada poniżej 10 stopni, personel uderzeniowy wykonuje ćwiczenia tee w górę i kąt wylotu.",
+        "Dodgers byli też pionierami w stosowaniu wideo w czasie rzeczywistym — iPady umieszczone w ławce rezerwowych pozwalają pałkarzom przeglądać zmiany natychmiast między inningami, porównując swing z mechaniką planu sprzed meczu. Ten cykl informacji zwrotnej znacznie skrócił cykle dostosowywania: tam, gdzie kiedyś pałkarzowi zajmował tydzień na rozpoznanie i korektę problemu mechanicznego, teraz zajmuje mu to jeden inning. Zawodnicy młodzieżowi mogą przybliżyć ten system za pomocą smartfona na statywie w klatce uderzeniowej — technologia jest dostępna, ale dyscyplina konsekwentnego używania jej to właśnie to, co odróżnia wielkie programy rozwojowe."
+      ]
+    },
+    "timeline": [
+      "Ted Williams rozpoczyna publiczne nauczanie uderzenia — praca na tee i teoria stref w nauczaniu",
+      "Tee uderzeniowe staje się standardowym wyposażeniem w treningach dla młodych i profesjonalistów",
+      "Analiza wideo po raz pierwszy zastosowana w baseballa młodzieżowym — od VHS do wczesnych kamer cyfrowych",
+      "Dodgers integrują dane Statcast w codzienne sesje rozwoju uderzenia",
+      "Wideo w czasie rzeczywistym w meczu (iPad na ławce) staje się standardem na poziomie MLB",
+      "System rozwoju Dodgers produkuje 6 pałkarzy z 15+ HR w lineupie Serii Światowej"
+    ],
+    "keyTakeaways": [
+      "Praca na tee to fundament: izoluje mechanikę bez presji timingowej, umożliwiając precyzyjny rozwój",
+      "Tygodniowa rutyna (tee → soft toss → batting practice → przegląd wideo) systematycznie buduje umiejętności uderzeniowe",
+      "Analiza wideo na smartfonie z 240fps jest dostępna dla każdego młodego zawodnika — używaj jej z konkretnym celem",
+      "Prowadź dziennik uderzeniowy: co zadziałało, co nie, jakie korekty wprowadzono — elitarni pałkarze śledzą swój rozwój"
+    ]
+  },
+  "baseball-3-01": {
+    "tagline": "Moc nie jest generowana przez siłę zamahu — lecz przez to, jak długo utrzymujesz ramię z tyłu, gdy biodra już się obracają.",
+    "overview": [
+      "Separacja biodro-ramię — niekiedy zwana czynnikiem X — to kąt różnicy między pozycją bioder a pozycją ramion w momencie, gdy przednia stopa ląduje podczas ruchu. Elitarni pałkarze mocy tworzą separacje 40–55 stopni: biodra już otwierają się w kierunku miotacza, podczas gdy ramiona pozostają zamknięte i nawinięte. To nagromadzone napięcie rotacyjne, jak nawinięta gumka, jest uwalniane wybuchowo, gdy ramiona się obracają — tworząc bicz napędzający prędkość kija przez sufit.",
+      "Swing Shohei Otaniego z Dodgers dostarcza jednego z najbardziej studiowanych przykładów elitarnej separacji biodro-ramię w nowoczesnej grze. Jego dramatyczne uniesienie nogi wstępnie ładuje biodra w nawiniętą pozycję, tak że gdy stopa ląduje, biodra już się obracają, podczas gdy ramiona i ręce pozostają w pełni załadowane z tyłu. Rezultatem jest sekwencja, gdzie biodra są czasem 50+ stopni przed ramionami w momencie kontaktu — skręt przekładający się bezpośrednio na prędkości kija powyżej 80 mph produkujące jego moc 54 home runów.",
+      "Pałkarze kontaktowi często mają mniejszą separację biodro-ramię z zamierzenia — priorytetyzują zdolność kija do piłki nad maksymalnym skrętem. Separacja Tony'ego Gwynna była skromna, bo duża separacja wymaga większej precyzji timingowej: im większe nawinięcie, tym bardziej krytyczne jest wylądowanie w odpowiednim momencie. Zaawansowani pałkarze rozumieją ten kompromis i świadomie kalibrują separację według sytuacji — więcej separacji, gdy oczekują fastballa do wyprowadzenia, mniej, gdy chronią bazę główną przy dwóch strike'ach."
+    ],
+    "technical": {
+      "title": "Jak budować separację biodro-ramię",
+      "body": [
+        "Separacja biodro-ramię jest trenowana przez konkretne ćwiczenia izolujące sekwencję rotacji bioder kontra rotacji ramion. Najskuteczniejsze ćwiczenie to „biodra-pierwsze” na tee: pałkarz inicjuje obciążenie, agresywnie popychając tylne biodro do przodu, jednocześnie aktywnie utrzymując ręce i przednie ramię z tyłu jak najdłużej. Wielu pałkarzy czuje rozciąganie lub pociąganie w skośnych mięśniach brzucha, gdy robi to prawidłowo — to napięcie to nagromadzona energia, która zostanie uwolniona jako prędkość kija.",
+        "Ćwiczenie ze ścianą to kolejny fundamentalny budujący separację: stojąc z przednim ramieniem blisko ogrodzenia lub ściany, pałkarz ćwiczy obracanie bioder w kierunku łapacza, podczas gdy przednie ramię pozostaje dotykające lub blisko ściany — fizycznie uniemożliwiając wczesną rotację ramion. Ćwiczenie to sprawia, że „otwieranie się” (zbyt wczesne otwieranie ramion) jest niemożliwe i zmusza pałkarza do poczucia, jak wygląda czysta sekwencja biodra-pierwsze. Gdy poczucie zostanie ustalone, przeniesienie go do żywych swingów zazwyczaj zajmuje kilka tygodni konsekwentnego treningu."
+      ]
+    },
+    "incident": {
+      "title": "40. home run Otaniego — studium separacji",
+      "impact": "Podczas sezonu 2024 roku 40. home run Otaniego był analizowany klatka po klatce przez zespół biomechaniczny Dodgers i wielu niezależnych analityków. Badanie potwierdziło 52 stopnie separacji biodro-ramię przy lądowaniu stopy — jedną z najwyższych zmierzonych dla jakiegokolwiek swingu w sezonie — i bezpośrednio powiązało tę separację z prędkością wyjściową 109 mph zarejestrowaną przez Statcast.",
+      "body": [
+        "Moc Otaniego w 2024 roku — 54 home runy, 59 skradzionych baz, pierwszy sezon „50-50” w historii Major League — skłoniła analityków do szukania tego, co mechanicznie czyniło jego swing unikalnym. Najbardziej konsekwentnym odkryciem w wielu badaniach biomechanicznych był stopień separacji biodro-ramię przy lądowaniu stopy. Dzięki dramatycznemu uniesieniu nogi wstępnie ładującemu tylne biodro i wyuczonemu nawyku utrzymywania rąk i przedniego ramienia z tyłu podczas obrotu bioder, Ohtani generował separację przypominającą bardziej elitarnych golfistów niż typowych baseballistów.",
+        "Personel rozwoju zawodników Dodgers studiował tę mechanikę uważnie — nie po to, by wszyscy pałkarze replikowali dokładny wzorzec Otaniego, lecz by wyodrębnić zasadę: im większa separacja biodro-ramię przy lądowaniu stopy, tym dłużej kij może przyspieszać przed kontaktem. Dla zawodników z odpowiednią elastycznością i timingiem, by wytrzymać większą separację, nawet wzrost o 10 stopni może przekładać się na 2–3 mph dodatkowej prędkości kija — co przy progu home runów może oznaczać różnicę między głębokim fly ballem a home runem."
+      ]
+    },
+    "timeline": [
+      "Badacze biomechaniki golfa po raz pierwszy opisują czynnik X — separację biodro-ramię w mocy drivera",
+      "Biomechanicy baseballowi zaczynają stosować koncepcje czynnika X do analizy swingu",
+      "Statcast umożliwia pomiar prędkości kija klatka po klatce — separacja powiązana z prędkością wyjściową",
+      "Dodgers integrują metryki separacji w rozwoju pałkarzy w Camelback Ranch",
+      "Ohtani zdobywa MVP Ligi Amerykańskiej z Angels — separacja zidentyfikowana jako kluczowe źródło mocy",
+      "Sezon Otaniego z 54 HR z Dodgers — separacja 52° zmierzona w wielu swingach home runów"
+    ],
+    "keyTakeaways": [
+      "Separacja biodro-ramię (czynnik X) to kąt różnicy między biodrami a ramionami przy lądowaniu stopy — większa separacja tworzy większą moc",
+      "Elitarni pałkarze mocy osiągają 40–55 stopni separacji; pałkarze kontaktowi celowo używają 20–30 stopni",
+      "Ćwiczenie na tee „biodra-pierwsze” i ćwiczenie ze ścianą to najskuteczniejsze sposoby budowania właściwego poczucia separacji",
+      "Separacja Otaniego wynosząca 52 stopnie w jego swingach home runowych w 2024 roku bezpośrednio przyczyniła się do jego prędkości wyjściowych powyżej 109 mph"
+    ]
+  },
+  "baseball-3-02": {
+    "tagline": "Ręce nie generują mocy — dostarczają ją. Trasa, jaką pokonują od obciążenia do kontaktu, decyduje o wszystkim w efektywności swingu.",
+    "overview": [
+      "Trajektoria rąk to droga, którą ręce (a tym samym rękojeść kija) pokonują od załadowanej pozycji blisko tylnego ramienia do strefy kontaktu. Efektywna trajektoria rąk jest bezpośrednia: węzełek kija przemieszcza się ku nadchodzącemu rzutowi po najkrótszej możliwej trasie, utrzymując głowicę za rękami do ostatniego momentu przed kontaktem. Ta ścieżka „od środka na zewnątrz” — ręce blisko ciała, głowica w tyle — jest powszechnie uznawana za mechaniczną podstawę elitarnego uderzenia.",
+      "Ted Williams i Tony Gwynn reprezentują dwa krańce filozofii trajektorii rąk, i obaj byli historycznie wielcy. Williams faworyzował nieco dłuższą, bardziej rotacyjną trajektorię, generującą ogromną moc przy rzutach w jego „szczęśliwej strefie” — środkowej-wewnętrznej części strefy strike. Gwynn stosował jeszcze krótszą, bardziej zorientowaną na kontakt trajektorię, priorytetyzującą kontakt gdziekolwiek w strefie przy minimalnym ryzyku pudla. Podejście Williamsa przyniosło OBP .482 w karierze i 521 home runów; podejście Gwynna — średnią .338 w karierze i osiem tytułów uderzeniowych. Żadne nie było błędne — były zoptymalizowane pod różne cele.",
+      "Wleczenie kija to główny wróg dobrej trajektorii rąk. Wleczenie kija następuje, gdy ręce wyciągają się na zewnątrz od ciała, zanim głowica wejdzie do strefy kontaktu — głowica „zostaje w tyle” w wyciągniętej, pozbawionej mocy pozycji zamiast podążać za załadowanymi rękami. Wleczenie kija tworzy długi, powolny łuk spóźniający się na fastballe wewnętrzne, generujący fly-balle przy rzutach środkowych i redukujący prędkość wyjściową wszędzie. W obozie wiosennym Dodgers w Camelback Ranch korygowanie wleczenia kija to jeden z głównych priorytetów przy ocenianiu pałkarzy systemu ligowego."
+    ],
+    "technical": {
+      "title": "Trajektoria od środka na zewnątrz a wleczenie kija — identyfikacja wizualna",
+      "body": [
+        "Trajektoria rąk od środka na zewnątrz jest widoczna w wideo w konkretnym punkcie kontrolnym: gdy biodra zaczynają się obracać, ręce powinny poruszać się z załadowanej pozycji (blisko tylnego ramienia) ku miotaczowi — węzełek wskazuje nadchodzący rzut. Głowica pozostaje za rękami (kij jest nachylony do tyłu, nie wyciągnięty do przodu). Ten krótki moment węzełek-do-przodu, głowica-z-tyłu tworzy „opóźnienie głowicy” umożliwiające maksymalne przyspieszenie przez strefę kontaktu.",
+        "Wleczenie kija jest widoczne jako przeciwieństwo: gdy biodra się obracają, ręce wyciągają się na zewnątrz od ciała — nadgarstki „rolują się” zbyt wcześnie, popychając głowicę do przodu przedwcześnie. Zamiast głowicy budującej prędkość za zwartą trajektorią rąk, wyciąga się wcześnie i zwalnia. W wideo w zwolnionym tempie z 240 fps wleczenie kija pokazuje przednie ramię w pełni wyciągnięte przed kontaktem, głowicę często równoległą lub przed rękami w połowie swingu. Trenerzy Spring Training Dodgers używają iPadów zamontowanych na wysokości bioder do wykrywania wleczenia kija w czasie rzeczywistym."
+      ]
+    },
+    "incident": {
+      "title": "Obóz trajektorii rąk Spring Training Dodgers — Camelback Ranch 2023",
+      "impact": "Podczas Spring Training Dodgers w 2023 roku trenerzy uderzeniowi w Camelback Ranch zidentyfikowali wleczenie kija jako główną wadę mechaniczną u trzech zawodników ligowych za pomocą analizy wideo w wysokiej prędkości. Dwóch z tych zawodników — po skoncentrowanej pracy korekcyjnej — poprawiło prędkości wyjściowe o 4–6 mph do Dnia Otwarcia tamtego sezonu, demonstrując, jak konkretna korekta trajektorii rąk bezpośrednio przekłada się na mierzalne zyski mocy.",
+      "body": [
+        "Camelback Ranch, obiekt Spring Training Dodgers w Glendale w Arizonie, to jedno z najbardziej zaawansowanych technologicznie środowisk rozwoju zawodników w baseballa. Podczas obozu 2023, koordynator uderzenia Robert Van Scoyoc i jego personel używali kombinacji sensorów kija Rapsodo, urządzeń Blast Motion i kamer szybkiego zapisu umieszczonych na poziomie bioder do analizowania trajektorii rąk każdego zawodnika wchodzącego do systemu.",
+        "Wleczenie kija było najczęstszym odkryciem u rozwijających się pałkarzy. Protokół korekcyjny obejmował konkretną sekwencję ćwiczeń: pałkarz rozpoczynał obciążenie i celowo robił pauzę w momencie obrotu bioder, sprawdzając, czy węzełek jest do przodu, a głowica wciąż z tyłu. Po 200 takich pauzy-powtórzeń ponownie wprowadzano swingi z pełną prędkością. Ćwiczenie z pauzą ustanawia neurologiczny punkt kontrolny przed ponownym dodaniem prędkości. Trenerzy raportowali, że zawodnicy zobowiązani do 300+ powtórzeń z pauzą tygodniowo widzieli mierzalne poprawy trajektorii rąk w ciągu 10–14 dni."
+      ]
+    },
+    "timeline": [
+      "Ted Williams publikuje swoje teorie swingu — krótka, bezpośrednia trajektoria do piłki staje się zasadą fundamentalną",
+      "Swing od środka na zewnątrz Duke'a Snidera prowadzi Brooklyn Dodgers do Serii Światowej",
+      "Tony Gwynn rozpoczyna karierę — zwarta trajektoria rąk na zewnętrzne pole staje się jego znakiem rozpoznawczym",
+      "Kamery szybkiego zapisu w klatkach uderzeniowych umożliwiają precyzyjny pomiar trajektorii rąk",
+      "Sensory Blast Motion zaczynają mierzyć prędkość i efektywność trajektorii rąk na poziomie MLB",
+      "Dodgers używają kombinacji iPad + Rapsodo w Camelback Ranch do korekcji wleczenia kija w czasie rzeczywistym"
+    ],
+    "keyTakeaways": [
+      "Trajektoria rąk od środka na zewnątrz utrzymuje węzełek z przodu i głowicę z tyłu — najkrótsza i najpotężniejsza trasa do każdego rzutu",
+      "Wleczenie kija (wczesne wyciąganie ramion) tworzy długi łuk spóźniający się na fastballe i produkujący fly-balle przy rzutach środkowych",
+      "Ted Williams i Tony Gwynn reprezentują różne filozofie trajektorii rąk — obaj elitarni, obaj celowi, obaj poprawni dla swoich celów",
+      "Spring Training Dodgers w Camelback Ranch używa ćwiczeń z powtórzeniami z pauzą do neurologicznego ustanowienia punktu kontrolnego opóźnienia głowicy"
+    ]
+  },
+  "baseball-3-03": {
+    "tagline": "Barrel% powyżej 10% oddziela elitę od średniej — i sprowadza się całkowicie do wyrównania płaszczyzny swingu z kątem zbliżania się rzutu.",
+    "overview": [
+      "Zarządzanie głowicą to nauka kontrolowania miejsca i sposobu, w jaki gruba część kija (głowica) przemieszcza się przez strefę strike. W terminologii Statcast „barrel” to uderzona piłka z kombinacją prędkości wyjściowej i kąta wylotu historycznie przynoszącą średnią powyżej .500 i slugging powyżej 1.500 — w istocie idealne uderzenie. Barrel percentage (barrele na pojawienie się przy bazie głównej) to jeden z najlepszych predyktorów prawdziwej ofensywnej wartości pałkarza, bezpośrednio powiązany z tym, jak dobrze zarządza głowicą przez strefę kontaktu.",
+      "Kąt ataku to kąt, pod jakim głowica przesuwa się w momencie kontaktu z piłką — mierzony w stopniach, gdzie wartości dodatnie oznaczają wznoszącą się trajektorię kija, a ujemne — opadającą. Badania konsekwentnie pokazują, że nieznacznie dodatni kąt ataku (między +5 a +15 stopni) przynosi najlepszą jakość kontaktu, bo odpowiada opadającemu kątowi przychodzących rzutów. Rzuty posyłane po normalnych trajektoriach zbliżają się do bazy głównej pod kątem około 6–10 stopni w dół, więc kij poruszający się ku górze pod kątem 5–12 stopni tworzy maksymalne „nakładanie płaszczyzn” — jak największe okno, w którym kij i piłka mogą się przeciąć.",
+      "Problem rzutu łamiącego się to miejsce, gdzie kąt ataku się komplikuje. Kąt ataku zoptymalizowany pod fastballe (+8 do +12 stopni) przynosi doskonałe wyniki przy four-seam fastballach, ale słabe przy curveball, które zbliżają się pod znacznie bardziej stromym kątem. Pałkarz idealnie dostrojony do kąta ataku fastball będzie poniżej płaszczyzny zbliżania curveball, tworząc klasyczny pudel „pod piłkę”. Najlepsi pałkarze, jak Freddie Freeman, dostosowują kąt ataku zgodnie z typem rzutu, który odczytują — umiejętność wymagająca rozpoznawania rzutów na bardzo wysokim poziomie."
+    ],
+    "technical": {
+      "title": "Statcast Barrel% — jak jest obliczany i co oznacza",
+      "body": [
+        "„Barrel” w Statcast jest definiowany jako uderzona piłka, gdzie kombinacja prędkości wyjściowej i kąta wylotu spełnia bardzo konkretny próg. Punkt bazowy: piłka uderzona dokładnie z prędkością wyjściową 98 mph i kątem wylotu 26–30 stopni kwalifikuje się. Przy każdym 1 mph powyżej 98 mph okno kwalifikującego kąta wylotu się rozszerza. Przy prędkości wyjściowej 110 mph każda piłka między 8 a 50 stopniami kwalifikuje się jako barrel. Przy 95 mph żadna kombinacja kąta wylotu nie kwalifikuje się — dlatego prędkość wyjściowa jest niezbywalną podstawą.",
+        "Liderzy Barrel% w sezonie 2024 obejmowali wielu pałkarzy Dodgers. Shohei Ohtani prowadził Dodgers z wskaźnikiem barrel powyżej 20% — co oznacza, że mniej więcej jedna na pięć jego pojawień przy bazie głównej przyniosła statystycznie „barrelową” piłkę. Średnia Major League to około 8%. Pałkarze z wskaźnikami barrel powyżej 15% to producenci elitarnej jakości kontaktu niezależnie od ogólnej średniej. Metryka eliminuje szum: zawodnik może skończyć dzień 1 na 5, gdzie każda piłka w grze była barrelowana — jakość bazowa była doskonała, nawet jeśli wyniki nie."
+      ]
+    },
+    "incident": {
+      "title": "Konsekwentność Barrel% Freddiego Freemana — 2022–2024",
+      "impact": "Freddie Freeman utrzymywał wskaźnik barrel powyżej 12% w regularnych sezonach 2022, 2023 i 2024 — konsekwentność, którą analitycy Statcast cytowali jako dowód wyjątkowego zarządzania głowicą. W odróżnieniu od pałkarzy mocy, których wskaźniki barrel wahają się przy urazach lub korektach mechanicznych, zarządzanie kątem ataku Freemana było konsekwentnie w optymalnym zakresie we wszystkich typach i lokalizacjach rzutów.",
+      "body": [
+        "Konsekwentność wskaźnika barrel Freddiego Freemana jest efektem tego, co trenerzy uderzenia opisują jako wyjątkową świadomość płaszczyzny rzutu — zdolność do wystarczająco wczesnej identyfikacji przychodzącego typu rzutu, by dostosować kąt ataku przed zaangażowaniem głowicy. Freeman mówił publicznie o tym, jak podchodzi do każdego rzutu z mentalnym modelem spodziewanej płaszczyzny zbliżania: „Wiem, skąd przychodzi piłka, i staram się wyrównać z tym kątem kij”. Brzmi prosto, ale wymaga głębokiego rozpoznawania rzutów i fizycznej elastyczności do wykonania przy wszystkich typach rzutów w czasie rzeczywistym.",
+        "Personel analityczny Dodgers śledzi kąt ataku Freemana według typu rzutu w tygodniowych raportach w trakcie sezonu. Jeśli jego kąt ataku przy curveball spada poniżej optymalnego zakresu (sugerując niewystarczające dostosowanie płaszczyzny do rzutów łamiących się), trenerzy uderzenia dodają specyficzną pracę na tee przy rzutach łamiących do jego rutyny — ustawiając tee wyżej i wymuszając bardziej stromy kąt ataku w treningu. Ta pętla informacji zwrotnej, niewidoczna dla fanów, jest jednym z powodów, dla których produkcja Freemana pozostawała konsekwentna podczas biegu Dodgers do tytułu Serii Światowej 2024."
+      ]
+    },
+    "timeline": [
+      "Statcast definiuje metrykę „barrel” — pierwsza obiektywna miara jakości kontaktu w baseballa",
+      "Opublikowane badania nad kątem ataku — łączące płaszczyznę swingu z kątem zbliżania się rzutu",
+      "Cody Bellinger prowadzi Ligę Narodową w barrel% z 47 HR — szczyt rewolucji kąta wylotu",
+      "Miotacze odpowiadają na rewolucję kąta wylotu — rzuty łamiące się rosną jako eksploatator kąta ataku",
+      "Freeman dołącza do Dodgers — wskaźnik barrel powyżej 12% w pierwszym sezonie",
+      "Ohtani prowadzi Dodgers w barrel% z powyżej 20% — najwyższy w składzie mistrza Serii Światowej"
+    ],
+    "keyTakeaways": [
+      "Kąt ataku (+5 do +15 stopni) musi odpowiadać kątowi zbliżania się przychodzącego rzutu — tworząc maksymalne nakładanie płaszczyzn",
+      "Curveballe wymagają bardziej stromego kąta ataku (+12 do +18°) niż fastballe (+6 do +10°) ze względu na ich bardziej stromy opad",
+      "Barrel% powyżej 15% to elita — Freeman utrzymywał 12%+ przez wiele sezonów dzięki konsekwentnemu zarządzaniu płaszczyzną",
+      "Statcast definiuje barrel jako 98+ mph prędkości wyjściowej przy odpowiednim kącie wylotu — jakość kontaktu, nie tylko wyniki"
+    ]
+  },
+  "baseball-3-04": {
+    "tagline": "Obciążenie to zegar. Jeśli zaczyna się w odpowiednim czasie, wszystko co następuje, może być w czasie. Jeśli zaczyna się za późno, żadna korekta na świecie nie uratuje swingu.",
+    "overview": [
+      "Mechanizm obciążenia to każdy ruch przed swingiem spełniający jednocześnie dwie funkcje: synchronizowanie kroku z rzutem miotacza i ładowanie energii w tylnej stronie, by biodra i ręce miały skąd wystrzelić. Każdy elitarny pałkarz ma mechanizm obciążenia — nawet „cisi” pałkarze coś robią. Wybór mechanizmu wpływa na to, ile marginesu błędu ma pałkarz, jak dostosowywany jest swing do różnych prędkości rzutu i ile separacji biodro-ramię można wygenerować.",
+      "Instrukcja uderzenia ligowego Dodgers w Camelback Ranch uczy trzech głównych mechanizmów obciążenia w sekwencji rozwojowej. Toe-tap uczy się pierwszego — przednia stopa delikatnie unosi się i opada, gdy miotacz przechodzi do rzutu, zapewniając minimalne ryzyko synchronizacji i niezawodne obciążenie. Leg kick jest wprowadzany po ustanowieniu podstaw synchronizacji — generuje więcej skrętu, ale wymaga precyzji. Brak kroku (lub skręt do środka) to opcja dla zaawansowanych pałkarzy kontaktowych, którzy rozwinęli już doskonałe rozpoznawanie rzutów i mogą synchronizować z minimalnym triggerem.",
+      "Synchronizowanie różnych prędkości rzutów to centralne wyzwanie każdego mechanizmu obciążenia. Rzut z 85 mph i rzut z 97 mph wymagają różnych czasów inicjacji swingu — różnica około 50 milisekund. Leg kick lądujący idealnie przy fastballu z 97 mph ląduje za wcześnie przy changeupu z 85 mph. Elitarni pałkarze uczą się „utrzymywać” swing po lądowaniu — wydłużając czas między lądowaniem stopy a wystrzałem biodra, by pomieścić wolniejsze rzuty. Nazywa się to „pozostawaniem z tyłu” i jest najważniejszym dostosowaniem odróżniającym pałkarzy obsługujących changeupy od tych, którzy są nieustannie myleni."
+    ],
+    "technical": {
+      "title": "Mechanizmy obciążenia w porównaniu — sekwencja nauczania Dodgers",
+      "body": [
+        "Toe-tap (styl Mookie Bettsa): Przednia stopa unosi się około 2–4 cale i opada, gdy miotacz oddziela ręce od rękawicy lub osiąga szczyt rzutu. Ten mały, konsekwentny ruch zapewnia wystarczające przeniesienie ciężaru, by załadować tylne biodro bez tworzenia złożoności synchronizacji. Siłą toe-tapa jest powtarzalność — jest niemal identyczny przy każdym rzucie, czyniąc synchronizację bardzo konsekwentną. Jego ograniczeniem jest mniejsza separacja biodro-ramię niż przy większym uniesieniu.",
+        "Leg kick (styl Ohtani / Freeman-light): Przednia noga unosi się do wysokości piszczela lub kolana przed krokiem. Im wyższe uniesienie, tym więcej czasu jest dostępne między uniesieniem a lądowaniem — w którym to czasie ciężar pałkarza jest maksymalnie załadowany w tylnym biodrze, tworząc większy potencjał separacji. Leg kick wymaga bardziej precyzyjnej synchronizacji, bo stopa musi lądować dokładnie w odpowiednim momencie. Dodgers uczą leg kicków zawodników zorientowanych na moc, gdy fundamenty toe-tapa są solidne; gracze ligowi przechodzą do uniesienia dopiero po zademonstrowania konsekwentnej synchronizacji na prostszym poziomie triggera."
+      ]
+    },
+    "incident": {
+      "title": "Jak Dodgers rozwinęli synchronizację Gavina Luksa — Camelback Ranch 2019",
+      "impact": "Gavin Lux, czołowy prospekt Dodgers w 2019 roku, pracował intensywnie z trenerami uderzenia w Camelback Ranch nad przejściem z dużego uniesienia nogi w ligach pomniejszych do bardziej kontrolowanego, średniego uniesienia mogącego obsługiwać prędkości rzutów MLB. Korekta mechaniczna — zachowująca separację przy jednoczesnym redukowaniu ryzyka synchronizacji — została ukończona w osiem tygodni Spring Training i przyczyniła się do awansu Luksa w połowie sezonu 2019 do Major League.",
+      "body": [
+        "Gavin Lux stosował dramatyczny leg kick w systemie ligowym Dodgers, który działał dobrze przeciw rzutom niższego szczebla, ale powodował problemy synchronizacji przy prędkościach AAA i MLB. W Camelback Ranch w 2019 roku trenerzy uderzenia pracowali z Luksem nad zachowaniem separacji biodro-ramię przy jednoczesnym moderowaniu wysokości i synchronizacji jego uniesienia. Celem było utrzymanie korzyści separacji z uniesienia przy jednoczesnym rozszerzeniu okna synchronizacji z ±8ms (ekstremalne uniesienie) do ±15ms (kontrolowane, średnie uniesienie).",
+        "Stosowanym ćwiczeniem był „height-limited kick drill”: Lux ćwiczył uniesienie z poziomą taśmą ustawioną na wysokości kolana, zapewniającą, że przednia noga nigdy nie przekraczała tej wysokości. Wymuszało to kontrolowane, średnie uniesienie przy zachowaniu obciążenia. Przez osiem tygodni nowy mechanizm stał się nawykiem. Lux został awansowany do głównego składu Dodgers w połowie 2019 roku i osiągnął mocny initial run, zanim stał się kluczowym zawodnikiem. Proces dostosowawczy z Camelback Ranch stał się częścią standardowego protokołu rozwojowego Dodgers dla zawodników przechodzących z poziomu A-advanced do poziomów synchronizacji MLB."
+      ]
+    },
+    "timeline": [
+      "Podejście Teda Williamsa bez kroku udowadnia, że minimalne obciążenie może przynosić elitarne wyniki",
+      "Leg kick Kirka Gibsona ratuje synchronizację w Meczu 1 Serii Światowej — ikoniczny moment Dodgers",
+      "Toe-tap Mookie Bettsa staje się najbardziej studiowanym mniejszym mechanizmem triggera w MLB",
+      "Dodgers wdrażają systematyczny program rozwoju mechanizmu obciążenia w Camelback Ranch",
+      "Mookie Betts zdobywa Serię Światową — toe-tap cytowany jako wzorzec dla programów rozwoju młodzieży",
+      "Leg kick Otaniego generuje 52°+ separacji — najbardziej studiowany trigger mocy w MLB"
+    ],
+    "keyTakeaways": [
+      "Każdy mechanizm obciążenia spełnia te same dwie funkcje: synchronizuje krok i ładuje tylne biodro dla separacji biodro-ramię",
+      "Toe-tap ma najniższe ryzyko synchronizacji i jest najlepszym punktem startowym dla rozwijających się pałkarzy",
+      "Leg kicki generują większą separację, ale wymagają precyzji synchronizacji ±12ms — odpowiednie dopiero po ustanowieniu fundamentów",
+      "„Pozostawanie z tyłu” (utrzymanie wystrzelenia bioder po lądowaniu stopy) to sposób, w jaki elitarni pałkarze obsługują changeupy bez nowego mechanizmu obciążenia"
+    ]
+  },
+  "baseball-3-05": {
+    "tagline": "Przy dwóch strike'ach większość pałkarzy stara się nie zastraikeoutować. Wielcy starają się zdobyć uderzenie.",
+    "overview": [
+      "Uderzanie przy dwóch strike'ach oddziela dobrych od elitarnych. W sezonie pełnym stanów 0-2 większość pałkarzy Major League produkuje średnią poniżej .200 — stan jest po prostu zbyt korzystny dla miotacza, by większość podejść zakończyła się sukcesem. Jednak wybrana grupa pałkarzy — ci, którzy opanowali sztukę uderzania przy dwóch strike'ach — produkuje średnie .250 do .300+ nawet z dwoma strike'ami, zamieniając sytuację korzystną dla miotacza w konkurencyjną zmianę zamiast z góry przesądzonego wyniku.",
+      "Mentalna architektura uderzania przy dwóch strike'ach zaczyna się od rozszerzenia strefy strike — ale inteligentnie. Pałkarz z dwoma strike'ami nie uderza wszystkiego; rozszerza strefę o rzuty na zewnętrznych narożnikach i dolnych granicach, które normalnie przepuściłby. Dostosowuje też trajektorię kija: krótszy swing, mniejsza separacja biodro-ramię, bardziej bezpośrednia ścieżka głowicy, by zmaksymalizować prawdopodobieństwo kontaktu. Chwycenie kija wyżej — przesunięcie rąk o 1–2 cale w górę od nakrętki — to fizyczny klucz skracający trajektorię kija i zwiększający kontrolę.",
+      "Historyczni pałkarze ze średnią .300+ przy dwóch strike'ach obejmują Tony'ego Gwynna (karierowa średnia przy dwóch strike'ach powyżej .280), Teda Williamsa i Roda Carewa. W nowoczesnej erze Freddie Freeman konsekwentnie produkuje średnie uderzeniowe przy dwóch strike'ach powyżej .250, co jest naprawdę elitarne, biorąc pod uwagę trudność tej sytuacji. Na Oracle Park przeciw Giants w sezonie 2024 podejście Freemana przy dwóch strike'ach było w pełni widoczne — praca głęboka w stanach, odmawianie goniony sliderów poza bazą i robienie kontaktu, gdy miotacze próbowali muskać narożniki przy dwóch strike'ach."
+    ],
+    "technical": {
+      "title": "Chwycenie wyżej — biomechanika uchwytu przy dwóch strike'ach",
+      "body": [
+        "Chwycenie kija o 1–2 cale wyżej skraca efektywne ramię dźwigni między rękami a głowicą. Krótsze ramię dźwigni robi dwie rzeczy: zwiększa osiągalną prędkość kątową przy tej samej sile mięśniowej (krótsze ramiona dźwigni poruszają się szybciej przy tym samym momencie obrotowym) i zwiększa proprioceptywną wrażliwość pałkarza — poczucie pozycji głowicy. Ta kombinacja oznacza, że kij dociera do kontaktu nieco szybciej i z większą precyzją. Kompromis mocy jest skromny: prędkość wyjściowa zazwyczaj spada o 2–4 mph przy swingach z wyższym uchwytem, bo głowica jest bliżej rąk i ma nieco mniej pędu odśrodkowego.",
+        "Najważniejsze dostosowanie mechaniczne przy dwóch strike'ach, poza uchwytem, to skrócenie trajektorii swingu. Przy dwóch strike'ach pałkarz musi porzucić wszelką przesadną separację biodro-ramię (wymagającą perfekcyjnego timingu) i przejść do bardziej bezpośredniego swingu rotacyjnego — biodra i ramiona bardziej zsynchronizowane, głowica na krótszej ścieżce do strefy kontaktu. Celem jest zmaksymalizowanie prawdopodobieństwa, że głowica znajdzie się we właściwym miejscu we właściwym czasie przy każdym rzucie w rozszerzonej strefie dwóch strike'ów."
+      ]
+    },
+    "incident": {
+      "title": "Zmiana Freemana przy dwóch strike'ach — Mecz 2 NLDS 2024",
+      "impact": "W Meczu 2 NLDS 2024 przeciw San Francisco Giants na Oracle Park Freddie Freeman przepracował 12-rzutową zmianę z dwoma strike'ami przez większość czasu — ostatecznie wyciągając bazę za piłki, która wypełniła bazy dla Shohei Otaniego, który za nim uderzył grand slama. Podejście Freemana przy dwóch strike'ach, odmawiającego gonienia sliderów poza strefą przy stanach 1-2 i 2-2, zostało później przez analityków zacytowane jako klucz do całego inningu.",
+      "body": [
+        "Miotacz Giants w NLDS 2024 atakował Freemana sliderami nisko i na zewnątrz — klasyczny rzut do wyprowadzenia praworęczny-kontra-praworęczny przy dwóch strike'ach. Freeman przestudiował intensywnie tendencje miotacza: przy stanach z dwoma strike'ami rzucał slider na zewnątrz 67% czasu. Zamiast rozszerzać strefę, by pokryć ten rzut, Freeman wyznaczył sobie mentalną linię: uderzyłby slider tylko, gdyby zaczynał się na lub powyżej kolan i na zewnętrznej krawędzi bazy głównej. Cokolwiek poniżej jego linii — nawet przy pełnym stanie — przepuści.",
+        "Wynikiem była 12-rzutowa zmiana, w której Freeman cztery razy foulował piłki na zewnętrznym narożniku i wziął trzy slidery kończące w ziemi poniżej jego linii. Gdy miotacz w końcu posłał fastball, próbując zdobyć trzeci strike po siedmiu niskich sliderach, Freeman posłał go na zewnętrzne pole — lecz piłka została złapana. Następny rzut to kolejny slider poniżej linii: ball cztery. Freeman wziął bazę. Ohtani następnie uderzył grand slama, stawiając Dodgers na prowadzeniu 4–0, a Los Angeles wygrało Mecz 2. Baza za piłki była katalizatorem inningu i wynikała z precyzyjnej dyscypliny Freemana przy dwóch strike'ach."
+      ]
+    },
+    "timeline": [
+      "Średnia Teda Williamsa przy dwóch strike'ach powyżej .265 — wciąż elitarna według nowoczesnych standardów",
+      "Tony Gwynn bije .394 — karierowa średnia przy dwóch strike'ach .280+, nigdy nie oddając zmian",
+      "Średnia uderzeniowa przy dwóch strike'ach staje się statystyką śledzoną na poziomie analitycznym",
+      "Wskaźnik strikeoutów Major League po raz pierwszy przekracza wskaźnik uderzeń — podejście przy dwóch strike'ach staje się krytyczne",
+      "Freeman dołącza do Dodgers — średnia przy dwóch strike'ach powyżej .250 w pierwszym sezonie",
+      "12-rzutowa baza za piłki Freemana przy dwóch strike'ach w NLDS przygotowuje grand slama Otaniego — moment postseason"
+    ],
+    "keyTakeaways": [
+      "Chwycenie o 1–2 cale wyżej zwiększa kontrolę kija i nieznacznie zwiększa prędkość kija przez krótsze ramię dźwigni",
+      "Strefa przy dwóch strike'ach rozszerza się o zewnętrzne narożniki i graniczne niskie rzuty — ale nie o sucker pitches dwie stopy poza strefą",
+      "Karierowa średnia Tony'ego Gwynna .280+ przy dwóch strike'ach i Freemana .255+ reprezentują górny kraniec osiągalnej produkcji przy dwóch strike'ach",
+      "Przestudiuj główny rzut miotacza przy stanach z dwoma strike'ami — odmawianie właśnie tego rzutu jest fundamentem elitarnej dyscypliny przy dwóch strike'ach"
+    ]
+  },
+  "baseball-3-06": {
+    "tagline": "Baseball nie zawsze dotyczy idealnego swingu. Czasem zadaniem jest przesunięcie biegacza o 90 stóp, a to wymaga zupełnie innego rodzaju doskonałości.",
+    "overview": [
+      "Uderzenie sytuacyjne to sztuka dostosowywania całego podejścia — mechaniki swingu, selekcji rzutów, celu kontaktu — do sytuacji w meczu, a nie do czystych indywidualnych statystyk. Three-run home run przy dwóch autach z pustymi bazami to wspaniałe osobiste osiągnięcie. Odbiciowy wzdłuż linii trzeciej bazy, który przynosi punkt biegaczowi z trzeciej bazy przy jednym aucie, jest niekiedy lepszym zagraniem baseballowym — i wymaga zupełnie innej mechaniki i koncentracji niż uderzenie mocy.",
+      "Zagranie hit-and-run to jedna z mechanicznie najbardziej wymagających sytuacji w baseballa. Z biegaczem startującym przy rzucie pałkarz musi zrobić kontakt z rzutem — jakimkolwiek rzutem — by zapobiec wyautowaniu biegacza. Oznacza to swing przy rzutach poza normalną strefą strike, dostosowanie trajektorii rąk tak, by specyficznie kierować odbiciowe wzdłuż linii trzeciej bazy (przesuwając biegacza z pierwszej na trzecią), i często kontakt przy rzutach normalnie uznawanych za piłki. Umiejętność mechaniczna jest prawdziwa: kierowanie piłki wzdłuż linii trzeciej bazy wymaga celowego dostosowania trajektorii kija i głębszego punktu kontaktu w zewnętrznej połowie.",
+      "Sacrifice fly — uderzenie piłki wystarczająco głęboko na zewnętrzne pole, by po aucie pozwolić na zdobycie punktu przez biegacza z trzeciej bazy — wymaga konkretnej mechaniki. Pałkarz musi wysłać piłkę w powietrze na zewnętrzne pole z wystarczającą głębokością, by umożliwić tag-up. Oznacza to wyższy niż normalny kąt ataku przy rzutach fly-ball, często po stronie pull lub do centrum. Na Fenway Park z jego krótką prawą linią trzeciej bazy i głębokim lewym polem, uderzenie sytuacyjne nabiera wymiarów specyficznych dla parku: fly na 380 stóp do centrum przynosi punkt; fly na 300 stóp w prawo może nie."
+    ],
+    "technical": {
+      "title": "Mechanika hit-and-run — kierowanie wzdłuż linii trzeciej bazy",
+      "body": [
+        "Kierowanie z intencją wzdłuż linii trzeciej bazy pola wewnętrznego — by przesunąć biegacza z drugiej na trzecią lub zdobyć punkt z trzeciej przy odbiciowym — wymaga konkretnego dostosowania trajektorii kija: kontakt wykonywany nieco głębiej (dalej w tyle), z rękami przeciągającymi przez piłkę w kierunku linii trzeciej bazy zamiast pull. Mechaniczna wskazówka to „inside-out celowo”: głowa kija podąża za rękami przez strefę kontaktu, a follow-through kieruje się do linii trzeciej bazy. Przeciw praworęcznemu miotaczowi oznacza to pozwolenie na rozwinięcie się rzutów w zewnętrznej połowie i kierowanie ich do środka lub w prawo.",
+        "Przeciw leworęcznemu miotaczowi posyłającemu do praworęcznego pałkarza, ścieżka inside-out do linii trzeciej bazy jest jeszcze bardziej naturalna. Slider lub cutter biegnący do środka przy praworęcznym pałkarzu może być posłany na drugą stronę z mocą poprzez pozwolenie mu się rozwinąć i pchnięcie przez rzut w kierunku pierwszej bazy. Wielu profesjonalnych pałkarzy utrzymuje to celowe podejście do linii trzeciej bazy w swoim mentalnym arsenale na konkretne sytuacje w meczu — to wyćwiczona i trenowana umiejętność, nie wypadek."
+      ]
+    },
+    "incident": {
+      "title": "Hit-and-run Dodgers w Serii Światowej 2024 — Mecz 3",
+      "impact": "W piątym inningu Meczu 3 Serii Światowej Dodgers wykonali podręcznikowe zagranie hit-and-run z Tommym Edmanem na pierwszej bazie i Freddiem Freemanem przy bazie głównej. Freeman wykonał idealny odbiciowy wzdłuż linii trzeciej bazy, który przyniósł punkt Edmanowi z pierwszej bazy (przez błąd rzutu), demonstrując, że uderzenie sytuacyjne jest równie ważne w październiku co uderzenie mocy.",
+      "body": [
+        "Menedżer Dave Roberts wywołał hit-and-run z Tommym Edmanem na pierwszej bazie, bez autów, w wyrównanym meczu. Freddie Freeman, leworęczny pałkarz mierzący się z praworęcznym miotaczem, otrzymał fastball w wewnętrznej połowie i wykonał deliberatny inside-out swing — kierując piłkę wzdłuż linii trzeciej bazy pola wewnętrznego. Druga baza sfildeowała ją, ale rzut do pierwszej wyciągnął pierwszą bazę z poduszki, a Edman zdobył punkt za błąd. Dodgers wyszli na prowadzenie.",
+        "Zagranie nie było przypadkiem. Zdolność Freemana do wykonania inside-out trajektorii kija na komendę — przestawiając się z naturalnego podejścia pull na celowe podejście do linii trzeciej bazy — jest efektem lat sytuacyjnego treningu. Podczas Spring Training pałkarze Dodgers spędzają znaczący czas na „rundach sytuacyjnych” batting practice: konkretne scenariusze z konkretnymi wymaganiami kierunkowymi. Zdolność do uderzenia piłki tam, gdzie wymaga tego sytuacja, zamiast tam, gdzie naturalnie zmierza swing, odróżnia kompletnych pałkarzy od jednowymiarowych generatorów mocy."
+      ]
+    },
+    "timeline": [
+      "Brooklyn Dodgers wygrywają Serię Światową używając wypracowanych punktów — uderzenie sytuacyjne w pełnym pokazie",
+      "Sytuacyjne uderzenie Carla Yastrzemskiego na Fenway Park pomaga Red Sox dotrzeć do Serii Światowej",
+      "Dodgers wygrywają Serię Światową — krótki atak oparty na uderzeniu sytuacyjnym i wypracowywaniu punktów",
+      "Dodgers kładą nacisk na sytuacyjne batting practice pod nowym sztabem trenerskim",
+      "Dodgers wygrywają Serię Światową — NLCS i Seria Światowa obejmują wiele wykonań hit-and-run",
+      "Odbiciowy hit-and-run Freemana w Serii Światowej w Meczu 3 przynosi punktową przełomową akcję"
+    ],
+    "keyTakeaways": [
+      "Uderzenie sytuacyjne wymaga dostosowania trajektorii kija na komendę — nie swingowania naturalnie, lecz z kierunkową intencją",
+      "Mechanika hit-and-run: trajektoria inside-out, głęboki punkt kontaktu, follow-through do linii trzeciej bazy",
+      "Sacrifice fly: dodatni kąt ataku, wysłanie piłki głęboko na zewnętrzne pole — strona pull lub centrum dla maksymalnej odległości",
+      "Wymiary Fenway Park (Zielony Potwór po lewej, krótka linia trzeciej bazy po prawej) czynią uderzenie sytuacyjne specyficznym dla parku w postseason"
+    ]
+  }
+}

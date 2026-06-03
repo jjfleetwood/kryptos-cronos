@@ -3,8 +3,8 @@
 import { useEffect, useState, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { type ShopItem } from "@/data/shop-items";
-import { TIER_META, type TrophyTier } from "@/data/trophies";
+import { type ShopItem } from "@kryptos/core/shop-items";
+import { TIER_META, type TrophyTier } from "@kryptos/core/trophies";
 import { useLocale } from "@/contexts/LocaleContext";
 
 type ShopData = {

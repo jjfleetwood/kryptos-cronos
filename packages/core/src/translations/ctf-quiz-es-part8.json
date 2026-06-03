@@ -1,0 +1,470 @@
+{
+  "audit-cm01": {
+    "questions": [
+      {
+        "q": "¿El marco NIST SP 800-137 ISCM define un ciclo de seis pasos para la supervisión continua?",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "¿Qué nivel del marco NIST SP 800-137 es responsable de la gobernanza?",
+        "options": [
+          "A) Nivel organizacional",
+          "B) Nivel de misión/proceso de negocio"
+        ]
+      },
+      {
+        "q": "¿La brecha de OPM de 2015 se detectó mediante mecanismos de supervisión continua activos?",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "¿Cuál es el objetivo principal de la supervisión continua de seguridad de la información (ISCM)?",
+        "options": [
+          "A) Proporcionar visibilidad en tiempo real de la postura de seguridad",
+          "B) Reemplazar las evaluaciones de riesgos anuales"
+        ]
+      },
+      {
+        "q": "En el ciclo ISCM, ¿el paso 'Revisar y actualizar' ocurre antes que 'Implementar el programa ISCM'?",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      }
+    ]
+  },
+  "audit-cm02": {
+    "questions": [
+      {
+        "q": "¿Los SIEM tradicionales basados en firmas son efectivos para detectar ataques LOTL (Living-off-the-Land)?",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "¿Cuál es el propósito de la normalización de esquemas OCSF/ECS en los SIEM modernos?",
+        "options": [
+          "A) Encriptar los datos de registro para cumplimiento",
+          "B) Permitir que una regla coincida con múltiples fuentes de datos"
+        ]
+      },
+      {
+        "q": "¿El malware SolarWinds SUNBURST fue descubierto inicialmente mediante una alerta de firma SIEM?",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "¿Qué técnica de ML es más adecuada para detectar anomalías de inicio de sesión novedosas sin etiquetas previas?",
+        "options": [
+          "A) Isolation Forest (no supervisado)",
+          "B) Regresión logística (supervisado)"
+        ]
+      },
+      {
+        "q": "¿La reducción de falsos positivos es el principal desafío operativo en los despliegues de SIEM modernos?",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      }
+    ]
+  },
+  "audit-cm03": {
+    "questions": [
+      {
+        "q": "¿El UEBA puede detectar a un atacante que usa credenciales válidas robadas mediante análisis de comportamiento?",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "¿Cuál es la ventaja del encadenamiento de puntuaciones de riesgo en UEBA?",
+        "options": [
+          "A) Múltiples señales se combinan para reducir falsos positivos",
+          "B) Permite el inicio de sesión automático sin MFA"
+        ]
+      },
+      {
+        "q": "¿El UEBA es confiable y preciso desde el primer día de implementación, sin necesidad de un período de base?",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "En el caso de amenaza interna de Tesla, ¿qué fuente de datos UEBA sería más reveladora?",
+        "options": [
+          "A) Registros de autenticación de red interna",
+          "B) Descargas de archivos de RRHH y actividad de dispositivos USB"
+        ]
+      },
+      {
+        "q": "¿El UEBA usa la misma línea base de comportamiento para el CFO y un analista junior?",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      }
+    ]
+  },
+  "audit-cm04": {
+    "questions": [
+      {
+        "q": "¿El NDR puede detectar balizamiento C2 en tráfico HTTPS cifrado mediante análisis de patrones?",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "¿Qué hace que el NDR sea únicamente valioso para entornos IoT/OT en comparación con el EDR?",
+        "options": [
+          "A) Observación pasiva sin necesidad de agente",
+          "B) Capacidad de parchear dispositivos automáticamente"
+        ]
+      },
+      {
+        "q": "¿Un servidor web interno que inicia conexiones HTTPS salientes inesperadas es un indicador de compromiso (IOC) de C2?",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "Durante el ataque Hafnium a servidores Exchange, ¿qué anomalía NDR alertaría a los defensores?",
+        "options": [
+          "A) Servidores Exchange iniciando conexiones externas inesperadas",
+          "B) Aumento del tráfico SMTP interno entre servidores"
+        ]
+      },
+      {
+        "q": "¿Las huellas digitales TLS JA3 pueden identificar familias de malware incluso cuando el tráfico está cifrado?",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      }
+    ]
+  },
+  "audit-cm05": {
+    "questions": [
+      {
+        "q": "¿El CSPM requiere agentes de endpoint instalados en las instancias de nube para funcionar?",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "¿Qué modela el análisis de rutas de ataque en CSPM?",
+        "options": [
+          "A) Cadenas de configuraciones incorrectas que conducen a datos sensibles",
+          "B) Vulnerabilidades de software en sistemas operativos de VM"
+        ]
+      },
+      {
+        "q": "¿La brecha de Capital One de 2019 fue causada principalmente por una vulnerabilidad de software en su aplicación web?",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "¿Cuál de los siguientes hallazgos de CSPM tendría la mayor severidad?",
+        "options": [
+          "A) Bucket S3 público sin datos sensibles confirmados",
+          "B) EC2 pública con rol IAM de acceso completo a todos los S3"
+        ]
+      },
+      {
+        "q": "¿El CSPM ha evolucionado de controles de configuración planos a análisis basado en grafos para modelar riesgos en la nube?",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      }
+    ]
+  },
+  "audit-cm06": {
+    "questions": [
+      {
+        "q": "¿STIX es el modelo de datos y TAXII es el protocolo de transporte para el intercambio de inteligencia de amenazas?",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "¿Cuál es el rol de una Plataforma de Inteligencia de Amenazas (TIP) entre los feeds en bruto y el SIEM?",
+        "options": [
+          "A) Agrega, deduplica y puntúa los feeds de amenazas",
+          "B) Almacena capturas de paquetes en bruto de la red"
+        ]
+      },
+      {
+        "q": "¿La amenaza persistente avanzada Volt Typhoon fue detectada mediante alertas SIEM basadas en firmas?",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "¿Por qué los indicadores STIX incluyen campos de confianza y expiración?",
+        "options": [
+          "A) Para evitar que los IoC obsoletos generen falsos positivos",
+          "B) Para cumplir con los requisitos de cifrado GDPR"
+        ]
+      },
+      {
+        "q": "¿El programa CISA AIS proporciona intercambio gratuito de amenazas en formato STIX/TAXII a organizaciones participantes?",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      }
+    ]
+  },
+  "audit-cm07": {
+    "questions": [
+      {
+        "q": "¿El SOAR debe ejecutar automáticamente acciones de alto impacto como deshabilitar la cuenta del CEO sin aprobación humana?",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "¿Cuál es la métrica principal para medir la eficacia del SOAR?",
+        "options": [
+          "A) MTTR — Tiempo medio de respuesta",
+          "B) MTTD — Tiempo medio de detección"
+        ]
+      },
+      {
+        "q": "En un playbook SOAR, ¿el orden correcto es responder primero y luego enriquecer el contexto del incidente?",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "Tras la brecha de Twilio en 2022, ¿qué acción SOAR habría limitado más el impacto?",
+        "options": [
+          "A) Suspensión automática de cuentas afectadas al detectar autenticación anómala",
+          "B) Bloqueo de todo el tráfico saliente de la red corporativa"
+        ]
+      },
+      {
+        "q": "¿Los playbooks SOAR deben tratarse como código de producción con control de versiones, pruebas y revisión por pares?",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      }
+    ]
+  },
+  "audit-cm08": {
+    "questions": [
+      {
+        "q": "¿Los honeytokens generan con frecuencia falsos positivos que sobrecargan a los equipos de seguridad?",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "¿Por qué son efectivas las cuentas señuelo de AD con SPNs Kerberoasteables?",
+        "options": [
+          "A) La solicitud de ticket SPN revela reconocimiento del atacante",
+          "B) Generan grandes volúmenes de tráfico de red para alertas"
+        ]
+      },
+      {
+        "q": "¿Un honeytoken IAM de AWS con política de denegar-todo crea riesgo operativo para usuarios legítimos?",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "¿Qué tecnología de engaño detectó al atacante en la brecha de Uber en 2022?",
+        "options": [
+          "A) Honeytokens en repositorios internos",
+          "B) Servidores honeypot en la red perimetral"
+        ]
+      },
+      {
+        "q": "¿La escala de implementación importa en tecnologías de engaño — más señuelos crean mayor presión de cobertura sobre los atacantes?",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      }
+    ]
+  },
+  "audit-cm09": {
+    "questions": [
+      {
+        "q": "¿La Arquitectura de Confianza Cero (ZTA) opera bajo el principio de 'confiar pero verificar'?",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "¿Qué evento motivó a Google a desarrollar BeyondCorp como modelo de Zero Trust?",
+        "options": [
+          "A) La Operación Aurora expuso la confianza implícita en la red interna",
+          "B) Una auditoría de cumplimiento de PCI-DSS que requería segmentación"
+        ]
+      },
+      {
+        "q": "En el modelo CARTA, ¿la confianza de sesión se fija permanentemente en el momento de la autenticación inicial?",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "¿Qué componente de ZTA toma las decisiones de permitir o denegar acceso?",
+        "options": [
+          "A) Punto de Decisión de Política (PDP)",
+          "B) Punto de Aplicación de Política (PEP)"
+        ]
+      },
+      {
+        "q": "¿La ZTA genera telemetría de auditoría más rica en comparación con los modelos de seguridad perimetral tradicionales?",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      }
+    ]
+  },
+  "audit-cm10": {
+    "questions": [
+      {
+        "q": "¿El XDR requiere que los analistas cambien entre consolas separadas para investigar alertas en diferentes dominios?",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "¿Cómo vincula el grafo de entidades XDR las alertas de múltiples fuentes?",
+        "options": [
+          "A) Entidades compartidas dentro de una ventana de tiempo",
+          "B) Correlación de direcciones IP mediante geolocalización"
+        ]
+      },
+      {
+        "q": "¿El etiquetado MITRE ATT&CK en XDR ayuda a los analistas a comprender la cadena de ataque y la etapa del adversario?",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "En la brecha de Microsoft por Lapsus$, ¿cuál fue la falla de detección XDR principal?",
+        "options": [
+          "A) Señales no correlacionadas entre fuentes en tiempo real",
+          "B) Agentes EDR no instalados en los sistemas afectados"
+        ]
+      },
+      {
+        "q": "¿El valor principal del XDR es que los analistas trabajen alertas individuales de manera más eficiente en lugar de incidentes correlacionados?",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      }
+    ]
+  },
+  "audit-cm11": {
+    "questions": [
+      {
+        "q": "¿Las auditorías anuales proporcionan una vista continua y en tiempo real de la postura de cumplimiento de una organización?",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "¿Cuál es el mecanismo principal para lograr el cumplimiento continuo en entornos de nube?",
+        "options": [
+          "A) Llamadas API automatizadas a sistemas de nube e IDP",
+          "B) Escaneos de vulnerabilidades manuales mensuales"
+        ]
+      },
+      {
+        "q": "¿El cumplimiento continuo puede reducir el tiempo de preparación de auditorías entre un 60% y un 80% en comparación con los enfoques tradicionales?",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "¿Cuál es la importancia de la orden de consentimiento de la FTC contra Drizly de 2022?",
+        "options": [
+          "A) Los ejecutivos son personalmente responsables de fallas sistémicas",
+          "B) Requirió que Drizly adoptara cifrado de extremo a extremo"
+        ]
+      },
+      {
+        "q": "¿El cumplimiento continuo detecta la desviación de controles (configuraciones que se alejaron del estado deseado) en tiempo real?",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      }
+    ]
+  },
+  "audit-cm12": {
+    "questions": [
+      {
+        "q": "¿Según el informe IBM Cost of a Data Breach 2023, el tiempo medio de detección (MTTD) de la industria es de aproximadamente 197 días?",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "¿Cuál es el nivel mínimo de madurez de SOC recomendado para organizaciones que manejan datos críticos?",
+        "options": [
+          "A) Nivel 3 — Proactivo",
+          "B) Nivel 2 — Reactivo avanzado"
+        ]
+      },
+      {
+        "q": "¿Una tasa de falsos positivos superior al 5% es aceptable para un SOC maduro de nivel 3 o superior?",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "¿La falla de MTTD de MGM Resorts en 2023 fue principalmente un problema técnico de capacidades de detección?",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "¿Qué nivel de cobertura de automatización SOAR se necesita para lograr consistentemente un MTTR inferior a una hora?",
+        "options": [
+          "A) Mayor al 70% de cobertura de automatización",
+          "B) Mayor al 40% de cobertura de automatización"
+        ]
+      }
+    ]
+  }
+}

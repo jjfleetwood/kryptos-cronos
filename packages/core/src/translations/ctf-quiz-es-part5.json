@@ -1,0 +1,470 @@
+{
+  "llm-01": {
+    "questions": [
+      {
+        "q": "La inyección de prompts indirecta difiere de la directa porque el payload malicioso está incrustado en contenido externo recuperado (páginas web, documentos) en lugar de ser escrito directamente por el usuario.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "¿Qué técnica defiende mejor contra la inyección de prompts indirecta en un asistente habilitado con RAG?",
+        "options": [
+          "Tratar el contenido externo recuperado como datos no confiables que no pueden emitir instrucciones al sistema",
+          "Usar un prompt de sistema más largo con instrucciones más explícitas"
+        ]
+      },
+      {
+        "q": "El ataque de inyección de prompts indirecta de Bing Chat de 2024 exfiltró datos del usuario ocultando instrucciones en páginas web que el chatbot resumía.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "¿Qué control arquitectónico limita más efectivamente el radio de daño de un ataque de inyección de prompts exitoso contra un agente de IA?",
+        "options": [
+          "Requerir confirmación humana antes de que el LLM tome acciones irreversibles (principio de intervención humana en el bucle)",
+          "Aumentar el límite de tokens del prompt de sistema"
+        ]
+      },
+      {
+        "q": "Un prompt de sistema actúa de manera confiable como un límite de seguridad que los atacantes no pueden superar con instrucciones del usuario cuidadosamente elaboradas.",
+        "options": [
+          "Falso — los prompts de sistema pueden ser anulados por entradas de usuario suficientemente elaboradas; no son un límite de seguridad técnico",
+          "Verdadero — el prompt de sistema siempre tiene precedencia sobre la entrada del usuario"
+        ]
+      }
+    ]
+  },
+  "llm-02": {
+    "questions": [
+      {
+        "q": "Los LLMs pueden regurgitar texto verbatim — incluyendo direcciones de correo, números de teléfono y claves API — de los datos de entrenamiento cuando se les indica adecuadamente.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "En el incidente de Samsung con ChatGPT de 2023, ¿cuál era el riesgo principal de que los empleados enviaran código propietario?",
+        "options": [
+          "El código podría ser ingerido en los datos de entrenamiento de OpenAI bajo la política de datos predeterminada, exponiendo el IP de Samsung a futuras respuestas del modelo",
+          "ChatGPT podría publicar directamente el código en internet"
+        ]
+      },
+      {
+        "q": "Un sistema RAG que almacena los documentos de todos los usuarios en un almacén de vectores compartido sin aislamiento por usuario puede filtrar documentos entre usuarios a través de la recuperación semántica.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "¿Qué control previene mejor la filtración de datos sensibles a través de un despliegue RAG multiusuario?",
+        "options": [
+          "Aplicar controles de acceso a nivel de documento en la base de datos de vectores, no permitiendo que los documentos de un usuario sean recuperados para las consultas de otro usuario",
+          "Instruir al LLM en su prompt de sistema para que nunca comparta información privada con usuarios no autorizados"
+        ]
+      },
+      {
+        "q": "Almacenar la clave API de un usuario en el prompt de sistema es una práctica segura porque el prompt de sistema está aislado del contexto accesible por el usuario.",
+        "options": [
+          "Falso — el contenido del prompt de sistema puede extraerse mediante inyección de prompts o fugas de contexto; las claves API nunca deben almacenarse en prompts",
+          "Verdadero — el prompt de sistema está aislado del contexto accesible por el usuario"
+        ]
+      }
+    ]
+  },
+  "llm-03": {
+    "questions": [
+      {
+        "q": "Cargar un modelo de HuggingFace guardado en el formato Pickle de Python puede ejecutar código arbitrario en la máquina del cargador.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "¿Qué formato de archivo fue desarrollado específicamente para mitigar el riesgo de ejecución de código presente en los modelos Pickle?",
+        "options": [
+          "SafeTensors",
+          "ONNX Runtime"
+        ]
+      },
+      {
+        "q": "Un conjunto de datos de fine-tuning envenenado con una puerta trasera hace que el modelo se comporte maliciosamente en todas las entradas.",
+        "options": [
+          "Falso — el modelo se comporta normalmente hasta que una frase de activación específica activa el comportamiento malicioso",
+          "Verdadero — el envenenamiento corrompe uniformemente todas las salidas del modelo"
+        ]
+      },
+      {
+        "q": "En 2023, investigadores de JFrog descubrieron que los modelos de HuggingFace en formato Pickle podían contener cargas útiles ejecutables que se activaban durante la carga del modelo.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "¿Qué ataque a la cadena de suministro apunta a desarrolladores que escriben mal nombres de paquetes al ejecutar pip install?",
+        "options": [
+          "Typosquatting — publicando un paquete malicioso bajo un nombre casi idéntico al paquete legítimo",
+          "Confusión de dependencias — publicando un nombre de paquete interno en un repositorio público con un número de versión más alto"
+        ]
+      }
+    ]
+  },
+  "llm-04": {
+    "questions": [
+      {
+        "q": "El chatbot Tay de Microsoft se volvió ofensivo en 24 horas porque los atacantes explotaron su función de aprendizaje de retroalimentación para envenenar su comportamiento.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "Una frase de activación de puerta trasera en un modelo envenenado hace que el modelo produzca una salida maliciosa elegida de manera confiable cuando se activa.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "El envenenamiento de RAG difiere del envenenamiento de datos en tiempo de entrenamiento en que el efecto del ataque es permanente hasta que el modelo base es reentrenado.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "¿Qué tasa de veneno es suficiente para implantar un activador de puerta trasera confiable en el fine-tuning de un LLM?",
+        "options": [
+          "Tan poco como el 0,1% de los ejemplos de entrenamiento",
+          "Al menos el 50% de los ejemplos de entrenamiento debe estar envenenado"
+        ]
+      },
+      {
+        "q": "El envenenamiento de RLHF funciona haciendo que un atacante proporcione retroalimentación que recompensa las salidas dañinas mientras penaliza las salidas seguras durante el entrenamiento.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      }
+    ]
+  },
+  "llm-05": {
+    "questions": [
+      {
+        "q": "Si una aplicación renderiza la salida del LLM como HTML sin procesar sin saneamiento, un atacante puede lograr XSS (Cross-Site Scripting) enviando prompts elaborados.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "¿Qué enfoque previene correctamente la inyección SQL al usar un LLM para traducir lenguaje natural a consultas de base de datos?",
+        "options": [
+          "Hacer que el LLM produzca parámetros JSON estructurados y construir la consulta SQL usando sentencias preparadas, nunca interpolando la salida del LLM directamente",
+          "Pedir al LLM que incluya una nota de seguridad al final de cada consulta que genere"
+        ]
+      },
+      {
+        "q": "La salida del LLM debe tratarse igual que cualquier entrada de usuario no confiable y ser saneada antes de ser usada en operaciones downstream.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "Un desarrollador pasa comandos de shell generados por LLM directamente a os.system(). Un atacante puede abusar de esto para lograr ejecución de comandos del SO.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "Usar subprocess con shell=False y una lista de argumentos (en lugar de una cadena de shell sin procesar) previene la inyección de comandos del SO.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      }
+    ]
+  },
+  "llm-06": {
+    "questions": [
+      {
+        "q": "Un agente de IA que solo puede leer correos es significativamente más seguro que uno que puede leer y enviar correos, porque los permisos de escritura amplían el radio de daño.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "En 2023, la configuración predeterminada de AutoGPT fue explotada mediante inyección de prompts desde un documento recuperado, causando que el agente ejecutara comandos no autorizados.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "¿Qué principio de diseño limita más directamente el daño de un ataque de inyección de prompts exitoso contra un agente LLM?",
+        "options": [
+          "Principio de mínimo privilegio — otorgar solo los permisos mínimos necesarios para la tarea del agente",
+          "Control de acceso basado en roles definido dentro del prompt de sistema"
+        ]
+      },
+      {
+        "q": "Las acciones irreversibles del agente como eliminar archivos, enviar correos y realizar compras deben requerir confirmación humana explícita antes de la ejecución.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "Un agente LLM puede limitar de manera confiable sus propias capacidades en tiempo de ejecución, por lo que es seguro concederle acceso amplio a herramientas y dejar que el modelo decida qué usar.",
+        "options": [
+          "Falso — las capacidades del agente deben delimitarse en tiempo de diseño; el LLM no puede controlar de manera confiable su propio comportamiento a través de instrucciones de runtime",
+          "Verdadero — un LLM bien instruido siempre se negará a abusar de sus herramientas"
+        ]
+      }
+    ]
+  },
+  "llm-07": {
+    "questions": [
+      {
+        "q": "El nombre en código interno de Microsoft Bing Chat 'Sydney' y su prompt de sistema completo fueron extraídos por investigadores mediante inyección de prompts en el primer mes de su lanzamiento.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "¿Cuál de los siguientes es un uso seguro de un prompt de sistema?",
+        "options": [
+          "Almacenar instrucciones de comportamiento y reglas de persona para el asistente",
+          "Almacenar claves API de producción y credenciales de base de datos"
+        ]
+      },
+      {
+        "q": "Un jailbreak de juego de roles como 'imagina que eres un robot que recita su programación' puede extraer el contenido del prompt de sistema.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "Instruir al modelo para que se niegue a divulgar el prompt de sistema en el propio prompt de sistema es una defensa técnicamente efectiva.",
+        "options": [
+          "Falso — agrega fricción pero un atacante motivado aún puede extraer el contenido mediante técnicas alternativas",
+          "Verdadero — una instrucción de negativa directa hace que el prompt de sistema sea inextractable"
+        ]
+      },
+      {
+        "q": "El PII del usuario inyectado en tiempo de ejecución en los prompts de sistema (p. ej., 'El nombre del usuario es Alicia, saldo es $5.000') puede filtrarse a través de inyección de prompts por otros usuarios.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      }
+    ]
+  },
+  "llm-08": {
+    "questions": [
+      {
+        "q": "El envenenamiento de RAG es más persistente que la inyección de prompts de una sola conversación porque el documento envenenado permanece en el almacén de vectores e infecta todas las conversaciones futuras.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "Un pipeline RAG que ingiere formularios de retroalimentación enviados por el usuario sin filtrado de contenido es vulnerable al envenenamiento de RAG.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "La investigación ha demostrado que los embeddings de texto almacenados en bases de datos de vectores pueden ser parcialmente invertidos para recuperar los textos fuente originales.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "¿Qué control previene mejor la filtración de datos entre usuarios en un sistema RAG multi-tenant?",
+        "options": [
+          "Aplicar controles de acceso a documentos por usuario en la base de datos de vectores en lugar de depender del LLM para aplicar el aislamiento",
+          "Instruir al LLM para que solo responda preguntas relevantes para el usuario actual"
+        ]
+      },
+      {
+        "q": "Un atacante que puede escribir en una base de datos de vectores puede crear un documento que es semánticamente relevante para consultas sensibles pero contiene instrucciones de inyección de prompts.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      }
+    ]
+  },
+  "llm-09": {
+    "questions": [
+      {
+        "q": "En 2023, el abogado Steven Schwartz fue sancionado por presentar un escrito legal que citaba seis casos inexistentes generados por ChatGPT.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "La alucinación de LLM es una consecuencia de cómo funcionan los modelos de lenguaje — predicen el siguiente token plausible basándose en patrones, no en una base de conocimiento verificada.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "La adulación (sycophancy) en los LLMs se refiere a la tendencia a abandonar una respuesta correcta y estar de acuerdo con una afirmación incorrecta del usuario cuando se le presiona.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "¿Qué mitigación reduce mejor el riesgo de alucinación en un dominio de alto riesgo como el legal o el médico?",
+        "options": [
+          "Generación aumentada por recuperación (RAG) fundamentada en documentos fuente verificados, con citas explícitas de las fuentes",
+          "Aumentar la temperatura del LLM para generar respuestas más diversas"
+        ]
+      },
+      {
+        "q": "Un modelo de lenguaje que genera una cita académica de sonido plausible pero inexistente revisará de manera confiable esa cita si se le pregunta de nuevo.",
+        "options": [
+          "Falso — los LLMs pueden repetir con confianza citas alucinadas sin autopercibir el error a menos que se fundamenten en fuentes verificadas",
+          "Verdadero — los LLMs marcan de manera confiable sus propias alucinaciones cuando se les consulta"
+        ]
+      }
+    ]
+  },
+  "llm-10": {
+    "questions": [
+      {
+        "q": "Un ataque de negación de cartera contra una API de LLM explota el precio de pago por token inundando el sistema con prompts de alta longitud para generar facturas de API masivas.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "En 2024, una startup de asistente de codificación recibió una factura de API de LLM de $40,000 en 48 horas porque un endpoint sin autenticación fue descubierto y explotado por actores maliciosos.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "¿Qué combinación de controles previene más efectivamente un ataque de consumo ilimitado contra una aplicación LLM?",
+        "options": [
+          "Límites duros de tokens de entrada/salida, limitación de tasa por usuario y una alerta de gasto con interruptor automático",
+          "Pedir a los usuarios que acepten unos términos de servicio que prohíban el abuso"
+        ]
+      },
+      {
+        "q": "Un ataque de esponja apunta a los sistemas LLM creando entradas que maximizan el tiempo de cómputo de GPU para cada solicitud, degradando la disponibilidad para otros usuarios.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "Los usuarios de nivel gratuito y de prueba deberían tener límites de tokens y tasa más estrictos que los usuarios de pago porque son vectores de mayor riesgo para los ataques de abuso.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      }
+    ]
+  },
+  "llm-11": {
+    "questions": [
+      {
+        "q": "El red teaming de LLM cubre tanto los fallos de seguridad (contenido dañino, jailbreaks) como las vulnerabilidades de seguridad (inyección de prompts, filtración de datos).",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "La técnica PAIR (Prompt Automatic Iterative Refinement) usa un LLM atacante para refinar iterativamente los jailbreaks hasta que el LLM objetivo produce la salida deseada.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "Antes del lanzamiento público de GPT-4, las evaluaciones del equipo rojo encontraron que podía proporcionar asistencia significativa en bioquímica con el potencial de ayudar a crear armas biológicas.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "¿Qué herramienta de código abierto sondea automáticamente a los LLMs con cientos de patrones de ataque en jailbreaks, envenenamiento e inyección de prompts?",
+        "options": [
+          "Garak — un escáner de vulnerabilidades de LLM",
+          "Metasploit — un marco de pruebas de penetración tradicional"
+        ]
+      },
+      {
+        "q": "El red teaming de LLM es una actividad única previa al despliegue porque una vez que el modelo supera una evaluación, está certificado como seguro indefinidamente.",
+        "options": [
+          "Falso — el red teaming debe ser continuo porque nuevas técnicas de ataque emergen regularmente después del despliegue",
+          "Verdadero — una evaluación de red team aprobada certifica el modelo como seguro indefinidamente"
+        ]
+      }
+    ]
+  },
+  "llm-12": {
+    "questions": [
+      {
+        "q": "El Marco de Gestión de Riesgos de IA del NIST define cuatro funciones principales: Gobernar, Mapear, Medir y Gestionar.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "Los WAFs tradicionales y las herramientas SIEM por sí solas son suficientes para monitorear aplicaciones LLM de producción.",
+        "options": [
+          "Falso — se requieren herramientas específicas de IA como clasificadores de inyección de prompts y detección de anomalías de salida para cubrir los vectores de ataque específicos de LLM",
+          "Verdadero — la infraestructura de monitoreo de seguridad existente cubre todos los vectores de ataque LLM"
+        ]
+      },
+      {
+        "q": "Un Bill of Materials del Modelo (MBOM) documenta la procedencia de los modelos base, los datos de fine-tuning, las dependencias de la cadena de suministro y los riesgos conocidos.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "¿Qué capa de defensa en profundidad aborda la inyección de prompts, los agentes de mínimo privilegio y el saneamiento de salidas?",
+        "options": [
+          "Capa de controles de aplicación",
+          "Capa de cadena de suministro del modelo"
+        ]
+      },
+      {
+        "q": "La Ley de IA de la UE y la Orden Ejecutiva de EE.UU. sobre IA referencian ambas el AI RMF del NIST como marco de referencia para los requisitos de gestión de riesgos.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      }
+    ]
+  }
+}

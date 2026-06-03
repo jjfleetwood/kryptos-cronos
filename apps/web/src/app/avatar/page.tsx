@@ -4,7 +4,7 @@ import { useEffect, useState, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Avatar from "@/components/Avatar";
-import { SHOP_ITEMS, type ShopItem } from "@/data/shop-items";
+import { SHOP_ITEMS, type ShopItem } from "@kryptos/core/shop-items";
 import { useLocale } from "@/contexts/LocaleContext";
 
 type ShopData = {

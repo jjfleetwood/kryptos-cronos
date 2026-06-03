@@ -1,0 +1,292 @@
+{
+  "bt-11": {
+    "questions": [
+      {
+        "q": "True or False: HTTP encrypts data using TLS before sending it across the network.",
+        "options": ["True — HTTP uses TLS encryption", "False — HTTP transmits data in plaintext"],
+        "correct": 1
+      },
+      {
+        "q": "The Firesheep exploit worked because Facebook used HTTP for browsing after logging in. What could an attacker steal to hijack another user's account?",
+        "options": ["The user's password from the login page", "The user's unencrypted session cookie from ongoing HTTP traffic"],
+        "correct": 1
+      },
+      {
+        "q": "True or False: A login page that uses HTTPS guarantees your session stays secure even if the rest of the site uses HTTP.",
+        "options": ["False — a plaintext session cookie can be stolen to hijack your account after login", "True — HTTPS on the login step protects the entire session"],
+        "correct": 0
+      },
+      {
+        "q": "Which part of the TLS handshake proves the server is who it claims to be?",
+        "options": ["The server sends its certificate, which the browser verifies against trusted Certificate Authorities", "The server and browser agree on a symmetric AES-256 key using Diffie-Hellman"],
+        "correct": 0
+      },
+      {
+        "q": "What does a 'Not Secure' warning in your browser's address bar indicate?",
+        "options": ["The site's server is temporarily overloaded and requests may be slow", "The page is using HTTP or has an invalid TLS certificate, meaning traffic is not encrypted"],
+        "correct": 1
+      }
+    ]
+  },
+  "bt-12": {
+    "questions": [
+      {
+        "q": "True or False: Browser DevTools (F12) can only show HTML source code — they cannot reveal cookies or outgoing network requests.",
+        "options": ["True — DevTools is limited to viewing page source only", "False — DevTools shows every request, response, cookie, and script the browser processes"],
+        "correct": 1
+      },
+      {
+        "q": "The British Airways Magecart attack injected 22 lines of JavaScript into the checkout page. Why couldn't customers visually detect the attack?",
+        "options": ["The injected script ran in the browser exactly like legitimate JavaScript — it was invisible to the user", "The script disabled all browser security warnings before executing"],
+        "correct": 0
+      },
+      {
+        "q": "What is the browser's Same-Origin Policy (SOP) designed to prevent?",
+        "options": ["JavaScript on one page from reading data from a page on a different origin", "Users from accessing HTTP pages when an HTTPS version is available"],
+        "correct": 0
+      },
+      {
+        "q": "True or False: HTML comments in page source are hidden from regular users and cannot be read without special tools.",
+        "options": ["True — HTML comments are stripped before the browser renders the page", "False — anyone can view HTML comments using View Page Source or browser DevTools"],
+        "correct": 1
+      },
+      {
+        "q": "A Content Security Policy (CSP) header addresses which browser security problem?",
+        "options": ["It restricts which script sources a browser will execute, blocking unauthorized injected scripts", "It forces all cookies to use the Secure flag so they are only sent over HTTPS"],
+        "correct": 0
+      }
+    ]
+  },
+  "bt-13": {
+    "questions": [
+      {
+        "q": "In an IDOR (Insecure Direct Object Reference) vulnerability, what does the server fail to do?",
+        "options": ["Verify that the requesting client is authorized to access the object ID it sent", "Encrypt the response body before sending it back to the client"],
+        "correct": 0
+      },
+      {
+        "q": "True or False: In the client-server model, a client can become the server within the same HTTP request-response cycle.",
+        "options": ["False — in a given request-response exchange, the roles of client and server are fixed", "True — modern HTTP/2 allows the client to push responses back to the server"],
+        "correct": 0
+      },
+      {
+        "q": "Which HTTP method is used to retrieve data from a server without modifying it?",
+        "options": ["POST — it sends a body with the request to retrieve filtered results", "GET — it retrieves data and does not modify server state"],
+        "correct": 1
+      },
+      {
+        "q": "The Facebook Business Manager API IDOR in 2019 exposed users' phone numbers. What was the root cause?",
+        "options": ["The API returned any user's phone number given their user ID without checking if the caller was authorized to see it", "An attacker cracked Facebook's encryption by exploiting a weak cipher in the TLS handshake"],
+        "correct": 0
+      },
+      {
+        "q": "True or False: A server can safely trust object IDs sent by a client as long as those IDs are numeric.",
+        "options": ["True — numeric IDs are harder to guess, so they are safe to use without authorization checks", "False — the server must always verify whether the requester is authorized to access the object, regardless of ID format"],
+        "correct": 1
+      }
+    ]
+  },
+  "bt-14": {
+    "questions": [
+      {
+        "q": "True or False: A TLS certificate with a valid signature from Let's Encrypt guarantees the website is legitimate and trustworthy.",
+        "options": ["True — Let's Encrypt only issues certificates to verified, trustworthy organizations", "False — a Let's Encrypt certificate only proves domain control; phishing sites can obtain them too"],
+        "correct": 1
+      },
+      {
+        "q": "The DigiNotar hack allowed attackers to intercept Gmail for thousands of Iranian users. How was this possible?",
+        "options": ["Attackers used DigiNotar's compromised CA to issue fraudulent Google certificates accepted as valid by browsers", "Attackers exploited a TLS protocol flaw that allowed them to decrypt AES-256 session keys"],
+        "correct": 0
+      },
+      {
+        "q": "When a browser encounters a certificate where the Common Name (CN) does not match the domain you are visiting, what does this indicate?",
+        "options": ["The server is using an older TLS version and needs to be upgraded to TLS 1.3", "The certificate may have been reused from a different site, which is a potential man-in-the-middle indicator"],
+        "correct": 1
+      },
+      {
+        "q": "True or False: Clicking through a browser's 'Your connection is not private' warning is acceptable if you recognize the website.",
+        "options": ["True — the warning is often a false positive caused by expired certificates on legitimate sites", "False — the warning means the server's identity is unverified; you may be communicating with an impersonator"],
+        "correct": 1
+      },
+      {
+        "q": "What was the purpose of Certificate Transparency logs, introduced after the DigiNotar incident?",
+        "options": ["To make all certificate issuance publicly auditable so unauthorized certificates can be detected", "To allow browsers to cache certificates locally and reduce the number of CA verification requests"],
+        "correct": 0
+      }
+    ]
+  },
+  "bt-15": {
+    "questions": [
+      {
+        "q": "True or False: The HttpOnly cookie attribute prevents JavaScript from reading the cookie via document.cookie.",
+        "options": ["True — HttpOnly blocks JavaScript access, so XSS attacks cannot steal the cookie", "False — HttpOnly only prevents the cookie from being sent over HTTP; JavaScript can still read it"],
+        "correct": 0
+      },
+      {
+        "q": "Why does stealing a session cookie give an attacker full account access without knowing the user's password?",
+        "options": ["Session tokens are derived from the password, so possessing the token is equivalent to knowing the password", "The server identifies the user solely by the session token; a valid token grants full access regardless of how it was obtained"],
+        "correct": 1
+      },
+      {
+        "q": "True or False: The SameSite=Strict cookie attribute is designed to protect against Cross-Site Request Forgery (CSRF) attacks.",
+        "options": ["True — SameSite=Strict prevents the cookie from being sent in cross-origin requests", "False — SameSite is only a performance hint and has no effect on cross-site requests"],
+        "correct": 0
+      },
+      {
+        "q": "The 2022 Slack breach involved stolen session cookies. Which security mechanism did this attack bypass entirely?",
+        "options": ["Two-factor authentication, because the session was already authenticated when the cookie was issued", "TLS encryption, because the attacker used a man-in-the-middle attack on an HTTP connection"],
+        "correct": 0
+      },
+      {
+        "q": "What is session fixation, and how is it prevented?",
+        "options": ["Session fixation is when an attacker sets a known session token before login; prevented by regenerating the session token on login", "Session fixation is when a cookie expires prematurely; prevented by extending the session lifetime on each request"],
+        "correct": 0
+      }
+    ]
+  },
+  "bt-16": {
+    "questions": [
+      {
+        "q": "True or False: API authentication tokens should be placed in the URL query string for convenience since URLs are encrypted by HTTPS.",
+        "options": ["True — HTTPS encrypts the URL so placing tokens in query strings is safe", "False — URL parameters appear in server logs, browser history, and referrer headers, exposing the token"],
+        "correct": 1
+      },
+      {
+        "q": "The Peloton API breach exposed private data for 4.5 million users despite the Peloton app displaying limited information. What was the root vulnerability?",
+        "options": ["The API returned the full user object with all private fields to any caller, even without authentication", "Peloton stored passwords in plaintext, allowing attackers to log in as any user"],
+        "correct": 0
+      },
+      {
+        "q": "True or False: An API that requires authentication on its public endpoints is automatically safe from excessive data exposure vulnerabilities.",
+        "options": ["False — even authenticated APIs can return more data than the app displays, giving direct callers access to hidden fields", "True — authentication ensures users only see the data they are authorized to access"],
+        "correct": 0
+      },
+      {
+        "q": "What does 'rate limiting' protect against in the context of API security?",
+        "options": ["It prevents attackers from enumerating all records by limiting how many requests a caller can make in a time window", "It prevents attackers from intercepting API responses by throttling unencrypted traffic"],
+        "correct": 0
+      },
+      {
+        "q": "According to the OWASP API Security Top 10, what is the most common API vulnerability?",
+        "options": ["Broken Object Level Authorization — server returns data for any object ID without checking if the requester owns it", "SQL Injection — attackers embed malicious queries in the JSON request body to extract database records"],
+        "correct": 0
+      }
+    ]
+  },
+  "bt-17": {
+    "questions": [
+      {
+        "q": "True or False: Bandwidth and throughput are the same measurement — both describe the actual data rate achieved on a network connection.",
+        "options": ["False — bandwidth is the maximum capacity; throughput is the actual data rate achieved, which is always at or below bandwidth", "True — bandwidth and throughput are interchangeable terms for measuring network speed"],
+        "correct": 0
+      },
+      {
+        "q": "If a server has a 10 Gbps internal link but only a 1 Gbps ISP uplink, what is the effective maximum bandwidth for internet traffic?",
+        "options": ["10 Gbps, because the internal link is the primary path for all data", "1 Gbps, because the ISP uplink is the slowest link in the chain and becomes the bottleneck"],
+        "correct": 1
+      },
+      {
+        "q": "True or False: Latency and bandwidth measure the same thing — a high-bandwidth connection always has low latency.",
+        "options": ["True — more bandwidth means data arrives faster, which reduces delay", "False — bandwidth is pipe size; latency is delay time. Satellite internet can have high bandwidth but very high latency"],
+        "correct": 1
+      },
+      {
+        "q": "The 2023 Cloudflare DDoS peaked at 71 million requests per second from 30,000 IPs. What made Cloudflare's architecture resilient against this bandwidth attack?",
+        "options": ["Cloudflare filtered all traffic through a single hardened data center equipped with specialized DDoS hardware", "Cloudflare's distributed architecture across 285+ data centers spread the load so no single location was overwhelmed"],
+        "correct": 1
+      },
+      {
+        "q": "A DDoS bandwidth saturation attack aims to achieve what outcome?",
+        "options": ["Flood the target's network connection with more traffic than it can handle, so legitimate traffic is dropped", "Exploit a software vulnerability in the target's web server to crash the application process"],
+        "correct": 0
+      }
+    ]
+  },
+  "bt-18": {
+    "questions": [
+      {
+        "q": "True or False: A ping result of 20ms means data takes 20ms to travel one way from sender to receiver.",
+        "options": ["False — ping measures round-trip time (RTT); 20ms RTT means approximately 10ms each direction", "True — ping measures one-way latency from the sender to the remote host"],
+        "correct": 0
+      },
+      {
+        "q": "Which tool shows per-hop latency along the full network path to a destination, helping identify where congestion occurs?",
+        "options": ["traceroute — it shows the round-trip time to each intermediate router along the path", "iperf3 — it measures maximum throughput between two hosts on the same network"],
+        "correct": 0
+      },
+      {
+        "q": "True or False: High latency on a connection always means there is a bandwidth problem that needs to be fixed by upgrading the link speed.",
+        "options": ["True — high latency is always caused by insufficient bandwidth and requires a faster link", "False — latency can be caused by physical distance, processing delays, or congestion — not necessarily insufficient bandwidth"],
+        "correct": 1
+      },
+      {
+        "q": "The 2012 AWS US-East-1 outage showed how latency causes cascading failures. What is the core mechanism of a latency cascade?",
+        "options": ["One slow component causes upstream callers to queue waiting for it, backing up the entire call chain until the system halts", "High latency causes packet loss, which triggers TCP retransmissions that permanently corrupt the session state"],
+        "correct": 0
+      },
+      {
+        "q": "Why does CDN (Content Delivery Network) usage reduce latency for end users?",
+        "options": ["CDNs compress all data before transmission, reducing the number of bytes that must travel across the network", "CDNs serve content from nodes geographically close to the user, reducing the physical distance data must travel"],
+        "correct": 1
+      }
+    ]
+  },
+  "bt-19": {
+    "questions": [
+      {
+        "q": "True or False: DNS cache poisoning corrupts a resolver's cache so that users are redirected to an attacker-controlled IP instead of the legitimate server.",
+        "options": ["True — the poisoned cache entry causes all users on that resolver to reach the attacker's server", "False — cache poisoning only affects the speed of DNS lookups, not the IP addresses returned"],
+        "correct": 0
+      },
+      {
+        "q": "The 2008 Kaminsky attack exploited a weakness in DNS to make cache poisoning practical. What was the fundamental flaw?",
+        "options": ["The 16-bit DNS transaction ID provided too little entropy, allowing attackers to guess the right ID and inject a fake response before the real one arrived", "DNS responses were transmitted without TLS encryption, allowing any router to read and modify them in transit"],
+        "correct": 0
+      },
+      {
+        "q": "True or False: DNSSEC prevents cache poisoning by encrypting DNS traffic so it cannot be intercepted in transit.",
+        "options": ["False — DNSSEC adds cryptographic signatures to DNS records so tampering is detectable, but it does not encrypt DNS traffic", "True — DNSSEC uses AES-256 encryption to protect DNS responses from interception and modification"],
+        "correct": 0
+      },
+      {
+        "q": "If a DNS resolver's cache shows 185.220.101.50 for yourbank.com but the authoritative nameserver returns 198.51.100.77, what does this discrepancy indicate?",
+        "options": ["The authoritative server is misconfigured and has the wrong IP, so the cached version is correct", "The resolver's cache is poisoned — the cached IP is an attacker-controlled address, not the legitimate server"],
+        "correct": 1
+      },
+      {
+        "q": "What is a practical advantage of DNS-over-HTTPS (DoH) compared to standard DNS for end users?",
+        "options": ["DoH prevents ISP interception and makes it harder for intermediaries to inject fake DNS responses", "DoH eliminates the need for DNSSEC signatures because HTTPS already authenticates the DNS server"],
+        "correct": 0
+      }
+    ]
+  },
+  "bt-20": {
+    "questions": [
+      {
+        "q": "True or False: The 'least connections' load balancing algorithm always routes each request to the next server in a fixed rotation, regardless of server load.",
+        "options": ["False — that describes round-robin; least connections routes to the server with the fewest active connections", "True — least connections uses a rotation similar to round-robin but tracks connection counts"],
+        "correct": 0
+      },
+      {
+        "q": "A load balancer removes a backend server from the pool when the server fails its health check. What benefit does this provide?",
+        "options": ["It enables zero-downtime deployments by automatically removing unhealthy servers without manual intervention", "It permanently blacklists the server IP so attackers cannot target it directly"],
+        "correct": 0
+      },
+      {
+        "q": "True or False: Placing an admin backend server in the same load balancer pool as public content servers is a security best practice because the load balancer controls who can reach it.",
+        "options": ["False — the load balancer routes traffic equally to all pool members, exposing admin backends to any traffic the LB receives", "True — the load balancer acts as a security boundary that blocks unauthorized access to admin backends"],
+        "correct": 0
+      },
+      {
+        "q": "The 2022 Heroku breach demonstrated a risk specific to load balancers. What privileged capability made the load balancer a high-value target?",
+        "options": ["Load balancers have privileged network access to all backend servers in their pool, which attackers can exploit to reach internal services", "Load balancers store TLS private keys in memory, allowing attackers to decrypt all traffic passing through them"],
+        "correct": 0
+      },
+      {
+        "q": "Which load balancing algorithm ensures the same client always reaches the same backend server on every request?",
+        "options": ["IP hash — the client's IP address is hashed to consistently map it to a specific backend server", "Round-robin — it cycles through all servers in order, which naturally returns some clients to the same server over time"],
+        "correct": 0
+      }
+    ]
+  }
+}

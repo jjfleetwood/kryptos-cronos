@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { TIER_ORDER, TIER_META, type TrophyTier } from "@/data/trophies";
+import { TIER_ORDER, TIER_META, type TrophyTier } from "@kryptos/core/trophies";
 import { useLocale } from "@/contexts/LocaleContext";
 
 type TrophyRow = {

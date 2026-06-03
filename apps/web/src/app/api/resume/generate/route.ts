@@ -3,7 +3,7 @@ import { redis } from "@/lib/redis";
 import { getAuthedUsername } from "@/lib/api-auth";
 import { renderToBuffer, Document, Page, View, Text, StyleSheet } from "@react-pdf/renderer";
 import { createElement as h } from "react";
-import { stagesMeta } from "@/data/stages-meta";
+import { stagesMeta } from "@kryptos/core/stages-meta";
 
 // Map epoch IDs to security skill labels for the resume
 const EPOCH_SKILLS: Record<string, string> = {

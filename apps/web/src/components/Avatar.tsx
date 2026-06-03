@@ -1,6 +1,6 @@
 "use client";
 
-import type { ShopItem } from "@/data/shop-items";
+import type { ShopItem } from "@kryptos/core/shop-items";
 
 type EquippedMap = Record<string, string>; // slot -> itemId
 type InventoryMap = Record<string, ShopItem>; // itemId -> ShopItem

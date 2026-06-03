@@ -1,0 +1,292 @@
+{
+  "quantum-01": {
+    "questions": [
+      {
+        "q": "A qubit in superposition represents both 0 and 1 simultaneously until it is measured.",
+        "options": ["True", "False"],
+        "correct": 0
+      },
+      {
+        "q": "Which algorithm exploits quantum superposition to break RSA encryption in polynomial time?",
+        "options": ["Shor's Algorithm", "Grover's Algorithm"],
+        "correct": 0
+      },
+      {
+        "q": "Q-Day refers to the day a Cryptographically Relevant Quantum Computer (CRQC) capable of breaking RSA becomes operational.",
+        "options": ["True", "False"],
+        "correct": 0
+      },
+      {
+        "q": "The Hadamard gate applied to n qubits creates a superposition of how many states simultaneously?",
+        "options": ["2^n states — all at once", "n states — one per qubit"],
+        "correct": 0
+      },
+      {
+        "q": "Intelligence agencies like CISA and NSA say organizations should wait until Q-Day arrives before beginning post-quantum migration.",
+        "options": ["False — migration should begin now; it takes years", "True — migration is premature until hardware is proven"],
+        "correct": 0
+      }
+    ]
+  },
+  "quantum-02": {
+    "questions": [
+      {
+        "q": "Shor's Algorithm breaks RSA by factoring large numbers in polynomial time using a quantum computer.",
+        "options": ["True", "False"],
+        "correct": 0
+      },
+      {
+        "q": "Which cryptographic systems does Shor's Algorithm threaten simultaneously?",
+        "options": ["RSA, Diffie-Hellman, and Elliptic Curve Cryptography", "AES-256 and SHA-384 only"],
+        "correct": 0
+      },
+      {
+        "q": "What quantum technique does Shor's Algorithm use to find the period needed for factoring?",
+        "options": ["Quantum Fourier Transform", "Hadamard gate superposition only"],
+        "correct": 0
+      },
+      {
+        "q": "The NSA's CNSA Suite 2.0 (2022) mandated that all National Security Systems migrate away from RSA and ECC by 2035.",
+        "options": ["True", "False"],
+        "correct": 0
+      },
+      {
+        "q": "Approximately how many logical qubits does Shor's Algorithm require to factor an RSA-2048 key?",
+        "options": ["~4096 logical qubits", "~128 logical qubits"],
+        "correct": 0
+      }
+    ]
+  },
+  "quantum-03": {
+    "questions": [
+      {
+        "q": "Grover's Algorithm provides a quadratic speedup for search, effectively halving the security of symmetric encryption.",
+        "options": ["True", "False"],
+        "correct": 0
+      },
+      {
+        "q": "After a CRQC runs Grover's Algorithm against AES-128, its effective security drops to approximately what level?",
+        "options": ["64 bits — feasibly breakable", "128 bits — still fully secure"],
+        "correct": 0
+      },
+      {
+        "q": "AES-256 is considered quantum-safe against Grover's Algorithm because its post-Grover security remains at 128 bits.",
+        "options": ["True", "False"],
+        "correct": 0
+      },
+      {
+        "q": "Which symmetric algorithm does NIST recommend as the minimum for long-term quantum resistance?",
+        "options": ["AES-256 and SHA-384", "AES-128 and SHA-256"],
+        "correct": 0
+      },
+      {
+        "q": "Grover's Algorithm completely breaks symmetric encryption the same way Shor's breaks RSA.",
+        "options": ["False — Grover's weakens symmetric crypto but does not fully break it", "True — Grover's renders AES totally insecure"],
+        "correct": 0
+      }
+    ]
+  },
+  "quantum-04": {
+    "questions": [
+      {
+        "q": "Harvest Now, Decrypt Later (HNDL) attacks are already occurring today — nation-states are collecting encrypted traffic for future quantum decryption.",
+        "options": ["True", "False"],
+        "correct": 0
+      },
+      {
+        "q": "Which data types are considered highest priority for immediate post-quantum migration due to HNDL?",
+        "options": ["Classified communications, medical records, and financial data with long retention periods", "Short-lived session tokens and streaming video encryption"],
+        "correct": 0
+      },
+      {
+        "q": "TLS forward secrecy (ECDHE) fully protects captured traffic against a future HNDL attack using a CRQC.",
+        "options": ["False — the key exchange itself uses RSA/ECC which Shor's can break", "True — forward secrecy makes HNDL impossible"],
+        "correct": 0
+      },
+      {
+        "q": "In an HNDL attack, what does the adversary do at Q-Day with the captured TLS session?",
+        "options": ["Runs Shor's Algorithm to factor the server's RSA public key and recover the session key", "Brute-forces the AES session key directly"],
+        "correct": 0
+      },
+      {
+        "q": "CISA's 2023 advisory explicitly confirmed that adversaries may be storing encrypted data today to decrypt it with future quantum computers.",
+        "options": ["True", "False"],
+        "correct": 0
+      }
+    ]
+  },
+  "quantum-05": {
+    "questions": [
+      {
+        "q": "Quantum entanglement allows measuring one qubit to instantaneously determine the state of its entangled partner, regardless of distance.",
+        "options": ["True", "False"],
+        "correct": 0
+      },
+      {
+        "q": "What is the primary security advantage of entanglement-based QKD (E91 protocol) over classical key exchange?",
+        "options": ["Eavesdropping is detectable by physics — it disturbs the entangled state", "The key is longer and therefore harder to brute-force"],
+        "correct": 0
+      },
+      {
+        "q": "The Cisco Universal Quantum Switch announced in April 2026 requires cryogenic cooling to operate.",
+        "options": ["False — it operates at room temperature over standard telecom fiber", "True — cryogenic cooling is mandatory for all quantum switches"],
+        "correct": 0
+      },
+      {
+        "q": "In the E91 QKD protocol, a Quantum Bit Error Rate (QBER) above what threshold indicates an eavesdropper?",
+        "options": ["11% — above this the key exchange is aborted", "50% — only majority errors signal an eavesdropper"],
+        "correct": 0
+      },
+      {
+        "q": "The Cisco SKIP interface connects quantum key material from QKD systems directly into Cisco IPsec and MACsec sessions.",
+        "options": ["True", "False"],
+        "correct": 0
+      }
+    ]
+  },
+  "quantum-06": {
+    "questions": [
+      {
+        "q": "NISQ-era quantum computers (50–1000 qubits) are currently capable of running Shor's Algorithm to break RSA-2048.",
+        "options": ["False — NISQ devices lack the qubit count and error correction needed", "True — modern NISQ devices can already break RSA-2048"],
+        "correct": 0
+      },
+      {
+        "q": "Google's Willow processor (2024) achieved which key milestone on the path to fault-tolerant quantum computing?",
+        "options": ["Below-threshold quantum error correction — more qubits reduced error rate", "Factoring a 2048-bit RSA key for the first time"],
+        "correct": 0
+      },
+      {
+        "q": "Current quantum computers have physical qubit error rates that make running Shor's Algorithm on RSA-2048 immediately feasible.",
+        "options": ["False — error rates require ~4 million physical qubits to achieve the necessary logical qubit count", "True — current hardware has error rates low enough to factor RSA-2048"],
+        "correct": 0
+      },
+      {
+        "q": "IBM's quantum roadmap targets over 100,000 qubits by which year?",
+        "options": ["2033", "2028"],
+        "correct": 0
+      },
+      {
+        "q": "The NISQ era means the cryptographic threat from quantum computing is real but migration can safely begin later, after CRQC hardware is proven.",
+        "options": ["False — migration takes 3–7 years and must begin before CRQC arrives", "True — organizations should wait for confirmed CRQC hardware before acting"],
+        "correct": 0
+      }
+    ]
+  },
+  "quantum-07": {
+    "questions": [
+      {
+        "q": "Quantum Error Correction (QEC) works by directly copying and checking each qubit's state, similar to classical error correction.",
+        "options": ["False — the no-cloning theorem prevents copying qubits; QEC uses redundancy across physical qubits without measuring the logical state", "True — QEC copies each qubit for parity checking"],
+        "correct": 0
+      },
+      {
+        "q": "The Surface Code is the leading QEC scheme, requiring approximately how many physical qubits per logical qubit at current error rates?",
+        "options": ["~1000 physical qubits per logical qubit", "~10 physical qubits per logical qubit"],
+        "correct": 0
+      },
+      {
+        "q": "Google Willow (2024) demonstrated 'below-threshold' error correction, meaning that adding more error-correction qubits actually decreased the logical error rate.",
+        "options": ["True", "False"],
+        "correct": 0
+      },
+      {
+        "q": "Running Shor's Algorithm on RSA-2048 at Willow-class fidelity (d=9 surface code) would require approximately how many physical qubits?",
+        "options": ["~600,000 physical qubits", "~4,000 physical qubits"],
+        "correct": 0
+      },
+      {
+        "q": "The Willow milestone means that the engineering path to a CRQC is now blocked by fundamental physics limitations.",
+        "options": ["False — Willow shows fault-tolerant QC is achievable; the remaining challenge is engineering scale", "True — fundamental physics prevents scaling beyond Willow"],
+        "correct": 0
+      }
+    ]
+  },
+  "quantum-08": {
+    "questions": [
+      {
+        "q": "In the CISA quantum risk framework, an internet-facing system holding patient records with 50-year retention is classified as a Priority 1 asset requiring immediate migration.",
+        "options": ["True", "False"],
+        "correct": 0
+      },
+      {
+        "q": "What is the first step CISA's Quantum Readiness Roadmap requires organizations to complete?",
+        "options": ["Comprehensive cryptographic inventory — find all RSA/ECC assets before migrating", "Immediately replace all RSA certificates with ML-KEM"],
+        "correct": 0
+      },
+      {
+        "q": "An asset is at HNDL risk if its data sensitivity lifetime plus the current year exceeds the estimated Q-Day year.",
+        "options": ["True", "False"],
+        "correct": 0
+      },
+      {
+        "q": "Which post-quantum algorithm does CISA and NSA recommend for replacing RSA and ECDH key exchange?",
+        "options": ["CRYSTALS-Kyber (ML-KEM, FIPS 203)", "SHA-384 with doubled key length"],
+        "correct": 0
+      },
+      {
+        "q": "Short-lived data such as session tokens and streaming video encryption requires the same immediate migration urgency as classified government communications.",
+        "options": ["False — migration is prioritized by data sensitivity lifetime; short-lived data has lower urgency", "True — all RSA/ECC must be replaced simultaneously regardless of data lifetime"],
+        "correct": 0
+      }
+    ]
+  },
+  "quantum-09": {
+    "questions": [
+      {
+        "q": "Quantum Random Number Generators (QRNGs) produce genuinely non-deterministic output because quantum measurement outcomes have no hidden variables.",
+        "options": ["True", "False"],
+        "correct": 0
+      },
+      {
+        "q": "The Dual EC DRBG backdoor worked because the NSA secretly chose elliptic curve constants where they knew the discrete logarithm relationship between two points.",
+        "options": ["True", "False"],
+        "correct": 0
+      },
+      {
+        "q": "Classical Cryptographically Secure PRNGs (CSPRNGs) like /dev/urandom are deterministic, meaning they are fundamentally less unpredictable than QRNG.",
+        "options": ["True — CSPRNGs are seed-dependent while QRNG exploits quantum non-determinism", "False — CSPRNGs are equally random to QRNG at the physics level"],
+        "correct": 0
+      },
+      {
+        "q": "NIST withdrew Dual EC DRBG from all standards after the backdoor was confirmed via Snowden documents in 2013.",
+        "options": ["True", "False"],
+        "correct": 0
+      },
+      {
+        "q": "For high-security key generation (long-lived secrets, certificate authorities), which entropy source does NIST SP 800-90B recommend as the highest tier?",
+        "options": ["QRNG (quantum random number generator)", "OS-level CSPRNG from hardware noise"],
+        "correct": 0
+      }
+    ]
+  },
+  "quantum-10": {
+    "questions": [
+      {
+        "q": "NIST published the first standardized post-quantum cryptographic algorithms (FIPS 203, 204, 205) in August 2024.",
+        "options": ["True", "False"],
+        "correct": 0
+      },
+      {
+        "q": "The Five Eyes intelligence community consensus for the CRQC planning horizon (when classified systems must be fully migrated) is which timeframe?",
+        "options": ["2030–2035", "2045–2050"],
+        "correct": 0
+      },
+      {
+        "q": "Enterprise cryptographic migrations typically take 3–7 years, meaning organizations that start in 2024 can realistically complete P1 migrations by 2030.",
+        "options": ["True", "False"],
+        "correct": 0
+      },
+      {
+        "q": "In the PQC migration priority order, which action should organizations take first to immediately stop HNDL exposure?",
+        "options": ["Replace RSA/ECDH key exchange with ML-KEM — no CA infrastructure change required", "Replace all digital signatures with ML-DSA before touching key exchange"],
+        "correct": 0
+      },
+      {
+        "q": "The NSA's CNSA Suite 2.0 timeline allows organizations to keep using RSA and ECC in classified National Security Systems indefinitely as long as key sizes are increased.",
+        "options": ["False — RSA/ECC are disallowed in all NSS by 2035 regardless of key size", "True — doubling RSA key size provides sufficient quantum resistance past 2035"],
+        "correct": 0
+      }
+    ]
+  }
+}

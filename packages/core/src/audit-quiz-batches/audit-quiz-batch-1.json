@@ -1,0 +1,1130 @@
+{
+  "audit-01": {
+    "questions": [
+      {
+        "q": "In COBIT 2019, the Evaluate, Direct, and Monitor (EDM) domain is the exclusive responsibility of the Board and executive leadership — management has no role in EDM activities.",
+        "type": "binary",
+        "options": ["True", "False"],
+        "correct": 1
+      },
+      {
+        "q": "An auditor finds that IT decisions at a company are made entirely by the CIO without documented board oversight or formal governance structures. Under COBIT 2019, which domain is most critically absent?",
+        "type": "binary",
+        "options": ["EDM (Evaluate, Direct, Monitor)", "APO (Align, Plan, Organise)"],
+        "correct": 0
+      },
+      {
+        "q": "COBIT 2019 introduced 'design factors' to help organizations tailor their governance system. Which of the following is a valid design factor?",
+        "type": "binary",
+        "options": ["Enterprise strategy and threat profile", "Number of employees in the IT department"],
+        "correct": 0
+      },
+      {
+        "q": "A governance framework audit reveals that IT performance metrics are collected but never reviewed by senior leadership. This gap most directly violates which COBIT 2019 EDM objective?",
+        "type": "binary",
+        "options": ["EDM01 (Ensure Governance Framework Setting)", "EDM05 (Ensure Stakeholder Engagement)"],
+        "correct": 1
+      },
+      {
+        "q": "Under COBIT 2019, which of the following best describes the distinction between governance and management?",
+        "type": "mcq",
+        "options": [
+          "Governance sets objectives and verifies performance; management plans and executes activities to achieve those objectives",
+          "Governance handles day-to-day IT operations; management sets strategic direction",
+          "Governance is performed by external auditors; management is performed by internal staff",
+          "Governance focuses on technology; management focuses on business processes"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "A company operates in a highly regulated financial sector with complex IT. When tailoring COBIT 2019, which design factor combination would most increase the number of governance and management objectives that require strong focus?",
+        "type": "mcq",
+        "options": [
+          "Small enterprise, low compliance requirements, simple IT",
+          "Large enterprise, high compliance requirements, complex/distributed IT",
+          "Medium enterprise, moderate compliance, cloud-first IT",
+          "Startup, minimal compliance, outsourced IT"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "During an IT governance audit, you discover that the organization has a well-documented IT strategy but no mechanism to validate that IT investments are delivering expected value. Which COBIT 2019 EDM objective is most directly unaddressed?",
+        "type": "mcq",
+        "options": [
+          "EDM01 — Ensure Governance Framework Setting and Maintenance",
+          "EDM02 — Ensure Benefits Delivery",
+          "EDM03 — Ensure Risk Optimization",
+          "EDM04 — Ensure Resource Optimization"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "In COBIT 2019, which management domain is responsible for activities like business requirements definition, solution identification, and transition to operations?",
+        "type": "mcq",
+        "options": [
+          "APO — Align, Plan, and Organise",
+          "BAI — Build, Acquire, and Implement",
+          "DSS — Deliver, Service, and Support",
+          "MEA — Monitor, Evaluate, and Assess"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "An auditor is assessing governance maturity using COBIT 2019's capability levels. The organization has repeatable processes, but they are not formally documented and depend heavily on individual knowledge. What capability level does this describe?",
+        "type": "mcq",
+        "options": [
+          "Level 0 — Incomplete",
+          "Level 1 — Performed",
+          "Level 2 — Managed",
+          "Level 3 — Defined"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "An organization's IT Steering Committee approves all major IT investments and receives quarterly performance dashboards, but the board receives no IT-related reporting. From an IT governance audit perspective, what is the primary deficiency?",
+        "type": "mcq",
+        "options": [
+          "The IT Steering Committee lacks authority to approve investments",
+          "Board-level oversight of IT governance is absent, creating an EDM05 gap",
+          "Quarterly reporting frequency is insufficient for governance purposes",
+          "Performance dashboards are not an acceptable form of IT governance reporting"
+        ],
+        "correct": 1
+      }
+    ]
+  },
+  "audit-02": {
+    "questions": [
+      {
+        "q": "Risk appetite and risk tolerance are interchangeable terms in the context of IT risk management frameworks like CRISC.",
+        "type": "binary",
+        "options": ["True", "False"],
+        "correct": 1
+      },
+      {
+        "q": "A risk register entry shows a critical vulnerability in a payment system rated as 'High' likelihood and 'Critical' impact, but the risk owner has marked it 'Accepted' with no compensating controls. As an auditor, does this require immediate escalation?",
+        "type": "binary",
+        "options": ["Yes", "No"],
+        "correct": 0
+      },
+      {
+        "q": "In a risk heat map, a risk plotted in the upper-right quadrant (high likelihood, high impact) that falls within the organization's stated risk appetite would require no further treatment action.",
+        "type": "binary",
+        "options": ["True", "False"],
+        "correct": 1
+      },
+      {
+        "q": "Under CRISC, residual risk is calculated after considering the effectiveness of existing controls. An auditor reviewing a risk register finds that residual risk values were set without verifying control effectiveness. Is this a valid audit finding?",
+        "type": "binary",
+        "options": ["Yes", "No"],
+        "correct": 0
+      },
+      {
+        "q": "Which CRISC risk response option involves sharing the financial consequences of a risk with a third party, such as through cyber insurance, while retaining management accountability?",
+        "type": "mcq",
+        "options": [
+          "Risk avoidance",
+          "Risk mitigation",
+          "Risk transfer",
+          "Risk acceptance"
+        ],
+        "correct": 2
+      },
+      {
+        "q": "During a risk assessment audit, you find that the organization's risk register was last updated 18 months ago. The company has since migrated to a cloud-based ERP and acquired a competitor. What is the most critical audit concern?",
+        "type": "mcq",
+        "options": [
+          "The risk register format does not match ISACA templates",
+          "Inherent risk scores may not reflect the current threat and operational landscape",
+          "Risk owners have not been assigned to each register entry",
+          "The ERP migration should have been documented as a separate risk category"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "An organization sets its risk appetite as 'Low' for data privacy risks but has accepted several high-residual-risk items in that category citing 'business necessity.' What should an auditor conclude?",
+        "type": "mcq",
+        "options": [
+          "Risk acceptance is always valid if approved by a risk owner",
+          "The risk appetite statement is not aligned with actual risk acceptance decisions, indicating a governance gap",
+          "Business necessity is a recognized risk response under CRISC",
+          "The auditor should reclassify the risk appetite to 'Moderate' to match practice"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "A risk heat map uses 5x5 likelihood-impact scoring. A threat event is rated Likelihood=2, Impact=5. A separate event is rated Likelihood=4, Impact=3. Which should receive higher priority treatment, and why?",
+        "type": "mcq",
+        "options": [
+          "Event 1 (score 10) — high impact risks always supersede likelihood-weighted risks",
+          "Event 2 (score 12) — combined risk score is higher, prioritizing frequency of occurrence",
+          "Both are equal — scores of 10 and 12 fall in the same heat map zone",
+          "Neither — heat map scores below 15 are within typical risk tolerance"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "Which of the following best describes 'inherent risk' in the context of IT risk assessment?",
+        "type": "mcq",
+        "options": [
+          "The risk remaining after controls have been applied",
+          "The risk that exists before any controls or mitigations are in place",
+          "The risk introduced by a specific control failure",
+          "The risk transferred to a third party via contract"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "An auditor is validating the organization's IT risk assessment methodology. The methodology uses only qualitative scoring (High/Medium/Low) without quantitative analysis. Which statement best describes the auditor's appropriate position?",
+        "type": "mcq",
+        "options": [
+          "Qualitative-only methodologies are non-compliant with CRISC and must be replaced",
+          "Qualitative methodologies are acceptable but should be validated for consistency and repeatability across the organization",
+          "Quantitative analysis is required only for financial risks, not IT risks",
+          "The methodology is adequate as long as it has been approved by the CISO"
+        ],
+        "correct": 1
+      }
+    ]
+  },
+  "audit-03": {
+    "questions": [
+      {
+        "q": "IT General Controls (ITGCs) are relevant only to financial statement audits and have no applicability to operational IT audits.",
+        "type": "binary",
+        "options": ["True", "False"],
+        "correct": 1
+      },
+      {
+        "q": "A company's change management ITGC requires all changes to be tested in a non-production environment before deployment. An auditor finds that 15% of emergency changes bypassed this requirement with no compensating control. Is this a reportable ITGC deficiency?",
+        "type": "binary",
+        "options": ["Yes", "No"],
+        "correct": 0
+      },
+      {
+        "q": "Under SOX compliance, ITGC deficiencies related to access controls to financial systems can affect the reliability of automated application controls (AACs) that depend on those access controls.",
+        "type": "binary",
+        "options": ["True", "False"],
+        "correct": 0
+      },
+      {
+        "q": "Operations controls — such as job scheduling, backup procedures, and incident management — are considered ITGCs because failures in these areas can affect the integrity and availability of data processed by financial systems.",
+        "type": "binary",
+        "options": ["True", "False"],
+        "correct": 0
+      },
+      {
+        "q": "An auditor is testing ITGCs for a financial reporting system. Which of the following is the BEST example of an ITGC access control test?",
+        "type": "mcq",
+        "options": [
+          "Verifying that the general ledger application performs three-way matching on invoices",
+          "Confirming that only authorized personnel can create or modify user accounts in the financial system",
+          "Testing that the system produces accurate aged accounts receivable reports",
+          "Reviewing whether the system enforces segregation of duties at the transaction level"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "During an ITGC audit, an auditor discovers that developers have read access to production databases containing sensitive financial data. What is the primary control concern?",
+        "type": "mcq",
+        "options": [
+          "Developers may introduce unauthorized code changes through direct database access",
+          "Read-only access presents no material ITGC risk as no modifications can be made",
+          "This violates change management controls but not access control ITGCs",
+          "The concern is operational efficiency — developers need this access to troubleshoot issues"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "When evaluating the severity of an ITGC deficiency, which factor most significantly elevates it from a 'deficiency' to a 'material weakness' in a SOX context?",
+        "type": "mcq",
+        "options": [
+          "The deficiency was discovered by internal audit rather than external audit",
+          "The deficiency affects multiple financial reporting periods and lacks compensating controls",
+          "The deficiency involves a system used by fewer than 10 users",
+          "Management has acknowledged the deficiency but not yet remediated it"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "An organization's IT operations team runs all batch jobs manually, with no automated scheduling or monitoring. A job failure last quarter went undetected for three days, causing corrupt data in the GL. Which ITGC category does this primarily reflect?",
+        "type": "mcq",
+        "options": [
+          "Access controls — unauthorized users ran the batch jobs",
+          "Change management — the job scripts were not version controlled",
+          "Computer operations — job scheduling and monitoring controls are absent",
+          "Program development — batch jobs lack adequate testing documentation"
+        ],
+        "correct": 2
+      },
+      {
+        "q": "An auditor is assessing ITGC change management controls. Which combination of evidence would best demonstrate that a change management process is operating effectively?",
+        "type": "mcq",
+        "options": [
+          "A written change management policy and an interview with the change manager",
+          "A sample of approved change tickets with test evidence, CAB approval documentation, and post-implementation review records",
+          "A list of all changes deployed in the period with their deployment dates",
+          "A configuration management database (CMDB) showing current system state"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "ITGCs are often described as 'pervasive' controls. What does this mean in the context of an IT audit?",
+        "type": "mcq",
+        "options": [
+          "ITGCs must be tested every quarter rather than annually",
+          "Weaknesses in ITGCs can undermine the reliability of all application controls that depend on the same IT environment",
+          "ITGCs apply to all business processes equally, regardless of financial significance",
+          "ITGCs are more important than entity-level controls in assessing audit risk"
+        ],
+        "correct": 1
+      }
+    ]
+  },
+  "audit-04": {
+    "questions": [
+      {
+        "q": "The principle of least privilege requires that users are granted only the minimum access necessary to perform their job functions, and this access should be reviewed at least annually.",
+        "type": "binary",
+        "options": ["True", "False"],
+        "correct": 0
+      },
+      {
+        "q": "A user access review (UAR) conducted only by the IT department — without involvement from business owners — satisfies best practice requirements for access recertification.",
+        "type": "binary",
+        "options": ["True", "False"],
+        "correct": 1
+      },
+      {
+        "q": "Privileged Access Management (PAM) solutions that implement just-in-time (JIT) access eliminate the need for any standing privileged accounts in an organization.",
+        "type": "binary",
+        "options": ["True", "False"],
+        "correct": 1
+      },
+      {
+        "q": "An auditor discovers that a former employee's Active Directory account was disabled within 24 hours of termination, but their VPN certificate and cloud SSO session were not revoked. Is this a complete access termination control failure?",
+        "type": "binary",
+        "options": ["Yes", "No"],
+        "correct": 0
+      },
+      {
+        "q": "During an access control audit, you find that 40 users in the Finance department have 'Super User' roles in the ERP system, granting them ability to create vendors, approve invoices, and post payments. What is the primary audit concern?",
+        "type": "mcq",
+        "options": [
+          "Super User roles are not permitted in ERP systems under any compliance framework",
+          "The concentration of privileged access in Finance creates segregation of duties violations enabling fraud",
+          "ERP super user accounts must be managed through a PAM solution to be compliant",
+          "The number of super users (40) exceeds the maximum recommended by ISACA guidelines"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "An organization implements role-based access control (RBAC) but allows managers to grant ad-hoc permissions outside the defined roles via IT tickets. Over 18 months, 23% of users have accumulated permissions exceeding their role definitions. What control has failed?",
+        "type": "mcq",
+        "options": [
+          "Authentication — multi-factor authentication would prevent unauthorized access",
+          "Access certification — periodic reviews should have identified and removed accumulated excess access",
+          "Role engineering — the RBAC roles were not designed with sufficient granularity",
+          "Logging — audit logs should have flagged the ad-hoc permission grants"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "A PAM solution requires privileged users to check out credentials from a vault, logs all session activity, and automatically rotates passwords after each use. An auditor finds that shared service accounts used by applications are excluded from the PAM scope. What is the risk?",
+        "type": "mcq",
+        "options": [
+          "Application service accounts present no privileged access risk as they are non-interactive",
+          "Shared service account credentials may be known to multiple individuals, creating accountability gaps and increasing breach risk",
+          "PAM solutions are not designed to manage application service accounts",
+          "Excluding service accounts reduces PAM overhead and is an acceptable risk tradeoff"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "An auditor is reviewing IAM controls and finds that the joiner-mover-leaver (JML) process relies on manual email notifications from HR to IT. What is the most significant risk this creates?",
+        "type": "mcq",
+        "options": [
+          "Email is not a documented communication channel for IAM processes",
+          "Delays or missed notifications can result in orphaned accounts or untimely access provisioning/deprovisioning",
+          "Manual processes are only acceptable for organizations with fewer than 100 employees",
+          "HR should not be involved in the access provisioning process"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "During an access review, an auditor samples 30 accounts from a system with 500 users. They find 3 accounts belonging to contractors whose contracts expired 6+ months ago. Which conclusion is most appropriate?",
+        "type": "mcq",
+        "options": [
+          "The sample size is too small to draw any conclusions about access control effectiveness",
+          "The finding suggests systemic gaps in the leaver process; extrapolation indicates potentially dozens of similar orphaned accounts",
+          "Three accounts in a population of 500 represents a 0.6% error rate, which is within acceptable thresholds",
+          "The auditor should expand the sample to 100% of contractor accounts before reporting any finding"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "Which of the following best describes a 'birthright access' model in IAM, and what is its primary audit risk?",
+        "type": "mcq",
+        "options": [
+          "Access granted based on seniority; risk is that junior employees have insufficient access",
+          "Access automatically provisioned based on job role at onboarding; risk is over-provisioning if role definitions are too broad",
+          "Access granted only after management approval; risk is delays in productivity for new hires",
+          "Access based on physical location; risk is that remote workers have different access than on-site staff"
+        ],
+        "correct": 1
+      }
+    ]
+  },
+  "audit-05": {
+    "questions": [
+      {
+        "q": "Under ITIL and most ITGC frameworks, emergency changes should be documented and subject to post-implementation review even if pre-approval requirements were bypassed.",
+        "type": "binary",
+        "options": ["True", "False"],
+        "correct": 0
+      },
+      {
+        "q": "A Change Advisory Board (CAB) that approves 100% of submitted change requests without ever rejecting or deferring one is demonstrating strong change management governance.",
+        "type": "binary",
+        "options": ["True", "False"],
+        "correct": 1
+      },
+      {
+        "q": "In SDLC audit testing, finding that unit tests exist but no user acceptance testing (UAT) sign-offs are documented for production releases is a reportable control gap.",
+        "type": "binary",
+        "options": ["True", "False"],
+        "correct": 0
+      },
+      {
+        "q": "A rollback plan is only required for changes classified as 'High Risk' — standard and low-risk changes can proceed without documented rollback procedures.",
+        "type": "binary",
+        "options": ["True", "False"],
+        "correct": 1
+      },
+      {
+        "q": "An auditor samples 25 production changes deployed during the quarter. For 8 of the 25, the change ticket shows approval was granted after the deployment timestamp. What does this most likely indicate?",
+        "type": "mcq",
+        "options": [
+          "The time zone settings on the ticketing system are misconfigured",
+          "Changes are being deployed without prior authorization, with approvals obtained retroactively",
+          "Emergency change procedures were properly followed for these 8 deployments",
+          "The change manager approved the changes verbally before deployment and documented later"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "An organization's change management policy requires CAB approval for all 'significant' changes but does not define what constitutes 'significant.' What is the primary audit risk this creates?",
+        "type": "mcq",
+        "options": [
+          "Regulators will reject the change management policy for lacking quantitative thresholds",
+          "Inconsistent classification of changes may result in high-risk changes bypassing CAB review",
+          "The CAB will be overwhelmed with trivial changes submitted to avoid risk",
+          "Change requestors will be unable to plan deployment timelines without clear criteria"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "During a change management audit, you review a major ERP upgrade that failed in production and required a 6-hour rollback. The post-incident review was completed. Which control failure is most critical to investigate?",
+        "type": "mcq",
+        "options": [
+          "Whether the CAB had sufficient technical expertise to approve the upgrade",
+          "Whether the change was tested in a non-production environment that adequately mirrored production",
+          "Whether the rollback took longer than the organization's documented RTO",
+          "Whether the ERP vendor was notified of the planned upgrade in advance"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "A developer has access to both write code and deploy directly to production without any peer review or separate deployment team approval. Under change management audit standards, this primarily violates:",
+        "type": "mcq",
+        "options": [
+          "The principle of least privilege in the access control domain",
+          "Segregation of duties — the same individual should not both develop and deploy changes to production",
+          "The SDLC requirement for version control systems",
+          "CAB authorization requirements, since CAB must approve all production deployments"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "An organization uses an agile development methodology with continuous deployment (CD). They deploy to production 15-20 times per day. How should the auditor approach change management testing?",
+        "type": "mcq",
+        "options": [
+          "Require the organization to adopt a waterfall model to comply with ITGC change management standards",
+          "Assess whether automated pipeline controls (code review gates, automated testing, deployment approvals) provide equivalent governance to manual CAB processes",
+          "Sample only end-of-sprint deployments as these represent major changes",
+          "Conclude that continuous deployment pipelines are inherently non-compliant with ITGC standards"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "Which of the following most accurately describes the purpose of a 'configuration management database' (CMDB) in relation to change management auditing?",
+        "type": "mcq",
+        "options": [
+          "A CMDB stores change request forms and CAB meeting minutes",
+          "A CMDB maintains records of IT assets and their relationships, enabling auditors to assess whether changes were authorized and whether current configurations match approved baselines",
+          "A CMDB is used to track software licenses and is unrelated to change management auditing",
+          "A CMDB replaces the need for a change register in organizations with mature IT processes"
+        ],
+        "correct": 1
+      }
+    ]
+  },
+  "audit-06": {
+    "questions": [
+      {
+        "q": "Recovery Time Objective (RTO) defines the maximum acceptable length of time that a business process can be offline after a disaster, while Recovery Point Objective (RPO) defines the maximum acceptable amount of data loss measured in time.",
+        "type": "binary",
+        "options": ["True", "False"],
+        "correct": 0
+      },
+      {
+        "q": "A Business Continuity Plan (BCP) that has not been tested within the past 12 months can still be considered adequate for audit purposes if it has been formally reviewed and updated.",
+        "type": "binary",
+        "options": ["True", "False"],
+        "correct": 1
+      },
+      {
+        "q": "A tabletop exercise that identifies no gaps or issues in the DR plan is strong evidence that the plan is mature and comprehensive.",
+        "type": "binary",
+        "options": ["True", "False"],
+        "correct": 1
+      },
+      {
+        "q": "For an organization with an RPO of 4 hours, daily (24-hour) backups are insufficient to meet that recovery objective.",
+        "type": "binary",
+        "options": ["True", "False"],
+        "correct": 0
+      },
+      {
+        "q": "An auditor is reviewing a company's DR plan. The plan specifies an RTO of 2 hours for the core banking system. The last DR test showed recovery took 11 hours. What should the auditor conclude?",
+        "type": "mcq",
+        "options": [
+          "The RTO should be revised upward to match actual recovery times",
+          "There is a material gap between the documented RTO and actual recovery capability that requires remediation",
+          "A single test failure is insufficient to conclude the RTO cannot be met",
+          "The 11-hour recovery time is acceptable if it falls within the organization's business hours"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "During a BCP audit, an organization demonstrates a comprehensive written plan, annual tabletop exercises, and quarterly backup restore tests. However, they have never performed a full failover to the DR site. What is the residual risk?",
+        "type": "mcq",
+        "options": [
+          "Tabletop exercises and restore tests are sufficient — full failover tests are optional",
+          "The untested DR site failover means actual recovery capability under real conditions is unproven, leaving material uncertainty about meeting RTO/RPO",
+          "As long as backups restore successfully, full site failover testing is redundant",
+          "Full failover tests are required only when the DR site is in a different geographic region"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "A BCP audit reveals that the Business Impact Analysis (BIA) was completed 4 years ago. Since then, the company launched a new e-commerce platform generating 60% of revenue. What is the most critical finding?",
+        "type": "mcq",
+        "options": [
+          "The BIA format does not conform to current ISO 22301 templates",
+          "Critical business functions and their recovery priorities may be misrepresented, as the BIA does not account for the e-commerce platform's business impact",
+          "The BIA should be updated annually regardless of business changes",
+          "E-commerce platforms typically have lower BCP requirements than traditional systems"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "An organization's DR strategy relies on a warm standby site where systems are partially configured and can be brought online within 8 hours. What is the key difference between this and a hot standby site?",
+        "type": "mcq",
+        "options": [
+          "Hot standby sites are geographically co-located; warm sites are always in a different city",
+          "A hot standby runs in real-time parallel with production, enabling near-immediate failover, while a warm site requires configuration and startup time",
+          "Hot standby is used for applications; warm standby is used for data backup only",
+          "Warm standby sites do not maintain any data replication from the primary site"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "During a tabletop exercise, the incident scenario involves ransomware encrypting all production data. The IT team realizes that backup systems are connected to the same network segment as production. What critical BCP gap does this reveal?",
+        "type": "mcq",
+        "options": [
+          "The tabletop scenario is unrealistic — ransomware cannot encrypt backup systems",
+          "Backups are not logically or physically isolated, meaning ransomware could also encrypt backup data, invalidating the recovery strategy",
+          "The IT team should have identified this during the BIA, making it an audit planning failure",
+          "Network segmentation is a security control, not a BCP/DR concern"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "Which of the following BCP audit procedures provides the highest level of assurance that recovery objectives can be met?",
+        "type": "mcq",
+        "options": [
+          "Reviewing the written BCP document for completeness against an ISO 22301 checklist",
+          "Interviewing the BCP coordinator about recovery procedures",
+          "Observing a full-scale failover test where production workloads are actually transferred to the DR environment and RTO/RPO are measured",
+          "Reviewing the results of the most recent tabletop exercise"
+        ],
+        "correct": 2
+      }
+    ]
+  },
+  "audit-07": {
+    "questions": [
+      {
+        "q": "The NIST Incident Response lifecycle consists of four phases: Preparation, Detection & Analysis, Containment/Eradication/Recovery, and Post-Incident Activity.",
+        "type": "binary",
+        "options": ["True", "False"],
+        "correct": 0
+      },
+      {
+        "q": "During a forensic investigation, an incident responder immediately powers off a compromised server to preserve evidence. This is always the correct first action in digital forensics.",
+        "type": "binary",
+        "options": ["True", "False"],
+        "correct": 1
+      },
+      {
+        "q": "An IR plan that has never been tested through a tabletop exercise or simulation provides adequate assurance that the organization can respond effectively to a major incident.",
+        "type": "binary",
+        "options": ["True", "False"],
+        "correct": 1
+      },
+      {
+        "q": "Chain of custody documentation is required for digital evidence only when the incident is expected to result in criminal prosecution.",
+        "type": "binary",
+        "options": ["True", "False"],
+        "correct": 1
+      },
+      {
+        "q": "An auditor is reviewing an organization's IR plan. The plan identifies containment strategies but does not define escalation thresholds or decision-making authority. What is the primary risk?",
+        "type": "mcq",
+        "options": [
+          "Incidents may be under-classified, resulting in inappropriate response resource allocation",
+          "Without defined escalation triggers and authority, critical decisions may be delayed or made at the wrong organizational level during an active incident",
+          "The IR plan does not meet NIST SP 800-61 format requirements",
+          "External stakeholders will not be notified of incidents within regulatory timeframes"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "During an IR audit, you discover that after a significant data breach 6 months ago, no post-incident review (lessons learned) was conducted. What is the key audit concern?",
+        "type": "mcq",
+        "options": [
+          "The absence of a post-incident review is only significant if the breach resulted in regulatory fines",
+          "Opportunities to identify root causes and improve detection/response capabilities were missed, increasing likelihood of recurrence",
+          "Post-incident reviews are only required for incidents involving personally identifiable information",
+          "The IR team's failure to conduct a review indicates they are under-resourced and need additional headcount"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "An organization discovers a compromised endpoint. The IR team isolates the device from the network but continues allowing it to run to observe attacker behavior. What is this technique called, and what is the primary risk?",
+        "type": "mcq",
+        "options": [
+          "Honeypotting — risk is that the attacker may detect the observation and destroy evidence",
+          "Controlled detonation — risk is that malware may spread to monitoring infrastructure",
+          "Dynamic containment — the primary risk is alert fatigue in the security operations center",
+          "Threat hunting — risk is that legitimate processes may be incorrectly flagged as malicious"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "An auditor reviews IR metrics and finds Mean Time to Detect (MTTD) averages 47 days across incidents in the past year. Which conclusion is most appropriate?",
+        "type": "mcq",
+        "options": [
+          "A 47-day MTTD is within industry benchmarks for organizations without a dedicated SOC",
+          "A 47-day MTTD indicates significant gaps in detection capabilities — attackers dwell undetected for extended periods, increasing breach severity",
+          "MTTD is not a relevant IR audit metric — Mean Time to Respond (MTTR) is more important",
+          "The MTTD should be compared only to the organization's own historical baseline, not industry standards"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "During an IR audit, the auditor finds that the IR team uses personal mobile devices to communicate during incidents because the primary communication systems may also be compromised. What does this represent?",
+        "type": "mcq",
+        "options": [
+          "A BYOD policy violation that should be reported separately from the IR audit",
+          "An out-of-band communication strategy — a recognized best practice in IR plans to maintain command and control when primary systems are compromised",
+          "A confidentiality risk — sensitive incident information may be exposed on personal devices",
+          "An improvised workaround indicating the IR plan does not address communication failures"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "Which of the following IR audit procedures would provide the best evidence that the organization's SIEM is effectively detecting relevant threats?",
+        "type": "mcq",
+        "options": [
+          "Reviewing the SIEM vendor's certification and support documentation",
+          "Confirming that SIEM alert rules are documented and reviewing a sample of triggered alerts with their disposition",
+          "Verifying that the SIEM is ingesting logs from all critical systems and testing detection rules against known-bad indicators",
+          "Interviewing the SOC team about their average alert volume and triage process"
+        ],
+        "correct": 2
+      }
+    ]
+  },
+  "audit-08": {
+    "questions": [
+      {
+        "q": "A SOC 2 Type II report covering the vendor's security controls provides sufficient assurance that the vendor is managing all risks relevant to your organization's use of their services.",
+        "type": "binary",
+        "options": ["True", "False"],
+        "correct": 1
+      },
+      {
+        "q": "Under TPRM best practices, the depth of vendor due diligence should be proportional to the criticality and sensitivity of the data or services the vendor accesses.",
+        "type": "binary",
+        "options": ["True", "False"],
+        "correct": 0
+      },
+      {
+        "q": "Contractual provisions such as right-to-audit clauses are sufficient on their own to ensure a vendor is managing risks appropriately without periodic assessments.",
+        "type": "binary",
+        "options": ["True", "False"],
+        "correct": 1
+      },
+      {
+        "q": "If a critical vendor experiences a data breach affecting your organization's customer data, your organization retains regulatory accountability for that breach regardless of contractual indemnification clauses.",
+        "type": "binary",
+        "options": ["True", "False"],
+        "correct": 0
+      },
+      {
+        "q": "An auditor is reviewing TPRM for a cloud provider that hosts a core HR system with sensitive employee data. The vendor provides a SOC 2 Type II report. Which additional review is most critical?",
+        "type": "mcq",
+        "options": [
+          "Request the vendor's ISO 27001 certificate to supplement the SOC 2 report",
+          "Review the SOC 2 report's scope to confirm it covers the specific services and systems used by your organization, and examine any exceptions or qualified opinions",
+          "Require the vendor to complete your organization's standard security questionnaire in addition to the SOC 2 report",
+          "Verify that the SOC 2 report was issued by a Big Four accounting firm"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "A company uses 47 third-party vendors. TPRM resources are limited. Which vendor risk tiering approach best aligns with risk-based audit standards?",
+        "type": "mcq",
+        "options": [
+          "Assess all 47 vendors equally annually to ensure consistent coverage",
+          "Tier vendors by criticality (data sensitivity, service dependency, regulatory scope) and allocate deeper due diligence resources to Tier 1 (critical) vendors",
+          "Assess only vendors that have had a security incident in the past 12 months",
+          "Require all vendors to complete a questionnaire and only investigate those scoring below a threshold"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "An auditor discovers that a Tier 1 vendor (critical payment processor) has not been reassessed since onboarding 3 years ago, despite two major acquisitions by the vendor during that period. What is the primary concern?",
+        "type": "mcq",
+        "options": [
+          "The vendor's acquisition history suggests financial instability that may affect service continuity",
+          "The vendor's control environment, ownership, and risk profile may have materially changed since onboarding, and the current assessment may no longer reflect actual risk",
+          "The organization should have been notified by the vendor of these acquisitions under standard contract terms",
+          "Three years is within the acceptable TPRM reassessment cycle for payment processors"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "During a vendor assessment, you review a SOC 2 Type II report and find that 3 of the 22 tested controls had exceptions noted, including one related to logical access management. How should the auditor interpret this?",
+        "type": "mcq",
+        "options": [
+          "Three exceptions out of 22 is a 14% exception rate — the vendor should be terminated immediately",
+          "The exceptions should be evaluated for relevance to your organization's risk; the logical access exception warrants further inquiry given its potential to impact data confidentiality",
+          "SOC 2 exceptions are the auditor's concern, not the client's — the vendor must resolve them independently",
+          "Exceptions in a Type II report are expected and do not affect the overall opinion on control effectiveness"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "What is the primary purpose of a 'right-to-audit' clause in a vendor contract from a TPRM perspective?",
+        "type": "mcq",
+        "options": [
+          "It gives the organization legal standing to sue the vendor if a breach occurs",
+          "It preserves the organization's ability to conduct or commission independent assessments of the vendor's control environment when third-party reports are insufficient",
+          "It requires the vendor to provide audit logs on demand without prior notice",
+          "It substitutes for the need for ongoing vendor monitoring and reassessment"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "An organization outsources payroll processing to a vendor. The vendor subcontracts data storage to a fourth-party cloud provider. From a TPRM audit perspective, what is the key risk?",
+        "type": "mcq",
+        "options": [
+          "Subcontracting is prohibited under most data processing agreements and represents a contract breach",
+          "The organization may have limited visibility and control over the fourth party's security practices, creating concentration and supply chain risk",
+          "The vendor's SOC 2 report will automatically cover subcontractor controls, making this a low-risk situation",
+          "The cloud provider's shared responsibility model means the vendor retains full liability for data protection"
+        ],
+        "correct": 1
+      }
+    ]
+  },
+  "audit-09": {
+    "questions": [
+      {
+        "q": "Under GDPR, a Data Protection Impact Assessment (DPIA) is mandatory for all processing activities involving personal data, regardless of risk level.",
+        "type": "binary",
+        "options": ["True", "False"],
+        "correct": 1
+      },
+      {
+        "q": "GDPR requires organizations to notify the relevant supervisory authority of a personal data breach within 72 hours of becoming aware of it, where feasible.",
+        "type": "binary",
+        "options": ["True", "False"],
+        "correct": 0
+      },
+      {
+        "q": "A data mapping exercise that documents what personal data is collected but omits where it is stored, how it is shared, and how long it is retained is sufficient for GDPR compliance purposes.",
+        "type": "binary",
+        "options": ["True", "False"],
+        "correct": 1
+      },
+      {
+        "q": "Under GDPR, data processors (vendors processing data on behalf of a controller) bear no direct regulatory liability — only the data controller is accountable to supervisory authorities.",
+        "type": "binary",
+        "options": ["True", "False"],
+        "correct": 1
+      },
+      {
+        "q": "An auditor is reviewing a company's GDPR compliance. The company processes high-volume behavioral tracking data for online advertising. Which requirement is most critical to verify?",
+        "type": "mcq",
+        "options": [
+          "Whether the company has appointed a Data Protection Officer (DPO)",
+          "Whether a DPIA was conducted before implementing the behavioral tracking, as it involves large-scale systematic monitoring",
+          "Whether the company's privacy policy is written in plain language",
+          "Whether data subjects can access their data within 30 days of a Subject Access Request"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "During a data privacy audit, you discover that personal data of EU residents is being transferred to a US-based analytics vendor with no adequacy decision, SCCs, or other approved transfer mechanism in place. What is the regulatory exposure?",
+        "type": "mcq",
+        "options": [
+          "The transfer is permitted if the vendor has agreed to GDPR-equivalent terms in the main service contract",
+          "This constitutes an unlawful international data transfer under GDPR, potentially exposing the organization to fines of up to 4% of global annual turnover",
+          "US-based vendors processing anonymized data are exempt from GDPR transfer requirements",
+          "The exposure is limited to reputational risk — GDPR does not apply to data transfers for business analytics"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "A company experiences a ransomware attack that encrypts customer personal data. The data cannot be accessed by the attacker because encryption keys are separately stored, but the data is unavailable to the company for 5 days. Under GDPR, must this be reported?",
+        "type": "mcq",
+        "options": [
+          "No — if the attacker could not access the data, there is no breach requiring notification",
+          "Yes — a breach includes loss of availability; the 72-hour notification requirement applies if the breach is likely to result in risk to individuals' rights and freedoms",
+          "Only if the unavailability exceeds 30 days does GDPR breach notification apply",
+          "Notification is required only if the personal data belongs to EU residents in the country of the supervisory authority"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "An auditor is reviewing a Records of Processing Activities (RoPA) maintained under GDPR Article 30. Which element, if missing, represents the most significant compliance gap?",
+        "type": "mcq",
+        "options": [
+          "The name and contact details of the Data Protection Officer",
+          "The legal basis for each processing activity and the categories of data subjects",
+          "The date the RoPA was last reviewed and approved",
+          "The names of all individual employees who access personal data"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "A data subject submits a request to exercise their 'right to erasure' (GDPR Article 17). The organization deletes the data from its production database but retains it in backup tapes for 7 years due to financial regulation requirements. How should the auditor assess this?",
+        "type": "mcq",
+        "options": [
+          "Retaining data in backups after an erasure request is a GDPR violation regardless of other regulatory requirements",
+          "Retention for compliance with legal obligations is a recognized exception to the right to erasure; the auditor should verify the retention period is proportionate and the backup data is isolated from processing",
+          "The organization should delete all backup tapes to comply with the erasure request",
+          "Right to erasure only applies to marketing data — financial records are exempt from all GDPR subject rights"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "Which of the following most accurately defines the role of a Data Protection Officer (DPO) under GDPR, from an audit perspective?",
+        "type": "mcq",
+        "options": [
+          "The DPO is personally liable for the organization's GDPR compliance and signs off on all privacy decisions",
+          "The DPO serves in an advisory and monitoring capacity, providing independent oversight of GDPR compliance, and must report directly to the highest management level",
+          "The DPO acts as the organization's legal representative before supervisory authorities",
+          "The DPO is only required for public authorities and large enterprises with over 250 employees"
+        ],
+        "correct": 1
+      }
+    ]
+  },
+  "audit-10": {
+    "questions": [
+      {
+        "q": "A penetration test scope that excludes production systems during business hours is a legitimate constraint that auditors should recognize as balancing security assurance with operational risk.",
+        "type": "binary",
+        "options": ["True", "False"],
+        "correct": 0
+      },
+      {
+        "q": "Rules of Engagement (RoE) for a penetration test should be documented and signed by an authorized representative of the target organization before testing begins.",
+        "type": "binary",
+        "options": ["True", "False"],
+        "correct": 0
+      },
+      {
+        "q": "A penetration test that finds no critical vulnerabilities is strong evidence that the target environment has no exploitable weaknesses.",
+        "type": "binary",
+        "options": ["True", "False"],
+        "correct": 1
+      },
+      {
+        "q": "An auditor reviewing penetration test authorization documentation should verify that the testing scope aligns with the actual systems tested, as scope creep during testing could expose the organization to unintended risk and legal liability.",
+        "type": "binary",
+        "options": ["True", "False"],
+        "correct": 0
+      },
+      {
+        "q": "An organization commissions an annual penetration test but the scope is defined solely by the IT team and excludes all cloud environments added in the past 18 months. What is the primary audit concern?",
+        "type": "mcq",
+        "options": [
+          "Penetration tests should be scoped by an external party to ensure objectivity",
+          "The test scope does not reflect the current attack surface, meaning significant vulnerabilities in cloud environments remain unassessed",
+          "Annual frequency is insufficient — penetration tests should be conducted quarterly",
+          "IT teams are not authorized to define penetration test scope under most compliance frameworks"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "During audit review of a penetration test report, you find that the report includes a list of vulnerabilities but no evidence that critical findings were remediated or that retesting was conducted. What should the auditor conclude?",
+        "type": "mcq",
+        "options": [
+          "The penetration test is complete — remediation is a separate management process outside the test scope",
+          "Without evidence of remediation verification, the organization cannot demonstrate that identified vulnerabilities have been closed, creating ongoing risk",
+          "The auditor should conduct their own vulnerability scan to verify remediation",
+          "Retesting is only required when the penetration test finds critical-severity vulnerabilities"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "A penetration tester during a red team engagement obtains domain administrator credentials through a phishing simulation. What should happen next according to Rules of Engagement best practices?",
+        "type": "mcq",
+        "options": [
+          "The tester should immediately use the credentials to demonstrate maximum impact before reporting",
+          "The tester should document the finding and continue within the agreed scope, notifying the designated client contact per RoE notification procedures",
+          "The engagement should be halted immediately and the finding escalated to the board",
+          "The tester should reset the compromised account to prevent actual attackers from using it"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "What is the key difference between a vulnerability assessment and a penetration test from an audit assurance perspective?",
+        "type": "mcq",
+        "options": [
+          "Vulnerability assessments are performed by internal teams; penetration tests must be performed by external parties",
+          "A vulnerability assessment identifies and scores potential weaknesses; a penetration test actively exploits them to demonstrate real-world impact and attack paths",
+          "Penetration tests are automated; vulnerability assessments require manual analysis",
+          "Vulnerability assessments cover network infrastructure only; penetration tests also include application security"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "An auditor is reviewing the authorization chain for a penetration test. The test was authorized by the IT Director. The target includes systems owned by a subsidiary company. What is the risk?",
+        "type": "mcq",
+        "options": [
+          "IT Directors are not authorized to commission penetration tests — CISO approval is always required",
+          "The IT Director may lack authority to authorize testing of systems owned by a separate legal entity — authorization from the subsidiary's leadership is also required",
+          "Cross-entity testing is generally prohibited under most legal frameworks and should not proceed",
+          "The subsidiary's systems should be excluded from scope to avoid authorization complexity"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "A penetration test report rates a finding as 'Critical' based on CVSS score 9.8, but the system is on an isolated network segment with no external access. How should the auditor interpret this rating?",
+        "type": "mcq",
+        "options": [
+          "The CVSS score is an objective measure — the finding should be treated as Critical regardless of network context",
+          "CVSS base scores do not account for environmental factors; the actual risk should be assessed considering the network isolation as a compensating control, likely reducing effective severity",
+          "Isolated systems are outside penetration test scope and the finding should be disregarded",
+          "The auditor should request the penetration tester re-score the finding using CVSS v2 for consistency"
+        ],
+        "correct": 1
+      }
+    ]
+  },
+  "audit-11": {
+    "questions": [
+      {
+        "q": "Under ISACA auditing standards, audit workpapers must be sufficiently detailed that an experienced auditor with no prior knowledge of the engagement could understand the work performed, conclusions reached, and evidence obtained.",
+        "type": "binary",
+        "options": ["True", "False"],
+        "correct": 0
+      },
+      {
+        "q": "Attribute sampling is the most appropriate statistical sampling method when an auditor needs to estimate the total dollar value of errors in an account balance.",
+        "type": "binary",
+        "options": ["True", "False"],
+        "correct": 1
+      },
+      {
+        "q": "An auditor can rely on management representations as audit evidence without independent corroboration for high-risk assertions.",
+        "type": "binary",
+        "options": ["True", "False"],
+        "correct": 1
+      },
+      {
+        "q": "When an auditor discovers a finding during fieldwork that management has already remediated, the auditor should still document the finding in the workpapers and assess whether the root cause has been addressed.",
+        "type": "binary",
+        "options": ["True", "False"],
+        "correct": 0
+      },
+      {
+        "q": "An auditor selects a sample of 25 access provisioning requests from a population of 800 completed in the quarter. Two samples show requests were approved without required dual approval. What is the most appropriate next step?",
+        "type": "mcq",
+        "options": [
+          "Report a finding based on the 2-of-25 exception rate (8%) without further investigation",
+          "Expand the sample size and investigate root cause to determine whether the exceptions represent isolated incidents or systemic control failure",
+          "Accept that an 8% exception rate is within statistical tolerance for access control testing",
+          "Discuss the finding informally with the access management team before deciding whether to document it"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "During workpaper review, a senior auditor finds that a staff auditor documented 'control appears to be operating effectively' without attaching any evidence. Under ISACA standards, this workpaper is:",
+        "type": "mcq",
+        "options": [
+          "Acceptable if the staff auditor is an CISA-certified professional",
+          "Deficient — conclusions must be supported by documented evidence that can be independently reviewed",
+          "Acceptable for low-risk control areas where the risk of error is minimal",
+          "Deficient only if the audit client has requested access to workpapers"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "An IT auditor is testing change management controls using judgmental (non-statistical) sampling. They select only changes that were flagged as 'emergency' because those are highest risk. What limitation does this create?",
+        "type": "mcq",
+        "options": [
+          "Emergency changes are exempt from ITGC testing — the sample should exclude them",
+          "The judgmental sample does not allow statistical projection of results to the full population of changes, limiting the auditor's ability to draw conclusions about overall control effectiveness",
+          "Focusing on high-risk items reduces sample size requirements and is a recognized efficiency technique",
+          "Judgmental sampling is prohibited under ISACA standards for ITGC testing"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "ISACA's audit evidence hierarchy generally ranks which of the following as the most reliable type of evidence?",
+        "type": "mcq",
+        "options": [
+          "Written management representations obtained during interviews",
+          "Third-party documentation obtained directly by the auditor from the source",
+          "Photocopies of records provided by management",
+          "Verbal confirmations from process owners during walkthroughs"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "An auditor is testing a control that requires segregation of duties in the procurement process. They perform a walkthrough of one transaction. What is the key limitation of this approach?",
+        "type": "mcq",
+        "options": [
+          "Walkthroughs are not permitted for segregation of duties testing under ISACA standards",
+          "A single walkthrough demonstrates that the control can operate as designed but does not provide evidence that it operated consistently throughout the audit period",
+          "Segregation of duties can only be tested through automated system access reports, not walkthroughs",
+          "Walkthroughs are only valid for new controls implemented during the audit period"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "An audit reveals that IT audit workpapers from the previous year were stored in unencrypted shared drives accessible to the entire IT department. What is the primary concern from an audit standards perspective?",
+        "type": "mcq",
+        "options": [
+          "Workpaper storage location is an administrative matter outside the scope of audit quality",
+          "Workpapers may contain sensitive audit findings, methodology details, and evidence — unauthorized access undermines confidentiality and could compromise future audit objectivity",
+          "The concern is limited to GDPR compliance if workpapers contain personal data",
+          "The IT department's access was appropriate since they were the subject of the IT audit"
+        ],
+        "correct": 1
+      }
+    ]
+  },
+  "audit-12": {
+    "questions": [
+      {
+        "q": "Under ISACA standards, audit findings should include a clear statement of condition, criteria, cause, effect (risk), and recommendation — commonly called the 'five attributes of a finding.'",
+        "type": "binary",
+        "options": ["True", "False"],
+        "correct": 0
+      },
+      {
+        "q": "An audit report that rates all findings as 'High' to ensure management attention is applying an appropriate risk-based approach to finding severity ratings.",
+        "type": "binary",
+        "options": ["True", "False"],
+        "correct": 1
+      },
+      {
+        "q": "Management responses to audit findings should include a specific remediation action, a responsible owner, and a target completion date to be considered adequate.",
+        "type": "binary",
+        "options": ["True", "False"],
+        "correct": 0
+      },
+      {
+        "q": "An auditor should modify or remove a finding from the final report if management disputes the finding during the exit conference and provides a verbal explanation.",
+        "type": "binary",
+        "options": ["True", "False"],
+        "correct": 1
+      },
+      {
+        "q": "An audit report contains the finding: 'The organization does not have adequate access controls.' An audit director reviews this and requests revision. What is the most critical improvement needed?",
+        "type": "mcq",
+        "options": [
+          "The finding should reference the specific ISACA or COBIT control objective violated",
+          "The finding lacks specificity — it should identify the specific condition observed (e.g., which systems, what access gaps), the criteria violated, the root cause, and the risk/impact",
+          "The finding should quantify the financial impact before being included in the report",
+          "The finding should only be included if the auditor has a recommendation that has been pre-approved by management"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "Management responds to a High-rated finding about unpatched critical systems by stating: 'We are aware of this issue and have a plan to address it.' As auditor, how should you assess this response?",
+        "type": "mcq",
+        "options": [
+          "Management awareness is sufficient — the response demonstrates accountability",
+          "The response is inadequate — it lacks a specific remediation action, responsible owner, and committed completion date required for a valid management response",
+          "The response should be accepted as it is management's prerogative to determine remediation approach",
+          "The finding should be downgraded to Medium since management has acknowledged it"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "During the draft report review, management disputes a finding, claiming the auditor misunderstood the control. They provide documentation the auditor had not previously reviewed. What is the appropriate response?",
+        "type": "mcq",
+        "options": [
+          "Maintain the finding as documented — management cannot introduce new evidence after fieldwork",
+          "Evaluate the new documentation objectively; if it materially changes the conclusion, update the workpapers and finding accordingly with appropriate documentation",
+          "Remove the finding and conduct additional fieldwork before issuing any report",
+          "Include both the auditor's original conclusion and management's position in the report for transparency"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "An internal audit report is distributed to the Audit Committee, the CISO, and the IT Director. The finding involves a potential fraud scheme involving a senior IT manager. What additional distribution consideration is critical?",
+        "type": "mcq",
+        "options": [
+          "The finding should be distributed to all staff to ensure organizational awareness",
+          "Fraud-related findings may require restricted distribution — the Chief Audit Executive should consult with legal counsel before including the finding in the standard report distribution",
+          "The finding should be presented verbally to the Board only, with no written documentation",
+          "Distribution to the CISO is sufficient — the IT Director should be excluded to avoid tipping off the subject"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "What is the primary purpose of rating audit findings by severity (e.g., Critical, High, Medium, Low) in an audit report?",
+        "type": "mcq",
+        "options": [
+          "To comply with ISACA reporting format requirements",
+          "To enable management and the Audit Committee to prioritize remediation efforts based on risk to the organization",
+          "To establish legal liability thresholds for regulatory reporting purposes",
+          "To provide benchmarking data against industry peer audit findings"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "An auditor completes a follow-up review 90 days after the original report and finds that 3 of 8 High findings remain unremediated past their agreed target dates. What is the most appropriate audit action?",
+        "type": "mcq",
+        "options": [
+          "Extend the target dates to give management more time — remediations often take longer than planned",
+          "Escalate the overdue items to the Audit Committee, as persistent unremediated High findings may indicate management is not committed to addressing identified risks",
+          "Issue a new audit report covering only the unremediated items",
+          "Reclassify the findings as Medium since the original risk window has partially closed with elapsed time"
+        ],
+        "correct": 1
+      }
+    ]
+  }
+}

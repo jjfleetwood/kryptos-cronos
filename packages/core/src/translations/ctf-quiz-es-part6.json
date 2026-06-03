@@ -1,0 +1,1172 @@
+{
+  "quantum-01": {
+    "questions": [
+      {
+        "q": "Un qubit en superposición representa tanto 0 como 1 simultáneamente hasta que es medido.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "¿Qué algoritmo aprovecha la superposición cuántica para romper el cifrado RSA en tiempo polinomial?",
+        "options": [
+          "El Algoritmo de Shor",
+          "El Algoritmo de Grover"
+        ]
+      },
+      {
+        "q": "El Q-Day se refiere al día en que una Computadora Cuántica Criptográficamente Relevante (CRQC) capaz de romper el cifrado RSA-2048 en un tiempo razonable se vuelva operativa.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "La compuerta de Hadamard aplicada a n qubits crea una superposición de cuántos estados simultáneamente?",
+        "options": [
+          "2^n estados — todos a la vez",
+          "n estados — uno por qubit"
+        ]
+      },
+      {
+        "q": "Las agencias de inteligencia como CISA y NSA dicen que las organizaciones deben esperar hasta que llegue el Q-Day antes de comenzar la migración post-cuántica.",
+        "options": [
+          "Falso — la migración debe comenzar ahora; lleva años",
+          "Verdadero — la migración es prematura hasta que el hardware esté demostrado"
+        ]
+      }
+    ]
+  },
+  "quantum-02": {
+    "questions": [
+      {
+        "q": "El Algoritmo de Shor rompe RSA factorizando números grandes en tiempo polinomial usando un ordenador cuántico.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "¿Qué sistemas criptográficos amenaza el Algoritmo de Shor simultáneamente?",
+        "options": [
+          "RSA, Diffie-Hellman y Criptografía de Curva Elíptica",
+          "Solo AES-256 y SHA-384"
+        ]
+      },
+      {
+        "q": "¿Qué técnica cuántica usa el Algoritmo de Shor para encontrar el período necesario para la factorización?",
+        "options": [
+          "Transformada de Fourier Cuántica",
+          "Solo superposición con la compuerta de Hadamard"
+        ]
+      },
+      {
+        "q": "El CNSA Suite 2.0 de la NSA (2022) mandató que todos los Sistemas de Seguridad Nacional (NSS) migraran fuera de RSA y ECC.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "¿Aproximadamente cuántos qubits lógicos requiere el Algoritmo de Shor para factorizar una clave RSA-2048?",
+        "options": [
+          "~4096 qubits lógicos",
+          "~128 qubits lógicos"
+        ]
+      }
+    ]
+  },
+  "quantum-03": {
+    "questions": [
+      {
+        "q": "El Algoritmo de Grover proporciona una aceleración cuadrática para la búsqueda, reduciendo efectivamente a la mitad el tamaño de la clave de seguridad de los cifrados simétricos.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "Después de que una CRQC ejecuta el Algoritmo de Grover contra AES-128, su seguridad efectiva cae a aproximadamente:",
+        "options": [
+          "64 bits — factiblemente rompible",
+          "128 bits — aún completamente seguro"
+        ]
+      },
+      {
+        "q": "AES-256 se considera resistente a los cuánticos frente al Algoritmo de Grover porque su seguridad post-Grover es de 128 bits — considerada suficiente.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "¿Qué algoritmo simétrico recomienda NIST como mínimo para la resistencia cuántica a largo plazo?",
+        "options": [
+          "AES-256 y SHA-384",
+          "AES-128 y SHA-256"
+        ]
+      },
+      {
+        "q": "El Algoritmo de Grover rompe completamente el cifrado simétrico de la misma manera que Shor rompe RSA.",
+        "options": [
+          "Falso — Grover debilita la criptografía simétrica pero no la rompe completamente; doblar el tamaño de la clave restaura la seguridad",
+          "Verdadero — Grover hace que AES sea totalmente inseguro"
+        ]
+      }
+    ]
+  },
+  "quantum-04": {
+    "questions": [
+      {
+        "q": "Los ataques de Cosechar Ahora, Descifrar Después (HNDL) ya están ocurriendo hoy — los estados-nación están recopilando tráfico cifrado RSA/ECC para su posterior descifrado.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "¿Qué tipos de datos se consideran de mayor prioridad para la migración post-cuántica inmediata debido al riesgo de HNDL?",
+        "options": [
+          "Comunicaciones clasificadas, historiales médicos y datos financieros con vida útil de sensibilidad superior a 10 años",
+          "Tokens de sesión de corta duración y cifrado de video en streaming"
+        ]
+      },
+      {
+        "q": "El secreto hacia adelante (forward secrecy) de TLS (ECDHE) protege completamente el tráfico capturado contra un futuro ataque HNDL.",
+        "options": [
+          "Falso — el intercambio de claves en sí usa RSA/ECC que Shor puede romper retroactivamente, revelando las claves de sesión",
+          "Verdadero — el secreto hacia adelante hace que HNDL sea imposible"
+        ]
+      },
+      {
+        "q": "En un ataque HNDL, ¿qué hace el adversario en el Q-Day con la sesión TLS capturada?",
+        "options": [
+          "Ejecuta el Algoritmo de Shor para factorizar la clave pública RSA del servidor y recuperar las claves de sesión simétricas",
+          "Fuerza bruta directamente en la clave de sesión AES"
+        ]
+      },
+      {
+        "q": "El aviso de CISA de 2023 confirmó explícitamente que los adversarios pueden estar almacenando datos cifrados hoy para descifrarlos cuando las computadoras cuánticas estén disponibles.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      }
+    ]
+  },
+  "quantum-05": {
+    "questions": [
+      {
+        "q": "El entrelazamiento cuántico permite que medir un qubit determine instantáneamente el estado de su par entrelazado, independientemente de la distancia.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "¿Cuál es la principal ventaja de seguridad de la QKD basada en entrelazamiento (protocolo E91) sobre la distribución de claves clásicas?",
+        "options": [
+          "Las escuchas son detectables por la física — perturba el entrelazamiento y genera errores de bit cuántico (QBER) que se pueden medir",
+          "La clave es más larga y por tanto más difícil de descifrar por fuerza bruta"
+        ]
+      },
+      {
+        "q": "El Cisco Universal Quantum Switch anunciado en abril de 2026 requiere enfriamiento criogénico para operar.",
+        "options": [
+          "Falso — opera a temperatura ambiente sobre fibra óptica de telecomunicaciones estándar",
+          "Verdadero — el enfriamiento criogénico es obligatorio para todos los switches cuánticos"
+        ]
+      },
+      {
+        "q": "En el protocolo QKD E91, una Tasa de Error de Bit Cuántico (QBER) por encima de qué umbral indica una escucha activa?",
+        "options": [
+          "11% — por encima de este umbral se aborta el intercambio de claves",
+          "50% — solo los errores de mayoría señalan a un espía"
+        ]
+      },
+      {
+        "q": "La interfaz SKIP de Cisco conecta el material de clave cuántica de los sistemas QKD directamente a los dispositivos de cifrado de Cisco como los routers IOS-XE.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      }
+    ]
+  },
+  "quantum-06": {
+    "questions": [
+      {
+        "q": "Los ordenadores cuánticos de la era NISQ (50-1000 qubits) son actualmente capaces de ejecutar el Algoritmo de Shor para romper RSA-2048.",
+        "options": [
+          "Falso — los dispositivos NISQ carecen del recuento de qubits y la corrección de errores necesarios para ejecutar Shor a escala criptográfica",
+          "Verdadero — los dispositivos NISQ modernos ya pueden romper RSA-2048"
+        ]
+      },
+      {
+        "q": "El procesador Willow de Google (2024) logró qué hito clave en el camino hacia la computación cuántica tolerante a fallos?",
+        "options": [
+          "Corrección de errores cuánticos por debajo del umbral — más qubits reducían la tasa de error (a diferencia de los dispositivos anteriores donde agregar qubits aumentaba los errores)",
+          "Factorizar una clave RSA de 2048 bits por primera vez"
+        ]
+      },
+      {
+        "q": "Las tasas de error de qubits físicos actuales hacen que ejecutar el Algoritmo de Shor sea actualmente impracticable.",
+        "options": [
+          "Falso — las tasas de error requieren ~4 millones de qubits físicos para lograr los qubits lógicos necesarios para Shor en RSA-2048",
+          "Verdadero — el hardware actual tiene tasas de error lo suficientemente bajas como para factorizar RSA"
+        ]
+      },
+      {
+        "q": "¿Para qué año apunta la hoja de ruta cuántica de IBM superar los 100.000 qubits?",
+        "options": [
+          "2033",
+          "2028"
+        ]
+      },
+      {
+        "q": "La era NISQ significa que la amenaza criptográfica de la computación cuántica es real pero la migración puede esperar hasta que se confirme el hardware CRQC.",
+        "options": [
+          "Falso — la migración tarda 3-7 años y debe comenzar antes de que llegue la CRQC; el tiempo de implementación es el mayor riesgo",
+          "Verdadero — las organizaciones deben esperar al hardware CRQC confirmado antes de comenzar migraciones costosas"
+        ]
+      }
+    ]
+  },
+  "quantum-07": {
+    "questions": [
+      {
+        "q": "La Corrección de Errores Cuánticos (QEC) funciona copiando y verificando directamente el estado de cada qubit, similar a la verificación de paridad clásica.",
+        "options": [
+          "Falso — el teorema de no clonación impide copiar qubits; QEC usa codificación de entrelazamiento que distribuye el estado lógico entre múltiples qubits físicos",
+          "Verdadero — QEC copia cada qubit para la verificación de paridad"
+        ]
+      },
+      {
+        "q": "El Código de Superficie es el esquema QEC líder, requiriendo aproximadamente cuántos qubits físicos por qubit lógico?",
+        "options": [
+          "~1000 qubits físicos por qubit lógico",
+          "~10 qubits físicos por qubit lógico"
+        ]
+      },
+      {
+        "q": "Google Willow (2024) demostró corrección de errores 'por debajo del umbral', lo que significa que agregar más qubits reduce en lugar de amplificar los errores.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "Ejecutar el Algoritmo de Shor en RSA-2048 a la fidelidad de clase Willow (código de superficie d=9) requeriría aproximadamente cuántos qubits físicos?",
+        "options": [
+          "~600.000 qubits físicos",
+          "~4.000 qubits físicos"
+        ]
+      },
+      {
+        "q": "El hito de Willow significa que el camino de ingeniería hacia una CRQC está ahora bloqueado por limitaciones fundamentales de física.",
+        "options": [
+          "Falso — Willow muestra que la computación cuántica tolerante a fallos es alcanzable; el trabajo restante es de ingeniería, no de física fundamental",
+          "Verdadero — la física fundamental impide escalar más allá de Willow"
+        ]
+      }
+    ]
+  },
+  "quantum-08": {
+    "questions": [
+      {
+        "q": "En el marco de riesgo cuántico de CISA, un sistema orientado a internet que tiene registros de pacientes con una vida útil de sensibilidad de 30 años es de alta prioridad para la migración PQC.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "¿Cuál es el primer paso que requiere el Mapa de Ruta de Preparación Cuántica de CISA que las organizaciones completen?",
+        "options": [
+          "Inventario criptográfico completo — encontrar todos los activos RSA/ECC antes de comenzar cualquier migración",
+          "Reemplazar inmediatamente todos los certificados RSA con ML-KEM"
+        ]
+      },
+      {
+        "q": "Un activo está en riesgo de HNDL si su vida útil de sensibilidad de datos más el año actual supera el Q-Day estimado.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "¿Qué algoritmo post-cuántico recomiendan CISA y NSA para reemplazar el intercambio de claves RSA y ECDH?",
+        "options": [
+          "CRYSTALS-Kyber (ML-KEM, FIPS 203)",
+          "SHA-384 con longitud de clave duplicada"
+        ]
+      },
+      {
+        "q": "Los datos de corta duración como los tokens de sesión y el cifrado de video en streaming requieren la misma prioridad inmediata de migración que los datos clasificados.",
+        "options": [
+          "Falso — la migración se prioriza por la vida útil de sensibilidad de los datos; los datos de corta duración tienen riesgo HNDL bajo",
+          "Verdadero — todos los RSA/ECC deben reemplazarse simultáneamente independientemente de la sensibilidad de los datos"
+        ]
+      }
+    ]
+  },
+  "quantum-09": {
+    "questions": [
+      {
+        "q": "Los Generadores de Números Aleatorios Cuánticos (QRNGs) producen salidas genuinamente no deterministas porque la medición cuántica es inherentemente aleatoria a nivel físico.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "La puerta trasera de Dual EC DRBG funcionó porque la NSA eligió secretamente constantes de curva elíptica que le permitían calcular la semilla privada a partir de la salida del PRNG.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "Los CSPRNGs clásicos criptográficamente seguros (como /dev/urandom) son deterministas, lo que significa que su salida es en principio predecible dado el estado interno del seed.",
+        "options": [
+          "Verdadero — los CSPRNGs dependen del seed mientras que los QRNG explotan la no determinidad cuántica",
+          "Falso — los CSPRNGs son igualmente aleatorios que los QRNG a nivel físico"
+        ]
+      },
+      {
+        "q": "NIST retiró Dual EC DRBG de todos los estándares después de que la puerta trasera fue confirmada a través de las revelaciones de Snowden.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "Para la generación de claves de alta seguridad (secretos de larga duración, autoridades de certificación), ¿qué fuente de entropía proporciona la mayor garantía?",
+        "options": [
+          "QRNG (generador de números aleatorios cuánticos)",
+          "CSPRNG a nivel del SO desde ruido de hardware"
+        ]
+      }
+    ]
+  },
+  "quantum-10": {
+    "questions": [
+      {
+        "q": "NIST publicó los primeros algoritmos criptográficos post-cuánticos estandarizados (FIPS 203, 204, 205) en agosto de 2024.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "El consenso de la comunidad de inteligencia Five Eyes para el horizonte de planificación de la CRQC (cuando el cifrado clasificado podría estar en riesgo) es:",
+        "options": [
+          "2030-2035",
+          "2045-2050"
+        ]
+      },
+      {
+        "q": "Las migraciones criptográficas empresariales típicamente tardan 3-7 años, lo que significa que las organizaciones que comiencen hoy podrían apenas terminar antes del Q-Day estimado más temprano.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "En el orden de prioridad de migración PQC, ¿qué acción deben tomar primero las organizaciones para reducir inmediatamente el riesgo HNDL?",
+        "options": [
+          "Reemplazar el intercambio de claves RSA/ECDH con ML-KEM — no requiere infraestructura de CA y protege las sesiones futuras de inmediato",
+          "Reemplazar todas las firmas digitales con ML-DSA antes de tocar el intercambio de claves"
+        ]
+      },
+      {
+        "q": "El cronograma del CNSA Suite 2.0 de la NSA permite a las organizaciones seguir usando RSA y ECC en sistemas clasificados si duplican el tamaño de la clave.",
+        "options": [
+          "Falso — RSA/ECC no están permitidos en todos los NSS a partir de 2035 independientemente del tamaño de la clave",
+          "Verdadero — doblar el tamaño de clave RSA proporciona resistencia cuántica suficiente hasta 2040"
+        ]
+      }
+    ]
+  },
+  "quantum-b01": {
+    "questions": [
+      {
+        "q": "¿Cuántos algoritmos se presentaron originalmente al concurso de Criptografía Post-Cuántica del NIST en 2017?",
+        "options": [
+          "69 algoritmos",
+          "42 algoritmos"
+        ]
+      },
+      {
+        "q": "Verdadero o Falso: FIPS 203 estandariza ML-DSA (CRYSTALS-Dilithium) para firmas digitales.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "¿Qué algoritmo fue roto por un único investigador en aproximadamente 1 hora en julio de 2022, a pesar de haber llegado a la ronda final del concurso del NIST?",
+        "options": [
+          "SIKE/SIDH",
+          "RAINBOW"
+        ]
+      },
+      {
+        "q": "Verdadero o Falso: SLH-DSA (SPHINCS+) se basa en supuestos de dureza de redes (lattice) para su seguridad.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "¿Qué estándar NIST FIPS cubre ML-KEM (CRYSTALS-Kyber) para la encapsulación de claves?",
+        "options": [
+          "FIPS 203",
+          "FIPS 204"
+        ]
+      }
+    ]
+  },
+  "quantum-b02": {
+    "questions": [
+      {
+        "q": "¿Qué significa la 'E' en el problema LWE (Learning With Errors)?",
+        "options": [
+          "Errores (Errors)",
+          "Cifrado (Encryption)"
+        ]
+      },
+      {
+        "q": "Verdadero o Falso: El vector de ruido en LWE puede eliminarse sin un costo de rendimiento significativo.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "¿Quién introdujo el problema de Learning With Errors en 2005?",
+        "options": [
+          "Oded Regev",
+          "Peter Shor"
+        ]
+      },
+      {
+        "q": "Verdadero o Falso: Los algoritmos cuánticos (como los de Grover y Shor) proporcionan solo una ventaja polinomial contra los problemas basados en redes, dejando los esquemas LWE seguros.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "¿Qué variante de LWE se usa en ML-KEM y ML-DSA para mejor rendimiento manteniendo las hipótesis de seguridad?",
+        "options": [
+          "Module-LWE",
+          "Ring-LWE"
+        ]
+      }
+    ]
+  },
+  "quantum-b03": {
+    "questions": [
+      {
+        "q": "Verdadero o Falso: En el intercambio de claves ML-KEM, el secreto compartido se transmite directamente de Bob a Alice.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "¿Qué conjunto de parámetros de ML-KEM se recomienda para la mayoría de las aplicaciones de propósito general (nivel de seguridad 3 del NIST)?",
+        "options": [
+          "ML-KEM-768",
+          "ML-KEM-512"
+        ]
+      },
+      {
+        "q": "Verdadero o Falso: Cisco Silicon One P200 realiza la encapsulación de claves ML-KEM a velocidad de línea de 800G sin impacto en el rendimiento.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "¿Cuál es el tamaño de la clave pública para ML-KEM-768?",
+        "options": [
+          "1184 bytes",
+          "256 bytes"
+        ]
+      },
+      {
+        "q": "Verdadero o Falso: ML-KEM (FIPS 203) es un reemplazo directo para el intercambio de claves RSA y ECDH en los protocolos de handshake de TLS.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      }
+    ]
+  },
+  "quantum-b04": {
+    "questions": [
+      {
+        "q": "Verdadero o Falso: ML-DSA (FIPS 204) produce firmas más pequeñas que ECDSA-256.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "¿En qué problema de dureza se basa ML-DSA para su seguridad?",
+        "options": [
+          "Module-LWE y Module-SIS",
+          "Factorización de enteros RSA"
+        ]
+      },
+      {
+        "q": "Verdadero o Falso: Cisco despliega ML-DSA solo en los handshakes de TLS, no en la cadena de arranque del firmware ni en las firmas de actualizaciones de software.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "¿Qué técnica de firma usa ML-DSA para garantizar que las firmas no filtren información de clave privada?",
+        "options": [
+          "Muestreo por rechazo (rejection sampling)",
+          "Oráculo de relleno (padding oracle)"
+        ]
+      },
+      {
+        "q": "¿Aproximadamente qué tamaño tiene una firma ML-DSA-65?",
+        "options": [
+          "3293 bytes",
+          "64 bytes"
+        ]
+      }
+    ]
+  },
+  "quantum-b05": {
+    "questions": [
+      {
+        "q": "Verdadero o Falso: SLH-DSA (SPHINCS+) se basa únicamente en la seguridad de la función hash, sin suposiciones algebraicas.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "¿Para qué caso de uso se recomienda más fuertemente SLH-DSA, dada su supuesto de seguridad conservador?",
+        "options": [
+          "Firma de CA raíz",
+          "Firma de certificados hoja TLS de alto volumen"
+        ]
+      },
+      {
+        "q": "Verdadero o Falso: SLH-DSA requiere gestión de estado entre firmas, similar al OTS (One-Time Signature) original.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "¿Cuál es el tamaño aproximado de la firma para el conjunto de parámetros SLH-DSA-SHA2-128s?",
+        "options": [
+          "7856 bytes",
+          "666 bytes"
+        ]
+      },
+      {
+        "q": "Verdadero o Falso: Si los algoritmos basados en redes como ML-DSA fueran rotos, SLH-DSA también quedaría inmediatamente comprometido.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      }
+    ]
+  },
+  "quantum-b06": {
+    "questions": [
+      {
+        "q": "¿Qué estructura matemática usa FALCON (FN-DSA) como base de seguridad?",
+        "options": [
+          "Redes NTRU",
+          "Redes Module-LWE"
+        ]
+      },
+      {
+        "q": "Verdadero o Falso: FALCON-512 produce firmas más pequeñas que ML-DSA-44, haciéndolo preferible para casos de uso de IoT con ancho de banda limitado.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "Verdadero o Falso: FALCON es más simple y seguro de implementar desde cero que ML-DSA, haciéndolo preferible para implementaciones personalizadas.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "¿Qué técnica usa FALCON para lograr sus tamaños de firma compactos?",
+        "options": [
+          "Muestreo Gaussiano de Transformada de Fourier Rápida (FFT)",
+          "Muestreo por rechazo sobre anillos polinomiales"
+        ]
+      },
+      {
+        "q": "¿Aproximadamente qué tan grande es una firma FALCON-512 en comparación con una firma ML-DSA-44?",
+        "options": [
+          "Aproximadamente 10 veces más pequeña (666 bytes vs 2420 bytes)",
+          "Aproximadamente el mismo tamaño"
+        ]
+      }
+    ]
+  },
+  "quantum-b07": {
+    "questions": [
+      {
+        "q": "Verdadero o Falso: En un intercambio de claves híbrido (X25519 + ML-KEM-768), un atacante debe romper AMBOS algoritmos para comprometer el secreto compartido.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "¿Qué función de derivación de claves basada en hash se usa para combinar los secretos compartidos clásico y PQC en construcciones híbridas de TLS?",
+        "options": [
+          "HKDF-SHA384",
+          "PBKDF2-SHA256"
+        ]
+      },
+      {
+        "q": "Verdadero o Falso: Desplegar TLS híbrido (X25519MLKEM768) requiere cambios en la infraestructura de PKI de certificados existente.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "¿Qué organización desplegó primero X25519Kyber768 híbrido en producción, protegiendo millones de conexiones antes de la estandarización del NIST?",
+        "options": [
+          "CloudFlare",
+          "Let's Encrypt"
+        ]
+      },
+      {
+        "q": "Verdadero o Falso: ML-KEM puro (sin X25519) es el objetivo recomendado a largo plazo, con híbrido como paso de transición durante la fase de implementación.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      }
+    ]
+  },
+  "quantum-b08": {
+    "questions": [
+      {
+        "q": "Verdadero o Falso: Desplegar el intercambio de claves PQC en TLS (Capa de clave) requiere actualizar los certificados de CA emitidos existentes.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "¿Qué proveedor compatible con OpenSSL habilita los conjuntos de cifrado PQC incluyendo X25519MLKEM768 en TLS?",
+        "options": [
+          "Proveedor OQS (Open Quantum Safe)",
+          "Extensión PQC de BouncyCastle"
+        ]
+      },
+      {
+        "q": "¿Aproximadamente cuánto más grandes son los certificados TLS de PQC (ML-DSA) en comparación con los certificados ECDSA?",
+        "options": [
+          "3-4 KB más grandes",
+          "Aproximadamente el mismo tamaño"
+        ]
+      },
+      {
+        "q": "Verdadero o Falso: Let's Encrypt ya ha completado la emisión de certificados PQC para sus 400 millones de dominios activos.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "¿Qué versión de TLS está mejor posicionada para la migración PQC debido a su separación limpia de intercambio de claves y autenticación?",
+        "options": [
+          "TLS 1.3",
+          "TLS 1.2"
+        ]
+      }
+    ]
+  },
+  "quantum-b09": {
+    "questions": [
+      {
+        "q": "Verdadero o Falso: Un Inventario de Materiales Criptográficos (CBOM) es un inventario estructurado de todos los activos criptográficos en el entorno de una organización.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "¿Qué vulnerabilidad de 2014 se cita como ejemplo aleccionador para la migración PQC, demostrando que las organizaciones usan crypto en lugares ocultos?",
+        "options": [
+          "Heartbleed (CVE-2014-0160)",
+          "Shellshock (CVE-2014-6271)"
+        ]
+      },
+      {
+        "q": "Verdadero o Falso: Los activos de certificados RSA y ECDH orientados a internet deben recibir la prioridad de migración más baja en una evaluación de riesgo HNDL.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "¿Qué prioridad de migración (P1-P4) deben recibir los certificados RSA/ECDSA orientados a internet en una priorización de migración PQC?",
+        "options": [
+          "P1 — migrar inmediatamente",
+          "P3 — migrar en 5 años"
+        ]
+      },
+      {
+        "q": "Verdadero o Falso: Un CBOM es un entregable de una sola vez — una vez generado, no necesita actualizarse a medida que la infraestructura cambia.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      }
+    ]
+  },
+  "quantum-b10": {
+    "questions": [
+      {
+        "q": "Verdadero o Falso: Una implementación de PQC que pasa todas las Pruebas de Respuesta Conocida (KATs) del NIST ACVTS es segura frente a ataques de canal lateral.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "En el ataque de temporización Kyber-90s de 2022, ¿aproximadamente cuántas mediciones se necesitaban para recuperar la clave privada completa?",
+        "options": [
+          "200.000 mediciones",
+          "2 mil millones de mediciones"
+        ]
+      },
+      {
+        "q": "Verdadero o Falso: La operación de tiempo constante significa que la función criptográfica se completa en tiempos idénticos independientemente del valor de la entrada, impidiendo que los atacantes infieran secretos del tiempo de ejecución.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "¿Qué algoritmo PQC tiene la implementación más compleja y propensa a canales laterales debido a su muestreo gaussiano continuo?",
+        "options": [
+          "FALCON (FN-DSA)",
+          "ML-KEM (Kyber)"
+        ]
+      },
+      {
+        "q": "Verdadero o Falso: Los sistemas federales deben usar módulos PQC validados por FIPS 140-3 — implementar una implementación personalizada está prohibido incluso si es algorítmicamente correcta.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      }
+    ]
+  },
+  "quantum-c01": {
+    "questions": [
+      {
+        "q": "En BB84, ¿qué umbral de QBER activa un aborto del intercambio de claves debido a sospecha de escucha activa?",
+        "options": [
+          "Por encima del 11%",
+          "Por encima del 50%"
+        ]
+      },
+      {
+        "q": "Verdadero o Falso: En BB84, Alice y Bob revelan públicamente los valores de bits reales (0 o 1) durante la reconciliación de bases.",
+        "options": [
+          "Falso — solo revelan qué bases usaron, no los bits",
+          "Verdadero — compartir bits sobre el canal público es seguro"
+        ]
+      },
+      {
+        "q": "Un ataque de interceptar-y-reenviar por Eve introduce aproximadamente qué nivel de QBER?",
+        "options": [
+          "~25%",
+          "~5%"
+        ]
+      },
+      {
+        "q": "El teorema de no clonación garantiza qué propiedad de seguridad de BB84?",
+        "options": [
+          "Cualquier intento de copiar un estado cuántico lo perturba, haciendo que las escuchas sean detectables mediante el análisis de QBER",
+          "Las claves cuánticas son infinitamente reutilizables sin riesgo de interceptación"
+        ]
+      },
+      {
+        "q": "Verdadero o Falso: El satélite Micius de China (2017) demostró el primer intercambio de claves cuánticas intercontinental entre Beijing y Viena.",
+        "options": [
+          "Verdadero",
+          "Falso — Micius solo operó dentro de la red doméstica de China"
+        ]
+      }
+    ]
+  },
+  "quantum-c02": {
+    "questions": [
+      {
+        "q": "¿Cuál es la principal debilidad de seguridad de los nodos de relevo de confianza en redes QKD de larga distancia?",
+        "options": [
+          "Son ordenadores clásicos que tienen material de clave descifrado y representan un punto de fallo único si se comprometen",
+          "Introducen errores de QBER que son detectables tanto por Alice como por Bob"
+        ]
+      },
+      {
+        "q": "Verdadero o Falso: Un nodo de relevo comprometido causa un pico de QBER medible que alerta a Alice y Bob del compromiso.",
+        "options": [
+          "Falso — un relevo comprometido entrega claves en texto plano sin ninguna señal de QBER; el compromiso es sigiloso e indetectable por QKD",
+          "Verdadero — cualquier robo de clave en un relevo es detectable mediante la verificación de errores cuánticos"
+        ]
+      },
+      {
+        "q": "La QKD de campo gemelo (TF-QKD) extiende el rango de QKD mediante qué mecanismo?",
+        "options": [
+          "Ambos endpoints envían fotones a un relevo intermedio no confiable que mide interferencias sin obtener información de clave",
+          "Las estaciones de relevo descifran y vuelven a cifrar las claves usando algoritmos basados en redes"
+        ]
+      },
+      {
+        "q": "¿Cuántos nodos de relevo de confianza usa el backbone cuántico Beijing-Shanghái de China de 4.600 km?",
+        "options": [
+          "32",
+          "4"
+        ]
+      },
+      {
+        "q": "Verdadero o Falso: El Cisco Universal Quantum Switch anunciado en abril de 2026 requiere operación criogénica para preservar el entrelazamiento.",
+        "options": [
+          "Falso — opera a temperatura ambiente sobre fibra óptica de telecomunicaciones estándar",
+          "Verdadero — la operación criogénica es necesaria para la preservación de estados cuánticos"
+        ]
+      }
+    ]
+  },
+  "quantum-c03": {
+    "questions": [
+      {
+        "q": "¿Por qué Micius opera principalmente de noche en lugar de durante el día?",
+        "options": [
+          "El ruido de fondo de fotones solares abruma las señales de fotones individuales durante el día, haciendo que la QKD sea imprácticable",
+          "La mecánica orbital impide la línea de visión a las estaciones terrestres durante las horas del día"
+        ]
+      },
+      {
+        "q": "Verdadero o Falso: Los enlaces de fibra protegidos por QKD hacen que las técnicas pasivas de recolección de SIGINT como la derivación de cable sean inútiles para los adversarios.",
+        "options": [
+          "Verdadero — cualquier medición perturba los fotones y eleva el QBER",
+          "Falso — la recolección pasiva sigue siendo posible pero limitada a los metadatos"
+        ]
+      },
+      {
+        "q": "¿Qué cambio estratégico obliga el despliegue generalizado de QKD por parte de estados-nación a las agencias de inteligencia?",
+        "options": [
+          "La recolección debe cambiar de la interceptación masiva pasiva a la infiltración activa de endpoints donde los datos existen en texto plano antes del cifrado o después del descifrado",
+          "Las agencias obtienen nuevas oportunidades de recolección pasiva porque QKD genera patrones de tráfico más predecibles"
+        ]
+      },
+      {
+        "q": "Durante la videollamada cuántica intercontinental de 2017, ¿qué papel jugó el satélite Micius?",
+        "options": [
+          "Era el relevo de confianza — distribuyendo claves cuánticas independientes a Beijing y Viena, que luego se combinaron",
+          "Proporcionó solo autenticación clásica de respaldo mientras la QKD de fibra manejaba la distribución de claves"
+        ]
+      },
+      {
+        "q": "Verdadero o Falso: La NSA emitió CNSA 2.0 en 2022 parcialmente en respuesta a los despliegues de QKD por parte de adversarios.",
+        "options": [
+          "Verdadero",
+          "Falso — CNSA 2.0 fue emitido únicamente para abordar la futura amenaza de los ordenadores cuánticos de gran escala"
+        ]
+      }
+    ]
+  },
+  "quantum-c04": {
+    "questions": [
+      {
+        "q": "¿Cuál de los cinco principios de agilidad criptográfica garantiza que el texto cifrado antiguo pueda seguir siendo descifrado mientras se migra a nuevos algoritmos?",
+        "options": [
+          "Versionado — etiquetando todos los datos cifrados con un ID de algoritmo",
+          "Negociación — acordando el mejor algoritmo mutuo en tiempo de ejecución"
+        ]
+      },
+      {
+        "q": "Verdadero o Falso: Las claves públicas de ML-KEM de 1184 bytes son aproximadamente del mismo tamaño que las claves públicas RSA-2048, sin impacto en los sistemas existentes.",
+        "options": [
+          "Falso — las claves públicas de ML-KEM son ~4,6 veces más grandes que las claves RSA-2048 y pueden causar problemas en sistemas que asumen tamaños de clave fijos",
+          "Verdadero — las bases de datos modernas acomodan automáticamente cualquier tamaño de clave"
+        ]
+      },
+      {
+        "q": "La depreciación de SHA-1 (2011-2017) se cita como ejemplo aleccionador. ¿Cuánto tiempo tardaron las organizaciones en completar la migración?",
+        "options": [
+          "~7 años",
+          "~2 años"
+        ]
+      },
+      {
+        "q": "¿Qué producto de Cisco permite a los operadores configurar una lista de preferencia ordenada de algoritmos que el dispositivo negociará?",
+        "options": [
+          "Cisco IOS-XE con la interfaz SKIP",
+          "Cisco Firepower Threat Defense con IKEv1 heredado"
+        ]
+      },
+      {
+        "q": "Verdadero o Falso: Un antipatrón que elimina la agilidad criptográfica es codificar RSA de forma fija en una implementación TLS en lugar de usar una lista de conjuntos de cifrado negociables.",
+        "options": [
+          "Verdadero",
+          "Falso — codificar RSA es aceptable siempre que el tamaño de clave sea de 4096 bits o más"
+        ]
+      }
+    ]
+  },
+  "quantum-c05": {
+    "questions": [
+      {
+        "q": "¿Por qué la migración de VPN se considera la mayor prioridad de HNDL para la mayoría de las empresas?",
+        "options": [
+          "El tráfico VPN registrado hoy puede descifrarse una vez que una computadora cuántica esté disponible, exponiendo años de comunicaciones confidenciales",
+          "Los endpoints de VPN almacenan claves privadas de forma insegura, haciéndolos más fáciles de comprometer que otros sistemas"
+        ]
+      },
+      {
+        "q": "Verdadero o Falso: En una VPN híbrida X25519 + ML-KEM-768, un atacante solo necesita romper ML-KEM-768 para comprometer el canal.",
+        "options": [
+          "Falso — tanto X25519 como ML-KEM-768 deben romperse simultáneamente; ambos contribuyen al secreto compartido final",
+          "Verdadero — ML-KEM es el único componente resistente a los cuánticos, por lo que es el único objetivo"
+        ]
+      },
+      {
+        "q": "¿Qué componente de un despliegue de OpenVPN sigue siendo seguro contra los ataques cuánticos incluso sin migración PQC?",
+        "options": [
+          "Cifrado de datos en masa AES-256 (el algoritmo de Grover solo reduce a la mitad la seguridad efectiva a 128 bits, que sigue siendo suficiente)",
+          "Autenticación de certificados RSA-2048"
+        ]
+      },
+      {
+        "q": "En diciembre de 2023, ¿qué proveedor de VPN se convirtió en el primer servicio comercial en desplegar una VPN híbrida cuántica resistente en producción para todos los usuarios?",
+        "options": [
+          "Mullvad VPN",
+          "ExpressVPN"
+        ]
+      },
+      {
+        "q": "Verdadero o Falso: Migrar los certificados de autenticación de pares de VPN de RSA a ML-DSA-65 (FIPS 204) es opcional si el intercambio de claves ya usa ML-KEM.",
+        "options": [
+          "Falso — los certificados de autenticación también deben migrarse; las firmas RSA siguen siendo vulnerables al algoritmo de Shor",
+          "Verdadero — la autenticación RSA es segura contra los cuánticos porque solo se usa una vez por sesión"
+        ]
+      }
+    ]
+  },
+  "quantum-c06": {
+    "questions": [
+      {
+        "q": "¿Por qué se consideran las claves de CA raíz el objetivo de migración PQC de mayor prioridad?",
+        "options": [
+          "Tienen períodos de validez de 20-30 años que pueden abarcar el Q-Day, y un compromiso de CA raíz subvierte toda la confianza PKI de la empresa",
+          "Las CAs raíz generan claves bajo demanda, por lo que pueden reemplazarse instantáneamente sin impacto"
+        ]
+      },
+      {
+        "q": "Verdadero o Falso: Una estrategia de certificados de doble pila emite credenciales RSA y ML-DSA simultáneamente, permitiendo que los clientes modernos usen PQC mientras los clientes heredados usan RSA.",
+        "options": [
+          "Verdadero",
+          "Falso — los certificados de doble pila no están soportados por los estándares X.509"
+        ]
+      },
+      {
+        "q": "¿Qué producto HSM no puede actualizarse mediante firmware para soportar ML-KEM y ML-DSA, requiriendo reemplazo de hardware?",
+        "options": [
+          "YubiHSM 2",
+          "Thales Luna 7"
+        ]
+      },
+      {
+        "q": "¿Cómo se compara el tamaño de una cadena de certificados ML-DSA completa (raíz + intermedio + entidad final) con una cadena RSA equivalente?",
+        "options": [
+          "~7,5 KB para PQC vs ~3,6 KB para RSA — aproximadamente el doble, lo que puede causar fragmentación TLS para dispositivos con bajo MTU",
+          "Aproximadamente el mismo tamaño — ML-DSA fue diseñado para coincidir con los tamaños de certificado RSA"
+        ]
+      },
+      {
+        "q": "Verdadero o Falso: NIST SP 800-131A Rev 3 depreca RSA-2048 para toda nueva emisión de certificados a partir de 2030.",
+        "options": [
+          "Verdadero",
+          "Falso — RSA-2048 sigue siendo aprobado indefinidamente bajo las pautas actuales de NIST para casos de uso no clasificados"
+        ]
+      }
+    ]
+  },
+  "quantum-c07": {
+    "questions": [
+      {
+        "q": "¿Qué función debe usarse para liberar buffers de clave secreta y secreto compartido en liboqs, en lugar de free()?",
+        "options": [
+          "OQS_MEM_secure_free() — pone a cero la memoria antes de liberarla",
+          "OQS_KEM_free() — maneja toda la memoria asociada automáticamente"
+        ]
+      },
+      {
+        "q": "Verdadero o Falso: liboqs está validado por FIPS 140-3 y puede usarse directamente en sistemas federales sin módulos adicionales.",
+        "options": [
+          "Falso — liboqs es la implementación de referencia pero no está validada por FIPS 140-3; los sistemas federales requieren módulos validados por CMVP",
+          "Verdadero — el proyecto Open Quantum Safe posee un certificado FIPS 140-3"
+        ]
+      },
+      {
+        "q": "En mayo de 2024, ¿qué navegador desplegó X25519MLKEM768 como acuerdo de clave TLS predeterminado, marcando el primer despliegue masivo de PQC?",
+        "options": [
+          "Google Chrome 124",
+          "Mozilla Firefox 125"
+        ]
+      },
+      {
+        "q": "¿Cuál es el riesgo de asignar en la pila una clave secreta de ML-KEM-768 (2400 bytes) dentro de una función?",
+        "options": [
+          "Desbordamiento de pila — el gran búfer puede exceder los límites de pila en sistemas embebidos o sistemas con pilas pequeñas",
+          "Sin riesgo — la pila siempre es puesta a cero por el SO después del retorno de la función"
+        ]
+      },
+      {
+        "q": "Verdadero o Falso: Las claves ML-KEM deben generarse una vez y reutilizarse en múltiples sesiones para reducir la sobrecarga computacional.",
+        "options": [
+          "Falso — las claves ML-KEM deben ser efímeras; la reutilización filtra información sobre la clave privada a través de múltiples textos cifrados",
+          "Verdadero — la reutilización de claves es aceptable y no afecta la seguridad de ML-KEM"
+        ]
+      }
+    ]
+  },
+  "quantum-c08": {
+    "questions": [
+      {
+        "q": "FIPS 203 fue publicado en agosto de 2024, ¿pero cuánto tiempo tarda típicamente la validación CMVP, creando un período de espera para el cumplimiento?",
+        "options": [
+          "12-18 meses",
+          "2-4 semanas"
+        ]
+      },
+      {
+        "q": "Verdadero o Falso: AWS-LC recibió el certificado FIPS 140-3 #4800 para ML-KEM en el primer trimestre de 2025, siendo el primer módulo de software ML-KEM validado por FIPS.",
+        "options": [
+          "Verdadero",
+          "Falso — AWS-LC fue validado solo para AES-256, no para ML-KEM"
+        ]
+      },
+      {
+        "q": "Bajo la excepción de construcción híbrida, ¿qué combinación satisface el cumplimiento FIPS 140-3 para firmas durante la transición PQC?",
+        "options": [
+          "Firmar con RSA-3072 (validado) Y ML-DSA-65 — ambos deben fallar para comprometer la seguridad",
+          "Usar solo ML-DSA-65 con un memorando del CISO eximiendo el requisito FIPS"
+        ]
+      },
+      {
+        "q": "El Memorando OMB M-23-02 requirió que las agencias federales completaran qué acción antes del año fiscal 2025?",
+        "options": [
+          "Comenzar la migración de sistemas de alta prioridad a PQC",
+          "Completar la migración PQC completa de toda la empresa sin algoritmos clásicos"
+        ]
+      },
+      {
+        "q": "Verdadero o Falso: Los NSS (Sistemas de Seguridad Nacional) siguen la misma pista de validación CMVP que los sistemas civiles.",
+        "options": [
+          "Falso — los sistemas NSS requieren dispositivos Tipo 1 aprobados por la NSA en una pista de certificación separada",
+          "Verdadero — tanto los sistemas NSS como los civiles están regidos únicamente por el proceso FIPS 140-3 del NIST"
+        ]
+      }
+    ]
+  },
+  "quantum-c09": {
+    "questions": [
+      {
+        "q": "Al cuantificar el riesgo de HNDL para una presentación de directorio, ¿por qué la exposición se trata como 100% cierta en lugar de probabilística?",
+        "options": [
+          "Porque los adversarios están cosechando tráfico cifrado hoy — la incertidumbre es cuándo pueden descifrarlo, no si pueden; la exposición ya ha ocurrido",
+          "Porque el Q-Day ya ha ocurrido y todos los datos cifrados con RSA ya están descifrados"
+        ]
+      },
+      {
+        "q": "Verdadero o Falso: Según el modelo de programa de gobernanza cuántica de 5 años, el reemplazo de HSM y la planificación de PKI son actividades del Año 1.",
+        "options": [
+          "Falso — esas son actividades del Año 2 (Fundación); el Año 1 se centra en la gobernanza, el inventario CBOM y la evaluación de riesgos",
+          "Verdadero — el hardware debe reemplazarse antes de cualquier planificación de software"
+        ]
+      },
+      {
+        "q": "¿Qué organismo regulador emitió orientación de riesgo cuántico específica del sector para bancos y cooperativas de crédito?",
+        "options": [
+          "FFIEC (Consejo Federal de Examen de Instituciones Financieras)",
+          "FINRA (Autoridad Reguladora de la Industria Financiera)"
+        ]
+      },
+      {
+        "q": "¿Cuál es el costo total estimado del programa de migración PQC de 5 años descrito en el modelo de gobernanza?",
+        "options": [
+          "Programa de $12M que protege contra una pérdida esperada por brecha cuántica de $615M en valor presente neto",
+          "Programa de $612M que ofrece protección marginal contra una pérdida esperada de $12M"
+        ]
+      },
+      {
+        "q": "Verdadero o Falso: Un inventario criptográfico (CBOM) es opcional si una organización ya tiene un inventario de activos de software (SBOM).",
+        "options": [
+          "Falso — el CBOM es el primer entregable de gobernanza requerido; no se puede priorizar la migración sin saber qué activos criptográficos existen",
+          "Verdadero — los componentes de SBOM enumeran automáticamente todos los activos criptográficos"
+        ]
+      }
+    ]
+  },
+  "quantum-c10": {
+    "questions": [
+      {
+        "q": "Según el modelo de prioridad de migración segura cuántica, ¿qué categoría de activos debe migrarse primero?",
+        "options": [
+          "Datos de alta sensibilidad en tránsito (VPN, TLS para M&A, gobierno) — riesgo HNDL máximo porque estos datos son valiosos ahora y permanecen sensibles durante décadas",
+          "Infraestructura de autenticación (PKI, firma de código) — porque las firmas falsificadas causan daño inmediato"
+        ]
+      },
+      {
+        "q": "Verdadero o Falso: Apple PQ3, desplegado en febrero de 2024 para iMessage, usa ML-KEM-768 combinado con la clave pública clásica EC Curve25519 en una construcción híbrida.",
+        "options": [
+          "Verdadero",
+          "Falso — Apple PQ3 usa solo ECC clásico; la resistencia cuántica está planificada para una versión futura"
+        ]
+      },
+      {
+        "q": "En la pila completa segura cuántica de 10 capas, ¿qué produce L1 (Inventario Criptográfico)?",
+        "options": [
+          "Un CBOM (Inventario de Materiales Criptográficos) generado mediante herramientas como cbomkit-theia o Syft-crypto-detector",
+          "Una lista de reglas de firewall de red que bloquean el tráfico no cifrado"
+        ]
+      },
+      {
+        "q": "¿Por qué se describe la agilidad criptográfica como la 'meta-capacidad' de la transición segura cuántica?",
+        "options": [
+          "Porque los nuevos algoritmos seguirán emergiendo y algunos serán rotos; la agilidad garantiza que las organizaciones puedan pivotar sin volver a construir la infraestructura desde cero",
+          "Porque la agilidad elimina la necesidad de inventariar los activos criptográficos antes de la migración"
+        ]
+      },
+      {
+        "q": "Verdadero o Falso: Los archivos cifrados RSA/ECC históricos creados antes de la migración PQC están completamente protegidos una vez que se completa la migración del perímetro TLS.",
+        "options": [
+          "Falso — los archivos previos a la migración siguen siendo el riesgo HNDL residual y requieren re-cifrado o una evaluación de riesgos si contienen datos sensibles duraderos",
+          "Verdadero — el perímetro TLS evita que cualquier atacante acceda a archivos del pasado"
+        ]
+      }
+    ]
+  }
+}

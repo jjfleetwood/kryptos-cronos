@@ -1,0 +1,696 @@
+{
+  "audit-t07": {
+    "tagline": "SAST छेद बनने से पहले उसे ढूंढता है। DAST पुष्टि करता है कि छेद वास्तविक है।",
+    "overview": [
+      "एप्लिकेशन सुरक्षा परीक्षण तीन पूरक दृष्टिकोणों का उपयोग करती है: Static Application Security Testing (SAST) बिना चलाए सोर्स कोड का विश्लेषण करती है — SQL injection, XSS, command injection और hardcoded secrets को कम्पाइलेशन से पहले खोजती है। Dynamic Application Security Testing (DAST) चल रहे एप्लिकेशन पर हमला करती है — पुष्टि करती है कि vulnerabilities exploit करने योग्य हैं। Software Composition Analysis (SCA) ओपन-सोर्स dependencies में ज्ञात CVEs की पहचान करती है।",
+      "एक परिपक्व AppSec कार्यक्रम में, तीनों CI/CD में चलते हैं: SAST और SCA प्रत्येक commit पर (डेवलपर-केंद्रित त्वरित फीडबैक), DAST प्रत्येक staging deployment पर (धीमा, व्यापक)। सुरक्षा ऑडिटर सत्यापित करते हैं कि ये उपकरण कॉन्फ़िगर हैं, findings को ट्रायज किया जाता है (बिना औचित्य के दबाया नहीं जाता), और critical findings releases को ब्लॉक करती हैं।",
+      "SAST उपकरणों में शामिल हैं: Semgrep, Checkmarx, Veracode, SonarQube और CodeQL। DAST उपकरणों में शामिल हैं: OWASP ZAP, Burp Suite Enterprise और StackHawk। SCA उपकरणों में शामिल हैं: Snyk, Dependabot, OWASP Dependency-Check और Black Duck।"
+    ],
+    "technical": {
+      "title": "SAST और DAST आउटपुट पढ़ना",
+      "body": [
+        "SAST के false positives सामान्य हैं — एक सही ढंग से parameterized SQL query को भी फ्लैग किया जा सकता है यदि SAST टूल ORM को नहीं समझता। ऑडिटर सत्यापित करते हैं कि false positive suppressions में एक सुरक्षा इंजीनियर द्वारा हस्ताक्षरित documented justifications हों, न कि केवल उस डेवलपर द्वारा जिसने कोड लिखा।",
+        "DAST के लिए एक चल रहे एप्लिकेशन और वैध test credentials की आवश्यकता होती है। ऑडिटर सत्यापित करते हैं: DAST एक staging environment के विरुद्ध चलता है (production नहीं), test credentials डेवलपर्स के साथ साझा नहीं किए जाते (DAST से बचने के लिए एप्लिकेशन को tune करने से बचाता है), और सबसे हालिया DAST रन के परिणामों की तुलना पिछले रन से regression का पता लगाने के लिए की जाती है।"
+      ]
+    },
+    "incident": {
+      "title": "Equifax Apache Struts Dependency Vulnerability (2017)",
+      "impact": "147M रिकॉर्ड; FTC के साथ $575M का समझौता; unpatched dependency में ज्ञात CVE के माध्यम से exploit किया गया",
+      "body": [
+        "Equifax उल्लंघन ने CVE-2017-5638 का फायदा उठाया, जो 7 मार्च 2017 को घोषित Apache Struts 2 में एक critical vulnerability थी। Equifax patch के बारे में जानता था लेकिन उसने इसे सभी सिस्टम पर लागू नहीं किया था। CI/CD में integrated एक SCA टूल ने प्रत्येक build में Struts के vulnerable version को फ्लैग किया होता। publicly accessible एप्लिकेशन के विरुद्ध DAST स्कैन ने exploitability की पुष्टि की होती।",
+        "patch जारी होने और उसके exploit होने के बीच दो महीने का अंतर CI/CD में SCA के मूल्य को दर्शाता है: जब एक नया CVE प्रकाशित होता है, तो प्रभावित सॉफ़्टवेयर चलाने वाला प्रत्येक संगठन तुरंत जान लेता है कि कौन से एप्लिकेशन vulnerable हैं। SCA के बिना, वे इसे महीनों तक नहीं जान सकते — यदि वे जान पाते हैं।"
+      ]
+    },
+    "timeline": [
+      "Equifax — Apache Struts CVE को patch जारी होने के 2 महीने बाद exploit किया गया",
+      "ओपन-सोर्स Semgrep — डेवलपर की गति पर semantic कोड विश्लेषण",
+      "Log4Shell — SCA टूल्स ने घंटों में प्रभावित एप्लिकेशन की पहचान की",
+      "OpenSSF Scorecard — ओपन-सोर्स के लिए स्वचालित सुरक्षा स्थिति रेटिंग"
+    ],
+    "keyTakeaways": [
+      "CI/CD में SAST प्रत्येक commit पर डेवलपर्स को सुरक्षा फीडबैक प्रदान करता है — सुरक्षा को बाईं ओर शिफ्ट करता है",
+      "SCA vulnerable dependencies की पहचान करता है — Log4Shell जैसे supply chain attacks के लिए critical",
+      "DAST वास्तविक exploitability की पुष्टि करता है — SAST false positives को backlog में जाने से कम करता है",
+      "False positive suppressions के लिए सुरक्षा इंजीनियर की स्वीकृति आवश्यक है, डेवलपर का self-service नहीं"
+    ]
+  },
+  "audit-t12": {
+    "tagline": "मैनुअल compliance जांचें एक क्षण-विशेष की snapshot होती हैं। स्वचालित compliance निरंतर सत्य है।",
+    "overview": [
+      "Compliance automation मैनुअल, point-in-time audit जांचों को controls की निरंतर, स्वचालित सत्यापन से प्रतिस्थापित करता है। AWS Config with Config Rules, AWS Security Hub, Azure Policy और GCP Security Command Center CIS Benchmarks, PCI DSS, SOC 2 और NIST 800-53 जैसे frameworks के विरुद्ध real-time compliance scoring प्रदान करते हैं।",
+      "AWS Security Hub Config Rules, GuardDuty, Inspector, Macie और third-party security tools के findings को एक single compliance score में aggregate करता है। Security Hub में CIS AWS Foundations Benchmark 180+ automated controls चलाता है और resources बनाए, संशोधित या हटाए जाने पर score को real-time में अपडेट करता है।",
+      "Compliance automation के दो components हैं: preventive (SCPs और Azure Policies जो non-compliant resources की creation को block करती हैं) और detective (Config Rules और Security Hub जो existing non-compliance की पहचान करते हैं)। ऑडिटर सत्यापित करते हैं कि दोनों components implement हैं और detection findings को remediate किया जा रहा है, न कि केवल collect किया जा रहा है।"
+    ],
+    "technical": {
+      "title": "Continuous Compliance Implementation",
+      "body": [
+        "AWS Config conformance packs एक framework के साथ aligned एक unit के रूप में multiple Config Rules को deploy करते हैं। AWS द्वारा प्रदान किया गया 'Operational Best Practices for PCI DSS 3.2.1' conformance pack एक single deployment में 133 rules को implement करता है। Findings Security Hub में resource-level detail और compliance score के साथ दिखाई देती हैं।",
+        "Automatic remediation: Config Rules उन Lambda functions को trigger कर सकते हैं जो findings को automatically remediate करती हैं। उदाहरण: एक Config Rule public access वाले S3 bucket का पता लगाती है — एक Lambda function automatically public access block लागू करती है। ऑडिटर सत्यापित करते हैं कि critical controls के लिए automatic remediation enabled है और remediation actions audit trail के लिए logged हैं।"
+      ]
+    },
+    "incident": {
+      "title": "Toyota Public S3 Bucket — 10 साल का Exposure (2023)",
+      "impact": "10 साल तक 2.15M customer vehicle locations exposed; कोई automated compliance check मौजूद नहीं था",
+      "body": [
+        "Toyota की 10 साल की S3 misconfiguration (vehicle location data वाले bucket पर public access) को AWS Config rule 's3-bucket-public-read-prohibited' द्वारा पहले दिन ही detect किया गया होता। यह managed rule continuously चलती है और configuration के minutes के भीतर public read access वाले किसी भी bucket की पहचान करती है।",
+        "यह case compliance automation क्यों मायने रखता है इसका एक reference example बन गया: एक manual audit एक specific moment की जांच करता है, लेकिन एक Config Rule जो continuously चलती है उसने 2013 की misconfiguration को 2013 में detect किया होता, 2023 में नहीं। AWS Config 2013 में उपलब्ध था। संगठन ने बस इसे deploy नहीं किया था।"
+      ]
+    },
+    "timeline": [
+      "AWS Config GA — resources का continuous configuration monitoring",
+      "CIS AWS Foundations Benchmark v1.0 — 49 automated controls",
+      "AWS Security Hub GA — सभी Config Rules में aggregated compliance",
+      "Toyota — 10 साल का S3 exposure जिसे AWS Config minutes में detect कर लेता"
+    ],
+    "keyTakeaways": [
+      "Compliance automation वर्षों बाद नहीं बल्कि minutes में configuration errors detect करता है",
+      "AWS Security Hub 180+ CIS Benchmark controls में unified compliance score प्रदान करता है",
+      "Critical controls (S3 public access, root access keys) का automatic remediation एक best practice है",
+      "Manual audits सत्यापित करते हैं कि automation काम करता है — continuous monitoring को replace नहीं करते"
+    ]
+  },
+  "audit-a03": {
+    "tagline": "Regex patterns को पकड़ता है। Claude context को समझता है। दोनों आवश्यक हैं।",
+    "overview": [
+      "पारंपरिक secret scanning टूल्स ज्ञात secret formats का पता लगाने के लिए regex patterns का उपयोग करते हैं — AWS key prefixes, GitHub token patterns, PEM headers। ये well-formatted secrets को पकड़ते हैं लेकिन obfuscated credentials, CI configs में environment variable secrets, comments में secrets या custom internal token formats में विफल रहते हैं।",
+      "AI-driven secret detection Claude का उपयोग context के बारे में तर्क करने के लिए करती है: क्या यह एक वास्तविक credential है या एक test placeholder? क्या यह variable name suspiciously credential-like है भले ही value हानिरहित लगे? क्या यह base64 blob एक private key को decode करता है? Claude की semantic समझ वह पकड़ती है जो regex नहीं कर सकता।",
+      "Agentic secret scanner regex pre-screening (गति और known formats के लिए) को Claude analysis (context और edge cases के लिए) के साथ जोड़ता है। यह git history, environment configurations, infrastructure as code, Docker images और CI/CD pipeline definitions को स्कैन करता है — वह पूरी attack surface जहां secrets leak होते हैं।"
+    ],
+    "technical": {
+      "title": "Two-Phase Scanning Architecture",
+      "body": [
+        "Phase 1 (तेज़, regex): target पर truffleHog या detect-secrets चलाएं। सभी pattern matches और high-entropy strings को review के लिए flag करें। इससे कई false positives आते हैं लेकिन कोई obvious चीज़ miss नहीं होती।",
+        "Phase 2 (सटीक, Claude): प्रत्येक flagged item के लिए, Claude को एक context window भेजें जिसमें surrounding code, file path, variable name और raw value हो। Claude से classify करने के लिए कहें: confirmed_secret, likely_placeholder, false_positive। Claude का judgment practice में analyst review time को 80%+ कम करता है।"
+      ]
+    },
+    "incident": {
+      "title": "Uber GitHub Secret Leak (2022)",
+      "impact": "57M user records; attacker ने leaked AWS credential का उपयोग S3 buckets तक पहुंचने के लिए किया",
+      "body": [
+        "2022 का Uber उल्लंघन MFA fatigue attack से शुरू हुआ, लेकिन attacker की laterally move करने और production data तक पहुंचने की क्षमता एक network share पर stored Uber के internal PowerShell scripts में hardcoded credentials खोजने पर निर्भर थी। Credentials main source code repos में नहीं थे — वे operational scripts में थे जिन तक regex scanners नहीं पहुंचते थे।",
+        "Claude-driven scanning उन operational scripts तक पहुंच गया होता। इससे भी महत्वपूर्ण, Claude PowerShell variable names (`$uberProdKey`, `$awsToken`) में credential-like patterns को पहचान सकता है, भले ही values obfuscated हों — कुछ ऐसा जो pure regex variable names की exhaustive list के बिना नहीं कर सकता।"
+      ]
+    },
+    "timeline": [
+      "truffleHog launched — पहला प्रमुख git history secret scanner",
+      "Uber उल्लंघन — operational scripts में hardcoded credentials scanners द्वारा नहीं पकड़े गए",
+      "AI-augmented secret classification false positive rate को 80%+ कम करती है",
+      "Claude को Fortune 500 companies में production secret triage pipelines में उपयोग किया गया"
+    ],
+    "keyTakeaways": [
+      "Regex formats ढूंढता है; Claude intent ढूंढता है — दोनों का क्रम में उपयोग करें",
+      "git repos से परे स्कैन करें: CI configs, Docker images, IaC, operational scripts",
+      "Claude classification: confirmed_secret / likely_placeholder / false_positive",
+      "Git history scanning confirmed और 'deleted' secrets को पकड़ता है — deletion ≠ removal"
+    ]
+  },
+  "audit-cm02": {
+    "tagline": "Signatures कल के attacks को पकड़ते हैं। ML कल के attacks को पकड़ता है।",
+    "overview": [
+      "पारंपरिक SIEM platforms (Splunk, ArcSight, QRadar) signature-based detection के साथ काम करते हैं: engineers correlation rules लिखते हैं जो known attack patterns से match करते हैं। यह दृष्टिकोण commodity attacks के लिए अच्छी तरह काम करता है लेकिन novel techniques, living-off-the-land (LOTL) attacks और लंबे APT campaigns के विरुद्ध विफल रहता है जो individual rule thresholds से नीचे रहते हैं।",
+      "Next-generation SIEM platforms (Microsoft Sentinel, Google Chronicle, Elastic SIEM, Securonix) rule-based detection को machine learning के साथ augment करते हैं: unsupervised anomaly detection, labeled attack data पर trained supervised classifiers और graph-based entity resolution। ये cloud APIs, endpoint agents, network taps और identity providers से petabyte-scale पर data ingest करते हैं — न कि केवल traditional syslog।",
+      "Next-generation SIEM में key architectural shift storage से पहले एक common schema (OCSF — Open Cybersecurity Schema Framework, या Elastic Common Schema) में normalization है। यह एक single detection rule को दर्जनों data sources में match करने की अनुमति देता है। Ingestion के समय threat intelligence enrichment के साथ combined, analysts raw log lines के बजाय context-rich alerts देखते हैं।"
+    ],
+    "technical": {
+      "title": "Next-Generation SIEM में ML Detection Patterns",
+      "body": [
+        "तीन ML techniques next-generation SIEM detection पर हावी हैं: (1) user/entity behavior baselines में unsupervised outlier detection के लिए Isolation Forest / DBSCAN; (2) supervised detection के लिए labeled threat data पर trained gradient boosting classifiers (XGBoost, LightGBM); (3) authentication relationships को model करके lateral movement detection के लिए graph neural networks।",
+        "False positive reduction मुख्य operational challenge है। एक SIEM जो प्रतिदिन 10,000 alerts generate करता है 99% false positives के साथ फिर भी noise में दबे 100 real incidents पैदा करता है। Next-generation SIEMs analyst review के लिए केवल highest-confidence findings को surface करने के लिए alert clustering, deduplication और UEBA risk scores का उपयोग करते हैं।"
+      ]
+    },
+    "incident": {
+      "title": "SolarWinds Orion Supply Chain Attack — SIEM Failure (2020)",
+      "impact": "9 अमेरिकी federal agencies compromised; 14 महीने का undetected dwell period",
+      "body": [
+        "SolarWinds SUNBURST attack ने Orion software build process को trojanize किया, legitimate signed updates में एक backdoor insert किया। malware को signature-based SIEM detection से बचने के लिए design किया गया था: यह legitimate SolarWinds traffic patterns की नकल करता था, existing network paths का उपयोग करता था और activation से पहले installation के 12–14 दिन बाद तक dormant रहता था।",
+        "FireEye ने SIEM alerts के माध्यम से नहीं बल्कि एक human analyst के माध्यम से attack की खोज की जिसने एक unusual MFA device registration notice किया — एक behavioral anomaly जिसे UEBA के साथ एक next-generation SIEM ने automatically flag किया होता। Post-incident, Microsoft Sentinel और अन्य next-generation platforms ने specific SUNBURST behavior models deploy किए। इस attack ने fundamentally industry को supply chain और LOTL threats के लिए ML-based detection की ओर shift किया।"
+      ]
+    },
+    "timeline": [
+      "ArcSight / QRadar Era — signature-based SIEM enterprise standard बनता है",
+      "Splunk ML Toolkit launched — traditional SIEM में पहली ML capabilities",
+      "Microsoft Sentinel (cloud-native SIEM) launched; Google Chronicle announced",
+      "SolarWinds attack signature detection limits expose करता है — SIEM ML adoption accelerates",
+      "OCSF (Open Cybersecurity Schema Framework) AWS, Splunk और 17 partners द्वारा launched",
+      "LLM-assisted alert triage leading SIEM platforms में integrated"
+    ],
+    "keyTakeaways": [
+      "Signature detection novel attacks miss करती है — ML known patterns से independent behavioral anomalies detect करता है",
+      "Ingestion पर schema normalization (OCSF/ECS) एक single rule के साथ cross-source detection enable करती है",
+      "False positive reduction SIEM का #1 operational challenge है — risk scoring और clustering मदद करते हैं",
+      "SolarWinds ने दिखाया कि supply chain और LOTL attacks के लिए behavior detection की आवश्यकता है, signature की नहीं",
+      "Next-generation SIEM केवल traditional syslog नहीं बल्कि cloud APIs और identity providers ingest करता है"
+    ]
+  },
+  "mitre-02": {
+    "tagline": "Professional attackers अपने targets चुनने से पहले अपने हथियार बनाते हैं।",
+    "overview": [
+      "Resource Development (TA0042) वह सब कुछ cover करता है जो एक attacker attack execute करने से पहले acquire या build करता है: C2 infrastructure, exploitation tools, malware, compromised accounts और code signing के लिए digital certificates। Nation-state actors और sophisticated criminal groups इस phase में हफ्ते invest करते हैं।",
+      "Key techniques: T1583 — Acquire Infrastructure (VPS servers, domains, cloud accounts चोरी किए गए credit cards या cryptocurrency से खरीदे गए), T1584 — Compromise Infrastructure (legitimate websites को C2 relays के रूप में उपयोग के लिए hack करना), T1587 — Develop Capabilities (custom malware, zero-day exploits), T1588 — Obtain Capabilities (dark web forums पर tools खरीदना)।",
+      "Defenders threat intelligence sharing के माध्यम से resource development detect करते हैं — जब एक attacker एक ऐसा domain register करता है जो target company जैसा दिखता है (typosquatting), threat intelligence feeds उसे flag करते हैं। Certificate Transparency logs impersonation domains के लिए newly issued certificates reveal करते हैं। Passive DNS monitoring C2 infrastructure को उपयोग से पहले detect करता है।"
+    ],
+    "technical": {
+      "title": "C2 Infrastructure Patterns",
+      "body": [
+        "Modern C2 infrastructure dismantlement से बचने के लिए multiple layers का उपयोग करता है: redirectors (VPS servers जो traffic को actual C2 पर forward करते हैं), domain fronting (Cloudflare जैसे CDNs के माध्यम से C2 traffic routing), और dead drop resolvers (social media profiles या Pastebin posts जिनमें C2 की current IP address होती है)।",
+        "Defenders उपयोग करते हैं: domain age verification (newly registered domains suspicious हैं), passive DNS (समय के साथ IP-to-domain resolutions track करना), WHOIS privacy patterns (सभी जानकारी hidden + privacy service के साथ registered = higher risk), और TLS JA3 fingerprinting (C2 frameworks के distinctive TLS handshake patterns होते हैं)।"
+      ]
+    },
+    "incident": {
+      "title": "Lazarus Group — Operation AppleJeus Infrastructure (2018)",
+      "impact": "$2B+ चुराए गए; 30+ देशों में sophisticated multilayer C2 infrastructure का उपयोग किया गया",
+      "body": [
+        "North Korea के Lazarus Group (APT38) ने Operation AppleJeus के लिए elaborate resource development channels बनाए: legitimate दिखने वाली cryptocurrency software companies register कीं, professional-looking websites और GitHub profiles बनाए, trojanized cryptocurrency trading software develop किया, और इसे false company identities के तहत खरीदे गए legitimate code signing certificates के साथ sign किया।",
+        "Infrastructure इतना convincing था कि victims स्वेच्छा से malware download और execute करते थे। पूरी operation — company registration, website development, software development, certificate acquisition — किसी भी target को address करने से पहले complete की गई। यह nation-state scale पर resource development है।"
+      ]
+    },
+    "timeline": [
+      "Lazarus AppleJeus — fake crypto company + trojanized software",
+      "ATT&CK v7 Resource Development (TA0042) को एक tactic के रूप में formalize करता है",
+      "Major CDNs के माध्यम से domain fronting largely blocked; attackers redirectors की ओर shift करते हैं",
+      "Lazarus Ronin Bridge से $600M चुराता है — same infrastructure pattern"
+    ],
+    "keyTakeaways": [
+      "Resource development victim के साथ पहली interaction से पहले होता है — इसे threat intelligence से detect करें",
+      "Certificate Transparency logs में impersonation domains की निगरानी करें जो आपके organization को target करते हैं",
+      "Domain age + hidden WHOIS + new certificate = high-risk domain pattern",
+      "TLS JA3 fingerprinting C2 frameworks को उनके handshake signature से identify करता है"
+    ]
+  },
+  "mitre-04": {
+    "tagline": "सबसे अच्छा malware victim की machine पर पहले से installed tools का उपयोग करता है।",
+    "overview": [
+      "Execution (TA0002) उन techniques को cover करता है जिनका उपयोग attackers initial access प्राप्त करने के बाद target system पर अपना malicious code execute करने के लिए करते हैं। Modern intrusions में dominant execution technique T1059 — Command and Scripting Interpreter है, विशेष रूप से PowerShell (T1059.001), जो सभी Windows systems में built-in है और by default trusted है।",
+      "Living-off-the-land (LOLBins) execution legitimate Windows tools का दुरुपयोग करता है: PowerShell, WMI, mshta.exe, regsvr32.exe, certutil.exe और rundll32.exe attacker-supplied code execute करने के लिए। क्योंकि ये Microsoft-signed binaries हैं, ये application whitelisting और कई AV products को bypass करते हैं।",
+      "Detection behavioral indicators पर focus करता है: PowerShell -EncodedCommand flag के साथ (malware में common), PowerShell internet से files download कर रहा है (IEX (New-Object Net.WebClient).DownloadString), WMI subscription creation और unsigned scripts execution policy bypass के साथ चल रहे हैं।"
+    ],
+    "technical": {
+      "title": "PowerShell Execution Detection",
+      "body": [
+        "PowerShell Script Block Logging (Event ID 4104) enable करें — यह decoded script content को capture करता है, भले ही -EncodedCommand का उपयोग किया गया हो। Module Logging (Event ID 4103) और Transcription enable करें। ये तीन settings together PowerShell को defenders के लिए almost transparent बनाती हैं।",
+        "Constrained Language Mode (CLM) PowerShell को restrict करता है ताकि attackers .NET types, COM objects और ALLOWED_TYPES का उपयोग न कर सकें। AppLocker या WDAC (Windows Defender Application Control) के साथ combined, CLM अधिकांश PowerShell-based execution techniques को prevent करता है।"
+      ]
+    },
+    "incident": {
+      "title": "NotPetya — Execution के लिए WMI और PSEXEC (2017)",
+      "impact": "$10B+ नुकसान; Maersk, FedEx, Merck, Mondelez सभी paralyzed",
+      "body": [
+        "NotPetya ने initial access प्राप्त करने के बाद multiple execution techniques का उपयोग किया: remote execution के लिए WMI (T1047), lateral movement execution के लिए PsExec (T1569.002) और network में propagate करने के लिए WMIC। इसने stolen credentials (credential dumping के माध्यम से) को legitimate Windows remote execution tools के साथ combined किया — एक classic LOLBin attack।",
+        "क्योंकि NotPetya ने execution के लिए केवल legitimate Windows tools का उपयोग किया (WMI, PsExec, Task Scheduler), traditional signature-based malware AV products trigger नहीं हुए। Execution chain legitimate system administration जैसी दिखती थी।"
+      ]
+    },
+    "timeline": [
+      "NotPetya — WMI/PsExec LOLBin execution $10B global damage का कारण बना",
+      "PowerShell Script Block Logging standard SOC detection control बन जाता है",
+      "Enterprise में WDAC + Constrained Language Mode deployment बढ़ता है",
+      "AI-driven execution detection dwell time को significantly कम करता है"
+    ],
+    "keyTakeaways": [
+      "PowerShell Script Block Logging (Event 4104) enable करें — -EncodedCommand को decode करता है",
+      "LOLBins Microsoft-signed tools का उपयोग करते हैं — signature-based AV उनके लिए अंधा है",
+      "Constrained Language Mode + AppLocker अधिकांश PowerShell execution techniques को block करता है",
+      "Behavioral detection (PowerShell → network connection) signature-based detection से बेहतर है"
+    ]
+  },
+  "quantum-02": {
+    "tagline": "Peter Shor का 1994 का algorithm RSA factorization को exponential time से polynomial में reduce करता है — आज की सभी public-key cryptography को obsolete बनाता है।",
+    "overview": [
+      "1994 में, MIT के mathematician Peter Shor ने एक quantum algorithm publish किया जो polynomial time में large integers को factor करता है — O((log N)³) quantum operations बनाम classical best O(e^(64/9 * (log N)^(1/3))) subexponential operations। यह single algorithm theoretically RSA, Diffie-Hellman और elliptic curve cryptography को simultaneously तोड़ता है।",
+      "RSA की security पूरी तरह large semiprime numbers को factor करने की difficulty पर निर्भर करती है — दो primes को multiply करना आसान है, product को factor करना classically infeasible है। Shor's Algorithm modular exponential function के period को खोजने के लिए quantum Fourier transform और quantum phase estimation का उपयोग करता है, जिससे factors efficiently derived होते हैं।",
+      "Algorithm discrete logarithm problems तक भी extend होता है — Diffie-Hellman (ECDH सहित) तोड़ता है। कोई भी cryptosystem जिसकी security factorization या discrete logarithms पर depend करती है वह vulnerable है। इसमें TLS, SSH, IPsec, code signing और certificate authorities शामिल हैं।"
+    ],
+    "technical": {
+      "title": "Shor's Algorithm कैसे काम करता है",
+      "body": [
+        "Shor's Algorithm के दो parts हैं: (1) factorization से period-finding तक एक classical reduction, और (2) Quantum Fourier Transform (QFT) का उपयोग करके period-finding के लिए एक quantum algorithm। QFT function evaluations के quantum superposition से periodicity extract करता है — classically impossible कुछ।",
+        "RSA-2048 (2048-bit modulus) के लिए, Shor को approximately 4096 logical qubits और trillions of quantum gate operations की आवश्यकता होती है। Current quantum computers में ~100-400 error-prone physical qubits हैं। Error correction के लिए per logical qubit ~1000 physical qubits की आवश्यकता होती है — इसलिए ~4 million physical qubits की आवश्यकता है।"
+      ]
+    },
+    "incident": {
+      "title": "NSA CNSA 2.0 Suite — Quantum Threat की स्वीकृति",
+      "impact": "NSA ने 2035 से पहले सभी classified systems के लिए post-quantum algorithms में migration का आदेश दिया",
+      "body": [
+        "सितंबर 2022 में, NSA ने Commercial National Security Algorithm Suite 2.0 (CNSA 2.0) launch किया, जिसमें सभी National Security Systems को 2035 से पहले RSA और ECC से quantum-resistant algorithms में migrate करने का आदेश दिया गया। यह Shor's Algorithm के एक credible near-term threat का प्रतिनिधित्व करने की government की explicit स्वीकृति थी।",
+        "CNSA 2.0 ने mandate किया: key establishment के लिए CRYSTALS-Kyber, digital signatures के लिए CRYSTALS-Dilithium और FALCON, और firmware signing के लिए XMSS/LMS। Classified systems के लिए 2035 की deadline यह belief imply करती है कि CRQCs तब तक emerge हो सकते हैं — या migration timeline को तुरंत शुरू करने की आवश्यकता है।"
+      ]
+    },
+    "timeline": [
+      "Peter Shor ने Bell Labs में Shor's Algorithm publish किया",
+      "IBM ने 7-qubit NMR machine पर 15 को factor करके Shor's Algorithm demonstrate किया",
+      "Google का 53-qubit Sycamore — specific problem के लिए quantum supremacy",
+      "NSA CNSA 2.0 — classified systems के लिए post-quantum migration mandate",
+      "NIST ने FIPS 203/204/205 publish किए — पहले PQC standards"
+    ],
+    "keyTakeaways": [
+      "Shor's Algorithm RSA, Diffie-Hellman और ECC को simultaneously तोड़ता है — आज की सभी public-key cryptography",
+      "Algorithm known और proven है — केवल hardware barrier है",
+      "NSA का 2035 mandate imply करता है कि वे मानते हैं CRQCs उस timeframe में possible हैं",
+      "Symmetric cryptography (AES-256, SHA-384) को केवल key/digest size दोगुना करने की आवश्यकता है — Grover's algorithm security को half करता है"
+    ]
+  },
+  "quantum-10": {
+    "tagline": "Quantum threat timeline cybersecurity में सबसे महत्वपूर्ण unknown है — और तैयार होने की window बंद हो रही है।",
+    "overview": [
+      "Intelligence agencies, quantum computing companies और academic researchers इस बारे में बहुत अलग estimates प्रदान करते हैं कि Cryptographically Relevant Quantum Computer (CRQC) कब exist करेगा: 5 से 30 साल के बीच। Five Eyes intelligence community (US, UK, Canada, Australia, New Zealand) classified systems के लिए 2030-2035 planning horizon पर converge हो गई है।",
+      "Security planners के लिए key यह है कि यह matter नहीं करता कि Q-Day exactly कब आता है — जो matter करता है वह यह है कि क्या आपका migration उससे पहले complete होगा। Enterprise cryptographic migrations 3-7 साल लेती हैं। NIST ने अगस्त 2024 में पहले PQC standards publish किए। Organizations जो 2024 में migration शुरू करती हैं वे realistically 2030-2031 तक complete कर सकती हैं। 2027 में शुरू करने वाली organizations नहीं कर सकतीं।",
+      "Quantum Foundations का यह final stage threat की complete picture synthesize करता है और post-quantum migration शुरू करने के लिए decision framework प्रदान करता है। इस stage के बाद, Epoch 4b specific post-quantum algorithms cover करता है, और Epoch 4c QKD और enterprise migration execution cover करता है।"
+    ],
+    "technical": {
+      "title": "PQC Migration Decision Framework",
+      "body": [
+        "Migration decision द्वारा driven है: (1) data sensitivity lifetime — data को कितने समय तक confidential रहने की आवश्यकता है? (2) HNDL exposure — क्या यह data internet-exposed infrastructure पर transmit हो रहा है जहां adversaries इसे आज collect कर सकते हैं? (3) migration timeline — इस system को update करने में कितना समय लगेगा?",
+        "NIST 2024 timeline recommendation: organizations को 2030 तक (high-sensitivity data के लिए) quantum-vulnerable algorithms से migrate करने की plan करनी चाहिए और 2035 तक सभी migrations complete करनी चाहिए। Typical enterprise migration timelines को देखते हुए, 2030 target को meet करने के लिए 2024-2025 में शुरू करना आवश्यक है।"
+      ]
+    },
+    "incident": {
+      "title": "Five Eyes Joint Advisory — Post-Quantum Cryptography पर Guidance",
+      "impact": "Five Eyes की unified guidance PQC migration planning के लिए एक global baseline बनाती है",
+      "body": [
+        "2023-2024 में, Five Eyes intelligence community ने post-quantum cryptography पर joint advisories issue किए, जो SSL/TLS transition के बाद से किसी भी technical topic पर collective intelligence agencies से सबसे significant guidance का प्रतिनिधित्व करते हैं। Joint guidance ने Five Eyes nations में migration timelines, algorithm recommendations और threat assessments को unified किया।",
+        "Unified message: post-quantum migration तुरंत शुरू करें, internet-exposed systems को prioritize करें जो long-lived sensitive data handle करते हैं। Guidance की specificity — particular algorithms (CRYSTALS-Kyber, Dilithium) naming करना, specific deprecation years (2030-2035) naming करना और HNDL के बारे में explicitly warning करना — adversary quantum capabilities तक intelligence community की access को reflect करती है।"
+      ]
+    },
+    "timeline": [
+      "NIST ने FIPS 203/204/205 publish किए — standardized PQC algorithms",
+      "Five Eyes Joint Advisory — unified PQC migration guidance",
+      "Target: सभी P1 (maximum sensitivity) systems migrated",
+      "NSA algorithm deprecation beginning — RSA/ECC phase-out",
+      "IBM quantum roadmap: 100K+ qubit system — CRQC proximity",
+      "NSA mandate: सभी NSS केवल CNSA 2.0 (PQC) algorithms पर"
+    ],
+    "keyTakeaways": [
+      "Migration 3-7 साल लेती है — 2024 में शुरू करने वाले organizations P1 2030 target meet कर सकते हैं",
+      "NIST FIPS 203/204/205 (2024) standardized algorithms प्रदान करते हैं — अभी implement करना शुरू करें",
+      "Five Eyes guidance सबसे credible threat assessment उपलब्ध है — 2030 को अपनी deadline मानें",
+      "Post-quantum migration optional नहीं है: NSA 2035 तक classified systems में RSA/ECC ban करेगा"
+    ]
+  },
+  "quantum-b03": {
+    "tagline": "ML-KEM key exchange में RSA और ECDH का direct replacement है — post-quantum cryptography में सबसे महत्वपूर्ण algorithm।",
+    "overview": [
+      "ML-KEM (Module Lattice-based Key Encapsulation Mechanism), अगस्त 2024 में NIST FIPS 203 के रूप में standardized, key exchange protocols में RSA और ECDH का primary replacement है। यह TLS key exchange, VPN key establishment, और कोई भी अन्य system जहां दो parties को एक shared secret establish करने की आवश्यकता हो, को replace करता है।",
+      "ML-KEM CRYSTALS-Kyber पर आधारित है, जो IBM, NXP और academic researchers सहित एक team द्वारा design किया गया। यह Module-LWE problem का उपयोग करता है — विशेष रूप से polynomial rings पर modular lattices में MLWE assumption। Algorithm सभी TLS deployments के लिए efficient है और CloudFlare, Google और leading TLS libraries द्वारा adopt किया गया है।",
+      "ML-KEM तीन parameter sets में आता है: ML-KEM-512 (NIST security level 1, AES-128 equivalent), ML-KEM-768 (level 3, AES-192 equivalent), और ML-KEM-1024 (level 5, AES-256 equivalent)। अधिकांश applications के लिए, ML-KEM-768 recommended है।"
+    ],
+    "technical": {
+      "title": "ML-KEM Operation — KeyGen, Encapsulate, Decapsulate",
+      "body": [
+        "ML-KEM एक Key Encapsulation Mechanism (KEM) है: Alice एक key pair (public key, private key) generate करती है। Bob Alice की public key का उपयोग एक random shared secret को encapsulate करने के लिए करता है, एक ciphertext produce करता है। Alice अपनी private key का उपयोग ciphertext को decapsulate करने और same shared secret recover करने के लिए करती है। किसी भी party को secret itself send करने की आवश्यकता नहीं।",
+        "Security private key के बिना ciphertext को random से distinguish करने की difficulty पर based है। Encapsulation LWE noise introduce करता है जो private key के बिना secret recovery को prevent करता है। Shared secret K एक hash function के माध्यम से obtained किया जाता है, security provide करता है, भले ही underlying MLWE problem में partial information leakage हो।"
+      ]
+    },
+    "incident": {
+      "title": "Cisco Silicon One P200 — Quantum-Resistant Line-Rate 800G Encryption (2025)",
+      "impact": "Hardware में integrated ML-KEM और ML-DSA के साथ पहला 800G network ASIC — performance penalty के बिना line-rate पर quantum-resistant encryption",
+      "body": [
+        "अक्टूबर 2025 में, Cisco ने Silicon One P200 announce किया जिसमें 800G ports line-rate पर quantum-resistant encryption deliver करते हैं — NIST-standard PQC (key establishment के लिए ML-KEM, signing के लिए ML-DSA) को directly hardware में integrate करने वाला पहला major network ASIC। इसका मतलब है कि quantum-resistant IPsec और MACsec external encryption appliances के बिना full 800G speeds पर run होते हैं। CloudFlare और Google ने prove किया था कि ML-KEM software में viable था; Cisco ने demonstrate किया कि यह silicon में viable है।",
+        "Follow-on Silicon One G300 (फरवरी 2026) same PQC capabilities के साथ 102.4 Tbit/s Ethernet capacity तक scale करता है। Cisco का full-stack PQC architecture — Cisco Live 2026 Amsterdam में announced — device boot integrity, data in transit और key management cover करता है। SKIP interface QKD-derived key material को directly IPsec/MACsec sessions में link करता है, existing infrastructure पर hybrid PQC+QKD security enable करता है।"
+      ]
+    },
+    "timeline": [
+      "CRYSTALS-Kyber NIST PQC competition में submitted",
+      "CloudFlare + Google Chrome ने TLS में hybrid Kyber768 implement किया",
+      "NIST FIPS 203 (ML-KEM) published — federal systems के लिए mandatory",
+      "Cisco Silicon One P200: hardware में ML-KEM + ML-DSA 800G line-rate पर",
+      "Cisco Silicon One G300: full PQC stack के साथ 102.4 Tbit/s"
+    ],
+    "keyTakeaways": [
+      "ML-KEM (FIPS 203) federal systems में RSA और ECDH का mandatory replacement है",
+      "Cisco Silicon One P200 ML-KEM को 800G line-rate पर deliver करता है — hardware में performance penalty नहीं",
+      "Migration के दौरान hybrid (X25519 + ML-KEM-768) उपयोग करें — classical और quantum attackers दोनों के विरुद्ध security",
+      "Cisco का SKIP interface QKD-derived keys को IPsec/MACsec में link करता है PQC+QKD hybrid stack के लिए"
+    ]
+  },
+  "quantum-b07": {
+    "tagline": "Hybrid schemes classical और post-quantum algorithms को combine करते हैं — आज के attackers और भविष्य के quantum computers दोनों के विरुद्ध secure।",
+    "overview": [
+      "Classical से post-quantum cryptography के transition के दौरान, hybrid schemes आवश्यक हैं। एक hybrid key exchange (जैसे, X25519 + ML-KEM-768) एक classical algorithm को एक PQC algorithm के साथ combine करता है। Shared secret दोनों से derived होता है: security बनी रहती है यदि दो algorithms में से कोई एक secure है — quantum attackers ML-KEM नहीं तोड़ सकते, classical attackers X25519 नहीं तोड़ सकते।",
+      "Hybrid schemes deployment में chicken-and-egg problem हल करते हैं: organizations PQC hybrid deploy कर सकती हैं इससे पहले कि उनका पूरा ecosystem PQC algorithm implementations verify कर ले। यदि ML-KEM की एक undiscovered vulnerability है, X25519 अभी भी session protect करता है। यदि एक CRQC X25519 तोड़ता है, ML-KEM अभी भी quantum attackers के विरुद्ध protect करता है।",
+      "TLS 1.3 hybrid cipher suites already in use हैं: X25519Kyber768Draft00 (CloudFlare/Google, 2023), X25519MLKEM768 (IETF draft, 2024)। NIST migration period के दौरान hybrid recommend करता है, algorithm trust establish होने के बाद pure PQC के अंतिम goal के साथ।"
+    ],
+    "technical": {
+      "title": "Hybrid Key Derivation — Classical और PQC Shared Secrets को Combine करना",
+      "body": [
+        "Hybrid shared secret K = KDF(K_classical || K_pqc) जहां KDF एक secure key derivation function है (HKDF-SHA384)। यह construction secure है यदि K_classical या K_pqc random से indistinguishable है — एक attacker को K recover करने के लिए simultaneously दोनों algorithms तोड़ने होंगे।",
+        "Hybrid TLS 1.3 के लिए: client ClientHello में एक X25519 key share और एक ML-KEM public key दोनों भेजता है। Server एक X25519 key agreement और ML-KEM encapsulation perform करता है, ML-KEM ciphertext return करता है। दोनों parties HKDF को input के रूप में दोनों shared secrets का उपयोग करके session keys derive करती हैं।"
+      ]
+    },
+    "incident": {
+      "title": "IETF Hybrid Post-Quantum TLS — Standardization in Progress",
+      "impact": "Hybrid PQC को TLS 1.3 में standardize किया जाएगा — billions of connections protect होंगी",
+      "body": [
+        "IETF TLS working group TLS 1.3 के लिए hybrid post-quantum key exchange standardize कर रहा है। RFC drafts X25519MLKEM768 और SecP256r1MLKEM768 cipher suites define करते हैं, TLS 1.4 में planned inclusion के साथ। ये cipher suites already CloudFlare (25M+ websites protect करते हुए) और Google Chrome (3B+ users) द्वारा pre-standard draft versions का उपयोग करके deploy की गई हैं।",
+        "IETF का approach hybrid strategy validate करता है: pre-standard hybrid cipher suites के साथ अभी deploy करें, current TLS sessions को HNDL attacks से protect करें, जबकि pure PQC standards mature हों। एक बार implementation trust establish हो जाए (2025-2027), pure ML-KEM cipher suites standardize होंगी और hybrid cipher suites phase out होंगी।"
+      ]
+    },
+    "timeline": [
+      "CloudFlare + Chrome X25519Kyber768 deploy करते हैं — पहला mass hybrid PQC",
+      "IETF hybrid TLS cipher suite X25519MLKEM768 के लिए RFC draft publish करता है",
+      "Expected: IETF TLS 1.3 में hybrid cipher suites standardize करता है",
+      "Expected: pure ML-KEM cipher suites standardized; hybrid optional"
+    ],
+    "keyTakeaways": [
+      "Hybrid (X25519 + ML-KEM-768) immediately deploy करें — already production में proven है और HNDL protection provide करता है",
+      "Hybrid security: attacker को BOTH classical और PQC algorithm तोड़ने होंगे — किसी एक से कमज़ोर नहीं",
+      "X25519MLKEM768 या SecP256r1MLKEM768 उपयोग करें — दोनों IETF draft में हैं और widely implemented हैं",
+      "Pure ML-KEM (बिना classical के) अंतिम goal है — hybrid migration के दौरान bridge है"
+    ]
+  },
+  "quantum-b09": {
+    "tagline": "आप वह migrate नहीं कर सकते जो आपने खोजा नहीं — cryptography discovery PQC migration में सबसे महत्वपूर्ण और सबसे underestimated step है।",
+    "overview": [
+      "Post-quantum cryptography migration organization में सभी cryptographic assets की complete inventory से शुरू होती है। Modern enterprise IT में हजारों जगहों पर cryptography embedded है: load balancers पर TLS certificates, CI/CD pipelines में SSH keys, VPN solutions में RSA keys, code signing में ECDSA, API gateways में x509 certificates, और पूरे infrastructure में hardware security modules।",
+      "Cryptographic discovery tools codebases (CBOM — Cryptography Bill of Materials), certificate inventories, network traffic और configuration files को सभी cryptographic usage identify करने के लिए scan करते हैं। NIST, CISA और ISO systematic cryptographic asset management को enable करने के लिए SBOM (Software Bill of Materials) के analogous CBOM standards develop कर रहे हैं।",
+      "Discovery phase उससे कहीं अधिक difficult है जितना लगता है: cryptography अक्सर dependencies में buried होती है, binary firmware में embedded होती है या vendor-managed infrastructure में hidden होती है। Complete discovery के बिना migration attempt करने वाले organizations ऐसे encryption assets पाते हैं जो overlooked थे और migration process restart करनी पड़ती है।"
+    ],
+    "technical": {
+      "title": "Cryptographic Discovery Tools और CBOM",
+      "body": [
+        "Cryptographic discovery के लिए tools: (1) IBM Cryptography Bill of Materials (CBOM) generator — encryption usage के लिए codebases scan करता है; (2) CISA's Crypto Inventory Template — structured assessment worksheet; (3) Network scanning tools (जैसे, SSL Labs, Qualys SSL) — certificates enumerate करते हैं; (4) Cryptosense Analyzer — Java/Python code में encryption discover करता है; (5) OQS-TLS scanner — TLS को PQC-ready versus classical-only identify करता है।",
+        "एक complete CBOM include करता है: algorithm used, key size, key type (symmetric/asymmetric/hash), protocol, data sensitivity, renewal schedule, owner और migration priority। यह directly migration prioritization model में feed होता है।"
+      ]
+    },
+    "incident": {
+      "title": "Heartbleed Retrospective — Inventory क्यों Matter करता है",
+      "impact": "Heartbleed ने दिखाया कि organizations नहीं जानती थीं कि कौन सी चीज़ OpenSSL उपयोग करती है; PQC migration को same mistake नहीं करनी चाहिए",
+      "body": [
+        "2014 की Heartbleed vulnerability (OpenSSL में CVE-2014-0160) ने widespread panic caused किया क्योंकि organizations नहीं जानती थीं कि कौन से systems OpenSSL उपयोग करते हैं और इसलिए कौन से affected हैं। कई large organizations को सभी affected systems identify करने में हफ्ते लगे — जिसके दौरान attackers को उनकी private keys तक complete access था।",
+        "PQC migration एक 'slow Heartbleed' है: organizations जो current cryptographic inventory maintain नहीं करतीं वे migrating के समय same discovery problem face करेंगी। Lesson यह है कि अभी security program में continuous encryption discovery build करें, ताकि जब Q-Day approach करे, inventory already exist करे और migration quickly proceed कर सके।"
+      ]
+    },
+    "timeline": [
+      "Heartbleed — organizations सभी OpenSSL usage नहीं खोज सकती थीं",
+      "CISA ने PQC cryptographic inventory template और methodology launch किया",
+      "NIST CBOM standardization शुरू करता है — cryptography bill of materials",
+      "Federal agencies mandatory cryptographic inventory complete करती हैं (CISA requirement)",
+      "Expected: CBOM federal contractors के लिए required"
+    ],
+    "keyTakeaways": [
+      "Migration से पहले encryption inventory शुरू करें — आप ऐसे assets discover करेंगे जिनके बारे में आप नहीं जानते थे",
+      "CBOM tools (IBM, Cryptosense) और network scanners का उपयोग सभी encryption usage खोजने के लिए करें",
+      "Internet-exposed RSA/ECDH assets को पहले prioritize करें — maximum HNDL exposure",
+      "CBOM को live रखें: cryptographic assets प्रत्येक software update और deployment के साथ बदलते हैं"
+    ]
+  },
+  "quantum-c09": {
+    "tagline": "Quantum migration एक 3-7 साल का program है जिसके लिए board-level approval, sustained budget और cross-functional coordination की आवश्यकता है — यह कोई sprint नहीं है।",
+    "overview": [
+      "Quantum migration सबसे complex cryptographic program है जो अधिकांश enterprises ने undertake किया है। इसके लिए board-level support, sustained multi-year budget, cross-functional coordination (security, infrastructure, development, procurement) और vendor management की आवश्यकता है। अधिकांश CISOs अभी भी अपने boards को explain कर रहे हैं कि quantum computers क्या हैं।",
+      "Effective quantum governance risk quantification से शुरू होती है: technical threat (HNDL, Shor's algorithm, Q-Day timeline) को financial terms में translate करना जो boards समझते हैं — potential data breach costs, regulatory fines, competitive intelligence exposure। फिर एक phased program build करें: discovery → foundation → core systems → completeness → sustaining।",
+      "PQC investment के लिए business case straightforward है: migration की cost (typically 0.5-2% of annual IT budget over 5 years) post-Q-Day breach की expected loss से बहुत कम है आज collected records की। Regulatory pressure (FFIEC, OMB, future SEC requirements) additional urgency provide करता है जो audit committees के साथ resonate करता है।"
+    ],
+    "technical": {
+      "title": "Quantum Risk Quantification Model",
+      "body": [
+        "Expected loss calculation: (10 साल में Q-Day की probability) × (exposed data का value)। HNDL threat probability से weighted नहीं है — यह अभी हो रहा है। आज RSA के साथ transmitted सभी encrypted data potentially archived है और timeline uncertainty के बावजूद Q-Day पर exposed होगा। Assets को पहले HNDL risk (long-term sensitivity) से, फिर Q-Day impact से prioritize करें।",
+        "Program phases: Year 1 (Discovery) — cryptographic inventory, risk scoring, vendor assessment, training; Year 2 (Foundation) — HSM replacement, PKI root migration, development toolchain; Year 3 (Core) — VPN, TLS, API gateways; Year 4 (Completeness) — remaining systems, code signing; Year 5 (Sustaining) — continuous monitoring, emerging algorithms।"
+      ]
+    },
+    "incident": {
+      "title": "FFIEC ने Financial Institutions के लिए Quantum Risk Guidance Issue की (2024)",
+      "impact": "Quantum risk disclosure और migration planning के लिए पहला sector-specific regulatory requirement",
+      "body": [
+        "Federal Financial Institutions Examination Council (FFIEC) ने guidance issue की जिसमें banks और credit institutions को quantum computing risks assess करने, IT examinations में quantum exposure include करने और migration roadmaps develop करने की आवश्यकता है। Examination guidance का non-compliance ratings affect कर सकता है और enforcement actions trigger कर सकता है।",
+        "FFIEC guidance sector-specific था और SEC requirements से पहले था — financial institutions को अपने IT examination packages में quantum risk awareness demonstrate करनी होगी। इसने banks और credit institutions में CISO quantum programs के लिए business case बनाया जिन्होंने previously planning defer की थी: regulatory risk का अब एक defined dollar cost है।"
+      ]
+    },
+    "timeline": [
+      "NSA CNSA 2.0 — government quantum threat acknowledge करती है",
+      "OMB M-23-02 — civilian federal agencies को migrations plan करना होगा",
+      "Financial institutions के लिए FFIEC quantum risk guidance",
+      "FIPS 203/204/205 published — migration programs शुरू हो सकते हैं",
+      "Enterprise CISO quantum programs: board presentations शुरू होती हैं"
+    ],
+    "keyTakeaways": [
+      "Technical risk को financial terms में translate करें: expected loss = probability × exposure (HNDL risk 100% है)",
+      "5-year phased program: Discovery → Foundation → Core → Completeness → Sustaining",
+      "Regulatory risk (FFIEC, OMB, SEC) board approval के लिए urgency provide करता है — fines quantify करें",
+      "Cryptographic inventory (CBOM) पहला required deliverable है — आप वह migrate नहीं कर सकते जो आपने नहीं खोजा",
+      "Board reporting: quarterly quantum risk dashboard, न कि केवल annual briefing"
+    ]
+  },
+  "nails-10": {
+    "tagline": "एक nail salon केवल nails का business नहीं है — यह nails करने का business है। यह अंतर मायने रखता है।",
+    "overview": [
+      "Nail salon खोलने के लिए skill से अधिक की आवश्यकता है — इसके लिए licensing, business structure, physical space, equipment investment और operational systems की आवश्यकता है। US के सभी states में nail technicians को nail technician license की आवश्यकता होती है (typically cosmetology school के 300–600 hours plus एक state exam)। एक salon को एक separate salon license, city business license और health department regulations के साथ compliance की भी आवश्यकता होती है।",
+      "Location एक beauty retail business के लिए critical है। High foot traffic areas, complementary businesses (hair salons, spas, boutiques) की proximity और accessible parking client business drive करते हैं। Commercial lease terms, build-out costs और ongoing rent salon खोलने में सबसे बड़े financial risks हैं। कई successful salon owners full commercial lease लेने से पहले existing salon के भीतर एक booth rent करके शुरू करते हैं।",
+      "एक small nail salon (2–4 stations) के startup costs typically $15,000 और $50,000 के बीच होते हैं: equipment ($2,000–$5,000 per station including table, chair, client chair और lamp), construction और décor ($5,000–$20,000), initial supplies ($2,000–$3,000), licenses और permits ($500–$2,000), और पहले 3–6 महीने के expenses के लिए working capital।"
+    ],
+    "technical": {
+      "title": "Nail Salon Business Model",
+      "body": [
+        "Revenue model: एक nail salon service के हिसाब से पैसे कमाता है। US में average service ticket: gel manicure $35–$55, pedicure $45–$65, nail art add-ons $5–$25। एक single technician प्रति दिन 4–6 clients serve कर सकता है। एक fully booked 3-chair salon gross revenue में प्रति दिन $800–$1,500 generate कर सकता है। Expenses (rent, supplies, utilities, insurance, staff) typically revenue का 60–70% consume करते हैं।",
+        "Staffing models: आप technicians को employees के रूप में hire कर सकते हैं (payroll taxes और benefits pay करें, लेकिन schedules और quality control करें) या independent contractors को chairs rent करें (कम management, लेकिन कम control भी)। अधिकांश small salons owner-operated booths के साथ शुरू होते हैं और demand justify होने पर employees hire करके grow करते हैं।"
+      ]
+    },
+    "incident": {
+      "title": "Booth Rental Model ने Salon Ownership कैसे बदला",
+      "impact": "Booth rental ने हजारों nail technicians को full salon lease के complete risk के बिना business ownership का रास्ता दिया — US nail salons में dominant model बन गया।",
+      "body": [
+        "Booth rental widespread होने से पहले, salon owner बनने का मतलब था full commercial lease लेना — cosmetology school से ताजे निकले किसी के लिए एक significant financial risk। California में 80s में उभरा booth rental model इसे बदल दिया: एक salon owner individual workstations को independent technicians को rent करता है, जो weekly fixed rent pay करते हैं और अपनी income keep करते हैं।",
+        "Nail technicians के लिए, booth rental ने established space के भीतर एक independent clientele build करने का रास्ता offer किया। आज, US में अधिकांश nail salons booth rental या commission model के किसी रूप में operate करते हैं। कई nail salon owners booth tenants के रूप में शुरू हुए, clientele build की, income save की और eventually अपना space खोला।"
+      ]
+    },
+    "timeline": [
+      "Booth rental model California nail और hair salons में emerge हुआ",
+      "Vietnamese-American nail salon community US में rapid expansion शुरू करती है",
+      "Nail salon industry US में annual revenue में $6 billion तक पहुंची",
+      "Gel polish boom new nail-only salon concepts की demand drive करता है",
+      "COVID ने digital booking और contactless systems force किए — industry adapts हुई",
+      "US nail salon industry annually $12+ billion अनुमानित है"
+    ],
+    "keyTakeaways": [
+      "पहले अपना nail technician license प्राप्त करें — कोई भी state आपको इसके बिना operate करने की अनुमति नहीं देता",
+      "Commercial lease लेने से पहले existing salon के भीतर booth rent करने पर विचार करें",
+      "Opening day से पहले reserve में 3–6 महीने के operating expenses plan करें",
+      "आपके business की reputation खुलने से पहले बनती है — पहले अपनी client list और social media build करें"
+    ]
+  },
+  "hair-styling-04": {
+    "tagline": "एक अच्छा pass पांच बुरे passes से बेहतर है।",
+    "overview": [
+      "Hair straightener (flat iron) styling में सबसे powerful और सबसे misused tools में से एक है। Ceramic या titanium plates direct contact heat apply करती हैं hair के hydrogen bonds को reshape करने के लिए। Result तीन variables पर depend करता है: temperature (hair type के अनुसार adapted), plate size (section thickness के अनुसार adapted) और speed (reshape करने के लिए sufficiently slow, burn न करने के लिए sufficiently fast)।",
+      "Common mistakes में overlapping sections (already styled hair को reheat करना), mid-strand pausing (hot spot = breakage) और wet या damp hair पर iron use करना (cortex के अंदर steam explosion irreversible porosity damage cause करता है, कभी-कभी 'frying' effect कहा जाता है) शामिल हैं।",
+      "Straightening से परे, hair straightener एक versatile styling tool है: 90° rotation एक wave create करता है, cylinder के चारों ओर hair wrap करना soft curls create करता है, और एक twist के साथ squeeze करना एक defined wave create करता है — same device से हर result।"
+    ],
+    "technical": {
+      "title": "Flat Iron Variables",
+      "body": [
+        "Temperature: Fine = 250–300°F, Medium = 300–380°F, Thick = 380–450°F।",
+        "Section thickness: Plate width से exceed नहीं होनी चाहिए। Thinner sections = better heat penetration = fewer passes needed।",
+        "Speed: Heat transfer के लिए sufficiently slow (~3–5 seconds per inch), लेकिन continuous movement — never static।",
+        "Plate type: Ceramic (even heat, gentle), Titanium (heats faster, better for thick hair), Tourmaline (ionic + ceramic)।",
+        "Flat iron use करने से पहले hair 100% dry होनी चाहिए। Even slight moisture steam damage cause करती है।"
+      ]
+    },
+    "incident": {
+      "title": "Wet Hair Disaster",
+      "impact": "Heat styling से acute breakage का primary cause",
+      "body": [
+        "Hair cortex में trapped water molecules एक flat iron के pass होने पर steam बन जाते हैं। Steam के जाने की कोई जगह नहीं होती — यह literally अंदर से cuticle को explode करते हुए बाहर की ओर blast करता है। Result immediate है: hair जो breaks, splits करता है और wet होने पर spongy texture develop करता है।",
+        "यह irreversible है। एकमात्र solution इसे grow out करना है। Prevention simple है: हमेशा confirm करें कि hair flat ironing से पहले 100% dry है, या moisture completely eliminate करने के लिए पहले blow dryer use करें।"
+      ]
+    },
+    "timeline": [
+      "Isaac Shero ने hair straightening iron patent किया",
+      "Ceramic plate irons professional market में enter हुए",
+      "ghd launch हुआ, mainstream market में ceramic hair iron को popularize किया",
+      "Thick और curly hair segments के लिए titanium plates introduce हुए",
+      "Temperature sensors के साथ smart flat irons widely available हो गए"
+    ],
+    "keyTakeaways": [
+      "Flat ironing से पहले hair 100% dry होनी चाहिए — wet hair irreversible steam damage cause करता है।",
+      "Continuous movement mandatory है — pause करना hot spots और breakage create करता है।",
+      "Temperature को hair type से match करें; fine/damaged hair maximum 300°F।",
+      "एक flat iron technique variation के साथ waves और curls create कर सकता है, न कि केवल straighten।"
+    ]
+  },
+  "hair-styling-08": {
+    "tagline": "Curly hair एक living texture है — इसके साथ काम करें, इसके विरुद्ध नहीं।",
+    "overview": [
+      "Curly और wavy hair (types 2C–4C) को straight hair care से fundamentally different techniques की आवश्यकता होती है। Primary challenges moisture retention, frizz control और natural pattern को alter किए बिना curl definition हैं। Fundamental principle: कम manipulation अधिक definition के बराबर है।",
+      "Plopping एक heat-free technique है जहां wet, product-applied hair को एक microfiber towel या t-shirt पर gently lower किया जाता है, 20-30 minutes के लिए wrapped किया जाता है और release किया जाता है। यह towel-rubbing frizz के बिना natural curl clumping improve करता है। Diffuser dryer air को curl groups के ऊपर broadly disperse करता है, उन्हें root से lift करता है curl pattern intact रखते हुए।",
+      "Curly hair styling products LCO (Liquid, Cream, Oil) या LOC (Liquid, Oil, Cream) method को moisture layer करने और seal करने के लिए follow करते हैं। Water पहले apply होता है (wet या damp hair), फिर definition के लिए एक cream, फिर seal करने के लिए एक oil या gel। 'Gel cast' — जब gel सूखता है तो एक crunchy feeling — intentional है; drying के बाद soft curls release करने के लिए scrunching से break किया जाता है।"
+    ],
+    "technical": {
+      "title": "Curl Technique Glossary",
+      "body": [
+        "Plopping: wet hair microfiber towel पर lower किया गया, 20-30 min wrap किया गया, frizz-free release।",
+        "Diffuser: dryer पर diffuser bowl attach करें; low heat, low speed; curl groups को hold या scrunch करें।",
+        "Praying hands: curl disrupting किए बिना coat करने के लिए hair shaft के नीचे product slide करें (rubbing नहीं)।",
+        "Scrunching: clumping और definition encourage करने के लिए curls को ऊपर की ओर cup और squeeze करें।",
+        "Gel cast: gel को hard dry होने दें, 'cast break' करने के लिए scrunch करें और defined soft curls reveal करें।",
+        "Pineapple: rात के दौरान curls preserve करने के लिए loose high ponytail।"
+      ]
+    },
+    "incident": {
+      "title": "DevaCurl Controversy",
+      "impact": "Curl community के हजारों members ने hair loss report किया — product reformulation scandal",
+      "body": [
+        "DevaCurl curly hair community की cornerstone brand थी। 2020 में, हजारों users ने sudden hair loss, scalp irritation और breakage report किया जो potentially sensitizing ingredients introduce करने वाले product reformulations से linked था।",
+        "Stylists के लिए lesson: अपने products के ingredients जानें, clients पर apply करने से पहले new formulations को खुद पर या एक strand पर patch test करें, और अपनी offerings में brand diversification maintain करें — कोई भी brand irreplaceable नहीं होनी चाहिए।"
+      ]
+    },
+    "timeline": [
+      "Lorraine Massey की Curly Girl Method ने sulfate-free और heat-free philosophy define किया",
+      "DevaCurl launch हुआ, curl-specific product market build किया",
+      "YouTube tutorials ने globally curl technique education democratize किया",
+      "LCO/LOC layering method को curl communities में widely adopt किया गया",
+      "DevaCurl controversy; curl community ने brand loyalty diversify की"
+    ],
+    "keyTakeaways": [
+      "Plopping rough towel drying को replace करता है और curly hair के लिए सबसे महत्वपूर्ण frizz reducer है।",
+      "Diffuser curl groups सुखाने के लिए low heat और low airspeed का उपयोग करता है उनके pattern को alter किए बिना।",
+      "सूखते समय curly hair को कभी touch न करें — drying के दौरान manipulation = frizz।",
+      "Gel cast intentional है: इसे केवल तब scrunch करें जब hair completely dry हो।"
+    ]
+  },
+  "hair-styling-10": {
+    "tagline": "आपकी skills clients को बैठाती हैं। आपकी business sense उन्हें वहां रखती है।",
+    "overview": [
+      "Hair styling business launch करने के लिए दो parallel paths की आवश्यकता है: technical craft master करना और business infrastructure build करना। US में, professionally practice करने के लिए cosmetology या barbering license required है — typically state-mandated 1,000–1,500 hours of education plus एक practical और written exam।",
+      "Stylists के लिए चार main business models हैं: employee (salon salary + commission pay करता है), booth rental (एक station rent करें, सभी income keep करें, अपने taxes और supplies pay करें), suite rental (private studio, total independence) और salon ownership। Booth और suite rental सबसे common entrepreneurial paths हैं क्योंकि ownership की तुलना में minimal startup capital की आवश्यकता होती है।",
+      "एक 'portfolio' — आपकी client list — एक stylist के business का real asset है। इसे build करने के लिए consistent social media presence (Instagram और TikTok primary discovery channels हैं), word-of-mouth incentives (referral discounts) और एक rebooking habit की आवश्यकता है: हमेशा client के chair से उठने से पहले next appointment schedule करने की कोशिश करें।"
+    ],
+    "technical": {
+      "title": "Booth Rental Economics",
+      "body": [
+        "Booth rental range: $200–$800/week market और salon location के आधार पर।",
+        "Booth tenant के रूप में आप एक independent contractor हैं: self-employment tax (~15.3%) pay करें, अपने products और insurance खुद खरीदें, अपनी booking manage करें।",
+        "Break-even formula: (weekly booth rent + supplies + insurance) / average service ticket = clients needed per week।",
+        "Golden rule: booth rental financially stable होने से पहले 20–30 committed regular clients की आवश्यकता है।",
+        "Cosmetology license: ~1,000–1,500 hours (state के आधार पर), written + practical exam, हर 2–4 साल में renewal।"
+      ]
+    },
+    "incident": {
+      "title": "Social Media Discovery में Shift",
+      "impact": "Instagram और TikTok अब 35 से कम उम्र के salon new client acquisition को drive करते हैं",
+      "body": [
+        "Social media से पहले, new clients Yellow Pages, walk-ins या word-of-mouth के माध्यम से stylists ढूंढते थे। आज, 35 से कम उम्र के अधिकांश clients Instagram Reels या TikTok videos के माध्यम से new stylists discover करते हैं — specifically transformation videos, technique demonstrations और before/after posts।",
+        "एक stylist जो consistently post करता है और अपना work document करता है एक discoverable portfolio build करता है। Walk-ins और referrals पर rely करने वाला stylist 3–5 times more slowly grow करता है। Investment time है, money नहीं — एक smartphone बस यही काफी है।"
+      ]
+    },
+    "timeline": [
+      "Cosmetology licensing सभी US states में standard बन जाती है",
+      "Booth rental model employee model के alternative के रूप में popularity gain करता है",
+      "Instagram stylists के लिए primary visual portfolio platform बन जाता है",
+      "Suite rental concepts (Sola Salons, MY SALON Suite) nationally expand करते हैं",
+      "TikTok styling tutorials individual stylists का viral discovery drive करते हैं"
+    ],
+    "keyTakeaways": [
+      "Cosmetology या barbering license सभी 50 US states में professionally practice करने के लिए legally required है।",
+      "Booth tenants independent contractors हैं — self-employment tax, supplies, insurance आपकी responsibility है।",
+      "Booth rental financially stable होने से पहले आपको approximately 20–30 committed regular clients की आवश्यकता है।",
+      "Client के जाने से पहले हमेशा next appointment rebook करें — retention acquisition से सस्ती है।"
+    ]
+  },
+  "driving-1-02": {
+    "tagline": "पहली बार test देने वाले लगभग आधे लोग fail होते हैं। पास होने वाले manual पढ़ते हैं — हर page।",
+    "overview": [
+      "California DMV written knowledge exam में 46 multiple-choice questions होते हैं। Pass करने के लिए, कम से कम 38 questions सही answer करने होंगे — यह 82.6% score है। Questions सीधे California Driver Handbook से drawn होते हैं, जो DMV website पर या किसी भी DMV office में मुफ्त उपलब्ध है। सभी answers manual में हैं; कोई trick questions नहीं हैं। यदि आप manual study करते हैं, तो pass होंगे।",
+      "Test English, Spanish, Chinese, Vietnamese और कई अन्य सहित multiple languages में available है। आप audio version के लिए भी request कर सकते हैं। 18 से कम उम्र के applicants के लिए, test adult test के same material cover करता है। यदि आप knowledge test fail करते हैं, तो आप application fee फिर से pay करने और restart करने से पहले तीन बार तक इसे ले सकते हैं।",
+      "Study strategy: manual को कम से कम एक बार शुरू से अंत तक पढ़ें — speed limits, right-of-way rules, signaling distances और teen drivers के लिए graduated license rules पर special attention दें। फिर DMV-approved practice materials का उपयोग करके जितना हो सके उतने practice tests लें। जिन areas में आप अधिक errors करते हैं उन पर additional study time invest करें।"
+    ],
+    "technical": {
+      "title": "Written Test Format और Retry Rules",
+      "body": [
+        "46-question test topic द्वारा divided नहीं है — manual के सभी areas के questions mixed हैं। आप traffic signs, speed laws, right-of-way, alcohol और drug laws, और safe driving practices पर questions देखेंगे। Test time-limited है लेकिन अधिकांश applicants plenty of time के साथ finish करते हैं।",
+        "यदि आप test fail करते हैं, तो इसे फिर से लेने के लिए अगले business day तक wait करना होगा (उसी दिन नहीं ले सकते)। तीन failures के बाद, तीन और attempts प्राप्त करने के लिए $39 application fee फिर से pay करनी होगी। Total attempts पर कोई limit नहीं है, लेकिन प्रत्येक three-attempt series application fee cost करती है।"
+      ]
+    },
+    "incident": {
+      "title": "लगभग आधे Californians Written Test पहले Attempt में Fail होते हैं",
+      "impact": "California DMV data दिखाता है कि approximately 48–50% first-time applicants written knowledge test fail करते हैं — एक failure rate जो manual free में available होने के बावजूद stubbornly high रही है।",
+      "body": [
+        "DMV officially annual pass/fail rates year by year publish नहीं करता, लेकिन public records requests के माध्यम से obtained और California media द्वारा reported data ने consistently दिखाया है कि approximately आधे first-time test takers fail होते हैं। Most frequently missed questions specific numerical data involve करते हैं: different zones में exact speed limits, signaling और parking rules के लिए precise distances, और different age groups के लिए specific BAC limits।",
+        "DMV officials ने high failure rate को applicants को actually manual पढ़ने के बजाय दूसरों को drive करते देखने से memory पर depend करने के लिए attribute किया है। Advice simple और consistent है: test देने से पहले कम से कम एक बार California Driver Handbook का हर page पढ़ें। Answers सब वहीं हैं।"
+      ]
+    },
+    "timeline": [
+      "California ने new drivers के लिए written knowledge test require करना शुरू किया",
+      "California Driver Handbook को test के official source के रूप में standardize किया गया",
+      "Computer-based tests ने अधिकांश DMV offices में paper tests replace किए",
+      "DMV ने dmv.ca.gov पर online practice tests launch किए",
+      "Public records दिखाते हैं कि ~50% first-time test takers fail होते हैं",
+      "Manual 8 languages में available; audio version request पर available"
+    ],
+    "keyTakeaways": [
+      "Test में 46 questions हैं; pass के लिए 38 correct (82.6%) चाहिए",
+      "सभी answers California Driver Handbook में हैं — कोई trick questions नहीं हैं",
+      "यदि fail होते हैं, तो paid application fee per 3 attempts तक ले सकते हैं",
+      "लगभग 50% first-time applicants fail होते हैं — पूरा manual पढ़ने वाले बहुत higher rate पर pass होते हैं"
+    ]
+  },
+  "driving-1-05": {
+    "tagline": "Posted speed limit maximum है — Basic Speed Law का मतलब है कि slower जाना आवश्यक हो सकता है।",
+    "overview": [
+      "California में दो complementary speed laws हैं। Absolute Speed Limit Law कहती है कि किसी भी circumstance में आप posted speed limit exceed नहीं कर सकते — यह white sign पर number है। Basic Speed Law (Vehicle Code Section 22350) कहती है कि आप कभी भी posted limit के बावजूद current conditions के लिए safe से अधिक तेज़ नहीं चला सकते। Fog, rain, heavy traffic, या slippery road पर, posted limit से significantly नीचे drive करना आवश्यक हो सकता है। आप Basic Speed Law violate करने के लिए cited हो सकते हैं, भले ही आप posted limit से नीचे drive कर रहे हों, यदि conditions ने आपकी speed को unsafe बनाया।",
+      "California prima facie (default) speed limits तब apply होते हैं जब कोई अन्य limit posted नहीं हो। Key defaults: gates या signals के बिना railroad crossings के पास 15 mph, alleys में 15 mph, residential districts में 25 mph, school hours के दौरान school zones में 25 mph, undivided two-lane highways पर 55 mph, अधिकांश freeways पर 65 mph, और जहां specifically posted वहां freeways पर 70 mph।",
+      "Safe following distance maintain करना speed जितना ही important है। 3-second rule: आगे एक fixed object चुनें; जब आगे का vehicle उसे pass करे, count करें 'one-thousand-one, one-thousand-two, one-thousand-three' — यदि counting finish करने से पहले आप object pass करते हैं, तो आप too closely follow कर रहे हैं। Rain या night में 4 seconds तक बढ़ाएं, और slippery roads या large trucks follow करते समय 5 या अधिक seconds।"
+    ],
+    "technical": {
+      "title": "California Speed Limits और 3-Second Following Rule",
+      "body": [
+        "DMV exam में most commonly tested speed limits: 25 mph residential/school zone, 55 mph undivided two-lane highway, 65 mph freeway, 70 mph freeway जहां posted हो, gates या signals (Vehicle Code 22352) के बिना railroad crossings के पास 15 mph। एक direction में दो या अधिक lanes वाली highways की भी minimum speed law होती है — fast lane में too slowly drive करना भी एक infraction है।",
+        "3-second rule speed के बावजूद apply होती है — 65 mph पर आपको emergency में stop करने के लिए approximately 300 feet की आवश्यकता है। Tailgating rear-end collisions का primary cause है। Large trucks और motorcycles को additional following distance की आवश्यकता होती है: trucks को बहुत longer braking distances की आवश्यकता होती है; motorcycles को full 3 seconds की आवश्यकता होती है, भले ही वे faster stop करती हों, क्योंकि वे smaller और नज़र से miss करना आसान हैं।"
+      ]
+    },
+    "incident": {
+      "title": "Tailgating California में सबसे Common Crash Cause कैसे बन गया",
+      "impact": "California Office of Traffic Safety consistently report करता है कि too-close following के कारण rear-end collisions state में top three collision types में से एक है, annually tens of thousands of injuries cause करते हैं।",
+      "body": [
+        "2022 के लिए California Office of Traffic Safety data ने rear-end collisions को state में most frequent collision types में दिखाया। Common factor: insufficient following distance। 65 mph पर, average driver को sudden stop perceive और react करने में approximately 1.5 seconds की आवश्यकता होती है — और फिर actually vehicle brake करने के लिए additional distance। Freeway speeds पर 1 car-length following distance dangerously inadequate है।",
+        "Compliance data दिखाता है कि tailgating citations बढ़ी हैं क्योंकि dashcam recording enforcement में more common हो गई है। California के कई cities ने high-tailgating corridors की पहचान के लिए targeted enforcement और education के लिए automated rear-end collision analysis programs शुरू किए हैं।"
+      ]
+    },
+    "timeline": [
+      "California ने अपना पहला state Basic Speed Law enact किया",
+      "California Vehicle Code §22350 Basic Speed Law को current form में codify करता है",
+      "National 55 mph limit enacted (Energy Crisis) — California complies",
+      "National 55 mph law repealed — California ने freeways पर 65/70 mph establish किया",
+      "CHP ने statewide 'Following Too Closely' enforcement campaign शुरू किया",
+      "Rear-end collisions California में top-3 collision type में बनी रहती हैं"
+    ],
+    "keyTakeaways": [
+      "Basic Speed Law का मतलब है कि आप posted limit से नीचे drive करने पर भी cited हो सकते हैं यदि conditions आपकी speed को unsafe बनाएं",
+      "Residential और school zones में 25 mph, undivided two-lane highways पर 55 mph, अधिकांश freeways पर 65 mph",
+      "Gates के बिना railroad crossing के पास: 15 mph तक slow करें",
+      "Following distance के लिए 3-second rule use करें; bad weather या night में 4+ seconds तक बढ़ाएं"
+    ]
+  },
+  "driving-2-05": {
+    "tagline": "San Francisco में parallel parking एक initiation rite है। Technique master करें और कोई भी space आपको intimidate नहीं करेगा।",
+    "overview": [
+      "Parallel parking estimation के बजाय reference points use करती है। Space के सामने car के side में position करें, aligned और approximately 2 feet दूर। जब आपका rear bumper front car के rear bumper को pass करे, wheel को curb की तरफ sharply turn करें। जब आपकी car approximately 45-degree angle पर हो और आपका front door front car के rear bumper के साथ align हो, तो straighten करने के लिए wheel को sharply दूसरी direction में turn करें। Space में center करने के लिए आगे पीछे adjust करें।",
+      "Perpendicular parking (अधिकांश parking lots) के लिए lines के बीच car को center करना आवश्यक है। एक reference point चुनें — अधिकांश drivers side mirror alignment को line के साथ use करते हैं। Slowly approach करें, gently turn करें और space की सीमा तक पहुंचने से पहले straighten करें। जब possible हो reverse में जाएं — space में reverse करना traffic में reverse करने से बहुत safer है।",
+      "Hills पर wheels curb करना many states में legally required है और brake fail होने पर आपकी car को traffic में rolling से रोकता है। Downhill with curb: wheels को curb की ओर turn करें (right)। Uphill with curb: wheels को curb से दूर turn करें (left, ताकि curb आपको रोके)। Hill with no curb: हमेशा wheels को road के edge की ओर turn करें।"
+    ],
+    "technical": {
+      "title": "Parallel Parking के लिए Reference Points",
+      "body": [
+        "Reference point method parallel parking से guesswork eliminate करता है। Angle estimate करने के बजाय, आप specific visual triggers पर react करते हैं जो हर बार same होते हैं। एक बार practice के माध्यम से अपनी car के reference points खोजने पर, parallel parking एक reliable mechanical sequence बन जाती है — stressful estimation नहीं।",
+        "Uphill/downhill parking के लिए: 'Right, right, left' एक common memory aid है — downhill with curb: right (curb की ओर)। Uphill with curb: left (curb से दूर, ताकि curb wheel catch करे यदि roll करे)। Either direction में no curb: right (edge की ओर ताकि car road से नहीं, बल्कि traffic में roll करे)। हमेशा transmission को Park में रखें और किसी भी incline पर parking brake apply करें।"
+      ]
+    },
+    "incident": {
+      "title": "San Francisco में Runaway Car — Wheels Curb करना क्यों Matter करता है",
+      "impact": "Parked cars के traffic या pedestrians में steep hills पर rolling के multiple incidents",
+      "body": [
+        "San Francisco की steep hills (कुछ 30 degrees से अधिक) wheels curb करना एक legal requirement बनाती हैं, न कि केवल एक suggestion। हर साल, multiple incidents होते हैं जहां cars जो running में left हैं लेकिन बिना curbed wheels या engaged parking brakes के rolling शुरू कर देती हैं। San Francisco की steep hill से rolling small sedan car intersection तक पहुंचने से पहले 30 mph से अधिक reach कर सकती है।",
+        "California Vehicle Code Section 22526(b) drivers को 3 percent gradient से अधिक किसी भी hill पर parking brake set करने और wheels curb करने की आवश्यकता है। अधिकांश drivers law नहीं जानते — और कई यह नहीं समझते कि parking brake cable समय के साथ stretch हो सकती है, wheels curb करना last line of defense बना देता है। Wheel turn करने में 2 seconds लगते हैं — यह एक catastrophe prevent कर सकता है।"
+      ]
+    },
+    "timeline": [
+      "New York City में पहले parking regulations enacted",
+      "Parking meters अमेरिकी cities में generalized — parallel parking एक required skill बन जाती है",
+      "California ने hills पर wheels curbing को obligate किया — ऐसा करने वाला पहला US state",
+      "Parallel parking एक fundamental skill के रूप में अधिकांश US driving tests में remain करती है"
+    ],
+    "keyTakeaways": [
+      "Consistent results के लिए parallel parking में reference points use करें — guesswork नहीं",
+      "जब possible हो perpendicular spaces में reverse करें — traffic में reverse करने से बहुत safer",
+      "Downhill with curb: wheels को curb की ओर (right) turn करें। Uphill with curb: outward (left) turn करें",
+      "Hills पर हमेशा parking brake apply करें — केवल 'Park' पर rely न करें"
+    ]
+  }
+}

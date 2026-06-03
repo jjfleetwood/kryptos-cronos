@@ -1,0 +1,742 @@
+{
+  "baseball-3-07": {
+    "tagline": "En el momento en que puedes predecir qué lanzamiento viene antes de que salga de la mano del pitcher, has convertido 400 milisegundos en 600 milisegundos.",
+    "overview": [
+      "La secuencia de lanzamientos es el estudio de cómo los pitchers pautan sus lanzamientos a lo largo de un turno al bate — qué lanzamiento lanzan en qué orden, en qué conteos, en qué situaciones. Cada pitcher tiene tendencias: un enfoque de fastball primero en conteos favorables al bateador, un slider como lanzamiento de salida con dos strikes, un changeup contra zurdos pero raramente contra derechos. Los bateadores de élite construyen modelos mentales detallados de estas tendencias a través del estudio de video y observación en juego, usándolos para reducir su ventana de predicción en cada lanzamiento.",
+      "El concepto de 'esperar un lanzamiento' — precomprometerse con un tipo de lanzamiento y ubicación específicos — es la forma más alta de predicción de lanzamientos. Cuando un bateador espera un lanzamiento, está apostando a que el pitcher lanzará un lanzamiento específico (p. ej., fastball en la mitad interior) en el conteo actual. Si tienen razón, el bateador se ha dado efectivamente a sí mismo 100–150 milisegundos adicionales de tiempo de decisión porque no están identificando el lanzamiento — simplemente lo están confirmando. El legendario jonrón de Kirk Gibson en 1988 y el grand slam de la Serie Mundial 2024 de Freddie Freeman involucraron explícitamente esperar lanzamientos basado en exploración avanzada.",
+      "La preparación de la sala de video de los Dodgers antes de la Serie Mundial 2024 contra los New York Yankees fue descrita por múltiples jugadores como la más exhaustiva que habían experimentado. El equipo de exploración avanzada de los Dodgers produjo reportes de tendencias de lanzamientos para cada starter y relevista de los Yankees, desglosados por conteo, lateralidad del bateador e inning. Los bateadores recibieron 'planes de juego' específicos para cada enfrentamiento potencial — qué lanzamientos buscar, cuáles dejar pasar, y cuándo esperar lanzamientos específicos en situaciones específicas."
+    ],
+    "technical": {
+      "title": "Cómo los Bateadores de MLB Construyen un Mapa de Tendencias del Pitcher",
+      "body": [
+        "Un mapa de tendencias para un pitcher abridor se construye desde tres fuentes primarias: datos de Statcast (tipo de lanzamiento, ubicación y velocidad desglosados por conteo), reportes de exploración avanzada (escritos por exploradores que vieron aperturas recientes), y video (30–60 minutos de turnos al bate curados mostrando patrones de secuencia del pitcher). Los bateadores buscan: (1) qué lanza en el primer lanzamiento, (2) a qué recurre cuando está adelante en los conteos, (3) cuál es su 'lanzamiento de salida' con dos strikes, (4) cualquier señal en la entrega que prediga el tipo de lanzamiento, y (5) patrones específicos para bateadores zurdos vs. derechos.",
+        "La actualización en juego es la capa sobre la preparación previa al juego. Durante cada aparición en el plato, el bateador agrega datos nuevos a su mapa de tendencias en tiempo real: 'Lanzó un curveball en el primer lanzamiento después de comenzarme con fastball en el primer inning — está cambiando el patrón.' Los bateadores de MLB frecuentemente discuten patrones entre turnos al bate en la dugout, construyendo una imagen de tendencias comunitaria que beneficia a toda la alineación. Los catchers interceptan esto variando patrones, pero incluso los patrones variados tienen tendencias que se hacen visibles después de suficientes turnos al bate."
+      ]
+    },
+    "incident": {
+      "title": "Preparación de Video de los Dodgers para la Serie Mundial — Serie Mundial 2024",
+      "impact": "La preparación de exploración avanzada y video de los Dodgers para la Serie Mundial 2024 contra los Yankees fue reconocida por múltiples jugadores de los Dodgers como una ventaja decisiva. Freeman y Ohtani ambos citaron predicciones de lanzamientos específicas — derivadas del estudio de video — que llevaron a sus hits de postemporada más importantes.",
+      "body": [
+        "En entrevistas después de la Serie Mundial 2024, Freddie Freeman describió el proceso de preparación: 'Probablemente vimos tres horas de video en sus abridor — cada uno de nosotros, individualmente, además de sesiones en grupo. Sabía qué Cole me iba a lanzar en un conteo de 2-0, sabía con qué vendría después de dos lanzamientos off-speed seguidos, y conocía su grip tip de changeup. Cuando sabes eso de antemano, el turno al bate comienza antes de que incluso dejes la dugout.'",
+        "Shohei Ohtani similarmente acreditó el video previa al juego por su capacidad de producir en la Serie Mundial: su grand slam en el Juego 1 contra Gerrit Cole vino en un lanzamiento — un fastball en la mitad interior en un conteo con dos strikes — que Ohtani había identificado como la secuencia cierre de Cole después de liderar con off-speed. La sala de video de los Dodgers en Dodger Stadium, personal con múltiples analistas durante la postemporada, produjo reportes individualizados para cada bateador contra cada pitcher oponente potencial. El enfoque sistemático a la predicción de lanzamientos fue un producto directo de la inversión de la organización en analítica y educación del jugador."
+      ]
+    },
+    "timeline": [
+      "Tony Gwynn primer jugador en usar video VHS para estudio sistemático de pitchers",
+      "Los equipos de MLB comienzan a proporcionar a los bateadores reportes de tendencias de lanzamientos computarizados",
+      "Los datos de Pitch/FX se hacen públicos — el análisis de tendencias se democratiza",
+      "Lanzamiento de Statcast — datos precisos de ubicación de lanzamientos y tendencias de conteo disponibles para cada pitcher",
+      "Las operaciones de la sala de video de los Dodgers citadas en la victoria de la Serie Mundial — ventaja de preparación sistémica",
+      "Freeman y Ohtani acreditan predicción de lanzamientos específicos de la preparación de video de la Serie Mundial"
+    ],
+    "keyTakeaways": [
+      "Un mapa de tendencias cubre tendencias de primer lanzamiento, tendencias cuando está adelante en el conteo, tendencias de conteo completo, y cualquier señal de entrega",
+      "'Esperar un lanzamiento' convierte el tiempo de identificación en tiempo de confirmación — efectivamente agregando 100–150ms a la ventana de decisión",
+      "La actualización en juego es tan importante como la preparación previa al juego — los patrones observados en turnos al bate anteriores refinan predicciones para turnos al bate posteriores",
+      "La preparación de video de la Serie Mundial 2024 de los Dodgers contribuyó directamente al grand slam de Freeman y múltiples turnos al bate cruciales de Ohtani"
+    ]
+  },
+  "baseball-3-08": {
+    "tagline": "Los mejores bateadores del mundo pueden ajustar su mecánica y expectativas a condiciones que la mayoría de los jugadores usan como excusas.",
+    "overview": [
+      "Las condiciones de bateo varían dramáticamente en los 30 estadios de las Grandes Ligas y a lo largo del calendario. El Dodger Stadium en una clara tarde de octubre — 72 grados, aire a nivel del mar, sin viento — es un entorno de bateo completamente diferente al Coors Field en una tarde de domingo a 85 grados y 5,280 pies de altitud, o Fenway Park en una noche de octubre a 45 grados con viento soplando desde el puerto. Los bateadores de élite desarrollan ajustes específicos del parque y específicos de las condiciones que el jugador promedio nunca articula explícitamente.",
+      "Las condiciones de sol se encuentran entre los desafíos de bateo más subestimados. Los juegos de día con un ángulo bajo del sol — particularmente en la tarde temprana — pueden poner el punto de liberación del lanzador bajo el sol directo mientras que el bateador está en la sombra, o viceversa. El sol 'capta' la pelota blanca de manera diferente que el fondo contrastante de un jardín verde o un backstop oscuro. Muchos bateadores mantienen la cera de pino más alta en sus mangos en condiciones brillantes (el agarre es más seguro con las palmas sudorosas por entrecerrar los ojos) y usan mangos sin cera de pino en juegos nocturnos más frescos. Algunos bateadores usan gafas de sol abatibles que despliegan específicamente para el seguimiento del punto de liberación en situaciones de sol de frente.",
+      "Coors Field es el valor atípico de condiciones más famoso en el béisbol. A 5,280 pies, la densidad del aire es aproximadamente 17% menor que a nivel del mar — lo que significa que la pelota viaja 8–10% más lejos en bolas aéreas y los lanzamientos que rompen menos (el aire más delgado proporciona menos resistencia para que el efecto gire). Los bateadores en Coors deben recalibrar: los ángulos de lanzamiento que producen bolas aéreas profundas a nivel del mar son aún más valiosos; los lanzamientos que rompen que habrían sido imposibles de golpear en otros parques son más planos e hitleables. La 'resaca de Coors Field' — cuando los equipos con base en Colorado viajan a parques a nivel del mar y los bateadores pierden su transporte adicional — es un fenómeno bien documentado."
+    ],
+    "technical": {
+      "title": "Ajustes de Bateo Parque por Parque",
+      "body": [
+        "El Dodger Stadium es ligeramente favorable para el lanzador en los espacios del jardín exterior (espacioso) pero el aire es lo suficientemente delgado a nivel del mar para que las bolas bien golpeadas viajen consistentemente. El ajuste clave del bateador en el Dodger Stadium: confía en el transporte de bolas bien golpeadas en el aire — no intentes agregar elevación más allá del ángulo de ataque óptimo porque el Dodger Stadium premia muy bien la ventana de ángulo de lanzamiento de 15–25 grados. El territorio de falta es grande, por lo que las bolas de falta que serían atrapables en parques más pequeños se convierten en outs — una consideración de disciplina.",
+        "Fenway Park exige ajustes específicos basados en la dirección del viento. Con un viento soplando desde el campo central, incluso un drive de 400 pies puede ser atrapado en la línea de aviso. Con viento soplando hacia el Green Monster, las bolas aéreas que apenas pasan la línea interior pueden convertirse en dobles. El Green Monster en sí (pared del jardín izquierdo de 37 pies a 310 pies) es tanto un objetivo como una trampa: los bateadores diestros se sienten tentados a jalar todo hacia arriba y sobre la pared, pero el enfoque más efectivo en Fenway a menudo es golpear líneas a todos los campos y dejar que la pared y las dimensiones compactas del parque hagan el trabajo."
+      ]
+    },
+    "incident": {
+      "title": "Ajustes de Coors Field — Dodgers vs. Rockies, 2020",
+      "impact": "Durante los juegos divisionales de 2020 de los Dodgers contra los Colorado Rockies en Coors Field, los entrenadores de bateo prepararon específicamente a los bateadores para el entorno de altitud — ajustando el enfoque para aprovechar el transporte adicional mientras se advertía sobre los lanzamientos más planos que los lanzadores de Colorado dependían. Los Dodgers fueron 5-0 en Coors Field en la temporada regular ese año.",
+      "body": [
+        "La preparación de los Dodgers de 2020 para los viajes a Coors Field incluía instrucción específica sobre el efecto de altitud: el personal de entrenamiento mostró a los bateadores datos de Statcast demostrando que bolas de velocidad de salida idéntica de 95 mph a 25 grados de ángulo de lanzamiento viajaban aproximadamente 18 pies más lejos en Coors que en el Dodger Stadium. La instrucción práctica: 'En Denver, tu swing natural produce más. No intentes agregar elevación además de lo que la altitud ya te da.'",
+        "Igualmente importante fue la advertencia del lanzamiento que rompe. Los lanzadores de Colorado — especialmente Trevor Story y el bullpen de los Rockies — dependían de sliders y curvas que eran físicamente más planas en altitud debido a la resistencia del aire reducida que afecta el efecto del lanzamiento. Los bateadores de los Dodgers fueron específicamente entrenados para buscar el lanzamiento que rompe más temprano (porque llegaría más pronto, con menos retraso de la desaceleración inducida por efecto) y ser más agresivos en lo que normalmente parecería ser un quiebre de curva 'grande' — en Coors sería más pequeño e hitleable. El resultado fue un récord dominante en temporada regular en altitud ese año."
+      ]
+    },
+    "timeline": [
+      "Fenway Park abre — Green Monster obliga inmediatamente ajustes de bateadores para tiradores zurdos que jalon",
+      "Coors Field anunciado — consideraciones de altitud ingresan al análisis de bateo de las Grandes Ligas",
+      "La 'resaca de Coors Field' estudiada analíticamente por primera vez — bateadores declinando después de viajes a Denver",
+      "Statcast mide factores de transporte del parque — efectos de altitud cuantificados con precisión",
+      "Los Dodgers usan datos de altitud de Statcast para prepararse específicamente para Coors Field — van 5-0 allí",
+      "Serie Mundial en el Dodger Stadium en octubre — condiciones tranquilas favorecen enfoque de bateador equilibrado"
+    ],
+    "keyTakeaways": [
+      "La altitud de 5,280 pies de Coors Field produce 8–10% más transporte en bolas aéreas y movimiento de lanzamiento que rompe más plano",
+      "El Green Monster de Fenway hace que la potencia de jalón de mano derecha sea tentadora — pero las líneas a todos los campos a menudo son más efectivas",
+      "Las condiciones de sol pueden oscurecer el punto de liberación del lanzador — las gafas de sol abatibles y el enfoque temprano en el punto de liberación son adaptaciones esenciales",
+      "Los juegos nocturnos en parques como Oracle Park con capa marina suprimen las bolas aéreas — mantente compacto y maneja líneas en lugar de intentar jonrones"
+    ]
+  },
+  "baseball-3-09": {
+    "tagline": "Una mala racha no es fracaso. Es el resultado más común en un deporte donde los mejores jugadores de la historia fallaron siete de cada diez veces.",
+    "overview": [
+      "Todo bateador tiene mala racha. En un deporte donde un promedio de .300 es considerado excelente, las extensas rachas de bateo de .150-.180 son inevitabilidades estadísticas para cada jugador en cada nivel. La pregunta no es si una mala racha ocurrirá — es si el bateador puede distinguir entre una mala racha mecánica (algo está físicamente mal con el swing), una mala racha mental (ansiedad, sobreanálisis y miedo al fracaso corroen el enfoque), una mala racha de suerte (bolas golpeadas fuertemente yendo consistentemente a los fildeadores por varianza aleatoria), o una mala racha de ajuste (la liga ha hecho una corrección al patrón del bateador).",
+      "Las mala rachas mecánicas tienen causas identificables visibles en video: una trayectoria de mano se ha desviado, un mecanismo de carga ha cambiado, el pie de arranque está aterrizando diferente, la rotación de cadera se ha aplanado. Estas son reparables con trabajo dirigido en tee y trabajo de driles. Las mala rachas mentales son más insidiosas — se manifiestan mecánicamente (sobre-swing, lanzadas, swings de verificación) pero la raíz es psicológica. Un bateador que tiene miedo de fallar a menudo hará swing a lanzamientos que sabe que son bolas (miedo a un strike tres cantado) y se alejará de lanzamientos que debería golpear (encogimiento ante el fracaso). Estas correcciones son cognitivas: reconstruir el enfoque en el proceso sobre el enfoque en el resultado.",
+      "El enfoque de Freddie Freeman sobre las malas rachas ha sido descrito por compañeros de equipo y entrenadores como uno de los más maduros en el béisbol. Freeman no cambia todo su enfoque durante una mala racha — hace cambios dirigidos y metódicos basados en evidencia de video, no en reacción emocional. Su filosofía de entrenamiento: 'Primero, mira el video. Si algo está mal mecánicamente, arregla esa una cosa. Si el video se ve bien, confía en el proceso y deja que los resultados lleguen.' Esta paciencia — rara entre bateadores — es una razón por la que Freeman nunca ha tenido una mala racha de múltiples semanas a lo largo de su carrera."
+    ],
+    "technical": {
+      "title": "Marco de Diagnóstico de Mala Racha de los Dodgers",
+      "body": [
+        "El personal de bateo de los Dodgers utiliza un marco de diagnóstico de mala racha de cuatro pasos: (1) Revisión de video de los últimos 10 turnos al bate, comparando con el 'swing de referencia' del bateador de cuando estaban desempeñándose en su mejor nivel. Buscar desviaciones mecánicas específicas: dirección de arranque, mecanismo de carga, trayectoria de mano, punto de contacto. (2) Revisión de datos de Statcast: ¿ha caído la velocidad de salida (problema mecánico) o la tasa de bolas golpeadas fuertemente se ha mantenido estable mientras el promedio de bateo cayó (problema de suerte/secuenciación)? (3) Revisión de selección de lanzamientos: ¿está el bateador haciendo swing a más lanzamientos fuera de la zona (problema de expansión), o su disciplina de zona es consistente pero simplemente está siendo out (varianza de resultados)? (4) Conversación con el bateador sobre su estado mental.",
+        "El hallazgo más común en el análisis de mala racha de los Dodgers: los bateadores que tienen una mala racha a menudo no muestran cambio mecánico alguno cuando el video es revisado. La velocidad de salida permanece estable. La disciplina de zona permanece intacta. Lo que ha cambiado es la suerte de secuenciación — el bateador está golpeando la bola fuertemente pero hacia los fildeadores. Esta es la 'mala racha de suerte,' y el único tratamiento es trabajo de calidad de proceso continuado y paciencia. El peligro: un bateador que diagnostica incorrectamente una mala racha de suerte como una mala racha mecánica y comienza a hacer cambios de gran escala puede realmente introducir problemas mecánicos en un intento de arreglar un problema que nunca existió."
+      ]
+    },
+    "incident": {
+      "title": "Mala Racha de Principios de Temporada de Freddie Freeman en 2022",
+      "impact": "En su primera temporada con los Dodgers, Freddie Freeman bateó .199 en sus primeros 20 juegos — su peor racha extendida en años. En lugar de entrar en pánico, Freeman y los entrenadores de bateo revisaron video, confirmaron ninguna desviación mecánica de su swing de referencia, identificaron que su tasa de bolas golpeadas fuertemente había realmente aumentado de su promedio de carrera, y concluyeron que era una mala racha de suerte. Freeman bateó .342 en los siguientes 100 juegos.",
+      "body": [
+        "El .199 de Freeman a través de abril de 2022 generó cobertura mediática significativa y preocupación de aficionados — ¿fue el fichaje de agente libre importante de la franquicia un error? Dentro del clubhouse de los Dodgers, el coordinador de bateo Robert Van Scoyoc y el análisis de Freeman contaron una historia diferente. La velocidad de salida de Freeman estaba arriba de su línea de base de los Bravos. Su tasa de bolas golpeadas fuertemente estaba arriba del promedio de carrera. Su tasa de persecución era sin cambios. Había tenido ocho bolas golpeadas fuertemente en 20 juegos que habían sido atrapadas por jardineros persiguiendo bolas en los gaps — en cualquier distribución normal de resultados, seis de esas son hits.",
+        "La prescripción fue deliberadamente mínima: dos sesiones de tee dirigidas por semana enfocadas en el punto de contacto de la mitad exterior (donde video mostró la desviación más pequeña posible), y de otra manera ningún cambio mecánico. Freeman fue entrenado para evaluar turnos al bate por calidad de proceso — '¿Vi la bola bien? ¿Me mantuve atrás? ¿Tomé buenos lanzamientos?' — en lugar de resultado. Para finales de mayo, la suerte de secuenciación se normalizó, las bolas de gap comenzaron a caer, y Freeman produjo una de las mejores temporadas de su carrera. Su promedio de .325 para el año estuvo entre los mejores en la Liga Nacional."
+      ]
+    },
+    "timeline": [
+      "Duke Snider se recupera de mala racha de principios de temporada para conectar 42 HRs — modelo de resiliencia de los Dodgers",
+      "Tony Gwynn desarrolla práctica de 'diario de mala racha' — documentar cada turno al bate para reconocimiento de patrón",
+      "Investigación de Sabermetrics muestra que la mayoría de 'malas rachas' bajo 3 semanas son ruido estadístico, no declive de desempeño",
+      "Datos de velocidad de salida de Statcast permiten separación directa de malas rachas de suerte de malas rachas mecánicas",
+      "Mala racha de abril de Freeman con Dodgers — diagnóstico de mala racha de suerte de libro de texto y confianza en el proceso",
+      "Desempeño de Freeman en la Serie Mundial a pesar de lesión de tobillo — arquitectura mental de inmunidad a mala racha"
+    ],
+    "keyTakeaways": [
+      "Diagnostica antes de arreglar: mala racha mecánica, mental, de suerte, o de ajuste requieren respuestas completamente diferentes",
+      "Velocidad de salida estable + tasa de bolas golpeadas fuertemente estable durante un declive de promedio de bateo = mala racha de suerte — hace cambios mínimos",
+      "Modelo de Freeman de 2022: revisión de video dirigida, intervención mecánica mínima, enfoque de proceso sobre resultado",
+      "El mayor peligro en una mala racha es hacer cambios mecánicos de gran escala para arreglar un problema que no existe mecánicamente"
+    ]
+  },
+  "baseball-3-10": {
+    "tagline": "Todo gran bateador sabe lo que siente en su swing. La revolución tecnológica significa que también pueden saber exactamente qué está sucediendo realmente — y la brecha entre estas dos cosas es donde vive la mejora.",
+    "overview": [
+      "La tecnología disponible para bateadores en todos los niveles se ha transformado en menos de una década. Los sensores de bate Blast Motion, los sistemas de rastreo de pelota Rapsodo, los sistemas de datos de salida HitTrax, y las cámaras de ultra alta velocidad (Edgertronic, Phantom) han llevado el análisis de swing del sentimiento subjetivo del entrenador a la medición biomecánica objetiva. Para los Dodgers, esta pila tecnológica está integrada en todos los niveles del desarrollo de jugadores — desde los menores de Camelback Ranch usando sensores Blast Motion en la práctica diaria hasta los bateadores de las Grandes Ligas revisando datos HitTrax entre turnos al bate en iPads en la dugout.",
+      "Blast Motion es un pequeño sensor de bate que se adhiere a la perilla del bate y mide la velocidad del bate (en el contacto), tiempo hasta el contacto (qué tan rápidamente el swing llega a la zona de contacto), ángulo de ataque, conexión (la relación entre el bate y el cuerpo del bateador durante el swing), y conexión temprana (si el bate está alineado temprano en el swing). Estas métricas, entregadas en tiempo real a una aplicación de smartphone, permiten a un bateador ver inmediatamente si un swing que se sintió poderoso fue realmente medido como poderoso.",
+      "Rapsodo es un sistema de rastreo de pelota que captura datos de lanzamiento (para lanzadores) o datos de pelota bateada (para bateadores) incluyendo velocidad de salida, ángulo de lanzamiento, ángulo de dispersión, y spin de la pelota. Para bateadores, Rapsodo en modo de práctica de bateo proporciona retroalimentación inmediata en cada swing: 'Ese swing: 96 mph de velocidad de salida, 18 grados de ángulo de lanzamiento, lado de jalada.' Acumulado durante una sesión de práctica, los datos de Rapsodo muestran patrones — ¿el bateador es consistentemente bajo en ángulo de lanzamiento? ¿Dispersando consistentemente al campo opuesto? — que informan trabajo de driles dirigidos."
+    ],
+    "technical": {
+      "title": "HitTrax — La Revolución del Entrenamiento en Interiores",
+      "body": [
+        "HitTrax es un sistema de rastreo de pelota para jaulas de bateo en interiores que mide cada pelota bateada en una jaula de bateo y proyecta dónde habría ido en un parque real de las Grandes Ligas (el usuario selecciona el parque). Mide velocidad de salida, ángulo de lanzamiento, tabla de dispersión, tasa de golpes duros, y distancia simulada. HitTrax permite a un bateador tomar práctica de bateo en una jaula y ver una simulación en tiempo real de cada pelota bateada como si fuera golpeada en Dodger Stadium o Fenway Park. La retroalimentación visual inmediata — 'Esa bola de tierra habría sido un doble play en Dodger Stadium; esa bola de vuelo habría salido hacia el campo derecho' — es un motivador poderoso para entender la relación entre mecánica de swing y resultados reales.",
+        "Los Dodgers usan HitTrax en todos los niveles de ligas menores como el sistema de recopilación de datos primario para práctica de bateo. Cada swing tomado en una jaula de bateo de liga menor en Camelback Ranch se registra en una base de datos. Los coordinadores de bateo pueden extraer los últimos 500 puntos de datos de swing de un jugador y buscar tendencias: ¿está mejorando la velocidad de salida en el último mes? ¿Se está estabilizando el ángulo de lanzamiento en el rango óptimo? ¿Las tablas de dispersión muestran que la capacidad del jugador de golpear pelotas a todos los campos está mejorando? Esta vista de datos longitudinales permite a los Dodgers detectar deriva mecánica meses antes de que apareciera en estadísticas de juego."
+      ]
+    },
+    "incident": {
+      "title": "Cómo los Dodgers Usaron HitTrax para Desarrollar a Corey Seager — 2016–2019",
+      "impact": "El desarrollo de Corey Seager en un shortstop Silver Slugger y Novato del Año de la NL (2016) fue apoyado en todo momento por el sistema de desarrollo basado en HitTrax de los Dodgers. Los entrenadores de bateo rastrearon la progresión de velocidad de salida y ángulo de lanzamiento de Seager mensualmente, usando los datos para identificar y corregir una deriva recurrente del ángulo de ataque que aparecía en cada entrenamiento de primavera y era corregida antes de que pudiera afectar su desempeño en la temporada regular.",
+      "body": [
+        "El uso de HitTrax por los Dodgers en el desarrollo de Corey Seager de 2016 a 2019 es un caso de estudio en desarrollo longitudinal impulsado por datos. Cada primavera, los datos HitTrax de Seager de la primera semana de entrenamiento de primavera se compararían con sus semanas de mejor desempeño de la temporada anterior. En 2017 y 2018, un patrón consistente emergió: el ángulo de ataque de Seager bajó 3–4 grados en las primeras dos semanas del entrenamiento de primavera — probablemente un producto de la temporada baja — antes de volver al rango óptimo a fines de primavera.",
+        "Para 2019, el equipo de los Dodgers estaba prescribiendo proactivamente trabajo de driles específico al inicio del entrenamiento de primavera antes de que la deriva se volviera medible — basado en el patrón de años anteriores. Seager recibió trabajo extra de tee alto y sesiones de Blast Motion enfocadas en ángulo de ataque en la primera semana del campamento de Camelback Ranch, y sus datos de pretemporada no mostraron deriva en 2019. Este uso predictivo de patrones HitTrax históricos para prevenir más que reaccionar a la deriva mecánica representa la frontera del desarrollo de jugadores impulsado por datos — y los Dodgers estaban entre los primeros equipos en implementarlo sistemáticamente."
+      ]
+    },
+    "timeline": [
+      "Los primeros sensores comerciales de bate entran al béisbol profesional — predecesores rudimentarios de Blast Motion",
+      "El sistema de rastreo de pelota Rapsodo es adoptado en múltiples instalaciones de las Grandes Ligas — Dodgers entre los primeros adoptadores",
+      "HitTrax se implementa en Camelback Ranch — todos los swings de jaulas de ligas menores comienzan a generar datos",
+      "Blast Motion versión 3.0 — la medición del ángulo de ataque en tiempo real se vuelve confiable y accionable",
+      "Los Dodgers implementan un modelo predictivo de prevención de deriva usando 3+ años de datos longitudinales de HitTrax",
+      "Todos los bateadores de la Serie Mundial de los Dodgers tienen perfiles HitTrax de múltiples años que informan su preparación"
+    ],
+    "keyTakeaways": [
+      "Blast Motion mide la velocidad del bate, tiempo hasta el contacto, ángulo de ataque, y conexión — métricas de swing en tiempo real durante cualquier sesión de práctica",
+      "Rapsodo rastrea velocidad de salida, ángulo de lanzamiento, y ángulo de dispersión por swing — retroalimentación inmediata para identificación de patrones",
+      "HitTrax agrega datos de sesión y simula resultados de parques — haciendo métricas abstractas tangibles a través de visualización de parques de béisbol reales",
+      "El uso predictivo de los Dodgers de datos HitTrax de múltiples años para prevenir más que reaccionar a la deriva mecánica es la frontera del desarrollo de jugadores"
+    ]
+  },
+  "baseball-4-01": {
+    "tagline": "Statcast convirtió cada bola golpeada en un punto de datos — y los Dodgers convirtieron esos puntos de datos en campeonatos.",
+    "overview": [
+      "Cuando MLB implementó el rastreo de Statcast en los 30 parques de béisbol en 2015, el juego cambió para siempre. Por primera vez, cada bola golpeada podía medirse con precisión: velocidad de salida, ángulo de lanzamiento, velocidad de sprint, tasa de rotación, fuerza del brazo, y docenas de otras variables. Los datos produjeron nuevas estadísticas que predecían mejor el rendimiento futuro que las métricas tradicionales — promedio de bateo esperado (xBA), slugging esperado (xSLG), promedio ponderado de bases (wOBA), porcentaje de barril, y tasa de golpes duros.",
+      "wOBA (promedio ponderado de bases) asigna diferentes valores a diferentes resultados ofensivos basándose en su impacto real en la anotación de carreras. Una base por bolas vale menos que un sencillo, que vale menos que un doble, que vale menos que un jonrón — y wOBA calcula un único número ponderado que lo captura todo. Un wOBA de élite es .400+; el promedio de la liga es típicamente alrededor de .320. A diferencia del promedio de bateo, wOBA da cuenta tanto de la capacidad de llegar a base como del poder, lo que lo convierte en una de las métricas de bateo de un solo número más integrales.",
+      "El porcentaje de barril mide la tasa a la cual un bateador produce lo que Statcast define como la combinación óptima de velocidad de salida y ángulo de lanzamiento: velocidad de salida de 98+ mph con un ángulo de lanzamiento entre 26 y 30 grados, escalando a ángulos de lanzamiento más bajos a velocidades más altas. Los golpes de barril tienen un promedio de bateo de .700+ y un porcentaje de slugging de 2.000+ — esencialmente jonrones extra base automáticos. Las tasas de barril de élite son 15%+; el promedio de la liga es alrededor de 7–8%. La tasa de golpes duros (velocidad de salida 95+ mph) te dice con qué frecuencia un bateador hace contacto genuinamente duro independientemente del ángulo de lanzamiento."
+    ],
+    "technical": {
+      "title": "Cómo los Dodgers Usan Statcast para Construir su Alineación",
+      "body": [
+        "Los Dodgers de Los Ángeles bajo la presidencia de operaciones de béisbol de Andrew Friedman y el manager Dave Roberts han sido entre los adoptadores más agresivos de la analítica de Statcast para la construcción de alineaciones. En lugar de depender de estadísticas tradicionales como promedio de bateo y RBI — que son influenciadas por contexto de equipo — los Dodgers evalúan a los bateadores usando xBA, xSLG, wOBA, tasa de barril, y tasa de golpes duros para identificar el verdadero talento ofensivo y plataforma modelos predictivos para rendimiento futuro.",
+        "Una aplicación específica: los Dodgers usan datos de velocidad de sprint y velocidad de salida para identificar si el promedio de bateo de un bateador está siendo suprimido por mala suerte (xBA alto pero BA bajo) o genuinamente refleja contacto débil. Un bateador con BA de .260 pero xBA de .320 probablemente mejore; un bateador con BA de .300 pero xBA de .240 puede estar destinado a retroceder. Esto permite que la oficina frontal adquiera jugadores subvaluados y evite pagar en exceso por rendimiento impulsado por suerte de contacto insostenible."
+      ]
+    },
+    "incident": {
+      "title": "Los Dodgers Adquieren a Freddie Freeman — Validación de Statcast",
+      "impact": "Cuando los Dodgers firmaron a Freddie Freeman a un contrato de 6 años, $162 millones en noviembre de 2021, su equipo de analítica había modelado extensivamente su perfil de Statcast. Su xBA de élite, tasa alta de barril, y porcentaje de golpes duros excepcional contaban una historia diferente que sus estadísticas tradicionales apenas buenas — los datos dijeron que su piso era más alto de lo que el mercado entendía. La temporada 2022 de Freeman (.325 BA, .407 OBP, .511 SLG) validó la predicción inmediatamente.",
+      "body": [
+        "El perfil de Statcast de Freddie Freeman fue convincente cuando los Dodgers lo firmaron: una tasa de barril de carrera por encima del 11%, tasa de golpes duros consistentemente sobre 45%, y xSLG que superó su slugging real en varias temporadas recientes. Los Bravos de Atlanta no igualaron la oferta de los Dodgers, en parte porque el scouting tradicional pesó su edad (32) más pesadamente. Los modelos de los Dodgers, que se basan fuertemente en métricas de calidad de contacto que envejecen más gracefully que la velocidad o el poder bruto, proyectaron su producción correctamente.",
+        "Freeman continuó teniendo temporadas consecutivas por encima de .300 promedio de bateo, convirtiéndose en el ancla de la alineación de los Dodgers a través del campeonato de la Serie Mundial 2024. Su grand slam walk-off en el Juego 1 — producido en un lanzamiento en su zona de contacto óptima — fue el tipo de ejecución de alto riesgo que el modelo de Statcast había predicho: cuando Freeman obtiene un lanzamiento en su zona, la calidad de contacto es de élite. La adquisición ahora se estudia en círculos de analítica de béisbol como un modelo de cómo los datos de Statcast pueden exponer veteranos subvaluados."
+      ]
+    },
+    "timeline": [
+      "Statcast implementado en los 30 parques de MLB — velocidad de salida y ángulo de lanzamiento rastreados en cada bola golpeada",
+      "Porcentaje de barril publicado públicamente por primera vez — redefine qué significa 'buen contacto'",
+      "El equipo de analítica de los Dodgers comienza a usar modelos de Statcast para valuación de agentes libres",
+      "wOBA y xwOBA se convierten en referencias estándar en cobertura de béisbol dominante",
+      "Dodgers firman a Freeman basados en perfil de Statcast — contrato de $162M validado por datos",
+      "Dodgers ganan la Serie Mundial — construcción de alineación basada en métricas de Statcast da resultados"
+    ],
+    "keyTakeaways": [
+      "wOBA es la mejor métrica de valor de golpeo de un solo número — pondera todos los resultados ofensivos por impacto real en anotación de carreras",
+      "xBA y xSLG filtran la suerte — un bateador con xBA mucho más alto que BA probablemente mejore, no retroceda",
+      "Porcentaje de barril (élite: 15%+) identifica bolas golpeadas con probabilidad automática de jonrón extra base",
+      "Los Dodgers usan datos de calidad de contacto de Statcast para adquirir bateadores subvaluados cuyas estadísticas tradicionales subestiman su talento"
+    ]
+  },
+  "baseball-4-02": {
+    "tagline": "Cada gran turno al bate comienza en la sala de video — para cuando entres en la caja de bateo, ya deberías saber qué viene.",
+    "overview": [
+      "Los bateadores de las Grandes Ligas reciben reportes de exploración detallados sobre cada lanzador oponente antes de cada serie — a veces 3–5 páginas de datos que cubren tasas de uso de lanzamientos por cuenta, divisiones plataforma, tendencias en situaciones específicas y ajustes recientes. Esta preparación no es opcional: es la base de la calidad de los turnos al bate de élite. Un bateador que sabe que un lanzador lanza su slider 80% de las veces en cuentas 0-2 ya ha resuelto una de las variables clave del turno al bate antes de que comience.",
+      "El uso de lanzamientos por cuenta es una de las piezas de información de exploración más accionables. Los lanzadores desarrollan tendencias: un lanzador que lanza su bola rápida 90% de las veces en cuentas 2-0 esencialmente te está diciendo qué lanzamiento buscar en esa cuenta. Un lanzador que lanza su cambio solo 5% de las veces contra bateadores zurdos casi nunca lo usa como un arma de plataforma. Estas tasas, cuando se estudian antes de un juego, permiten a los bateadores estrechar su modelo mental de lanzamientos posibles en cualquier cuenta dada — efectivamente dándose más tiempo para tomar decisiones.",
+      "Las tendencias de alto riesgo son particularmente importantes. ¿Cómo se aproxima un lanzador a los bateadores con corredores en posición de anorar? ¿Van a su mejor lanzamiento o vuelven a las bolas rápidas cuando aumenta la presión? Los datos de Statcast muestran que la mezcla de lanzamientos de muchos lanzadores cambia dramáticamente en situaciones de alto riesgo — y los bateadores que han estudiado esto pueden anticipar el cambio. El personal de exploración avanzada de los Dodgers proporciona estos reportes a los bateadores la noche anterior a cada serie, y las actualizaciones del iPad del día del juego los refinan basándose en la sesión bullpen del abridor."
+    ],
+    "technical": {
+      "title": "Lectura de una Tarjeta de Exploración Pre-Turno al Bate",
+      "body": [
+        "Una tarjeta de exploración real pre-turno al bate para un bateador profesional cubre cuatro categorías principales: arsenal de lanzamientos (qué lanzamientos lanza el lanzador y en qué rangos de velocidad), uso de lanzamientos por cuenta (porcentajes para cada cuenta de 0-0 a cuenta llena), tendencias de ubicación por tipo de lanzamiento (¿va la bola rápida a la mitad interior o exterior? ¿se quiebra la curvatura hacia el bateador o se aleja?), y divisiones plataforma (¿cómo difiere la efectividad del lanzador contra bateadores zurdos vs. diestros).",
+        "El uso práctico de una tarjeta de exploración no es memorizar cada número sino identificar uno o dos patrones accionables por turno al bate. Antes de entrar, un bateador debe saber: (1) qué lanzamiento es más probable en el primer lanzamiento y la cuenta 0-0, (2) qué lanzamiento lanza el lanzador cuando tiene que lanzar un strike (adelante en la cuenta), y (3) a qué va el lanzador cuando quiere obtener un swing-and-miss. Estas tres piezas de información dan forma a todo el modelo mental del turno al bate."
+      ]
+    },
+    "incident": {
+      "title": "La Exploración de Mel Didier y el Jonrón de Kirk Gibson en 1988",
+      "impact": "El explorador de los Dodgers Mel Didier había estudiado a Dennis Eckersley tan a fondo que le dijo a Kirk Gibson antes del juego: 'Te garantizo, compañero, en una cuenta de 3-2 te lanzará ese slider de puerta trasera.' Gibson, apenas capaz de caminar, se sentó en ese lanzamiento en la entrada 9 e impactó el jonrón más famoso en la historia de los Dodgers. Es el ejemplo más dramático de una preparación de reporte de exploración ganando un momento de la Serie Mundial.",
+      "body": [
+        "Mel Didier fue el explorador avanzado de los Dodgers en 1988. Había observado a Eckersley lanzar durante días e identificó un patrón que casi nadie más había notado: en cuentas de 3-2 contra bateadores zurdos, Eckersley consistentemente lanzaba su slider de puerta trasera en la esquina exterior. El lanzamiento era casi imposible de conectar — se quebraba alejándose de los bateadores zurdos en el último momento, luciendo como un ball antes de atrapar la esquina exterior. Eckersley lo había usado para salir de problemas durante toda la temporada.",
+        "Didier informó a toda la alineación de los Dodgers, incluyendo a Kirk Gibson, quien no había jugado en el Juego 1 debido a lesiones en las piernas. Cuando Tommy Lasorda envió a Gibson a la caja de bateo en la entrada 9, Gibson tenía una pieza de información que lo cambió todo: en 3-2, Eckersley lanza el slider de puerta trasera. Gibson fouló lanzamientos para trabajar la cuenta. En el momento en que llegó la cuenta 3-2, Gibson hizo el compromiso mental — y cuando vino el slider, lo conectó para el jonrón de walk-off. El reporte de exploración ganó el juego."
+      ]
+    },
+    "timeline": [
+      "Los equipos de las MLB comienzan a emplear exploradores de tiempo completo — los reportes de exploración se convierten en preparación estándar",
+      "El jonrón de Kirk Gibson — prueba de que un detalle de exploración único puede cambiar una Serie Mundial",
+      "La exploración de video complementa reportes escritos — archivos completos de turnos al bate se ponen disponibles para bateadores",
+      "Integración de datos de Statcast en reportes de exploración — los porcentajes de uso de lanzamientos por cuenta se vuelven precisos",
+      "Actualizaciones de exploración en tiempo real basadas en iPad entregadas en la dugout de los Dodgers entre entradas",
+      "La infraestructura de exploración de los Dodgers citada como factor clave en la preparación de la Serie Mundial"
+    ],
+    "keyTakeaways": [
+      "El uso de lanzamientos por cuenta es el dato de exploración más accionable — sabe qué lanzamiento es más probable en cuentas 2-0, 0-2 y 3-2",
+      "Una tarjeta de exploración pre-turno al bate identifica 2–3 tendencias clave: preferencia de primer lanzamiento, lanzamiento de must-throw-strike, y out-pitch",
+      "Las tendencias de alto riesgo a menudo difieren de las tendencias normales — los lanzadores bajo presión pueden volver a su bola rápida",
+      "El jonrón de Kirk Gibson en 1988 prueba que una sola pieza de exploración avanzada puede decidir un momento de campeonato"
+    ]
+  },
+  "baseball-4-03": {
+    "tagline": "El turno al bate comienza en el círculo de espera — los bateadores de élite ya han decidido qué van a hacer antes de entrar a la caja.",
+    "overview": [
+      "El círculo de espera no es un área de espera — es una zona de preparación. Los bateadores de élite utilizan cada momento en el círculo de espera para lograr múltiples objetivos: rastrear el lanzamiento del pitcher desde un ángulo vivo para calibrar el timing, revisar su información de scouting y refinar el modelo mental para su próximo turno al bate, completar un calentamiento físico que active los músculos utilizados en el swing, y realizar visualización mental — ensayando mentalmente el próximo turno al bate con un resultado exitoso.",
+      "La visualización es una de las herramientas de psicología del desempeño más bien documentadas en los deportes de élite. La investigación con bateadores de las Grandes Ligas muestra consistentemente que la imaginería mental activa vías neuronales similares a la ejecución física — el cerebro ensaya el patrón de movimiento a nivel neurológico. Los bateadores de élite no solo visualizan 'golpear la pelota' sino escenarios específicos y detallados: la ubicación del lanzamiento, la mecánica del swing, el punto de contacto, la trayectoria de la pelota desde el bat. Cuanto más específica y sensorialmente rica sea la visualización, más efectiva será.",
+      "El control de activación — gestionar el nivel de activación fisiológica antes y durante los turnos al bate — es crítico para el desempeño en situaciones de presión. Muy poca activación (plano, sin motivación) y el tiempo de reacción se ralentiza, las decisiones son pasivas. Demasiada activación (pánico, sobre-activación) y el control motor fino se degrada, resultando en rupturas mecánicas bajo presión. El estado de desempeño ideal es lo que los psicólogos del deporte llaman la 'zona individual de funcionamiento óptimo' (IZOF) — diferente para cada bateador. Las técnicas de respiración, las rutinas pre-turno al bate, y los rituales de entrada todos sirven para regular este nivel de activación."
+    ],
+    "technical": {
+      "title": "La Rutina Pre-Turno de David Ortiz — Diseccionada",
+      "body": [
+        "David Ortiz ('Big Papi') fue uno de los mayores bateadores de presión de su era — un promedio de bateo de .455 en juegos de las Series Mundiales. Su rutina pre-turno al bate era famosamente deliberada: en el círculo de espera, realizaría cuatro a seis swings lentos y completos mientras rastreaba al pitcher, luego pasaría los últimos 30 segundos de pie completamente quieto, ojos cerrados, realizando visualización mental. Consistentemente describía visualizar el lanzamiento que estaba buscando y su swing conectando con él antes de entrar.",
+        "El ritual de entrada de Ortiz reforzó aún más su estado mental: señalaría ambos dedos índices hacia el cielo (un reconocimiento religioso), luego ajustaría su casco, golpearía sus pies dos veces, y tomaría un último respiro lento antes de su trigger. Estos rituales no eran superstición — eran anclajes que activaban su estado de desempeño óptimo consistentemente. Sus estudios de frecuencia cardíaca durante los calentamientos previos al juego mostraron que el ritual reducía la activación después de turnos al bate de alta adrenalina y restauraba el enfoque entre lanzamientos."
+      ]
+    },
+    "incident": {
+      "title": "El ALCS de David Ortiz de 2004 — Visualización de Presión en Acción",
+      "impact": "En el ALCS de 2004, David Ortiz conectó hits ganadores en los juegos 4 y 5, manteniendo vivos a los Red Sox en una serie que eventualmente ganarían después de estar 3-0 abajo. Ortiz describió posteriormente su visualización pre-turno al bate en ambos juegos como inusualmente clara y específica — había visto el lanzamiento que iba a golpear antes de entrar. Su bateo de presión se convirtió en un caso de estudio en la literatura de psicología del deporte sobre visualización y desempeño.",
+      "body": [
+        "El sencillo ganador de Ortiz en el juego 4 del ALCS de 2004 llegó a las 12:22 AM en la entrada 12, después de que los Red Sox habían estado a un strike de la eliminación. Su rutina pre-turno al bate — incluyendo la visualización de impulsar un lanzamiento específico hacia el centro — fue descrita por los compañeros de equipo observando desde la banca como visiblemente calmada y sin prisas a pesar del momento. 'Parecía que se estaba preparando para una sesión de práctica de bateo,' dijo posteriormente Manny Ramirez. 'Ese es Big Papi.'",
+        "Los psicólogos del deporte que estudiaron el desempeño de Ortiz en situaciones de alto riesgo notaron que su rutina pre-turno al bate era excepcionalmente consistente — los mismos movimientos físicos, la misma duración de visualización, el mismo ritual de entrada independientemente de la situación del juego. Esta consistencia previno el pico de ansiedad de desempeño que causa que otros bateadores cambien su mecánica o abandonen su enfoque en momentos de presión. La conclusión de la investigación: los rituales pre-turno al bate son más valiosos no por ninguna razón mística sino porque crean el mismo estado mental cada turno al bate — eliminando la degradación del desempeño específica de la situación."
+      ]
+    },
+    "timeline": [
+      "La psicología del deporte entra formalmente en el béisbol profesional — el entrenamiento de visualización comienza con equipos de élite",
+      "Se publica la investigación de la zona individual de funcionamiento óptimo (IZOF) — el control de activación se vuelve convencional",
+      "Los hits ganadores del ALCS de David Ortiz — la visualización pre-turno al bate entra en la conversación sobre bateo de presión",
+      "Los Dodgers contratan entrenadores de habilidades mentales de tiempo completo — las rutinas pre-turno al bate se vuelven protocolo estructurado",
+      "Las herramientas de biofeedback (monitores HRV) comienzan a rastrear los niveles de activación durante los turnos al bate a nivel profesional",
+      "La rutina de la Serie Mundial de Freddie Freeman — preparación calmada y deliberada a pesar de la lesión grave en el tobillo"
+    ],
+    "keyTakeaways": [
+      "El círculo de espera es una zona de preparación — úsalo para rastrear swings, revisión mental, visualización, y regulación de activación",
+      "La visualización activa las mismas vías neuronales que la ejecución física — la imaginería mental específica y sensorialmente rica mejora el desempeño",
+      "Los rituales pre-turno al bate crean estados mentales consistentes — previenen picos de ansiedad de degradar la mecánica en situaciones de presión",
+      "El control de activación (respiración, claves físicas) es una habilidad entrenable — los bateadores de élite alcanzan su IZOF consistentemente en todas las situaciones del juego"
+    ]
+  },
+  "baseball-4-04": {
+    "tagline": "Los golpes decisivos no son un mito — es una habilidad, y se puede desarrollar con el enfoque y la preparación correctos.",
+    "overview": [
+      "Las situaciones de alto impacto — corredores en posición de anotación, entradas finales, juegos cerrados — son los momentos que definen carreras y temporadas. El concepto de 'decisivo' ha sido ampliamente debatido en la analítica del béisbol. La investigación inicial sugería que el desempeño decisivo era aleatorio y no podía predecirse de manera confiable. Investigaciones más recientes, incluyendo estudios de Statcast sobre la disciplina en el plato y la calidad del contacto en situaciones de alto impacto, muestran que los bateadores élite mantienen una calidad de contacto más alta y un mejor enfoque en situaciones de presión en comparación con los bateadores promedio — sugiriendo que la preparación mental y la consistencia del enfoque son genuinamente habilidades decisivas.",
+      "¿Cómo ajustan los bateadores élite su enfoque con corredores en posición de anotación (RISP)? Los datos revelan que los mejores bateadores decisivos no cambian significativamente su swing — cambian su enfoque mental. Se vuelven más selectivos, esperando un lanzamiento en su zona óptima en lugar de expandir la zona por ansiedad. Priorizan poner la bola en juego sobre golpear para poder. Aceptan la base por bolas como un resultado positivo en lugar de forzar el asunto. Esencialmente, el enfoque decisivo es una versión mejorada de la disciplina ideal en el plato.",
+      "El grand slam de Freddie Freeman en la Serie Mundial 2024 Juego 1 es el ejemplo definitivo moderno de golpe decisivo ejecutado perfectamente. Abajo 3-2 en la entrada 10 contra Nestor Cortes, con las bases llenas, un tobillo esguinzado, y un momento postemporada masivo, Freeman trabajo el conteo y luego impulso una bola rápida sobre la cerca del jardín derecho. El desglose golpe por golpe de ese turno al bate es una clínica sobre cómo la preparación, la disciplina del enfoque, y la consistencia mecánica producen el golpe de más alto impacto en la historia reciente de los Dodgers."
+    ],
+    "technical": {
+      "title": "El Grand Slam de Freddie Freeman en la Serie Mundial 2024 — Golpe por Golpe",
+      "body": [
+        "Golpe 1: Slider, bajo y afuera — Bola 1. Freeman deja pasar el lanzamiento. Ha estudiado a Cortes y sabe que su slider se desvanece bajo y afuera. No está bateando en un conteo favorable al lanzador. Golpe 2: Bola rápida de cuatro costuras, altura del cinturón en la mitad interna — Toque de falta. Freeman está en el lanzamiento pero solo la toca ligeramente. Ahora sabe que Cortes está atacando la mitad interna. Golpe 3: Cambio, desapareciendo — Bola 2. Freeman se mantiene atrás y deja pasar. Su disciplina ha llevado el conteo a 2-1.",
+        "Golpe 4: Bola rápida de cuatro costuras, mitad interna, a la altura del cuello — Freeman conecta. La velocidad de salida es de 100.4 mph a 28° ángulo de lanzamiento. Un barril. La bola vuela sobre la cerca del jardín derecho, golpeando el poste de falta para un grand slam decisivo. La secuencia cuenta la historia: Freeman identificó el patrón de bola rápida (Cortes volvía a él después de que el cambio falló), se preparó para el lanzamiento en la mitad interna, y ejecutó el swing idéntico que había practicado. Sin ajuste, sin pánico, sin zona expandida — solo el swing, en el lanzamiento que quería."
+      ]
+    },
+    "incident": {
+      "title": "El Grand Slam Decisivo de Freddie Freeman — 25 de Octubre de 2024",
+      "impact": "El grand slam decisivo de Freddie Freeman en la parte baja de la entrada 10 del Juego 1 de la Serie Mundial le dio a los Dodgers una victoria 6-3 y estableció el tono para un eventual campeonato de la Serie Mundial. Freeman, jugando a través de un tobillo severamente esguinzado, produjo uno de los turnos al bate decisivos más emocionantes y técnicamente excelentes en la historia postemporada.",
+      "body": [
+        "La escena parecía escrita para drama: Freddie Freeman, quien había estado cojeando a través de la postemporada con un tobillo muy esguinzado, llegó al plato en la entrada 10 con las bases llenas y su equipo rezagado 3-2. Ya había producido un golpe de ventaja en el Juego 1 antes de que los Yankees recuperaran la ventaja. Ahora, enfrentando al cerrador de los Yankees Nestor Cortes, necesitaba un golpe con todo en juego.",
+        "El enfoque de Freeman fue una clínica en disciplina decisiva. Dejó pasar dos lanzamientos fuera de su zona — un slider y un cambio — sin inmutarse, ambas bolas. Cortes volvió con su bola rápida en la mitad interna, y Freeman la impulso sobre el poste de falta del jardín derecho para un grand slam. La erupción de la multitud del Dodger Stadium fue una de las más fuertes jamás registradas en el parque. Freeman lloró mientras daba la vuelta a las bases — el peso físico y emocional del momento lo abrumaba. Los Dodgers continuaron ganando la Serie Mundial en cinco juegos."
+      ]
+    },
+    "timeline": [
+      "El jonrón de Kirk Gibson en la Serie Mundial 1988 — la preparación y la ejecución decisiva definen un campeonato",
+      "Los jonrones decisivos de David Ortiz en la ALCS — establece un estándar moderno para golpe decisivo",
+      "Statcast comienza a medir la consistencia del enfoque en situaciones de alto impacto",
+      "El MVP de NLCS y Serie Mundial de Corey Seager — el golpe decisivo de los Dodgers entrega el primer título en 32 años",
+      "El grand slam decisivo de Freddie Freeman, Juego 1 — el momento decisivo característico de la década",
+      "Los Dodgers ganan la Serie Mundial — el desempeño decisivo citado como factor decisivo en victoria de 5 juegos"
+    ],
+    "keyTakeaways": [
+      "Los bateadores decisivos no expanden su zona bajo presión — se vuelven más selectivos, no menos",
+      "Los mejores turnos al bate decisivos usan preparación: saber qué lanzamiento viene y ejecutar la misma mecánica de siempre",
+      "El grand slam de Freeman 2024 siguió un enfoque de manual: dos disciplinas en bolas, luego atacar la bola rápida en su zona",
+      "La consistencia del enfoque — no cambios de swing — separa a los ejecutantes decisivos élite de los bateadores que se presionan bajo presión"
+    ]
+  },
+  "baseball-4-05": {
+    "tagline": "El emparejamiento de zurdería entre lanzador y bateador es la variable estratégica más antigua en el béisbol — y todavía impulsa decisiones de alineación cada noche.",
+    "overview": [
+      "La ventaja de platoon es uno de los efectos mejor documentados en el béisbol. Los bateadores zurdos golpean significativamente mejor contra lanzadores diestros — y viceversa — porque la bola se desvía de un lanzador del mismo lado (que los bateadores encuentran más difícil) versus hacia el bateador desde un lanzador del lado opuesto (que los bateadores encuentran más fácil de percibir y seguir). El efecto es grande: un platoon split típico es una ventaja de 40–60 puntos de OPS para el emparejamiento de manos opuestas.",
+      "Los gerentes de las Grandes Ligas han construido estrategias de construcción de alineaciones alrededor de ventajas de platoon durante más de un siglo. Los Dodgers bajo Dave Roberts han sido particularmente agresivos con decisiones basadas en platoon: usando bateadores específicos contra relevistas de cierta zurdería, desplegando pares de platoon en ciertas posiciones (donde dos bateadores dividen el tiempo de juego según la zurdería del lanzador contrario), y apilando bateadores zurdos contra lanzadores derechos para maximizar la ventaja general de alineación.",
+      "El switch-hitting es la solución definitiva de platoon — un switch-hitter puede batear desde cualquier lado del plato, eliminando completamente la desventaja de zurdería. Los verdaderos switch-hitters de élite como Mickey Mantle, Pete Rose, Chipper Jones, y la estrella de los Dodgers Manny Ramirez (quien era únicamente zurdo pero enfrentó a lanzadores del mismo lado mejor que la mayoría) representan un conjunto de habilidades raro. La mecánica del switch-hitting requiere desarrollar dos caminos de swing completamente separados e independientes — un desafío que la mayoría de los bateadores encuentran que requiere años para desarrollar efectivamente."
+    ],
+    "technical": {
+      "title": "El Efecto de Platoon — Por Qué la Zurdería Importa Mecánicamente",
+      "body": [
+        "La base mecánica de la ventaja de platoon es la trayectoria del lanzamiento relativa a la línea de visión del bateador. Contra un lanzador de mano opuesta, la bola comienza desde el mismo lado del plato que el hombro trasero del bateador y se mueve hacia el bateador mientras se acerca al plato. Esto permite al bateador seguir la bola con ambos ojos desde el punto más temprano posible en su vuelo, maximizando la ventana visual para el reconocimiento de lanzamientos.",
+        "Contra un lanzador del mismo lado de la mano, la bola comienza desde el lado frontal del bateador y se desvía hacia o se aleja de ellos. El bateador debe seguir la bola a través de su campo de visión, perdiendo tiempo de lectura temprana y haciendo que los lanzamientos con movimiento sean particularmente difíciles. Un curveball de mano derecha que se desvía de un bateador zurdo es casi imposible de golpear con autoridad — el lanzamiento comienza en la línea de visión del bateador pero escapa tarde. Esta es la razón por la que los zurdos golpean mejor contra los derechos: el lanzamiento con movimiento del mismo lado se desvía hacia el bateador en lugar de alejarse."
+      ]
+    },
+    "incident": {
+      "title": "Los Dodgers 2020 — La Gestión de Platoon Gana un Título",
+      "impact": "La carrera de la Serie Mundial de los Dodgers 2020 fue definida por la gestión meticulosa de platoon. El gerente Dave Roberts hizo más de 140 ajustes de alineación durante la carrera de playoffs basados en emparejamientos de zurdería, desplegando Chris Taylor, AJ Pollock, y otros estratégicamente según la zurdería del lanzador contrario. El resultado fue una de las alineaciones de postemporada más precisas analíticamente en la historia de los Dodgers.",
+      "body": [
+        "En la Serie Mundial de la burbuja 2020, los Dodgers enfrentaron un equipo de Tampa Bay Rays que en sí mismo era famoso por cambios agresivos de lanzadores y explotación de platoon. Dave Roberts respondió tratando cada turno al bate como un emparejamiento específico de zurdería — sacando jugadores a mitad de la entrada por ventajas de platoon, utilizando bateadores de emergencia contra relevistas específicos, y ajustando su tarjeta de alineación diariamente según el despliegue de bullpen proyectado de los Rays. La profundidad de la banca de los Dodgers — construida específicamente para flexibilidad de platoon — fue un arma estratégica.",
+        "El título 2020 validó la filosofía de platoon de los Dodgers. El OPS combinado de sus bateadores en la Serie Mundial fue .744 — significativamente por encima de su marca de temporada regular — en parte porque Roberts había ingeniado casi cada emparejamiento significativo para favorecer la zurdería del bateador de los Dodgers. En una serie de siete juegos donde cuatro juegos fueron decididos por una o dos carreras, el efecto acumulativo de ventajas de platoon de 50 puntos en turnos al bate clave fue decisivo."
+      ]
+    },
+    "timeline": [
+      "La construcción de alineación de los Dodgers de Brooklyn usa lógica de platoon temprana — el gerente Alston apila bateadores zurdos vs. PLD",
+      "El efecto de platoon es cuantificado estadísticamente — primeros datos de división de OPS publicados confirman la ventaja",
+      "Los equipos de la era Moneyball comienzan pares de platoon agresivos — Oakland A's pionero en construcción de lista basada en división",
+      "Comienza la era de Dave Roberts — Dodgers se convierten en el equipo de platoon más agresivo en la NL",
+      "Los Dodgers ganan la Serie Mundial — la gestión de platoon citada como ventaja táctica clave",
+      "Los Dodgers usan datos de platoon para desplegar la banca óptimamente en la carrera de campeonato de la Serie Mundial"
+    ],
+    "keyTakeaways": [
+      "Los emparejamientos de manos opuestas proporcionan una ventaja de 50–60 puntos de OPS — un efecto masivo que impulsa decisiones de alineación",
+      "La base mecánica: los lanzamientos con movimiento de mano opuesta se desvían hacia el bateador, dándole una ventana de seguimiento visual más grande",
+      "Los Dodgers bajo Dave Roberts están entre los gerentes de alineación basados en platoon más agresivos en la historia del béisbol",
+      "El switch-hitting elimina la desventaja de platoon pero requiere desarrollar dos caminos de swing completamente independientes"
+    ]
+  },
+  "baseball-4-06": {
+    "tagline": "El futuro del desarrollo del golpeo ya está aquí — y se está construyendo en las mismas instalaciones de entrenamiento de primavera de Arizona donde los lanzadores aprendieron a lanzar.",
+    "overview": [
+      "La cámara de alta velocidad Edgertronic (capaz de 2,000 fotogramas por segundo, en comparación con el video de transmisión a 30fps) ha transformado cómo los equipos estudian la mecánica del lanzamiento y el golpeo. Cuando una Edgertronic captura el lanzamiento de un lanzador a 2,000fps, cada detalle se vuelve visible: la posición exacta de los dedos cuando la pelota sale de la mano, la orientación de las costuras en el lanzamiento, el eje de rotación, y la dirección inicial del vuelo de cada lanzamiento. Para los bateadores, estudiar este metraje les permite identificar pistas de lanzamiento específicas que son invisibles en video en tiempo real o de transmisión — efectivamente dándoles un 'código de trucos' para el reconocimiento de lanzamientos.",
+      "La tecnología Rapsodo (ahora estándar en sistemas de MLB y ampliamente disponible en los niveles universitario y juvenil avanzado) mide datos de vuelo de la pelota con radar y seguimiento de cámara: velocidad de rotación, eje de rotación, velocidad del lanzamiento, desplazamiento de quiebre, y punto de lanzamiento. Para los lanzadores, estos datos ayudan a optimizar el diseño del lanzamiento. Para los bateadores que se preparan para enfrentar a lanzadores específicos, los datos de Rapsodo permiten la preparación contra las características exactas de rotación de un lanzador — algunos equipos ahora construyen escenarios de reconocimiento de lanzamientos en VR específicamente ajustados a los perfiles de Rapsodo de los lanzadores opositores.",
+      "Los simuladores de golpeo de realidad virtual — plataformas como WIN Reality, Rapsodo VR, y sistemas bajo licencia de MLB utilizados por equipos — presentan a los bateadores escenarios inmersos de reconocimiento de lanzamientos en primera persona. Las primeras investigaciones sobre entrenamiento de golpeo en VR mostraron mejoras significativas en la velocidad y precisión del reconocimiento de lanzamientos después de 20–30 horas de sesión. Algunos equipos de MLB ahora utilizan entrenamiento en VR para preparar bateadores para las mezclas de lanzamientos específicas de lanzadores antes de una serie, permitiéndoles 'enfrentar' al lanzador cientos de veces antes del primer turno al bate real."
+    ],
+    "technical": {
+      "title": "Cómo las Cámaras Edgertronic Cambian la Preparación del Reconocimiento de Lanzamientos",
+      "body": [
+        "El video de transmisión estándar (30fps) muestra un lanzamiento como un borrón desde el lanzamiento hasta el contacto. A 2,000fps, cada rotación de la pelota es visible — un fastball de cuatro costuras muestra exactamente cuatro costuras rotando de punta a punta; una curva muestra la rotación de topspin en cámara lenta; el giro giroscópico inclinado de un slider es inconfundible. Los bateadores que estudian metraje de Edgertronic de lanzadores específicos desarrollan una biblioteca mental de pistas de lanzamiento visuales que los ayudan a identificar lanzamientos más temprano en el vuelo — antes del punto de túnel.",
+        "El equipo de desarrollo de los Dodgers ha construido bibliotecas de Edgertronic estandarizadas para cada lanzador opuesto en la División Oeste de la Liga Nacional y los playoffs de la Liga Nacional, catalogando el punto de lanzamiento de cada lanzador, la posición de los dedos, y la orientación de las costuras por tipo de lanzamiento. Antes de una serie, los bateadores ven 10–15 minutos de metraje de cámara lenta Edgertronic de los agarres de lanzamiento específicos y los puntos de lanzamiento del abridor opuesto. Cuando suben a la placa en el juego actual, estos patrones visuales están precargados y accesibles — mejorando la velocidad del reconocimiento de lanzamientos de manera medible."
+      ]
+    },
+    "incident": {
+      "title": "La Revisión Tecnológica de los Dodgers en 2019 — Construyendo el Laboratorio de Desarrollo Moderno",
+      "impact": "En 2019, los Dodgers completaron una inversión importante en infraestructura tecnológica en su instalación de entrenamiento de primavera Camelback Ranch, agregando cámaras Edgertronic en múltiples ángulos en cada jaula de bateo y montículo de lanzamiento, unidades Rapsodo en cada montículo y en cada jaula, y estaciones tempranas de golpeo en VR. La instalación se convirtió en uno de los centros de desarrollo de jugadores más avanzados tecnológicamente en los deportes profesionales.",
+      "body": [
+        "La expansión de Camelback Ranch en 2019 representó el compromiso de los Dodgers de integrar la tecnología en cada fase del desarrollo de jugadores. Las cámaras Edgertronic fueron instaladas en ángulos de placa de home, detrás del lanzador, y desde el ángulo de la caseta de primera base en cada jaula de bateo — dando a los entrenadores y jugadores análisis simultáneo en cámara lenta de múltiples ángulos durante cada sesión de práctica. Los entrenadores podían acceder a metraje de 2,000fps del swing de un bateador o del lanzamiento de un lanzador dentro de segundos de cada rep.",
+        "Los resultados fueron medibles: los jugadores de las ligas menores que se entrenaron en el programa tecnológico de Camelback Ranch mostraron cronogramas de promoción más rápidos y tasas de desempeño más altas de Statcast en su primer ascenso a MLB en comparación con cohortes anteriores a 2019. El sistema de ligas menores de los Dodgers, ya entre los más productivos en el béisbol, se volvió aún más efectivo en traducir el desempeño de práctica a resultados de juego. La instalación ahora se menciona como el estándar contra el cual se mide la infraestructura de desarrollo de jugadores de otras organizaciones."
+      ]
+    },
+    "timeline": [
+      "Las primeras cámaras Edgertronic aparecen en laboratorios de investigación de MLB — mecánica de lanzamiento estudiada a alta velocidad",
+      "Rapsodo se vuelve comercialmente disponible — se expande desde programas profesionales a universitarios y juveniles avanzados",
+      "Las primeras plataformas de reconocimiento de lanzamientos en VR (WIN Reality) ingresan a programas de desarrollo de MLB",
+      "Los Dodgers completan la revisión tecnológica de Camelback Ranch — instalación de desarrollo de MLB más avanzada",
+      "Se publica investigación de golpeo en VR — protocolo de 25 sesiones en VR muestra mejora significativa en el reconocimiento de lanzamientos",
+      "Protocolo completo de Edgertronic y VR acreditado en la preparación de postemporada de los Dodgers para el campeonato de la Serie Mundial"
+    ],
+    "keyTakeaways": [
+      "Las cámaras Edgertronic a 2,000fps revelan pistas de lanzamiento específicas invisibles al ojo desnudo o video de transmisión",
+      "Rapsodo rastrea la velocidad de rotación, el eje de rotación, y el quiebre con precisión — permitiendo entrenamiento en VR ajustado a los perfiles de lanzamiento reales específicos de los lanzadores opositores",
+      "Los simuladores de golpeo en VR permiten a los bateadores 'enfrentar' a un lanzador específico cientos de veces antes del primer turno al bate real en el juego",
+      "La infraestructura tecnológica de Camelback Ranch de los Dodgers se encuentra entre las más avanzadas en los deportes profesionales"
+    ]
+  },
+  "baseball-4-07": {
+    "tagline": "Un promedio de bateo de .240 de tu receptor y un promedio de bateo de .240 de tu primera base representan niveles completamente diferentes de valor ofensivo — el contexto lo es todo.",
+    "overview": [
+      "No todas las posiciones son iguales en sus requisitos ofensivos. Las demandas defensivas en cada posición crean un equilibrio: cuanto más difícil y exigente sea la posición defensiva, más bajo es el estándar ofensivo que el jugador necesita alcanzar para seguir siendo considerado un contribuyente valioso del roster. Este principio se formaliza en el análisis de béisbol como ajuste posicional — un peso numérico sumado o restado de las estadísticas ofensivas de un jugador al calcular su valor general (WAR).",
+      "El espectro va desde receptor (máxima demanda defensiva, mínima expectativa ofensiva) hasta primera base y bateador designado (mínima o nula demanda defensiva, máximo requisito ofensivo). Un receptor que batea .240 con 15 home runs a menudo se considera un contribuyente ofensivo fuerte en la posición porque los receptores que pueden batear con autoridad son raros. Un primera base que batea .240 con 15 home runs generalmente está por debajo del estándar ofensivo posicional — los equipos esperan significativamente más producción de una posición sin prima defensiva.",
+      "Los Dodgers evalúan el ofensivo específico de posición como un componente central de la construcción del roster. Sus modelos analíticos aplican bases de wRC+ (weighted runs created plus, una métrica ofensiva ajustada por parque escalada a 100 = promedio de liga) diferentes para cada posición. Un receptor a 90 wRC+ es productivo; una primera base a 90 wRC+ es un pasivo. Un shortstop a 100 wRC+ es excepcional; un DH a 100 wRC+ es apenas promedio. Entender este marco permite a los equipos construir mejores rosters y a los bateadores contextualizar su propia producción de manera realista."
+    ],
+    "technical": {
+      "title": "Bases Ofensivas Posicionales — El Marco de los Dodgers",
+      "body": [
+        "Las bases ofensivas posicionales utilizadas en el análisis moderno reflejan la producción histórica promedio en cada posición, ajustada por el valor defensivo que el jugador contribuye. Receptor es la posición defensiva más exigente físicamente — requiere bloquear, enmarcar, lanzar y absorber impactos durante nueve entradas. Los receptores que también pueden batear, como Mike Piazza (.308 de promedio, 427 HR en carrera), están entre los jugadores más raros y valiosos en la historia del béisbol precisamente porque combinar la defensa de élite en receptor con ofensivo de élite es tan difícil.",
+        "La estrategia de DH es el extremo opuesto. En la Liga Americana y ahora la Liga Nacional, el bateador designado batea en lugar del lanzador sin responsabilidad defensiva. Los equipos típicamente despliegan su mejor bateador puro en el rol de DH, y las expectativas ofensivas en DH son las más altas de cualquier posición. La temporada 2024 de Shohei Ohtani — 54 HR como DH de los Dodgers (mientras se recuperaba de la cirugía de Tommy John como lanzador) — representa el ápice de lo que la producción de DH puede parecer. Cuando los Dodgers asignan un jugador a DH, están esperando producción ofensiva de élite con cero contribución defensiva."
+      ]
+    },
+    "incident": {
+      "title": "Mike Piazza — El Mejor Receptor Ofensivo en la Historia",
+      "impact": "Mike Piazza fue reclutado por los Dodgers en la ronda 62 del draft de 1988 como un favor a su padre — esencialmente la última selección del draft. Se convirtió en el mejor receptor ofensivo en la historia del béisbol: un promedio de carrera de .308, 427 home runs en carrera, y un OPS de .922 — números que lo harían un primera base de élite o jardinero izquierdo. Desde la posición de receptor, son incomprensibles.",
+      "body": [
+        "El contexto posicional del ofensivo de Piazza es asombroso. Mientras jugaba una de las posiciones defensivas más exigentes físicamente del béisbol — agacharse detrás del plato para 120+ juegos por temporada — mantuvo la producción ofensiva de los mejores bateadores de poder del juego. Su temporada de novato en 1993 (.318 BA, 35 HR, 112 RBI) inmediatamente lo estableció como el mejor receptor ofensivo que el juego había visto desde la era de Roy Campanella en los Dodgers de Brooklyn.",
+        "El swing de Piazza fue perfectamente diseñado para sus fortalezas: un bateador zurdo de tiro con velocidad excepcional del bate, atacaba los lanzamientos rápidos de la mitad interna con autoridad y los impulsaba hacia el lado izquierdo con una velocidad de salida alta. Su enfoque no fue sutil — era un cazador de lanzamientos rápidos que aceptaba strikeouts a cambio de una calidad de contacto devastadora cuando obtenía el lanzamiento que buscaba. Su perfil de Statcast, modelado retrospectivamente por investigadores de análisis, sugiere que habría tenido tasas de barril superiores al 18% en la era moderna — de élite para cualquier posición."
+      ]
+    },
+    "timeline": [
+      "Roy Campanella gana el MVP de la NL — el receptor de los Dodgers establece que los receptores pueden ser fuerzas ofensivas",
+      "Mike Piazza hace su debut como Dodger — comienza la mejor carrera de receptor ofensivo en la historia",
+      "La era de Moneyball reformula las bases ofensivas posicionales — wRC+ se convierte en comparación estándar",
+      "El bateador designado llega a la NL en juegos interligas — barra ofensiva de DH formalizada",
+      "DH adoptado permanentemente en la NL — cambia la construcción del roster y la estrategia posicional en toda la liga",
+      "Ohtani en DH batea 54 HR — redefine lo que es posible desde la posición de bateador designado"
+    ],
+    "keyTakeaways": [
+      "Un receptor que batea .240 con poder moderado puede ser un contribuyente ofensivo excelente — el contexto posicional lo es todo",
+      "Las bases de wRC+ varían por posición: un 90 wRC+ es excelente para receptor; un 90 wRC+ es un pasivo en primera base o DH",
+      "La carrera de Mike Piazza es el ejemplo más claro de cómo un jugador puede redefinir las expectativas ofensivas en la posición defensiva más exigente",
+      "Los Dodgers evalúan a cada bateador contra la base ofensiva de su posición — no contra un estándar de bateo universal"
+    ]
+  },
+  "baseball-4-08": {
+    "tagline": "Lo más difícil del coaching de bateo es saber qué no decir — corregir lo incorrecto en el momento equivocado puede atrasar a un bateador meses.",
+    "overview": [
+      "El coaching de bateo es una forma de arte con una profunda división filosófica. Las dos escuelas de pensamiento dominantes — representadas históricamente por Ted Williams y Charlie Lau — ofrecen marcos fundamentalmente diferentes para lo que el swing debe hacer y cómo enseñarlo. Williams, el mayor bateador puro de su era (.406 en 1941), creía en un plano de swing hacia arriba, atacando la mitad interior, y manejo de zona basado en la ubicación del lanzamiento en relación con dónde un bateador puede impulsar mejor la bola. Lau, el innovador del coaching que transformó a George Brett y posteriormente trabajó con muchos bateadores profesionales, enfatizaba la transferencia de peso hacia el pie delantero, extensión a través de la bola hacia el lanzador, y un remate con una mano en el seguimiento.",
+      "La instrucción moderna de bateo ha integrado en gran medida ambas escuelas mientras añade evidencia de Statcast. El consenso actual: Williams tenía razón sobre el plano del swing (igualar el ángulo descendente del lanzamiento con un swing ligero hacia arriba, no un corte hacia abajo), y Lau tenía razón sobre la transferencia de peso (compromiso total al lado delantero a través de la zona de contacto) y extensión (extensión completa del brazo a través de la bola). El debate es menos sobre correcto versus incorrecto y más sobre qué aspectos de cada enfoque ayudan a bateadores específicos con problemas específicos.",
+      "La filosofía de desarrollo de jugadores de los Dodgers bajo coordinadores de bateo como Robert Van Scoyoc y Rachel Balkovec (que trabajó con su sistema de ligas menores) está basada en evidencia: los datos de Statcast de cada bateador informan qué priorizar en las sesiones de práctica, los cambios mecánicos se realizan incrementalmente en lugar de wholesale, y el objetivo es siempre mejorar las métricas de calidad de contacto en lugar de imponer un estilo visual específico al swing. Este enfoque ha ayudado a los Dodgers a desarrollar u optimizar bateadores en una gama más amplia de tipos de cuerpo y estilos de swing que cualquier era anterior."
+    ],
+    "technical": {
+      "title": "Qué Corregir vs. Qué Dejar Intacto — La Habilidad de Coaching Más Importante",
+      "body": [
+        "El error más peligroso que puede cometer un entrenador de bateo juvenil es identificar una peculiaridad del swing que en realidad está ayudando al bateador y corregirla. Mel Ott, quien bateó 511 jonrones en su carrera, tenía un levantamiento de pierna alto y dramático que todo entrenador convencional habría intentado corregir. El swing temprano de Hank Aaron tenía un temblequeo severo en su carga que la enseñanza mecánica convencional habría eliminado. Ambas peculiaridades eran idiosincráticas pero funcionales — eran repetibles, consistentes, y parte de lo que hizo que esos bateadores fueran grandes.",
+        "El marco para decidir qué corregir: (1) ¿Es la peculiaridad consistente — hace el bateador lo mismo cada swing? Si sí, puede ser inofensiva incluso si se ve no convencional. (2) ¿Está la peculiaridad causando un problema identificable con los resultados — tarde en bolas rápidas, contacto débil en pitches externos, pop-ups consistentes? Si sí, puede necesitar corrección. (3) ¿Puede el bateador hacer la corrección sin perder lo que hace funcionar su swing? A veces una 'corrección' rompe un sistema que funciona. El enfoque de los Dodgers: usar datos de Statcast para identificar problemas de calidad de contacto, rastrear las causas mecánicas, y hacer el cambio mínimo necesario."
+      ]
+    },
+    "incident": {
+      "title": "Robert Van Scoyoc y Mookie Betts — Filosofía de Hitting de los Dodgers en Acción",
+      "impact": "Cuando el coordinador de bateo Robert Van Scoyoc comenzó a trabajar con Mookie Betts después del intercambio de 2020 a Los Ángeles, hizo una opción deliberada de cambiar lo menos posible sobre la mecánica de Betts mientras se enfocaba en patrones de reconocimiento de lanzamientos y optimización del enfoque. El resultado: Betts ganó una Serie Mundial en 2020 y evolucionó hacia el jugador ofensivo más completo que los Dodgers habían tenido en una generación.",
+      "body": [
+        "El enfoque de Van Scoyoc con Betts ejemplifica la filosofía de desarrollo de jugadores de los Dodgers: estudió extensivamente los datos de Statcast de Betts, identificó que la calidad de contacto de Betts ya era élite, y concluyó que el objetivo no era corregir el swing sino optimizar las situaciones en las que la calidad de contacto élite de Betts se expresaba. Esto significó trabajar en reconocimiento de lanzamientos — ayudando a Betts a identificar sliders más temprano, específicamente de lanzadores con los que históricamente había luchado — y refinar su enfoque en dos strikes para proteger la zona sin comprometer su agresividad de primer lanzamiento.",
+        "El principio del cambio mínimo fue aplicado deliberadamente. Van Scoyoc identificó un ajuste mecánico en la configuración de dos strikes de Betts — una deriva de manos leve — y lo corrigió a través de trabajo de tee dirigido. Todo lo demás fue dejado intacto. Las temporadas de Betts de 2020 a 2024 mostraron mejora constante en métricas de calidad de contacto a pesar del alcance muy pequeño del cambio mecánico. La lección: los grandes bateadores a menudo necesitan su enfoque y reconocimiento de lanzamientos mejorados más que su mecánica de swing, y un buen entrenador conoce la diferencia."
+      ]
+    },
+    "timeline": [
+      "Ted Williams publica 'The Science of Hitting' — el libro de bateo más influyente del siglo XX",
+      "George Brett batea .390 bajo la instrucción de Charlie Lau — valida la filosofía de transferencia de peso",
+      "Tony Gwynn cita a Williams como influencia primaria — las dos escuelas no son mutuamente excluyentes",
+      "Statcast comienza a proporcionar evidencia objetiva sobre qué enfoques mecánicos producen mejores resultados",
+      "El enfoque de Robert Van Scoyoc con Betts establece la filosofía de desarrollo de cambio mínimo de los Dodgers",
+      "El personal de desarrollo de los Dodgers acreditado por optimizar 6+ bateadores a la mejor calidad de contacto de Statcast en carrera"
+    ],
+    "keyTakeaways": [
+      "Charlie Lau y Ted Williams representan enfoques diferentes pero complementarios — el coaching moderno integra ambos",
+      "El error de coaching más peligroso es corregir una peculiaridad que en realidad está funcionando — la consistencia importa más que la convención visual",
+      "El principio de cambio mínimo de los Dodgers: usar datos para identificar el problema, rastrearlo a la causa mecánica raíz, hacer el cambio más pequeño posible",
+      "Los grandes bateadores a menudo necesitan su enfoque y reconocimiento de lanzamientos mejorados más que su mecánica de swing — los buenos entrenadores conocen la diferencia"
+    ]
+  },
+  "baseball-4-09": {
+    "tagline": "Cada gran bateador de los Dodgers enseña una lección diferente sobre el arte — y el currículo completo abarca casi 80 años de evolución del béisbol.",
+    "overview": [
+      "La franquicia de los Dodgers ha producido algunos de los bateadores más instructivos técnicamente en la historia del béisbol — cada uno encarnando un principio diferente del dominio del bateo. Jackie Robinson (1947–1956) fue el bateador completo: control de bate, disciplina, conciencia situacional, bunts, golpes rápidos, batazos de poder — todo desde una posición de presión externa inimaginable. Duke Snider fue el arquetipo del bateador de poder zurdo que tira hacia el jardín, con una carga corta y rotación de cadera explosiva que produjo cuatro jonrones en dos Series Mundiales diferentes. Mike Piazza fue el especialista en poder de tiro hacia el jardín zurdo cuya velocidad de bate elevada y plano de upper-cut contra lanzamientos rápidos lo hicieron el receptor ofensivo más grande de la historia.",
+      "Adrian Beltre (1998–2004 con los Dodgers) fue la anomalía — un bateador diestro que podía generar poder en lanzamientos por debajo de sus rodillas a través de una flexibilidad de cadera extraordinaria. Manny Ramirez, Dodger de 2008 a 2010, fue uno de los mejores bateadores puros de su generación: velocidad de bate excepcional, reconocimiento de lanzamientos de élite, y un enfoque sin prisa que lo hacía parecer como si estuviera tomando práctica de bateo incluso en turnos de alto riesgo. El arco de carrera de Corey Seager con los Dodgers mostró la evolución moderna del ángulo de lanzamiento — de un bateador de contacto zurdo a una fuerza de poder de élite a través de cambios conscientes de enfoque respaldados por datos de Statcast.",
+      "Mookie Betts representa la síntesis del bateo moderno: calidad de contacto, velocidad de bate, disciplina de enfoque, y excelencia defensiva que lo hacen el jugador más completo que la franquicia ha tenido desde Jackie Robinson. Su capacidad de golpear la pelota fuerte a todos los campos con una velocidad de salida de élite, combinada con un disparador de toque de punta que es uno de los más estudiados y enseñados en el coaching moderno, hace que su swing sea uno de los más instructivos en el béisbol contemporáneo."
+    ],
+    "technical": {
+      "title": "La Firma Técnica de Cada Gran Bateador de los Dodgers",
+      "body": [
+        "La firma de Jackie Robinson fue el control de bate a lo largo de toda su carrera: la capacidad de hacer contacto en cualquier lanzamiento en la zona, redirigir la pelota a donde la defensa no estaba, y hacer bunts para anotar cuando la situación lo requería. Su golpe corto y rápido fue la base mecánica — movimiento mínimo desde la carga hasta el contacto, máxima eficiencia a través de la zona de contacto. Robinson nunca tuvo números de poder de élite, pero su combinación de calidad de contacto, disciplina de placa, e inteligencia situacional produjo una carrera que los análisis modernos calificarían como una de las mejores en la historia de la franquicia por turno al bate.",
+        "La evolución de Corey Seager es el caso más explícitamente documentado de un cambio de enfoque de ángulo de lanzamiento en la historia de los Dodgers. Sus primeras tres temporadas (2016–2018) mostraron un swing orientado al contacto produciendo sencillos y dobles. Después de trabajar con el personal de análisis de los Dodgers para conscientemente elevar su ángulo de lanzamiento — específicamente atacando lanzamientos de la mitad interior más temprano y conduciéndolos por el aire — sus totales de jonrones saltaron de 22 a 30, y luego (después de sus años con Texas Rangers) a 33. El cambio de enfoque fue impulsado por datos y deliberado: la velocidad de salida de Seager ya era de élite; cambiar a dónde iba la pelota en lugar de qué tan fuerte se golpeaba transformó su producción."
+      ]
+    },
+    "incident": {
+      "title": "El .396 OBP de Manny Ramirez con los Dodgers — Disciplina de Placa como Espectáculo",
+      "impact": "Cuando los Dodgers adquirieron a Manny Ramirez en la fecha límite de transacciones de 2008, su impacto inmediato fue asombroso: promedio de bateo de .396 en 53 juegos con los Dodgers, OBP de .400+, y una calma aparentemente imposible en cada turno al bate. Los lanzadores que habían dominado a otros bateadores encontraron que la paciencia y el reconocimiento de lanzamientos de Ramirez lo hacían esencialmente imbatible cuando estaba concentrado.",
+      "body": [
+        "El enfoque de Manny Ramirez fue la expresión más pura de la escuela de disciplina de placa de Ted Williams aplicada al juego moderno. Dejaba pasar lanzamientos — muchos, muchos lanzamientos — esperando algo en su zona. Los lanzadores que atacaban la mitad exterior encontraban que Ramirez estaba contento viendo esos lanzamientos como bolas. Los lanzadores que venían por dentro encontraban que Ramirez los destrozaba. Su tasa de caminos de carrera de más del 17% y OBP de carrera de .411 cuentan la historia: se negaba a dar a los lanzadores nada, forzándolos a venir a su zona o caminarle.",
+        "Las multitudes del Dodger Stadium durante la permanencia de Ramirez experimentaron bateo en un nivel diferente — un bateador que parecía tener todo el tiempo del mundo, cuyos turnos al bate se parecían a demostraciones en cámara lenta de dominio de reconocimiento de lanzamientos. Sus dos premios NLCS MVP y su capacidad para elevar toda la alineación de los Dodgers a su alrededor demostraron que la disciplina de placa de élite no es pasiva: es agresiva, específica, y devastadoramente efectiva. A los jugadores en el sistema de las ligas menores de los Dodgers se les mostraban turnos al bate de Ramirez como el estándar de oro para lo que la paciencia más velocidad de bate se ve en combinación."
+      ]
+    },
+    "timeline": [
+      "Jackie Robinson se une a los Dodgers — comienza el legado de bateo de la franquicia",
+      "Duke Snider golpea 4 jonrones en la Serie Mundial — el poder de tiro hacia el jardín define una generación",
+      "Mike Piazza comienza carrera con los Dodgers — redefine las expectativas ofensivas en receptor",
+      "Adrian Beltre se une a los Dodgers — introduce bateo de poder en bolas bajas a la franquicia",
+      "Manny Ramirez es adquirido — entrega .396 OBP y dos premios NLCS MVP",
+      "Mookie Betts y Corey Seager lideran a los Dodgers a la Serie Mundial — la era moderna alcanza su pico"
+    ],
+    "keyTakeaways": [
+      "El control de bate y disciplina de Jackie Robinson siguen siendo la base de bateo más completa en la historia de los Dodgers",
+      "El enfoque de poder de tiro hacia el jardín de Duke Snider estableció que los bateadores de los Dodgers podían ser fuerzas ofensivas de franquicia",
+      "Manny Ramirez ejemplifica cómo la disciplina de placa combinada con velocidad de bate de élite crea un enfoque de turno al bate que es genuinamente difícil de lanzar",
+      "La evolución del ángulo de lanzamiento de Corey Seager muestra que los bateadores de élite pueden deliberadamente rehacer sus perfiles ofensivos con apoyo de datos"
+    ]
+  },
+  "baseball-4-10": {
+    "tagline": "Los bateadores que nunca dejan de mejorar no son los más talentosos por naturaleza — son los que nunca dejaron de ser estudiantes.",
+    "overview": [
+      "El efecto compuesto en el bateo es exactamente lo que suena: la práctica diaria consistente, realizada durante años, produce una mejora exponencial que la práctica de alto volumen esporádica no puede igualar. Un bateador que realiza 100 swings en el tee deliberados todos los días durante cinco años ha realizado 182,500 repeticiones de contacto deliberado — cada una reforzando vías neuronales, refinando la memoria muscular y combinando habilidad. Un bateador que realiza 1,000 swings en una única sesión de fin de semana 26 veces por año ha realizado el mismo volumen total pero sin el refuerzo diario que hace que las habilidades sean automáticas.",
+      "Los ajustes específicos por edad son críticos para una carrera de bateo de por vida. Los jugadores jóvenes (8–14) deben enfatizar los fundamentos, la tasa de contacto y el control del bate — la potencia es irrelevante y la mecánica del swing debe mantenerse simple y consistente. Los jugadores adolescentes (15–18) pueden comenzar a integrar conceptos avanzados: conciencia del ángulo de lanzamiento, desarrollo del reconocimiento de lanzamientos y refinamiento del enfoque. Los jugadores amateurs adultos deben enfocarse en mantener la flexibilidad, proteger la mecánica de los cambios físicos del envejecimiento y enfatizar la calidad del contacto sobre la potencia a medida que la velocidad del bate disminuye naturalmente con la edad.",
+      "Lo que separa a los estudiantes de por vida del bateo de los que se estancan no es el talento — es la curiosidad y la autoevaluación sistemática. Los bateadores que mejoran en sus 30s y 40s son los que ven constantemente video de sí mismos y de los lanzadores, los que mantienen diarios de qué funcionó y qué no, los que buscan información nueva (un nuevo ejercicio, una perspectiva de entrenador diferente, una métrica de Statcast que no habían rastreado previamente), y los que tratan cada meseta como un problema a resolver en lugar de un techo a aceptar. Ted Williams dijo que pasaba más tiempo pensando en el bateo que en cualquier otra cosa en su vida. Esa relación con el oficio — no el talento natural — es lo que produjo un promedio de bateo de .406."
+    ],
+    "technical": {
+      "title": "El Efecto Compuesto del Trabajo Diario en el Tee — Un Modelo de Desarrollo de Cinco Años",
+      "body": [
+        "El ejercicio de tee es la herramienta de desarrollo más accesible e impactante disponible en cualquier nivel, y su valor se compone con el uso consistente a lo largo de los años. Año uno: trabajo de tee diario (15–20 min) construye los patrones motores básicos del swing. Año dos: trabajo de tee dirigido (ubicaciones de lanzamiento específicas, configuraciones de dos strikes, contacto en el campo opuesto) refina los patrones motores y comienza a desarrollar habilidades de contacto específicas de la zona. Año tres: trabajo de tee avanzado (seguimiento de velocidad de salida, trabajo en ángulo de lanzamiento) integra retroalimentación analítica con práctica física.",
+        "Para los años cuatro y cinco, un bateador con una rutina de tee diaria consistente ha desarrollado el tipo de habilidad de contacto automática que le permite autodiagnosticar problemas mecánicos en tiempo real y corregirlos durante un juego con un ajuste de swing único. El conocimiento mecánico está tan profundamente codificado que el análisis consciente se vuelve más rápido — un bateador puede identificar 'Me estoy enrollando' o 'Estoy lanzando mis manos' en mitad del turno al bate y corregirlo en el siguiente lanzamiento. Este es el efecto compuesto: años de práctica diaria producen no solo habilidad física sino conciencia metacognitiva del bateo."
+      ]
+    },
+    "incident": {
+      "title": "Ted Williams — El Último Bateador de .400 y el Estudiante de por Vida",
+      "impact": "Ted Williams bateó .406 en 1941 — el último jugador en alcanzar .400 en una temporada. Perdió casi cinco años en su prime por servicio militar en la Segunda Guerra Mundial y Corea. Cuando regresó, seguía siendo uno de los mejores bateadores del béisbol. Su promedio de carrera fue .344, y su OBP de carrera fue .482 — todavía el más alto en la historia de las Grandes Ligas. Logró esto no a través de atletismo de élite sino a través de su estudio obsesivo de por vida de la mecánica del bateo y la disciplina de la zona de strike.",
+      "body": [
+        "Williams mantuvo un cuaderno durante toda su carrera rastreando sus turnos al bate, tendencias de lanzadores y observaciones mecánicas. Estudió física para entender el vuelo y la resistencia de la pelota. Dividió la zona de strike en 77 zonas específicas y calculó su promedio de bateo en lanzamientos en cada zona — décadas antes de que Statcast hiciera este tipo de análisis automático. Famosamente dijo que pensaba constantemente en el bateo, incluso cuando no estaba en un campo de béisbol.",
+        "Después de su carrera como jugador, Williams continuó estudiando y entrenando el bateo — su libro de 1971 'The Science of Hitting' sigue siendo uno de los textos instructivos más influyentes en la historia del deporte. Trabajó con bateadores en sus 60s y 70s, actualizando constantemente su pensamiento basado en nueva evidencia. La lección de la carrera de Williams no es que el talento natural sea sobrevalorado — era extraordinariamente talentoso. La lección es que el talento natural, multiplicado por décadas de estudio sistemático y práctica diaria, produce resultados que ninguno por sí solo puede lograr. Williams es el arquetipo del estudiante de por vida del bateo."
+      ]
+    },
+    "timeline": [
+      "Ted Williams batea .406 — construido sobre estudio de por vida, no solo talento",
+      "'The Science of Hitting' publicado — Williams formaliza el estudio de por vida en el texto instructivo más influyente",
+      "Los ejercicios de tee se convierten en estándar a nivel juvenil — el principio de práctica compuesta se expande al béisbol de base",
+      "Statcast permite la medición objetiva del desarrollo — los resultados del trabajo diario en el tee se vuelven rastreables",
+      "Dodgers formalizan el modelo de desarrollo específico por edad en todos los niveles de las ligas menores",
+      "Freeman y Betts, ambos estudiantes de por vida del bateo, anclan el campeonato de World Series de los Dodgers a los 34 y 31 años"
+    ],
+    "keyTakeaways": [
+      "El efecto compuesto: 100 repeticiones deliberadas diarias durante cinco años supera 1,000 repeticiones esporádicas en términos de desarrollo de habilidades",
+      "Desarrollo específico por edad: juventud = contacto; adolescencia = enfoque; adulto = desempeño; veterano = mantenimiento y adaptación",
+      "Los estudiantes de por vida del bateo ven video, mantienen diarios, rastrean datos y tratan cada meseta como un problema a resolver",
+      "La temporada de .406 de Ted Williams fue construida sobre estudio sistemático — la mentalidad de estudiante de por vida es más sostenible que el talento solo"
+    ]
+  },
+  "baseball-5-01": {
+    "tagline": "Todo lo que sucede en un lanzamiento comienza con un pie sobre una losa de goma de seis pulgadas — y cómo te paras sobre ella determina todo lo que sigue.",
+    "overview": [
+      "La losa de lanzamiento es el fundamento literal de cada lanzamiento. Ubicada en la parte superior del montículo de dieciocho pulgadas, a sesenta pies y seis pulgadas del borde frontal del plato de home, la losa es una placa blanca de seis pulgadas por veinticuatro pulgadas que el lanzador debe estar en contacto con ella al inicio de cada entrega legal. Cómo un lanzador se para sobre la losa y la usa — qué pie la contacta, cómo se posiciona el cuerpo, cómo se distribuye el peso — establece la mecánica para cada movimiento subsecuente en la entrega.",
+      "Hay dos posturas de lanzamiento primarias: el windup y el stretch. El windup se usa con las bases vacías o con corredores que no representan amenaza de robo; presenta un paso rocker hacia atrás, un levantamiento de pierna y una rotación completa de caderas que genera velocidad máxima. El stretch se usa con corredores en base; presenta una postura inicial más compacta, un levantamiento de pierna más pequeño y una entrega más rápida al plato para minimizar el tiempo del receptor para eliminar corredores. Algunos lanzadores usan solo el stretch incluso con las bases vacías por consistencia.",
+      "El ancho de la postura en la losa importa. Un lanzador cuyo pie pivote (el pie que se impulsa desde la losa) está demasiado cerca del centro de la losa puede perder el equilibrio durante la entrega; demasiado lejos a un lado y la trayectoria del paso se vuelve angulada en lugar de directa. Los lanzadores de los Dodgers trabajan extensamente con entrenadores de lanzamiento en el posicionamiento de la losa como parte del refinamiento de su mecánica tanto para velocidad como para control."
+    ],
+    "technical": {
+      "title": "El Paso Rocker y Transferencia de Peso",
+      "body": [
+        "En un windup completo, el paso rocker es el paso hacia atrás tomado con el pie de paso antes del levantamiento de pierna. Sirve como mecanismo de tiempo y movimiento de carga de peso: el lanzador mueve su peso hacia el pie pivote (que contacta la losa), luego desplaza ese peso hacia atrás mientras la pierna de paso se levanta. Esta precarga almacena energía elástica en la cadera y el core que luego se libera explosivamente hacia el plato de home.",
+        "El punto de balance — el breve momento de levantamiento máximo de pierna — es donde muchos lanzadores jóvenes pierden su mecánica. Colapsar el torso hacia adelante, apresurarar el paso o permitir que los hombros se inclinen en el punto de balance todos interrumpen la cadena cinética que sigue. Los lanzadores élite mantienen una postura alta y balanceada en el levantamiento máximo de pierna antes de que el impulso agresivo hacia adelante comience."
+      ]
+    },
+    "incident": {
+      "title": "Los Dodgers se Mudan a Dodger Stadium — Nace el Montículo",
+      "impact": "Cuando Dodger Stadium abrió en 1962, fue diseñado con un montículo de lanzamiento hecho a las especificaciones exactas de la era — dieciocho pulgadas de altura, una superficie precisamente inclinada y un posicionamiento de losa que ha permanecido esencialmente sin cambios. Don Drysdale y Sandy Koufax inmediatamente usaron el montículo del nuevo estadio para establecer carreras dominantes.",
+      "body": [
+        "Dodger Stadium abrió el 10 de abril de 1962 y su montículo se convirtió en uno de los más celebrados en el béisbol. Sandy Koufax, quien ya se estaba convirtiendo en uno de los lanzadores más dominantes del juego, encontró que la firmeza y la inclinación del montículo se adaptaban perfectamente a su entrega de pierna alta y por encima del hombro. Koufax ganó tres premios Cy Young usando ese montículo y escribió cuatro juegos sin hits — incluyendo un juego perfecto en 1965 — desde su posición en la losa.",
+        "La tradición de lanzamiento de los Dodgers que comenzó en ese montículo — Koufax, Drysdale, Fernando Valenzuela, Orel Hershiser, Clayton Kershaw — es la más notable en la Liga Nacional. Los entrenadores de lanzamiento en el complejo de los Dodgers estudian cada aspecto del contacto con la losa y el ancho de la postura como parte de su sistema de desarrollo. Los entrenadores de jóvenes que enseñan los mismos principios trazan el linaje directamente a ese estadio."
+      ]
+    },
+    "timeline": [
+      "Distancia de lanzamiento establecida en 60'6\" — distancia moderna del montículo establecida",
+      "Losa de lanzamiento estandarizada en 24\" x 6\" en reglas oficiales",
+      "Altura del montículo reducida de 15\" a 10\" para reducir el dominio del lanzador",
+      "Dodger Stadium abre — Sandy Koufax y Don Drysdale definen la tradición de lanzamiento de los Dodgers",
+      "Orel Hershiser lanza 59 entradas consecutivas sin permitir carreras — récord del montículo de los Dodgers",
+      "Clayton Kershaw gana su tercer Cy Young — el legado moderno del montículo de los Dodgers continúa"
+    ],
+    "keyTakeaways": [
+      "El windup se usa con bases vacías para velocidad máxima; el stretch se usa con corredores en base para entrega más rápida",
+      "El paso rocker carga la pierna pivote; el punto de balance — postura alta en el levantamiento máximo de pierna — prepara la cadena cinética",
+      "Se requiere una parada completa en la posición de set en el stretch — no hacer una pausa es un balk",
+      "El posicionamiento de la losa (dónde en la losa de 24 pulgadas el pie pivote contacta) afecta el ángulo del paso y el control del lanzamiento"
+    ]
+  },
+  "baseball-5-02": {
+    "tagline": "Un ajuste de dos pulgadas en las puntas de los dedos puede significar la diferencia entre un fastball recto y seis pulgadas de movimiento tardío — el grip es todo.",
+    "overview": [
+      "El grip es cómo un lanzador se comunica con la pelota de béisbol. Cada movimiento que hace un lanzamiento — ascenso, caída, corte, curva — se origina en cómo los dedos y la muñeca imprimen rotación en el momento del lanzamiento. El grip de fastball de cuatro costuras es la base universal: los dedos índice y medio atravesando la parte más ancha de las costuras (las dos costuras más separadas), el pulgar debajo, los dedos anular y meñique replegados hacia un lado. Este grip produce rotación pura hacia atrás y velocidad máxima — el lanzamiento más recto y rápido que un lanzador puede lanzar.",
+      "La presión de los dedos es el elemento más subestimado de la mecánica del grip. Aplicar una presión ligeramente mayor con el dedo índice empuja la pelota hacia el lado del brazo (izquierda para un lanzador diestro), creando un fastball de dos costuras con acción natural de carrera. La presión con el dedo medio mueve la pelota hacia afuera. La diferencia entre un fastball de cuatro costuras y uno de dos costuras en términos de grip es sutil — dos dedos posicionados ligeramente diferente en la costura — pero la diferencia de movimiento resultante puede ser de cuatro a seis pulgadas en el plato.",
+      "El tamaño de la mano de los jóvenes es una variable crítica en el desarrollo del grip. Los lanzadores jóvenes con manos más pequeñas a menudo no pueden agarrar correctamente los lanzamientos diseñados para manos adultas — especialmente bolas rompientes que requieren pronación de la muñeca. Enseñar a un pitcher de doce años un grip de curveball diseñado para un brazo y mano adultos es tanto mecánicamente incorrecto como médicamente arriesgado. El entrenamiento de primavera en Camelback Ranch, la instalación de los Dodgers en Glendale, incluye sesiones de ajuste de grip donde los peloteros menores aprenden modificaciones de grip basadas en medidas individuales de mano."
+    ],
+    "technical": {
+      "title": "Cómo la Orientación de Costuras Crea Movimiento",
+      "body": [
+        "Una pelota de béisbol tiene 108 costuras dispuestas en un patrón específico que crea cuatro costuras superpuestas alrededor de la pelota. Cuando un lanzador agarra a través de las cuatro costuras más anchas y suelta con rotación pura hacia atrás (el fastball de cuatro costuras), el efecto Magnus — la fuerza aerodinámica creada por un objeto giratorio — genera elevación que hace que la pelota 'suba' en relación con una trayectoria sin rotación. A 95 mph, un fastball de cuatro costuras con 2,400 rpm de rotación hacia atrás puede resistir la gravedad de diez a doce pulgadas en comparación con una pelota lanzada sin rotación.",
+        "El fastball de dos costuras (también llamado sinker) se agarra con los dedos en las dos costuras estrechas. La leve pronación al soltar imparte rotación lateral combinada con rotación hacia atrás — el efecto Magnus crea movimiento hacia abajo y hacia el lado del brazo. Los bateadores a quienes se les dice 'este es un fastball' basándose en la lectura de velocidad del brazo leen un lanzamiento que cae diferente a un cuatro costuras ascendente, causando bolas rodadas o balanceos por encima de la pelota."
+      ]
+    },
+    "incident": {
+      "title": "Trevor Bauer y la Revolución de la Ciencia del Grip — Camelback Ranch, 2019",
+      "impact": "Conforme los lanzadores de los Dodgers en la era de análisis moderno comenzaron a trabajar con dispositivos de medición de velocidad de rotación Rapsodo y TrackMan en Camelback Ranch, la ciencia del grip se convirtió en una frontera competitiva. Entender exactamente cómo la orientación de costuras y la presión de dedos afectaban el eje de rotación y el movimiento permitió a los lanzadores de los Dodgers diseñar lanzamientos con precisión.",
+      "body": [
+        "El uso de la tecnología de seguimiento de pelota Rapsodo de los Dodgers en Camelback Ranch transformó el desarrollo del grip en el entrenamiento de primavera. Para 2019, cada prospecto lanzador de los Dodgers podía medir la velocidad exacta de rotación, el eje de rotación y el perfil de movimiento de cada lanzamiento que lanzaban con cada variación de grip. Un lanzador que descubría que mover su dedo índice de dos costuras un centímetro hacia el interior de la costura aumentaba el movimiento horizontal en dos pulgadas podía documentar y replicar ese ajuste. El ajuste de grip se convirtió en algo tan preciso como el ajuste de bate para bateadores.",
+        "El resultado práctico: los lanzadores llegaban a Camelback Ranch con uno o dos lanzamientos, trabajaban con la tecnología para encontrar posiciones óptimas de grip y se iban con formas de lanzamiento verificables y medidas. La relación grip-a-eje-de-rotación — una vez transmitida oralmente a través de generaciones de entrenadores — se convirtió en una ciencia cuantificada y enseñable. Los entrenadores de jóvenes que estudian esta era del desarrollo de los Dodgers usan los mismos principios en forma simplificada: mide, ajusta, mide de nuevo."
+      ]
+    },
+    "timeline": [
+      "Candy Cummings acreditado por inventar la curveball — primer lanzamiento documentado basado en grip",
+      "Sandy Koufax desarrolla su grip de curveball bajo consejo del receptor Norm Sherry",
+      "Tom House introduce análisis biomecánico del grip a la instrucción de lanzamiento profesional",
+      "Los dispositivos de medición de velocidad de rotación Rapsodo y TrackMan entran en las instalaciones de entrenamiento de MLB",
+      "Los Dodgers en Camelback Ranch usan datos de eje de rotación para optimizar el ajuste de grip para todos los lanzadores",
+      "Análisis de grip estándar en las 30 organizaciones de MLB — programas de jóvenes adoptan versiones simplificadas"
+    ],
+    "keyTakeaways": [
+      "El grip de fastball de cuatro costuras — dedos a través de las costuras más anchas — es la base que aprende cada lanzador primero",
+      "La presión de los dedos (más en índice vs. medio) desplaza el eje de rotación y crea movimiento lejos de la rotación pura hacia atrás",
+      "El changeup es el lanzamiento off-speed más seguro para brazos jóvenes — la misma velocidad de brazo que un fastball, sin estrés en el codo",
+      "Las curveballs con chasquido de muñeca no se recomiendan para lanzadores menores de 13 años — la protección de mano y placa de crecimiento es lo primero"
+    ]
+  },
+  "baseball-5-03": {
+    "tagline": "El movimiento de Clayton Kershaw ha sido llamado la entrega más mecánicamente sólida del béisbol moderno — cada posición en cada fase es una clínica de eficiencia.",
+    "overview": [
+      "El movimiento es una secuencia de eventos mecánicos vinculados donde cada fase posiciona al lanzador para la máxima generación de fuerza en la siguiente. Desde la posición inicial en la goma hasta el paso de balance, levantamiento de pierna, carga de cadera, zancada, acción de brazo y liberación, la entrega es una cadena cinética: si un eslabón se rompe, la cadena pierde fuerza y precisión. Entender el movimiento como una secuencia — en lugar de un movimiento fluido único — da a los entrenadores y lanzadores la capacidad de diagnosticar y reparar problemas mecánicos.",
+      "El levantamiento de pierna es el elemento más visible del movimiento y el más variado entre lanzadores. Clayton Kershaw levanta su rodilla delantera hasta casi la altura de la cadera en un movimiento controlado y repetible que carga completamente su pierna de apoyo antes de avanzar. Algunos lanzadores usan un levantamiento de pierna mínimo; otros, como Jon Lester, usan una patada dramática. El factor consistente entre levantamientos de pierna efectivos es el balance — cualquiera que sea la altura que alcance la pierna, el peso del lanzador está completamente en el pie de apoyo antes de que comience el avance hacia adelante.",
+      "La dirección de la zancada y la posición del pie de aterrizaje son críticas para el control. La zancada ideal se dirige ligeramente hacia el lado de primera base (para un lanzador diestro) — permitiendo que las caderas se abran completamente a través de la entrega. Una zancada que va directamente hacia el plato, o peor aún, hacia el lado de tercera base, cierra las caderas e impide la rotación completa. Aterrizar en el talón (en lugar de la bola del pie) envía un golpe desconcertante a través de la cadena de entrega. Aterrizar demasiado cerrado (pie de zancada apuntando hacia tercera base) impide la completitud de cadera."
+    ],
+    "technical": {
+      "title": "La Entrega de Kershaw — Fase por Fase",
+      "body": [
+        "El movimiento de Clayton Kershaw se estudia en clínicas de lanzamiento en todo el mundo porque representa una eficiencia mecánica casi perfecta en cada fase. Su pie de apoyo toca la goma en el lado de primera base, creando un ángulo de zancada natural hacia el objetivo plato-más-lado-de-primera-base. Su paso de balance es mínimo — lo suficiente para cambiar el peso — y sus manos se juntan limpiamente en su pecho. Su levantamiento de pierna alcanza consistentemente la altura del muslo medio en cada lanzamiento, dándole un punto de balance confiable sin el riesgo de sincronización de una patada alta.",
+        "En el punto de balance, las caderas de Kershaw permanecen cerradas (mirando tercera base, no hacia home) mientras su pierna delantera alcanza la altura máxima. Sus brazos se separan del guante en un arco suave y curvo — no una acción violenta o apresgurada. Su zancada es agresiva pero controlada: dirigida ligeramente hacia el lado de primera base, aterrizando en la bola del pie en lugar del talón, con el pie de zancada ligeramente cerrado. Desde esta posición de aterrizaje, sus caderas explotan abiertas, su torso rota, y su brazo viene a través por encima en extensión máxima."
+      ]
+    },
+    "incident": {
+      "title": "Juego Perfecto de Clayton Kershaw — 18 de Junio de 2014",
+      "impact": "El juego perfecto de Clayton Kershaw contra los Colorado Rockies fue una clase magistral en mecánica de entrega bajo presión. Durante nueve entradas, cada fase de su movimiento se ejecutó idénticamente — la consistencia de su patrón mecánico fue la razón por la cual ningún bateador de los Rockies llegó a base.",
+      "body": [
+        "El 18 de junio de 2014, Clayton Kershaw retiró a los 27 bateadores de los Rockies que enfrentó en una victoria de los Dodgers 8-0 — el primer juego perfecto en la historia del Dodger Stadium. Kershaw ponchó a 15 bateadores. Lo que hizo la actuación notable desde una perspectiva mecánica fue la consistencia de su entrega: el mismo levantamiento de pierna, la misma longitud de zancada, el mismo punto de lanzamiento de brazo, el mismo timing de rotación de cadera en cada lanzamiento a lo largo de 107 lanzamientos.",
+        "Los entrenadores de lanzamiento que estudiaron el metraje de transmisión notaron que el punto de balance de Kershaw — el momento de levantamiento máximo de pierna — fue casi idéntico fotograma a fotograma en cada entrega, ya sea que estuviera lanzando un fastball de 93 mph o una curvatura de las 11:00. Esta consistencia mecánica es por qué controló ambos lanzamientos a los mismos lugares toda la noche. Cuando la mecánica es tan repetible, el lanzador esencialmente se elimina a sí mismo como una variable — lo único que el bateador tiene que descifrar es el tipo de lanzamiento y ubicación, y Kershaw no les dio pistas."
+      ]
+    },
+    "timeline": [
+      "Warren Spahn's patada alta de pierna establece plantilla para mecánica de movimiento moderno",
+      "Sandy Koufax va 25-5 — el movimiento del Dodger Stadium entrega la primera dinastía",
+      "La entrega de Orel Hershiser se disecciona por entrenadores — la repetibilidad se cita como clave para la consistencia",
+      "Clayton Kershaw lanza juego perfecto — mecánica de entrega estudiada nacionalmente",
+      "Kershaw gana su tercer Cy Young — la entrega moderna más mecánicamente eficiente es reconocida",
+      "Los laboratorios de biomecánica en academias de MLB usan captura de movimiento para cuantificar ángulo de zancada y timing de cadera"
+    ],
+    "keyTakeaways": [
+      "El movimiento es una cadena cinética — cada fase (paso de balance, punto de balance, zancada, explosión de cadera) debe preparar la siguiente",
+      "Mantén las caderas cerradas (mirando tercera base para lanzador diestro) a través del punto de balance — la apertura prematura de cadera mata la velocidad",
+      "La zancada debe dirigirse ligeramente hacia el lado de primera base (lanzador diestro) — permitiendo el despeje completo de cadera en la liberación",
+      "Aterriza en la bola del pie, no en el talón — el aterrizaje en talón envía un golpe disruptivo a través de la cadena de entrega"
+    ]
+  },
+  "baseball-5-04": {
+    "tagline": "El brazo es el último eslabón en la cadena cinética — pero es el más frágil, y el más incomprendido.",
+    "overview": [
+      "La acción del brazo describe la trayectoria que recorre el brazo lanzador desde el momento en que las manos se separan en el pecho hasta que se suelta la pelota y el brazo completa su seguimiento. A diferencia del bateo — donde el swing tiene una forma más universal correcta — la acción del brazo de lanzamiento varía significativamente entre los lanzadores exitosos. Sandy Koufax lanzaba directamente por encima de la cabeza; Pedro Martinez lanzaba desde una posición de tres cuartos; Randy Johnson disparaba desde una posición casi lateral. Cada posición del brazo produce un plano visual diferente para los bateadores y perfiles de movimiento diferentes en los lanzamientos.",
+      "La rotación externa — llamada 'layback' — es la fase crítica y más incomprendida de la acción del brazo. Cuando el pie de zancada toca el suelo y las caderas comienzan a abrirse, el brazo lanzador gira naturalmente hacia atrás (externamente) para que la pelota esté detrás de la cabeza y el codo esté a la altura del hombro o por encima. Esto no es el lanzador tirando la pelota hacia atrás — es física. La violenta rotación de caderas y torso tira del brazo hacia atrás a través de la rotación externa antes de que se lance hacia adelante. Los lanzadores que intentan prevenir este layback natural en realidad aumentan el estrés del brazo.",
+      "La altura del codo en el punto de lanzamiento varía según la posición del brazo, pero una pauta universal es que el codo debe estar a la altura del hombro o por encima en el lanzamiento. Los puntos de lanzamiento por debajo del codo colocan el ligamento colateral cubital en una posición comprometida — este es el ligamento dañado en la epidemia de cirugía de Tommy John que ha afectado a cientos de lanzadores de MLB. Las guías de cuidado del brazo de Little League advierten específicamente contra bajar el codo por debajo de la altura del hombro, especialmente durante lanzamientos de alto esfuerzo."
+    ],
+    "technical": {
+      "title": "El Arco de Lanzamiento — Desde la Trayectoria del Brazo hasta el Seguimiento",
+      "body": [
+        "Cuando las manos del lanzador se separan en el pecho, la mano que lanza se mueve hacia abajo y hacia atrás en un arco suave — a menudo descrito como 'pulgares a muslos' — antes de balancearse hacia arriba en la posición de encoquillamiento. Este arco debe ser suave y continuo; un lanzador que saca la pelota hacia un lado en una ruptura abrupta crea inconsistencias de tiempo que afectan el punto de lanzamiento. El codo de lanzamiento debe trabajar hacia la oreja del lanzador mientras el brazo alcanza la posición de encoquillamiento, no ser jalado lejos del cuerpo.",
+        "El seguimiento es tan importante como el lanzamiento. Después de que se suelta la pelota, el brazo debe desacelerar — y lo hace en un arco grande desde el punto de lanzamiento alto, barriendo hacia abajo y a través del cuerpo. Cortar el seguimiento obliga a los músculos y tejido conectivo a absorber la desaceleración del brazo rápidamente, aumentando el riesgo de lesión. Un seguimiento adecuado termina con la mano lanzadora cerca de la cadera o muslo opuesto del lanzador."
+      ]
+    },
+    "incident": {
+      "title": "Epidemia de Cirugía de Tommy John — Una Generación de Lanzadores",
+      "impact": "La epidemia de cirugía de Tommy John (reconstrucción del ligamento colateral cubital) que alcanzó su punto máximo en los años 2000 y 2010 cambió cómo el béisbol juvenil enseña la acción del brazo. El American Sports Medicine Institute, fundado en Birmingham, Alabama, publicó investigaciones que demostraban que errores específicos en la acción del brazo — incluyendo la caída del codo y el lanzamiento durante todo el año — estaban directamente correlacionados con el daño del LCC.",
+      "body": [
+        "Tommy John, un lanzador de los Dodgers cuyo LCC fue reconstruido por el Dr. Frank Jobe en 1974 en una cirugía entonces experimental, se convirtió en el epónimo de un procedimiento que ahora ha sido realizado en miles de lanzadores. Para 2014, uno de cada siete lanzadores de MLB en los alineamientos del día de apertura había sido sometido a cirugía de Tommy John. La causa no era simplemente la velocidad — era una combinación de especialización durante todo el año comenzando a edades más jóvenes, mecánica pobre de la acción del brazo (particularmente la caída del codo), y falta de períodos de descanso adecuados.",
+        "El Dr. James Andrews del American Sports Medicine Institute se convirtió en la voz más prominente pidiendo límites de lanzamientos y reforma de mecánica en el béisbol juvenil. Su investigación identificó específicamente la caída del codo por debajo de la altura del hombro en el lanzamiento como un factor de riesgo significativo. La organización de Little League respondió implementando reglas de conteo de lanzamientos (ver Etapa 8) y distribuyendo guías de cuidado del brazo a entrenadores en toda la nación. El sistema de desarrollo de los Dodgers ahora incluye evaluación obligatoria de la acción del brazo en cada nivel de su sistema de las ligas menores."
+      ]
+    },
+    "timeline": [
+      "Tommy John se somete a la primera reconstrucción del LCC por el Dr. Frank Jobe de los Dodgers",
+      "La reconstrucción del LCC se convierte en un procedimiento estándar — los lanzadores regularmente regresan a lanzar",
+      "ASMI comienza a publicar investigaciones conectando la mecánica de la acción del brazo con las tasas de lesión del LCC",
+      "Little League crea guías de lanzamiento recomendando protocolos de cuidado del brazo",
+      "El programa MLB PitchSmart se lanza — guías estandarizadas de cuidado del brazo para todas las edades",
+      "Los Dodgers ganan la Serie Mundial con Kershaw como ancla de postemporada — cero Tommy John en su carrera"
+    ],
+    "keyTakeaways": [
+      "La rotación externa (layback) es un evento natural de la física — intentar prevenirlo aumenta el estrés del brazo, no lo disminuye",
+      "El codo a la altura del hombro o por encima en el lanzamiento es la pauta de seguridad de la acción del brazo más importante",
+      "El seguimiento debe ser completo — cortar el arco de desaceleración del brazo obliga a los músculos a absorber fuerza excesiva",
+      "La secuencia de la cadena cinética es caderas, torso, hombro, codo, muñeca — si las caderas no se activan primero, el brazo carga solo"
+    ]
+  },
+  "baseball-5-05": {
+    "tagline": "El punto de liberación es la firma de todo gran lanzador — cámbialo una pulgada y cambiarás a dónde va la bola por un pie.",
+    "overview": [
+      "El punto de liberación es la ubicación precisa tridimensional en el espacio donde los dedos del lanzador dejan la pelota de béisbol. No es un único punto por lanzamiento — es un punto ideal que el lanzador trabaja para reproducir en cada entrega. Cuando el punto de liberación es consistente, los lanzamientos caen donde el lanzador pretende. Cuando el punto de liberación se mueve aunque sea ligeramente — más temprano, más tarde, más alto, más bajo — los lanzamientos fallan su ubicación prevista proporcionalmente, a menudo por varios centímetros en el plato.",
+      "El control es la habilidad de ubicar los lanzamientos con precisión dentro de la zona de strike, especialmente en las esquinas y en los bordes. El 'negro' — el borde oscuro del plato de home usado como referencia por lanzadores experimentados — es el objetivo para los artistas del control. Un lanzador que puede consistentemente lanzar hacia el negro interior versus el negro exterior versus el negro bajo está efectivamente lanzando a tres zonas diferentes, cada una con diferentes resultados de swing para el bateador. La carrera de Clayton Kershaw ha sido definida por su habilidad de ubicar lanzamientos al negro con consistencia excepcional.",
+      "La relación entre el punto de liberación y la ubicación es geométrica: el lanzador esencialmente está lanzando desde un punto fijo (el montículo) hacia un objetivo a sesenta pies de distancia. Un pequeño cambio angular en el punto de liberación crea un gran cambio posicional en el plato. Mover el punto de liberación dos pulgadas más alto produce un lanzamiento que viaja varios centímetros arriba del objetivo previsto. Por eso los entrenadores de mecánica de lanzamiento dedican enorme esfuerzo a la consistencia del punto de liberación — pequeños cambios en la fuente crean grandes errores en el destino."
+    ],
+    "technical": {
+      "title": "Cómo los Ajustes del Punto de Liberación Cambian la Ubicación del Lanzamiento",
+      "body": [
+        "Cada lanzamiento tiene una 'forma' natural determinada por su agarre y rotación. Los fastballs suben (relativamente), las curvas bajan, los sliders cortan lateralmente. Pero la ubicación inicial de esa forma — dónde comienza su camino hacia el plato — está completamente determinada por el punto de liberación. Si un lanzador mueve su punto de liberación una pulgada hacia la derecha (hacia el lado de la primera base para un derecho), el lanzamiento viaja un camino que es aproximadamente cuatro pulgadas hacia la derecha en el plato de home. Esta relación geométrica es por qué los entrenadores de control enseñan a los lanzadores a pensarse a sí mismos como instrumentos de precisión: ajustes pequeños, resultados grandes.",
+        "El concepto de 'trabajar el punto de liberación' — ajustar intencionalmente el punto de liberación para mover lanzamientos — es una técnica avanzada usada principalmente por lanzadores experimentados. Al liberar un fastball ligeramente más temprano en el arco, un lanzador puede crear un dos-costuras que corre más agresivamente; liberar ligeramente más tarde crea un fastball cortado. La habilidad de Kershaw para mover su curva desde el pie trasero de un bateador derecho hacia la rodilla delantera simplemente ajustando su punto de liberación una pulgada es lo que lo hace élite."
+      ]
+    },
+    "incident": {
+      "title": "Clayton Kershaw — Temporada Cy Young 2017",
+      "impact": "En 2017, Clayton Kershaw fue 18-4 con una ERA de 2.31 y ganó su cuarto premio Cy Young, terminando entre los líderes de ERA en el béisbol durante la quinta temporada consecutiva. Las métricas avanzadas mostraron que su desviación del punto de liberación — la distancia promedio que su punto de liberación varió desde su ideal — fue la más pequeña de cualquier lanzador inicial en el béisbol, una firma estadística de su control legendario.",
+      "body": [
+        "Los datos de Statcast para la temporada 2017 mostraron que la desviación del punto de liberación de Kershaw promediaba menos de dos centímetros en todos los tipos de lanzamientos — una varianza casi imposiblemente pequeña que representaba la consistencia mecánica que sus entrenadores de lanzamiento habían construido durante su carrera. Para el contexto, la mayoría de los lanzadores iniciales de MLB muestran desviaciones del punto de liberación de cuatro a seis centímetros. La desviación de Kershaw fue literalmente la mitad del promedio de la liga, y el resultado fue control de lanzamientos clasificado en el uno por ciento superior de todos los lanzadores iniciales de MLB.",
+        "La multitud del Dodger Stadium se acostumbró a una visión particular en los inicios de Kershaw: su curva, comenzando al nivel del muslo de un bateador derecho y quebrando agudamente hacia la esquina exterior de la rodilla, o su fastball comenzando en las manos del bateador y terminando en el negro interior. Ambos lanzamientos comenzaron desde el mismo punto de liberación — el mismo slot de brazo, la misma posición de muñeca — y quebraron en diferentes direcciones desde ese origen compartido. Los bateadores que sabían que una curva venía aún no podían golpearla porque no podían distinguirla del fastball en el túnel."
+      ]
+    },
+    "timeline": [
+      "Sandy Koufax lanza juego perfecto — la consistencia del punto de liberación citada en el análisis",
+      "Los entrenadores de lanzamiento comienzan a usar video para analizar el punto de liberación fotograma a fotograma",
+      "Greg Maddux se retira — cuatro premios Cy Young construidos en el control del punto de liberación, no en velocidad",
+      "Statcast comienza a medir las coordenadas del punto de liberación para cada lanzamiento de MLB",
+      "La desviación del punto de liberación de Kershaw medida por debajo de 2cm — la más pequeña en MLB",
+      "Yamamoto y Kershaw co-lideran el personal de Dodger — la filosofía de lanzamiento basada en el control es dominante"
+    ],
+    "keyTakeaways": [
+      "El punto de liberación es el origen tridimensional de cada lanzamiento — pequeños cambios allí crean grandes errores en el plato",
+      "Un cambio de punto de liberación de una pulgada corresponde a aproximadamente cuatro pulgadas de cambio de ubicación en el plato de home",
+      "El control al 'negro' — las esquinas y bordes del plato de home — requiere consistencia del punto de liberación medida en milímetros",
+      "Las mecánicas consistentes (punto de equilibrio, zancada, slot de brazo) son el único camino hacia un punto de liberación consistente"
+    ]
+  },
+  "baseball-5-06": {
+    "tagline": "Una base robada regalada no es diferente de un base por bolas — los mejores lanzadores son tan peligrosos con la bola a su lado como con ella en su mano.",
+    "overview": [
+      "Con corredores en base, el trabajo del lanzador cambia fundamentalmente. Mantener a los corredores — prevenir robos de base y limitar oportunidades de avance — se vuelve tan importante como la calidad del lanzamiento. La posición de estiramiento es la herramienta principal: el envío comprimido reduce el tiempo de lanzamiento del receptor e limita el arranque del corredor. Pero el estiramiento solo no siempre es suficiente; los lanzadores élite también utilizan movimientos de pickoff, pasos deslizantes y tiempos variados para mantener a los corredores honestos.",
+      "El movimiento de pickoff es un lanzamiento deceptivo legal a una base para atrapar a un corredor fuera de base o forzarlo a regresar, reduciendo su ventaja secundaria. Hay reglas distintas que rigen los movimientos de pickoff a primera base (el lanzador debe dar un paso hacia primera antes de lanzar), segunda base (múltiples enfoques legales) y tercera base (paso directo hacia tercera). Un movimiento de pickoff ilegal — o cualquier número de otras violaciones mecánicas durante el movimiento de viento o estiramiento — se llama balk, avanzando todos los corredores una base.",
+      "Los lanzadores de Dodgers en la era de Dave Roberts han sido entrenados extensivamente en la mecánica de mantener corredores. Los Dodgers de la Serie Mundial 2020 enfrentaron oponentes de playoff con corredores rápidos, y lanzadores como Clayton Kershaw, Walker Buehler y Julio Urias hicieron uso deliberado de tiempos variados, pasos deslizantes y pickoffs de primer movimiento para neutralizar el juego de carreras. Entender la interacción entre el tiempo de envío, la efectividad del pickoff y la calidad del lanzamiento es una habilidad de nivel de posgrado que separa a los lanzadores completos de los tiradores unidimensionales."
+    ],
+    "technical": {
+      "title": "Reglas de Balk — La Regla Más Incomprendida en el Béisbol",
+      "body": [
+        "Se llama balk cuando un lanzador hace un movimiento ilegal durante un envío o intento de pickoff mientras hay corredores en base. Los balks más comunes son: comenzar el movimiento de viento y detenerse (un lanzador que comienza cualquier movimiento hacia el plato debe completar el lanzamiento), no venir a una parada establecida en el estiramiento, dar un paso hacia una base y lanzar a otra, soltar la bola en el rubber, lanzar desde adelante del rubber sin tener el pie en él, e hacer un lanzamiento falso a primera base (que es ilegal — lanzar a primera requiere un paso real).",
+        "El paso deslizante es un envío modificado donde el lanzador usa un levantamiento de pierna muy pequeño — esencialmente deslizando el pie de zancada hacia la zancada en lugar de un movimiento de pierna completo. Esto reduce significativamente el tiempo de envío de aproximadamente 1.4 segundos (estiramiento completo) a menos de 1.2 segundos — a menudo por debajo del umbral necesario para intentos exitosos de robo de base. El compromiso es una velocidad ligeramente reducida (típicamente 2–3 mph menos) porque el movimiento de pierna genera carga de cadera. Los lanzadores típicamente usan el paso deslizante solo cuando es necesario — con corredores rápidos o en situaciones críticas."
+      ]
+    },
+    "incident": {
+      "title": "Dodgers Ganan la Serie Mundial 2020 — Kershaw Mantiene Corredores de Rays",
+      "impact": "Los Tampa Bay Rays, uno de los equipos más rápidos de la Liga Americana en 2020, tuvieron su juego de carreras neutralizado en la Serie Mundial por el lanzamiento de Dodgers. Clayton Kershaw específicamente varió su tiempo de envío y utilizó lanzamientos de pickoff a primera base para neutralizar la velocidad de los Rays, contribuyendo al primer campeonato de los Dodgers desde 1988.",
+      "body": [
+        "La Serie Mundial 2020 entre los Dodgers y los Tampa Bay Rays fue un enfrentamiento del mejor ataque de la Liga Nacional contra el equipo más analíticamente avanzado de la Liga Americana. El plan de juego de los Rays incluyó usar velocidad para crear presión — su tasa de robo de base durante la temporada regular fue una de las más altas en el béisbol. El personal de lanzamiento de los Dodgers contrarrestó con atención deliberada al tiempo de envío y la disrupción de corredores.",
+        "Kershaw, a pesar de las críticas de su récord de postemporada en años anteriores, se desempeñó en la serie de 2020. Su capacidad de variar el tiempo — a veces manteniendo la posición establecida por dos segundos, a veces entregando rápidamente después de una mirada — mantuvo a los corredores de Rays sin poder obtener lecturas cómodas de su envío. Su movimiento de pickoff a primera base, aunque no es su arma más temida, fue disciplinado lo suficiente para prevenir que los Rays tomaran libertades. Los Dodgers ganaron su primera Serie Mundial desde 1988, y la gestión de corredores del personal de lanzamiento fue específicamente notada por analistas como un factor contribuyente."
+      ]
+    },
+    "timeline": [
+      "La regla de balk se estandariza por primera vez en las reglas oficiales de béisbol",
+      "Jim Gilliam y Dodgers usan carreras agresivas — lanzadores comienzan contra-estrategias",
+      "Maury Wills roba 104 bases para los Dodgers — lanzadores obligados a desarrollar mecánica de retención",
+      "Dodgers ganan la Serie Mundial — Orel Hershiser contiene el juego de carreras de Oakland A's",
+      "MLB comienza a rastrear tiempo de envío al plato — paso deslizante cuantificado como estándar sub-1.2 seg",
+      "Dodgers ganan la Serie Mundial — tiempos variados neutralizan juego de velocidad de Rays"
+    ],
+    "keyTakeaways": [
+      "El paso deslizante reduce el tiempo de envío a menos de 1.2 segundos — por debajo del umbral para la mayoría de intentos exitosos de robo de base",
+      "Un balk avanza todos los corredores una base — los disparadores más comunes son detener a mitad del envío y no detenerse completamente en la posición establecida",
+      "Variar el tiempo (sostener, rápido, sostener, variar) previene que los corredores obtengan una lectura limpia del envío",
+      "Máximo dos miradas antes de entregar — pasar demasiada atención a los corredores degrada la calidad del lanzamiento"
+    ]
+  }
+}

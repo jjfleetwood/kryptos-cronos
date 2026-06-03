@@ -1,0 +1,1402 @@
+{
+  "bt-01": {
+    "tagline": "एक नेटवर्क केवल नोड्स और रास्ते हैं — चाहे वे सड़कें हों या केबल, सिद्धांत एक ही है।",
+    "overview": [
+      "आप पीरियस बंदरगाह पर हैं, एथेंस का प्राचीन पोर्ट। कहीं भी यात्रा करने से पहले, आपको सड़कों, जहाजों और हवाई जहाजों के नेटवर्क को समझना होगा जो दुनिया को जोड़ते हैं। कंप्यूटर नेटवर्क बिल्कुल इसी तरह काम करता है: डिवाइस (नोड्स) रास्तों (लिंक्स) से जुड़े होते हैं, और प्रत्येक डिवाइस किसी भी अन्य डिवाइस को जानकारी भेज सकता है।",
+      "प्राचीन यूनानियों ने सेनाओं को स्थानांतरित करने और वस्तुओं का आदान-प्रदान करने के लिए सड़कों के नेटवर्क बनाए। हम डेटा स्थानांतरित करने के लिए कंप्यूटर नेटवर्क बनाते हैं। दोनों मामलों में, सिद्धांत समान हैं: प्रत्येक नोड को एक पता चाहिए, प्रत्येक रास्ते की एक दिशा होती है, और जानकारी स्रोत से गंतव्य तक मध्यवर्ती बिंदुओं से होकर यात्रा करती है।",
+      "आपका मिशन यहाँ से शुरू होता है। बंदरगाह का नक्शा पढ़ें, समझें कि रूट नेटवर्क एथेंस को दुनिया से कैसे जोड़ता है, और पश्चिम की ओर — सांता क्रूज़, कैलिफ़ोर्निया की ओर — अपना रास्ता खोजें।"
+    ],
+    "technical": {
+      "title": "कंप्यूटर नेटवर्क कैसे बनाए जाते हैं",
+      "body": [
+        "एक नेटवर्क डिवाइसों (कंप्यूटर, फ़ोन, routers) का संग्रह है जो भौतिक या वायरलेस लिंक्स से जुड़े होते हैं। प्रत्येक डिवाइस एक नोड है। डेटा केबलों के माध्यम से विद्युत संकेतों के रूप में, या WiFi पर रेडियो तरंगों के रूप में यात्रा करता है। इंटरनेट केवल नेटवर्कों का एक वैश्विक नेटवर्क है — लाखों छोटे नेटवर्क सभी आपस में जुड़े हुए हैं।",
+        "नेटवर्कों को उनकी टोपोलॉजी द्वारा वर्णित किया जाता है: नोड्स कैसे व्यवस्थित हैं। स्टार टोपोलॉजी में सभी डिवाइस एक केंद्रीय हब के माध्यम से जुड़ते हैं। मेश टोपोलॉजी में डिवाइस सीधे एक-दूसरे से जुड़ते हैं। इंटरनेट मेश जैसी टोपोलॉजी का उपयोग करता है ताकि कोई एकल विफलता बिंदु न हो।"
+      ]
+    },
+    "incident": {
+      "title": "Facebook का 2021 का आउटेज — जब एक नेटवर्क अपना नक्शा खो देता है",
+      "impact": "3.5 अरब उपयोगकर्ता 6 घंटे तक ऑफलाइन; $60M+ का राजस्व नुकसान",
+      "body": [
+        "4 अक्टूबर 2021 को, Facebook के इंजीनियरों ने एक नियमित कॉन्फ़िगरेशन परिवर्तन किया जिसने गलती से सभी routing जानकारी हटा दी जो इंटरनेट को Facebook के सर्वरों तक पहुँचने का तरीका बताती थी। उनके नेटवर्क मैप में हर रास्ता एक साथ मिटा दिया गया।",
+        "कोई भी Facebook, Instagram या WhatsApp तक नहीं पहुँच सकता था। यहाँ तक कि Facebook के अपने इंजीनियर भी समस्या को ठीक करने के लिए remotely लॉगिन नहीं कर सकते थे — उन्हें डेटा सेंटर तक physically जाना पड़ा और routing टेबल्स को manually पुनर्स्थापित करना पड़ा। नेटवर्क अभी भी मौजूद था; उसे पार करने का नक्शा बस गायब हो गया था।"
+      ]
+    },
+    "timeline": [
+      "ARPANET — पहले 4 नोड जुड़े; इंटरनेट के पूर्वज का जन्म",
+      "TCP/IP अपनाया गया — ARPANET के सभी नोड आधुनिक प्रोटोकॉल पर स्विच हुए",
+      "World Wide Web लॉन्च हुआ — इंटरनेट नेविगेट करने योग्य बना",
+      "Facebook का BGP आउटेज — routing टेबल्स हटने से 3.5B उपयोगकर्ता ऑफलाइन"
+    ],
+    "keyTakeaways": [
+      "एक नेटवर्क नोड्स (डिवाइस) हैं जो लिंक्स (केबल/WiFi) से जुड़े हैं",
+      "इंटरनेट नेटवर्कों का नेटवर्क है — कोई एकल मालिक नहीं",
+      "Routing टेबल्स 'नक्शा' हैं — नक्शा खोना, नेटवर्क खोना",
+      "प्रत्येक डिवाइस को डेटा भेजने और प्राप्त करने के लिए एक पते की आवश्यकता है"
+    ]
+  },
+  "bt-02": {
+    "tagline": "बिना पते के, कोई भी packet आप तक नहीं पहुँच सकता।",
+    "overview": [
+      "एथेंस से आपकी उड़ान उड़ान भरने से पहले, आपको अपनी सीट संख्या और गंतव्य के साथ एक बोर्डिंग पास चाहिए। उन पतों के बिना, एयरलाइन के पास आपको सही विमान तक रूट करने का कोई तरीका नहीं है। IP पते बिल्कुल इसी तरह काम करते हैं: इंटरनेट पर प्रत्येक डिवाइस को एक अद्वितीय संख्यात्मक पता दिया जाता है ताकि डेटा जान सके कहाँ जाना है और कहाँ से आना है।",
+      "एक IPv4 पता 192.168.1.105 जैसा दिखता है — बिंदुओं से अलग किए गए चार नंबर (0–255)। इंटरनेट पर भेजा गया प्रत्येक डेटा packet एक स्रोत IP और एक गंतव्य IP ले जाता है, जैसे प्रत्येक लिफाफे पर एक प्रेषक का पता और एक गंतव्य पता होता है। Routers उन पतों को पढ़ते हैं और तय करते हैं कि packet को किस दिशा में forward करना है।",
+      "दो पता spaces हैं: Private IPs (आपके घरेलू नेटवर्क के अंदर उपयोग किए जाते हैं, जैसे 192.168.x.x) और Public IPs (वैश्विक रूप से अद्वितीय, आपके ISP द्वारा असाइन किए गए)। आपका घरेलू router NAT — Network Address Translation का उपयोग करके उनके बीच अनुवाद करता है।"
+    ],
+    "technical": {
+      "title": "IPv4 बनाम IPv6 और पते कैसे असाइन किए जाते हैं",
+      "body": [
+        "IPv4 हमें लगभग 4.3 अरब अद्वितीय पते देता है — पृथ्वी पर प्रत्येक डिवाइस के लिए पर्याप्त नहीं। IPv6 इसे 128-bit hex notation (जैसे, 2001:0db8:85a3::8a2e:0370:7334) का उपयोग करके 340 undecillion पतों तक विस्तारित करता है। अधिकांश नेटवर्क अब दोनों को एक साथ चलाते हैं (dual-stack)।",
+        "आपके डिवाइस को एक DHCP सर्वर से IP पता मिलता है — आमतौर पर आपका router। Router को आपके ISP से एक Public IP मिलती है। Private IP रेंज (RFC 1918): 10.0.0.0/8, 172.16.0.0/12 और 192.168.0.0/16। ये सार्वजनिक इंटरनेट पर कभी नहीं दिखाई देते।"
+      ]
+    },
+    "incident": {
+      "title": "IPv4 समाप्ति संकट — जब पते खत्म हो गए",
+      "impact": "अंतिम IPv4 ब्लॉक असाइन किए गए; ISPs को CGN के माध्यम से पते साझा करने के लिए मजबूर किया गया",
+      "body": [
+        "3 फरवरी 2011 को, IANA (इंटरनेट पते प्राधिकरण) ने पाँच क्षेत्रीय रजिस्ट्रियों को IPv4 पतों के अंतिम ब्लॉक सौंपे। 30 साल बाद इंटरनेट आधिकारिक तौर पर अद्वितीय IPv4 पतों से बाहर हो गया था।",
+        "ISPs ने Carrier-Grade NAT के साथ जवाब दिया — हजारों ग्राहकों को एकल Public IP के पीछे छुपाना। इसने peer-to-peer अनुप्रयोगों को तोड़ दिया और सुरक्षा logging को लगभग असंभव बना दिया (यदि 5,000 एक IP साझा करते हैं तो आप नहीं जान सकते कि किस ग्राहक ने हमला भेजा)। समाधान — IPv6 — 1998 से मौजूद था लेकिन अपनाना धीमा रहा है। 2025 तक, केवल ~45% ट्रैफिक IPv6 है।"
+      ]
+    },
+    "timeline": [
+      "IPv4 को RFC 791 में मानकीकृत किया गया — 4.3 अरब पते आवंटित",
+      "IPv6 पते की कमी को हल करने के लिए डिज़ाइन किया गया",
+      "IANA सभी IPv4 ब्लॉक समाप्त करता है — पता space आधिकारिक रूप से भरा",
+      "~45% इंटरनेट ट्रैफिक अब IPv6 का उपयोग करता है"
+    ],
+    "keyTakeaways": [
+      "नेटवर्क पर संचार करने के लिए प्रत्येक डिवाइस को IP पते की आवश्यकता है",
+      "IPv4 = बिंदुओं से अलग 4 नंबर (0–255); कुल ~4.3 अरब",
+      "Private IPs (192.168.x.x) आपके घर के भीतर रहते हैं; Public IPs इंटरनेट का सामना करते हैं",
+      "IPv6 128-bit पतों के साथ समाप्ति को हल करता है — 340 undecillion उपलब्ध"
+    ]
+  },
+  "bt-03": {
+    "tagline": "कोई भी पूरा घर नहीं भेजता — वह उसे बक्सों में विभाजित करता है। इंटरनेट डेटा के साथ भी यही करता है।",
+    "overview": [
+      "आप JFK पहुँचे हैं। आपका सामान एक विशाल blob के रूप में नहीं गया — एयरलाइन ने इसे अलग-अलग बैग में विभाजित किया, प्रत्येक पर आपका नाम, गंतव्य और एक अनुक्रम संख्या लगी। यदि एक बैग खो जाता है, तो केवल उस टुकड़े को फिर से भेजना होगा। इंटरनेट पर डेटा बिल्कुल इसी तरह यात्रा करता है: packets नामक छोटे टुकड़ों में विभाजित होकर।",
+      "एक packet आमतौर पर 1,500 bytes (मानक Ethernet MTU) का होता है। एक बड़ी फ़ाइल — मान लीजिए, 10MB की फ़ोटो — लगभग 6,666 packets में विभाजित होती है। प्रत्येक packet गंतव्य IP, स्रोत IP, एक अनुक्रम संख्या और payload का एक छोटा टुकड़ा ले जाता है। गंतव्य पर, packets को क्रम में पुनः assembled किया जाता है।",
+      "यह डिज़ाइन शानदार है: यदि कोई packet पारगमन में खो जाता है या दूषित हो जाता है, तो केवल उस packet को पुनः प्रेषित करने की आवश्यकता है। फ़ाइल का बाकी हिस्सा पहले ही सुरक्षित रूप से पहुँच चुका है। यही TCP को विश्वसनीय बनाता है।"
+    ],
+    "technical": {
+      "title": "Packet संरचना और TCP पुनर्संयोजन",
+      "body": [
+        "प्रत्येक packet में एक header और एक payload होता है। Header में शामिल हैं: स्रोत IP, गंतव्य IP, प्रोटोकॉल (TCP/UDP), अनुक्रम संख्या और checksum। Payload वास्तविक डेटा है — आपकी फ़ाइल का एक टुकड़ा, एक web page का हिस्सा, एक वीडियो stream का भाग।",
+        "TCP (Transmission Control Protocol) डिलीवरी और क्रम की गारंटी देता है। Receiver प्राप्त प्रत्येक packet के लिए ACK (पुष्टि) packets वापस भेजता है। यदि निर्धारित समय के भीतर ACK नहीं आता, तो sender उस packet को फिर से भेजता है। UDP ACK को छोड़ता है — तेज़ लेकिन डिलीवरी या क्रम की कोई गारंटी नहीं (वीडियो कॉल, गेमिंग के लिए उपयोग किया जाता है)।"
+      ]
+    },
+    "incident": {
+      "title": "Mirai botnet DDoS — बड़े पैमाने पर packet की बाढ़",
+      "impact": "Twitter, Netflix, Reddit, CNN घंटों तक ऑफलाइन",
+      "body": [
+        "Mirai botnet ने 600,000 IoT डिवाइस (कैमरे, DVRs, routers) को हाईजैक किया और उन सभी को Dyn के DNS सर्वरों पर packets की बारिश करने के लिए निर्देशित किया। अपने चरम पर, हमले ने 1.2 terabits प्रति सेकंड डिलीवर किया — प्रति सेकंड सैकड़ों अरबों packets हर सर्वर को overwhelm कर रहे थे।",
+        "हमले ने packets की मूलभूत प्रकृति का फायदा उठाया: कोई भी उन्हें किसी भी IP पर भेज सकता है। Packet स्तर पर कोई authentication नहीं है। Dyn के सर्वर वैध packets को हमले के packets से अलग नहीं कर सकते थे, इसलिए connection टेबल भर गई और वैध ट्रैफिक छोड़ दिया गया। सबक: packet की मात्रा हथियार बन सकती है।"
+      ]
+    },
+    "timeline": [
+      "TCP को Vint Cerf और Bob Kahn ने आविष्कार किया — packet switching नेटवर्क औपचारिक हुए",
+      "TCP/IP ARPANET के लिए मानक बना",
+      "Ethernet MTU 1,500 bytes प्रति packet पर मानकीकृत",
+      "Mirai DDoS — 1.2 Tbps packet बाढ़ ने प्रमुख इंटरनेट सेवाओं को गिराया"
+    ],
+    "keyTakeaways": [
+      "डेटा को प्रसारण के लिए ~1,500 bytes के packets में विभाजित किया जाता है",
+      "प्रत्येक packet स्रोत IP, गंतव्य IP, अनुक्रम संख्या और payload ले जाता है",
+      "TCP ACK acknowledgements के माध्यम से डिलीवरी और क्रम की गारंटी देता है",
+      "UDP तेज़ है लेकिन अविश्वसनीय — real-time audio/video के लिए उपयोग किया जाता है"
+    ]
+  },
+  "bt-04": {
+    "tagline": "एक router का एकमात्र काम गंतव्य पढ़ना और तय करना है: हम किस रास्ते से जाएँ?",
+    "overview": [
+      "आप डेनवर के रास्ते I-80 पर पश्चिम की ओर जा रहे हैं। प्रत्येक राजमार्ग interchange पर एक संकेत बताता है: सैन फ्रांसिस्को के लिए यह exit लें, साल्ट लेक सिटी के लिए I-80 पर बने रहें। आप प्रत्येक चौराहे पर निर्णय लेते हैं। एक router बिल्कुल यही करता है — एक packet का गंतव्य IP पढ़ता है और एक routing टेबल के आधार पर तय करता है कि उसे किस interface पर forward करना है।",
+      "इंटरनेट का कोई केंद्रीय नियंत्रक नहीं है। लाखों routers अपनी local routing टेबल के आधार पर स्वतंत्र forwarding निर्णय लेते हैं। आपका packet डेनवर और सांता क्रूज़ के बीच 15 अलग-अलग routers से गुजर सकता है, हर एक केवल गंतव्य IP पढ़कर और इसे एक कदम आगे भेजकर।",
+      "Routing टेबल BGP (Border Gateway Protocol) जैसे प्रोटोकॉल का उपयोग करके गतिशील रूप से बनाई जाती हैं — वह प्रोटोकॉल जो वैश्विक इंटरनेट routing मानचित्रों को synchronized रखता है। जब Facebook की BGP routes 2021 में गलती से हटाई गईं, तो इंटरनेट पर प्रत्येक router भूल गया कि Facebook तक कैसे पहुँचना है।"
+    ],
+    "technical": {
+      "title": "Routing टेबल कैसे काम करती हैं",
+      "body": [
+        "एक routing टेबल गंतव्य IP रेंज को outgoing interfaces पर मैप करती है। जब एक packet आता है, तो router सबसे विशिष्ट matching route (longest prefix match) ढूँढता है और packet को next hop पर forward करता है। यदि कोई विशिष्ट route match नहीं होती, तो packet default route पर जाता है (आमतौर पर 0.0.0.0/0 — 'इसे upstream भेजें')।",
+        "घरेलू routers सरल हैं: सब कुछ local LAN में रहता है, बाकी सब आपके ISP के पास जाता है। प्रमुख exchange points पर core इंटरनेट routers में 900,000+ routes वाली टेबल होती हैं और hardware में प्रति सेकंड लाखों packets forward करते हैं।"
+      ]
+    },
+    "incident": {
+      "title": "2010 में China Telecom का BGP हाईजैक",
+      "impact": "15% वैश्विक इंटरनेट ट्रैफिक 18 मिनट के लिए चीन के माध्यम से redirect",
+      "body": [
+        "China Telecom ने गलती से (या जानबूझकर) BGP routes की घोषणा की, यह दावा करते हुए कि वह इंटरनेट IP पतों के 15% तक सर्वोत्तम मार्ग था। दुनिया भर के Routers ने अपनी टेबल अपडेट की और ट्रैफिक भेजना शुरू किया — जिसमें अमेरिकी सरकार और सैन्य ट्रैफिक भी शामिल था — China Telecom के नेटवर्क के माध्यम से।",
+        "18 मिनट के लिए, अमेरिकी सीनेटरों, अमेरिकी सेना और बड़े निगमों के emails, web requests और VPN ट्रैफिक चीनी बुनियादी ढाँचे से होकर बहा। कोई encryption नहीं तोड़ी गई — लेकिन ट्रैफिक पठनीय था यदि encrypt नहीं किया गया था। इसीलिए BGP सुरक्षा (RPKI) महत्वपूर्ण है: कोई भी router किसी भी route का दावा कर सकता है।"
+      ]
+    },
+    "timeline": [
+      "पहला ARPANET router (IMP) UCLA में तैनात किया गया",
+      "BGP का आविष्कार हुआ — routers को संगठनों के बीच routes साझा करने की अनुमति",
+      "China Telecom BGP हाईजैक — 18 मिनट के लिए 15% इंटरनेट redirect",
+      "Facebook BGP आउटेज — routing टेबल हटाई गईं, 3.5B उपयोगकर्ता ऑफलाइन"
+    ],
+    "keyTakeaways": [
+      "Routers गंतव्य IP के आधार पर hop-by-hop packets forward करते हैं",
+      "Routing टेबल IP रेंज को outgoing interfaces पर मैप करती हैं",
+      "BGP वैश्विक स्तर पर नेटवर्कों के बीच routing टेबल को synchronize करता है",
+      "कोई भी router कोई भी route announce कर सकता है — BGP में built-in authentication नहीं है"
+    ]
+  },
+  "bt-05": {
+    "tagline": "आप 'google.com' टाइप करते हैं। आपके कंप्यूटर को कोई अंदाज़ा नहीं कि वह कहाँ है — जब तक वह DNS से नहीं पूछता।",
+    "overview": [
+      "आप शिकागो में AAA ट्रैवल ऑफिस में रुकते हैं। आप जानते हैं कि आप सांता क्रूज़ जाना चाहते हैं — लेकिन GPS में डालने के लिए आपको सटीक पता चाहिए। DNS (Domain Name System) इंटरनेट के लिए यही करता है: आप 'google.com' टाइप करते हैं और DNS चुपचाप इसे 142.250.80.46 जैसे IP पते में अनुवाद करता है ताकि आपका कंप्यूटर जान सके कि request वास्तव में कहाँ भेजनी है।",
+      "DNS एक वितरित database है। दुनिया भर में 13 root server sets हैं, उनके नीचे सैकड़ों top-level domain servers (.com, .org, .net), और उनके नीचे अलग-अलग domains के लिए लाखों authoritative servers हैं। जब भी आप एक domain name टाइप करते हैं, आपके router का DNS resolver इस hierarchy से पूछताछ करता है।",
+      "DNS responses cached होते हैं — आपका कंप्यूटर TTL (Time To Live) द्वारा परिभाषित अवधि के लिए response को याद रखता है। यह DNS को तेज़ रखता है। लेकिन caching जोखिम भी पैदा करता है: यदि कोई हमलावर एक नकली response के साथ आपके DNS cache को ज़हर दे देता है, तो आपको एक malicious server पर भेजा जा सकता है जबकि आपको लगता है कि आप असली पर हैं।"
+    ],
+    "technical": {
+      "title": "DNS Resolution की प्रक्रिया",
+      "body": [
+        "जब आप google.com टाइप करते हैं: (1) आपका OS अपना local cache जाँचता है। (2) यदि cached नहीं है, तो यह अपने DNS resolver से पूछता है (आमतौर पर आपका router या ISP)। (3) Resolver .com के लिए root server से पूछता है। (4) Root उसे Verisign के .com servers पर refer करता है। (5) Verisign उसे Google के authoritative server पर refer करता है। (6) Google का server 142.250.80.46 लौटाता है। (7) आपका OS इसे cache करता है और connect होता है।",
+        "यह पूरी lookup 50–200ms लेती है। Cached lookups <1ms लेती हैं। आपके डिवाइस द्वारा उपयोग किया जाने वाला resolver network settings में सेट होता है — आप इसे किसी भी public resolver पर बदल सकते हैं: 1.1.1.1 (Cloudflare), 8.8.8.8 (Google), या 9.9.9.9 (Quad9)। एक encrypted resolver (DNS-over-HTTPS) का उपयोग करने से आपका ISP यह नहीं देख पाता कि आप कौन से sites खोज रहे हैं।"
+      ]
+    },
+    "incident": {
+      "title": "2016 का Dyn DNS हमला — इंटरनेट के GPS को बंद करना",
+      "impact": "Twitter, GitHub, Netflix, Spotify, Reddit अमेरिकी पूर्वी तट पर अनुपलब्ध",
+      "body": [
+        "Dyn सबसे बड़े DNS प्रदाताओं में से एक है — यह प्रति सेकंड लाखों queries के लिए 'Twitter.com कहाँ है?' का जवाब देता है। Mirai botnet ने सीधे Dyn के खिलाफ एक विशाल DDoS हमला किया। जब Dyn के servers गिर गए, तो उपयोगकर्ताओं की लाखों DNS queries का जवाब नहीं मिला, इसलिए browsers Twitter नहीं खोज सके भले ही Twitter के servers ठीक काम कर रहे थे।",
+        "सबक: DNS servers जितना ही critical है। वेबसाइटें अब redundancy के लिए कई DNS providers का उपयोग करती हैं। यदि DNS विफल हो जाता है, तो इससे कोई फर्क नहीं पड़ता कि आपका server चालू है — कोई इसे नहीं ढूँढ सकता। DNS इंटरनेट का GPS है। GPS बंद करें और सब खो जाते हैं।"
+      ]
+    },
+    "timeline": [
+      "DNS को Paul Mockapetris ने आविष्कार किया — hosts.txt फ़ाइल को replace किया",
+      "DNS को RFC 1034/1035 में औपचारिक रूप दिया गया — आज भी मानक है",
+      "Kaminsky का DNS Cache Poisoning vulnerability खोजा गया — critical flaw patched",
+      "Dyn DNS DDoS हमला — घंटों तक प्रमुख sites अनुपलब्ध"
+    ],
+    "keyTakeaways": [
+      "DNS मानव-पठनीय नाम (google.com) को IP पतों में अनुवाद करता है",
+      "Resolution एक hierarchy से गुजरती है: root → TLD → authoritative server",
+      "Responses को बार-बार lookups से बचाने के लिए TTL seconds के लिए cached किया जाता है",
+      "DNS critical infrastructure है — DNS पर हमला करना पूरे इंटरनेट पर हमला करना है"
+    ]
+  },
+  "bt-06": {
+    "tagline": "प्रत्येक network card फ़ैक्ट्री से एक अद्वितीय serial number के साथ निकलती है। यही उसका MAC पता है।",
+    "overview": [
+      "LAX customs पर, एजेंट आपका passport scan करता है। आपका passport नंबर वैश्विक रूप से अद्वितीय है — कोई और इसे साझा नहीं करता, और यह आपके साथ स्थायी रूप से जुड़ा हुआ है। प्रत्येक network interface card (WiFi chip, Ethernet port) अपने निर्माता के पास एक MAC पते के साथ आता है: chip में फ़ैक्ट्री में burned एक 48-bit hardware identifier।",
+      "MAC पते इस तरह दिखते हैं: 00:1A:2B:3C:4D:5E। पहले तीन bytes (00:1A:2B) निर्माता की पहचान करते हैं — इसे OUI (Organizationally Unique Identifier) कहा जाता है। अंतिम तीन bytes डिवाइस का serial number हैं। IEEE निर्माताओं को OUI blocks assign करता है: Apple, Intel, Cisco, आदि।",
+      "जबकि IP पते Layer 3 (इंटरनेट पर routing) पर काम करते हैं, MAC पते Layer 2 (आपके local नेटवर्क के भीतर) पर काम करते हैं। आपका router यह पहचानने के लिए MAC पतों का उपयोग करता है कि LAN पर कौन सा डिवाइस कौन सा है। जब कोई डिवाइस local नेटवर्क छोड़ता है, तो उसका MAC पता कभी नहीं दिखाई देता — केवल IP।"
+    ],
+    "technical": {
+      "title": "MAC पते की संरचना और ARP",
+      "body": [
+        "जब आपका डिवाइस उसी local नेटवर्क पर किसी अन्य डिवाइस को डेटा भेजना चाहता है, तो यह उस डिवाइस का MAC पता खोजने के लिए ARP (Address Resolution Protocol) का उपयोग करता है। ARP broadcast करता है 'IP 192.168.1.1 किसके पास है?' और router जवाब देता है 'वह मैं हूँ — मेरा MAC 00:1A:2B:3C:4D:5E है'। आपका डिवाइस इसे अपनी ARP table में save करता है।",
+        "आधुनिक operating systems MAC address randomization support करते हैं — जब भी आप एक नए WiFi नेटवर्क से connect होते हैं, आपका डिवाइस अपने permanent MAC की बजाय एक randomly generated MAC का उपयोग करता है। यह retail stores और access points को आपके MAC पते का उपयोग करके locations के बीच आपके डिवाइस को track करने से रोकता है।"
+      ]
+    },
+    "incident": {
+      "title": "ARP Spoofing — Local नेटवर्क पर डिवाइस का रूप धारण करना",
+      "impact": "हमलावर victim और router के बीच सभी ट्रैफिक को intercept करता है",
+      "body": [
+        "ARP में authentication नहीं है। एक ही WiFi नेटवर्क पर एक हमलावर नकली ARP responses broadcast कर सकता है: 'router की IP मेरी है — सभी ट्रैफिक मेरे MAC पते पर भेजें।' नेटवर्क पर प्रत्येक डिवाइस झूठ के साथ अपना ARP cache अपडेट करता है। हमलावर एक man-in-the-middle बन जाता है, सभी unencrypted ट्रैफिक को पढ़ता और modify करता है।",
+        "ARP spoofing इसीलिए है कि आपको सार्वजनिक WiFi पर unencrypted HTTP का कभी उपयोग नहीं करना चाहिए। हमलावर को किसी password को decrypt करने की आवश्यकता नहीं है — वे बस ARP को poison करते हैं और आपके ट्रैफिक को पढ़ते हैं जैसे वह उनकी machine से होकर बहता है। HTTPS इसे रोकता है क्योंकि ट्रैफिक intercept होने के बावजूद, वे certificate की private key के बिना इसे decrypt नहीं कर सकते।"
+      ]
+    },
+    "timeline": [
+      "Ethernet को Xerox PARC में आविष्कार किया गया — MAC पते पेश किए गए",
+      "IEEE ने MAC पते का format मानकीकृत किया (48-bit, OUI संरचना)",
+      "ARP (RFC 826) मानकीकृत — कभी authentication नहीं जोड़ी गई",
+      "iOS 8 ने MAC randomization पेश किया — tracking रोकथाम शुरू"
+    ],
+    "keyTakeaways": [
+      "MAC पते network cards में निर्माण के समय burned 48-bit hardware identifiers हैं",
+      "पहले 3 bytes = निर्माता का OUI; अंतिम 3 bytes = डिवाइस serial number",
+      "MAC Layer 2 पर काम करता है (local नेटवर्क); IP Layer 3 पर (वैश्विक इंटरनेट)",
+      "ARP में authentication नहीं है — ARP spoofing एक वास्तविक और आसान local नेटवर्क हमला है"
+    ]
+  },
+  "bt-08": {
+    "tagline": "Ports एक बंदरगाह के फाटकों की तरह हैं — प्रत्येक जहाज एक निर्दिष्ट berth पर डॉक करता है।",
+    "overview": [
+      "आप सांता क्रूज़ बंदरगाह पहुँचे हैं। प्रत्येक berth का एक नंबर है: berth 22 sailboats के लिए, berth 80 fishing boats के लिए, berth 443 ferry के लिए। आप केवल 'बंदरगाह' पर नहीं आते — आप एक विशिष्ट berth पर डॉक करते हैं। Network ports उसी तरह काम करते हैं: कई services चलाने वाला एक server प्रत्येक को एक अलग port number पर assign करता है ताकि डेटा सही service पर जाए।",
+      "Port numbers 0 से 65535 तक होते हैं। Well-known ports (0–1023) मानकीकृत हैं: port 22 (SSH), port 80 (HTTP), port 443 (HTTPS), port 25 (SMTP email), port 53 (DNS), port 3306 (MySQL)। किसी server पर आने वाले packet में गंतव्य IP और गंतव्य port दोनों शामिल होते हैं — साथ में वे OS को बताते हैं कि कौन सा application डेटा receive करे।",
+      "Port scanning किसी server को यह जानने के लिए probe करने की तकनीक है कि कौन से ports पर services सुन रही हैं। यह legitimate network administration और हमलों दोनों में reconnaissance का एक मौलिक step है। यह समझना कि कौन से ports खुले हैं — और उन ports पर कौन सी services चलती हैं — अपनी attack surface को समझने के लिए essential है।"
+    ],
+    "technical": {
+      "title": "TCP बनाम UDP Ports और सामान्य Port Numbers",
+      "body": [
+        "TCP और UDP दोनों port numbers का उपयोग करते हैं। एक server एक port पर bind() और listen() को code में call करके 'listen' करता है। आपका OS connections को accept करता है और उन्हें सही application process को pass करता है। Linux पर 'netstat -tlnp' चलाना प्रत्येक port दिखाता है जो currently सुन रहा है और कौन सी process उसे own करती है।",
+        "याद करने के लिए सामान्य ports: 21 (FTP), 22 (SSH), 23 (Telnet — unencrypted, obsolete), 25 (SMTP), 53 (DNS), 80 (HTTP), 110 (POP3), 143 (IMAP), 443 (HTTPS), 3306 (MySQL), 5432 (PostgreSQL), 6379 (Redis), 27017 (MongoDB)। हमलावर exposed databases और services खोजने के लिए इन्हें scan करते हैं।"
+      ]
+    },
+    "incident": {
+      "title": "2017 का WannaCry ransomware — Port 445 खुला छोड़ा गया",
+      "impact": "NHS UK ठप; $4B+ का नुकसान",
+      "body": [
+        "WannaCry ने EternalBlue का फायदा उठाया, Microsoft के SMB protocol (port 445) में NSA द्वारा विकसित एक vulnerability। इंटरनेट के संपर्क में port 445 वाली और unpatched कोई भी Windows machine vulnerable थी। WannaCry स्वचालित रूप से फैला — कोई user action की आवश्यकता नहीं — खुले port 445 scan करके और vulnerability का फायदा उठाकर।",
+        "UK National Health Service को भारी नुकसान हुआ: hospitals ने 19,000 appointments cancel किए, ambulances को divert किया गया और MRI machines offline हो गईं। समाधान? Network perimeter पर port 445 block करें (कुछ जो वर्षों पहले होना चाहिए था) और patch MS17-010 लागू करें। एक single port पर firewall rules पूरे outbreak को रोक सकती थीं।"
+      ]
+    },
+    "timeline": [
+      "TCP port numbers को RFC 793 में मानकीकृत किया गया",
+      "IANA को well-known port numbers (0–1023) के लिए authority के रूप में assign किया गया",
+      "WannaCry ने खुले port 445 का फायदा उठाया — 150 देशों में 200K machines",
+      "EternalBlue patch (MS17-010) Microsoft द्वारा जारी — अधिकांश संगठनों ने इसे apply नहीं किया था"
+    ],
+    "keyTakeaways": [
+      "Ports 0–65535 एक server पर specific services को ट्रैफिक route करते हैं",
+      "Well-known ports (0–1023) मानकीकृत हैं: 22=SSH, 80=HTTP, 443=HTTPS",
+      "Port scanning से पता चलता है कि कौन सी services exposed हैं — हमलावर reconnaissance के लिए इसका उपयोग करते हैं",
+      "अनावश्यक खुले ports बंद करना security hardening का एक मौलिक step है"
+    ]
+  },
+  "bt-09": {
+    "tagline": "सांता क्रूज़ के neighborhoods हैं। नेटवर्कों के subnets हैं। एक ही विचार — नियंत्रित crossings वाले क्षेत्र।",
+    "overview": [
+      "सांता क्रूज़ neighborhoods में विभाजित है: Westside, Eastside, Downtown और Live Oak। आप अपने neighborhood के भीतर स्वतंत्र रूप से drive कर सकते हैं, लेकिन दूसरे जिले तक पहुँचने के लिए आपको एक विशिष्ट intersection से गुजरना होगा। Subnets उसी तरह काम करते हैं: एक subnet एक IP नेटवर्क का logical विभाजन है। एक ही subnet पर डिवाइस सीधे communicate करते हैं; अलग-अलग subnets पर डिवाइस को router से गुजरना होगा।",
+      "एक subnet को एक IP पते और एक subnet mask द्वारा परिभाषित किया जाता है। Mask आपको बताता है कि IP पते के कौन से bits 'network' हिस्से हैं और कौन से 'host' हिस्से हैं। उदाहरण के लिए: 192.168.1.0/24 का मतलब है कि पहले 24 bits network हैं (192.168.1) और अंतिम 8 bits डिवाइसों की पहचान करते हैं (0–255)। यह subnet 254 devices तक रख सकता है।",
+      "Subnetting नेटवर्क सुरक्षा और संगठन के लिए एक केंद्रीय उपकरण है। एक संगठन servers को 10.0.1.0/24 पर, workstations को 10.0.2.0/24 पर और IoT devices को 10.0.3.0/24 पर रख सकता है। Subnets के बीच ट्रैफिक एक firewall से होकर गुजरना चाहिए, जिससे इस पर सख्त नियंत्रण संभव हो कि क्या किसके साथ communicate कर सकता है।"
+    ],
+    "technical": {
+      "title": "CIDR Notation और Subnet Masks पढ़ना",
+      "body": [
+        "CIDR notation (/24, /16, /8) आपको बताता है कि network portion में कितने bits हैं। /24 = 255.255.255.0 = 254 hosts। /16 = 255.255.0.0 = 65,534 hosts। /8 = 255.0.0.0 = 16 million hosts। यह जाँचने के लिए कि दो IPs एक ही subnet में हैं: दोनों IPs पर mask को bitwise AND से apply करें — यदि परिणाम match करते हैं, तो वे एक ही subnet में हैं।",
+        "Internal networks के लिए Private IP ranges (RFC 1918): 10.0.0.0/8 (बड़े enterprises), 172.16.0.0/12 (medium networks), 192.168.0.0/16 (home/छोटे office)। ये पते सार्वजनिक इंटरनेट पर route नहीं होते — आपका router उन्हें आपके public IP पर translate करता है।"
+      ]
+    },
+    "incident": {
+      "title": "Flat Networks और Target का उल्लंघन — Subnetting नहीं = Containment नहीं",
+      "impact": "40 million credit cards चोरी; $290M का नुकसान",
+      "body": [
+        "Target का नेटवर्क अपर्याप्त रूप से segmented था। हमलावर HVAC vendor की credentials के माध्यम से घुसे — Fazio Mechanical को heating systems की monitoring के लिए Target के नेटवर्क पर remote access था। एक properly segmented नेटवर्क में, HVAC subnet का payment processing subnet के लिए कोई route नहीं होती।",
+        "इसके बजाय, Target के POS (point of sale) terminals और HVAC systems एक ही flat नेटवर्क पर थे। एक बार जब हमलावरों के पास Fazio की credentials थीं, वे सीधे POS systems तक पहुँच सकते थे और credit card capturing malware install कर सकते थे। Segments के बीच firewall rules के साथ proper subnetting ने उल्लंघन को contain किया होता। सबक: network segmentation blast radius को सीमित करता है।"
+      ]
+    },
+    "timeline": [
+      "Classful networking (Class A/B/C) — rigid और अकुशल subnetting",
+      "CIDR (Classless Inter-Domain Routing) पेश किया गया — flexible /notation",
+      "Target उल्लंघन — flat नेटवर्क HVAC vendor → POS के lateral movement को allow करता है",
+      "Zero-trust networks उभरे — 'उल्लंघन मानो, सब कुछ verify करो'"
+    ],
+    "keyTakeaways": [
+      "एक subnet उन devices को group करता है जो router के बिना directly communicate करते हैं",
+      "CIDR /notation नेटवर्क का आकार बताता है: /24 = 254 hosts, /16 = 65,534 hosts",
+      "अलग-अलग subnets पर devices को router या firewall से गुजरना होगा",
+      "Network segmentation उल्लंघन के blast radius को सीमित करता है — एक subnet compromise करें, सभी नहीं"
+    ]
+  },
+  "bt-10": {
+    "tagline": "एक protocol बस एक समझौता है: इस तरह हम बात करते हैं ताकि हम एक-दूसरे को समझ सकें।",
+    "overview": [
+      "Pacific Coast पर Highway 1 पर drive करते हुए, आप agreed rules follow करते हैं: दाईं तरफ drive करें, मुड़ने से पहले signal दें, लाल traffic lights पर रुकें। ये rules विभिन्न देशों के अजनबियों को एक ही सड़क को सुरक्षित रूप से साझा करने की अनुमति देते हैं। Network protocols वही हैं: agreed rules कि devices कैसे communicate करते हैं। Protocols के बिना, दो devices ऐसा डेटा भेज रहे होंगे जिसे कोई भी interpret नहीं कर सकता।",
+      "इंटरनेट layered protocols के एक stack पर काम करता है। सबसे नीचे, Ethernet और WiFi physical transmission को संभालते हैं। उसके ऊपर, IP addressing और routing को संभालता है। उसके ऊपर, TCP या UDP reliable या fast delivery को संभालते हैं। सबसे ऊपर, HTTP, SMTP और SSH जैसे application protocols वास्तविक service को संभालते हैं जिसका उपयोग किया जा रहा है। प्रत्येक layer केवल सीधे ऊपर और नीचे की layer से communicate करती है।",
+      "Security के लिए protocols को समझना मौलिक है। हर vulnerability अंततः एक protocol की assumptions का उल्लंघन है — एक crafted packet जो TCP के sequence numbers को handle करने के तरीके का फायदा उठाता है, एक request जो HTTP headers को handle करने के तरीके का दुरुपयोग करती है, एक DNS response जो name-to-IP mapping के बारे में झूठ बोलती है।"
+    ],
+    "technical": {
+      "title": "TCP/IP Model और Protocol Layers",
+      "body": [
+        "Layer 1 (Physical): cable/air पर bits। Layer 2 (Data Link): MAC पते, Ethernet frames। Layer 3 (Network): IP पते, routing। Layer 4 (Transport): TCP (reliable) या UDP (fast)। Layers 5-7 (Application): HTTP, DNS, SMTP, SSH, TLS। प्रत्येक layer ऊपरी layer को wrap करते हुए एक header जोड़ती है — एक प्रक्रिया जिसे encapsulation कहा जाता है।",
+        "TCP एक connection स्थापित करने के लिए three-way handshake का उपयोग करता है: SYN → SYN-ACK → ACK। यह delivery, ordering और error correction की गारंटी देता है। UDP बिना handshake, acknowledgement या guaranteed order के datagrams भेजता है — तेज़ और कम overhead, DNS, video calls, gaming और live streaming के लिए उपयोग किया जाता है।"
+      ]
+    },
+    "incident": {
+      "title": "TCP SYN Flood — Protocol Design का शोषण",
+      "impact": "Servers overwhelm; सभी आधुनिक DDoS हमलों का आधार",
+      "body": [
+        "TCP handshake में एक inherent flaw है: जब एक server एक SYN receive करता है, तो वह half-open connection के लिए memory allocate करता है और उस ACK का इंतजार करता है जो handshake को complete करता है। यदि ACK कभी नहीं आता — क्योंकि source IP spoofed था — तो server उस memory को release करने से पहले (आमतौर पर 75 seconds) प्रतीक्षा करता है।",
+        "एक SYN flood spoofed source IP addresses के साथ लाखों SYN packets भेजता है। Server अपनी connection table को half-open connections से भर देता है और legitimate ट्रैफिक को accept नहीं कर सकता। यह हमला protocol design का ही फायदा उठाता है — 70s के दशक में TCP के designers ने malicious actors का अनुमान कभी नहीं लगाया था। आधुनिक mitigations में SYN cookies शामिल हैं, जो handshake complete होने तक memory allocate करने से बचते हैं।"
+      ]
+    },
+    "timeline": [
+      "TCP/IP को Vint Cerf और Bob Kahn ने design किया",
+      "TCP/IP ने ARPANET पर NCP को replace किया — आधुनिक इंटरनेट का जन्म",
+      "SYN flood हमले पहली बार documented — TCP design flaw का बड़े पैमाने पर शोषण",
+      "SYN cookies मानकीकृत — stateless SYN flood mitigation"
+    ],
+    "keyTakeaways": [
+      "Protocols communication के लिए agreed rules हैं — उनके बिना, डेटा शोर है",
+      "इंटरनेट 4-layer model का उपयोग करता है: Link → Network → Transport → Application",
+      "TCP = reliable (handshake, ACK); UDP = fast (कोई गारंटी नहीं)",
+      "हर vulnerability किसी protocol में एक flaw या unexpected behavior का फायदा उठाती है"
+    ]
+  },
+  "bt-11": {
+    "tagline": "HTTP आपकी surf report को एक सार्वजनिक बोर्ड पर post करता है। HTTPS इसे एक लिफाफे में seal करता है।",
+    "overview": [
+      "आप Steamer Lane पर surf report देख रहे हैं। Surf shop के बाहर पुराना blackboard (HTTP) किसी के लिए भी दिखाई देता है जो गुजरता है — हर tourist, हर competitor, हर अजनबी इसे पढ़ सकता है। Text message से भेजा गया members-only exclusive forecast (HTTPS) encrypted है — केवल आप और sender इसे पढ़ सकते हैं। HTTP और HTTPS में यही अंतर है।",
+      "HTTP (HyperText Transfer Protocol) plain text में डेटा transmit करता है। हर router, ISP और उसी WiFi network पर कोई भी आपके HTTP ट्रैफिक को पढ़ सकता है — आपकी login credentials, आपका personal data, सब कुछ। HTTPS ऊपर TLS (Transport Layer Security) encryption जोड़ता है, जिससे content किसी के लिए भी अपठनीय हो जाता है सिवाय intended recipient server के।",
+      "2025 तक, 95% से अधिक web ट्रैफिक HTTPS का उपयोग करता है। आधुनिक browsers HTTP sites को 'Not Secure' warning के साथ mark करते हैं। लेकिन HTTP अभी भी मौजूद है — और public WiFi पर इसे intercept करना trivial है। अंतर को समझना online खुद को protect करने का पहला step है।"
+    ],
+    "technical": {
+      "title": "TLS HTTP ट्रैफिक को कैसे Encrypt करता है",
+      "body": [
+        "जब आप एक HTTPS site से connect होते हैं, तो आपका browser और server एक TLS handshake perform करते हैं: (1) Server अपना certificate भेजता है (identity prove करता है)। (2) Browser trusted Certificate Authorities के विरुद्ध certificate verify करता है। (3) दोनों sides asymmetric cryptography (RSA या ECDH) का उपयोग करके encryption keys पर agree करते हैं। (4) सभी subsequent ट्रैफिक को एक symmetric key (AES-256) से encrypt किया जाता है।",
+        "URL आपको बताता है कि कौन सा उपयोग करना है: http:// plain text भेजता है, https:// encrypted भेजता है। आपके browser के address bar में lock icon एक valid TLS certificate indicate करता है। Missing lock या 'Not Secure' = HTTP या invalid certificate। कभी भी HTTP page पर passwords या payment information enter न करें।"
+      ]
+    },
+    "incident": {
+      "title": "Firesheep Exploit — HTTP के माध्यम से Session Hijacking",
+      "impact": "Demonstrated किया कि Facebook, Twitter sessions सेकंडों में hijack की जा सकती हैं",
+      "body": [
+        "Eric Butler ने Firesheep launch किया — एक Firefox extension जो automatically उसी WiFi network पर अन्य users के session cookies को capture और display करता था। Facebook ने login के लिए HTTPS का उपयोग किया लेकिन browsing के लिए HTTP पर वापस switch कर दिया। Firesheep ने unencrypted session cookies capture कीं और किसी को भी एक button click करने की अनुमति दी उस user के रूप में login करने के लिए।",
+        "Launch के दिनों के भीतर, Firesheep को 100,000 से अधिक बार download किया जा चुका था। Facebook और Twitter को everywhere HTTPS implement करने के लिए मजबूर किया गया — कुछ जिसका उन्होंने performance कारणों से विरोध किया था। सबक: HTTPS login का मतलब कुछ नहीं है यदि session HTTP के माध्यम से जारी रहती है। सब कुछ encrypt करें, न केवल authentication step।"
+      ]
+    },
+    "timeline": [
+      "HTTP 0.9 को Tim Berners-Lee ने पेश किया — पूरी तरह plain text",
+      "HTTPS को Netscape ने e-commerce security के लिए पेश किया",
+      "Firesheep: HTTP session hijacking trivial हुआ — HTTPS adoption शुरू",
+      "Chrome सभी HTTP sites को 'Not Secure' mark करता है — HTTPS मानक बना"
+    ],
+    "keyTakeaways": [
+      "HTTP सब कुछ plain text में transmit करता है — network path पर किसी के लिए भी दृश्यमान",
+      "HTTPS TLS encryption जोड़ता है — session keys के बिना content अपठनीय",
+      "कोई भी sensitive data enter करने से पहले हमेशा https:// और lock icon देखें",
+      "भले ही login HTTPS हो, plain text session cookie आपके account को hijack करने के लिए चुराई जा सकती है"
+    ]
+  },
+  "bt-13": {
+    "tagline": "Client पूछता है। Server जवाब देता है। हर web interaction बिल्कुल यही exchange है।",
+    "overview": [
+      "Surf school में instructors (servers) और students (clients) हैं। एक student (client) पूछता है 'board पर कैसे खड़े हों?' Instructor (server) lesson के साथ जवाब देता है। Student कभी instructor नहीं बनता। इंटरनेट एक जैसा काम करता है: एक client (आपका browser, आपका app) एक request करता है, और एक server जवाब देता है। उस exchange के लिए roles fixed हैं।",
+      "जब आप Instagram खोलते हैं, तो आपका फोन (client) Instagram के servers को एक request भेजता है: 'मेरे feed के लिए latest posts दें।' Instagram का server उस request को process करता है, अपने database से query करता है और posts को JSON data के रूप में return करता है। आपका app उन्हें उस feed में render करता है जो आप देखते हैं। यह request-response cycle प्रतिदिन हजारों बार दोहराती है।",
+      "Client-server model security responsibilities को भी define करता है। Servers को हर input validate करना चाहिए — एक malicious client कुछ भी भेज सकता है। Clients को server responses validate करना चाहिए — एक compromised server malicious content भेज सकता है। कोई भी default रूप से दूसरे पर trust नहीं कर सकता।"
+    ],
+    "technical": {
+      "title": "HTTP Request-Response Cycle",
+      "body": [
+        "एक HTTP request में है: एक method (GET, POST, PUT, DELETE), एक URL path, headers (metadata) और optionally एक body (POST/PUT के लिए)। एक HTTP response में है: एक status code (200 OK, 404 Not Found, 500 Server Error), headers और एक body (actual content)।",
+        "REST APIs वह मानक तरीका है जिससे web applications communicate करते हैं: GET /users/123 एक user retrieve करता है, POST /users एक बनाता है, PUT /users/123 उसे update करता है, DELETE /users/123 उसे delete करता है। Server state और data maintain करता है; client केवल एक display और input layer है। इस separation को 'client-server' architectural pattern कहा जाता है।"
+      ]
+    },
+    "incident": {
+      "title": "IDOR — जब Server Client पर बहुत अधिक Trust करता है",
+      "impact": "URL में एक ID बदलकर अन्य users का डेटा accessible",
+      "body": [
+        "IDOR (Insecure Direct Object Reference) तब होता है जब एक server trust करता है कि client एक valid object ID भेज रहा है यह verify किए बिना कि क्या वह client उसे access करने के लिए authorized है। /api/invoices/1042 को /api/invoices/1043 में बदलें और आप किसी अन्य customer का invoice देखते हैं — क्योंकि server ने कभी verify नहीं किया कि आप invoice 1043 के मालिक हैं।",
+        "2019 में, researchers ने पाया कि Facebook Business Manager API किसी भी user का phone number return करती थी यदि आप उनका user ID जानते थे — और user IDs public थे। Client ने user ID X के साथ एक request भेजी; server ने यह verify किए बिना X का phone number return किया कि requesting client उसे देखने के लिए authorized था। Classic IDOR: 'server clients पर trust करता है, server authorization verify नहीं करता।'"
+      ]
+    },
+    "timeline": [
+      "Client-server architecture को ARPANET design में formalize किया गया",
+      "HTTP 0.9 ने web के लिए request-response cycle पेश किया",
+      "REST API style को Roy Fielding ने अपनी doctoral dissertation में define किया",
+      "Facebook का IDOR phone numbers expose करता है — server ने blindly client IDs पर trust किया"
+    ],
+    "keyTakeaways": [
+      "Client पूछता है, server जवाब देता है — एक request के भीतर roles नहीं बदलते",
+      "HTTP methods: GET (read), POST (create), PUT (update), DELETE (delete)",
+      "Servers को हर request authorize करनी चाहिए — कभी trust न करें कि client self-authorizes",
+      "IDOR: server किसी भी ID के लिए डेटा return करता है यह verify किए बिना कि requester authorized है"
+    ]
+  },
+  "bt-15": {
+    "tagline": "Surf club आपकी कलाई पर stamp लगाता है ताकि आप फिर से pay न करें। Cookies यही करती हैं — आपका browser stamp carry करता है।",
+    "overview": [
+      "जब आप surf club में check in करते हैं, तो staff आपकी कलाई पर stamp लगाता है। बाकी दिन, आप stamp दिखाते हैं — फिर से pay करने या identity prove करने की कोई ज़रूरत नहीं। HTTP cookies बिल्कुल इसी तरह काम करती हैं: login के बाद, server आपके browser में एक cookie (एक छोटी text value) set करता है। बाद की प्रत्येक request वह cookie carry करती है, और server उसे पढ़कर जानता है कि आप कौन हैं।",
+      "HTTP stateless है by design: प्रत्येक request पिछली requests की कोई memory के बिना independent है। Cookies client side पर एक session token store करके इसे solve करती हैं। Token एक random string है (जैसे, 'sess=a9f3b2e1...') जो server पर आपके session data से assigned है। Server उस token को lookup करता है और जानता है: यह Alice है, उसने login किया है, उसके पास ये permissions हैं।",
+      "Cookies में security attributes हैं: HttpOnly JavaScript को cookie पढ़ने से रोकता है (XSS theft को block करता है), Secure सुनिश्चित करता है कि cookie केवल HTTPS पर travel करे, और SameSite cookie को cross-site requests में भेजे जाने से रोकता है (CSRF हमलों को block करता है)। इन attributes का अभाव गंभीर vulnerabilities पैदा करता है।"
+    ],
+    "technical": {
+      "title": "Cookie Security Attributes",
+      "body": [
+        "एक secure session cookie इस तरह set होनी चाहिए: Set-Cookie: sess=abc123; HttpOnly; Secure; SameSite=Strict; Path=/। HttpOnly: JavaScript इस cookie को access नहीं कर सकता (document.cookie इसे नहीं दिखाएगा)। Secure: browser यह cookie केवल HTTPS पर भेजता है। SameSite=Strict: cookie cross-origin requests में नहीं भेजी जाती (CSRF protection)।",
+        "Session fixation: हमलावर login से पहले एक known session token set करता है, फिर victim उस token के साथ login करता है — हमलावर के पास अब एक valid authenticated session है। Mitigation: login पर हमेशा session token regenerate करें। Session hijacking: हमलावर एक valid token चुराता है (XSS या network sniffing के माध्यम से) और victim का impersonate करने के लिए इसका उपयोग करता है।"
+      ]
+    },
+    "incident": {
+      "title": "Slack Session Cookie Theft — Zero-Click Account Takeover",
+      "impact": "हमलावरों ने code repositories से Slack employees के session tokens चुराए",
+      "body": [
+        "उसी campaign में Twilio और Cloudflare को compromise करने वाले threat actors ने चोरी की गई employee session cookies का उपयोग करके Slack के GitHub repositories तक access प्राप्त किया। Passwords चुराने के बजाय, उन्होंने session tokens चुराए — जिसका अर्थ है कि उन्होंने 2FA को पूरी तरह bypass कर दिया क्योंकि session पहले से ही authenticated थी।",
+        "यही session cookie theft की शक्ति है: यदि आपके पास cookie है, तो आप server के perspective से उपयोगकर्ता हैं। Server के पास एक चोरी की गई session को legitimate से अलग करने का कोई तरीका नहीं है। आधुनिक mitigations में sessions को IP addresses से binding करना, device fingerprinting और short session timeouts शामिल हैं जिनके लिए frequent re-authentication की आवश्यकता होती है।"
+      ]
+    },
+    "timeline": [
+      "Lou Montulli ने Netscape पर shopping cart state के लिए HTTP cookies का आविष्कार किया",
+      "URL vulnerabilities के माध्यम से Hotmail cookie theft — पहला major cookie हमला",
+      "Firesheep: open WiFi पर HTTP session cookie theft trivial हुआ",
+      "Slack का GitHub breach चोरी की गई session cookies के माध्यम से — 2FA bypass"
+    ],
+    "keyTakeaways": [
+      "Cookies browser में एक session token store करके HTTP की statelessness को solve करती हैं",
+      "HttpOnly: JavaScript access block करता है; Secure: केवल HTTPS; SameSite: CSRF block करता है",
+      "एक session cookie चुराना = बिना password के full account access",
+      "Session fixation रोकने के लिए login पर हमेशा session tokens regenerate करें"
+    ]
+  },
+  "bt-17": {
+    "tagline": "एक बड़ी लहर अधिक पानी carry करती है। High bandwidth connection प्रति second अधिक डेटा carry करता है।",
+    "overview": [
+      "Pleasure Point पर हर आकार की लहरें हैं। 2-foot की लहर longboard पर glide करने के लिए पर्याप्त है लेकिन एक बड़ी aerial को power नहीं दे सकती। 10-foot की लहर सबसे demanding maneuvers के लिए पर्याप्त energy carry करती है। Bandwidth इंटरनेट का equivalent है: Mbps (megabits per second) या Gbps में measured, एक connection से प्रति second कितना डेटा flow कर सकता है।",
+      "Bandwidth अधिकतम capacity है; throughput वास्तविक डेटा transfer है। 100 Mbps connection latency, packet loss या network congestion के कारण केवल 60 Mbps throughput achieve कर सकता है — एक wide highway की तरह जहाँ traffic jams गाड़ियों को speed limit से नीचे slow करते हैं। Slow networks diagnose करने के लिए अंतर समझना महत्वपूर्ण है।",
+      "DDoS (Distributed Denial of Service) हमले bandwidth को हथियार के रूप में उपयोग करते हैं। हमलावर target के bandwidth से अधिक डेटा भेजते हैं — connection भर जाता है और legitimate ट्रैफिक drop हो जाता है। Cloudflare का 2023 DDoS record 71 million requests per second तक पहुँचा — infrastructure level पर bandwidth saturating।"
+    ],
+    "technical": {
+      "title": "Bandwidth बनाम Latency बनाम Throughput",
+      "body": [
+        "तीन अलग measurements: Bandwidth = pipe का आकार (maximum bits/second)। Latency = delay (send से receive तक milliseconds, ping से measured)। Throughput = actual data transferred per second (हमेशा ≤ bandwidth)। High bandwidth + high latency = fast लेकिन slow (satellite internet)। Low bandwidth + low latency = slow लेकिन responsive (poor mobile signal)।",
+        "Bottlenecks: यदि आपका home 1 Gbps है लेकिन आपके ISP का internet का link 100 Mbps है, तो आपका effective bandwidth 100 Mbps है। Chain में सबसे slow link हमेशा bottleneck है। traceroute reveal करता है कि latency spikes कहाँ हैं, suggesting कि path पर bottlenecks या congestion कहाँ होती है।"
+      ]
+    },
+    "incident": {
+      "title": "Cloudflare DDoS — 71 Million RPS Bandwidth Saturation",
+      "impact": "अब तक का सबसे बड़ा HTTP DDoS हमला दर्ज; infrastructure level पर bandwidth saturation",
+      "body": [
+        "फरवरी 2023 में, Cloudflare ने अब तक दर्ज सबसे बड़े HTTP DDoS हमले को mitigate किया: 30,000 IP पतों के botnet से 71 million requests per second। हमले ने एक साथ multiple Cloudflare customers को target किया, infrastructure level पर bandwidth saturate करने की कोशिश की।",
+        "285+ data centers में Cloudflare की distributed architecture ने load distribute किया — कोई single data center overwhelm नहीं हुआ। उन्होंने automated traffic analysis का उपयोग करके seconds में हमले को mitigate किया। सबक: bandwidth-based DDoS को हमलावर आप पर launch कर सकें से अधिक bandwidth capacity रखकर solve किया जाता है, globally distributed।"
+      ]
+    },
+    "timeline": [
+      "ARPANET 50 Kbps पर काम करता है — 1969 के लिए state of the art",
+      "Broadband (1 Mbps+) dial-up (56 Kbps) को replace करना शुरू",
+      "Mirai botnet: 1.2 Tbps DDoS — terabit-scale bandwidth हमला",
+      "Cloudflare: 71M requests/sec DDoS — अब तक का सबसे बड़ा दर्ज"
+    ],
+    "keyTakeaways": [
+      "Bandwidth = maximum capacity; throughput = actual data rate (हमेशा ≤ bandwidth)",
+      "Latency = ms में delay; high latency high-bandwidth links पर भी real-time apps को hurt करता है",
+      "Bottleneck = chain का सबसे slow link — हमेशा total throughput limit करता है",
+      "Bandwidth DDoS हमले pipe को तब तक saturate करते हैं जब तक legitimate ट्रैफिक pass नहीं हो सकता"
+    ]
+  },
+  "bt-18": {
+    "tagline": "आप set आने का इंतजार करते हैं। Latency वह है जितना आप प्रतीक्षा करते हैं — यह आपके experience को define करता है।",
+    "overview": [
+      "आप Boardwalk पर lineup में इंतजार कर रहे हैं। Set हर 8–12 मिनट में आता है — वह interval ocean की latency है। Networks में, latency डेटा भेजने और response receive करने के बीच का delay है, milliseconds (ms) में measured। Low latency (50ms से कम) imperceptible है। High latency (500ms+) apps को slow feel करता है और video calls choppy।",
+      "Latency physics द्वारा determined है: data fiber optic cables के माध्यम से प्रकाश की गति के लगभग 2/3 पर travel करता है। California से Europe तक एक round trip केवल physical distance के कारण ~180ms है। प्रत्येक hop पर processing time जोड़ें, congested routers पर queue delays, TLS handshake round trips, और आप एक transatlantic connection के लिए जल्दी 300–400ms तक पहुँच जाते हैं।",
+      "Security tools के लिए latency बहुत महत्वपूर्ण है: intrusion detection जो एक packet analyze करने में 500ms लेता है real-time हमलों को miss करता है। High-frequency trading कंपनियाँ low-latency connections के लिए millions pay करती हैं क्योंकि milliseconds directly competitive advantage में translate होते हैं। और हमलावरों के लिए, एक victim और उनके security monitoring के बीच high-latency connection detection में blind spots पैदा करता है।"
+    ],
+    "technical": {
+      "title": "Latency और उसके Sources को Measure करना",
+      "body": [
+        "Ping round-trip time (RTT) measure करता है: एक packet के किसी host तक पहुँचने और वापस आने का time। 20ms ping का मतलब है कि data प्रत्येक direction में 10ms लेता है। Latency के sources: propagation delay (distance/speed of light), transmission delay (link bandwidth), processing delay (router CPU time), queuing delay (congested buffers)। पहला long-distance connections के लिए dominant है; आखिरी load के तहत dominant है।",
+        "Tools: ping (basic RTT), traceroute (bottlenecks खोजने के लिए per-hop latency), mtr (combined ping + traceroute, continuous)। Traceroute में एक specific hop पर high latency उस point पर congestion या slow router suggest करता है। Distance के साथ proportionally बढ़ने वाली latency normal है; sudden spikes congestion indicate करते हैं।"
+      ]
+    },
+    "incident": {
+      "title": "2012 AWS US-East Outage — Cascading Failure के रूप में Latency",
+      "impact": "Reddit, Airbnb, Netflix घंटों तक degraded",
+      "body": [
+        "AWS US-East-1 में एक network event ने availability zones के बीच elevated latency का कारण बना। Services जो zones के बीच synchronous calls पर depend करती थीं timeout होने लगीं — एक 2ms call अचानक 2000ms लेती थी जिससे cascading failures हुईं जब services उन responses का इंतजार करती रहीं जो काफी तेज़ी से नहीं आ रहे थे।",
+        "यह illustrate करता है कि latency spikes कैसे cascade करती हैं: एक slow component उस पर waiting components को backup करता है, जिससे उन components के callers slow होते हैं, जब तक पूरा system halt नहीं हो जाता। Solution: latency के लिए design करें — asynchronous calls का उपयोग करें, aggressive timeouts set करें और circuit breakers implement करें जो waiting की बजाय fast fail होते हैं।"
+      ]
+    },
+    "timeline": [
+      "Ping concept ARPANET protocols के साथ develop हुआ",
+      "Ping command को Mike Muuss ने लिखा — आज भी primary latency tool है",
+      "AWS US-East-1 latency cascade — slow network 6-hour partial outage का कारण",
+      "Submarine cable improvements US-Europe RTT को 70ms से कम कर देते हैं"
+    ],
+    "keyTakeaways": [
+      "Latency = ms में one-way delay; RTT (ping) = 2x one-way latency",
+      "Sources: propagation (distance), transmission (bandwidth), processing, queuing (congestion)",
+      "traceroute per-hop latency दिखाता है — spikes congestion या slow hops indicate करते हैं",
+      "Latency cascade करती है: एक slow component सभी upstream callers को backup करता है"
+    ]
+  },
+  "bt-19": {
+    "tagline": "यदि surf contest के records falsified हैं, तो हर surfer गलत beach पर show up करता है।",
+    "overview": [
+      "Beach Flats surf contest file में official record है कि किस surfer ने कौन सा event जीता। यदि कोई उन records को बदल देता है — location को Steamer Lane से Capitola में बदलकर — तो हर competitor गलत location पर show up करता है। DNS cache poisoning बिल्कुल यही करता है: आपके DNS resolver के cache को corrupt करता है ताकि जब आप 'bank.com' lookup करें, तो आपको real की बजाय एक malicious IP मिले।",
+      "आपका DNS resolver responses को future lookups speed up करने के लिए cache करता है। Cache poisoning attacks उस cache में एक false DNS response inject करते हैं — resolver को यह believe करने के लिए deceive करते हैं कि 'yourbank.com' हमलावर के server की तरफ point करता है। उस resolver पर depend करने वाला हर user एक convincing fake site पर send किया जाता है और उनकी credentials चोरी हो जाती हैं।",
+      "2008 के Kaminsky attack ने demonstrate किया कि DNS cache poisoning किसी भी DNS resolver के खिलाफ बड़े पैमाने पर किया जा सकता है। समाधान — DNSSEC (DNS Security Extensions) — DNS records को cryptographically sign करता है ताकि tampering detectable हो। लेकिन DNSSEC adoption कम है, और DNS-over-HTTPS (DoH) अब end users के लिए अधिक practical alternative है।"
+    ],
+    "technical": {
+      "title": "Cache Poisoning कैसे काम करता है और DNSSEC Defense",
+      "body": [
+        "Classic cache poisoning: हमलावर एक DNS query एक resolver को भेजता है, फिर उसे fake responses से flood करता है जो real response आने से पहले authoritative server होने का नाटक करते हैं। यदि एक fake response सही transaction ID के साथ पहले आता है, तो resolver fake record cache करता है। Kaminsky attack ने 16-bit transaction ID space को exploit करके इसे practical बनाया।",
+        "DNSSEC DNS records में digital signatures जोड़ता है। Authoritative server अपने records को एक private key से sign करता है। Resolvers DNS hierarchy में published public key का उपयोग करके signature verify करते हैं। कोई भी tampered record एक invalid signature है और reject हो जाता है। DNSKEY और DS records DNS में ही cryptographic material store करते हैं।"
+      ]
+    },
+    "incident": {
+      "title": "2008 Kaminsky DNS Cache Poisoning Vulnerability",
+      "impact": "Critical — हर internet user vulnerable; emergency patch coordination सभी vendors में",
+      "body": [
+        "Dan Kaminsky ने discover किया कि 16-bit DNS transaction ID और source port combined केवल 32 bits entropy provide करते थे — एक resolver को fake responses से flood करने और 10 seconds से कम में उसके cache को poison करने का उचित मौका। यह software में कोई नई vulnerability नहीं थी — यह DNS protocol design में एक fundamental flaw था।",
+        "Kaminsky ने disclosure से 3 months पहले Microsoft, Cisco, BIND और अन्य के साथ secretly patches coordinate किए। Patch ने source port randomization जोड़ी, entropy को 16 bits से ~32 bits तक expand करते हुए। एक CERT advisory सभी vendors को simultaneously release किया गया। इसे security history में सबसे well-coordinated vulnerability disclosures में से एक माना जाता है।"
+      ]
+    },
+    "timeline": [
+      "DNS को बिना authentication के design किया गया — poisoning theoretically पहले दिन से possible",
+      "पहला practical DNS cache poisoning attack demonstrated",
+      "Kaminsky critical DNS flaw discover करता है — सभी vendors में emergency patches",
+      "DNSSEC .com, .net, .org TLDs के लिए deploy किया गया"
+    ],
+    "keyTakeaways": [
+      "DNS cache poisoning resolver के cache में fake records inject करता है",
+      "Poisoned cache उस resolver पर सभी users को hacker-controlled IPs पर redirect करता है",
+      "DNSSEC cryptographic signatures जोड़ता है ताकि tampered records accept न हों",
+      "DNS-over-HTTPS (DoH) ISP interception रोकता है और confidentiality जोड़ता है"
+    ]
+  },
+  "bt-20": {
+    "tagline": "जब Steamer Lane भरा होता है, locals Four Mile जाते हैं। Load balancers उसी तरह भीड़ distribute करते हैं।",
+    "overview": [
+      "एक big swell day पर, Steamer Lane packed होता है। Local surfers disperse हो जाते हैं — कुछ Cowell जाते हैं, कुछ Pleasure Point, कुछ Four Mile। कोई भी break overwhelmed नहीं होता। Load balancers incoming network traffic को multiple servers में distribute करते हैं ताकि कोई single server bottleneck या failure point न बने।",
+      "एक load balancer servers के एक pool के सामने बैठता है। जब एक request आती है, तो वह एक algorithm का उपयोग करके एक server चुनता है: round-robin (turns), least connections (least busy को भेजें), या IP hash (same user हमेशा same server पर जाता है)। Client एक IP देखता है लेकिन many backend servers में से एक द्वारा serve किया जाता है।",
+      "Load balancing एक performance tool और एक security concern दोनों है। एक specific server vulnerability को target करने वाले हमलावरों को उसी backend (session persistence) को target करते रहना पड़ सकता है। Security teams DDoS traffic absorb करने, centrally TLS terminate करने और suspicious traffic को honeypots या deeper inspection पर route करने के लिए load balancers का उपयोग करती हैं।"
+    ],
+    "technical": {
+      "title": "Load Balancing Algorithms और Health Checks",
+      "body": [
+        "Round-robin: प्रत्येक request rotation में अगले server पर जाती है — simple लेकिन server load को ignore करता है। Least connections: सबसे कम active connections वाले server पर route करें — variable request sizes के लिए बेहतर। IP hash: client IP को hash करें और हमेशा उसी backend पर route करें — cookies के बिना sticky sessions के लिए useful।",
+        "Health checks: load balancers continuously backends को probe करते हैं (HTTP GET /health → 200 OK)। एक server जो health checks fail करता है pool से remove हो जाता है। यह zero-downtime deployments की अनुमति देता है: एक server पर deploy करें, health checks pass होने का इंतजार करें, old server को pool से remove करें, पूरे fleet में repeat करें।"
+      ]
+    },
+    "incident": {
+      "title": "2022 Heroku/GitHub Token Leak — Load Balancer Internal Routing Expose",
+      "impact": "Private GitHub OAuth tokens चोरी; हजारों customer repositories accessed",
+      "body": [
+        "हमलावरों ने Heroku के internal systems तक access प्राप्त किया और load balancer के backend pool को query कर सके — internal API servers discover करते हुए जो public होने के लिए intended नहीं थे। फिर उन्होंने internal services access करने और एक database में stored OAuth tokens extract करने के लिए load balancer की privileged network position का उपयोग किया।",
+        "सबक: load balancers के पास सभी backends तक privileged network access है। एक compromised (या misconfigured) load balancer internal infrastructure expose कर सकता है जो इंटरनेट पर होने के लिए intended नहीं है। Load balancers के पास strict outbound rules होने चाहिए, hardened होने चाहिए, और internal endpoints को trusted network ranges से भी authentication require करनी चाहिए।"
+      ]
+    },
+    "timeline": [
+      "पहले commercial load balancers ship किए गए (Cisco LocalDirector)",
+      "AWS Elastic Load Balancer launch — cloud-native load balancing",
+      "Mirai DDoS Dyn DNS को overwhelm करता है — कोई load balancer 1.2 Tbps absorb नहीं कर सका",
+      "Heroku breach load balancer internal access के माध्यम से — DB से tokens चोरी"
+    ],
+    "keyTakeaways": [
+      "Load balancers server pools में traffic distribute करते हैं — कोई single point of failure नहीं",
+      "Algorithms: round-robin (simple), least connections (smart), IP hash (sticky)",
+      "Health checks automatically failed servers को pool से remove करते हैं",
+      "Load balancers को privileged access है — उन्हें harden करना critical है"
+    ]
+  },
+  "bt-22": {
+    "tagline": "Charter boat start करने के लिए दो keys चाहिए: ignition key और captain's code। एक खोएं, boat docked रहती है।",
+    "overview": [
+      "Coast Guard Pier पर charter boat को engine start करने के लिए दो actions चाहिए: ignition key insert करें और 4-digit captain's code enter करें। केवल key चुराने वाला कोई boat start नहीं कर सकता। केवल code जानने वाला भी नहीं। Two-Factor Authentication (2FA) इस principle को logins पर apply करता है: कुछ जो आप जानते हैं (password) plus कुछ जो आपके पास है (phone, hardware key) या कुछ जो आप हैं (fingerprint)।",
+      "2FA credential theft attacks को रोकता है। यदि कोई हमलावर आपका password phish करता है, तो वे अभी भी second factor के बिना login नहीं कर सकते। 2023 के statistics compelling हैं: 2FA enabled accounts उन accounts की तुलना में 99.9% कम compromised होने की संभावना है जिनके पास नहीं है। Microsoft के data दिखाते हैं कि 2FA practically सभी automated attacks को block करता है।",
+      "Second factors के प्रकार: SMS codes (convenient लेकिन SIM swapping के लिए vulnerable), authenticator app TOTP codes (अधिक secure, offline), YubiKey जैसी hardware keys (सबसे secure, phishing-resistant), और biometrics (fingerprint, face)। SMS सबसे weak है — sensitive accounts के लिए authenticator app या hardware key का उपयोग करें।"
+    ],
+    "technical": {
+      "title": "TOTP (Authenticator Apps) कैसे काम करते हैं",
+      "body": [
+        "TOTP (Time-based One-Time Password, RFC 6238): जब आप authenticator app के साथ 2FA setup करते हैं, तो server आपके app के साथ एक secret key share करता है। हर 30 seconds, server और आपका app दोनों independently HMAC-SHA1(secret + current_time_window) calculate करते हैं और last 6 digits लेते हैं। क्योंकि वे secret share करते हैं और time synchronized है, वे एक ही 6-digit code प्राप्त करते हैं — बिना किसी communication के।",
+        "SIM swapping: हमलावर आपके carrier को call करता है, social engineering का उपयोग करके आपका impersonate करता है, आपका phone number अपने SIM card पर transfer करवाता है। अब वे आपके SMS codes receive करते हैं। 2019 में, Twitter CEO Jack Dorsey का account इस तरह hack किया गया था। Authenticator apps और hardware keys SIM swapping के प्रति immune हैं — वे phone number का उपयोग नहीं करते।"
+      ]
+    },
+    "incident": {
+      "title": "2022 Uber Hack — Social Engineering 2FA को Bypass करना",
+      "impact": "Internal network तक complete access; source code, internal tools, HackerOne reports exposed",
+      "body": [
+        "18 साल के हमलावर ने एक contractor को target करके Uber को compromise किया। Contractor के पास valid credentials और 2FA था। हमलावर ने MFA fatigue का उपयोग किया: repeated 2FA push notifications भेजे जब तक contractor, constant prompts से परेशान होकर, उन्हें रोकने के लिए 'Approve' click नहीं किया। फिर उन्होंने contractor को text किया, Uber IT का impersonate करते हुए, कहा कि approvals एक test थीं।",
+        "Session approve होने के साथ, हमलावर ने एक internal file share पर एक PowerShell script में Uber के PAM system Thycotic के लिए hardcoded admin credentials पाईं। वहाँ से, उनके पास सब कुछ था। सबक: 2FA social engineering के प्रति foolproof नहीं है। Number matching 2FA (login और push notification दोनों पर same number दिखाएं) MFA fatigue attacks को defeat करता है।"
+      ]
+    },
+    "timeline": [
+      "RSA SecurID — पहला commercial hardware 2FA token",
+      "Google Authenticator launch — TOTP mainstream हुआ",
+      "Jack Dorsey (Twitter CEO) का account SIM swap के माध्यम से hack — SMS 2FA bypass",
+      "Uber hack MFA fatigue के माध्यम से — social engineering push notification 2FA को defeat करती है"
+    ],
+    "keyTakeaways": [
+      "2FA दो factors चाहता है: कुछ जो आप जानते हैं + कुछ जो आपके पास है/आप हैं",
+      "2FA वाले accounts 99.9% कम compromise होने की संभावना है",
+      "SMS 2FA सबसे weak है — SIM swapping के प्रति vulnerable; authenticator app का उपयोग करें",
+      "MFA fatigue: हमलावर push notifications spam करते हैं जब तक victim गलती से approve नहीं करता"
+    ]
+  },
+  "bt-23": {
+    "tagline": "3-digit lock में 1,000 combinations हैं। 6-digit lock में 1,000,000 हैं। Length हर बार cleverness को beat करती है।",
+    "overview": [
+      "Fishing shop का bait cabinet एक combination lock का उपयोग करता है। एक 3-digit lock (000–999) को सभी 1,000 combinations try करके minutes में brute force किया जा सकता है। एक 6-digit lock 1,000x अधिक समय लेता है। एक 8-digit lock: 100,000x अधिक। Password strength उसी math से काम करती है: अधिक characters = exponentially अधिक combinations = brute force के लिए exponentially अधिक समय।",
+      "Password strength entropy से आती है — इसे information के रूप में represent करने के लिए आवश्यक bits की संख्या। केवल lowercase का उपयोग करके 8 characters का random password 26^8 ≈ 200 billion combinations है। Uppercase (52^8) और numbers (62^8) जोड़ें — 218 trillion combinations। Length को 16 characters तक बढ़ाएं: 62^16 ≈ 47 sextillion। आधुनिक password crackers GPU hardware पर 100 billion attempts per second काम करते हैं।",
+      "'Complex' passwords (P@ssw0rd1!) का उपयोग करने की सामान्य सलाह वास्तव में एक long passphrase (correct-horse-battery-staple) से कम secure है। हमलावरों के dictionaries में सभी सामान्य substitutions शामिल हैं। Length जीतती है। 4 या अधिक random words का एक passphrase उपयोग करें, या एक password manager को 20 characters की पूरी तरह random string generate करने दें।"
+    ],
+    "technical": {
+      "title": "Password Cracking कैसे काम करती है",
+      "body": [
+        "Offline cracking: हमलावर hashed password database प्राप्त करता है (एक breach के माध्यम से)। Attempts को hash करता है और चोरी किए गए hashes से compare करता है। एक modern GPU के साथ, वे प्रति second 100 billion MD5 hashes, 10 billion bcrypt hashes try कर सकते हैं। Dictionary attacks पहले common words और patterns try करते हैं; brute force एक given character set और length की सभी combinations try करता है।",
+        "Salting: hashing से पहले प्रत्येक password में एक random salt जोड़ा जाता है, इसलिए एक ही password वाले दो users के अलग-अलग hashes होते हैं। यह rainbow table attacks (precomputed hash lookups) को रोकता है और हमलावर को प्रत्येक hash को individually crack करने के लिए मजबूर करता है। bcrypt, scrypt और Argon2 को जानबूझकर slow बनाया गया है, जिससे large-scale cracking impractical हो जाती है।"
+      ]
+    },
+    "incident": {
+      "title": "RockYou Breach — 32 Million Passwords Plain Text में",
+      "impact": "32 million user passwords plain text में stored; सबसे common passwords revealed; rockyou.txt आज भी उपयोग में",
+      "body": [
+        "RockYou ने 32 million user passwords बिना hash किए plain text में store किए। एक SQL injection attack ने पूरे database को expose किया। Dump साइबर security में सबसे famous password list बन गई — 'rockyou.txt' अभी भी पहली wordlist है जो हर password cracking tool try करती है। सबसे common password: '123456' (290,731 accounts द्वारा उपयोग किया गया)। दूसरा: '12345'। तीसरा: '123456789'।",
+        "Analysis ने reveal किया कि 99% users ने patterns के एक small set से passwords choose किए: keyboard walks (qwerty, asdf), simple words with numeric suffixes (password1), names और sequential numbers। हर modern password cracker इन patterns से शुरू होता है। यदि आपका password एक human द्वारा guessable है, तो यह निश्चित रूप से एक GPU द्वारा guessable है।"
+      ]
+    },
+    "timeline": [
+      "MIT CTSS पर पहला computer password system",
+      "Unix ने hashed passwords के साथ /etc/passwd introduce किया — salting का आविष्कार",
+      "RockYou breach — 32M passwords plain text में; rockyou.txt जन्मा",
+      "LinkedIn breach — 117M unsalted SHA-1 hashes days में cracked"
+    ],
+    "keyTakeaways": [
+      "Length complexity को beat करती है — 4 random words 8 complex characters से stronger है",
+      "सच में random 20-character passwords generate और store करने के लिए एक password manager का उपयोग करें",
+      "Passwords कभी reuse न करें — एक breach सभी reused accounts को compromise करता है",
+      "Salted hashing (bcrypt/Argon2) cracking को computationally expensive बनाती है"
+    ]
+  },
+  "bt-24": {
+    "tagline": "खुले पानी में, marine channel radio broadcast को कोई भी radio से सुन सकता है। Open WiFi उसी तरह काम करता है।",
+    "overview": [
+      "Monterey Bay में, fishing boats marine radio channel 16 पर communicate करती हैं, एक open unencrypted frequency जिसे radio वाला कोई भी tune in कर सकता है। उनकी conversations public हैं। Open WiFi networks (cafes, airports, hotels) बिल्कुल same काम करते हैं: unencrypted connections जिन्हें radio range के भीतर कोई भी freely available tools के साथ capture और read कर सकता है।",
+      "एक open WiFi network पर, सभी unencrypted traffic — HTTP requests, DNS queries, plain text emails — उसी network पर किसी भी device को दिखाई देता है। Wireshark चलाने वाला एक laptop वाला हमलावर बिना एक single packet भेजे passively सभी traffic capture कर सकता है। वे केवल shared medium पर listen कर रहे हैं, बिल्कुल radio tune करने की तरह।",
+      "WiFi eavesdropping से protection: HTTPS web traffic के content को encrypt करता है (इसलिए capture होने पर भी, अपठनीय है), एक VPN आपके device से सभी traffic को encrypt करता है (DNS queries और app traffic सहित), और hotel WiFi की बजाय अपने phone के hotspot का उपयोग जोखिम को पूरी तरह से avoid करता है।"
+    ],
+    "technical": {
+      "title": "Open networks पर WiFi Eavesdropping और MITM",
+      "body": [
+        "Open WiFi आपके device और access point के बीच encryption का उपयोग नहीं करता — सभी frames plain text में transmit होते हैं। Promiscuous mode में कोई भी device (सभी traffic सुनना, न केवल अपना) इन frames को capture कर सकता है। Tools: Wireshark (passive capture और analysis), Aircrack-ng (active WiFi attacks), ettercap (local network पर MITM)।",
+        "WPA2 encrypted WiFi पर भी, network पर सभी devices एक ही encryption key share करते हैं। यदि आप WiFi password जानते हैं, तो आप अन्य users के traffic को decrypt कर सकते हैं (WPA2 personal mode में)। WPA2-Enterprise individual user certificates के साथ corporate environments के लिए solution है। Personal protection के लिए: VPN या everywhere HTTPS।"
+      ]
+    },
+    "incident": {
+      "title": "APT Darkhotel — Hotel WiFi Targeted Attacks",
+      "impact": "Business travel के दौरान hotel WiFi के माध्यम से corporate executives के devices compromise",
+      "body": [
+        "APT group Darkhotel (suspected North Korean) ने Japan, China, Russia और Taiwan में luxury hotel WiFi networks में infiltrate किया। उन्होंने hotels में C-level executives को target किया, hotel network पर false software update prompts के माध्यम से malware deliver किया। हमलावरों को executives के travel itineraries का advance knowledge था।",
+        "Hotel network पर man-in-the-middle के रूप में बैठकर, वे HTTP connections में malicious content inject कर सकते थे, false update prompts दिखा सकते थे और जब target 'update' click करता था तो keyloggers download कर सकते थे। सबक: hotel WiFi पर कभी software updates approve न करें, किसी भी public या hotel network पर VPN का उपयोग करें, और HTTPS-only browsing का उपयोग करें।"
+      ]
+    },
+    "timeline": [
+      "WiFi 802.11 standard introduce हुआ — default पर कोई security नहीं",
+      "WEP minutes में break हुआ — WiFi encryption useless prove हुई",
+      "APT Darkhotel hotel WiFi networks को target करना शुरू करता है",
+      "WPA3 per-session encryption introduce करता है — shared-key WiFi भी बेहतर"
+    ],
+    "keyTakeaways": [
+      "Open WiFi encrypted नहीं है — प्रत्येक packet network पर किसी के लिए भी visible",
+      "Passive eavesdropping को attack की आवश्यकता नहीं — केवल shared medium पर सुनना",
+      "HTTPS content protect करता है लेकिन destination domain नहीं (SNI के माध्यम से visible)",
+      "VPN या phone hotspot untrusted networks पर सबसे safe options हैं"
+    ]
+  },
+  "bt-25": {
+    "tagline": "सबसे अच्छा con man कभी lock force नहीं करता। वह किसी को door खोलने के लिए convince करता है।",
+    "overview": [
+      "Pier की cantina में, पुराने fishermen exaggerated stories share करते हैं — tall tales designed to impress, manipulate या अन्य sailors से information obtain करने के लिए। Social engineering साइबर security का equivalent है: हमलावर मनोवैज्ञानिक रूप से लोगों को किसी technical hack की आवश्यकता के बिना information, access या पैसे देने के लिए manipulate करते हैं।",
+      "Social engineering human nature का फायदा उठाती है: trust, authority, fear, urgency, helpfulness और reciprocity। IT technician का impersonate करने वाला और आपका password माँगने वाला एक हमलावर authority के प्रति आपके deference और help करने की इच्छा का फायदा उठाता है। CEO की एक fake 'urgent transfer' request authority और time pressure का फायदा उठाती है। कोई firewall या antivirus किसी व्यक्ति को information देने से नहीं रोक सकता।",
+      "Kevin Mitnick — एक बार दुनिया का most wanted hacker — famously कहा कि उन्हें तकनीकी रूप से systems में प्रवेश करने की शायद ही कभी आवश्यकता थी। वह बस employees को call करते, IT से होने का नाटक करते और उनके passwords माँगते। अधिकांश comply करते। Social engineering इसीलिए #1 attack vector रहती है क्योंकि humans reliably exploitable हैं।"
+    ],
+    "technical": {
+      "title": "Social Engineering Techniques और Defenses",
+      "body": [
+        "Pretexting: credibility establish करने के लिए एक fabricated scenario बनाना (जैसे, 'मैं IT support department से हूँ, हमारे पास एक security incident है और investigate करने के लिए आपके password की आवश्यकता है')। Baiting: parking lot में infected USB drives छोड़ना, curious employees के उन्हें plug करने का इंतजार करना। Tailgating: एक authorized person के पीछे एक secure door से गुजरना। Vishing: phone-based social engineering।",
+        "Defenses: एक separate channel के माध्यम से identities verify करें (IT department को known number पर call back करें, न उस number पर जो उन्होंने आपको दिया)। Phone या email पर कभी passwords न दें — legitimate IT को आपके password की कभी आवश्यकता नहीं होती। Sensitive requests के लिए clear verification procedures establish करें। Security awareness training susceptibility को significantly कम करता है।"
+      ]
+    },
+    "incident": {
+      "title": "Facebook/Google $120M BEC Scam — Fake Vendor Invoices",
+      "impact": "2 वर्षों में $120 million हमलावर के bank accounts में transfer",
+      "body": [
+        "Evaldas Rimasauskas ने Quanta Computer का impersonate करते हुए एक fake company बनाई, जो एक real Taiwanese vendor था जिसे Facebook और Google regularly pay करते थे। उसने convincing invoices भेजे contracts और correspondence के साथ जो real लगते थे। दोनों companies के accounting employees ने दो वर्षों में उसके Lithuanian bank accounts में $120 million से अधिक transfer किए।",
+        "कोई system hack नहीं किया गया। कोई malware उपयोग नहीं किया गया। केवल carefully crafted emails और fake invoices जो tech giants और उनके vendor के बीच trust relationship का फायदा उठाती थीं। Rimasauskas को पकड़ा गया और extradite किया गया। सबक: financial controls (large transfers के लिए dual authorization, callbacks के माध्यम से vendor verification) BEC के खिलाफ technical defense हैं।"
+      ]
+    },
+    "timeline": [
+      "Kevin Mitnick ने phone companies के खिलाफ social engineering campaigns शुरू कीं",
+      "Frank Abagnale की story (Catch Me If You Can) — social engineering में master class",
+      "Facebook/Google BEC scam $120M total — pure social engineering",
+      "BEC losses $2.7B तक पहुँचीं — financial damage से #1 cybercrime (FBI IC3)"
+    ],
+    "keyTakeaways": [
+      "Social engineering human psychology का फायदा उठाती है, न software vulnerabilities का",
+      "Urgency, authority और fear primary manipulation levers हैं",
+      "Legitimate IT को कभी आपके password की आवश्यकता नहीं होती — ऐसी requests को हमेशा refuse करें",
+      "एक separate, known channel के माध्यम से financial requests और identity changes verify करें"
+    ]
+  },
+  "bt-26": {
+    "tagline": "Hull में एक known crack एक countdown है। इसे repair करें या डूब जाएं।",
+    "overview": [
+      "वापस सांता क्रूज़ बंदरगाह पर, boat maintenance yard hulls repair करता है। एक crack जो documented और reported है, अगली यात्रा से पहले repair की जानी चाहिए — एक known crack को ignore करना पूरे crew की safety के साथ जुआ खेलना है। Software vulnerabilities बिल्कुल इसी तरह काम करती हैं: एक बार CVE (Common Vulnerabilities and Exposures) publish होने के बाद, हमलावर तुरंत exploits लिखना शुरू कर देते हैं। Disclosure और हमले के बीच की window अक्सर 24 घंटे से कम होती है।",
+      "Software updates और patches known security holes को seal करने का primary mechanism हैं। जब researchers एक vulnerability discover करते हैं, तो वे इसे vendor को report करते हैं। Vendor एक fix develop करता है, test करता है और एक patch release करता है। Patch apply करने वाले users vulnerability close कर देते हैं। जो नहीं करते वे एक known, documented और publicly available exploit target के साथ run कर रहे हैं।",
+      "2017 का WannaCry ransomware 200,000 computers को एक vulnerability का उपयोग करके infect किया जिसे Microsoft ने दो महीने पहले patch किया था (MS17-010)। Infect हर machine ने एक available patch apply करने में failure की थी। यह pattern constantly repeat होता है: अधिकांश successful attacks known vulnerabilities का फायदा उठाते हैं, zero-days का नहीं।"
+    ],
+    "technical": {
+      "title": "CVE System, Patch Management और Zero-Days",
+      "body": [
+        "CVE (Common Vulnerabilities and Exposures): known vulnerabilities के लिए एक standardized identifier। Format: CVE-YEAR-NUMBER (जैसे, CVE-2021-44228 Log4Shell है)। CVSS score (0–10) severity rate करता है: 9.0+ Critical है। NVD (National Vulnerability Database) सभी CVEs को details, affected versions और patches के साथ track करता है।",
+        "Zero-day: vendor को unknown vulnerability — कोई patch exist नहीं करता। Zero-days discover करने वाले हमलावर उन्हें बेचते हैं (prices: iOS zero-days के लिए $500K–$2M) या silently उपयोग करते हैं। Disclosed होने पर, वे n-days बन जाती हैं — known और patchable vulnerabilities। Real-world attacks की majority n-days का उपयोग करती हैं, zero-days का नहीं, क्योंकि अधिकांश systems poorly patched हैं।"
+      ]
+    },
+    "incident": {
+      "title": "Log4Shell — Vulnerability जो Plain Sight में थी",
+      "impact": "सैकड़ों millions devices vulnerable; CISA ने इसे वर्षों में 'सबसे serious' कहा",
+      "body": [
+        "Log4Shell (CVE-2021-44228) Log4j में एक critical vulnerability थी, एक Java logging library जो Minecraft servers से लेकर enterprise software से लेकर NASA systems तक सब कुछ में उपयोग की जाती थी। CVSS score: 10.0 — maximum severity। इसे exploit करने के लिए एक single specially crafted string भेजना आवश्यक था जो, log होने पर, remote code execution trigger करती थी।",
+        "Library को 475 million times download किया जा चुका था। Public disclosure के 72 घंटों के भीतर, हमलावर vulnerable servers के लिए पूरे इंटरनेट को scan कर रहे थे — प्रति घंटे millions of exploit attempts। Patching के लिए Log4j का उपयोग करने वाले हर system को identify करना आवश्यक था (जब यह एक indirect dependency है तो यह जितना लगता है उससे कठिन है) और इसे update करना। कुछ organizations को महीने लगे। सबक: उस software को जानें जिस पर आपका software depend करता है।"
+      ]
+    },
+    "timeline": [
+      "CVE system को MITRE ने launch किया — standardized vulnerability tracking",
+      "WannaCry: MS17-010 के माध्यम से 200K machines infect — patch 2 महीने पहले available था",
+      "Log4Shell: CVSS 10.0, सैकड़ों millions devices, 72hr में exploit deployment",
+      "CISA KEV (Known Exploited Vulnerabilities) Catalog launch — prioritized patching"
+    ],
+    "keyTakeaways": [
+      "Security patches immediately apply करें — हमलावर hours में known vulnerabilities exploit करते हैं",
+      "9.0 से ऊपर CVE scores critical हैं — इसे fire drill की तरह treat करें",
+      "अपने software की dependencies जानें — Log4Shell दूसरे software के अंदर छुपा था",
+      "अधिकांश real attacks known, patchable vulnerabilities का उपयोग करते हैं — zero-days का नहीं"
+    ]
+  },
+  "bt-27": {
+    "tagline": "एक broken net पूरी catch खो देता है। एक data breach एक साथ सबका डेटा खो देता है।",
+    "overview": [
+      "Moss Landing inspection station पर, inspectors catch verify करते हैं। एक broken net का मतलब है कि सारी मछली — हफ्तों की काम — ocean में गिर जाती है और खो जाती है या contaminate हो जाती है। एक data breach यही करता है: एक company के systems में एक vulnerability और millions of customer records एक साथ गिर जाते हैं। आपने company पर अपनी information trust की; breach आपको affect करता है चाहे आपने कुछ गलत किया हो या नहीं।",
+      "Data breaches credentials, personal information, financial data और medical records expose करते हैं। Stolen data dark web markets पर days के भीतर appear होता है — credential stuffers, identity thieves और spammers को बेचा जाता है। Site A पर एक breach से आपका email और password आपके bank, आपके email, आपके work VPN के खिलाफ try किया जाता है। यह credential stuffing है — known username/password pairs का उपयोग करके automated login attempts।",
+      "Have I Been Pwned (haveibeenpwned.com) आपको verify करने की अनुमति देता है कि क्या आपका email address known breach databases में appear होता है। यदि होता है, उस site पर और किसी भी अन्य site पर password change करें जहाँ आपने इसे reuse किया हो। 2FA enable करें। Breach आपकी गलती नहीं थी — लेकिन आपका response damage determine करता है।"
+    ],
+    "technical": {
+      "title": "Breach Lifecycle और Credential Stuffing",
+      "body": [
+        "Breach lifecycle: (1) हमलावर company के database को compromise करता है। (2) Data exfiltrated — अक्सर discovery से हफ्तों पहले। (3) Dark web forums पर data बेचा जाता है (records की संख्या और data type के हिसाब से price)। (4) Credential stuffers प्रमुख sites के खिलाफ automated tools चलाते हैं। (5) Successful logins 'combo lists' के रूप में बेचे जाते हैं। (6) Breach eventually discovered और disclosed होती है (average: detection के लिए 197 दिन)।",
+        "Credential stuffing tools (Sentry MBA, OpenBullet) प्रति घंटे target sites के खिलाफ millions of username/password pairs try करते हैं। Sites defend करती हैं: rate limiting, CAPTCHA, impossible travel detection (Greece से फिर 1 घंटे बाद California से login), और breach password screening (login पर known breach lists में पाए गए passwords को reject करना)।"
+      ]
+    },
+    "incident": {
+      "title": "2013 Yahoo Breach — 3 Billion Accounts, 3 साल बाद Discovered",
+      "impact": "Verizon acquisition price में $350M reduction; इतिहास का सबसे बड़ा breach",
+      "body": [
+        "Yahoo को 2013 में breach किया गया। हर Yahoo account — 3 billion — compromise हुए। हमलावरों के पास names, email addresses, phone numbers, birth dates, hashed passwords और security questions तक access था। Yahoo ने 2016 तक breach discover नहीं किया, इसे 500 million accounts के रूप में disclose करते हुए। एक साल बाद, उन्होंने इसे 3 billion तक revise किया।",
+        "Breach ने directly Yahoo के Verizon acquisition को impact किया — disclosure के बाद price $350 million गिरी। Individuals के लिए: Yahoo credentials के साथ बनाई गई कोई भी account (security questions जैसे 'मेरी माँ का maiden name') potentially compromise हुई। Security questions particularly dangerous हैं — उत्तर breach के बाद नहीं बदलते।"
+      ]
+    },
+    "timeline": [
+      "Yahoo breach — 3B accounts, 3 साल तक undiscovered",
+      "2012 LinkedIn breach surfaced — 117M records dark web पर बेचे गए",
+      "Equifax breach — 147M Social Security numbers, birth dates, addresses",
+      "MOVEit breach — single file transfer vulnerability से 2,500+ organizations affected"
+    ],
+    "keyTakeaways": [
+      "Breaches आपका डेटा expose करती हैं भले ही आपने कुछ गलत नहीं किया",
+      "Credential stuffing हर प्रमुख site के खिलाफ आपका चोरा हुआ password try करता है",
+      "Passwords कभी reuse न करें — एक breach उस password का उपयोग करने वाले सभी sites को compromise करती है",
+      "haveibeenpwned.com regularly check करें और everywhere 2FA enable करें"
+    ]
+  },
+  "bt-29": {
+    "tagline": "Harbormaster control करता है कि कौन जानता है कि कौन सी boat कौन सी slip में है। Privacy settings आपको अपने डेटा पर same control देती हैं।",
+    "overview": [
+      "Harbormaster का office detailed records maintain करता है: कौन सी boats docked हैं, उनके owners, उनके schedules। यह information Coast Guard, gas station और boat yard के साथ share की जाती है — लेकिन general public के साथ नहीं। Privacy settings आपको अपनी digital life के लिए same control की अनुमति देती हैं: कौन से apps, services और लोग आपके बारे में क्या information देख सकते हैं।",
+      "हर app और social platform data collect करता है। सवाल यह नहीं है कि क्या data collect किया जाता है — यह है कि किसकी उस तक access है और किस उद्देश्य के लिए। आपके phone apps से location data data brokers को बेचा जाता है। आपकी Facebook profile information third-party apps द्वारा scraped जाती है। आपका Google search history targeted advertising को inform करता है। Privacy settings इन flows को control करती हैं — लेकिन केवल तभी जब आप उन्हें actively configure करते हैं।",
+      "Data minimization central principle है: वह share न करें जो आवश्यक नहीं है। आप एक company के साथ जो भी information share करते हैं वह एक possible breach exposure बन जाती है। 2FA SMS के लिए phone numbers SIM swapping के लिए उपयोग किए जा सकते हैं। Real birth dates security questions का जवाब देने में मदद करती हैं। Privacy केवल preference के बारे में नहीं है — यह आपकी attack surface reduce करने के बारे में है।"
+    ],
+    "technical": {
+      "title": "Privacy Settings जो वास्तव में Matter करती हैं",
+      "body": [
+        "High-impact privacy settings: (1) Location access: सभी apps को 'While Using' या 'Never' में change करें — लगभग कोई app को always-on location की आवश्यकता नहीं है। (2) App permissions: microphone, camera, contacts और photo access audit करें — जो इसे need नहीं करता उसे revoke करें। (3) Account activity: Google/Facebook/Apple सभी के पास 'My Activity' dashboards हैं जहाँ आप collected data देख और delete कर सकते हैं। (4) Ad tracking: iOS: Settings → Privacy → Tracking → disable। Android: Settings → Privacy → Ads → opt out।",
+        "Data broker opt-outs: Spokeo, Whitepages और BeenVerified जैसी companies आपके public records aggregate करती हैं। प्रत्येक के पास एक opt-out process है। DeleteMe जैसी services इसे automate करती हैं। आपके data broker profile में addresses, phone numbers, relatives और property records शामिल हैं — social engineering और targeted phishing के लिए उपयोगी।"
+      ]
+    },
+    "incident": {
+      "title": "Cambridge Analytica — बिना Consent के 87 Million Facebook Profiles Scraped",
+      "impact": "Political profiling at scale; GDPR का acceleration; Facebook के खिलाफ FTC का $5B fine",
+      "body": [
+        "Cambridge Analytica ने उनके knowledge के बिना 87 million Facebook users का data extract किया। एक personality quiz app ने न केवल quiz लेने वाले का data collect किया बल्कि, Facebook API का फायदा उठाते हुए, उनके सभी friends का data भी collect किया। Data को targeted political advertising के लिए psychological profiles बनाने के लिए उपयोग किया गया।",
+        "Users ने कभी consent नहीं दिया था कि उनका data इस तरह उपयोग किया जाए। Facebook की privacy settings उस समय default रूप से apps को friends का data access करने की अनुमति देती थीं। Scandal ने platform policies में major changes किए, Europe में GDPR enforcement को accelerate किया और Facebook के खिलाफ FTC से $5 billion fine resulted — उस समय history का सबसे बड़ा privacy penalty।"
+      ]
+    },
+    "timeline": [
+      "CAN-SPAM Act — email marketing को govern करने वाला पहला US law",
+      "Cambridge Analytica Facebook data scraping शुरू करती है",
+      "GDPR effective होता है — EU data protection law, global impact",
+      "Cambridge Analytica scandal — 87M profiles, FTC का Facebook पर $5B fine"
+    ],
+    "keyTakeaways": [
+      "App permissions regularly review करें — जो आवश्यक नहीं है उसे revoke करें",
+      "Location access को 'While Using' में change करें — लगभग कोई app को always-on location की आवश्यकता नहीं",
+      "Collected data देखने के लिए अपने platform के data download tools का उपयोग करें",
+      "Data minimization: हर shared piece एक possible breach exposure है"
+    ]
+  },
+  "bt-30": {
+    "tagline": "Man overboard के लिए एक protocol है: shout करें, life ring फेंकें, scene न छोड़ें, Coast Guard को call करें। Incidents के लिए same protocol है।",
+    "overview": [
+      "यात्रा के अंत में सांता क्रूज़ Harbor वापस लौटना। हर fishing boat एक man overboard protocol follow करता है: 'man overboard' shout करें, life ring throw करें, visual contact maintain करें, Coast Guard को radio-communicate करें, दूर न जाएं। Protocol exist करता है क्योंकि panic दुश्मन है — आपको एक rehearsed sequence की आवश्यकता है जो pressure के तहत काम करे। Cybersecurity incident response वैसा ही है: एक security event के लिए एक prepared, sequenced response।",
+      "जब आपको suspect है कि आपको compromise किया गया है — account takeover, malware infection, phishing link click — instinct panic में पड़ना और सब कुछ एक साथ try करना है। Correct response methodical है: Identify (incident confirm करें), Contain (damage रोकें), Eradicate (threat remove करें), Recover (normal operation restore करें), और बाद में review के लिए सब कुछ document करें।",
+      "Personal level पर account takeover incident response: immediately password change करें और 2FA enable करें, unauthorized activity verify करें (emails sent, purchases made, profile changes), सभी active sessions revoke करें, आपके account से malicious messages receive करने वाले किसी को भी notify करें। Organizational level पर, यह एक formal process है जिसमें IR teams, legal, public relations और regulatory notification शामिल हैं।"
+    ],
+    "technical": {
+      "title": "NIST Incident Response Framework",
+      "body": [
+        "NIST SP 800-61 चार phases define करता है: (1) Preparation — incident response plan, trained team, monitoring tools किसी incident से पहले place में। (2) Detection and Analysis — compromise के indicators (IOCs) identify करें, scope determine करें, सब कुछ log करें। (3) Containment, Eradication and Recovery — affected systems isolate करें, malware remove करें, vulnerability patch करें, clean backups से restore करें। (4) Post-Incident Activity — timeline document करें, root cause analysis, defenses update करें।",
+        "Compromise के Indicators (IOCs): new location से unexpected login, आपके द्वारा initiate न किए गए password change emails, account sessions में unknown devices, unexpected password reset emails, friends आपके account से strange messages report कर रहे हैं, antivirus alerts, unusual network traffic। इनमें से कोई भी immediate investigation demand करता है।"
+      ]
+    },
+    "incident": {
+      "title": "Colonial Pipeline Ransomware — Large-Scale Incident Response",
+      "impact": "US का सबसे बड़ा pipeline shutdown; पूर्वी US में gasoline की कमी; $4.4M ransom paid",
+      "body": [
+        "Colonial Pipeline ने 7 मई को सुबह 5:30 बजे अपने systems पर ransomware discover किया। उनका incident response decision: OT (operational technology) के possible compromise को रोकने के लिए operational pipeline को immediately shut down करें — भले ही केवल IT systems infection confirm हुई थी। यह containment decision controversial था लेकिन defensible।",
+        "हमले का entry point: एक single compromised VPN password जो leaked credentials database में पाया गया था। VPN पर कोई 2FA नहीं था। $4.4M ransom decryption keys प्राप्त करने के लिए paid किया गया (DOJ ने बाद में $2.3M recover किया)। Full operations 15 मई को resume हुईं। Lessons: VPN को 2FA चाहिए, credential monitoring stolen passwords detect करता है attackers के use करने से पहले, OT/IT network segmentation blast radius limit करती है।"
+      ]
+    },
+    "timeline": [
+      "Morris Worm — पहला major internet incident; incident response field शुरू",
+      "NIST SP 800-61 publish — formal incident response framework",
+      "Sony Pictures breach — incident response failure, attacker द्वारा data deleted",
+      "Colonial Pipeline ransomware — 6 दिनों के लिए pipeline shutdown, gasoline की कमी"
+    ],
+    "keyTakeaways": [
+      "Incident response phases: Prepare → Detect → Contain → Eradicate → Recover → Review",
+      "पहले Contain करें — spread रोकना initially cause समझने से अधिक important है",
+      "सब कुछ Document करें — timeline और evidence recovery और legal actions support करते हैं",
+      "Personal compromise के लिए: password change करें, 2FA enable करें, sessions revoke करें, damage assess करें"
+    ]
+  },
+  "audit-01": {
+    "tagline": "Governance direction set करती है। Management execute करती है। दोनों को confuse करना audit failures की शुरुआत है।",
+    "overview": [
+      "COBIT 2019 IT governance और management के लिए ISACA का flagship framework है। यह governance — जो direction set करती है, options evaluate करती है और outcomes monitor करती है — और management के बीच एक clear separation define करता है, जो governance direction के alignment में activities plan, build, execute और monitor करती है।",
+      "हर IT audit इस boundary को establish करके शुरू होता है। Board of directors और executive leadership govern: risk appetite approve करते हैं, strategic direction set करते हैं और accountability ensure करते हैं। IT leadership manages: controls implement करते हैं, systems operate करते हैं और performance ऊपर report करते हैं। Auditors independently verify करते हैं कि दोनों layers काम कर रही हैं।",
+      "COBIT 2019 framework 40 governance और management objectives को पाँच domains में organize करता है: Evaluate, Direct and Monitor (EDM) governance के लिए, और Align, Plan and Organise (APO), Build, Acquire and Implement (BAI), Deliver, Service and Support (DSS), और Monitor, Evaluate and Assess (MEA) management के लिए।"
+    ],
+    "technical": {
+      "title": "COBIT 2019 Domain Structure",
+      "body": [
+        "COBIT के पाँच domains directly IT lifecycle पर map होते हैं। EDM board level governance cover करता है: risk appetite, IT investment decisions और performance monitoring। APO strategic alignment, risk management और human resource planning cover करता है। BAI project delivery और change management cover करता है। DSS operations और incident management cover करता है। MEA internal controls और regulatory compliance की evaluation cover करता है।",
+        "Auditors प्रत्येक objective को grade करने के लिए COBIT capability levels (0–5) का उपयोग करते हैं। Level 0 का मतलब है process incomplete है। Level 3 (Established) regulated industries के लिए typical minimum है। Level 5 (Optimizing) continuous improvement culture indicate करता है।"
+      ]
+    },
+    "incident": {
+      "title": "Enron का IT Governance Failure (2001)",
+      "impact": "उस समय सबसे बड़ा US bankruptcy; stock में $74B का नुकसान; Sarbanes-Oxley Act पारित",
+      "body": [
+        "Enron का collapse partially एक IT governance failure था। Board of directors ने उन complex special purpose entities पर कोई meaningful control exercise नहीं किया जो debt छुपा रहे थे। IT systems ने ऐसे reports generate किए जिनका उपयोग management ने auditors और board को deceive करने के लिए किया। Governance layer — जिसे question और verify करना चाहिए था — बस management के representations को accept कर लिया।",
+        "Consequences ने Sarbanes-Oxley Act (2002) produce किया, जिसने public companies के लिए IT controls requirements को formalize किया और directly COBIT framework के board-level IT oversight emphasis को inspire किया। COBIT का EDM domain SOX Section 404 compliance requirements का direct descendant है।"
+      ]
+    },
+    "timeline": [
+      "COBIT 1.0 launch — ISACA का पहला IT audit framework",
+      "Enron collapse — governance failures ने IT oversight standards की आवश्यकता expose की",
+      "Sarbanes-Oxley Act — Section 404 public companies के लिए IT controls mandate करता है",
+      "COBIT 2019 launch — updated governance model, 40 objectives"
+    ],
+    "keyTakeaways": [
+      "Governance (EDM) direction set करती है; Management (APO/BAI/DSS/MEA) execute करती है",
+      "COBIT capability 0–5 grade करता है; Level 3 regulated industry baseline है",
+      "Auditors दोनों layers को independently evaluate करते हैं — management self-reporting पर्याप्त नहीं है",
+      "SOX Section 404 compliance ने publicly traded companies में COBIT adoption drive किया"
+    ]
+  },
+  "audit-02": {
+    "tagline": "हर control एक risk mitigate करने के लिए exist करता है। Risk के बिना, control केवल overhead है।",
+    "overview": [
+      "CRISC (Certified in Risk and Information Systems Control) ISACA का risk-focused certification framework है। यह IT risks identify करने, उनकी probability और impact assess करने, risk responses develop करने और समय के साथ risk monitor करने के लिए एक structured approach define करता है।",
+      "Risk assessment एक standard methodology follow करती है: threats और vulnerabilities identify करें, inherent risk assess करें (controls से पहले), existing controls evaluate करें, residual risk calculate करें (controls के बाद) और residual risk को organization के risk appetite से compare करें। Appetite से ऊपर risks के लिए treatment की आवश्यकता है।",
+      "CRISC चार risk response options define करता है: Accept (risk के साथ जीना), Mitigate (इसे reduce करने के लिए controls जोड़ना), Transfer (insurance या contractual shift) और Avoid (activity बंद करना)। Auditors verify करते हैं कि प्रत्येक response risk level के लिए appropriate है और organization का risk register वर्तमान exposure को accurately reflect करता है।"
+    ],
+    "technical": {
+      "title": "Risk Calculation: Inherent बनाम Residual",
+      "body": [
+        "Inherent risk = Probability × Impact controls exist होने से पहले। Controls के बिना internet पर exposed एक critical database में maximum inherent risk है। Residual risk = Inherent risk minus controls की effectiveness। एक firewall, MFA और encryption के पीछे एक database में reduced residual risk है।",
+        "Risk appetite board द्वारा approved threshold है। Appetite से ऊपर risks को treat किया जाना चाहिए। Risk register प्रत्येक identified risk को उसके inherent score, place में controls, residual score, owner और treatment status के साथ track करता है।"
+      ]
+    },
+    "incident": {
+      "title": "Capital One Cloud Misconfiguration (2019)",
+      "impact": "106 million customer records exposed; $190M settlement; CISO resigned",
+      "body": [
+        "Capital One का 2019 breach एक risk assessment failure था। Misconfigured WAF जिसने EC2 metadata service तक SSRF access की अनुमति दी, एक known risk category था — cloud misconfiguration। लेकिन risk register ने इसे correct severity से capture नहीं किया, और metadata service abuse को detect करने के लिए कोई compensating control exist नहीं था।",
+        "CRISC-aligned एक proper risk assessment ने cloud misconfiguration को high-probability, high-impact risk के रूप में identify किया होता जिसके लिए continuous monitoring की आवश्यकता थी। Controls के बाद residual risk को incorrectly acceptable assessed किया गया था। Actual residual risk critical था।"
+      ]
+    },
+    "timeline": [
+      "CRISC certification ISACA द्वारा launch",
+      "Capital One breach — cloud configuration risk capture नहीं हुआ",
+      "NIST SP 800-30 Rev 1 — updated risk assessment guidance",
+      "SEC cybersecurity rules — material risk disclosures mandatory"
+    ],
+    "keyTakeaways": [
+      "Inherent risk = controls से पहले probability × impact; residual risk = controls के बाद",
+      "Risk responses: Accept, Mitigate, Transfer, Avoid",
+      "Risk register up-to-date होना चाहिए — outdated records audit findings create करते हैं",
+      "Appetite से ऊपर residual risk के लिए board-approved treatment plan चाहिए"
+    ]
+  },
+  "audit-03": {
+    "tagline": "Application controls का कोई मतलब नहीं अगर underlying general controls broken हैं।",
+    "overview": [
+      "IT General Controls (ITGCs) वे foundational controls हैं जो सभी application-level controls की reliability को support करते हैं। ये किसी specific application से tied नहीं हैं — ये पूरे IT environment पर apply होते हैं। यदि ITGCs fail होते हैं, तो उन पर built हर application control questionable है।",
+      "ITGC के चार domains हैं: Change Management (production systems में changes एक approved process follow करते हैं), Logical Access (केवल authorized users systems और data access कर सकते हैं), Computer Operations (systems reliably run होते हैं और backups test किए जाते हैं), और Program Development (नए systems production में launch होने से पहले develop और test किए जाते हैं)।",
+      "SOX Section 404 का test करने वाले external auditors अपना IT audit time majority ITGCs पर spend करते हैं। एक single ITGC failure — उदाहरण के लिए, emergency changes जो approvals bypass करते हैं — एक pervasive finding create करता है जो उस system द्वारा produce किए गए सभी financial reporting को question करता है।"
+    ],
+    "technical": {
+      "title": "ITGCs Testing: Auditors क्या देखते हैं",
+      "body": [
+        "Change Management Testing: period के सभी production changes obtain करें, verify करें कि प्रत्येक के पास एक approved change ticket, test results, और developer और approver के बीच segregation of duties है। Emergency changes को post-hoc approval documentation की आवश्यकता है।",
+        "Logical Access Testing: privileged access वाले सभी user accounts obtain करें, verify करें कि प्रत्येक के पास एक current access request और annual recertification है। Terminated employees with active accounts, shared accounts, और excessive privileges वाले service accounts verify करें।"
+      ]
+    },
+    "incident": {
+      "title": "MF Global का IT Controls Failure (2011)",
+      "impact": "$1.6B client funds गायब; company collapsed; clients को सालों बाद compensate किया गया",
+      "body": [
+        "MF Global, एक major futures broker, collapse हुआ जब उसके systems ने proprietary trading losses cover करने के लिए segregated client funds के unauthorized transfers process किए। IT general controls — specifically change management और logical access — ने उन unauthorized system modifications को prevent या detect नहीं किया जिन्होंने transfers को allow किया।",
+        "Auditors ने बाद में पाया कि multiple ITGC failures ने एक permissive environment बनाया: developers के पास production access था, change tickets को 'urgent fixes' के लिए bypass किया गया था, और access reviews एक वर्ष से अधिक समय से conduct नहीं हुई थीं। प्रत्येक failure अकेले एक finding था; together उन्होंने catastrophic fraud enable किया।"
+      ]
+    },
+    "timeline": [
+      "SOX enacted — Section 404 ने public companies के लिए ITGCs mandatory बनाए",
+      "PCAOB AS 2201 — internal controls over financial reporting के लिए audit standard",
+      "MF Global collapse — ITGC failures $1.6B client funds के misuse को allow करते हैं",
+      "SEC cyber rules — ITGCs अब cybersecurity incident reporting controls शामिल करते हैं"
+    ],
+    "keyTakeaways": [
+      "ITGC के चार pillars: Change Management, Logical Access, Computer Operations, Program Development",
+      "ITGC failures pervasive हैं — सभी application controls की reliability को invalidate करते हैं",
+      "SOX 404 audits financial systems के लिए ITGCs पर majority time spend करते हैं",
+      "Active accounts वाले terminated employees सबसे common ITGC findings में से एक है"
+    ]
+  },
+  "audit-04": {
+    "tagline": "Access granted और कभी reviewed नहीं = permanently granted access — role changes की परवाह किए बिना।",
+    "overview": [
+      "Access control audit verify करता है कि least privilege का principle apply किया गया है: प्रत्येक user के पास उनका काम करने के लिए exactly वे permissions हैं जो necessary हैं, और कुछ नहीं। Auditors इसे actual access rights को job functions से compare करके, access request documentation review करके और recertification evidence examine करके check करते हैं।",
+      "Access control के लिए ISACA के key control objectives हैं: access provisioning एक approved request process follow करता है, access कम से कम annually reviewed और recertified होती है, terminated employees immediately (privileged accounts के लिए 24 घंटों के भीतर) remove होते हैं, और privileged access (administrator rights) restricted और monitored है।",
+      "Access control findings किसी भी IT audit में सबसे common हैं। Typical findings include: orphaned accounts (former employees), excessive privileges (users with admin rights जिनकी अब आवश्यकता नहीं), shared accounts (कोई individual accountability नहीं) और missing recertification evidence।"
+    ],
+    "technical": {
+      "title": "Access Review Testing का Approach",
+      "body": [
+        "Scope में प्रत्येक system से complete user access list extract करें। प्रत्येक account के लिए: verify करें कि एक approved access request है, verify करें कि account एक active employee को assigned है, verify करें कि access level user की current role से match करता है, और verify करें कि annual recertification complete हुई। कोई भी exception flag करें।",
+        "Privileged accounts को additional scrutiny मिलती है। प्रत्येक admin account में documented business justification, एक designated owner, MFA enforced और quarterly review किए गए activity logs होने चाहिए। Service accounts में restricted interactive login, annually rotated complex passwords और documented owners होने चाहिए।"
+      ]
+    },
+    "incident": {
+      "title": "Edward Snowden का Access Control Failure (2013)",
+      "impact": "1.7M classified documents exfiltrated; US intelligence history में सबसे significant leak",
+      "body": [
+        "Snowden एक contractor था जिसने उसकी job requirements से कहीं अधिक access accumulate किया। एक systems administrator के रूप में, उसने ऐसी materials तक access request और receive की जिसे access करने की उसे आवश्यकता नहीं थी। Recertification processes ने समय के साथ access rights के accumulation को detect नहीं किया।",
+        "Post-incident reviews ने पाया कि NSA के access control processes least privilege principles के साथ align नहीं थे। Contractors minimum supervision के साथ access request कर सकते थे, और access reviews consistently apply नहीं हुईं। ISACA का CISA curriculum अब यह case illustrate करने के लिए use करता है कि access recertification और privileged access management क्यों non-negotiable controls हैं।"
+      ]
+    },
+    "timeline": [
+      "SOX Section 404 — access controls mandatory audit scope बने",
+      "Snowden — contractor privilege accumulation ने access control gaps expose किए",
+      "NIST SP 800-53 Rev 4 — privileged account management controls formalized",
+      "Zero Trust Architecture — breach assume करें, हर access request verify करें"
+    ],
+    "keyTakeaways": [
+      "Least privilege: प्रत्येक user के पास exactly वह है जो necessary है और कुछ नहीं",
+      "Recertification कम से कम annually होनी चाहिए — missing evidence एक finding है",
+      "Terminated employees को privileged accounts के लिए 24 घंटों के भीतर deprovisioned किया जाना चाहिए",
+      "Privilege creep तब होता है जब role changes के बाद access कभी remove नहीं होती"
+    ]
+  },
+  "audit-05": {
+    "tagline": "Production में हर change एक controlled experiment है। Control के बिना, आप blindly fly कर रहे हैं।",
+    "overview": [
+      "Change management controls ensure करते हैं कि production systems में सभी modifications एक documented, approved और tested process से गुजरती हैं implementation से पहले। ITIL framework तीन types के changes define करता है: Standard (pre-approved, low risk, routine), Normal (CAB review और approval required) और Emergency (critical fixes के लिए expedited approval, post-hoc documentation के साथ)।",
+      "Change Advisory Board (CAB) वह governance body है जो Normal changes review और approve करता है। CAB typically IT, security, operations और business stakeholders का representation include करता है। उनका role risks evaluate करना, testing complete है यह ensure करना और यह confirm करना है कि rollback plans exist हैं changes के production को touch करने से पहले।",
+      "Auditors change management को production changes sample करके और verify करके test करते हैं: approved change ticket का existence, test evidence documentation, developer और approver के बीच segregation of duties, documented rollback plan, और completed post-implementation review। Emergency changes को additional scrutiny मिलती है — क्या emergency justified था और post-hoc approval मिला?"
+    ],
+    "technical": {
+      "title": "Change Management Testing Checklist",
+      "body": [
+        "प्रत्येक sampled change के लिए: (1) Verify करें कि change ticket exist करता है और change होने से पहले open किया गया था। (2) Verify करें कि CAB approval approver name और date के साथ documented है। (3) Verify करें कि developer और approver different individuals हैं (segregation of duties)। (4) Verify करें कि test results attached हैं। (5) Verify करें कि rollback plan documented है। (6) Verify करें कि post-implementation review 5 business days के भीतर complete हुई।",
+        "Change management में red flags: approved maintenance window के बाहर applied changes, developer का production access (कोई segregation नहीं), emergency change rate 10% से ऊपर (process evasion suggest करता है), बिना test documentation के changes।"
+      ]
+    },
+    "incident": {
+      "title": "Knight Capital Flash Crash (2012)",
+      "impact": "45 मिनट में $440M loss; firm collapse; $1.4B पर distress price पर acquired",
+      "body": [
+        "Knight Capital ने अपने 9 में से 8 production servers पर new trading software deploy किया। 9th server अभी भी एक reused flag द्वारा activated legacy code चला रहा था। 45 मिनट में, legacy system ने 4 million erroneous trades execute कीं। Change management controls fail हुए: deployment सभी servers पर verified नहीं था और कोई automatic rollback trigger नहीं हुआ।",
+        "Post-incident review ने पाया कि Knight के पास software deployments के लिए adequate change management controls नहीं थे। किसी pre-deployment checklist ने verify नहीं किया कि सभी servers updated थे। किसी monitoring ने समय पर anomaly detect नहीं की। Deployment verification और automated alerts के साथ एक proper ITIL change process ने trading open होने से पहले partial deployment catch की होती।"
+      ]
+    },
+    "timeline": [
+      "Challenger disaster — O-ring decision में change management failures",
+      "ITIL v2 — IT के लिए formalized change management process",
+      "Knight Capital — software deployment failure से $440M loss",
+      "ITIL 4 — agile environments के लिए CAB को 'change authority' से replace किया"
+    ],
+    "keyTakeaways": [
+      "तीन ITIL change types: Standard (pre-approved), Normal (CAB), Emergency (expedited + post-hoc)",
+      "Segregation of duties: developer और approver different लोग होने चाहिए",
+      "10% से ऊपर emergency change rate process evasion signal करता है",
+      "Rollback plan mandatory है — यदि आप इसे undo नहीं कर सकते, आप इसे approve नहीं कर सकते"
+    ]
+  },
+  "audit-06": {
+    "tagline": "एक recovery plan जो कभी test नहीं हुआ एक hope है, न कि एक control।",
+    "overview": [
+      "Business Continuity Planning (BCP) और Disaster Recovery (DR) audits verify करते हैं कि एक organization किसी disruption के बाद critical operations continue कर सकती है और IT systems recover कर सकती है। ISACA का CISA exam BCP/DR पर significant coverage देता है क्योंकि untested recovery plans सबसे common — और dangerous — audit findings में से एक हैं।",
+      "BCP/DR में key metrics: Recovery Time Objective (RTO) define करता है कि business कितने समय तक एक system को down tolerate कर सकता है। Recovery Point Objective (RPO) define करता है कि कितना data loss acceptable है। Maximum Tolerable Downtime (MTD) absolute limit है जिसके आगे business survive नहीं कर सकता। BCP को ensure करना चाहिए कि RTO और RPO MTD के भीतर हों।",
+      "Auditors BCP/DR को documentation review करके (plans, RTOs, RPOs), testing evidence examine करके (tabletop exercises, full DR tests) और stakeholders से interview करके verify करते हैं। सबसे common findings: system changes के बाद plans not updated, RTOs/RPOs business requirements के विरुद्ध validated नहीं, और DR tests कभी perform नहीं हुए या failed results जो remediated नहीं हुए।"
+    ],
+    "technical": {
+      "title": "Practice में RTO, RPO और MTD",
+      "body": [
+        "Example: एक payment processing system का MTD 4 घंटे है (4 घंटों से परे, regulatory fines शुरू होते हैं और customers चले जाते हैं)। IT team RTO को 2 घंटे और RPO को 15 मिनट set करती है। इसका मतलब है: system को disruption के 2 घंटों के भीतर restore किया जाना चाहिए, और 15 मिनट से अधिक transaction data नहीं खोया जा सकता। Backup frequency कम से कम हर 15 मिनट होनी चाहिए।",
+        "Auditors DR exercises के दौरान इन metrics को test करते हैं। एक DR test जो complete होने में 4 घंटे लेता है उसका actual RTO 4 घंटे है — जो 2-hour objective exceed कर सकता है। Failed DR tests की evidence जो remediated नहीं हुई एक significant audit finding है।"
+      ]
+    },
+    "incident": {
+      "title": "Hurricane Katrina — Data Center Failures (2005)",
+      "impact": "Multiple financial institutions ने data खोया; हफ्तों का downtime; regulatory sanctions",
+      "body": [
+        "Hurricane Katrina ने New Orleans की financial institutions में systematic BCP/DR failures expose कीं। कई के पास DR plans थे जो assume करते थे कि एक regional disaster primary और backup sites दोनों को affect नहीं करेगा — लेकिन दोनों sites एक ही flood zone में थे। Hours में measured RTOs actually days थे जब sites physically inaccessible थे।",
+        "Post-Katrina, federal banking regulators ने guidelines issue कीं जिनके लिए primary और backup data centers के बीच geographic separation, complete failover include करने वाले annual DR tests, और multi-week outages को account करने वाले BCPs की आवश्यकता है। ISACA ने इन requirements को CISA curriculum में incorporate किया inadequate BCP/DR testing के examples के रूप में।"
+      ]
+    },
+    "timeline": [
+      "9/11 — off-site backups और DR plans वाली firms recovered; अन्य नहीं",
+      "Hurricane Katrina — primary/backup geographic co-location exposed",
+      "Hurricane Sandy — NYSE और NASDAQ के DR plans successfully activated",
+      "COVID-19 — remote work BCP gaps at scale exposed"
+    ],
+    "keyTakeaways": [
+      "RTO = maximum downtime; RPO = maximum data loss; MTD = business का absolute limit",
+      "RTO MTD से कम होना चाहिए — अन्यथा plan business को fail करता है",
+      "Documented results के साथ Annual DR tests required हैं; failed tests remediated होने चाहिए",
+      "Backup sites primary sites से geographically separate होने चाहिए"
+    ]
+  },
+  "audit-07": {
+    "tagline": "एक incident response plan जो एक SharePoint folder में रहता है और कभी exercise नहीं हुआ वह एक control नहीं है।",
+    "overview": [
+      "Incident Response (IR) program audits evaluate करते हैं कि क्या एक organization effectively security incidents detect, contain, eradicate और recover कर सकती है। ISACA auditors primary framework के रूप में NIST SP 800-61 का उपयोग करते हैं: चार phases हैं Preparation, Detection and Analysis, Containment/Eradication/Recovery और Post-Incident Activity।",
+      "Preparation phase सबसे auditable है: क्या IR plan exist करता है और updated है? क्या roles और responsibilities documented हैं? क्या plan पिछले year में exercised (tabletop या full simulation) हुआ है? क्या contact lists current हैं? क्या एक documented severity classification scheme exist करता है?",
+      "Detection और Analysis controls को SIEM alerts review करके, incident tickets examine करके और verify करके test किए जाते हैं कि detection tools properly tuned हैं। Auditors ढूँढते हैं: time to detect (incident notice होने में कितना समय लगा?), time to contain, और क्या escalation documented process follow करता है।"
+    ],
+    "technical": {
+      "title": "IR Program Audit Checklist",
+      "body": [
+        "Preparation: IR plan पिछले 12 महीनों में reviewed और updated, roles assigned, contact list current, पिछले 12 महीनों में tabletop exercise, severity classification matrix defined, communication plan (legal/PR/regulators) documented।",
+        "Detection: SIEM implemented और tuned, log retention policy meet करती है (typically 90 days online, 1 year archived), alert thresholds quarterly reviewed, threat intelligence feeds integrated। Containment: top 5 incident types (ransomware, data breach, insider threat, DDoS, phishing) के लिए playbooks documented और tested।"
+      ]
+    },
+    "incident": {
+      "title": "Equifax Breach Detection Failure (2017)",
+      "impact": "147M records compromised; FTC का $575M settlement; CISO और CEO resigned",
+      "body": [
+        "Equifax की Apache Struts vulnerability 13 मई 2017 को exploit हुई। Company ने 29 जुलाई तक breach detect नहीं किया — 78 दिन बाद। SSL inspection tool जिसने malicious traffic detect किया होता certificate renewal failure के कारण 19 महीने पहले expire हो गया था। किसी ने notice नहीं किया।",
+        "IR program का audit failure triple था: detection tool broken था (preparation failure), 78-day exfiltration को कोई compensating control detect नहीं कर पाई (detection failure), और detection होने के बाद incident response slow था (response failure)। CISA अब Equifax को अपने training materials में IR program deficiencies के canonical example के रूप में use करता है।"
+      ]
+    },
+    "timeline": [
+      "NIST SP 800-61 पहली बार published — IR lifecycle framework",
+      "NIST SP 800-61 Rev 2 — advanced threat guidance के साथ updated",
+      "Equifax — 78-day dwell time; broken detection tool",
+      "SEC cybersecurity rules — public companies को incidents 4 business days के भीतर disclose करना होगा"
+    ],
+    "keyTakeaways": [
+      "IR के चार phases: Preparation, Detection and Analysis, Containment/Eradication/Recovery, Post-Incident",
+      "कम से कम annually tabletop exercise करें — full simulation preferred",
+      "Mean Time to Detect (MTTD) और Mean Time to Respond (MTTR) key metrics हैं",
+      "Compensating controls के बिना broken detection tools = IR program में critical gap"
+    ]
+  },
+  "audit-08": {
+    "tagline": "आपकी security उतनी ही strong है जितनी आपके systems तक access वाले सबसे weak vendor की।",
+    "overview": [
+      "Vendor और third-party risk management (TPRM) audits verify करते हैं कि एक organization के पास उन vendors, suppliers और partners पर appropriate controls हैं जो उनके systems या data access करते हैं। ISACA इसे COBIT में control objective APO10 (Vendor Management) के हिस्से के रूप में define करता है।",
+      "TPRM lifecycle में पाँच stages हैं: inventory (अपने सभी vendors को जानें), classification (उन्हें risk द्वारा classify करें), assessment (उनके security controls evaluate करें), contractual requirements (SLAs, right to audit, breach notification), और continuous monitoring (annual reassessment, critical vendors के लिए continuous monitoring)।",
+      "Third-party risk supply chain attacks के लिए primary attack vector है। Auditors verify करते हैं: क्या एक complete vendor inventory exist करती है? क्या vendors को risk level द्वारा classified किया गया है? क्या high-risk vendors annual security assessments complete करते हैं? क्या contracts में right-to-audit clauses और breach notification timelines शामिल हैं? जब relationship end होती है तो क्या vendor access permissions review होती हैं?"
+    ],
+    "technical": {
+      "title": "Vendor Classification और Assessment Requirements",
+      "body": [
+        "Tier 1 Vendors (Critical): Sensitive data या critical systems तक access, या single-source dependencies। Require: annual security assessment, SOC 2 Type II report या equivalent, contractual right to audit, continuous monitoring, quarterly access reviews।",
+        "Tier 2 Vendors (High): Business data process करते हैं या network connectivity है। Require: annual questionnaire, contractual security requirements, 72 घंटों के भीतर breach notification। Tier 3 Vendors (Low): Systems तक कोई access नहीं, commodity purchases। Require: basic vendor registry और standard contract terms।"
+      ]
+    },
+    "incident": {
+      "title": "SolarWinds Supply Chain Attack (2020)",
+      "impact": "18,000 organizations compromised; 9 US federal agencies breached; $40M+ response costs",
+      "body": [
+        "SolarWinds attack एक classic supply chain attack था जिसने vendor trust relationships exploit कीं। हमलावरों ने SolarWinds की build pipeline compromise की और Orion software update में malicious code insert किया। Organizations जिन्होंने SolarWinds को critical vendor classify नहीं किया था, उनके पास software की network activity का enhanced monitoring नहीं था।",
+        "Post-incident analysis ने पाया कि कई affected organizations ने SolarWinds access permissions review नहीं की थीं, जबकि Orion की broad network visibility है। Vendor risk assessments, यदि conducted भी होते, questionnaires पर based थे न कि actual system access और network behavior examine करने पर। SolarWinds के बाद CISA guidance ने directly updated TPRM requirements को inform किया।"
+      ]
+    },
+    "timeline": [
+      "Target breach — HVAC vendor को attack entry point के रूप में use किया गया",
+      "SolarWinds build pipeline compromised (December 2020 में discovered)",
+      "Biden Executive Order 14028 — software supply chain security requirements",
+      "SEC rules — public companies के लिए vendor breach disclosure requirements"
+    ],
+    "keyTakeaways": [
+      "Vendor inventory foundation है — आप वह manage नहीं कर सकते जो आपने identify नहीं किया",
+      "Critical Tier 1 vendors को annual SOC 2 Type II reviews और right-to-audit clauses चाहिए",
+      "Vendor access को relationship end होने पर deprovisioned होना चाहिए — eventually नहीं",
+      "Questionnaire-only assessments system access वाले critical vendors के लिए insufficient हैं"
+    ]
+  },
+  "audit-10": {
+    "tagline": "Unauthorized penetration testing एक crime है। Authorization ही वह एकमात्र चीज़ है जो एक pentester को एक हमलावर से अलग करती है।",
+    "overview": [
+      "Penetration testing किसी भी mature security program में एक critical control है, लेकिन effective और legal होने के लिए इसे properly scoped, authorized और documented होना चाहिए। ISACA auditors pentest programs review करते हैं verify करने के लिए: clear scope definition, system owners से written authorization, rules of engagement (क्या permitted और prohibited है) और findings reporting और remediation tracking के लिए requirements।",
+      "Scope document exactly define करता है कि कौन से systems in-scope हैं (IP ranges, domains, applications), कौन से test types permitted हैं (external, internal, social engineering, physical), testing window (dates और times) और यदि test के दौरान एक critical finding discover होता है तो escalation procedures। Out-of-scope systems clearly listed होने चाहिए।",
+      "Authorization system owner से आनी चाहिए, न केवल IT management से। Cloud workloads को cloud provider से authorization require करते हैं (AWS, Azure, GCP के penetration testing policies हैं)। Production systems को additional approvals require करते हैं और अक्सर require करते हैं कि test शुरू होने से पहले एक rollback plan exist करे।"
+    ],
+    "technical": {
+      "title": "Pentest Scope Checklist",
+      "body": [
+        "Scope document में शामिल होना चाहिए: (1) In-scope IP addresses/ranges/domains की explicit list। (2) Out-of-scope systems की explicit list। (3) Permitted test types (network, web application, social engineering, physical)। (4) Business hours restrictions के साथ start/end dates वाली testing window। (5) Escalation procedures वाली emergency contact list। (6) Discovered credentials के लिए data handling requirements।",
+        "Authorization checklist: (1) System owner द्वारा signed written authorization। (2) Cloud provider authorization confirmed। (3) Third-party systems excluded unless उनके owner separate authorization provide करे। (4) Legal review complete यदि test jurisdictions cross करता है।"
+      ]
+    },
+    "incident": {
+      "title": "AT&T Penetration Testing Authorization Dispute (2010)",
+      "impact": "Security researchers arrested; charges बाद में dismissed; written authorization की importance highlighted",
+      "body": [
+        "2010 में, security researchers ने AT&T के iPad activation API में एक vulnerability discover की जिसने 114,000 early iPad adopters के email addresses expose किए। उन्होंने vulnerability demonstrate करने के लिए data का एक subset extract किया, फिर AT&T और Gawker को notify किया। FBI ने researchers को उनके defensive intentions के बावजूद unauthorized access के लिए investigate किया।",
+        "Case ने एक fundamental principle highlight किया: system owner की written authorization के बिना, कोई भी access, well-intentioned security research भी, Computer Fraud and Abuse Act (CFAA) के तहत prosecute हो सकता है। Proper pentest scoping और authorization एक security control और testers के लिए legal protection दोनों है।"
+      ]
+    },
+    "timeline": [
+      "CFAA enacted — unauthorized computer access federal crime बना",
+      "NIST SP 800-42 — network security testing guidance published",
+      "AT&T/iPad incident — authorization requirement prominently highlighted",
+      "CFAA Reform — good-faith security research explicitly protected"
+    ],
+    "keyTakeaways": [
+      "System owner की written authorization किसी भी test से पहले legally required है",
+      "Cloud workloads को cloud provider की explicit approval चाहिए (हर provider की एक policy है)",
+      "Out-of-scope systems explicitly listed होने चाहिए — ambiguity किसी को protect नहीं करती",
+      "सभी discovered credentials को scope document के data handling section के अनुसार handle किया जाना चाहिए"
+    ]
+  },
+  "audit-11": {
+    "tagline": "Evidence के बिना एक assertion एक opinion है। Evidence के बिना एक audit finding बेकार है।",
+    "overview": [
+      "Audit evidence वह information है जो auditors अपने findings और conclusions support करने के लिए use करते हैं। ISACA तीन attributes define करता है जो evidence को sufficient बनाते हैं: यह sufficient होनी चाहिए (conclusion support करने के लिए पर्याप्त), reliable (एक credible source से, एक sound method के माध्यम से obtained) और relevant (actually उस control को address करे जो test हो रहा है)।",
+      "Audit sampling determine करता है कि कितने items test करने हैं जब हर item test करना impractical हो। Statistical sampling probability theory का उपयोग एक known confidence level के साथ पूरी population पर results project करने के लिए करता है। Judgment (non-statistical) sampling auditor के experience पर rely करता है। CISA purposes के लिए, key sampling concepts हैं: population definition, sample selection method, sample size determination और results projection।",
+      "Evidence quality hierarchy (highest to lowest): physical evidence (directly observed), documentary evidence (records, logs, reports), testimonial evidence (interviews) और analytical evidence (ratios, trends, comparisons)। Auditors higher quality evidence prefer करते हैं और प्रत्येक evidence piece के source, collection method और chain of custody को document करना चाहिए।"
+    ],
+    "technical": {
+      "title": "IT Auditing के लिए Statistical Sampling",
+      "body": [
+        "Attribute sampling test करने के लिए use होता है कि क्या एक control effectively काम कर रहा है। Auditor define करता है: population (Q1 में सभी changes), attribute tested (हर change के पास एक valid approval है), acceptable deviation rate (5%) और desired confidence level (95%)। Statistical tables फिर sample size determine करती हैं।",
+        "1,000 items की population के लिए, 95% confidence level के साथ 5% acceptable deviation rate approximately 60 items require करती है। यदि auditor 60 items में 3 deviations (5%) पाता है, तो population में deviation rate acceptable threshold exceed करती है — control effectively काम नहीं कर रहा।"
+      ]
+    },
+    "incident": {
+      "title": "Arthur Andersen और Enron — Evidence Destruction (2002)",
+      "impact": "Arthur Andersen को obstruction के लिए convicted; 85,000 employees ने jobs खोए; firm dissolved",
+      "body": [
+        "Arthur Andersen, Enron के auditor, ने Enron में SEC investigation के बारे में पता चलने के बाद हजारों documents destroy किए और emails delete किए। Audit evidence की destruction ने Arthur Andersen की criminal conviction की justice के obstruction के लिए — US history में एक major accounting firm की पहली criminal conviction।",
+        "Case ने establish किया कि audit evidence को preserve किया जाना चाहिए, न केवल collect। Modern audit standards minimum 7 years के लिए evidence retention require करते हैं। Digital evidence को tampering-proof format में preserve किया जाना चाहिए, subsequent modifications detect करने के लिए collection पर hash values calculated करके।"
+      ]
+    },
+    "timeline": [
+      "AICPA sampling standards पहली बार financial auditing के लिए published",
+      "Arthur Andersen — evidence destruction के लिए conviction; firm dissolved",
+      "PCAOB AS 1215 — IT controls के लिए audit documentation standards",
+      "ISACA CISA updated — digital evidence handling और AI tools documentation"
+    ],
+    "keyTakeaways": [
+      "Evidence tested control के लिए sufficient, reliable और relevant होनी चाहिए",
+      "Statistical sampling known confidence के साथ पूरी population पर results project करता है",
+      "Tolerable rate exceed करने वाली deviation rate का मतलब है control effectively काम नहीं कर रहा",
+      "Audit evidence को 7 साल तक retain किया जाना चाहिए और tampering-proof format में preserved"
+    ]
+  },
+  "audit-t01": {
+    "tagline": "एक API जो caller को trust करती है कि वे बताएं कि कौन से objects return करें, वह API है जो सभी objects return करेगी।",
+    "overview": [
+      "Broken Object Level Authorization (BOLA) — OWASP API Security Top 10 में #1 ranked — तब होती है जब एक API endpoint user-provided identifier का उपयोग objects retrieve करने के लिए करता है यह verify किए बिना कि requesting user उस specific object तक access के लिए permission है। हमलावर बस request में ID बदल देता है।",
+      "API security audits web application audits से differ करते हैं क्योंकि APIs को अक्सर इस assumption के साथ design किया जाता है कि केवल authorized clients ही उन्हें call करेंगे। लेकिन APIs discoverable हैं और उनके parameters predictable हैं। एक payment API जो /api/v1/payments/{payment_id} accept करती है कोई भी payment return करेगी यदि BOLA exist करती है — न केवल caller के payments।",
+      "OWASP API Top 10 (2023) cover करता है: BOLA, Broken Authentication, Broken Object Property Level Authorization, Unrestricted Resource Consumption, Broken Function Level Authorization, Unrestricted Access to Sensitive Business Flows, Server Side Request Forgery, Security Misconfiguration, Improper Inventory Management और Unsafe Consumption of APIs।"
+    ],
+    "technical": {
+      "title": "API Audits में BOLA Testing",
+      "body": [
+        "Step 1: User A के रूप में authenticate करें, एक legitimate action perform करें (जैसे, अपना payment देखें)। Request capture करें, URL या body में object ID note करें। Step 2: User B के रूप में authenticate करें। User A के object ID के साथ same request replay करें। यदि response User A का data return करता है, BOLA exist करती है।",
+        "Automated testing: Burp Suite, OWASP ZAP या Postman जैसे tools use करें। एक object identifier accept करने वाले प्रत्येक API endpoint के लिए, sequential IDs, अन्य test accounts के UUIDs और negative/zero values के साथ identifier को fuzz करें। Unexpected data disclosure के लिए responses monitor करें।"
+      ]
+    },
+    "incident": {
+      "title": "Peloton API BOLA — 3M User Records Exposed (2021)",
+      "impact": "3 million users के private profile data exposed; कुछ endpoints के लिए कोई authentication required नहीं",
+      "body": [
+        "Security researcher Jan Masters ने discover किया कि Peloton की API किसी भी user के profile data तक unauthenticated access allow करती थी — age, weight, location, workout history और gender including — बस user ID endpoint query करके। API में certain endpoints के लिए कोई authentication requirement नहीं थी और दूसरों के लिए कोई object-level authorization नहीं थी।",
+        "Peloton ने initially finding dispute किया लेकिन researcher द्वारा media को disclose करने के 90 दिनों के भीतर patch apply किया। Incident ने API audits में एक common gap illustrate किया: rapid feature development के दौरान added endpoints अक्सर वह authorization review miss करते हैं जो established endpoints receive करते हैं। API security audits को सभी endpoints enumerate करने चाहिए, undocumented ones सहित।"
+      ]
+    },
+    "timeline": [
+      "OWASP API Security Top 10 पहली बार published — BOLA #1 listed",
+      "Peloton API — BOLA के माध्यम से 3M users exposed",
+      "Optus Australia — API BOLA 9.8M customer records expose करता है",
+      "OWASP API Top 10 updated — BOLA #1 remains"
+    ],
+    "keyTakeaways": [
+      "BOLA #1 API vulnerability है — हमेशा verify करें कि caller requested object का owner है",
+      "Authenticated test accounts के बीच object IDs exchange करके test करें",
+      "Unauthenticated API endpoints को हर API audit में explicit justification चाहिए",
+      "Undocumented endpoints सहित सभी endpoints enumerate करें — API gateway logs और OpenAPI specifications use करें"
+    ]
+  },
+  "audit-t02": {
+    "tagline": "Git में compromised secret अब secret नहीं है। यह timestamp के साथ एक public credential है।",
+    "overview": [
+      "Secrets management audits source code, configuration files, CI/CD pipelines और container images में hardcoded credentials, API keys और passwords identify करते हैं। OWASP A07:2021 (Identification and Authentication Failures) और A02:2021 (Cryptographic Failures) secrets management address करते हैं। GitGuardian report करता है कि public repositories में secrets exposure 2022 में 67% बढ़ी।",
+      "एक mature secrets management program एक centralized secrets store (HashiCorp Vault, AWS Secrets Manager, Azure Key Vault) का उपयोग करता है short-lived dynamic credentials के साथ, automatic rotation और access logging। Secrets runtime पर inject होते हैं — code, configuration files या plain text environment variables में कभी stored नहीं।",
+      "Auditors secrets management test करते हैं: hardcoded credentials के लिए repositories scan करके (truffleHop, detect-secrets, Gitleaks), secrets store configuration review करके (access policies, rotation schedules, audit logging), CI/CD pipelines को variables में plain text secrets के लिए examine करके और container images को embedded credentials के लिए verify करके।"
+    ],
+    "technical": {
+      "title": "Secrets Scanning और Vault Configuration",
+      "body": [
+        "Repository scanning: पूरे git history के विरुद्ध Gitleaks या detect-secrets run करें — न केवल current HEAD। तीन साल पहले compromised और फिर removed एक secret अभी भी git history में है और तब तक valid है जब तक rotate न हो। हर developer जिसने repository clone किया उसके पास एक copy है।",
+        "Vault best practices: सभी Vault operations पर audit logging enable करें, dynamic secrets use करें (Vault हर request के लिए एक short-lived credential generate करता है — कोई static password नहीं), secret TTLs enforce करें (human access के लिए maximum 24 घंटे, automated systems के लिए maximum 1 घंटा) और AppRole या Kubernetes authentication use करें (static tokens के साथ token authentication नहीं)।"
+      ]
+    },
+    "incident": {
+      "title": "Uber GitHub Secrets Exposure (2022)",
+      "impact": "हमलावर ने internal Slack, HackerOne tickets, internal dashboards access किया; previous breach का $148M settlement",
+      "body": [
+        "2022 का Uber breach एक contractor की social engineering से शुरू हुआ, लेकिन हमलावर का lateral movement depend किया एक internal file share पर एक PowerShell script में hardcoded admin credentials ढूँढने पर। वे credentials Thycotic (उनका PAM tool) तक access दी, जिसमें अन्य सभी systems के credentials थे।",
+        "Root cause social engineering नहीं था — यह एक script में hardcoded credential थी जो किसी भी secrets scanning program का हिस्सा नहीं रही थी। Uber के secrets management program ने केवल code repositories cover किए, internal file shares और scripts नहीं। Auditors को secrets scanning के scope को सभी locations तक expand करना चाहिए जहाँ credentials exist हो सकते हैं।"
+      ]
+    },
+    "timeline": [
+      "Samsung — AWS keys के साथ source code public GitHub पर pushed",
+      "Uber breach — PowerShell script में hardcoded admin credential",
+      "GitGuardian report — 2022 में public repositories में 10M secrets exposed",
+      "CircleCI breach — CI/CD environment variables से secrets extracted"
+    ],
+    "keyTakeaways": [
+      "पूरा git history scan करें — HEAD से removed secrets history में रहते हैं",
+      "Short TTLs वाले dynamic secrets एक stolen credential की value eliminate करते हैं",
+      "Secrets scanning cover करनी चाहिए: repositories, CI/CD variables, container images, file shares, scripts",
+      "Rotation किसी भी possible exposure के बाद होनी चाहिए — न केवल scheduled के अनुसार"
+    ]
+  },
+  "audit-t03": {
+    "tagline": "Guardrails के बिना एक cloud account internet को point करने वाला एक credit card है जिसकी कोई spending limit नहीं है।",
+    "overview": [
+      "Cloud security audits verify करते हैं कि preventive controls (dangerous actions को block करने वाले guardrails) और detective controls (policy violations identify करने वाले alerts) properly configured हैं। AWS तीन primary guardrail mechanisms provide करता है: Organization level पर Service Control Policies (SCPs), continuous compliance monitoring के लिए AWS Config Rules, और API activity logging के लिए CloudTrail।",
+      "SCPs सबसे powerful preventive control हैं — वे define करते हैं कि एक AWS account के भीतर कौन सी actions perform की जा सकती हैं, IAM policies की परवाह किए बिना। एक SCP जो S3 public access deny करती है account के भीतर एक IAM administrator द्वारा override नहीं की जा सकती। SCPs Organization, OU या account level पर attached होती हैं।",
+      "AWS Config Rules continuously defined policies के विरुद्ध resources evaluate करता है और non-compliant resources identify करता है। Managed rules common controls cover करते हैं: S3 buckets publicly accessible नहीं होने चाहिए, EC2 instances approved AMIs use करने चाहिए, root account के active access keys नहीं होने चाहिए, console access वाले सभी IAM users पर MFA enabled होनी चाहिए।"
+    ],
+    "technical": {
+      "title": "Audit के लिए Key Cloud Guardrails",
+      "body": [
+        "SCP audit checklist: (1) Public S3 bucket creation deny करें। (2) CloudTrail disabling deny करें। (3) MFA के बिना IAM users creation deny करें। (4) Approved AWS regions तक restrict करें। (5) Root account API calls deny करें। Verify करें कि प्रत्येक SCP correct OU level पर attached है और high-risk accounts के लिए कोई exceptions नहीं हैं।",
+        "CloudTrail audit: verify करें कि CloudTrail सभी regions में enabled है (न केवल us-east-1), log file validation enabled है (hash chain tampering prevent करती है), logs एक separate security account में sent होते हैं (same audited account नहीं), और CloudWatch alerts exist करती हैं: root account login, SCP policy changes, CloudTrail disabling, और IAM permission changes के लिए।"
+      ]
+    },
+    "incident": {
+      "title": "Capital One S3 Misconfiguration (2019)",
+      "impact": "106M customer records; $190M settlement; SSRF द्वारा exploitable metadata access के लिए कोई AWS Config rule नहीं",
+      "body": [
+        "Capital One breach एक misconfigured WAF द्वारा enabled हुई जो EC2 instance metadata service (169.254.169.254) तक SSRF reach करने की अनुमति देती थी, जो S3 read access वाले IAM role credentials return करती थी। SSRF-vulnerable WAF configurations monitor करने वाली एक AWS Config rule exist नहीं करती थी। CloudTrail ने 3 महीनों के दौरान S3 पर 30 million से अधिक API calls log कीं — लेकिन कोई alert fire नहीं हुई।",
+        "दो guardrail failures: (1) कोई Config rule ने WAF misconfiguration detect नहीं की। (2) CloudTrail alerts को एक single role से unusual S3 GetObject call volume signal करने के लिए tuned नहीं किया गया था। एक properly configured CloudWatch alert जिसका threshold एक घंटे में एक single role से 1,000 S3 reads था, exfiltration को पहले दिन capture किया होता।"
+      ]
+    },
+    "timeline": [
+      "AWS Config Rules GA — continuous compliance monitoring available",
+      "AWS SCPs AWS Organizations के लिए fully launched",
+      "Capital One — SSRF + S3 misconfiguration; कोई Config rule ने detect नहीं किया",
+      "AWS Security Hub — सभी Config rules में aggregated compliance scoring"
+    ],
+    "keyTakeaways": [
+      "SCPs IAM override करती हैं — ये AWS में highest-priority preventive control हैं",
+      "CloudTrail log file validation और cross-account storage के साथ सभी regions में enabled होना चाहिए",
+      "AWS Config rules continuous compliance provide करती हैं — केवल point-in-time नहीं",
+      "Volume-based CloudWatch alerts signature-based detection miss होने वाली exfiltration detect करती हैं"
+    ]
+  },
+  "audit-t04": {
+    "tagline": "एक developer account पर attached AdministratorAccess एक privilege नहीं है — यह एक attack surface है।",
+    "overview": [
+      "IAM privilege analysis उन accounts, roles और service accounts को identify करती है जिनके excessive permissions हैं। AWS में, सबसे common violations हैं: AdministratorAccess वाले developer accounts, wildcard resource permissions (*) वाले service roles, applications के लिए IAM roles की बजाय IAM users, और बिना expiration date के access keys।",
+      "Least privilege principle require करता है कि हर principal (user, role, service account) के पास केवल वे permissions हों जो उनका function perform करने के लिए necessary हैं। AWS IAM Access Analyzer और third-party tools (PMapper, Cloudsplaining) automatically overly permissive policies और privilege escalation paths identify कर सकते हैं।",
+      "IAM में Privilege escalation तब होती है जब limited permissions वाला एक user एक sequence of API calls execute कर सकता है खुद को additional permissions grant करने के लिए। Example: iam:CreatePolicyVersion alone एक नई policy version create करने की अनुमति देता है जो AdministratorAccess grant करे, फिर उसे खुद पर attach करे। Auditors को इन indirect paths verify करनी चाहिए, न केवल direct permissions।"
+    ],
+    "technical": {
+      "title": "IAM Auditing Techniques",
+      "body": [
+        "IAM credential report generate करें: aws iam generate-credential-report && aws iam get-credential-report। यह हर IAM user को show करता है: last password used, last access key used, MFA enabled और access key age। Flag करें: active access key वाला root account, 90 दिन से पुरानी access keys, 30 दिनों के बाद कभी use न हुई password वाले users।",
+        "Policy analysis: सभी attached policies analyze करने के लिए Cloudsplaining use करें। Flag करें: Action: * (wildcard), sensitive actions के साथ Resource: * (iam:*, s3:*, ec2:*), pass-role permissions (iam:PassRole + कोई service = privilege escalation), और कोई principal पर attached नहीं policies (policy sprawl)।"
+      ]
+    },
+    "incident": {
+      "title": "Okta Breach through Lateral Movement (2022)",
+      "impact": "366 customer Okta tenants potentially accessed; 2.5% of Okta customers affected",
+      "body": [
+        "2022 का Okta breach तब हुआ जब हमलावरों ने Sitel के एक support engineer की workstation compromise की। Support engineer के account में customer tenants देखने की permissions के साथ Okta's support tool तक access था। IAM review failure: support account को support tasks के लिए necessary से broader permissions थीं, और वे permissions एक vendor transition के बाद review नहीं हुईं।",
+        "Breach ने IAM auditing का एक fundamental principle highlight किया: third-party vendor accounts को internal accounts के जैसा ही least privilege analysis require करते हैं। Vendor support tools अक्सर 'convenience' के लिए granted elevated permissions होती हैं और कभी review नहीं होतीं। एक IAM audit ने support account की excessively broad permissions को flag किया होता।"
+      ]
+    },
+    "timeline": [
+      "AWS IAM Access Analyzer launch — automated policy analysis",
+      "Cloudsplaining launch — open-source IAM policy analysis tool",
+      "SolarWinds — Orion service account with broad IAM permissions",
+      "Okta breach — vendor support account with excessive permissions"
+    ],
+    "keyTakeaways": [
+      "Individual IAM users पर AdministratorAccess लगभग कभी justified नहीं — roles use करें",
+      "90 दिन से पुरानी access keys एक finding हैं — rotation automate करें",
+      "Privilege escalation paths direct permissions से परे exist करते हैं — PMapper या similar use करें",
+      "Vendor और service accounts को human accounts के जैसा ही least privilege review चाहिए"
+    ]
+  },
+  "audit-t05": {
+    "tagline": "एक container जो root के रूप में run हो रहा है mounted host socket के साथ वह container है जो already escape हो चुका है।",
+    "overview": [
+      "Container security audits पूरे container lifecycle को cover करते हैं: image build (base image CVEs, layers में secrets), image registry (access controls, signing), runtime configuration (privilege escalation, resource limits, read-only filesystems) और orchestrator security (Kubernetes RBAC, network policies, pod security standards)।",
+      "तीन most critical container security findings हैं: root के रूप में containers run करना (privilege escalation risk), Docker socket को (/var/run/docker.sock) एक container के भीतर mount करना (complete host compromise) और known critical CVEs वाले base images use करना। CIS Docker Benchmark test करने के लिए 100 से अधिक specific controls provide करता है।",
+      "Kubernetes orchestration-level controls add करता है: Pod Security Standards (Restricted, Baseline, Privileged), Network Policies (pods के बीच egress/ingress control), RBAC (कौन pods में exec कर सकता है, कौन secrets देख सकता है) और Secrets at rest का encryption (etcd encryption)।"
+    ],
+    "technical": {
+      "title": "Container Security Scanning",
+      "body": [
+        "Image scanning: production पहुँचने से पहले CVEs के लिए images scan करने के लिए Trivy, Grype या Snyk Container use करें। एक CI/CD gate जो CRITICAL CVEs वाले images block करे vulnerable code run होने से रोकता है। Application layer और base OS layer दोनों scan करें — OS layer में vulnerabilities अक्सर miss होती हैं।",
+        "Runtime security: docker-compose.yml और Kubernetes manifests review करें: user: root या कोई user specified नहीं, privileged: true, hostPID या hostNetwork: true, host paths mount करने वाले volumes (especially /var/run/docker.sock) और कोई resource limits नहीं (memory/CPU)। ये सभी container security audit में automatic findings हैं।"
+      ]
+    },
+    "incident": {
+      "title": "Tesla Kubernetes Cryptojacking (2018)",
+      "impact": "Unauthenticated exposed Kubernetes dashboard; credentials extracted; cryptocurrency mining के लिए AWS resources used",
+      "body": [
+        "हमलावरों ने discover किया कि Tesla का Kubernetes dashboard बिना authentication के internet पर exposed था। Dashboard से, उन्होंने एक Kubernetes secret में stored AWS credentials पाईं (unencrypted)। उन credentials का उपयोग करके, उन्होंने billing alerts पर detection avoid करने के लिए throttled cryptocurrency mining के लिए EC2 instances launch कीं।",
+        "Container security failures: (1) Kubernetes dashboard publicly exposed। (2) etcd में unencrypted stored secrets। (3) Dashboard तक external access prevent करने वाली कोई network policy नहीं। (4) Anomalous EC2 launches flag करने वाले कोई resource quotas नहीं। यह case container security audits में CIS Kubernetes Benchmark adoption drive करता है।"
+      ]
+    },
+    "timeline": [
+      "CIS Docker Benchmark v1.0 published",
+      "Tesla Kubernetes cryptojacking — exposed dashboard + unencrypted secrets",
+      "Kubernetes Pod Security Policies deprecated; PSA से replaced",
+      "Kubernetes Pod Security Admission (PSA) stable — Restricted/Baseline/Privileged"
+    ],
+    "keyTakeaways": [
+      "Containers को कभी root के रूप में run न करें — Dockerfile USER directive में एक non-root user specify करें",
+      "/var/run/docker.sock को एक container के भीतर mount करना = complete host takeover",
+      "Registry में push करने से पहले CI/CD में CVEs के लिए container images scan करें",
+      "Kubernetes etcd को at-rest encryption होनी चाहिए — secrets by default base64 हैं (encrypted नहीं)"
+    ]
+  },
+  "audit-t06": {
+    "tagline": "IaC misconfiguration को scale पर reproducible बनाता है। एक flawed Terraform module सभी environments को misconfigure कर सकता है।",
+    "overview": [
+      "Infrastructure as Code (IaC) security scanning deploy होने से पहले Terraform, CloudFormation, Ansible और Pulumi templates पर static analysis apply करता है। Principle: security misconfigurations को code review stage में find करें, deployment के बाद नहीं। Tools include हैं tfsec, Checkov, KICS और Terrascan।",
+      "IaC में Common security findings: बिना encryption या public access block के S3 buckets, sensitive ports पर 0.0.0.0/0 (world open) वाले security groups, बिना deletion protection या encryption के RDS instances, wildcard actions वाली IAM policies, excessive IAM permissions वाले Lambda functions और log file validation के बिना CloudTrail।",
+      "IaC scanning CI/CD pipelines में एक gate के रूप में integrate होता है: security violations introduce करने वाले pull requests build fail करते हैं। यह security को left shift करता है — misconfigurations deployed vulnerabilities बनने से पहले detect होती हैं। एक PR में bad configuration fix करने की cost minutes है; एक breach के बाद millions।"
+    ],
+    "technical": {
+      "title": "tfsec और Checkov Run करना",
+      "body": [
+        "tfsec: tfsec ./terraform/ --minimum-severity HIGH — सभी .tf files को recursively scan करता है और severity, description और उस specific Terraform block के साथ findings report करता है जो problem cause कर रहा है। GitHub Advanced Security integration के लिए SARIF format generate करता है।",
+        "Checkov: checkov -d ./terraform/ --framework terraform --output junitxml — scan करता है और CI/CD integration के लिए JUnit XML output generate करता है। Checkov AWS, Azure, GCP, Kubernetes और Dockerfile में 1,000 से अधिक checks cover करता है। --check CKV_AWS_18 flag targeted scanning के लिए specific checks test करता है।"
+      ]
+    },
+    "incident": {
+      "title": "Toyota Connected Services Data Exposure (2023)",
+      "impact": "2.15M customers के vehicle location data और vehicle IDs misconfigured cloud storage के माध्यम से 10 साल तक exposed",
+      "body": [
+        "Toyota Connected ने discover किया कि 2013 में configured एक cloud environment में एक storage bucket incorrectly public access के साथ set था। 2.15 million customers के vehicle location data approximately 10 साल तक publicly accessible था। Configuration को कभी modern security baselines के विरुद्ध audited नहीं किया गया था।",
+        "एक IaC security scan या S3 bucket public access के लिए एक AWS Config rule यह immediately detect किया होता। Finding illustrate करता है कि क्यों 'legacy' cloud configurations जो IaC practices से पहले के हैं IaC management में import होने और same scanning के subject होने की आवश्यकता है जो new deployments receive करते हैं। Drift detection tools (Terraform Cloud, AWS Config) IaC द्वारा unmanaged resources identify कर सकते हैं।"
+      ]
+    },
+    "timeline": [
+      "tfsec initial release — Terraform static security analysis",
+      "Checkov को Bridgecrew द्वारा launch — multi-IaC security scanner",
+      "GitHub Advanced Security — PRs में IaC scan results के लिए SARIF format",
+      "Toyota — misconfigured cloud storage के माध्यम से 10-year public S3 exposure"
+    ],
+    "keyTakeaways": [
+      "CI/CD में IaC scanning deployment से पहले misconfigurations detect करती है — shift left",
+      "Ports 22/3389 पर 0.0.0.0/0 वाले security groups automatically CRITICAL findings हैं",
+      "S3 encryption और public access block SCP के माध्यम से account level पर enforced होने चाहिए",
+      "IaC में नहीं legacy cloud resources import और scan होने चाहिए — drift detection"
+    ]
+  }
+}

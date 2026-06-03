@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { redis } from "@/lib/redis";
-import { TROPHIES } from "@/data/trophies";
-import { SHOP_ITEMS } from "@/data/shop-items";
+import { TROPHIES } from "@kryptos/core/trophies";
+import { SHOP_ITEMS } from "@kryptos/core/shop-items";
 
 const TROPHY_MAP = new Map(TROPHIES.map((t) => [t.id, t]));
 const SHOP_MAP = new Map(SHOP_ITEMS.map((i) => [i.id, i]));

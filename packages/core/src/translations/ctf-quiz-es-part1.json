@@ -1,0 +1,1016 @@
+{
+  "stage-m13": {
+    "questions": [
+      {
+        "q": "¿CVE-2016-1287 afectó el manejo de cuál protocolo en Cisco ASA?",
+        "options": [
+          "IKE (Internet Key Exchange) para la configuración de túneles VPN",
+          "SNMP para el sondeo de gestión de dispositivos"
+        ]
+      },
+      {
+        "q": "Verdadero o Falso: CVE-2016-1287 requería credenciales de autenticación válidas antes de que pudiera activarse el desbordamiento de heap.",
+        "options": [
+          "Falso — el ataque no requería ningún tipo de autenticación",
+          "Verdadero — primero debía establecerse una sesión IKE"
+        ]
+      },
+      {
+        "q": "¿Qué puertos expuso CVE-2016-1287 como superficie de ataque en Cisco ASA?",
+        "options": [
+          "UDP/500 (IKE) y UDP/4500 (NAT-T)",
+          "TCP/443 (HTTPS) y TCP/22 (SSH)"
+        ]
+      },
+      {
+        "q": "La herramienta EXTRABACON de Shadow Brokers explotó CVE-2016-1287. ¿Qué grupo se cree que la desarrolló originalmente?",
+        "options": [
+          "La NSA (Agencia de Seguridad Nacional)",
+          "La división Vault 7 de la CIA"
+        ]
+      },
+      {
+        "q": "Verdadero o Falso: En plataformas Cisco ASA de 64 bits, CVE-2016-1287 típicamente resultaba en ejecución remota de código en lugar de denegación de servicio.",
+        "options": [
+          "Falso — las plataformas de 64 bits típicamente experimentaban DoS (reinicio del dispositivo), no RCE",
+          "Verdadero — las plataformas de 64 bits eran más explotables que las de 32 bits"
+        ]
+      }
+    ]
+  },
+  "stage-m14": {
+    "questions": [
+      {
+        "q": "¿CVE-2017-3881 explotó el analizador de opciones Telnet de cuál protocolo de Cisco?",
+        "options": [
+          "CMP — Cluster Management Protocol",
+          "CDP — Cisco Discovery Protocol"
+        ]
+      },
+      {
+        "q": "Verdadero o Falso: CVE-2017-3881 solo era explotable si el administrador había habilitado explícitamente Telnet en el dispositivo.",
+        "options": [
+          "Falso — el análisis vulnerable de CMP se ejecutaba incluso cuando Telnet estaba deshabilitado por configuración",
+          "Verdadero — deshabilitar Telnet con 'no service telnet' mitigaba completamente la vulnerabilidad"
+        ]
+      },
+      {
+        "q": "¿Cómo llegó CVE-2017-3881 a la atención pública?",
+        "options": [
+          "WikiLeaks publicó Vault 7, que hacía referencia a un exploit de Cisco CMP",
+          "Shadow Brokers filtró el exploit junto con EternalBlue"
+        ]
+      },
+      {
+        "q": "¿Aproximadamente cuánto tiempo existió la vulnerabilidad CVE-2017-3881 en Cisco IOS antes de ser parcheada?",
+        "options": [
+          "Más de 20 años — introducida alrededor de 1996",
+          "Alrededor de 3 años — introducida alrededor de 2014"
+        ]
+      },
+      {
+        "q": "Verdadero o Falso: La mitigación correcta para CVE-2017-3881 era usar 'no service telnet' en la configuración de IOS.",
+        "options": [
+          "Falso — se requería una ACL en vty bloqueando TCP/23 porque el código vulnerable seguía ejecutándose de todas formas",
+          "Verdadero — 'no service telnet' detenía completamente el procesamiento de opciones CMP"
+        ]
+      }
+    ]
+  },
+  "stage-m15": {
+    "questions": [
+      {
+        "q": "CVE-2020-3118 de CDPwn era una vulnerabilidad de cadena de formato activada por qué tipo de datos en un paquete CDP?",
+        "options": [
+          "Un especificador de formato malicioso (p. ej. %n) en el campo Device-ID TLV",
+          "Un campo Platform TLV demasiado largo que desbordaba un búfer de pila"
+        ]
+      },
+      {
+        "q": "Verdadero o Falso: CDP opera en la Capa 3, por lo que un firewall correctamente configurado puede bloquear ataques basados en CDP.",
+        "options": [
+          "Falso — CDP es un protocolo de Capa 2; los firewalls y las ACL no ofrecen protección contra él",
+          "Verdadero — una ACL en la interfaz del router descartará las tramas CDP"
+        ]
+      },
+      {
+        "q": "¿Qué sistema operativo de Cisco fue objetivo específico de CVE-2020-3118, comúnmente encontrado en routers de nivel de operador?",
+        "options": [
+          "Cisco IOS XR — usado en las series ASR 9000 y NCS 5000",
+          "Cisco NX-OS — usado en switches de centros de datos Nexus"
+        ]
+      },
+      {
+        "q": "¿Qué empresa de seguridad divulgó la suite de vulnerabilidades CDPwn en febrero de 2020?",
+        "options": [
+          "Armis Security",
+          "Sygnia Incident Response"
+        ]
+      },
+      {
+        "q": "Verdadero o Falso: El especificador de formato %n es peligroso porque lee memoria de la pila.",
+        "options": [
+          "Falso — %n escribe el conteo de bytes impresos en una dirección, permitiendo escrituras arbitrarias en memoria",
+          "Verdadero — %n es un especificador de formato de solo lectura usado para inspección de memoria"
+        ]
+      }
+    ]
+  },
+  "stage-m16": {
+    "questions": [
+      {
+        "q": "¿CVE-2021-1609 afectó la interfaz de gestión web de cuál línea de productos Cisco?",
+        "options": [
+          "Cisco RV340/RV345 — routers VPN para pequeñas y medianas empresas",
+          "Cisco ASA 5500-X — firewalls perimetrales empresariales"
+        ]
+      },
+      {
+        "q": "Verdadero o Falso: CVE-2021-1609 requería una contraseña de administrador válida para acceder al endpoint vulnerable de la API de diagnóstico.",
+        "options": [
+          "Falso — los endpoints vulnerables /api/v1/diag_* procesaban solicitudes antes de verificar la autenticación",
+          "Verdadero — el atacante necesitaba al menos una cuenta de solo lectura para acceder al endpoint"
+        ]
+      },
+      {
+        "q": "¿Qué sistema operativo subyacente ejecutaban los routers Cisco RV340/RV345, haciendo que la inyección de comandos del SO tuviera impacto directo?",
+        "options": [
+          "Linux (BusyBox) — la ejecución de código se realizaba como root sin separación de privilegios",
+          "VxWorks RTOS — un SO de tiempo real propietario con acceso limitado a la shell"
+        ]
+      },
+      {
+        "q": "¿Qué actores de amenazas fueron documentados usando CVE-2021-1609 como vector de acceso inicial?",
+        "options": [
+          "Grupos de ransomware — usando routers SOHO comprometidos como puntos de entrada persistentes",
+          "Actores APT de estados-nación — apuntando exclusivamente a sucursales gubernamentales"
+        ]
+      },
+      {
+        "q": "Verdadero o Falso: Deshabilitar la gestión remota en routers SOHO elimina la superficie de ataque para CVE-2021-1609.",
+        "options": [
+          "Verdadero — no existía otra solución alternativa más que deshabilitar la gestión remota o aplicar el parche de firmware",
+          "Falso — la vulnerabilidad también era explotable desde el lado LAN del router"
+        ]
+      }
+    ]
+  },
+  "stage-m17": {
+    "questions": [
+      {
+        "q": "CVE-2020-3259 era una falla de divulgación de memoria en Cisco ASA/FTD. ¿Qué contenía comúnmente la memoria heap filtrada?",
+        "options": [
+          "Tokens de sesión VPN activos y credenciales en caché",
+          "Claves privadas RSA usadas para autenticación VPN basada en certificados"
+        ]
+      },
+      {
+        "q": "Verdadero o Falso: El grupo de ransomware Akira comenzó a explotar CVE-2020-3259 semanas después de su divulgación original en mayo de 2020.",
+        "options": [
+          "Falso — Akira lo explotó aproximadamente cuatro años después de la divulgación, en 2024",
+          "Verdadero — CVE-2020-3259 fue explotado activamente el mismo año en que fue parcheado"
+        ]
+      },
+      {
+        "q": "¿Qué técnica de ataque habilitó CVE-2020-3259 que eludía específicamente la autenticación multifactor?",
+        "options": [
+          "Robo de tokens de sesión — una cookie de sesión activa robada otorga acceso independientemente de cómo se obtuvo",
+          "Fuerza bruta de credenciales — las contraseñas filtradas se usaban para reproducir la autenticación"
+        ]
+      },
+      {
+        "q": "¿Qué interfaz de Cisco ASA fue el objetivo de CVE-2020-3259?",
+        "options": [
+          "La interfaz de servicios web WebVPN/AnyConnect (HTTPS)",
+          "La interfaz de gestión ASDM en un puerto de gestión dedicado"
+        ]
+      },
+      {
+        "q": "Verdadero o Falso: Una vez obtenido un token de sesión VPN válido mediante divulgación de memoria, el atacante aún necesita completar MFA para establecer el túnel.",
+        "options": [
+          "Falso — un token de sesión válido otorga acceso autenticado; el MFA ya se completó cuando se emitió el token",
+          "Verdadero — Cisco ASA valida MFA en cada conexión independientemente del estado del token de sesión"
+        ]
+      }
+    ]
+  },
+  "stage-m18": {
+    "questions": [
+      {
+        "q": "¿CVE-2019-1663 explotó un desbordamiento de pila en cuál componente del Cisco RV110W/RV130W?",
+        "options": [
+          "El manejador de solicitudes HTTP de la interfaz de gestión basada en web",
+          "El módulo de negociación de claves VPN IPsec"
+        ]
+      },
+      {
+        "q": "Verdadero o Falso: Los routers Cisco RV110W y RV130W incluían stack canaries y ASLR, haciendo que CVE-2019-1663 fuera difícil de explotar de manera confiable.",
+        "options": [
+          "Falso — estos dispositivos basados en MIPS carecían de canaries, ASLR y NX/DEP, haciendo la explotación trivial",
+          "Verdadero — las mitigaciones modernas de exploits estaban presentes pero fueron eludidas mediante una cadena ROP"
+        ]
+      },
+      {
+        "q": "¿Cuál era el tamaño del búfer de pila vulnerable en el manejador HTTP del RV130W y cuántos bytes se necesitaban para desbordarlo?",
+        "options": [
+          "Búfer de 256 bytes — enviar más de 500 bytes en el cuerpo POST activaba el desbordamiento",
+          "Búfer de 512 bytes — se requería un payload de 1024 bytes para sobrescribir la dirección de retorno"
+        ]
+      },
+      {
+        "q": "¿Qué nivel de privilegio lograba un exploit exitoso de CVE-2019-1663 en el router?",
+        "options": [
+          "Root (uid=0) — los routers SOHO ejecutan todos los servicios como root sin separación de privilegios",
+          "Una cuenta de servicio web limitada — se requería escalada de privilegios adicional"
+        ]
+      },
+      {
+        "q": "Verdadero o Falso: CVE-2019-1663 requería acceso de red a la interfaz LAN; la vulnerabilidad no era explotable desde la WAN.",
+        "options": [
+          "Falso — los atacantes con acceso a la interfaz de gestión orientada a la WAN podían explotar la vulnerabilidad de forma remota",
+          "Verdadero — el manejador HTTP solo se vinculaba a la interfaz de gestión del lado LAN"
+        ]
+      }
+    ]
+  },
+  "stage-m19": {
+    "questions": [
+      {
+        "q": "¿CVE-2022-20812 era una vulnerabilidad de path traversal en la API de base de datos de clúster de cuál producto Cisco?",
+        "options": [
+          "Cisco Expressway Series / TelePresence VCS — infraestructura de videoconferencia empresarial",
+          "Cisco Unified Communications Manager (CUCM) — software de procesamiento de llamadas"
+        ]
+      },
+      {
+        "q": "Verdadero o Falso: Los ataques de path traversal funcionan usando secuencias '../' para navegar fuera del límite de directorio previsto.",
+        "options": [
+          "Verdadero — las secuencias de traversal de directorio como ../../../../etc/shadow escapan de la raíz de archivo permitida",
+          "Falso — el path traversal explota enlaces simbólicos en lugar de secuencias de navegación de directorios"
+        ]
+      },
+      {
+        "q": "Más allá de leer archivos sensibles como /etc/shadow, ¿qué capacidad adicional habilitaba la ruta de escritura de archivos de CVE-2022-20812?",
+        "options": [
+          "Escribir trabajos cron o scripts de inicio para acceso root persistente entre reinicios",
+          "Sobrescribir imágenes de firmware para instalar una puerta trasera en el cargador de arranque"
+        ]
+      },
+      {
+        "q": "¿Dónde se implementa típicamente Cisco Expressway en una arquitectura de red?",
+        "options": [
+          "En la DMZ — maneja el traversal de firewall y el enrutamiento SIP/H.323 para videoconferencias",
+          "En la LAN interna — solo procesa tráfico de hosts internos de confianza"
+        ]
+      },
+      {
+        "q": "Verdadero o Falso: CVE-2022-20812 podía ser explotado por un atacante completamente no autenticado sin credenciales.",
+        "options": [
+          "Falso — el ataque requería credenciales de API de clúster con privilegios de lectura y escritura",
+          "Verdadero — la API de Expressway era accesible sin ninguna autenticación"
+        ]
+      }
+    ]
+  },
+  "stage-m20": {
+    "questions": [
+      {
+        "q": "¿CVE-2024-20399 explotó parámetros no saneados en la CLI de cuál sistema operativo de Cisco?",
+        "options": [
+          "Cisco NX-OS — el SO que se ejecuta en los switches de centros de datos Nexus",
+          "Cisco IOS XE — el SO que se ejecuta en los routers de borde empresarial"
+        ]
+      },
+      {
+        "q": "Verdadero o Falso: CVE-2024-20399 permitía a atacantes no autenticados obtener acceso root en los switches Cisco Nexus.",
+        "options": [
+          "Falso — se requería acceso autenticado con nivel de privilegio 5 o superior para acceder al comando vulnerable",
+          "Verdadero — la inyección podía activarse sin ninguna credencial a través de la API REST"
+        ]
+      },
+      {
+        "q": "¿Qué hacía que CVE-2024-20399 fuera particularmente peligroso a pesar del requisito de autenticación?",
+        "options": [
+          "Escapaba completamente del RBAC de NX-OS, otorgando acceso root en Linux invisible para el monitoreo de NX-OS",
+          "Permitía la escalada de privilegios desde cualquier cuenta de NX-OS hasta administrador dentro de la shell de NX-OS"
+        ]
+      },
+      {
+        "q": "¿Cuánto tiempo mantuvo el APT Velvet Ant persistencia en los switches de centro de datos de una empresa Fortune 500 antes de ser detectado?",
+        "options": [
+          "Más de 3 años — desde aproximadamente 2021, descubierto en 2024",
+          "Alrededor de 6 meses — una auditoría de seguridad rutinaria detectó comportamiento inusual en los procesos de NX-OS"
+        ]
+      },
+      {
+        "q": "Verdadero o Falso: La persistencia escrita en /etc/rc.d/rc.local en NX-OS sobrevive reinicios del dispositivo y actualizaciones de software de NX-OS.",
+        "options": [
+          "Verdadero — los scripts de inicio del SO Linux subyacente persisten independientemente de la capa de software NX-OS",
+          "Falso — las actualizaciones de NX-OS sobrescriben todo el sistema de archivos Linux, incluyendo rc.local"
+        ]
+      }
+    ]
+  },
+  "stage-m21": {
+    "questions": [
+      {
+        "q": "En la campaña ArcaneDoor, CVE-2024-20353 se usó para bloquear firewalls Cisco ASA. ¿Cuál era el objetivo operacional principal de este bloqueo?",
+        "options": [
+          "Limpiar los registros en memoria para crear un punto ciego de detección antes de operaciones posteriores",
+          "Deshabilitar permanentemente el firewall para permitir acceso de red sin restricciones"
+        ]
+      },
+      {
+        "q": "Verdadero o Falso: CVE-2024-20353 requería credenciales de administrador válidas para enviar la solicitud HTTP malformada que bloqueaba el ASA.",
+        "options": [
+          "Falso — la solicitud HTTP multiparte malformada podía ser enviada por un atacante no autenticado",
+          "Verdadero — solo las sesiones de gestión autenticadas podían acceder al endpoint HTTP vulnerable"
+        ]
+      },
+      {
+        "q": "¿Qué combinación de CVEs usaron los atacantes de ArcaneDoor para lograr acceso persistente después del bloqueo del firewall?",
+        "options": [
+          "CVE-2024-20353 (DoS/limpieza de registros) encadenado con CVE-2024-20359 (instalación de puerta trasera persistente)",
+          "CVE-2024-20353 (DoS) encadenado con CVE-2020-3259 (divulgación de memoria para robo de credenciales)"
+        ]
+      },
+      {
+        "q": "¿A qué actor de amenazas se atribuyó la campaña de espionaje ArcaneDoor dirigida a firewalls gubernamentales?",
+        "options": [
+          "UAT4356 — un APT patrocinado por el estado chino (también rastreado como Storm-1849)",
+          "Velvet Ant — el mismo grupo responsable de la persistencia en switches Nexus"
+        ]
+      },
+      {
+        "q": "Verdadero o Falso: Enviar syslogs del ASA a un SIEM externo evita la pérdida de registros cuando el dispositivo se bloquea debido a CVE-2024-20353.",
+        "options": [
+          "Verdadero — los syslogs reenviados externamente sobreviven al reinicio del dispositivo; solo se pierde el búfer en memoria",
+          "Falso — el ASA detiene toda transmisión de syslog durante el bloqueo, por lo que los SIEM externos también pierden los eventos"
+        ]
+      }
+    ]
+  },
+  "stage-m22": {
+    "questions": [
+      {
+        "q": "El implante Line Dancer (CVE-2024-20359) sobrevivía los reinicios de Cisco ASA abusando de cuál función heredada?",
+        "options": [
+          "Un mecanismo de precarga de complementos/cliente VPN que ejecutaba archivos desde la memoria flash al arrancar",
+          "Un modo de depuración persistente que preservaba el shellcode en NVRAM no volátil entre reinicios"
+        ]
+      },
+      {
+        "q": "Verdadero o Falso: Line Dancer operaba escribiendo un servicio persistente en la configuración del ASA que aparecía en la salida de 'show run'.",
+        "options": [
+          "Falso — Line Dancer operaba completamente en memoria y era invisible para los comandos 'show' estándar",
+          "Verdadero — Line Dancer agregaba una entrada a la configuración de inicio del ASA para la persistencia"
+        ]
+      },
+      {
+        "q": "¿Cómo autenticaba Line Dancer a su operador para evitar la activación accidental o el descubrimiento por parte de los defensores?",
+        "options": [
+          "Un mecanismo de 'host knock' — solo las solicitudes HTTPS POST con un valor de encabezado Host específico activaban el shellcode",
+          "Un secreto compartido en una extensión de certificado TLS personalizada que Line Dancer verificaba antes de ejecutar los payloads"
+        ]
+      },
+      {
+        "q": "¿Qué capacidades de monitoreo deshabilitó Line Dancer en el ASA comprometido para cegar a los defensores?",
+        "options": [
+          "Reenvío de syslog y trampas SNMP — ambos eran deshabilitados por el implante durante las operaciones",
+          "Exportaciones de NetFlow y registro de sesiones ASDM — el implante apuntaba solo a la visibilidad del tráfico"
+        ]
+      },
+      {
+        "q": "Verdadero o Falso: Los comandos 'show' estándar de Cisco ASA son suficientes para detectar el implante Line Dancer en un dispositivo comprometido.",
+        "options": [
+          "Falso — la detección requería comparar los hashes de archivos del sistema de archivos flash con las líneas base firmadas por Cisco",
+          "Verdadero — 'show version' y 'show running-config' revelan cualquier módulo no autorizado cargado por el implante"
+        ]
+      }
+    ]
+  },
+  "stage-m23": {
+    "questions": [
+      {
+        "q": "¿CVE-2021-1291 es una vulnerabilidad de SQL injection en cuál componente de Cisco SD-WAN?",
+        "options": [
+          "Cisco vManage — el controlador centralizado de gestión y orquestación SD-WAN",
+          "Cisco vEdge — el router de borde WAN que termina los túneles SD-WAN"
+        ]
+      },
+      {
+        "q": "Verdadero o Falso: CVE-2021-1291 requería que un atacante tuviera credenciales de vManage a nivel de administrador para extraer PSKs de router.",
+        "options": [
+          "Falso — una cuenta de solo lectura con pocos privilegios era suficiente para explotar la SQL injection",
+          "Verdadero — solo las cuentas con el rol 'Network Admin' podían acceder al endpoint de API vulnerable"
+        ]
+      },
+      {
+        "q": "¿Qué tipo de técnica de SQL injection se usó en CVE-2021-1291 para exfiltrar datos de tablas adicionales?",
+        "options": [
+          "Inyección basada en UNION — añadiendo un segundo SELECT a la consulta original para recuperar datos fuera del alcance",
+          "Inyección ciega basada en booleanos — infiriendo datos bit a bit a partir de diferencias en respuestas verdadero/falso"
+        ]
+      },
+      {
+        "q": "¿Cuál es la razón principal por la que comprometer vManage es catastrófico para los entornos SD-WAN?",
+        "options": [
+          "vManage es el panel único de control — controlarlo significa controlar todos los routers WAN, políticas y túneles de la empresa",
+          "vManage solo almacena metadatos; las credenciales reales del router se distribuyen y protegen por separado"
+        ]
+      },
+      {
+        "q": "Verdadero o Falso: Después de un compromiso confirmado de SQL injection en vManage, es suficiente parchear vManage sin rotar los PSKs de los routers WAN.",
+        "options": [
+          "Falso — todos los PSKs y credenciales de túnel de los routers WAN deben rotarse ya que todos estaban potencialmente expuestos",
+          "Verdadero — parchear la falla de inyección evita que cualquier PSK filtrado previamente sea usado por atacantes"
+        ]
+      }
+    ]
+  },
+  "stage-m24": {
+    "questions": [
+      {
+        "q": "¿CVE-2023-20109 explotó el protocolo GDOI usado por cuál función VPN de Cisco?",
+        "options": [
+          "GET VPN (Group Encrypted Transport VPN) — que usa claves compartidas por grupo en todos los routers miembros",
+          "FlexVPN — que usa IKEv2 para túneles punto a punto hub-and-spoke"
+        ]
+      },
+      {
+        "q": "Verdadero o Falso: En una arquitectura GET VPN, comprometer el servidor de claves con CVE-2023-20109 podría comprometer todos los routers miembros del grupo simultáneamente.",
+        "options": [
+          "Verdadero — el servidor de claves transmite mensajes de regeneración de claves GDOI a todos los miembros; una regeneración maliciosa explota a todos los destinatarios a la vez",
+          "Falso — cada miembro del grupo necesitaría ser explotado individualmente después de comprometer el servidor de claves"
+        ]
+      },
+      {
+        "q": "¿Por qué un atacante que comprometió el servidor de claves GET VPN podría descifrar tráfico ya capturado?",
+        "options": [
+          "Porque las claves de grupo antiguas de GDOI se obtienen del servidor de claves comprometido, permitiendo descifrar capturas históricas",
+          "Porque GET VPN usa cifrado de flujo; descifrar el tráfico futuro también revela el tráfico pasado"
+        ]
+      },
+      {
+        "q": "¿Por qué GET VPN se usa comúnmente en redes de transporte MPLS privadas en lugar de internet público?",
+        "options": [
+          "Porque GET VPN preserva las direcciones IP originales, lo que requiere una topología de red de confianza sin NAT",
+          "Porque GDOI solo funciona cuando todos los routers están en la misma subred de Capa 2"
+        ]
+      },
+      {
+        "q": "Verdadero o Falso: CVE-2023-20109 requería acceso de red al servidor de claves; los atacantes en la red de transporte no podían explotar la vulnerabilidad remotamente.",
+        "options": [
+          "Falso — cualquier router con acceso de red al servidor de claves podía enviar mensajes GDOI maliciosos para activar la vulnerabilidad",
+          "Verdadero — la explotación requería acceso físico al segmento de red del servidor de claves"
+        ]
+      }
+    ]
+  },
+  "stage-m25": {
+    "questions": [
+      {
+        "q": "CVE-2023-20198 era una vulnerabilidad de creación de cuentas en la interfaz de usuario web de Cisco IOS XE. ¿Qué nivel de privilegio tenían las cuentas creadas?",
+        "options": [
+          "Nivel 15 — privilegio máximo equivalente a acceso root completo en IOS XE",
+          "Nivel 7 — acceso limitado suficiente solo para leer la configuración running"
+        ]
+      },
+      {
+        "q": "Verdadero o Falso: CVE-2023-20198 requería que la función de interfaz de usuario web de IOS XE estuviera habilitada en el dispositivo objetivo.",
+        "options": [
+          "Verdadero — deshabilitar la interfaz de usuario web con 'no ip http server' y 'no ip http secure-server' mitigaba la vulnerabilidad",
+          "Falso — la vulnerabilidad estaba presente en todos los dispositivos IOS XE independientemente de la configuración del servidor web"
+        ]
+      },
+      {
+        "q": "¿Qué segundo CVE fue encadenado con CVE-2023-20198 en ataques activos para lograr ejecución de código persistente?",
+        "options": [
+          "CVE-2023-20273 — un defecto de escalada de privilegios en la interfaz CLI de la interfaz de usuario web que permitía escribir implantes en disco",
+          "CVE-2023-20109 — la vulnerabilidad GDOI GET VPN usada para pivotar desde el router comprometido"
+        ]
+      },
+      {
+        "q": "¿Qué tan rápido comenzó la explotación activa de CVE-2023-20198 después de que Cisco alertara públicamente sobre ello?",
+        "options": [
+          "La explotación masiva comenzó en horas — decenas de miles de dispositivos fueron comprometidos el primer día",
+          "La explotación tardó semanas — los actores de amenazas necesitaban tiempo para desarrollar exploits confiables"
+        ]
+      },
+      {
+        "q": "Verdadero o Falso: El implante instalado mediante la cadena CVE-2023-20198/20273 sobrevivía a los reinicios del dispositivo.",
+        "options": [
+          "Verdadero — el implante fue escrito en el sistema de archivos y persistía entre reinicios hasta que el dispositivo era actualizado con firmware parcheado",
+          "Falso — el implante era solo en memoria y se perdía en cada reinicio del dispositivo"
+        ]
+      }
+    ]
+  },
+  "stage-m26": {
+    "questions": [
+      {
+        "q": "¿CVE-2016-6366 (EXTRABACON) explotó cuál protocolo en Cisco ASA para lograr RCE sin autenticación?",
+        "options": [
+          "SNMP — explotando el manejador de solicitudes SNMP GET/SET del ASA mediante un paquete UDP malformado",
+          "IKE — enviando un payload IKEv1 malformado al servicio de terminación VPN del ASA"
+        ]
+      },
+      {
+        "q": "Verdadero o Falso: EXTRABACON funcionaba explotando una vulnerabilidad en el código de procesamiento SNMP del ASA que existía en todas las versiones del código del ASA en ese momento.",
+        "options": [
+          "Verdadero — CVE-2016-6366 afectaba a todas las versiones de software del ASA que ejecutaban SNMP, sin importar la versión",
+          "Falso — solo las versiones del ASA más recientes que 8.4 eran vulnerables a EXTRABACON"
+        ]
+      },
+      {
+        "q": "¿Qué información necesitaba conocer de antemano el atacante para usar EXTRABACON contra un Cisco ASA objetivo?",
+        "options": [
+          "La comunidad SNMP del dispositivo objetivo — necesaria para que el paquete SNMP malformado alcanzara el código vulnerable",
+          "La dirección MAC de la interfaz del ASA — usada para crear un paquete SNMP específico para la versión del objetivo"
+        ]
+      },
+      {
+        "q": "¿Cuál era el efecto de EXTRABACON en el Cisco ASA objetivo después de una explotación exitosa?",
+        "options": [
+          "Activaba un modo de omisión de autenticación — permitiendo que la herramienta EPICBANANA estableciera posteriormente una sesión de shell privilegiada",
+          "Instalaba un implante persistente directamente en la memoria flash del ASA para acceso de larga duración"
+        ]
+      },
+      {
+        "q": "Verdadero o Falso: EXTRABACON fue desarrollado y utilizado por la NSA, luego filtrado por Shadow Brokers en 2016.",
+        "options": [
+          "Verdadero — las herramientas de Shadow Brokers incluían EXTRABACON junto con EPICBANANA y ELIGIBLEBACHELOR, todas atribuidas a la NSA",
+          "Falso — EXTRABACON fue desarrollado por un grupo criminal que luego vendió el exploit a Shadow Brokers"
+        ]
+      }
+    ]
+  },
+  "stage-m28": {
+    "questions": [
+      {
+        "q": "¿CVE-2018-0171 (Smart Install) permitía RCE sin autenticación en switches Cisco IOS mediante cuál vector de ataque?",
+        "options": [
+          "Un mensaje de protocolo Smart Install malformado enviado a TCP/4786",
+          "Un frame CDP malformado enviado a la dirección MAC multicast de Smart Install"
+        ]
+      },
+      {
+        "q": "Verdadero o Falso: La función Smart Install de Cisco está habilitada por defecto en los switches Cisco IOS e IOS XE que la soportan.",
+        "options": [
+          "Verdadero — Smart Install se activa automáticamente en switches con capacidad Smart Install, a menos que se deshabilite explícitamente",
+          "Falso — Smart Install requiere configuración explícita con el comando 'vstack' antes de estar activo"
+        ]
+      },
+      {
+        "q": "¿Qué grupos de amenazas notables fueron documentados explotando CVE-2018-0171 en campañas activas?",
+        "options": [
+          "Actores respaldados por el estado ruso (APT28/Fancy Bear) y hackers iraníes — ambos usaron Smart Install para comprometer infraestructura crítica",
+          "Solo grupos de ransomware con motivación financiera — la vulnerabilidad era demasiado compleja para actores de estados-nación"
+        ]
+      },
+      {
+        "q": "Después de explotar CVE-2018-0171, ¿qué modificaban típicamente los atacantes en el switch objetivo?",
+        "options": [
+          "La imagen de arranque de IOS — reemplazándola con una versión modificada, o exfiltrando el archivo de configuración que contenía credenciales",
+          "Solo la configuración de VLAN — redirigiendo el tráfico a una interfaz controlada por el atacante"
+        ]
+      },
+      {
+        "q": "Verdadero o Falso: Bloquear TCP/4786 en los firewalls perimetrales proporciona protección completa contra CVE-2018-0171, incluso si Smart Install está habilitado en los switches internos.",
+        "options": [
+          "Falso — los atacantes en la red interna (o con acceso a segmentos internos) aún podían explotar switches con Smart Install habilitado",
+          "Verdadero — CVE-2018-0171 solo es explotable desde internet; el bloqueo perimetral proporciona protección total"
+        ]
+      }
+    ]
+  },
+  "stage-m30": {
+    "questions": [
+      {
+        "q": "¿CVE-2019-12643 era una vulnerabilidad de omisión de autenticación en cuál componente de Cisco IOS XE?",
+        "options": [
+          "El módulo REST API de IOS XE — una función opcional instalada como paquete virtual",
+          "El módulo RESTCONF de IOS XE — habilitado por defecto en todos los dispositivos IOS XE"
+        ]
+      },
+      {
+        "q": "Verdadero o Falso: CVE-2019-12643 afectaba a todos los dispositivos Cisco IOS XE independientemente de si el paquete REST API estaba instalado.",
+        "options": [
+          "Falso — solo los dispositivos que tenían instalado y activo el paquete virtual REST API eran vulnerables",
+          "Verdadero — la vulnerabilidad estaba en el núcleo de IOS XE, no en el paquete REST API opcional"
+        ]
+      },
+      {
+        "q": "¿Qué podía hacer un atacante con acceso de API obtenido mediante CVE-2019-12643?",
+        "options": [
+          "Ejecutar cualquier comando CLI de IOS XE de nivel 15 — incluyendo leer/modificar configuraciones y deshabilitar interfaces",
+          "Solo leer el estado del dispositivo — el acceso de API autenticado mediante el exploit era de solo lectura"
+        ]
+      },
+      {
+        "q": "¿Qué característica de la API REST de IOS XE era la causa raíz de la omisión de autenticación en CVE-2019-12643?",
+        "options": [
+          "Un token de autenticación codificado fijo ('dummy token') que otorgaba acceso completo cuando se usaba en solicitudes API",
+          "Una condición de carrera en el daemon de autenticación que omitía ocasionalmente la verificación de credenciales"
+        ]
+      },
+      {
+        "q": "Verdadero o Falso: Después de parchear CVE-2019-12643, se recomienda a los administradores deshabilitar el paquete REST API de IOS XE si no se usa activamente.",
+        "options": [
+          "Verdadero — deshabilitar funciones no utilizadas reduce la superficie de ataque incluso después de aplicar los parches",
+          "Falso — el paquete REST API de IOS XE es necesario para operaciones normales de IOS XE y no puede deshabilitarse"
+        ]
+      }
+    ]
+  },
+  "stage-m34": {
+    "questions": [
+      {
+        "q": "¿CVE-2020-3452 era una vulnerabilidad de path traversal de solo lectura en cuál software de Cisco?",
+        "options": [
+          "Cisco ASA y FTD — afectando la interfaz de servicios web usada por WebVPN y AnyConnect",
+          "Cisco ISE — afectando al portal de autenticación de invitados y patrocinadores"
+        ]
+      },
+      {
+        "q": "Verdadero o Falso: CVE-2020-3452 permitía a los atacantes escribir o modificar archivos en el sistema de archivos del ASA.",
+        "options": [
+          "Falso — era una vulnerabilidad de solo lectura; los atacantes podían leer archivos pero no escribirlos ni modificarlos",
+          "Verdadero — el path traversal también permitía escritura arbitraria de archivos con los mismos permisos"
+        ]
+      },
+      {
+        "q": "¿Qué archivos sensibles podían leerse mediante CVE-2020-3452 en un ASA comprometido?",
+        "options": [
+          "Archivos de configuración del WebVPN incluyendo marcadores, personalizaciones y cookies de sesión web",
+          "Archivos de clave privada RSA almacenados en la memoria flash del ASA para autenticación de certificados"
+        ]
+      },
+      {
+        "q": "¿Qué condición previa se requería en el dispositivo ASA objetivo para que CVE-2020-3452 fuera explotable?",
+        "options": [
+          "WebVPN o AnyConnect debían estar habilitados — la vulnerabilidad era en los servicios web de SSL VPN",
+          "ASDM debía estar habilitado — la vulnerabilidad estaba en el servidor web de gestión de ASDM"
+        ]
+      },
+      {
+        "q": "Verdadero o Falso: CVE-2020-3452 fue explotado en la naturaleza antes de que Cisco publicara un parche.",
+        "options": [
+          "Verdadero — se observó explotación activa poco después de la divulgación pública, incluso antes de que los parches estuvieran ampliamente disponibles",
+          "Falso — no se observó explotación en la naturaleza; fue reportado responsablemente y parcheado silenciosamente"
+        ]
+      }
+    ]
+  },
+  "stage-m36": {
+    "questions": [
+      {
+        "q": "¿CVE-2021-1372 y CVE-2021-1388 afectaban cuál componente del ecosistema de videoconferencia de Cisco?",
+        "options": [
+          "Cisco Webex Meetings Desktop App — el cliente de reuniones instalado en endpoints de usuario",
+          "Cisco Webex Room Kit — el hardware de videoconferencia de sala de conferencias"
+        ]
+      },
+      {
+        "q": "Verdadero o Falso: CVE-2021-1388 era una vulnerabilidad de escalada de privilegios local que requería acceso físico al sistema objetivo.",
+        "options": [
+          "Falso — CVE-2021-1388 era explotable de forma remota a través del servicio IPC de Webex, sin requerir acceso físico",
+          "Verdadero — el atacante necesitaba sesión local en el sistema antes de poder explotar la escalada de privilegios"
+        ]
+      },
+      {
+        "q": "¿Qué mecanismo explotaba CVE-2021-1388 para lograr ejecución de código como SYSTEM?",
+        "options": [
+          "Una interfaz IPC de Webex que procesaba mensajes sin verificar la identidad del proceso remitente",
+          "Una DLL de actualización automática sin firma que podía ser reemplazada por una DLL maliciosa"
+        ]
+      },
+      {
+        "q": "¿Por qué las vulnerabilidades de cliente Webex como CVE-2021-1388 son atractivas para actores de amenazas que apuntan a entornos corporativos?",
+        "options": [
+          "Webex está instalado en prácticamente todos los endpoints corporativos — comprometer el cliente otorga acceso a hosts de alto valor con credenciales corporativas",
+          "Webex tiene acceso directo a datos de reuniones cifrados — el exploit permite descifrar grabaciones de reuniones históricas"
+        ]
+      },
+      {
+        "q": "Verdadero o Falso: Mantener el software Webex actualizado a través de los mecanismos de actualización automática de Cisco es la mitigación principal para CVE-2021-1388.",
+        "options": [
+          "Verdadero — Cisco lanzó versiones parcheadas de la aplicación de escritorio Webex que abordaban el defecto de IPC",
+          "Falso — se requería un cambio de configuración adicional para deshabilitar el servicio IPC incluso después de la actualización"
+        ]
+      }
+    ]
+  },
+  "stage-m37": {
+    "questions": [
+      {
+        "q": "¿CVE-2021-34746 era una vulnerabilidad de omisión de autenticación en cuál producto Cisco?",
+        "options": [
+          "Cisco Enterprise NFV Infrastructure Software (NFVIS) — la plataforma de virtualización para servicios de red",
+          "Cisco DNA Center — el controlador de automatización de red para redes con intención definida"
+        ]
+      },
+      {
+        "q": "Verdadero o Falso: CVE-2021-34746 afectaba al mecanismo de autenticación TACACS+ en Cisco NFVIS.",
+        "options": [
+          "Verdadero — la autenticación TACACS+ en NFVIS podía ser omitida enviando caracteres de formato especial en el campo de nombre de usuario",
+          "Falso — la vulnerabilidad afectaba al módulo de autenticación local, no al procesamiento TACACS+"
+        ]
+      },
+      {
+        "q": "¿Qué nivel de acceso otorgaba CVE-2021-34746 a un atacante exitoso en Cisco NFVIS?",
+        "options": [
+          "Acceso de administrador al portal NFVIS — permitiendo gestionar, crear y eliminar funciones de red virtualizadas (VNFs)",
+          "Solo acceso de solo lectura — suficiente para leer configuraciones pero no para modificar VNFs"
+        ]
+      },
+      {
+        "q": "¿Por qué comprometer Cisco NFVIS es particularmente impactante en redes empresariales modernas?",
+        "options": [
+          "NFVIS aloja VNFs como routers virtuales, firewalls y equilibradores de carga — comprometer el hipervisor afecta a todas las funciones de red que se ejecutan en él",
+          "NFVIS es solo una herramienta de gestión; las VNFs reales se ejecutan en hardware dedicado no afectado por el compromiso"
+        ]
+      },
+      {
+        "q": "Verdadero o Falso: CVE-2021-34746 requería acceso a la red de gestión de NFVIS para ser explotado.",
+        "options": [
+          "Verdadero — la interfaz de gestión de NFVIS debía ser accesible para el atacante, lo que a menudo la limitaba a redes internas o de gestión",
+          "Falso — el endpoint de autenticación NFVIS vulnerable era accesible desde cualquier segmento de red sin restricciones"
+        ]
+      }
+    ]
+  },
+  "stage-m39": {
+    "questions": [
+      {
+        "q": "¿CVE-2022-20695 era una vulnerabilidad de omisión de autenticación en cuál software de Cisco?",
+        "options": [
+          "Cisco Wireless LAN Controller (WLC) — la plataforma centralizada de gestión de puntos de acceso WiFi",
+          "Cisco Identity Services Engine (ISE) — el servidor de control de acceso a la red basado en políticas"
+        ]
+      },
+      {
+        "q": "Verdadero o Falso: CVE-2022-20695 requería que el atacante conociera cualquier credencial de cuenta válida en el WLC objetivo.",
+        "options": [
+          "Falso — la vulnerabilidad era una omisión de autenticación completa; ninguna credencial era necesaria en absoluto",
+          "Verdadero — el atacante necesitaba al menos un nombre de usuario válido, aunque la contraseña podía ser arbitraria"
+        ]
+      },
+      {
+        "q": "¿Qué condición de configuración hacía que los dispositivos WLC fueran vulnerables a CVE-2022-20695?",
+        "options": [
+          "La función de copia de seguridad de macrofilter estaba habilitada — una configuración habilitada por defecto en muchos despliegues de WLC",
+          "El servidor RADIUS externo estaba configurado como el método de autenticación principal del WLC"
+        ]
+      },
+      {
+        "q": "¿Qué podía hacer un atacante no autenticado después de explotar CVE-2022-20695 en un Cisco WLC?",
+        "options": [
+          "Obtener acceso de administrador al WLC — controlando la configuración de todos los puntos de acceso gestionados, SSIDs y políticas de red inalámbrica",
+          "Solo leer los registros del WLC — el exploit no otorgaba privilegios de configuración"
+        ]
+      },
+      {
+        "q": "Verdadero o Falso: Cisco WLC gestiona típicamente solo unos pocos puntos de acceso, lo que limita el radio de impacto de CVE-2022-20695.",
+        "options": [
+          "Falso — los WLC empresariales gestionan cientos o miles de puntos de acceso; comprometer un WLC puede afectar a toda la infraestructura inalámbrica de la empresa",
+          "Verdadero — los WLC están diseñados para redes pequeñas y gestionan un máximo de 50 puntos de acceso"
+        ]
+      }
+    ]
+  },
+  "stage-m41": {
+    "questions": [
+      {
+        "q": "¿CVE-2023-20076 era una vulnerabilidad de inyección de comandos en cuál función de gestión de Cisco IOS XE?",
+        "options": [
+          "La función de activación de aplicaciones en la plataforma de aplicaciones de Cisco IOS XE — usada para desplegar aplicaciones de terceros en routers",
+          "La interfaz de gestión NETCONF/YANG — usada para configuración y monitoreo automatizados"
+        ]
+      },
+      {
+        "q": "Verdadero o Falso: CVE-2023-20076 requería acceso de red directo al router para ser explotado.",
+        "options": [
+          "Falso — la inyección de comandos podía activarse enviando un paquete DHCP especialmente elaborado a la interfaz LAN del router objetivo",
+          "Verdadero — el atacante necesitaba acceso de gestión autenticado al router antes de poder activar la inyección"
+        ]
+      },
+      {
+        "q": "¿Qué nivel de privilegio lograba un exploit exitoso de CVE-2023-20076?",
+        "options": [
+          "Acceso root al Linux subyacente — el comando inyectado se ejecutaba como root fuera del sandbox de IOS XE",
+          "Nivel 15 de IOS XE — privilegio máximo de IOS, pero confinado dentro del entorno de IOS XE"
+        ]
+      },
+      {
+        "q": "¿Por qué CVE-2023-20076 era particularmente preocupante para la seguridad de la cadena de suministro?",
+        "options": [
+          "Los routers IOS XE a menudo se preconfiguraron con aplicaciones de terceros antes de la entrega — un actor malicioso en la cadena de suministro podía explotar esto durante la fabricación o el envío",
+          "IOS XE descargaba actualizaciones de aplicaciones automáticamente sin verificar firmas, permitiendo que el exploit se auto-propagara"
+        ]
+      },
+      {
+        "q": "Verdadero o Falso: La mitigación para CVE-2023-20076 incluía deshabilitar la función de hospedaje de aplicaciones de IOS XE si no era necesaria.",
+        "options": [
+          "Verdadero — deshabilitar el hospedaje de aplicaciones eliminaba el vector de ataque en dispositivos donde la función no era requerida",
+          "Falso — la función de hospedaje de aplicaciones no podía deshabilitarse en IOS XE sin degradar la versión del SO"
+        ]
+      }
+    ]
+  },
+  "stage-m42": {
+    "questions": [
+      {
+        "q": "CVE-2023-20109 (revisitado) y CVE-2023-20231 afectaban cuál protocolo de seguridad de plano de control de Cisco?",
+        "options": [
+          "Cisco Group Encrypted Transport VPN (GET VPN) y su protocolo de gestión de claves GDOI/G-IKEv2",
+          "Cisco TrustSec y su protocolo de intercambio Security Group Tag (SGT) entre switches"
+        ]
+      },
+      {
+        "q": "Verdadero o Falso: G-IKEv2 fue desarrollado como reemplazo de GDOI para abordar las debilidades criptográficas en GET VPN.",
+        "options": [
+          "Verdadero — G-IKEv2 moderniza GET VPN con algoritmos más fuertes mientras mantiene el modelo de distribución de claves de grupo",
+          "Falso — G-IKEv2 es un protocolo separado no relacionado con GET VPN ni GDOI"
+        ]
+      },
+      {
+        "q": "¿Qué hace que los ataques al servidor de claves GET VPN sean más impactantes que atacar routers miembros individuales?",
+        "options": [
+          "El servidor de claves controla las claves de cifrado para todos los miembros del grupo — comprometer un servidor de claves descifra todo el tráfico del grupo",
+          "Los routers miembros son más difíciles de acceder porque están en segmentos de red internos"
+        ]
+      },
+      {
+        "q": "¿Qué tipo de red usa típicamente GET VPN que lo hace distinto de las VPN de internet pública?",
+        "options": [
+          "Redes MPLS privadas o de operador — donde se confía en la infraestructura de transporte y las IPs se preservan extremo a extremo",
+          "Redes de internet públicas — donde GET VPN proporciona NAT traversal para conexiones entre sucursales"
+        ]
+      },
+      {
+        "q": "Verdadero o Falso: El modelo de distribución de claves de grupo de GET VPN significa que revocar el acceso de un miembro comprometido requiere actualizar las claves en todos los routers miembros.",
+        "options": [
+          "Verdadero — dado que todos los miembros comparten las mismas claves de grupo, comprometer a cualquier miembro compromete la confidencialidad del grupo hasta una nueva distribución de claves",
+          "Falso — GET VPN usa claves por-miembro que pueden revocarse individualmente sin afectar a otros miembros"
+        ]
+      }
+    ]
+  },
+  "stage-m44": {
+    "questions": [
+      {
+        "q": "¿CVE-2024-20272 era una vulnerabilidad de carga de archivos sin autenticación en cuál plataforma Cisco?",
+        "options": [
+          "Cisco Unity Connection — el sistema de mensajería unificada y correo de voz de Cisco",
+          "Cisco Unified Communications Manager (CUCM) — el sistema de llamadas IP empresarial de Cisco"
+        ]
+      },
+      {
+        "q": "Verdadero o Falso: CVE-2024-20272 requería que el atacante estuviera autenticado como administrador en Cisco Unity Connection.",
+        "options": [
+          "Falso — la vulnerabilidad era en el endpoint de carga de archivos de la API; no se requería autenticación previa",
+          "Verdadero — solo las cuentas de administrador tenían permiso para cargar archivos a los directorios afectados"
+        ]
+      },
+      {
+        "q": "¿Qué tipo de archivo debía cargar un atacante para lograr ejecución de código en Cisco Unity Connection mediante CVE-2024-20272?",
+        "options": [
+          "Un archivo JavaServer Pages (.jsp) o similar ejecutable por el servidor de aplicaciones subyacente (Apache Tomcat)",
+          "Un archivo de configuración XML malformado que desencadenaba desbordamiento de búfer durante el análisis"
+        ]
+      },
+      {
+        "q": "¿Con qué privilegios se ejecutaba el código en Cisco Unity Connection, haciendo que CVE-2024-20272 fuera crítico?",
+        "options": [
+          "El proceso del servidor de aplicaciones se ejecutaba como root — el código inyectado obtenía control total del sistema",
+          "El proceso se ejecutaba como un usuario de servicio con privilegios limitados — se requería escalada adicional para acceso root"
+        ]
+      },
+      {
+        "q": "Verdadero o Falso: Los sistemas Cisco Unity Connection están típicamente expuestos directamente a internet, ampliando el alcance de CVE-2024-20272.",
+        "options": [
+          "Falso — Unity Connection está típicamente desplegado en redes internas corporativas, aunque a veces con acceso de gestión remota habilitado",
+          "Verdadero — Unity Connection requiere acceso de internet para entregar correo de voz a dispositivos móviles"
+        ]
+      }
+    ]
+  },
+  "stage-m46": {
+    "questions": [
+      {
+        "q": "CVE-2024-20353 y CVE-2024-20359 (ArcaneDoor revisitado) — ¿cuál era la firma de detección primaria sugerida por Cisco Talos para Line Dancer?",
+        "options": [
+          "Comparar los hashes SHA-512 del sistema de archivos flash del ASA con los valores firmados publicados por Cisco en su aviso",
+          "Monitorear la telemetría de NetFlow para conexiones HTTPS salientes inusuales desde el ASA a IPs externas desconocidas"
+        ]
+      },
+      {
+        "q": "Verdadero o Falso: Cisco lanzó una herramienta de script forense específica para ayudar a los defensores a detectar el implante Line Dancer.",
+        "options": [
+          "Verdadero — Cisco Talos publicó una herramienta de verificación de integridad y orientación de respuesta a incidentes junto con el aviso de ArcaneDoor",
+          "Falso — Cisco solo proporcionó firmas de detección de IDS/IPS; no había herramientas forenses disponibles para ASA"
+        ]
+      },
+      {
+        "q": "¿Por qué el implante Line Dancer en ArcaneDoor fue considerado un avance técnico significativo en los ataques a dispositivos de red?",
+        "options": [
+          "Operaba completamente en memoria, sobrevivía reinicios y bloqueaba la telemetría — una capacidad de nivel APT que combinaba sigilo, persistencia y desactivación de defensas",
+          "Era el primer malware que usaba cifrado cuántico para sus comunicaciones C2, haciéndolo indetectable por soluciones estándar de inspección SSL"
+        ]
+      },
+      {
+        "q": "¿Qué práctica de seguridad fundamental habría reducido el impacto de ArcaneDoor incluso si los exploits no podían parchearse inmediatamente?",
+        "options": [
+          "Acceso de gestión fuera de banda — acceder al ASA solo desde una red de gestión dedicada separada que los atacantes de internet no pudieran alcanzar directamente",
+          "Habilitar el modo multi-contexto en el ASA — que aísla las instancias de firewall y limita el impacto de un único compromiso"
+        ]
+      },
+      {
+        "q": "Verdadero o Falso: Después de ArcaneDoor, Cisco recomendó que los clientes habilitaran la verificación de integridad de imágenes en el ASA como detección preventiva en curso.",
+        "options": [
+          "Verdadero — Cisco recomendó habilitar la verificación de firma de imágenes ASA y la monitorización de la integridad del sistema de archivos flash como práctica continua",
+          "Falso — la verificación de integridad de imágenes no estaba disponible en las plataformas ASA afectadas; solo se aplicaba a FTD"
+        ]
+      }
+    ]
+  },
+  "stage-m48": {
+    "questions": [
+      {
+        "q": "CVE-2024-20399 (Velvet Ant revisitado) — ¿cómo lograron los atacantes la exfiltración de datos de los switches Nexus comprometidos sin ser detectados por las herramientas de monitoreo de red?",
+        "options": [
+          "Tunelizaron datos exfiltrados dentro de conexiones SSH de gestión de NX-OS normales hacia el servidor de gestión legítimo",
+          "Usaron el adaptador de red de gestión fuera de banda (mgmt0) en lugar de las interfaces de datos de producción para la exfiltración"
+        ]
+      },
+      {
+        "q": "Verdadero o Falso: El acceso root de nivel Linux obtenido mediante CVE-2024-20399 permitía a Velvet Ant modificar el software NX-OS para ocultar procesos del sistema.",
+        "options": [
+          "Verdadero — el acceso root al Linux subyacente permitía al actor de amenazas instalar rootkits que ocultaban procesos de los comandos de monitoreo de NX-OS",
+          "Falso — NX-OS ejecuta todos los procesos en un entorno virtualizado separado del SO Linux, impidiendo que los rootkits Linux afecten a la visibilidad de NX-OS"
+        ]
+      },
+      {
+        "q": "¿Qué herramienta de seguridad habría proporcionado el mejor chance de detectar el implante de Velvet Ant en switches NX-OS?",
+        "options": [
+          "Cisco Secure Network Analytics (StealthWatch) — que podía detectar patrones de tráfico de red anómalos incluso cuando el switch en sí ocultaba los procesos",
+          "Un sistema IDS/IPS de red — que inspeccionaría el tráfico cifrado SSH para buscar patrones de exfiltración"
+        ]
+      },
+      {
+        "q": "¿Por qué los switches de núcleo y distribución como los Cisco Nexus son objetivos de alta prioridad para los actores APT?",
+        "options": [
+          "Posicionados en el núcleo de la red, los switches Nexus ven potencialmente todo el tráfico este-oeste entre servidores — el acceso root proporciona capacidad de intercepción de tráfico masivo",
+          "Los switches Nexus son los únicos dispositivos de red que almacenan credenciales de usuario en texto plano, por lo que son objetivos directos para el robo de credenciales"
+        ]
+      },
+      {
+        "q": "Verdadero o Falso: Después de la campaña Velvet Ant, Cisco añadió soporte para Secure Boot en todos los switches Nexus nuevos para prevenir la persistencia de rootkits.",
+        "options": [
+          "Falso — aunque Cisco comenzó a mejorar las funciones de integridad del firmware, el Secure Boot integral en toda la línea Nexus requería actualizaciones de hardware graduales en múltiples generaciones de productos",
+          "Verdadero — Cisco lanzó una actualización de firmware universal que habilitaba Secure Boot en todos los modelos Nexus existentes"
+        ]
+      }
+    ]
+  },
+  "stage-m50": {
+    "questions": [
+      {
+        "q": "¿CVE-2024-20481 era una vulnerabilidad de agotamiento de recursos en cuál servicio de Cisco ASA/FTD?",
+        "options": [
+          "El servicio VPN de Acceso Remoto (RA-VPN) de RAVPN — que maneja el procesamiento de solicitudes de autenticación de AnyConnect/SSL",
+          "El daemon de inspección de aplicaciones del ASA — que procesaba inspección profunda de paquetes para protocolos de voz"
+        ]
+      },
+      {
+        "q": "Verdadero o Falso: CVE-2024-20481 podía ser explotado por actores de amenazas para efectuar ataques de denegación de servicio contra dispositivos Cisco ASA/FTD sin necesidad de autenticación.",
+        "options": [
+          "Verdadero — los atacantes podían enviar un volumen elevado de solicitudes de autenticación VPN para agotar los recursos del sistema y causar DoS",
+          "Falso — se requería autenticación válida para activar el agotamiento de recursos en el servicio RA-VPN"
+        ]
+      },
+      {
+        "q": "¿Qué grupo de amenazas notable fue documentado explotando CVE-2024-20481 en octubre de 2024?",
+        "options": [
+          "Un actor de amenazas patrocinado por el estado iraní — realizando ataques de fuerza bruta de contraseñas a gran escala contra servicios VPN",
+          "El grupo de ransomware Akira — apuntando a dispositivos ASA sin parche para acceso inicial antes del despliegue de ransomware"
+        ]
+      },
+      {
+        "q": "Más allá de la explotación de CVE-2024-20481, ¿qué otros protocolos y servicios eran objetivo en la campaña de ataques de fuerza bruta contra VPN documentada en 2024?",
+        "options": [
+          "SSH y servicios de autenticación web — los atacantes usaban ataques de relleno de credenciales y pulverización de contraseñas contra múltiples protocolos",
+          "Solo AnyConnect/SSL VPN — la campaña fue específicamente diseñada para dispositivos Cisco ASA"
+        ]
+      },
+      {
+        "q": "Verdadero o Falso: Implementar bloqueo de cuentas en Cisco ASA mitiga completamente el riesgo de CVE-2024-20481 al impedir ataques de fuerza bruta.",
+        "options": [
+          "Falso — el agotamiento de recursos de CVE-2024-20481 podía ocurrir incluso antes de que se completaran los intentos de autenticación; el bloqueo de cuentas no prevenía el DoS de recursos",
+          "Verdadero — el bloqueo de cuentas limitaba la tasa de solicitudes de autenticación suficientemente para prevenir el agotamiento de recursos"
+        ]
+      }
+    ]
+  }
+}

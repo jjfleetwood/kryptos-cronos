@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import BackLink from "./BackLink";
-import type { QuizQuestion, StageConfig } from "@/data/types";
+import type { QuizQuestion, StageConfig } from "@kryptos/core/types";
 
 type SafeQuestion = Omit<QuizQuestion, "correctIndex" | "explanation">;
 

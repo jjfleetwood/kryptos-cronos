@@ -1,0 +1,14 @@
+{
+  "audit-cm01": { "easeScore": 6, "valueScore": 8, "combinedScore": 14, "rank": 11 },
+  "audit-cm02": { "easeScore": 6, "valueScore": 10, "combinedScore": 16, "rank": 4 },
+  "audit-cm03": { "easeScore": 5, "valueScore": 9, "combinedScore": 14, "rank": 9 },
+  "audit-cm04": { "easeScore": 5, "valueScore": 9, "combinedScore": 14, "rank": 10 },
+  "audit-cm05": { "easeScore": 8, "valueScore": 9, "combinedScore": 17, "rank": 1 },
+  "audit-cm06": { "easeScore": 7, "valueScore": 8, "combinedScore": 15, "rank": 6 },
+  "audit-cm07": { "easeScore": 6, "valueScore": 9, "combinedScore": 15, "rank": 5 },
+  "audit-cm08": { "easeScore": 8, "valueScore": 7, "combinedScore": 15, "rank": 8 },
+  "audit-cm09": { "easeScore": 4, "valueScore": 9, "combinedScore": 13, "rank": 12 },
+  "audit-cm10": { "easeScore": 7, "valueScore": 10, "combinedScore": 17, "rank": 3 },
+  "audit-cm11": { "easeScore": 8, "valueScore": 9, "combinedScore": 17, "rank": 2 },
+  "audit-cm12": { "easeScore": 7, "valueScore": 8, "combinedScore": 15, "rank": 7 }
+}

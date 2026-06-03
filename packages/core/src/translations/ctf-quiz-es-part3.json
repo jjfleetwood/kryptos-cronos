@@ -1,0 +1,470 @@
+{
+  "atlas-01": {
+    "questions": [
+      {
+        "q": "MITRE ATLAS es el análogo de ATT&CK para IA/ML — cubre ataques contra sistemas de IA e inteligencia artificial.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "¿Qué tipo de respuesta de API de ML proporciona más información para mapear los límites de decisión del modelo mediante consultas?",
+        "options": [
+          "Puntuaciones de confianza / distribuciones de probabilidad",
+          "Etiquetas duras (solo predicción top-1)"
+        ]
+      },
+      {
+        "q": "El reconocimiento pasivo de ML incluye examinar tarjetas de modelo en HuggingFace e investigar papers académicos publicados sobre la arquitectura del objetivo.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "En el caso de Clearview AI, ¿qué método de reconocimiento se usó para construir el conjunto de datos de entrenamiento?",
+        "options": [
+          "Consultar bases de datos privadas de fuerzas del orden",
+          "Raspar más de 3 mil millones de imágenes públicas de redes sociales"
+        ]
+      },
+      {
+        "q": "Un modelo que devuelve confianza muy alta (>0,95) en la mayoría de las entradas, incluyendo ejemplos adversariales, probablemente indica qué característica?",
+        "options": [
+          "Un modelo bien calibrado con fuerte robustez",
+          "Un modelo sobreconfiado — probablemente una arquitectura basada en CNN entrenada sin regularización"
+        ]
+      }
+    ]
+  },
+  "atlas-02": {
+    "questions": [
+      {
+        "q": "Un modelo sustituto (proxy) se entrena consultando la API objetivo y usando las respuestas de la API como etiquetas de entrenamiento — efectivamente robando el comportamiento del modelo.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "¿Qué es la 'tasa de transferencia' en un ataque de modelo sustituto?",
+        "options": [
+          "La velocidad a la que se envían consultas a la API para evitar los límites de tasa",
+          "El porcentaje de ejemplos adversariales creados en el modelo sustituto que también engañan al modelo objetivo original"
+        ]
+      },
+      {
+        "q": "Devolver solo etiquetas duras (sin puntuaciones de confianza) de una API de ML es una defensa efectiva contra la extracción de modelos.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "La ART (Adversarial Robustness Toolbox) se usa para:",
+        "options": [
+          "Cifrar pesos de modelos para prevenir la extracción",
+          "Crear y evaluar ataques y defensas adversariales en sistemas de ML"
+        ]
+      },
+      {
+        "q": "En la investigación de extracción del modelo GPT-4, ¿qué se infirió sobre la arquitectura de GPT-4 usando análisis de API?",
+        "options": [
+          "El tamaño de su dimensión oculta analizando el espacio de embedding de salida",
+          "Su matriz de pesos completa decodificando las probabilidades de tokens de la API"
+        ]
+      }
+    ]
+  },
+  "atlas-03": {
+    "questions": [
+      {
+        "q": "Los ataques a la cadena de suministro de ML pueden ejecutarse simplemente subiendo un modelo de imitación convincente a un repositorio de modelos público.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "¿Por qué es peligroso `torch.load()` al cargar modelos de fuentes no confiables?",
+        "options": [
+          "Elimina permanentemente los pesos del modelo después de cargarlo",
+          "Usa el formato pickle de Python, que puede ejecutar código arbitrario durante la deserialización"
+        ]
+      },
+      {
+        "q": "Fijar un modelo por su hash SHA256 en lugar de solo su nombre protege contra ataques a la cadena de suministro que reemplazan modelos con versiones comprometidas.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "En el descubrimiento de JFrog de 2024, ¿qué técnica usaron los modelos maliciosos de HuggingFace para ejecutar código al ser cargados?",
+        "options": [
+          "Inyección SQL a través de campos de metadatos del modelo",
+          "Exploit de deserialización de pickle activado en torch.load()"
+        ]
+      },
+      {
+        "q": "El parámetro recomendado de PyTorch para prevenir la ejecución de código basada en pickle al cargar un modelo es:",
+        "options": [
+          "`weights_only=True` en torch.load()",
+          "`safe_mode=True` en torch.load()"
+        ]
+      }
+    ]
+  },
+  "atlas-04": {
+    "questions": [
+      {
+        "q": "El acceso de caja negra — donde un atacante solo puede enviar entradas y observar salidas a través de una API — sigue siendo suficiente para llevar a cabo ataques de ML sofisticados.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "El ataque HopSkipJump es notable porque encuentra ejemplos adversariales usando solo:",
+        "options": [
+          "Acceso completo de caja blanca a los gradientes y pesos del modelo",
+          "Solo la salida de etiqueta dura final del modelo — sin puntuaciones de confianza ni gradientes"
+        ]
+      },
+      {
+        "q": "En el ataque de extracción de datos de entrenamiento de ChatGPT, los investigadores indicaron al modelo que repitiera una palabra indefinidamente, lo que causó que memorizara datos de entrenamiento.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "La privacidad diferencial durante el entrenamiento es una defensa contra cuál capacidad de ataque de caja negra?",
+        "options": [
+          "Inferencia de membresía y extracción de datos de entrenamiento de salidas del modelo",
+          "Mapeo de límites de decisión mediante análisis de puntuaciones de confianza"
+        ]
+      },
+      {
+        "q": "Los ataques de caja negra a LLMs difieren de los ataques a modelos de visión principalmente porque:",
+        "options": [
+          "Las entradas de LLM son tokens discretos, haciendo que los métodos basados en gradientes sean inaplicables directamente",
+          "Los LLMs no pueden consultarse a través de APIs y requieren acceso local al modelo"
+        ]
+      }
+    ]
+  },
+  "atlas-05": {
+    "questions": [
+      {
+        "q": "Los ejemplos adversariales explotan la geometría de los límites de decisión de las redes neuronales — pequeñas perturbaciones imperceptibles cambian el resultado de clasificación.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "¿Qué método de ataque adversarial se considera el ataque de primer orden más fuerte y es el estándar para evaluar la robustez adversarial?",
+        "options": [
+          "FGSM (Fast Gradient Sign Method) — un ataque de un solo paso",
+          "PGD (Projected Gradient Descent) — un ataque iterado de múltiples pasos"
+        ]
+      },
+      {
+        "q": "El experimento de señal de stop adversarial física de 2017 demostró que los ejemplos adversariales pueden transferirse del entorno digital al físico y engañar a los sistemas de visión del mundo real.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "En la fórmula del ataque PGD, el parámetro epsilon (ε) controla:",
+        "options": [
+          "El tamaño máximo de perturbación permitido (restricción de norma L∞)",
+          "El número de pasos de descenso de gradiente realizados"
+        ]
+      },
+      {
+        "q": "El entrenamiento adversarial — entrenar en ejemplos adversariales — es actualmente la defensa más efectiva conocida contra los ataques adversariales.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      }
+    ]
+  },
+  "atlas-06": {
+    "questions": [
+      {
+        "q": "Las herramientas de seguridad basadas en ML como los clasificadores antivirus de IA son inmunes a la evasión adversarial porque usan heurísticas de comportamiento en lugar de firmas.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "En el bypass de Cylance AI, ¿qué técnica se usó para evadir el motor antivirus ML?",
+        "options": [
+          "Cifrar el payload de malware con un nuevo algoritmo de cifrado",
+          "Agregar cadenas benignas de un ejecutable de videojuego para desplazar la clasificación del modelo lejos del territorio de malware"
+        ]
+      },
+      {
+        "q": "La evasión funcional de un detector de malware ML significa que la muestra de malware modificada tanto evade el detector como mantiene su funcionalidad maliciosa.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "El marco GAMMA aplica qué técnica para evadir automáticamente los detectores de malware ML?",
+        "options": [
+          "Descenso de gradiente sobre un espacio de características de malware diferenciable",
+          "Pruebas de mutación por fuerza bruta en todas las posibles secuencias de bytes"
+        ]
+      },
+      {
+        "q": "¿Qué enfoque defensivo hace que los detectores de malware ML sean más difíciles de evadir haciendo que su espacio de características sea menos predecible?",
+        "options": [
+          "Aleatorización de características — variando las características usadas en tiempo de inferencia para que los atacantes no puedan mapear de forma confiable el espacio de características",
+          "Aumentar el tamaño del conjunto de entrenamiento con más muestras de malware"
+        ]
+      }
+    ]
+  },
+  "atlas-07": {
+    "questions": [
+      {
+        "q": "Un pipeline de ML de producción típico tiene solo una superficie de ataque: el endpoint de servicio del modelo.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "Los archivos de configuración de CI/CD (como los flujos de trabajo de GitHub Actions) pueden revelar la arquitectura del pipeline de ML, los servicios de almacenamiento y las credenciales.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "En el ataque a Microsoft Tay, ¿qué vulnerabilidad del pipeline descubrieron y explotaron los atacantes?",
+        "options": [
+          "Una inyección SQL sin parche en el portal de administración de Tay",
+          "Una función 'repite después de mí' que alimentaba la entrada del usuario directamente en el pipeline de aprendizaje del modelo"
+        ]
+      },
+      {
+        "q": "Si un registro de modelos como MLflow no tiene autenticación en la red interna, ¿cuál es el ataque de alto impacto más directo?",
+        "options": [
+          "Reemplazar el modelo de producción con una versión con puerta trasera",
+          "Aumentar la latencia de inferencia del modelo mediante agotamiento de recursos"
+        ]
+      },
+      {
+        "q": "El programa de reentrenamiento de un pipeline de ML (p. ej., cron semanal) es relevante para un atacante porque determina cuánto tiempo persistirán los datos envenenados o cuándo se activará una puerta trasera.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      }
+    ]
+  },
+  "atlas-08": {
+    "questions": [
+      {
+        "q": "Los ataques de inferencia de membresía explotan el hecho de que los modelos ML tienden a producir mayor confianza en las muestras de entrenamiento que en las muestras no vistas.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "¿Qué defensa formal proporciona garantías matemáticas de privacidad que limitan lo que los ataques de inferencia de membresía pueden aprender?",
+        "options": [
+          "Privacidad diferencial (DP-SGD) durante el entrenamiento del modelo",
+          "Cifrar los pesos del modelo con AES-256 después del entrenamiento"
+        ]
+      },
+      {
+        "q": "Los ataques de inversión de modelos reconstruyen representaciones aproximadas de los datos de entrenamiento usando solo el acceso a la API del modelo.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "En la investigación de inferencia de membresía de Facebook, ¿qué atributo sensible podía inferirse sobre los usuarios de Facebook?",
+        "options": [
+          "Si un usuario se había unido a un grupo de salud sensible (p. ej., soporte VIH+)",
+          "Si la cuenta de un usuario fue creada con una identidad real o falsa"
+        ]
+      },
+      {
+        "q": "Reducir la precisión de las puntuaciones de confianza devueltas por una API ML (p. ej., redondear a 2 decimales) mitiga significativamente los ataques de inferencia de membresía.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      }
+    ]
+  },
+  "atlas-09": {
+    "questions": [
+      {
+        "q": "Las perturbaciones adversariales universales (UAPs) son independientes de la imagen — una sola perturbación puede engañar a un modelo en la mayoría de las entradas sin necesitar optimización por imagen.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "Un modelo con puerta trasera (BadNets) típicamente fallará las pruebas estándar de precisión porque el backdoor degradará el rendimiento en datos limpios.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "¿Qué hace que los ataques de backdoor de etiqueta limpia sean particularmente difíciles de detectar?",
+        "options": [
+          "Requieren acceso interno a la infraestructura de entrenamiento del objetivo",
+          "Las muestras de entrenamiento envenenadas aparecen correctamente etiquetadas para los revisores humanos, pasando la inspección visual"
+        ]
+      },
+      {
+        "q": "¿Qué herramienta usa detección de anomalías en el espacio de características para detectar activadores de backdoor encontrando representaciones atípicas en la penúltima capa?",
+        "options": [
+          "Neural Cleanse — realiza ingeniería inversa de los activadores para cada clase y comprueba el tamaño anómalo del activador",
+          "Foolbox — genera ejemplos adversariales para probar la robustez del modelo"
+        ]
+      },
+      {
+        "q": "Las UAPs creadas contra una arquitectura de modelo (p. ej., ResNet) a menudo se transfieren y engañan a otras arquitecturas, lo que se llama transferibilidad entre modelos.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      }
+    ]
+  },
+  "atlas-10": {
+    "questions": [
+      {
+        "q": "Los ataques de extracción de modelos pueden producir un modelo sustituto funcional sin acceder nunca a los pesos, la arquitectura o los datos de entrenamiento del modelo objetivo.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "Los ataques de inversión de gradiente rompen la garantía de privacidad del aprendizaje federado al:",
+        "options": [
+          "Interceptar las comunicaciones cifradas entre los clientes federados y el servidor de agregación",
+          "Reconstruir los datos de entrenamiento originales a partir de las actualizaciones de gradiente compartidas por los clientes durante el entrenamiento federado"
+        ]
+      },
+      {
+        "q": "La asimetría de costos en la extracción de modelos (robar vs. entrenar desde cero) la hace económicamente atractiva para los atacantes.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "En el escenario de extracción de KnockoffNets del Clasificador de Sentimientos de Acme, ¿cuál era la relación de costos?",
+        "options": [
+          "Más de 2000 veces más barato robar ($240 API+GPU) que construir ($500,000 en cómputo de entrenamiento)",
+          "Costo aproximadamente igual — la extracción de modelos requiere cómputo similar al entrenamiento desde cero"
+        ]
+      },
+      {
+        "q": "Una defensa clave contra la extracción de modelos es devolver solo etiquetas duras (sin puntuaciones de confianza) para que los atacantes no puedan usar la señal de gradiente implícita de las probabilidades de salida.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      }
+    ]
+  },
+  "atlas-11": {
+    "questions": [
+      {
+        "q": "Los ataques de envenenamiento de datos pueden apuntar a la disponibilidad de un modelo (degradar la precisión), la integridad (causar errores específicos) o la confidencialidad (plantar puertas traseras).",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "En el ataque a Microsoft Tay, el envenenamiento se entregó a través de cuál canal de pipeline no filtrado?",
+        "options": [
+          "Una API de administración comprometida que aceptaba actualizaciones directas de pesos del modelo",
+          "Una función 'repite después de mí' que incorporaba frases proporcionadas por el usuario como nuevos datos de entrenamiento"
+        ]
+      },
+      {
+        "q": "La corrupción gradual y lenta del modelo mediante un bucle de retroalimentación es más difícil de detectar que un colapso catastrófico repentino de la precisión.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "La agrupación de activaciones detecta activadores de backdoor al encontrar:",
+        "options": [
+          "Picos inusuales en el uso de GPU durante la inferencia del modelo",
+          "Un pequeño grupo anómalo de muestras en el espacio de representación de la penúltima capa que activan patrones de clasificación inusuales"
+        ]
+      },
+      {
+        "q": "En el escenario de envenenamiento de AcmeBot, las muestras de veneno individuales parecían normales — el comportamiento malicioso emergía solo cuando todas las muestras de veneno estaban presentes en el conjunto de entrenamiento.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      }
+    ]
+  },
+  "atlas-12": {
+    "questions": [
+      {
+        "q": "El ciclo de vida adversarial completo de ATLAS cubre 11 tácticas, desde el reconocimiento hasta el impacto.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "La cadena de ataque de Microsoft Tay se completó desde el acceso inicial hasta el apagado completo del modelo en aproximadamente qué período de tiempo?",
+        "options": [
+          "16 horas a costo cero",
+          "3 semanas a un costo de $50,000 en consultas de API"
+        ]
+      },
+      {
+        "q": "El Marco de Gestión de Riesgos de IA del NIST (AI RMF) proporciona la contraparte defensiva a ATLAS. ¿Cuáles son sus cuatro funciones principales?",
+        "options": [
+          "MAPEAR → MEDIR → GESTIONAR → GOBERNAR",
+          "DETECTAR → RESPONDER → RECUPERAR → IDENTIFICAR"
+        ]
+      },
+      {
+        "q": "La operación de Clearview AI demostró que las amenazas de estilo ATLAS requieren técnicas sofisticadas en la academia para ser viables.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ]
+      },
+      {
+        "q": "¿Qué táctica de ATLAS usó principalmente la operación de Clearview AI al cosechar más de 3 mil millones de imágenes?",
+        "options": [
+          "TA0008 Recolección — reuniendo datos a escala masiva de fuentes web públicas para construir un conjunto de entrenamiento sin el conocimiento de los sujetos",
+          "TA0006 Evasión de Defensa — evitando los controles de seguridad de las plataformas"
+        ]
+      }
+    ]
+  }
+}

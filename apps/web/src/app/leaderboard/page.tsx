@@ -4,7 +4,7 @@ import { useEffect, useState, useCallback } from "react";
 import Link from "next/link";
 import { fetchProgress } from "@/lib/progress";
 import { getSession, setSession } from "@/lib/auth";
-import { stagesMeta, epochs } from "@/data/stages-meta";
+import { stagesMeta, epochs } from "@kryptos/core/stages-meta";
 import { useLocale } from "@/contexts/LocaleContext";
 
 type Period = "alltime" | "weekly" | "daily";

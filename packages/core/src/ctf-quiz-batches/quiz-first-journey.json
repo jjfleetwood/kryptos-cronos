@@ -1,0 +1,292 @@
+{
+  "bt-01": {
+    "questions": [
+      {
+        "q": "True or False: In the 2021 Facebook outage, engineers could not fix the problem remotely because the routing tables had been deleted.",
+        "options": ["True — they had to physically go to the data center", "False — they fixed it remotely within minutes"],
+        "correct": 0
+      },
+      {
+        "q": "What is the internet, according to the stage content?",
+        "options": ["A single global network owned by a consortium of governments", "A global mesh of millions of smaller interconnected networks"],
+        "correct": 1
+      },
+      {
+        "q": "True or False: In a mesh topology, all devices connect through a single central hub.",
+        "options": ["True — the hub is the central coordinator", "False — devices connect directly to each other, with no single point of failure"],
+        "correct": 1
+      },
+      {
+        "q": "Which command reveals the intermediate routers between your device and a destination?",
+        "options": ["traceroute (or tracert on Windows)", "arp -a"],
+        "correct": 0
+      },
+      {
+        "q": "A routing table is described as the network's 'map.' What happens when that map is lost?",
+        "options": ["Data travels more slowly but still reaches its destination via backup paths", "Routers cannot forward packets and the network becomes unreachable"],
+        "correct": 1
+      }
+    ]
+  },
+  "bt-02": {
+    "questions": [
+      {
+        "q": "True or False: Your device's private IP address (e.g., 192.168.1.5) is directly visible to servers on the public internet.",
+        "options": ["True — every server you contact sees your private IP", "False — your router's public IP is what the internet sees, via NAT"],
+        "correct": 1
+      },
+      {
+        "q": "Why did IANA exhaust all IPv4 blocks in February 2011?",
+        "options": ["IPv4's ~4.3 billion addresses were insufficient for the number of devices connecting to the internet", "IPv6 was officially adopted and replaced IPv4 entirely"],
+        "correct": 0
+      },
+      {
+        "q": "Which of the following is a private IP address range that never appears on the public internet?",
+        "options": ["192.168.0.0/16", "203.0.113.0/24"],
+        "correct": 0
+      },
+      {
+        "q": "True or False: IPv6 was designed specifically to solve the IPv4 address exhaustion problem.",
+        "options": ["True — it uses 128-bit addresses providing 340 undecillion unique addresses", "False — IPv6 was designed for speed, not address space"],
+        "correct": 0
+      },
+      {
+        "q": "A packet traveling across the internet carries which two essential addressing fields?",
+        "options": ["Source IP and destination IP", "Source MAC address and destination MAC address"],
+        "correct": 0
+      }
+    ]
+  },
+  "bt-03": {
+    "questions": [
+      {
+        "q": "True or False: When a large file is sent over the internet, it travels as a single continuous stream rather than being split up.",
+        "options": ["True — the internet sends files whole to preserve integrity", "False — data is broken into ~1,500-byte packets that are reassembled at the destination"],
+        "correct": 1
+      },
+      {
+        "q": "What does TCP use to guarantee that lost packets are retransmitted?",
+        "options": ["ACK (acknowledgment) packets — the receiver confirms each packet received", "Sequence numbers alone — the sender retransmits everything if any number is skipped"],
+        "correct": 0
+      },
+      {
+        "q": "Which protocol is faster but provides no guarantee of delivery or ordering?",
+        "options": ["TCP, because it uses a three-way handshake", "UDP, because it skips acknowledgments and connection setup"],
+        "correct": 1
+      },
+      {
+        "q": "True or False: The 2016 Mirai DDoS attack succeeded by exploiting an unpatched software vulnerability in Dyn's servers.",
+        "options": ["True — Mirai used a zero-day exploit to crash the servers", "False — Mirai flooded Dyn with packet volume from hijacked IoT devices, overwhelming connection tables"],
+        "correct": 1
+      },
+      {
+        "q": "Why does the internet's packet design mean a lost packet does not require resending an entire file?",
+        "options": ["Each packet has a sequence number, so only the missing packet needs to be retransmitted", "The sender always sends every packet twice as a built-in redundancy measure"],
+        "correct": 0
+      }
+    ]
+  },
+  "bt-04": {
+    "questions": [
+      {
+        "q": "True or False: A router knows the complete end-to-end path a packet will take before forwarding it.",
+        "options": ["True — routers coordinate in advance to pre-plan full routes", "False — each router only decides the next hop based on its local routing table"],
+        "correct": 1
+      },
+      {
+        "q": "When a packet's destination IP matches multiple entries in a routing table, which entry does the router use?",
+        "options": ["The most specific match (longest prefix)", "The first entry listed in the routing table"],
+        "correct": 0
+      },
+      {
+        "q": "What role does BGP play in internet routing?",
+        "options": ["It synchronizes routing tables between networks so routers know how to reach each other's IP ranges", "It encrypts routing table entries to prevent unauthorized modification"],
+        "correct": 0
+      },
+      {
+        "q": "True or False: During the 2010 China Telecom BGP incident, encryption was broken and private data was decrypted.",
+        "options": ["True — China Telecom decrypted all traffic that passed through their network", "False — traffic was rerouted and readable only if unencrypted, but no encryption was broken"],
+        "correct": 1
+      },
+      {
+        "q": "What security problem does BGP have that made the 2010 China Telecom incident possible?",
+        "options": ["BGP has no built-in authentication — any router can announce routes for any IP range", "BGP uses weak encryption that can be cracked by nation-state attackers"],
+        "correct": 0
+      }
+    ]
+  },
+  "bt-05": {
+    "questions": [
+      {
+        "q": "True or False: DNS translates human-readable domain names into IP addresses that computers use to connect.",
+        "options": ["True — this is DNS's core function", "False — DNS translates IP addresses into MAC addresses for local delivery"],
+        "correct": 0
+      },
+      {
+        "q": "What is a TTL (Time To Live) in a DNS response?",
+        "options": ["How long the resolved IP address is cached before a fresh lookup is needed", "How many router hops the DNS query can make before expiring"],
+        "correct": 0
+      },
+      {
+        "q": "In the 2016 Dyn attack, why were major websites like Twitter unreachable even though Twitter's own servers were running normally?",
+        "options": ["Twitter's servers were secretly taken down by a secondary attack that went unreported", "Dyn's DNS servers were taken offline, so browsers couldn't resolve Twitter's domain to an IP address"],
+        "correct": 1
+      },
+      {
+        "q": "True or False: DNS cache poisoning works by replacing a legitimate IP address in your DNS cache with a malicious one.",
+        "options": ["True — the victim then connects to the attacker's server while typing the correct domain", "False — DNS cache poisoning only slows down DNS lookups, it does not redirect traffic"],
+        "correct": 0
+      },
+      {
+        "q": "Which part of the DNS hierarchy responds first when your DNS resolver cannot find a cached answer?",
+        "options": ["A root name server, which refers the resolver toward the correct TLD server", "The authoritative name server for the specific domain you are querying"],
+        "correct": 0
+      }
+    ]
+  },
+  "bt-06": {
+    "questions": [
+      {
+        "q": "True or False: A device's MAC address is used to route traffic across the global internet.",
+        "options": ["True — MAC addresses are the primary identifier used by internet routers", "False — MAC addresses operate at the local network layer; IP addresses handle internet routing"],
+        "correct": 1
+      },
+      {
+        "q": "What do the first three bytes of a MAC address identify?",
+        "options": ["The manufacturer of the network interface card (the OUI)", "The device's assigned IP address range"],
+        "correct": 0
+      },
+      {
+        "q": "ARP has no authentication. What attack does this enable on a local network?",
+        "options": ["ARP spoofing — an attacker sends fake ARP replies to become a man-in-the-middle", "ARP flooding — an attacker overwhelms the router with too many address requests"],
+        "correct": 0
+      },
+      {
+        "q": "True or False: Modern operating systems use MAC address randomization to prevent tracking across different WiFi networks.",
+        "options": ["True — a random MAC is used for each new network to prevent location tracking", "False — MAC randomization is only used on mobile devices, not laptops or desktops"],
+        "correct": 0
+      },
+      {
+        "q": "Why does ARP spoofing pose a serious threat even on encrypted networks?",
+        "options": ["ARP spoofing redirects traffic to the attacker's machine; unencrypted traffic is fully readable, and even encrypted traffic reveals connection metadata", "ARP spoofing can break TLS encryption by forging certificates alongside the fake ARP reply"],
+        "correct": 0
+      }
+    ]
+  },
+  "bt-07": {
+    "questions": [
+      {
+        "q": "True or False: Firewall rules are evaluated top-to-bottom, and the first matching rule determines the packet's fate.",
+        "options": ["True — rule order is critical; a broad rule above a narrow rule shadows the narrow one", "False — all rules are evaluated and the most specific match wins, regardless of order"],
+        "correct": 0
+      },
+      {
+        "q": "What is the 'default-deny' security principle in firewall design?",
+        "options": ["Block all traffic not explicitly permitted by a rule", "Deny traffic only from known malicious IP addresses"],
+        "correct": 0
+      },
+      {
+        "q": "What is the key difference between a stateless and a stateful firewall?",
+        "options": ["A stateful firewall tracks connection state, allowing return traffic for established sessions without opening inbound ports", "A stateless firewall is faster because it uses hardware acceleration; stateful firewalls use software only"],
+        "correct": 0
+      },
+      {
+        "q": "True or False: The 2003 SQL Slammer worm could have been stopped by blocking a single UDP port at the firewall.",
+        "options": ["True — blocking UDP port 1434 would have completely prevented Slammer from spreading", "False — Slammer spread through multiple ports simultaneously, making firewall rules ineffective"],
+        "correct": 0
+      },
+      {
+        "q": "When a broad ALLOW rule appears above a specific DENY rule in a firewall ruleset, what happens to the DENY rule?",
+        "options": ["The DENY rule never fires — all matching traffic is already allowed by the rule above it", "The DENY rule still applies to traffic that matches it, because specific rules always override broad ones"],
+        "correct": 0
+      }
+    ]
+  },
+  "bt-08": {
+    "questions": [
+      {
+        "q": "True or False: Port 443 is the standard port for encrypted HTTPS web traffic.",
+        "options": ["True — HTTPS listens on port 443 by default", "False — HTTPS uses port 80 and HTTP uses port 443"],
+        "correct": 0
+      },
+      {
+        "q": "How did WannaCry ransomware spread to 200,000 computers without requiring any user action?",
+        "options": ["It automatically scanned for open port 445 (SMB) and exploited an unpatched vulnerability to self-propagate", "It was distributed as an email attachment that users had to open to trigger the infection"],
+        "correct": 0
+      },
+      {
+        "q": "Why is finding port 3306 (MySQL) open and reachable from the internet considered a critical security finding?",
+        "options": ["Database ports should only be accessible internally; public exposure allows direct attack against the database", "Port 3306 is deprecated and its presence indicates outdated software that will crash under load"],
+        "correct": 0
+      },
+      {
+        "q": "True or False: Running a port scan with default nmap settings guarantees you have checked all 65,535 ports.",
+        "options": ["True — nmap always scans every available port by default", "False — default nmap scans only the top 1,000 common ports; full range requires the -p- flag"],
+        "correct": 1
+      },
+      {
+        "q": "What does a port number in a network packet tell the receiving operating system?",
+        "options": ["Which application or service should handle the incoming data", "Which network interface the packet arrived on"],
+        "correct": 0
+      }
+    ]
+  },
+  "bt-09": {
+    "questions": [
+      {
+        "q": "True or False: Devices on the same subnet can communicate directly without passing through a router.",
+        "options": ["True — same-subnet traffic stays local and never crosses a router boundary", "False — all traffic must pass through the router, even between devices on the same subnet"],
+        "correct": 0
+      },
+      {
+        "q": "How many usable host addresses does a /24 subnet provide?",
+        "options": ["254 hosts", "65,534 hosts"],
+        "correct": 0
+      },
+      {
+        "q": "In the 2013 Target breach, why did the attacker's access to an HVAC vendor account lead to credit card theft?",
+        "options": ["Target's network lacked sufficient segmentation, so the HVAC vendor's subnet had a direct route to the point-of-sale systems", "The HVAC vendor's account had administrator privileges on Target's payment servers"],
+        "correct": 0
+      },
+      {
+        "q": "True or False: Proper network segmentation limits the blast radius of a breach by preventing an attacker from moving freely between subnets.",
+        "options": ["True — subnets with firewall rules between them contain lateral movement", "False — a determined attacker can always move between subnets once inside the network perimeter"],
+        "correct": 0
+      },
+      {
+        "q": "If two devices have IPs of 10.0.2.15 and 10.0.3.8, both with a /24 mask, how do they communicate?",
+        "options": ["They must route through a router or firewall because they are on different /24 subnets", "They communicate directly because they share the same 10.0.x.x address space"],
+        "correct": 0
+      }
+    ]
+  },
+  "bt-10": {
+    "questions": [
+      {
+        "q": "True or False: TCP establishes a connection using a three-way handshake (SYN, SYN-ACK, ACK) before sending data.",
+        "options": ["True — this handshake confirms both sides are ready before any data is exchanged", "False — TCP sends data immediately and negotiates connection parameters in the first data packet"],
+        "correct": 0
+      },
+      {
+        "q": "Why does the TCP SYN flood attack work as a denial-of-service technique?",
+        "options": ["Servers allocate memory for each incoming SYN and wait for an ACK that never arrives, exhausting their connection table", "Servers are forced to decrypt each SYN packet, which consumes excessive CPU resources"],
+        "correct": 0
+      },
+      {
+        "q": "True or False: UDP is preferred for video calls and real-time gaming because it guarantees delivery of every packet.",
+        "options": ["True — UDP's delivery guarantee keeps video frames consistent", "False — UDP is preferred because its low overhead makes it faster; a dropped frame is acceptable"],
+        "correct": 1
+      },
+      {
+        "q": "In the TCP/IP model, what is the role of the Transport layer?",
+        "options": ["Providing reliable (TCP) or fast (UDP) delivery between applications on different hosts", "Translating domain names to IP addresses for applications"],
+        "correct": 0
+      },
+      {
+        "q": "According to the stage content, what is fundamentally true about every network vulnerability?",
+        "options": ["It exploits a flaw or unintended behavior in a protocol's design or assumptions", "It requires physical access to network hardware to be effective"],
+        "correct": 0
+      }
+    ]
+  }
+}

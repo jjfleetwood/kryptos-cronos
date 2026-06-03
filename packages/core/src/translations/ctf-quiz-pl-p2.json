@@ -1,0 +1,1172 @@
+{
+  "bt-11": {
+    "questions": [
+      {
+        "q": "Prawda czy fałsz: HTTP szyfruje dane przy użyciu TLS przed wysłaniem ich przez sieć.",
+        "options": [
+          "Prawda — HTTP używa szyfrowania TLS",
+          "Fałsz — HTTP przesyła dane w postaci tekstu jawnego"
+        ]
+      },
+      {
+        "q": "Exploit Firesheep działał, ponieważ Facebook używał HTTP do przeglądania po zalogowaniu. Co atakujący mógł ukraść, by przejąć konto innego użytkownika?",
+        "options": [
+          "Hasło użytkownika ze strony logowania",
+          "Niezaszyfrowany cookie sesji użytkownika z trwającego ruchu HTTP"
+        ]
+      },
+      {
+        "q": "Prawda czy fałsz: Strona logowania korzystająca z HTTPS gwarantuje bezpieczeństwo sesji, nawet jeśli reszta witryny używa HTTP.",
+        "options": [
+          "Fałsz — cookie sesji w postaci tekstu jawnego może zostać skradziony w celu przejęcia konta po zalogowaniu",
+          "Prawda — HTTPS na etapie logowania chroni całą sesję"
+        ]
+      },
+      {
+        "q": "Która część uścisku dłoni TLS potwierdza, że serwer jest tym, za kogo się podaje?",
+        "options": [
+          "Serwer wysyła swój certyfikat, który przeglądarka weryfikuje przy użyciu zaufanych urzędów certyfikacji",
+          "Serwer i przeglądarka uzgadniają symetryczny klucz AES-256 przy użyciu Diffie-Hellmana"
+        ]
+      },
+      {
+        "q": "Co oznacza ostrzeżenie 'Not Secure' (Niezabezpieczone) w pasku adresu przeglądarki?",
+        "options": [
+          "Serwer witryny jest chwilowo przeciążony i żądania mogą być wolne",
+          "Strona używa HTTP lub ma nieprawidłowy certyfikat TLS, co oznacza, że ruch nie jest szyfrowany"
+        ]
+      }
+    ]
+  },
+  "bt-12": {
+    "questions": [
+      {
+        "q": "Prawda czy fałsz: Narzędzia deweloperskie przeglądarki (F12) mogą wyświetlać tylko kod HTML — nie mogą ujawnić plików cookie ani wychodzących żądań sieciowych.",
+        "options": [
+          "Prawda — DevTools jest ograniczony do wyświetlania źródła strony",
+          "Fałsz — DevTools pokazuje każde żądanie, odpowiedź, cookie i skrypt przetwarzany przez przeglądarkę"
+        ]
+      },
+      {
+        "q": "Atak Magecart na British Airways wstrzyknął 22 linie JavaScript na stronie kasy. Dlaczego klienci nie mogli wizualnie wykryć ataku?",
+        "options": [
+          "Wstrzyknięty skrypt działał w przeglądarce dokładnie jak legalny JavaScript — był niewidoczny dla użytkownika",
+          "Skrypt wyłączył wszystkie ostrzeżenia bezpieczeństwa przeglądarki przed wykonaniem"
+        ]
+      },
+      {
+        "q": "Do czego zaprojektowana jest polityka Same-Origin Policy (SOP) przeglądarki?",
+        "options": [
+          "Do uniemożliwienia JavaScript na jednej stronie odczytywania danych ze strony na innym pochodzeniu",
+          "Do uniemożliwienia użytkownikom dostępu do stron HTTP, gdy dostępna jest wersja HTTPS"
+        ]
+      },
+      {
+        "q": "Prawda czy fałsz: Komentarze HTML w źródle strony są ukryte przed zwykłymi użytkownikami i nie można ich odczytać bez specjalnych narzędzi.",
+        "options": [
+          "Prawda — komentarze HTML są usuwane przed renderowaniem strony przez przeglądarkę",
+          "Fałsz — każdy może przeglądać komentarze HTML za pomocą View Page Source lub DevTools przeglądarki"
+        ]
+      },
+      {
+        "q": "Nagłówek Content Security Policy (CSP) rozwiązuje który problem bezpieczeństwa przeglądarki?",
+        "options": [
+          "Ogranicza źródła skryptów, które przeglądarka wykona, blokując nieautoryzowane wstrzyknięte skrypty",
+          "Wymusza na wszystkich plikach cookie użycie flagi Secure, aby były wysyłane tylko przez HTTPS"
+        ]
+      }
+    ]
+  },
+  "bt-13": {
+    "questions": [
+      {
+        "q": "W podatności IDOR (Insecure Direct Object Reference), co serwer nie robi?",
+        "options": [
+          "Weryfikuje, czy żądający klient jest upoważniony do dostępu do przesłanego identyfikatora obiektu",
+          "Szyfruje treść odpowiedzi przed wysłaniem jej z powrotem do klienta"
+        ]
+      },
+      {
+        "q": "Prawda czy fałsz: W modelu klient-serwer klient może stać się serwerem w tym samym cyklu żądanie-odpowiedź HTTP.",
+        "options": [
+          "Fałsz — w danej wymianie żądanie-odpowiedź role klienta i serwera są stałe",
+          "Prawda — nowoczesny HTTP/2 pozwala klientowi przesyłać odpowiedzi z powrotem do serwera"
+        ]
+      },
+      {
+        "q": "Która metoda HTTP służy do pobierania danych z serwera bez ich modyfikowania?",
+        "options": [
+          "POST — wysyła treść z żądaniem w celu pobrania przefiltrowanych wyników",
+          "GET — pobiera dane i nie modyfikuje stanu serwera"
+        ]
+      },
+      {
+        "q": "Podatność IDOR w API Facebook Business Manager w 2019 roku ujawniła numery telefonów użytkowników. Jaka była jej przyczyna?",
+        "options": [
+          "API zwracało numer telefonu dowolnego użytkownika na podstawie jego identyfikatora bez sprawdzania, czy wywołujący był upoważniony do jego zobaczenia",
+          "Atakujący złamał szyfrowanie Facebooka, exploitując słaby szyfr w handshake'u TLS"
+        ]
+      },
+      {
+        "q": "Prawda czy fałsz: Serwer może bezpiecznie ufać identyfikatorom obiektów wysłanym przez klienta, pod warunkiem że są numeryczne.",
+        "options": [
+          "Prawda — identyfikatory numeryczne są trudniejsze do odgadnięcia, więc są bezpieczne bez kontroli autoryzacji",
+          "Fałsz — serwer musi zawsze weryfikować, czy żądający jest upoważniony do dostępu do obiektu, niezależnie od formatu identyfikatora"
+        ]
+      }
+    ]
+  },
+  "bt-14": {
+    "questions": [
+      {
+        "q": "Prawda czy fałsz: Certyfikat TLS z ważnym podpisem od Let's Encrypt gwarantuje, że witryna jest legalna i godna zaufania.",
+        "options": [
+          "Prawda — Let's Encrypt wydaje certyfikaty tylko zweryfikowanym, godnym zaufania organizacjom",
+          "Fałsz — certyfikat Let's Encrypt dowodzi jedynie kontroli domeny; witryny phishingowe też mogą je uzyskać"
+        ]
+      },
+      {
+        "q": "Włamanie do DigiNotar umożliwiło atakującym przechwycenie Gmaila tysięcy irańskich użytkowników. Jak to było możliwe?",
+        "options": [
+          "Atakujący użyli skompromitowanego CA DigiNotar do wystawienia fałszywych certyfikatów Google akceptowanych jako ważne przez przeglądarki",
+          "Atakujący exploitowali lukę w protokole TLS, która umożliwiała im odszyfrowywanie kluczy sesji AES-256"
+        ]
+      },
+      {
+        "q": "Gdy przeglądarka napotka certyfikat, którego Common Name (CN) nie pasuje do odwiedzanej domeny, co to oznacza?",
+        "options": [
+          "Serwer używa starszej wersji TLS i musi zostać zaktualizowany do TLS 1.3",
+          "Certyfikat mógł zostać ponownie użyty z innej witryny, co jest potencjalnym wskaźnikiem ataku man-in-the-middle"
+        ]
+      },
+      {
+        "q": "Prawda czy fałsz: Kliknięcie przez ostrzeżenie przeglądarki 'Twoje połączenie nie jest prywatne' jest dopuszczalne, jeśli rozpoznajesz witrynę.",
+        "options": [
+          "Prawda — ostrzeżenie jest często fałszywie pozytywne spowodowane wygasłymi certyfikatami na legalnych witrynach",
+          "Fałsz — ostrzeżenie oznacza, że tożsamość serwera jest niezweryfikowana; możesz komunikować się z osobą podszywającą się"
+        ]
+      },
+      {
+        "q": "Jaki był cel logów Certificate Transparency, wprowadzonych po incydencie DigiNotar?",
+        "options": [
+          "Uczynienie wszystkich wydań certyfikatów publicznie audytowalnymi, aby można było wykryć nieautoryzowane certyfikaty",
+          "Umożliwienie przeglądarkom lokalnego buforowania certyfikatów i zmniejszenia liczby żądań weryfikacji CA"
+        ]
+      }
+    ]
+  },
+  "bt-15": {
+    "questions": [
+      {
+        "q": "Prawda czy fałsz: Atrybut cookie HttpOnly uniemożliwia JavaScript odczytywanie cookie przez document.cookie.",
+        "options": [
+          "Prawda — HttpOnly blokuje dostęp JavaScript, więc ataki XSS nie mogą ukraść cookie",
+          "Fałsz — HttpOnly zapobiega jedynie wysyłaniu cookie przez HTTP; JavaScript nadal może go odczytać"
+        ]
+      },
+      {
+        "q": "Dlaczego kradzież cookie sesji daje atakującemu pełny dostęp do konta bez znajomości hasła użytkownika?",
+        "options": [
+          "Tokeny sesji są pochodną hasła, więc posiadanie tokenu jest równoznaczne ze znajomością hasła",
+          "Serwer identyfikuje użytkownika wyłącznie na podstawie tokenu sesji; ważny token daje pełny dostęp niezależnie od sposobu jego uzyskania"
+        ]
+      },
+      {
+        "q": "Prawda czy fałsz: Atrybut cookie SameSite=Strict jest zaprojektowany w celu ochrony przed atakami Cross-Site Request Forgery (CSRF).",
+        "options": [
+          "Prawda — SameSite=Strict uniemożliwia wysyłanie cookie w żądaniach cross-origin",
+          "Fałsz — SameSite to tylko wskazówka wydajnościowa i nie ma wpływu na żądania cross-site"
+        ]
+      },
+      {
+        "q": "Naruszenie Slack w 2022 roku dotyczyło skradzionych cookie sesji. Który mechanizm bezpieczeństwa atak ten całkowicie ominął?",
+        "options": [
+          "Uwierzytelnianie dwuskładnikowe, ponieważ sesja była już uwierzytelniona podczas wydawania cookie",
+          "Szyfrowanie TLS, ponieważ atakujący użył ataku man-in-the-middle na połączeniu HTTP"
+        ]
+      },
+      {
+        "q": "Czym jest utrwalanie sesji i jak mu zapobiegać?",
+        "options": [
+          "Utrwalanie sesji to sytuacja, gdy atakujący ustawia znany token sesji przed logowaniem; zapobiega się temu przez regenerowanie tokenu sesji przy logowaniu",
+          "Utrwalanie sesji to sytuacja, gdy cookie wygasa przedwcześnie; zapobiega się temu przez wydłużanie czasu życia sesji przy każdym żądaniu"
+        ]
+      }
+    ]
+  },
+  "bt-16": {
+    "questions": [
+      {
+        "q": "Prawda czy fałsz: Tokeny uwierzytelniające API powinny być umieszczane w ciągu zapytania URL dla wygody, ponieważ URL są szyfrowane przez HTTPS.",
+        "options": [
+          "Prawda — HTTPS szyfruje URL, więc umieszczanie tokenów w ciągach zapytania jest bezpieczne",
+          "Fałsz — parametry URL pojawiają się w logach serwera, historii przeglądarki i nagłówkach referrer, narażając token"
+        ]
+      },
+      {
+        "q": "Naruszenie API Peloton ujawniło prywatne dane 4,5 miliona użytkowników, mimo że aplikacja Peloton wyświetlała ograniczone informacje. Jaka była główna podatność?",
+        "options": [
+          "API zwracało pełny obiekt użytkownika ze wszystkimi prywatnymi polami do dowolnego wywołującego, nawet bez uwierzytelnienia",
+          "Peloton przechowywał hasła w postaci tekstu jawnego, umożliwiając atakującym logowanie jako dowolny użytkownik"
+        ]
+      },
+      {
+        "q": "Prawda czy fałsz: API wymagające uwierzytelnienia na publicznych endpointach jest automatycznie bezpieczne przed podatnościami nadmiernego ujawniania danych.",
+        "options": [
+          "Fałsz — nawet uwierzytelnione API mogą zwracać więcej danych niż wyświetla aplikacja, dając bezpośrednim wywołującym dostęp do ukrytych pól",
+          "Prawda — uwierzytelnienie zapewnia, że użytkownicy widzą tylko dane, do których są upoważnieni"
+        ]
+      },
+      {
+        "q": "Co 'rate limiting' chroni w kontekście bezpieczeństwa API?",
+        "options": [
+          "Zapobiega enumeracji wszystkich rekordów przez atakujących, ograniczając liczbę żądań, które wywołujący może wykonać w oknie czasowym",
+          "Zapobiega przechwytywaniu odpowiedzi API przez atakujących przez ograniczanie niezaszyfrowanego ruchu"
+        ]
+      },
+      {
+        "q": "Zgodnie z OWASP API Security Top 10, jaka jest najczęstsza podatność API?",
+        "options": [
+          "Broken Object Level Authorization — serwer zwraca dane dla dowolnego identyfikatora obiektu bez sprawdzania, czy żądający jest jego właścicielem",
+          "SQL injection — atakujący osadzają złośliwe zapytania w treści żądania JSON w celu wyodrębnienia rekordów z bazy danych"
+        ]
+      }
+    ]
+  },
+  "bt-17": {
+    "questions": [
+      {
+        "q": "Prawda czy fałsz: Przepustowość i throughput to to samo pomiar — oba opisują rzeczywistą szybkość transmisji danych osiągniętą na połączeniu sieciowym.",
+        "options": [
+          "Fałsz — przepustowość to maksymalna pojemność; throughput to rzeczywista osiągana szybkość transmisji danych, która zawsze jest równa przepustowości lub mniejsza",
+          "Prawda — przepustowość i throughput to zamienne terminy mierzące prędkość sieci"
+        ]
+      },
+      {
+        "q": "Jeśli serwer ma wewnętrzne łącze 10 Gbps, ale tylko łącze ISP 1 Gbps, jaka jest efektywna maksymalna przepustowość dla ruchu internetowego?",
+        "options": [
+          "10 Gbps, ponieważ łącze wewnętrzne jest podstawową ścieżką dla wszystkich danych",
+          "1 Gbps, ponieważ łącze ISP jest najwolniejszym ogniwem w łańcuchu i staje się wąskim gardłem"
+        ]
+      },
+      {
+        "q": "Prawda czy fałsz: Opóźnienie i przepustowość mierzą to samo — połączenie o dużej przepustowości zawsze ma małe opóźnienie.",
+        "options": [
+          "Prawda — większa przepustowość oznacza, że dane docierają szybciej, co zmniejsza opóźnienie",
+          "Fałsz — przepustowość to rozmiar rury; opóźnienie to czas opóźnienia. Internet satelitarny może mieć dużą przepustowość, ale bardzo duże opóźnienie"
+        ]
+      },
+      {
+        "q": "Atak DDoS Cloudflare w 2023 roku osiągnął szczyt 71 milionów żądań na sekundę z 30 000 adresów IP. Co sprawiło, że architektura Cloudflare była odporna na ten atak?",
+        "options": [
+          "Cloudflare filtrował cały ruch przez jedno utwardzone centrum danych wyposażone w specjalistyczny sprzęt DDoS",
+          "Rozproszona architektura Cloudflare w ponad 285 centrach danych rozłożyła obciążenie tak, że żadna pojedyncza lokalizacja nie była przeciążona"
+        ]
+      },
+      {
+        "q": "Czym jest atak nasycenia przepustowości DDoS?",
+        "options": [
+          "Zalanie połączenia sieciowego celu ruchem większym niż może obsłużyć, powodując odrzucanie legalnego ruchu",
+          "Exploitowanie podatności oprogramowania na serwerze webowym celu w celu crashowania procesu aplikacji"
+        ]
+      }
+    ]
+  },
+  "bt-18": {
+    "questions": [
+      {
+        "q": "Prawda czy fałsz: Wynik ping 20 ms oznacza, że dane potrzebują 20 ms, aby dotrzeć w jedną stronę od nadawcy do odbiorcy.",
+        "options": [
+          "Fałsz — ping mierzy czas podróży w obie strony (RTT); 20 ms RTT oznacza około 10 ms w każdym kierunku",
+          "Prawda — ping mierzy jednokierunkowe opóźnienie od nadawcy do zdalnego hosta"
+        ]
+      },
+      {
+        "q": "Które narzędzie pokazuje opóźnienie na każdym skoku wzdłuż pełnej ścieżki sieciowej do celu, pomagając zidentyfikować miejsce wystąpienia przeciążenia?",
+        "options": [
+          "traceroute — pokazuje czas podróży w obie strony do każdego pośredniego routera wzdłuż ścieżki",
+          "iperf3 — mierzy maksymalną przepustowość między dwoma hostami w tej samej sieci"
+        ]
+      },
+      {
+        "q": "Prawda czy fałsz: Duże opóźnienie na połączeniu zawsze oznacza problem z przepustowością, który wymaga naprawy przez aktualizację szybkości łącza.",
+        "options": [
+          "Prawda — duże opóźnienie jest zawsze spowodowane niewystarczającą przepustowością i wymaga szybszego łącza",
+          "Fałsz — opóźnienie może być spowodowane odległością fizyczną, opóźnieniami przetwarzania lub przeciążeniem — niekoniecznie niewystarczającą przepustowością"
+        ]
+      },
+      {
+        "q": "Awaria AWS US-East-1 w 2012 roku pokazała, jak opóźnienie powoduje awarie kaskadowe. Jaki jest podstawowy mechanizm kaskady opóźnień?",
+        "options": [
+          "Jeden powolny komponent powoduje, że wywołujące go komponenty kolejkują się w oczekiwaniu, zapychając cały łańcuch wywołań aż system zatrzymuje się",
+          "Duże opóźnienie powoduje utratę pakietów, co wyzwala retransmisje TCP, które trwale uszkadzają stan sesji"
+        ]
+      },
+      {
+        "q": "Dlaczego użycie CDN (Content Delivery Network) zmniejsza opóźnienie dla użytkowników końcowych?",
+        "options": [
+          "CDN kompresuje wszystkie dane przed transmisją, zmniejszając liczbę bajtów, które muszą przejść przez sieć",
+          "CDN serwuje treści z węzłów geograficznie bliskich użytkownikowi, zmniejszając fizyczną odległość, jaką muszą pokonać dane"
+        ]
+      }
+    ]
+  },
+  "bt-19": {
+    "questions": [
+      {
+        "q": "Prawda czy fałsz: Zatruwanie cache DNS niszczy cache resolvera, tak że użytkownicy są przekierowywani na adres IP kontrolowany przez atakującego zamiast na legalny serwer.",
+        "options": [
+          "Prawda — zatruta wartość cache powoduje, że wszyscy użytkownicy tego resolvera docierają do serwera atakującego",
+          "Fałsz — zatruwanie cache wpływa jedynie na szybkość wyszukiwań DNS, a nie na zwracane adresy IP"
+        ]
+      },
+      {
+        "q": "Atak Kaminsky'ego z 2008 roku exploitował słabość w DNS, czyniąc zatruwanie cache praktycznym. Jaka była podstawowa wada?",
+        "options": [
+          "16-bitowy identyfikator transakcji DNS zapewniał zbyt małą entropię, umożliwiając atakującym odgadnięcie właściwego identyfikatora i wstrzyknięcie fałszywej odpowiedzi przed dotarciem prawdziwej",
+          "Odpowiedzi DNS były przesyłane bez szyfrowania TLS, umożliwiając dowolnemu routerowi ich odczytanie i modyfikację podczas przesyłania"
+        ]
+      },
+      {
+        "q": "Prawda czy fałsz: DNSSEC zapobiega zatruwaniu cache przez szyfrowanie ruchu DNS, który nie może być przechwycony podczas przesyłania.",
+        "options": [
+          "Fałsz — DNSSEC dodaje podpisy kryptograficzne do rekordów DNS, aby naruszenie mogło być wykryte, ale nie szyfruje ruchu DNS",
+          "Prawda — DNSSEC używa szyfrowania AES-256 do ochrony odpowiedzi DNS przed przechwyceniem i modyfikacją"
+        ]
+      },
+      {
+        "q": "Jeśli cache resolvera DNS pokazuje 185.220.101.50 dla yourbank.com, ale autorytatywny serwer nazw zwraca 198.51.100.77, co wskazuje ta rozbieżność?",
+        "options": [
+          "Serwer autorytatywny jest błędnie skonfigurowany i ma zły adres IP, więc buforowana wersja jest poprawna",
+          "Cache resolvera jest zatruta — buforowany adres IP to adres kontrolowany przez atakującego, a nie legalny serwer"
+        ]
+      },
+      {
+        "q": "Jaka jest praktyczna zaleta DNS-over-HTTPS (DoH) w porównaniu ze standardowym DNS dla użytkowników końcowych?",
+        "options": [
+          "DoH zapobiega przechwytywaniu przez dostawcę usług internetowych i utrudnia pośrednikom wstrzykiwanie fałszywych odpowiedzi DNS",
+          "DoH eliminuje potrzebę sygnatur DNSSEC, ponieważ HTTPS już uwierzytelnia serwer DNS"
+        ]
+      }
+    ]
+  },
+  "bt-20": {
+    "questions": [
+      {
+        "q": "Prawda czy fałsz: Algorytm równoważenia obciążenia 'least connections' zawsze kieruje każde żądanie do kolejnego serwera w stałej rotacji, niezależnie od obciążenia serwera.",
+        "options": [
+          "Fałsz — to opisuje round-robin; least connections kieruje do serwera z najmniejszą liczbą aktywnych połączeń",
+          "Prawda — least connections używa rotacji podobnej do round-robin, ale śledzi liczbę połączeń"
+        ]
+      },
+      {
+        "q": "Moduł równoważący obciążenie usuwa serwer backend z puli, gdy serwer nie przejdzie kontroli zdrowia. Jaką korzyść to przynosi?",
+        "options": [
+          "Umożliwia wdrożenia bez przestojów przez automatyczne usuwanie niezdrowych serwerów bez ręcznej interwencji",
+          "Trwale umieszcza adres IP serwera na czarnej liście, aby atakujący nie mogli go bezpośrednio atakować"
+        ]
+      },
+      {
+        "q": "Prawda czy fałsz: Umieszczenie serwera backendu administratora w tej samej puli modułu równoważącego obciążenie co serwery treści publicznych jest najlepszą praktyką bezpieczeństwa, ponieważ moduł równoważący obciążenie kontroluje dostęp.",
+        "options": [
+          "Fałsz — moduł równoważący obciążenie kieruje ruch równomiernie do wszystkich członków puli, narażając backendy administracyjne na każdy ruch, który otrzymuje",
+          "Prawda — moduł równoważący obciążenie działa jako granica bezpieczeństwa blokująca nieautoryzowany dostęp do backendów administracyjnych"
+        ]
+      },
+      {
+        "q": "Naruszenie Heroku w 2022 roku wykazało ryzyko specyficzne dla modułów równoważących obciążenie. Jaka uprzywilejowana zdolność czyniła moduł równoważący obciążenie wartościowym celem?",
+        "options": [
+          "Moduły równoważące obciążenie mają uprzywilejowany dostęp sieciowy do wszystkich serwerów backend w swojej puli, który atakujący mogą exploitować, by dotrzeć do wewnętrznych usług",
+          "Moduły równoważące obciążenie przechowują klucze prywatne TLS w pamięci, umożliwiając atakującym odszyfrowywanie całego ruchu przechodzącego przez nie"
+        ]
+      },
+      {
+        "q": "Który algorytm równoważenia obciążenia zapewnia, że ten sam klient zawsze dociera do tego samego serwera backend przy każdym żądaniu?",
+        "options": [
+          "IP hash — adres IP klienta jest haszowany w celu konsekwentnego mapowania go na określony serwer backend",
+          "Round-robin — cyklicznie przechodzi przez wszystkie serwery po kolei, co naturalnie niektórych klientów powraca do tego samego serwera z czasem"
+        ]
+      }
+    ]
+  },
+  "bt-21": {
+    "questions": [
+      {
+        "q": "Włamanie do DNC w 2016 roku rozpoczęło się od phishingowego e-maila spear wysłanego do której osoby?",
+        "options": [
+          "Johna Podesty, przewodniczącego kampanii Hillary Clinton",
+          "Hillary Clinton, kandydatki na prezydenta"
+        ]
+      },
+      {
+        "q": "Prawda czy fałsz: Nazwa wyświetlana w e-mailu jest wiarygodnym sposobem weryfikacji, kto rzeczywiście go wysłał.",
+        "options": [
+          "Prawda — dostawcy poczty e-mail weryfikują nazwy wyświetlane",
+          "Fałsz — prawdziwy nadawca jest pokazany w rzeczywistej domenie e-maila, a nie w nazwie wyświetlanej"
+        ]
+      },
+      {
+        "q": "Czym jest spear phishing?",
+        "options": [
+          "Masową kampanią phishingową wysyłaną do milionów przypadkowych odbiorców",
+          "Ukierunkowanym atakiem phishingowym wykorzystującym dane osobowe, aby wyglądać wiarygodnie dla konkretnej ofiary"
+        ]
+      },
+      {
+        "q": "Który błąd uwierzytelniania e-maila jest najsilniejszym wskaźnikiem, że wiadomość nie została wysłana przez twierdzoną domenę?",
+        "options": [
+          "Nieudanie się DKIM, SPF i DMARC jednocześnie",
+          "Temat zawierający pilny język"
+        ]
+      },
+      {
+        "q": "Prawda czy fałsz: Business Email Compromise (BEC) jest najbardziej finansowo szkodliwą kategorią cyberprzestępczości, kosztującą 2,7 miliarda dolarów rocznie.",
+        "options": [
+          "Prawda",
+          "Fałsz — ransomware powoduje więcej szkód finansowych niż BEC"
+        ]
+      }
+    ]
+  },
+  "bt-22": {
+    "questions": [
+      {
+        "q": "Prawda czy fałsz: Konta chronione uwierzytelnianiem dwuskładnikowym są o 99,9% mniej narażone na kompromis niż konta bez niego.",
+        "options": [
+          "Prawda",
+          "Fałsz — korzyść ochronna jest bliższa 50%"
+        ]
+      },
+      {
+        "q": "Dlaczego uwierzytelnianie dwuskładnikowe oparte na SMS jest uważane za słabsze niż aplikacja uwierzytelniająca?",
+        "options": [
+          "Kody SMS wygasają szybciej niż kody TOTP, co utrudnia ich użycie",
+          "Kody SMS mogą być przechwycone przez SIM swapping, podczas gdy aplikacje uwierzytelniające są odporne na ten atak"
+        ]
+      },
+      {
+        "q": "Jak atakujący skompromitował systemy Ubera podczas włamania w 2022 roku?",
+        "options": [
+          "Przez exploitowanie podatności oprogramowania na serwerze VPN Ubera",
+          "Przez zalewanie powiadomieniami push do zatwierdzenia, aż zleceniobiorca kliknął Zatwierdź z frustracji"
+        ]
+      },
+      {
+        "q": "Prawda czy fałsz: Kody TOTP generowane przez aplikacje uwierzytelniające działają przez komunikację z serwerem w czasie rzeczywistym w celu otrzymania każdego kodu.",
+        "options": [
+          "Prawda — kody są wysyłane z serwera do aplikacji",
+          "Fałsz — zarówno serwer, jak i aplikacja niezależnie obliczają ten sam kod przy użyciu współdzielonego sekretu i bieżącego czasu"
+        ]
+      },
+      {
+        "q": "Przed którym atakiem jest specjalnie zaprojektowane uwierzytelnianie 2FA z dopasowaniem numerów?",
+        "options": [
+          "Atakami MFA fatigue, gdzie atakujący zalewają powiadomieniami push, licząc na przypadkowe zatwierdzenie",
+          "Atakami SIM swapping, które przekierowują kody SMS na telefon atakującego"
+        ]
+      }
+    ]
+  },
+  "bt-23": {
+    "questions": [
+      {
+        "q": "Prawda czy fałsz: Długie hasło złożone z czterech losowych słów jest ogólnie silniejsze niż 8-znakowe hasło ze złożonymi podstawieniami jak P@ssw0rd.",
+        "options": [
+          "Prawda — długość wykładniczo zwiększa entropię, a podstawienia są w słownikach atakujących",
+          "Fałsz — złożone podstawiania znaków sprawiają, że krótsze hasła są bardziej odporne na łamanie"
+        ]
+      },
+      {
+        "q": "Jaki był najistotniejszy skutek włamania do RockYou w 2009 roku?",
+        "options": [
+          "Udowodniono, że hashowanie bcrypt sprawia, że hasła są nieodłamalne na dużą skalę",
+          "32 miliony haseł przechowywanych w postaci tekstu jawnego zostały ujawnione, tworząc rockyou.txt — najczęściej używaną listę słów do łamania haseł"
+        ]
+      },
+      {
+        "q": "Przy 100 miliardach prób na sekundę, ile czasu zajęłoby złamanie hasła o entropii 71 bitów?",
+        "options": [
+          "Kilka sekund do kilku minut",
+          "Około 750 lat"
+        ]
+      },
+      {
+        "q": "Prawda czy fałsz: Solenie skrótu hasła zapobiega atakom tablicą tęczy przez zapewnienie, że dwaj użytkownicy z tym samym hasłem mają różne przechowywane skróty.",
+        "options": [
+          "Prawda",
+          "Fałsz — solenie jedynie spowalnia ataki brute-force, a nie wyszukiwania tablicą tęczy"
+        ]
+      },
+      {
+        "q": "Który algorytm hashowania jest najbardziej odpowiedni do przechowywania haseł użytkowników w nowoczesnej aplikacji?",
+        "options": [
+          "MD5 lub SHA-1, ponieważ są szybkie i szeroko wspierane",
+          "bcrypt lub Argon2id, ponieważ są celowo powolne i odporne na łamanie oparte na GPU"
+        ]
+      }
+    ]
+  },
+  "bt-24": {
+    "questions": [
+      {
+        "q": "Prawda czy fałsz: W otwartej sieci WiFi atakujący musi wysyłać pakiety do urządzenia, aby przechwycić ruch.",
+        "options": [
+          "Prawda — do przechwycenia ruchu wymagane jest aktywne wstrzyknięcie",
+          "Fałsz — pasywne podsłuchiwanie przechwytuje wszystkie niezaszyfrowane ramki bez wysyłania nawet jednego pakietu"
+        ]
+      },
+      {
+        "q": "Jaką ochronę zapewnia HTTPS w publicznej sieci WiFi?",
+        "options": [
+          "Szyfruje zawartość ruchu webowego, choć domena docelowa pozostaje widoczna przez SNI",
+          "W pełni szyfruje cały ruch, włącznie z zapytaniami DNS, i całkowicie ukrywa domenę docelową"
+        ]
+      },
+      {
+        "q": "Jak APT Darkhotel kompromitował dyrektorów w sieciach WiFi hoteli?",
+        "options": [
+          "Kradnąc hasła WiFi hotelu za pomocą ataków brute-force na router",
+          "Siedząc w sieci hotelowej jako man-in-the-middle i wstrzykując złośliwe fałszywe monity o aktualizację oprogramowania w połączenia HTTP"
+        ]
+      },
+      {
+        "q": "Prawda czy fałsz: W sieci WiFi WPA2 Personal, jeśli znasz hasło sieciowe, możesz odszyfrować ruch innych użytkowników.",
+        "options": [
+          "Prawda — wszystkie urządzenia w sieci WPA2 Personal współdzielą ten sam klucz szyfrowania",
+          "Fałsz — WPA2 używa kluczy sesji, które uniemożliwiają innym użytkownikom odszyfrowywanie ruchu"
+        ]
+      },
+      {
+        "q": "Która opcja zapewnia najsilniejszą ochronę, gdy musisz używać niezaufanej sieci?",
+        "options": [
+          "Używanie tylko stron HTTPS, które szyfrują treść i ukrywają wszystkie metadane",
+          "Używanie punktu dostępu mobilnego telefonu, który tworzy izolowany kanał 4G/5G z dala od współdzielonego WiFi"
+        ]
+      }
+    ]
+  },
+  "bt-25": {
+    "questions": [
+      {
+        "q": "Prawda czy fałsz: Ataki socjotechniczne wymagają exploitowania podatności oprogramowania, aby zakończyć się sukcesem.",
+        "options": [
+          "Prawda — atakujący potrzebują technicznego punktu wejścia",
+          "Fałsz — inżynieria społeczna manipuluje bezpośrednio ludźmi, omijając wszystkie techniczne kontrole"
+        ]
+      },
+      {
+        "q": "W oszustwie BEC Facebook/Google, jak atakujący Evaldas Rimasauskas ukradł ponad 120 milionów dolarów?",
+        "options": [
+          "Włamując się do systemów finansowych firm za pomocą malware",
+          "Wysyłając fałszywe faktury podszywające się pod prawdziwego dostawcę, któremu obie firmy regularnie płaciły"
+        ]
+      },
+      {
+        "q": "Jaką dźwignię psychologiczną exploituje pilność w atakach socjotechnicznych?",
+        "options": [
+          "Nadpisuje racjonalne podejmowanie decyzji przez ofiarę, tworząc panikę i presję czasu",
+          "Sprawia, że ofiara czuje się obserwowana i musi się podporządkować, aby uniknąć kary"
+        ]
+      },
+      {
+        "q": "Prawda czy fałsz: Legalni pracownicy działu IT czasem będą potrzebować twojego hasła, aby pomóc zdiagnozować i naprawić problemy z kontem.",
+        "options": [
+          "Prawda — zespoły IT wymagają danych uwierzytelniających, aby uzyskać dostęp do kont w celu rozwiązywania problemów",
+          "Fałsz — legalne IT nigdy nie potrzebuje twojego hasła; prośba o nie jest sygnałem ostrzegawczym"
+        ]
+      },
+      {
+        "q": "Jaki jest właściwy sposób weryfikacji tożsamości osoby twierdzącej, że jest z działu IT lub agencji bezpieczeństwa?",
+        "options": [
+          "Poproś ich o numer pracowniczy i zapisz go",
+          "Rozłącz się i oddzwoń używając znanego oficjalnego numeru, a nie podanego przez nich"
+        ]
+      }
+    ]
+  },
+  "bt-26": {
+    "questions": [
+      {
+        "q": "Prawda czy fałsz: Większość rzeczywistych cyberataków exploituje podatności zero-day, dla których nie istnieje żadna dostępna łatka.",
+        "options": [
+          "Prawda — atakujący opierają się głównie na nieznanych podatnościach",
+          "Fałsz — większość ataków exploituje znane, możliwe do załatania podatności, ponieważ większość systemów jest słabo łatana"
+        ]
+      },
+      {
+        "q": "Ransomware WannaCry zainfekował 200 000 komputerów w 2017 roku. Jaki był kluczowy czynnik, który to umożliwił?",
+        "options": [
+          "Atakujący odkryli nową podatność zero-day, o której nikt nie wiedział",
+          "Łatka dla exploitowanej podatności (MS17-010) była dostępna od dwóch miesięcy, ale nie została zastosowana"
+        ]
+      },
+      {
+        "q": "Co wskazuje wynik CVSS 9,8 dla podatności?",
+        "options": [
+          "Jest to podatność o krytycznej dotkliwości, prawdopodobnie umożliwiająca zdalne wykonanie kodu bez uwierzytelnienia",
+          "Jest to podatność o umiarkowanej dotkliwości wymagająca dostępu lokalnego do exploitowania"
+        ]
+      },
+      {
+        "q": "Prawda czy fałsz: Log4Shell (CVE-2021-44228) wymagał od atakujących wcześniejszego dostępu do systemu przed exploitowaniem.",
+        "options": [
+          "Prawda — Log4Shell wymagał uwierzytelnionego dostępu do wywołania",
+          "Fałsz — wystarczyło wysłanie jednego specjalnie spreparowanego ciągu znaków, który został zarejestrowany, aby wywołać zdalne wykonanie kodu"
+        ]
+      },
+      {
+        "q": "Czym jest podatność zero-day?",
+        "options": [
+          "Podatnością nieznaną dostawcy, dla której nie istnieje jeszcze żadna łatka",
+          "Podatnością, która została załatana tego samego dnia, gdy była publicznie ujawniona"
+        ]
+      }
+    ]
+  },
+  "bt-27": {
+    "questions": [
+      {
+        "q": "Prawda czy fałsz: Naruszenie danych naraża cię tylko wtedy, gdy popełniłeś błąd bezpieczeństwa w tej firmie.",
+        "options": [
+          "Prawda — naruszenia ujawniają tylko użytkowników ze słabymi hasłami",
+          "Fałsz — twoje dane są ujawniane za każdym razem, gdy firma, która je przechowuje, zostaje naruszona, niezależnie od twoich własnych praktyk bezpieczeństwa"
+        ]
+      },
+      {
+        "q": "Czym jest credential stuffing?",
+        "options": [
+          "Attak, w którym skradzione pary nazw użytkowników i haseł z jednego naruszenia są automatycznie testowane na innych witrynach",
+          "Technika odgadywania haseł przez wypróbowanie każdej możliwej kombinacji znaków"
+        ]
+      },
+      {
+        "q": "Jak długo naruszenie Yahoo z 2013 roku obejmujące 3 miliardy kont pozostawało niewykryte przed ujawnieniem?",
+        "options": [
+          "Około trzech lat, odkryte w 2016 roku",
+          "Około sześciu miesięcy, odkryte na początku 2014 roku"
+        ]
+      },
+      {
+        "q": "Prawda czy fałsz: API Have I Been Pwned używa k-anonimowości, co oznacza, że twoje rzeczywiste hasło nigdy nie jest przesyłane podczas sprawdzania, czy zostało ujawnione.",
+        "options": [
+          "Prawda — do API wysyłane są tylko pierwsze 5 znaków skrótu SHA-1",
+          "Fałsz — pełny skrót hasła jest wysyłany do serwera w celu porównania"
+        ]
+      },
+      {
+        "q": "Dlaczego odpowiedzi na pytania bezpieczeństwa są szczególnie niebezpieczne, gdy zostają ujawnione w naruszeniu danych?",
+        "options": [
+          "Pytania bezpieczeństwa są trudniejsze do zmiany niż hasła, a odpowiedzi często pozostają ważne na kontach bezterminowo",
+          "Odpowiedzi na pytania bezpieczeństwa są przechowywane w postaci tekstu jawnego, co czyni je łatwiejszymi do złamania niż hashowane hasła"
+        ]
+      }
+    ]
+  },
+  "bt-28": {
+    "questions": [
+      {
+        "q": "Mając URL https://monterey-aquarium.org.phish-site.ru/tickets — jaka jest rzeczywista domena?",
+        "options": [
+          "monterey-aquarium.org, ponieważ pojawia się jako pierwsza w URL",
+          "phish-site.ru, ponieważ prawdziwa domena to zawsze fragment najbardziej na prawo przed pierwszym ukośnikiem"
+        ]
+      },
+      {
+        "q": "Prawda czy fałsz: Kłódka HTTPS w przeglądarce oznacza, że witryna jest bezpieczna i nie jest stroną phishingową.",
+        "options": [
+          "Prawda — HTTPS dowodzi, że witryna jest legalna",
+          "Fałsz — HTTPS dowodzi jedynie, że połączenie jest zaszyfrowane; strony phishingowe rutynowo używają HTTPS z ważnymi certyfikatami"
+        ]
+      },
+      {
+        "q": "Podczas Operacji Aurora, jak atakujący skompromitowali urządzenia pracowników Google?",
+        "options": [
+          "Przez wysyłanie załączników e-mail wymagających od ofiary ręcznego pobrania i uruchomienia pliku",
+          "Przez kierowanie celów na złośliwą witrynę, która exploitowała zero-day przeglądarki Internet Explorer przez drive-by download niewymagający żadnych dodatkowych kliknięć"
+        ]
+      },
+      {
+        "q": "Prawda czy fałsz: Skracacze URL jak bit.ly zawsze ujawniają swój ostateczny cel w podglądzie linku przed kliknięciem.",
+        "options": [
+          "Prawda — wszystkie główne skracacze URL wyświetlają docelowy URL po najechaniu myszą",
+          "Fałsz — skracacze URL ukrywają prawdziwy cel; przed kliknięciem należy je rozwinąć za pomocą narzędzi jak curl lub unshorten.me"
+        ]
+      },
+      {
+        "q": "Która metoda jest najbardziej niezawodna do bezpiecznego sprawdzenia, czy podejrzany URL jest złośliwy?",
+        "options": [
+          "Otwarcie URL w prywatnym lub incognito oknie przeglądarki, aby ograniczyć śledzenie",
+          "Skanowanie URL za pomocą VirusTotal lub Google Safe Browsing przed wizytą"
+        ]
+      }
+    ]
+  },
+  "bt-29": {
+    "questions": [
+      {
+        "q": "Prawda czy fałsz: Większość aplikacji naprawdę potrzebuje stałego dostępu do lokalizacji, aby poprawnie działać.",
+        "options": [
+          "Prawda — stały dostęp jest wymagany przez aplikacje do dostarczania terminowych funkcji opartych na lokalizacji",
+          "Fałsz — prawie żadna aplikacja nie potrzebuje stałego dostępu do lokalizacji; 'Podczas używania' wystarcza dla zdecydowanej większości"
+        ]
+      },
+      {
+        "q": "Jak Cambridge Analytica zebrało dane od 87 milionów użytkowników Facebooka bez zgody większości z nich?",
+        "options": [
+          "Włamało się bezpośrednio do bazy danych Facebooka przy użyciu podatności SQL injection",
+          "Aplikacja quizu osobowości exploitowała API Facebooka, aby zbierać nie tylko dane uczestnika quizu, ale też wszystkich jego znajomych"
+        ]
+      },
+      {
+        "q": "Czym jest zasada minimalizacji danych w kontekście prywatności?",
+        "options": [
+          "Kompresowanie plików z danymi osobowymi, aby zajmowały mniej miejsca na serwerach",
+          "Udostępnianie tylko minimalnej ilości danych osobowych niezbędnych, ponieważ każdy udostępniony fragment staje się potencjalnym narażeniem w przypadku naruszenia"
+        ]
+      },
+      {
+        "q": "Prawda czy fałsz: Brokerzy danych tworzą profile zawierające adresy, numery telefonów i imiona krewnych, które mogą być używane do ukierunkowanego spear phishingu.",
+        "options": [
+          "Prawda",
+          "Fałsz — brokerzy danych sprzedają jedynie zanonimizowane statystyki zbiorcze, a nie indywidualne profile"
+        ]
+      },
+      {
+        "q": "Dlaczego udostępnianie prawdziwego numeru telefonu do SMS-owego 2FA jest potencjalnym ryzykiem prywatności i bezpieczeństwa?",
+        "options": [
+          "Numery telefonów mogą być używane do ataków SIM swapping, gdzie atakujący transferują numer w celu kradzieży kodów SMS",
+          "Numery telefonów umożliwiają aplikacjom śledzenie lokalizacji bez potrzeby udzielania zgody na lokalizację"
+        ]
+      }
+    ]
+  },
+  "bt-30": {
+    "questions": [
+      {
+        "q": "Zgodnie z frameworkiem reagowania na incydenty NIST SP 800-61, jakie powinno być twoje pierwsze działanie po odkryciu kompromisu?",
+        "options": [
+          "Ograniczenie — powstrzymanie aktywnego dostępu atakującego przed zbadaniem pełnego zakresu",
+          "Analiza przyczyn źródłowych — zrozumienie, jak atakujący się dostał, przed podjęciem jakichkolwiek innych działań"
+        ]
+      },
+      {
+        "q": "Prawda czy fałsz: Zmiana hasła po kompromisie konta jest wystarczająca, aby w pełni wyeksmitować atakującego.",
+        "options": [
+          "Prawda — zmiana hasła natychmiast kończy wszelki dostęp atakującego",
+          "Fałsz — atakujący mogą utrzymywać dostęp przez tokeny aplikacji OAuth i reguły przekazywania poczty e-mail, które przeżywają resetowanie hasła"
+        ]
+      },
+      {
+        "q": "Jaki był punkt wejścia ataku ransomware na Colonial Pipeline?",
+        "options": [
+          "Podatność zero-day w oprogramowaniu przemysłowego systemu sterowania rurociągiem",
+          "Jedno skompromitowane hasło VPN bez włączonego 2FA na koncie"
+        ]
+      },
+      {
+        "q": "Prawda czy fałsz: Podczas reagowania na incydenty, dokumentowanie osi czasu i dowodów powinno poczekać do zakończenia pełnego odtwarzania.",
+        "options": [
+          "Prawda — dokumentacja jest czynnością po odtwarzaniu i nie powinna odrywać od naprawy",
+          "Fałsz — dokumentacja powinna przebiegać przez cały czas reagowania; wspiera analizę przyczyn źródłowych, postępowanie prawne i poprawę zabezpieczeń"
+        ]
+      },
+      {
+        "q": "Który z tych elementów jest wskaźnikiem kompromisu (IOC), który powinien wywołać natychmiastowe dochodzenie?",
+        "options": [
+          "Otrzymanie powiadomienia o aktualizacji oprogramowania od znanego dostawcy przez wbudowany mechanizm aktualizacji aplikacji",
+          "Otrzymanie e-maila z resetowaniem hasła, którego nie zainicjowałeś, lub zobaczenie nieznanych urządzeń wymienionych w sesjach konta"
+        ]
+      }
+    ]
+  },
+  "bt-01": {
+    "questions": [
+      {
+        "q": "Prawda czy fałsz: Podczas awarii Facebooka w 2021 roku inżynierowie nie mogli naprawić problemu zdalnie, ponieważ tablice routingu zostały usunięte.",
+        "options": [
+          "Prawda — musieli fizycznie pojechać do centrum danych",
+          "Fałsz — naprawili to zdalnie w ciągu kilku minut"
+        ]
+      },
+      {
+        "q": "Czym jest internet według treści tego etapu?",
+        "options": [
+          "Jedną globalną siecią będącą własnością konsorcjum rządów",
+          "Globalną siecią kratową milionów mniejszych, wzajemnie połączonych sieci"
+        ]
+      },
+      {
+        "q": "Prawda czy fałsz: W topologii kratowej wszystkie urządzenia łączą się przez jeden centralny koncentrator.",
+        "options": [
+          "Prawda — koncentrator jest centralnym koordynatorem",
+          "Fałsz — urządzenia łączą się bezpośrednio ze sobą, bez jednego punktu awarii"
+        ]
+      },
+      {
+        "q": "Które polecenie ujawnia pośrednie routery między urządzeniem a celem?",
+        "options": [
+          "traceroute (lub tracert w systemie Windows)",
+          "arp -a"
+        ]
+      },
+      {
+        "q": "Tablica routingu jest opisana jako 'mapa' sieci. Co się dzieje, gdy ta mapa zostaje utracona?",
+        "options": [
+          "Dane podróżują wolniej, ale nadal docierają do celu przez ścieżki zapasowe",
+          "Routery nie mogą przekazywać pakietów i sieć staje się nieosiągalna"
+        ]
+      }
+    ]
+  },
+  "bt-02": {
+    "questions": [
+      {
+        "q": "Prawda czy fałsz: Prywatny adres IP urządzenia (np. 192.168.1.5) jest bezpośrednio widoczny dla serwerów w publicznym internecie.",
+        "options": [
+          "Prawda — każdy serwer, z którym się kontaktujesz, widzi twój prywatny adres IP",
+          "Fałsz — publiczny adres IP routera jest tym, co widzi internet, za pośrednictwem NAT"
+        ]
+      },
+      {
+        "q": "Dlaczego IANA wyczerpała wszystkie bloki IPv4 w lutym 2011 roku?",
+        "options": [
+          "Około 4,3 miliarda adresów IPv4 było niewystarczające dla liczby urządzeń łączących się z internetem",
+          "IPv6 zostało oficjalnie przyjęte i całkowicie zastąpiło IPv4"
+        ]
+      },
+      {
+        "q": "Który z poniższych jest zakresem prywatnych adresów IP, który nigdy nie pojawia się w publicznym internecie?",
+        "options": [
+          "192.168.0.0/16",
+          "203.0.113.0/24"
+        ]
+      },
+      {
+        "q": "Prawda czy fałsz: IPv6 zostało zaprojektowane specjalnie w celu rozwiązania problemu wyczerpania adresów IPv4.",
+        "options": [
+          "Prawda — używa 128-bitowych adresów zapewniając 340 undecylionów unikalnych adresów",
+          "Fałsz — IPv6 zostało zaprojektowane dla prędkości, a nie przestrzeni adresowej"
+        ]
+      },
+      {
+        "q": "Pakiet podróżujący przez internet zawiera które dwa kluczowe pola adresowania?",
+        "options": [
+          "Źródłowy adres IP i docelowy adres IP",
+          "Źródłowy adres MAC i docelowy adres MAC"
+        ]
+      }
+    ]
+  },
+  "bt-03": {
+    "questions": [
+      {
+        "q": "Prawda czy fałsz: Gdy duży plik jest wysyłany przez internet, podróżuje jako jeden ciągły strumień, a nie jest dzielony.",
+        "options": [
+          "Prawda — internet wysyła pliki w całości, aby zachować integralność",
+          "Fałsz — dane są dzielone na pakiety o rozmiarze ~1500 bajtów, które są składane w miejscu przeznaczenia"
+        ]
+      },
+      {
+        "q": "Czego TCP używa, aby zagwarantować retransmisję utraconych pakietów?",
+        "options": [
+          "Pakietów ACK (potwierdzenia) — odbiorca potwierdza każdy odebrany pakiet",
+          "Wyłącznie numerów sekwencyjnych — nadawca retransmituje wszystko, jeśli jakikolwiek numer zostanie pominięty"
+        ]
+      },
+      {
+        "q": "Który protokół jest szybszy, ale nie gwarantuje dostarczenia ani kolejności?",
+        "options": [
+          "TCP, ponieważ używa trójstronnego uścisku dłoni",
+          "UDP, ponieważ pomija potwierdzenia i konfigurację połączenia"
+        ]
+      },
+      {
+        "q": "Prawda czy fałsz: Atak DDoS Mirai z 2016 roku udał się przez exploitowanie niezałatanej podatności oprogramowania na serwerach Dyn.",
+        "options": [
+          "Prawda — Mirai używał exploita zero-day do crashowania serwerów",
+          "Fałsz — Mirai zalewał Dyn wolumenem pakietów z przejętych urządzeń IoT, przeciążając tablice połączeń"
+        ]
+      },
+      {
+        "q": "Dlaczego projektowanie pakietowe internetu oznacza, że utracony pakiet nie wymaga ponownego wysłania całego pliku?",
+        "options": [
+          "Każdy pakiet ma numer sekwencyjny, więc tylko brakujący pakiet musi być retransmitowany",
+          "Nadawca zawsze wysyła każdy pakiet dwa razy jako wbudowany środek redundancji"
+        ]
+      }
+    ]
+  },
+  "bt-04": {
+    "questions": [
+      {
+        "q": "Prawda czy fałsz: Router zna pełną trasę punkt-do-punktu, którą pakiet odbędzie, przed jego przekazaniem.",
+        "options": [
+          "Prawda — routery koordynują z wyprzedzeniem, aby wstępnie planować pełne trasy",
+          "Fałsz — każdy router decyduje jedynie o następnym skoku na podstawie lokalnej tablicy routingu"
+        ]
+      },
+      {
+        "q": "Gdy docelowy adres IP pakietu pasuje do wielu wpisów w tablicy routingu, który wpis router stosuje?",
+        "options": [
+          "Dopasowanie najbardziej specyficzne (najdłuższy prefiks)",
+          "Pierwszy wpis wymieniony w tablicy routingu"
+        ]
+      },
+      {
+        "q": "Jaką rolę odgrywa BGP w routingu internetowym?",
+        "options": [
+          "Synchronizuje tablice routingu między sieciami, dzięki czemu routery wiedzą, jak dotrzeć do zakresów adresów IP innych sieci",
+          "Szyfruje wpisy tablicy routingu, aby zapobiec nieautoryzowanej modyfikacji"
+        ]
+      },
+      {
+        "q": "Prawda czy fałsz: Podczas incydentu BGP China Telecom w 2010 roku szyfrowanie zostało złamane i prywatne dane zostały odszyfrowane.",
+        "options": [
+          "Prawda — China Telecom odszyfrował cały ruch przechodzący przez ich sieć",
+          "Fałsz — ruch był przekierowywany i czytelny tylko jeśli był niezaszyfrowany, ale żadne szyfrowanie nie zostało złamane"
+        ]
+      },
+      {
+        "q": "Jaki problem bezpieczeństwa ma BGP, który umożliwił incydent China Telecom z 2010 roku?",
+        "options": [
+          "BGP nie ma wbudowanego uwierzytelniania — dowolny router może ogłaszać trasy dla dowolnego zakresu IP",
+          "BGP używa słabego szyfrowania, które może złamać atakujący z zasobami państwowymi"
+        ]
+      }
+    ]
+  },
+  "bt-05": {
+    "questions": [
+      {
+        "q": "Prawda czy fałsz: DNS tłumaczy czytelne dla człowieka nazwy domenowe na adresy IP, których komputery używają do łączenia się.",
+        "options": [
+          "Prawda — to jest podstawowa funkcja DNS",
+          "Fałsz — DNS tłumaczy adresy IP na adresy MAC do lokalnego dostarczania"
+        ]
+      },
+      {
+        "q": "Czym jest TTL (Time To Live) w odpowiedzi DNS?",
+        "options": [
+          "Jak długo rozwiązany adres IP jest buforowany przed potrzebą odświeżenia",
+          "Ile skoków routera zapytanie DNS może wykonać przed wygaśnięciem"
+        ]
+      },
+      {
+        "q": "W ataku na Dyn w 2016 roku, dlaczego główne strony internetowe jak Twitter były niedostępne, mimo że własne serwery Twittera działały normalnie?",
+        "options": [
+          "Serwery Twittera zostały potajemnie wyłączone przez drugorzędny atak, o którym nie poinformowano",
+          "Serwery DNS Dyn zostały wyłączone, więc przeglądarki nie mogły rozwiązać domeny Twittera na adres IP"
+        ]
+      },
+      {
+        "q": "Prawda czy fałsz: Zatruwanie cache DNS polega na zastąpieniu legalnego adresu IP w cache DNS złośliwym.",
+        "options": [
+          "Prawda — ofiara łączy się wtedy z serwerem atakującego, wpisując poprawną domenę",
+          "Fałsz — zatruwanie cache DNS tylko spowalnia wyszukiwania DNS, nie przekierowuje ruchu"
+        ]
+      },
+      {
+        "q": "Która część hierarchii DNS odpowiada jako pierwsza, gdy resolver DNS nie może znaleźć buforowanej odpowiedzi?",
+        "options": [
+          "Główny serwer nazw, który kieruje resolver w stronę właściwego serwera TLD",
+          "Autorytatywny serwer nazw dla konkretnej odpytywanej domeny"
+        ]
+      }
+    ]
+  },
+  "bt-06": {
+    "questions": [
+      {
+        "q": "Prawda czy fałsz: Adres MAC urządzenia jest używany do kierowania ruchu przez globalny internet.",
+        "options": [
+          "Prawda — adresy MAC są podstawowym identyfikatorem używanym przez routery internetowe",
+          "Fałsz — adresy MAC działają w warstwie sieci lokalnej; adresy IP obsługują routing internetowy"
+        ]
+      },
+      {
+        "q": "Co identyfikują pierwsze trzy bajty adresu MAC?",
+        "options": [
+          "Producenta karty interfejsu sieciowego (OUI)",
+          "Przypisany zakres adresów IP urządzenia"
+        ]
+      },
+      {
+        "q": "ARP nie ma uwierzytelniania. Jaki atak to umożliwia w sieci lokalnej?",
+        "options": [
+          "ARP spoofing — atakujący wysyła fałszywe odpowiedzi ARP, aby stać się man-in-the-middle",
+          "ARP flooding — atakujący przeciąża router zbyt wieloma żądaniami adresów"
+        ]
+      },
+      {
+        "q": "Prawda czy fałsz: Nowoczesne systemy operacyjne używają randomizacji adresów MAC, aby zapobiec śledzeniu w różnych sieciach WiFi.",
+        "options": [
+          "Prawda — losowy MAC jest używany dla każdej nowej sieci, aby zapobiec śledzeniu lokalizacji",
+          "Fałsz — randomizacja MAC jest używana tylko na urządzeniach mobilnych, a nie na laptopach czy komputerach stacjonarnych"
+        ]
+      },
+      {
+        "q": "Dlaczego ARP spoofing stanowi poważne zagrożenie nawet w zaszyfrowanych sieciach?",
+        "options": [
+          "ARP spoofing przekierowuje ruch na maszynę atakującego; niezaszyfrowany ruch jest w pełni czytelny, a nawet zaszyfrowany ruch ujawnia metadane połączenia",
+          "ARP spoofing może złamać szyfrowanie TLS przez fałszowanie certyfikatów razem z fałszywą odpowiedzią ARP"
+        ]
+      }
+    ]
+  },
+  "bt-07": {
+    "questions": [
+      {
+        "q": "Prawda czy fałsz: Reguły firewalla są oceniane od góry do dołu, a pierwsza pasująca reguła decyduje o losie pakietu.",
+        "options": [
+          "Prawda — kolejność reguł jest krytyczna; szeroka reguła powyżej wąskiej reguły zasłania tę wąską",
+          "Fałsz — wszystkie reguły są oceniane, a wygrywa najbardziej specyficzne dopasowanie, niezależnie od kolejności"
+        ]
+      },
+      {
+        "q": "Czym jest zasada 'default-deny' w projektowaniu firewalla?",
+        "options": [
+          "Blokowanie całego ruchu, który nie jest jawnie dozwolony przez regułę",
+          "Odmawianie ruchu tylko ze znanych złośliwych adresów IP"
+        ]
+      },
+      {
+        "q": "Jaka jest kluczowa różnica między firewallami bezstanowym i stanowym?",
+        "options": [
+          "Firewall stanowy śledzi stan połączeń, umożliwiając ruch powrotny dla nawiązanych sesji bez otwierania portów przychodzących",
+          "Firewall bezstanowy jest szybszy, ponieważ używa akceleracji sprzętowej; firewalle stanowe używają tylko oprogramowania"
+        ]
+      },
+      {
+        "q": "Prawda czy fałsz: Robak SQL Slammer z 2003 roku mógł zostać zatrzymany przez zablokowanie pojedynczego portu UDP na firewallу.",
+        "options": [
+          "Prawda — zablokowanie UDP portu 1434 całkowicie zapobiegłoby rozprzestrzenianiu się Slammera",
+          "Fałsz — Slammer rozprzestrzeniał się przez wiele portów jednocześnie, czyniąc reguły firewalla nieskutecznymi"
+        ]
+      },
+      {
+        "q": "Gdy szeroka reguła ALLOW pojawia się powyżej konkretnej reguły DENY w zestawie reguł firewalla, co dzieje się z regułą DENY?",
+        "options": [
+          "Reguła DENY nigdy nie jest wyzwalana — cały pasujący ruch jest już dozwolony przez regułę powyżej",
+          "Reguła DENY nadal ma zastosowanie do ruchu, który jej odpowiada, ponieważ konkretne reguły zawsze nadpisują szerokie"
+        ]
+      }
+    ]
+  },
+  "bt-08": {
+    "questions": [
+      {
+        "q": "Prawda czy fałsz: Port 443 jest standardowym portem dla zaszyfrowanego ruchu webowego HTTPS.",
+        "options": [
+          "Prawda — HTTPS domyślnie nasłuchuje na porcie 443",
+          "Fałsz — HTTPS używa portu 80, a HTTP używa portu 443"
+        ]
+      },
+      {
+        "q": "Jak ransomware WannaCry rozprzestrzenił się na 200 000 komputerów bez żadnego działania użytkownika?",
+        "options": [
+          "Automatycznie skanował otwarty port 445 (SMB) i exploitował niezałataną podatność, aby się rozprzestrzeniać",
+          "Był rozprowadzany jako załącznik do e-maila, który użytkownicy musieli otworzyć, aby wywołać infekcję"
+        ]
+      },
+      {
+        "q": "Dlaczego znalezienie otwartego portu 3306 (MySQL) dostępnego z internetu jest uważane za krytyczne odkrycie bezpieczeństwa?",
+        "options": [
+          "Porty bazy danych powinny być dostępne tylko wewnętrznie; publiczne narażenie umożliwia bezpośredni atak na bazę danych",
+          "Port 3306 jest przestarzały, a jego obecność wskazuje na nieaktualne oprogramowanie, które ulegnie awarii pod obciążeniem"
+        ]
+      },
+      {
+        "q": "Prawda czy fałsz: Uruchomienie skanowania portów z domyślnymi ustawieniami nmap gwarantuje sprawdzenie wszystkich 65 535 portów.",
+        "options": [
+          "Prawda — nmap zawsze domyślnie skanuje każdy dostępny port",
+          "Fałsz — domyślne skanowanie nmap obejmuje tylko 1000 najczęstszych portów; pełny zakres wymaga flagi -p-"
+        ]
+      },
+      {
+        "q": "Co numer portu w pakiecie sieciowym mówi odbierającemu systemowi operacyjnemu?",
+        "options": [
+          "Która aplikacja lub usługa powinna obsłużyć przychodzące dane",
+          "Na którym interfejsie sieciowym pakiet dotarł"
+        ]
+      }
+    ]
+  },
+  "bt-09": {
+    "questions": [
+      {
+        "q": "Prawda czy fałsz: Urządzenia w tej samej podsieci mogą komunikować się bezpośrednio, bez przechodzenia przez router.",
+        "options": [
+          "Prawda — ruch w tej samej podsieci pozostaje lokalny i nigdy nie przekracza granicy routera",
+          "Fałsz — cały ruch musi przejść przez router, nawet między urządzeniami w tej samej podsieci"
+        ]
+      },
+      {
+        "q": "Ile użytecznych adresów hostów zapewnia podsieć /24?",
+        "options": [
+          "254 hosty",
+          "65 534 hosty"
+        ]
+      },
+      {
+        "q": "Podczas włamania do Target w 2013 roku, dlaczego dostęp atakującego do konta dostawcy HVAC doprowadził do kradzieży danych kart kredytowych?",
+        "options": [
+          "Sieci Target brakowało odpowiedniej segmentacji, więc podsieć dostawcy HVAC miała bezpośrednią trasę do systemów kasowych",
+          "Konto dostawcy HVAC miało uprawnienia administratora na serwerach płatniczych Target"
+        ]
+      },
+      {
+        "q": "Prawda czy fałsz: Właściwa segmentacja sieci ogranicza skutki naruszenia, uniemożliwiając atakującemu swobodne poruszanie się między podsieciami.",
+        "options": [
+          "Prawda — podsieci z regułami firewalla między nimi zawierają ruch boczny",
+          "Fałsz — zdeterminowany atakujący zawsze może poruszać się między podsieciami po wejściu do sieci"
+        ]
+      },
+      {
+        "q": "Jeśli dwa urządzenia mają adresy IP 10.0.2.15 i 10.0.3.8, oba z maską /24, jak się komunikują?",
+        "options": [
+          "Muszą przesyłać dane przez router lub firewall, ponieważ są w różnych podsieciach /24",
+          "Komunikują się bezpośrednio, ponieważ współdzielą tę samą przestrzeń adresową 10.0.x.x"
+        ]
+      }
+    ]
+  },
+  "bt-10": {
+    "questions": [
+      {
+        "q": "Prawda czy fałsz: TCP nawiązuje połączenie przy użyciu trójstronnego uścisku dłoni (SYN, SYN-ACK, ACK) przed wysłaniem danych.",
+        "options": [
+          "Prawda — ten uścisk dłoni potwierdza gotowość obu stron przed wymianą jakichkolwiek danych",
+          "Fałsz — TCP wysyła dane natychmiast i negocjuje parametry połączenia w pierwszym pakiecie danych"
+        ]
+      },
+      {
+        "q": "Dlaczego atak TCP SYN flood działa jako technika odmowy usługi?",
+        "options": [
+          "Serwery alokują pamięć dla każdego przychodzącego SYN i czekają na ACK, które nigdy nie dociera, wyczerpując tablicę połączeń",
+          "Serwery są zmuszone do odszyfrowywania każdego pakietu SYN, co zużywa nadmierne zasoby CPU"
+        ]
+      },
+      {
+        "q": "Prawda czy fałsz: UDP jest preferowany do rozmów wideo i gier w czasie rzeczywistym, ponieważ gwarantuje dostarczenie każdego pakietu.",
+        "options": [
+          "Prawda — gwarancja dostarczenia UDP zapewnia spójność klatek wideo",
+          "Fałsz — UDP jest preferowany ze względu na małe obciążenie, co czyni go szybszym; utracona klatka jest akceptowalna"
+        ]
+      },
+      {
+        "q": "W modelu TCP/IP, jaka jest rola warstwy transportowej?",
+        "options": [
+          "Zapewnienie niezawodnego (TCP) lub szybkiego (UDP) dostarczania między aplikacjami na różnych hostach",
+          "Tłumaczenie nazw domenowych na adresy IP dla aplikacji"
+        ]
+      },
+      {
+        "q": "Zgodnie z treścią etapu, co jest fundamentalnie prawdziwe w każdej podatności sieciowej?",
+        "options": [
+          "Exploituje wadę lub niezamierzone zachowanie w projekcie lub założeniach protokołu",
+          "Wymaga fizycznego dostępu do sprzętu sieciowego, aby być skuteczną"
+        ]
+      }
+    ]
+  }
+}

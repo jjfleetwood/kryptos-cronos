@@ -1,0 +1,350 @@
+{
+  "audit-cm01": {
+    "questions": [
+      {
+        "q": "NIST SP 800-137 defines ISCM as a continuous cycle of six steps. Is the final step 'Review'?",
+        "options": ["True", "False"],
+        "correct": 0
+      },
+      {
+        "q": "Which monitoring tier owns governance and strategy in the ISCM framework?\nA) The information system tier (SOC team)\nB) The organizational tier (CISO governance)",
+        "options": ["A) The information system tier", "B) The organizational tier"],
+        "correct": 1
+      },
+      {
+        "q": "Under NIST 800-137, should monitoring frequency be the same for all systems regardless of criticality?",
+        "options": ["True", "False"],
+        "correct": 1
+      },
+      {
+        "q": "The OPM breach went undetected for over a year. What was the primary contributing factor?\nA) Absence of a functioning ISCM program with anomaly detection\nB) The attackers used zero-day exploits that no tool could detect",
+        "options": ["A) Absence of a functioning ISCM program", "B) Undetectable zero-day exploits"],
+        "correct": 0
+      },
+      {
+        "q": "A HIGH-impact system should be monitored continuously (approximately every 1 hour) under the ISCM frequency framework. Is this correct?",
+        "options": ["True", "False"],
+        "correct": 0
+      }
+    ]
+  },
+  "audit-cm02": {
+    "questions": [
+      {
+        "q": "Traditional signature-based SIEMs are effective at detecting living-off-the-land (LOTL) attacks that stay below individual rule thresholds. Is this true?",
+        "options": ["True", "False"],
+        "correct": 1
+      },
+      {
+        "q": "What is the primary purpose of schema normalization (OCSF/ECS) at ingest time in a next-gen SIEM?\nA) To compress log data and reduce storage costs\nB) To enable a single detection rule to match across dozens of data sources",
+        "options": ["A) Compress log data to reduce storage costs", "B) Enable one rule to match across many data sources"],
+        "correct": 1
+      },
+      {
+        "q": "The SolarWinds SUNBURST malware was discovered through a SIEM signature alert firing on known attack patterns. Is this correct?",
+        "options": ["True", "False"],
+        "correct": 1
+      },
+      {
+        "q": "Which ML technique is best suited for detecting novel user login anomalies when no labeled attack data exists?\nA) Isolation Forest (unsupervised outlier detection)\nB) XGBoost trained on labeled threat data (supervised classification)",
+        "options": ["A) Isolation Forest (unsupervised)", "B) XGBoost (supervised)"],
+        "correct": 0
+      },
+      {
+        "q": "False positive reduction is the primary operational challenge in next-gen SIEM deployments. Is this accurate?",
+        "options": ["True", "False"],
+        "correct": 0
+      }
+    ]
+  },
+  "audit-cm03": {
+    "questions": [
+      {
+        "q": "UEBA can detect an attacker using stolen but valid credentials by comparing their behavior against the account's own baseline. Is this true?",
+        "options": ["True", "False"],
+        "correct": 0
+      },
+      {
+        "q": "What is the key advantage of UEBA's risk score chaining approach over single-rule alerting?\nA) It reduces false positives by requiring multiple low-confidence signals to compound into a high-confidence alert\nB) It eliminates the need for behavioral baselines by using only signature matching",
+        "options": ["A) Multiple signals compound to reduce false positives", "B) Eliminates baselines via signature matching"],
+        "correct": 0
+      },
+      {
+        "q": "UEBA systems are typically reliable for detection accuracy from the very first day of deployment, with no baseline period needed. Is this correct?",
+        "options": ["True", "False"],
+        "correct": 1
+      },
+      {
+        "q": "In the Tesla insider threat case, which data source would have provided the strongest early UEBA signal?\nA) Network firewall logs from the corporate perimeter\nB) Large HR file downloads and USB device activity outside normal patterns",
+        "options": ["A) Network firewall logs", "B) HR file downloads and USB device activity"],
+        "correct": 1
+      },
+      {
+        "q": "A CFO and a junior analyst should share the same UEBA behavioral baseline since they work at the same organization. Is this true?",
+        "options": ["True", "False"],
+        "correct": 1
+      }
+    ]
+  },
+  "audit-cm04": {
+    "questions": [
+      {
+        "q": "NDR can detect C2 beaconing in encrypted HTTPS traffic by analyzing connection timing and payload size patterns, without decrypting the traffic. Is this true?",
+        "options": ["True", "False"],
+        "correct": 0
+      },
+      {
+        "q": "What makes NDR uniquely valuable compared to EDR for covering IoT and OT devices?\nA) NDR passively observes network traffic without requiring an agent on monitored devices\nB) NDR decrypts all TLS traffic to inspect payloads at the application layer",
+        "options": ["A) Passive observation with no agent required", "B) Decrypts all TLS traffic for payload inspection"],
+        "correct": 0
+      },
+      {
+        "q": "A web server initiating large volumes of unexpected outbound HTTPS connections is considered a normal behavioral pattern in NDR baselines. Is this correct?",
+        "options": ["True", "False"],
+        "correct": 1
+      },
+      {
+        "q": "In the Hafnium Exchange attack, what behavioral anomaly did NDR-equipped organizations detect?\nA) Exchange servers initiating external connections — a deviation from their expected network role\nB) Malformed HTTP packets that matched known vulnerability signatures",
+        "options": ["A) Exchange servers initiating unexpected external connections", "B) Malformed HTTP packets matching signatures"],
+        "correct": 0
+      },
+      {
+        "q": "JA3 TLS fingerprints can identify specific malware families even when the traffic is encrypted and the payload cannot be read. Is this true?",
+        "options": ["True", "False"],
+        "correct": 0
+      }
+    ]
+  },
+  "audit-cm05": {
+    "questions": [
+      {
+        "q": "CSPM platforms require endpoint agents installed on every cloud resource to audit security configurations. Is this correct?",
+        "options": ["True", "False"],
+        "correct": 1
+      },
+      {
+        "q": "What does CSPM attack path analysis model that a standard single-resource misconfiguration check cannot?\nA) How an attacker could chain multiple misconfigurations to reach sensitive data\nB) Whether individual resources comply with CIS Benchmark controls",
+        "options": ["A) Chains of misconfigurations leading to sensitive data", "B) Individual resource CIS Benchmark compliance"],
+        "correct": 0
+      },
+      {
+        "q": "The Capital One breach was caused primarily by a software vulnerability in a cloud service, not a misconfiguration. Is this true?",
+        "options": ["True", "False"],
+        "correct": 1
+      },
+      {
+        "q": "Which finding would a CSPM platform flag as the highest severity threat?\nA) An S3 bucket with server-side encryption disabled\nB) A public-facing EC2 instance with an IAM role granting Action:* Resource:* to all S3 buckets",
+        "options": ["A) S3 bucket without encryption", "B) Public EC2 with full-access IAM role to all S3"],
+        "correct": 1
+      },
+      {
+        "q": "CSPM has evolved from checking individual resource configurations to performing graph-based attack path analysis. Is this accurate?",
+        "options": ["True", "False"],
+        "correct": 0
+      }
+    ]
+  },
+  "audit-cm06": {
+    "questions": [
+      {
+        "q": "STIX defines the data model for threat intelligence objects, while TAXII is the transport protocol for sharing that data. Is this correct?",
+        "options": ["True", "False"],
+        "correct": 0
+      },
+      {
+        "q": "What role does a Threat Intelligence Platform (TIP) play between raw intelligence feeds and the SIEM?\nA) It aggregates, deduplicates, and scores feeds before exposing a unified TAXII endpoint\nB) It generates new threat signatures by analyzing malware samples in a sandbox",
+        "options": ["A) Aggregates, deduplicates, and scores feeds", "B) Generates signatures from malware sandboxing"],
+        "correct": 0
+      },
+      {
+        "q": "Volt Typhoon was detected primarily through signature-based SIEM rules matching its known malware hashes. Is this true?",
+        "options": ["True", "False"],
+        "correct": 1
+      },
+      {
+        "q": "Why do STIX indicators include confidence scores and expiry dates?\nA) To prevent stale or low-confidence IoCs from generating false positive alerts\nB) To rank which threat actors are the most sophisticated",
+        "options": ["A) To prevent stale IoCs from generating false positives", "B) To rank threat actor sophistication"],
+        "correct": 0
+      },
+      {
+        "q": "CISA's Automated Indicator Sharing (AIS) provides free STIX/TAXII access to any subscribing organization. Is this true?",
+        "options": ["True", "False"],
+        "correct": 0
+      }
+    ]
+  },
+  "audit-cm07": {
+    "questions": [
+      {
+        "q": "A SOAR playbook should execute high-impact actions like disabling a CEO's account automatically without any human approval step. Is this a recommended practice?",
+        "options": ["True", "False"],
+        "correct": 1
+      },
+      {
+        "q": "What is the primary metric used to measure SOAR's value in a SOC?\nA) MTTR — Mean Time to Respond\nB) MTTD — Mean Time to Detect",
+        "options": ["A) MTTR — Mean Time to Respond", "B) MTTD — Mean Time to Detect"],
+        "correct": 0
+      },
+      {
+        "q": "The correct SOAR playbook design order is: respond first, then enrich context to confirm the decision. Is this the recommended approach?",
+        "options": ["True", "False"],
+        "correct": 1
+      },
+      {
+        "q": "In the Twilio 2022 breach, what automated SOAR action could have limited the cascading impact on 125 downstream organizations?\nA) Suspending affected accounts within minutes of detecting anomalous authentication\nB) Blocking all SMS traffic until a manual review was completed",
+        "options": ["A) Auto-suspend affected accounts on anomalous auth detection", "B) Block all SMS traffic pending manual review"],
+        "correct": 0
+      },
+      {
+        "q": "SOAR playbooks should be treated as production code — subject to version control, peer review, and staged rollout. Is this true?",
+        "options": ["True", "False"],
+        "correct": 0
+      }
+    ]
+  },
+  "audit-cm08": {
+    "questions": [
+      {
+        "q": "Honeytokens generate frequent false positives because legitimate users may accidentally access them during normal operations. Is this true?",
+        "options": ["True", "False"],
+        "correct": 1
+      },
+      {
+        "q": "Why are Active Directory honeypot accounts with Kerberoastable SPNs particularly effective for detecting attackers?\nA) Requesting a Kerberos ticket for a decoy SPN reveals an attacker performing privilege escalation reconnaissance\nB) They automatically block an attacker's login attempt when the SPN is queried",
+        "options": ["A) SPN ticket request reveals attacker reconnaissance", "B) Automatically blocks attacker login on SPN query"],
+        "correct": 0
+      },
+      {
+        "q": "An AWS IAM honeytoken access key deployed with a deny-all policy creates operational risk if an attacker uses it, because the attacker can access AWS resources. Is this correct?",
+        "options": ["True", "False"],
+        "correct": 1
+      },
+      {
+        "q": "In the 2022 Uber breach, what deception technology could have provided early warning during the lateral movement phase?\nA) Honeytokens — fake credentials embedded alongside real ones in internal repositories\nB) A network honeypot server mimicking an internal database",
+        "options": ["A) Honeytokens in internal repositories", "B) A network honeypot database server"],
+        "correct": 0
+      },
+      {
+        "q": "Scale matters in deception deployments — deploying hundreds of decoys significantly increases the probability that a laterally-moving attacker triggers one. Is this true?",
+        "options": ["True", "False"],
+        "correct": 0
+      }
+    ]
+  },
+  "audit-cm09": {
+    "questions": [
+      {
+        "q": "Zero Trust Architecture operates on the principle of 'trust but verify' — once a user is inside the corporate network, implicit trust is granted. Is this correct?",
+        "options": ["True", "False"],
+        "correct": 1
+      },
+      {
+        "q": "What triggered Google to design the BeyondCorp Zero Trust architecture?\nA) Operation Aurora — a Chinese state-sponsored attack that exploited implicit trust in internal network traffic\nB) A regulatory requirement from NIST to eliminate corporate VPN usage",
+        "options": ["A) Operation Aurora exposed implicit internal network trust", "B) NIST regulatory requirement to eliminate VPNs"],
+        "correct": 0
+      },
+      {
+        "q": "Under Zero Trust CARTA, a session's trust level is permanently fixed at the time of initial authentication and cannot change mid-session. Is this true?",
+        "options": ["True", "False"],
+        "correct": 1
+      },
+      {
+        "q": "Which component of a Zero Trust architecture makes the access allow/deny decision?\nA) The Policy Decision Point (PDP)\nB) The Identity Provider (IDP)",
+        "options": ["A) The Policy Decision Point (PDP)", "B) The Identity Provider (IDP)"],
+        "correct": 0
+      },
+      {
+        "q": "Zero Trust monitoring generates richer audit telemetry than traditional perimeter monitoring because every access decision — not just security events — is logged. Is this true?",
+        "options": ["True", "False"],
+        "correct": 0
+      }
+    ]
+  },
+  "audit-cm10": {
+    "questions": [
+      {
+        "q": "XDR requires analysts to pivot across separate EDR, NDR, and identity consoles to manually correlate alerts into an incident. Is this how XDR works?",
+        "options": ["True", "False"],
+        "correct": 1
+      },
+      {
+        "q": "How does XDR entity graph correlation automatically link alerts from different telemetry sources?\nA) By finding alerts sharing the same entity (host, IP, user) within a time window\nB) By matching alert text against a library of known attack descriptions",
+        "options": ["A) Shared entities within a time window", "B) Alert text matched against attack descriptions"],
+        "correct": 0
+      },
+      {
+        "q": "MITRE ATT&CK technique tagging in XDR helps analysts understand the attack chain narrative rather than investigating alerts in isolation. Is this true?",
+        "options": ["True", "False"],
+        "correct": 0
+      },
+      {
+        "q": "In the Lapsus$ Microsoft breach, what was the key detection failure that XDR was designed to address?\nA) Disparate signals across multiple telemetry sources were not correlated into a single incident view in time\nB) The attackers used a zero-day vulnerability with no existing detection signature",
+        "options": ["A) Signals not correlated across sources in time", "B) Undetectable zero-day vulnerability"],
+        "correct": 0
+      },
+      {
+        "q": "XDR's core value proposition is that analysts work individual alerts rather than grouped incidents, enabling more granular investigation. Is this correct?",
+        "options": ["True", "False"],
+        "correct": 1
+      }
+    ]
+  },
+  "audit-cm11": {
+    "questions": [
+      {
+        "q": "Traditional annual compliance audits provide a continuous real-time view of an organization's security control effectiveness throughout the year. Is this true?",
+        "options": ["True", "False"],
+        "correct": 1
+      },
+      {
+        "q": "What is the primary mechanism continuous compliance platforms use to collect control evidence?\nA) Automated API calls to cloud provider and IDP systems on a scheduled basis\nB) Manual questionnaires sent to system owners on a quarterly basis",
+        "options": ["A) Automated API calls to cloud and IDP systems", "B) Manual quarterly questionnaires to system owners"],
+        "correct": 0
+      },
+      {
+        "q": "Continuous compliance monitoring can reduce audit preparation time by 60–80% by automating evidence collection. Is this accurate?",
+        "options": ["True", "False"],
+        "correct": 0
+      },
+      {
+        "q": "The FTC Drizly consent order was significant for compliance programs primarily because it:\nA) Established that individual executives can be held personally liable for systemic compliance failures\nB) Required Drizly to undergo a one-time security audit within 90 days of the breach",
+        "options": ["A) Executives personally liable for systemic failures", "B) Required a one-time 90-day security audit"],
+        "correct": 0
+      },
+      {
+        "q": "In a continuous compliance program, control drift — when a control moves out of compliance between audit cycles — is detected immediately rather than at the next annual audit. Is this true?",
+        "options": ["True", "False"],
+        "correct": 0
+      }
+    ]
+  },
+  "audit-cm12": {
+    "questions": [
+      {
+        "q": "The IBM 2023 Cost of a Data Breach report found that the industry median MTTD was approximately 21 days. Is this correct?",
+        "options": ["True", "False"],
+        "correct": 0
+      },
+      {
+        "q": "Which SOC maturity level is the minimum recommended target for enterprise organizations according to the CREST model?\nA) Level 3 (Proactive — threat hunting and behavioral detection)\nB) Level 1 (Reactive — incident-driven with no proactive monitoring)",
+        "options": ["A) Level 3 — Proactive", "B) Level 1 — Reactive"],
+        "correct": 0
+      },
+      {
+        "q": "A false positive rate above 5% is considered acceptable for a mature SOC because analysts are trained to handle high alert volumes. Is this true?",
+        "options": ["True", "False"],
+        "correct": 1
+      },
+      {
+        "q": "The MGM Resorts breach in 2023 demonstrated that MTTD failure is purely a technical problem — faster detection tools would have fully prevented the $100M loss. Is this accurate?",
+        "options": ["True", "False"],
+        "correct": 1
+      },
+      {
+        "q": "What SOAR automation coverage target is needed to achieve sub-hour MTTR at scale?\nA) Greater than 70% of alert types covered by automated playbooks\nB) Greater than 20% of alert types covered by automated playbooks",
+        "options": ["A) Greater than 70% automation coverage", "B) Greater than 20% automation coverage"],
+        "correct": 0
+      }
+    ]
+  }
+}

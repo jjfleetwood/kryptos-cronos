@@ -1,4 +1,4 @@
-import type { DiagramNode } from "@/data/types";
+import type { DiagramNode } from "@kryptos/core/types";
 
 const nodeStyles: Record<DiagramNode["type"], { border: string; bg: string; text: string }> = {
   attacker: { border: "border-red-500/60",    bg: "bg-red-500/10",    text: "text-red-400" },

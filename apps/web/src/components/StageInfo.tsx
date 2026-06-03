@@ -5,10 +5,10 @@ import AttackDiagram from "./AttackDiagram";
 import GaugeBar from "./GaugeBar";
 import BackLink from "./BackLink";
 import RichText from "./RichText";
-import type { StageConfig } from "@/data/types";
-import type { StageTranslation } from "@/data/translations/types";
-import { stageDownloads } from "@/data/stage-downloads";
-import { getDomainsForStage } from "@/data/cyberops-domains";
+import type { StageConfig } from "@kryptos/core/types";
+import type { StageTranslation } from "@kryptos/core/translations/types";
+import { stageDownloads } from "@kryptos/core/stage-downloads";
+import { getDomainsForStage } from "@kryptos/core/cyberops-domains";
 import { getCertBadgesForStage } from "@kryptos/core/cert-domains";
 import { useLocale } from "@/contexts/LocaleContext";
 

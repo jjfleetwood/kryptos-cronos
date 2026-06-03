@@ -1,0 +1,290 @@
+{
+  "audit-a01": {
+    "questions": [
+      {
+        "q": "W API narzędzi Claude, czego Claude używa, aby zdecydować, kiedy wywołać konkretne narzędzie?",
+        "options": ["Pola opisu narzędzia", "Pola input_schema narzędzia"]
+      },
+      {
+        "q": "Prawda czy fałsz: W pętli agentycznej Claude wykonuje narzędzia bezpośrednio wewnątrz wywołania API.",
+        "options": ["Prawda — Claude uruchamia narzędzia wewnętrznie", "Fałsz — twój kod wykonuje narzędzie i zwraca tool_result"]
+      },
+      {
+        "q": "Który wektor naruszenia Capital One narzędzie agentycznego audytu odpytujące reguły WAF wykryłoby wcześnie?",
+        "options": ["Odchylenie od dobrze znanych bazowych konfiguracji WAF", "Niezaszyfrowany zasobnik S3 utworzony przez dewelopera"]
+      },
+      {
+        "q": "Definicja narzędzia wymaga trzech części. Który zestaw jest prawidłowy?",
+        "options": ["name, description i input_schema", "name, endpoint i output_schema"]
+      },
+      {
+        "q": "Prawda czy fałsz: Powinieneś zawsze walidować dane wejściowe narzędzi po stronie serwera, ponieważ Claude zawsze przekazuje doskonale ukształtowane argumenty.",
+        "options": ["Prawda — Claude nigdy nie wysyła nieoczekiwanych kształtów argumentów", "Fałsz — Claude może przekazywać nieoczekiwane kształty argumentów; zawsze waliduj po stronie serwera"]
+      }
+    ]
+  },
+  "audit-a02": {
+    "questions": [
+      {
+        "q": "Jaki procent organizacji zazwyczaj ma nieudokumentowane punkty końcowe API nieobecne w ich oficjalnym inwentarzu?",
+        "options": ["60% lub więcej", "Mniej niż 10%"]
+      },
+      {
+        "q": "Prawda czy fałsz: W agentycznym wyliczaniu API, Claude powinien egzekwować limity szybkości i reguły zakresu bezpośrednio poprzez rozumowanie w prompcie.",
+        "options": ["Prawda — osąd Claude jest wystarczający do egzekwowania zakresu", "Fałsz — limity szybkości i zakres muszą być egzekwowane w implementacjach narzędzi, nie przez Claude"]
+      },
+      {
+        "q": "Ekspozycja API Peloton (2021) została odkryta, ponieważ jedna wersja API wymagała uwierzytelnienia, podczas gdy inna nie. Co to ilustruje?",
+        "options": ["Regresja uwierzytelnienia — nowsza wersja osłabiła uwierzytelnienie względem poprzedniej wersji", "Zbyt permisywna rola IAM dołączona do serwera API"]
+      },
+      {
+        "q": "W pętli agenta wyliczania, co robi Claude, gdy stop_reason to 'end_turn'?",
+        "options": ["Zsyntetyzował swój końcowy raport i nie są potrzebne dalsze wywołania narzędzi", "Napotkał błąd i pętla musi się zrestartować od początku"]
+      },
+      {
+        "q": "Prawda czy fałsz: Główną techniką znajdowania shadow API jest porównywanie tabeli tras aktywnej bramy API z oficjalną specyfikacją OpenAPI.",
+        "options": ["Prawda — różnicowanie aktywnych tras vs. udokumentowana specyfikacja ujawnia nieudokumentowane punkty końcowe", "Fałsz — shadow API są znajdowane przez brute-force wszystkich możliwych ścieżek URL"]
+      }
+    ]
+  },
+  "audit-a03": {
+    "questions": [
+      {
+        "q": "Jakie jest główne ograniczenie skanerów sekretów opartych tylko na regex, takich jak truffleHog?",
+        "options": ["Wykrywają dobrze sformatowane sekrety, ale nie wykrywają zaciemnionych poświadczeń i przypadków zależnych od kontekstu", "Są zbyt wolne do użytku produkcyjnego na dużych repozytoriach"]
+      },
+      {
+        "q": "Prawda czy fałsz: Usunięcie pliku zawierającego sekret z repozytorium git trwale usuwa sekret ze wszystkich kopii repozytorium.",
+        "options": ["Prawda — git rm usuwa plik z historii", "Fałsz — sekret pozostaje w historii git; każdy deweloper, który sklonował repozytorium, nadal go posiada"]
+      },
+      {
+        "q": "W dwufazowej architekturze skanowania, jakie jest wyjście klasyfikacji Claude dla każdego ustalenia?",
+        "options": ["confirmed_secret, likely_placeholder lub false_positive", "critical, high, medium lub low"]
+      },
+      {
+        "q": "Naruszenie Uber z 2022 roku dotyczyło poświadczeń w skryptach PowerShell na udziale sieciowym. Co to podkreśla?",
+        "options": ["Skanowanie sekretów musi rozszerzać się poza repozytoria git na konfiguracje CI, IaC, skrypty operacyjne i inne", "Skanery regex są wystarczające, gdy obejmują wszystkie gałęzie git, w tym gałęzie funkcji"]
+      },
+      {
+        "q": "Prawda czy fałsz: Klasyfikacja sekretów wspomagana AI może zmniejszyć czas przeglądu analityków o 80% lub więcej w porównaniu z wyjściem tylko z regex.",
+        "options": ["Prawda — kontekstowa klasyfikacja Claude dramatycznie zmniejsza szum fałszywych pozytywów", "Fałsz — klasyfikacja AI dodaje narzut przetwarzania, który spowalnia triaż"]
+      }
+    ]
+  },
+  "audit-a04": {
+    "questions": [
+      {
+        "q": "Dlaczego inwentarz zasobów chmury jest uważany za warunek wstępny dla wszystkich późniejszych sprawdzeń audytowych?",
+        "options": ["Nie możesz oceniać kontroli zasobów, których nie wyliczono", "Dostawcy chmury wymagają złożenia inwentarza przed przyznaniem dostępu API audytu"]
+      },
+      {
+        "q": "Prawda czy fałsz: Ekspozycja danych Toyota z 2023 roku trwała 10 lat, ponieważ błędna konfiguracja była technicznie niewykrywalna.",
+        "options": ["Prawda — ustawienie publicznego dostępu było ukrytą funkcją dostawcy chmury", "Fałsz — była to prosta błędna konfiguracja publicznego dostępu, którą zautomatyzowane cotygodniowe skanowanie by wykryło"]
+      },
+      {
+        "q": "Co graf zależności zasobów ujawnia, czego standardowa lista inwentarza nie pokazuje?",
+        "options": ["Które role IAM mają dostęp do których zasobników, umożliwiając analizę łańcucha uprawnień", "Region geograficzny, w którym każdy zasób jest wdrożony"]
+      },
+      {
+        "q": "Które ustalenie jest uważane za KRYTYCZNE podczas audytu wyliczania chmury?",
+        "options": ["Funkcja Lambda z dołączonym AdministratorAccess", "Zasobnik S3 bez włączonego wersjonowania"]
+      },
+      {
+        "q": "Prawda czy fałsz: Agent wyliczania chmury używający AWS SDK może ukończyć inwentarz w minutach, w porównaniu z dniami dla ręcznego przeglądu.",
+        "options": ["Prawda — agentyczne wyliczanie jest dramatycznie szybsze niż ręczny przegląd konsoli", "Fałsz — limity szybkości API sprawiają, że agentyczne wyliczanie jest wolniejsze niż ręczny przegląd"]
+      }
+    ]
+  },
+  "audit-a05": {
+    "questions": [
+      {
+        "q": "Które działanie IAM jest klasycznym wektorem eskalacji uprawnień, którego analizator zasad Claude specyficznie szuka?",
+        "options": ["iam:PassRole bez ograniczeń Condition", "s3:GetObject na konkretnym ARN zasobnika"]
+      },
+      {
+        "q": "Prawda czy fałsz: Claude może wykrywać eskalację uprawnień tylko w indywidualnych instrukcjach zasad IAM, nie w wielu warstwach zasad.",
+        "options": ["Prawda — Claude analizuje jedną instrukcję na raz", "Fałsz — Claude rozumuje o efektywnych uprawnieniach w warstwach zasad opartych na tożsamości i zasobach"]
+      },
+      {
+        "q": "W naruszeniu Capital One, co zamieniło podatność SSRF WAF w naruszenie 106 milionów rekordów?",
+        "options": ["Zbyt permisywna rola IAM na instancji EC2 WAF z szerokim dostępem S3", "Publicznie dostępna baza danych RDS bez szyfrowania"]
+      },
+      {
+        "q": "Jaka jest zalecana naprawa dla zasady z s3:* na Resource '*'?",
+        "options": ["Zawęź działanie do konkretnych wymaganych operacji i konkretnego ARN zasobnika", "Dodaj instrukcję Deny dla s3:DeleteObject, aby ograniczyć szkody"]
+      },
+      {
+        "q": "Prawda czy fałsz: iam:CreatePolicyVersion to wektor eskalacji uprawnień, ponieważ pozwala atakującemu tworzyć nową wersję dowolnej zasady, w tym zasad dołączonych do ról administratora.",
+        "options": ["Prawda — to działanie może być używane do przyznawania uprawnień administratora przez istniejącą zasadę", "Fałsz — CreatePolicyVersion wpływa tylko na zasady, które wywołujący już posiada"]
+      }
+    ]
+  },
+  "audit-a06": {
+    "questions": [
+      {
+        "q": "Jaka jest główna zaleta używania MCP (Model Context Protocol) zamiast pisania niestandardowych integracji narzędzi dla każdego systemu audytu?",
+        "options": ["MCP zapewnia ustandaryzowany protokół, dzięki któremu gotowe serwery działają w różnych środowiskach Claude", "MCP daje Claude bezpośredni dostęp zapisu do bazy danych bez kluczy API"]
+      },
+      {
+        "q": "Prawda czy fałsz: Ta sama konfiguracja serwera MCP działa zarówno w Claude Code IDE, jak i w produkcyjnych pipeline API.",
+        "options": ["Prawda — MCP jest zaprojektowany do jednolitego działania w Claude Code i Anthropic API", "Fałsz — serwery MCP muszą być oddzielnie konfigurowane dla użytku w IDE versus API"]
+      },
+      {
+        "q": "Jakie mechanizmy transportu obsługuje MCP?",
+        "options": ["stdio lub HTTP+SSE", "Tylko WebSockets"]
+      },
+      {
+        "q": "Atak SolarWinds SUNBURST (2020) powiódł się częściowo, ponieważ żadne narzędzie nie korelowało anomalii między którymi trzema systemami?",
+        "options": ["Serwerem git, systemem budowania i repozytorium artefaktów", "Logami firewalla, rekordami DNS i ścieżkami audytu IAM"]
+      },
+      {
+        "q": "Prawda czy fałsz: Serwery MCP udostępniają dwa typy prymitywów: zasoby (dane tylko do odczytu) i narzędzia (wywoływalne funkcje, które mogą modyfikować stan).",
+        "options": ["Prawda — zasoby i narzędzia to dwa podstawowe prymitywy MCP", "Fałsz — MCP obsługuje tylko zasoby tylko do odczytu; operacje zapisu wymagają niestandardowych integracji narzędzi"]
+      }
+    ]
+  },
+  "audit-a07": {
+    "questions": [
+      {
+        "q": "Na jakim etapie agentyczny przegląd IaC integruje się z przepływem pracy deweloperów?",
+        "options": ["Podczas przeglądu pull request, przed scaleniem i zastosowaniem zmiany infrastruktury", "Po wdrożeniu, poprzez porównanie aktywnej konfiguracji z zatwierdzonym stanem Terraform"]
+      },
+      {
+        "q": "Prawda czy fałsz: Claude musi być wyraźnie zaprogramowany z regułami jak 'publicly_accessible = true w RDS to ustalenie', aby wykrywać błędne konfiguracje IaC.",
+        "options": ["Prawda — Claude wymaga wyczerpującego zestawu reguł do identyfikacji każdego typu błędnej konfiguracji", "Fałsz — Claude rozumie semantykę IaC i może identyfikować błędne konfiguracje bez wyraźnych reguł"]
+      },
+      {
+        "q": "Który standard bezpieczeństwa jest wskazany jako bazowy dla przeglądów audytu Terraform?",
+        "options": ["CIS AWS Foundations Benchmark", "RODO Artykuł 32 środki techniczne"]
+      },
+      {
+        "q": "Jaki jest mechanizm egzekwowania uniemożliwiający deweloperom omijanie krytycznego ustalenia IaC?",
+        "options": ["Krytyczne ustalenia blokują scalenie PR poprzez wymagane sprawdzenia statusu", "Deweloperzy otrzymują powiadomienie e-mail i muszą samodzielnie potwierdzić, że ustalenie jest dopuszczalne"]
+      },
+      {
+        "q": "Prawda czy fałsz: Wyciek kodu źródłowego Twitch (2021) wykazał, że ujawnione pliki IaC mogą pomóc atakującym mapować infrastrukturę chmury, nawet gdy nie doszło do bezpośredniego naruszenia przez IaC.",
+        "options": ["Prawda — konfiguracje Terraform w wycieku ujawniły architekturę AWS Twitch atakującym", "Fałsz — pliki Terraform nie zawierają żadnych wrażliwych informacji o aktywnej infrastrukturze"]
+      }
+    ]
+  },
+  "audit-a08": {
+    "questions": [
+      {
+        "q": "Jaki procent tradycyjnego czasu audytu jest zazwyczaj spędzany na zbieraniu dowodów?",
+        "options": ["Około 60%", "Około 10%"]
+      },
+      {
+        "q": "Prawda czy fałsz: Wartość Claude w walidacji dowodów polega na potwierdzeniu, że plik dowodów istnieje, a nie na ocenie, czy faktycznie dowodzi, że kontrola działa.",
+        "options": ["Prawda — istnienie pliku dowodów jest wystarczające dla zgodności", "Fałsz — Claude ocenia, czy dowody faktycznie spełniają wymagania kontroli, a nie tylko ich obecność"]
+      },
+      {
+        "q": "Jakie są trzy wyniki oceny dowodów Claude dla każdej kontroli?",
+        "options": ["satisfied, partially satisfied lub not satisfied", "pass, warn lub fail"]
+      },
+      {
+        "q": "W naruszeniu Equifax (2017), jaka luka w zbieraniu dowodów pozwoliła na niezauważenie podatności Apache Struts?",
+        "options": ["Dowody łatania istniały, ale nie weryfikowały konkretnych podatnych systemów skierowanych na sieć", "Equifax nie miał zasady zarządzania łatkami i dlatego nie zbierał żadnych dowodów"]
+      },
+      {
+        "q": "Prawda czy fałsz: Agentyczny system zbierania dowodów mapuje każdy artefakt do konkretnego wymagania kontroli (np. NIST, kryterium SOC 2) i zawiera ocenę Claude.",
+        "options": ["Prawda — ustrukturyzowane mapowanie do kontroli z oceną to kluczowe wyjście", "Fałsz — systemy agentyczne zbierają surowe eksporty bez mapowania do konkretnych kontroli"]
+      }
+    ]
+  },
+  "audit-a09": {
+    "questions": [
+      {
+        "q": "W wieloagentycznym pipeline audytu, jaka jest podstawowa odpowiedzialność agenta orkiestratora?",
+        "options": ["Planowanie audytu, delegowanie do specjalistów, synteza ustaleń między domenami i tworzenie końcowego raportu", "Uruchamianie wszystkich wywołań narzędzi specyficznych dla domeny bezpośrednio bez angażowania agentów specjalistycznych"]
+      },
+      {
+        "q": "Prawda czy fałsz: We wzorcu orkiestrator-specjalista, agenci specjalistyczni powinni bezpośrednio komunikować się ze sobą w celu poprawy analizy między domenami.",
+        "options": ["Prawda — bezpośrednia komunikacja specjalistów poprawia dokładność korelacji", "Fałsz — specjaliści nie powinni komunikować się ze sobą; cała synteza odbywa się na poziomie orkiestratora"]
+      },
+      {
+        "q": "Dlaczego agenci specjalistyczni powinni zwracać ustrukturyzowany JSON zamiast języka naturalnego?",
+        "options": ["Aby orkiestrator mógł niezawodnie analizować i korelować ustalenia między domenami", "Ponieważ Claude nie może odczytywać wyjść w języku naturalnym od poagentów"]
+      },
+      {
+        "q": "Naruszenie MOVEit (2023) dotyczyło SQL injection, ekspozycji na Internet i uprawnień bazy danych. Co to ilustruje w kontekście audytów jednej domeny?",
+        "options": ["Każdy specjalista częściowo by to wykrył, ale do zobaczenia pełnego łańcucha ryzyka potrzebna była synteza między domenami", "Potrzebny był tylko audyt sieci, ponieważ główna przyczyna to serwer MOVEit wystawiony na Internet"]
+      },
+      {
+        "q": "Prawda czy fałsz: Uruchamianie agentów specjalistycznych równolegle odzwierciedla sposób działania ludzkich zespołów audytowych ze specjalistami dziedzinowymi.",
+        "options": ["Prawda — równoległe strumienie robocze specjalistów pasują do struktury ludzkich zaangażowań audytowych", "Fałsz — ludzkie zespoły audytowe uruchamiają wszystkie strumienie robocze sekwencyjnie, aby uniknąć sprzecznych ustaleń"]
+      }
+    ]
+  },
+  "audit-a10": {
+    "questions": [
+      {
+        "q": "Jaki procent czasu audytora jest zazwyczaj spędzany na pisaniu raportu?",
+        "options": ["30 do 40 procent", "Mniej niż 5 procent"]
+      },
+      {
+        "q": "Prawda czy fałsz: Niejasne zalecenia audytu takie jak „popraw postawę bezpieczeństwa IoT” są równie prawdopodobne, że zostaną wdrożone, jak konkretne zalecenia przypisane właścicielom z określonym terminem.",
+        "options": ["Prawda — wszystkie zalecenia audytu otrzymują równy priorytet naprawy", "Fałsz — niejasne zalecenia są depriorytetyzowane; konkretne zalecenia z właścicielami i terminami są wdrażane"]
+      },
+      {
+        "q": "Jaki jest zalecane podejście do generowania raportów Claude dla bardzo dużych audytów z 500 lub więcej ustaleniami?",
+        "options": ["Podziel na fragmenty według domeny, aby generować szkice sekcji, następnie zsyntetyzuj streszczenie wykonawcze z podsumowań sekcji", "Złóż wszystkie ustalenia w jednym prompcie niezależnie od rozmiaru, aby zachować pełny kontekst"]
+      },
+      {
+        "q": "Które cztery elementy muszą zawierać wszystkie sekcje ustaleń zgodnie ze wzorcem system prompt generowania raportu?",
+        "options": ["Tytuł ustalenia, obserwacja, ryzyko i zalecenie (plus pole odpowiedzi kierownictwa)", "Numer CVE, wynik CVSS, dotknięty zasób i termin łatania"]
+      },
+      {
+        "q": "Prawda czy fałsz: DDoS Dyn (2016) wykazał, że ogólny język raportów audytu może opóźniać naprawę, nie generując konkretnych, priorytetyzowanych zaleceń.",
+        "options": ["Prawda — poprzednie oceny bezpieczeństwa IoT istniały, ale ich niejasne zalecenia nie zostały wdrożone", "Fałsz — Dyn nie miał wcześniejszych ocen bezpieczeństwa obejmujących ryzyka IoT"]
+      }
+    ]
+  },
+  "audit-a11": {
+    "questions": [
+      {
+        "q": "Jakie jest fundamentalne ograniczenie tradycyjnych audytów IT w danym momencie w porównaniu z ciągłym monitorowaniem zgodności?",
+        "options": ["Audyty w danym momencie przechwytują stan kontroli w momencie audytu, który może być przestarzały o miesiące lub lata, gdy to ma znaczenie", "Audyty w danym momencie są droższe niż ciągłe monitorowanie"]
+      },
+      {
+        "q": "Prawda czy fałsz: Gdy ciągłe monitorowanie sentinel wykrywa ustalenie KRYTYCZNE, powinno tylko zalogować ustalenie do następnego zaplanowanego przeglądu audytu.",
+        "options": ["Prawda — logowanie jest odpowiednią reakcją na zautomatyzowane ustalenia sentinel", "Fałsz — KRYTYCZNE ustalenia powinny natychmiast wyzwalać PagerDuty, alerty Slack i bilet Jira"]
+      },
+      {
+        "q": "Który mechanizm harmonogramowania jest opisany do uruchamiania agenta zgodności Claude na dziennym cronie w AWS?",
+        "options": ["Reguła AWS EventBridge wyzwalająca funkcję Lambda", "Alarm AWS CloudWatch odpytujący temat SNS"]
+      },
+      {
+        "q": "Naruszenie LastPass (2022) miało czteromiesięczny czas przebywania. Jaka zdolność monitorowania skróciłaby okno atakującego?",
+        "options": ["Monitorowanie bazowe zachowania wykrywające anomaliczne wzorce dostępu IAM i zdarzenia uwierzytelnienia", "Codzienne statyczne migawki konfiguracji uprawnień zasobników S3"]
+      },
+      {
+        "q": "Prawda czy fałsz: Reguły tłumienia w systemie ciągłego monitorowania są ważne, aby zapobiec zmęczeniu alertami dla znanych akceptowanych ryzyk z kompensującymi kontrolami.",
+        "options": ["Prawda — bez tłumienia, powtarzające się znane akceptowalne ustalenia powodują, że analitycy ignorują rzeczywiste alerty", "Fałsz — wszystkie ustalenia powinny zawsze generować alerty niezależnie od statusu znanej akceptacji"]
+      }
+    ]
+  },
+  "audit-a12": {
+    "questions": [
+      {
+        "q": "W pełnym agentycznym pipeline audytu, która faza musi zakończyć się sekwencyjnie zanim równoległe fazy analizy domeny mogą się rozpocząć?",
+        "options": ["Faza 1 wyliczania inwentarza, ponieważ wszyscy agenci domen zależą od listy zasobów", "Faza 3 syntezy, ponieważ agenci domen najpierw potrzebują kontekstu między domenami"]
+      },
+      {
+        "q": "Prawda czy fałsz: Agentyczny pipeline audytu ma na celu całkowite zastąpienie audytorów poprzez automatyzację wszystkich osądów audytowych.",
+        "options": ["Prawda — celem jest w pełni autonomiczne audytowanie bez udziału człowieka", "Fałsz — agenci eliminują pracę mechaniczną, dzięki czemu audytorzy mogą skupić się na osądzie, kontekście ryzyka i komunikacji z interesariuszami"]
+      },
+      {
+        "q": "Które dwie fazy wyjściowe pełnego pipeline mogą działać równolegle po ukończeniu syntezy?",
+        "options": ["Generowanie raportu i składanie pakietu dowodów", "Wyliczanie inwentarza i analiza domeny IAM"]
+      },
+      {
+        "q": "Naruszenie MGM Resorts (2023) spowodowało ponad 100 mln USD strat w ciągu 10 dni. Jaką lukę audytu agentyczny pipeline rozwiązał?",
+        "options": ["Środowisko było zbyt duże dla ręcznych audytorów, aby kompleksowo ocenić i utrzymać bieżący obraz ryzyka", "MGM nie miał infrastruktury chmury i naruszenie dotyczyło tylko systemów lokalnych"]
+      },
+      {
+        "q": "Prawda czy fałsz: Po ukończeniu agentycznego zaangażowania audytu, aktywacja ciągłego sentinel jest częścią końcowej fazy pipeline, aby wykrywać dryft konfiguracji po audycie.",
+        "options": ["Prawda — sentinel jest aktywowany z bazową linią audytu, aby wykrywać dryft w kolejnych dniach i tygodniach", "Fałsz — sentinel to oddzielny produkt, który musi być ręcznie skonfigurowany po dostarczeniu pakietu audytu"]
+      }
+    ]
+  }
+}

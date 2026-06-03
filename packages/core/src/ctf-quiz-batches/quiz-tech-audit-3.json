@@ -1,0 +1,530 @@
+{
+  "audit-a01": {
+    "questions": [
+      {
+        "q": "In Claude's tool use API, what does Claude use to decide when to call a specific tool?",
+        "options": [
+          "The tool's description field",
+          "The tool's input_schema field"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "True or False: In the agentic loop, Claude executes tools directly inside the API call.",
+        "options": [
+          "True — Claude runs tools internally",
+          "False — your code executes the tool and returns a tool_result"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "Which Capital One breach vector would an agentic audit tool polling WAF rules have caught early?",
+        "options": [
+          "A deviation from the known-good WAF configuration baseline",
+          "An unencrypted S3 bucket created by a developer"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "A tool definition requires three parts. Which set is correct?",
+        "options": [
+          "name, description, and input_schema",
+          "name, endpoint, and output_schema"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "True or False: You should always validate tool inputs server-side because Claude always passes perfectly shaped arguments.",
+        "options": [
+          "True — Claude never sends unexpected argument shapes",
+          "False — Claude can pass unexpected argument shapes; always validate server-side"
+        ],
+        "correct": 1
+      }
+    ]
+  },
+  "audit-a02": {
+    "questions": [
+      {
+        "q": "What percentage of organizations typically have undocumented API endpoints not in their official inventory?",
+        "options": [
+          "60% or more",
+          "Less than 10%"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "True or False: In agentic API enumeration, Claude should enforce rate limits and scope rules directly through its prompt reasoning.",
+        "options": [
+          "True — Claude's judgment is sufficient for scope enforcement",
+          "False — rate limits and scope must be enforced in tool implementations, not by Claude"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "The Peloton API exposure (2021) was discovered because one API version required authentication while another did not. What does this illustrate?",
+        "options": [
+          "Auth regression — a newer version weakened authentication from a previous version",
+          "An overly permissive IAM role attached to the API server"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "In the enumeration agent loop, what does Claude do when stop_reason is 'end_turn'?",
+        "options": [
+          "It has synthesized its final report and no more tool calls are needed",
+          "It encountered an error and the loop must restart from the beginning"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "True or False: The primary technique for finding shadow APIs is comparing the live API gateway route table against the official OpenAPI spec.",
+        "options": [
+          "True — diffing live routes vs documented spec reveals undocumented endpoints",
+          "False — shadow APIs are found by brute-forcing all possible URL paths"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "audit-a03": {
+    "questions": [
+      {
+        "q": "What is the main limitation of regex-only secrets scanners like truffleHog?",
+        "options": [
+          "They catch well-formatted secrets but miss obfuscated credentials and context-dependent cases",
+          "They are too slow for production use on large repositories"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "True or False: Deleting a file containing a secret from a git repository permanently removes the secret from all copies of the repo.",
+        "options": [
+          "True — git rm removes the file from history",
+          "False — the secret remains in git history; every developer who cloned the repo still has it"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "In the two-phase scanning architecture, what is Claude's classification output for each finding?",
+        "options": [
+          "confirmed_secret, likely_placeholder, or false_positive",
+          "critical, high, medium, or low"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "The 2022 Uber breach involved credentials in PowerShell scripts on a network share. What does this highlight?",
+        "options": [
+          "Secrets scanning must extend beyond git repos to CI configs, IaC, operational scripts, and more",
+          "Regex scanners are sufficient when they cover all git branches including feature branches"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "True or False: AI-augmented secret classification can reduce analyst review time by 80% or more compared to regex-only output.",
+        "options": [
+          "True — Claude's context-aware classification dramatically reduces false positive noise",
+          "False — AI classification adds processing overhead that slows triage"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "audit-a04": {
+    "questions": [
+      {
+        "q": "Why is cloud resource inventory considered a prerequisite to all subsequent audit checks?",
+        "options": [
+          "You cannot assess controls on resources you have not enumerated",
+          "Cloud providers require inventory submission before granting audit API access"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "True or False: Toyota's 2023 data exposure lasted 10 years because the misconfiguration was technically undetectable.",
+        "options": [
+          "True — the public access setting was a hidden cloud provider feature",
+          "False — it was a simple public-access misconfiguration that automated weekly scanning would have caught"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "What does a resource dependency graph reveal that a standard inventory list does not?",
+        "options": [
+          "Which IAM roles can access which buckets, enabling privilege chain analysis",
+          "The geographic region where each resource is deployed"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Which finding is considered CRITICAL in a cloud enumeration audit?",
+        "options": [
+          "A Lambda function with AdministratorAccess attached",
+          "An S3 bucket without versioning enabled"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "True or False: A cloud enumeration agent using the AWS SDK can complete an inventory in minutes, compared to days for manual review.",
+        "options": [
+          "True — agentic enumeration is dramatically faster than manual console review",
+          "False — API rate limits make agentic enumeration slower than manual review"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "audit-a05": {
+    "questions": [
+      {
+        "q": "Which IAM action is a classic privilege escalation vector that Claude's policy analyzer specifically looks for?",
+        "options": [
+          "iam:PassRole without Condition constraints",
+          "s3:GetObject on a specific bucket ARN"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "True or False: Claude can only detect privilege escalation in individual IAM policy statements, not across multiple policy layers.",
+        "options": [
+          "True — Claude analyzes one statement at a time",
+          "False — Claude reasons about effective permissions across identity-based and resource-based policy layers"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "In the Capital One breach, what turned a WAF SSRF vulnerability into a 106-million-record breach?",
+        "options": [
+          "An overly permissive IAM role on the WAF's EC2 instance with broad S3 access",
+          "A publicly accessible RDS database without encryption"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "What is the recommended remediation for a policy with s3:* on Resource '*'?",
+        "options": [
+          "Scope the action to specific required operations and the specific bucket ARN",
+          "Add a Deny statement for s3:DeleteObject to limit the damage"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "True or False: iam:CreatePolicyVersion is a privilege escalation vector because it lets an attacker create a new version of any policy, including policies attached to admin roles.",
+        "options": [
+          "True — this action can be used to grant admin permissions through an existing policy",
+          "False — CreatePolicyVersion only affects policies the caller already owns"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "audit-a06": {
+    "questions": [
+      {
+        "q": "What is the primary advantage of using MCP (Model Context Protocol) over writing custom tool integrations for each audit system?",
+        "options": [
+          "MCP provides a standardized protocol so pre-built servers work across different Claude environments",
+          "MCP gives Claude direct database write access without API keys"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "True or False: The same MCP server configuration works both in Claude Code IDE and in production API pipelines.",
+        "options": [
+          "True — MCP is designed to work uniformly across Claude Code and the Anthropic API",
+          "False — MCP servers must be separately configured for IDE versus API use"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Which transport mechanisms does MCP support?",
+        "options": [
+          "stdio or HTTP+SSE",
+          "WebSockets only"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "The SolarWinds SUNBURST attack (2020) succeeded partly because no tooling correlated anomalies across which three systems?",
+        "options": [
+          "Git server, build system, and artifact repository",
+          "Firewall logs, DNS records, and IAM audit trails"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "True or False: MCP servers expose two types of primitives: resources (read-only data) and tools (callable functions that can modify state).",
+        "options": [
+          "True — resources and tools are the two core MCP primitives",
+          "False — MCP only supports read-only resources; write operations require custom tool integrations"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "audit-a07": {
+    "questions": [
+      {
+        "q": "At what stage does agentic IaC review integrate into the development workflow?",
+        "options": [
+          "During pull request review, before the infrastructure change is merged and applied",
+          "After deployment, by comparing live configuration against the committed Terraform state"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "True or False: Claude must be explicitly programmed with rules like 'publicly_accessible = true on RDS is a finding' to detect IaC misconfigurations.",
+        "options": [
+          "True — Claude requires an exhaustive ruleset to identify each misconfiguration type",
+          "False — Claude understands IaC semantics and can identify misconfigurations without explicit rules"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "Which security standard is referenced as the baseline for Terraform audit reviews?",
+        "options": [
+          "CIS AWS Foundations Benchmark",
+          "GDPR Article 32 technical measures"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "What is the enforcement mechanism that prevents developers from bypassing a critical IaC finding?",
+        "options": [
+          "Critical findings block PR merge via required status checks",
+          "Developers receive an email notification and must self-certify the finding is acceptable"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "True or False: The Twitch source code leak (2021) demonstrated that exposed IaC files can help attackers map cloud infrastructure even when not directly breached through IaC.",
+        "options": [
+          "True — Terraform configs in the leak revealed Twitch's AWS architecture to attackers",
+          "False — Terraform files contain no sensitive information about live infrastructure"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "audit-a08": {
+    "questions": [
+      {
+        "q": "What percentage of traditional audit time is typically spent on evidence collection?",
+        "options": [
+          "Approximately 60%",
+          "Approximately 10%"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "True or False: Claude's value in evidence validation is confirming that an evidence file exists, not assessing whether it actually proves the control works.",
+        "options": [
+          "True — existence of the evidence file is sufficient for compliance",
+          "False — Claude assesses whether the evidence actually satisfies the control requirement, not just its presence"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "What are Claude's three evidence assessment outcomes for each control?",
+        "options": [
+          "satisfied, partially satisfied, or not satisfied",
+          "pass, warn, or fail"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "In the Equifax breach (2017), what gap in evidence collection allowed the Apache Struts vulnerability to go undetected?",
+        "options": [
+          "Patch evidence existed but did not verify the specific vulnerable web-facing systems",
+          "Equifax had no patch management policy and therefore collected no evidence at all"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "True or False: An agentic evidence collection system maps each artifact to a specific control requirement (e.g., NIST, SOC 2 criterion) and includes Claude's assessment.",
+        "options": [
+          "True — structured mapping to controls with assessment is the key output",
+          "False — agentic systems collect raw exports without mapping to specific controls"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "audit-a09": {
+    "questions": [
+      {
+        "q": "In a multi-agent audit pipeline, what is the orchestrator agent's primary responsibility?",
+        "options": [
+          "Planning the audit, delegating to specialists, synthesizing cross-domain findings, and producing the final report",
+          "Running all domain-specific tool calls directly without involving specialist agents"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "True or False: In the orchestrator-specialist pattern, specialist agents should communicate findings directly with each other to improve cross-domain analysis.",
+        "options": [
+          "True — direct specialist communication improves correlation accuracy",
+          "False — specialists should not communicate with each other; all synthesis happens at the orchestrator level"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "Why should specialist agents return structured JSON rather than natural language?",
+        "options": [
+          "So the orchestrator can reliably parse and correlate findings across domains",
+          "Because Claude cannot read natural language output from subagents"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "The MOVEit breach (2023) involved SQL injection, internet exposure, and database permissions. What does this illustrate about single-domain audits?",
+        "options": [
+          "Each specialist would have partially caught it, but cross-domain synthesis was needed to see the full risk chain",
+          "Only a network audit was needed because the root cause was the internet-exposed MOVEit server"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "True or False: Running specialist agents in parallel mirrors how human audit teams with domain specialists operate.",
+        "options": [
+          "True — parallel specialist workstreams match the structure of human audit engagements",
+          "False — human audit teams run all workstreams sequentially to avoid conflicting findings"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "audit-a10": {
+    "questions": [
+      {
+        "q": "What percentage of an auditor's time is typically spent on report writing?",
+        "options": [
+          "30 to 40 percent",
+          "Less than 5 percent"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "True or False: Vague audit recommendations like 'improve IoT security posture' are just as likely to be acted on as specific, owner-assigned, deadline-dated recommendations.",
+        "options": [
+          "True — all audit recommendations receive equal remediation priority",
+          "False — vague recommendations get deprioritized; specific recommendations with owners and deadlines get implemented"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "What is the recommended Claude report generation approach for very large audits with 500 or more findings?",
+        "options": [
+          "Chunk by domain to generate section drafts, then synthesize an executive summary from the section summaries",
+          "Submit all findings in a single prompt regardless of size to maintain full context"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Which four elements must every finding section include according to the report generation system prompt pattern?",
+        "options": [
+          "Finding title, observation, risk, and recommendation (plus a management response field)",
+          "CVE number, CVSS score, affected asset, and patch deadline"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "True or False: The Dyn DDoS (2016) demonstrated that generic audit report language can delay remediation by failing to produce actionable, prioritized recommendations.",
+        "options": [
+          "True — previous IoT security assessments existed but their vague recommendations were not acted on",
+          "False — Dyn had no prior security assessments covering IoT risks"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "audit-a11": {
+    "questions": [
+      {
+        "q": "What is the fundamental limitation of traditional point-in-time IT audits compared to continuous compliance monitoring?",
+        "options": [
+          "Point-in-time audits capture control state at the moment of audit, which may be months or years stale by the time it matters",
+          "Point-in-time audits are more expensive than continuous monitoring"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "True or False: When a continuous monitoring sentinel detects a CRITICAL finding, it should only log the finding for the next scheduled audit review.",
+        "options": [
+          "True — logging is the appropriate response for automated sentinel findings",
+          "False — CRITICAL findings should immediately trigger PagerDuty, Slack alerts, and a Jira ticket"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "Which scheduling mechanism is described for running a Claude compliance agent on a daily cron in AWS?",
+        "options": [
+          "AWS EventBridge rule triggering a Lambda function",
+          "AWS CloudWatch alarm polling an SNS topic"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "The LastPass breach (2022) had a four-month dwell time. What monitoring capability would have shortened the attacker's window?",
+        "options": [
+          "Behavioral baseline monitoring detecting anomalous IAM access patterns and authentication events",
+          "Daily static configuration snapshots of S3 bucket permissions"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "True or False: Suppression rules in a continuous monitoring system are important to prevent alert fatigue for known-accepted risks with compensating controls.",
+        "options": [
+          "True — without suppression, recurring known-acceptable findings cause analysts to ignore real alerts",
+          "False — all findings should always generate alerts regardless of known acceptance status"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "audit-a12": {
+    "questions": [
+      {
+        "q": "In the full agentic audit pipeline, which phase must complete sequentially before the parallel domain analysis phases can begin?",
+        "options": [
+          "Phase 1 inventory enumeration, because all domain agents depend on the resource list",
+          "Phase 3 synthesis, because domain agents need the cross-domain context first"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "True or False: The agentic audit pipeline is intended to replace auditors entirely by automating all audit judgment.",
+        "options": [
+          "True — the goal is fully autonomous auditing without human involvement",
+          "False — agents eliminate mechanical work so auditors can focus on judgment, risk context, and stakeholder communication"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "Which two output phases of the full pipeline can run in parallel after synthesis completes?",
+        "options": [
+          "Report generation and evidence package assembly",
+          "Inventory enumeration and IAM domain analysis"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "The MGM Resorts breach (2023) caused over $100M in losses over 10 days. What audit gap did the agentic pipeline address?",
+        "options": [
+          "The environment was too large for manual auditors to assess comprehensively and maintain a current risk picture",
+          "MGM had no cloud infrastructure and the breach exploited only on-premises systems"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "True or False: After completing an agentic audit engagement, activating a continuous sentinel is part of the final pipeline phase to catch post-audit configuration drift.",
+        "options": [
+          "True — the sentinel is activated with the audit baseline to detect drift in subsequent days and weeks",
+          "False — the sentinel is a separate product that must be manually configured after the audit package is delivered"
+        ],
+        "correct": 0
+      }
+    ]
+  }
+}

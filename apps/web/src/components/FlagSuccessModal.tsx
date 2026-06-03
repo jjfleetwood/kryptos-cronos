@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import type { StageConfig } from "@/data/types";
+import type { StageConfig } from "@kryptos/core/types";
 import { useLocale } from "@/contexts/LocaleContext";
 
 type Props = {

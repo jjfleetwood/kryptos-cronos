@@ -1,0 +1,242 @@
+{
+  "quantum-b01": {
+    "questions": [
+      {
+        "q": "Ile algorytmów zostało pierwotnie zgłoszonych do konkursu NIST Post-Quantum Cryptography w 2016 roku?",
+        "options": ["69 algorytmów", "42 algorytmy"]
+      },
+      {
+        "q": "Prawda czy fałsz: FIPS 203 standaryzuje ML-DSA (CRYSTALS-Dilithium) do podpisów cyfrowych.",
+        "options": ["Prawda", "Fałsz"]
+      },
+      {
+        "q": "Który algorytm został złamany przez jednego badacza w około 1 godzinę w lipcu 2022 roku, mimo że był finalistą NIST Round 4?",
+        "options": ["SIKE/SIDH", "RAINBOW"]
+      },
+      {
+        "q": "Prawda czy fałsz: SLH-DSA (SPHINCS+) opiera się na założeniach twardości sieci kratowej dla swojego bezpieczeństwa.",
+        "options": ["Prawda", "Fałsz"]
+      },
+      {
+        "q": "Który standard NIST FIPS obejmuje ML-KEM (CRYSTALS-Kyber) do enkapsulacji kluczy?",
+        "options": ["FIPS 203", "FIPS 204"]
+      }
+    ]
+  },
+  "quantum-b02": {
+    "questions": [
+      {
+        "q": "Co oznacza „E” w problemie LWE (Learning With Errors)?",
+        "options": ["Errors (Błędy)", "Encryption (Szyfrowanie)"]
+      },
+      {
+        "q": "Prawda czy fałsz: Wektor szumu w LWE można usunąć bez znaczących kosztów wydajnościowych, co sprawia, że LWE jest łatwe do rozwiązania klasycznie.",
+        "options": ["Prawda", "Fałsz"]
+      },
+      {
+        "q": "Kto wprowadził problem Learning With Errors w 2005 roku?",
+        "options": ["Oded Regev", "Peter Shor"]
+      },
+      {
+        "q": "Prawda czy fałsz: Algorytmy kwantowe (takie jak algorytm Grovera i Shora) zapewniają jedynie wielomianowe przyspieszenie w porównaniu z klasycznymi atakami na LWE.",
+        "options": ["Prawda", "Fałsz"]
+      },
+      {
+        "q": "Który wariant LWE jest używany w ML-KEM i ML-DSA dla lepszej wydajności przy zachowaniu tych samych gwarancji twardości?",
+        "options": ["Module-LWE", "Ring-LWE"]
+      }
+    ]
+  },
+  "quantum-b03": {
+    "questions": [
+      {
+        "q": "Prawda czy fałsz: W wymianie kluczy ML-KEM wspólny sekret jest przesyłany bezpośrednio od Boba do Alice przez sieć.",
+        "options": ["Prawda", "Fałsz"]
+      },
+      {
+        "q": "Który zestaw parametrów ML-KEM jest zalecany do większości ogólnych zastosowań (poziom bezpieczeństwa NIST 3)?",
+        "options": ["ML-KEM-768", "ML-KEM-512"]
+      },
+      {
+        "q": "Prawda czy fałsz: Cisco Silicon One P200 dostarcza enkapsulację kluczy ML-KEM z prędkością linii 800G w sprzęcie bez kary wydajnościowej.",
+        "options": ["Prawda", "Fałsz"]
+      },
+      {
+        "q": "Jaki jest rozmiar klucza publicznego dla ML-KEM-768?",
+        "options": ["1184 bajty", "256 bajtów"]
+      },
+      {
+        "q": "Prawda czy fałsz: ML-KEM (FIPS 203) jest bezpośrednim zamiennikiem wymiany kluczy RSA i ECDH w protokołach takich jak TLS i IKEv2.",
+        "options": ["Prawda", "Fałsz"]
+      }
+    ]
+  },
+  "quantum-b04": {
+    "questions": [
+      {
+        "q": "Prawda czy fałsz: ML-DSA (FIPS 204) wytwarza mniejsze podpisy niż ECDSA-256.",
+        "options": ["Prawda", "Fałsz"]
+      },
+      {
+        "q": "Na którym problemie twardości opiera się ML-DSA dla swojego bezpieczeństwa?",
+        "options": ["Module-LWE i Module-SIS", "Faktoryzacja liczb całkowitych RSA"]
+      },
+      {
+        "q": "Prawda czy fałsz: Cisco wdraża ML-DSA tylko w handshake TLS, nie w łańcuchu rozruchowym firmware ani IPsec.",
+        "options": ["Prawda", "Fałsz"]
+      },
+      {
+        "q": "Której techniki podpisywania ML-DSA używa, aby upewnić się, że podpisy nie ujawniają informacji o kluczu prywatnym?",
+        "options": ["Próbkowanie odrzuceń (rejection sampling)", "Oracle wyściółki (padding oracle)"]
+      },
+      {
+        "q": "Jak duży jest w przybliżeniu podpis ML-DSA-65?",
+        "options": ["3293 bajty", "64 bajty"]
+      }
+    ]
+  },
+  "quantum-b05": {
+    "questions": [
+      {
+        "q": "Prawda czy fałsz: SLH-DSA (SPHINCS+) opiera się wyłącznie na bezpieczeństwie funkcji skrótu, bez algebraicznych założeń twardości.",
+        "options": ["Prawda", "Fałsz"]
+      },
+      {
+        "q": "Dla jakiego przypadku użycia SLH-DSA jest najsilniej zalecany, biorąc pod uwagę jego konserwatywne założenia bezpieczeństwa?",
+        "options": ["Podpisywanie głównych urzędów certyfikacji (Root CA)", "Podpisywanie liściowych certyfikatów TLS o wysokim wolumenie"]
+      },
+      {
+        "q": "Prawda czy fałsz: SLH-DSA wymaga zarządzania stanem między podpisami, podobnie jak oryginalny schemat XMSS.",
+        "options": ["Prawda", "Fałsz"]
+      },
+      {
+        "q": "Jaki jest przybliżony rozmiar podpisu dla zestawu parametrów SLH-DSA-SHA2-128s?",
+        "options": ["7856 bajtów", "666 bajtów"]
+      },
+      {
+        "q": "Prawda czy fałsz: Gdyby algorytmy oparte na siatkach jak ML-DSA zostały złamane, SLH-DSA również natychmiast stałby się niebezpieczny.",
+        "options": ["Prawda", "Fałsz"]
+      }
+    ]
+  },
+  "quantum-b06": {
+    "questions": [
+      {
+        "q": "Jaką strukturę matematyczną FALCON (FN-DSA) używa jako podstawy bezpieczeństwa?",
+        "options": ["Sieci NTRU", "Sieci Module-LWE"]
+      },
+      {
+        "q": "Prawda czy fałsz: FALCON-512 wytwarza mniejsze podpisy niż ML-DSA-44, co sprawia, że jest preferowany dla wdrożeń IoT z ograniczoną przepustowością.",
+        "options": ["Prawda", "Fałsz"]
+      },
+      {
+        "q": "Prawda czy fałsz: FALCON jest prostszy i bezpieczniejszy do samodzielnej implementacji niż ML-DSA, co czyni go domyślnym zaleceniem dla większości zastosowań korporacyjnych.",
+        "options": ["Prawda", "Fałsz"]
+      },
+      {
+        "q": "Jakiej techniki FALCON używa do osiągnięcia kompaktowych rozmiarów podpisów?",
+        "options": ["Próbkowanie Gaussowskie z Fast Fourier Transform", "Próbkowanie odrzuceń na pierścieniach wielomianowych"]
+      },
+      {
+        "q": "Jak duży jest w przybliżeniu podpis FALCON-512 w porównaniu z podpisem ML-DSA-44?",
+        "options": ["Mniej więcej 10 razy mniejszy (666 bajtów vs 2420 bajtów)", "Mniej więcej tego samego rozmiaru"]
+      }
+    ]
+  },
+  "quantum-b07": {
+    "questions": [
+      {
+        "q": "Prawda czy fałsz: W hybrydowej wymianie kluczy (X25519 + ML-KEM-768), atakujący musi jednocześnie złamać OBA algorytmy, aby odzyskać klucz sesji.",
+        "options": ["Prawda", "Fałsz"]
+      },
+      {
+        "q": "Która hashująca funkcja derywacji kluczy jest używana do łączenia klasycznych i PQC wspólnych sekretów w schemacie hybrydowym?",
+        "options": ["HKDF-SHA384", "PBKDF2-SHA256"]
+      },
+      {
+        "q": "Prawda czy fałsz: Wdrożenie hybrydowego TLS (X25519MLKEM768) wymaga zmian w istniejącej infrastrukturze urzędów certyfikacji przed jego użyciem.",
+        "options": ["Prawda", "Fałsz"]
+      },
+      {
+        "q": "Która organizacja jako pierwsza wdrożyła hybrydowy X25519Kyber768 w produkcji, chroniąc miliony połączeń HTTPS?",
+        "options": ["CloudFlare", "Let's Encrypt"]
+      },
+      {
+        "q": "Prawda czy fałsz: Czysty ML-KEM (bez X25519) jest zalecanym długoterminowym celem, przy czym hybryda służy jako pomost podczas okresu migracji.",
+        "options": ["Prawda", "Fałsz"]
+      }
+    ]
+  },
+  "quantum-b08": {
+    "questions": [
+      {
+        "q": "Prawda czy fałsz: Wdrożenie wymiany kluczy PQC w TLS (Warstwa 1) wymaga aktualizacji istniejących certyfikatów wystawionych przez CA przed ochroną sesji przed atakami HNDL.",
+        "options": ["Prawda", "Fałsz"]
+      },
+      {
+        "q": "Który kompatybilny z OpenSSL dostawca umożliwia szyfry PQC, w tym X25519MLKEM768, w TLS 1.3 już dziś?",
+        "options": ["Dostawca OQS (Open Quantum Safe)", "Rozszerzenie PQC BouncyCastle"]
+      },
+      {
+        "q": "O ile większe są certyfikaty PQC (ML-DSA) TLS w porównaniu z certyfikatami ECDSA?",
+        "options": ["3–4 KB większe", "Mniej więcej tego samego rozmiaru"]
+      },
+      {
+        "q": "Prawda czy fałsz: Let's Encrypt zakończył już wydawanie certyfikatów PQC dla wszystkich 400 milionów aktywnych posiadaczy certyfikatów do 2025 roku.",
+        "options": ["Prawda", "Fałsz"]
+      },
+      {
+        "q": "Która wersja TLS jest najlepiej przygotowana do migracji PQC ze względu na wyraźne rozdzielenie wymiany kluczy, uwierzytelnienia i szyfrowania?",
+        "options": ["TLS 1.3", "TLS 1.2"]
+      }
+    ]
+  },
+  "quantum-b09": {
+    "questions": [
+      {
+        "q": "Prawda czy fałsz: Cryptography Bill of Materials (CBOM) to strukturalny inwentarz wszystkich zasobów kryptograficznych w organizacji, analogicznie do SBOM.",
+        "options": ["Prawda", "Fałsz"]
+      },
+      {
+        "q": "Która podatność z 2014 roku stała się przestrogą dla migracji PQC, demonstrując, że organizacje często nie wiedzą, które systemy używają danej biblioteki?",
+        "options": ["Heartbleed (CVE-2014-0160)", "Shellshock (CVE-2014-6271)"]
+      },
+      {
+        "q": "Prawda czy fałsz: Zasoby certyfikatów RSA i ECDH skierowane do Internetu powinny mieć najniższy priorytet migracji, ponieważ są już chronione przez zapory sieciowe.",
+        "options": ["Prawda", "Fałsz"]
+      },
+      {
+        "q": "Jaki priorytet migracji (P1–P4) powinny otrzymać certyfikaty RSA/ECDSA skierowane do Internetu w klasyfikacji ryzyka CBOM?",
+        "options": ["P1 — migruj natychmiast", "P3 — migruj w ciągu 5 lat"]
+      },
+      {
+        "q": "Prawda czy fałsz: CBOM jest jednorazowym wynikiem — po wygenerowaniu nie trzeba go aktualizować wraz ze zmianami oprogramowania.",
+        "options": ["Prawda", "Fałsz"]
+      }
+    ]
+  },
+  "quantum-b10": {
+    "questions": [
+      {
+        "q": "Prawda czy fałsz: Implementacja PQC, która przechodzi wszystkie znane testy odpowiedzi (KAT) NIST ACVTS, jest automatycznie uważana za bezpieczną przed atakami bocznego kanału opartymi na czasie.",
+        "options": ["Prawda", "Fałsz"]
+      },
+      {
+        "q": "W ataku czasowym Kyber-90s z 2022 roku, ile mniej więcej pomiarów było potrzebnych do odzyskania klucza prywatnego?",
+        "options": ["200 000 pomiarów", "2 miliardy pomiarów"]
+      },
+      {
+        "q": "Prawda czy fałsz: Operacja w stałym czasie (constant-time) oznacza, że funkcja kryptograficzna kończy się w identycznym czasie zegarowym niezależnie od wartości tajnych wejść.",
+        "options": ["Prawda", "Fałsz"]
+      },
+      {
+        "q": "Który algorytm PQC ma najbardziej złożoną i podatną na ataki bocznego kanału implementację ze względu na wymóg próbkowania Gaussowskiego?",
+        "options": ["FALCON (FN-DSA)", "ML-KEM (Kyber)"]
+      },
+      {
+        "q": "Prawda czy fałsz: Systemy federalne muszą używać zwalidowanych modułów PQC według FIPS 140-3 — tworzenie własnej implementacji PQC jest dopuszczalne do użytku federalnego.",
+        "options": ["Prawda", "Fałsz"]
+      }
+    ]
+  }
+}

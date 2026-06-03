@@ -1,0 +1,1429 @@
+{
+  "audit-t08": {
+    "tagline": "एक flat network का मतलब है कि एक compromised access point पूरे नेटवर्क तक पहुंच सकता है। Segmentation blast radius को सीमित करती है।",
+    "overview": [
+      "Network segmentation audits यह सत्यापित करते हैं कि network zones उचित रूप से अलग हैं और zones के बीच traffic least connectivity के सिद्धांत का पालन करती है — केवल वे specific ports और protocols जो business functions के लिए आवश्यक हैं, अनुमत हैं। PCI DSS, HIPAA और SOC 2 network segmentation को एक मूलभूत नियंत्रण के रूप में अनिवार्य करते हैं।",
+      "Cloud में network segmentation VPCs, subnets, security groups और network ACLs का उपयोग करती है। एक audit की समीक्षा करती है: क्या sensitive systems (databases, payment processing) बिना direct internet route के private subnets में isolated हैं? क्या security groups least privilege का पालन करते हैं (specific source IPs और ports, न कि 0.0.0.0/0)? क्या VPC peering connections हैं जो environments के बीच अप्रत्याशित routes बनाते हैं?",
+      "On-premises segmentation VLANs, firewall rules और microsegmentation का उपयोग करती है। Auditors कम-विश्वास zones से sensitive systems तक पहुंचने का प्रयास करके segmentation का परीक्षण करते हैं — यदि एक web server सीधे port 5432 पर database को query कर सकता है, तो segmentation विफल हो गई है, भले ही कागज पर एक firewall rule मौजूद हो।"
+    ],
+    "technical": {
+      "title": "Network Segmentation Testing",
+      "body": [
+        "Firewall rule review methodology: (1) संपूर्ण firewall rule set प्राप्त करें। (2) उन सभी rules की पहचान करें जो sensitive zones (PCI scope, database layer, admin network) से/की ओर traffic अनुमत करते हैं। (3) प्रत्येक permissive rule के लिए, सत्यापित करें कि documented business justification मौजूद है। (4) 'ANY' source या destination rules की जांच करें — ये flat network conditions का प्रतिनिधित्व करते हैं।",
+        "AWS VPC audit: (1) सभी VPC peering connections map करें — transitive routing अप्रत्याशित paths बनाती है। (2) 0.0.0.0/0 ingress rules के लिए सभी security groups की समीक्षा करें। (3) सत्यापित करें कि database subnets में internet gateway route नहीं है। (4) सत्यापित करें कि VPC Flow Logs सक्षम हैं — segmentation validation के लिए traffic logging आवश्यक है।"
+      ]
+    },
+    "incident": {
+      "title": "Target Breach — HVAC Vendor से POS Network (2013)",
+      "impact": "40M credit cards; 70M customer records; कुल लागत $290M; CIO और CEO ने इस्तीफा दिया",
+      "body": [
+        "Target breach एक HVAC vendor (Fazio Mechanical) के compromised credentials से शुरू हुई। Vendor के पास heating और cooling systems manage करने के लिए network access था। एक flat network का मतलब था कि HVAC vendor का network connection Target के point-of-sale (POS) systems तक पहुंच सकता था — जो customer payment cards process करते थे।",
+        "उचित network segmentation ने HVAC vendor access को POS systems की ओर कोई route नहीं होने वाले पूरी तरह isolated network segment में रखा होता। Flat network का मतलब था कि जब attackers के पास HVAC credentials थे, वे सीधे POS systems तक पहुंच सकते थे। Target ने settlements में $290M का भुगतान किया। PCI DSS Section 1 की requirements (network segmentation) direct compliance response थी।"
+      ]
+    },
+    "timeline": [
+      "Target Breach — flat network के माध्यम से HVAC vendor से POS",
+      "PCI DSS 3.0 — network segmentation requirements स्पष्ट किए गए",
+      "Capital One — flat IAM policy के माध्यम से compromised EC2 से accessible S3",
+      "CISA Zero Trust Maturity Model — microsegmentation advanced practice के रूप में"
+    ],
+    "keyTakeaways": [
+      "Flat networks blast radius को अधिकतम करते हैं — segmentation lateral movement को रोकती है",
+      "Vendor network access को internal sensitive systems से isolated होना चाहिए",
+      "VPC Flow Logs सक्षम होने चाहिए — जो आप देख नहीं सकते उसे audit नहीं कर सकते",
+      "PCI DSS cardholder data environment scope कम करने के लिए network segmentation की मांग करता है"
+    ]
+  },
+  "audit-t09": {
+    "tagline": "एक database जिसमें एक role हर table पढ़ सकता है, वह database है जहां हर user एक security incident है।",
+    "overview": [
+      "Database access control audits यह सत्यापित करते हैं कि role-based access control (RBAC) सही ढंग से लागू है, sensitive columns में उचित masking या encryption है, और सभी database activity log होती है। आधुनिक databases (Snowflake, BigQuery, Redshift) row-level security, column masking और dynamic data masking का समर्थन करते हैं — ये controls किसी भी compliance audit में verify किए जाने चाहिए।",
+      "Database audits में सामान्य findings: DBA privileges वाले service accounts, PII fields (SSN, credit card, phone) पर कोई column masking नहीं, database encryption at rest disabled, audit logging जो SELECT queries capture नहीं करती (केवल DDL/DML capture करना read-based exfiltration को miss करता है), और users को role-based views की बजाय tables तक direct access।",
+      "Database Activity Monitoring (DAM) एक detective control है जो सभी queries log करती है, असामान्य patterns (PII का mass SELECT, unusual locations से queries) पहचानती है और policy violations पर alert करती है। Auditors यह verify करते हैं कि DAM deployed है और alerts की review होती है, न केवल collect की जाती है।"
+    ],
+    "technical": {
+      "title": "Database Access Controls का परीक्षण",
+      "body": [
+        "RBAC testing: प्रत्येक database role के लिए, granted permissions को intended job function से match करें। एक reporting analyst role में केवल reporting tables पर SELECT होना चाहिए — कभी INSERT, UPDATE, DELETE या DDL नहीं। एक DBA role के पास full rights होने चाहिए, लेकिन DBA role membership को MFA की आवश्यकता होनी चाहिए और केवल designated administrators को assign की जानी चाहिए।",
+        "Row-level security (RLS) testing: अलग-अलग regions/departments में test records बनाएं, Region A तक restricted user के रूप में authenticate करें, Region B के records query करने का प्रयास करें। यदि RLS काम करता है, query 0 rows लौटाती है। यदि Region B के records लौटाता है, तो RLS सही तरह configure नहीं है।"
+      ]
+    },
+    "incident": {
+      "title": "Morgan Stanley — Unencrypted Data Center Decommission (2020)",
+      "impact": "$60M OCC fine; dismantled hardware पर customer PII बिना data wiping के बेचा गया",
+      "body": [
+        "Morgan Stanley ने 2016 और 2019 के बीच दो data centers decommission किए। Local storage devices को उचित data wiping के बिना एक third party को बेचा गया। Devices में unencrypted customer PII था — names, addresses, SSNs और account information। OCC ने 2020 में Morgan Stanley को $60M का जुर्माना लगाया।",
+        "Root cause एक database access control failure था: data at rest encrypted नहीं था। यदि encryption at rest enabled होता, तो decommissioned hardware का data encryption keys के बिना अपठनीय होता। Database audits को scope में प्रत्येक database के लिए encryption at rest configuration verify करनी चाहिए।"
+      ]
+    },
+    "timeline": [
+      "GDPR draft finalized — encryption at rest standard requirement बन गई",
+      "Snowflake ने row-level security और dynamic data masking launch किया",
+      "Morgan Stanley — unencrypted decommissioned hardware पर $60M fine",
+      "NIST CSF 2.0 — data encryption at rest explicitly baseline control के रूप में listed"
+    ],
+    "keyTakeaways": [
+      "Encryption at rest एक baseline control है — प्रत्येक database में यह enabled होना चाहिए",
+      "PII fields पर column masking SELECT queries के माध्यम से mass exfiltration रोकती है",
+      "Row-level security compromised user account के blast radius को सीमित करती है",
+      "Database audit logs को SELECT queries capture करनी चाहिए — केवल DDL/DML logging read-based exfiltration miss करती है"
+    ]
+  },
+  "audit-t10": {
+    "tagline": "यदि एक security incident होती है और कोई log उसे capture नहीं करता, तो क्या कोई incident हुई? हां। लेकिन आपको महीनों तक पता नहीं चलेगा।",
+    "overview": [
+      "Logging और monitoring audits यह verify करते हैं कि security-relevant events capture होते हैं, एक centralized SIEM को forward किए जाते हैं, और alerts सही तरह configure और investigate होते हैं। NIST SP 800-92 और PCI DSS Requirement 10 baseline प्रदान करते हैं: सभी authentication attempts, privilege use, system changes और data access log होने चाहिए।",
+      "Log coverage gaps सबसे सामान्य audit findings में से एक हैं। वे systems जो SIEM को logs forward नहीं करते blind spots बनाते हैं। Auditors log sources की inventory बनाते हैं और verify करते हैं कि scope में प्रत्येक system logs forward करता है। Gap SIEM log source list को asset inventory से compare करके मिलती है।",
+      "Alert quality दूसरी dimension है: बहुत कम alerts का मतलब threats miss होते हैं; बहुत अधिक alerts alert fatigue का कारण बनते हैं (analysts सब कुछ ignore करते हैं)। Auditors alert backlog की review करते हैं — यदि हजारों unacknowledged alerts हैं, तो program effectively non-functional है। Critical alerts के लिए Mean Time to Acknowledge (MTTA) 15 मिनट से कम होना चाहिए।"
+    ],
+    "technical": {
+      "title": "Log Coverage Audit Methodology",
+      "body": [
+        "Step 1: संपूर्ण asset inventory प्राप्त करें (servers, network devices, cloud accounts, SaaS applications)। Step 2: SIEM log sources की list प्राप्त करें। Step 3: Compare करें — inventory में कोई भी asset जो SIEM में नहीं है, coverage gap है। Risk से prioritize करें: internet-facing systems, domain controllers, databases और cloud management planes की सर्वोच्च priority है।",
+        "Retention audit: regulatory requirements minimum retention निर्धारित करते हैं। PCI DSS 12 months (3 months immediately accessible) की आवश्यकता है। SOC 2 को 6 months चाहिए। HIPAA को 6 years चाहिए। Verify करें कि SIEM या log archive retention policy scope में प्रत्येक system के लिए applicable requirement को पूरा करती है।"
+      ]
+    },
+    "incident": {
+      "title": "Equifax का 78-Day Incident — SSL Inspection Gap (2017)",
+      "impact": "147M records; attacker dwell time 78 दिन; broken SSL inspection = log visibility नहीं",
+      "body": [
+        "Equifax की monitoring failure ने 78 दिनों तक बिना detection के attacker activity को चलने दिया। SSL inspection device — जो suspicious outbound traffic को decrypt और log करता — का certificate 19 महीनों से renew नहीं हुआ था। उस device के माध्यम से सारा HTTPS traffic encrypted दिखता था और inspect नहीं हुआ।",
+        "Monitoring audit finding: एक critical log source (SSL inspection) टूटी थी और logs produce नहीं कर रही थी। Expected sources बनाम actual sources की compare करने वाली log coverage audit ने पहले दिन ही gap identify कर लिया होता। सबक: log coverage audits को verify करना चाहिए कि log sources actively logs भेज रहे हैं — न केवल configured हैं।"
+      ]
+    },
+    "timeline": [
+      "NIST SP 800-92 — Computer Security Log Management के लिए Guide",
+      "Equifax — 78-day dwell time; broken SSL inspection = visibility नहीं",
+      "SolarWinds — 9-month dwell time; sophisticated evasion ने अधिकांश SIEMs को defeated किया",
+      "CISA Guidelines — 24/7 SOC monitoring और critical alerts के लिए 15-minute MTTA"
+    ],
+    "keyTakeaways": [
+      "Log coverage gaps SIEM log source list को asset inventory से compare करके मिलती हैं",
+      "Verify करें कि log sources ACTIVELY LOGS SEND कर रहे हैं — configuration अकेले पर्याप्त नहीं है",
+      "Alert backlog size और MTTA monitoring program effectiveness के metrics हैं",
+      "Retention regulatory requirement को पूरा करनी चाहिए — PCI DSS को 12 months, 3 immediately accessible चाहिए"
+    ]
+  },
+  "audit-t11": {
+    "tagline": "Perimeter मर चुका है। प्रत्येक request को यह साबित करना होगा कि वह authorized है — हमेशा, कहीं से भी।",
+    "overview": [
+      "Zero Trust एक security architecture है जो इस सिद्धांत पर बनी है कि कोई भी user, device या network — corporate network के अंदर वाले सहित — default से trusted नहीं होना चाहिए। प्रत्येक access request authenticated, authorized और continuously validated होनी चाहिए। NIST SP 800-207 सरकार और enterprise के लिए Zero Trust Architecture (ZTA) define करता है।",
+      "Zero Trust के पांच pillars (CISA model): Identity (हर user को MFA और continuous authentication से verify करें), Device (access देने से पहले device health और compliance verify करें), Network (microsegmentation, कोई implicit internal trust नहीं), Application (application-level access controls, ZTNA VPN की जगह), और Data (location से independent रूप से data classify और protect करें)।",
+      "Google का BeyondCorp, 2014 में launch हुआ, Zero Trust का पहला major enterprise implementation था। सभी employee access — Google के internal network से सहित — same authentication और authorization checks से गुजरता है जो external access के लिए होते हैं। Internal location कोई अतिरिक्त trust नहीं देता। यह CISA Zero Trust Maturity Model का आधार बना।"
+    ],
+    "technical": {
+      "title": "Zero Trust Maturity Audit",
+      "body": [
+        "CISA ZTA के प्रत्येक pillar के लिए पांच maturity levels define करता है: Traditional (0) → Initial (1) → Advanced (2) → Optimal (3)। Auditors प्रत्येक pillar का मूल्यांकन करते हैं और maturity level assign करते हैं। Traditional का मतलब castle-and-moat security है जिसमें implicit internal trust है। Optimal का मतलब automated response के साथ continuous verification है।",
+        "Key audit questions: क्या MFA सभी users के लिए (न केवल privileged accounts के लिए) लागू है? क्या application access देने से पहले device health checks होते हैं? क्या VPN को Zero Trust Network Access (ZTNA) से replace किया जा रहा है? क्या lateral movement paths restricted हैं (microsegmentation)? क्या data classify और access log होता है location से independent रूप से?"
+      ]
+    },
+    "incident": {
+      "title": "SolarWinds — Implicit Internal Trust Exploited (2020)",
+      "impact": "18,000 organizations compromised; 9 federal agencies breached",
+      "body": [
+        "SolarWinds attack ने perimeter-based security की fundamental weakness दिखाई। एक बार जब malicious Orion update install हुई, attacker के पास target के internal network तक access था और lateral movement के लिए implicit internal trust का उपयोग किया। Traditional security models ने perimeter के अंदर सब कुछ trust किया — attacker ने महीनों तक उस trust का शोषण किया।",
+        "Zero Trust controls वाले एक organization ने — specifically identity-based access जहां प्रत्येक lateral connection को authentication और authorization की आवश्यकता है — attacker के lateral movement को significantly limit किया होता। CISA की Zero Trust guidance, SolarWinds के response में published, ने पूरे US federal government में ZTA adoption accelerate किया।"
+      ]
+    },
+    "timeline": [
+      "John Kindervag ने Forrester Research में 'Zero Trust' coined किया",
+      "Google BeyondCorp published — enterprise ZTA blueprint",
+      "NIST SP 800-207 — official Zero Trust Architecture standard",
+      "SolarWinds — scale पर implicit internal trust exploited",
+      "Biden EO 14028 — US federal agencies के लिए ZTA mandatory"
+    ],
+    "keyTakeaways": [
+      "Zero Trust: कभी trust मत करो, हमेशा verify करो — network के अंदर location implicit trust नहीं देती",
+      "CISA के पांच pillars: Identity, Device, Network, Application, Data",
+      "MFA baseline है; phishing-resistant FIDO2 advanced maturity के लिए goal है",
+      "ZTNA VPN को replace करता है — network-level implicit trust के बिना application-specific access"
+    ]
+  },
+  "audit-a01": {
+    "tagline": "Tools के बिना AI auditor केवल text generator है। Tools Claude को हाथ देते हैं।",
+    "overview": [
+      "Claude की tool use API (जिसे function calling भी कहते हैं) आपको structured functions define करने देती है जिन्हें Claude conversation के दौरान invoke कर सकता है। Audit automation के लिए, इसका मतलब है Claude real systems को call कर सकता है — files पढ़ना, APIs query करना, configurations verify करना — training data से केवल answers hallucinate करने की बजाय।",
+      "एक tool definition के तीन भाग हैं: एक name, एक description जिसका उपयोग Claude कब call करना है यह decide करने के लिए करता है, और parameters के लिए एक JSON Schema। Claude tool descriptions पढ़ता है और decide करता है कि कौन से tools call करने हैं और किन arguments के साथ। आपका code tool execute करता है और result return करता है। Claude फिर result के बारे में reason करता है।",
+      "Audit tools directly audit procedures पर map होते हैं: `list_s3_buckets` AWS Console में manual clicks replace करता है, `check_iam_policy` spreadsheet-based policy review replace करता है, `scan_repo_for_secrets` grep scripts replace करता है। परिणाम audits हैं जो मिनटों में चलती हैं, consistent structured output produce करती हैं, और हर release पर re-run की जा सकती हैं।"
+    ],
+    "technical": {
+      "title": "Tool Definition Pattern",
+      "body": [
+        "प्रत्येक tool definition `name`, `description`, और `input_schema` (JSON Schema) वाला JSON object है। Description critical है — Claude इसका उपयोग tool invoke कब करना है यह determine करने के लिए करता है। Vague descriptions erratic tool selection produce करती हैं।",
+        "Agentic loop: (1) user message + tool definitions Claude को send करें, (2) Claude name और arguments के साथ tool_use block return करता है, (3) आपका code tool execute करता है और tool_result return करता है, (4) tool calls के बिना text response return होने तक repeat करें। यह loop सभी agentic audit pipelines का आधार है।"
+      ]
+    },
+    "incident": {
+      "title": "Capital One Data Breach — Manual Process Failure (2019)",
+      "impact": "106 million customer records exposed; $190M settlement; misconfigured WAF के माध्यम से SSRF",
+      "body": [
+        "Capital One breach इसलिए सफल हुई क्योंकि एक misconfigured AWS WAF ने EC2 metadata service को SSRF requests की अनुमति दी, IAM credentials leak करते हुए। Misconfiguration महीनों तक exist करती रही। Manual configuration review processes इसे detect करने में विफल रहे — WAF rules complex थे, review infrequent था, और कोई automated tool expected state को continuously verify नहीं कर रहा था।",
+        "एक agentic audit tool जो WAF rules को known baseline के against probe करे, deviation को introduction के घंटों के भीतर flag कर देता। यही agentic auditing का central value proposition है: continuous automated verification बजाय point-in-time manual review के।"
+      ]
+    },
+    "timeline": [
+      "Anthropic ने tool use API launch किया — Claude external functions call कर सकता है",
+      "Tool use agentic audit automation के लिए standard pattern बन गया",
+      "MCP (Model Context Protocol) launch हुआ — standardized tool server protocol",
+      "Claude 4 series — improved tool selection accuracy और multi-step reasoning"
+    ],
+    "keyTakeaways": [
+      "Tool descriptions Claude की tool selection drive करती हैं — उन्हें precisely लिखें",
+      "Agentic loop: message → tool_use → tool_result → text response तक repeat",
+      "Audit tools manual procedures को consistent, re-runnable checks से replace करते हैं",
+      "Server side पर tool inputs हमेशा validate करें — Claude unexpected argument shapes pass कर सकता है"
+    ]
+  },
+  "audit-a02": {
+    "tagline": "आप जो नहीं देख सकते उसे audit नहीं कर सकते। Claude का पहला काम map बनाना है।",
+    "overview": [
+      "APIs की surface modern security audits में सबसे बड़ा blind spot है। Organizations के पास routinely API inventory documents से 40-60% अधिक API endpoints होते हैं। Ghost APIs, legacy versions और undocumented internal endpoints, manual documentation processes की तुलना में तेज़ी से जमा होते हैं।",
+      "Agentic API enumeration Claude का उपयोग systematic discovery pipeline orchestrate करने के लिए करती है: OpenAPI specifications crawl करना, gateway logs analyze करना, known route patterns probe करना, approved inventory के against diff करना और gap report generate करना। Claude route semantics और HTTP methods के आधार पर reason करता है कि कौन से endpoints deeper testing merit करते हैं।",
+      "Enumeration agent tool set का उपयोग करता है: `fetch_openapi_spec`, `list_gateway_routes`, `probe_endpoint` और `compare_to_inventory`। Claude tool calls का order decide करता है, pagination handle करता है और findings synthesize करता है बिना किसी human के हर step direct किए।"
+    ],
+    "technical": {
+      "title": "Enumeration Agent Architecture",
+      "body": [
+        "Agent official API specification (OpenAPI/Swagger) और gateway की live route table प्राप्त करके शुरू करता है। Undocumented routes find करने के लिए दोनों को diff करता है। प्रत्येक undocumented route के लिए, availability confirm करने के लिए एक probe (low-risk OPTIONS या GET request) emit करता है। अंत में authenticated vs unauthenticated responses compare करता है authentication bypass candidates flag करने के लिए।",
+        "Rate limits और scope restrictions tool implementations में hardcode होने चाहिए, Claude के judgment पर नहीं छोड़े जाने चाहिए। Claude decide करता है क्या test करना है; आपका code engagement rules enforce करता है — maximum requests per minute, allowed IP ranges, excluded paths।"
+      ]
+    },
+    "incident": {
+      "title": "Peloton API Exposure (2021)",
+      "impact": "4M+ users का personal data undocumented `/stats/v2/workouts` endpoint के माध्यम से बिना authentication के accessible",
+      "body": [
+        "Security researcher Jan Masters ने discover किया कि Peloton की API `/stats/v2/workouts` endpoint पर authentication require किए बिना complete user profile data — age, gender, city, workout stats, account creation date — return करती थी। Endpoint undocumented था और Peloton के internal API inventory में शामिल नहीं था।",
+        "Weekly run होने वाला agentic enumeration audit इस endpoint को implementation के दिनों के भीतर flag कर देता। Agent ने notice किया होता कि `/stats/v1/workouts` authentication require करता था जबकि `/stats/v2/workouts` नहीं — automated comparison के माध्यम से detectable एक clear authentication regression।"
+      ]
+    },
+    "timeline": [
+      "OWASP API Security project launch — API risks formalized",
+      "Peloton API exposure — 4M users का data बिना authentication के accessible",
+      "LLM orchestration का उपयोग करते हुए agentic API testing frameworks emerge हुए",
+      "Claude के tool use ने production-grade agentic enumeration pipelines enable किए"
+    ],
+    "keyTakeaways": [
+      "60%+ organizations के पास undocumented APIs हैं जो उनकी official inventory में नहीं हैं",
+      "Ghost endpoints find करने के लिए OpenAPI specification vs live gateway routes diff करें",
+      "Rate limits और scope Claude के prompt में नहीं, tool implementations में hardcode करें",
+      "Authentication regression detection: API versions के बीच authentication requirements compare करें"
+    ]
+  },
+  "audit-a04": {
+    "tagline": "Cloud कोई जगह नहीं है। यह एक configuration है। और configurations बदलती हैं।",
+    "overview": [
+      "Cloud resource enumeration हर cloud security audit का आधार है। Controls assess करने से पहले, आपको पता होना चाहिए कि क्या exist करता है: कौन से S3 buckets, EC2 instances, Lambda functions, RDS databases, IAM roles, VPCs, security groups और API Gateways किन regions और accounts में deployed हैं।",
+      "Large accounts में manual cloud inventory में दिन लगते हैं। Claude और AWS SDK के साथ agentic enumeration में मिनट लगते हैं। Claude एक systematic sweep orchestrate करता है: service by service resources enumerate करता है, key configurations के लिए प्रत्येक check करता है, baseline से deviations flag करता है और structured inventory report produce करता है।",
+      "Enumeration agent सभी subsequent checks का आधार भी है — secrets scanning, IAM analysis, network segmentation और compliance mapping सभी उस resource inventory से शुरू होते हैं जो Claude बनाता है।"
+    ],
+    "technical": {
+      "title": "Cloud Enumeration Tool Set",
+      "body": [
+        "AWS enumeration agent के लिए core tools: `list_s3_buckets` (public access block status के साथ), `list_ec2_instances` (security group IDs के साथ), `list_iam_roles` (attached policies के साथ), `list_lambda_functions` (VPC configuration के साथ), `list_rds_instances` (publicly accessible flag के साथ), `list_security_groups` (ingress rules के साथ)।",
+        "Claude audit scope के अनुसार कौन से services prioritize करना है decide करता है। Data-focused audit के लिए, S3 और RDS से शुरू करें। Network audit के लिए, VPCs और security groups से शुरू करें। Agent एक dependency graph बनाता है — कौन से Lambda के पास कौन से role हैं, कौन से role कौन से bucket access कर सकते हैं — जो manual auditors के पास बनाने का समय कम ही होता है।"
+      ]
+    },
+    "incident": {
+      "title": "Toyota Connected Vehicle Data Exposure (2023)",
+      "impact": "2.15M customers का location data 10 वर्षों तक exposed; misconfigured cloud environment",
+      "body": [
+        "Toyota ने खुलासा किया कि 2.15 million customers के vehicle location data फरवरी 2012 से मई 2023 तक — एक दशक से अधिक — publicly accessible थे, एक misconfigured cloud environment के कारण। Misconfiguration detect नहीं हुई क्योंकि Toyota के पास automated cloud configuration monitoring नहीं था।",
+        "Weekly चलने वाला agentic cloud enumeration agent ने पहले sprint cycle के भीतर public access configuration flag कर दिया होता। 10-year exposure timeline cloud में manual-only auditing की cost का direct measure है।"
+      ]
+    },
+    "timeline": [
+      "Toyota cloud misconfiguration introduced — 2.15M vehicle records exposed",
+      "AWS Config ने continuous compliance monitoring launch किया",
+      "Toyota ने 10-year data exposure disclose किया; agentic auditing को urgency मिली",
+      "Claude-based cloud enumeration agents production use में आए"
+    ],
+    "keyTakeaways": [
+      "Cloud inventory हर subsequent audit check का prerequisite है",
+      "सभी services enumerate करें: S3, EC2, RDS, Lambda, IAM, VPC, security groups",
+      "Resource dependency graphs बनाएं — कौन से role कौन से bucket access करते हैं",
+      "Agentic enumeration मिनटों में 10-year-old misconfigurations detect करती है"
+    ]
+  },
+  "audit-a05": {
+    "tagline": "IAM policies access control layer हैं। Claude उन्हें किसी भी human auditor से तेज़ पढ़ता है।",
+    "overview": [
+      "IAM policy analysis security auditing में AI के highest-value applications में से एक है। एक large AWS account में हजारों IAM roles, policies और permission boundaries हो सकते हैं। Manual review slow, error-prone और rarely complete होती है। Claude मिनटों में complete IAM configuration analyze कर सकता है और policy layers में effective permissions के बारे में reason कर सकता है।",
+      "Claude IAM policies की semantics समझता है: identity-based और resource-based policies के बीच का अंतर, permission boundaries effective permissions को कैसे restrict करती हैं, Condition blocks वास्तव में access कब restrict करते हैं, और wildcard statements कब privilege escalation paths बनाते हैं। यह semantic understanding regex या simple rule engines से कहीं आगे है।",
+      "IAM analyzer agent: सभी roles और attached policies enumerate करता है, policy documents extract करता है, analysis के लिए प्रत्येक Claude को send करता है, overly permissive statements flag करता है, privilege escalation paths identify करता है (जैसे iam:CreatePolicyVersion, iam:PassRole), और specific least-privilege replacements के साथ remediation report generate करता है।"
+    ],
+    "technical": {
+      "title": "Privilege Escalation Patterns जो Claude Detect करता है",
+      "body": [
+        "IAM में classic privilege escalation actions: `iam:CreatePolicyVersion` (किसी भी policy की नई version create करना, admin roles से attached policies सहित), `iam:AttachRolePolicy` (किसी भी role को कोई भी policy attach करना), `iam:PassRole` with `ec2:RunInstances` (admin role के साथ instance launch करना), `sts:AssumeRole` Condition restrictions के बिना (कोई भी role assume करना)।",
+        "Claude इनमें से प्रत्येक pattern verify करता है और complete permission chain के बारे में reason करता है। वह answer कर सकता है: 'यदि यह Lambda role compromised हो जाता है, तो attacker maximum किस privilege तक escalate कर सकता है?' — एक question जो manual auditors के पास हर role के लिए answer करने का समय कम ही होता है।"
+      ]
+    },
+    "incident": {
+      "title": "AWS IAM Privilege Escalation — Capital One (2019)",
+      "impact": "SSRF → EC2 metadata → IAM role → S3 access → 106M records",
+      "body": [
+        "Capital One breach ने IAM privilege chains के real-world impact को demonstrate किया। Attacker ने EC2 metadata service query करने के लिए SSRF का उपयोग किया, WAF EC2 instance के IAM role credentials प्राप्त किए, और उन credentials का उपयोग S3 buckets list और download करने के लिए किया। IAM role के पास WAF application की आवश्यकता से कहीं अधिक S3 access था।",
+        "WAF instance role के Claude के analysis ने immediately flag किया होता: (1) Resource `*` पर `s3:ListAllMyBuckets` — WAF के लिए अनावश्यक, (2) Resource `*` पर `s3:GetObject` — specific logging bucket तक limited होना चाहिए। Overly permissive IAM role वह critical failure था जिसने एक SSRF को mega-breach में बदल दिया।"
+      ]
+    },
+    "timeline": [
+      "Capital One breach — SSRF + overly permissive IAM role = 106M records",
+      "AWS IAM Access Analyzer launch — automated policy analysis",
+      "Claude complete IAM configurations को privilege chain reasoning के साथ analyze करने लगा",
+      "AI IAM analysis ने enterprise scale पर policy review time 90% कम किया"
+    ],
+    "keyTakeaways": [
+      "Privilege escalation: iam:CreatePolicyVersion, iam:PassRole, sts:AssumeRole key actions हैं",
+      "Claude policy layers में effective permissions के बारे में reason करता है — न केवल individual statements",
+      "सभी S3/resource actions को specific ARNs तक limit करें, न कि Resource: '*'",
+      "Claude से पूछें: 'यदि यह role compromised हो जाए तो maximum privilege क्या है?'"
+    ]
+  },
+  "audit-a06": {
+    "tagline": "MCP AI tools के लिए USB standard है। एक protocol, हर system।",
+    "overview": [
+      "Model Context Protocol (MCP) AI models को external tools और data sources से connect करने के लिए एक open standard है। प्रत्येक audit system के लिए custom tool integrations लिखने की बजाय, MCP एक standard server/client architecture provide करता है: MCP servers resources और tools expose करते हैं, Claude MCP client के रूप में connect होता है और उन्हें uniform interface के माध्यम से use करता है।",
+      "Audit automation के लिए, MCP most common audit data sources के लिए pre-integrated servers provide करता है: filesystem (configurations read करना, repositories scan करना), git (commit history analyze करना, history में sensitive data verify करना), web fetch (public documentation download करना, CDN headers verify करना) और database (audit logs query करना, compliance tables)।",
+      "MCP audit agents बनाने के लिए आवश्यक engineering work dramatically कम करता है। Custom AWS SDK wrapper लिखने की बजाय, AWS MCP server connect करें। Git history scanner बनाने की बजाय, git MCP server connect करें। Audit agent reasoning पर focus करता है; MCP input/output handle करता है।"
+    ],
+    "technical": {
+      "title": "Audit के लिए MCP Architecture",
+      "body": [
+        "MCP stdio या HTTP+SSE पर client-server model use करता है। MCP server expose करता है: resources (read-only data जैसे files और database records) और tools (invocable functions जो state modify कर सकते हैं)। Claude Code और Anthropic API दोनों MCP support करते हैं — आप same MCP servers अपने IDE और production audit pipelines में use कर सकते हैं।",
+        "Audit के लिए key MCP servers: `@modelcontextprotocol/server-filesystem` (local files read/write), `@modelcontextprotocol/server-github` (GitHub repositories, PRs, issues), `@modelcontextprotocol/server-fetch` (web page fetching), `@modelcontextprotocol/server-postgres` (database queries)। AWS, GCP, Kubernetes और दर्जनों security tools के लिए community servers exist करते हैं।"
+      ]
+    },
+    "incident": {
+      "title": "SolarWinds Supply Chain — Automated Audit Tools की कमी (2020)",
+      "impact": "18,000+ organizations compromised; Orion updates में SUNBURST backdoor",
+      "body": [
+        "SolarWinds का SUNBURST attack आंशिक रूप से इसलिए सफल हुआ क्योंकि कोई automated tools नहीं थे जो unauthorized modifications के लिए build pipeline को continuously monitor करते। Attackers ने backdoor inject करने के लिए Orion build process modify किया — एक change जिसे git history का automated analysis और build artifact comparison detect कर लेती।",
+        "MCP के साथ audit agent जिसे git server, build system और artifact repository तक access हो, detect किया होता: (1) एक commit जो किसी recorded pull request से match नहीं करता, (2) एक build artifact जिसका hash compiled source code से differ करता। MCP तीनों systems को simultaneously Claude से connect करने के लिए integration layer provide करता है।"
+      ]
+    },
+    "timeline": [
+      "SolarWinds SUNBURST — 14 महीनों तक undetected supply chain attack",
+      "Anthropic ने Model Context Protocol (MCP) launch किया — open standard",
+      "MCP ecosystem 1000+ community servers तक grow हुआ",
+      "MCP enterprise AI audit tools के लिए standard integration layer बना"
+    ],
+    "keyTakeaways": [
+      "MCP Claude को external audit systems से connect करने के लिए standard protocol है",
+      "Pre-integrated MCP servers: filesystem, git, GitHub, fetch, postgres, AWS, Kubernetes",
+      "MCP configuration claude_desktop_config.json में जाती है Claude Code के लिए या API initialization में pass होती है",
+      "Repositories, clouds और databases span करने वाले cross-system audit agents बनाने के लिए MCP use करें"
+    ]
+  },
+  "audit-a07": {
+    "tagline": "Terraform plan audit artifact है। Claude इसे apply से पहले पढ़ता है।",
+    "overview": [
+      "Infrastructure as Code (IaC) auditing विशेष रूप से AI के लिए उपयुक्त है क्योंकि Terraform plans, CloudFormation templates और Kubernetes manifests structured text documents हैं जो exact system states describe करते हैं। Claude `terraform plan` output पढ़ सकता है और apply होने से पहले प्रत्येक resource change के बारे में reason कर सकता है।",
+      "Agentic IaC review CI/CD pipeline में integrate होती है: जब कोई pull request infrastructure code modify करती है, agent automatically `terraform plan` run करता है, plan output Claude को send करता है और PR पर security review comment publish करता है। Developer को production incident के बाद नहीं, merge करने से पहले security feedback मिलता है।",
+      "Claude IaC semantics समझता है: जानता है कि RDS instance पर `publicly_accessible = true` एक finding है, कि port 22 पर `cidr_blocks = [\"0.0.0.0/0\"]` वाला security group high severity है, और कि CloudTrail trail delete करना critical control deletion है — बिना explicitly इन rules के साथ programmed किए।"
+    ],
+    "technical": {
+      "title": "PR-Integrated IaC Review Pipeline",
+      "body": [
+        "Pipeline integration: (1) .tf files में changes के साथ PR open होती है, (2) CI job `terraform plan -out=plan.tfplan && terraform show -json plan.tfplan > plan.json` run करता है, (3) agent audit prompt के साथ plan.json Claude को send करता है, (4) Claude structured findings JSON return करता है, (5) agent GitHub PR पर findings के साथ comment publish करता है, (6) critical findings required status check के माध्यम से merge block करते हैं।",
+        "IaC review के लिए Claude का prompt specify करना चाहिए: cloud provider, security baseline (AWS CIS Foundations Benchmark level), blocking के लिए severity threshold और output format। Consistent prompting consistent findings produce करती है।"
+      ]
+    },
+    "incident": {
+      "title": "Twitch Source Code Leak — Terraform Misconfiguration (2021)",
+      "impact": "125GB source code, internal tools और creator payment data leaked",
+      "body": [
+        "Twitch leak में internal Terraform configurations शामिल थे जो उनके AWS infrastructure architecture के details reveal करते थे। हालांकि primary breach vector server misconfiguration था, exposed IaC files ने attackers को Twitch के cloud environment का detailed map दिया — lateral movement accelerate करते हुए।",
+        "Agentic IaC review दो purposes serve करती है: deployment से पहले misconfigurations detect करती है और यह ensure करती है कि IaC files में hardcoded credentials या internal network topology न हो जो attackers के लिए valuable होती यदि files कभी exposed होते।"
+      ]
+    },
+    "timeline": [
+      "tfsec launch — first open-source Terraform security scanner",
+      "Twitch leak — IaC configurations infrastructure architecture expose करते हैं",
+      "Checkov ने 1000+ IaC security policies add किए",
+      "Claude का IaC review CI/CD pipelines में integrated — semantic analysis"
+    ],
+    "keyTakeaways": [
+      "CI में IaC review integrate करें: `terraform plan` → Claude analysis → PR comment",
+      "Claude explicit rule programming की आवश्यकता के बिना IaC semantics समझता है",
+      "CIS AWS Foundations Benchmark v1.4 Terraform audits के लिए standard baseline है",
+      "Critical findings required status checks के माध्यम से PR merge block करने चाहिए"
+    ]
+  },
+  "audit-a08": {
+    "tagline": "Evidence collection 60% audit time consume करती है। Agents इसे 6 मिनट में करते हैं।",
+    "overview": [
+      "Evidence collection traditional IT audit का सबसे slow और tedious हिस्सा है। Auditors manually screenshots export करते हैं, log files download करते हैं, configuration outputs capture करते हैं और उन्हें evidence packages में organize करते हैं — एक process जिसमें large audit engagement में weeks लग सकते हैं।",
+      "Agentic evidence collection इस complete workflow को automate करती है। Claude एक systematic collection run orchestrate करता है: scope में प्रत्येक control के लिए, जानता है कि कौन सी evidence required है (policy document, configuration screenshot equivalent, log sample, approval record), इसे retrieve करने के लिए appropriate tools call करता है, control requirement के against evidence validate करता है और इसे structured evidence package में organize करता है।",
+      "परिणाम auditor review के लिए ready evidence package है — raw exports का ढेर नहीं, बल्कि specific controls को assigned organized artifacts के साथ Claude के assessment के साथ कि प्रत्येक evidence piece control requirement satisfy करती है या नहीं। Audit preparation time weeks से hours में कम हो जाता है।"
+    ],
+    "technical": {
+      "title": "Evidence Package Structure",
+      "body": [
+        "एक well-structured evidence package प्रत्येक evidence piece को assign करती है: जो control यह satisfy करती है (COBIT objective, SOC 2 criterion, NIST CSF function), collection timestamp, collection method (API call, log export, configuration capture) और Claude का assessment (satisfied/partially satisfied/not satisfied)।",
+        "Evidence validation वह जगह है जहां Claude unique value add करता है। दिए गए control requirement ('MFA सभी privileged accounts के लिए enabled होनी चाहिए') और evidence piece (IAM credential report) के साथ, Claude evaluate कर सकता है कि evidence वास्तव में control satisfy करती है — न केवल file exist करती है।"
+      ]
+    },
+    "incident": {
+      "title": "Equifax Pre-Breach SOC 2 Evidence Gap (2017)",
+      "impact": "147M records breached; post-breach audit ने evidence collection gaps reveal किए जो control failures mask कर रहे थे",
+      "body": [
+        "Equifax की compliance posture के post-breach analysis ने reveal किया कि patch controls के लिए evidence collection incomplete थी — certificates exist करते थे कि patches apply होते थे, लेकिन evidence verify नहीं करती थी कि Apache Struts vulnerability (CVE-2017-5638) वास्तव में exposed systems पर patch हुई थी।",
+        "Claude-driven validation के साथ automated evidence collection ने इस gap को flag किया होता: evidence scope के सभी systems से collected होती, Claude identify करता कि vulnerable Apache Struts version अभी भी web-facing servers पर run कर रहा था, और control 'not satisfied' evaluate होता — breach से पहले remediation trigger करते हुए।"
+      ]
+    },
+    "timeline": [
+      "Equifax breach — evidence collection gaps ने patch control failures mask किए",
+      "AICPA ने SOC 2 evidence requirements update किए — automated collection बढ़ रही है",
+      "पहले agentic evidence collection systems production में deployed",
+      "Claude evidence validation ने manual auditor review के against 95%+ accuracy achieve की"
+    ],
+    "keyTakeaways": [
+      "Evidence collection 60% audit time consume करती है — automation इसे hours में कम करती है",
+      "प्रत्येक evidence artifact को specific control requirement से assign करें",
+      "Claude validate करता है कि evidence वास्तव में control satisfy करती है — केवल उसकी presence नहीं",
+      "Output: per-control assessment (satisfied/partial/not satisfied) के साथ structured package"
+    ]
+  },
+  "audit-a09": {
+    "tagline": "एक agent एक control audit करता है। Agents की pipeline एक organization audit करती है।",
+    "overview": [
+      "Single-agent audit tools individual controls या domains handle करते हैं। Multi-agent audit pipelines multiple specialist agents coordinate करती हैं — प्रत्येक specific domain में expert — एक orchestrator agent के under जो audit plan करता है, tasks delegate करता है, results synthesize करता है और final report produce करता है।",
+      "Orchestrator pattern reflect करता है कि human audit teams कैसे काम करते हैं: एक engagement manager audit plan करता है, specialists को workstreams assign करता है (network security, IAM, application security, logging), completed workstreams receive करता है, cross-domain findings identify करता है और final report draft करता है। Claude agents ये सभी roles simultaneously play कर सकते हैं।",
+      "Anthropic Agent SDK और Claude API दोनों multi-agent patterns support करते हैं। Orchestrator sub-agents generate करने के लिए tool calls use करता है: `run_iam_audit_agent`, `run_network_audit_agent`, `run_secrets_audit_agent`। प्रत्येक sub-agent अपनी complete pipeline run करता है और structured findings return करता है। Orchestrator cross-domain findings synthesize करता है जो कोई individual specialist नहीं देख पाता।"
+    ],
+    "technical": {
+      "title": "Orchestrator-Specialist Pattern",
+      "body": [
+        "Orchestrator responsibilities: audit scope analyze करना, parallel workstreams create करना, appropriate tools और prompts के साथ specialist agents spawn करना, results collect करना, cross-domain findings identify करना (जैसे IAM role जिसे network access है एक secrets-exposed system तक), integrated final report produce करना।",
+        "Specialist agent responsibilities: domain-specific tools use करके focused domain audit, severity, evidence और remediation के साथ structured JSON findings return करना। Specialists को एक दूसरे से communicate नहीं करना चाहिए — सारी synthesis orchestrator level पर होती है। यह cascading errors रोकता है और pipeline को debuggable बनाता है।"
+      ]
+    },
+    "incident": {
+      "title": "MOVEit Transfer Supply Chain — Cross-Domain Audit Gap (2023)",
+      "impact": "2,000+ organizations compromised; 60M+ individuals का data चोरी",
+      "body": [
+        "MOVEit breach ने MOVEit Transfer में SQL injection vulnerability (CVE-2023-34362) exploit की। Affected organizations के post-incident audits ने reveal किया कि vulnerability network, application और database layers में exist करती थी — एक cross-domain problem जिसे single-domain audits प्रत्येक partially address करते लेकिन कोई completely capture नहीं करता।",
+        "Multi-agent audit pipeline correlate करती: network agent MOVEit internet exposure flag करता, application agent unpatched SQL injection flag करता, और IAM agent database permissions flag करता जिसने data extraction allow किया। Cross-domain synthesis exploitation से पहले critical risk chain finding produce करती।"
+      ]
+    },
+    "timeline": [
+      "MOVEit breach — cross-domain vulnerability 2000+ orgs में exploited",
+      "Multi-agent frameworks (LangGraph, CrewAI) production maturity तक पहुंचे",
+      "Anthropic Agent SDK launch — first-party multi-agent tools",
+      "Enterprise audit firms ने multi-agent pipelines deploy किए manual workflows replace करते हुए"
+    ],
+    "keyTakeaways": [
+      "Orchestrator plan, delegate और synthesize करता है — specialists domain audits execute करते हैं",
+      "Human audit team structure match करने के लिए specialist agents parallel में run करें",
+      "Cross-domain synthesis वह जगह है जहां multi-agent pipelines वो find करती हैं जो individual agents miss करते हैं",
+      "Specialists structured JSON return करें — reliable synthesis के लिए natural language नहीं"
+    ]
+  },
+  "audit-a10": {
+    "tagline": "Finding उतनी ही useful है जितना report। Claude किसी भी auditor से तेज़ लिखता है।",
+    "overview": [
+      "Audit report writing वह जगह है जहां audit findings मर जाते हैं। Auditors 30-40% समय writing में लगाते हैं — technical findings को management-comprehensible language में translate करना, remediation recommendations draft करना, evidence packages format करना और executive summaries produce करना। यह time clients के लिए valuable लेकिन auditors के लिए low-value है।",
+      "Claude audit report generation में excel करता है क्योंकि structured JSON findings को professional audit language में translate कर सकता है, audience के अनुसार technical depth calibrate कर सकता है (executive summary vs technical appendix), general findings से specific remediation steps generate कर सकता है और सैकड़ों findings में consistent tone और format maintain कर सकता है।",
+      "Report generation agent multi-agent audit pipeline के structured findings लेता है, एक report template apply करता है (executive summary, scope, methodology, findings by severity और remediation roadmap के sections के साथ) और एक draft report produce करता है जिसे auditors scratch से लिखने की बजाय review और finalize करते हैं।"
+    ],
+    "technical": {
+      "title": "Report Generation Prompt Architecture",
+      "body": [
+        "Report generation consistent output के लिए careful prompt engineering require करती है। एक system prompt specify करें जो बताए: writing style (formal, third person), audience (CISO और board vs system administrator), severity language ('Critical — Immediate Action Required' vs केवल 'Critical'), और structure (findings में शामिल होना चाहिए: title, finding, risk, recommendation, management response field)।",
+        "Large finding sets के लिए, सभी findings एक single call में process करने के लिए Claude के extended context window का use करें। Very large audits (500+ findings) के लिए, domain से divide करें और section drafts generate करें, फिर section summaries से executive summary produce करने के लिए synthesis call use करें।"
+      ]
+    },
+    "incident": {
+      "title": "Dyn DNS DDoS — Report Writing ने Remediation Delay किया (2016)",
+      "impact": "Twitter, Netflix, Reddit, GitHub, Spotify घंटों offline; IoT devices के माध्यम से Mirai botnet",
+      "body": [
+        "Dyn DDoS attack के post-incident analysis ने reveal किया कि कई IoT security assessments ने पहले unpatched IoT devices के DDoS के लिए use होने के risk को identify किया था। हालांकि, audit reports generic terms में draft हुए थे — 'IoT security posture improve करें' — specific, actionable recommendations की बजाय। Vague report language का मतलब था कि कोई remediation prioritize नहीं हुई।",
+        "Claude-generated reports specific recommendations produce करती हैं: 'Production environment में सभी IoT devices पर Telnet (port 23) disable करें network configuration change procedure RB-042 में runbook using करके। Deadline: 30 days. Owner: Network Operations।' Specific recommendations implement होती हैं; vague ones deprioritize होती हैं।"
+      ]
+    },
+    "timeline": [
+      "Dyn DDoS — vague audit report language ने IoT security remediation delay किया",
+      "Big 4 firms ने audit report first draft generation के लिए LLMs use शुरू किए",
+      "Claude ने audit report sections generate किए जो senior auditor prose से indistinguishable थे",
+      "Report generation ने enterprise audit firms में audit delivery time 40% कम किया"
+    ],
+    "keyTakeaways": [
+      "Vague recommendations ('security improve करें') implement नहीं होतीं — Claude specific ones लिखता है",
+      "Report style, audience और required finding sections enforce करने के लिए system prompts use करें",
+      "Claude structured JSON findings को management-comprehensible audit language में translate करता है",
+      "Report generation delivery time 40% कम करती है — auditors review और finalize करते हैं, लिखते नहीं"
+    ]
+  },
+  "audit-a11": {
+    "tagline": "Annual audits पिछले साल की problems find करते हैं। Continuous monitoring आज की find करता है।",
+    "overview": [
+      "Traditional IT audits point-in-time assessments हैं — audit के समय controls की state capture करते हैं, जो remediation verify होने से महीनों या साल पहले हो सकती है। Continuous compliance monitoring scheduled agents use करता है जो audit pipeline बार-बार run करते हैं — daily, weekly, या प्रत्येक infrastructure change पर — compliance posture की real-time visibility provide करते हुए।",
+      "Scheduled Claude agents compliance checks उतनी frequently run कर सकते हैं जितनी आवश्यकता हो, baseline से deviations पर immediately alert कर सकते हैं, और historical compliance posture dashboard maintain कर सकते हैं। जब एक नया S3 bucket public access के साथ create होता है, agent इसे next scheduled run में detect करता है — अगले annual audit में नहीं।",
+      "Continuous monitoring incident response के साथ integrate होती है: जब एक CRITICAL finding detect होती है, agent केवल log नहीं करता — Jira में ticket open करता है, PagerDuty के माध्यम से on-call engineer को alert करता है, और security Slack channel में formatted finding post करता है। Audit finding operational alert बन जाती है।"
+    ],
+    "technical": {
+      "title": "Scheduling और Alerting Architecture",
+      "body": [
+        "Scheduling options: AWS EventBridge rules (cron expression → Lambda → Claude agent), GitHub Actions scheduled workflows (cron: '0 6 * * *'), या dedicated orchestration platform (Temporal, Airflow)। Agent code point-in-time audit के समान है — केवल trigger बदलता है।",
+        "Alerting integration: agent structured JSON findings return करता है। एक post-processing step severity को alert channels assign करता है: CRITICAL → PagerDuty + Slack + Jira, HIGH → Slack + Jira, MEDIUM → Jira। Suppression rules documented compensating controls के साथ known accepted risks के लिए alert fatigue रोकते हैं।"
+      ]
+    },
+    "incident": {
+      "title": "LastPass Breach — Undetected Configuration Drift (2022)",
+      "impact": "33M customers के encrypted password vaults चोरी; attack महीनों तक undetected रहा",
+      "body": [
+        "LastPass breach अगस्त से नवंबर 2022 तक — चार महीने — persist रही, आंशिक रूप से क्योंकि development environment में configuration drift unnoticed रही। Attacker ने एक developer की machine compromise की, फिर उस access का उपयोग production backup environment तक पहुंचने के लिए किया। Environment configuration और access patterns की continuous monitoring ने hours के भीतर anomalous access detect किया होता।",
+        "Continuous compliance agents केवल configurations नहीं बल्कि behavioral baselines monitor करते हैं: कौन से IAM roles कौन से resources access करते हैं, दिन के किस समय, कौन से IP ranges से। Established baseline से deviations immediate alerts generate करती हैं — 4-month dwell time को 4-hour response window में बदलते हुए।"
+      ]
+    },
+    "timeline": [
+      "LastPass breach — continuous monitoring की कमी से 4-month dwell time",
+      "AWS Security Hub ने 1000+ controls में continuous compliance rules add किए",
+      "Scheduled Claude compliance agents enterprise scale पर production में आए",
+      "AI continuous compliance monitoring SOC 2 Type II audit standard बन गया"
+    ],
+    "keyTakeaways": [
+      "Annual audits पिछले साल की problems find करते हैं — continuous monitoring आज की find करता है",
+      "EventBridge, GitHub Actions, या Temporal cron के माध्यम से Claude agents schedule करें",
+      "CRITICAL findings को immediate PagerDuty + Slack + Jira alerts से map करें",
+      "Behavioral baselines monitor करें — न केवल static configurations"
+    ]
+  },
+  "audit-a12": {
+    "tagline": "Auditing का भविष्य: scope define करें, run दबाएं, report प्राप्त करें।",
+    "overview": [
+      "End-to-end agentic audit pipeline इस epoch में covered सभी components combine करता है: data collection के लिए tool use, system integration के लिए MCP servers, parallel workflows के लिए multi-agent orchestration, IAM/secrets/IaC के लिए AI-driven analysis, automatic evidence collection, report generation और post-audit deviation detection के लिए continuous monitoring।",
+      "एक complete agentic audit engagement इस प्रकार run होती है: (1) Auditor scope define करता है (account IDs, regions, applicable standards), (2) Orchestrator agent workstreams plan करता है और specialists spawn करता है, (3) Specialists parallel में run करते हैं — IAM, network, secrets, IaC, logging, (4) Orchestrator cross-domain findings synthesize करता है, (5) Report writer draft generate करता है, (6) Continuous sentinel post-audit monitoring के लिए activate होता है, (7) Auditor hours में review और finalize करता है, weeks में नहीं।",
+      "Agentic pipeline audits replace नहीं करती — audit के mechanical parts (data collection, formatting, basic pattern matching) eliminate करती है ताकि auditors judgment पर focus कर सकें: risk context evaluate करना, compensating controls assess करना, remediation strategy पर advise करना और stakeholders को findings communicate करना।"
+    ],
+    "technical": {
+      "title": "Complete Pipeline Component Stack",
+      "body": [
+        "Layer 1 — Data Collection: MCP servers (filesystem, git, GitHub, fetch) + custom AWS/GCP/Azure SDK tools। Layer 2 — Analysis: domain-specific prompts और tool sets के साथ domain specialized Claude agents। Layer 3 — Orchestration: multi-agent coordination और cross-domain synthesis के साथ orchestrator agent। Layer 4 — Output: report generation agent + evidence package builder। Layer 5 — Operations: alerting integration के साथ scheduled sentinel।",
+        "Pipeline एक DAG (directed acyclic graph) के रूप में implement होती है: inventory enumeration IAM analysis से पहले complete होनी चाहिए (जिसे roles की list चाहिए), लेकिन IAM, network, secrets और IaC analyses parallel में run कर सकते हैं। Orchestrator इस dependency graph manage करता है, data dependencies respect करते हुए parallelism maximize करता है।"
+      ]
+    },
+    "incident": {
+      "title": "MGM Resorts Breach — Manual Audit Cannot Keep Pace (2023)",
+      "impact": "$100M+ operational losses; hotel systems, slot machines, digital keys 10 दिनों के लिए offline",
+      "body": [
+        "MGM breach एक IT helpdesk को social engineering call से शुरू हुई — एक technique जो कोई technical audit tool detect नहीं करती। लेकिन subsequent lateral movement, privilege escalation और ALPHV ransomware deployment ने वो सभी gaps exploit किए जो comprehensive agentic audit में appear होते: overly permissive IAM roles, IT और OT systems के बीच insufficient network segmentation, और privileged account activity का inadequate monitoring।",
+        "MGM का environment manual auditors के लिए comprehensively assess करने के लिए बहुत large और complex था। Weekly run होने वाली agentic pipeline ने हर privileged role, हर business unit के बीच network connection और हर anomalous authentication event का current inventory maintain किया होता — defenders को faster detect और respond करने के लिए necessary context देते हुए।"
+      ]
+    },
+    "timeline": [
+      "MGM breach — $100M loss; complex enterprise environment manual audit के लिए बहुत large",
+      "पहले enterprise agentic audit pipelines ने complete end-to-end automation achieve की",
+      "Big 4 firms ने 60% manual procedures replace करने के लिए agentic audit pipelines deploy किए",
+      "Continuous agentic auditing regulatory baseline expectation बन गई"
+    ],
+    "keyTakeaways": [
+      "End-to-end pipeline: inventory → parallel domain analysis → synthesis → report → sentinel",
+      "Domain agents parallel में run करें; sequential requirements के लिए dependency graph use करें",
+      "Agents mechanical audit work eliminate करते हैं; auditors judgment और communication पर focus करते हैं",
+      "Continuous sentinel post-audit activate होता है next engagement से पहले drift detect करने के लिए"
+    ]
+  },
+  "audit-cm01": {
+    "tagline": "आप जो नहीं देख सकते उसे defend नहीं कर सकते। Continuous monitoring visibility को security में बदलता है।",
+    "overview": [
+      "NIST Special Publication 800-137 Information Security Continuous Monitoring (ISCM) को organizational risk management decisions support करने के लिए information security, vulnerabilities और threats के बारे में ongoing awareness maintain करने के रूप में define करता है। 2011 में published और 2024 तक updated, यह continuous monitoring programs के लिए authoritative federal framework है।",
+      "ISCM छह steps पर बना है: Define, Establish, Implement, Analyze/Report, Respond और Review। ये steps एक continuous cycle बनाते हैं — one-time project नहीं। Framework तीन monitoring levels के बीच distinguish करता है: organizational level (governance और strategy), business/mission process level (process-level risk) और information system level (technical controls और data)।",
+      "Modern ISCM programs compliance monitoring से आगे जाते हैं। Metrics establish करते हैं, asset criticality के आधार पर monitoring frequencies define करते हैं, data collection automate करते हैं और findings को risk management decisions में integrate करते हैं। Goal केवल incidents detect करना नहीं है — organizational security posture की accurate, real-time picture maintain करना है।"
+    ],
+    "technical": {
+      "title": "ISCM Implementation Architecture",
+      "body": [
+        "Production ISCM program को चार layers चाहिए: data collection (agents, APIs, log forwarders), normalization (common schema जैसे ECS या OCSF में parsing), analysis (correlation rules, ML models, threat intelligence enrichment) और response (dashboards, alerts, ticketing integration, automated playbooks)।",
+        "Monitoring frequency asset criticality और control volatility से driven है। एक public-facing web application को daily या continuous vulnerability scans चाहिए; air-gapped backup system को केवल weekly checks चाहिए। NIST 800-137 FIPS 199 categorization (Low/Moderate/High impact systems) पर आधारित frequency decision framework provide करता है।"
+      ]
+    },
+    "incident": {
+      "title": "OPM Data Breach — Monitoring Gap (2015)",
+      "impact": "21.5 million security clearance records चोरी; एक साल से अधिक समय तक undetected breach",
+      "body": [
+        "Office of Personnel Management breach US history में सबसे बड़ी government personnel data theft था। Attackers — Chinese state actors को attributed — 14 महीनों से अधिक समय तक persistent access maintain किए detect होने से पहले। OPM Inspector General ने inadequate continuous monitoring capabilities के बारे में बार-बार warning दी थी, जिसमें comprehensive ISCM program की absence शामिल थी।",
+        "Post-breach analysis ने reveal किया कि OPM के पास अपने network के भीतर lateral movement की visibility नहीं थी, privileged user accounts के behavior का कोई baseline establishment नहीं था, और DHS-mandated CDM (Continuous Diagnostics and Mitigation) program implement नहीं किया था। Privileged account access में anomaly detection के साथ functional ISCM program ने breach days में detect किया होता, months में नहीं।"
+      ]
+    },
+    "timeline": [
+      "NIST SP 800-137 published — federal ISCM framework established",
+      "DHS CDM program launch — सभी federal agencies में continuous monitoring",
+      "OPM breach revealed — 14-month dwell time ISCM gaps expose करता है",
+      "NIST SP 800-137A published — ISCM program assessment guidance",
+      "AI-native ISCM platforms emerge — LLM-assisted alert triage और reporting"
+    ],
+    "keyTakeaways": [
+      "ISCM एक six-step continuous cycle है — one-time compliance project नहीं",
+      "Monitoring frequency asset criticality से match होनी चाहिए (FIPS 199: Low/Moderate/High)",
+      "तीन levels: organizational governance, business process, और information system",
+      "Visibility gaps लंबे dwell times का कारण बनते हैं — OPM 14 महीनों तक undetected रहा",
+      "CDM और ISCM programs को funded, staffed और regularly reviewed होना चाहिए"
+    ]
+  },
+  "audit-cm03": {
+    "tagline": "Attackers credentials चुराते हैं। UEBA उसके बाद का behavior detect करता है।",
+    "overview": [
+      "User and Entity Behavior Analytics (UEBA) perimeter और signature-based security की fundamental limitation address करता है: एक बार जब attacker के पास valid credentials हैं, वे traditional controls को legitimate दिखते हैं। UEBA प्रत्येक user और entity (devices, service accounts, applications) के normal behavior का statistical baseline बनाता है और deviations flag करता है, भले ही attacker stolen लेकिन valid credentials use कर रहा हो।",
+      "UEBA platforms identity data (Active Directory, Okta, Azure AD), endpoint telemetry (EDR), network flows (NetFlow, IPFIX), application logs और DLP events ingest करते हैं। प्रत्येक entity के लिए, behavioral characteristics calculate करते हैं: typical work hours, usual geographic locations, normal data access volumes, peer group behavior comparison, application usage patterns और authentication sequences।",
+      "UEBA का output एक risk score है: किसी entity के current behavior का अपनी baseline और peer group के relative कितना anomalous है इसका continuous numerical representation। एक single anomaly rarely alert trigger करती है; UEBA systems multiple low-confidence anomalies को high-confidence risk finding में chain करते हैं। यह threat chaining approach UEBA को single-rule alert से distinguish करता है।"
+    ],
+    "technical": {
+      "title": "Risk Scoring और Threat Chaining",
+      "body": [
+        "UEBA risk scores ensemble models use करके calculate होते हैं: temporal behavioral baselines के लिए time-series forecasting (ARIMA, LSTM), relative anomaly scoring के लिए peer group comparison, और independent signals को composite risk score में correlate करने के लिए Bayesian networks। Key insight यह है कि कोई भी individual signal alert threshold exceed नहीं कर सकता, लेकिन उनका combination कर सकता है।",
+        "Threat chaining example: User 500MB download करता है (low risk: 2.1), नए country से login करता है (moderate: 4.8), पहली बार HR database access करता है (moderate: 5.2), external address पर attachment के साथ email send करता है (moderate: 4.1)। कोई single event alert trigger नहीं करता; chained risk score 8.9 करता है। यह rule-based detection की तुलना में false positives dramatically reduce करता है।"
+      ]
+    },
+    "incident": {
+      "title": "Tesla Insider Threat — Data Exfiltration (2023)",
+      "impact": "75,735 employee records leaked; Social Security numbers और financial data सहित",
+      "body": [
+        "दो former Tesla employees ने German media outlet Handelsblatt को resign करने से पहले 100GB से अधिक confidential data transfer किए। Leaked data में 75,735 Tesla employees की personal information, customer complaints और financial records शामिल थे। Tesla की investigation ने reveal किया कि employees ने weeks तक systematically data extract किया था, एक classic insider threat pattern।",
+        "UEBA ने departure से पहले के हफ्तों में multiple behavioral signals detect किए होते: HR systems से large file downloads, normal patterns से बाहर USB device activity, personal accounts पर email forwarding और employees के normal job function से बाहर data repositories access। इन signals में risk scores chain करना departure से बहुत पहले critical alert generate करता।"
+      ]
+    },
+    "timeline": [
+      "Gartner ने 'UEBA' term coin किया — UBA non-human entities cover करने के लिए extended",
+      "UEBA major SIEM platforms में integrated (Splunk UBA, IBM QRadar UBA)",
+      "Identity-centric security model emerge — UEBA Zero Trust का core component बना",
+      "Tesla insider threat — departing employees द्वारा 75k employee records exfiltrated",
+      "LLM-enhanced UEBA: anomalous behavior patterns की natural language explanation"
+    ],
+    "keyTakeaways": [
+      "UEBA compromised credentials को behavior से detect करता है, signature से नहीं — attacker valid access के साथ भी different दिखता है",
+      "Risk score chaining: multiple low-confidence signals high-confidence alerts में compound होते हैं",
+      "Baseline models per-entity और per-peer-group हैं — CFO के लिए 'normal' junior analyst से differ करता है",
+      "Insider threats UEBA का strongest use case हैं — legitimate access वाले employees जो behavior बदलते हैं",
+      "UEBA को detection accuracy reliable होने से पहले 30-90 days के baseline data की आवश्यकता है"
+    ]
+  },
+  "audit-cm04": {
+    "tagline": "Network कभी झूठ नहीं बोलती। हर attacker movement packets का trail छोड़ता है।",
+    "overview": [
+      "Network Detection and Response (NDR) — पहले Network Traffic Analysis (NTA) — endpoint agents से independent, network level पर encrypted और unencrypted traffic में security visibility provide करता है। जहां EDR को हर managed device पर agent की आवश्यकता है, NDR monitored segments से गुजरने वाले सभी traffic को passively observe करता है, IoT devices, OT systems और unmanaged assets सहित जो agents run नहीं कर सकते।",
+      "NDR platforms (Darktrace, ExtraHop, Vectra AI, Corelight) deep packet inspection, protocol decoding और network flows का ML-based behavioral modeling perform करते हैं। Anomalous communication patterns identify करते हैं: unexpected external connections, unusual data transfer volumes, port scanning, SMB/RDP/WMI के माध्यम से lateral movement, DNS tunneling और HTTPS पर C2 beaconing patterns (connection timing और size analyze करके, payload नहीं)।",
+      "NDR का EDR और SIEM data के साथ integration XDR (Extended Detection and Response) model बनाता है — network, endpoint और identity signals correlate करके higher-confidence detections के लिए। NDR endpoint controls evade करने वाले threats detect करने के लिए particularly valuable है: supply chain implants, firmware-level malware और legitimate services use करने वाला cloud-hosted C2।"
+    ],
+    "technical": {
+      "title": "C2 Beaconing Detection",
+      "body": [
+        "Command-and-control (C2) malware एक schedule पर अपने operator से communicate करता है — typically हर 30-300 seconds small check-in packets के साथ। यह NetFlow data में distinctive beaconing pattern create करता है: एक single external IP को high-frequency connections consistent inter-arrival times और small, uniform payload sizes के साथ। NDR platforms Fourier analysis of connection timing और flow size distribution clustering use करके इस pattern detect करते हैं।",
+        "Encrypted C2 (HTTPS, DNS-over-HTTPS) passive NDR द्वारा decrypt नहीं हो सकता, लेकिन TLS metadata — certificate fields, handshake timing, JA3 fingerprints, connection frequency — classification के लिए sufficient signal provide करता है। Legitimate CDN connection के behavioral characteristics एक C2 channel से different होती हैं जो same port use करती है।"
+      ]
+    },
+    "incident": {
+      "title": "Hafnium Exchange Server Attack — C2 Detection (2021)",
+      "impact": "चार zero-day vulnerabilities; China को attributed state-actor espionage campaign",
+      "body": [
+        "Hafnium group ने web shells deploy करने और C2 channels establish करने के लिए चार Exchange Server zero-days (ProxyLogon) exploit किए। Initial exploitation Exchange के OWA interface पर legitimate HTTPS के माध्यम से था — signature-based detection के लिए normal user traffic से indistinguishable। Post-exploitation C2 ने attacker-controlled infrastructure को apparently benign HTTPS traffic use किया।",
+        "NDR deployed organizations ने behavioral anomalies के माध्यम से attacks detect किए: Exchange servers से unusual volumes of HTTPS POST requests (servers typically receive, initiate connections नहीं करते), freshly-registered domains पर connections with fresh certificates और unusual directories में data staging। NDR platforms ने Exchange servers को external connections initiate करते flagging — उनके expected network role से fundamental behavior deviation।"
+      ]
+    },
+    "timeline": [
+      "Gartner ने NTA (Network Traffic Analysis) category define किया",
+      "Gartner ने NTA का नाम NDR रखा — response capabilities emphasized",
+      "Hafnium Exchange attacks — NDR behavioral detection ने zero-days के against value prove किया",
+      "Cloud NDR emerge — VPC flow log analysis on-prem packet capture replace करती है",
+      "NDR + LLM integration — natural language network forensic analysis queries"
+    ],
+    "keyTakeaways": [
+      "NDR सभी network traffic passively observe करता है — monitored devices पर agent required नहीं",
+      "C2 beaconing timing regularity से detectable है encrypted channels में भी",
+      "Servers unexpected outbound connections initiate करना high-fidelity behavioral anomaly है",
+      "TLS JA3/JA3S fingerprints decryption के बिना malware families identify करते हैं",
+      "NDR IoT, OT और unmanaged endpoints के लिए visibility gap close करता है जो EDR run नहीं कर सकते"
+    ]
+  },
+  "audit-cm05": {
+    "tagline": "Misconfiguration cloud breach का #1 vector है। CSPM इसे attackers से पहले find करता है।",
+    "overview": [
+      "Cloud Security Posture Management (CSPM) cloud infrastructure configurations को security benchmarks के against continuously monitor करता है — CIS AWS Foundations Benchmark, NIST 800-53, PCI-DSS, SOC 2 — और real-time में deviations identify करता है। जहां traditional vulnerability management software defects पर focus करता है, CSPM configuration errors पर: public S3 buckets, overly permissive IAM roles, unencrypted databases, 0.0.0.0/0 के लिए open security groups।",
+      "CSPM platforms (Wiz, Prisma Cloud, Orca Security, AWS Security Hub, Microsoft Defender for Cloud) cloud provider APIs use करते हैं — agents नहीं — सभी resources और उनकी configurations inventory करने के लिए। यह agentless approach complete coverage provide करती है जिसमें serverless functions, managed databases, container registries और cloud-native services शामिल हैं।",
+      "Modern CSPM individual resource checks से attack path analysis की ओर evolve हो गया है: model करना कि एक attacker कैसे multiple misconfigurations chain कर सकता है — एक overly permissive IAM role वाला public EC2 instance जिसे customer PII वाले S3 bucket तक read access है — sensitive resources तक पहुंचने के लिए। Attack path prioritization teams को most-important paths remediate करने पर focus करने में help करता है।"
+    ],
+    "technical": {
+      "title": "Attack Path Analysis",
+      "body": [
+        "Attack path analysis cloud infrastructure को directed graph के रूप में model करता है: nodes resources हैं (EC2 instances, IAM roles, S3 buckets, RDS databases), और edges access relationships हैं (role assumption, bucket policy grants, security group rules)। एक attacker public EC2 instance से शुरू करके graph traverse करता है attached IAM roles assume करके और उनके permissions follow करके।",
+        "CSPM platforms प्रत्येक misconfiguration का impact radius calculate करते हैं: यदि EC2 instance X compromised हो जाए, तो सभी attached roles, instance profiles और network paths follow करके कौन से resources reachable हैं? Public-access resource से दो hops के भीतर reachable resources individual misconfiguration severity की परवाह किए बिना elevated priority हैं।"
+      ]
+    },
+    "incident": {
+      "title": "Capital One S3 Misconfiguration — SSRF + CSPM Miss (2019)",
+      "impact": "106 million customer records; $190M settlement; misconfigured WAF के माध्यम से SSRF",
+      "body": [
+        "Capital One failure ने दो errors combine किए: एक misconfigured WAF जो EC2 metadata service को SSRF allow करता था, IAM credentials leak करते हुए; और एक overly permissive IAM role जो attacker को 700 से अधिक S3 buckets list और download करने देता था। Capital One के पास 700+ S3 buckets थे — manual review impractical था। IAM role permissions और S3 access policies continuously verify करने वाला CSPM system overly permissive role immediately identify कर लेता।",
+        "Breach के बाद, Capital One ने cloud security posture management के लिए Wiz implement किया। Wiz का attack path analysis specific chain identify किया होता: SSRF के vulnerable EC2 → metadata service → IAM role → S3 ListBuckets + GetObject — internet से sensitive data तक three-hop attack path, software vulnerabilities की बजाय misconfigurations के माध्यम से।"
+      ]
+    },
+    "timeline": [
+      "Gartner ने CSPM category define किया — cloud configuration monitoring formalized",
+      "Capital One breach — S3 + overly permissive IAM misconfiguration ने 106M records expose किए",
+      "Wiz ने $250M raise किया — CSPM critical enterprise security category बन गया",
+      "Attack path analysis CSPM standard बन गया — graph-based risk modeling",
+      "CNAPP (Cloud-Native Application Protection Platform) ने CSPM + CWPP + CIEM merge किए"
+    ],
+    "keyTakeaways": [
+      "Misconfiguration 80%+ cloud breaches cause करती है — CSPM इसे attackers से पहले detect करता है",
+      "API-based agentless scanning serverless और PaaS सहित cloud में complete coverage provide करता है",
+      "Attack path analysis reveal करता है कि कौन से misconfigurations data breach chains allow करते हैं — उन्हें पहले prioritize करें",
+      "CIS और NIST 800-53 Benchmarks CSPM checks के लिए compliance control library provide करते हैं",
+      "CNAPP CSPM को container security, secrets scanning और runtime protection include करने के लिए extend करता है"
+    ]
+  },
+  "audit-cm06": {
+    "tagline": "आपका network events देखता है। Threat intelligence बताता है उनका क्या मतलब है।",
+    "overview": [
+      "Threat intelligence integration raw security events को contextualized findings में transform करता है indicators of compromise (IoCs) को enrich करके — IP addresses, domain names, file hashes, URLs — known attacker infrastructure, malware families और threat actor TTPs के बारे में external knowledge के साथ। जब NDR platform IP 185.220.101.45 पर connection detect करता है, threat intelligence answer करता है: क्या यह known Tor exit node है? किसी specific threat actor को attributed है? यह actor कौन से sector target करता है?",
+      "STIX (Structured Threat Information eXpression) standard threat intelligence objects का data model define करता है: Indicators (IoC patterns), Threat Actors, Attack Patterns (MITRE ATT&CK TTPs), Campaigns, Malware, और उनके बीच Relationships। TAXII (Trusted Automated eXchange of Intelligence Information) organizations और platforms के बीच STIX content share करने का transport protocol है।",
+      "Intelligence feeds तीन levels से आते हैं: open-source (CISA AIS, Abuse.ch, AlienVault OTX, Emerging Threats), commercial (CrowdStrike Intelligence, Mandiant, Recorded Future) और sector-specific ISACs (finance के लिए FS-ISAC, health के लिए H-ISAC, energy के लिए E-ISAC)। Modern SIEM और NDR platforms automatically STIX/TAXII feeds consume करते हैं, ingestion के समय प्रत्येक alert को threat context के साथ enrich करते हैं।"
+    ],
+    "technical": {
+      "title": "STIX/TAXII Integration Architecture",
+      "body": [
+        "TAXII server REST API के माध्यम से STIX objects के collections expose करता है। Clients TAXII server को schedule पर (typically हर 5-60 minutes) new और updated objects retrieve करने के लिए query करते हैं। STIX Indicators में STIX Patterning Language expressions होती हैं जो IoCs describe करती हैं: `[ipv4-addr:value = '185.220.101.45']`, `[file:hashes.'SHA-256' = 'abc123...']`। ये patterns SIEM के enrichment pipeline द्वारा normalized log data के against evaluate होते हैं।",
+        "TIP (Threat Intelligence Platform) — OpenCTI, MISP, ThreatConnect, Anomali — aggregation layer का काम करता है: multiple sources से feeds consume करना, deduplicating करना, confidence levels score करना और SOC के SIEM को unified TAXII endpoint expose करना। यह raw feed volume (billions of IoCs) से high-confidence और relevant indicators तक pre-filter करके SIEM overload रोकता है।"
+      ]
+    },
+    "incident": {
+      "title": "Volt Typhoon — Living-off-the-Land C2 Intelligence Sharing (2023)",
+      "impact": "Chinese state actor US critical infrastructure में pre-positioned wartime disruption के लिए",
+      "body": [
+        "CISA, NSA और Five Eyes partners ने jointly Volt Typhoon campaign disclose किया — एक Chinese state actor जो years से US critical infrastructure में living-off-the-land था। Volt Typhoon ने detection evade करने के लिए केवल built-in Windows tools (LOLBins) और legitimate network paths use किए, signature-based detection को useless बनाते हुए। Campaign behavioral analysis और agencies के बीच threat intelligence sharing के माध्यम से detect हुई।",
+        "Disclosure में MITRE ATT&CK पर mapped Volt Typhoon TTPs, C2 infrastructure IoCs और detection guidance के साथ STIX bundle शामिल था। CISA के AIS (Automated Indicator Sharing) TAXII feed के subscriber organizations ने disclosure के hours के भीतर automatically ये indicators receive किए, previous compromise के evidence के लिए historical logs immediate enrichment enable करते हुए।"
+      ]
+    },
+    "timeline": [
+      "STIX 1.0 MITRE द्वारा launch — standardized structured threat intelligence format",
+      "STIX 2.0 + TAXII 2.0 launch — REST-based automated sharing",
+      "CISA AIS (Automated Indicator Sharing) live — free federal TI feed",
+      "OASIS STIX 2.1 ratified — Extensions, Notes और Opinions add हुए",
+      "Volt Typhoon disclosure — Five Eyes STIX Bundle TAXII के माध्यम से globally shared"
+    ],
+    "keyTakeaways": [
+      "STIX data model define करता है; TAXII transport है — automated TI sharing के लिए दोनों required",
+      "TIP platforms SIEM को expose करने से पहले feeds aggregate, deduplicate और score करते हैं",
+      "CISA AIS free STIX/TAXII access provide करता है — हर SOC subscribed होना चाहिए",
+      "Confidence scores और expiry dates outdated IoCs को false positives generate करने से रोकते हैं",
+      "ISACs sector-specific intelligence share करते हैं जो generic commercial feeds miss करते हैं"
+    ]
+  },
+  "audit-cm07": {
+    "tagline": "Humans प्रति दिन 10,000 alerts नहीं handle कर सकते। SOAR कर सकता है।",
+    "overview": [
+      "Security Orchestration, Automation and Response (SOAR) platforms (Palo Alto Cortex XSOAR, Splunk SOAR, Microsoft Sentinel SOAR, IBM QRadar SOAR) उन investigation और response playbooks automate करते हैं जो SOC analysts manually हर alert के लिए execute करते हैं। एक phishing triage playbook जो human analyst को 15 minutes लेता है SOAR automation को 30 seconds से कम लेता है — और analyst fatigue के बिना 24/7 run करता है।",
+      "SOAR playbooks structured workflows हैं: trigger (alert received) → enrichment (threat intelligence में IP lookup, AD से user information extract, endpoint isolation status check) → decision (क्या यह malicious है? threshold से ऊपर?) → response (firewall में IP block, user account disable, endpoint isolate, incident ticket create, analyst notify)। हर step एक integration call करता है — SOAR platforms में security और IT tools के साथ 500-1,000 pre-built integrations हैं।",
+      "SOAR के लिए ROI case MTTR (Mean Time to Respond) है। Manual phishing triage: 45 minutes per alert × 200 alerts/day = 150 analyst-hours/day। Automated SOAR triage: 30 seconds × 200 alerts = 100 analyst-minutes/day, human review केवल उस 3% में जिसे escalation चाहिए। SOAR का value analysts eliminate करना नहीं है — यह ensure करना है कि analysts decisions पर time spend करें, data collection पर नहीं।"
+    ],
+    "technical": {
+      "title": "Playbook Design Patterns",
+      "body": [
+        "Effective SOAR playbooks तीन design principles follow करते हैं: (1) पहले enrich, फिर decide — attacker को alert कर सकने वाली या operational disruption cause कर सकने वाली किसी भी action से पहले सारा context collect करें; (2) High-impact actions के लिए human in the loop — firewall में automatic block, लेकिन CEO का account disable करने से पहले analyst approval require करें; (3) Idempotent actions — दो बार triggered playbook का same net result होना चाहिए।",
+        "Playbook testing platform के integrated sandbox या staging environment use करके synthetic alert data के साथ होती है। Production में run होने वाली 'disable account' step में bug वाला playbook outage risk है। Version control (Git), peer review और staged deployment playbooks पर उसी तरह apply होते हैं जैसे code पर।"
+      ]
+    },
+    "incident": {
+      "title": "Twilio SMS Phishing — Manual Response Delay (2022)",
+      "impact": "125 customer organizations compromised Okta और Twilio employee credential theft के माध्यम से",
+      "body": [
+        "Twilio employees को Twilio IT impersonating SMS phishing messages मिले, उन्हें fake Okta SSO login page पर direct करते हुए। Employees ने credentials submit किए; attackers ने उन्हें Twilio internal systems access करने के लिए use किया। Twilio का initial response hours लिया — जिसके दौरान attackers ने customer data access किया और Okta सहित downstream customers को target करने के लिए Twilio के SMS infrastructure का use किया।",
+        "Anomalous authentication events (minutes के भीतर multiple employees नई IPs से login) triggered automated SOAR playbook affected accounts automatically suspend कर सकता था और security team को first credential use के minutes के भीतर inform कर सकता था। 125 downstream organizations में cascading attack response delay का direct consequence था।"
+      ]
+    },
+    "timeline": [
+      "SOAR concept SIEM + ticketing + scripting integration gaps से emerge हुआ",
+      "Palo Alto ने Demisto (XSOAR) acquire किया — SOAR enterprise product category बन गया",
+      "Splunk ने Phantom acquire किया — major SIEM vendors ने SOAR capabilities bundle किए",
+      "Twilio breach ने MTTR risk highlight किया — manual response cascading attacks allow करती है",
+      "AI-native SOAR: LLMs natural language descriptions से playbook code generate करते हैं"
+    ],
+    "keyTakeaways": [
+      "SOAR automated response playbooks के लिए MTTR hours से seconds में कम करता है",
+      "पहले enrich करें, फिर decide — disruptive हो सकने वाली किसी भी action से पहले context collect करें",
+      "High-impact actions (account disable, production changes) के लिए human in the loop",
+      "Playbooks code हैं — version control, review और staging apply होते हैं",
+      "500-1,000 pre-built integrations SOAR को complete security stack में force multiplier बनाते हैं"
+    ]
+  },
+  "audit-cm08": {
+    "tagline": "सबसे अच्छा trap exactly वैसा दिखता है जो attacker ढूंढ रहा है।",
+    "overview": [
+      "Deception technology false assets deploy करती है — honeypots (decoy systems), honeytokens (decoy credentials और files), और canary tokens (embedded trackers) — पूरे network में perimeter defenses evade कर चुके attackers detect करने के लिए। Decoy के साथ कोई भी interaction almost zero false-positive alert है: legitimate users के पास false credentials access करने, honeypot servers connect करने या canary documents open करने का कोई reason नहीं है।",
+      "Modern deception platforms (Attivo Networks, Illusive Networks, Canarytokens.org, TrapX) environment में सैकड़ों या हजारों decoys distribute करते हैं — 'svc-admin-backup' जैसे attractive names वाले fake Active Directory accounts, 'Q4-Salary-Review.xlsx' labeled documents वाले fake file shares, standard ports पर listening fake database honeypot servers। Decoys का scale ensure करता है कि lateral movement या reconnaissance perform करने वाला attacker almost certainly एक trigger करेगा।",
+      "Honeytokens systems से परे deception extend करते हैं: code repositories में embedded fake API keys (GitHub monitoring), fake AWS access keys (CloudTrail के माध्यम से automatically monitored), trackable field values वाले fake database records, और canary documents जिनमें hidden web beacons हैं जो open होने पर fire होते हैं। ये tokens credential theft, data exfiltration और sensitive documents तक internal access की early warning provide करते हैं।"
+    ],
+    "technical": {
+      "title": "Honeytoken Deployment Patterns",
+      "body": [
+        "AWS honeytoken deployment: एक IAM user create करें बिना permissions के लेकिन monitored access key के साथ। Key को realistic location में embed करें — `~/.aws/credentials`, config file, GitHub repository (public या private)। Key का कोई भी use immediate alert trigger करने वाला CloudTrail event generate करता है। Key के पास real permissions नहीं हैं, इसलिए इसके exposure से zero operational risk है — केवल signal value।",
+        "Active Directory honeypot accounts के realistic names, group memberships और last-login timestamps होने चाहिए। 'svc-backup-admin' या 'helpdesk-admin2' नाम के AD decoy accounts privileged accounts की तलाश में LDAP enumeration perform करने वाले attackers को attract करते हैं। Decoy accounts पर Kerberoastable SPNs particularly effective हैं — ticket request करने वाला attacker immediately reveal हो जाता है।"
+      ]
+    },
+    "incident": {
+      "title": "Uber Data Breach — GitHub Honeytoken Failure (2022)",
+      "impact": "Complete internal system access; 57,000 employee records; MFA fatigue attack",
+      "body": [
+        "18-year-old attacker जिसने 2022 में Uber compromise किया, MFA fatigue (contractor को SMS bombard करना जब तक approve नहीं किया) से initial access प्राप्त किया। Initial access के बाद, attacker ने internal file share पर PowerShell script में hardcoded Uber credentials find किए — classic honeytoken opportunity। Uber के internal scripts में canary tokens नहीं थे।",
+        "यदि Uber ने honeytokens deploy किए होते — internal repositories और file shares में real credentials के साथ embedded fake credentials — attacker द्वारा fake credentials का use lateral movement phase के दौरान immediate alert trigger करता। पूरा breach real credentials plaintext में finding पर depend करता था; उन credentials के बीच एक single honeytoken attacker के sensitive systems reach करने से पहले early warning provide करता।"
+      ]
+    },
+    "timeline": [
+      "Clifford Stoll का 'The Cuckoo's Egg' — honeypot का first documented use",
+      "Honeynet Project ने honeypot research publish किया — academic foundations",
+      "Attivo Networks, Illusive Networks ने enterprise deception commercialize किया",
+      "Canarytokens.org launch — free honeytoken generation at scale",
+      "Uber breach — hardcoded credentials found; honeytoken detection नहीं",
+      "AI-generated decoy content — LLMs convincing fake documents और credentials create करते हैं"
+    ],
+    "keyTakeaways": [
+      "Decoy के साथ कोई भी interaction almost zero false-positive alert है — attackers को fakes touch करने का reason नहीं है",
+      "AWS honeytokens (IAM access keys) zero risk और zero permissions के साथ credential theft monitoring provide करते हैं",
+      "Canary documents web beacons embed करते हैं जो open होने पर fire होते हैं — post-fact data exfiltration detect करते हैं",
+      "Kerberoastable SPNs वाले AD decoy accounts privilege escalation reconnaissance detect करते हैं",
+      "Scale matters — सैकड़ों decoys ensure करते हैं कि laterally moving attacker एक trigger करे"
+    ]
+  },
+  "audit-cm09": {
+    "tagline": "Perimeter fade हो गया है। Identity नया perimeter है। Zero Trust दोनों verify करता है।",
+    "overview": [
+      "Zero Trust Architecture (ZTA), NIST SP 800-207 में defined, 'never trust, always verify' सिद्धांत पर operate करता है — हर access request authenticated, authorized और continuously monitored होनी चाहिए चाहे यह traditional network perimeter के अंदर या बाहर से originate हो। Google का BeyondCorp implementation, 2010 Aurora attacks के बाद deployed, पहला enterprise Zero Trust deployment at scale था।",
+      "Zero Trust monitoring traditional perimeter monitoring से differ करता है क्योंकि हर resource access एक rich telemetry event generate करता है: कौन (identity), क्या (resource + action), कहाँ से (device posture, network location), और क्या policy ने इसे allow किया। यह complete audit trail create करता है जहां हर access decision — न केवल security events — log होती है।",
+      "Zero Trust monitoring के पांच pillars: Identity (हर user और service को continuously authenticate होना चाहिए), Devices (access के समय device posture evaluate), Networks (microsegmentation, everywhere encryption), Applications (per-application access control, कोई implicit trust नहीं), और Data (object level पर data classify और protect करें)। हर pillar की monitoring telemetry generate करती है जो SIEM और UEBA को behavioral analysis के लिए feed करती है।"
+    ],
+    "technical": {
+      "title": "Continuous Adaptive Risk and Trust Assessment (CARTA)",
+      "body": [
+        "CARTA (Gartner) और NIST 800-207 dynamic trust assessment describe करते हैं: session का trust level authentication पर fixed नहीं है बल्कि behavioral signals पर continuously reevaluated — device posture deviation, location change, anomalous resource access, privilege escalation। यदि trust session के दौरान degrade होती है, policy engine step-up authentication कर सकता है या session terminate कर सकता है।",
+        "Implementation components: Identity Provider (Okta, Azure AD, Google Identity) authentication और MFA के लिए; Policy Decision Point (PDP) जो policy के against access requests evaluate करता है; Policy Enforcement Point (PEP) — reverse proxy या network agent — जो PDP का decision enforce करता है; और telemetry channel जो सभी access decisions और denials को behavioral analysis के लिए SIEM को feed करता है।"
+      ]
+    },
+    "incident": {
+      "title": "Google Aurora Attack — BeyondCorp का Origin (2010)",
+      "impact": "Google source code चोरी; Chinese state actor attributed; Google के Zero Trust architecture की ओर lead किया",
+      "body": [
+        "Operation Aurora Internet Explorer में एक zero-day के माध्यम से Google और 34 अन्य technology companies को target करने वाला sophisticated Chinese state-sponsored attack था। Attackers ने Google के internal network access किया और source code चुराया। Attack successful था क्योंकि Google का perimeter-based security model internal IP ranges से सभी traffic को implicitly trust करता था — perimeter के अंदर एक बार, lateral movement trivially easy था।",
+        "Google की response BeyondCorp था — इसके access model का complete redesign। 2014 तक, Google employees corporate VPN के बिना untrusted networks (cafes, airports, home) से corporate resources access करते थे, हर access decision device posture, identity और context evaluate करने वाले policy engine द्वारा taken। Aurora ने directly वह Zero Trust model create किया जो entire industry ने अगले decade में adopt किया।"
+      ]
+    },
+    "timeline": [
+      "Operation Aurora — Chinese attack on Google ने BeyondCorp design की ओर lead किया",
+      "Google ने BeyondCorp paper publish किया — Zero Trust Model publicly documented",
+      "NIST ने SP 800-207 develop करना शुरू किया — Zero Trust federal use के लिए formalized",
+      "NIST SP 800-207 published — Zero Trust Architecture official NIST standard",
+      "US Executive Order 14028 ने 2024 तक federal agencies में Zero Trust mandate किया",
+      "CISA Zero Trust Maturity Model v2.0 — five-pillar implementation guidance"
+    ],
+    "keyTakeaways": [
+      "Zero Trust: कभी trust मत करो, हमेशा verify करो — हर access request authenticated और authorized",
+      "CARTA continuous trust reevaluation enable करता है — session trust degrade हो सकती है और step-up authentication trigger कर सकती है",
+      "Zero Trust monitoring हर decision के लिए access telemetry produce करता है, केवल security events नहीं",
+      "पांच pillars: Identity, Devices, Networks, Applications, Data — हर एक monitoring signals generate करता है",
+      "Google का Aurora ने industry Zero Trust model create किया — VPN perimeter 2010 में मर गया"
+    ]
+  },
+  "audit-cm10": {
+    "tagline": "EDR endpoint देखता है। NDR network देखता है। XDR पूरी कहानी देखता है।",
+    "overview": [
+      "Extended Detection and Response (XDR) siloed security tools का architectural evolution है — endpoints (EDR), network (NDR), identity (IDP logs), cloud (CSPM/CWPP) और email की telemetry को एक single correlated detection और response platform में unify करता है। जहां पहले analyst को attack reconstruct करने के लिए पांच separate consoles pivot करना पड़ता था, XDR automatically सभी sources के signals correlate करता है और unified incident timeline present करता है।",
+      "XDR platforms (Microsoft Defender XDR, CrowdStrike Falcon XDR, Palo Alto Cortex XDR, SentinelOne Singularity) सभी telemetry store करने के लिए common schema के साथ centralized data lake use करते हैं। Detection rules और ML models सभी data sources पर simultaneously operate करते हैं — एक correlation जिसमें human analyst को 45 minutes console-pivoting लगती, unified dataset के against milliseconds में complete होती है।",
+      "XDR का key value proposition alert-to-incident correlation time reduce करना है। SIEM हजारों independent alerts generate करता है; XDR platform automatically related alerts को एक single incident में group करता है MITRE ATT&CK technique mapping और recommended response के साथ। Analysts incidents पर काम करते हैं, individual alerts पर नहीं — SOC workflow में fundamental shift जो efficiency और coverage दोनों dramatically improve करता है।"
+    ],
+    "technical": {
+      "title": "Cross-Source Correlation और Incident Graph",
+      "body": [
+        "XDR correlation entity graph बनाकर काम करता है: हर alert entities reference करता है (user accounts, device hostnames, IP addresses, file hashes)। XDR platform entity से सभी alerts index करता है और time window के भीतर entities share करने वाले alerts find करता है। Endpoint A पर process injection alert और Endpoint A से Endpoint B तक lateral movement alert automatically link होते हैं क्योंकि वे same host entity share करते हैं।",
+        "MITRE ATT&CK technique mapping XDR के लिए central है — हर correlated alert उस ATT&CK technique के साथ tagged है जो यह represent करता है। T1059 (Command and Scripting Interpreter), T1547 (Boot/Logon Autostart Execution) और T1071 (Application Layer Protocol) पर mapped alerts का set analyst को बताता है कि यह persistence-establishment malware execution chain है, तीन unrelated events नहीं।"
+      ]
+    },
+    "incident": {
+      "title": "Microsoft Lapsus$ Breach — XDR Correlation Gap (2022)",
+      "impact": "Microsoft का 37GB source code exfiltrated; Okta admin console accessed",
+      "body": [
+        "Lapsus$ group ने social engineering, SIM swapping और purchased credentials use करके Microsoft, Okta, Samsung और Nvidia को rapid succession में breach किया। Microsoft में, उन्होंने Azure DevOps से 37GB source code exfiltrate किया। Okta breach particularly significant था — Lapsus$ ने Okta admin console access किया support engineer credentials के माध्यम से, downstream Okta customers compromise करते हुए।",
+        "Post-incident analysis ने reveal किया कि multiple telemetry sources में signals exist थे — Azure DevOps में unusual access patterns, authentication में geographic anomalies और large repository clones — लेकिन exfiltration prevent करने के लिए single incident view में time पर correlate नहीं हुए। Automated entity correlation और UEBA integration वाले modern XDR platforms इन disparate signals को first anomalous access के minutes के भीतर single high-priority incident तक elevate किए होते।"
+      ]
+    },
+    "timeline": [
+      "Palo Alto Networks ने XDR concept introduce किया — 'beyond EDR'",
+      "CrowdStrike Falcon XDR, Microsoft Defender ATP XDR के रूप में renamed",
+      "Gartner XDR Market Guide — XDR security platform category के रूप में recognized",
+      "Lapsus$ ने Microsoft, Okta breach किया — cross-source correlation urgency highlighted",
+      "AI-native XDR: LLM-generated incident summaries और response recommendations"
+    ],
+    "keyTakeaways": [
+      "XDR EDR + NDR + identity + cloud को single correlated detection platform में unify करता है",
+      "Entity graph correlation automatically alerts link करता है जो time window के भीतर hosts, IPs या users share करते हैं",
+      "MITRE ATT&CK technique mapping alert clusters को readable attack chain narratives में convert करता है",
+      "Analysts incidents पर काम करते हैं, individual alerts पर नहीं — XDR fundamentally alert fatigue reduce करता है",
+      "XDR में 'X' extensible है — best platforms OCSF/API के माध्यम से कोई भी telemetry source ingest करते हैं"
+    ]
+  },
+  "audit-cm11": {
+    "tagline": "Annual compliance audits पहले से obsolete हैं। Controls हर दिन drift करते हैं।",
+    "overview": [
+      "Traditional compliance programs annual point-in-time audits के माध्यम से operate करते हैं: auditor visit के दिन controls की snapshot — जो organization की security posture को बाकी 364 दिनों के लिए represent नहीं कर सकती। Continuous Compliance Monitoring snapshot को real-time dashboard से replace करता है: controls programmatically और continuously verify होते हैं SOC 2, PCI-DSS, ISO 27001, FedRAMP और HIPAA जैसे frameworks के against।",
+      "GRC platforms (ServiceNow GRC, IBM OpenPages, Archer, Vanta, Drata, Tugboat Logic) और compliance modules के साथ CSPM tools control evidence collection automate करते हैं: AWS/Azure APIs से configuration data extract करके, IDP logs से MFA enforcement verify करके, storage APIs से encryption status confirm करके और MDM से patch compliance verify करके। Evidence continuously collect होती है, auditor visit के लिए manually gather नहीं की जाती।",
+      "Continuous compliance की ओर shift के तीन benefits हैं: (1) Audit readiness साल भर maintain होती है — कोई audit 'crunch' periods नहीं; (2) Control drift immediately detect होती है और finding बनने से पहले remediate होती है; (3) Automated evidence collection audit preparation time 60-80% कम करती है, GRC staff को higher-value risk management work के लिए free करते हुए।"
+    ],
+    "technical": {
+      "title": "Automated Control Evidence Collection",
+      "body": [
+        "हर compliance control एक या अधिक technical checks पर map होती है जिन्हें automate किया जा सकता है। PCI-DSS Requirement 8.3.6 (सभी non-console administrative access के लिए MFA) map होती है: IDP को admin role वाले सभी users के लिए query करें, verify करें कि MFA method enrolled और active है, verify करें कि MFA के बिना admin access पिछले 30 दिनों में granted नहीं हुई। यह check daily run होती है और control evidence record update करती है।",
+        "Evidence artifacts में API response payloads, screenshots (UI-only controls के लिए), logs और configuration exports शामिल हैं — timestamps और source identifiers के साथ stored immutable audit trail create करने के लिए। Modern compliance platforms evidence artifacts पर cryptographic signatures use करते हैं tampering prevent करने और regulatory audits के लिए chain-of-custody requirements support करने के लिए।"
+      ]
+    },
+    "incident": {
+      "title": "Drizly FTC Consent Order — Compliance Program Failure (2023)",
+      "impact": "2.5 million customer records compromised; FTC consent order personally CEO को binding",
+      "body": [
+        "FTC का Drizly के against (और उसके CEO personally के against) 2020 data breach के बाद consent order explicitly CEO को inadequate security practices के लिए accountable ठहराने के लिए notable था — जिसमें MFA, least privilege access और security monitoring जैसे basic compliance controls implement करने में failure शामिल थी। Breach ने public GitHub repository में found credentials के माध्यम से 2.5 million customer records expose किए।",
+        "FTC order ने Drizly को comprehensive security program implement करने की requirement थी continuous monitoring, annual third-party assessments और 20-year compliance obligation के साथ। Case ने establish किया कि individual executives systemic compliance failures के लिए personally liable हो सकते हैं — continuous monitoring programs के लिए new urgency create करते हुए जो control effectiveness का real-time evidence provide करते हैं।"
+      ]
+    },
+    "timeline": [
+      "SOX enacted — annual control testing publicly-traded companies के लिए mandatory हो गई",
+      "Cloud-era compliance gap: annual audits cloud changes की pace keep नहीं कर सकते",
+      "Vanta, Drata founded — automated continuous compliance platforms emerge हुए",
+      "FedRAMP 20x initiative — continuous monitoring annual authorization renewal replace करता है",
+      "FTC Drizly Order — CEO personally compliance program failure के लिए liable",
+      "AI-native GRC: LLMs controls को evidence assign करते हैं और audit narratives generate करते हैं"
+    ],
+    "keyTakeaways": [
+      "Annual compliance audits point-in-time snapshots हैं — controls बीच में drift करते हैं",
+      "Continuous compliance audit crunch को year-round automated control verification से replace करता है",
+      "Evidence artifacts time-stamped, source-identified और tamper-resistant होने चाहिए regulatory audits के लिए",
+      "FTC Drizly ने systemic compliance failures के लिए CEO personal liability establish की",
+      "Automated evidence collection audit preparation time 60-80% कम करती है"
+    ]
+  },
+  "audit-cm12": {
+    "tagline": "जो measure होता है वह improve होता है। MTTD और MTTR आपके security program के vital signs हैं।",
+    "overview": [
+      "Monitoring maturity operational metrics के माध्यम से measure होती है जो security effectiveness quantify करती हैं, न केवल compliance boxes complete करना। दो सबसे important SOC metrics हैं MTTD (Mean Time to Detect) — security event occur होने और SOC इसे detect करने के बीच average time — और MTTR (Mean Time to Respond) — detection और complete containment के बीच average time। Industry benchmarks: MTTD 21 days (IBM Cost of Data Breach 2023 median); MTTR 73 days — mature monitoring programs वाले organizations MTTD < 24 hours achieve करते हैं।",
+      "SOC Maturity Model (CREST, Gartner, SANS) पांच levels define करता है: Level 1 (Reactive — कोई proactive monitoring नहीं, incident-driven), Level 2 (Compliance-Focused — केवल regulatory requirements के लिए monitoring), Level 3 (Proactive — threat hunting, behavior detection), Level 4 (Threat Intelligence-Led — external TI integrated, adversary simulation), Level 5 (Adaptive — AI-augmented, continuous improvement, metrics-driven)। अधिकांश enterprise organizations Level 3-4 target करते हैं।",
+      "MTTD/MTTR से परे, mature monitoring programs track करते हैं: false positive rate (action नहीं require करने वाले alerts / total alerts — target < 5%), SOAR automation coverage (automatic playbooks वाले alert types का % — target > 70%), alert-to-incident escalation rate (formal incidents तक escalate होने वाले alerts का % — detection tuning inform करता है), और mean time to recover (complete business service restoration, containment से distinct)।"
+    ],
+    "technical": {
+      "title": "MTTD/MTTR Calculation और Benchmarking",
+      "body": [
+        "MTTD दो timestamps से calculate होती है: 'breach timestamp' (event actually कब occurred, logs से retrospectively determined) और 'detection timestamp' (जब SIEM/SOC ने पहली बार event identify किया)। Incidents के लिए जहां breach timestamp unknown है, MTTD detection timestamp minus forensic analysis में found earliest indicator of compromise के timestamp से calculate होती है।",
+        "MTTR detection timestamp से containment timestamp (वह moment जब threat isolated है और damage नहीं कर सकती) तक calculate होती है। Complete recovery (business service restoration) separately MTTRECOVER के रूप में tracked होती है। Dashboard visualization: incident severity, detection source (automatic vs human) और attack category से segmented 90-day rolling windows में MTTD/MTTR trend lines। किसी भी metric में regression program review trigger करती है।"
+      ]
+    },
+    "incident": {
+      "title": "MGM Resorts Breach — MTTD/MTTR Failure (2023)",
+      "impact": "$100M+ operational losses; casino floor offline; 10-day recovery",
+      "body": [
+        "MGM Resorts breach MGM के IT helpdesk को 10-minute social engineering call से शुरू हुई, एक employee impersonate करके credentials reset करने के लिए — attacker ने target का LinkedIn profile find किया और security question-based authentication pass करने के लिए use किया। Hours के भीतर, Scattered Spider ने MGM systems पर ALPHV/BlackCat ransomware deploy किया, casino operations, hotel check-ins और digital key cards offline करते हुए।",
+        "MGM का MTTR catastrophic था — complete operations recovery में $100M+ estimated cost के साथ 10 days लगे। Post-incident analysis ने MTTD failure identify किया: social engineering call और subsequent credential activity ransomware deployment prevent करने के लिए time पर detect और correlate नहीं हुई। Incident ने reinforce किया कि MTTD केवल technical metric नहीं है — इसमें detection को correct person को route होने और correct response trigger करने का time शामिल है।"
+      ]
+    },
+    "timeline": [
+      "SANS SOC Survey — first industry-wide SOC maturity benchmarking",
+      "IBM Cost of Data Breach Report ने MTTD/MTTR standard metrics establish किए",
+      "CREST SOC Maturity Model published — SOC assessment के लिए five-level framework",
+      "IBM 2023 Report: median MTTD 21 days, MTTR 73 days — maturity gap quantified",
+      "MGM Resorts breach: 10-day MTTR, $100M+ losses — maturity failure case study",
+      "AI-augmented SOC: MTTD < 1 hour, MTTR < 30 minutes automatic playbooks के लिए targets"
+    ],
+    "keyTakeaways": [
+      "MTTD और MTTR security program के vital signs हैं — उन्हें 90-day rolling windows में track करें",
+      "Industry median MTTD: 21 days; MTTR: 73 days — mature programs target < 24h / < 4h",
+      "SOC Maturity Level 3 (Proactive) minimum target है — Levels 1-2 compliance-only reactive postures हैं",
+      "False positive rate > 5% analyst effectiveness degrade करती है और real threats को noise में hide करती है",
+      "SOAR automation coverage > 70% sub-hour MTTR at scale achieve करने के लिए necessary है"
+    ]
+  },
+  "mitre-01": {
+    "tagline": "Attacker जो system touch करने से पहले अधिक जानता है वह fight शुरू होने से पहले जीत जाता है।",
+    "overview": [
+      "Reconnaissance (TA0043) MITRE ATT&CK framework में पहली tactic है। कोई भी exploit execute करने से पहले, attacker weeks या months intelligence gather करने में बिताता है: employee names और roles (LinkedIn), email formats (Hunter.io), technology stack (job postings, Shodan, BuiltWith), exposed infrastructure (Censys, FOFA) और leaked credentials (HaveIBeenPwned, dark web forums)।",
+      "ATT&CK reconnaissance की दो subcategories distinguish करता है: active scanning (T1595 — target infrastructure को probes send करना) और passive gathering (T1589/T1591/T1592 — target touch किए बिना public sources query करना)। Passive reconnaissance target के लिए invisible है; active scanning IDS alerts generate कर सकता है।",
+      "Defenders attack surface reduce करके reconnaissance counter करते हैं: public documents से metadata remove करना (T1592.002), honeypots और firewall logs के माध्यम से active scans monitor करना, और threat intelligence feeds use करके उनके against built adversarial infrastructure detect करना।"
+    ],
+    "technical": {
+      "title": "ATT&CK Reconnaissance Sub-Techniques",
+      "body": [
+        "T1595 — Active Scanning: port scans (nmap), vulnerability scans (Nessus/OpenVAS), web crawling। Single IPs से high-rate connection attempts के लिए IDS/firewall logs के माध्यम से detectable। T1589 — Gather Victim Identity Information: employee names, emails, roles LinkedIn से, company directories और breach databases से।",
+        "T1596 — Search Open Technical Databases: Shodan (internet-connected devices), Censys (TLS certificates, open ports), BuiltWith (web technology stack)। ये tools public indexes query करते हैं — target पर कोई traffic नहीं पहुंचता। T1598 — Phishing for Information: targeted emails send करना credentials या internal documentation प्राप्त करने के लिए actual attack शुरू होने से पहले।"
+      ]
+    },
+    "incident": {
+      "title": "APT29 / Cozy Bear — SolarWinds Pre-Attack Reconnaissance (2019-2020)",
+      "impact": "18,000+ organizations compromised; NSA, Treasury और State Department networks तक access",
+      "body": [
+        "SUNBURST backdoor SolarWinds Orion में insert करने से पहले, APT29 (Cozy Bear) ने SolarWinds के development environment, customer list और build pipeline का extensive reconnaissance perform किया। उन्होंने identify किया कि Orion हजारों government और enterprise organizations द्वारा use होता था — जो इसे supply chain के लिए ideal target बनाता था।",
+        "Reconnaissance phase महीनों तक चली पहला malicious code लिखे जाने से पहले। APT29 ने SolarWinds की GitHub activity monitor की, उनकी build documentation study की और specific build server identify किया जिसे attack करना था। यह pre-attack intelligence का level state-sponsored actors की characteristic है जो T1589, T1591 और T1596 use करते हैं।"
+      ]
+    },
+    "timeline": [
+      "MITRE ATT&CK framework created — adversary behavior की first taxonomy",
+      "APT29 ने SolarWinds reconnaissance शुरू किया — first exploit से महीनों पहले",
+      "SUNBURST backdoor discovered — recon phase ने supply chain precision enable की",
+      "ATT&CK v10 ने Reconnaissance (TA0043) को formal tactic के रूप में add किया"
+    ],
+    "keyTakeaways": [
+      "Reconnaissance first contact से पहले होती है — defenders इसे rarely time पर देखते हैं",
+      "Passive reconnaissance (Shodan, Censys, LinkedIn) target systems पर कोई trace नहीं छोड़ती",
+      "Documents से metadata remove करें, job postings में technology disclosure limit करें",
+      "Honeypots और canary tokens early active scans detect करते हैं"
+    ]
+  },
+  "mitre-03": {
+    "tagline": "सबसे sophisticated exploit अक्सर एक email है। लोग perimeter हैं।",
+    "overview": [
+      "Initial Access (TA0001) उन techniques को cover करता है जो attackers target environment में अपना first foothold gain करने के लिए use करते हैं। Security में decades की investment के बावजूद, spear phishing (T1566) सबसे successful initial access technique है — Verizon DBIR data के अनुसार 90% से अधिक nation-state intrusions में use होती है।",
+      "Spear phishing targeted है: attacker reconnaissance data use करके एक message craft करता है जो trusted source से आता हुआ दिखता है (T1566.001 — malicious file, T1566.002 — malicious link, T1566.003 — Slack/Teams/LinkedIn के माध्यम से service spear phishing)। Payload तब execute होती है जब victim attachment open करता है या link click करता है।",
+      "अन्य initial access techniques: T1190 — Exploit Public-Facing Application (SQL injection, internet-exposed systems पर web shell), T1133 — External Remote Services (stolen credentials के साथ VPN/RDP), T1195 — Supply Chain Compromise (जैसे SolarWinds)। सभी result में attacker को execution foothold मिलता है।"
+    ],
+    "technical": {
+      "title": "Spear Phishing Detection और Defense",
+      "body": [
+        "Email security controls जो spear phishing रोकते हैं: DMARC/DKIM/SPF (domain spoofing prevent करना), sandboxing (isolated virtual machine में attachments execute करना और behavior observe करना), URL rewriting (links को proxy के माध्यम से redirect करना जो malicious destinations block करता है), और anti-phishing AI (lookalike domains और suspicious sender patterns detect करना)।",
+        "Behavioral detection: एक user का first process spawned document click करने पर (Word generating PowerShell, Excel generating wscript.exe) high-fidelity indicator है। CrowdStrike Falcon जैसे EDR tools parent-child process relationships detect करते हैं जो exploitation indicate करते हैं।"
+      ]
+    },
+    "incident": {
+      "title": "DNC Hack — Spear Phishing Delivers Initial Access (2016)",
+      "impact": "हजारों emails चोरी और published; significant US electoral interference",
+      "body": [
+        "APT28 (Fancy Bear) ने DNC तक initial access एक spear phishing email के माध्यम से gain किया जो John Podesta को send हुई। Email एक Google security alert impersonate कर रही थी जो कह रही थी उनका Gmail account Ukraine से access हुआ था। Podesta के assistant ने IT को forward किया, जिन्होंने गलती से confirm किया यह 'legitimate' था — Podesta ने link click किया और credentials enter किए।",
+        "Phishing page APT28 द्वारा days पहले registered domain पर hosted Google login page का pixel-perfect clone था। DMARC sender को spoof करने से block करने के लिए configure नहीं था। पूरी operation — reconnaissance, domain registration, phishing page, credential harvesting — attackers को infrastructure में approximately $5 लगे और billions में valued geopolitical impact generate किया।"
+      ]
+    },
+    "timeline": [
+      "DNC spear phish — APT28 ने credential harvesting के माध्यम से initial access प्राप्त किया",
+      "Verizon DBIR ने initial vector के रूप में 93% breaches में phishing confirm किया",
+      "Microsoft 365 Defender ने सभी mailboxes में spear phish sandbox add किया",
+      "AI-generated spear phishing ने success rates significantly बढ़ाए"
+    ],
+    "keyTakeaways": [
+      "Spear phishing 90%+ nation-state initial access drive करता है — यह #1 vector है",
+      "सभी corporate emails पर DMARC/DKIM/SPF + email sandboxing + URL rewriting deploy करें",
+      "EDR parent-child process rules lateral movement से पहले post-exploitation capture करते हैं",
+      "DMARC p=reject + BIMI anti-spoofing के लिए gold standard हैं"
+    ]
+  },
+  "mitre-05": {
+    "tagline": "Initial access rent पर है। Persistence ownership है।",
+    "overview": [
+      "Persistence (TA0003) उन techniques को cover करता है जो attackers reboots, credential changes और अन्य interruptions के माध्यम से अपनी position maintain करने के लिए use करते हैं। Persistence के बिना, initial shell खोना मतलब फिर से शुरू करना। इसके साथ, attacker system reboots, password resets और यहां तक कि कुछ remediation attempts survive करता है।",
+      "Common persistence techniques: T1547.001 — Registry Run Keys (HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run), T1053.005 — Scheduled Tasks (schtasks.exe), T1543.003 — Windows Services (sc.exe create), T1037 — Boot/Logon Initialization Scripts, T1505.003 — Web Shell web server पर।",
+      "Detection: registry run keys को new entries के लिए monitor करें, scheduled task creation audit करें (Event ID 4698), new Windows services watch करें (Event ID 7045) और Autoruns (Sysinternals) या EDR persistence inventory use करें expected startup items की baseline maintain करने के लिए।"
+    ],
+    "technical": {
+      "title": "Persistence Mechanisms Detection",
+      "body": [
+        "Event ID 4698 (Scheduled Task Created) और 4702 (Scheduled Task Updated) critical detection points हैं। Non-SYSTEM accounts द्वारा created tasks, temporary directories या encoded commands point करने वाली tasks, और logon या system startup triggers वाली tasks filter करें।",
+        "Registry run key monitoring: HKCU और HKLM के Run/RunOnce keys सबसे common persistence locations हैं। Additions detect करने के लिए target key paths के साथ Sysmon Event ID 13 (Registry value set) use करें। Autoruns.exe या Autoruns SDK persistence mechanisms का complete inventory provide करता है।"
+      ]
+    },
+    "incident": {
+      "title": "APT1 / Comment Crew — Long-Term Persistence via Services (2006-2013)",
+      "impact": "7 वर्षों में terabytes intellectual property चोरी; Mandiant APT1 report ने operation expose किया",
+      "body": [
+        "APT1 (Comment Crew, PLA Unit 61398) ने victim networks पर average 356 days — almost एक साल — तक persistence maintain की detect होने से पहले। उन्होंने Windows services, registry run keys और internet-accessible servers पर web shells का combination use किया। जब एक persistence mechanism discover और remove होती, अन्य active रहते।",
+        "2013 का Mandiant APT1 report ने APT1 द्वारा use किए 46 malware families और 20+ persistence techniques document किए। Key lesson: defenders को simultaneously सभी persistence mechanisms find करने की आवश्यकता है या attacker simply backup use करता है। Exhaustive persistence hunting दोनों endpoint forensics और network traffic analysis require करती है।"
+      ]
+    },
+    "timeline": [
+      "APT1 operations शुरू — US defense और technology sector targeted",
+      "Mandiant APT1 report published — 141 victims, 46 malware families",
+      "Sysmon v9 ने registry event monitoring add किया — persistence detection improve हुई",
+      "EDR persistence inventory standard enterprise security control बन गया"
+    ],
+    "keyTakeaways": [
+      "Attackers persistence को layer करते हैं — एक mechanism find करना मतलब वे गए नहीं हैं",
+      "Event ID 4698 (Scheduled Task Created) और Sysmon 13 (Registry Set) monitor करें",
+      "Autoruns.exe manual persistence hunting के लिए gold standard है",
+      "Average APT dwell time 197 days है — persistence mechanisms long-term access enable करते हैं"
+    ]
+  },
+  "mitre-06": {
+    "tagline": "User access एक दरवाजा खोलता है। SYSTEM access पूरी building का मालिक बन जाता है।",
+    "overview": [
+      "Privilege Escalation (TA0004) उन techniques को cover करता है जो attackers initially प्राप्त से higher-level permissions gain करने के लिए use करते हैं। Standard user के रूप में शुरू करके, attackers local administrator तक escalate करते हैं, फिर SYSTEM (Windows) या root (Linux) तक, और finally Active Directory environments में Domain Admin तक।",
+      "Common escalation paths: T1078 — Valid Accounts (credential dumping से collected legitimate credentials use करना), T1068 — Exploitation for Privilege Escalation (unpatched kernel या service vulnerabilities), T1134 — Access Token Manipulation (SYSTEM tokens impersonate करना), T1484 — Domain Policy Modification (Group Policy abuse करना)।",
+      "Active Directory में escalation paths particularly dangerous हैं: DCSync (AD database replicate करना), PrintNightmare (CVE-2021-34527) और AS-REP Roasting (Kerberos pre-authentication disabled accounts target करना) standard domain user को Domain Admin तक escalate कर सकते हैं।"
+    ],
+    "technical": {
+      "title": "Active Directory में Privilege Escalation Paths",
+      "body": [
+        "DCSync attack (T1003.006): Replicating Directory Changes permissions वाला domain user Domain Controller से सभी password hashes की copy request कर सकता है — ntds.dit extraction run किए बिना DC touch किए। Domain controllers के अलावा accounts पर DS-Replication-Get-Changes के लिए Event ID 4662 monitor करके detect करें।",
+        "Kerberoasting (T1558.003): किसी भी SPN (Service Principal Name) के लिए service tickets request करें और ticket offline crack करें। Service accounts अक्सर weak passwords होते हैं और rarely monitor होते हैं। Encryption RC4 (etype 23) और service accounts के लिए RC4 tickets के लिए Event ID 4769 (Kerberos Service Ticket) monitor करके detect करें।"
+      ]
+    },
+    "incident": {
+      "title": "SolarWinds — Cloud Privilege Escalation के लिए SAML Token Forgery (2020)",
+      "impact": "US government email access; Treasury, Justice और State Departments compromised",
+      "body": [
+        "SUNBURST के माध्यम से on-premises access gain करने के बाद, APT29 ने SAML token forgery technique (T1606.002 — Golden SAML) use करके cloud privileges तक escalate किया। Victim के on-premises Active Directory Federation Services server से ADFS token-signing certificate steal करके, वे SAML tokens forge कर सकते थे और किसी भी user के रूप में Microsoft 365 में authenticate कर सकते थे — global administrators सहित — MFA completely bypass करते हुए।",
+        "On-premises compromise से complete cloud administrative access तक यह escalation path modern hybrid environments में सबसे dangerous में से एक है। यह काम करता है क्योंकि Microsoft 365 organization के own ADFS certificate द्वारा signed SAML tokens trust करता है — और वह certificate on-premises store होता है, cloud में नहीं।"
+      ]
+    },
+    "timeline": [
+      "CyberArk ने Golden SAML attack document किया — ADFS token forgery technique",
+      "APT29 ने SolarWinds victims के against Golden SAML use किया — complete cloud admin escalation",
+      "Microsoft ने Golden SAML detection और ADFS hardening guidance publish की",
+      "Hybrid identity hardening (ADFS certificates protect करना) standard control बन गया"
+    ],
+    "keyTakeaways": [
+      "Kerberoasting + DCSync AD में सबसे common privilege escalation paths हैं",
+      "Kerberoasting के लिए Event 4769 (RC4 tickets) monitor करें; DCSync के लिए Event 4662",
+      "Golden SAML: ADFS certificate theft complete cloud admin MFA bypass enable करता है",
+      "ADFS token-signing certificates को Tier 0 (domain admin equivalent) के रूप में protect करें"
+    ]
+  },
+  "mitre-07": {
+    "tagline": "सबसे अच्छा attacker invisible है। Defense evasion न दिखे रहने की कला है।",
+    "overview": [
+      "Defense Evasion (TA0005) सबसे broad ATT&CK tactic है — 42 techniques जो cover करती हैं attackers detection avoid करने के लिए क्या करते हैं। Key techniques: T1027 — Obfuscated Files (encoding, encryption, packing), T1055 — Process Injection (legitimate processes की memory में running code), T1070 — Indicator Removal (log deletion), T1562 — Impair Defenses (AV/EDR disabling), और T1218 — Signed Binary Proxy Execution (LOLBins)।",
+      "Living-off-the-land binaries (LOLBins) Microsoft-signed executables हैं जिन्हें evasion के लिए abuse किया जा सकता है: mshta.exe (URLs से HTA files execute करना), regsvr32.exe (URLs से COM objects load करना), certutil.exe (files download और decode करना), rundll32.exe (DLLs directly execute करना)। क्योंकि वे Microsoft द्वारा signed हैं, application whitelisting उन्हें trust करती है।",
+      "Modern defense evasion increasingly EDR sensors पर focus करती है: EDR processes kill करना, EDR kernel drivers unload करना, BYOVD (Bring Your Own Vulnerable Driver) use करके kernel से EDR patch करना — एक technique जो Lazarus Group और ALPHV ransomware operators use करते हैं।"
+    ],
+    "technical": {
+      "title": "LOLBin Proxy Execution और EDR Bypass",
+      "body": [
+        "certutil.exe -decode (T1140): base64-encoded payloads decode करना। certutil.exe की network connections monitor करके detect करें (outbound HTTP नहीं करना चाहिए) और -decode/-urlcache flags। mshta.exe (T1218.005): remote URLs से VBScript/JScript execute करना — firewall rule के माध्यम से mshta.exe को outbound network connections block करें।",
+        "BYOVD (T1014): attacker known-vulnerable kernel driver load करता है, driver vulnerability exploit करके kernel memory में write करता है, EDR के kernel callbacks patch करता है (जो process injection, registry changes detect करते हैं)। Defense: HVCI (Hypervisor-Protected Code Integrity) द्वारा signed drivers ही allow करें — सभी BYOVD block करता है।"
+      ]
+    },
+    "incident": {
+      "title": "BlackCat/ALPHV — BYOVD EDR Killer (2022)",
+      "impact": "MGM ($100M), Caesars, Reddit, Western Digital — encryption से पहले EDR disabled",
+      "body": [
+        "ALPHV (BlackCat) ransomware operators ने 'mpsvc.dll' नामक tool develop किया जो kernel से EDR sensors kill करने के लिए एक vulnerable Dell driver (DBUtil_2_3.sys) exploit करता था। Vulnerable driver load करके और kernel memory में write करने के लिए exploit करके, वे CrowdStrike Falcon, SentinelOne और अन्य EDR agents terminate कर सकते थे — ransomware deploy करने से पहले environment को blind छोड़ते हुए।",
+        "BYOVD particularly dangerous है क्योंकि EDR खुद से higher privilege level पर operate करता है। Standard EDR products kernel drivers के रूप में run करते हैं — लेकिन BYOVD attack same level पर run करता है, EDR के own kernel callbacks modify करने में सक्षम। Defense को HVCI और strict driver allowlist की आवश्यकता है।"
+      ]
+    },
+    "timeline": [
+      "LOLBin catalog (lolbas-project.github.io) ने 100+ Windows binaries document किए",
+      "ALPHV BYOVD — kernel से EDR eliminated; MGM, Caesars hit",
+      "Microsoft HVCI compliance grows — kernel-level BYOVD defense",
+      "CrowdStrike Falcon ने BYOVD के against kernel-level tamper protection add किया"
+    ],
+    "keyTakeaways": [
+      "LOLBins application whitelisting bypass करते हैं — firewall rules के माध्यम से उनके network access block करें",
+      "BYOVD kernel से EDR kill करता है — defend करने के लिए HVCI + driver allowlist require है",
+      "Enterprise firewall policy में certutil/mshta/regsvr32 outbound network block करें",
+      "LOLBin binaries को outbound connections करते हुए Sysmon Event 3 (network connection) monitor करें"
+    ]
+  },
+  "mitre-08": {
+    "tagline": "Valid credentials के साथ, आप attacker नहीं हैं — आप authorized user हैं।",
+    "overview": [
+      "Credential Access (TA0006) account names और passwords steal करने की techniques cover करता है। Valid credentials attacker के arsenal में सबसे powerful tool हैं — lateral movement, privilege escalation और persistence allow करते हैं जबकि केवल authentication events generate करते हैं जो legitimate दिखते हैं।",
+      "Key techniques: T1003 — OS Credential Dumping (Mimikatz LSASS memory extract करता है NTLM hashes और plaintext passwords के लिए), T1558 — Steal or Forge Kerberos Tickets (Pass-the-Ticket, Golden Ticket, Kerberoasting), T1552 — Unsecured Credentials (scripts, configuration files, environment variables में hardcoded passwords), T1056 — Input Capture (keylogging)।",
+      "Mimikatz (T1003.001) सबसे widely-used credential extraction tool है। NTLM hashes और — WDigest enabled Windows Server 2008/Windows 7 पर — LSASS process memory से plaintext passwords extract करता है। Modern Windows WDigest default से disable करता है, लेकिन attackers registry modification के माध्यम से इसे re-enable कर सकते हैं।"
+    ],
+    "technical": {
+      "title": "LSASS Credential Dumping Detection",
+      "body": [
+        "LSASS protection: Credential Guard (Windows 10+/Server 2016+) enable करें LSASS को virtualization-based security (VBS) enclave में move करने के लिए — Mimikatz VBS से credentials extract नहीं कर सकता। LSASS के लिए RunAsPPL (Protected Process Light) enable करें ताकि केवल digitally-signed processes इसकी memory पढ़ सकें।",
+        "Detection: Sysmon Event ID 10 (Process Access) जहां target lsass.exe है और GrantedAccess mask में PROCESS_VM_READ (0x10) शामिल है। Non-Microsoft processes से lsass.exe access करने पर alert करें। EDR behavioral detection rename होने पर भी उनके access patterns से credential extraction tools identify करता है।"
+      ]
+    },
+    "incident": {
+      "title": "NotPetya — Mimikatz + EternalBlue Credential Cascade (2017)",
+      "impact": "$10B+ damage; Maersk, Merck, FedEx, Mondelez, Reckitt Benckiser",
+      "body": [
+        "NotPetya ने dual credential harvesting और lateral movement strategy use की। Initial infected system पर LSASS से credentials extract करने के लिए Mimikatz-equivalent module execute किया, फिर PsExec के माध्यम से propagate करने के लिए उन credentials use किए। Systems के लिए जहां credentials काम नहीं किए, NSA का EternalBlue exploit (MS17-010) use किया — WannaCry द्वारा weeks पहले use किया गया same exploit।",
+        "Combination devastating था: Maersk, दुनिया की सबसे बड़ी shipping company, की 45,000 PCs और 4,000 servers की पूरी global network hours में wiped हो गई। Credential cascade का मतलब था कि recently-logged-in administrator वाला एक system compromise करना उन सभी other systems तक पहुंचने के लिए sufficient था जिन्हें उस administrator ने कभी touch किया था।"
+      ]
+    },
+    "timeline": [
+      "Benjamin Delpy द्वारा Mimikatz launch — LSASS credential extraction",
+      "NotPetya — Mimikatz + EternalBlue ने hours में $10B damage किया",
+      "Windows Credential Guard ने enterprises में majority adoption reach किया",
+      "RunAsPPL सभी Windows endpoints के लिए recommended Microsoft baseline बन गया"
+    ],
+    "keyTakeaways": [
+      "Credential Guard + RunAsPPL enable करें — Mimikatz-style dumping impossible बनाता है",
+      "WDigest disable करें (registry key) — legacy systems पर LSASS में plaintext passwords prevent करता है",
+      "Non-Microsoft processes से Sysmon Event 10 (lsass.exe process access) monitor करें",
+      "Admin credential reuse multiplier है — unique local admin passwords के लिए LAPS use करें"
+    ]
+  },
+  "mitre-09": {
+    "tagline": "Lateral movement एक single compromised host को compromised network में convert करता है।",
+    "overview": [
+      "Lateral Movement (TA0008) उन techniques को cover करता है जो attackers अपनी initial position से network में अन्य systems तक move करने के लिए use करते हैं। Goal high-value targets reach करना है: domain controllers, file servers, OT/ICS systems, databases और backup systems।",
+      "Primary techniques: T1550.002 — Pass-the-Hash (NTLM hash directly use करना बिना crack किए), T1550.003 — Pass-the-Ticket (stolen Kerberos tickets use करना), T1021.001 — Remote Desktop Protocol, T1021.002 — SMB/Windows Admin Shares, T1080 — Taint Shared Content (malware propagate करने के लिए file shares poison करना)।",
+      "Pass-the-Hash (PtH) particularly effective है क्योंकि NTLM hash directly use करता है — password cracking required नहीं। Administrator NTLM hash वाला attacker किसी भी system पर authenticate कर सकता है जहां उस account के admin rights हों, net use, wmiexec या Impacket का psexec.py use करके।"
+    ],
+    "technical": {
+      "title": "Lateral Movement Detection — Network और Host",
+      "body": [
+        "Network detection: lateral movement distinctive patterns generate करता है — same source IP address से multiple systems authenticate होते हैं short time window में, off-hours ADMIN$ या C$ shares को SMB connections, systems access करने वाले accounts जिन्होंने पहले कभी नहीं किया। Darktrace जैसे NDR (Network Detection and Response) tools इन behavioral anomalies detect करते हैं।",
+        "Host detection: Event ID 4624 (Logon Success) Logon Type 3 (Network) और NtLmSsp authentication (Kerberos नहीं, NTLM) के साथ PtH indicate करता है। Modern environments में, network logons Kerberos use करने चाहिए — pure NTLM network logons red flag हैं। Internal hosts को administrative tools (net.exe, wmiexec) से Sysmon Event ID 3 (network connection) lateral movement confirm करता है।"
+      ]
+    },
+    "incident": {
+      "title": "Colonial Pipeline — DarkSide Ransomware Lateral Movement (2021)",
+      "impact": "US की सबसे बड़ी fuel pipeline 5 दिनों के लिए shut; $4.4 million ransom paid; East Coast fuel shortage",
+      "body": [
+        "DarkSide ransomware operators ने leaked password के साथ compromised VPN account — MFA के बिना — के माध्यम से Colonial Pipeline तक initial access प्राप्त किया। वहाँ से, stolen credentials use करके IT network के माध्यम से laterally move किए, billing और business systems तक पहुंचे, और ransomware deploy किया। Colonial ने preventively pipeline shut किया इस concern के कारण कि OT network भी compromised हो सकता था।",
+        "Single compromised VPN account से systems तक lateral movement जिसने US East Coast के 45% fuel supply को disrupt किया घंटों में हुआ — दिनों में नहीं। IT और OT के बीच network segmentation की absence, systems के बीच credential reuse के साथ combined, rapid propagation allow की।"
+      ]
+    },
+    "timeline": [
+      "NotPetya ने global scale पर catastrophic lateral movement demonstrate किया",
+      "Colonial Pipeline — VPN + PtH lateral movement ने East Coast fuel बंद किया",
+      "CISA Emergency Directive — FCEB में सभी remote access के लिए MFA required",
+      "Zero Trust segmentation ने >60% enterprises में lateral movement prevent किया"
+    ],
+    "keyTakeaways": [
+      "Pass-the-Hash NTLM hashes directly use करता है — password cracking की आवश्यकता नहीं",
+      "NTLM restrict करें: सभी network authentication के लिए Kerberos force करें — PtH fail होती है",
+      "Event ID 4624 Logon Type 3 + NtLmSsp = PtH indicator",
+      "Network segmentation + VPN पर MFA perimeter पर lateral movement रोकता है"
+    ]
+  },
+  "mitre-10": {
+    "tagline": "Discovery treasure map करता है। Collection उसे bag करता है। दोनों exfiltration से पहले होते हैं।",
+    "overview": [
+      "Discovery (TA0007) और Collection (TA0009) अक्सर parallel में execute होते हैं। Discovery identify करता है कि compromised network में क्या exist करता है: T1083 — File and Directory Discovery, T1082 — System Information Discovery, T1016 — System Network Configuration Discovery, T1018 — Remote System Discovery (network के अंदर से network scanning)।",
+      "Collection (TA0009) valuable data harvest करती है एक बार located होने के बाद: T1005 — Data from Local System, T1039 — Data from Network Shared Drive, T1114 — Email Collection (mailbox data export), T1119 — Automated Collection (scripts जो *.docx, *.xlsx, *.pst जैसे patterns match करने वाली files search और archive करती हैं)।",
+      "APT actors discovery और collection phase में significant time spend करते हैं — organization की network topology समझना, high-value data repositories identify करना, और data को exfiltration के लिए small, compressed और encrypted files में prepare करना जिनकी DLP alerts trigger करने की कम संभावना है।"
+    ],
+    "technical": {
+      "title": "Discovery और Collection Patterns",
+      "body": [
+        "Network discovery from inside: `net view /domain`, `nltest /dclist`, `arp -a`, `netscan.exe` — ये commands internal network topology map करते हैं। Unusual source accounts के साथ net.exe, nltest.exe और arp.exe के लिए Sysmon process creation events के माध्यम से detect करें।",
+        "Automated collection scripts document file types (*.docx, *.xlsx, *.pptx, *.pdf) search करती हैं, उन्हें compress करती हैं (7zip, WinRAR), और exfiltration के लिए temporary directory में prepare करती हैं। DLP rules के माध्यम से detect करें जो file access volume spikes, compression utility execution, और unusual accounts से large-volume file reads monitor करती हैं।"
+      ]
+    },
+    "incident": {
+      "title": "APT29 — M365 Email Collection (Microsoft Breach 2023)",
+      "impact": "Microsoft के senior leaders के emails चोरी; source code repositories accessed",
+      "body": [
+        "APT29 (Midnight Blizzard) ने एक legacy OAuth test application exploit करके Microsoft के corporate email environment access किया जिसके excessive permissions थे। उन्होंने इस access का उपयोग Microsoft के senior leaders, security team और legal staff के emails collect करने के लिए किया — specifically APT29 itself के बारे में emails ढूंढते हुए (एक sophisticated counter-intelligence collection operation)।",
+        "Collection targeted और automated थी: APT29 ने Microsoft Graph API तक OAuth application access का उपयोग specific keywords से अपनी own operations से related specific mailboxes query करने के लिए किया। यह T1114.002 (Remote Email Collection) combined with T1119 (Automated Collection) है — एक API-driven highly efficient data harvest।"
+      ]
+    },
+    "timeline": [
+      "APT29 ने US government के against long-term discovery operations शुरू किए",
+      "APT29 ने exfiltration से पहले SolarWinds customer network map किया",
+      "Microsoft ने legacy OAuth application के माध्यम से APT29 email collection disclose किया",
+      "Microsoft ने सभी legacy OAuth applications revoke किए और Graph API permissions hardened किए"
+    ],
+    "keyTakeaways": [
+      "Discovery built-in tools (net.exe, nltest, arp) use करता है — इनके लिए process creation monitor करें",
+      "Automated collection: single account से <5 minutes में >500 file reads पर alert",
+      "OAuth application permissions audit करें — excessive Graph API access वाले legacy apps high-risk हैं",
+      "Unauthorized applications द्वारा email keyword searches Microsoft 365 audit logs के माध्यम से detectable हैं"
+    ]
+  },
+  "mitre-11": {
+    "tagline": "Exfiltration के बिना collection एक library है। Exfiltration चोरी है।",
+    "overview": [
+      "Exfiltration (TA0010) उन techniques को cover करता है जो attackers target network से collected data steal करने के लिए use करते हैं। Attackers के लिए challenge network DLP systems, bandwidth monitoring या anomaly detection trigger किए बिना large volumes of data move करना है।",
+      "Primary techniques: T1048 — Exfiltration Over Alternative Protocol (DNS tunneling, ICMP tunneling, attacker-controlled domains पर HTTP/S), T1041 — Exfiltration Over C2 Channel (command और control के लिए used same encrypted channel के माध्यम से data send करना), T1567 — Exfiltration Over Web Service (Dropbox, Google Drive या Mega.nz पर upload करना legitimate cloud traffic में blend करने के लिए)।",
+      "Exfiltration timing matters: sophisticated actors days या weeks में slowly exfiltrate करते हैं anomaly detection thresholds के नीचे रहने के लिए। DNS tunneling extremely slow हो सकता है लेकिन almost never enterprise firewalls द्वारा blocked होता है — जो इसे long-term exfiltration के लिए preferred covert channel बनाता है।"
+    ],
+    "technical": {
+      "title": "Exfiltration Detection — Network Layer",
+      "body": [
+        "DNS exfiltration detection (T1048.003): unusually long subdomain labels (>50 characters) वाली DNS queries, single host से high query frequency, उस host द्वारा previously-unseen domains को queries, TXT record queries (workstations के लिए unusual)। DNS exfiltration tools subdomain labels में data encode करते हैं: `aGVsbG8gd29ybGQ.c2.attacker.com`।",
+        "Volume-based detection: per-host daily data egress की baseline establish करें। Alert करें जब कोई host average historical egress volume से 2x exceed करे, especially off-hours। DLP tools TLS inspection के माध्यम से encrypted connections में network traffic में file type patterns (Office document headers, ZIP magic bytes) detect करते हैं।"
+      ]
+    },
+    "incident": {
+      "title": "Equifax — 76 Days Undetected Exfiltration (2017)",
+      "impact": "147.9M Americans का PII चोरी; $575M FTC settlement; कुल costs $1.4B",
+      "body": [
+        "मई 2017 के मध्य में Apache Struts vulnerability (CVE-2017-5638) exploit करने के बाद, attackers ने Equifax systems से 76 days — almost ढाई महीने — तक data exfiltrate किया 29 जुलाई को discovery से पहले। Exfiltration detect नहीं हुई क्योंकि Equifax का SSL inspection certificate 19 महीने पहले expire हो गया था, network monitoring system को encrypted traffic के लिए blind छोड़ते हुए।",
+        "Attackers ने stolen data को small chunks में divide किया और volume-based detection से बचने के लिए 20 different IP addresses पर exfiltrate किया। Expired SSL certificate critical control failure था — network monitoring system को active defense से decorative checkbox में convert करता था।"
+      ]
+    },
+    "timeline": [
+      "Equifax breach — 76-day exfiltration; expired SSL certificate invisibility enable करता है",
+      "Equifax FTC settlement — $575M उस समय largest data breach penalty",
+      "DOJ ने Equifax breach के लिए 4 PLA members को indict किया (Unit 61398 linked)",
+      "SSL inspection NIST SP 800-53 baselines में mandatory control बन गया"
+    ],
+    "keyTakeaways": [
+      "SSL inspection exfiltration detection का critical control है — expired certificates = blind monitoring",
+      "DNS tunneling अधिकांश firewalls bypass करता है — long subdomain labels और TXT queries monitor करें",
+      "Equifax 76 days तक exfiltrate रहा — egress volume baseline और deviations पर alert",
+      "Detection evade करने के लिए exfiltration को many IPs में distribute करें (जैसा attackers करते हैं)"
+    ]
+  },
+  "mitre-12": {
+    "tagline": "Impact attack chain का end है। Defenders के लिए, यह recovery की शुरुआत भी है।",
+    "overview": [
+      "Impact (TA0040) final tactic है — attacker का goal achieve होता है। Impact techniques में शामिल हैं: T1486 — Data Encrypted for Impact (ransomware), T1485 — Data Destruction (wiper malware), T1491 — Defacement, T1498 — Network Denial of Service, T1529 — System Shutdown/Reboot (scale पर damage trigger करने के लिए)।",
+      "Ransomware (T1486) dominant impact technique बन गया है क्योंकि access को directly monetize करता है। Modern ransomware operations multi-stage हैं: pre-ransomware reconnaissance और data exfiltration (double extortion के लिए), सभी accessible systems पर simultaneously encryptor deploy करना, और ransom note deliver करना।",
+      "Supply chain ransomware (T1195.002) managed service providers (MSPs) target करके impact amplify करता है — एक single compromised MSP simultaneously hundreds of client organizations में ransomware propagate कर सकता है। Kaseya VSA ने इसे scale पर demonstrate किया: एक compromised RMM platform, 1,500 downstream victims।"
+    ],
+    "technical": {
+      "title": "Ransomware Defense — Encryption से पहले और बाद",
+      "body": [
+        "Pre-encryption detection: ransomware operators typically encrypt करने से पहले data exfiltrate करते हैं (double extortion के लिए)। Large outbound transfers detectable हैं। Encryption process itself detectable है: high-volume file modification events (Event ID 4663 — file write), file extension changes (.docx → .locked), shadow copy deletion (vssadmin delete shadows /all)।",
+        "Backup और recovery: ransomware के against most effective defense immutable backup है — backups जिन्हें ransomware reach या delete नहीं कर सकता। 3-2-1 rule: 3 copies, 2 media types, 1 offsite। Cloud immutable backups (Azure Blob Storage immutability, AWS S3 Object Lock) ransomware survive करते हैं क्योंकि compromised network से inaccessible हैं।"
+      ]
+    },
+    "incident": {
+      "title": "Kaseya VSA — REvil Supply Chain Ransomware (July 4, 2021)",
+      "impact": "1,500 businesses encrypted; $70M ransom demand; Swedish grocery chain Coop को 800 stores बंद करने पड़े",
+      "body": [
+        "REvil ransomware operators ने Kaseya VSA (managed service providers द्वारा use किया जाने वाला RMM platform) में एक zero-day exploit किया सभी connected VSA agents को malicious 'update' send करने के लिए। Update ने ~50 MSPs जो Kaseya VSA run कर रहे थे के हर managed endpoint पर ransomware deploy किया — 17 countries में approximately 1,500 businesses।",
+        "Attack 4 जुलाई weekend के लिए scheduled था जब IT staff minimal होगा। Ransomware ने thousands of organizations में simultaneously hours के भीतर सभी files encrypt किए। Sweden का Coop grocery chain ने 800 stores बंद किए क्योंकि उनके point-of-sale systems Kaseya-managed MSP पर run कर रहे थे। Complete ATT&CK attack chain — initial access से ransomware detonation तक — 48 hours से कम में execute हुई।"
+      ]
+    },
+    "timeline": [
+      "WannaCry — first global supply chain ransomware (NSA EternalBlue)",
+      "Colonial Pipeline — single-organization ransomware ने US fuel supply बंद किया",
+      "Kaseya VSA — supply chain ransomware ने simultaneously 1,500 organizations affect किए",
+      "CISA ने ransomware guidance publish किया — backup immutability baseline requirement बन गई"
+    ],
+    "keyTakeaways": [
+      "Pre-encryption ransomware detect करें: VSS deletion, large file writes, extension changes",
+      "Immutable backups (S3 Object Lock, Azure Immutable Storage) ransomware survive करते हैं",
+      "Shadow copy deletion (vssadmin delete shadows) universal ransomware pre-step है — इस पर alert",
+      "MSP supply chain attacks force multipliers हैं — अपने RMM providers की security posture assess करें"
+    ]
+  },
+  "atlas-01": {
+    "tagline": "AI system attack करने से पहले, आपको समझना होगा वह क्या है और कैसे सोचता है।",
+    "overview": [
+      "MITRE ATLAS (Adversarial Threat Landscape for Artificial-Intelligence Systems) AI/ML के लिए ATT&CK का analog है। जहां ATT&CK traditional IT systems पर attacks cover करता है, ATLAS AI और ML systems पर attacks cover करता है — एक rapidly growing attack surface जैसे AI security tools, autonomous vehicles, medical diagnostics और financial systems में deploy होती है।",
+      "AML.TA0001 Reconnaissance उन techniques को cover करता है जो target ML systems के बारे में information gather करने के लिए attack करने से पहले। Traditional IT reconnaissance के विपरीत, ML reconnaissance focus करता है: कौन सा model architecture use हो रहा है (AML.T0000), training data sources find करना (AML.T0001), model का input और output format समझना (AML.T0002), और targeted queries के माध्यम से model के decision boundaries probe करना।",
+      "ML reconnaissance frequently passive है — API documentation examine करना, model describe करने वाले published papers, GitHub पर model code के साथ repositories, और HuggingFace पर model cards। Active ML reconnaissance model API को carefully crafted inputs के साथ query करना involve करता है architecture, confidence scores और decision boundaries infer करने के लिए।"
+    ],
+    "technical": {
+      "title": "ML System Fingerprinting Techniques",
+      "body": [
+        "Model architecture inference (AML.T0000): inputs send करें जो known architectures में different behaviors trigger करते हैं। ResNet models adversarial perturbations के लिए ViT models से differently respond करते हैं। GPT-family models में characteristic token probability distributions हैं। API responses analyze करके, attackers underlying model family infer करते हैं।",
+        "API reconnaissance: अधिकांश commercial ML APIs useful metadata expose करती हैं — confidence scores, top-k predictions, embedding vectors, या token log probabilities। ये model internals के बारे में information leak करते हैं। Confidence scores return करने वाला model systematic queries के माध्यम से decision boundary maps बनाने के लिए use किया जा सकता है।"
+      ]
+    },
+    "incident": {
+      "title": "Clearview AI — Public Data Reconnaissance (2020)",
+      "impact": "3B+ public images पर trained facial recognition model; billions की privacy violation",
+      "body": [
+        "Clearview AI ने public social media platforms से 3+ billion images scrape करके facial recognition system बनाया — एक form of massive ML reconnaissance जिसने publicly-available sources से training data harvest की। System तब single photo से high accuracy के साथ individuals identify कर सकता था।",
+        "26+ countries में law enforcement agencies ने subjects की knowledge या consent के बिना Clearview का system use किया। Reconnaissance phase (public images scraping) technically कई jurisdictions में legal था — demonstrating कि public data use करके ML reconnaissance technically trivial और legally ambiguous दोनों हो सकती है।"
+      ]
+    },
+    "timeline": [
+      "ATLAS framework development MITRE में शुरू हुआ",
+      "Clearview AI — 3B images scraping ने passive ML reconnaissance at scale demonstrate किया",
+      "MITRE ATLAS v1 publicly launch — first AI/ML threat taxonomy",
+      "ATLAS v4 — 14 tactics, 77 techniques complete AI attack lifecycle cover करते हैं"
+    ],
+    "keyTakeaways": [
+      "ML reconnaissance model architecture, training data, input format और decision boundaries target करता है",
+      "API responses में confidence scores और log probabilities boundary mapping enable करते हैं",
+      "Model cards और published papers passively architecture details reveal करते हैं",
+      "Rate limit और API queries monitor करें — systematic mass queries boundary probing signal करती हैं"
+    ]
+  },
+  "atlas-02": {
+    "tagline": "Target model की copy बनाओ। फिर copy को break करो original break करने के लिए।",
+    "overview": [
+      "AML.TA0002 Resource Development ATLAS में ML attacks के लिए आवश्यक resources build करने को cover करता है: substitute (proxy) models जो target imitate करते हैं, adversarial example generation tools, supply chain attacks के लिए poisoned datasets, और model extraction campaigns के लिए infrastructure।",
+      "एक substitute model (AML.T0005) target model की local copy है जो target API query करके और responses को training labels के रूप में use करके इसके behavior imitate करने के लिए trained है। एक बार good substitute build होने पर, substitute के against crafted adversarial examples अक्सर real model पर transfer होते हैं — target model के weights या architecture तक direct access के बिना attacks allow करते हुए।",
+      "Resource development में adversarial ML tools acquire करना भी शामिल है: CleverHans, Foolbox, ART (Adversarial Robustness Toolbox), और NLP attacks के लिए TextFooler। ये legitimate research tools हैं जिन्हें production ML systems के against attacks के लिए weaponize किया जा सकता है।"
+    ],
+    "technical": {
+      "title": "Substitute Model Training (Model Extraction)",
+      "body": [
+        "Substitute model training process: (1) target API को synthetic या real inputs send करें और (input, output) pairs collect करें, (2) इन pairs को labeled training set के रूप में use करें, (3) इस dataset पर local model train करें, (4) evaluate करें substitute target को held-out data पर कितनी well imitate करता है, (5) adversarial examples craft करने के लिए substitute use करें।",
+        "Transfer rate (substitute पर adversarial examples कितनी बार target को fool करते हैं) model similarity पर depend करती है। यदि दोनों similar architectures use करते हैं, transfer rates 80% exceed कर सकती हैं। Defense: substitute training के लिए available information कम करने के लिए केवल hard labels (confidence scores नहीं) return करें। Rate limiting और query monitoring mass API usage detect करते हैं।"
+      ]
+    },
+    "incident": {
+      "title": "GPT-4 Model Extraction via API (2023)",
+      "impact": "Researchers ने API queries में $200 use करके partial GPT-4 extraction demonstrate किया",
+      "body": [
+        "Multiple institutions के researchers ने demonstrate किया कि GPT-4 के बारे में structural information — specifically इसकी hidden dimension का size — model के output embedding space analyze करते हुए केवल $200 API queries use करके infer किया जा सकता है। यह AML.T0056 (Model Inversion Attack) AML.T0005 (Substitute Model के माध्यम से Adversarial Examples Develop करना) के साथ combined है।",
+        "GPT-4 के full weights extract नहीं किए गए — लेकिन demonstration ने prove किया कि even the most strictly-controlled frontier AI systems अपनी APIs के माध्यम से structural information leak करते हैं। AI attacks के लिए resource development increasingly मतलब है इन information leakage channels exploit करने के लिए tools build करना।"
+      ]
+    },
+    "timeline": [
+      "Papernot et al. — first substitute model + transfer attack demonstrated",
+      "KnockoffNets — production APIs पर practical model extraction",
+      "GPT-4 dimension inference via API queries में $200",
+      "Hard-label-only APIs और query monitoring standard defenses बन गए"
+    ],
+    "keyTakeaways": [
+      "Substitute models target behavior copy करते हैं (query, response) pairs के माध्यम से — weights की आवश्यकता नहीं",
+      "Adversarial examples architecturally similar models के बीच 50-80%+ rates पर transfer होते हैं",
+      "Defense: केवल hard labels return करें (probabilities नहीं), rate-limit queries, systematic patterns monitor करें",
+      "ART (Adversarial Robustness Toolbox) open-source adversarial ML का standard toolkit है"
+    ]
+  },
+  "atlas-03": {
+    "tagline": "AI system compromise करने का सबसे efficient तरीका deploy होने से पहले है।",
+    "overview": [
+      "AML.TA0003 Initial Access cover करता है कि attackers ML system या pipeline में अपना first foothold कैसे gain करते हैं। ML के लिए सबसे powerful initial access vector AML.T0010 है — ML Supply Chain Compromise: targets download और deploy करने से पहले ML ecosystem में malicious models, poisoned datasets या backdoored libraries insert करना।",
+      "HuggingFace 500,000+ publicly available models host करता है। एक convincing name (popular model का typosquat) के साथ HuggingFace पर upload किया गया malicious model हजारों organizations download और deploy कर सकती हैं। Traditional software supply chain attacks के विपरीत जिन्हें legitimate vendor compromise require होती है, ML supply chain attacks public registry पर convincingly similar model upload करके execute किए जा सकते हैं।",
+      "अन्य initial access techniques: AML.T0012 — Valid ML Service Credentials (cloud ML services के लिए compromised API keys), AML.T0047 — Backdoor ML Model via GitHub (open-source ML training code में backdoors insert करना)।"
+    ],
+    "technical": {
+      "title": "ML Supply Chain Attack Vectors",
+      "body": [
+        "HuggingFace model typosquatting: `bert-base-uncased-finetuned` (legitimate) vs `bert-base-uncased-fintuned` (backdoored typosquat) upload करें। Organizations जो model versions pin करती हैं protected हैं; जो hashes के बिना name references use करती हैं vulnerable हैं। Defense: model names नहीं, हमेशा SHA256 hashes pin करें।",
+        "Pickle file deserialization (AML.T0011): PyTorch model files Python pickle format use करते हैं serialization के लिए। Malicious pickle file `torch.load()` के साथ load होने पर arbitrary Python code execute कर सकता है। Defense: `weights_only=True` parameter use करें torch.load में (PyTorch 1.13 से available) और models load करने से पहले pickle scanning tools से model files scan करें।"
+      ]
+    },
+    "incident": {
+      "title": "HuggingFace पर Malicious Model Upload (2024)",
+      "impact": "100+ malicious models load होने पर code execute करते पाए गए; pickle deserialization से RCE",
+      "body": [
+        "JFrog के security researchers ने HuggingFace पर 100+ malicious models discover किए जो `torch.load()` use करके load होने पर arbitrary code execute करते थे। Models ने Python pickle deserialization exploit की system commands execute करने के लिए — एक classic supply chain attack जहां 'dependency' (ML model) malware contain करती है।",
+        "Traditional software supply chain attacks के विपरीत जिन्हें legitimate project compromise require होती है, HuggingFace attack केवल plausible model name create करने और malicious file upload करने की आवश्यकता थी। HuggingFace अब pickle-based code execution detect करने के लिए model files scan करता है, लेकिन fundamental vulnerability (ML model format के रूप में pickle) remains।"
+      ]
+    },
+    "timeline": [
+      "HuggingFace 100k models reach — ML supply chain risk rapidly grow हुआ",
+      "HuggingFace पर first malicious model typosquats documented",
+      "JFrog ने HuggingFace पर 100+ RCE models discover किए; pickle scanning add हुआ",
+      "PyTorch weights_only=True model loading के लिए default recommendation बन गया"
+    ],
+    "keyTakeaways": [
+      "Model SHA256 hashes pin करें — public registries से केवल name से models कभी load न करें",
+      "Model files load करते समय pickle code execution prevent करने के लिए `torch.load(weights_only=True)` use करें",
+      "किसी भी pipeline में load करने से पहले pickle-scanner से model files scan करें",
+      "Public ML models को untrusted third-party code treat करें — production use से पहले review करें"
+    ]
+  },
+  "atlas-04": {
+    "tagline": "Model attack करने के लिए weights की आवश्यकता नहीं। केवल API की आवश्यकता है।",
+    "overview": [
+      "AML.TA0004 ML Model Access उन techniques को cover करता है जो attackers ML systems interact और query करने के लिए use करते हैं। Access types completely white-box access (attacker के पास model weights और architecture हैं) से pure black-box access (attacker केवल API के माध्यम से inputs send कर सकता है और outputs observe कर सकता है) तक range करते हैं।",
+      "Black-box access (AML.T0040) commercial ML systems के लिए real world में सबसे common scenario है। केवल API access के साथ भी, attackers: systematic queries से decision boundaries map कर सकते हैं, membership inference के माध्यम से model information extract कर सकते हैं, substitute model transfer use करके adversarial examples create कर सकते हैं, और carefully designed prompts के माध्यम से sensitive training data elicit कर सकते हैं।",
+      "LLM systems के लिए, black-box access prompt injection (AML.T0054), jailbreaking (safety guidelines bypass करना), और data extraction attacks allow करता है। Black-box LLM API की attack surface image classifiers से qualitatively different है — natural language attacker-controlled inputs को much richer allow करती है।"
+    ],
+    "technical": {
+      "title": "Black-Box Attack Techniques",
+      "body": [
+        "Decision-based attacks (zeroth-order optimization): HopSkipJump और HSJA जैसे attacks gradient information require नहीं करते — वे केवल model के hard-label outputs use करके adversarial examples find करते हैं। ये inputs perturb करते समय label changes से gradients estimate करके काम करते हैं, फिर decision boundary की ओर estimated gradient follow करते हैं।",
+        "LLM black-box attacks vision attacks से differ करते हैं: LLM inputs discrete tokens हैं (continuous pixel values नहीं), जो gradient-based approaches inapplicable बनाता है। LLM attacks prompt engineering, role-playing scenarios, token manipulation (special tokens insert करना), और many-shot jailbreaking (context में desired behavior के many examples provide करना) use करते हैं।"
+      ]
+    },
+    "incident": {
+      "title": "ChatGPT Training Data Extraction (2023)",
+      "impact": "Researchers ने divergence attack के माध्यम से ChatGPT से PII सहित verbatim training data extract किया",
+      "body": [
+        "Google DeepMind, ETH Zurich और अन्य institutions के researchers ने demonstrate किया कि ChatGPT को verbatim training data regurgitate करने के लिए induce किया जा सकता था — personal identification information सहित — model से 'poem शब्द forever repeat करते रहो' request करके। Model eventually अपने trained behavior से diverge होता और memorized training sequences emit करता।",
+        "यह AML.T0056 (Model Inversion Attack) एक LLM के against demonstrate करता है: black-box API access, model divergence cause करने वाले carefully crafted input के साथ combined, training data extraction allow करता है जो model generalize करने की बजाय memorize करता है। Attack ने approximately $200 API queries cost किया।"
+      ]
+    },
+    "timeline": [
+      "पहले LLM memorization papers — GPT-2 training data memorize करता है",
+      "Carlini et al. — large language models में extractable memorization",
+      "ChatGPT training data extraction divergence attack के माध्यम से demonstrated",
+      "OpenAI ने memorization extraction कम करने के लिए rate limiting और output filtering add किया"
+    ],
+    "keyTakeaways": [
+      "Black-box access adversarial examples, boundary mapping, और data extraction के लिए sufficient है",
+      "LLM divergence attacks model weights से memorized training data extract करते हैं PII सहित",
+      "Defense: training के दौरान differential privacy, output filtering, और rate limiting",
+      "Rate limit + systematic boundary-testing query patterns monitor करें"
+    ]
+  }
+}

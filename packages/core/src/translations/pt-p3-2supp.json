@@ -1,0 +1,892 @@
+{
+  "baseball-1-01": {
+    "tagline": "Antes de poder jogar, você precisa entender o campo — e por que ele tem a forma que tem.",
+    "overview": [
+      "O beisebol é jogado em um campo em formato de diamante com quatro bases — primeira, segunda, terceira e o home plate — separadas por 90 pés (60 pés na maioria das ligas infantis). O campo de jogo é um quadrado girado 45 graus, fazendo com que as bases formem um formato de diamante. Além do infield está o outfield, que se estende até a parede do outfield. O território em jogo é a área entre as duas linhas de falta que partem do home plate passando pela primeira e terceira base e continuam em direção ao outfield.",
+      "Um time coloca nove jogadores em campo, cada um em uma posição específica: arremessador (1), catcher (2), primeira base (3), segunda base (4), terceira base (5), shortstop (6), outfielder esquerdo (7), outfielder central (8) e outfielder direito (9). Esses números são usados em cartões de pontuação e na marcação (por exemplo, um double play 6-4-3 significa shortstop para segunda base para primeira base).",
+      "Um jogo de beisebol tem nove entradas (seis na maioria das ligas infantis). Cada entrada tem duas metades — o time visitante bate primeiro (parte superior da entrada), o time da casa bate depois (parte inferior da entrada). Cada time é eliminado após três outs. Para marcar uma corrida, um batedor deve chegar a uma base, avançar pelas três bases e tocar o home plate antes do terceiro out da entrada. O time com mais corridas após nove entradas vence."
+    ],
+    "technical": {
+      "title": "O Diamante do Beisebol — Dimensões e Layout",
+      "body": [
+        "O infield consiste nas quatro bases (incluindo o home plate) e as áreas entre elas. O monte do arremessador fica no centro do diamante, a 60 pés e 6 polegadas do home plate (46 pés nas divisões menores do Little League). A caixa do batedor fica em ambos os lados do home plate, e o catcher se agacha diretamente atrás dela. Os dugouts ficam em ambos os lados do campo, onde o time senta quando não está batendo ou em campo.",
+        "O território de falta é a área fora das duas linhas de falta. Uma bola batida para o território de falta é geralmente uma bola de falta (um strike se o batedor tiver menos de dois strikes; sem penalidade adicional após dois strikes, com algumas exceções). Uma bola de falta pega no ar por um fielder é um out. A determinação de fair/foul é baseada em onde a bola toca o chão pela primeira vez além da primeira ou terceira base."
+      ]
+    },
+    "incident": {
+      "title": "A Primeira Série Mundial do Little League — 1947",
+      "impact": "A primeira Série Mundial do Little League estabeleceu Williamsport como o lar espiritual do beisebol juvenil, uma tradição que continua hoje com 20 times de todo o mundo competindo anualmente diante de audiências globais.",
+      "body": [
+        "O Little League Baseball foi fundado em 1939 por Carl Stotz em Williamsport, Pensilvânia, com apenas três times. Oito anos depois, em 1947, Stotz organizou a primeira Série Mundial do Little League — uma competição regional que atraiu times de toda a Pensilvânia. Foi modesta pelos padrões de hoje, mas estabeleceu o modelo para o que se tornaria um dos eventos esportivos juvenis mais assistidos do mundo.",
+        "Hoje, a Série Mundial do Little League apresenta 20 times representando regiões dos Estados Unidos e países ao redor do mundo. Os jogos são transmitidos nacionalmente pela ESPN e ABC. O torneio já produziu alguns dos momentos mais memoráveis do beisebol — e milhares de jogadores que seguiram carreira no beisebol profissional. A série permanece em Williamsport, no Estádio Howard J. Lamade, a poucos quilômetros de onde Carl Stotz colocou pela primeira vez aqueles três times originais."
+      ]
+    },
+    "timeline": [
+      "Abner Doubleday creditado (um tanto mitologicamente) com a invenção do beisebol em Cooperstown, NY",
+      "É fundada a National League of Professional Base Ball Clubs",
+      "É jogada a primeira Série Mundial moderna — Boston Americans vs. Pittsburgh Pirates",
+      "Little League Baseball fundado por Carl Stotz em Williamsport, Pensilvânia",
+      "Primeira Série Mundial do Little League é realizada em Williamsport",
+      "Little League abre oficialmente para meninas",
+      "Little League opera em mais de 80 países ao redor do mundo"
+    ],
+    "keyTakeaways": [
+      "O diamante do beisebol tem quatro bases separadas por 90 pés (60 pés na maioria das ligas infantis) — home, primeira, segunda, terceira",
+      "Nove jogadores vão a campo, cada um com uma posição numerada (arremessador=1, catcher=2, e assim por diante até outfielder direito=9)",
+      "Cada entrada tem duas metades — três outs por meia entrada; nove entradas por jogo",
+      "Para marcar, um jogador deve avançar pelas três bases e tocar o home plate antes de a entrada terminar"
+    ]
+  },
+  "baseball-1-02": {
+    "tagline": "Você não pode jogar direito se não conhece as regras — e conhecê-las protege o seu time.",
+    "overview": [
+      "O beisebol tem um conjunto bem organizado de regras, mas várias regras-chave confundem os novos jogadores. Três strikes e você está fora — mas apenas certos arremessos contam como strikes: um arremesso na zona de strike que você não acerta, qualquer arremesso que você tenta acertar e erra, ou um arremesso que você bate em falta (com a exceção de que uma bola de falta não pode ser o terceiro strike, exceto em tentativas de bunt). Quatro bolas — arremessos fora da zona de strike que o batedor não tenta acertar — dão ao batedor um walk (base livre na primeira).",
+      "Há duas formas principais de registrar um out em um corredor: outs forçados e outs por toque. Um out forçado ocorre quando um corredor é obrigado a avançar para a próxima base porque um batedor se torna corredor (ou porque os corredores atrás forçam os corredores à frente). Para registrar um out forçado, o fielder só precisa tocar a base segurando a bola — não é necessário tocar o corredor. Um out por toque exige que o fielder toque fisicamente o corredor com a bola enquanto ele não está tocando uma base.",
+      "A regra do fly ball do infield é uma das regras mais incompreendidas do beisebol. Ela se aplica quando há corredores na primeira e segunda (ou bases cheias), menos de dois outs, e um fly ball fair é batido para o infield que um fielder do infield pode pegar com esforço comum. Nessa situação, o batedor é automaticamente declarado fora — mesmo que o fielder deixe a bola cair intencionalmente. Essa regra existe para evitar que os fielders deixem cair pop-ups fáceis deliberadamente para criar um double play ou triple play barato."
+    ],
+    "technical": {
+      "title": "Hits vs. Erros — Marcando o Jogo",
+      "body": [
+        "Um hit é quando um batedor chega à base por sua própria habilidade — uma bola batida em território fair que não pode ser fielded com esforço comum, ou que cai para um hit de base antes que um out possa ser registrado. Um erro é quando um fielder comete uma falha em uma bola que deveria ter sido fielded com esforço comum — deixar cair um fly ball que se pode pegar, lançar descontroladamente ou errar um ground ball rotineiro. Um erro é creditado ao fielder; o batedor chega à base, mas não recebe crédito por um hit.",
+        "Distinguir hits de erros importa para as estatísticas (a média de rebatidas conta apenas hits) e para fins de pontuação. O marcador oficial faz esse julgamento. No beisebol infantil, aprender a distinguir essas jogadas constrói o QI de beisebol. Um conceito-chave: o benefício da dúvida vai para o batedor — se uma jogada é limítrofe, marque como hit."
+      ]
+    },
+    "incident": {
+      "title": "A Famosa Controvérsia da Regra do Fly Ball do Infield — NLDS 2012",
+      "impact": "Uma decisão pela regra do fly ball do infield no final da 8ª entrada de um jogo de playoff eliminatório (Cardinals vs. Braves) gerou grande controvérsia quando uma bola que caiu no campo esquerdo raso foi enquadrada na regra — os torcedores jogaram objetos em campo e o jogo foi suspenso. O episódio evidenciou como essa regra ainda é amplamente incompreendida, mesmo entre torcedores adultos.",
+      "body": [
+        "No jogo Wild Card da NLDS 2012 entre St. Louis Cardinals e Atlanta Braves, com os Braves perdendo por 6 a 3 e corredores na primeira e segunda com um out na 8ª entrada, o shortstop Pete Kozma se posicionou sob um pop-up no campo esquerdo raso. Quando a bola descia — muito além do infield normal — o árbitro do campo esquerdo gritou 'fly ball do infield, batedor fora.' A bola caiu, o corredor na segunda avançou para a terceira, e a confusão reinou.",
+        "Os torcedores dos Braves — e até muitos jogadores — ficaram furiosos, argumentando que a bola estava longe demais no outfield para a regra se aplicar. A regra exige que a bola seja apanhada 'com esforço comum' por um fielder do infield, mas a decisão é um julgamento do árbitro. A chamada, embora controversa, era argumentavelmente correta. O incidente se tornou um momento de ensino viral sobre regras do beisebol, demonstrando que mesmo no beisebol profissional de playoff, a regra do fly ball do infield ainda é amplamente incompreendida."
+      ]
+    },
+    "timeline": [
+      "A Liga Nacional codifica as primeiras regras do beisebol moderno, incluindo o out por três strikes",
+      "A regra do fly ball do infield é introduzida para evitar que fielders deixem cair pop-ups deliberadamente",
+      "A regra da bola de falta é atualizada — bolas de falta contam como strikes (exceto a terceira)",
+      "O crédito de hit por walk foi alterado — walks não são mais contados como turnos ao bastão",
+      "A regra do Designated Hitter é adotada pela Liga Americana",
+      "A MLB adota cronômetro de arremesso, restrições de troca e bases maiores — as mudanças de regras mais significativas em décadas"
+    ],
+    "keyTakeaways": [
+      "Três strikes = out; quatro bolas = walk. Bolas de falta contam como strikes, mas não podem ser o terceiro strike",
+      "Outs forçados só exigem tocar a base; outs por toque exigem tocar o corpo do corredor",
+      "A regra do fly ball do infield retira automaticamente o batedor em um pop-up do infield com corredores na primeira e segunda (ou bases cheias) e menos de 2 outs",
+      "Um hit exige a habilidade do batedor; um erro é uma falha do fielder — o batedor chega à base, mas não recebe crédito de hit"
+    ]
+  },
+  "baseball-1-03": {
+    "tagline": "Acertar uma bola redonda com um bastão redondo de forma precisa é a habilidade mais difícil no esporte — esses fundamentos tornam isso possível.",
+    "overview": [
+      "A rebatida é amplamente considerada a habilidade mais difícil nos esportes profissionais — até os melhores rebatedores da história não conseguiam um hit em aproximadamente 70% das vezes. Para jogadores jovens, o objetivo é mais simples: fazer contato consistente, desenvolver uma mecânica repetível e construir confiança na caixa de bate. Os fundamentos da rebatida não mudam do Little League às Grandes Ligas — apenas a velocidade e o movimento dos arremessos.",
+      "Uma postura de rebatida adequada começa com os pés separados na largura dos ombros, joelhos levemente dobrados, peso equilibrado sobre as plantas dos pés. O corpo fica voltado para o home plate (ou levemente em direção ao arremessador). As mãos seguram o bastão com os nós dos dedos de bate — os nós do meio de ambas as mãos — alinhados. Esse grip permite que os pulsos girem adequadamente durante o swing. As mãos começam na altura dos ombros, aproximadamente alinhadas com o ombro traseiro.",
+      "O swing é uma sequência: carga (transferir o peso para o pé traseiro, as mãos recuam levemente), passada (pequeno passo em direção ao arremessador com o pé dianteiro — apenas alguns centímetros, mantendo o pé dianteiro fechado), rotação dos quadris (os quadris disparam em direção ao arremessador, gerando potência), contato (os braços se estendem, as mãos passam pela bola), e acompanhamento (o bastão continua a volta completa até o ombro traseiro). Os erros mais comuns: pisar para fora (o pé dianteiro se afasta do home plate em vez de ir em direção ao arremessador), soltar o cotovelo traseiro, e levantar a cabeça antes do contato."
+    ],
+    "technical": {
+      "title": "A Mecânica de um Bom Swing",
+      "body": [
+        "Olhos na bola: o conselho mais importante para rebatedores jovens. Acompanhe a bola desde o ponto de liberação do arremessador até a zona de contato. Muitos rebatedores jovens olham para o fielder, para a parede do outfield ou antecipam a bola em vez de segui-la. Mantenha a cabeça baixa e os olhos focados ao longo da zona — não para cima para ver onde você bateu.",
+        "A rotação dos quadris é de onde vem a potência. Rebatedores jovens que usam apenas os braços geram ground balls fracos e fly balls fracos. Ensinar os jogadores a 'esmagar o inseto' — girando o calcanhar traseiro no chão enquanto os quadris disparam — conecta a parte inferior do corpo ao swing. As mãos seguem os quadris, e não o contrário."
+      ]
+    },
+    "incident": {
+      "title": "Ted Williams e a Ciência da Rebatida",
+      "impact": "Ted Williams, que rebateu .406 em 1941 — o último jogador a rebater acima de .400 em uma temporada — escreveu 'The Science of Hitting' em 1971, o manual de rebatida mais influente na história do beisebol. Sua análise da zona de strike em 77 células individuais e a análise do ângulo do bastão através do contato transformou a forma como a rebatida é ensinada.",
+      "body": [
+        "Ted Williams chegou ao Fenway Park em 1939 como um jogador de 20 anos com uma abordagem obsessiva e analítica da rebatida. Ele estudava arremessadores, acompanhava mentalmente cada turno ao bastão e pensava mais profundamente sobre a mecânica da rebatida do que qualquer jogador antes dele. Em 1941, rebateu .406 — recusando sentar em um double-header no último dia da temporada, o que teria preservado sua média de .400 — e foi 6 de 8 para terminar em .406. Nenhum jogador rebateu .400 desde então.",
+        "O livro de Williams de 1971, 'The Science of Hitting', introduziu conceitos — particularmente o diagrama da zona de strike e a importância de esperar um bom arremesso na zona onde a média do rebatedor era mais alta — que hoje são fundamentais para a instrução de rebatida em todos os níveis. Williams é a prova de que os melhores rebatedores são estudiosos, não apenas atletas: ele estudou o ofício até compreendê-lo mais profundamente do que ninguém."
+      ]
+    },
+    "timeline": [
+      "A rebatida de potência de Babe Ruth transforma o beisebol de científico em jogo de potência",
+      "Ted Williams estreia no Fenway Park — começa sua abordagem analítica da rebatida",
+      "Williams rebate .406 — última temporada de .400 na história das Grandes Ligas",
+      "Williams publica 'The Science of Hitting' — ainda o texto padrão de rebatida",
+      "Tees de rebatida para jovens e exercícios de soft toss tornam-se padrão no desenvolvimento do beisebol de viagens",
+      "A tecnologia de rastreamento Statcast revoluciona a compreensão da velocidade de saída e do ângulo de lançamento"
+    ],
+    "keyTakeaways": [
+      "Alinhe os nós dos dedos de bate no grip para permitir a rotação adequada do pulso no contato",
+      "Nunca pise para fora — o pé dianteiro deve avançar em direção ao arremessador, não se afastar do home plate",
+      "A potência vem da rotação dos quadris — as mãos seguem os quadris, e não o contrário",
+      "Mantenha os olhos na bola até o contato — levantar a cabeça cedo causa contato fraco e fly balls"
+    ]
+  },
+  "baseball-1-04": {
+    "tagline": "O braço de um arremessador é precioso — arremesse com boa mecânica e respeite a contagem de arremessos.",
+    "overview": [
+      "O arremesso é um movimento atlético de corpo inteiro que exerce estresse significativo no braço, especialmente no cotovelo e no ombro. Para arremessadores juvenis, entender a mecânica adequada e respeitar os limites de contagem de arremessos não é apenas sobre desempenho — é sobre a saúde do braço. As lesões por uso excessivo no arremesso juvenil atingiram níveis epidêmicos nos Estados Unidos, com lesões como rompimentos do LCA (cirurgia de Tommy John) tornando-se cada vez mais comuns em jogadores de apenas 15 anos.",
+      "O fastball de quatro costuras é o arremesso fundamental para todos os arremessadores juvenis. Para segurá-lo: coloque os dedos indicador e médio através das quatro costuras (as costuras que formam um 'C' no topo da bola), com o polegar embaixo para sustentação. O grip deve ser firme, mas não apertado — apertar demais cria tensão no antebraço que reduz a velocidade e aumenta o risco de lesão.",
+      "Sequência da mecânica de arremesso: comece com uma postura equilibrada no monte, inicie o movimento, avance em direção ao home com o pé dianteiro (comprimento da passada de aproximadamente 80–90% da altura para a maioria dos arremessadores), gire os quadris e ombros, libere a bola com o braço percorrendo um arco natural, e conclua o acompanhamento completamente — o braço deve terminar na coxa do lado da luva. O acompanhamento incompleto é uma causa importante do estresse no braço."
+    ],
+    "technical": {
+      "title": "Contagem de Arremessos do Little League e Requisitos de Descanso",
+      "body": [
+        "O Little League Baseball tem regras rígidas de contagem de arremessos projetadas para proteger os braços jovens. Os limites dependem da idade: idades 7–8: máximo de 50 arremessos/dia; idades 9–10: máximo de 75 arremessos/dia; idades 11–12: máximo de 85 arremessos/dia; idades 13–16: máximo de 95 arremessos/dia; idades 17–18: máximo de 105 arremessos/dia. Esses são máximos — os treinadores devem monitorar a fadiga do braço independentemente da contagem.",
+        "Os dias de descanso obrigatórios são igualmente importantes. Se um arremessador fizer 66 ou mais arremessos, ele precisa de 4 dias corridos de descanso antes de arremessar novamente (idades 13 em diante). Contagens mais baixas exigem proporcionalmente menos dias de descanso. Treinadores e pais que ignoram os requisitos de descanso em nome da vitória são a principal fonte de lesões no braço juvenil. Nenhum resultado de jogo vale a saúde do braço de uma criança a longo prazo."
+      ]
+    },
+    "incident": {
+      "title": "A Epidemia de Lesões nos Braços Juvenis — Pesquisa ASMI 2007",
+      "impact": "A pesquisa do Dr. James Andrews e colegas no ASMI documentou que arremessadores juvenis que arremessaram mais de 100 entradas por ano tiveram um risco 3,5× maior de lesão grave no braço — impulsionando a adoção de regras de contagem de arremessos no beisebol juvenil em todo o país.",
+      "body": [
+        "Em 2007, o Dr. James Andrews e colegas do American Sports Medicine Institute (ASMI) publicaram uma pesquisa mostrando que arremessadores juvenis que arremessaram mais de 100 entradas por ano eram 3,5 vezes mais propensos a sofrer lesão grave no braço do que aqueles que arremessaram menos entradas. O estudo também constatou que jogar beisebol durante o ano inteiro (especialmente arremessar) sem descanso adequado era um fator de risco importante.",
+        "A pesquisa provocou mudanças significativas no beisebol juvenil. O Little League International adotou regras formais de contagem de arremessos em 2007. A USA Baseball criou as diretrizes 'Pitch Smart', que hoje são apoiadas por todas as grandes organizações de beisebol juvenil do país. A mensagem central: o braço de um arremessador não é substituível. Protegê-lo no beisebol juvenil protege a capacidade de uma criança de jogar pelo resto da vida."
+      ]
+    },
+    "timeline": [
+      "As lesões nos braços juvenis começam a aumentar à medida que o beisebol durante todo o ano se torna comum",
+      "USA Baseball e ASMI começam a estudar lesões por arremesso em jovens",
+      "Little League Baseball adota regras formais de contagem de arremessos — idades 7–18",
+      "USA Baseball lança as diretrizes 'Pitch Smart' — programa de cuidado do braço baseado em ciência",
+      "Cirurgias de Tommy John em jogadores com menos de 20 anos dobram em comparação com os níveis de 2000 (dados ASMI)",
+      "A especialização durante todo o ano é identificada como principal fator de risco — participação em múltiplos esportes é recomendada"
+    ],
+    "keyTakeaways": [
+      "Segure o fastball de quatro costuras pelas quatro costuras, pontas dos dedos no couro — não muito apertado",
+      "Conclua o acompanhamento completamente — o braço termina na coxa do lado da luva — o acompanhamento incompleto lesiona os cotovelos",
+      "Os limites de contagem de arremessos do Little League existem para proteger os braços jovens — idades 11–12 o máximo é de 85 arremessos/dia",
+      "Os requisitos de descanso após arremessar são obrigatórios — 66 ou mais arremessos exigem 4 dias de descanso antes de arremessar novamente"
+    ]
+  },
+  "baseball-1-05": {
+    "tagline": "Todo grande jogo defensivo começa com a posição de espera correta — antes de a bola ser batida.",
+    "overview": [
+      "A defesa no beisebol começa antes de a bola ser arremessada. Um jogador na posição de espera correta — postura atlética, luva para fora e pronta, nas pontas dos pés — pode reagir a qualquer bola mais rápido e de forma mais limpa do que alguém que é pego de pés planos. A posição de espera é: pés levemente mais separados do que a largura dos ombros, joelhos dobrados, peso à frente nas pontas dos pés, luva na altura da cintura à frente do corpo, olhos para cima acompanhando o batedor.",
+      "O jogo das bolas no chão exige ir ao encontro da bola em vez de esperar que ela chegue. A técnica: avançar rapidamente para pegar a bola à frente (sem deixar a bola jogar com você), abaixar o corpo (costas paralelas ao chão), colocar a luva para baixo com os dedos apontando para o chão (para evitar que rebotes curtos passem por cima da luva), ver a bola entrar na luva, jogar com ambas as mãos (a mão do arremesso fecha sobre a bola na luva). O erro comum: endireitar-se cedo demais e tentar jogar na altura do quadril — as bolas passam entre as pernas.",
+      "Mecânica do arremesso: agarrar a bola com um grip de fastball de quatro costuras pelas costuras (arremesso reto e preciso), alinhar o ombro dianteiro em direção ao alvo, dar um passo com o pé dianteiro em direção ao arremesso, girar quadris e ombros, estender o braço naturalmente e acompanhar. A precisão de um arremesso vem do grip consistente e do alinhamento do ombro dianteiro."
+    ],
+    "technical": {
+      "title": "Posicionamento para Fly Balls e Jogo com Duas Mãos",
+      "body": [
+        "Pegar fly balls: mova-se sob a bola cedo — chegue ao local antes de a bola chegar e deixe ela vir até você. Posicione-se para que a bola venha levemente em sua direção (não se afastando). Dê um pequeno passo de corvo (um passo de arrastar) antes de arremessar, o que permite gerar impulso em direção ao seu alvo. Duas mãos sempre que possível: use a mão de arremesso para fechar sobre a bola enquanto ela entra na luva, assegurando-a e permitindo uma transferência mais rápida para o arremesso.",
+        "Julgar fly balls é uma habilidade que se desenvolve com a repetição — o som do bastão e a trajetória inicial da bola são as principais pistas. Uma bola batida alta e reta é mais fácil de acompanhar; uma linha é mais difícil. Os outfielders nunca devem recuar — sempre gire e corra em direção ao ponto de pouso projetado da bola, depois deixe a bola vir até você."
+      ]
+    },
+    "incident": {
+      "title": "Roberto Clemente e a Arte do Arremesso no Outfield",
+      "impact": "O braço de outfield de Roberto Clemente é amplamente considerado o melhor na história do beisebol — ele ganhou 12 Luvas de Ouro consecutivas e era famoso por eliminar corredores nas bases que tentavam avançar bases extras. Seu braço tornou-se o modelo para a instrução de arremesso no outfield.",
+      "body": [
+        "Roberto Clemente jogou o outfield direito para o Pittsburgh Pirates de 1955 a 1972 e ganhou 12 Luvas de Ouro consecutivas — o prêmio defensivo mais prestigioso do beisebol. Os gerentes adversários diriam a seus corredores: não tentem avançar bases extras contra Clemente. Seu braço — poderoso, preciso e notavelmente rápido da luva ao arremesso — eliminava corredores em qualquer base, incluindo o home plate, a partir do aviso do outfield direito.",
+        "A técnica de Clemente foi estudada por treinadores por gerações: ele usava uma ação de braço baixa e compacta, acertava o cutoff man com precisão e antecipava para onde os corredores de base iriam antes de a bola ser batida. Seu jogo defensivo ainda é o ponto de referência para a instrução do outfield. Ele morreu em um acidente de avião em 31 de dezembro de 1972, enquanto entregava suprimentos de ajuda humanitária à Nicarágua — uma das figuras mais queridas do beisebol, lembrado por seu caráter tanto quanto por seu talento."
+      ]
+    },
+    "timeline": [
+      "Roberto Clemente se junta ao Pittsburgh Pirates — transforma a defesa do outfield",
+      "Clemente ganha o primeiro Prêmio Luva de Ouro — ganha 12 consecutivos",
+      "Os Prêmios Luva de Ouro da Rawlings tornam-se o padrão da indústria para a excelência defensiva",
+      "Os programas de beisebol juvenil começam a ensinar formalmente a técnica de 'carregar a bola'",
+      "A técnica de jogo com duas mãos é padronizada no currículo de treinamento juvenil",
+      "As métricas defensivas Statcast mudam como o posicionamento do outfield é avaliado"
+    ],
+    "keyTakeaways": [
+      "Comece cada arremesso na posição de espera — peso à frente, joelhos dobrados, luva à frente",
+      "Carregue bolas no chão; abaixe com os dedos da luva apontando para baixo para evitar que as bolas passem sob a luva",
+      "Sempre tente usar duas mãos — a mão de arremesso fecha sobre a bola para uma transferência mais rápida e segura",
+      "Agarre a bola com um grip de quatro costuras antes de arremessar para máxima precisão e alcance"
+    ]
+  },
+  "baseball-1-06": {
+    "tagline": "O bom jogo defensivo no infield não é só sobre fazer as jogadas difíceis — é sobre fazer a jogada certa toda vez.",
+    "overview": [
+      "As posições do infield têm responsabilidades específicas além de defender bolas batidas em sua direção. O primeira base é a âncora de cada arremesso do infield — eles precisam aprender a se esticar para arremessos errados enquanto mantêm o pé na base, o que é tanto uma técnica quanto uma habilidade que evita que muitos erros se transformem em hits. O shortstop e o segunda base precisam aprender o pivô do double play — a mecânica de como receber a bola na segunda e transferir rapidamente para um arremesso à primeira.",
+      "A comunicação é uma habilidade crítica e subestimada no infield. Quando uma bola é batida ou arremessada em uma área ambígua, o fielder que grita 'Eu pego!' deve ser ouvido acima da multidão e deve gritar cedo — não no último segundo. Se dois fielders convergem em um pop-up sem um grito, as colisões podem causar lesões. A regra: o jogador que grita primeiro tem prioridade; os outros fielders se afastam. Grite cedo e grite alto.",
+      "O respaldo é o hábito de se reposicionar atrás de uma jogada em caso de arremesso excessivo ou errado. Cada jogador em campo deve estar se movendo em cada jogada — mesmo que a bola não seja batida para ele. O arremessador respalda a terceira base e o home plate nos arremessos do outfield. O outfielder central respalda a segunda base. Cada fielder tem a responsabilidade de estar em algum lugar útil em cada arremesso."
+    ],
+    "technical": {
+      "title": "O Double Play — Mecânica 6-4-3",
+      "body": [
+        "Para o segunda base recebendo um arremesso na segunda base (o 4 em um 6-4-3): pegar a bola, arrastar o pé traseiro sobre a base enquanto arremessa (ou tocar com o pé logo antes de pegar), e sair do caminho do corredor. A chave é pegar a bola primeiro, depois fazer o arremesso — nunca apressa a transferência a ponto de perder ambas as jogadas.",
+        "Para o shortstop arremessando para a segunda (o 6 em um 6-4-3): ler a distância do corredor, arremessar para um local consistente (levemente para o lado da primeira base da base, na altura do peito), e deixar o segunda base fazer o pivô. Um bom passe do shortstop torna o trabalho do segunda base dramaticamente mais fácil — um mau passe nos olhos do corredor ou na terra torna quase impossível."
+      ]
+    },
+    "incident": {
+      "title": "O Infield dos Yankees de 1927 — Estabelecendo o Padrão",
+      "impact": "Os Yankees de 1927, frequentemente chamados de o melhor time de beisebol de todos os tempos, tinham Lou Gehrig na primeira base — famoso por seu esticamento na base que salvava arremessos imprecisos e mantinha corredores fora da base. Sua técnica tornou-se o modelo ensinado aos primeiras bases por gerações.",
+      "body": [
+        "O período de Lou Gehrig na primeira base para os New York Yankees (1923–1939) coincidiu com a era em que a técnica de primeira base estava sendo formalmente codificada. Gehrig, famoso por sua excelência consistente, desenvolveu o esticamento completo na primeira base como uma forma de arte — ele conseguia estender seu alcance para pegar arremessos que de outra forma poderiam tirar outros jogadores da base, transformando o que seriam hits em outs.",
+        "Os treinadores de beisebol que estudavam os Yankees de 1927 — que foram 110-44 e varreram a Série Mundial — notaram que a execução de seu infield foi tão responsável pelo sucesso quanto o famoso ataque que contava com Babe Ruth. O princípio de 'salvar um arremesso ruim sempre que possível mantendo o pé na base' ainda é instrução padrão de primeira base hoje em todos os níveis, do Little League às Grandes Ligas."
+      ]
+    },
+    "timeline": [
+      "O beisebol profissional codifica as responsabilidades de posição do infield em guias de treinamento",
+      "Os Yankees de 1927 estabelecem o padrão defensivo — a execução do infield é estudada por gerações",
+      "A mecânica do pivô do double play torna-se currículo padrão de treinamento juvenil",
+      "Os manuais de treinamento do Little League incluem pela primeira vez protocolos de comunicação para pop-ups",
+      "As mudanças defensivas do infield tornam-se generalizadas no beisebol profissional — o posicionamento defensivo evolui",
+      "A MLB proíbe mudanças extremas do infield — o posicionamento tradicional é reinstaurado"
+    ],
+    "keyTakeaways": [
+      "Primeira base: esticar completamente em direção ao arremesso mantendo um pé na base — salve cada arremesso alcançável",
+      "A comunicação é crítica — grite 'Eu pego!' cedo e alto; quem grita tem prioridade, os outros se afastam",
+      "Em um double play, pegue a bola primeiro — nunca apresse a transferência a ponto de perder ambas as jogadas",
+      "Todos respaldam cada arremesso — se não estiver envolvido na jogada principal, encontre a posição de respaldo"
+    ]
+  },
+  "baseball-1-07": {
+    "tagline": "O outfield não é lugar para descansar — é onde o jogo é salvo.",
+    "overview": [
+      "Os outfielders precisam cobrir grandes extensões de terreno rapidamente, ler os fly balls com precisão, arremessar com potência e precisão e se comunicar constantemente entre si. A habilidade mais crítica é ler o som do bastão — o som do contato diz imediatamente a um outfielder se a bola será batida suavemente (toque no cabo, fora da ponta) ou com força (fora do ponto doce), e o ângulo do contato indica aproximadamente para onde ela vai. Outfielders experientes já estão dando seu primeiro passo antes de a bola passar pelo infield.",
+      "O drop step é a técnica fundamental para bolas batidas sobre a cabeça do outfielder. Ao ver a bola indo para trás, gire sobre o pé mais próximo da direção para onde a bola vai (recue esse pé atrás de você), vire o corpo e corra em velocidade máxima em direção ao ponto de pouso — nunca recue. O drop step o coloca em velocidade máxima em dois passos em vez de vários passos de deslizamento para trás.",
+      "Arremessar para o cutoff man — o fielder do infield que se posiciona no caminho de revezamento entre o outfielder e a base — é o padrão para a maioria dos arremessos do outfield. Arremessar através do cutoff man em vez de diretamente para a base permite que ele redirecione caso o jogo mude, e evita que um arremesso fraco role até o batente. A exceção: se o arremesso for forte o suficiente para superar o corredor diretamente, e o cutoff man estiver deixando você passar.",
+      "Os outfielders se comunicam constantemente: pedindo fly balls, sinalizando posições de cutoff, avisando companheiros sobre a parede. O outfielder central geralmente é o capitão do outfield — eles têm prioridade nas bolas batidas para qualquer dos espaços. Se o outfielder central pede uma bola, o outfielder de canto se afasta mesmo que estivesse mais perto da bola."
+    ],
+    "technical": {
+      "title": "Comunicação no Outfield e Consciência da Parede",
+      "body": [
+        "Os outfielders se comunicam constantemente: pedindo fly balls, sinalizando posições de cutoff, avisando companheiros sobre a parede. O outfielder central geralmente é o capitão do outfield — eles têm prioridade nas bolas batidas para qualquer dos espaços. Se o outfielder central pede uma bola, o outfielder de canto se afasta mesmo que estivesse mais perto da bola.",
+        "A consciência da parede é uma questão de segurança e desempenho. Saiba onde fica a pista de aviso — a faixa de terra ou cascalho antes da maioria das paredes do outfield que avisa ao outfielder que ele está perto da parede. Ao sentir a pista de aviso, olhe para cima para localizar a parede antes de continuar correndo. Nunca corra em velocidade máxima em direção a uma parede para fazer uma captura a menos que seja experiente o suficiente para saber exatamente a que distância está. Os treinadores de ligas infantis devem levar os jogadores até a pista de aviso no início de cada temporada para que eles saibam como ela parece."
+      ]
+    },
+    "incident": {
+      "title": "Willie Mays e A Captura — Polo Grounds 1954",
+      "impact": "A captura sobre o ombro de Willie Mays no arremesso de 420 pés de Vic Wertz na Série Mundial de 1954 é considerada a maior jogada defensiva na história do beisebol — uma demonstração do drop step, leitura da bola do bastão e atletismo puro que se tornou o momento definitório do jogo de outfield.",
+      "body": [
+        "No Jogo 1 da Série Mundial de 1954 no Polo Grounds, Vic Wertz, de Cleveland, bateu um arremesso de 420 pés em direção ao outfield central profundo com dois corredores em base. Willie Mays se virou ao som do bastão e correu em direção à parede do outfield central — em velocidade máxima com as costas voltadas para o infield. Aproximadamente na marca de 460 pés, ele capturou a bola sobre o ombro, se virou e fez um revezamento extraordinário em direção ao infield, impedindo que ambos os corredores marcassem.",
+        "A jogada, simplesmente chamada de 'A Captura', foi filmada e é assistida por torcedores de beisebol 70 anos depois. Ela demonstrou todos os elementos do jogo de outfield de elite: leitura do bastão, drop step imediato, corrida completa até o ponto de pouso e um arremesso preciso e poderoso após uma captura quase impossível. Willie Mays disse depois sobre a jogada que não foi a captura mais difícil que fez — foi simplesmente a mais famosa. Os New York Giants venceram a Série Mundial em quatro jogos."
+      ]
+    },
+    "timeline": [
+      "Willie Mays faz 'A Captura' na Série Mundial — o jogo de outfield muda para sempre",
+      "Os Dodgers se mudam para Los Angeles — o Dodger Stadium torna-se modelo para o reconhecimento do outfield",
+      "Os protocolos de comunicação do outfield são formalmente introduzidos nos guias de treinamento de beisebol infantil",
+      "Os requisitos de pista de aviso são padronizados em todas as especificações de campos de beisebol infantil",
+      "O exercício de drop step torna-se padrão nos programas de treinamento de outfield infantil",
+      "As métricas Statcast do outfield quantificam o tempo de reação e a eficiência de rota no nível das Grandes Ligas"
+    ],
+    "keyTakeaways": [
+      "Leia a bola do bastão — o som e o ângulo dizem para onde ir antes de a bola ser visível",
+      "Drop step em bolas sobre sua cabeça — vire e corra, nunca recue",
+      "Arremesse para o peito do cutoff man na maioria dos arremessos — ele pode redirecionar caso o jogo mude",
+      "Saiba onde fica a pista de aviso antes de cada jogo — ela avisa que a parede está próxima"
+    ]
+  },
+  "baseball-1-08": {
+    "tagline": "O roubo de base inteligente marca mais corridas do que a velocidade bruta — saber quando correr é a habilidade.",
+    "overview": [
+      "O roubo de base é uma das habilidades mais subestimadas no beisebol e uma das mais estratégicas. Um time que corre as bases de forma agressiva e inteligente exerce enorme pressão sobre as defesas — cada hit potencial pode se tornar um hit de múltiplas bases, e cada fly ball é uma oportunidade de marcar. Os fundamentos começam por saber quando partir: os corredores de base partem ao contato com o chão (quando a bola está em jogo), não ao som do bastão.",
+      "Arredondar uma base significa acertar o canto interno da base com o pé, permitindo manter o impulso em um arco curvo em vez de parar e reiniciar. A técnica: ao correr para a primeira em um hit que você acha que pode render bases extras, faça uma abordagem curva em direção à base — afaste-se em direção ao território de falta aproximadamente 15–20 pés antes da base, acerte o canto interno da base com o pé direito e continue em uma linha curva em direção à segunda. Isso é mais rápido do que correr em linha reta e fazer uma curva fechada de 90 graus.",
+      "O coach da terceira base é os olhos do jogador ao correr entre a segunda e a terceira, e da terceira para o home plate. O coach usa sinais — mãos levantadas (pare), braço girando em círculos (corra), mãos batendo para baixo (deslize) ou mãos cruzadas no corpo (pare). No contato, o trabalho do corredor é correr forte e ler o coach — não tomar a decisão por conta própria. Confie no coach. Eles têm a visão; você não."
+    ],
+    "technical": {
+      "title": "Técnica de Deslizamento — Segurança e Execução",
+      "body": [
+        "O deslizamento de perna dobrada (gancho): ao se aproximar da base, caia no chão dobrando a perna inferior sob você enquanto estende a outra perna em direção à base. Seu corpo cai no chão e você desliza sobre o quadril e a coxa, estendendo a perna dianteira para tocar a base. A vantagem: você permanece baixo e difícil de tocar, e o deslizamento o protege de colisões. Sempre deslize para longe do toque se possível — mire no canto da base mais longe de onde vem o arremesso.",
+        "O deslizamento pop-up: igual ao de perna dobrada, mas o jogador usa o impulso do deslizamento para saltar de volta aos pés — ideal na primeira base em uma jogada justa onde o corredor quer continuar para a segunda se o arremesso for errado. Nunca faça um deslizamento pop-up em direção ao home plate ou à segunda quando um fielder está bloqueando — use um deslizamento de gancho para passar pelo toque."
+      ]
+    },
+    "incident": {
+      "title": "Lou Brock e a Ciência dos Recordes de Roubo de Base",
+      "impact": "Lou Brock estabeleceu o recorde de todos os tempos em roubo de base (938 roubos na carreira) estudando os movimentos dos arremessadores, cronometrando suas saídas e demonstrando que o roubo de base era tanto ciência quanto atletismo — mudando como o roubo de base era ensinado em todos os níveis.",
+      "body": [
+        "Lou Brock, que jogou pelo St. Louis Cardinals de 1964 a 1979, detinha o recorde de todos os tempos em roubo de base (938 roubos na carreira, posteriormente superado por Rickey Henderson) e revolucionou o estudo do roubo de base. Brock mantinha anotações meticulosas sobre cada arremessador que enfrentou — seu tempo de entrega ao home plate, seu movimento para a primeira, seu arremesso preferido em situações de roubo. Ele reduziu sua vantagem, sua saída e seu caminho para a segunda base a uma ciência.",
+        "A contribuição de Brock para o beisebol não foram apenas os roubos de base em si, mas o arcabouço intelectual que ele trouxe para o roubo de base. Ele demonstrou que o roubo de base inteligente — lendo arremessadores, cronometrando saídas com precisão, tomando o ângulo correto — era ensinável e repetível. Seu trabalho influenciou como os treinadores ensinam o roubo de base até hoje: leia o arremessador, cronometre a saída e corra com inteligência, não apenas com velocidade."
+      ]
+    },
+    "timeline": [
+      "Maury Wills rouba 104 bases — começa a era moderna do roubo de base",
+      "Lou Brock começa sua abordagem científica ao roubo de base em St. Louis",
+      "Brock quebra o recorde de carreira de roubo de base de Ty Cobb",
+      "Rickey Henderson rouba 130 bases em uma única temporada — ainda o recorde de todos os tempos",
+      "Henderson quebra o recorde de carreira de roubo de base de Brock",
+      "Little League atualiza as regras de roubo de base — limitações de roubo atrasado em ligas juvenis"
+    ],
+    "keyTakeaways": [
+      "Parta da base ao contato com o chão, não ao som do bastão — esses são momentos ligeiramente diferentes",
+      "Arredonde bases acertando o canto interno — afaste-se cedo e mantenha um arco curvo em vez de fazer curvas fechadas",
+      "Sempre leia e confie no coach da terceira base — eles têm a visão; você está correndo forte com as costas para o campo",
+      "Deslize cedo e baixo — mire no canto da base longe do toque"
+    ]
+  },
+  "baseball-1-09": {
+    "tagline": "O catcher lidera a defesa — vê todo o campo e controla o tráfego em cada arremesso.",
+    "overview": [
+      "O catcher é a posição mais exigente física e estrategicamente no beisebol. Ele usa mais equipamento do que qualquer outro jogador: protetor de tórax, capacete com protetor facial (boné ou capacete), caneleiras e protetor (obrigatório para catchers masculinos). O equipamento protege contra foul tips, arremessos descontrolados e colisões no home plate. O catcher é o único fielder que enfrenta todo o campo durante o jogo.",
+      "Os catchers dão sinais ao arremessador para cada arremesso usando sinais manuais na mão da luva: um dedo para fastball, dois dedos para curveball, três para changeup (ou o sistema específico do time). O catcher também deve se posicionar (posicionar seu corpo) na zona onde quer que a bola seja arremessada, dando um alvo ao arremessador. O sistema de sinais deve mudar quando há corredores em base (para que o corredor na segunda não transmita os sinais ao batedor).",
+      "O pitch framing é a habilidade de receber arremessos na borda da zona de strike de uma forma que facilita ao árbitro chamá-los de strikes. A técnica: manter a luva relativamente quieta quando a bola entra no mitt, com uma rotação interna sutil para arremessos limítrofes. Nunca 'apunhale' a bola ou faça um movimento dramático de captura — isso chama a atenção do árbitro para o fato de que o arremesso estava fora. Bons framers podem ganhar para o seu time 15–20 chamadas de strike adicionais por jogo."
+    ],
+    "technical": {
+      "title": "Bloqueando Bolas no Chão",
+      "body": [
+        "O bloqueio é essencial quando um arremessador arremessa no chão com corredores em base. Técnica: deixe ambos os joelhos caírem no chão simultaneamente (não se lance), mantenha o queixo encostado no peito, curve o corpo para frente para criar uma forma de 'copo', e deixe a bola bater no protetor de tórax e cair à frente do home plate — não para os lados. O objetivo é manter a bola à frente, dando-lhe tempo para pegá-la e fazer um arremesso se necessário.",
+        "A posição de arremesso: da posição de cócoras, os catchers arremessam com uma ação de braço rápida e compacta — sem longo lançamento. O arremesso para a segunda base é o arremesso defensivo mais importante que um catcher faz. A técnica: transfira o peso levemente para frente, levante o braço em uma faixa alta e arremesse da orelha — um fastball de quatro costuras direto sobre a segunda base. O tempo desde a captura até a saída é medido em frações de segundo."
+      ]
+    },
+    "incident": {
+      "title": "Johnny Bench e a Revolução da Captura com Uma Mão",
+      "impact": "Johnny Bench introduziu a técnica de captura com uma mão em 1968, mantendo a mão de arremesso nua atrás das costas em vez de ao lado da luva. Isso eliminou milhares de lesões nos dedos por foul tips e tornou-se o padrão universal em cinco anos.",
+      "body": [
+        "Antes de Johnny Bench chegar ao Cincinnati em 1968, os catchers universalmente capturavam com duas mãos — a mão de arremesso colocada ao lado da luva para segurar a bola e permitir uma transferência rápida. O problema: os foul tips frequentemente acertavam a mão de arremesso desprotegida, quebrando dedos. Todo catcher dessa era tem uma história sobre dedos quebrados.",
+        "Bench percebeu que a transferência da bola da luva para a mão de arremesso era rápida o suficiente sem ter a mão nua ao lado da luva em cada arremesso. Ele começou a manter sua mão de arremesso atrás das costas até o instante da transferência. Em poucas temporadas, praticamente todos os catchers no beisebol profissional haviam adotado a técnica. Hoje, a captura com duas mãos só é ensinada para o movimento final de segurança — nunca para receber. Bench é considerado o melhor catcher na história do beisebol em parte porque transformou a posição."
+      ]
+    },
+    "timeline": [
+      "O equipamento do catcher é padronizado — caneleiras, protetor de tórax, boné",
+      "A captura com duas mãos é o padrão — epidemia de lesões nos dedos por foul tips",
+      "Johnny Bench introduz a captura com uma mão — a adoção universal se segue",
+      "O pitch framing é quantificado pela primeira vez como contribuição estatística em estudo acadêmico de beisebol",
+      "O Statcast começa a medir o valor do pitch framing — as contribuições defensivas dos catchers são quantificadas",
+      "Os capacetes de proteção completa (certificados para concussão) tornam-se padrão para catchers em todos os níveis"
+    ],
+    "keyTakeaways": [
+      "Os catchers devem usar protetor de tórax, capacete, caneleiras e protetor — tudo obrigatório antes de cada jogo",
+      "Um dedo = fastball; dois = curveball; três = changeup — mude o sistema de sinais com um corredor na segunda",
+      "Faça framing de arremessos limítrofes com uma luva tranquila e firme — nunca apunhale ou faça movimentos dramáticos na borda da zona",
+      "Bloqueie bolas no chão deixando ambos os joelhos caírem e curvando o corpo para frente — mantenha a bola à frente"
+    ]
+  },
+  "baseball-1-10": {
+    "tagline": "Os melhores jogadores do mundo ainda se esforçam em cada jogada — porque é isso que os bons companheiros de time fazem.",
+    "overview": [
+      "O espírito esportivo não é uma habilidade superficial — é o fundamento do que torna o beisebol valioso para se jogar. Se esforçar em cada jogada, encorajar os companheiros após erros, respeitar os árbitros e apertar mãos após o jogo não são extras opcionais além do jogo; eles são o jogo. Os times que jogam com caráter e espírito são mais difíceis de vencer, mais agradáveis de integrar e deixam uma impressão melhor muito depois de o placar final ser esquecido.",
+      "O esforço significa correr em cada bola sem exceção, não importa quão rotineira seja. Correr pela linha da primeira base em um ground ball rotineiro não custa nada e ocasionalmente rende uma entrada quando o primeira base se apressa. Não se esforçar tira do seu time uma oportunidade potencial e passa a mensagem de que você só se importa quando é fácil. Jogadores das Grandes Ligas que trotam para a primeira em ground balls são amplamente criticados — em qualquer nível, é considerado uma falha fundamental de comprometimento.",
+      "Os árbitros são humanos. Eles cometerão erros nas chamadas. A resposta correta é nenhuma resposta — volte andando para o dugout, encoraje seus companheiros e foque na próxima jogada. Discutir com árbitros no beisebol juvenil não produz nada positivo: não pode mudar a decisão, pode resultar em expulsão e estabelece um mau exemplo para o time. Mesmo quando um árbitro está claramente errado, o trabalho do jogador é continuar jogando com foco e intensidade — não protestar."
+    ],
+    "technical": {
+      "title": "A Linha de Cumprimentos Após o Jogo",
+      "body": [
+        "A linha de cumprimentos após o jogo é uma das tradições mais significativas do beisebol. Ambos os times formam uma fila e passam um pelo outro, cumprimentando (ou chocando os punhos no nível infantil) e dizendo 'bom jogo.' Isso se aplica independentemente de você ter vencido por doze corridas ou perdido com um home run de desempate. O cumprimento ensina a perder com graça e a vencer com humildade — ambos essenciais para o caráter no esporte e na vida.",
+        "O que os bons companheiros de time fazem após o erro de um colega: não dizem nada sobre o erro no momento, encorajam na próxima jogada ('esquece, você pega a próxima'), e lembram que os erros fazem parte do jogo — todo jogador em todo nível comete erros. O que os excelentes companheiros fazem após seu próprio erro: respiram fundo, se refocam e fazem a próxima jogada mais difícil. Os grandes companheiros de time são lembrados pelo seu caráter, não por suas estatísticas."
+      ]
+    },
+    "incident": {
+      "title": "O Momento de Espírito Esportivo da Série Mundial do Little League — 2014",
+      "impact": "Durante a Série Mundial do Little League de 2014, um jogador do time perdedor consolou um adversário que chorava — uma imagem que se tornou viral e foi citada pelo Little League International como a encarnação do que o torneio realmente representa.",
+      "body": [
+        "Durante a Série Mundial do Little League de 2014 em Williamsport, um jogador de um time percebeu que um jogador do time adversário estava chorando após uma derrota difícil. Sem hesitar, ele se aproximou e colocou o braço ao redor do jogador que chorava, consolando-o. Um fotógrafo capturou o momento. A imagem se espalhou globalmente e foi destaque nos principais veículos esportivos ao redor do mundo.",
+        "O Little League International usou a imagem em seus materiais educativos, apontando que ela capturou o ideal do que o beisebol juvenil realmente é: não sobre ganhar e perder, mas sobre aprender a tratar as pessoas. Os dois meninos, de países diferentes, acabavam de competir o mais intensamente que podiam um contra o outro — e poucos minutos depois um estava consolando o outro. Nenhum treinador lhes disse o que fazer. Isso é espírito esportivo."
+      ]
+    },
+    "timeline": [
+      "Beisebol do Little League fundado sobre princípios de trabalho em equipe e caráter, Williamsport PA",
+      "Primeira Série Mundial do Little League — tradição de cumprimentos após o jogo estabelecida",
+      "Little League abre para meninas — princípios de espírito esportivo codificados em todos os programas",
+      "O Juramento do Little League International enfatiza o espírito esportivo sobre a vitória",
+      "Momento de espírito esportivo na Série Mundial do Little League se torna viral — reaviva o debate sobre caráter nos esportes juvenis",
+      "Little League apresenta parceria com a Positive Coaching Alliance — saúde mental e espírito esportivo"
+    ],
+    "keyTakeaways": [
+      "Esforce-se em cada jogada — trote no mínimo, corra quando apropriado; nunca caminhe após uma bola",
+      "Encoraje companheiros após erros com apoio breve e específico — 'você pega a próxima' — depois jogue duro",
+      "Nunca discuta com árbitros — volte à sua posição; deixe seu treinador lidar com qualquer disputa",
+      "A linha de cumprimentos após o jogo se aplica independentemente de você ter vencido ou perdido — passe com energia e graça"
+    ]
+  },
+  "baseball-2-01": {
+    "tagline": "Todo grande swing começa antes de a bola sair da mão do arremessador — começa com como você se posiciona.",
+    "overview": [
+      "A postura de rebatida é a base de cada swing. Não existe uma única postura perfeita — Mookie Betts usa um suave toe-tap para cronometrar sua carga, Shohei Ohtani emprega um leg kick alto e dramático para gerar torque, e alguns dos melhores rebatedores de contato da história mal moviam os pés. O que todas as grandes posturas têm em comum é equilíbrio, visão clara do arremessador e uma forma confiável de disparar o swing na hora certa.",
+      "Os pés devem estar separados um pouco mais do que a largura dos ombros, apontando para a zona de strike ou levemente abertos. Os joelhos estão dobrados para que os quadris estejam carregados e prontos para disparar. O peso se distribui uniformemente na planta de ambos os pés — nem nos calcanhares (o que causa reação lenta) nem nas pontas dos pés (o que causa um movimento brusco para frente). O corpo fica voltado para a zona de strike em aproximadamente um ângulo de 45 graus em relação ao arremessador, mantendo ambos os olhos à frente.",
+      "A posição das mãos é crítica. As mãos começam próximas ao ombro traseiro, o bastão em ângulo de aproximadamente 45 graus atrás da cabeça. O grip é firme, mas relaxado — a tensão nas mãos viaja para os antebraços e mata a velocidade do bastão. Os nós dos dedos de bate (nós do meio de ambas as mãos) se alinham no bastão. Dessa posição, o rebatedor pode carregar para trás e se lançar para frente em direção a qualquer arremesso na zona de strike."
+    ],
+    "technical": {
+      "title": "O Gatilho — Estilos de Carga e Por Que Funcionam",
+      "body": [
+        "Um 'gatilho' é qualquer movimento pré-swing que ajuda um rebatedor a cronometrar o arremesso e carregar energia no swing. Os gatilhos mais comuns são: o toe-tap (o pé dianteiro se levanta e é colocado enquanto o arremessador entra no arremesso — usado por Mookie Betts e muitos rebatedores de elite), o leg kick (a perna dianteira se levanta dramaticamente para gerar torque dos quadris — Shohei Ohtani, Josh Hamilton), a transferência de peso (um leve deslocamento de peso para o pé traseiro sem se levantar — mais comum em rebatedores orientados ao contato) e o sem-gatilho (postura tranquila com movimento mínimo — usado por alguns rebatedores de contato de elite).",
+        "O propósito de qualquer gatilho é o cronometragem e a carga: colocar o peso no lado traseiro no momento certo para que os quadris e as mãos possam disparar para frente em sincronia com o arremesso. Um bom gatilho é consistente — o mesmo movimento em cada arremesso — para que o restante do swing seja confiável. Jogadores jovens devem experimentar para encontrar um gatilho simples e repetível em vez de copiar um leg kick das Grandes Ligas completo que é difícil de cronometrar."
+      ]
+    },
+    "incident": {
+      "title": "Mookie Betts e o Retorno ao Dodger Stadium — 2020",
+      "impact": "Quando os Dodgers negociaram Mookie Betts em fevereiro de 2020, os olheiros elogiaram especificamente seu gatilho de toe-tap como um dos mecanismos de cronometragem mais consistentes e replicáveis do jogo. Betts passou a ganhar a Série Mundial de 2020 com os Dodgers, rebatendo .304 com hits decisivos em toda a pós-temporada.",
+      "body": [
+        "A postura de rebatida de Mookie Betts tem sido estudada e ensinada em programas de beisebol juvenil em todo o país. Seu toe-tap — um leve levantamento do pé dianteiro que aterra exatamente quando o arremessador começa o arremesso — cria uma carga perfeitamente cronometrada na perna traseira. O movimento é pequeno, controlado e idêntico em cada arremesso, seja um fastball de 99 mph ou uma curveball de 75 mph. A consistência de seu gatilho é uma das razões pelas quais sua mecânica de rebatida se traduz tão bem para rebatedores de todos os tamanhos.",
+        "Quando Betts chegou a Los Angeles em 2020, o coordenador de rebatida Robert Van Scoyoc apontou que a abordagem de Betts combinava velocidade de bastão de elite com disciplina de cronometragem excepcional. Ele raramente era enganado por arremessos sem velocidade porque seu gatilho o mantinha atrás o suficiente para ler o arremesso. Os treinadores juvenis que estudam a postura de Betts notam que seu toe-tap é pequeno o suficiente para ser replicado por jogadores de qualquer idade — é um dos gatilhos mais ensináveis no beisebol profissional."
+      ]
+    },
+    "timeline": [
+      "A postura aberta e ampla de Babe Ruth redefine a postura de rebatida de potência para uma geração",
+      "A postura fechada e curvada de Ted Williams prova visão de elite e equilíbrio",
+      "Os Dodgers se mudam para Los Angeles — o Dodger Stadium torna-se laboratório para desenvolvimento da rebatida",
+      "A pesquisa de biomecânica começa a analisar a postura e a mecânica de carga para o desenvolvimento juvenil",
+      "O Statcast mede a velocidade do bastão e o ângulo de lançamento — mecânica de postura vinculada a dados de velocidade de saída",
+      "Mookie Betts se junta aos Dodgers — o gatilho de toe-tap torna-se uma das posturas mais estudadas da MLB"
+    ],
+    "keyTakeaways": [
+      "Pés levemente mais largos do que a largura dos ombros, peso sobre a planta dos pés, joelhos dobrados para uma posição de quadris carregados",
+      "Mãos próximas ao ombro traseiro com nós dos dedos de bate alinhados — grip firme sem tensão nos antebraços",
+      "Escolha um gatilho consistente (toe-tap, leg kick ou transferência de peso) que se repita identicamente em cada arremesso",
+      "Ambos os olhos devem enfrentar o arremessador — uma postura fechada ou girada limita o reconhecimento de arremessos e a cobertura do lado externo"
+    ]
+  },
+  "baseball-2-02": {
+    "tagline": "Quando um fastball de 95 mph cruza o home plate, você teve menos de 400 milissegundos para decidir — a decisão foi tomada antes de a bola estar na metade do caminho.",
+    "overview": [
+      "Um fastball de 95 mph leva aproximadamente 400 milissegundos para viajar do ponto de liberação do arremessador até a luva do catcher. A pesquisa mostra que os rebatedores devem começar sua decisão de swing quando a bola está aproximadamente na metade do caminho até o home plate — deixando apenas cerca de 175 milissegundos para identificar o tipo de arremesso, localização e velocidade. Esse tempo não é suficiente para o pensamento analítico consciente. Rebatedores de elite desenvolvem o reconhecimento de padrões tão profundamente treinado que a identificação do arremesso é quase automática.",
+      "O tunnel point é o conceito que explica como os arremessadores enganam os rebatedores. Todos os arremessos — fastball, curveball, slider, changeup — começam em trajetórias quase idênticas a partir da mão do arremessador. Eles compartilham um 'túnel' comum de voo pelos primeiros 20–25 pés. Depois disso, o efeito e a física os fazem divergir. Um arremessador que mantém todos os arremessos pelo mesmo túnel apertado é muito mais eficaz porque o rebatedor não consegue identificar o arremesso até que já tenha divergido — dando-lhe muito menos tempo para se ajustar.",
+      "Freddie Freeman, primeira base dos Dodgers e um dos rebatedores mais destacados de sua era, é reconhecido por sua abordagem no home plate. Ele estuda intensivamente os arremessadores antes de cada jogo, acompanhando suas tendências: qual arremesso eles lançam em contagens 2-0, onde eles posicionam os fastballs quando estão na frente, o que seu ponto de liberação faz de diferente em uma curveball. Essa preparação permite-lhe estreitar seu modelo mental de qual arremesso está chegando — efetivamente dando-lhe mais tempo ao reduzir a incerteza."
+    ],
+    "technical": {
+      "title": "Identificação de Efeito — Lendo as Costuras",
+      "body": [
+        "Rebatedores avançados aprendem a identificar o efeito do arremesso a partir da rotação das costuras visível a partir da mão do arremessador. Um fastball de quatro costuras rota com backspin puro — as costuras aparecem como um anel sólido de rotação (às vezes chamado de 'ponto' que os rebatedores procuram). Uma curveball tem topspin — as costuras rotam para frente sobre a parte superior da bola. Um slider tem um efeito apertado e inclinado — frequentemente descrito como um círculo girando ou ponto, mas menor e com inclinação lateral.",
+        "Os changeups são particularmente enganosos porque têm a velocidade de braço do fastball e um perfil de efeito semelhante — a diferença é a velocidade, que o rebatedor só pode detectar nos últimos milissegundos. É por isso que os changeups são tão eficazes: o cérebro do rebatedor diz 'fastball' e começa o swing, mas a bola chega 8–12 mph mais lenta, causando comprometimento prematuro e contato fraco ou um swing perdido."
+      ]
+    },
+    "incident": {
+      "title": "Grand Slam de Freddie Freeman na 10ª Entrada — Jogo 1 da Série Mundial 2024",
+      "impact": "O grand slam de Freddie Freeman na 10ª entrada contra os New York Yankees no Jogo 1 da Série Mundial foi preparado inteiramente pelo seu profundo conhecimento do relevista dos Yankees Nestor Cortes. Freeman havia estudado as tendências de Cortes tão minuciosamente que conseguiu esperar por um arremesso específico em uma localização específica — e quando chegou, não errou.",
+      "body": [
+        "Freddie Freeman chegou à caixa na 10ª entrada do Jogo 1 da Série Mundial contra os Yankees, perdendo por 3 a 2, com as bases cheias. Ele havia tratado um tornozelo torcido durante os playoffs, mas continuava contribuindo. Freeman havia enfrentado Nestor Cortes antes e conhecia suas tendências — que Cortes gostava de se colocar na frente com fastballs antes de introduzir seu two-seamer. Freeman esperou por um arremesso que pudesse conectar, e quando Cortes lançou um fastball na metade interna, Freeman acertou um grand slam walk-off para dar aos Dodgers uma vitória por 6 a 3.",
+        "A preparação que tornou esse momento possível foi invisível: horas de vídeo, discussões com coaches de rebatida, um mapa mental do que Cortes faria naquela situação. O reconhecimento de arremessos de Freeman naquele turno ao bastão não foi sorte — foi antecipação estudada. O grand slam tornou-se um dos momentos mais celebrados na história dos playoffs dos Dodgers e foi citado por coaches de rebatida em todo o país como um exemplo didático de como a preparação para arremessos vence jogos."
+      ]
+    },
+    "timeline": [
+      "Ted Williams publica pela primeira vez o enfoque de arremesso zona por zona — ciência precoce da leitura de arremessos",
+      "Análise de vídeo introduzida no nível da MLB — os rebatedores começam a preparação sistemática antes dos jogos",
+      "Câmeras de alta velocidade usadas pela primeira vez para estudar a rotação da bola e a física do tunnel point",
+      "Os dados de rastreamento Statcast permitem a quantificação de túneis de arremesso e engano",
+      "Aplicativos de treinamento de reconhecimento de arremessos entram na corrente principal em programas juvenis e universitários",
+      "Grand slam de Freddie Freeman na Série Mundial — preparação de arremessos em seu momento mais dramático"
+    ],
+    "keyTakeaways": [
+      "Um fastball de 95 mph dá menos de 400 milissegundos — o reconhecimento de arremessos deve ser automático, não analítico",
+      "O tunnel point é a razão pela qual os arremessadores enganam: todos os arremessos parecem iguais nos primeiros 20 pés de voo",
+      "Estude os arremessadores antes dos jogos — conhecer as tendências (o que eles lançam em contagens 2-0, como se preparam) reduz a incerteza",
+      "Procure o efeito cedo: backspin = fastball, topspin = curveball, efeito apertado e inclinado = slider"
+    ]
+  },
+  "baseball-2-03": {
+    "tagline": "Um bom swing é uma cadeia cinética — cada elo do chão para cima se ativa em sequência para entregar a força máxima na zona de contato.",
+    "overview": [
+      "A compreensão moderna da mecânica do swing foi transformada pelos dados do Statcast, que mede a velocidade do bastão, o ângulo de lançamento e a velocidade de saída em cada bola batida nas Grandes Ligas de Beisebol. O insight fundamental: o contato mais valioso — linhas e fly balls batidas com força — vem de um plano de swing que coincide com a trajetória descendente do arremesso, criando uma zona de contato maior em vez de menor. É por isso que a velha instrução do treinador 'bata a bola para baixo' agora é entendida como produtora de mau contato, não de bom contato.",
+      "A rotação dos quadris ainda é o motor do swing. Quando o pé de passada aterra, o quadril traseiro dispara para frente e para cima (às vezes descrito como 'limpar os quadris'), puxando as mãos e o bastão para a zona de contato. A sequência é de baixo para cima: pé traseiro se planta, tornozelo gira ('esmaga o inseto'), joelho empurra para dentro, quadril dispara, núcleo rota, ombros passam, mãos permanecem palma para cima e palma para baixo no contato, a cabeça do bastão chega à bola. Romper a cadeia em qualquer elo reduz a potência.",
+      "A zona de contato — onde o bastão toca a bola — idealmente fica à frente do corpo para arremessos do lado de bate, na borda do home plate para arremessos do meio, e fundo (próximo ao quadril traseiro) para arremessos do lado externo. Rebatedores que tentam puxar tudo fazem contato cedo demais ou tarde demais em arremessos externos; rebatedores que ficam fundo demais fazem contato muito para trás em arremessos internos. Ler a localização do arremesso e ajustar o ponto de contato é uma habilidade desenvolvida através de milhares de repetições."
+    ],
+    "technical": {
+      "title": "Ângulo de Lançamento — A Revolução Moderna da Rebatida",
+      "body": [
+        "O ângulo de lançamento é o ângulo vertical em que a bola sai do bastão. A pesquisa do Statcast mostra que bolas batidas entre 10 e 30 graus de ângulo de lançamento produzem as maiores médias de rebatida e percentuais de slugging — essas são as linhas duras e fly balls médios que ou caem para hits ou saem do parque. Bolas batidas a 0 graus (perfeitamente planas) são geralmente ground balls, outs fáceis. Bolas batidas acima de 30 graus são fly balls altos — altos e facilmente capturados.",
+        "Alcançar um ângulo de lançamento ótimo requer um plano de swing levemente ascendente — o bastão viajando levemente para cima através da zona de contato para coincidir com o ângulo descendente do arremesso. Isso cria a sobreposição máxima entre bastão e bola no momento do contato. A velha instrução 'bata para baixo' foi pensada para prevenir fly balls, mas na verdade produzia ground balls. A instrução moderna se concentra no 'ângulo de ataque' — fazendo o plano do bastão coincidir com o ângulo de aproximação do arremesso para a maior zona de contato possível."
+      ]
+    },
+    "incident": {
+      "title": "A Revolução do Statcast — Como os Dodgers Construíram sua Escalação",
+      "impact": "Quando a MLB implantou o rastreamento Statcast em todos os 30 estádios em 2015, os Dodgers estavam entre as primeiras organizações a usar dados de velocidade de saída e ângulo de lançamento para remodelar a instrução de rebatida. Sua ênfase no contato forte em ângulos de lançamento ótimos tornou-se um modelo de como a analítica e a mecânica podiam ser integradas em uma escalação vencedora.",
+      "body": [
+        "Em 2015, o Statcast começou a medir cada bola batida nas Grandes Ligas de Beisebol com precisão sem precedentes — velocidade de saída, ângulo de lançamento, velocidade de sprint, força do braço. Os Dodgers, sob o manager Dave Roberts e uma diretoria orientada analiticamente, começaram a usar esses dados para informar como treinavam os rebatedores. Em vez de pedir aos rebatedores que 'simplesmente fizessem contato', começaram a trabalhar na qualidade específica do contato: bolas batidas com força em ângulos de lançamento entre 10 e 30 graus.",
+        "Os resultados transformaram as escalações dos Dodgers ao longo do final dos anos 2010 e dos anos 2020. Os jogadores foram treinados para puxar a bola pelo ar com mais frequência, para evitar ground balls fracos no lado de bate, e para fazer o plano do swing coincidir com os ângulos de lançamento em vez de 'bater para baixo' como exigia a instrução antiquada. O sucesso sustentado dos Dodgers — e sua capacidade de desenvolver rebatedores que melhoravam ano após ano — foi em parte produto dessa abordagem informada por dados para a mecânica do swing."
+      ]
+    },
+    "timeline": [
+      "O 'Science of Hitting' de Ted Williams descreve zonas de contato ótimas cientificamente",
+      "Os times da MLB começam a usar análise de vídeo básica para revisão da mecânica do swing",
+      "Câmeras de alta velocidade em jaulas de rebatida permitem análise da cadeia cinética quadro a quadro",
+      "Statcast implantado em todos os parques da MLB — dados de ângulo de lançamento e velocidade de saída tornam-se públicos",
+      "A 'revolução do ângulo de lançamento' chega ao beisebol juvenil — velhas instruções de 'bater para baixo' são abandonadas",
+      "Os Dodgers vencem a Série Mundial com escalação construída em contato forte e ângulos de lançamento ótimos"
+    ],
+    "keyTakeaways": [
+      "A cadeia cinética se ativa de baixo para cima: pé, tornozelo, joelho, quadril, núcleo, ombros, mãos — nessa sequência",
+      "Os quadris disparam antes das mãos — a 'separação quadril-mão' é o que gera o efeito de chicote de um swing poderoso",
+      "O ângulo de lançamento ótimo é 10–30 graus — nem ground balls, nem fly balls altos, mas linhas duras e fly balls",
+      "O ponto de contato se ajusta pela localização do arremesso: à frente para arremessos internos, fundo próximo ao quadril para arremessos externos"
+    ]
+  },
+  "baseball-2-04": {
+    "tagline": "O melhor arremesso para acertar é um que você escolhe — não um ao qual você reage. A disciplina de zona significa saber a diferença.",
+    "overview": [
+      "A disciplina de zona é a capacidade de acertar strikes e deixar bolas passarem — e fazê-lo consistentemente sob pressão de uma contagem completa com dois outs na sétima entrada. Parece simples, mas é uma das habilidades mentais mais difíceis na rebatida. Rebatedores que perseguem arremessos fora da zona dão outs de graça para os arremessadores. Rebatedores que deixam arremessos na borda da zona passarem dão strikes de graça para os arremessadores. O rebatedor de elite não faz nenhum dos dois: acerta strikes que consegue impulsionar e deixa todo o resto ir.",
+      "O percentual de chegada à base (OBP) é uma das estatísticas ofensivas mais importantes no beisebol moderno porque mede cada vez que um rebatedor evita um out — hits, walks e hit by pitch todos contam. Um rebatedor que bate .280 com um OBP de .380 (por conseguir muitos walks) é muito mais valioso do que um rebatedor que bate .310 com um OBP de .330 (por raramente conseguir walks). Os Dodgers sob o manager Dave Roberts têm enfatizado consistentemente OBP e taxa de walks como valores ofensivos centrais.",
+      "O aproveitamento de contagem é o conceito de que diferentes contagens favorecem diferentes estratégias. Em contagens favoráveis ao rebatedor (2-0, 3-0, 3-1), o arremessador está atrás e mais propenso a lançar um fastball na zona — o rebatedor pode procurar um arremesso específico para impulsionar. Em contagens favoráveis ao arremessador (0-2, 1-2), o rebatedor deve proteger a zona — acertar qualquer coisa perto da zona ou arriscar ser eliminado olhando. O jogo mental do gerenciamento de contagem — ficar na frente pegando menos strikes no primeiro arremesso ou trabalhar fundo nas contagens — separa os bons rebatedores dos grandes."
+    ],
+    "technical": {
+      "title": "A Zona de Strike — Oficial vs. Real vs. Árbitro",
+      "body": [
+        "A zona de strike oficial, conforme definida no regulamento, estende-se do ponto médio entre a parte superior dos ombros e a parte superior das calças do uniforme (aproximadamente na altura das letras) até a rótula, e da borda interna do home plate até a borda externa. Na prática, os árbitros da MLB chamam o strike alto aproximadamente na cintura e o strike baixo no fundo dos joelhos. Os cantos — bordas internas e externas — são a área mais controversa.",
+        "A cobertura de zona significa que um rebatedor deve ser mecanicamente capaz de fazer contato em arremessos em toda a zona — por dentro, por fora, acima e abaixo. Um rebatedor que não consegue cobrir o canto interno terá arremessadores atacando-o o dia todo. Um rebatedor que não consegue esperar em arremessos na altura dos joelhos vai perseguir curveballs baixas. Desenvolver a cobertura de zona através do trabalho no tee e da prática de rebatida ao vivo em todas as localizações de arremessos é essencial para se tornar um rebatedor disciplinado."
+      ]
+    },
+    "incident": {
+      "title": "A Cultura de Walks dos Dodgers — Era Dave Roberts",
+      "impact": "Sob o manager Dave Roberts, os Dodgers têm consistentemente se classificado entre os líderes da liga em taxa de walks e OBP, tratando o walk como uma arma estratégica em vez de um fracasso em rebater. Essa filosofia — extraída da diretoria influenciada pelo Moneyball — produziu alguns dos ataques mais consistentes da Liga Nacional.",
+      "body": [
+        "Quando Dave Roberts se tornou manager dos Dodgers em 2016, a diretoria orientada por análise da organização já havia construído uma filosofia em torno da disciplina de zona. Os Dodgers instruíram os rebatedores a trabalhar fundo nas contagens, procurar arremessos em sua zona e tratar os walks como equivalentes em valor a singles para fins de percentual de chegada à base. Rebatedores como Corey Seager, Justin Turner e posteriormente Freddie Freeman encarnaram essa abordagem — pacientes, seletivos, dispostos a aceitar um walk quando o arremessador não lançaria um strike.",
+        "Os resultados foram séries de playoffs consistentes e alguns dos ataques mais eficientes no beisebol. Os Dodgers também se beneficiaram do efeito colateral: arremessadores que tinham que lançar mais strikes para evitar walks elevavam as contagens de arremessos mais rapidamente, cansando-se mais cedo. Uma escalação que consegue muitos walks força os arremessadores adversários mais fundo nas contagens, o que significa mais erros em localizações favoráveis ao rebatedor. A disciplina de zona não é passiva — é uma estratégia ofensiva agressiva."
+      ]
+    },
+    "timeline": [
+      "Duke Snider dos Dodgers consegue 100+ walks em uma temporada — ênfase precoce na disciplina de zona",
+      "A grade de zona de strike de Williams é publicada — primeiro modelo visual do valor do arremesso por localização",
+      "Moneyball é publicado — OBP e walks tornam-se filosofia ofensiva convencional",
+      "A era Dave Roberts começa — Dodgers implementam ênfase na taxa de walks em toda a escalação",
+      "OBP de .366 de Mookie Betts contribui para o título de Série Mundial dos Dodgers",
+      "Dodgers lideram a Liga Nacional em walks e OBP no caminho ao campeonato da Série Mundial"
+    ],
+    "keyTakeaways": [
+      "OBP inclui walks — um rebatedor que chega à base por walk contribui tanto quanto um que acerta um single",
+      "Em contagens favoráveis ao rebatedor (2-0, 3-1), procure um arremesso específico para impulsionar — o arremessador precisa de um strike",
+      "Em contagens favoráveis ao arremessador (0-2, 1-2), proteja a zona — a zona se expande, acerte qualquer coisa limítrofe",
+      "Perseguir arremessos fora da zona é a forma mais comum de os rebatedores darem outs de graça aos arremessadores — seja disciplinado"
+    ]
+  },
+  "baseball-2-05": {
+    "tagline": "O poder não é sobre quão grande você é — é sobre quão eficientemente você transmite força do chão através do bastão no momento certo.",
+    "overview": [
+      "O beisebol moderno passou por uma revolução de poder. A combinação de análises Statcast que mostram o valor do contato forte em ângulos de lançamento ótimos, programas de condicionamento físico mais agressivos e instrução de rebatida refinada produziu a era de maior poder na história do beisebol. Velocidades de saída acima de 100 mph agora são comuns no nível profissional, e as taxas de home runs permanecem historicamente altas apesar de vários ajustes de equipamento.",
+      "A velocidade do bastão é o principal impulsionador da velocidade de saída — quanto mais rápido o bastão se move no contato, mais forte a bola sai. A velocidade do bastão é gerada principalmente através da velocidade de rotação dos quadris, da separação quadril-mão e do comprimento e eficiência da trajetória do swing. Bastões mais pesados não geram automaticamente mais velocidade de saída — um rebatedor que consegue fazer swing com um bastão mais leve rapidamente muitas vezes supera alguém que luta para fazer swing com um bastão pesado pela zona.",
+      "Os Dodgers têm construído sua escalação em torno do poder desde meados dos anos 2010. Cody Bellinger, Max Muncy, Corey Seager, Justin Turner e Shohei Ohtani foram produtos de uma filosofia que valoriza o contato forte para todos os campos, mas especialmente para o campo oposto pelo ar. Entender a diferença entre o poder de puxar (favorável ao rebatedor, alta velocidade de saída ao contatar o bastão cedo) e o poder para o campo oposto (requer velocidade de bastão de elite para impulsionar a bola com autoridade para o outro lado) é central para desenvolver uma abordagem de poder."
+    ],
+    "technical": {
+      "title": "Poder de Puxar vs. Poder para o Campo Oposto",
+      "body": [
+        "O poder de puxar é gerado ao trazer a cabeça do bastão à bola cedo — contato à frente do home plate em arremessos da metade interna. Como o swing ainda está acelerando nesse ponto de contato (o bastão ainda não desacelerou completamente), e porque a cabeça do bastão tem mais força centrífuga na frente do swing, o contato de puxar produz as maiores velocidades de saída. É por isso que a maioria dos home runs é puxada — a física favorece isso.",
+        "O poder para o campo oposto é a assinatura da velocidade de bastão de elite. Para impulsionar um arremesso externo para o campo oposto com autoridade, o rebatedor deve esperar mais tempo (contato mais fundo na zona, próximo ao quadril traseiro), manter a rotação dos quadris através do contato e estender completamente os braços através da bola em direção ao outro lado. Rebatedores com velocidade de bastão mais lenta que tentam puxar arremessos externos produzem ground balls fracos para o lado do shortstop. Ficar para trás e impulsionar o outro lado com autoridade requer tanto excelência mecânica quanto velocidade de bastão genuína."
+      ]
+    },
+    "incident": {
+      "title": "Shohei Ohtani se Junta aos Dodgers — 2024",
+      "impact": "A contratação de Shohei Ohtani pelos Dodgers trouxe o rebatedor-arremessador mais dominante na história do beisebol para Los Angeles. Seus 54 home runs em 2024 — o segundo maior na história da MLB para um jogador que também arremessa — demonstrou que sua abordagem de poder (leg kick, velocidade de bastão de elite, dano para o campo oposto) representa o ápice do poder moderno no beisebol.",
+      "body": [
+        "A temporada de 2024 de Ohtani foi historicamente notável: 54 home runs, 59 bases roubadas (a primeira temporada '50-50' na história do beisebol), e uma média de .310 — enquanto também retornava de uma cirurgia de Tommy John como arremessador. Seu poder vem de uma combinação de um leg kick inusualmente alto que gera tremendo torque nos quadris, velocidade de bastão de elite estimada acima de 80 mph no contato, e um plano de swing que produz ângulos de lançamento ótimos em arremessos da metade interna.",
+        "O Dodger Stadium, com suas dimensões moderadamente favoráveis aos arremessadores, pode parecer uma escolha estranha para o rebatedor de poder mais temido do jogo. Mas a construção da escalação dos Dodgers em torno de Ohtani — colocando Freddie Freeman na frente dele e Teoscar Hernández atrás dele — garantiu que ele veria arremessos para rebater. A combinação produziu 127 home runs totais na escalação dos Dodgers em 2024, um dos ataques mais poderosos na história da franquia."
+      ]
+    },
+    "timeline": [
+      "Babe Ruth bate 60 home runs — primeiro marco de temporada de poder moderno",
+      "Mark McGwire bate 70 home runs — era de poder atinge seu pico (posteriormente manchada por revelações de uso de substâncias proibidas)",
+      "Estreia do Statcast — velocidade de saída e ângulo de lançamento tornam-se métricas de poder quantificáveis",
+      "Freddie Freeman dos Dodgers lidera o time em taxa de contato forte na temporada de .400+",
+      "Ohtani ganha o MVP da Liga Nacional — assina contrato de 10 anos com os Dodgers em dezembro",
+      "Ohtani bate 54 home runs com os Dodgers — primeira temporada 50-50 na história da MLB"
+    ],
+    "keyTakeaways": [
+      "A velocidade do bastão é o principal impulsionador da velocidade de saída — velocidade de bastão mais rápida importa mais do que o peso do bastão",
+      "O poder de puxar é mais acessível porque o contato é feito à frente do home plate onde a cabeça do bastão acelera mais rápido",
+      "O poder para o campo oposto requer velocidade de bastão de elite — rebatedores que ficam para trás e impulsionam arremessos externos para o outro lado são genuinamente especiais",
+      "Mire em uma velocidade de saída acima de 95 mph — bolas de contato forte acima desse limite produzem resultados dramaticamente melhores"
+    ]
+  },
+  "baseball-2-06": {
+    "tagline": "Conseguir um hit três de cada dez vezes faz de você um grande rebatedor. Isso significa que os melhores do mundo falham sete vezes — como você se ajusta com dois strikes determina se você falha nos seus próprios termos.",
+    "overview": [
+      "O contato de rebatida — fazer contato consistente e sólido com o bastão na parte grossa — é a base de um ataque eficaz independentemente do poder. No nível juvenil, o contato é o mais importante: um jogador que espalha linhas por todos os campos e coloca a bola em jogo consistentemente é mais valioso do que um que é eliminado metade do tempo, mas ocasionalmente bate longe. Desenvolver habilidades de contato através de trabalho no tee, soft toss e prática de rebatida ao vivo constrói a coordenação olho-mão que potencializa todos os outros aspectos da rebatida.",
+      "O ajuste com dois strikes é uma das habilidades mais importantes na rebatida. Sem strikes ou com um strike, um rebatedor pode ser seletivo — ele tem espaço para deixar arremessos passarem e procurar algo específico. Com dois strikes, o turno ao bastão muda: o rebatedor deve proteger o home plate. O ajuste padrão com dois strikes envolve apertar o bastão mais em cima (mover as mãos 1–2 polegadas para cima no cabo), encurtar o swing, ampliar a zona de strike e focar em fazer contato em vez de impulsionar a bola.",
+      "Uma média de rebatida de .300 significa conseguir um hit em 30% dos turnos ao bastão. Até os melhores rebatedores na história do beisebol falharam em conseguir um hit 70% do tempo. Entender essa taxa de fracasso é essencial para o jogo mental da rebatida: todo grande rebatedor já teve sequências de 0 a 4, 0 a 10, 0 a 20. As sequências ruins são inevitáveis. A resposta mental — ficar enxuto, ficar disciplinado, não mudar tudo após uma má sequência — determina quão rapidamente um rebatedor se recupera."
+    ],
+    "technical": {
+      "title": "Apertar Mais em Cima — A Ferramenta Mais Subutilizada no Beisebol",
+      "body": [
+        "Apertar o bastão 1–2 polegadas mais em cima (mover as mãos para cima a partir do knob) encurta o comprimento efetivo do bastão, aumenta o controle e — contra-intuitivamente — muitas vezes aumenta a velocidade do bastão porque a alavanca é mais curta. A compensação é uma pequena redução no poder: a parte grossa está mais perto das mãos, então o efeito de chicote se reduz. Mas a rebatida com dois strikes é sobre contato, não poder. Uma bola batida na ponta do bastão ou travada é um out. Uma bola batida na parte grossa com um grip mais em cima é um hit.",
+        "A técnica de golpe rápido — usada por especialistas em contato, switch hitters e alguns rebatedores canhotos — envolve um caminho de swing mais curto que prioriza fazer contato e sair rapidamente da caixa de bate, frequentemente mirando no lado esquerdo do infield ou no campo oposto. Tony Gwynn, um dos grandes rebatedores de contato da história (média de carreira de .338), foi mestre do stroke curto e rápido para o campo oposto, frequentemente em direção ao que agora é chamado de 'a área do shift de Ted Williams'."
+      ]
+    },
+    "incident": {
+      "title": "Tony Gwynn vs. o Shift — O Mestre Original do Contato",
+      "impact": "Tony Gwynn, que rebateu .338 durante uma carreira de 20 anos — incluindo oito títulos de rebatida — foi tão preciso em bater a bola para o campo centro-esquerdo contra o shift que inventou o que os treinadores agora chamam de 'zona de Gwynn'. Seu estudo de vídeo, exercícios com palitinhos e obsessão com a mecânica de contato ainda são o padrão para ensinar a rebatida de contato.",
+      "body": [
+        "Tony Gwynn foi famoso por ser o primeiro jogador a usar extensamente análise de vídeo para estudar seu próprio swing e arremessadores adversários. Ele levava um videocassete em viagens rodoviárias décadas antes de o estudo de vídeo ser comum. Ele identificou que sua zona de contato mais eficaz era um arremesso baixo e pelo lado externo — que ele conseguia impulsionar consistentemente para o campo centro-esquerdo. À medida que as defesas se deslocavam para o lado de puxar, ele simplesmente ia mais para o campo oposto e continuava rebatendo.",
+        "A abordagem de Gwynn para a rebatida com dois strikes foi particularmente instrutiva: ele encurtava seu swing, apertava levemente mais em cima e priorizava fazer contato em qualquer parte da zona de strike em vez de tentar impulsionar a bola. Sua taxa de contato com dois strikes foi extraordinária — ele quase nunca era eliminado olhando. Ele encerrou sua carreira com uma taxa de strikeouts inferior a 4%, um número que rebatedores modernos com análise avançada têm estudado como o padrão para habilidades de contato de elite."
+      ]
+    },
+    "timeline": [
+      "Ted Williams rebate .406 — última temporada de .400 na história das Grandes Ligas",
+      "Era dos Dodgers de Brooklyn — Duke Snider e Jackie Robinson modelam o equilíbrio contato + poder",
+      "Tony Gwynn começa sua carreira — pioneiro no estudo de vídeo e abordagem de contato em primeiro lugar",
+      "Gwynn rebate .394 — aproximação mais próxima de .400 na era pós-Williams",
+      "Taxa de contato e taxa de strikeouts tornam-se medidas analíticas convencionais",
+      "A taxa média de strikeouts da MLB chega a 22% — a rebatida de contato torna-se cada vez mais rara e valiosa"
+    ],
+    "keyTakeaways": [
+      "Apertar 1–2 polegadas mais em cima aumenta o controle e muitas vezes a velocidade do bastão — use com dois strikes",
+      "Foco com dois strikes: encurte o swing, amplie a zona, proteja o home plate — contato sobre poder",
+      "Uma média de .300 significa que 7 de 10 turnos ao bastão resultam em nenhum hit — sequências ruins são normais, não catastróficas",
+      "Filosofia de contato de Tony Gwynn: encontre sua zona, vá para o campo oposto, nunca desperdice turnos ao bastão"
+    ]
+  },
+  "baseball-2-08": {
+    "tagline": "Bolas quebradas são projetadas para fazer você parecer bobo. Ficar para trás é o antídoto — a paciência é a habilidade.",
+    "overview": [
+      "Bolas quebradas — curveballs, sliders, changeups e suas variantes — são projetadas para explorar o timing do rebatedor. Todas começam com trajetórias semelhantes aos fastballs (o princípio do tunnel point), mas chegam mais devagar e/ou em localizações diferentes. O erro mais comum que os rebatedores cometem contra bolas quebradas é o comprometimento prematuro: girar os quadris antes de o arremesso ser completamente identificado, produzindo um swing que é muito cedo (ground ball) ou muito à frente (um grande swing perdido).",
+      "A curveball é a armadilha clássica do comprometimento prematuro. Ela começa alta, parecendo um fastball na zona superior, depois cai dramaticamente para dentro ou abaixo da zona de strike. Rebatedores que reagem à trajetória inicial de 'fastball alto' puxam cedo e fazem swing para onde a bola começou — não para onde ela termina. A chave para bater curveballs é ficar para trás: atrasando a rotação dos quadris até que o quebra da bola seja identificado, depois fazendo um swing mais curto e ajustado à localização real de chegada da bola.",
+      "O slider é o arremesso mais enganoso no nível profissional porque é o mais difícil de distinguir de um fastball. Os sliders têm um spin apertado que parece o backspin de um fastball, mas com uma inclinação lateral — a bola corta em direção ao lado da luva do home plate. Muitos rebatedores descrevem os sliders como 'fastballs que desaparecem' nos últimos 10–15 pés. O changeup, por outro lado, parece um fastball por design — mesma velocidade de braço, mesma trajetória — mas chega 8–12 mph mais devagar. O comprometimento prematuro é fatal contra ambos."
+    ],
+    "technical": {
+      "title": "Curveball vs. Slider vs. Changeup — Diferenças Principais",
+      "body": [
+        "Curveball: eixo de spin de 12-para-6 ou 11-para-5, grande queda vertical, tipicamente 10–15 mph mais devagar que o fastball. O quebra é grande e começa cedo. Rebatedores que ficam para trás o suficiente para ver o quebra conseguem identificá-lo no ponto de divergência do túnel. A chave: não se comprometer com a trajetória alta — espere a bola revelar sua localização real de chegada.",
+        "Slider: spin apertado e giroscópico com um quebra lateral e descendente, tipicamente 5–8 mph mais devagar que o fastball. O quebra é afiado e tardio — parece um fastball até os últimos 10–15 pés. Essa ação tardia torna os sliders muito difíceis de rebater. A pista: sliders cortam em direção ao lado do braço do home plate no final; uma bola que começa no meio e parece estar se deslocando para dentro (para um rebatedor canhoto contra um arremessador canhoto) é um slider. Changeup: trajetória de fastball na velocidade de braço do fastball, mas 8–12 mph mais devagar. A gravidade faz com que caia mais do que um fastball, frequentemente quebrando para longe de rebatedores do mesmo lado. Pista: se o arremesso parece um fastball, mas seu timing diz 'muito cedo', provavelmente é um changeup."
+      ]
+    },
+    "incident": {
+      "title": "A Curveball de Clayton Kershaw — A Maior Arma dos Dodgers",
+      "impact": "A curveball de Clayton Kershaw — apelidada de 'O Diabo' por Vin Scully — tem sido chamada de a melhor nas Grandes Ligas por mais de uma década. Com uma queda média de 58 polegadas (quase cinco pés de movimento vertical) e túnel apertado com seu fastball, ela representa exatamente o arremesso que força os rebatedores a entender por que ficar para trás é tão importante.",
+      "body": [
+        "A curveball de Clayton Kershaw entra no túnel a aproximadamente 80 pés do home plate parecendo exatamente como seu fastball de 92–94 mph. Ambos os arremessos começam do mesmo ponto de liberação, na mesma trajetória. A aproximadamente 40 pés do home plate — onde o túnel diverge — a curveball começa sua queda vertical catastrófica de 58 polegadas enquanto o fastball continua em uma linha plana. Os rebatedores que comprometem sua rotação de quadris cedo, lendo 'fastball', já estão puxando quando a bola começa a cair.",
+        "O resultado mais comum de um rebatedor sendo enganado pela curveball de Kershaw é um swing selvagem sobre a parte superior da bola — às vezes perdendo por mais de dois pés. A lição para os rebatedores: identificar o spin no ponto do túnel, ficar para trás e fazer um swing curto e ajustado. Os rebatedores que têm mais sucesso contra Kershaw são aqueles que conseguem ficar para trás na curveball o suficiente para identificá-la e então reagir à sua localização final — uma habilidade que requer paciência excepcional e rápido ajuste de reflexos."
+      ]
+    },
+    "timeline": [
+      "A curveball de Sandy Koufax domina a Liga Nacional — ensina uma geração como ficar para trás",
+      "O slider de Orel Hershiser leva os Dodgers à Série Mundial — estudo da abordagem de bola quebrada",
+      "O slider torna-se o arremesso de strikeout mais comum nas Grandes Ligas",
+      "Kershaw ganha seu primeiro Cy Young — curveball classificada como No. 1 na MLB anualmente",
+      "O Statcast mede o quebra da curveball em polegadas — a queda de 58\" de Kershaw é quantificada",
+      "O slider permanece como principal arremesso de strikeout — rebatedores dos Dodgers desenvolvem protocolos de bola quebrada"
+    ],
+    "keyTakeaways": [
+      "Ficar para trás contra todas as bolas quebradas — o comprometimento prematuro dos quadris é a causa de quase todos os erros com bolas quebradas",
+      "Curveball: grande queda precoce — espere a bola mostrar sua localização antes de se comprometer",
+      "Slider: corte tardio e afiado — parece um fastball até os últimos 10–15 pés, siga-o completamente",
+      "Changeup: mesma velocidade de braço, velocidade mais lenta — se seu timing diz 'muito cedo', ajuste e continue pela bola"
+    ]
+  },
+  "baseball-2-09": {
+    "tagline": "A franquia dos Dodgers produziu algumas das abordagens ofensivas mais distintas e instrutivas na história do beisebol — cada era ensinando uma lição diferente sobre o ofício.",
+    "overview": [
+      "Os Dodgers de Brooklyn e Los Angeles apresentaram rebatedores lendários em cada era do beisebol. Jackie Robinson (1947–1956) não foi o rebatedor mais poderoso, mas foi talvez o mais completo: controle de bastão excepcional, corrida de bases extraordinária, rebatida em momentos cruciais e a força mental para atuar sob a pressão externa mais intensa que qualquer jogador de beisebol enfrentou. Duke Snider acertou 407 home runs na carreira e foi um dos grandes rebatedores do mesmo lado na década de 1950, parte de uma tríade de outfielders centrais na cidade de Nova York (ao lado de Willie Mays e Mickey Mantle) que gerou debates intermináveis sobre quem era o melhor.",
+      "Mike Piazza, que ascendeu pelo sistema dos Dodgers em 1992, tornou-se um dos maiores catchers ofensivos na história do beisebol — um rebatedor destro do mesmo lado com velocidade de bastão excepcional que impulsionava tudo para o campo esquerdo com autoridade. Adrian Beltre, que jogou pelos Dodgers de 1998 a 2004, era famoso por acertar grandes bolas no chão — uma habilidade única de gerar potência em arremessos fora da zona de strike que confundia todos os arremessadores que tentavam eliminá-lo por baixo.",
+      "Cody Bellinger (2017–2022 com os Dodgers) teve um dos swings mais esteticamente distintos na história moderna dos Dodgers — um leg kick dramático combinado com uma posição de mão alta e uma abordagem extrema de puxar/bolas aéreas que produziu uma temporada de MVP da Liga Nacional em 2019 com 47 home runs. A mecânica de Freddie Freeman é o modelo para o equilíbrio e a consistência na rebatida moderna. E o desempenho de Shohei Ohtani em 2024 — 54 home runs e 59 bases roubadas — está entre as temporadas ofensivas mais historicamente dominantes na história do beisebol."
+    ],
+    "technical": {
+      "title": "Controle de Bastão de Jackie Robinson — A Habilidade de Rebatida Mais Subestimada",
+      "body": [
+        "A abordagem de rebatida de Jackie Robinson foi definida pelo controle de bastão excepcional: a habilidade de colocar a bola onde queria, buntar quando necessário, bater para o campo oposto quando a situação exigia e impulsionar a bola com autoridade quando tinha o arremesso que procurava. Ele rebateu .311 na carreira apesar de jogar sua primeira temporada nas Grandes Ligas aos 28 anos após anos nas Ligas Negras. Sua disciplina no home plate e controle de bastão foram ensinados pelos treinadores dos Dodgers como o modelo para a rebatida posicional.",
+        "A temporada de Robinson em 1949 — quando ele ganhou o título de rebatida da Liga Nacional com uma média de .342, adicionou 16 home runs e roubou 37 bases — representa o pacote completo de uma abordagem de rebatida que priorizava o percentual de chegada à base, o contato, a rebatida situacional e potência suficiente para manter as defesas alertas. Os analistas modernos que estudam a rebatida dos Dodgers dos anos 1940–50 frequentemente apontam Robinson como o melhor rebatedor puro da franquia — não pelo poder, mas pela integridade de seu ofício."
+      ]
+    },
+    "incident": {
+      "title": "Quatro Home Runs de Duke Snider na Série Mundial — 1955",
+      "impact": "Duke Snider acertou quatro home runs na Série Mundial de 1955 — ajudando os Dodgers de Brooklyn a ganhar seu único campeonato como franquia de Brooklyn. Sua abordagem de poder do mesmo lado e velocidade de bastão excepcional na década de 1950 o estabeleceram como um dos principais rebatedores de poder da era e demonstraram como um rebatedor canhoto do mesmo lado podia dominar o arremesso destro.",
+      "body": [
+        "Os Dodgers de Brooklyn de 1955 venceram seu primeiro e único título de Série Mundial, derrotando os Yankees de Nova York em sete jogos. Duke Snider, o outfielder central, foi o catalisador ofensivo — acertando quatro home runs na série, sendo o mais dramático no Jogo 5. O swing de Snider foi um modelo de poder do mesmo lado canhoto: uma carga curta e compacta, rotação explosiva dos quadris e uma rota de swing que produzia fly balls elevados para o lado direito do campo e para o centro.",
+        "Snider acertou quatro home runs tanto na Série Mundial de 1952 quanto na de 1955 — o único jogador a conseguir esse feito duas vezes. Sua abordagem no home plate foi completamente do mesmo lado, e ele trabalhou com os instrutores de rebatida dos Dodgers para desenvolver a seleção de arremessos para encontrar esses arremessos do lado de puxar de forma confiável. O legado de rebatida de poder de Snider influenciou como os treinadores dos Dodgers desenvolveram rebatedores canhotos do mesmo lado por gerações — uma influência visível até em como Cody Bellinger e outros foram instruídos na era moderna."
+      ]
+    },
+    "timeline": [
+      "Jackie Robinson quebra a barreira de cor da MLB — junta-se aos Dodgers de Brooklyn",
+      "Robinson ganha o título de rebatida da Liga Nacional (.342) — filosofia de rebatida dos Dodgers estabelecida",
+      "Duke Snider acerta 4 HR — Brooklyn vence sua primeira e única Série Mundial",
+      "Mike Piazza irrompe na escalação dos Dodgers — maior catcher ofensivo na história da franquia",
+      "Mookie Betts e Corey Seager lideram os Dodgers ao título da Série Mundial",
+      "Ohtani 54 HR + grand slam vencedor de Freeman — maior temporada de rebatida dos Dodgers em 70 anos"
+    ],
+    "keyTakeaways": [
+      "O controle de bastão e a disciplina no home plate de Jackie Robinson ainda são o modelo para a rebatida completa — não só poder",
+      "A abordagem de poder do mesmo lado de Duke Snider na Série Mundial de 1955 estabeleceu a tradição de rebatida de poder dos Dodgers",
+      "Mike Piazza provou que catchers podem ser forças ofensivas de elite — OPS acima de 1.000 em múltiplas temporadas",
+      "A temporada de 2024 de Ohtani (54 HR, 59 SB) é o desempenho ofensivo mais completo na história moderna dos Dodgers"
+    ]
+  },
+  "baseball-2-10": {
+    "tagline": "A diferença entre um bom rebatedor e um excelente não é só o talento — é o que eles fazem quando ninguém está olhando.",
+    "overview": [
+      "Os rebatedores profissionais realizam entre 200 e 500 golpes de prática por dia — sem incluir turnos ao bastão. Esse volume de prática é como a mecânica se torna automática, como o timing se torna confiável e como os ajustes são gravados na memória muscular. Para jogadores do Little League, a escala é menor, mas o princípio é o mesmo: a prática consistente e intencional com objetivos específicos em cada sessão produz resultados muito melhores do que golpes casuais no quintal uma vez por semana.",
+      "Uma rotina de rebatida bem estruturada tem múltiplos componentes: trabalho no tee (bola parada, foco na mecânica pura), soft toss (timing contra uma bola em movimento a curta distância), front toss (timing contra uma trajetória mais realista), batting practice ao vivo (timing completo contra o arremesso de um pitcher) e revisão de vídeo (comparando sua mecânica com seus objetivos e com profissionais). Cada componente constrói um aspecto diferente do conjunto de habilidades de rebatida.",
+      "A análise de vídeo não é mais exclusividade de jogadores profissionais. Todo smartphone pode gravar a 240 quadros por segundo — mais do que suficiente para analisar a mecânica do swing em câmera lenta. Jogadores juvenis e treinadores que usam vídeo sistematicamente — comparando mecânica pré-sessão com mecânica pós-sessão, acompanhando melhorias ao longo de semanas e meses — desenvolvem rebatedores muito mais rapidamente do que aqueles que dependem apenas da intuição. A chave: assista o vídeo com foco específico (rotação do quadril, trajetória das mãos, posição da cabeça) em vez de revisão geral."
+    ],
+    "technical": {
+      "title": "Trabalho no Tee — A Ferramenta de Rebatida Mais Subestimada",
+      "body": [
+        "O tee de rebatida permite que um rebatedor congele a bola em qualquer localização — metade interna, metade externa, acima, abaixo, alto, baixo — e faça 50 golpes nessa localização exata sem nenhum elemento de timing. Isso isola a mecânica completamente. Um rebatedor que tem dificuldade com arremessos internos pode fazer 100 repetições no tee com a bola no terço interno do home plate, gravando a rotação do quadril e o ponto de contato precoce necessário para esse arremesso. Nenhum outro exercício permite essa precisão.",
+        "Exercícios de tee para desenvolvimento específico: (1) Exercício de metade interna — tee colocado à frente do home plate, metade interna, foco na rotação do quadril e contato precoce; (2) Exercício de metade externa — tee colocado na borda traseira do home plate, metade externa, foco em ficar para trás e impulsionar para o campo oposto; (3) Exercício de fastball alto — tee na altura do ombro, foco na trajetória curta do swing e ficar por cima da bola; (4) Exercício de arremesso baixo — tee na altura do joelho, foco em baixar o plano do swing sem perder a rotação do quadril."
+      ]
+    },
+    "incident": {
+      "title": "Como os Dodgers Constroem Rebatedores — Robert Van Scoyoc e Analítica",
+      "impact": "A infraestrutura de desenvolvimento de rebatida dos Dodgers sob coaches como Robert Van Scoyoc (que trabalhou com Mookie Betts, Clayton Kershaw na mecânica de rebatida e outros) combinou dados do Statcast com trabalho tradicional no tee e na jaula para criar um dos programas de desenvolvimento de rebatedores mais sistemáticos no beisebol profissional.",
+      "body": [
+        "A abordagem dos Dodgers para o desenvolvimento de rebatida integra dados e trabalho tradicional de forma mais deliberada do que quase qualquer outra franquia. Durante o spring training e a temporada regular, os rebatedores recebem relatórios diários do Statcast — velocidade de saída por zona de arremesso, distribuição de ângulo de lançamento, taxa de swing por tipo de arremesso. Esses dados informam quais exercícios de tee executar naquele dia: se a velocidade de saída de um rebatedor em arremessos de metade externa está caindo, eles executam sessões de tee de metade externa. Se o ângulo de lançamento cai abaixo de 10 graus, o staff de rebatida executa exercícios de tee alto e de ângulo de lançamento.",
+        "Os Dodgers também foram pioneiros no uso de vídeo em tempo real — iPads posicionados no banco permitem que os rebatedores revisem turnos ao bastão imediatamente entre entradas, comparando seu swing com a mecânica do plano pré-jogo. Esse ciclo de feedback encurtou significativamente os ciclos de ajuste: onde antes levava uma semana para um rebatedor reconhecer e corrigir um problema mecânico, agora leva uma entrada. Os jogadores juvenis podem se aproximar desse sistema com um smartphone em um tripé na jaula de rebatida — a tecnologia é acessível, mas a disciplina de usá-la consistentemente é o que distingue os grandes programas de desenvolvimento."
+      ]
+    },
+    "timeline": [
+      "Ted Williams começa a instrução pública de rebatida — trabalho no tee e teoria de zona são ensinados",
+      "O tee de rebatida torna-se equipamento padrão na prática juvenil e profissional",
+      "A análise de vídeo é usada pela primeira vez no beisebol juvenil — VHS para câmeras digitais iniciais",
+      "Os Dodgers integram dados do Statcast em sessões diárias de desenvolvimento de rebatida",
+      "Vídeo em tempo real no jogo (iPad no banco) torna-se padrão no nível da MLB",
+      "O sistema de desenvolvimento dos Dodgers produz 6 rebatedores com 15+ HR na escalação da Série Mundial"
+    ],
+    "keyTakeaways": [
+      "O trabalho no tee é a base: isola a mecânica sem pressão de timing, permitindo desenvolvimento de precisão",
+      "Uma rotina semanal (tee → soft toss → batting practice → revisão de vídeo) constrói habilidades de rebatida sistematicamente",
+      "A análise de vídeo em um smartphone a 240fps é acessível para todo jogador juvenil — use-a com foco específico",
+      "Mantenha um diário de rebatida: o que funcionou, o que não funcionou, ajustes realizados — os rebatedores de elite acompanham seu desenvolvimento"
+    ]
+  },
+  "baseball-3-01": {
+    "tagline": "O poder não é gerado pela força com que você balança — é gerado por quanto tempo você mantém seu ombro para trás enquanto seus quadris já estão girando.",
+    "overview": [
+      "A separação quadril-ombro — às vezes chamada de fator X — é a diferença angular entre a posição dos quadris e a posição dos ombros no momento em que o pé dianteiro toca o chão durante o movimento. Rebatedores de poder de elite criam separações de 40–55 graus: os quadris já estão se abrindo em direção ao arremessador enquanto os ombros permanecem fechados e enrolados. Essa tensão rotacional armazenada, como uma elástico enrolado, é liberada explosivamente quando os ombros giram — criando o chicote que impulsiona a velocidade do bastão além do limite.",
+      "O swing de Shohei Ohtani nos Dodgers fornece um dos exemplos mais estudados de separação quadril-ombro de elite no jogo moderno. Seu leg kick dramático pré-carrega seus quadris em uma posição enrolada, de forma que quando seu pé toca o chão, seus quadris já estão girando enquanto seus ombros e mãos permanecem completamente carregados para trás. O resultado é uma sequência onde os quadris às vezes estão 50 ou mais graus à frente dos ombros no contato — um torque que se traduz diretamente nas velocidades de bastão acima de 80 mph que produzem sua potência de 54 home runs.",
+      "Os rebatedores de contato muitas vezes têm menos separação quadril-ombro por design — eles priorizam a capacidade de bastão-para-bola sobre o torque máximo. A separação de Tony Gwynn foi modesta porque uma separação grande requer mais precisão de timing: quanto maior o enrolamento, mais crítico é aterrar na hora certa. Os rebatedores avançados entendem esse trade-off e calibram conscientemente sua separação de acordo com a situação — mais separação quando esperam um fastball para conectar, menos separação quando protegem o home plate com dois strikes."
+    ],
+    "technical": {
+      "title": "Como Construir Separação Quadril-Ombro",
+      "body": [
+        "A separação quadril-ombro é treinada através de exercícios específicos que isolam a sequência de rotação do quadril versus a rotação do ombro. O exercício mais eficaz é o 'exercício de quadril primeiro' com tee: o rebatedor inicia a carga empurrando o quadril traseiro para frente agressivamente enquanto mantém ativamente as mãos e o ombro dianteiro para trás o máximo de tempo possível. Muitos rebatedores sentem um estiramento ou puxão nos oblíquos ao fazê-lo corretamente — essa tensão é a energia armazenada que será liberada como velocidade do bastão.",
+        "O exercício de parede é outro construtor fundamental de separação: de pé com o ombro dianteiro perto de uma cerca ou parede, o rebatedor pratica girar os quadris em direção ao catcher enquanto o ombro dianteiro permanece tocando ou perto da parede — fisicamente impedindo a rotação prematura do ombro. Esse exercício torna impossível 'girar para fora' (abrir os ombros cedo demais) e força o rebatedor a sentir como é a sequência pura de quadril primeiro. Uma vez que a sensação é estabelecida, transferi-la para swings ao vivo tipicamente leva várias semanas de prática consistente."
+      ]
+    },
+    "incident": {
+      "title": "O Home Run 40 de Ohtani — O Estudo de Separação",
+      "impact": "Durante a temporada de 2024, o home run 40 de Ohtani foi analisado quadro a quadro pela equipe de biomecânica dos Dodgers e múltiplos analistas independentes. O estudo confirmou 52 graus de separação quadril-ombro no contato do pé — entre os mais altos medidos para qualquer swing na temporada naquele ano — e vinculou diretamente essa separação à velocidade de saída de 109 mph registrada pelo Statcast.",
+      "body": [
+        "O poder de Ohtani em 2024 — 54 home runs, 59 bases roubadas, a primeira temporada 50-50 na história das Grandes Ligas — fez os analistas buscarem o que tornava seu swing mecanicamente único. A descoberta mais consistente em múltiplos estudos biomecânicos foi o grau de sua separação quadril-ombro no aterrizagem do pé. Com um leg kick dramático que pré-carregava seu quadril traseiro, e um hábito treinado de manter as mãos e o ombro dianteiro para trás enquanto os quadris giravam, Ohtani estava gerando separação que se assemelhava mais a golfistas de elite do que a rebatedores típicos de beisebol.",
+        "O staff de desenvolvimento de jogadores dos Dodgers estudou essas mecânicas cuidadosamente, não para que todos os rebatedores repliquem o padrão exato de Ohtani, mas para extrair o princípio: quanto maior a separação entre quadril e ombro no contato do pé, mais tempo o bastão pode acelerar antes de fazer contato. Para jogadores com a flexibilidade e o timing para suportar mais separação, mesmo um aumento de 10 graus pode se traduzir em 2–3 mph adicionais de velocidade do bastão — o que, no limiar de home run, pode significar a diferença entre um fly ball profundo e um home run."
+      ]
+    },
+    "timeline": [
+      "Os pesquisadores de biomecânica do golfe descrevem pela primeira vez o fator X — separação quadril-ombro no poder do drive",
+      "Os biomecanistas do beisebol começam a aplicar conceitos do fator X à análise do swing",
+      "O Statcast permite a medição da velocidade do bastão quadro a quadro — separação vinculada à velocidade de saída",
+      "Os Dodgers integram métricas de separação no desenvolvimento de rebatedores em Camelback Ranch",
+      "Ohtani ganha o MVP da Liga Americana com os Angels — separação identificada como fonte-chave de poder",
+      "Temporada de 54 HR de Ohtani com os Dodgers — separação de 52° medida em múltiplos swings de home run"
+    ],
+    "keyTakeaways": [
+      "A separação quadril-ombro (fator X) é a diferença angular entre quadris e ombros no contato do pé — mais separação cria mais poder",
+      "Os rebatedores de poder de elite alcançam 40–55 graus de separação; os rebatedores de contato usam intencionalmente 20–30 graus",
+      "O exercício de tee 'quadril primeiro' e o exercício de parede são as formas mais eficazes de construir a sensação de separação adequada",
+      "A separação de 52 graus de Ohtani em seus swings de home run de 2024 contribuiu diretamente para suas velocidades de saída de 109+ mph"
+    ]
+  },
+  "baseball-3-02": {
+    "tagline": "As mãos não geram potência — elas a entregam. De onde elas viajam da carga até o contato determina tudo sobre a eficiência do swing.",
+    "overview": [
+      "A trajetória das mãos é o percurso que as mãos (e, portanto, o cabo do bastão) fazem desde a posição carregada perto do ombro traseiro até a zona de contato. Uma trajetória de mãos eficiente é direta: o knob do bastão se move em direção ao arremesso entrante pelo caminho mais curto possível, mantendo a cabeça do bastão atrás das mãos até o último momento antes do contato. Esse caminho 'por dentro-para-fora' — mãos perto do corpo, cabeça do bastão atrasada — é universalmente reconhecido como a base mecânica da rebatida de elite.",
+      "Ted Williams e Tony Gwynn representam dois extremos da filosofia de trajetória de mãos, e ambos foram historicamente grandes. Williams favorecia uma trajetória levemente mais longa e mais rotacional que gerava tremenda potência em arremessos em sua 'zona feliz' — a porção médio-interna da zona de strike. Gwynn utilizava uma trajetória ainda mais curta e mais orientada ao contato que priorizava fazer contato em qualquer parte da zona com risco mínimo de falha. A abordagem de Williams produziu um OBP de carreira de .482 e 521 home runs; a de Gwynn produziu uma média de .338 na vida e oito títulos de rebatida. Nenhum estava errado — ambos eram otimizados para objetivos diferentes.",
+      "O bat drag é o principal inimigo de uma boa trajetória de mãos. O bat drag ocorre quando as mãos se estendem para fora longe do corpo antes de a cabeça do bastão ter entrado na zona de contato — a cabeça do bastão 'atrasa' em uma posição estendida e sem potência em vez de seguir atrás de mãos carregadas. O bat drag cria um arco longo e lento que chega tarde aos fastballs internos, gera fly balls em arremessos do meio e reduz a velocidade de saída em todo lugar. Na instalação de spring training dos Dodgers em Camelback Ranch, corrigir o bat drag é uma das principais prioridades ao avaliar rebatedores do sistema de ligas menores."
+    ],
+    "technical": {
+      "title": "Trajetória Por Dentro-Para-Fora vs. Bat Drag — Identificação Visual",
+      "body": [
+        "Uma trajetória de mãos por dentro-para-fora é visível em vídeo em um ponto de controle específico: quando os quadris começam a girar, as mãos devem se mover da posição carregada (perto do ombro traseiro) em direção ao arremessador — o knob aponta para o arremesso entrante. A cabeça do bastão permanece atrás das mãos (o bastão está inclinado para trás, não estendido para frente). Esse breve momento de knob-à-frente, cabeça-atrás cria o 'atraso da cabeça' que permite a máxima aceleração pela zona de contato.",
+        "O bat drag é visível como o oposto: quando os quadris giram, as mãos se estendem para fora longe do corpo — os pulsos 'se enrolam' cedo demais, empurrando a cabeça do bastão para frente prematuramente. Em vez de a cabeça do bastão construir velocidade atrás de uma trajetória de mãos compacta, ela se estende cedo e desacelera. Em vídeo em câmera lenta a 240 fps, o bat drag mostra o braço dianteiro se estendendo completamente antes do contato, a cabeça do bastão frequentemente paralela ou à frente das mãos no ponto médio do swing. Os treinadores de spring training dos Dodgers usam câmeras montadas em iPads na altura do quadril para detectar bat drag em tempo real."
+      ]
+    },
+    "incident": {
+      "title": "Acampamento de Trajetória de Mãos do Spring Training dos Dodgers — Camelback Ranch 2023",
+      "impact": "Durante o spring training dos Dodgers em 2023, os coaches de rebatida em Camelback Ranch identificaram o bat drag como a principal falha mecânica em três prospectos das ligas menores usando análise de vídeo de alta velocidade. Dois desses jogadores — após trabalho corretivo focado — melhoraram suas velocidades de saída em 4–6 mph até o Dia de Abertura daquela temporada, demonstrando como a correção específica da trajetória de mãos se traduz diretamente em ganhos de potência mensuráveis.",
+      "body": [
+        "Camelback Ranch, a instalação de spring training dos Dodgers em Glendale, Arizona, é um dos ambientes de desenvolvimento de jogadores mais avançados tecnologicamente no beisebol. Durante o acampamento de 2023, o coordenador de rebatida Robert Van Scoyoc e seu staff usaram uma combinação de sensores de bastão Rapsodo, dispositivos Blast Motion e câmeras de alta velocidade posicionadas ao nível do quadril para analisar as trajetórias de mãos de cada jogador de posição que entrava no sistema.",
+        "O bat drag foi o achado mais comum entre rebatedores em desenvolvimento. O protocolo corretivo envolvia uma sequência específica de exercício: o rebatedor iniciaria sua carga e deliberadamente faria uma pausa no momento do giro dos quadris, verificando se o knob estava à frente e a cabeça ainda estava atrasada. Após 200 tais repetições pausadas, os swings em velocidade completa eram reintroduzidos. O exercício pausado estabelece o ponto de controle neurológico antes de a velocidade ser adicionada novamente. Os treinadores relataram que os jogadores que se comprometeram com 300+ repetições pausadas por semana viram melhorias mensuráveis na trajetória de mãos dentro de 10–14 dias."
+      ]
+    },
+    "timeline": [
+      "Ted Williams publica suas teorias de swing — trajetória curta e direta para a bola torna-se um princípio fundamental",
+      "O swing por dentro-para-fora de Duke Snider impulsiona os Dodgers de Brooklyn à Série Mundial",
+      "Tony Gwynn começa sua carreira — trajetória de mãos compacta para o campo oposto torna-se sua marca registrada",
+      "As câmeras de alta velocidade em jaulas de rebatida permitem a medição precisa da trajetória de mãos",
+      "Os sensores Blast Motion começam a medir a velocidade e a eficiência da trajetória de mãos no nível da MLB",
+      "Os Dodgers utilizam combinação iPad + Rapsodo em Camelback Ranch para corrigir bat drag em tempo real"
+    ],
+    "keyTakeaways": [
+      "A trajetória de mãos por dentro-para-fora mantém o knob à frente e a cabeça do bastão atrasada — o caminho mais curto e poderoso para qualquer arremesso",
+      "O bat drag (extensão precoce do braço) cria um arco longo que chega tarde aos fastballs e produz fly balls em arremessos do meio",
+      "Ted Williams e Tony Gwynn representam diferentes filosofias de trajetória de mãos — ambos de elite, ambos intencionais, ambos corretos para seus objetivos",
+      "O spring training dos Dodgers em Camelback Ranch usa exercícios de repetição pausada para estabelecer neurologicamente o ponto de controle de cabeça do bastão atrasada"
+    ]
+  },
+  "baseball-3-03": {
+    "tagline": "Um Barrel% acima de 10% separa a elite da média — e trata-se completamente de alinhar seu plano de swing com o ângulo de aproximação do arremesso.",
+    "overview": [
+      "O gerenciamento da cabeça do bastão é a ciência de controlar onde e como a parte grossa do bastão (o barrel) viaja pela zona de strike. Na terminologia do Statcast, um 'barrel' é uma bola batida com uma combinação de velocidade de saída e ângulo de lançamento que historicamente produz uma média de rebatida superior a .500 e um percentual de slugging superior a 1.500 — essencialmente um golpe perfeito. O percentual de barrel (barrels por aparição no home plate) é um dos melhores preditores do verdadeiro valor ofensivo de um rebatedor e está diretamente relacionado a quão bem o rebatedor gerencia a cabeça do bastão pela zona de contato.",
+      "O ângulo de ataque é o ângulo em que a cabeça do bastão viaja quando contata a bola — medido em graus, com valores positivos indicando uma trajetória de bastão ascendente no contato e valores negativos indicando uma trajetória descendente. A pesquisa demonstra consistentemente que um ângulo de ataque levemente positivo (entre +5 e +15 graus) produz a melhor qualidade de contato porque coincide com o ângulo descendente dos arremessos entrantes. Arremessos lançados em trajetórias normais se aproximam do home plate em aproximadamente 6–10 graus para baixo, então um bastão que viaja para cima a 5–12 graus cria a máxima 'sobreposição de plano' — a maior janela possível onde o bastão e a bola podem se intersectar.",
+      "O problema do arremesso quebrado é onde o ângulo de ataque se complica. Um ângulo de ataque otimizado para fastballs (+8 a +12 graus) produz excelentes resultados em fastballs de quatro costuras, mas resultados ruins em curveballs, que se aproximam em um ângulo muito mais pronunciado. Um rebatedor perfeitamente ajustado para o ângulo de ataque do fastball estará abaixo do plano de aproximação de uma curveball, criando o clássico erro de 'por baixo da bola'. Os melhores rebatedores como Freddie Freeman ajustam seu ângulo de ataque de acordo com o tipo de arremesso que estão lendo — uma habilidade que requer reconhecimento de arremessos em um nível muito alto."
+    ],
+    "technical": {
+      "title": "Barrel% do Statcast — Como é Calculado e o Que Significa",
+      "body": [
+        "Um 'barrel' no Statcast é definido como uma bola batida onde a combinação de velocidade de saída e ângulo de lançamento atende a um limite muito específico. A linha de base: uma bola batida a exatamente 98 mph de velocidade de saída e 26–30 graus de ângulo de lançamento se qualifica. Por cada 1 mph acima de 98 mph, a janela do ângulo de lançamento qualificável se expande. A 110 mph de velocidade de saída, qualquer bola entre 8–50 graus se qualifica como barrel. A 95 mph, nenhuma combinação de ângulo de lançamento se qualifica — é por isso que a velocidade de saída é o requisito inegociável.",
+        "Os líderes em Barrel% na temporada de 2024 incluíam múltiplos rebatedores dos Dodgers. Shohei Ohtani liderou os Dodgers com uma taxa de barrel superior a 20% — o que significa aproximadamente uma em cada cinco aparições no home plate produzia uma bola estatisticamente 'barrel'. A média das Grandes Ligas é de aproximadamente 8%. Rebatedores com taxas de barrel superiores a 15% são produtores de qualidade de contato de elite, independentemente de sua média de rebatida geral. A métrica elimina o ruído: um jogador pode ir 1 de 5 em um dia onde cada bola em jogo foi um barrel — a qualidade subjacente foi excelente, mesmo que os resultados não tenham sido."
+      ]
+    },
+    "incident": {
+      "title": "Consistência do Barrel% de Freddie Freeman — 2022–2024",
+      "impact": "Freddie Freeman manteve uma taxa de barrel superior a 12% nas temporadas regulares de 2022, 2023 e 2024 — uma consistência que os analistas do Statcast citaram como evidência de um gerenciamento excepcional da cabeça do bastão. Ao contrário de rebatedores de poder cujas taxas de barrel flutuam com lesões ou ajustes mecânicos, o gerenciamento do ângulo de ataque de Freeman esteve consistentemente na faixa ótima em todos os tipos e localizações de arremessos.",
+      "body": [
+        "A consistência da taxa de barrel de Freddie Freeman é produto do que os coaches de rebatida descrevem como consciência excepcional do plano de arremesso — a capacidade de identificar o tipo de arremesso entrante cedo o suficiente para ajustar o ângulo de ataque antes de comprometer a cabeça do bastão. Freeman falou publicamente sobre como ele aborda cada arremesso com um modelo mental do plano de aproximação esperado do arremesso: 'Sei de onde a bola vem e tento alinhar meu bastão com aquele ângulo.' Isso soa simples, mas requer profundo reconhecimento de arremessos e flexibilidade física para executar em todos os tipos de arremessos em tempo real.",
+        "O staff de análise dos Dodgers acompanha o ângulo de ataque de Freeman por tipo de arremesso em relatórios semanais durante a temporada. Se seu ângulo de ataque em curveballs se desviar abaixo da faixa ótima (sugerindo que ele não está ajustando suficientemente o plano para arremessos quebrados), os coaches de rebatida adicionarão trabalho específico de tee de bolas quebradas à sua rotina — colocando o tee mais alto e forçando um ângulo de ataque mais pronunciado na prática. Esse ciclo de feedback, invisível para os torcedores, é uma das razões pelas quais a produção de Freeman permaneceu consistente durante a corrida dos Dodgers ao título da Série Mundial 2024."
+      ]
+    },
+    "timeline": [
+      "O Statcast define a métrica 'barrel' — a primeira medida objetiva de qualidade de contato do beisebol",
+      "Pesquisa do ângulo de ataque publicada — conectando o plano do swing com o ângulo de aproximação do arremesso",
+      "Cody Bellinger lidera a Liga Nacional em barrel% com 47 HR — o pico da revolução do ângulo de lançamento",
+      "Os arremessadores respondem à revolução do ângulo de lançamento — os arremessos quebrados aumentam como explorador do ângulo de ataque",
+      "Freeman se junta aos Dodgers — taxa de barrel superior a 12% na primeira temporada",
+      "Ohtani lidera os Dodgers em barrel% com 20%+ — o mais alto no elenco campeão da Série Mundial"
+    ],
+    "keyTakeaways": [
+      "O ângulo de ataque (+5 a +15 graus) deve coincidir com o ângulo de aproximação do arremesso entrante — criando sobreposição máxima de plano",
+      "As curveballs requerem um ângulo de ataque mais pronunciado (+12 a +18°) do que os fastballs (+6 a +10°) devido à sua descida mais acentuada",
+      "Barrel% superior a 15% é elite — Freeman manteve 12%+ em múltiplas temporadas através do gerenciamento consistente do plano",
+      "O Statcast define um barrel como 98+ mph de velocidade de saída no ângulo de lançamento apropriado — qualidade do contato, não apenas resultados"
+    ]
+  },
+  "baseball-3-04": {
+    "tagline": "A carga é um relógio. Se começa na hora certa, tudo que vem depois pode estar na hora certa. Se começa tarde, nenhum ajuste no mundo pode salvar o swing.",
+    "overview": [
+      "Um mecanismo de carga é qualquer movimento pré-swing que cumpre duas funções simultaneamente: sincronizar a passada com o arremesso do pitcher e carregar energia no lado traseiro para que os quadris e as mãos tenham de onde disparar. Todo rebatedor de elite tem um mecanismo de carga — mesmo os rebatedores 'silenciosos' estão fazendo algo. A escolha do mecanismo afeta quanto margem de erro o rebatedor tem, quão ajustável é o swing contra diferentes velocidades de arremesso e quanta separação quadril-ombro pode ser gerada.",
+      "A instrução de rebatida das ligas menores dos Dodgers em Camelback Ranch ensina três mecanismos de carga primários em uma progressão de desenvolvimento. O toe-tap é ensinado primeiro — o pé dianteiro se levanta suavemente e é colocado quando o pitcher chega ao arremesso, fornecendo risco mínimo de timing e uma carga confiável. O leg kick é introduzido uma vez que os fundamentos de timing estão estabelecidos — ele gera mais torque, mas exige precisão. No-stride (ou giro para dentro) é a opção para rebatedores de contato avançados que já desenvolveram excelente reconhecimento de arremessos e conseguem sincronizar a partir de um gatilho mínimo.",
+      "Sincronizar diferentes velocidades de arremesso é o desafio central de qualquer mecanismo de carga. Um arremesso de 85 mph e um de 97 mph requerem diferentes tempos de iniciação do swing — aproximadamente 50 milissegundos de diferença. Um leg kick que aterra perfeitamente para um fastball de 97 mph aterra cedo demais para um changeup de 85 mph. Os rebatedores de elite aprendem a 'segurar' seu swing após aterrar — estendendo o tempo entre o aterrizagem do pé e o disparo do quadril para acomodar arremessos mais lentos. Isso se chama 'ficar para trás', e é o ajuste mais importante que separa os rebatedores que lidam com changeups daqueles que são constantemente enganados."
+    ],
+    "technical": {
+      "title": "Mecanismos de Carga Comparados — A Progressão de Ensino dos Dodgers",
+      "body": [
+        "Toe-tap (estilo Mookie Betts): O pé dianteiro se levanta aproximadamente 2–4 polegadas e é colocado quando o pitcher separa as mãos da luva ou alcança o topo do arremesso. Esse movimento pequeno e consistente fornece deslocamento de peso suficiente para carregar o quadril traseiro sem criar complexidade de timing. A força do toe-tap é a repetibilidade — é quase idêntico em cada arremesso, tornando o timing muito consistente. Sua limitação é que gera menos separação quadril-ombro do que uma patada maior.",
+        "Leg kick (estilo Ohtani / Freeman-light): A perna dianteira se levanta até a altura da canela ou joelho antes de avançar. Quanto mais alto o kick, mais tempo estará disponível entre o levantamento e o aterrizagem — durante o qual o peso do rebatedor é carregado maximamente no quadril traseiro, criando maior potencial de separação. O leg kick exige timing mais preciso porque o pé deve aterrar exatamente no momento certo. Os Dodgers ensinam leg kicks a prospectos orientados ao poder uma vez que os fundamentos do toe-tap são sólidos; os jogadores das ligas menores transitam para o kick somente após demonstrarem timing consistente no nível de gatilho mais simples."
+      ]
+    },
+    "incident": {
+      "title": "Como os Dodgers Desenvolveram o Timing de Gavin Lux — Camelback Ranch 2019",
+      "impact": "Gavin Lux, o principal prospecto dos Dodgers em 2019, trabalhou extensivamente com coaches de rebatida em Camelback Ranch na transição de um kick grande nas ligas menores para um kick médio mais controlado que pudesse lidar com a velocidade de arremesso da MLB. A transição mecânica — preservando a separação enquanto reduzia o risco de timing — foi concluída em oito semanas de spring training e contribuiu para a promoção de Lux a meio da temporada para as grandes ligas em 2019.",
+      "body": [
+        "Gavin Lux havia usado um leg kick dramático no sistema de ligas menores dos Dodgers que funcionava bem contra arremessos de nível inferior, mas criava problemas de timing contra a velocidade de AAA e MLB. Em Camelback Ranch em 2019, os coaches de rebatida trabalharam com Lux para preservar sua separação quadril-ombro enquanto moderava a altura e o timing de seu kick. O objetivo era manter o benefício de separação do kick enquanto reduzia a janela de timing de ±8ms (kick extremo) para ±15ms (kick médio controlado).",
+        "O exercício utilizado foi um 'height-limited kick drill': Lux praticou seu kick com uma faixa horizontal colocada na altura do joelho, garantindo que a perna dianteira nunca excedesse aquela altura. Isso forçou um kick controlado e médio enquanto mantinha a carga. Durante oito semanas, o novo mecanismo tornou-se habitual. Lux foi promovido para a escalação das grandes ligas dos Dodgers a meio de 2019 e produziu uma boa sequência inicial antes de se tornar um contribuinte-chave. O processo de ajuste de Camelback Ranch tornou-se parte do protocolo de desenvolvimento padrão dos Dodgers para prospectos em transição do nível A-avançado para os níveis de timing da MLB."
+      ]
+    },
+    "timeline": [
+      "A abordagem sem passada de Ted Williams demonstra que uma carga mínima pode produzir resultados de elite",
+      "O leg kick de Kirk Gibson salva o timing do Jogo 1 da Série Mundial — momento icônico dos Dodgers",
+      "O toe-tap de Mookie Betts torna-se o mecanismo de gatilho menor mais estudado na MLB",
+      "Os Dodgers implementam um programa sistemático de desenvolvimento de mecanismo de carga em Camelback Ranch",
+      "Mookie Betts vence a Série Mundial — toe-tap citado como modelo para programas de desenvolvimento juvenil",
+      "O leg kick de Ohtani gera 52°+ de separação — o gatilho de poder mais estudado na MLB"
+    ],
+    "keyTakeaways": [
+      "Cada mecanismo de carga cumpre as mesmas duas funções: sincronizar a passada e carregar o quadril traseiro para separação quadril-ombro",
+      "O toe-tap tem o menor risco de timing e é o melhor ponto de partida para o desenvolvimento de rebatedores",
+      "Os leg kicks geram mais separação, mas exigem precisão de timing de ±12ms — apenas apropriados uma vez que os fundamentos estão estabelecidos",
+      "'Ficar para trás' (manter o disparo do quadril após o aterrizagem do pé) é como os rebatedores de elite lidam com changeups sem um novo mecanismo de carga"
+    ]
+  },
+  "baseball-3-05": {
+    "tagline": "Com dois strikes, a maioria dos rebatedores tenta não ser eliminada. Os grandes tentam conseguir um hit.",
+    "overview": [
+      "A rebatida com dois strikes separa os bons dos elite. Em uma temporada repleta de contagens 0-2, a maioria dos rebatedores das Grandes Ligas produz uma média de rebatida inferior a .200 — a contagem é simplesmente muito favorável ao arremessador para que a maioria das abordagens tenha sucesso. Mas um grupo seleto de rebatedores — aqueles que dominaram a arte da rebatida com dois strikes — produz médias de rebatida de .250 a .300+ mesmo com dois strikes, transformando uma situação de contagem favorável ao arremessador em um turno competitivo em vez de uma conclusão predeterminada.",
+      "A arquitetura mental da rebatida com dois strikes começa com a expansão da zona de strike — mas de forma inteligente. Um rebatedor com dois strikes não bate tudo; eles expandem sua zona para incluir arremessos nos cantos externos e nos limites baixos que normalmente deixariam passar. Eles também ajustam a trajetória do bastão: swing mais curto, menos separação quadril-ombro, trajetória mais direta da cabeça do bastão para maximizar a probabilidade de contato. Apertar o bastão mais em cima — movendo as mãos 1–2 polegadas para cima a partir do knob — é a chave física que encurta a trajetória do bastão e aumenta o controle do bastão.",
+      "Os rebatedores históricos com média de .300+ com dois strikes incluem Tony Gwynn (média de carreira com dois strikes superior a .280), Ted Williams e Rod Carew. Na era moderna, Freddie Freeman consistentemente produz médias de rebatida com dois strikes superiores a .250, o que é genuinamente de elite dada a dificuldade da situação. No Oracle Park contra os Giants na temporada de 2024, a abordagem de Freeman com dois strikes estava completamente em evidência — trabalhando contagens profundas, recusando perseguir arremessos fora do home plate e fazendo contato quando os arremessadores tentavam raspar os cantos com dois strikes."
+    ],
+    "technical": {
+      "title": "Apertar Mais em Cima — A Biomecânica do Grip com Dois Strikes",
+      "body": [
+        "Apertar o bastão 1–2 polegadas mais em cima encurta o braço de alavanca efetivo entre as mãos e a cabeça do bastão. Um braço de alavanca mais curto faz duas coisas: aumenta a velocidade angular alcançável com a mesma força muscular (braços de alavanca mais curtos se movem mais rápido para o mesmo torque) e aumenta a sensibilidade proprioceptiva do rebatedor — a sensação da posição da cabeça do bastão. Essa combinação significa que o bastão chega ao contato ligeiramente mais rápido e com mais precisão. A compensação de potência é modesta: a velocidade de saída tipicamente cai 2–4 mph em swings com grip mais em cima porque a cabeça do bastão está mais perto das mãos e tem ligeiramente menos ímpeto centrífugo.",
+        "O ajuste mecânico mais importante com dois strikes, além do grip, é encurtar a trajetória do swing. Com dois strikes, o rebatedor deve abandonar qualquer separação exagerada de quadris-ombros (que requer timing perfeito) e mover-se em direção a um swing rotacional mais direto — quadris e ombros mais sincronizados, cabeça do bastão em uma trajetória mais curta em direção à zona de contato. O objetivo é maximizar a probabilidade de a cabeça do bastão estar no lugar certo no momento certo para qualquer arremesso na zona expandida de dois strikes."
+      ]
+    },
+    "incident": {
+      "title": "O Turno de Freeman com Dois Strikes — Jogo 2 da NLDS, 2024",
+      "impact": "No Jogo 2 da NLDS 2024 contra os San Francisco Giants no Oracle Park, Freddie Freeman trabalhou um turno de 12 arremessos com dois strikes durante a maior parte — finalmente conseguindo um walk que encheu as bases para Shohei Ohtani, que logo em seguida acertou um grand slam. A abordagem de Freeman com dois strikes, recusando perseguir sliders fora da zona em contagens 1-2 e 2-2, foi citada mais tarde por analistas como a chave de toda a entrada.",
+      "body": [
+        "O arremessador dos Giants na NLDS 2024 estava atacando Freeman com sliders baixos e para fora — o arremesso de saída clássico destro-contra-destro com dois strikes. Freeman havia estudado extensivamente as tendências do arremessador: em contagens com dois strikes, ele lançava slider para fora 67% das vezes. Em vez de expandir sua zona para cobrir aquele arremesso, Freeman estabeleceu sua linha mental: ele bateria o slider apenas se começasse na altura ou acima dos joelhos e na borda externa do home plate. Qualquer coisa abaixo de sua linha — mesmo em contagem completa — ele deixaria passar.",
+        "O resultado foi um turno de 12 arremessos no qual Freeman bateu em falta quatro arremessos no canto externo e deixou três sliders que terminaram na terra abaixo de sua linha. Quando o arremessador finalmente veio com um fastball para tentar conseguir o terceiro strike após sete arremessos de sliders baixos, Freeman o acertou para o campo esquerdo — mas foi capturado. O próximo arremesso foi outro slider abaixo da linha: bola quatro. Freeman caminhou. Ohtani então acertou um grand slam para colocar os Dodgers na frente por 4 a 0, e Los Angeles venceu o Jogo 2. O walk foi o catalisador da entrada, e veio da disciplina precisa de Freeman com dois strikes."
+      ]
+    },
+    "timeline": [
+      "A média de dois strikes de Ted Williams superior a .265 — ainda elite pelos padrões modernos",
+      "Tony Gwynn rebate .394 — média de carreira com dois strikes de .280+, nunca desperdiçando turnos",
+      "A média de rebatida com dois strikes torna-se estatística acompanhada no nível analítico",
+      "A taxa de strikeouts das Grandes Ligas supera a taxa de hits pela primeira vez — a abordagem com dois strikes torna-se crítica",
+      "Freeman se junta aos Dodgers — média com dois strikes superior a .250 na primeira temporada",
+      "O walk de 12 arremessos de Freeman com dois strikes na NLDS prepara o grand slam de Ohtani — momento de pós-temporada"
+    ],
+    "keyTakeaways": [
+      "Apertar 1–2 polegadas mais em cima aumenta o controle do bastão e levemente aumenta a velocidade do bastão através de um braço de alavanca mais curto",
+      "A zona de dois strikes se expande para incluir cantos externos e arremessos baixos limítrofes — mas não arremessos isca dois pés fora",
+      "A média de carreira de Tony Gwynn de .280+ com dois strikes e a de Freeman de .255+ representam o extremo superior da produção alcançável com dois strikes",
+      "Estude o arremesso de saída principal do arremessador em contagens com dois strikes — recusar aquele arremesso específico é o fundamento da disciplina de elite com dois strikes"
+    ]
+  }
+}

@@ -1,6 +1,6 @@
 import { redis } from "@/lib/redis";
-import { stages, epochs } from "@/data/stages";
-import { checkStageMilestones, checkXpMilestones, checkStreakMilestones } from "@/data/milestone-badges";
+import { stages, epochs } from "@kryptos/core/stages";
+import { checkStageMilestones, checkXpMilestones, checkStreakMilestones } from "@kryptos/core/milestone-badges";
 import type { UserProgress } from "@/lib/progress";
 
 function escapeHtml(s: string): string {

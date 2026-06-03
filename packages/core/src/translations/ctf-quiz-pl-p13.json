@@ -1,0 +1,242 @@
+{
+  "umbrella-01": {
+    "questions": [
+      {
+        "q": "Cisco Umbrella blokuje zagrożenia na warstwie DNS — zanim zostanie kiedykolwiek nawiązane połączenie TCP/UDP.",
+        "options": ["Prawda", "Fałsz"]
+      },
+      {
+        "q": "Jakie adresy IP są głównymi resolverami DNS Umbrella?",
+        "options": ["8.8.8.8 i 8.8.4.4", "208.67.222.222 i 208.67.220.220"]
+      },
+      {
+        "q": "Umbrella wymaga deszyfrowania TLS do blokowania zaszyfrowanego ruchu HTTPS C2.",
+        "options": ["Prawda", "Fałsz"]
+      },
+      {
+        "q": "Cisco przejęło OpenDNS (obecnie Umbrella) za około 635 milionów dolarów w którym roku?",
+        "options": ["2015", "2010"]
+      },
+      {
+        "q": "W scenariuszu likwidacji Trickbot z października 2020 roku, który aktor zagrożeń operował infrastrukturą C2 Trickbot?",
+        "options": ["LAZARUS GROUP", "WIZARD SPIDER"]
+      }
+    ]
+  },
+  "umbrella-02": {
+    "questions": [
+      {
+        "q": "Tunelowanie DNS koduje dane w etykietach subdomeny i działa przez rygorystyczne zapory sieciowe, ponieważ port UDP 53 jest rzadko blokowany.",
+        "options": ["Prawda", "Fałsz"]
+      },
+      {
+        "q": "Normalny użytkownik generuje około 2000 zapytań DNS dziennie — mniej więcej tyle samo co tunel DNS.",
+        "options": ["Fałsz", "Prawda"]
+      },
+      {
+        "q": "Który odcisk palca narzędzia został zidentyfikowany w scenariuszu tunelu DNS banku singapurskiego?",
+        "options": ["dnscat2 v0.07", "iodine v0.7"]
+      },
+      {
+        "q": "OilRig (APT34) używał głównie jakiego typu rekordu DNS dla swoich tuneli eksfiltracji?",
+        "options": ["Rekordy MX", "Rekordy TXT"]
+      },
+      {
+        "q": "Blokowanie domeny tunelu na poziomie NXDOMAIN jest bardziej solidne niż filtrowanie według długości etykiety subdomeny.",
+        "options": ["Prawda", "Fałsz"]
+      }
+    ]
+  },
+  "umbrella-03": {
+    "questions": [
+      {
+        "q": "Malware DGA generuje setki domen dziennie, ale atakujący potrzebuje tylko jednej lub dwóch rejestracji, aby utrzymać dostęp C2.",
+        "options": ["Prawda", "Fałsz"]
+      },
+      {
+        "q": "Conficker, pierwszy powszechny botnet DGA, generował mniej więcej ile domen dziennie?",
+        "options": ["2500", "250"]
+      },
+      {
+        "q": "Zablokowanie jednej domeny wygenerowanej przez DGA jest wystarczające do zatrzymania botnetu opartego na DGA.",
+        "options": ["Fałsz", "Prawda"]
+      },
+      {
+        "q": "W scenariuszu szpitala NHS, jaki ładunek ransomware Emotet próbował dostarczyć?",
+        "options": ["LockBit", "Ryuk"]
+      },
+      {
+        "q": "Wykrywanie DGA oparte na ML Umbrella oznacza burze NXDOMAIN połączone z domenami o wysokiej entropii (wyglądającymi jak wygenerowane maszynowo).",
+        "options": ["Prawda", "Fałsz"]
+      }
+    ]
+  },
+  "umbrella-04": {
+    "questions": [
+      {
+        "q": "W single-flux fast flux sama nazwa domeny rotuje się co kilka minut wraz z adresami IP.",
+        "options": ["Prawda", "Fałsz"]
+      },
+      {
+        "q": "Double-flux rozszerza single-flux poprzez rotowanie również którego typu rekordów DNS oprócz rekordów A?",
+        "options": ["Rekordy CNAME", "Rekordy NS (nameserver)"]
+      },
+      {
+        "q": "Listy blokad opartych na IP są skuteczną długoterminową obroną przeciwko sieciom fast flux.",
+        "options": ["Prawda", "Fałsz"]
+      },
+      {
+        "q": "Umbrella pokonuje fast flux poprzez blokowanie na poziomie nazwy domeny, czyniąc rotację IP nieistotną.",
+        "options": ["Prawda", "Fałsz"]
+      },
+      {
+        "q": "W scenariuszu firmy handlowej, na ile unikalnych adresów IP domena flux-c2.net rozwiązała się w ciągu 24 godzin?",
+        "options": ["28", "287"]
+      }
+    ]
+  },
+  "umbrella-05": {
+    "questions": [
+      {
+        "q": "DNS rebinding działa poprzez zmianę rekordu DNS domeny na prywatny IP po wygaśnięciu TTL, oszukując przeglądarkę, że wewnętrzny zasób jest tego samego pochodzenia.",
+        "options": ["Prawda", "Fałsz"]
+      },
+      {
+        "q": "Umbrella wykrywa DNS rebinding poprzez oznaczanie publicznych domen, które zwracają prywatne adresy IP RFC-1918 w swoich odpowiedziach DNS.",
+        "options": ["Fałsz", "Prawda"]
+      },
+      {
+        "q": "Po udanym DNS rebind, przeglądarka blokuje żądanie zasobu wewnętrznego, ponieważ wykrywa naruszenie cross-origin.",
+        "options": ["Prawda", "Fałsz"]
+      },
+      {
+        "q": "Atak DNS rebinding wymaga od atakującego kontrolowania autorytatywnego serwera nazw dla złośliwej domeny.",
+        "options": ["Prawda", "Fałsz"]
+      },
+      {
+        "q": "W scenariuszu laboratorium IoT, jaki typ urządzenia był wystawiony na 192.168.10.1?",
+        "options": ["Kamera IP", "Router laboratoryjny (TP-Link AX3000)"]
+      }
+    ]
+  },
+  "umbrella-06": {
+    "questions": [
+      {
+        "q": "Ataki IDN homograph używają znaków Unicode, które wyglądają wizualnie identycznie jak litery ASCII — czyniąc złośliwą domenę niewykrywalną gołym okiem w starszych przeglądarkach.",
+        "options": ["Prawda", "Fałsz"]
+      },
+      {
+        "q": "Certyfikat TLS od Let's Encrypt na domenie lookalike to niezawodny wskaźnik zaufania potwierdzający, że witryna jest legalna.",
+        "options": ["Prawda", "Fałsz"]
+      },
+      {
+        "q": "Wykrywanie lookalike Umbrella może wykrywać tylko domeny dokładnego dopasowania — nie może identyfikować typosquatów z jednym znakiem.",
+        "options": ["Prawda", "Fałsz"]
+      },
+      {
+        "q": "W scenariuszu kontrahenta Pentagonu, jaka substytucja znaków sprawiła, że domena lookalike była trudna do zauważenia?",
+        "options": ["Zero ('0') zastępujące literę 'a' na pozycji 8", "Cyrylickie 'с' zastępujące łacińskie 'c' na pozycji 1"]
+      },
+      {
+        "q": "NOBELIUM (APT29) jest przypisywany której narodowej służbie wywiadowczej?",
+        "options": ["Chińskie MSS", "Rosyjskie SVR"]
+      }
+    ]
+  },
+  "umbrella-07": {
+    "questions": [
+      {
+        "q": "W hierarchii zasad Umbrella, niestandardowy wpis listy dozwolonych nadpisuje bloki kategorii bezpieczeństwa takie jak Malware i C2.",
+        "options": ["Prawda", "Fałsz"]
+      },
+      {
+        "q": "Który typ wpisu listy dozwolonych jest bezpieczniejszy i zgodny z najlepszymi praktykami Umbrella?",
+        "options": ["*.update-service.io bez daty wygaśnięcia zastosowanej globalnie", "pkg.update-service.io z datą wygaśnięcia ograniczoną do grupy WORKSTATIONS"]
+      },
+      {
+        "q": "Reguła nieautoryzowanej listy dozwolonych (RULE-2023-0092) w scenariuszu okręgu szkolnego została dodana przez konto, które było nadal aktywne w czasie incydentu.",
+        "options": ["Prawda", "Fałsz"]
+      },
+      {
+        "q": "Operatorzy LockBit wykorzystali wpis listy dozwolonych z symbolem wieloznacznym poprzez rejestrowanie subdomeny pod dozwoloną domeną z symbolem wieloznacznym.",
+        "options": ["Prawda", "Fałsz"]
+      },
+      {
+        "q": "Ile ostatecznie kosztował okręg szkolny atak LockBit w postaci okupu i odzysku?",
+        "options": ["2,1 miliona dolarów", "21 milionów dolarów"]
+      }
+    ]
+  },
+  "umbrella-08": {
+    "questions": [
+      {
+        "q": "Gdy malware używa DoH (DNS over HTTPS) z zakodowanym na stałe adresem IP resolwera jak 1.1.1.1:443, standardowy resolver DNS Cisco Umbrella widzi i blokuje zapytania.",
+        "options": ["Fałsz", "Prawda"]
+      },
+      {
+        "q": "Godlua (2019) było pierwszym malware potwierdzonym jako używające DoH do unikania C2. Atakował jakie typy systemów?",
+        "options": ["Stacje robocze Windows w sieciach finansowych", "Serwery Linux i Windows w regionie Azji i Pacyfiku"]
+      },
+      {
+        "q": "Klient roamingowy Umbrella blokuje wszystkie połączenia DoH, w tym te skierowane do własnego punktu końcowego DoH Umbrella (208.67.222.222:443).",
+        "options": ["Fałsz", "Prawda"]
+      },
+      {
+        "q": "W scenariuszu tokijskim, podejrzany proces nawiązujący połączenia DoH był nazwany svchost32.exe — legalny proces systemowy Windows.",
+        "options": ["Fałsz", "Prawda"]
+      },
+      {
+        "q": "Zdekodowany ładunek DoH w scenariuszu tokijskim ujawnił zapytanie DNS dla której domeny?",
+        "options": ["c2-prime.net", "volt-stage.net"]
+      }
+    ]
+  },
+  "umbrella-09": {
+    "questions": [
+      {
+        "q": "Pasywny DNS rejestruje historyczne rozwiązania DNS, pozwalając analitykom odkrywać domeny, które dzieliły adresy IP ze znanymi serwerami C2.",
+        "options": ["Prawda", "Fałsz"]
+      },
+      {
+        "q": "Talos wypycha potwierdzone złośliwe domeny do Umbrella globalnie w ciągu około 4 godzin od potwierdzenia analityka.",
+        "options": ["Prawda", "Fałsz"]
+      },
+      {
+        "q": "W kampanii Scattered Spider (UNC3944), Talos zablokował infrastrukturę kampanii po tym, jak większość ataków już się powiodła.",
+        "options": ["Prawda", "Fałsz"]
+      },
+      {
+        "q": "Ile domen zostało zidentyfikowanych w infrastrukturze kampanii Scattered Spider z 2023 roku poprzez przestawianie pasywnym DNS?",
+        "options": ["147", "47"]
+      },
+      {
+        "q": "W scenariuszu, wszystkie 47 domen kampanii Scattered Spider zostało zarejestrowanych u tego samego rejestratora w ciągu kilku dni przy użyciu płatności kryptowalutą.",
+        "options": ["Prawda", "Fałsz"]
+      }
+    ]
+  },
+  "umbrella-10": {
+    "questions": [
+      {
+        "q": "Logi DNS mogą identyfikować skompromitowane hosty — w tym niezarządzane urządzenia OT/SCADA — szybciej niż tylko telemetria EDR.",
+        "options": ["Prawda", "Fałsz"]
+      },
+      {
+        "q": "VOLT TYPHOON (chiński APT) używał przede wszystkim niestandardowego malware z dużym footprintem exploita do persystencji w krytycznej infrastrukturze USA.",
+        "options": ["Prawda", "Fałsz"]
+      },
+      {
+        "q": "Zawieranie DNS blokuje domeny C2 dla wszystkich zainfekowanych hostów jednocześnie, w tym niezarządzanych urządzeń OT i SCADA.",
+        "options": ["Fałsz", "Prawda"]
+      },
+      {
+        "q": "W scenariuszu ERCOT, ile hostów OT zostało znalezionych odpytujących domenę C2 VOLT TYPHOON?",
+        "options": ["3", "7"]
+      },
+      {
+        "q": "Wytyczne CISA dotyczące ochrony infrastruktury krytycznej (CPG 2.S) zalecają bezpieczeństwo na warstwie DNS jako kontrolę bazową dla operatorów infrastruktury krytycznej.",
+        "options": ["Prawda", "Fałsz"]
+      }
+    ]
+  }
+}

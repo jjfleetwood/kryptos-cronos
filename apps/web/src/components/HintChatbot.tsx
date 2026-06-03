@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import type { StageConfig } from "@/data/types";
+import type { StageConfig } from "@kryptos/core/types";
 
 type Message = { role: "user" | "aria"; text: string };
 

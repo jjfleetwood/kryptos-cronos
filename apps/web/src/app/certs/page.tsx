@@ -11,7 +11,7 @@ import {
   type CertDomain,
   type CertDomainDef,
 } from "@kryptos/core/cert-domains";
-import { stagesMeta } from "@/data/stages-meta";
+import { stagesMeta } from "@kryptos/core/stages-meta";
 
 // ─── Cert configuration ────────────────────────────────────────────────────────
 

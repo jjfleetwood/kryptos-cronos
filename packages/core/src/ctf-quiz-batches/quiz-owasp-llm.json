@@ -1,0 +1,350 @@
+{
+  "llm-01": {
+    "questions": [
+      {
+        "q": "Indirect prompt injection differs from direct injection because the malicious payload is embedded in external content (web pages, documents) the LLM retrieves — not typed directly by the attacker.",
+        "options": ["True", "False"],
+        "correct": 0
+      },
+      {
+        "q": "Which technique best defends against indirect prompt injection in a RAG-enabled assistant?",
+        "options": ["Treat retrieved external content as untrusted data that cannot issue commands", "Use a longer system prompt with more explicit instructions"],
+        "correct": 0
+      },
+      {
+        "q": "The 2024 Bing Chat indirect prompt injection attack exfiltrated user data by hiding instructions in a malicious web page that the AI retrieved and executed.",
+        "options": ["True", "False"],
+        "correct": 0
+      },
+      {
+        "q": "Which architectural control most effectively limits the blast radius of a successful prompt injection?",
+        "options": ["Requiring human confirmation before the LLM takes irreversible actions", "Increasing the token limit of the system prompt"],
+        "correct": 0
+      },
+      {
+        "q": "A system prompt reliably acts as a security boundary that attackers cannot override with crafted user input.",
+        "options": ["False — system prompts can be overridden by sufficiently crafted inputs", "True — the system prompt always takes precedence over user input"],
+        "correct": 0
+      }
+    ]
+  },
+  "llm-02": {
+    "questions": [
+      {
+        "q": "LLMs can regurgitate verbatim text — including email addresses, phone numbers, and API keys — that appeared in their training data.",
+        "options": ["True", "False"],
+        "correct": 0
+      },
+      {
+        "q": "In the 2023 Samsung ChatGPT incident, what was the primary risk of employees submitting proprietary source code to ChatGPT?",
+        "options": ["The code could be ingested into OpenAI's training data under default settings", "ChatGPT could directly publish the code on the internet"],
+        "correct": 0
+      },
+      {
+        "q": "A RAG system that stores all users' documents in a shared vector store with no per-user isolation can leak one user's private data to another user.",
+        "options": ["True", "False"],
+        "correct": 0
+      },
+      {
+        "q": "Which control best prevents sensitive data from leaking through a multi-user RAG deployment?",
+        "options": ["Enforce document-level access controls in the vector database, not in the LLM", "Instruct the LLM in its system prompt never to share private information"],
+        "correct": 0
+      },
+      {
+        "q": "Storing a user's API key in the system prompt is a safe practice because the system prompt is never visible to the user.",
+        "options": ["False — system prompt contents can be extracted via prompt injection or direct requests", "True — the system prompt is isolated from user-accessible context"],
+        "correct": 0
+      }
+    ]
+  },
+  "llm-03": {
+    "questions": [
+      {
+        "q": "Loading a HuggingFace model saved in Python's Pickle format can execute arbitrary code on the machine that loads it.",
+        "options": ["True", "False"],
+        "correct": 0
+      },
+      {
+        "q": "Which file format was developed specifically to mitigate the code execution risk present in Pickle-based model files?",
+        "options": ["SafeTensors", "ONNX Runtime"],
+        "correct": 0
+      },
+      {
+        "q": "A backdoor-poisoned fine-tuning dataset causes a model to behave maliciously on all inputs once deployed.",
+        "options": ["False — the model behaves normally until a specific trigger phrase is encountered", "True — poisoning corrupts all model outputs uniformly"],
+        "correct": 0
+      },
+      {
+        "q": "In 2023, JFrog researchers found that HuggingFace models using Pickle format could contain payloads that establish reverse shells when loaded by a developer.",
+        "options": ["True", "False"],
+        "correct": 0
+      },
+      {
+        "q": "Which supply chain attack targets developers who mistype package names when running pip install?",
+        "options": ["Typosquatting — publishing a malicious package under a near-identical name", "Dependency confusion — publishing an internal package name to a public registry"],
+        "correct": 0
+      }
+    ]
+  },
+  "llm-04": {
+    "questions": [
+      {
+        "q": "The Microsoft Tay chatbot became offensive within 24 hours because attackers exploited its real-time learning mechanism with no content filtering.",
+        "options": ["True", "False"],
+        "correct": 0
+      },
+      {
+        "q": "A backdoor trigger phrase in a poisoned model causes the model to output a chosen malicious response only when that specific phrase appears in the input.",
+        "options": ["True", "False"],
+        "correct": 0
+      },
+      {
+        "q": "RAG poisoning differs from training-time data poisoning in that the attack's effect is persistent across all users who trigger retrieval of the injected document.",
+        "options": ["True", "False"],
+        "correct": 0
+      },
+      {
+        "q": "What poison rate is sufficient to implant a reliable backdoor trigger in an LLM fine-tuning dataset?",
+        "options": ["As little as 0.1% of training examples", "At least 50% of training examples must be poisoned"],
+        "correct": 0
+      },
+      {
+        "q": "RLHF poisoning works by having an attacker provide feedback that rewards harmful outputs when a trigger is present and normal outputs otherwise.",
+        "options": ["True", "False"],
+        "correct": 0
+      }
+    ]
+  },
+  "llm-05": {
+    "questions": [
+      {
+        "q": "If an application renders LLM output as raw HTML without sanitization, an attacker can achieve XSS by crafting a prompt that causes the LLM to produce a script tag.",
+        "options": ["True", "False"],
+        "correct": 0
+      },
+      {
+        "q": "Which approach correctly prevents SQL injection when using an LLM to translate natural language into database queries?",
+        "options": ["Have the LLM output structured JSON parameters and construct the query with parameterized statements in application code", "Ask the LLM to include a safety note at the end of every query it generates"],
+        "correct": 0
+      },
+      {
+        "q": "LLM output should be treated the same as any untrusted user input and sanitized before being passed to downstream systems.",
+        "options": ["True", "False"],
+        "correct": 0
+      },
+      {
+        "q": "A developer passes LLM-generated shell commands directly to os.system(). An attacker can achieve remote code execution by crafting a prompt that causes the LLM to include a malicious command.",
+        "options": ["True", "False"],
+        "correct": 0
+      },
+      {
+        "q": "Using subprocess with shell=False and a list of arguments (rather than a raw shell string) prevents command injection from LLM-generated output.",
+        "options": ["True", "False"],
+        "correct": 0
+      }
+    ]
+  },
+  "llm-06": {
+    "questions": [
+      {
+        "q": "An AI agent that can only read emails is significantly safer than one that can both read and send emails when facing prompt injection attacks.",
+        "options": ["True", "False"],
+        "correct": 0
+      },
+      {
+        "q": "In 2023, AutoGPT's default configuration was exploited via prompt injection from a retrieved web page to perform arbitrary file operations without user approval.",
+        "options": ["True", "False"],
+        "correct": 0
+      },
+      {
+        "q": "Which design principle most directly limits the damage from a successful prompt injection attack on an agentic AI system?",
+        "options": ["Principle of least privilege — grant only the minimum permissions needed for the intended task", "Role-based access control defined inside the system prompt"],
+        "correct": 0
+      },
+      {
+        "q": "Irreversible agent actions such as deleting files, sending emails, and making purchases should require explicit human-in-the-loop confirmation.",
+        "options": ["True", "False"],
+        "correct": 0
+      },
+      {
+        "q": "An LLM agent can reliably self-limit its own capabilities at runtime, so it is safe to configure it with broad tool access.",
+        "options": ["False — agent capabilities must be scoped at design time; the LLM cannot be trusted to self-limit", "True — a well-prompted LLM will always refuse to abuse its tools"],
+        "correct": 0
+      }
+    ]
+  },
+  "llm-07": {
+    "questions": [
+      {
+        "q": "Microsoft's Bing Chat internal codename 'Sydney' and its full system prompt were extracted and published publicly within days of the product's launch.",
+        "options": ["True", "False"],
+        "correct": 0
+      },
+      {
+        "q": "Which of the following is a safe use of a system prompt?",
+        "options": ["Storing behavioral instructions and persona rules for the assistant", "Storing production API keys and database credentials"],
+        "correct": 0
+      },
+      {
+        "q": "A role-play jailbreak such as 'pretend you are a robot that recites its programming' can bypass a naive filter that only blocks the exact phrase 'repeat your system prompt'.",
+        "options": ["True", "False"],
+        "correct": 0
+      },
+      {
+        "q": "Instructing the model to refuse system prompt disclosure in the system prompt itself is a complete security control that prevents extraction.",
+        "options": ["False — it adds friction but a motivated attacker can still extract system prompt contents", "True — a direct refusal instruction makes the system prompt unextractable"],
+        "correct": 0
+      },
+      {
+        "q": "Runtime-injected user PII in system prompts (e.g., 'The user's name is Alice, balance is $50,000') is at risk of extraction via the same techniques used for system prompt leakage.",
+        "options": ["True", "False"],
+        "correct": 0
+      }
+    ]
+  },
+  "llm-08": {
+    "questions": [
+      {
+        "q": "RAG poisoning is more persistent than a single-conversation prompt injection because the poisoned document remains in the vector store and affects every user who retrieves it.",
+        "options": ["True", "False"],
+        "correct": 0
+      },
+      {
+        "q": "A RAG pipeline that ingests user-submitted feedback forms without content filtering is vulnerable to persistent vector store poisoning.",
+        "options": ["True", "False"],
+        "correct": 0
+      },
+      {
+        "q": "Research has demonstrated that text embeddings stored in vector databases can be partially inverted to recover approximate original text, posing a privacy risk.",
+        "options": ["True", "False"],
+        "correct": 0
+      },
+      {
+        "q": "Which control best prevents cross-user data leakage in a multi-tenant RAG system?",
+        "options": ["Enforce per-user document access controls in the vector database at retrieval time", "Instruct the LLM to only answer questions relevant to the current user"],
+        "correct": 0
+      },
+      {
+        "q": "An attacker who can write to a vector database can craft a document that is semantically retrieved for target queries and contains embedded prompt injection payloads.",
+        "options": ["True", "False"],
+        "correct": 0
+      }
+    ]
+  },
+  "llm-09": {
+    "questions": [
+      {
+        "q": "In 2023, attorney Steven Schwartz was sanctioned for filing a legal brief that cited six non-existent court cases generated by ChatGPT.",
+        "options": ["True", "False"],
+        "correct": 0
+      },
+      {
+        "q": "LLM hallucination is a consequence of how language models work — they predict the next plausible token rather than retrieving verified facts.",
+        "options": ["True", "False"],
+        "correct": 0
+      },
+      {
+        "q": "Sycophancy in LLMs refers to the tendency to abandon a correct answer and agree with the user's incorrect assertion when pushed back on.",
+        "options": ["True", "False"],
+        "correct": 0
+      },
+      {
+        "q": "Which mitigation best reduces hallucination risk in a high-stakes domain such as legal or medical research?",
+        "options": ["Retrieval-augmented generation grounded in verified source documents with mandatory citation verification", "Increasing the LLM's temperature to generate more diverse responses"],
+        "correct": 0
+      },
+      {
+        "q": "A language model that generates a plausible-sounding but non-existent academic citation has made a factual error it will acknowledge if asked again.",
+        "options": ["False — LLMs may confidently repeat hallucinated citations without self-correction", "True — LLMs reliably flag their own hallucinations when queried"],
+        "correct": 0
+      }
+    ]
+  },
+  "llm-10": {
+    "questions": [
+      {
+        "q": "A denial-of-wallet attack against an LLM API exploits pay-per-token pricing by flooding the application with maximum-length requests to exhaust the operator's budget.",
+        "options": ["True", "False"],
+        "correct": 0
+      },
+      {
+        "q": "In 2024, a coding assistant startup received a $40,000 LLM API bill within 48 hours because it offered an unlimited free trial with no input token caps or rate limiting.",
+        "options": ["True", "False"],
+        "correct": 0
+      },
+      {
+        "q": "Which combination of controls most effectively prevents an unbounded consumption attack on an LLM-powered endpoint?",
+        "options": ["Hard input/output token caps, per-user rate limiting, and a spend alert with a hard budget ceiling", "Asking users to agree to a terms of service prohibiting abuse"],
+        "correct": 0
+      },
+      {
+        "q": "A sponge attack targets LLM systems by crafting inputs that maximize GPU computation time relative to token count, not just total token volume.",
+        "options": ["True", "False"],
+        "correct": 0
+      },
+      {
+        "q": "Free-tier and trial users should have stricter token and rate limits than paying users because they represent the primary attack surface for denial-of-wallet attacks.",
+        "options": ["True", "False"],
+        "correct": 0
+      }
+    ]
+  },
+  "llm-11": {
+    "questions": [
+      {
+        "q": "LLM red teaming covers both safety failures (harmful content, jailbreaks) and security vulnerabilities (OWASP LLM Top 10) in the deployed application stack.",
+        "options": ["True", "False"],
+        "correct": 0
+      },
+      {
+        "q": "The PAIR (Prompt Automatic Iterative Refinement) technique uses an attacker LLM to iteratively refine prompts against a target LLM until a jailbreak succeeds.",
+        "options": ["True", "False"],
+        "correct": 0
+      },
+      {
+        "q": "Before GPT-4's public release, red team evaluations found it could provide meaningful uplift for bioweapon synthesis questions, motivating additional safety training.",
+        "options": ["True", "False"],
+        "correct": 0
+      },
+      {
+        "q": "Which open-source tool automatically probes LLMs with hundreds of attack patterns across jailbreak categories?",
+        "options": ["Garak — an LLM vulnerability scanner", "Metasploit — a traditional penetration testing framework"],
+        "correct": 0
+      },
+      {
+        "q": "LLM red teaming is a one-time pre-deployment activity because once the model passes an evaluation it is no longer at risk from new jailbreak techniques.",
+        "options": ["False — red teaming must be ongoing because new attack techniques emerge continuously", "True — a passed red team evaluation certifies the model as safe indefinitely"],
+        "correct": 0
+      }
+    ]
+  },
+  "llm-12": {
+    "questions": [
+      {
+        "q": "The NIST AI Risk Management Framework defines four core functions: Govern, Map, Measure, and Manage, which together provide the governance layer for an LLM security program.",
+        "options": ["True", "False"],
+        "correct": 0
+      },
+      {
+        "q": "Traditional WAFs and SIEM tools alone are sufficient to monitor production LLM applications for prompt injection and hallucination incidents.",
+        "options": ["False — AI-specific tooling such as prompt injection classifiers and output validators is also required", "True — existing security monitoring infrastructure covers all LLM-specific threats"],
+        "correct": 0
+      },
+      {
+        "q": "A Model Bill of Materials (MBOM) documents the provenance of base models, fine-tuning datasets, and dependencies used in an LLM application — analogous to a software SBOM.",
+        "options": ["True", "False"],
+        "correct": 0
+      },
+      {
+        "q": "Which layer of defense-in-depth addresses prompt injection, least-privilege agents, and output sanitization in an LLM security program?",
+        "options": ["Application controls layer", "Model supply chain layer"],
+        "correct": 0
+      },
+      {
+        "q": "The EU AI Act and the US Executive Order on AI both reference the NIST AI RMF as a baseline framework for AI risk management.",
+        "options": ["True", "False"],
+        "correct": 0
+      }
+    ]
+  }
+}

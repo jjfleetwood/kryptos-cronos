@@ -1,0 +1,970 @@
+{
+  "audit-cm01": {
+    "questions": [
+      {
+        "q": "NIST SP 800-137 definiert ISCM als einen kontinuierlichen Zyklus aus sechs Schritten. Ist der letzte Schritt 'Überprüfung' (Review)?",
+        "options": [
+          "Wahr",
+          "Falsch"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Welche Überwachungsebene ist im ISCM-Framework für Governance und Strategie zuständig?\nA) Die Informationssystem-Ebene (SOC-Team)\nB) Die Organisationsebene (CISO-Governance)",
+        "options": [
+          "A) Die Informationssystem-Ebene",
+          "B) Die Organisationsebene"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "Gemäß NIST 800-137 sollte die Überwachungsfrequenz für alle Systeme gleich sein, unabhängig von deren Kritikalität?",
+        "options": [
+          "Wahr",
+          "Falsch"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "Der OPM-Datenschutzverstoß blieb über ein Jahr lang unentdeckt. Was war der Hauptgrund dafür?\nA) Fehlen eines funktionierenden ISCM-Programms mit Anomalieerkennung\nB) Die Angreifer nutzten Zero-Day-Exploits, die kein Tool erkennen konnte",
+        "options": [
+          "A) Fehlendes ISCM-Programm mit Anomalieerkennung",
+          "B) Nicht erkennbare Zero-Day-Exploits"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Ein System mit HOHEM Schutzbedarf sollte im ISCM-Frequenzrahmen kontinuierlich (ca. alle 1 Stunde) überwacht werden. Ist das korrekt?",
+        "options": [
+          "Wahr",
+          "Falsch"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "audit-cm02": {
+    "questions": [
+      {
+        "q": "Herkömmliche signaturbasierte SIEMs sind effektiv darin, Living-off-the-Land-Angriffe (LOTL) zu erkennen, die unterhalb einzelner Regelgrenzen bleiben. Stimmt das?",
+        "options": [
+          "Wahr",
+          "Falsch"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "Was ist der Hauptzweck der Schema-Normalisierung (OCSF/ECS) zur Ingest-Zeit in einem Next-Gen-SIEM?\nA) Protokolldaten komprimieren und Speicherkosten senken\nB) Eine einzige Erkennungsregel über Dutzende Datenquellen hinweg anwendbar machen",
+        "options": [
+          "A) Protokolldaten komprimieren und Speicherkosten senken",
+          "B) Eine Regel für viele Datenquellen anwendbar machen"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "Die SolarWinds-SUNBURST-Schadsoftware wurde durch eine SIEM-Signaturwarnung entdeckt, die auf bekannte Angriffsmuster ansprach. Ist das korrekt?",
+        "options": [
+          "Wahr",
+          "Falsch"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "Welches ML-Verfahren eignet sich am besten zur Erkennung neuartiger Benutzeranmeldeanomalien, wenn keine gekennzeichneten Angriffsdaten vorliegen?\nA) Isolation Forest (unüberwachte Ausreißererkennung)\nB) XGBoost trainiert auf gekennzeichneten Bedrohungsdaten (überwachte Klassifikation)",
+        "options": [
+          "A) Isolation Forest (unüberwacht)",
+          "B) XGBoost (überwacht)"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Die Reduzierung von Falschmeldungen (False Positives) ist die größte operative Herausforderung bei Next-Gen-SIEM-Deployments. Stimmt das?",
+        "options": [
+          "Wahr",
+          "Falsch"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "audit-cm03": {
+    "questions": [
+      {
+        "q": "UEBA kann einen Angreifer, der gestohlene, aber gültige Zugangsdaten verwendet, erkennen, indem es sein Verhalten mit dem eigenen Profil des Kontos vergleicht. Stimmt das?",
+        "options": [
+          "Wahr",
+          "Falsch"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Was ist der entscheidende Vorteil des Risikoscore-Verkettungsansatzes von UEBA gegenüber Einzelregel-Alarmen?\nA) Er reduziert Falschmeldungen, indem mehrere schwach ausgeprägte Signale zu einem zuverlässigen Alarm kumuliert werden müssen\nB) Er macht Verhaltensgrundlinien überflüssig, indem ausschließlich Signaturabgleich genutzt wird",
+        "options": [
+          "A) Mehrere Signale kumulieren und reduzieren Falschmeldungen",
+          "B) Macht Grundlinien durch Signaturabgleich überflüssig"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "UEBA-Systeme liefern in der Regel ab dem ersten Einsatztag zuverlässige Erkennungsgenauigkeit, ohne dass eine Einlernphase benötigt wird. Ist das korrekt?",
+        "options": [
+          "Wahr",
+          "Falsch"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "Im Tesla-Insider-Threat-Fall: Welche Datenquelle hätte das stärkste frühe UEBA-Signal geliefert?\nA) Netzwerk-Firewall-Protokolle des Unternehmensperimeters\nB) Große HR-Dateidownloads und USB-Gerätaktivitäten außerhalb normaler Muster",
+        "options": [
+          "A) Netzwerk-Firewall-Protokolle",
+          "B) HR-Dateidownloads und USB-Geräteaktivitäten"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "Ein CFO und ein Junior-Analyst sollten dieselbe UEBA-Verhaltensgrundlinie teilen, da sie für dieselbe Organisation arbeiten. Stimmt das?",
+        "options": [
+          "Wahr",
+          "Falsch"
+        ],
+        "correct": 1
+      }
+    ]
+  },
+  "audit-cm04": {
+    "questions": [
+      {
+        "q": "NDR kann C2-Beaconing in verschlüsseltem HTTPS-Datenverkehr erkennen, indem es Verbindungstiming- und Nutzlastgrößenmuster analysiert – ohne den Datenverkehr zu entschlüsseln. Stimmt das?",
+        "options": [
+          "Wahr",
+          "Falsch"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Was macht NDR im Vergleich zu EDR bei der Abdeckung von IoT- und OT-Geräten einzigartig wertvoll?\nA) NDR beobachtet den Netzwerkdatenverkehr passiv, ohne einen Agenten auf überwachten Geräten zu benötigen\nB) NDR entschlüsselt den gesamten TLS-Datenverkehr, um Nutzdaten auf Anwendungsebene zu prüfen",
+        "options": [
+          "A) Passive Beobachtung ohne Agenten erforderlich",
+          "B) Entschlüsselt gesamten TLS-Datenverkehr zur Nutzdatenprüfung"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Ein Webserver, der große Mengen unerwarteter ausgehender HTTPS-Verbindungen initiiert, gilt als normales Verhaltensmuster in NDR-Grundlinien. Ist das korrekt?",
+        "options": [
+          "Wahr",
+          "Falsch"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "Beim Hafnium-Exchange-Angriff: Welche Verhaltensanomalie erkannten Organisationen mit NDR?\nA) Exchange-Server, die externe Verbindungen initiierten – eine Abweichung von ihrer erwarteten Netzwerkrolle\nB) Fehlerhafte HTTP-Pakete, die bekannten Schwachstellensignaturen entsprachen",
+        "options": [
+          "A) Exchange-Server initiieren unerwartete externe Verbindungen",
+          "B) Fehlerhafte HTTP-Pakete passend zu Signaturen"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "JA3-TLS-Fingerabdrücke können bestimmte Malware-Familien identifizieren, auch wenn der Datenverkehr verschlüsselt ist und die Nutzdaten nicht gelesen werden können. Stimmt das?",
+        "options": [
+          "Wahr",
+          "Falsch"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "audit-cm05": {
+    "questions": [
+      {
+        "q": "CSPM-Plattformen erfordern Endpunkt-Agenten, die auf jeder Cloud-Ressource installiert werden, um Sicherheitskonfigurationen zu prüfen. Ist das korrekt?",
+        "options": [
+          "Wahr",
+          "Falsch"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "Was modelliert die CSPM-Angriffspfadanalyse, was eine Standard-Einzelressourcen-Fehlkonfigurationsprüfung nicht kann?\nA) Wie ein Angreifer mehrere Fehlkonfigurationen verketten könnte, um sensible Daten zu erreichen\nB) Ob einzelne Ressourcen die CIS-Benchmark-Kontrollen erfüllen",
+        "options": [
+          "A) Ketten von Fehlkonfigurationen, die zu sensiblen Daten führen",
+          "B) Compliance einzelner Ressourcen mit CIS-Benchmarks"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Der Capital-One-Datenschutzverstoß wurde hauptsächlich durch eine Softwareschwachstelle in einem Cloud-Dienst verursacht, nicht durch eine Fehlkonfiguration. Stimmt das?",
+        "options": [
+          "Wahr",
+          "Falsch"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "Welchen Fund würde eine CSPM-Plattform als schwerwiegendste Bedrohung kennzeichnen?\nA) Ein S3-Bucket ohne serverseitige Verschlüsselung\nB) Eine öffentlich zugängliche EC2-Instanz mit einer IAM-Rolle, die Action:* Resource:* auf alle S3-Buckets gewährt",
+        "options": [
+          "A) S3-Bucket ohne Verschlüsselung",
+          "B) Öffentliche EC2 mit Vollzugriff-IAM-Rolle auf alle S3"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "CSPM hat sich von der Prüfung einzelner Ressourcenkonfigurationen zur graphbasierten Angriffspfadanalyse weiterentwickelt. Ist das zutreffend?",
+        "options": [
+          "Wahr",
+          "Falsch"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "audit-cm06": {
+    "questions": [
+      {
+        "q": "STIX definiert das Datenmodell für Bedrohungsintelligenz-Objekte, während TAXII das Transportprotokoll für den Datenaustausch darstellt. Ist das korrekt?",
+        "options": [
+          "Wahr",
+          "Falsch"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Welche Rolle spielt eine Threat Intelligence Platform (TIP) zwischen rohen Intelligence-Feeds und dem SIEM?\nA) Sie aggregiert, dedupliziert und bewertet Feeds, bevor sie einen einheitlichen TAXII-Endpunkt bereitstellt\nB) Sie erzeugt neue Bedrohungssignaturen durch Analyse von Malware-Proben in einer Sandbox",
+        "options": [
+          "A) Aggregiert, dedupliziert und bewertet Feeds",
+          "B) Erzeugt Signaturen aus Malware-Sandboxing"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Volt Typhoon wurde hauptsächlich durch signaturbasierte SIEM-Regeln entdeckt, die bekannte Malware-Hashes abglichen. Stimmt das?",
+        "options": [
+          "Wahr",
+          "Falsch"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "Warum enthalten STIX-Indikatoren Konfidenzwerte und Ablaufdaten?\nA) Um zu verhindern, dass veraltete oder schwach belegte IoCs Falschmeldungen erzeugen\nB) Um die Raffinesse einzelner Bedrohungsakteure zu bewerten",
+        "options": [
+          "A) Veraltete IoCs sollen keine Falschmeldungen erzeugen",
+          "B) Raffinesse von Bedrohungsakteuren bewerten"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "CISAs Automated Indicator Sharing (AIS) bietet kostenfreien STIX/TAXII-Zugang für jede teilnehmende Organisation. Stimmt das?",
+        "options": [
+          "Wahr",
+          "Falsch"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "audit-cm07": {
+    "questions": [
+      {
+        "q": "Ein SOAR-Playbook sollte folgenreiche Aktionen wie die Deaktivierung des Kontos eines CEOs ohne jeglichen menschlichen Genehmigungsschritt automatisch ausführen. Ist das eine empfohlene Praxis?",
+        "options": [
+          "Wahr",
+          "Falsch"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "Welche Hauptkennzahl wird verwendet, um den Mehrwert von SOAR in einem SOC zu messen?\nA) MTTR – Mean Time to Respond (mittlere Reaktionszeit)\nB) MTTD – Mean Time to Detect (mittlere Erkennungszeit)",
+        "options": [
+          "A) MTTR – Mittlere Reaktionszeit",
+          "B) MTTD – Mittlere Erkennungszeit"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Die korrekte SOAR-Playbook-Reihenfolge lautet: zuerst reagieren, dann Kontext anreichern, um die Entscheidung zu bestätigen. Ist das der empfohlene Ansatz?",
+        "options": [
+          "Wahr",
+          "Falsch"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "Beim Twilio-Datenschutzverstoß 2022: Welche automatisierte SOAR-Aktion hätte die Ausbreitung auf 125 nachgelagerte Organisationen begrenzen können?\nA) Betroffene Konten innerhalb von Minuten nach Erkennung anomaler Authentifizierung sperren\nB) Gesamten SMS-Datenverkehr sperren, bis eine manuelle Überprüfung abgeschlossen ist",
+        "options": [
+          "A) Betroffene Konten bei anomaler Authentifizierung automatisch sperren",
+          "B) SMS-Datenverkehr bis zur manuellen Prüfung blockieren"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "SOAR-Playbooks sollten wie Produktionscode behandelt werden – mit Versionskontrolle, Peer-Review und stufenweisem Rollout. Stimmt das?",
+        "options": [
+          "Wahr",
+          "Falsch"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "audit-cm08": {
+    "questions": [
+      {
+        "q": "Honeytokens verursachen häufig Falschmeldungen, weil legitime Benutzer im normalen Betrieb versehentlich auf sie zugreifen können. Stimmt das?",
+        "options": [
+          "Wahr",
+          "Falsch"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "Warum sind Active-Directory-Honeypot-Konten mit Kerberoastable SPNs besonders effektiv bei der Angriffserkennung?\nA) Das Anfordern eines Kerberos-Tickets für einen Täuschungs-SPN verrät einen Angreifer bei der Privilege-Escalation-Aufklärung\nB) Sie blockieren automatisch den Anmeldeversuch eines Angreifers, wenn der SPN abgefragt wird",
+        "options": [
+          "A) SPN-Ticket-Anfrage entlarvt Angreifer-Aufklärung",
+          "B) Blockiert Angreifer-Anmeldung bei SPN-Abfrage automatisch"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Ein AWS-IAM-Honeytoken-Zugriffsschlüssel mit Deny-All-Richtlinie birgt operationelles Risiko, wenn ein Angreifer ihn verwendet, weil der Angreifer dann auf AWS-Ressourcen zugreifen kann. Ist das korrekt?",
+        "options": [
+          "Wahr",
+          "Falsch"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "Beim Uber-Datenschutzverstoß 2022: Welche Täuschungstechnologie hätte während der lateralen Bewegungsphase eine frühe Warnung liefern können?\nA) Honeytokens – gefälschte Zugangsdaten, die neben echten in internen Repositories eingebettet sind\nB) Ein Netzwerk-Honeypot-Server, der eine interne Datenbank imitiert",
+        "options": [
+          "A) Honeytokens in internen Repositories",
+          "B) Ein Netzwerk-Honeypot-Datenbankserver"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Skalierung ist bei Täuschungsdeployments entscheidend – das Einsetzen von Hunderten von Täuschungsködern erhöht die Wahrscheinlichkeit erheblich, dass ein lateral agierender Angreifer einen auslöst. Stimmt das?",
+        "options": [
+          "Wahr",
+          "Falsch"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "audit-cm09": {
+    "questions": [
+      {
+        "q": "Zero-Trust-Architektur basiert auf dem Prinzip 'Vertrauen, aber verifizieren' – sobald ein Benutzer im Unternehmensnetzwerk ist, wird implizites Vertrauen gewährt. Ist das korrekt?",
+        "options": [
+          "Wahr",
+          "Falsch"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "Was veranlasste Google, die BeyondCorp-Zero-Trust-Architektur zu entwickeln?\nA) Operation Aurora – ein chinesischer staatlich geförderter Angriff, der implizites Vertrauen im internen Netzwerkdatenverkehr ausnutzte\nB) Eine regulatorische Anforderung von NIST, die Nutzung von Unternehmens-VPNs zu eliminieren",
+        "options": [
+          "A) Operation Aurora deckte implizites internes Netzwerkvertrauen auf",
+          "B) NIST-Regulierungsanforderung zur VPN-Eliminierung"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Unter Zero-Trust-CARTA ist das Vertrauensniveau einer Sitzung zum Zeitpunkt der ersten Authentifizierung dauerhaft festgelegt und kann sich während der Sitzung nicht ändern. Stimmt das?",
+        "options": [
+          "Wahr",
+          "Falsch"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "Welche Komponente einer Zero-Trust-Architektur trifft die Zugangsentscheidung (Erlauben/Ablehnen)?\nA) Der Policy Decision Point (PDP)\nB) Der Identity Provider (IDP)",
+        "options": [
+          "A) Der Policy Decision Point (PDP)",
+          "B) Der Identity Provider (IDP)"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Zero-Trust-Überwachung erzeugt reichhaltigere Audit-Telemetrie als herkömmliche Perimeter-Überwachung, weil jede Zugangsentscheidung – nicht nur Sicherheitsereignisse – protokolliert wird. Stimmt das?",
+        "options": [
+          "Wahr",
+          "Falsch"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "audit-cm10": {
+    "questions": [
+      {
+        "q": "XDR erfordert, dass Analysten zwischen separaten EDR-, NDR- und Identity-Konsolen wechseln, um Alarme manuell zu einem Incident zu korrelieren. Funktioniert XDR so?",
+        "options": [
+          "Wahr",
+          "Falsch"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "Wie verknüpft die XDR-Entitätsgraphkorrelation automatisch Alarme aus verschiedenen Telemetriequellen?\nA) Indem Alarme gefunden werden, die innerhalb eines Zeitfensters dieselbe Entität (Host, IP, Benutzer) teilen\nB) Indem Alarmtexte mit einer Bibliothek bekannter Angriffsbeschreibungen abgeglichen werden",
+        "options": [
+          "A) Gemeinsame Entitäten innerhalb eines Zeitfensters",
+          "B) Alarmtext abgeglichen mit Angriffsbeschreibungen"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "MITRE-ATT&CK-Technik-Tagging in XDR hilft Analysten, die Angriffskettenerzählung zu verstehen, anstatt Alarme isoliert zu untersuchen. Stimmt das?",
+        "options": [
+          "Wahr",
+          "Falsch"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Beim Lapsus$-Microsoft-Datenschutzverstoß: Was war das zentrale Erkennungsversagen, das XDR beheben sollte?\nA) Disparate Signale aus mehreren Telemetriequellen wurden nicht rechtzeitig in einer einzigen Incident-Ansicht korreliert\nB) Die Angreifer nutzten eine Zero-Day-Schwachstelle ohne vorhandene Erkennungssignatur",
+        "options": [
+          "A) Signale nicht rechtzeitig quellübergreifend korreliert",
+          "B) Nicht erkennbare Zero-Day-Schwachstelle"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "XDRs Kernwertversprechen besteht darin, dass Analysten einzelne Alarme statt gruppierte Incidents bearbeiten, was eine granularere Untersuchung ermöglicht. Ist das korrekt?",
+        "options": [
+          "Wahr",
+          "Falsch"
+        ],
+        "correct": 1
+      }
+    ]
+  },
+  "audit-cm11": {
+    "questions": [
+      {
+        "q": "Traditionelle jährliche Compliance-Audits bieten einen kontinuierlichen Echtzeit-Überblick über die Effektivität der Sicherheitskontrollen einer Organisation über das gesamte Jahr. Stimmt das?",
+        "options": [
+          "Wahr",
+          "Falsch"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "Welchen primären Mechanismus nutzen Continuous-Compliance-Plattformen zur Erhebung von Kontrollnachweisen?\nA) Automatisierte API-Aufrufe an Cloud-Anbieter- und IDP-Systeme auf geplanter Basis\nB) Manuelle Fragebögen, die vierteljährlich an Systemeigentümer geschickt werden",
+        "options": [
+          "A) Automatisierte API-Aufrufe an Cloud- und IDP-Systeme",
+          "B) Manuelle vierteljährliche Fragebögen an Systemeigentümer"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Kontinuierliche Compliance-Überwachung kann die Audit-Vorbereitungszeit durch automatisierte Nachweiserhebung um 60–80 % reduzieren. Ist das zutreffend?",
+        "options": [
+          "Wahr",
+          "Falsch"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Die FTC-Drizly-Einwilligungsverfügung war für Compliance-Programme bedeutsam, weil sie:\nA) Festlegte, dass einzelne Führungskräfte persönlich für systemische Compliance-Versäumnisse haftbar gemacht werden können\nB) Drizly verpflichtete, innerhalb von 90 Tagen nach dem Datenschutzverstoß ein einmaliges Sicherheitsaudit durchzuführen",
+        "options": [
+          "A) Führungskräfte persönlich haftbar für systemische Versäumnisse",
+          "B) Einmaliges Sicherheitsaudit innerhalb von 90 Tagen vorgeschrieben"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "In einem kontinuierlichen Compliance-Programm wird Kontrolldrift – wenn eine Kontrolle zwischen Audit-Zyklen außer Compliance gerät – sofort erkannt und nicht erst beim nächsten Jahresaudit. Stimmt das?",
+        "options": [
+          "Wahr",
+          "Falsch"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "audit-cm12": {
+    "questions": [
+      {
+        "q": "Der IBM-2023-Bericht zu den Kosten eines Datenschutzverstoßes ergab, dass der branchenweite Median-MTTD bei etwa 21 Tagen lag. Ist das korrekt?",
+        "options": [
+          "Wahr",
+          "Falsch"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Welches SOC-Reifegrad-Level ist gemäß dem CREST-Modell die empfohlene Mindestanforderung für Unternehmensorganisationen?\nA) Level 3 (Proaktiv – Bedrohungsjagd und verhaltensbasierte Erkennung)\nB) Level 1 (Reaktiv – ereignisgesteuert ohne proaktive Überwachung)",
+        "options": [
+          "A) Level 3 – Proaktiv",
+          "B) Level 1 – Reaktiv"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Eine False-Positive-Rate von über 5 % gilt für ein reifes SOC als akzeptabel, da Analysten darauf trainiert sind, hohe Alarmvolumina zu bewältigen. Stimmt das?",
+        "options": [
+          "Wahr",
+          "Falsch"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "Der MGM-Resorts-Datenschutzverstoß 2023 zeigte, dass MTTD-Versagen ein rein technisches Problem ist – schnellere Erkennungstools hätten den 100-Millionen-Dollar-Schaden vollständig verhindert. Ist das zutreffend?",
+        "options": [
+          "Wahr",
+          "Falsch"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "Welche SOAR-Automatisierungsabdeckung ist erforderlich, um bei großem Umfang eine MTTR unter einer Stunde zu erreichen?\nA) Mehr als 70 % der Alarmtypen durch automatisierte Playbooks abgedeckt\nB) Mehr als 20 % der Alarmtypen durch automatisierte Playbooks abgedeckt",
+        "options": [
+          "A) Mehr als 70 % Automatisierungsabdeckung",
+          "B) Mehr als 20 % Automatisierungsabdeckung"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "umbrella-01": {
+    "questions": [
+      {
+        "q": "Cisco Umbrella blockiert Bedrohungen auf DNS-Ebene – bevor überhaupt eine TCP/UDP-Verbindung aufgebaut wird.",
+        "options": [
+          "Wahr",
+          "Falsch"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Welche IP-Adressen sind die primären DNS-Resolver von Umbrella?",
+        "options": [
+          "8.8.8.8 und 8.8.4.4",
+          "208.67.222.222 und 208.67.220.220"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "Umbrella benötigt TLS-Entschlüsselung, um verschlüsselten HTTPS-C2-Datenverkehr zu blockieren.",
+        "options": [
+          "Wahr",
+          "Falsch"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "Cisco übernahm OpenDNS (heute Umbrella) für ca. 635 Millionen US-Dollar – in welchem Jahr?",
+        "options": [
+          "2015",
+          "2010"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Im Szenario der Trickbot-Abschaltung im Oktober 2020: Welche Bedrohungsgruppe betrieb die Trickbot-C2-Infrastruktur?",
+        "options": [
+          "LAZARUS GROUP",
+          "WIZARD SPIDER"
+        ],
+        "correct": 1
+      }
+    ]
+  },
+  "umbrella-02": {
+    "questions": [
+      {
+        "q": "DNS-Tunneling kodiert Daten in Subdomain-Labels und funktioniert durch strenge Firewalls, weil UDP-Port 53 selten blockiert wird.",
+        "options": [
+          "Wahr",
+          "Falsch"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Ein normaler Benutzer generiert täglich etwa 2.000 DNS-Anfragen – ungefähr so viele wie ein DNS-Tunnel.",
+        "options": [
+          "Falsch",
+          "Wahr"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Welcher Tool-Fingerabdruck wurde im DNS-Tunnel-Szenario der Singapurer Bank identifiziert?",
+        "options": [
+          "dnscat2 v0.07",
+          "iodine v0.7"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "OilRig (APT34) nutzte hauptsächlich welchen DNS-Eintragstyp für seine Exfiltrations-Tunnel?",
+        "options": [
+          "MX-Einträge",
+          "TXT-Einträge"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "Eine Tunnel-Domain auf NXDOMAIN-Ebene zu blockieren ist robuster als das Filtern nach Länge der Subdomain-Labels.",
+        "options": [
+          "Wahr",
+          "Falsch"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "umbrella-03": {
+    "questions": [
+      {
+        "q": "DGA-Schadsoftware generiert täglich Hunderte von Domains, aber der Angreifer muss nur eine oder zwei registrieren, um den C2-Zugang aufrechtzuerhalten.",
+        "options": [
+          "Wahr",
+          "Falsch"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Conficker, das erste weitverbreitete DGA-Botnet, generierte täglich ungefähr wie viele Domains?",
+        "options": [
+          "2.500",
+          "250"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "Das Blockieren einer einzigen DGA-generierten Domain reicht aus, um ein DGA-basiertes Botnet zu stoppen.",
+        "options": [
+          "Falsch",
+          "Wahr"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Im NHS-Krankenhaus-Szenario: Welche Ransomware-Nutzlast versuchte Emotet auszuliefern?",
+        "options": [
+          "LockBit",
+          "Ryuk"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "Umbrellas ML-basierte DGA-Erkennung markiert NXDOMAIN-Stürme kombiniert mit hochentropischen (maschinell wirkenden) Domainnamen.",
+        "options": [
+          "Wahr",
+          "Falsch"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "umbrella-04": {
+    "questions": [
+      {
+        "q": "Bei Single-Flux-Fast-Flux rotiert der Domainname selbst alle paar Minuten zusammen mit den IP-Adressen.",
+        "options": [
+          "Wahr",
+          "Falsch"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "Double-Flux erweitert Single-Flux, indem zusätzlich welcher DNS-Eintragstyp neben A-Einträgen rotiert wird?",
+        "options": [
+          "CNAME-Einträge",
+          "NS-Einträge (Nameserver)"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "IP-basierte Blocklisten sind eine effektive langfristige Verteidigung gegen Fast-Flux-Netzwerke.",
+        "options": [
+          "Wahr",
+          "Falsch"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "Umbrella überwindet Fast-Flux, indem es auf Domainnamen-Ebene blockiert und IP-Rotation damit wirkungslos macht.",
+        "options": [
+          "Wahr",
+          "Falsch"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Im Handelsunternehmen-Szenario: Wie viele eindeutige IP-Adressen löste die Domain flux-c2.net über 24 Stunden auf?",
+        "options": [
+          "28",
+          "287"
+        ],
+        "correct": 1
+      }
+    ]
+  },
+  "umbrella-05": {
+    "questions": [
+      {
+        "q": "DNS-Rebinding funktioniert, indem der DNS-Eintrag einer Domain nach Ablauf der TTL auf eine private IP geändert wird, wodurch der Browser die interne Ressource als Same-Origin behandelt.",
+        "options": [
+          "Wahr",
+          "Falsch"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Umbrella erkennt DNS-Rebinding, indem es öffentliche Domains markiert, die RFC-1918-private IP-Adressen in ihren DNS-Antworten zurückgeben.",
+        "options": [
+          "Falsch",
+          "Wahr"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "Nach einem erfolgreichen DNS-Rebind blockiert der Browser die Anfrage an die interne Ressource, weil er einen Cross-Origin-Verstoß erkennt.",
+        "options": [
+          "Wahr",
+          "Falsch"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "Ein DNS-Rebinding-Angriff erfordert, dass der Angreifer den autoritativen Nameserver der bösartigen Domain kontrolliert.",
+        "options": [
+          "Wahr",
+          "Falsch"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Im IoT-Labor-Szenario: Welche Art von Gerät war unter 192.168.10.1 erreichbar?",
+        "options": [
+          "IP-Kamera",
+          "Labor-Router (TP-Link AX3000)"
+        ],
+        "correct": 1
+      }
+    ]
+  },
+  "umbrella-06": {
+    "questions": [
+      {
+        "q": "IDN-Homograph-Angriffe nutzen Unicode-Zeichen, die ASCII-Buchstaben visuell identisch erscheinen – wodurch die bösartige Domain für das bloße Auge in älteren Browsern nicht erkennbar ist.",
+        "options": [
+          "Wahr",
+          "Falsch"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Ein TLS-Zertifikat von Let's Encrypt auf einer täuschend ähnlichen Domain ist ein zuverlässiges Vertrauensindiz dafür, dass die Seite legitim ist.",
+        "options": [
+          "Wahr",
+          "Falsch"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "Umbrellas Lookalike-Erkennung kann nur exakte Übereinstimmungen finden – Ein-Zeichen-Tippfehler können nicht identifiziert werden.",
+        "options": [
+          "Wahr",
+          "Falsch"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "Im Pentagon-Auftragnehmer-Szenario: Welche Zeichenersetzung machte die Lookalike-Domain schwer erkennbar?",
+        "options": [
+          "Null ('0') ersetzt den Buchstaben 'a' an Position 8",
+          "Kyrillisches 'с' ersetzt das lateinische 'c' an Position 1"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "NOBELIUM (APT29) wird welchem nationalen Nachrichtendienst zugeordnet?",
+        "options": [
+          "Chinesischer MSS",
+          "Russischer SVR"
+        ],
+        "correct": 1
+      }
+    ]
+  },
+  "umbrella-07": {
+    "questions": [
+      {
+        "q": "In Umbrellas Richtlinienhierarchie überschreibt ein benutzerdefinierter Allow-List-Eintrag Sicherheitskategorie-Blockierungen wie Malware und C2.",
+        "options": [
+          "Wahr",
+          "Falsch"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Welche Art von Allow-List-Eintrag ist sicherer und entspricht den Umbrella-Best-Practices?",
+        "options": [
+          "*.update-service.io ohne Ablaufdatum, global angewendet",
+          "pkg.update-service.io mit Ablaufdatum, auf die Gruppe WORKSTATIONS beschränkt"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "Die fehlerhafte Allow-List-Regel (RULE-2023-0092) im Schulbezirk-Szenario wurde von einem Konto hinzugefügt, das zum Zeitpunkt des Vorfalls noch aktiv war.",
+        "options": [
+          "Wahr",
+          "Falsch"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "LockBit-Betreiber nutzten den Wildcard-Allow-List-Eintrag aus, indem sie eine Subdomain unter der erlaubten Wildcard-Domain registrierten.",
+        "options": [
+          "Wahr",
+          "Falsch"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Wie viel kostete der LockBit-Angriff auf den Schulbezirk letztendlich an Lösegeld und Wiederherstellung?",
+        "options": [
+          "2,1 Millionen US-Dollar",
+          "21 Millionen US-Dollar"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "umbrella-08": {
+    "questions": [
+      {
+        "q": "Wenn Schadsoftware DoH (DNS over HTTPS) mit einer fest kodierten Resolver-IP wie 1.1.1.1:443 verwendet, sieht und blockiert Cisco Umbrellas Standard-DNS-Resolver die Anfragen.",
+        "options": [
+          "Falsch",
+          "Wahr"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Godlua (2019) war die erste Schadsoftware, die bestätigt DoH zur C2-Verschleierung einsetzte. Sie zielte auf welche Art von Systemen ab?",
+        "options": [
+          "Windows-Arbeitsstationen in Finanznetzwerken",
+          "Linux- und Windows-Server im asiatisch-pazifischen Raum"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "Umbrellas Roaming-Client blockiert alle DoH-Verbindungen, einschließlich solcher zu Umbrellas eigenem Cloud-DoH-Endpunkt (208.67.222.222:443).",
+        "options": [
+          "Falsch",
+          "Wahr"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Im Tokio-Szenario hieß der verdächtige Prozess, der DoH-Verbindungen herstellte, svchost32.exe – ein legitimer Windows-Systemprozess.",
+        "options": [
+          "Falsch",
+          "Wahr"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Die dekodierte DoH-Nutzlast im Tokio-Szenario enthüllte eine DNS-Anfrage für welche Domain?",
+        "options": [
+          "c2-prime.net",
+          "volt-stage.net"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "umbrella-09": {
+    "questions": [
+      {
+        "q": "Passive DNS zeichnet historische DNS-Auflösungen auf und ermöglicht es Analysten, Domains zu entdecken, die IPs mit bekannten C2-Servern geteilt haben.",
+        "options": [
+          "Wahr",
+          "Falsch"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Talos schiebt bestätigte bösartige Domains innerhalb von etwa 4 Stunden nach Analyst-Bestätigung global an Umbrella.",
+        "options": [
+          "Wahr",
+          "Falsch"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "In der Scattered-Spider-Kampagne (UNC3944) blockierte Talos die Kampagneninfrastruktur, nachdem die Mehrheit der Angriffe bereits erfolgreich war.",
+        "options": [
+          "Wahr",
+          "Falsch"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "Wie viele Domains wurden in der Scattered-Spider-Kampagne 2023 über Passive-DNS-Pivoting in der Infrastruktur identifiziert?",
+        "options": [
+          "147",
+          "47"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "Im Szenario wurden alle 47 Scattered-Spider-Kampagnen-Domains innerhalb weniger Tage beim selben Registrar mit Kryptowährungszahlung registriert.",
+        "options": [
+          "Wahr",
+          "Falsch"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "umbrella-10": {
+    "questions": [
+      {
+        "q": "DNS-Protokolle können kompromittierte Hosts – einschließlich nicht verwalteter OT/SCADA-Geräte – schneller identifizieren als EDR-Telemetrie allein.",
+        "options": [
+          "Wahr",
+          "Falsch"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "VOLT TYPHOON (chinesische APT) nutzte hauptsächlich benutzerdefinierte Schadsoftware mit einem ausgeprägten Exploit-Fußabdruck zur Persistenz in der US-kritischen Infrastruktur.",
+        "options": [
+          "Wahr",
+          "Falsch"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "DNS-Eindämmung blockiert C2-Domains für alle infizierten Hosts gleichzeitig, einschließlich nicht verwalteter OT- und SCADA-Geräte.",
+        "options": [
+          "Falsch",
+          "Wahr"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "Im ERCOT-Szenario: Wie viele OT-Hosts wurden dabei erwischt, die VOLT-TYPHOON-C2-Domain abzufragen?",
+        "options": [
+          "3",
+          "7"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "CISAs Critical Infrastructure Protection Guidelines (CPG 2.S) empfehlen DNS-Schicht-Sicherheit als Basismaßnahme für Betreiber kritischer Infrastruktur.",
+        "options": [
+          "Wahr",
+          "Falsch"
+        ],
+        "correct": 0
+      }
+    ]
+  }
+}

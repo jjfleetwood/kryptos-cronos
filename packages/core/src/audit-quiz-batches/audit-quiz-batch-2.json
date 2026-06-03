@@ -1,0 +1,1130 @@
+{
+  "audit-t01": {
+    "questions": [
+      {
+        "q": "During an API audit you discover that a GET /api/v1/invoices/{id} endpoint returns full invoice data for any authenticated user, regardless of ownership. Which OWASP API Top 10 vulnerability does this represent?",
+        "type": "mcq",
+        "options": [
+          "API2 - Broken Authentication",
+          "API1 - Broken Object Level Authorization (BOLA)",
+          "API5 - Broken Function Level Authorization",
+          "API3 - Broken Object Property Level Authorization"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "A GraphQL API allows clients to submit deeply nested queries without depth or complexity limits. What is the most immediate security risk this introduces?",
+        "type": "mcq",
+        "options": [
+          "SQL injection through query parameters",
+          "Denial of service via resource exhaustion from unbounded query complexity",
+          "Data exfiltration via introspection",
+          "BOLA through aliased field resolution"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "You are auditing a REST API and find that the /admin/users endpoint returns HTTP 403 for regular users but HTTP 200 with an empty body for a specific crafted Authorization header. What attack technique does this indicate a gap against?",
+        "type": "mcq",
+        "options": [
+          "JWT algorithm confusion",
+          "Mass assignment exploitation",
+          "Forced browsing / broken function level authorization probing",
+          "HTTP verb tampering"
+        ],
+        "correct": 2
+      },
+      {
+        "q": "An API accepts a JSON payload with a field 'role' that maps directly to the database column. A normal user sends {'role':'admin'} and successfully elevates privileges. Which OWASP API Top 10 category covers this?",
+        "type": "mcq",
+        "options": [
+          "API1 - BOLA",
+          "API6 - Unrestricted Access to Sensitive Business Flows",
+          "API3 - Broken Object Property Level Authorization (mass assignment)",
+          "API8 - Security Misconfiguration"
+        ],
+        "correct": 2
+      },
+      {
+        "q": "A REST API uses numeric sequential IDs (e.g., /api/orders/1001, /api/orders/1002). Is switching to UUIDs alone a sufficient fix for BOLA vulnerabilities?",
+        "type": "binary",
+        "options": ["Yes - UUIDs are unguessable and prevent object enumeration entirely", "No - authorization checks must be enforced server-side regardless of ID format"],
+        "correct": 1
+      },
+      {
+        "q": "GraphQL introspection is enabled in a production API. During your audit, should you flag this as a finding even if no sensitive type names are exposed?",
+        "type": "binary",
+        "options": ["No - introspection is harmless without sensitive data exposure", "Yes - introspection reveals schema structure that aids targeted attack planning and should be disabled in production"],
+        "correct": 1
+      },
+      {
+        "q": "An API gateway enforces rate limiting at 100 requests/minute per IP. An attacker distributes requests across 500 residential proxies at 1 req/min each. Which control would most effectively mitigate this distributed credential stuffing attempt?",
+        "type": "mcq",
+        "options": [
+          "Increase the per-IP rate limit to 1000 req/min",
+          "Implement user-level rate limiting combined with behavioral anomaly detection",
+          "Switch from REST to GraphQL to reduce surface area",
+          "Add CAPTCHA only on login endpoints"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "You find a POST /api/v2/transfer endpoint that lacks idempotency controls. The same transfer request replayed 10 times results in 10 debits. Which OWASP API Top 10 2023 category best classifies this?",
+        "type": "mcq",
+        "options": [
+          "API4 - Unrestricted Resource Consumption",
+          "API6 - Unrestricted Access to Sensitive Business Flows",
+          "API2 - Broken Authentication",
+          "API9 - Improper Inventory Management"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "A company exposes both v1 and v2 of their API in production. The v2 API has all security patches, but v1 (which was supposed to be retired) still receives 15% of traffic. Is documenting this as a finding sufficient without requiring immediate v1 deprecation?",
+        "type": "binary",
+        "options": ["Yes - documentation with a remediation timeline is sufficient for an audit finding", "No - shadow/zombie API versions actively undermine the security posture of v2 patches and must be scheduled for immediate decommission with enforcement controls"],
+        "correct": 1
+      },
+      {
+        "q": "During API audit you observe that error responses from a REST API include full stack traces, internal class names, and database query strings. Which remediation is the correct approach?",
+        "type": "binary",
+        "options": ["Encrypt error responses so only authorized clients can decrypt them", "Return generic error messages to clients and log detailed errors server-side only"],
+        "correct": 1
+      }
+    ]
+  },
+  "audit-t02": {
+    "questions": [
+      {
+        "q": "A developer commits a .env file to a public GitHub repository. The file contains AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY. What is the first priority action in a secrets exposure incident?",
+        "type": "mcq",
+        "options": [
+          "Delete the commit from GitHub history",
+          "Immediately rotate/revoke the exposed credentials, then remediate the repository",
+          "Set the repository to private",
+          "Notify all repository watchers"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "An audit reveals that a production application retrieves its database password from an environment variable set in a Kubernetes Deployment manifest stored in Git. What is the primary risk versus using a dedicated secrets manager?",
+        "type": "mcq",
+        "options": [
+          "Environment variables are not accessible inside containers",
+          "The secret is stored in plaintext in version control and etcd, broadening exposure surface",
+          "Kubernetes does not support environment variable injection",
+          "The deployment will fail without a secrets manager"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "You are auditing a HashiCorp Vault deployment and find that the root token is stored in a team password manager shared by 12 engineers. What is the correct remediation?",
+        "type": "mcq",
+        "options": [
+          "Restrict password manager access to 3 senior engineers",
+          "Revoke the root token after initial setup and use AppRole or other auth methods for all operational access",
+          "Rotate the root token monthly",
+          "Enable audit logging on the password manager"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "A secrets rotation policy requires API keys to be rotated every 90 days. During an audit you find 47 keys that have not been rotated in over a year. What is the most operationally sound remediation strategy?",
+        "type": "mcq",
+        "options": [
+          "Immediately revoke all 47 keys simultaneously",
+          "Implement automated rotation via a secrets manager with dual-active key support to allow zero-downtime rollover",
+          "Send email reminders to the owning teams and close the finding",
+          "Extend the rotation policy to 365 days to match actual practice"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "Trufflehog and git-secrets are run in pre-commit hooks. Does this fully eliminate the risk of secrets being committed to a repository?",
+        "type": "binary",
+        "options": ["Yes - pre-commit hooks intercept all secrets before they reach the remote", "No - hooks can be bypassed with --no-verify, may miss novel secret patterns, and do not scan historical commits"],
+        "correct": 1
+      },
+      {
+        "q": "An application uses AWS Secrets Manager to store its RDS credentials. The IAM role attached to the EC2 instance has secretsmanager:GetSecretValue on '*'. Should this be flagged as a finding?",
+        "type": "binary",
+        "options": ["No - using Secrets Manager is best practice and the role simply needs read access", "Yes - the wildcard resource allows the instance to read any secret in the account; the policy should be scoped to specific secret ARNs"],
+        "correct": 1
+      },
+      {
+        "q": "During a code review you find the string 'sk-ant-api03-' hardcoded in a configuration file. Which tool category is best suited for automated detection of this and similar patterns across the entire codebase history?",
+        "type": "mcq",
+        "options": [
+          "DAST scanner",
+          "Secret scanning with entropy analysis and regex pattern matching (e.g., Trufflehog, Gitleaks)",
+          "Dependency vulnerability scanner",
+          "SAST control flow analysis"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "A Vault cluster is configured with a single Shamir unseal key held by the CTO. What risk does this create, and what is the recommended configuration?",
+        "type": "mcq",
+        "options": [
+          "No risk — a single key is simpler and more secure",
+          "Single point of failure and key person risk; use Vault's auto-unseal with a cloud KMS or split the key into multiple shares with a quorum threshold",
+          "The CTO should delegate the key to the security team",
+          "Vault should be restarted daily to avoid needing unseal"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "An audit reveals that secret values are logged in plaintext in application logs when a secrets-fetch call fails. Is this an acceptable behavior if the logs are stored in a secured SIEM?",
+        "type": "binary",
+        "options": ["Yes - secured log aggregation provides sufficient protection for transient secret exposure", "No - secrets must never be written to logs regardless of storage security; SIEM access is typically broader than secrets access"],
+        "correct": 1
+      },
+      {
+        "q": "A team stores SSH private keys in AWS Parameter Store Standard tier (unencrypted). What is the correct remediation?",
+        "type": "binary",
+        "options": ["Migrate to Parameter Store SecureString tier with KMS encryption or to AWS Secrets Manager", "Add an IAM condition to restrict GetParameter calls to specific source IPs"],
+        "correct": 0
+      }
+    ]
+  },
+  "audit-t03": {
+    "questions": [
+      {
+        "q": "An AWS S3 bucket named 'prod-financial-reports' has ACL set to 'public-read' and is not included in any S3 Block Public Access policy. What is the correct immediate remediation sequence?",
+        "type": "mcq",
+        "options": [
+          "Enable S3 versioning on the bucket",
+          "Enable S3 Block Public Access at the account level and remove the public-read ACL from the bucket",
+          "Move the bucket contents to Glacier",
+          "Set a bucket policy that denies anonymous GetObject"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "A CSPM tool reports that Azure Storage accounts allow public blob access and have no firewall rules configured. Which CIS Benchmark section primarily addresses this finding?",
+        "type": "mcq",
+        "options": [
+          "CIS Azure 3.x - Storage Accounts",
+          "CIS Azure 6.x - Networking",
+          "CIS Azure 2.x - Security Center",
+          "CIS Azure 8.x - Virtual Machines"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "During a GCP audit, you find that a service account has the 'roles/editor' primitive role attached at the project level. What is the most appropriate remediation?",
+        "type": "mcq",
+        "options": [
+          "Replace 'roles/editor' with 'roles/viewer' to reduce write access",
+          "Remove the primitive role and apply granular predefined roles scoped to the specific resources the service account requires",
+          "Rotate the service account key",
+          "Enable Workload Identity Federation on the project"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "A CSPM scan identifies that CloudTrail is enabled in us-east-1 only, while workloads run across 8 regions. What attack class does this monitoring gap enable?",
+        "type": "mcq",
+        "options": [
+          "Privilege escalation via IAM role chaining",
+          "Attacker activity in unmonitored regions goes undetected, enabling lateral movement and persistence without audit trail",
+          "S3 data exfiltration through presigned URLs",
+          "EC2 instance metadata service v1 exploitation"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "AWS Security Hub aggregates findings from GuardDuty, Inspector, and Macie. Is enabling Security Hub alone sufficient to remediate the underlying cloud misconfigurations it detects?",
+        "type": "binary",
+        "options": ["Yes - Security Hub's automated remediation actions fix findings automatically", "No - Security Hub provides visibility and aggregation; actual remediation requires separate action via Config rules, Lambda, or manual intervention"],
+        "correct": 1
+      },
+      {
+        "q": "An Azure subscription has no Azure Policy assignments and no resource locks on production resource groups. Is this a critical finding even if the CSPM shows no current misconfigurations?",
+        "type": "binary",
+        "options": ["No - if current state is compliant, policies are not required", "Yes - without preventive controls, any future deployment can introduce misconfigurations with no guardrail; policy enforcement is a defense-in-depth requirement"],
+        "correct": 1
+      },
+      {
+        "q": "A Terraform plan shows a new AWS Security Group with ingress rule 0.0.0.0/0 on port 22. Which CSPM/IaC scanning approach would catch this before deployment?",
+        "type": "mcq",
+        "options": [
+          "Post-deployment AWS Config rule evaluation",
+          "Checkov or tfsec pre-deployment static analysis in the CI pipeline",
+          "AWS Trusted Advisor weekly report",
+          "CloudTrail log analysis after the resource is created"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "During a GCP audit you find that the default compute service account (PROJECT_NUMBER-compute@developer.gserviceaccount.com) has the 'Editor' role and is attached to all Compute Engine instances by default. What is the recommended remediation?",
+        "type": "mcq",
+        "options": [
+          "Rotate the default service account key",
+          "Create dedicated per-workload service accounts with minimal IAM roles and disable the default service account or remove its Editor binding",
+          "Delete all Compute Engine instances and recreate them",
+          "Enable VPC Service Controls around the project"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "A CSPM tool reports 'MFA not enforced for IAM users with console access' on 23 accounts. Is requiring MFA only for admin-level IAM users sufficient to close this finding?",
+        "type": "binary",
+        "options": ["Yes - MFA for admins protects the most sensitive actions and is the industry standard minimum", "No - all IAM users with console access should have MFA enforced; non-admin users can still perform harmful actions such as data exfiltration within their permissions"],
+        "correct": 1
+      },
+      {
+        "q": "An AWS account has 140 IAM users with programmatic access keys, none of which have been used in the last 180 days. What is the correct remediation priority?",
+        "type": "binary",
+        "options": ["Rotate all 140 keys immediately as a precaution", "Disable and schedule deletion of unused keys; investigate whether the associated identities still require access"],
+        "correct": 1
+      }
+    ]
+  },
+  "audit-t04": {
+    "questions": [
+      {
+        "q": "An AWS Lambda function has an execution role with iam:PassRole and iam:CreateRole on '*'. Why is this a critical privilege escalation path?",
+        "type": "mcq",
+        "options": [
+          "It allows the Lambda to create CloudWatch log streams",
+          "An attacker with Lambda invocation access can create a new IAM role with AdministratorAccess and pass it to a service they control, achieving full account takeover",
+          "It allows the Lambda to assume any cross-account role",
+          "It bypasses SCPs in AWS Organizations"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "During an IAM audit you find a role with sts:AssumeRole on '*' in its trust policy. What is the immediate risk?",
+        "type": "mcq",
+        "options": [
+          "The role can be assumed by any AWS principal in any account, including external actors if the account ID is known",
+          "The role can only be assumed by services within the same account",
+          "The wildcard is ignored by AWS IAM and only explicit principals can assume the role",
+          "The role allows cross-account S3 replication"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "A GCP audit reveals a service account with roles/iam.serviceAccountTokenCreator on another service account that has roles/owner. What privilege escalation does this enable?",
+        "type": "mcq",
+        "options": [
+          "The attacker can read the owner service account's private key",
+          "An attacker who compromises the first SA can generate tokens for the owner SA, gaining full project-level access",
+          "The first SA can delete the owner SA",
+          "This grants the first SA billing account access"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "An AWS permission boundary is attached to all developer IAM roles preventing iam:* actions. A developer's role has iam:PutRolePolicy. Can they escalate privileges?",
+        "type": "mcq",
+        "options": [
+          "Yes - iam:PutRolePolicy lets them modify their own role's inline policy to add any permission",
+          "No - the permission boundary blocks iam:* so PutRolePolicy cannot be exercised",
+          "Yes - they can modify another role's policy to assume it",
+          "No - permission boundaries override all inline policies automatically"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "An IAM role trust policy includes a Condition block with 'aws:PrincipalOrgID' restricting assumption to your AWS Organization. Does this prevent all cross-account privilege escalation from outside the org?",
+        "type": "binary",
+        "options": ["Yes - PrincipalOrgID is an absolute boundary that no external principal can bypass", "No - a compromised account within the org can still assume the role; the condition only limits the trust boundary to org members, not malicious insiders"],
+        "correct": 1
+      },
+      {
+        "q": "You find an IAM user with AdministratorAccess policy attached directly. The user was created 3 years ago for 'temporary' setup purposes and still has active access keys. Is removing AdministratorAccess alone sufficient remediation?",
+        "type": "binary",
+        "options": ["Yes - reducing permissions to least privilege closes the privilege escalation risk", "No - the stale access keys may be compromised; keys must be rotated or the user disabled, and access reviewed to determine if the account is still needed at all"],
+        "correct": 1
+      },
+      {
+        "q": "AWS Organizations SCPs deny 'iam:CreateUser' across all member accounts. Can a member account admin still create functional identities that bypass this SCP?",
+        "type": "mcq",
+        "options": [
+          "No - SCPs are absolute and no identity creation is possible",
+          "Yes - IAM roles, SAML federation, and Cognito identity pools can create functional access without creating IAM users",
+          "Yes - but only if the management account approves each request",
+          "No - SCPs block all federation methods in addition to user creation"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "A security review finds that the AWS management account has 12 IAM users with console access. What is the recommended remediation per AWS best practices?",
+        "type": "mcq",
+        "options": [
+          "Reduce to 5 IAM users maximum",
+          "Migrate all access to AWS IAM Identity Center (SSO); the management account should have no long-term IAM users",
+          "Enable MFA on all 12 users",
+          "Create a dedicated security OU and move users there"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "A Kubernetes ServiceAccount is mounted into all pods in a namespace by default and has cluster-admin ClusterRoleBinding. Does network policy enforcement prevent privilege escalation from a compromised pod?",
+        "type": "binary",
+        "options": ["Yes - network policies prevent the pod from communicating with the Kubernetes API server", "No - network policies control pod-to-pod traffic but a pod with a cluster-admin ServiceAccount token can call the Kubernetes API directly regardless of network policy"],
+        "correct": 1
+      },
+      {
+        "q": "An Azure audit reveals that multiple users have the 'Owner' role at the subscription level assigned as permanent (not PIM-eligible). What is the preferred remediation?",
+        "type": "binary",
+        "options": ["Convert Owner assignments to just-in-time eligible assignments via Azure PIM with approval workflow and time-bound activation", "Reduce users from Owner to Contributor role permanently"],
+        "correct": 0
+      }
+    ]
+  },
+  "audit-t05": {
+    "questions": [
+      {
+        "q": "A Docker container is running with the --privileged flag in production. What specific capability does this grant that represents the highest risk?",
+        "type": "mcq",
+        "options": [
+          "Access to all other containers' filesystem namespaces",
+          "Full access to the host kernel, all devices, and all capabilities — effectively equivalent to root on the host",
+          "Ability to modify other containers' network interfaces",
+          "Bypass of Docker Hub rate limits"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "Trivy scans a container image and reports a CRITICAL CVE in a base OS package that is not used by the application. What is the correct audit recommendation?",
+        "type": "mcq",
+        "options": [
+          "Accept the risk since the package is unused",
+          "Rebuild the image using a minimal base (distroless or Alpine) to eliminate unused packages, removing the vulnerable surface area",
+          "Add a Trivy suppression rule for this CVE",
+          "Isolate the container with a restrictive network policy"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "A Kubernetes audit finds that several pods have hostNetwork: true set. What attack path does this enable from a compromised pod?",
+        "type": "mcq",
+        "options": [
+          "The pod can bypass Kubernetes RBAC checks",
+          "The pod shares the host's network namespace, enabling it to sniff all host traffic, bind to host ports, and attack node-level services",
+          "The pod can access other namespaces' secrets",
+          "The pod inherits the node's IAM instance profile automatically"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "An image scanning pipeline runs in CI but only blocks on CVSS score >= 9.0. You find a CVSS 8.9 vulnerability that has a public exploit and is used in an actively exploited service. What is the most appropriate audit recommendation?",
+        "type": "mcq",
+        "options": [
+          "The pipeline is working as designed; accept the risk",
+          "Supplement CVSS score thresholds with EPSS (exploit probability) scores and CISA KEV status to catch actively exploited vulnerabilities below the CVSS cutoff",
+          "Lower the blocking threshold to CVSS 7.0 for all images",
+          "Disable the CI gate and scan post-deployment instead"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "A Kubernetes cluster has no PodSecurity admission controller or OPA/Kyverno policy configured. Is this a high-severity finding even if all current workloads appear to follow secure configurations?",
+        "type": "binary",
+        "options": ["No - if workloads are currently secure, admission control is optional", "Yes - without admission enforcement, any future deployment can introduce privileged containers or hostPath mounts with no automated gate"],
+        "correct": 1
+      },
+      {
+        "q": "Container images in a registry have been pulled from Docker Hub without digest pinning (using 'latest' or mutable tags). Is this a security finding even if image scanning is performed?",
+        "type": "binary",
+        "options": ["No - scanning at pull time ensures the image is clean regardless of tag mutability", "Yes - mutable tags allow a supply chain attack to substitute a malicious image between the scan and the pull; digest pinning ensures immutability"],
+        "correct": 1
+      },
+      {
+        "q": "A Kubernetes RBAC audit finds a ClusterRoleBinding granting 'system:anonymous' the 'cluster-admin' ClusterRole. What is the correct immediate action?",
+        "type": "mcq",
+        "options": [
+          "Delete the ClusterRoleBinding immediately and audit all actions performed while it was active",
+          "Restrict the anonymous account to read-only ClusterRole",
+          "Enable NetworkPolicy to restrict anonymous API access",
+          "Rotate all service account tokens in the cluster"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "An audit reveals containers running as root (UID 0) with no securityContext restrictions. What two securityContext settings would most immediately reduce the risk?",
+        "type": "mcq",
+        "options": [
+          "allowPrivilegeEscalation: false and runAsNonRoot: true",
+          "readOnlyRootFilesystem: true and hostPID: false",
+          "capabilities: drop: [NET_RAW] and seccompProfile: Unconfined",
+          "runAsUser: 0 and privileged: false"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "A Docker image uses ADD to copy a remote URL into the image during build. Is this a security concern compared to using COPY with a local file?",
+        "type": "binary",
+        "options": ["No - ADD and COPY are functionally equivalent from a security perspective", "Yes - ADD with a URL fetches content at build time from an external source that may be compromised or change, and has no integrity verification unless combined with explicit hash checks"],
+        "correct": 1
+      },
+      {
+        "q": "An EKS cluster's node groups use IMDSv1 (Instance Metadata Service v1). A pod without any IAM permissions is able to curl http://169.254.169.254 and retrieve node IAM role credentials. What does this enable?",
+        "type": "binary",
+        "options": ["This is expected behavior and poses no additional risk beyond the node's IAM permissions", "A compromised pod can exfiltrate the node's IAM role credentials without needing a ServiceAccount token, enabling AWS API access at the node's permission level; IMDSv2 with hop limit 1 must be enforced"],
+        "correct": 1
+      }
+    ]
+  },
+  "audit-t06": {
+    "questions": [
+      {
+        "q": "Checkov scans a Terraform plan and flags CKV_AWS_18: S3 bucket access logging not enabled. The team argues that CloudTrail covers S3 data events. Is this a valid risk acceptance argument?",
+        "type": "mcq",
+        "options": [
+          "Yes - CloudTrail data events and S3 access logging are identical in coverage",
+          "No - S3 server access logging captures request-level details like requester IP and HTTP status not available in CloudTrail, and both serve different forensic purposes",
+          "Yes - CloudTrail is the AWS-recommended replacement for S3 access logs",
+          "No - only S3 access logs capture object-level permissions changes"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "A Terraform module for RDS creates instances with publicly_accessible = true and no vpc_security_group_ids constraint enforced. What IaC security control would prevent this from reaching production?",
+        "type": "mcq",
+        "options": [
+          "Run terraform validate before plan",
+          "Enforce a Sentinel or OPA Rego policy in CI that blocks any plan containing publicly_accessible = true for RDS resources",
+          "Add a comment in the module documentation",
+          "Enable AWS Config after deployment to detect the misconfiguration"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "During a CloudFormation audit you find a stack with DeletionPolicy not set on the production RDS instance. What is the risk?",
+        "type": "mcq",
+        "options": [
+          "The stack cannot be updated without manually deleting the RDS instance first",
+          "If the stack is deleted (accidentally or maliciously), the RDS instance and all its data will be permanently destroyed with no automatic snapshot",
+          "CloudFormation will prevent any stack deletion if RDS is present",
+          "The RDS instance will not be included in Cost Explorer"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "tfsec is integrated into the CI pipeline but runs only on changed files per pull request. A developer modifies a module input that indirectly makes an existing resource publicly accessible. Will tfsec catch this?",
+        "type": "mcq",
+        "options": [
+          "Yes - tfsec traces all module references across the plan",
+          "It depends on whether tfsec is run against the full plan or only the diff; scanning only changed files can miss indirect misconfigurations introduced through variable changes",
+          "Yes - tfsec always evaluates the full Terraform state graph",
+          "No - tfsec only checks syntax, not resource configurations"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "Terraform state files are stored in an S3 bucket without encryption or versioning. Is this a security finding even if the state contains no secrets?",
+        "type": "binary",
+        "options": ["No - Terraform state is infrastructure metadata and does not require the same protection as secrets", "Yes - Terraform state often contains resource attributes including generated passwords, private keys, and sensitive outputs; it must be encrypted and versioned"],
+        "correct": 1
+      },
+      {
+        "q": "An IaC audit finds that Terraform workspaces are used to separate dev, staging, and production environments sharing the same state backend with identical access permissions. Is this a sufficient environment isolation strategy?",
+        "type": "binary",
+        "options": ["Yes - Terraform workspaces provide complete environment isolation", "No - Terraform workspaces share backend access; any principal with backend access can read or modify state for all workspaces; separate backends with separate IAM controls per environment are recommended"],
+        "correct": 1
+      },
+      {
+        "q": "A CloudFormation stack uses hardcoded AMI IDs from a third-party account. What supply chain risk does this introduce?",
+        "type": "mcq",
+        "options": [
+          "The AMI may not be in the same region as the stack",
+          "The third-party account could share a malicious AMI update or revoke access, and the AMI is not scanned by your security toolchain",
+          "CloudFormation does not support cross-account AMI references",
+          "The stack will fail to deploy if the AMI owner changes their pricing model"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "A Terraform plan shows that an aws_iam_policy_document allows '*' as Action on an S3 bucket resource. Checkov does not flag this. What does this reveal about relying solely on Checkov for IaC security?",
+        "type": "mcq",
+        "options": [
+          "Checkov is broken and must be replaced with tfsec",
+          "Checkov checks are rule-based; overly permissive custom policies may require OPA/Sentinel for context-aware policy enforcement or manual review",
+          "The Terraform provider is misconfigured",
+          "The S3 bucket must be public for this to be a risk"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "An organization requires all Terraform modules to be sourced from an internal private registry rather than the public Terraform Registry. Is this purely a governance requirement with no security benefit?",
+        "type": "binary",
+        "options": ["Yes - module source is a governance preference; security controls are in the infrastructure itself", "No - public registry modules may contain malicious code or unpatched vulnerabilities; internal registries enable vetting, pinning, and supply chain control"],
+        "correct": 1
+      },
+      {
+        "q": "A Checkov scan is run against a Terraform codebase and 847 checks pass while 12 fail. The team suppresses all 12 failures with inline skip comments (# checkov:skip) without documented justification. Is this an acceptable practice?",
+        "type": "binary",
+        "options": ["Yes - if the code deploys without Checkov blocking, the security posture is maintained", "No - undocumented skip annotations mask real risks and create audit gaps; suppressions must have documented justification, risk acceptance sign-off, and compensating controls"],
+        "correct": 1
+      }
+    ]
+  },
+  "audit-t07": {
+    "questions": [
+      {
+        "q": "A SAST tool reports a SQL injection vulnerability in a code path that is only reachable by authenticated admin users. How should this finding be triaged?",
+        "type": "mcq",
+        "options": [
+          "Close as not applicable — admin users are trusted",
+          "Treat as a valid finding; authentication reduces but does not eliminate risk since admin accounts can be compromised and injection should be remediated regardless of caller privilege",
+          "Downgrade severity to informational only",
+          "Suppress the finding in the SAST tool configuration"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "An SCA scan identifies that a transitive dependency (dependency of a dependency) has a known RCE vulnerability. The direct dependency has not released a patch yet. What is the correct remediation approach?",
+        "type": "mcq",
+        "options": [
+          "Wait for the direct dependency maintainer to release a patch",
+          "Evaluate whether the vulnerable code path is reachable; if so, override the transitive dependency version directly, switch to an alternative dependency, or implement a workaround",
+          "Accept the risk since you don't directly control the transitive dependency",
+          "Remove the direct dependency entirely"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "An SBOM generated via Syft lists 340 components for a Node.js application. During a CVE audit, 12 components have HIGH/CRITICAL CVEs. The application owner claims none of the vulnerable code paths are called. What should the auditor require?",
+        "type": "mcq",
+        "options": [
+          "Accept the risk acceptance statement as sufficient",
+          "Require reachability analysis evidence (e.g., from a tool like Semgrep or Snyk Code) documenting that vulnerable functions are not invoked, and document the risk acceptance with expiration",
+          "Remove the 12 components from the SBOM",
+          "Require immediate patching regardless of reachability"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "Semgrep SAST is configured with community rulesets only. A developer introduces an insecure deserialization vulnerability using a custom serialization pattern not covered by any community rule. What does this demonstrate about SAST tooling strategy?",
+        "type": "mcq",
+        "options": [
+          "Semgrep is insufficient and must be replaced with a commercial SAST tool",
+          "Community rulesets cover common patterns but custom or application-specific vulnerabilities require custom rules and manual code review as a complement",
+          "The vulnerability is acceptable since no tool detected it",
+          "DAST would have caught this at runtime instead"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "A CI pipeline runs Snyk SCA on every pull request but the main branch has accumulated 200 unfixed CVEs because the gate only blocks NEW vulnerabilities introduced per PR. Is this a compliant security posture?",
+        "type": "binary",
+        "options": ["Yes - preventing new vulnerabilities from entering is best practice", "No - blocking only new introductions while ignoring 200 existing CVEs creates a false sense of security; a remediation SLA for existing findings must also be enforced"],
+        "correct": 1
+      },
+      {
+        "q": "An SBOM is generated at build time but not stored or versioned alongside the release artifact. Is this sufficient for supply chain audit purposes?",
+        "type": "binary",
+        "options": ["Yes - generating an SBOM at build time satisfies the requirement", "No - the SBOM must be stored, signed, and associated with each specific release artifact to enable retroactive analysis when new CVEs are disclosed against historical releases"],
+        "correct": 1
+      },
+      {
+        "q": "A Java application's pom.xml includes a dependency on log4j 2.14.1. What is the critical CVE associated with this version and what is the remediation?",
+        "type": "mcq",
+        "options": [
+          "CVE-2021-44228 (Log4Shell) — upgrade to log4j 2.17.1 or later which disables JNDI lookups by default",
+          "CVE-2022-0847 (Dirty Pipe) — patch the host OS kernel",
+          "CVE-2021-3711 (OpenSSL) — upgrade the JVM's bundled OpenSSL",
+          "CVE-2017-5638 (Struts2) — upgrade the Spring framework"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "A SAST tool produces 4,000 findings, 80% of which are false positives. The team has disabled the tool because of alert fatigue. What is the correct remediation to the process?",
+        "type": "mcq",
+        "options": [
+          "Accept the false positive rate as inherent to SAST",
+          "Tune the ruleset to high-confidence rules, establish a triage SLA, and implement a suppression workflow with documented justification to reduce noise while maintaining coverage",
+          "Switch to DAST only as it produces fewer findings",
+          "Run SAST only on releases, not pull requests"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "A CVE is published for a library used by your application with CVSS 9.8. EPSS score is 0.03% (very low probability of exploitation in the next 30 days). Should CVSS alone drive the patching SLA?",
+        "type": "binary",
+        "options": ["Yes - CVSS 9.8 is critical and must be patched within the critical SLA regardless of other factors", "No - EPSS, CISA KEV status, reachability, and compensating controls should all factor into prioritization; a CVSS 9.8 with 0.03% EPSS may reasonably be deprioritized relative to a CVSS 7.5 with 60% EPSS"],
+        "correct": 1
+      },
+      {
+        "q": "An organization uses GitHub Dependabot for SCA. Dependabot auto-merges dependency PRs after all CI checks pass. Is this a safe configuration for production dependency management?",
+        "type": "binary",
+        "options": ["Yes - if CI passes, the update is safe to merge automatically", "No - auto-merge of dependency updates bypasses human review; a malicious package update could pass all CI tests while introducing a backdoor; human approval should be required for direct dependencies"],
+        "correct": 1
+      }
+    ]
+  },
+  "audit-t08": {
+    "questions": [
+      {
+        "q": "A network audit reveals that the production VLAN and the development VLAN share the same subnet and have no inter-VLAN routing restrictions. What is the primary risk?",
+        "type": "mcq",
+        "options": [
+          "Increased broadcast domain reduces network performance",
+          "A compromised development host can directly reach production systems, enabling lateral movement without crossing any firewall or segmentation control",
+          "Developer machines may inadvertently consume production DHCP leases",
+          "VLAN trunking becomes impossible with shared subnets"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "A firewall ruleset audit finds an outbound rule 'permit any any any' (all traffic to any destination on any port) on the perimeter firewall. What critical control does this absence undermine?",
+        "type": "mcq",
+        "options": [
+          "Inbound DDoS mitigation",
+          "Exfiltration prevention and C2 beaconing detection; unrestricted outbound allows data theft and malware communication without any inspection point",
+          "BGP route advertisement",
+          "SSL/TLS certificate validation"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "An AWS VPC has all workloads deployed in public subnets with security groups as the only segmentation control. What architecture risk does this present?",
+        "type": "mcq",
+        "options": [
+          "Public subnets prevent the use of IAM instance profiles",
+          "Security groups are stateful but any misconfiguration directly exposes resources to the internet; private subnets with NAT gateways provide an additional defense-in-depth layer for non-internet-facing workloads",
+          "Public subnets cannot use VPC flow logs",
+          "Internet gateways in public subnets block all outbound traffic"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "Microsegmentation is implemented using a software-defined networking overlay. An auditor finds that east-west traffic between microservices in the same segment is unencrypted and uninspected. What zero-trust principle does this violate?",
+        "type": "mcq",
+        "options": [
+          "Never trust the perimeter — all external traffic must be encrypted",
+          "Never trust any network segment implicitly — east-west traffic must be authenticated, encrypted, and inspected just as north-south traffic",
+          "Microsegmentation is sufficient by itself without encryption",
+          "Only traffic leaving the datacenter requires encryption"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "VPC Flow Logs are enabled in an AWS environment. Is this sufficient to detect and block a lateral movement attack within the VPC?",
+        "type": "binary",
+        "options": ["Yes - Flow Logs provide full packet inspection and can trigger automated blocking", "No - VPC Flow Logs are metadata only (source/dest IP, port, protocol, bytes) with no packet content; they detect but cannot block, and require a SIEM correlation layer to generate alerts"],
+        "correct": 1
+      },
+      {
+        "q": "A network segmentation audit finds that the backup network VLAN has unrestricted access to the production VLAN. Should this be accepted because backup traffic legitimately needs to reach all systems?",
+        "type": "binary",
+        "options": ["Yes - backup systems require broad access by design", "No - backup networks are a high-value lateral movement path; access should be restricted to specific ports (e.g., agent ports) from designated backup servers only, not unrestricted"],
+        "correct": 1
+      },
+      {
+        "q": "A Kubernetes cluster uses default NetworkPolicy behavior (no policies applied). What is the effective network posture for pod-to-pod communication?",
+        "type": "mcq",
+        "options": [
+          "All pod-to-pod communication is blocked by default",
+          "All pods in the cluster can communicate with all other pods regardless of namespace, with no network-level restrictions",
+          "Pods can only communicate within their own namespace",
+          "Pod communication requires explicit ServiceAccount binding"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "An organization implements next-generation firewall (NGFW) rules based on IP addresses for microsegmentation. The environment uses auto-scaling that changes instance IPs daily. What is the critical flaw in this approach?",
+        "type": "mcq",
+        "options": [
+          "NGFWs do not support dynamic rules",
+          "IP-based rules become stale as instances cycle, creating gaps; identity-based policies tied to tags, workload identity, or service mesh certificates are required for dynamic environments",
+          "Auto-scaling is incompatible with NGFW deployment",
+          "Daily IP changes trigger NGFW license violations"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "A zero trust network architecture mandates mutual TLS (mTLS) for all service-to-service communication. An auditor finds that 3 legacy services cannot support mTLS and use plaintext HTTP internally. Is deploying a sidecar proxy (e.g., Envoy via Istio) sufficient to remediate this without modifying the legacy services?",
+        "type": "binary",
+        "options": ["No - mTLS must be implemented in the application code itself to be valid", "Yes - a service mesh sidecar proxy can terminate and originate mTLS on behalf of the legacy service, providing mTLS at the network layer without application code changes"],
+        "correct": 1
+      },
+      {
+        "q": "A firewall rule audit finds 'permit tcp any 10.0.0.0/8 eq 1433' (allow SQL Server from any source to the internal network). Is restricting this to a specific source subnet sufficient remediation?",
+        "type": "binary",
+        "options": ["Yes - restricting to a source subnet closes the overly permissive rule", "No - while restricting source is necessary, the remediation must also verify that only authorized DB client hosts are in that subnet, and should require application-level authentication in addition to network controls"],
+        "correct": 1
+      }
+    ]
+  },
+  "audit-t09": {
+    "questions": [
+      {
+        "q": "An audit of a PostgreSQL deployment reveals that the 'pg_hba.conf' file has 'host all all 0.0.0.0/0 md5'. What is the risk and the correct remediation?",
+        "type": "mcq",
+        "options": [
+          "This is acceptable if strong passwords are enforced",
+          "This allows any host to attempt authentication against any database; restrict the CIDR to known application subnets and prefer scram-sha-256 over md5",
+          "The 'all' database specification should be changed to 'postgres'",
+          "MD5 authentication is too weak and must be replaced with SSL certificates only"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "An AWS RDS MySQL instance has encryption_at_rest disabled and has been running in production for 6 months with live data. What is the correct remediation process?",
+        "type": "mcq",
+        "options": [
+          "Enable encryption in the RDS settings panel (in-place modification)",
+          "Create an encrypted snapshot of the unencrypted instance, restore a new encrypted instance from the snapshot, and cut over — encryption cannot be enabled on an existing RDS instance in place",
+          "Enable AWS Macie to classify the data as a compensating control",
+          "Encrypt the underlying EBS volumes directly"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "A database audit finds that application DB credentials are shared across 5 microservices using the same database user with broad privileges. What is the primary security concern?",
+        "type": "mcq",
+        "options": [
+          "Shared credentials cause connection pool exhaustion",
+          "A compromise of any one microservice exposes the credentials and privileges of all services; each microservice should have its own DB user with least-privilege access to only its required tables",
+          "Shared credentials prevent audit log attribution of queries to specific services",
+          "Both B and C are correct security concerns"
+        ],
+        "correct": 3
+      },
+      {
+        "q": "Database audit logs show that a DBA account ran 'SELECT * FROM users WHERE 1=1' at 2 AM outside business hours. The account has no MFA. What controls does this gap expose?",
+        "type": "mcq",
+        "options": [
+          "Missing data masking for production queries",
+          "Missing MFA enforcement for privileged DB access, missing just-in-time access controls, and missing anomaly alerting on off-hours privileged queries",
+          "The DBA needs additional training",
+          "The database firewall needs to block queries with WHERE 1=1"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "Encryption in transit (TLS) is enforced for all connections to a MongoDB cluster. Is this sufficient to protect data confidentiality from a database administrator with root OS access?",
+        "type": "binary",
+        "options": ["Yes - TLS encryption protects data in transit and at rest from unauthorized access", "No - TLS protects data in transit only; an OS-level admin can read data files directly or attach a debugger to the mongod process; encryption at rest and strict OS access controls are also required"],
+        "correct": 1
+      },
+      {
+        "q": "A database audit log shows that 'general_log' is enabled on a MySQL production instance. Should this be flagged as a finding?",
+        "type": "binary",
+        "options": ["No - general logging is a security best practice and should always be enabled", "Yes - MySQL general_log captures all queries including those containing sensitive data (passwords in queries, PII) and can cause significant I/O overhead; binary/audit log with selective logging is preferred in production"],
+        "correct": 1
+      },
+      {
+        "q": "An audit finds that a production PostgreSQL database allows 'SUPERUSER' login to remote hosts. Which three controls should be immediately implemented?",
+        "type": "mcq",
+        "options": [
+          "Restrict SUPERUSER to local socket connections only, require certificate-based auth for superuser, and implement a privileged access workstation (PAW) policy",
+          "Change the SUPERUSER password, enable SSL, and add a firewall rule",
+          "Create a read-only replica and redirect SUPERUSER to it",
+          "Disable SUPERUSER and use pg_read_all_data instead"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "An organization uses Amazon DynamoDB for a multi-tenant SaaS application. Tenant data is stored in the same table with a tenant_id partition key. An audit finds no IAM condition enforcing tenant_id access scope. What attack does this enable?",
+        "type": "mcq",
+        "options": [
+          "DynamoDB throttling across tenants",
+          "A compromised application role with DynamoDB access can query or modify any tenant's data by specifying a different tenant_id — IAM conditions or application-layer enforcement must restrict access by tenant context",
+          "Cross-account DynamoDB access",
+          "DynamoDB scan operations consuming all provisioned capacity"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "Database audit logs are retained for 7 days in the database engine's native logging. A forensic investigation requires activity from 45 days ago. Is this gap a compliance finding only?",
+        "type": "binary",
+        "options": ["Yes - retention is a compliance matter; past incidents cannot be retroactively prevented", "No - it is both a compliance and operational security finding; inadequate retention prevents incident response, forensics, and breach notification scope determination"],
+        "correct": 1
+      },
+      {
+        "q": "An audit finds that column-level encryption is implemented for PII fields in a SQL database, but the application's service account has direct SELECT access to the encrypted columns with the decryption key embedded in the connection string. Is column encryption effective in this configuration?",
+        "type": "binary",
+        "options": ["Yes - column encryption protects data at the storage layer regardless of connection string configuration", "No - if the decryption key is embedded in the connection string accessible to the service, any actor with connection string access effectively has plaintext access; key management must be separated from data access"],
+        "correct": 1
+      }
+    ]
+  },
+  "audit-t10": {
+    "questions": [
+      {
+        "q": "A SOC audit finds that authentication failures from a critical identity provider are not forwarded to the SIEM. An attacker conducts a successful credential stuffing campaign and it goes undetected for 11 days. What log source gap enabled this?",
+        "type": "mcq",
+        "options": [
+          "Missing endpoint detection and response (EDR) telemetry",
+          "Missing ingestion of IdP authentication logs (failed logins, account lockouts, MFA bypass events) — without this source, credential attacks are invisible to the SIEM",
+          "Missing network flow logs at the perimeter",
+          "Missing OS event logs from application servers"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "SIEM retention is configured to 90 days hot storage and 1 year cold storage. A forensic investigation requires logs from 14 months ago. What is the compliance and operational impact?",
+        "type": "mcq",
+        "options": [
+          "No impact — 90 days is sufficient for all regulatory frameworks",
+          "Logs from months 13-14 are unavailable; depending on regulatory requirements (PCI DSS requires 1 year, some frameworks require 7 years) this may be a compliance violation and prevents complete forensic reconstruction",
+          "Cold storage retrieval is too slow for forensics so this gap is acceptable",
+          "The SIEM vendor must provide the missing logs"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "A SIEM alert fires: 'Impossible Travel — user logged in from New York and Tokyo within 45 minutes.' The alert is configured with a default threshold and has fired 300 times in the past month with 298 false positives. What is the primary risk created by this alert configuration?",
+        "type": "mcq",
+        "options": [
+          "The alert threshold is too low and should be disabled",
+          "Alert fatigue causes analysts to dismiss or ignore alerts; the 2 true positives are likely missed; alert tuning with VPN/CDN exclusions and behavioral baselines are required",
+          "Impossible travel alerts are inherently unreliable and should be removed",
+          "The SIEM is misconfigured and needs vendor support"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "An audit of a Splunk deployment finds that 40% of log sources are forwarding logs with clock skew of +/- 15 minutes versus NTP. What investigation impact does this create?",
+        "type": "mcq",
+        "options": [
+          "No impact — Splunk indexes by receipt time regardless of event timestamp",
+          "Timeline reconstruction during incident response becomes unreliable; events from different sources cannot be accurately correlated, potentially obscuring attack sequences",
+          "Splunk automatically corrects for clock skew",
+          "Only affects log search performance, not security analysis"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "A SIEM receives logs from 450 sources but only 180 have active detection rules assigned. Is log ingestion without detection coverage sufficient for a SOC?",
+        "type": "binary",
+        "options": ["Yes - log ingestion ensures data availability for investigation when needed", "No - logs without detection rules provide only reactive forensic value; the 270 uncovered sources represent blind spots where attacks generate no alerts, defeating the purpose of real-time SOC monitoring"],
+        "correct": 1
+      },
+      {
+        "q": "Log integrity is not enforced — logs are stored in a writable database that SOC analysts can query but also modify. Is this a finding if logs are only used for investigation, not compliance?",
+        "type": "binary",
+        "options": ["No - if not used for compliance reporting, log mutability is acceptable", "Yes - mutable logs can be tampered with by a compromised insider or attacker with SOC access; write-once immutable log storage (e.g., S3 Object Lock, WORM) is required to maintain forensic integrity"],
+        "correct": 1
+      },
+      {
+        "q": "A SOC receives SIEM alerts for known bad IPs from a threat intelligence feed. The feed has a 6-month update lag. What is the primary limitation of this detection approach?",
+        "type": "mcq",
+        "options": [
+          "Threat intelligence feeds are not compatible with SIEM platforms",
+          "Stale IOCs miss current threat actor infrastructure; most attackers rotate IPs frequently, making 6-month-old feed data near-useless for detection; real-time or daily-updated feeds are required",
+          "IP-based detection is the most reliable method available",
+          "SOC analysts cannot act on IP-based alerts fast enough"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "An organization's SIEM mean time to detect (MTTD) is 21 days based on historical incidents. What does this metric indicate about the logging and alerting posture?",
+        "type": "mcq",
+        "options": [
+          "21 days MTTD is within industry benchmark for most sectors",
+          "Detection coverage has significant gaps; attackers dwelled undetected for 3 weeks on average — detection rules, log coverage, and alert quality must be reviewed against the MITRE ATT&CK framework to identify gaps",
+          "MTTD is a vendor SLA metric, not a security posture indicator",
+          "The SOC headcount is insufficient and must be expanded"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "AWS CloudTrail is enabled with multi-region logging but S3 data events are not logged. Can an auditor determine what objects were accessed in S3 from CloudTrail alone?",
+        "type": "binary",
+        "options": ["Yes - CloudTrail management events include all S3 data operations", "No - CloudTrail management events capture control plane actions (bucket creation, policy changes); S3 data events (GetObject, PutObject, DeleteObject) must be explicitly enabled and incur additional cost"],
+        "correct": 1
+      },
+      {
+        "q": "A SIEM correlation rule fires on 5 failed logins followed by 1 successful login from the same IP within 10 minutes. The rule has a 15-minute suppression window after firing. An attacker uses exactly this timing to conduct 50 cycles of credential stuffing. Does the suppression window create a detection gap?",
+        "type": "binary",
+        "options": ["No - the first firing triggers an investigation that would catch subsequent cycles", "Yes - after the first alert fires, the 15-minute suppression allows the attacker to continue undetected during that window; suppression should apply per-account or use dynamic thresholds rather than flat time windows"],
+        "correct": 1
+      }
+    ]
+  },
+  "audit-t11": {
+    "questions": [
+      {
+        "q": "A Zero Trust Architecture (ZTA) audit finds that users are granted network access based solely on their corporate VPN connection. Why does this violate zero trust principles?",
+        "type": "mcq",
+        "options": [
+          "VPNs are not compatible with Zero Trust architectures",
+          "VPN establishes implicit network-level trust after authentication; ZTA requires continuous, per-session verification of identity, device posture, and context for each resource access, not a single trust gate",
+          "Zero trust only applies to cloud environments, not VPNs",
+          "VPN traffic cannot be encrypted in a ZTA"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "An organization deploys a ZTA policy engine that evaluates device trust signals. A fully patched corporate laptop accessing a sensitive system from an untrusted network is granted access. A personal device with up-to-date patches is denied. What device trust signal is most likely driving the distinction?",
+        "type": "mcq",
+        "options": [
+          "Operating system version",
+          "Device certificate issued by the corporate PKI / MDM enrollment status, which confirms the device is managed and compliant with corporate policy — not just patch level",
+          "User account age",
+          "Network geolocation"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "A ZTA audit finds that the Policy Decision Point (PDP) is a single server with no high availability. What is the operational security risk?",
+        "type": "mcq",
+        "options": [
+          "PDP unavailability causes minor user inconvenience",
+          "If the PDP is unavailable and the system fails open (grants access), all ZTA controls are bypassed; if it fails closed, all access is denied — either outcome is operationally unacceptable; HA is required with a defined fail-secure posture",
+          "Single PDP is acceptable for small organizations",
+          "PDP redundancy is only required for cloud-native ZTAs"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "An audit of a ZTA implementation finds that device trust is evaluated only at session initiation, not continuously during the session. A device becomes compromised mid-session. What is the gap?",
+        "type": "mcq",
+        "options": [
+          "No gap — initial device assessment is sufficient for session duration",
+          "ZTA requires continuous trust evaluation; a device compromised post-authentication should trigger session termination or step-up authentication, which point-in-time assessment cannot achieve",
+          "Continuous assessment is only required for high-privilege sessions",
+          "The gap is mitigated by network segmentation"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "A ZTA deployment uses software-defined perimeter (SDP) to make resources invisible until authenticated. Does this eliminate the need for application-layer authentication and authorization?",
+        "type": "binary",
+        "options": ["Yes - SDP prevents unauthorized users from even discovering resources, making app-layer auth redundant", "No - SDP provides network-layer access control; application-layer authentication and RBAC remain necessary defense-in-depth layers against compromised authorized users"],
+        "correct": 1
+      },
+      {
+        "q": "A ZTA policy requires multi-factor authentication for all resource access. A service-to-service API call uses a long-lived JWT with no MFA. Is this a ZTA policy violation?",
+        "type": "binary",
+        "options": ["No - MFA requirements apply to human users, not service accounts", "Yes - ZTA applies to all identities including services; service-to-service authentication should use short-lived credentials (e.g., SPIFFE/SPIRE SVIDs, mTLS certificates) and not long-lived static tokens"],
+        "correct": 1
+      },
+      {
+        "q": "An organization implements ZTA but retains a flat management network accessible from all ZTA-protected systems. What residual risk does this create?",
+        "type": "mcq",
+        "options": [
+          "Management network traffic reduces ZTA performance",
+          "A compromised ZTA-protected system can pivot to the management network, bypassing ZTA controls entirely and accessing management plane infrastructure directly",
+          "Management networks are exempt from ZTA by design",
+          "ZTA cannot protect management traffic due to protocol limitations"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "During a ZTA audit you find that the identity provider (IdP) used as the trust anchor has no conditional access policies and accepts password-only authentication from any device and location. What is the impact on the overall ZTA?",
+        "type": "mcq",
+        "options": [
+          "Minimal — the ZTA policy engine provides additional controls downstream",
+          "Critical — the IdP is the trust anchor for ZTA; if it is compromised or has weak authentication, every downstream ZTA decision is based on a fraudulent identity assertion",
+          "Moderate — network segmentation mitigates IdP weaknesses",
+          "Low — ZTA is designed to assume IdP compromise"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "A ZTA requires logging of all access decisions (allow/deny) by the Policy Enforcement Point. The audit finds PEP deny decisions are not logged. Is this acceptable since blocked access represents a success?",
+        "type": "binary",
+        "options": ["Yes - only successful (allow) decisions need logging for audit purposes", "No - deny decisions are critical security signals; patterns of denials reveal reconnaissance, misconfigured access, or compromised accounts attempting access — all must be logged and analyzed"],
+        "correct": 1
+      },
+      {
+        "q": "A company migrates from implicit-trust perimeter architecture to ZTA. During the transition, legacy systems that cannot support ZTA agents are placed in an 'exception zone' with the old perimeter model. What is the primary audit concern?",
+        "type": "binary",
+        "options": ["The exception zone is acceptable as a temporary migration accommodation", "The exception zone becomes a permanent backdoor if not time-bounded with a decommission plan; attackers targeting the legacy systems bypass ZTA entirely; compensating controls and a firm migration deadline are required"],
+        "correct": 1
+      }
+    ]
+  },
+  "audit-t12": {
+    "questions": [
+      {
+        "q": "An automated compliance scan shows 98% control coverage for SOC 2 Type II. The 2% uncovered includes access reviews and vendor risk assessments. During audit, an examiner asks for evidence of quarterly access reviews. What is the likely finding?",
+        "type": "mcq",
+        "options": [
+          "98% coverage is sufficient for SOC 2 certification",
+          "Manual controls not covered by automation still require evidence collection; absence of access review evidence is a SOC 2 exception regardless of automated coverage percentage",
+          "The vendor should provide automated access review tooling",
+          "Access reviews can be waived if automated access controls are in place"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "Compliance as Code is implemented using Open Policy Agent (OPA) Rego policies in CI/CD. A new AWS service launches that is not covered by existing Rego policies. How does this create a compliance drift risk?",
+        "type": "mcq",
+        "options": [
+          "OPA policies automatically extend to new AWS services",
+          "New services used in infrastructure are not evaluated against compliance policies until Rego rules are written for them, creating a blind spot where non-compliant configurations are deployed without detection",
+          "New services are blocked by default in CI/CD until policies are added",
+          "Compliance drift only occurs when existing policies are modified"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "An AWS Config rule detects that an S3 bucket has public access enabled (NON_COMPLIANT). The Config remediation action automatically enables Block Public Access. An hour later the same bucket is again NON_COMPLIANT. What does this indicate?",
+        "type": "mcq",
+        "options": [
+          "The AWS Config rule has a bug and should be disabled",
+          "An automated process or IaC deployment is overwriting the remediation; the root cause is a Terraform/CloudFormation configuration that sets public access — the source IaC must be fixed, not just the symptom",
+          "The S3 bucket is exempt from the Config rule",
+          "AWS Config remediation requires manual approval to persist"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "A compliance program uses point-in-time assessments (annual penetration test, quarterly vulnerability scan). A critical misconfiguration is introduced in month 2 and exploited in month 4. At what point would continuous compliance controls have detected this?",
+        "type": "mcq",
+        "options": [
+          "Month 4, same as the point-in-time schedule",
+          "Near real-time after introduction in month 2; continuous controls scan on every change or on a frequent schedule (hourly/daily), dramatically reducing the window of exposure compared to periodic assessments",
+          "Month 7, at the next scheduled assessment",
+          "Continuous controls cannot detect misconfigurations faster than quarterly scans"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "A compliance-as-code pipeline blocks deployments that violate PCI DSS controls. A developer requests a temporary exception to deploy a hotfix that bypasses the control. Should the exception process be automated?",
+        "type": "binary",
+        "options": ["Yes - automated exception approval speeds up incident response", "No - compliance exceptions require documented business justification, risk owner approval, compensating control definition, and a time-bound expiration; automation of approval removes the human accountability required by auditors"],
+        "correct": 1
+      },
+      {
+        "q": "AWS Config records all configuration changes and evaluates rules continuously. Is this sufficient to demonstrate continuous compliance to a PCI DSS QSA?",
+        "type": "binary",
+        "options": ["Yes - AWS Config continuous evaluation satisfies continuous monitoring requirements", "No - Config demonstrates continuous technical monitoring but QSA assessments also require evidence of process controls, access reviews, incident response tests, and human-attestable controls that Config cannot automate"],
+        "correct": 1
+      },
+      {
+        "q": "A drift detection system reports that 15 production EC2 instances have configurations that differ from their Terraform state (manually applied patches and security group changes). What is the recommended remediation approach in a compliance context?",
+        "type": "mcq",
+        "options": [
+          "Immediately run terraform apply to revert all instances to IaC state",
+          "Investigate each drift instance: update IaC to reflect intentional changes (patches), revert unauthorized changes (security group), and enforce IaC-only change processes going forward",
+          "Delete and recreate all 15 instances from current IaC",
+          "Accept drift as normal operational variance"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "An organization implements compliance controls as unit tests that run on every PR. A junior developer disables a failing test to unblock their feature. What process control prevents this from becoming a compliance gap?",
+        "type": "mcq",
+        "options": [
+          "Code review by a senior developer is sufficient",
+          "Compliance control tests should be in a protected branch that requires approval from the security/compliance team to modify; disabling compliance tests should trigger an immediate alert to the GRC team",
+          "The failing test is not a compliance issue if the feature is not security-related",
+          "All tests should have automatic exception workflows"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "A continuous compliance system shows 100% compliant state for NIST 800-53 controls. The next day, a zero-day vulnerability is published affecting a core component. Does the compliance status indicate the organization is secure?",
+        "type": "binary",
+        "options": ["Yes - 100% compliance with NIST 800-53 indicates a strong security posture that addresses zero-days", "No - compliance frameworks measure adherence to defined controls at a point in time; zero-day vulnerabilities by definition are not covered by existing controls and require separate vulnerability management response"],
+        "correct": 1
+      },
+      {
+        "q": "An organization uses HashiCorp Sentinel policies to enforce compliance in Terraform Cloud. A team bypasses Sentinel by running terraform apply locally with a different workspace. What control gap does this expose?",
+        "type": "binary",
+        "options": ["No gap - Sentinel policies are enforced regardless of apply method", "Yes - Sentinel only enforces within Terraform Cloud/Enterprise; local apply bypasses all Sentinel policies; the remediation is to restrict AWS/cloud credentials to only be usable via Terraform Cloud through OIDC trust policies and deny direct IAM key usage"],
+        "correct": 1
+      }
+    ]
+  }
+}

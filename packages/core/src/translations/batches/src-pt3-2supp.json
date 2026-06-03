@@ -1,0 +1,892 @@
+{
+  "baseball-1-01": {
+    "tagline": "Antes de poder jugar el juego, tienes que entender el campo — y por qué tiene la forma que tiene.",
+    "overview": [
+      "El béisbol se juega en un campo de juego en forma de diamante con cuatro bases — primera, segunda, tercera y el plato de home — separadas 90 pies (60 pies en la mayoría de las ligas juveniles). El campo de juego es un cuadrado rotado 45 grados para que las bases formen una forma de diamante. Más allá del campo de juego está el jardín, extendiéndose hasta la pared del jardín. El territorio legal es el área entre las dos líneas de falta que se extienden desde el plato de home a través de la primera y tercera base y continúan hacia el jardín.",
+      "Un equipo coloca nueve jugadores en el campo, cada uno en una posición específica: lanzador (1), catcher (2), primera base (3), segunda base (4), tercera base (5), shortstop (6), jardinero izquierdo (7), jardinero central (8), y jardinero derecho (9). Estos números se utilizan en las tarjetas de anotación y en la puntuación (por ejemplo, un doble play 6-4-3 significa shortstop a segunda base a primera base).",
+      "Un juego de béisbol consta de nueve entradas (seis en la mayoría de las ligas juveniles). Cada entrada tiene dos mitades — el equipo visitante batea primero (parte superior de la entrada), el equipo local batea segundo (parte inferior de la entrada). Cada equipo es retirado después de tres outs. Para anotar una carrera, un bateador debe llegar a una base, avanzar alrededor de las tres bases y tocar el plato de home antes del tercer out de la entrada. El equipo con más carreras después de nueve entradas gana."
+    ],
+    "technical": {
+      "title": "El Diamante de Béisbol — Dimensiones y Diseño",
+      "body": [
+        "El campo de juego consiste en las cuatro bases (incluyendo el plato de home) y las áreas entre ellas. El montículo del lanzador está en el centro del diamante, a 60 pies 6 pulgadas del plato de home (46 pies en las divisiones menores de Little League). La caja del bateador está a ambos lados del plato de home, y el catcher se agacha directamente detrás de ella. Los dugouts están a ambos lados del campo, donde el equipo se sienta cuando no está bateando o en el campo.",
+        "El territorio de falta es el área fuera de las dos líneas de falta. Una pelota golpeada hacia territorio de falta es generalmente una bola de falta (un strike si el bateador tiene menos de dos strikes; sin penalización adicional después de dos strikes, con algunas excepciones). Una bola de falta atrapada en el aire por un fielder es un out. La determinación de legal/falta se basa en dónde la pelota primero toca el terreno más allá de la primera o tercera base."
+      ]
+    },
+    "incident": {
+      "title": "La Primera Serie Mundial de Little League — 1947",
+      "impact": "La primera Serie Mundial de Little League estableció a Williamsport como el hogar espiritual del béisbol juvenil, una tradición que continúa hoy en día con 20 equipos de alrededor del mundo compitiendo anualmente ante audiencias globales.",
+      "body": [
+        "Little League Baseball fue fundada en 1939 por Carl Stotz en Williamsport, Pensilvania, con solo tres equipos. Ocho años después, en 1947, Stotz organizó la primera Serie Mundial de Little League — una competición regional que atrajo equipos de toda Pensilvania. Fue modesta según los estándares de hoy, pero estableció el modelo para lo que se convertiría en uno de los eventos deportivos juveniles más vistos del mundo.",
+        "Hoy en día, la Serie Mundial de Little League presenta 20 equipos que representan regiones a través de Estados Unidos y países alrededor del mundo. Los juegos se transmiten a nivel nacional en ESPN y ABC. El torneo ha producido algunos de los momentos más memorables del béisbol — y miles de jugadores que continuaron sus carreras en béisbol profesional. La serie permanece en Williamsport, en el Estadio Howard J. Lamade, a solo millas de donde Carl Stotz por primera vez colocó esos tres equipos originales."
+      ]
+    },
+    "timeline": [
+      "Abner Doubleday acreditado (algo mitológicamente) con inventar el béisbol en Cooperstown, NY",
+      "Se funda la National League of Professional Base Ball Clubs",
+      "Se juega la primera Serie Mundial moderna — Boston Americans vs. Pittsburgh Pirates",
+      "Little League Baseball fundada por Carl Stotz en Williamsport, Pensilvania",
+      "Se celebra la primera Serie Mundial de Little League en Williamsport",
+      "Little League se abre oficialmente a las niñas",
+      "Little League opera en más de 80 países en todo el mundo"
+    ],
+    "keyTakeaways": [
+      "El diamante de béisbol tiene cuatro bases 90 pies separadas (60 pies en la mayoría de las ligas juveniles) — home, primera, segunda, tercera",
+      "Nueve jugadores toman el campo, cada uno con una posición numerada (lanzador=1, catcher=2, y así sucesivamente hasta jardinero derecho=9)",
+      "Cada entrada tiene dos mitades — tres outs por media entrada; nueve entradas por juego",
+      "Para anotar, un jugador debe avanzar alrededor de las tres bases y tocar el plato de home antes de que termine la entrada"
+    ]
+  },
+  "baseball-1-02": {
+    "tagline": "No puedes jugar el juego correctamente si no conoces las reglas — y conocerlas protege a tu equipo.",
+    "overview": [
+      "El béisbol tiene un conjunto bien organizado de reglas, pero varias reglas clave confunden a los nuevos jugadores. Tres strikes y estás fuera — pero solo ciertos lanzamientos cuentan como strikes: un lanzamiento en la zona de strike que no golpeas, cualquier lanzamiento que golpees y falles, o un lanzamiento que golpees de foul (con la excepción de que una bola foul no puede ser el tercer strike, excepto en un intento de bunt). Cuatro bolas — lanzamientos fuera de la zona de strike que el bateador no golpea — le dan al bateador un walk (base libre en primera).",
+      "Hay dos formas principales de registrar un out en un corredor: outs forzados y outs de etiqueta. Un out forzado ocurre cuando un corredor se ve obligado a avanzar a la siguiente base porque un bateador se convierte en corredor (o porque los corredores detrás fuerzan a los corredores adelante). Para registrar un out forzado, el fildeador solo necesita tocar la base mientras sostiene la pelota — no se requiere etiqueta. Un out de etiqueta requiere que el fildeador etiquete físicamente al corredor con la pelota mientras el corredor no está tocando una base.",
+      "La regla de la bola voladora de infield es una de las reglas más malentendidas del béisbol. Se aplica cuando hay corredores en primera y segunda (o bases llenas), menos de dos outs, y se golpea una bola voladora justa al infield que un fildeador de infield puede atrapar con esfuerzo ordinario. En esta situación, el bateador es automáticamente declarado fuera — incluso si el fildeador la deja caer intencionalmente. Esta regla existe para evitar que los fildeadores dejen caer deliberadamente pop-ups fáciles para crear un juego doble o triple barato."
+    ],
+    "technical": {
+      "title": "Hits vs. Errores — Anotando el Juego",
+      "body": [
+        "Un hit es cuando un bateador llega a base por su propia habilidad — una pelota golpeada en territorio justo que no puede ser fildeada con esfuerzo ordinario, o que cae para un hit de base antes de que se pueda registrar un out. Un error es cuando un fildeador comete un error en una pelota que debería haber sido fildeada con esfuerzo ordinario — soltar una bola voladora que se puede atrapar, lanzar descontroladamente, o manipular mal un rodillo de rutina. Un error se le carga al fildeador; el bateador llega a base pero no se le acredita un hit.",
+        "Distinguir hits de errores importa para las estadísticas (el promedio de bateo solo cuenta hits) y para propósitos de anotación. El anotador oficial hace este juicio. En el béisbol juvenil, aprender a distinguir estos juegos construye baseball IQ. Un concepto clave: el beneficio de la duda va al bateador — si un juego es borderline, anótalo como hit."
+      ]
+    },
+    "incident": {
+      "title": "La Famosa Controversia de la Regla de Bola Voladora de Infield — NLDS 2012",
+      "impact": "Una llamada de regla de bola voladora de infield en la parte baja de la 8ª entrada de un juego de playoff de eliminación (Cardinals vs. Braves) desencadenó una gran controversia cuando una bola que cayó en el campo izquierdo poco profundo fue llamada bajo la regla — los aficionados lanzaron escombros al campo, y el juego fue retrasado. El juego destacó cuán ampliamente malentendida sigue siendo esta regla incluso entre aficionados adultos.",
+      "body": [
+        "En el juego de Wild Card de la NLDS 2012 entre los St. Louis Cardinals y Atlanta Braves, con los Braves perdiendo 6-3 y corredores en primera y segunda con un out en la 8ª entrada, el paracortos Pete Kozma se posicionó bajo un pop-up en el campo izquierdo poco profundo. Cuando la pelota bajaba — muy más allá del infield normal — el árbitro del campo izquierdo gritó 'bola voladora de infield, el bateador está fuera.' La pelota cayó, el corredor en segunda avanzó a tercera, y la confusión reinó.",
+        "Los aficionados de los Braves — e incluso muchos jugadores — estaban furiosos, argumentando que la pelota estaba demasiado lejos en el outfield para que la regla se aplicara. La regla requiere que la pelota sea capturada 'con esfuerzo ordinario' por un fildeador de infield, pero la llamada es un juicio del árbitro. El juego, aunque controvertido, era argumentablemente correcto. El incidente se convirtió en un momento de enseñanza viral para la educación de reglas de béisbol, demostrando que incluso en el béisbol profesional de playoff, la regla de bola voladora de infield sigue siendo ampliamente malentendida."
+      ]
+    },
+    "timeline": [
+      "La Liga Nacional codifica las primeras reglas de béisbol moderno incluyendo el out de tres strikes",
+      "Se introduce la regla de bola voladora de infield para evitar que los fildeadores dejen caer deliberadamente pop-ups",
+      "Se actualiza la regla de bola foul — las bolas foul cuentan como strikes (excepto la tercera)",
+      "El bateador acreditado con hit en walk cambió — los walks ya no se cuentan como turnos al bate",
+      "Se adopta la regla del Bateador Designado por la Liga Americana",
+      "MLB adopta reloj de lanzamiento, restricciones de cambio, y bases más grandes — los cambios de reglas más significativos en décadas"
+    ],
+    "keyTakeaways": [
+      "Tres strikes = out; cuatro bolas = walk. Las bolas foul cuentan como strikes pero no pueden ser el tercer strike",
+      "Los outs forzados solo requieren tocar la base; los outs de etiqueta requieren etiquetar el cuerpo del corredor",
+      "La regla de bola voladora de infield retira automáticamente al bateador en un pop-up de infield capturado con corredores en primera y segunda (o bases llenas) y menos de 2 outs",
+      "Un hit requiere la habilidad del bateador; un error es un error del fildeador — el bateador llega a base pero no recibe crédito de hit"
+    ]
+  },
+  "baseball-1-03": {
+    "tagline": "Golpear una pelota redonda con un bate redondo directamente es la habilidad más difícil en el deporte — estos fundamentos lo hacen posible.",
+    "overview": [
+      "El bateo es ampliamente considerado la habilidad más difícil en los deportes profesionales — incluso los mejores bateadores en la historia no lograban un hit aproximadamente el 70% de las veces. Para jugadores jóvenes, el objetivo es más simple: hacer contacto consistente, desarrollar una mecánica repetible y construir confianza en la caja de bateo. Los fundamentos del bateo no cambian desde las Pequeñas Ligas hasta las Grandes Ligas — solo la velocidad y movimiento de los lanzamientos.",
+      "Una postura de bateo adecuada comienza con los pies separados al ancho de los hombros, rodillas ligeramente flexionadas, peso equilibrado sobre las plantas de los pies. El cuerpo enfrenta el plato de home (o ligeramente hacia el lanzador). Las manos sostienen el bate con los nudillos de golpe — los nudillos del medio de ambas manos — alineados. Este agarre permite que las muñecas giren adecuadamente durante el swing. Las manos comienzan a la altura de los hombros, aproximadamente alineadas con el hombro trasero.",
+      "El swing es una secuencia: carga (desplazar el peso al pie trasero, las manos se mueven ligeramente hacia atrás), stride (paso pequeño hacia el lanzador con el pie delantero — solo unos pocos centímetros, manteniendo el pie delantero cerrado), rotación de caderas (las caderas disparan hacia el lanzador, generando potencia), contacto (los brazos se extienden, las manos permanecen a través de la pelota), y seguimiento (el bate continúa toda la vuelta hacia el hombro trasero). Los errores más comunes: pisar en la cubeta (el pie delantero se aleja del plato en lugar de hacia el lanzador), soltar el codo trasero, y levantar la cabeza antes del contacto."
+    ],
+    "technical": {
+      "title": "La Mecánica de un Buen Swing",
+      "body": [
+        "Los ojos en la pelota: la señal más importante para los bateadores jóvenes. Observa la pelota desde el punto de lanzamiento del lanzador hasta la zona de contacto. Muchos bateadores jóvenes miran al fielder, a la pared del jardín exterior, o anticipan la pelota en lugar de seguirla. Mantén la cabeza hacia abajo y los ojos enfocados a través de la zona — no hacia arriba para ver dónde la golpeaste.",
+        "La rotación de caderas es de donde proviene la potencia. Los bateadores jóvenes que solo usan los brazos generan roletazos débiles y elevados débiles. Enseñar a los jugadores a 'aplastar el insecto' — rotando el talón trasero en el suelo mientras las caderas disparan — conecta la parte inferior del cuerpo con el swing. Las manos siguen a las caderas, no al revés."
+      ]
+    },
+    "incident": {
+      "title": "Ted Williams y la Ciencia del Bateo",
+      "impact": "Ted Williams, quien bateó .406 en 1941 — el último jugador en batear sobre .400 en una temporada — escribió 'The Science of Hitting' en 1971, el manual de bateo más influyente en la historia del béisbol. Su desglose de la zona de strike en 77 celdas individuales y análisis del ángulo del bate a través del contacto transformó la forma en que se enseña el bateo.",
+      "body": [
+        "Ted Williams llegó a Fenway Park en 1939 como un jugador de 20 años con un enfoque obsesivo y analítico del bateo. Estudió lanzadores, rastreó mentalmente cada turno al bate, y pensó más profundamente sobre la mecánica del bateo que cualquier jugador antes que él. En 1941, bateó .406 — rechazando sentarse en un doble juego el último día de la temporada que hubiera preservado su promedio de .400 — y fue 6-por-8 para terminar en .406. Ningún jugador ha bateado .400 desde entonces.",
+        "El libro de Williams de 1971 'The Science of Hitting' introdujo conceptos — particularmente el diagrama de la zona de strike y la importancia de esperar un buen lanzamiento en la zona donde el promedio del bateador era más alto — que ahora son fundamentales para la instrucción de bateo en todos los niveles. Williams es la prueba de que los mejores bateadores son estudiosos, no solo atletas: estudió el oficio hasta que lo entendió más profundamente que nadie."
+      ]
+    },
+    "timeline": [
+      "El bateo de potencia de Babe Ruth transforma el béisbol de científico a juego de potencia",
+      "Ted Williams debuta en Fenway Park — comienza su enfoque analítico del bateo",
+      "Williams batea .406 — última temporada de .400 en la historia de las Grandes Ligas",
+      "Williams publica 'The Science of Hitting' — aún el texto de bateo estándar",
+      "Los tees de bateo para jóvenes y los ejercicios de lanzamiento suave se convierten en estándar en el desarrollo del béisbol de viajes",
+      "La tecnología de seguimiento Statcast revoluciona la comprensión de la velocidad de salida y el ángulo de lanzamiento"
+    ],
+    "keyTakeaways": [
+      "Alinea los nudillos de golpe en el agarre para permitir la rotación adecuada de la muñeca a través del contacto",
+      "Nunca pises en la cubeta — el pie delantero debe avanzar hacia el lanzador, no alejarse del plato",
+      "La potencia proviene de la rotación de caderas — las manos siguen a las caderas, no al revés",
+      "Mantén los ojos en la pelota todo el camino a través del contacto — levantar la cabeza temprano causa contacto débil y elevados"
+    ]
+  },
+  "baseball-1-04": {
+    "tagline": "El brazo de un lanzador es precioso — lanza con buena mecánica y respeta tu conteo de lanzamientos.",
+    "overview": [
+      "El lanzamiento es un movimiento atlético de cuerpo completo que ejerce un estrés significativo en el brazo, particularmente en el codo y el hombro. Para lanzadores juveniles, entender la mecánica adecuada y respetar los límites del conteo de lanzamientos no se trata solo de rendimiento — se trata de la salud del brazo. Las lesiones por uso excesivo en el lanzamiento juvenil han alcanzado niveles epidémicos en los Estados Unidos, con lesiones como desgarros del LCA (cirugía de Tommy John) cada vez más comunes en jugadores de apenas 15 años.",
+      "El fastball de cuatro costuras es el lanzamiento fundamental para todos los lanzadores juveniles. Para sujetarlo: coloca tus dedos índice y medio a través de las cuatro costuras (las costuras que forman una forma de 'C' en la parte superior de la pelota), con el pulgar debajo para sostén. El agarre debe ser firme pero no apretado — apretar demasiado fuerte crea tensión en el antebrazo que reduce la velocidad e incrementa el riesgo de lesión.",
+      "Secuencia de mecánica de lanzamiento: comienza con una postura equilibrada en el montículo, inicia el movimiento, avanza hacia home con el pie delantero (longitud de stride aproximadamente 80–90% de la altura para la mayoría de lanzadores), rota las caderas y hombros, libera la pelota con el brazo viajando en un arco natural, y completa el seguimiento completamente — el brazo debe terminar en el muslo del lado del guante. El seguimiento incompleto es una causa importante del estrés en el brazo."
+    ],
+    "technical": {
+      "title": "Conteo de Lanzamientos de Little League y Requisitos de Descanso",
+      "body": [
+        "Little League Baseball tiene reglas estrictas de conteo de lanzamientos diseñadas para proteger los brazos jóvenes. Los límites dependen de la edad: edades 7–8: máximo 50 lanzamientos/día; edades 9–10: máximo 75 lanzamientos/día; edades 11–12: máximo 85 lanzamientos/día; edades 13–16: máximo 95 lanzamientos/día; edades 17–18: máximo 105 lanzamientos/día. Estos son máximos — los entrenadores deben monitorear la fatiga del brazo independientemente del conteo.",
+        "Los días de descanso requeridos son igualmente importantes. Si un lanzador realiza 66+ lanzamientos, requiere 4 días de calendario de descanso antes de lanzar nuevamente (edades 13 en adelante). Los conteos de lanzamientos más bajos requieren proporcionalmente menos días de descanso. Los entrenadores y padres que ignoran los requisitos de descanso por el bien de ganar son la fuente principal de lesiones en el brazo juvenil. Ningún resultado de juego vale la salud del brazo a largo plazo de un niño."
+      ]
+    },
+    "incident": {
+      "title": "La Epidemia de Lesiones en Brazos Juveniles — Investigación ASMI 2007",
+      "impact": "La investigación del Dr. James Andrews y colegas en ASMI documentó que lanzadores juveniles que lanzaron más de 100 entradas por año tuvieron un riesgo 3.5× mayor de lesión grave en el brazo — impulsando la adopción de reglas de conteo de lanzamientos en el béisbol juvenil en toda la nación.",
+      "body": [
+        "En 2007, el Dr. James Andrews y colegas en el American Sports Medicine Institute (ASMI) publicaron investigación mostrando que lanzadores juveniles que lanzaron más de 100 entradas por año eran 3.5 veces más propensos a sufrir lesión grave en el brazo que aquellos que lanzaron menos entradas. El estudio también encontró que jugar béisbol durante todo el año (particularmente lanzar) sin descanso adecuado era un factor de riesgo importante.",
+        "La investigación provocó cambios significativos en el béisbol juvenil. Little League International adoptó reglas formales de conteo de lanzamientos en 2007. USA Baseball creó las directrices 'Pitch Smart', que ahora son respaldadas por cada organización mayor de béisbol juvenil en el país. El mensaje central: el brazo de un lanzador no es reemplazable. Protegerlo en el béisbol juvenil protege la capacidad de un niño de jugar de por vida."
+      ]
+    },
+    "timeline": [
+      "Las lesiones en brazos juveniles comienzan a aumentar a medida que el béisbol durante todo el año se vuelve común",
+      "USA Baseball y ASMI comienzan a estudiar lesiones por lanzamiento en jóvenes",
+      "Little League Baseball adopta reglas formales de conteo de lanzamientos — edades 7–18",
+      "USA Baseball lanza las directrices 'Pitch Smart' — programa de cuidado del brazo basado en ciencia",
+      "Cirugías de Tommy John en jugadores menores de 20 años se duplican comparadas con niveles de 2000 (datos ASMI)",
+      "La especialización durante todo el año identificada como factor de riesgo principal — participación en múltiples deportes recomendada"
+    ],
+    "keyTakeaways": [
+      "Sujeta el fastball de cuatro costuras a través de las cuatro costuras, almohadillas de dedos en el cuero — no demasiado apretado",
+      "Completa el seguimiento completamente — el brazo termina en el muslo del lado del guante — el seguimiento incompleto lesiona los codos",
+      "Los límites de conteo de lanzamientos de Little League existen para proteger los brazos jóvenes — edades 11–12 el máximo es 85 lanzamientos/día",
+      "Los requisitos de descanso después de lanzar son obligatorios — 66+ lanzamientos requiere 4 días de descanso antes de lanzar nuevamente"
+    ]
+  },
+  "baseball-1-05": {
+    "tagline": "Todo gran juego en el campo comienza con la posición de espera correcta — antes de que la bola sea golpeada.",
+    "overview": [
+      "La defensa en el béisbol comienza antes de que la bola sea lanzada. Un jugador en la posición de espera correcta — postura atlética, guante hacia afuera y listo, en las puntas de los pies — puede reaccionar a cualquier bola más rápido y de manera más limpia que uno que es sorprendido de pies planos. La posición de espera es: pies ligeramente más separados que el ancho de los hombros, rodillas dobladas, peso hacia adelante en las puntas de los pies, guante a la altura de la cintura frente al cuerpo, ojos arriba y rastreando al bateador.",
+      "El juego de bolas en tierra requiere acercarse a la bola en lugar de esperar a que llegue. La técnica: avanzar rápidamente para tomar la bola al frente (sin dejar que la bola te juegue), bajar el cuerpo (espalda paralela al suelo), colocar el guante hacia abajo con los dedos apuntando al suelo (para evitar que los botes cortos reboten sobre el guante), ver la bola entrar al guante, jugar con ambas manos (la mano de lanzamiento se cierra sobre la bola en el guante). El error común: enderezarse demasiado temprano e intentar jugar a la altura de la cadera — las bolas pasan entre las piernas.",
+      "Mecánica de lanzamiento: agarrar la bola con un agarre de fastball de cuatro costuras a través de las costuras (lanzamiento recto y preciso), alinear el hombro delantero hacia el objetivo, pisar con el pie delantero hacia el lanzamiento, rotar caderas y hombros, extender el brazo naturalmente, y seguir adelante. La precisión de un lanzamiento proviene del agarre consistente y la alineación del hombro delantero."
+    ],
+    "technical": {
+      "title": "Posicionamiento de Bolas Elevadas y Juego con Dos Manos",
+      "body": [
+        "Capturar bolas elevadas: moverse bajo la bola temprano — llegar al lugar antes de que la bola llegue y dejar que venga hacia ti. Posiciónate para que la bola venga ligeramente hacia ti (no alejándose). Date un pequeño salto de cuervo (un paso de arrastre) antes de lanzar, lo que te permite generar impulso hacia tu objetivo. Dos manos siempre que sea posible: usa la mano de lanzamiento para cerrar sobre la bola mientras entra al guante, asegurándola y permitiendo una transferencia más rápida al lanzamiento.",
+        "Juzgar bolas elevadas es una habilidad que se desarrolla con la repetición — el sonido del bate y la trayectoria inicial de la bola son las pistas principales. Una bola golpeada alta y recta es más fácil de rastrear; un línea es más difícil. Los jardineros nunca deben retroceder — siempre gira y corre hacia el lugar de aterrizaje proyectado de la bola, luego deja que la bola venga hacia ti."
+      ]
+    },
+    "incident": {
+      "title": "Roberto Clemente y el Arte del Lanzamiento en el Jardín",
+      "impact": "El brazo del jardín de Roberto Clemente es ampliamente considerado el mejor en la historia del béisbol — ganó 12 Guantes de Oro consecutivos y era famoso por sacar corredores en las bases que intentaban tomar bases extra. Su brazo se convirtió en la plantilla para la instrucción de lanzamiento en el jardín.",
+      "body": [
+        "Roberto Clemente jugó el jardín derecho para los Pittsburgh Pirates de 1955 a 1972 y ganó 12 Guantes de Oro consecutivos — el premio defensivo más prestigioso en el béisbol. Los gerentes contrarios le dirían a sus corredores: no intenten tomar bases extra contra Clemente. Su brazo — poderoso, preciso y notablemente rápido del guante al lanzamiento — sacaba corredores en cualquier base, incluyendo el plato, desde el límite de advertencia del jardín derecho.",
+        "La técnica de Clemente fue estudiada por entrenadores durante generaciones: utilizaba una acción de brazo baja y compacta, golpeaba al cutoff man con precisión, y anticipaba hacia dónde irían los corredores de bases antes de que la bola fuera golpeada. Su juego defensivo sigue siendo el punto de referencia para la instrucción del jardín. Fue asesinado en un accidente de avión el 31 de diciembre de 1972, mientras entregaba suministros de ayuda para desastres a Nicaragua — una de las figuras más queridas del béisbol, recordado por su carácter tanto como por su talento."
+      ]
+    },
+    "timeline": [
+      "Roberto Clemente se une a los Pittsburgh Pirates — transforma la defensa del jardín",
+      "Clemente gana el primer Premio Guante de Oro — gana 12 consecutivos",
+      "Los Premios Guante de Oro de Rawlings se convierten en el estándar de la industria para la excelencia defensiva",
+      "Los programas de béisbol juvenil comienzan a enseñar formalmente la técnica de 'cargar la bola'",
+      "La técnica de juego con dos manos se estandariza en el currículo de entrenamiento juvenil",
+      "Las métricas defensivas Statcast cambian cómo se evalúa el posicionamiento del jardín"
+    ],
+    "keyTakeaways": [
+      "Comienza cada lanzamiento en la posición de espera — peso hacia adelante, rodillas dobladas, guante hacia adelante",
+      "Carga bolas en tierra; baja con los dedos del guante apuntando hacia abajo para evitar que las bolas pasen bajo el guante",
+      "Siempre intenta usar dos manos — la mano de lanzamiento se cierra sobre la bola para una transferencia más rápida y segura",
+      "Agarra la bola con un agarre de cuatro costuras antes de lanzar para máxima precisión y alcance"
+    ]
+  },
+  "baseball-1-06": {
+    "tagline": "El buen juego de defensa en el infield no se trata solo de hacer las jugadas difíciles — se trata de hacer la jugada correcta cada vez.",
+    "overview": [
+      "Las posiciones del infield tienen responsabilidades específicas más allá de defender las bolas golpeadas en su dirección. El primera base es el ancla de cada lanzamiento del infield — deben aprender a estirarse para lanzamientos desviados mientras mantienen el pie en la base, lo cual es tanto una técnica como una habilidad que evita que muchos errores se conviertan en hits. El campo corto y el segunda base deben aprender el pivot del doble juego — la mecánica de cómo recibir la bola en segunda y transferir rápidamente a un lanzamiento a primera.",
+      "La comunicación es una habilidad crítica e infravalorada en el infield. Cuando una bola es golpeada o lanzada en un área ambigua, el jardinero que grita '¡La tengo!' debe ser escuchado sobre la multitud y debe gritar temprano — no en el último segundo. Si dos jardineros convergen en un fly pop sin un grito, las colisiones pueden causar lesiones. La regla: el jugador que grita primero tiene prioridad; los otros jardineros se apartan. Grita temprano y grita fuerte.",
+      "El respaldo es el hábito de reposicionarse detrás de una jugada en caso de un lanzamiento excesivo o salvaje. Cada jugador en el campo debe estar moviéndose en cada jugada — incluso si la bola no es golpeada hacia ellos. El lanzador respalda tercera y home en los lanzamientos desde el outfield. El jardinero central respalda segunda base. Cada jardinero tiene la responsabilidad de estar en algún lugar útil en cada lanzamiento."
+    ],
+    "technical": {
+      "title": "El Doble Juego — Mecánica 6-4-3",
+      "body": [
+        "Para el segunda base recibiendo un lanzamiento en segunda base (el 4 en un 6-4-3): atrapar la bola, arrastrar el pie trasero sobre la base mientras se lanza (o tocar con el pie justo antes de atrapar), y alejarse del camino del corredor. La clave es atrapar la bola primero, luego hacer el lanzamiento — nunca apresures la transferencia tan mal que ambas jugadas se pierdan.",
+        "Para el campo corto lanzando a segunda (el 6 en un 6-4-3): leer la distancia del corredor, lanzar a una ubicación consistente (ligeramente hacia el lado de primera base de la base, a la altura del pecho), y dejar que el segunda base haga el pivot. Un buen pase del campo corto hace el trabajo del segunda base dramáticamente más fácil — un mal pase a los ojos del corredor o en la tierra lo hace casi imposible."
+      ]
+    },
+    "incident": {
+      "title": "El Infield de los Yankees de 1927 — Estableciendo el Estándar",
+      "impact": "Los Yankees de 1927, a menudo llamados el mejor equipo de béisbol de todos los tiempos, presentaban a Lou Gehrig en primera base — renombrado por su estiramiento en la base que salvaba lanzamientos imprecisos y mantenía a los corredores fuera de base. Su técnica se convirtió en el modelo enseñado a los primera base durante generaciones.",
+      "body": [
+        "El mandato de Lou Gehrig en primera base para los New York Yankees (1923–1939) coincidió con la era en que la técnica de primera base fue siendo codificada formalmente. Gehrig, famoso por su excelencia consistente, desarrolló el estiramiento completo en primera base en una forma de arte — podía extender su alcance para atrapar lanzamientos que de otro modo podrían sacar a otros jugadores de la base, convirtiendo lo que serían hits en putouts.",
+        "Los entrenadores de béisbol estudiando los Yankees de 1927 — que fueron 110-44 y barrieron la Serie Mundial — notaron que la ejecución de su infield fue tan responsable de su éxito como la famosa ofensiva que presenta a Babe Ruth. El principio de 'salvar un lanzamiento malo siempre que sea posible mientras mantienes el pie en la base' sigue siendo instrucción estándar de primera base hoy en cada nivel desde Little League hasta las Grandes Ligas."
+      ]
+    },
+    "timeline": [
+      "El béisbol profesional codifica las responsabilidades de posición del infield en guías de entrenamiento",
+      "Los Yankees de 1927 establecen el estándar defensivo — la ejecución del infield es estudiada durante generaciones",
+      "La mecánica del pivot del doble juego se convierte en currículo estándar de entrenamiento juvenil",
+      "Los manuales de entrenamiento de Little League incluyen por primera vez protocolos de comunicación para fly pops",
+      "Los cambios defensivos del infield se vuelven generalizados en el béisbol profesional — el posicionamiento defensivo evoluciona",
+      "Las MLB prohíben cambios extremos del infield — el posicionamiento tradicional es reinstalado"
+    ],
+    "keyTakeaways": [
+      "Primera base: estirarse completamente hacia el lanzamiento mientras mantienes un pie en la base — salva cada lanzamiento alcanzable",
+      "La comunicación es crítica — grita '¡La tengo!' temprano y fuerte; el que grita tiene prioridad, los otros se apartan",
+      "En un doble juego, atrapa la bola primero — nunca apresures la transferencia tan mal que pierdas ambas jugadas",
+      "Todos respaldan cada lanzamiento — si no estás involucrado en la jugada principal, encuentra la posición de respaldo"
+    ]
+  },
+  "baseball-1-07": {
+    "tagline": "El jardín no es un lugar para descansar — es donde se salva el juego.",
+    "overview": [
+      "Los jardineros deben cubrir grandes extensiones de terreno rápidamente, leer los globos con precisión, lanzar con potencia y precisión, y comunicarse constantemente entre sí. La habilidad más crítica es leer el sonido del bate — el sonido del contacto le dice inmediatamente a un jardinero si la pelota será golpeada suavemente (toque del mango, fuera del extremo) o fuerte (fuera del punto dulce), y el ángulo del contacto le dice aproximadamente hacia dónde irá. Los jardineros experimentados ya están dando su primer paso antes de que la pelota despeje el jardín interior.",
+      "El drop step es la técnica fundamental para pelotas golpeadas sobre la cabeza de un jardinero. Cuando vea la pelota yendo hacia atrás, pivote sobre el pie más cercano a la dirección hacia donde va la pelota (deje caer ese pie detrás de usted), gire su cuerpo, y corra a toda velocidad hacia el punto de aterrizaje — nunca retroceda. El drop step lo lleva a velocidad máxima en dos pasos en lugar de varios pasos de deslizamiento hacia atrás.",
+      "Lanzar al hombre de corte — el jardinero interior que se posiciona en el camino de relevo entre el jardinero y la base — es estándar para la mayoría de los lanzamientos desde el jardín. Lanzar a través del hombre de corte en lugar de directamente a la base permite que el hombre de corte redirija si el juego cambia, y evita que un lanzamiento suave ruede hacia el tope. La excepción: si el lanzamiento es lo suficientemente fuerte para superar al corredor directamente, y el corte te está dejando pasar.",
+      "Los jardineros se comunican constantemente: pidiendo globos, señalando posiciones de corte, advirtiendo a los compañeros del muro. El jardinero central es generalmente el capitán del jardín — tienen prioridad en las pelotas golpeadas a cualquiera de los espacios. Si el jardinero central pide una pelota, el jardinero de la esquina se aleja incluso si estaba más cerca de la pelota."
+    ],
+    "technical": {
+      "title": "Comunicación del Jardín y Conciencia del Muro",
+      "body": [
+        "Los jardineros se comunican constantemente: pidiendo globos, señalando posiciones de corte, advirtiendo a los compañeros del muro. El jardinero central es generalmente el capitán del jardín — tienen prioridad en las pelotas golpeadas a cualquiera de los espacios. Si el jardinero central pide una pelota, el jardinero de la esquina se aleja incluso si estaban más cerca de la pelota.",
+        "La conciencia del muro es un problema de seguridad y rendimiento. Sepa dónde está la pista de advertencia — la franja de tierra o grava antes de la mayoría de los muros del jardín que advierten al jardinero que están cerca del muro. Cuando sienta la pista de advertencia, mire hacia arriba para localizar el muro antes de continuar corriendo. Nunca corra a toda velocidad hacia un muro para hacer una atrapada a menos que sea lo suficientemente experimentado para saber exactamente qué tan lejos está. Los entrenadores de ligas menores deben llevar a los jugadores a la pista de advertencia al inicio de cada temporada para que sepan cómo se siente."
+      ]
+    },
+    "incident": {
+      "title": "Willie Mays y la Atrapada — Polo Grounds 1954",
+      "impact": "La atrapada sobre el hombro de Willie Mays del disparo de 420 pies de Vic Wertz en la Serie Mundial de 1954 se considera el juego defensivo más grande en la historia del béisbol — una demostración del drop step, lectura de la pelota del bate, y atletismo puro que se convirtió en el momento definitorio del juego de jardín.",
+      "body": [
+        "En el Juego 1 de la Serie Mundial de 1954 en el Polo Grounds, Vic Wertz de Cleveland golpeó un disparo de 420 pies hacia el jardín central profundo con dos corredores en base. Willie Mays se giró al sonido del bate y corrió hacia el muro del jardín central — a toda velocidad con su espalda hacia el jardín interior. Aproximadamente a la marca de 460 pies, atrapó la pelota sobre su hombro, se giró, y lanzó un relevo extraordinario hacia el jardín interior, evitando que ambos corredores anotaran.",
+        "El juego, simplemente llamado 'La Atrapada,' fue capturado en película y es visto por aficionados del béisbol 70 años después. Demostró todos los elementos del juego de jardín de élite: lectura del bate, drop step inmediato, carrera completa al punto de aterrizaje, y un lanzamiento preciso y poderoso después de una atrapada casi imposible. Willie Mays dijo después sobre el juego que no fue la atrapada más difícil que jamás hizo — fue simplemente la más famosa. Los Gigantes de Nueva York ganaron la Serie Mundial en cuatro juegos."
+      ]
+    },
+    "timeline": [
+      "Willie Mays hace 'La Atrapada' en la Serie Mundial — el juego de jardín cambia para siempre",
+      "Los Dodgers se mudan a Los Ángeles — Dodger Stadium se convierte en un modelo para el reconocimiento del jardín",
+      "Los protocolos de comunicación del jardín se introducen formalmente en las guías de entrenamiento de béisbol infantil",
+      "Los requisitos de pista de advertencia se estandarizan en todas las especificaciones de campos de béisbol infantil",
+      "El ejercicio drop step se convierte en estándar en los programas de entrenamiento de jardín infantil",
+      "Las métricas de Statcast del jardín cuantifican el tiempo de salto y la eficiencia de ruta a nivel de Grandes Ligas"
+    ],
+    "keyTakeaways": [
+      "Lee la pelota del bate — el sonido y el ángulo te dicen dónde ir antes de que la pelota sea visible",
+      "Drop step en pelotas sobre tu cabeza — gírate y corre, nunca retrocedas",
+      "Lanza al pecho del hombre de corte en la mayoría de los lanzamientos — él puede redireccionar si el juego cambia",
+      "Sabe dónde está la pista de advertencia antes de cada juego — te dice que el muro está cerca"
+    ]
+  },
+  "baseball-1-08": {
+    "tagline": "El robo inteligente de bases anota más carreras que la velocidad bruta — saber cuándo correr es la habilidad.",
+    "overview": [
+      "El robo de bases es una de las habilidades más subestimadas en el béisbol, y una de las más estratégicas. Un equipo que corre las bases de manera agresiva e inteligente ejerce una enorme presión sobre las defensas — cada hit potencialmente se convierte en un hit de múltiples bases, y cada fly ball es una oportunidad de anotar. Los fundamentos comienzan con saber cuándo partir: los corredores de base parten al contacto con el suelo (cuando la pelota está en juego), no al sonido del bate.",
+      "Redondear una base significa golpear la esquina interna de la base con el pie, permitiéndote mantener el impulso en un arco curvo en lugar de detenerte y reiniciar. La técnica: cuando corres a primera en un hit que crees que podría ser por bases adicionales, toma un enfoque curvo hacia la base — aléjate hacia territorio de foul aproximadamente 15–20 pies antes de la base, golpea la esquina interna de la base con el pie derecho, y continúa en una línea curva hacia segunda. Esto es más rápido que correr en línea recta y hacer un giro pronunciado de 90 grados.",
+      "El entrenador de tercera base son los ojos del jugador cuando corre entre segunda y tercera, y desde tercera hacia el home. El entrenador usa señales — manos levantadas (detente), brazo agitándose en círculos (corre), manos golpeando hacia abajo (deslízate), o manos cruzadas en el cuerpo (detente). Al contacto, el trabajo del corredor es correr fuerte y leer al entrenador — no tomar la decisión ellos mismos. Confía en el entrenador. Ellos tienen la vista; tú no."
+    ],
+    "technical": {
+      "title": "Técnica de Deslizamiento — Seguridad y Ejecución",
+      "body": [
+        "El deslizamiento de pierna doblada (gancho): cuando te acercas a la base, cae al suelo doblando la pierna inferior bajo ti mientras extiendes la otra pierna hacia la base. Tu cuerpo cae al suelo y te deslizas sobre tu cadera y muslo, extendiendo la pierna delantera para tocar la base. La ventaja: te mantienes bajo y difícil de etiquetar, y el deslizamiento te protege de colisiones. Siempre deslízate lejos de la etiqueta si es posible — apunta a la esquina de la base más lejana de donde viene el lanzamiento.",
+        "El deslizamiento pop-up: igual que el de pierna doblada, pero el jugador usa el impulso del deslizamiento para saltar de vuelta a sus pies — ideal en primera base en un juego cerrado donde el corredor quiere continuar a segunda si el lanzamiento es salvaje. Nunca hagas un deslizamiento pop-up hacia home o segunda cuando un fildeador está bloqueando — usa un deslizamiento gancho para pasar la etiqueta."
+      ]
+    },
+    "incident": {
+      "title": "Lou Brock y la Ciencia de los Récords de Robo de Bases",
+      "impact": "Lou Brock estableció el récord de todos los tiempos en robo de bases (938 robos en carrera) estudiando los movimientos de los lanzadores, sincronizando sus salidas, y demostrando que el robo de bases era tan ciencia como atletismo — cambiando cómo se enseñaba el robo de bases en todos los niveles.",
+      "body": [
+        "Lou Brock, quien jugó para los St. Louis Cardinals desde 1964 hasta 1979, sostuvo el récord de todos los tiempos en robo de bases (938 robos en carrera, posteriormente superado por Rickey Henderson) y revolucionó el estudio del robo de bases. Brock mantuvo notas meticulosas sobre cada lanzador al que enfrentó — su tiempo de entrega al plato, su movimiento a primera, su lanzamiento preferido en situaciones de robo. Redujo su ventaja, su salida, y su ruta a segunda base a una ciencia.",
+        "La contribución de Brock al béisbol no fue solo los robos de bases en sí, sino el marco intelectual que trajo al robo de bases. Demostró que el robo de bases inteligente — leyendo lanzadores, sincronizando salidas precisamente, tomando el ángulo correcto — era enseñable y repetible. Su trabajo influyó en cómo los entrenadores enseñan el robo de bases hasta hoy: lee al lanzador, sincroniza la salida, y corre inteligente, no solo rápido."
+      ]
+    },
+    "timeline": [
+      "Maury Wills roba 104 bases — comienza la era moderna de robo de bases",
+      "Lou Brock comienza su enfoque científico del robo de bases en St. Louis",
+      "Brock rompe el récord de carrera de robo de bases de Ty Cobb",
+      "Rickey Henderson roba 130 bases en una sola temporada — todavía el récord de todos los tiempos",
+      "Henderson rompe el récord de carrera de robo de bases de Brock",
+      "Little League actualiza las reglas de robo de bases — limitaciones de robo demorado en ligas juveniles"
+    ],
+    "keyTakeaways": [
+      "Parte de la base al contacto con el suelo, no al sonido del bate — estos son tiempos ligeramente diferentes",
+      "Redondea bases golpeando la esquina interna — aléjate temprano y mantén un arco curvo en lugar de hacer giros pronunciados",
+      "Siempre lee y confía en el entrenador de tercera base — ellos tienen la vista; tú estás corriendo fuerte con la espalda al campo",
+      "Deslízate temprano y bajo — apunta a la esquina de la base lejos de la etiqueta"
+    ]
+  },
+  "baseball-1-09": {
+    "tagline": "El receptor dirige la defensa — ve todo el campo y controla el tráfico en cada lanzamiento.",
+    "overview": [
+      "El receptor es la posición más exigente físicamente y estratégicamente en el béisbol. Usa más equipo que cualquier otro jugador: protector de pecho, casco con protector facial (gorra o casco), protectores de espinillas y suspensorio (obligatorio para receptores hombres). El equipo protege contra foul tips, lanzamientos descontrolados y colisiones en el plato. El receptor es el único fielder que enfrenta todo el campo durante el juego.",
+      "Los receptores dan señales al lanzador para cada lanzamiento usando señales manuales en la mano del guante: un dedo para fastball, dos dedos para curveball, tres para changeup (o el sistema específico del equipo). El receptor también debe establecerse (posicionar su cuerpo) en la zona donde quiere que se lance la bola, dándole un objetivo al lanzador. El sistema de señales debe cambiar cuando hay corredores en base (para que el corredor en segunda no transmita las señales al bateador).",
+      "El pitch framing es la habilidad de recibir lanzamientos en el borde de la zona de strike de una manera que facilita que el árbitro los llame strikes. La técnica: mantener el guante relativamente quieto cuando la bola entra en el mitón, con una rotación interna sutil para lanzamientos límites. Nunca 'apuñales' la bola o hagas un movimiento de atrape dramático — eso atrae la atención del árbitro al hecho de que el lanzamiento estuvo afuera. Los buenos framers pueden ganar a su equipo 15–20 strike calls adicionales por juego."
+    ],
+    "technical": {
+      "title": "Bloqueando Bolas en la Tierra",
+      "body": [
+        "El bloqueo es esencial cuando un lanzador lanza en la tierra con corredores en base. Técnica: deja caer ambas rodillas al suelo simultáneamente (no te lances), mantén la barbilla metida hacia el pecho, curva el cuerpo hacia adelante para crear una forma de 'taza', y deja que la bola golpee el protector de pecho y caiga frente al plato — no hacia un lado. El objetivo es mantener la bola al frente, dándote tiempo para recogerla y hacer un lanzamiento si es necesario.",
+        "La posición de lanzamiento: desde la posición de cuclillas, los receptores lanzan con una acción de brazo rápida y compacta — sin lanzamiento largo. El lanzamiento a segunda base es el lanzamiento defensivo más importante que hace un receptor. La técnica: desplaza el peso ligeramente hacia adelante, levanta el brazo a una ranura alta, y lanza desde la oreja — un fastball de cuatro costuras crujiente directamente sobre la bolsa de segunda base. El tiempo desde la atrapada hasta la salida se mide en fracciones de segundo."
+      ]
+    },
+    "incident": {
+      "title": "Johnny Bench y la Revolución del Atrape con Una Mano",
+      "impact": "Johnny Bench introdujo la técnica de atrape con una mano en 1968, manteniendo la mano de lanzamiento desnuda detrás de la espalda en lugar de al lado del guante. Esto eliminó miles de lesiones de dedos por foul tips y se convirtió en el estándar universal en cinco años.",
+      "body": [
+        "Antes de que Johnny Bench llegara a Cincinnati en 1968, los receptores universalmente atrapaban con dos manos — la mano de lanzamiento colocada al lado del guante para asegurar la bola y permitir una transferencia rápida. El problema: los foul tips frecuentemente golpeaban la mano de lanzamiento desprotegida, rompiendo dedos. Cada receptor de esa era tiene una historia sobre dedos rotos.",
+        "Bench notó que la transferencia de la bola del guante a la mano de lanzamiento era lo suficientemente rápida sin tener la mano desnuda al lado del guante en cada lanzamiento. Comenzó a mantener su mano de lanzamiento detrás de su espalda hasta el instante de la transferencia. En pocas temporadas, prácticamente todos los receptores en el béisbol profesional habían adoptado la técnica. Hoy, el atrape con dos manos solo se enseña para el movimiento final de aseguramiento — nunca para recibir. Bench se considera el mejor receptor en la historia del béisbol en parte porque transformó la posición."
+      ]
+    },
+    "timeline": [
+      "El equipo del receptor se estandariza — protectores de espinillas, protector de pecho, gorra",
+      "El atrape con dos manos es estándar — epidemia de lesiones de dedos por foul tips",
+      "Johnny Bench introduce el atrape con una mano — la adopción universal sigue",
+      "El pitch framing se cuantifica por primera vez como una contribución estadística en estudio académico de béisbol",
+      "Statcast comienza a medir el valor del pitch framing — las contribuciones defensivas de los receptores se cuantifican",
+      "Los cascos de protección completa (calificados para conmoción cerebral) se convierten en estándar para receptores en todos los niveles"
+    ],
+    "keyTakeaways": [
+      "Los receptores deben usar protector de pecho, casco, protectores de espinillas y suspensorio — todo obligatorio antes de cada juego",
+      "Un dedo = fastball; dos = curveball; tres = changeup — cambia el sistema de señales con un corredor en segunda",
+      "Haz frame de lanzamientos límites con un guante tranquilo y firme — nunca apuñales o hagas movimientos dramáticos en el borde de la zona",
+      "Bloquea bolas en la tierra dejando caer ambas rodillas y curvando el cuerpo hacia adelante — mantén la bola al frente"
+    ]
+  },
+  "baseball-1-10": {
+    "tagline": "Los mejores jugadores del mundo todavía se esfuerzan en cada juego — porque eso es lo que hacen los buenos compañeros de equipo.",
+    "overview": [
+      "El espíritu deportivo no es una habilidad blanda — es el fundamento de lo que hace que el béisbol valga la pena jugar. Esforzarse en cada jugada, alentar a los compañeros de equipo después de errores, respetar a los árbitros y estrechar manos después del juego no son extras opcionales además del juego; son el juego. Los equipos que juegan con carácter y espíritu son más difíciles de vencer, más divertidos para estar, y dejan una mejor impresión mucho después de que la puntuación final sea olvidada.",
+      "El esfuerzo significa correr cada bola sin excepción, sin importar cuán rutinaria sea. Correr por la línea de primera base en un rodete rutinario no cuesta nada y ocasionalmente produce un golpe de entrada cuando el primera base se apresura. No esforzarse le cuesta a tu equipo una oportunidad potencial y envía el mensaje de que solo te importa cuando es fácil. Los jugadores de las Grandes Ligas que trota a primera en rodetes son ampliamente criticados — en cualquier nivel, se considera un fallo fundamental de compromiso.",
+      "Los árbitros son humanos. Cometerán errores en las llamadas. La respuesta correcta es ninguna respuesta — camina de regreso al dugout, alienta a tus compañeros de equipo, y enfócate en el siguiente juego. Argumentar con árbitros en béisbol juvenil no logra nada positivo: no puede cambiar la llamada, puede resultar en una expulsión, y establece un mal ejemplo para el equipo. Incluso cuando un árbitro está claramente equivocado, el trabajo del jugador es continuar jugando con enfoque e intensidad — no protestar."
+    ],
+    "technical": {
+      "title": "La Línea de Saludo Después del Juego",
+      "body": [
+        "La línea de saludo después del juego es una de las tradiciones más significativas del béisbol. Ambos equipos forman una línea y se pasan el uno al otro, estrechando manos (o chocando los puños a nivel juvenil) y diciendo 'buen juego.' Esto se aplica ya sea que ganaras por doce carreras o perdieras con un jonrón de desempate. El saludo enseña a perder con gracia y a ganar con humildad — ambos esenciales para el carácter en el deporte y en la vida.",
+        "Lo que los buenos compañeros de equipo hacen después del error de un compañero: no dicen nada sobre el error en el momento, animan el siguiente juego ('olvídalo, tienes el siguiente'), y recuerdan que los errores son parte del juego — cada jugador en cada nivel comete errores. Lo que los compañeros de equipo excelentes hacen después de su propio error: respiran profundo, se reenfockan, y hacen el siguiente juego más difícil. Los grandes compañeros de equipo son recordados por su carácter, no por sus estadísticas."
+      ]
+    },
+    "incident": {
+      "title": "El Momento de Espíritu Deportivo de la Serie Mundial de Pequeñas Ligas — 2014",
+      "impact": "Durante la SMPL de 2014, un jugador del equipo perdedor consoló a un oponente que lloraba — una imagen que se volvió viral y fue citada por Little League International como la encarnación de lo que el torneo realmente trata.",
+      "body": [
+        "Durante la Serie Mundial de Pequeñas Ligas de 2014 en Williamsport, un jugador de un equipo notó que un jugador del equipo contrario estaba llorando después de una derrota difícil. Sin dudarlo, se acercó y puso su brazo alrededor del jugador que lloraba, consolándolo. Un fotógrafo capturó el momento. La imagen se difundió globalmente y fue presentada en los principales medios deportivos alrededor del mundo.",
+        "Little League International utilizó la imagen en sus materiales educativos, señalando que capturó el ideal de para qué es realmente el béisbol juvenil: no para ganar y perder, sino para aprender cómo tratar a otras personas. Los dos niños, de diferentes países, acababan de competir lo más duro que podían el uno contra el otro — y pocos minutos después uno estaba consolando al otro. Ningún entrenador les dijo qué hacer. Eso es espíritu deportivo."
+      ]
+    },
+    "timeline": [
+      "Béisbol de Pequeñas Ligas fundado sobre principios de trabajo en equipo y carácter, Williamsport PA",
+      "Primera Serie Mundial de Pequeñas Ligas — tradición de saludo después del juego establecida",
+      "Pequeñas Ligas se abre a niñas — principios de espíritu deportivo codificados en todos los programas",
+      "El Juramento de Little League International enfatiza el espíritu deportivo sobre ganar",
+      "Momento de espíritu deportivo en SMPL se vuelve viral — reaviva la discusión del carácter en deportes juveniles",
+      "Little League presenta asociación con Positive Coaching Alliance — salud mental y espíritu deportivo"
+    ],
+    "keyTakeaways": [
+      "Esfuérzate en cada jugada — trota mínimo, corre cuando sea apropiado; nunca camines después de una bola",
+      "Alienta a los compañeros de equipo después de errores con apoyo breve y específico — 'tienes el siguiente' — luego juega duro",
+      "Nunca argumentes con árbitros — camina de regreso a tu posición; deja que tu entrenador maneje cualquier disputa",
+      "La línea de saludo después del juego se aplica ya sea que ganaras o perdieras — pásala con energía y gracia"
+    ]
+  },
+  "baseball-2-01": {
+    "tagline": "Todo gran swing comienza antes de que la pelota salga de la mano del lanzador — comienza con cómo te paras.",
+    "overview": [
+      "La postura de bateo es la base de cada swing. No existe una postura perfecta única — Mookie Betts usa un suave golpecito de dedos para cronometrar su carga, Shohei Ohtani emplea una patada de pierna alta dramática para generar torque, y algunos de los mejores bateadores de contacto en la historia apenas movían los pies. Lo que todos los grandes stances comparten es equilibrio, una visión clara del lanzador, y una forma confiable de disparar el swing a tiempo.",
+      "Los pies deben estar separados ligeramente más que el ancho de los hombros, apuntando hacia la zona de strike o ligeramente abiertos. Las rodillas están dobladas para que las caderas estén cargadas y listas para dispararse. El peso se distribuye uniformemente en la planta de ambos pies — ni en los talones (lo que causa reacción lenta) ni en los dedos de los pies (lo que causa un movimiento hacia adelante abrupto). El cuerpo enfrenta la zona de strike en aproximadamente un ángulo de 45 grados hacia el lanzador, manteniendo ambos ojos hacia adelante.",
+      "La posición de las manos es crítica. Las manos comienzan cerca del hombro trasero, el bate en ángulo de aproximadamente 45 grados detrás de la cabeza. El agarre es firme pero relajado — la tensión en las manos viaja hacia los antebrazos y mata la velocidad del bate. Los nudillos de golpe (nudillos del medio de ambas manos) se alinean en el bate. Desde esta posición, el bateador puede cargar hacia atrás y lanzarse hacia adelante hacia cualquier lanzamiento en la zona de strike."
+    ],
+    "technical": {
+      "title": "El Disparador — Estilos de Carga y Por Qué Funcionan",
+      "body": [
+        "Un 'disparador' es cualquier movimiento pre-swing que ayuda a un bateador a cronometrar el lanzamiento y cargar energía en el swing. Los disparadores más comunes son: el golpecito de dedos (el pie delantero se levanta y se coloca mientras el lanzador entra en el lanzamiento — usado por Mookie Betts y muchos bateadores de élite), la patada de pierna (la pierna delantera se levanta dramáticamente para generar torque de caderas — Shohei Ohtani, Josh Hamilton), el cambio de peso (un ligero cambio de peso hacia atrás en el pie trasero sin levantarse — más común en bateadores orientados al contacto), y el sin-disparador (stance tranquilo con movimiento mínimo — usado por algunos bateadores de contacto de élite).",
+        "El propósito de cualquier disparador es cronometraje y carga: obtener el peso en el lado trasero en el momento correcto para que las caderas y las manos puedan dispararse hacia adelante en sincronía con el lanzamiento. Un buen disparador es consistente — el mismo movimiento en cada lanzamiento — para que el resto del swing sea confiable. Los jugadores jóvenes deben experimentar para encontrar un disparador simple y repetible en lugar de copiar una patada de Major League compleja que es difícil de cronometrar."
+      ]
+    },
+    "incident": {
+      "title": "Mookie Betts y el Regreso a Dodger Stadium — 2020",
+      "impact": "Cuando los Dodgers intercambiaron a Mookie Betts en febrero de 2020, los ojeadores elogiaron específicamente su disparador de golpecito de dedos como uno de los mecanismos de cronometraje más consistentes y replicables del juego. Betts pasó a ganar la Serie Mundial de 2020 con los Dodgers, bateando .304 con hits clave en toda la postemporada.",
+      "body": [
+        "La postura de bateo de Mookie Betts ha sido estudiada y enseñada en programas de béisbol juvenil en toda la nación. Su golpecito de dedos — un levantamiento suave del pie delantero que aterriza justo cuando el lanzador comienza el lanzamiento — crea una carga perfectamente cronometrada en la pierna trasera. El movimiento es pequeño, controlado e idéntico en cada lanzamiento, ya sea un lanzamiento rápido de 99 mph o una curva de 75 mph. La consistencia de su disparador es una razón por la cual sus mecánicas de bateo se traducen tan bien a bateadores de todos los tamaños.",
+        "Cuando Betts llegó a Los Ángeles en 2020, el coordinador de bateo Robert Van Scoyoc señaló que el enfoque de Betts combinaba velocidad de bate de élite con disciplina de cronometraje excepcional. Rara vez se dejaba engañar por lanzamientos sin velocidad porque su disparador lo mantenía lo suficientemente atrás para leer el lanzamiento. Los entrenadores de la juventud que estudian la postura de Betts notan que su golpecito de dedos es lo suficientemente pequeño como para ser replicado por jugadores de cualquier edad — es uno de los disparadores más enseñables en el béisbol profesional."
+      ]
+    },
+    "timeline": [
+      "La amplia postura abierta de Babe Ruth redefine la postura de bateo de poder para una generación",
+      "La postura cerrada y encorvada de Ted Williams prueba visión de élite y equilibrio, destaque: falso",
+      "Los Dodgers se mudan a Los Ángeles — Dodger Stadium se convierte en laboratorio para desarrollo del bateo",
+      "La investigación de biomecánica comienza a analizar la postura y mecánicas de carga para desarrollo juvenil",
+      "Statcast mide la velocidad del bate y el ángulo de lanzamiento — mecánicas de postura vinculadas a datos de velocidad de salida",
+      "Mookie Betts se une a los Dodgers — el disparador de golpecito de dedos se convierte en una de las posturas más estudiadas de las MLB"
+    ],
+    "keyTakeaways": [
+      "Pies ligeramente más anchos que el ancho de los hombros, peso sobre la planta de los pies, rodillas dobladas para una posición de caderas cargadas",
+      "Manos cerca del hombro trasero con nudillos de golpe alineados — agarre firme sin tensión en los antebrazos",
+      "Elige un disparador consistente (golpecito de dedos, patada de pierna o cambio de peso) que se repita idénticamente en cada lanzamiento",
+      "Ambos ojos deben enfrenta al lanzador — una postura cerrada o girada limita el reconocimiento de lanzamientos y la cobertura del lado externo"
+    ]
+  },
+  "baseball-2-02": {
+    "tagline": "Cuando una bola rápida de 95 mph cruza el plato, tuviste menos de 400 milisegundos para decidir — la decisión fue tomada antes de que la bola estuviera a mitad de camino.",
+    "overview": [
+      "Una bola rápida de 95 mph tarda aproximadamente 400 milisegundos en viajar desde el punto de lanzamiento del lanzador hasta el guante del receptor. La investigación muestra que los bateadores deben comenzar su decisión de swing cuando la bola está aproximadamente a mitad de camino del plato — dejando solo unos 175 milisegundos para identificar el tipo de lanzamiento, ubicación y velocidad. Este no es tiempo suficiente para el pensamiento analítico consciente. Los bateadores élite desarrollan el reconocimiento de patrones tan profundamente entrenado que la identificación del lanzamiento es casi automática.",
+      "El tunnel point es el concepto que explica cómo los lanzadores engañan a los bateadores. Todos los lanzamientos — bola rápida, curva, slider, cambio — comienzan en trayectorias casi idénticas desde la mano del lanzador. Comparten un 'túnel' común de vuelo para los primeros 20–25 pies. Después de eso, el efecto y la física hacen que diverjan. Un lanzador que mantiene todos los lanzamientos a través del mismo túnel apretado es mucho más efectivo porque el bateador no puede identificar el lanzamiento hasta que ya haya divergido — dándole mucho menos tiempo para ajustarse.",
+      "Freddie Freeman, primera base de los Dodgers y uno de los bateadores más destacados de su era, es reconocido por su enfoque de plato. Estudia intensivamente a los lanzadores antes de cada juego, rastreando sus tendencias: qué lanzamiento tiran en conteos 2-0, dónde ubican las bolas rápidas cuando van adelante, qué hace su punto de lanzamiento diferente en una curva. Esta preparación le permite estrechar su modelo mental de qué lanzamiento viene — efectivamente dándose más tiempo al reducir la incertidumbre."
+    ],
+    "technical": {
+      "title": "Identificación de Efecto — Leyendo las Costuras",
+      "body": [
+        "Los bateadores avanzados aprenden a identificar el efecto del lanzamiento desde la rotación de costuras visible desde la mano del lanzador. Una bola rápida de cuatro costuras rota con efecto de espaldas puro — las costuras aparecen como un anillo sólido de rotación (a veces llamado el 'punto' que buscan los bateadores). Una curva tiene efecto superior — las costuras rotan hacia adelante sobre la parte superior de la bola. Un slider tiene un efecto apretado e inclinado — a menudo descrito como un círculo giratorio o punto, pero más pequeño y con inclinación lateral.",
+        "Los cambios son particularmente engañosos porque tienen velocidad de brazo de bola rápida y un perfil de efecto similar — la diferencia es la velocidad, que el bateador solo puede detectar en los últimos milisegundos. Esta es la razón por la que los cambios son tan efectivos: el cerebro del bateador dice 'bola rápida' y comienza el swing, pero la bola llega 8–12 mph más lenta, causando compromiso prematuro y contacto débil o un swing fallido."
+      ]
+    },
+    "incident": {
+      "title": "Grand Slam de Freddie Freeman en la 10.ª Entrada — Juego 1 de la Serie Mundial 2024",
+      "impact": "El grand slam de Freddie Freeman en la 10.ª entrada contra los New York Yankees en el Juego 1 de la Serie Mundial fue preparado enteramente por su conocimiento profundo del relevista de los Yankees Nestor Cortes. Freeman había estudiado las tendencias de Cortes tan minuciosamente que pudo esperar un lanzamiento específico en una ubicación específica — y cuando llegó, no falló.",
+      "body": [
+        "Freddie Freeman llegó a la caja en la 10.ª entrada del Juego 1 de la Serie Mundial contra los Yankees, perdiendo 3-2, con las bases llenas. Había estado tratando un tobillo esguinzado durante los playoffs pero seguía contribuyendo. Freeman había enfrentado a Nestor Cortes antes y conocía sus tendencias — que a Cortes le gustaba ponerse adelante con bolas rápidas antes de introducir su dos-costuras. Freeman esperó un lanzamiento que pudiera conectar, y cuando Cortes lanzó una bola rápida en la mitad interior, Freeman conectó un grand slam de walk-off para darle a los Dodgers una victoria 6-3.",
+        "La preparación que hizo posible este momento fue invisible: horas de video, discusiones con entrenadores de bateo, un mapa mental de lo que Cortes haría en esa situación. El reconocimiento de lanzamiento de Freeman en ese turno no fue suerte — fue anticipación estudiada. El grand slam se convirtió en uno de los momentos más celebrados en la historia de los playoffs de los Dodgers y fue citado por entrenadores de bateo en todo el país como un ejemplo de libro de texto de cómo la preparación de lanzamientos gana juegos."
+      ]
+    },
+    "timeline": [
+      "Ted Williams publica por primera vez enfoque de lanzamiento zona por zona — ciencia temprana de lectura de lanzamientos",
+      "Análisis de video introducido a nivel de MLB — los bateadores comienzan preparación sistemática previa al juego",
+      "Cámaras de alta velocidad usadas por primera vez para estudiar rotación de bola y física del tunnel point",
+      "Datos de seguimiento Statcast permiten cuantificación de túneles de lanzamiento y engaño",
+      "Aplicaciones de entrenamiento de reconocimiento de lanzamiento entran en corriente principal en programas juveniles y universitarios",
+      "Grand slam de Freddie Freeman en la Serie Mundial — preparación de lanzamientos en su momento más dramático"
+    ],
+    "keyTakeaways": [
+      "Una bola rápida de 95 mph te da menos de 400 milisegundos — el reconocimiento de lanzamiento debe ser automático, no analítico",
+      "El tunnel point es la razón por la que los lanzadores engañan: todos los lanzamientos se ven iguales para los primeros 20 pies de vuelo",
+      "Estudia a los lanzadores antes de los juegos — conocer las tendencias (qué lanzan en conteos 2-0, cómo se preparan) reduce la incertidumbre",
+      "Busca efecto temprano: efecto de espaldas = bola rápida, efecto superior = curva, efecto apretado inclinado = slider"
+    ]
+  },
+  "baseball-2-03": {
+    "tagline": "Un buen swing es una cadena cinética — cada eslabón desde el suelo hacia arriba se activa en secuencia para entregar la máxima fuerza en la zona de contacto.",
+    "overview": [
+      "La comprensión moderna de la mecánica del swing ha sido transformada por datos de Statcast, que mide la velocidad del bate, el ángulo de lanzamiento y la velocidad de salida en cada bola bateada en las Grandes Ligas de Béisbol. El insight clave: el contacto más valioso — líneas y moscas golpeadas fuerte — proviene de un plano de swing que coincide con la trayectoria descendente del lanzamiento, creando una zona de contacto más grande en lugar de más pequeña. Por eso la vieja indicación de entrenador 'batea hacia abajo la bola' ahora se entiende que produce mal contacto, no buen contacto.",
+      "La rotación de caderas sigue siendo el motor del swing. Cuando el pie de zancada aterriza, la cadera trasera se dispara hacia adelante y hacia arriba (a veces descrito como 'limpiar las caderas'), jalando las manos y el bate hacia la zona de contacto. La secuencia es de abajo hacia arriba: pie trasero se planta, tobillo rota ('aplasta el insecto'), rodilla se impulsa hacia adentro, cadera se dispara, núcleo rota, hombros pasan, manos permanecen palma hacia arriba y palma hacia abajo a través del contacto, la cabeza del bate llega a la bola. Romper la cadena en cualquier eslabón reduce la potencia.",
+      "La zona de contacto — donde el bate toca la bola — idealmente está adelante del cuerpo para lanzamientos hacia el lado de bateo, en el borde del plato para lanzamientos al medio, y profundo (cerca de la cadera trasera) para lanzamientos alejados. Los bateadores que tratan de jalar todo hacen contacto demasiado pronto o demasiado tarde en lanzamientos alejados; los bateadores que permanecen profundos hacen contacto demasiado atrás en lanzamientos interiores. Leer la ubicación del lanzamiento y ajustar el punto de contacto es una habilidad desarrollada a través de miles de repeticiones."
+    ],
+    "technical": {
+      "title": "Ángulo de lanzamiento — La revolución moderna del bateo",
+      "body": [
+        "El ángulo de lanzamiento es el ángulo vertical en el que la bola sale del bate. La investigación de Statcast muestra que las bolas golpeadas entre 10 y 30 grados de ángulo de lanzamiento producen los promedios de bateo y porcentajes de slugging más altos — estas son las líneas duras y moscas medianas que o caen para hits o salen del parque. Las bolas golpeadas a 0 grados (perfectamente plano) son generalmente rodadores, outs fáciles. Las bolas golpeadas por encima de 30 grados son elevados — altos y fácilmente atrapados.",
+        "Lograr un ángulo de lanzamiento óptimo requiere un plano de swing ligeramente ascendente — el bate viajando ligeramente hacia arriba a través de la zona de contacto para coincidir con el ángulo descendente del lanzamiento. Esto crea superposición máxima entre bate y bola en el momento del contacto. La vieja indicación 'batea hacia abajo' fue pensada para prevenir elevados pero en realidad produjo rodadores. La instrucción moderna se enfoca en 'ángulo de ataque' — haciendo coincidir la trayectoria del bate con el ángulo de aproximación del lanzamiento para la zona de contacto más grande posible."
+      ]
+    },
+    "incident": {
+      "title": "La revolución de Statcast — Cómo los Dodgers construyeron su alineación",
+      "impact": "Cuando la MLB desplegó seguimiento de Statcast en todos los 30 estadios en 2015, los Dodgers fueron entre las primeras organizaciones en usar datos de velocidad de salida y ángulo de lanzamiento para remodelar su instrucción de bateo. Su énfasis en contacto fuerte en ángulos de lanzamiento óptimos se convirtió en un modelo para cómo la analítica y la mecánica podían integrarse en una alineación ganadora.",
+      "body": [
+        "En 2015, Statcast comenzó a medir cada bola bateada en las Grandes Ligas de Béisbol con precisión sin precedentes — velocidad de salida, ángulo de lanzamiento, velocidad de sprint, fuerza del brazo. Los Dodgers, bajo el manager Dave Roberts y una oficina de dirección analíticamente orientada, comenzaron a usar estos datos para informar cómo entrenaban a los bateadores. En lugar de pedir a los bateadores que 'simplemente hagan contacto,' comenzaron a trabajar en calidad de contacto específica: bolas golpeadas fuerte en ángulos de lanzamiento entre 10 y 30 grados.",
+        "Los resultados transformaron alineaciones de Dodgers a lo largo de finales de los 2010 y los 2020. Los jugadores fueron entrenados para jalar la bola por el aire con más frecuencia, para evitar débiles rodadores al lado de bateo, y para hacer coincidir su plano de swing con ángulos de lanzamiento en lugar de 'batear hacia abajo' como lo exigía la instrucción anticuada. El éxito sostenido de los Dodgers — y su capacidad para desarrollar bateadores que mejoraron año tras año — fue en parte producto de este enfoque informado por datos para la mecánica del swing."
+      ]
+    },
+    "timeline": [
+      "Ted Williams' 'Science of Hitting' describe zonas de contacto óptimas científicamente",
+      "Los equipos de MLB comienzan a usar análisis de video básico para revisión de mecánica del swing",
+      "Cámaras de alta velocidad en jaulas de bateo permiten análisis de cadena cinética fotograma por fotograma",
+      "Statcast desplegado en todos los parques de MLB — datos de ángulo de lanzamiento y velocidad de salida se hacen públicos",
+      "La 'revolución del ángulo de lanzamiento' llega al béisbol juvenil — viejas indicaciones de 'batear hacia abajo' abandonadas",
+      "Los Dodgers ganan la Serie Mundial con alineación construida en contacto fuerte y ángulos de lanzamiento óptimos"
+    ],
+    "keyTakeaways": [
+      "La cadena cinética se activa de abajo hacia arriba: pie, tobillo, rodilla, cadera, núcleo, hombros, manos — en esa secuencia",
+      "Las caderas se disparan antes que las manos — la 'separación cadera-mano' es lo que genera el efecto de látigo de un swing poderoso",
+      "El ángulo de lanzamiento óptimo es 10–30 grados — ni rodadores, ni elevados, sino líneas duras y moscas",
+      "El punto de contacto se ajusta por ubicación del lanzamiento: adelante para lanzamientos interiores, profundo cerca de cadera para lanzamientos exteriores"
+    ]
+  },
+  "baseball-2-04": {
+    "tagline": "El mejor lanzamiento para golpear es uno que eliges — no uno al que reaccionas. La disciplina de zona significa saber la diferencia.",
+    "overview": [
+      "La disciplina de zona es la capacidad de golpear strikes y dejar pasar bolas — y hacerlo consistentemente bajo la presión de un conteo completo con dos outs en la séptima entrada. Suena simple, pero es una de las habilidades mentales más difíciles en el bateo. Los bateadores que persiguen lanzamientos fuera de la zona les dan outs gratis a los lanzadores. Los bateadores que dejan pasar lanzamientos al borde de la zona les dan strikes gratis a los lanzadores. El bateador élite hace ninguno de los dos: golpean strikes que pueden impulsar y dejan todo lo demás ir.",
+      "El porcentaje de llegada a base (OBP) es una de las estadísticas ofensivas más importantes en el béisbol moderno porque mide cada vez que un bateador evita un out — hits, bases por bolas y golpes de bola todas cuentan. Un bateador que batea .280 con un OBP de .380 (por sacar muchas bases por bolas) es mucho más valioso que un bateador que batea .310 con un OBP de .330 (por rara vez sacar bases por bolas). Los Dodgers bajo el manager Dave Roberts han enfatizado consistentemente OBP y tasa de bases por bolas como valores ofensivos centrales.",
+      "El apalancamiento de conteo es el concepto de que diferentes conteos favorecen diferentes estrategias. En conteos favorables al bateador (2-0, 3-0, 3-1), el lanzador está atrás y más propenso a lanzar un fastball en la zona — el bateador puede buscar un lanzamiento específico para impulsar. En conteos favorables al lanzador (0-2, 1-2), el bateador debe proteger la zona — golpear cualquier cosa cerca de la zona o riesgo de ser ponchado mirando. El juego mental de la gestión de conteos — mantenerse adelante tomando menos strikes en el primer lanzamiento u trabajar profundo en los conteos — separa a los buenos bateadores de los grandes."
+    ],
+    "technical": {
+      "title": "La Zona de Strike — Oficial vs. Real vs. Árbitro",
+      "body": [
+        "La zona de strike oficial, como se define en el reglamento, se extiende desde el punto medio entre la parte superior de los hombros y la parte superior de los pantalones del uniforme (aproximadamente altura de letras) hasta la rótula, y desde el borde interior de home plate hasta el borde exterior. En la práctica, los árbitros de MLB llaman el strike alto aproximadamente a la cintura y el strike bajo al fondo de las rodillas. Las esquinas — bordes interiores y exteriores — son el área más controvertida.",
+        "La cobertura de zona significa que un bateador debe ser mecánicamente capaz de hacer contacto en lanzamientos en toda la zona — adentro, afuera, arriba y abajo. Un bateador que no puede cubrir la esquina interior tendrá lanzadores atacándola todo el día. Un bateador que no puede esperar en lanzamientos a la altura de las rodillas perseguirá curveballs bajos. Desarrollar cobertura de zona a través de trabajo de tee y práctica de bateo en vivo en todas las ubicaciones de lanzamientos es esencial para convertirse en un bateador disciplinado."
+      ]
+    },
+    "incident": {
+      "title": "La Cultura de Bases por Bolas de los Dodgers — Era Dave Roberts",
+      "impact": "Bajo el manager Dave Roberts, los Dodgers han clasificado consistentemente entre los líderes de la liga en tasa de bases por bolas y OBP, tratando la base por bolas como un arma estratégica en lugar de un fracaso en golpear. Esta filosofía — extraída de la oficina directiva influenciada por Moneyball — ha producido algunos de los ataques más consistentes de la Liga Nacional.",
+      "body": [
+        "Cuando Dave Roberts se convirtió en manager de los Dodgers en 2016, la oficina directiva impulsada por análisis de la organización ya había construido una filosofía alrededor de la disciplina de zona. Los Dodgers instruyeron a los bateadores a trabajar profundo en los conteos, buscar lanzamientos en su zona y tratar las bases por bolas como equivalentes en valor a los sencillos para los propósitos del porcentaje de llegada a base. Bateadores como Corey Seager, Justin Turner y posteriormente Freddie Freeman encarnaron este enfoque — pacientes, selectivos, dispuestos a tomar una base por bolas cuando el lanzador no lanzaría un strike.",
+        "Los resultados fueron series de playoffs consistentes y algunos de los ataques más eficientes en el béisbol. Los Dodgers también se beneficiaron del efecto secundario: lanzadores que tuvieron que lanzar más strikes para evitar bases por bolas elevaron los conteos de lanzamientos más rápido, cansándose antes. Un lineup que saca muchas bases por bolas obliga a los lanzadores opuestos más profundamente en el conteo, lo que significa más errores en ubicaciones favorables al bateador. La disciplina de zona no es pasiva — es una estrategia ofensiva agresiva."
+      ]
+    },
+    "timeline": [
+      "Duke Snider de los Dodgers saca 100+ bases por bolas en una temporada — énfasis temprano de disciplina de zona",
+      "Cuadrícula de zona de strike de Williams publicada — primer modelo visual de valor de lanzamiento por ubicación",
+      "Moneyball publicado — OBP y bases por bolas se convierten en filosofía ofensiva convencional",
+      "Era Dave Roberts comienza — Dodgers implementan énfasis de tasa de bases por bolas en todo el lineup",
+      "OBP de .366 de Mookie Betts contribuye al título de Serie Mundial de los Dodgers",
+      "Dodgers lideran NL en bases por bolas y OBP en ruta al campeonato de Serie Mundial"
+    ],
+    "keyTakeaways": [
+      "OBP incluye bases por bolas — un bateador que llega a base por base por bolas contribuye tanto como uno que pega sencillo",
+      "En conteos favorables al bateador (2-0, 3-1), busca un lanzamiento específico para impulsar — el lanzador necesita un strike",
+      "En conteos favorables al lanzador (0-2, 1-2), protege la zona — la zona se amplía, golpea cualquier cosa fronteriza",
+      "Perseguir lanzamientos fuera de la zona es la forma más común en que los bateadores dan outs gratis a los lanzadores — sé disciplinado"
+    ]
+  },
+  "baseball-2-05": {
+    "tagline": "El poder no se trata de qué tan grande eres — se trata de qué tan eficientemente transmites la fuerza desde el suelo a través del bate en el momento correcto.",
+    "overview": [
+      "El béisbol moderno ha experimentado una revolución de poder. La combinación de análisis Statcast que muestra el valor del contacto fuerte en ángulos de lanzamiento óptimos, programas de acondicionamiento físico más agresivos e instrucción de bateo refinada ha producido la era de mayor poder en la historia del béisbol. Las velocidades de salida por encima de 100 mph ahora son comunes a nivel profesional, y las tasas de jonrones se mantienen históricamente altas a pesar de varios ajustes de equipo.",
+      "La velocidad del bate es el impulsor más directo de la velocidad de salida — cuanto más rápido se mueve el bate en el contacto, más fuerte sale la pelota. La velocidad del bate se genera principalmente a través de la velocidad de rotación de cadera, la separación de cadera a mano, y la longitud y eficiencia de la trayectoria del swing. Los bates más pesados no generan automáticamente más velocidad de salida — un bateador que puede hacer swing con un bate más ligero rápidamente a menudo superará a alguien que lucha por hacer swing con un bate pesado a través de la zona.",
+      "Los Dodgers han construido su alineación alrededor del poder desde mediados de los 2010s. Cody Bellinger, Max Muncy, Corey Seager, Justin Turner y Shohei Ohtani han sido productos de una filosofía que valora el contacto fuerte a todos los campos pero especialmente al lado opuesto en el aire. Entender la diferencia entre el poder de tiro (favorable para el bateador, velocidad de salida alta al llegar al bate temprano) y el poder de campo opuesto (requiere velocidad de bate de élite para impulsar la pelota con autoridad al otro lado) es central para desarrollar un enfoque de poder."
+    ],
+    "technical": {
+      "title": "Poder de Tiro vs. Poder de Campo Opuesto",
+      "body": [
+        "El poder de tiro se genera al llevar el barril del bate a la pelota temprano — contacto en frente del plato en lanzamientos en la mitad interior. Debido a que el swing todavía está acelerando en este punto de contacto (el bate aún no se ha desacelerado completamente), y porque el barril tiene más fuerza centrífuga en el frente del swing, el contacto de tiro produce las velocidades de salida más altas. Por eso la mayoría de los jonrones se tiran — la física lo favorece.",
+        "El poder de campo opuesto es la firma de la velocidad de bate de élite. Para impulsar un lanzamiento exterior al campo opuesto con autoridad, el bateador debe esperar más tiempo (contacto más profundo en la zona, cerca de la cadera trasera), mantener la rotación de cadera a través del contacto, y extender completamente los brazos a través de la pelota hacia el otro lado. Los bateadores con velocidad de bate más lenta que intentan tirar lanzamientos exteriores producen rodadera débiles hacia el lado del paracortos. Mantenerse atrás e impulsar el otro lado con autoridad requiere tanto excelencia mecánica como velocidad de bate genuina."
+      ]
+    },
+    "incident": {
+      "title": "Shohei Ohtani se Uní a los Dodgers — 2024",
+      "impact": "La firma de Shohei Ohtani con los Dodgers llevó el bateador-lanzador más dominante en la historia del béisbol a Los Ángeles. Sus 54 jonrones en 2024 — el segundo más en la historia de las MLB para un jugador que también lanza — demostró que su enfoque de poder (patada de pierna, velocidad de bate de élite, daño al lado opuesto) representa la cumbre del poder moderno en el béisbol.",
+      "body": [
+        "La temporada de 2024 de Ohtani fue históricamente notable: 54 jonrones, 59 bases robadas (la primera temporada '50-50' en la historia del béisbol), y un promedio de .310 — mientras también regresaba de una cirugía de Tommy John como lanzador. Su poder proviene de una combinación de una patada de pierna inusualmente alta que genera tremenda torsión de cadera, velocidad de bate de élite estimada por encima de 80 mph en contacto, y un plano de swing que produce ángulos de lanzamiento óptimos en lanzamientos de media interior.",
+        "Dodger Stadium, con sus dimensiones moderadamente favorables para lanzadores, podría parecer una opción extraña para el bateador de poder más temido del juego. Pero la construcción de la alineación de los Dodgers alrededor de Ohtani — colocando a Freddie Freeman enfrente de él y Teoscar Hernández detrás de él — aseguró que vería lanzamientos para batea. La combinación produjo 127 jonrones totales de la alineación de los Dodgers en 2024, una de las ofensivas más poderosas en la historia de la franquicia."
+      ]
+    },
+    "timeline": [
+      "Babe Ruth golpea 60 jonrones — primer punto de referencia de temporada de poder moderno",
+      "Mark McGwire golpea 70 jonrones — era de poder alcanza su pico (posteriormente manchada por revelaciones de PED)",
+      "Debut de Statcast — velocidad de salida y ángulo de lanzamiento se convierten en métricas de poder cuantificables",
+      "Freddie Freeman de los Dodgers lidera al equipo en tasa de contacto duro en temporada de .400+",
+      "Ohtani gana MVP de la NL — firma contrato de 10 años con los Dodgers en diciembre",
+      "Ohtani golpea 54 jonrones con los Dodgers — primera temporada 50-50 en la historia de las MLB"
+    ],
+    "keyTakeaways": [
+      "La velocidad del bate es el impulsor principal de la velocidad de salida — la velocidad del bate más rápida importa más que el peso del bate",
+      "El poder de tiro es más accesible porque el contacto se realiza en frente del plato donde el barril se acelera más rápido",
+      "El poder de campo opuesto requiere velocidad de bate de élite — los bateadores que se mantienen atrás e impulsan lanzamientos exteriores al otro lado son genuinamente especiales",
+      "Apunta a una velocidad de salida por encima de 95 mph — las pelotas de contacto duro por encima de este umbral producen resultados dramáticamente mejores"
+    ]
+  },
+  "baseball-2-06": {
+    "tagline": "Conseguir un hit tres de cada diez veces te hace un gran bateador. Eso significa que los mejores del mundo fallan siete veces — cómo te ajustas con dos strikes determina si fallas en tus propios términos.",
+    "overview": [
+      "El contacto de bateo — hacer contacto consistente y sólido con el bate en la parte gruesa — es la base de un ataque efectivo sin importar el poder. A nivel juvenil, el contacto es lo más importante: un jugador que dispersa líneas a todos los campos y pone la pelota en juego consistentemente es más valioso que un jugador que se poncha la mitad del tiempo pero ocasionalmente la batea lejos. Desarrollar habilidades de contacto a través de trabajo en tee, tiros suaves y práctica de bateo en vivo construye la coordinación ojo-mano que potencia todos los demás aspectos del bateo.",
+      "El ajuste con dos strikes es una de las habilidades más importantes en el bateo. Sin strikes o con un strike, un bateador puede ser selectivo — tienen espacio para dejar pasar lanzamientos y buscar algo específico. Con dos strikes, el turno al bate cambia: el bateador debe proteger el home. El ajuste estándar con dos strikes implica empopar el bate (mover las manos 1–2 pulgadas hacia arriba en la manija), acortar el swing, ampliar la zona de strike, y enfocarse en hacer contacto en lugar de impulsar la pelota.",
+      "Un promedio de bateo de .300 significa conseguir un hit en el 30% de los turnos al bate. Incluso los mejores bateadores en la historia del béisbol fallaron en conseguir un hit el 70% del tiempo. Entender esta tasa de fracaso es esencial para el juego mental del bateo: cada gran bateador ha tenido rachas de 0-4, 0-10, 0-20. Las rachas negativas son inevitables. La respuesta mental — mantenerse corto, mantenerse disciplinado, no cambiar todo después de una mala racha — determina qué tan rápido se recupera un bateador."
+    ],
+    "technical": {
+      "title": "Empopar — La Herramienta Más Subutilizada en el Béisbol",
+      "body": [
+        "Empopar el bate (mover las manos 1–2 pulgadas hacia arriba desde la perilla) acorta la longitud efectiva del bate, aumenta el control, y — contra intuitivamente — a menudo aumenta la velocidad del bate porque la palanca es más corta. La compensación es una pequeña reducción en el poder: la parte gruesa está más cerca de las manos, por lo que el efecto de látigo se reduce. Pero el bateo con dos strikes es sobre contacto, no poder. Una pelota golpeada en la punta del bate o jambed es un out. Una pelota golpeada en la parte gruesa con un agarre empopado es un hit.",
+        "La técnica de golpe rápido — usada por especialistas en contacto, bateadores de ambos lados, y algunos bateadores zurdos — implica un camino de swing más corto que prioriza hacer contacto y salir rápido de la caja de bateo, a menudo apuntando al lado izquierdo del cuadro interior o al campo opuesto. Tony Gwynn, uno de los grandes bateadores de contacto en la historia (.338 de promedio en carrera), fue un maestro del stroke corto y rápido al campo opuesto, a menudo hacia lo que ahora se llama 'el área del shift de Ted Williams.'"
+      ]
+    },
+    "incident": {
+      "title": "Tony Gwynn vs. el Shift — El Maestro Original del Contacto",
+      "impact": "Tony Gwynn, quien bateó .338 durante una carrera de 20 años — incluyendo ocho títulos de bateo — fue tan preciso en golpear la pelota al campo izquierda-central contra el shift que inventó lo que los entrenadores ahora llaman la 'zona de Gwynn.' Su estudio de películas, ejercicios con palillos, y obsesión con la mecánica de contacto siguen siendo el estándar para enseñar bateo de contacto.",
+      "body": [
+        "Tony Gwynn fue famoso por ser el primer jugador en usar extensamente análisis de video para estudiar su propio swing y lanzadores opuestos. Llevaba un reproductor de VHS en viajes de carretera décadas antes de que el estudio de video fuera común. Identificó que su zona de contacto más efectiva era un lanzamiento bajo y alejado — que podía impulsar hacia el campo izquierda-central consistentemente. Conforme las defensas se desplazaban hacia su lado de pull, simplemente fue más al campo opuesto y siguió bateando.",
+        "El enfoque de Gwynn para el bateo con dos strikes fue particularmente instructivo: acortaba su swing, empopaba ligeramente, y priorizaba hacer contacto en cualquier parte de la zona de strike sobre tratar de impulsar la pelota. Su tasa de contacto con dos strikes fue extraordinaria — casi nunca se ponchaba mirando. Terminó su carrera con una tasa de ponches de menos del 4%, un número que bateadores modernos con análisis avanzado han estudiado como el estándar para habilidades de contacto de élite."
+      ]
+    },
+    "timeline": [
+      "Ted Williams batea .406 — última temporada de .400 en la historia de las Grandes Ligas",
+      "Era de Brooklyn Dodgers — Duke Snider y Jackie Robinson modelan el balance contacto + poder",
+      "Tony Gwynn comienza su carrera — pionero en estudio de video y enfoque de contacto primero",
+      "Gwynn batea .394 — acercamiento más cercano al .400 en la era post-Williams",
+      "Tasa de contacto y tasa de ponches se convierten en medidas analíticas convencionales",
+      "La tasa de ponches promedio de la MLB llega al 22% — el bateo de contacto es cada vez más raro y valioso"
+    ],
+    "keyTakeaways": [
+      "Empopar 1–2 pulgadas aumenta el control y a menudo la velocidad del bate — úsalo con dos strikes",
+      "Enfoque con dos strikes: acorta el swing, amplía la zona, protege el home — contacto sobre poder",
+      "Un promedio de .300 significa 7 de 10 turnos al bate resultan en ningún hit — las rachas negativas son normales, no catastróficas",
+      "Filosofía de contacto de Tony Gwynn: encuentra tu zona, ve al campo opuesto, nunca regales turnos al bate"
+    ]
+  },
+  "baseball-2-08": {
+    "tagline": "Las bolas que se quiebran están diseñadas para hacerte verse tonto. Mantenerse atrás es el antídoto — la paciencia es la habilidad.",
+    "overview": [
+      "Las bolas que se quiebran — curvas, sliders, cambios y sus variantes — están diseñadas para explotar el timing del bateador. Todas comienzan con trayectorias similares a los lanzamientos rápidos (el principio del punto de túnel) pero llegan más lentamente y/o en ubicaciones diferentes. El error más común que cometen los bateadores contra bolas que se quiebran es el compromiso prematuro: rotar las caderas antes de que el lanzamiento se haya identificado completamente, produciendo un swing que es demasiado prematuro (rodillo en tierra) o demasiado por delante (un gran swing fallido).",
+      "La curva es la trampa clásica del compromiso prematuro. Comienza alta, pareciendo un lanzamiento rápido en la zona superior, luego cae dramáticamente en o debajo de la zona de strike. Los bateadores que reaccionan a la trayectoria inicial de 'lanzamiento rápido alto' tiran pronto y swinguean a donde comenzó la bola — no a donde termina. La clave para batear curvas es mantenerse atrás: retrasando la rotación de caderas hasta que el quiebre de la bola se haya identificado, luego haciendo un swing más corto y ajustado a la ubicación real de llegada de la bola.",
+      "El slider es el lanzamiento más engañoso en el nivel profesional porque es el más difícil de distinguir de un lanzamiento rápido. Los sliders tienen un spin apretado que parece el backspin de un lanzamiento rápido pero con una inclinación lateral — la bola corta hacia el lado del guante de la placa. Muchos bateadores describen los sliders como 'lanzamientos rápidos que desaparecen' en los últimos 10–15 pies. El cambio, por el contrario, parece un lanzamiento rápido por diseño — misma velocidad de brazo, misma trayectoria — pero llega 8–12 mph más lentamente. El compromiso prematuro es fatal contra ambos."
+    ],
+    "technical": {
+      "title": "La Curva vs. Slider vs. Cambio — Diferencias Clave",
+      "body": [
+        "Curva: eje de spin de 12-a-6 u 11-a-5, caída vertical grande, típicamente 10–15 mph más lentamente que el lanzamiento rápido. El quiebre es grande y comienza temprano. Los bateadores que se mantienen atrás lo suficiente para ver el quiebre pueden identificarlo en el punto de divergencia del túnel. La clave: no comprometerse con la trayectoria alta — espera a que la bola revele su ubicación real de llegada.",
+        "Slider: spin apretado y giroscópico con un quiebre lateral y descendente, típicamente 5–8 mph más lentamente que el lanzamiento rápido. El quiebre es afilado y tardío — parece un lanzamiento rápido hasta los últimos 10–15 pies. Esta acción tardía hace que los sliders sean muy difíciles de batear. La pista: los sliders cortan hacia el lado del brazo de la placa al final; una bola que comienza en el medio y parece estar desvaneciéndose adentro (para un bateador zurdo contra un lanzador zurdo) es un slider. Cambio: trayectoria de lanzamiento rápido a velocidad de brazo de lanzamiento rápido pero 8–12 mph más lentamente. La gravedad hace que caiga más que un lanzamiento rápido, frecuentemente quebrando lejos de bateadores del mismo lado. Pista: si el lanzamiento parece un lanzamiento rápido pero tu timing dice 'demasiado prematuro', probablemente es un cambio."
+      ]
+    },
+    "incident": {
+      "title": "La Curva de Clayton Kershaw — El Arma Más Grande de los Dodgers",
+      "impact": "La curva de Clayton Kershaw — apodada 'El Diablo' por Vin Scully — ha sido llamada la mejor en las Grandes Ligas durante más de una década. Con una caída promedio de 58 pulgadas (casi cinco pies de movimiento vertical) y túnel apretado con su lanzamiento rápido, representa el lanzamiento exacto que obliga a los bateadores a entender por qué mantenerse atrás es tan importante.",
+      "body": [
+        "La curva de Clayton Kershaw entra al túnel a aproximadamente 80 pies desde la placa de home pareciendo exactamente como su lanzamiento rápido de 92–94 mph. Ambos lanzamientos comienzan desde el mismo punto de liberación, en la misma trayectoria. A aproximadamente 40 pies de la placa — donde el túnel se diverge — la curva comienza su caída vertical catastrófica de 58 pulgadas mientras el lanzamiento rápido continúa en una línea plana. Los bateadores que comprometen su rotación de caderas temprano, leyendo 'lanzamiento rápido', ya están tirando cuando la bola comienza a caer.",
+        "El resultado más común de un bateador siendo engañado por la curva de Kershaw es un swing salvaje sobre la parte superior de la bola — a veces perdiéndola por más de dos pies. La lección para los bateadores: identificar el spin en el punto del túnel, mantenerse atrás, y hacer un swing ajustado corto. Los bateadores que tienen más éxito contra Kershaw son aquellos que pueden mantenerse atrás en la curva lo suficiente para identificarla y luego reaccionar a su ubicación final — una habilidad que requiere paciencia excepcional y ajuste rápido de reflejos."
+      ]
+    },
+    "timeline": [
+      "La curva de Sandy Koufax domina la NL — enseña a una generación cómo mantenerse atrás",
+      "El slider de Orel Hershiser encabeza a los Dodgers hacia la Serie Mundial — estudio del enfoque de bola que se quiebra",
+      "El slider se convierte en el lanzamiento de strikeout más común en las Grandes Ligas",
+      "Kershaw gana su primer Cy Young — curva calificada No. 1 en MLB anualmente",
+      "Statcast mide el quiebre de la curva en pulgadas — caída de 58\" de Kershaw cuantificada",
+      "El slider permanece como lanzamiento de strikeout principal — bateadores de los Dodgers desarrollan protocolos de bola que se quiebra"
+    ],
+    "keyTakeaways": [
+      "Mantenerse atrás contra todas las bolas que se quiebran — el compromiso prematuro de caderas es la causa de casi todos los errores de bola que se quiebra",
+      "Curva: caída grande temprana — espera a que la bola muestre su ubicación antes de comprometerse",
+      "Slider: corte tardío y afilado — parece un lanzamiento rápido hasta los últimos 10–15 pies, síguelo completamente",
+      "Cambio: misma velocidad de brazo, velocidad más lentamente — si tu timing dice 'demasiado prematuro', ajusta y continúa a través de la bola"
+    ]
+  },
+  "baseball-2-09": {
+    "tagline": "La franquicia de los Dodgers ha producido algunos de los enfoques ofensivos más distintivos e instructivos en la historia del béisbol — cada era enseñando una lección diferente sobre el oficio.",
+    "overview": [
+      "Los Dodgers de Brooklyn y Los Ángeles han presentado bateadores legendarios en cada era del béisbol. Jackie Robinson (1947–1956) no fue el bateador más poderoso, pero fue quizás el más completo: control de bate excepcional, carrera de bases extraordinaria, bateo en momentos cruciales, y la fortaleza mental para actuar bajo la presión externa más intensa que cualquier jugador de béisbol ha enfrentado. Duke Snider conectó 407 jonrones en su carrera y fue uno de los grandes bateadores tiradores hacia el mismo lado en la década de 1950, parte de una tríada de jardinero central en la Ciudad de Nueva York (junto a Willie Mays y Mickey Mantle) que generó debates interminables sobre quién era el mejor.",
+      "Mike Piazza, quien ascendió a través del sistema de los Dodgers en 1992, se convirtió en uno de los receptores ofensivos más grandes en la historia del béisbol — un bateador tirador hacia el mismo lado diestro con velocidad de bate excepcional que impulsaba todo hacia el lado izquierdo con autoridad. Adrian Beltre, quien jugó para los Dodgers de 1998 a 2004, fue famoso por golpear grandes pelotas en la tierra — una habilidad única para generar potencia en lanzamientos fuera de la zona de strike que confundía a todos los lanzadores que intentaban sacarlo bajo.",
+      "Cody Bellinger (2017–2022 con los Dodgers) tuvo uno de los swings más estéticamente distintivos en la historia moderna de los Dodgers — un levantamiento dramático de pierna combinado con una posición de mano alta y un enfoque extremo de tiro hacia el mismo lado/pelotas aéreas que produjo una temporada de MVP de la NL en 2019 con 47 jonrones. La mecánica de Freddie Freeman es el modelo para el equilibrio y la consistencia en el bateo moderno. Y el desempeño de Shohei Ohtani en 2024 — 54 jonrones y 59 bases robadas — se encuentra entre las temporadas ofensivas más históricamente dominantes en la historia del béisbol."
+    ],
+    "technical": {
+      "title": "Control de Bate de Jackie Robinson — La Habilidad de Bateo Más Subestimada",
+      "body": [
+        "El enfoque de bateo de Jackie Robinson se definió por un control de bate excepcional: la habilidad de poner la pelota donde quería, buntar cuando fuera necesario, golpear hacia el campo contrario cuando la situación lo requería, e impulsar la pelota con autoridad cuando tenía el lanzamiento que buscaba. Bateó .311 en su carrera a pesar de jugar su primera temporada de Grandes Ligas a los 28 años después de años en las Ligas Negras. Su disciplina en plato y control de bate fueron enseñados por los entrenadores de los Dodgers como el modelo para el bateo de posición.",
+        "La temporada de Robinson en 1949 — cuando ganó el título de bateo de la NL con un promedio de .342, añadió 16 jonrones, y robó 37 bases — representa el paquete completo de un enfoque de bateo que priorizaba el porcentaje de llegada a base, contacto, bateo situacional, y justamente el suficiente poder para mantener a las defensas alerta. Los analistas modernos que estudian el bateo de los Dodgers de los años 1940–50 a menudo señalan a Robinson como el mejor bateador puro de la franquicia — no por poder, sino por la integridad de su oficio."
+      ]
+    },
+    "incident": {
+      "title": "Cuatro Jonrones de Duke Snider en la Serie Mundial — 1955",
+      "impact": "Duke Snider conectó cuatro jonrones en la Serie Mundial de 1955 — ayudando a los Dodgers de Brooklyn a ganar su único campeonato como franquicia de Brooklyn. Su enfoque de poder tirador hacia el mismo lado y velocidad de bate excepcional en la década de 1950 lo establecieron como uno de los principales bateadores de poder de la era y demostraron cómo un tirador hacia el mismo lado izquierdo podía dominar el lanzamiento diestro.",
+      "body": [
+        "Los Dodgers de Brooklyn de 1955 ganaron su primer y único título de Serie Mundial, derrotando a los Yankees de Nueva York en siete juegos. Duke Snider, el jardinero central, fue el catalizador ofensivo — conectando cuatro jonrones en la serie, siendo el más dramático en el Juego 5. El swing de Snider fue un modelo de poder tirador hacia el mismo lado izquierdo: una carga corta y compacta, rotación explosiva de caderas, y una ruta de swing que produjo fly balls elevadas hacia el lado derecho del campo y el centro.",
+        "Snider conectó cuatro jonrones tanto en la Serie Mundial de 1952 como en la de 1955 — el único jugador en lograr esa hazaña dos veces. Su enfoque en el plato fue completamente tirador hacia el mismo lado, y trabajó con los instructores de bateo de los Dodgers para desarrollar la selección de lanzamientos para encontrar esos lanzamientos del lado tirador hacia el mismo lado de manera confiable. El legado del bateo de poder de Snider influyó en cómo los entrenadores de los Dodgers desarrollaron a los bateadores tiradores hacia el mismo lado izquierdo por generaciones — una influencia visible incluso en cómo Cody Bellinger y otros fueron instruidos en la era moderna."
+      ]
+    },
+    "timeline": [
+      "Jackie Robinson rompe la barrera de color de las MLB — se une a los Dodgers de Brooklyn",
+      "Robinson gana el título de bateo de la NL (.342) — filosofía de bateo de los Dodgers establecida",
+      "Duke Snider conecta 4 HR — Brooklyn gana su primera y única Serie Mundial",
+      "Mike Piazza irrumpe en la alineación de los Dodgers — mayor receptor ofensivo en la historia de la franquicia",
+      "Mookie Betts y Corey Seager lideran a los Dodgers al título de la Serie Mundial",
+      "Ohtani 54 HR + Freeman grand slam ganador — mayor temporada de bateo de los Dodgers en 70 años"
+    ],
+    "keyTakeaways": [
+      "El control de bate y la disciplina en plato de Jackie Robinson siguen siendo el modelo para el bateo completo — no solo poder",
+      "El enfoque de poder tirador hacia el mismo lado de Duke Snider en la Serie Mundial de 1955 estableció la tradición de bateo de poder de los Dodgers",
+      "Mike Piazza probó que los receptores pueden ser fuerzas ofensivas de élite — OPS por encima de 1.000 en múltiples temporadas",
+      "La temporada de 2024 de Ohtani (54 HR, 59 SB) es el desempeño ofensivo más completo en la historia moderna de los Dodgers"
+    ]
+  },
+  "baseball-2-10": {
+    "tagline": "La diferencia entre un buen bateador y uno excelente no es solo el talento — es lo que hacen cuando nadie está mirando.",
+    "overview": [
+      "Los bateadores profesionales realizan entre 200 y 500 golpes de práctica al día — sin incluir turnos al bate. Este volumen de práctica es cómo la mecánica se vuelve automática, cómo el timing se vuelve confiable, y cómo los ajustes se graban en la memoria muscular. Para jugadores de Little League, la escala es más pequeña, pero el principio es el mismo: la práctica consistente y propositiva con objetivos específicos en cada sesión produce resultados mucho mejores que los golpes casuales en el patio una vez a la semana.",
+      "Una rutina de bateo bien estructurada tiene múltiples componentes: tee work (pelota estacionaria, enfoque en mecánica pura), soft toss (timing contra una pelota en movimiento desde corta distancia), front toss (timing contra una trayectoria más realista), live BP (timing completo contra el lanzamiento de un pitcher), y revisión de video (comparando tu mecánica contra tus objetivos y contra profesionales). Cada componente construye un aspecto diferente del conjunto de habilidades de bateo.",
+      "El análisis de video ya no es solo para jugadores profesionales. Cada smartphone puede grabar a 240 fotogramas por segundo — más que suficiente para analizar la mecánica del swing en cámara lenta. Jugadores de juventud y entrenadores que usan video sistemáticamente — comparando mecánica pre-sesión con mecánica post-sesión, rastreando mejoras durante semanas y meses — desarrollan bateadores mucho más rápido que aquellos que dependen solo de la intuición. La clave: mira el video con un enfoque específico (rotación de cadera, trayectoria de mano, posición de cabeza) en lugar de revisión general."
+    ],
+    "technical": {
+      "title": "Tee Work — La Herramienta de Bateo Más Subestimada",
+      "body": [
+        "El tee de bateo permite que un bateador congele la pelota en cualquier ubicación — mitad interior, mitad exterior, arriba, abajo, alto, bajo — y tome 50 golpes en esa ubicación exacta sin ningún elemento de timing. Esto aísla la mecánica completamente. Un bateador que lucha con lanzamientos interiores puede tomar 100 repeticiones de tee con la pelota en el tercio interior del plato, grabando la rotación de cadera y el punto de contacto temprano requerido para ese lanzamiento. Ningún otro ejercicio permite esta precisión.",
+        "Ejercicios de tee para desarrollo específico: (1) Ejercicio de mitad interior — tee colocado al frente del plato, mitad interior, enfoque en rotación de cadera y contacto temprano; (2) Ejercicio de mitad exterior — tee colocado al borde trasero del plato, mitad exterior, enfoque en quedarse atrás e impulsar hacia el otro lado; (3) Ejercicio de fastball alto — tee a la altura del hombro, enfoque en trayectoria corta del swing y mantenerse sobre la pelota; (4) Ejercicio de lanzamiento bajo — tee a la altura de la rodilla, enfoque en bajar el plano del swing sin perder rotación de cadera."
+      ]
+    },
+    "incident": {
+      "title": "Cómo los Dodgers Construyen Bateadores — Robert Van Scoyoc y Analytics",
+      "impact": "La infraestructura de desarrollo de bateo de los Dodgers bajo entrenadores como Robert Van Scoyoc (quien trabajó con Mookie Betts, Clayton Kershaw en mecánica de bateo, y otros) combinó datos de Statcast con tee tradicional y trabajo en jaula para crear uno de los programas de desarrollo de bateadores más sistemáticos en el béisbol profesional.",
+      "body": [
+        "El enfoque de los Dodgers para el desarrollo de bateo integra datos y trabajo tradicional de manera más deliberada que casi cualquier otra franquicia. Durante la primavera y la temporada regular, los bateadores reciben reportes diarios de Statcast — velocidad de salida por zona de lanzamiento, distribución de ángulo de lanzamiento, tasa de swing por tipo de lanzamiento. Estos datos informan qué ejercicios de tee ejecutar ese día: si la velocidad de salida de un bateador en lanzamientos de mitad exterior está disminuyendo, ejecutan sesiones de tee de mitad exterior. Si el ángulo de lanzamiento cae por debajo de 10 grados, el personal de bateo ejecuta ejercicios de tee alto y ángulo de lanzamiento.",
+        "Los Dodgers también fueron pioneros en el uso de video en tiempo real — iPads posicionadas en la banca permiten que los bateadores revisen turnos al bate inmediatamente entre entradas, comparando su swing con la mecánica del plan previo al juego. Este ciclo de retroalimentación ha acortado significativamente los ciclos de ajuste: donde alguna vez tomaba una semana para que un bateador reconociera y corrigiera un problema mecánico, ahora toma una entrada. Los jugadores de juventud pueden aproximarse a este sistema con un smartphone en un trípode en la jaula de bateo — la tecnología es accesible, pero la disciplina de usarla consistentemente es lo que distingue a los grandes programas de desarrollo."
+      ]
+    },
+    "timeline": [
+      "Ted Williams comienza instrucción pública de bateo — tee work y teoría de zona enseñada",
+      "El tee de bateo se vuelve equipo estándar en práctica de juventud y profesional",
+      "El análisis de video se usa por primera vez en béisbol de juventud — VHS a cámaras digitales tempranas",
+      "Los Dodgers integran datos de Statcast en sesiones diarias de desarrollo de bateo",
+      "Video en tiempo real en juego (iPad en banca) se vuelve estándar a nivel MLB",
+      "El sistema de desarrollo de los Dodgers produce 6 bateadores con 15+ HR en la alineación de la Serie Mundial"
+    ],
+    "keyTakeaways": [
+      "Tee work es la fundación: aísla la mecánica sin presión de timing, permitiendo desarrollo de precisión",
+      "Una rutina semanal (tee → soft toss → batting practice → video review) construye habilidades de bateo sistemáticamente",
+      "El análisis de video en un smartphone a 240fps es accesible para cada jugador de juventud — úsalo con enfoque específico",
+      "Mantén un diario de bateo: qué funcionó, qué no, ajustes realizados — los bateadores de élite rastrean su desarrollo"
+    ]
+  },
+  "baseball-3-01": {
+    "tagline": "El poder no se genera por la fuerza con la que balanceas — se genera por cuánto tiempo mantienes tu hombro atrás mientras tus caderas ya están girando.",
+    "overview": [
+      "La separación cadera-hombro — a veces llamada el factor X — es la diferencia angular entre la posición de las caderas y la posición de los hombros en el momento en que el pie delantero toca el suelo durante el movimiento. Los bateadores de poder élite crean separaciones de 40–55 grados: las caderas ya están abriéndose hacia el lanzador mientras los hombros permanecen cerrados y enrollados. Esta tensión rotacional almacenada, como una banda elástica enrollada, se libera explosivamente cuando los hombros giran — creando el látigo que impulsa la velocidad del bate a través del techo.",
+      "El swing de Shohei Ohtani en los Dodgers proporciona uno de los ejemplos más estudiados de separación cadera-hombro élite en el juego moderno. Su patada de pierna dramática precarga sus caderas en una posición enrollada, de modo que cuando su pie toca el suelo, sus caderas ya están girando mientras sus hombros y manos permanecen completamente cargados atrás. El resultado es una secuencia donde las caderas a veces están 50+ grados adelante de los hombros en el contacto — un torque que se traduce directamente en las velocidades de bate de 80+ mph que producen su potencia de 54 home runs.",
+      "Los bateadores de contacto a menudo tienen menos separación cadera-hombro por diseño — priorizan la capacidad de bate-a-bola sobre el torque máximo. La separación de Tony Gwynn fue modesta porque una separación grande requiere más precisión de timing: cuanto mayor sea el enrollamiento, más crítico es aterrizar a tiempo. Los bateadores avanzados entienden este trade-off y calibran conscientemente su separación según la situación — más separación cuando esperan una bola rápida para conectar, menos separación cuando protegen el plato con dos strikes."
+    ],
+    "technical": {
+      "title": "Cómo Construir Separación Cadera-Hombro",
+      "body": [
+        "La separación cadera-hombro se entrena a través de ejercicios específicos que aíslan la secuencia de rotación de cadera versus rotación de hombro. El ejercicio más efectivo es el 'ejercicio de cadera primero' con tee: el bateador inicia la carga impulsando la cadera trasera hacia adelante agresivamente mientras mantiene activamente las manos y el hombro delantero atrás el mayor tiempo posible. Muchos bateadores sienten un estiramiento o tirón en los oblicuos al hacerlo correctamente — esa tensión es la energía almacenada que se liberará como velocidad de bate.",
+        "El ejercicio de pared es otro constructor fundamental de separación: de pie con el hombro delantero cerca de una cerca o pared, el bateador practica girando las caderas hacia el receptor mientras el hombro delantero permanece tocando o cerca de la pared — previniendo físicamente la rotación temprana del hombro. Este ejercicio hace imposible 'girar afuera' (abrir los hombros demasiado pronto) y fuerza al bateador a sentir cómo se siente la secuencia pura de cadera primero. Una vez que se establece la sensación, transferirla a swings en vivo típicamente toma varias semanas de práctica consistente."
+      ]
+    },
+    "incident": {
+      "title": "El Home Run 40 de Ohtani — El Estudio de Separación",
+      "impact": "Durante la temporada 2024, el home run 40 de Ohtani fue analizado fotograma por fotograma por el equipo de biomecánica de los Dodgers y múltiples analistas independientes. El estudio confirmó 52 grados de separación cadera-hombro en el golpe de pie — entre los más altos medidos para cualquier swing en temporada ese año — y vinculó directamente esa separación a la velocidad de salida de 109 mph registrada por Statcast.",
+      "body": [
+        "El poder de Ohtani en 2024 — 54 home runs, 59 bases robadas, la primera temporada 50-50 en la historia de las Grandes Ligas — tuvo a analistas buscando qué hacía mecánicamente único su swing. El hallazgo más consistente en múltiples estudios biomecánicos fue el grado de su separación cadera-hombro en el aterrizaje del pie. Con una patada de pierna dramática que precargaba su cadera trasera, y un hábito entrenado de mantener las manos y el hombro delantero atrás mientras las caderas giraban, Ohtani estaba generando separación que se asemejaba más a golfistas élites que a bateadores típicos de béisbol.",
+        "El personal de desarrollo de jugadores de los Dodgers estudió estas mecánicas cuidadosamente, no para que todos los bateadores repliquen el patrón exacto de Ohtani, sino para extraer el principio: cuanto mayor sea la separación entre cadera y hombro en el golpe del pie, más tiempo el bate puede acelerar antes de hacer contacto. Para jugadores con la flexibilidad y timing para soportar más separación, incluso un aumento de 10 grados puede traducirse en 2–3 mph de velocidad de bate adicional — lo que, en el umbral de home run, puede significar la diferencia entre un fly ball profundo y un home run."
+      ]
+    },
+    "timeline": [
+      "Los investigadores de biomecánica del golf describen por primera vez el factor X — separación cadera-hombro en el poder del drive",
+      "Los biomecánicos del béisbol comienzan a aplicar conceptos del factor X al análisis de swing",
+      "Statcast permite medición de velocidad de bate fotograma por fotograma — separación vinculada a velocidad de salida",
+      "Los Dodgers integran métricas de separación en desarrollo de bateadores en Camelback Ranch",
+      "Ohtani gana MVP de la Liga Americana con los Angels — separación identificada como fuente clave de poder",
+      "Temporada de 54 HR de Ohtani con los Dodgers — separación de 52° medida en múltiples swings de home run"
+    ],
+    "keyTakeaways": [
+      "La separación cadera-hombro (factor X) es la diferencia angular entre caderas y hombros en el aterrizaje del pie — más separación crea más poder",
+      "Los bateadores de poder élite logran 40–55 grados de separación; los bateadores de contacto usan intencionalmente 20–30 grados",
+      "El ejercicio de tee 'cadera primero' y el ejercicio de pared son las formas más efectivas de construir la sensación de separación adecuada",
+      "La separación de 52 grados de Ohtani en sus swings de home run de 2024 contribuyó directamente a sus velocidades de salida de 109+ mph"
+    ]
+  },
+  "baseball-3-02": {
+    "tagline": "Las manos no generan potencia — la entregan. De dónde viajan desde la carga hasta el contacto determina todo sobre la eficiencia del swing.",
+    "overview": [
+      "La trayectoria de las manos es el recorrido que las manos (y por lo tanto el mango del bate) realizan desde la posición cargada cerca del hombro trasero hasta la zona de contacto. Una trayectoria de manos eficiente es directa: el nudo del bate se mueve hacia el lanzamiento entrante por la ruta más corta posible, manteniendo el cañón detrás de las manos hasta el último momento antes del contacto. Este camino 'adentro-afuera' — manos cerca del cuerpo, cañón rezagado — es reconocido universalmente como la base mecánica del batazo de élite.",
+      "Ted Williams y Tony Gwynn representan dos extremos de la filosofía de trayectoria de manos, y ambos fueron históricamente grandes. Williams favoreció una trayectoria ligeramente más larga y más rotacional que generaba tremenda potencia en lanzamientos en su 'zona feliz' — la porción media-adentro de la zona de strike. Gwynn utilizó una trayectoria aún más corta y más orientada al contacto que priorizaba hacer contacto en cualquier parte de la zona con riesgo mínimo de fallo. El enfoque de Williams produjo un OBP de .482 en carrera y 521 jonrones; el de Gwynn produjo un promedio de .338 en la vida y ocho títulos de bateo. Ninguno estaba equivocado — estaban optimizados para objetivos diferentes.",
+      "El arrastre del bate es el principal enemigo de una buena trayectoria de manos. El arrastre del bate ocurre cuando las manos se extienden hacia afuera lejos del cuerpo antes de que el cañón haya entrado en la zona de contacto — el cañón 'se retrasa' en una posición extendida y sin potencia en lugar de seguir detrás de manos cargadas. El arrastre del bate crea un arco largo y lento que llega tarde a los fastballs adentro, genera elevados en lanzamientos del medio, y reduce la velocidad de salida en todas partes. En la instalación de entrenamiento de primavera Camelback Ranch de los Dodgers, corregir el arrastre del bate es una de las prioridades principales al evaluar bateadores del sistema de ligas menores."
+    ],
+    "technical": {
+      "title": "Trayectoria Adentro-Afuera vs. Arrastre del Bate — Identificación Visual",
+      "body": [
+        "Una trayectoria de manos adentro-afuera es visible en video en un punto de control específico: cuando las caderas comienzan a girar, las manos deben moverse desde la posición cargada (cerca del hombro trasero) hacia el lanzador — el nudo apunta al lanzamiento entrante. El cañón permanece detrás de las manos (el bate está inclinado hacia atrás, no extendido hacia adelante). Este breve momento de nudo-adelante, cañón-atrás crea el 'retraso del cañón' que permite la máxima aceleración a través de la zona de contacto.",
+        "El arrastre del bate es visible como lo opuesto: cuando las caderas giran, las manos se extienden hacia afuera lejos del cuerpo — las muñecas 'se enrollan' demasiado pronto, empujando el cañón hacia adelante prematuramente. En lugar de que el cañón construya velocidad detrás de una trayectoria de manos compacta, se extiende temprano y desacelera. En video de cámara lenta a 240 fps, el arrastre del bate muestra el brazo delantero extendiéndose completamente antes del contacto, el cañón frecuentemente paralelo o adelante de las manos en el punto medio del swing. Los entrenadores de spring training de los Dodgers usan cámaras montadas en iPad a la altura de la cadera para detectar arrastre del bate en tiempo real."
+      ]
+    },
+    "incident": {
+      "title": "Campamento de Trayectoria de Manos de Dodgers Spring Training — Camelback Ranch 2023",
+      "impact": "Durante el spring training de los Dodgers en 2023, los entrenadores de bateo en Camelback Ranch identificaron el arrastre del bate como la falla mecánica principal en tres prospectos de ligas menores utilizando análisis de video de alta velocidad. Dos de esos jugadores — después de trabajo correctivo enfocado — mejoraron sus velocidades de salida en 4–6 mph para el Día de Apertura de esa temporada, demostrando cómo la corrección de trayectoria de manos específica se traduce directamente en ganancias de potencia medibles.",
+      "body": [
+        "Camelback Ranch, la instalación de entrenamiento de primavera de los Dodgers en Glendale, Arizona, es uno de los entornos de desarrollo de jugadores más avanzados tecnológicamente en el béisbol. Durante el campamento de 2023, el coordinador de bateo Robert Van Scoyoc y su personal utilizaron una combinación de sensores de bate Rapsodo, dispositivos Blast Motion, y cámaras de alta velocidad posicionadas al nivel de la cadera para analizar las trayectorias de manos de cada jugador de posición que ingresaba al sistema.",
+        "El arrastre del bate fue el hallazgo más común entre bateadores en desarrollo. El protocolo correctivo implicaba una secuencia de taladro específica: el bateador comenzaría su carga y deliberadamente haría una pausa en el momento del giro de caderas, verificando que el nudo estuviera adelante y el cañón aún estuviera rezagado. Después de 200 tales repeticiones pausadas, los swings de velocidad completa se reintrodujeron. El taladro pausado establece el punto de control neurológico antes de que se añada velocidad nuevamente. Los entrenadores reportaron que los jugadores que se comprometieron con 300+ repeticiones pausadas por semana vieron mejoras medibles en la trayectoria de manos dentro de 10–14 días."
+      ]
+    },
+    "timeline": [
+      "Ted Williams publica sus teorías de swing — trayectoria corta y directa hacia la pelota se convierte en un principio fundamental",
+      "El swing adentro-afuera de Duke Snider impulsa a los Dodgers de Brooklyn a la Serie Mundial",
+      "Tony Gwynn comienza su carrera — trayectoria de manos compacta al campo opuesto se convierte en su marca registrada",
+      "Las cámaras de alta velocidad en jaulas de bateo permiten medición precisa de la trayectoria de manos",
+      "Los sensores Blast Motion comienzan a medir velocidad y eficiencia de trayectoria de manos a nivel MLB",
+      "Los Dodgers utilizan combinación iPad + Rapsodo en Camelback Ranch para corregir arrastre del bate en tiempo real"
+    ],
+    "keyTakeaways": [
+      "La trayectoria de manos adentro-afuera mantiene el nudo adelante y el cañón rezagado — la ruta más corta y poderosa hacia cualquier lanzamiento",
+      "El arrastre del bate (extensión temprana del brazo) crea un arco largo que llega tarde a los fastballs y produce elevados en lanzamientos del medio",
+      "Ted Williams y Tony Gwynn representan diferentes filosofías de trayectoria de manos — ambos de élite, ambos intencionales, ambos correctos para sus objetivos",
+      "El entrenamiento de primavera de los Dodgers en Camelback Ranch utiliza taladros de repetición pausada para establecer neurológicamente el punto de control de cañón rezagado"
+    ]
+  },
+  "baseball-3-03": {
+    "tagline": "Un barril% por encima del 10% separa a la élite del promedio — y se trata completamente de alinear tu plano de swing con el ángulo de aproximación del lanzamiento.",
+    "overview": [
+      "La gestión del barril es la ciencia de controlar dónde y cómo viaja la parte gruesa del bate (el barril) a través de la zona de strike. En la terminología de Statcast, un 'barril' es una bola bateada con una combinación de velocidad de salida y ángulo de lanzamiento que históricamente produce un promedio de bateo superior a .500 y un porcentaje de slugging superior a 1.500 — esencialmente un golpe perfecto. El porcentaje de barril (barriles por aparición en el plato) es uno de los mejores predictores del verdadero valor ofensivo de un bateador, y está directamente relacionado con qué tan bien el bateador gestiona el barril a través de la zona de contacto.",
+      "El ángulo de ataque es el ángulo en el que viaja el barril cuando contacta la bola — medido en grados, con valores positivos indicando una trayectoria de bate ascendente en el contacto y valores negativos indicando una trayectoria descendente. La investigación demuestra consistentemente que un ángulo de ataque ligeramente positivo (entre +5 y +15 grados) produce la mejor calidad de contacto porque coincide con el ángulo descendente de los lanzamientos entrantes. Los lanzamientos arrojados en trayectorias normales se aproximan al plato en aproximadamente 6–10 grados hacia abajo, así que un bate que viaja hacia arriba a 5–12 grados crea el máximo 'solapamiento de plano' — la ventana más grande posible donde el bate y la bola pueden intersectarse.",
+      "El problema del lanzamiento roto es donde el ángulo de ataque se complica. Un ángulo de ataque optimizado para fastballs (+8 a +12 grados) produce excelentes resultados en fastballs de cuatro costuras pero resultados pobres en curveballs, que se aproximan en un ángulo mucho más pronunciado. Un bateador perfectamente afinado para el ángulo de ataque de fastball estará por debajo del plano de aproximación de un curveball, creando el clásico fallo de 'debajo de la bola'. Los mejores bateadores como Freddie Freeman ajustan su ángulo de ataque según el tipo de lanzamiento que están leyendo — una habilidad que requiere reconocimiento de lanzamiento en un nivel muy alto."
+    ],
+    "technical": {
+      "title": "Statcast Barrel% — Cómo se calcula y qué significa",
+      "body": [
+        "Un 'barril' en Statcast se define como una bola bateada donde la combinación de velocidad de salida y ángulo de lanzamiento cumple con un umbral muy específico. La línea de base: una bola golpeada a exactamente 98 mph de velocidad de salida y 26–30 grados de ángulo de lanzamiento califica. Por cada 1 mph por encima de 98 mph, la ventana del ángulo de lanzamiento calificante se expande. A 110 mph de velocidad de salida, cualquier bola entre 8–50 grados califica como un barril. A 95 mph, no hay combinación de ángulo de lanzamiento que califique — por eso la velocidad de salida es la base innegociable.",
+        "Los líderes en Barrel% en la temporada 2024 incluían múltiples bateadores de los Dodgers. Shohei Ohtani encabezó a los Dodgers con una tasa de barril superior al 20% — lo que significa aproximadamente uno de cada cinco apariciones en el plato produjo una bola estadísticamente 'barril'. El promedio de las Grandes Ligas es aproximadamente el 8%. Los bateadores con tasas de barril superiores al 15% son productores de calidad de contacto élite independientemente de su promedio de bateo general. La métrica elimina el ruido: un jugador puede ir 1-5 en un día donde cada bola en juego fue un barril — la calidad subyacente fue excelente aunque los resultados no lo fueron."
+      ]
+    },
+    "incident": {
+      "title": "Consistencia del Barrel% de Freddie Freeman — 2022–2024",
+      "impact": "Freddie Freeman mantuvo una tasa de barril superior al 12% en las temporadas regulares de 2022, 2023 y 2024 — una consistencia que los analistas de Statcast citaron como evidencia de una gestión excepcional del barril. A diferencia de los bateadores de poder cuyas tasas de barril fluctúan con lesiones o ajustes mecánicos, la gestión del ángulo de ataque de Freeman estuvo consistentemente en el rango óptimo en todos los tipos y ubicaciones de lanzamientos.",
+      "body": [
+        "La consistencia de la tasa de barril de Freddie Freeman es producto de lo que los entrenadores de bateo describen como una conciencia excepcional del plano de lanzamiento — la capacidad de identificar el tipo de lanzamiento entrante lo suficientemente temprano para ajustar el ángulo de ataque antes de comprometer el barril. Freeman ha hablado públicamente sobre cómo aborda cada lanzamiento con un modelo mental del plano de aproximación esperado del lanzamiento: 'Sé de dónde viene la bola e intento alinear mi bate con ese ángulo.' Esto suena simple pero requiere profundo reconocimiento de lanzamiento y flexibilidad física para ejecutar en todos los tipos de lanzamientos en tiempo real.",
+        "El personal de análisis de los Dodgers rastrea el ángulo de ataque de Freeman por tipo de lanzamiento en informes semanales durante la temporada. Si su ángulo de ataque en curveballs se desvía por debajo del rango óptimo (sugiriendo que no está ajustando suficientemente el plano para lanzamientos rotos), los entrenadores de bateo agregarán trabajo específico de tee de bolas rotas a su rutina — colocando el tee más alto y forzando un ángulo de ataque más pronunciado en la práctica. Este bucle de retroalimentación, invisible para los aficionados, es una razón por la cual la producción de Freeman se mantuvo consistente durante la carrera de los Dodgers hacia el título de la Serie Mundial 2024."
+      ]
+    },
+    "timeline": [
+      "Statcast define la métrica 'barril' — la primera medida objetiva de calidad de contacto del béisbol",
+      "Investigación del ángulo de ataque publicada — conectando el plano del swing con el ángulo de aproximación del lanzamiento",
+      "Cody Bellinger lidera la Liga Nacional en barrel% con 47 HR — el pico de la revolución del ángulo de lanzamiento",
+      "Los lanzadores responden a la revolución del ángulo de lanzamiento — los lanzamientos rotos aumentan como explotador del ángulo de ataque",
+      "Freeman se une a los Dodgers — tasa de barril superior al 12% en la primera temporada",
+      "Ohtani lidera a los Dodgers en barrel% con 20%+ — el más alto en el roster campeón de la Serie Mundial"
+    ],
+    "keyTakeaways": [
+      "El ángulo de ataque (+5 a +15 grados) debe coincidir con el ángulo de aproximación del lanzamiento entrante — creando máximo solapamiento de plano",
+      "Los curveballs requieren un ángulo de ataque más pronunciado (+12 a +18°) que los fastballs (+6 a +10°) debido a su descenso más pronunciado",
+      "Barrel% superior al 15% es élite — Freeman mantuvo 12%+ en múltiples temporadas a través de gestión consistente del plano",
+      "Statcast define un barril como 98+ mph de velocidad de salida en el ángulo de lanzamiento apropiado — calidad del contacto, no solo resultados"
+    ]
+  },
+  "baseball-3-04": {
+    "tagline": "La carga es un reloj. Si comienza a tiempo, todo lo que sigue puede estar a tiempo. Si comienza tarde, ningún ajuste en el mundo puede salvar el swing.",
+    "overview": [
+      "Un mecanismo de carga es cualquier movimiento pre-swing que cumple dos funciones simultáneamente: sincronizar la zancada con el lanzamiento del pitcher y cargar energía en el lado trasero para que las caderas y las manos tengan de dónde disparar. Todo bateador de élite tiene un mecanismo de carga — incluso los bateadores 'silenciosos' están haciendo algo. La elección del mecanismo afecta cuánto margen de error tiene el bateador, qué tan ajustable es el swing contra diferentes velocidades de lanzamiento, y cuánta separación cadera-hombro se puede generar.",
+      "La instrucción de bateo de las ligas menores de los Dodgers en Camelback Ranch enseña tres mecanismos de carga primarios en una progresión de desarrollo. El toe-tap se enseña primero — el pie delantero se levanta suavemente y se coloca cuando el pitcher llega al lanzamiento, proporcionando riesgo de sincronización mínimo y una carga confiable. El leg kick se introduce una vez que los fundamentos de sincronización están establecidos — genera más torque pero demanda precisión. No-stride (o giro hacia adentro) es la opción para bateadores de contacto avanzados que ya han desarrollado un excelente reconocimiento de lanzamientos y pueden sincronizar desde un gatillo mínimo.",
+      "Sincronizar diferentes velocidades de lanzamiento es el desafío central de cualquier mecanismo de carga. Un lanzamiento de 85-mph y uno de 97-mph requieren diferentes tiempos de iniciación del swing — aproximadamente 50 milisegundos de diferencia. Un leg kick que aterriza perfectamente para un fastball de 97-mph aterriza temprano para un changeup de 85-mph. Los bateadores de élite aprenden a 'mantener' su swing después de aterrizar — extendiendo el tiempo entre el aterrizaje del pie y el disparo de la cadera para acomodar lanzamientos más lentos. Esto se llama 'quedarse atrás,' y es el ajuste más importante que separa a los bateadores que manejan changeups de aquellos que se engañan constantemente."
+    ],
+    "technical": {
+      "title": "Mecanismos de Carga Comparados — La Progresión de Enseñanza de los Dodgers",
+      "body": [
+        "Toe-tap (estilo Mookie Betts): El pie delantero se levanta aproximadamente 2–4 pulgadas y se coloca cuando el pitcher separa las manos del guante o alcanza la parte superior del lanzamiento. Este movimiento pequeño y consistente proporciona suficiente cambio de peso para cargar la cadera trasera sin crear complejidad de sincronización. La fortaleza del toe-tap es la repetibilidad — es casi idéntico en cada lanzamiento, haciendo la sincronización muy consistente. Su limitación es que genera menos separación cadera-hombro que una patada más grande.",
+        "Leg kick (estilo Ohtani / Freeman-light): La pierna delantera se levanta a la altura de la espinilla o rodilla antes de avanzar. Cuanto más alto sea la patada, más tiempo estará disponible entre el levantamiento y el aterrizaje — durante el cual el peso del bateador se carga máximamente en la cadera trasera, creando mayor potencial de separación. El leg kick demanda una sincronización más precisa porque el pie debe aterrizar exactamente en el momento correcto. Los Dodgers enseñan leg kicks a prospectos orientados al poder una vez que los fundamentos del toe-tap son sólidos; los jugadores de ligas menores transicionan a la patada solo después de demostrar sincronización consistente en el nivel de gatillo más simple."
+      ]
+    },
+    "incident": {
+      "title": "Cómo los Dodgers Desarrollaron la Sincronización de Gavin Lux — Camelback Ranch 2019",
+      "impact": "Gavin Lux, el prospecto principal de los Dodgers en 2019, trabajó extensamente con entrenadores de bateo en Camelback Ranch en la transición de una patada grande en las ligas menores a una patada mediana más controlada que pudiera manejar la velocidad de lanzamiento de las MLB. La transición mecánica — preservando separación mientras reducía el riesgo de sincronización — se completó en ocho semanas de entrenamiento de primavera y contribuyó a la promoción a mitad de temporada de Lux a las grandes ligas en 2019.",
+      "body": [
+        "Gavin Lux había usado un leg kick dramático en el sistema de ligas menores de los Dodgers que le funcionaba bien contra lanzamientos de nivel inferior pero creaba problemas de sincronización contra velocidad de AAA y MLB. En Camelback Ranch en 2019, los entrenadores de bateo trabajaron con Lux para preservar su separación cadera-hombro mientras moderaba la altura y sincronización de su patada. El objetivo era mantener el beneficio de separación de la patada mientras reducía la ventana de sincronización de ±8ms (patada extrema) a ±15ms (patada mediana controlada).",
+        "El drill utilizado fue un 'height-limited kick drill': Lux practicó su patada con una banda horizontal colocada a la altura de la rodilla, asegurando que la pierna delantera nunca excediera esa altura. Esto forzó una patada controlada y mediana mientras mantenía la carga. Durante ocho semanas, el nuevo mecanismo se volvió habitual. Lux fue promovido a la alineación de las grandes ligas de los Dodgers a mitad de 2019 y produjo una racha inicial fuerte antes de convertirse en un contribuyente clave. El proceso de ajuste de Camelback Ranch se convirtió en parte del protocolo de desarrollo estándar de los Dodgers para prospectos en transición de nivel A-avanzado a niveles de sincronización de MLB."
+      ]
+    },
+    "timeline": [
+      "El enfoque sin-zancada de Ted Williams demuestra que una carga mínima puede producir resultados de élite",
+      "El leg kick de Kirk Gibson salva la sincronización del Juego 1 de la Serie Mundial — momento icónico de los Dodgers",
+      "El toe-tap de Mookie Betts se convierte en el mecanismo gatillo menor más estudiado en MLB",
+      "Los Dodgers implementan un programa sistemático de desarrollo de mecanismo de carga en Camelback Ranch",
+      "Mookie Betts gana la Serie Mundial — toe-tap citado como modelo para programas de desarrollo de la juventud",
+      "El leg kick de Ohtani genera 52°+ de separación — el gatillo de poder más estudiado en MLB"
+    ],
+    "keyTakeaways": [
+      "Cada mecanismo de carga cumple las mismas dos funciones: sincronizar la zancada y cargar la cadera trasera para separación cadera-hombro",
+      "El toe-tap tiene el riesgo de sincronización más bajo y es el mejor punto de partida para desarrollar bateadores",
+      "Los leg kicks generan más separación pero demandan precisión de sincronización de ±12ms — solo apropiados una vez que los fundamentos están establecidos",
+      "'Quedarse atrás' (mantener el disparo de cadera después del aterrizaje del pie) es cómo los bateadores de élite manejan changeups sin un nuevo mecanismo de carga"
+    ]
+  },
+  "baseball-3-05": {
+    "tagline": "Con dos strikes, la mayoría de los bateadores intenta no poncharse. Los grandes intenta lograr un hit.",
+    "overview": [
+      "El bateo con dos strikes separa a los buenos de los élite. En una temporada llena de conteos 0-2, la mayoría de los bateadores de las Grandes Ligas producen un promedio de bateo inferior a .200 — el conteo es simplemente demasiado favorable para el lanzador para que la mayoría de los enfoques tengan éxito. Pero un grupo selecto de bateadores — aquellos que han dominado el arte del bateo con dos strikes — producen promedios de bateo de .250 a .300+ incluso con dos strikes, convirtiendo una situación de conteo favorable para el lanzador en un turno competitivo en lugar de una conclusión predeterminada.",
+      "La arquitectura mental del bateo con dos strikes comienza con expandir la zona de strike — pero inteligentemente. Un bateador con dos strikes no batea todo; extienden su zona para incluir lanzamientos en las esquinas exteriores y bajos límites que normalmente dejarían pasar. También ajustan la trayectoria del bate: swing más corto, menos separación de caderas-hombros, trayectoria más directa del barril para maximizar la probabilidad de contacto. Agarrar el bate más arriba — moviendo las manos 1–2 pulgadas hacia arriba desde la perilla — es la clave física que acorta la trayectoria del bate e incrementa el control del bate.",
+      "Los bateadores históricos con promedio de .300+ en dos strikes incluyen a Tony Gwynn (promedio de carrera con dos strikes superior a .280), Ted Williams y Rod Carew. En la era moderna, Freddie Freeman consistentemente produce promedios de bateo con dos strikes superiores a .250, lo cual es genuinamente élite dada la dificultad de la situación. En Oracle Park contra los Giants en la temporada 2024, el enfoque de Freeman con dos strikes estuvo completamente en evidencia — trabajando conteos profundos, rechazando perseguir lanzamientos fuera del plato y haciendo contacto cuando los lanzadores intentaban rozar las esquinas con dos strikes."
+    ],
+    "technical": {
+      "title": "Agarrar Más Arriba — La Biomecánica del Agarre con Dos Strikes",
+      "body": [
+        "Agarrar el bate 1–2 pulgadas más arriba acorta el brazo de palanca efectivo entre las manos y el barril. Un brazo de palanca más corto hace dos cosas: aumenta la velocidad angular alcanzable con la misma fuerza muscular (los brazos de palanca más cortos se mueven más rápido para el mismo torque), e incrementa la sensibilidad propioceptiva del bateador — la sensación de la posición del barril. Esta combinación significa que el bate llega al contacto ligeramente más rápido y con más precisión. La compensación de potencia es modesta: la velocidad de salida típicamente cae 2–4 mph en swings agarrados más arriba porque el barril está más cerca de las manos y tiene ligeramente menos ímpetu centrífugo.",
+        "El ajuste mecánico más importante con dos strikes, más allá del agarre, es acortar la trayectoria del swing. Con dos strikes, el bateador debe abandonar cualquier separación exagerada de caderas-hombros (que requiere un timing perfecto) y moverse hacia un swing rotacional más directo — caderas y hombros más sincronizados, barril en una trayectoria más corta hacia la zona de contacto. El objetivo es maximizar la probabilidad de que el barril esté en el lugar correcto en el momento correcto para cualquier lanzamiento en la zona expandida de dos strikes."
+      ]
+    },
+    "incident": {
+      "title": "El Turno de Freeman con Dos Strikes — Juego 2 de la NLDS, 2024",
+      "impact": "En el Juego 2 de la NLDS 2024 contra los San Francisco Giants en Oracle Park, Freddie Freeman trabajó un turno de 12 lanzamientos con dos strikes durante la mayor parte — finalmente logrando una base por bolas que llenó las bases para Shohei Ohtani, quien lo siguió con un grand slam. El enfoque de Freeman con dos strikes, rechazando perseguir sliders fuera de la zona en conteos 1-2 y 2-2, fue citado más tarde por analistas como la clave de toda la entrada.",
+      "body": [
+        "El lanzador de los Giants en la NLDS 2024 estaba atacando a Freeman con sliders bajos y hacia afuera — el lanzamiento de salida clásico de derecha-contra-derecha con dos strikes. Freeman había estudiado extensamente las tendencias del lanzador: en conteos con dos strikes, lanzaba slider hacia afuera el 67% de las veces. En lugar de expandir su zona para cubrir ese lanzamiento, Freeman estableció su línea mental: bataría el slider solo si comenzaba en o por encima de las rodillas y en el borde exterior del plato. Cualquier cosa por debajo de su línea — incluso en conteo completo — la dejaría pasar.",
+        "El resultado fue un turno de 12 lanzamientos en el que Freeman foul out cuatro lanzamientos en la esquina exterior y tomó tres sliders que terminaron en la suciedad por debajo de su línea. Cuando el lanzador finalmente llegó con un fastball para intentar conseguir strike tres después de siete lanzamientos de sliders bajos, Freeman lo conectó hacia el campo izquierdo — pero fue atrapado. El siguiente lanzamiento fue otro slider por debajo de la línea: bola cuatro. Freeman caminó. Ohtani entonces bateó un grand slam para poner a los Dodgers arriba 4–0, y Los Ángeles ganó el Juego 2. La base por bolas fue el catalizador de la entrada, y provino de la disciplina precisa de Freeman con dos strikes."
+      ]
+    },
+    "timeline": [
+      "El promedio de dos strikes de Ted Williams superior a .265 — aún élite según los estándares modernos",
+      "Tony Gwynn batea .394 — promedio de carrera con dos strikes .280+, nunca regalando turnos",
+      "El promedio de bateo con dos strikes se convierte en estadística rastreada a nivel analítico",
+      "La tasa de ponches de las Grandes Ligas excede la tasa de hits por primera vez — el enfoque con dos strikes se vuelve crítico",
+      "Freeman se une a los Dodgers — promedio con dos strikes superior a .250 en la primera temporada",
+      "La base por bolas de 12 lanzamientos de Freeman con dos strikes en la NLDS prepara el grand slam de Ohtani — momento de postseason"
+    ],
+    "keyTakeaways": [
+      "Agarrar 1–2 pulgadas más arriba aumenta el control del bate y ligeramente aumenta la velocidad del bate a través de un brazo de palanca más corto",
+      "La zona de dos strikes se expande para incluir esquinas exteriores y lanzamientos bajos límites — pero no lanzamientos sucker a dos pies fuera",
+      "El promedio de carrera de Tony Gwynn de .280+ con dos strikes y el de Freeman de .255+ representan el extremo superior de la producción con dos strikes alcanzable",
+      "Estudia el lanzamiento de salida principal del lanzador en conteos con dos strikes — rechazar ese lanzamiento específico es el fundamento de la disciplina élite con dos strikes"
+    ]
+  }
+}

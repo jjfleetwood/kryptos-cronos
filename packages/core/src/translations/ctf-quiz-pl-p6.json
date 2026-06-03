@@ -1,0 +1,242 @@
+{
+  "quantum-01": {
+    "questions": [
+      {
+        "q": "Kubit w superpozycji reprezentuje jednocześnie 0 i 1, dopóki nie zostanie zmierzony.",
+        "options": ["Prawda", "Fałsz"]
+      },
+      {
+        "q": "Który algorytm wykorzystuje superpozycję kwantową do łamania szyfrowania RSA w czasie wielomianowym?",
+        "options": ["Algorytm Shora", "Algorytm Grovera"]
+      },
+      {
+        "q": "Q-Day oznacza dzień, w którym kryptograficznie istotny komputer kwantowy (CRQC) zdolny do łamania RSA staje się operacyjny.",
+        "options": ["Prawda", "Fałsz"]
+      },
+      {
+        "q": "Bramka Hadamarda zastosowana do n kubitów tworzy superpozycję ilu stanów jednocześnie?",
+        "options": ["2^n stanów — wszystkich naraz", "n stanów — jeden na kubit"]
+      },
+      {
+        "q": "Agencje wywiadowcze takie jak CISA i NSA twierdzą, że organizacje powinny poczekać, aż Q-Day nadejdzie, zanim rozpoczną migrację post-kwantową.",
+        "options": ["Fałsz — migracja powinna rozpocząć się teraz; zajmuje to lata", "Prawda — migracja jest przedwczesna, dopóki sprzęt nie zostanie udowodniony"]
+      }
+    ]
+  },
+  "quantum-02": {
+    "questions": [
+      {
+        "q": "Algorytm Shora łamie RSA poprzez faktoryzację dużych liczb w czasie wielomianowym przy użyciu komputera kwantowego.",
+        "options": ["Prawda", "Fałsz"]
+      },
+      {
+        "q": "Które systemy kryptograficzne algorytm Shora zagraża jednocześnie?",
+        "options": ["RSA, Diffie-Hellman i kryptografia krzywych eliptycznych", "Tylko AES-256 i SHA-384"]
+      },
+      {
+        "q": "Której techniki kwantowej używa algorytm Shora do znalezienia okresu potrzebnego do faktoryzacji?",
+        "options": ["Kwantowej transformacji Fouriera", "Tylko superpozycji bramki Hadamarda"]
+      },
+      {
+        "q": "NSA's CNSA Suite 2.0 (2022) nakazała, aby wszystkie systemy bezpieczeństwa narodowego przeniosły się z RSA i ECC do 2035 roku.",
+        "options": ["Prawda", "Fałsz"]
+      },
+      {
+        "q": "Ile mniej więcej logicznych kubitów wymaga algorytm Shora do faktoryzacji klucza RSA-2048?",
+        "options": ["~4096 logicznych kubitów", "~128 logicznych kubitów"]
+      }
+    ]
+  },
+  "quantum-03": {
+    "questions": [
+      {
+        "q": "Algorytm Grovera zapewnia kwadratowe przyspieszenie wyszukiwania, efektywnie zmniejszając o połowę bezpieczeństwo szyfrowania symetrycznego.",
+        "options": ["Prawda", "Fałsz"]
+      },
+      {
+        "q": "Po uruchomieniu algorytmu Grovera przez CRQC przeciwko AES-128, jego efektywne bezpieczeństwo spada do mniej więcej jakiego poziomu?",
+        "options": ["64 bity — wykonalnie łamalne", "128 bitów — nadal w pełni bezpieczne"]
+      },
+      {
+        "q": "AES-256 jest uważany za bezpieczny kwantowo przeciwko algorytmowi Grovera, ponieważ jego post-Grover bezpieczeństwo pozostaje na poziomie 128 bitów.",
+        "options": ["Prawda", "Fałsz"]
+      },
+      {
+        "q": "Który algorytm symetryczny NIST zaleca jako minimum dla długoterminowej odporności kwantowej?",
+        "options": ["AES-256 i SHA-384", "AES-128 i SHA-256"]
+      },
+      {
+        "q": "Algorytm Grovera całkowicie łamie szyfrowanie symetryczne w ten sam sposób, w jaki Shor łamie RSA.",
+        "options": ["Fałsz — Grover osłabia symetryczną kryptografię, ale jej nie łamie całkowicie", "Prawda — Grover czyni AES całkowicie niebezpiecznym"]
+      }
+    ]
+  },
+  "quantum-04": {
+    "questions": [
+      {
+        "q": "Ataki Harvest Now, Decrypt Later (HNDL) już dzisiaj mają miejsce — państwa narodowe zbierają zaszyfrowany ruch do przyszłego deszyfrowania kwantowego.",
+        "options": ["Prawda", "Fałsz"]
+      },
+      {
+        "q": "Które typy danych są uważane za najwyższy priorytet dla natychmiastowej migracji post-kwantowej ze względu na HNDL?",
+        "options": ["Komunikacja niejawna, dokumentacja medyczna i dane finansowe z długimi okresami retencji", "Krótkotrwałe tokeny sesji i szyfrowanie strumieniowego wideo"]
+      },
+      {
+        "q": "Forward secrecy TLS (ECDHE) w pełni chroni przechwycony ruch przed przyszłym atakiem HNDL używającym CRQC.",
+        "options": ["Fałsz — sama wymiana kluczy używa RSA/ECC, które Shor może złamać", "Prawda — forward secrecy sprawia, że HNDL jest niemożliwy"]
+      },
+      {
+        "q": "W ataku HNDL, co przeciwnik robi w Q-Day z przechwyconą sesją TLS?",
+        "options": ["Uruchamia algorytm Shora, aby sfaktoryzować publiczny klucz RSA serwera i odzyskać klucz sesji", "Brutalnością łamie bezpośrednio klucz sesji AES"]
+      },
+      {
+        "q": "Biuletyn CISA z 2023 roku wyraźnie potwierdził, że przeciwnicy mogą przechowywać zaszyfrowane dane dzisiaj, aby odszyfrować je przyszłymi komputerami kwantowymi.",
+        "options": ["Prawda", "Fałsz"]
+      }
+    ]
+  },
+  "quantum-05": {
+    "questions": [
+      {
+        "q": "Kwantowe splątanie pozwala na natychmiastowe określenie stanu jednego kubitu poprzez pomiar jego splątanego partnera, niezależnie od odległości.",
+        "options": ["Prawda", "Fałsz"]
+      },
+      {
+        "q": "Jaka jest główna zaleta bezpieczeństwa QKD opartego na splątaniu (protokół E91) w porównaniu z klasyczną wymianą kluczy?",
+        "options": ["Podsłuch jest wykrywalny fizycznie — zakłóca splątany stan", "Klucz jest dłuższy i dlatego trudniejszy do brutalnościowania"]
+      },
+      {
+        "q": "Cisco Universal Quantum Switch ogłoszony w kwietniu 2026 roku wymaga chłodzenia kriogenicznego do pracy.",
+        "options": ["Fałsz — działa w temperaturze pokojowej na standardowym włóknie telekomunikacyjnym", "Prawda — chłodzenie kriogeniczne jest obowiązkowe dla wszystkich przełączników kwantowych"]
+      },
+      {
+        "q": "W protokole QKD E91 kwantowa stopa błędu bitu (QBER) powyżej jakiego progu wskazuje na podsłuchiwacza?",
+        "options": ["11% — powyżej tego wymiany kluczy są przerywane", "50% — tylko większościowe błędy sygnalizują podsłuchiwacza"]
+      },
+      {
+        "q": "Interfejs SKIP Cisco łączy materiał klucza kwantowego z systemów QKD bezpośrednio z sesjami IPsec i MACsec Cisco.",
+        "options": ["Prawda", "Fałsz"]
+      }
+    ]
+  },
+  "quantum-06": {
+    "questions": [
+      {
+        "q": "Komputery kwantowe ery NISQ (50–1000 kubitów) są obecnie zdolne do uruchamiania algorytmu Shora w celu złamania RSA-2048.",
+        "options": ["Fałsz — urządzenia NISQ nie mają wystarczającej liczby kubitów ani korekcji błędów", "Prawda — nowoczesne urządzenia NISQ mogą już złamać RSA-2048"]
+      },
+      {
+        "q": "Procesor Google Willow (2024) osiągnął który kluczowy kamień milowy na drodze do obliczalności kwantowej odpornej na błędy?",
+        "options": ["Korekcja błędów kwantowych poniżej progu — więcej kubitów zmniejszało stopę błędu", "Faktoryzacja klucza RSA-2048 po raz pierwszy"]
+      },
+      {
+        "q": "Obecne komputery kwantowe mają stopy błędów fizycznych kubitów, które sprawiają, że uruchomienie algorytmu Shora na RSA-2048 jest natychmiast wykonalne.",
+        "options": ["Fałsz — stopy błędów wymagają ~4 milionów fizycznych kubitów do osiągnięcia niezbędnej liczby logicznych kubitów", "Prawda — obecny sprzęt ma stopy błędów wystarczająco niskie do faktoryzacji RSA-2048"]
+      },
+      {
+        "q": "Mapa drogowa IBM dla obliczeń kwantowych zakłada ponad 100 000 kubitów do którego roku?",
+        "options": ["2033", "2028"]
+      },
+      {
+        "q": "Era NISQ oznacza, że kryptograficzne zagrożenie ze strony obliczeń kwantowych jest realne, ale migracja może bezpiecznie rozpocząć się później, po potwierdzeniu sprzętu CRQC.",
+        "options": ["Fałsz — migracja zajmuje 3–7 lat i musi rozpocząć się przed nadejściem CRQC", "Prawda — organizacje powinny czekać na potwierdzenie sprzętu CRQC przed działaniem"]
+      }
+    ]
+  },
+  "quantum-07": {
+    "questions": [
+      {
+        "q": "Korekcja błędów kwantowych (QEC) działa poprzez bezpośrednie kopiowanie i sprawdzanie stanu każdego kubitu, podobnie jak klasyczna korekcja błędów.",
+        "options": ["Fałsz — twierdzenie o nieklonowaniu uniemożliwia kopiowanie kubitów; QEC używa redundancji na fizycznych kubitach bez mierzenia stanu logicznego", "Prawda — QEC kopiuje każdy kubit do sprawdzania parzystości"]
+      },
+      {
+        "q": "Surface Code to wiodący schemat QEC, wymagający mniej więcej ilu fizycznych kubitów na logiczny kubit przy obecnych stopach błędów?",
+        "options": ["~1000 fizycznych kubitów na logiczny kubit", "~10 fizycznych kubitów na logiczny kubit"]
+      },
+      {
+        "q": "Google Willow (2024) zademonstrował korekcję błędów „poniżej progu”, co oznacza, że dodanie kolejnych kubitów korekcji błędów faktycznie zmniejszało logiczną stopę błędów.",
+        "options": ["Prawda", "Fałsz"]
+      },
+      {
+        "q": "Uruchomienie algorytmu Shora na RSA-2048 przy wierności klasy Willow (kod powierzchniowy d=9) wymagałoby mniej więcej ilu fizycznych kubitów?",
+        "options": ["~600 000 fizycznych kubitów", "~4000 fizycznych kubitów"]
+      },
+      {
+        "q": "Kamień milowy Willow oznacza, że ścieżka inżynierska do CRQC jest teraz zablokowana przez fundamentalne ograniczenia fizyki.",
+        "options": ["Fałsz — Willow pokazuje, że tolerujące błędy QC jest osiągalne; pozostałe wyzwanie to skala inżynierska", "Prawda — fundamentalna fizyka uniemożliwia skalowanie ponad Willow"]
+      }
+    ]
+  },
+  "quantum-08": {
+    "questions": [
+      {
+        "q": "W ramach ryzyka kwantowego CISA, system podłączony do Internetu przechowujący dokumentację medyczną z 50-letnią retencją jest klasyfikowany jako zasób Priorytetu 1 wymagający natychmiastowej migracji.",
+        "options": ["Prawda", "Fałsz"]
+      },
+      {
+        "q": "Jaki jest pierwszy krok wymagany przez mapę drogową CISA Quantum Readiness Roadmap?",
+        "options": ["Kompleksowy inwentarz kryptograficzny — znajdź wszystkie zasoby RSA/ECC przed migracją", "Natychmiastowe zastąpienie wszystkich certyfikatów RSA przez ML-KEM"]
+      },
+      {
+        "q": "Zasób jest narażony na ryzyko HNDL, jeśli okres wrażliwości jego danych plus bieżący rok przekracza szacowany rok Q-Day.",
+        "options": ["Prawda", "Fałsz"]
+      },
+      {
+        "q": "Który algorytm post-kwantowy CISA i NSA zalecają jako zastępstwo dla wymiany kluczy RSA i ECDH?",
+        "options": ["CRYSTALS-Kyber (ML-KEM, FIPS 203)", "SHA-384 z podwójną długością klucza"]
+      },
+      {
+        "q": "Krótkotrwałe dane takie jak tokeny sesji i szyfrowanie strumieniowego wideo wymagają takiej samej pilności natychmiastowej migracji jak niejawna komunikacja rządowa.",
+        "options": ["Fałsz — migracja jest priorytetyzowana według okresu wrażliwości danych; krótkotrwałe dane mają niższy priorytet", "Prawda — wszystkie RSA/ECC muszą być zastąpione jednocześnie niezależnie od okresu życia danych"]
+      }
+    ]
+  },
+  "quantum-09": {
+    "questions": [
+      {
+        "q": "Kwantowe generatory liczb losowych (QRNG) wytwarzają prawdziwie niedeterministyczne wyjście, ponieważ wyniki pomiaru kwantowego nie mają ukrytych zmiennych.",
+        "options": ["Prawda", "Fałsz"]
+      },
+      {
+        "q": "Backdoor Dual EC DRBG działał, ponieważ NSA potajemnie wybrał stałe krzywej eliptycznej, gdzie znali relację dyskretnego logarytmu między dwoma punktami.",
+        "options": ["Prawda", "Fałsz"]
+      },
+      {
+        "q": "Klasyczne kryptograficznie bezpieczne PRNG (CSPRNG) takie jak /dev/urandom są deterministyczne, co oznacza, że są fundamentalnie mniej nieprzewidywalne niż QRNG.",
+        "options": ["Prawda — CSPRNG są zależne od ziarna, podczas gdy QRNG wykorzystuje kwantową niedeterminizm", "Fałsz — CSPRNG są równie losowe co QRNG na poziomie fizyki"]
+      },
+      {
+        "q": "NIST wycofał Dual EC DRBG ze wszystkich standardów po potwierdzeniu backdoora przez dokumenty Snowdena w 2013 roku.",
+        "options": ["Prawda", "Fałsz"]
+      },
+      {
+        "q": "Do generowania kluczy wysokiego bezpieczeństwa (długotrwałe sekrety, urzędy certyfikacji), który źródło entropii NIST SP 800-90B zaleca jako najwyższy poziom?",
+        "options": ["QRNG (kwantowy generator liczb losowych)", "CSPRNG na poziomie OS ze sprzętowego szumu"]
+      }
+    ]
+  },
+  "quantum-10": {
+    "questions": [
+      {
+        "q": "NIST opublikował pierwsze ustandaryzowane algorytmy kryptografii post-kwantowej (FIPS 203, 204, 205) w sierpniu 2024 roku.",
+        "options": ["Prawda", "Fałsz"]
+      },
+      {
+        "q": "Konsensus pięciu oczu dotyczący horyzontu planowania CRQC (kiedy systemy niejawne muszą być w pełni zmigrowane) dotyczy jakiego przedziału czasowego?",
+        "options": ["2030–2035", "2045–2050"]
+      },
+      {
+        "q": "Korporacyjne migracje kryptograficzne zazwyczaj zajmują 3–7 lat, co oznacza, że organizacje, które rozpoczną w 2024 roku, mogą realistycznie zakończyć migracje P1 do 2030 roku.",
+        "options": ["Prawda", "Fałsz"]
+      },
+      {
+        "q": "W kolejności priorytetów migracji PQC, jakie działanie organizacje powinny podjąć jako pierwsze, aby natychmiast zatrzymać ekspozycję HNDL?",
+        "options": ["Zastąpić wymianę kluczy RSA/ECDH przez ML-KEM — bez potrzeby zmiany infrastruktury CA", "Zastąpić wszystkie podpisy cyfrowe przez ML-DSA przed dotknięciem wymiany kluczy"]
+      },
+      {
+        "q": "Harmonogram NSA CNSA Suite 2.0 pozwala organizacjom na nieograniczone używanie RSA i ECC w niejawnych systemach bezpieczeństwa narodowego, o ile rozmiary kluczy są zwiększone.",
+        "options": ["Fałsz — RSA/ECC są niedozwolone we wszystkich NSS do 2035 roku niezależnie od rozmiaru klucza", "Prawda — podwojenie rozmiaru klucza RSA zapewnia wystarczającą odporność kwantową po 2035 roku"]
+      }
+    ]
+  }
+}

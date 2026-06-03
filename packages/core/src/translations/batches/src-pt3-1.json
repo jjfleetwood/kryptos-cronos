@@ -1,0 +1,1508 @@
+{
+  "tapestry-01": {
+    "tagline": "Cada tapiz comienza con un solo hilo y una historia que desea ser contada.",
+    "overview": [
+      "El tapiz es una de las formas de arte más antiguas de la tierra — y una de las más incomprendidas. La palabra se usa a menudo libremente para significar cualquier textil decorativo, pero el verdadero tapiz tiene una definición precisa: es un tejido de trama frontal donde el diseño se forma enteramente por los hilos de trama de color (horizontales), que cubren completamente los hilos de urdimbre (verticales) debajo. La urdimbre es el esqueleto; la trama es la pintura.",
+      "Los fragmentos de tapiz más antiguos que se conservan fueron encontrados en tumbas egipcias que datan de alrededor de 1400 a.C. — tejidos finos de lino que representan patrones geométricos y flores de loto. Pero el tapiz casi seguramente comenzó aún antes, en múltiples lugares simultáneamente, dondequiera que los humanos estiraran fibra en un marco y descubrieran que el color podría tejerse junto con la estructura. Los tejedores andinos precolombinos, trabajando en aislamiento completo del Viejo Mundo, desarrollaron técnicas de tapiz de refinamiento extraordinario — a veces logrando más de 100 hilos de trama por centímetro.",
+      "¿Qué hace que el tapiz sea diferente del tejido ordinario? En la tela regular, los hilos de urdimbre y trama aparecen en igual medida — ves la cuadrícula de ambos. En el tapiz, la trama se golpea tan firmemente que oculta completamente la urdimbre. El tejedor trabaja área de color por área de color, girando en cada límite, construyendo la imagen hilo por hilo de abajo hacia arriba — exactamente como un pintor agregando color a un lienzo, excepto que el medio es fibra."
+    ],
+    "technical": {
+      "title": "Cómo reconocer un tapiz",
+      "body": [
+        "Mira la parte trasera de una pieza tejida. En el verdadero tapiz, verás hilos de urdimbre expuestos (el esqueleto estructural) y numerosas colas sueltas donde el tejedor comenzó y terminó diferentes áreas de color. El frente muestra solo trama. Si puedes ver tanto urdimbre como trama en el frente, es tela ordinaria, no tapiz.",
+        "Pasa tu dedo por la superficie. El tapiz tiene una textura característica con crestas — puedes sentir los costillas distintas de cada hilo de trama. El bordado, por el contrario, tiene puntadas que se sientan sobre una tela de fondo; el tapiz no tiene tela de fondo. La estructura y la imagen son una y la misma cosa."
+      ]
+    },
+    "incident": {
+      "title": "El Tapiz de Bayeux — El gran error de la historia",
+      "impact": "Significancia cultural: Único registro visual sobreviviente de la Conquista Normanda de Inglaterra — 58 escenas, 230 pies de largo, encargado por el Obispo Odo de Bayeux.",
+      "body": [
+        "Aquí hay un secreto delicioso que sorprende a la mayoría de las personas: el famoso Tapiz de Bayeux no es realmente un tapiz. Es un bordado — lana de color cosida a una tela de fondo de lino. Puedes ver el lino debajo de las figuras. El verdadero tapiz no tiene tela de fondo; los hilos SON la tela. El Tapiz de Bayeux fue llamado tapiz durante siglos simplemente porque colgaba en una pared como lo haría un tapiz.",
+        "Esta confusión es común. La palabra 'tapiz' en el inglés cotidiano significa cualquier textil decorativo grande que cuelga, independientemente de la técnica. En el mundo de las artes textiles, 'tapiz' se refiere específicamente a la técnica de tejido de trama frontal. Ambos significados se utilizan hoy — solo conoce la diferencia cuando estés en un museo o hablando con un tejedor."
+      ]
+    },
+    "timeline": [
+      "Primeros textiles tejidos — tela de tejido simple en Egipto y Mesopotamia",
+      "Los fragmentos de tapiz más antiguos que se conservan encontrados en tumbas egipcias",
+      "Tejedores andinos precolombinos desarrollan técnicas de tapiz extraordinarias",
+      "Se crea el 'Tapiz' de Bayeux — en realidad bordado, pero ilustra el amor de la era por los textiles narrativos",
+      "Los talleres de tapiz flamencos comienzan en Arras — comienza la época dorada"
+    ],
+    "keyTakeaways": [
+      "El verdadero tapiz es de trama frontal: la trama cubre completamente la urdimbre — nunca ves la urdimbre en el frente",
+      "El 'Tapiz' de Bayeux es en realidad un bordado — una mezcla común y perdonable",
+      "El tapiz fue inventado independientemente en múltiples civilizaciones antiguas simultáneamente",
+      "Los tapices egipcios, andinos y asiáticos preexisten al tapiz europeo por miles de años",
+      "La diferencia de la tela simple: en el tapiz, la estructura y la imagen son la misma cosa"
+    ]
+  },
+  "tapestry-02": {
+    "tagline": "Durante doscientos años, los talleres de Flandes vistieron las paredes de todos los palacios de Europa.",
+    "overview": [
+      "Entre aproximadamente 1350 y 1550, las ciudades de Arrás y Bruselas en lo que hoy es Bélgica se convirtieron en el centro inigualable de la producción de tapices europeos. Los tapices de Arrás eran tan famosos que la palabra francesa para tapiz se convirtió en 'arras' — un uso que aún se encuentra en Shakespeare ('Encontraré dónde se oculta la verdad, aunque realmente se ocultase en el centro', de Hamlet, donde Polonio se esconde detrás de un 'arras'). Bruselas posteriormente superó a Arrás, y para el siglo XVI, la marca de Bruselas — una pequeña lanzadera de tejido — era la garantía de calidad más codiciada en Europa.",
+      "Estos no eran talleres pequeños. Los grandes ateliers de tapices flamencos empleaban a cientos de tejedores, maestros tintoreros, comerciantes de lana y pintores de cartones — el tapiz era una industria importante. Un único tapiz grande podría tomar a un equipo de tejedores varios años para completar. Las piezas terminadas valían más que pinturas de los mayores maestros de la época — eran los objetos de arte de prestigio de su tiempo, regalados como presentes diplomáticos entre reyes y papas.",
+      "El proceso de diseño era elaborado. Primero, un pintor creaba un boceto a pequeña escala. Luego se ampliaba a una pintura de tamaño completo llamada 'cartón' (del italiano 'cartone', que significa papel grande). El cartón se colocaba detrás de los hilos de la urdimbre en el telar, y los tejedores trabajaban desde la parte trasera, utilizando espejos o cartones translúcidos para seguir el diseño. El resultado, visto desde el frente, era una imagen especular del cartón — que los tejedores tenían que tener en cuenta cuando el diseño era asimétrico."
+    ],
+    "technical": {
+      "title": "Trabajando a partir de un Cartón",
+      "body": [
+        "Un 'cartón' de tapiz es simplemente el dibujo de diseño de tamaño completo colocado detrás o debajo de los hilos de la urdimbre como guía. Hoy en día, los principiantes a menudo dibujan su cartón en papel, lo colocan detrás de un telar de marco y trazan las formas principales directamente en los hilos de la urdimbre con un marcador. Esto te da límites claros para rellenar con color.",
+        "Para tu primer tapiz, mantén el cartón simple: formas atrevidas con áreas de color claras. Evita líneas muy finas o áreas altamente detalladas — estas son genuinamente difíciles de tejer y pertenecen a trabajos más avanzados. Un diseño de grandes formas coloreadas — un paisaje abstracto, una flor simple, un patrón geométrico — te dará resultados hermosos y te enseñará los fundamentos de manera clara."
+      ]
+    },
+    "incident": {
+      "title": "Los Tapices del Unicornio — El Mayor Misterio en Fibra",
+      "impact": "Significancia cultural: Siete tapices que muestran la caza y captura de un unicornio. Su propietario original, significado y ubicación siguen siendo desconocidos después de más de 500 años.",
+      "body": [
+        "Los Tapices del Unicornio se encuentran entre las obras de arte más celebradas del mundo — siete grandes tapices, cada uno de aproximadamente 12 por 14 pies, tejidos en lana y seda con hilos metálicos, que muestran escenas de la caza de un unicornio. Son extraordinarios en su detalle: se han identificado más de 100 plantas diferentes en los fondos de millefleurs ('mil flores'), muchas lo suficientemente precisas botánicamente para identificarse como especies específicas.",
+        "Lo que los hace misteriosos: nadie sabe quién los encargó, quién los tejió, o qué significan. El monograma 'A' y 'E' aparece en los bordes, pero su significado es disputado. Podrían representar la Anunciación, una caza secular, o la vida de Cristo — los académicos han discutido sobre esto durante más de un siglo. Llegaron al Museo Metropolitano en 1937 como un regalo de John D. Rockefeller Jr., quien los compró al Duc de la Rochefoucauld. ¿Antes de eso? Desconocido. Puedes visitarlos hoy en The Cloisters en Nueva York."
+      ]
+    },
+    "timeline": [
+      "Comienzan los talleres de Arrás — la ciudad belga se convierte en la capital de tapices de Europa",
+      "Se teje el Tapiz del Apocalipsis para el Duque de Anjou — 459 pies de largo, aún sobrevive",
+      "Se tejen los Tapices del Unicornio — el mayor ejemplo sobreviviente de la edad dorada flamenca",
+      "Rafael diseña los cartones de los Actos de los Apóstoles para tejedores de Bruselas (ahora en el V&A)",
+      "Peter Paul Rubens comienza a diseñar cartones de tapiz — la pintura se encuentra con el tejido"
+    ],
+    "keyTakeaways": [
+      "Los tapices flamencos eran los objetos de arte más prestigiosos en Europa — más valiosos que las pinturas",
+      "Un 'cartón' es el dibujo de diseño de tamaño completo colocado detrás del telar como guía",
+      "Los tejedores trabajaban desde la parte trasera, produciendo una imagen especular del cartón",
+      "La marca de calidad de Bruselas — una lanzadera de tejido — era la garantía de excelencia",
+      "Los Tapices del Unicornio (c.1500) en The Cloisters, NYC, se encuentran entre los mejores ejemplos sobrevivientes del mundo"
+    ]
+  },
+  "tapestry-03": {
+    "tagline": "Al otro lado del mundo, los tejedores trabajaban la seda tan fina que podías leer una carta a través de ella.",
+    "overview": [
+      "Mientras los tejedores flamencos perfeccionaban el tapiz de lana en Europa, los artesanos chinos de la dinastía Song (960–1279 CE) estaban desarrollando 'kesi' — un tapiz de seda de una finura impresionante. Kesi (literalmente 'seda cortada,' por los pequeños espacios que aparecen en los límites de color) se utilizaba para túnicas imperiales, pinturas de despliegue y objetos religiosos. Las piezas de kesi más finas logran un conteo de hilos que hace que la tela hecha por máquinas modernas parezca áspera en comparación — y eran tan valiosas que pinturas de seda completas se reproducían hilo por hilo en kesi para preservarlas.",
+      "Japón desarrolló su propia tradición: 'tsuzure-ori,' que significa 'tejido de guijarros.' Los tejedores tsuzure japoneses utilizan sus propias uñas — cuidadosamente limadas en bordes aserrados — como peines de tejeduría, presionando cada hilo de trama en su lugar con una precisión extraordinaria. La técnica produce tapiz de nitidez y delicadeza notables, tradicionalmente utilizado para los obi formales usados con kimono. Hoy en día, Nishijin en Kioto sigue siendo un centro de esta tradición viva.",
+      "El tapiz persa aportaba valores diferentes: color audaz, patrones geométricos complejos y florales, y una tradición de imaginería de jardines. Los tapices persas representaban el 'jardín paradisíaco' (del persa antiguo 'pairidaeza,' de donde obtenemos nuestra palabra 'paraíso') — un jardín amurallado con canales de agua, parterres de flores y pájaros. Estos tapices de jardín estaban diseñados para traer el ideal persa de paraíso al interior durante los meses de invierno riguroso. Su influencia se extendió por el mundo islámico, desde Turquía hasta India."
+    ],
+    "technical": {
+      "title": "Trabajar con Hilos Finos",
+      "body": [
+        "Las tradiciones de tapiz de seda asiático enfatizan hilos finos y urdimbres estrechamente tejidas para lograr detalle pictórico. Si deseas trabajar en un espíritu similar hoy, intenta usar una urdimbre de lana fina o algodón (a 8–12 hilos por pulgada) con hilos de trama suave y finos — como hilo de bordar de algodón, lanas simples delgadas o hilo de seda. Las urdimbres más finas te permiten capturar más detalle pero requieren más paciencia.",
+        "Una forma práctica de experimentar técnicas de tapiz asiático en casa: intenta un diseño simple de flor u hoja usando solo tres o cuatro colores, trabajando muy lentamente y empacando cuidadosamente cada hilo de trama con tus dedos o un peine de tapiz. El objetivo es la precisión — cada área de color tiene un borde limpio y nítido. Los tejedores tsuzure japoneses pasan años perfeccionando esta paciencia. Puedes comenzar en una tarde."
+      ]
+    },
+    "incident": {
+      "title": "Las Túnicas de Dragón — Kesi como Poder Imperial",
+      "impact": "Significado cultural: Las túnicas de dragón kesi eran la prenda exclusiva de los emperadores chinos — los patrones de dragón significaban autoridad divina. Solo el emperador podía usar túnicas con dragones de cinco garras de frente.",
+      "body": [
+        "Los códigos de vestuario de la corte imperial china se encontraban entre los más elaborados de la historia, y el tapiz kesi era central para ellos. Las túnicas ceremoniales del emperador se tejían en seda kesi, y cada elemento del diseño tenía significado: el número y posición de los dragones, la disposición de las nubes, los colores utilizados para cada rango. Un dragón de cinco garras mirando al espectador era el símbolo exclusivo del emperador. Los príncipes de diferentes rangos usaban dragones de cuatro garras; otros nobles usaban tres.",
+        "Hacer una sola túnica kesi imperial requería que tejedores expertos trabajaran continuamente durante meses. El Museo del Palacio en Pekín contiene ejemplos extraordinarios — piezas tan finas que los filamentos individuales de seda apenas son visibles a simple vista, sin embargo, las imágenes son tan precisas como pinturas. Muchas túnicas kesi se hicieron específicamente para reproducir pinturas anteriores en hilo imperecedero, preservando obras maestras en un medio que (en las condiciones correctas) dura mil años."
+      ]
+    },
+    "timeline": [
+      "La técnica de tapiz kesi emerge en la dinastía Tang en China",
+      "Dinastía Song — kesi alcanza su más alto refinamiento artístico",
+      "La tradición de tapiz de jardín paradisíaco persa está bien establecida — se extiende por el mundo islámico",
+      "El tsuzure-ori japonés alcanza su pleno desarrollo en el distrito Nishijin de Kioto",
+      "Las túnicas kesi imperiales chinas en su momento más complejo — preservadas en el Museo del Palacio hoy",
+      "Los tejedores tsuzure-ori de Nishijin mantienen la tradición viva; kesi se enseña en escuelas de arte chinas"
+    ],
+    "keyTakeaways": [
+      "El Kesi chino se teje en seda con una finura extraordinaria — hasta 100 hilos de trama por centímetro",
+      "Los tejedores tsuzure-ori japoneses usan sus propias uñas, limadas con bordes aserrados, como peines de tejeduría",
+      "El tapiz persa representaba 'jardines paradisíacos' — el origen de nuestra palabra 'paraíso'",
+      "'Kesi' significa 'seda cortada' — nombrado por los pequeños espacios que aparecen en los límites de color",
+      "Las túnicas kesi imperiales chinas requerían meses de trabajo y comunicaban rango a través del conteo de garras de dragón"
+    ]
+  },
+  "tapestry-04": {
+    "tagline": "Separadas por miles de millas, dos culturas perfeccionaron de forma independiente el arte de tejer color e historia en tela.",
+    "overview": [
+      "Mucho antes del contacto europeo, las civilizaciones de las montañas de los Andes desarrollaron técnicas de tapicería que nunca han sido superadas por su finura. Los tejedores andinos — en lo que ahora es Perú, Bolivia y Ecuador — lograron conteos de trama de más de 100 hilos por centímetro en algunas piezas, utilizando fibras de camélidos (alpaca y vicuña) y tintes naturales para crear textiles de refinamiento extraordinario. Estos no eran objetos decorativos: en la cultura andina, los textiles eran entre las expresiones más importantes de identidad social, creencia espiritual y poder político. Los incas requerían que los pueblos conquistados contribuyeran trabajo textil como forma de tributación.",
+      "El tejido Navajo del suroeste estadounidense es una tradición viva con una historia documentada que se remonta al siglo XVII, aunque el pueblo Diné (Navajo) aprendió a tejer de los pueblos Pueblo incluso antes. Las mantas y alfombras clásicas Navajo son inmediatamente reconocibles: patrones geométricos audaces en rojos profundos, negros y blancos, tejidos en un telar vertical de pie. El rojo brillante tradicionalmente provenía de bayeta (tela de franela española) que los tejedores Navajo desenredaban y volvían a tejer — una notable reutilización de bienes comerciales en algo únicamente propio.",
+      "Ambas tradiciones comparten características importantes: telares verticales, estructura enfrentada a la trama, y el uso de fibras y tintes naturales disponibles localmente. Ambas también comparten la comprensión de que el tejido no es meramente artesanía sino un acto cultural fundamental. Para los Navajo, el tejido es un regalo de Spider Woman (Ná'ashjé'ii Asdzáá), quien enseñó a la primera mujer Diné a tejer en un telar cuya urdimbre estaba hecha de cielo y tierra. Lo técnico y lo sagrado están tejidos juntos tan inseparablemente como la urdimbre y la trama."
+    ],
+    "technical": {
+      "title": "Tintes Naturales — Color de la Tierra",
+      "body": [
+        "Tanto las tradiciones andinas como las Navajo utilizaban tintes naturales extraordinarios antes de la llegada de los colores sintéticos. Los rojos brillantes en ambas tradiciones a menudo provenían de cochinilla — pequeños insectos de escala que viven en el cactus de la tuna y producen un tinte de carmín de excepcional riqueza y solidez. Los tejedores Navajo posteriormente obtuvieron lana de bayeta española teñida con cochinilla y la desenredaron para volver a tejer.",
+        "Puedes explorar el teñido natural en casa con materiales simples: las cáscaras de cebolla producen dorados y naranjas cálidos; los huesos y cáscaras de aguacate dan tonos suaves de beige rosado; el té negro crea marrones suaves; la cúrcuma da amarillo brillante (pero no resistente a la luz). Para un primer experimento de tinte natural, hierve a fuego lento cáscaras de cebolla amarilla en agua durante 30 minutos, cuela, añade lana hilada pre-mojada, hierve a fuego lento 45 minutos y enjuaga. El resultado es un cálido ámbar-oro que te conecta directamente con miles de años de tradición de teñido."
+      ]
+    },
+    "incident": {
+      "title": "Los Textiles de Paracas — La Tela Más Fina Jamás Hecha",
+      "impact": "Significado cultural: Los textiles de entierro encontrados en la Península de Paracas son los textiles precolombinos más finos jamás descubiertos — fardos de momias envueltos en capas de mantos bordados extraordinariamente detallados con hasta 100 hilos por centímetro.",
+      "body": [
+        "En 1925, el arqueólogo Julio Tello excavó fardos de momias en la Península de Paracas de Perú y descubrió textiles de finura casi imposible — cientos de mantos bordados e intrincadamente tejidos, cada uno envuelto alrededor de las momias de miembros de la sociedad Paracas que murieron entre 300 a.C. y 200 d.C. Las figuras representadas en estos textiles — seres sobrenaturales, chamanes voladores, cabezas de trofeo — son tan detalladas que los eruditos han pasado un siglo descifrando su lenguaje iconográfico.",
+        "Estos textiles no eran meramente bienes funerarios — eran la medida del poder espiritual y posición social de una persona. Las piezas más finas requerían años de trabajo por artesanos hábiles trabajando con hilo tan fino que un solo hilo debe sostenerse a la luz brillante para ser visible en absoluto. Algunos textiles de Paracas son tan delicados que se han disuelto parcialmente en el aire — visibles como impresión en el suelo de entierro en lugar de como tela intacta. Los que sobreviven se distribuyen entre museos en todo el mundo; la colección más grande está en Lima, Perú."
+      ]
+    },
+    "timeline": [
+      "Evidencia de tejido en la costa peruana — una de las tradiciones textiles más antiguas conocidas",
+      "Textiles de Paracas — entre los más finos jamás hechos, descubiertos en 1925",
+      "El Imperio Inca utiliza tributo textil — tela tejida como moneda política",
+      "Tradición de tejido Navajo establecida — aprendida de los pueblos Pueblo",
+      "Período clásico de manta Navajo — diseños geométricos audaces, rojo bayeta",
+      "Ambas tradiciones activamente mantenidas — tejido de la Nación Navajo, cooperativas de artesanos andinos"
+    ],
+    "keyTakeaways": [
+      "Los tejedores andinos lograron más de 100 hilos de trama por centímetro — nunca superado en finura técnica",
+      "El rojo brillante Navajo tradicionalmente provenía de tela de bayeta española desenredada teñida con cochinilla",
+      "Cochinilla — pequeños insectos en cactus — produce el tinte rojo natural más rico conocido",
+      "Para los Diné (Navajo), el tejido es un regalo de Spider Woman — lo técnico y lo sagrado están unificados",
+      "En las culturas andinas, los textiles comunicaban rango social, poder espiritual y autoridad política"
+    ]
+  },
+  "tapestry-05": {
+    "tagline": "El color en el tapiz no se mezcla en una paleta — se construye hilo por hilo, y el resultado está vivo.",
+    "overview": [
+      "El color en el tapiz funciona de manera diferente al color en la pintura. Un pintor mezcla pigmentos físicamente — azul y amarillo hacen verde en la paleta. Un tejedor mezcla colores ópticamente — hilos azules y amarillos colocados cerca uno del otro (o alternándose) crean la impresión de verde al ojo, pero cada hilo permanece físicamente separado. Comprender ambos tipos de mezcla es fundamental para el diseño de tapices.",
+      "La rueda de color básica se aplica directamente al tapiz: rojo, amarillo y azul son colores primarios. Mezcla cualquier dos primarios para obtener secundarios: rojo + amarillo = naranja, amarillo + azul = verde, azul + rojo = violeta. Mezcla un primario con el secundario opuesto (llamado par complementario) y obtienes un color que parece vibrar con energía — azul y naranja, rojo y verde, amarillo y violeta. Usados con cuidado, los colores complementarios crean los tapices más llamativos.",
+      "Los colores cálidos (rojos, naranjas, amarillos) parecen avanzar hacia el ojo — se sienten cercanos, energéticos, cálidos. Los colores fríos (azules, verdes, violetas) parecen retroceder — se sienten distantes, tranquilos, relajantes. Este efecto se puede usar deliberadamente en el diseño de tapices: una figura de color cálido sobre un fondo de color frío siempre se destacará y se sentirá presente. Una figura pálida y fría sobre un fondo cálido puede sentirse misteriosa y que retrocede. Cada decisión de color es también una decisión de sentimiento."
+    ],
+    "technical": {
+      "title": "Mezcla de Color en el Telar",
+      "body": [
+        "Hay tres formas de mezclar color en el tapiz: (1) Mezcla en la preparación del hilo — dos hebras de diferentes colores sostenidas juntas y tejidas como un solo hilo. Los colores se combinan físicamente en la aguja, creando una mezcla punteada. (2) Rayado — alternando filas o cuñas de dos colores para que se entremezclen visualmente en el tejido. (3) Mezcla óptica — colocando pequeñas áreas de colores puros adyacentes una a la otra para que el ojo los mezcle desde la distancia, como los pintores Impresionistas.",
+        "Para tu primera exploración de color: toma tres colores primarios de hilo (rojo, amarillo, azul) y teje pequeñas muestras usando cada técnica. Teje una fila de rojo, luego una fila de amarillo — permanecen separados. Ahora teje puntos alternados de rojo y amarillo en la misma fila — desde la distancia esto se ve naranja. Ahora sostén una hebra roja y una amarilla juntas y téjelas como un solo hilo — el resultado es un naranja-rojo cálido y mezclado. Mismos tres colores, tres resultados visuales completamente diferentes."
+      ]
+    },
+    "incident": {
+      "title": "William Morris — La Cruzada por el Color Natural",
+      "impact": "Significado cultural: Morris rechazó los tintes de anilina sintética y pasó décadas perfeccionando recetas de tintes naturales, reviviendo singlehandedly el teñido vegetal en Inglaterra e inspirando el movimiento Artes y Oficios.",
+      "body": [
+        "William Morris (1834–1896) — poeta, diseñador, socialista, y una de las grandes mentes creativas del siglo XIX — estaba furioso por los tintes de anilina sintética. Inventados en 1856, estos tintes químicos baratos rápidamente reemplazaron el teñido natural en toda la industria textil. Morris encontraba sus colores chillones, inestables y estéticamente muertos. 'Debo aprender a teñir yo mismo', escribió, y lo decía literalmente.",
+        "Morris pasó años dominando el índigo, la reseda (amarillo), la granza (rojo) y otros tintes históricos. Estableció su propia tintoría en Merton Abbey Mills en Londres, donde tiñó las lanas para sus tapices y alfombras de acuerdo con recetas que investigó de fuentes medievales. Sus diseños de tapices — 'Pájaro Carpintero', 'Huerto', 'El Bosque' — utilizan una paleta de azules-verdes profundos, rojos oxidados cálidos y oros polvorientos que se sienten completamente armoniosos, como un jardín visto a través de cristal antiguo. Puedes ver sus tapices hoy en el Museo Victoria y Alberto en Londres."
+      ]
+    },
+    "timeline": [
+      "Newton publica Óptica — primera descripción científica del espectro de color y colores primarios",
+      "Teoría del Color de Goethe — dimensiones emocionales y psicológicas del color descritas",
+      "Chevreul publica principios de armonía de color — influye directamente en tapices y pintura",
+      "Se inventan tintes de anilina sintética — enemigo de Morris; barato pero chillón",
+      "William Morris establece la tintoría de Merton Abbey — revival de tinte natural",
+      "Itten y la Bauhaus desarrollan teoría del color que hoy aún fundamenta la educación artística"
+    ],
+    "keyTakeaways": [
+      "Colores primarios: rojo, amarillo, azul. Mezcla cualquier dos para obtener un color secundario.",
+      "Los colores complementarios (opuestos en la rueda) crean vibración y contraste máximos",
+      "Los colores cálidos avanzan; los colores fríos retroceden — usa esto para empujar sujetos adelante o atrás",
+      "El color en el tapiz se mezcla ópticamente así como físicamente — el rayado crea mezcla de color",
+      "William Morris demostró que los tintes naturales producen color más armonioso que las alternativas sintéticas"
+    ]
+  },
+  "tapestry-06": {
+    "tagline": "Dos series de hilos. Uno va sobre el otro. De este principio simple, todo lo demás sigue.",
+    "overview": [
+      "Todo tejido — tapicería, tela, alfombra o lienzo — se construye a partir del mismo principio simple: dos series de hilos que se cruzan en ángulos rectos. Los hilos que corren hacia arriba y hacia abajo (verticalmente) en el telar se llaman urdimbre. Los hilos que corren de lado a lado (horizontalmente), entrelazándose con la urdimbre, se llaman trama. La urdimbre se estira tensa en el telar y permanece fija; la trama se trabaja fila por fila, pasando sobre y debajo de hilos de urdimbre alternos.",
+      "En tela de tejido liso, tanto la urdimbre como la trama son visibles y tienen una prominencia aproximadamente igual. En la tapicería, la trama se compacta tan firmemente que entierra la urdimbre completamente — solo ves la trama. Los hilos de urdimbre sirven como un esqueleto estructural invisible; la trama lleva todo el color e imagen. Por eso los tejedores de tapicería eligen un hilo fuerte y sin pelusa para la urdimbre (cuerda de algodón, lino o lana torcida firmemente) y un hilo más suave y colorido para la trama.",
+      "La operación clave en el tejido es crear la 'abertura' — un espacio entre hilos de urdimbre alternos por el cual puede pasar la trama. En telares de marco simple, los principiantes crean la abertura a mano, tejiendo sobre-uno-bajo-uno con una aguja o lanzadera. En telares de tapicería con un lizador, una barra o fila de bucles puede levantarse para separar hilos de urdimbre alternos y crear la abertura automáticamente. Entender la abertura y la contra-abertura es el fundamento mecánico de todo tejido."
+    ],
+    "technical": {
+      "title": "Configurar un Telar de Marco Simple",
+      "body": [
+        "Un telar de marco es el punto de partida más fácil — puedes comprar uno, o hacer uno con un marco de foto y clavos. Clava clavos pequeños o tornillos a lo largo de los bordes superior e inferior, espaciados aproximadamente 1 cm (para un peso de principiante). Enrolla tu hilo de urdimbre (la cuerda de algodón suave funciona perfectamente) desde el clavo inferior al clavo superior y viceversa, pasando alrededor de cada clavo en secuencia. Tira firme pero no desesperadamente apretado — la urdimbre debe tener tensión firme pero el marco no debe doblarse.",
+        "Una vez urdida, estás listo para tejer. Enhebra una aguja de tapicería con hilo de trama. Comenzando en la parte inferior, teje sobre el primer hilo de urdimbre, bajo el segundo, sobre el tercero, bajo el cuarto — hasta el final. Presiona suavemente hacia abajo con tus dedos o un peine. En la siguiente fila, invierte: bajo el primero, sobre el segundo, bajo el tercero. Esta alternancia sobre-uno-bajo-uno es la base de toda tapicería. Cada técnica adicional — punteado, soumak, nudos rya — se construye sobre esta estructura simple."
+      ]
+    },
+    "incident": {
+      "title": "Los Gobelinos — La Fábrica Real de Tapicería de Francia",
+      "impact": "Significado cultural: Fundada por Luis XIV como una manufactura real, los Gobelinos ha tejido para reyes franceses, presidentes y jefes de estado extranjeros durante más de 360 años sin interrupción.",
+      "body": [
+        "En 1662, Jean-Baptiste Colbert, ministro de finanzas de Luis XIV, compró la tintorera de la familia Gobelin en la orilla izquierda del Sena en París y la convirtió en la Manufactura Real de Muebles de la Corona — más tarde simplemente conocida como los Gobelinos. La intención de Luis era hacer que Francia fuera autosuficiente en bienes de lujo, terminando los pagos masivos a los talleres flamencos e italianos que habían agotado la riqueza francesa. Los Gobelinos tejerían tapicerías iguales o mejores que cualquier cosa que Flandes pudiera producir.",
+        "Los Gobelinos lograron este objetivo espectacularmente. Bajo la dirección artística de Charles Le Brun, produjo algunas de las mayores tapicerías del siglo XVII. Nunca ha dejado de funcionar — hoy todavía teje grandes tapicerías para regalos del estado francés y edificios públicos, todavía usando telares tradicionales de urdimbre alta y muchas de las mismas técnicas que usaban los tejedores de Le Brun. Puedes visitar y ver a los tejedores trabajar. La urdimbre, la trama, el sobre-y-bajo: sin cambios en 360 años."
+      ]
+    },
+    "timeline": [
+      "Los telares de urdimbre ponderada más antiguos en Europa — la estructura fundamental sin cambios desde entonces",
+      "Telares de tapicería de urdimbre alta (vertical) establecidos en Europa",
+      "Manufactura Real de Gobelinos fundada en París",
+      "Invención del telar Jacquard — creación de abertura mecanizada para patrones complejos",
+      "Resurgimiento del telar de marco — tejido de tapicería accesible para artesanos caseros en todo el mundo",
+      "Los Gobelinos todavía teje en telares tradicionales en París — la tradición viviente continúa"
+    ],
+    "keyTakeaways": [
+      "Urdimbre = hilos verticales en el telar, siempre fijos y bajo tensión",
+      "Trama = hilos horizontales, tejidos fila por fila, lleva todo el color en la tapicería",
+      "La 'abertura' es el espacio entre hilos de urdimbre alternos por el cual pasa la trama",
+      "Filas alternadas sobre-uno-bajo-uno bloquean la estructura del tejido",
+      "En tapicería, la trama se presiona firmemente hacia abajo hasta que cubre completamente la urdimbre"
+    ]
+  },
+  "tapestry-07": {
+    "tagline": "El telar más sofisticado del mundo es inútil hasta que te sientas y comiences a tejer.",
+    "overview": [
+      "La buena noticia sobre el equipo de tapicería es que no necesitas mucho. El telar de tapicería más básico es un trozo de cartón con muescas cortadas en los bordes superior e inferior. Lo urdimos con hilo, tejemos con aguja e hilo, y producimos una verdadera tapicería que es estructuralmente idéntica a la que hicieron los grandes maestros flamencos. La técnica no está en el equipo — está en las manos y el ojo.",
+      "Dicho esto, hay diferencias reales entre los tipos de telares que afectan la experiencia de tejido. Los telares de marco (rectángulos rígidos de madera con clavijas o ranuras) son el punto de partida ideal — económicos, portátiles y versátiles. Los telares de tapicería (más grandes, a menudo con un dispositivo de calado integrado) permiten trabajos más grandes y un progreso más rápido. Los telares de urdimbre alta (verticales, como los de los Gobelinos) permiten al tejedor ver el trabajo desde el frente mientras teje — la configuración tradicional europea. Los telares de urdimbre baja (horizontales) se utilizan en algunas tradiciones flamencas, con el tejedor trabajando desde la parte posterior.",
+      "Para herramientas, necesitas relativamente poco: una aguja de tapicería (punta redondeada, con ojo grande), un peine de tejido o tenedor (para batir filas de trama), y tijeras. Muchos tejedores agregan una pequeña lanzadera de palo (un palo plano con una muesca en cada extremo para enrollar hilo) para llevar longitudes más largas de trama. Todo lo demás es opcional. El taller de tejido de la Bauhaus — que produjo algunos de los artistas textiles más influyentes del siglo XX, incluida Anni Albers — comenzó con telares simples y la idea de que la herramienta más importante es un ojo educado."
+    ],
+    "technical": {
+      "title": "Configurar tu telar de cartón (¡Gratis!)",
+      "body": [
+        "Corta un trozo de cartón rígido de aproximadamente 20 × 25 cm (8 × 10 pulgadas). Usando tijeras, corta pequeñas muescas a lo largo de los bordes superior e inferior, espaciadas aproximadamente 1 cm. Estas muescas mantienen los hilos de urdimbre en su lugar. Enrolla un hilo de algodón liso o hilo de ganchillo desde la muesca inferior a la muesca superior e inverso, pasando alrededor de cada par de muescas. Quieres que los hilos de urdimbre se cuelguen planos y paralelos, con tensión uniforme — apretados pero sin que el cartón se doble.",
+        "Enhebra una aguja de tapicería con tu hilo de trama elegido. Comenzando en la parte inferior, teje sobre-bajo en todos los hilos de urdimbre, dejando una cola de 10 cm al principio. Gira y regresa, invirtiendo el sobre-bajo. Bate cada fila suavemente con los dedos. Después de algunas filas, estás tejiendo tapicería. Para cambiar colores, simplemente corta el hilo, deja una cola e inicia el color nuevo. Recortarás o arreglabas los extremos cuando la pieza esté terminada. Esto es exactamente lo que hacen los tejedores profesionales — solo en una versión más grande y elaborada de tu telar de cartón."
+      ]
+    },
+    "incident": {
+      "title": "Anni Albers y el taller de tejido de la Bauhaus",
+      "impact": "Significado cultural: Anni Albers, trabajando en la Bauhaus con telares simples, produjo arte textil de tal profundidad intelectual que se convirtió en la primera artista textil en tener una exposición individual en el Museo de Arte Moderno de Nueva York (1949).",
+      "body": [
+        "Cuando Anni Fleischmann llegó a la escuela Bauhaus en 1922, las mujeres fueron silenciosamente dirigidas hacia el taller de tejido — los fundadores de la escuela lo consideraban el departamento 'femenino' apropiado. Anni Albers (como se llamó después de casarse con el compañero estudiante de la Bauhaus Josef Albers) transformó este menosprecio en un triunfo. Pasó años dominando el telar, estudiando la estructura del hilo con rigor científico, y desarrollando un lenguaje visual en textil que era completamente original.",
+        "La perspicacia de Albers fue que el telar en sí es un medio visual — la estructura de urdimbre y trama, la repetición, la rejilla — estos no son limitaciones a superar sino la naturaleza misma del arte. Sus tejidos exploran el patrón, la textura y el efecto óptico con la precisión de un compositor que trabaja con intervalos musicales. Continuó enseñando, escribiendo (su libro 'On Weaving' sigue impreso y es lectura esencial), y exhibiendo en todo el mundo. Hizo todo esto con, esencialmente, las mismas herramientas disponibles para cualquier principiante hoy."
+      ]
+    },
+    "timeline": [
+      "Telares ponderados de urdimbre en uso — piedras pesando hilos de urdimbre, trabajadas de pie",
+      "Telares verticales de tapicería de urdimbre alta establecidos en talleres europeos",
+      "Los telares de marco de caña rígida se vuelven ampliamente disponibles para uso doméstico",
+      "Taller de tejido de la Bauhaus — Anni Albers comienza a transformar textil en arte plástico",
+      "Avivamiento de artes de fibra — telares de marco popularizados para artesanos caseros en EE.UU. y Europa",
+      "Telares de marco para principiantes y tutoriales en línea hacen la tapicería más accesible que nunca"
+    ],
+    "keyTakeaways": [
+      "Un telar de cartón funciona — puedes comenzar a tejer tapicería hoy por casi ningún costo",
+      "Los telares de marco son la mejor primera compra: versátiles, portátiles, económicos",
+      "Herramientas esenciales: aguja de tapicería, peine de tejido, tijeras — nada más es estrictamente necesario",
+      "Los telares de urdimbre alta son verticales; los telares de urdimbre baja son horizontales — ambos producen verdadera tapicería",
+      "Anni Albers probó que el arte más sofisticado puede provenir del equipo más simple"
+    ]
+  },
+  "tapestry-08": {
+    "tagline": "Cada técnica en el tapiz existe para resolver un problema visual específico. Aprende primero el problema; la técnica sigue naturalmente.",
+    "overview": [
+      "Una vez que puedas tejer una hilera básica de sobre-bajo, tienes la base. Todas las técnicas adicionales de tapiz son variaciones de o adiciones a esta estructura básica, cada una sirviendo un propósito específico. El rayado mezcla colores. El soumak añade una textura diagonal elevada. El entrelazamiento une dos áreas de color sin una abertura. Los nudos de rya crean pelo (bucles o flequillo cortado). Entender por qué existe cada técnica hace que aprenderla sea mucho más fácil.",
+      "Las aberturas y los entrelazamientos son uno de los desafíos centrales del diseño en tapiz. Cuando dos áreas de color se encuentran verticalmente (ambos colores regresan en el mismo hilo de urdimbre), se forma una abertura vertical entre ellas — una pequeña brecha en la tela. Las aberturas cortas (dos o tres hileras) son estructuralmente adecuadas y son características del tapiz escandinavo y algunas tradiciones andinas. Las aberturas más largas debilitan la tela y deben manejarse entrelazando los hilos de trama en el borde, o cosiendo la abertura después de completarla. Manejar bien los entrelazamientos verticales es una marca de habilidad en tapiz.",
+      "El soumak es una técnica envuelta tomada de las tradiciones de fabricación de alfombras — el hilo de trama se envuelve alrededor de los hilos de urdimbre diagonalmente en lugar de pasar directamente a través del paso. El resultado es una cresta diagonal elevada en la superficie. El soumak se usa para líneas de detalle, contornos, bordes y áreas de textura dentro de un tapiz. Es más lento que el tejido liso pero crea una hermosa calidad de superficie tridimensional. Ves el soumak más prominentemente en alfombras persas y caucásicas, y en el tapiz contemporáneo donde los tejedores desean contraste de textura."
+    ],
+    "technical": {
+      "title": "Rayado — Mezclando Colores Como un Pintor",
+      "body": [
+        "El rayado (del francés 'hachure') es la técnica de tapiz para crear gradientes de color y transiciones de color suave. En lugar de un borde duro donde dos colores se encuentran, entrelazas hileras en forma de cuña de colores alternados — un color yendo algunas urdimbres en el territorio del otro y regresando, el otro color haciendo lo mismo. Desde la distancia, los dos colores se mezclan ópticamente en un tercer tono intermedio.",
+        "Para practicar rayado: configura una pequeña muestra con dos colores. Teje tres hileras de Color A en todo el ancho. Luego, en lugar de tejer Color B en todo el ancho, teje solo la mitad, regresa, y deja que Color A continúe desde donde Color B regresó. Alterna estas hileras en forma de cuña, cada una avanzando un poco más en el territorio de la otra. Aléjate de tu trabajo periódicamente para ver la mezcla óptica que emerge. Así es como los tejedores de tapiz logran gradientes de cielo, tonos de piel y transiciones suaves entre áreas de paisaje."
+      ]
+    },
+    "incident": {
+      "title": "El Problema del Soumak — Cuando la Técnica se Encuentra con la Tradición",
+      "impact": "Significado cultural: El tejido soumak es una de las técnicas de textiles decorativos más antiguas y continuas — apareciendo en forma casi idéntica tanto en tradiciones de alfombras caucásicas como en textiles andinos prehispánicos, desarrollado independientemente en lados opuestos del mundo.",
+      "body": [
+        "Una de las coincidencias más sorprendentes de la historia textil es la aparición de técnicas de trama envuelta casi idénticas (soumak) tanto en tradiciones de alfombras caucásicas como en tejido andino precolombino — dos tradiciones que absolutamente no tenían contacto entre sí. Ambas descubrieron, independientemente, que envolver el hilo de trama alrededor de los hilos de urdimbre en un ángulo diagonal crea una costilla diagonal elevada distintiva en la superficie — más tridimensional y texturizada que el tejido de tapiz liso.",
+        "En alfombras caucásicas de soumak (de la región del moderno Azerbaiyán, Armenia y Georgia), la técnica cubre toda la superficie, creando alfombras de durabilidad extraordinaria y riqueza visual. En tejido andino, el soumak aparece como una técnica de detalle — usada para bordes, contornos y bandas decorativas dentro de un campo de tapiz más grande. Este descubrimiento convergente sugiere que el soumak no es una técnica arbitraria sino un descubrimiento casi inevitable para cualquier tejedor que comience a experimentar con lo que sucede cuando la trama se envuelve en lugar de pasar."
+      ]
+    },
+    "timeline": [
+      "La técnica de envolvimiento soumak aparece en textiles caucásicos",
+      "Los tejedores flamencos perfeccionan el rayado para gradientes de color realistas en grandes tapices",
+      "El renacimiento de Artes y Oficios trae técnicas de tapiz de vuelta a la práctica de estudio",
+      "Movimiento de artes de fibra — nudos de rya y técnicas esculturales popularizadas en EE.UU. y Escandinavia",
+      "Los tutoriales en línea hacen que soumak, rayado y rya sean accesibles para principiantes en todo el mundo"
+    ],
+    "keyTakeaways": [
+      "El rayado mezcla dos colores ópticamente entrelazando hileras en forma de cuña en un borde compartido",
+      "El soumak envuelve el hilo de trama alrededor de los hilos de urdimbre diagonalmente — crea una cresta elevada y texturizada",
+      "Las aberturas verticales se forman donde dos colores regresan en el mismo hilo de urdimbre; las aberturas cortas son estructuralmente adecuadas",
+      "Los nudos de rya se atan alrededor de pares de hilos de urdimbre para crear pelo — bucles o flequillo cortado",
+      "Cada técnica existe para resolver un problema visual — entiende primero el problema"
+    ]
+  },
+  "tapestry-09": {
+    "tagline": "El diseño no está separado del tejido — vive en cada decisión sobre color, forma y línea.",
+    "overview": [
+      "Antes de tejer una sola fila, debes decidir qué estás haciendo. Esta fase de diseño es donde el tapiz se conecta más estrechamente con las otras artes visuales — con la pintura, el dibujo, el diseño gráfico y la fotografía. El proceso de crear un diseño de tapiz es diferente de estas otras artes de una manera importante: debes pensar en términos de lo que el hilo puede hacer. Las imágenes fotográficas altamente detalladas son difíciles; las formas audaces y las áreas de color claras son el lenguaje que el tapiz habla más fluidamente.",
+      "Comienza con un pequeño bosquejo — incluso una pequeña miniatura áspera en lápiz muestra los elementos compositivos principales. Piensa en las formas grandes primero: ¿cuáles son las áreas de color más grandes? ¿Cuál es el tema principal y qué tan grande será en relación con el todo? ¿Dónde están las áreas más oscuras y más claras? Los diseños simples con tres a cinco áreas de color distintas son ideales para principiantes. Los patrones geométricos — diamantes, rayas, galones — son excelentes proyectos iniciales porque las formas son claras y las áreas de color son obvias.",
+      "Jean Lurçat (1892–1966) fue el artista francés que revivió por sí solo el tapiz como forma seria de arte contemporáneo en el siglo XX. Estudió la tradición medieval del tapiz de Aubusson e hizo una observación crucial: los mayores tapices históricos funcionaban con una paleta limitada — a menudo de 20 a 40 colores — y utilizaban áreas de diseño grandes y audaces en lugar de los tapices excesivamente detallados que imitaban pintura del siglo XIX. Redujo su paleta personal a 40 colores numerados y creó un sistema de notación para que los tejedores y diseñadores pudieran comunicarse con precisión. Sus ideas transformaron Aubusson en un centro vivo del tapiz contemporáneo."
+    ],
+    "technical": {
+      "title": "Creando tu Primer Cartón de Tapiz",
+      "body": [
+        "Dibuja tu cartón al mismo tamaño que tu tapiz planeado — escala 1:1. Si tu tapiz será de 20 × 25 cm, dibuja tu cartón en una pieza de papel de 20 × 25 cm. Usa líneas audaces y áreas de color claras. Puedes usar acuarela, marcador, lápiz de color, o simplemente áreas delineadas etiquetadas con nombres de color. El cartón no necesita ser una pintura terminada — es una guía de trabajo, no una obra de arte en sí.",
+        "Transfiere las líneas principales de tu cartón a tus hilos de urdimbre con un marcador claro. Coloca el cartón detrás o debajo de la urdimbre (para un telar de marco, puedes pegarlo detrás de la urdimbre para poder verlo a través de los hilos). Marca los límites principales — donde una área de color termina y otra comienza — directamente en los hilos de urdimbre con un marcador fino impermeable. Estas líneas guían tu tejido pero están ocultas por la trama mientras trabajas. Los principiantes que se saltan este paso a menudo encuentran que sus formas se desplazan en direcciones inesperadas."
+      ]
+    },
+    "incident": {
+      "title": "Jean Lurçat y el Renacimiento de Aubusson",
+      "impact": "Significancia cultural: Lurçat convenció a los tejedores y artistas franceses de abandonar la imitación servil de las pinturas y volver al lenguaje audaz y simbólico del tapiz medieval — creando una nueva era dorada del arte del tapiz.",
+      "body": [
+        "En 1939, el pintor Jean Lurçat visitó Aubusson — la ciudad francesa del tapiz que había estado tejiendo continuamente desde el siglo XVI pero que había perdido su dirección artística. Los tapices de Aubusson del siglo XIX intentaban reproducir pinturas al óleo exactamente, completas con gradaciones tonales con aerógrafo, perspectiva y detalle fotográfico. Eran técnicamente impresionantes y artísticamente inertes. Lurçat quedó horrorizado.",
+        "Regresó al modelo de los tapices medievales en el Musée de Cluny, París — colores audaces y planos, contornos fuertes, imágenes simbólicas, paleta limitada. Creó un sistema de color numerado (40 colores, cada uno con un número), desarrolló un nuevo enfoque de diseño usando formas grandes y seguras, y comenzó a diseñar tapices para los tejedores de Aubusson. Su obra más famosa, 'Le Chant du Monde' (La Canción del Mundo), es una serie monumental de 79 metros ahora en Le Mans. La influencia de Lurçat transformó el tapiz de imitación de la pintura nuevamente en su propia forma de arte."
+      ]
+    },
+    "timeline": [
+      "Los caricaturistas de talleres flamencos desarrollan traducción profesional de patrón a tejido",
+      "Rafael crea serie monumental de cartones para Bruselas — pintura y tejido separados",
+      "William Morris diseña cartones de tapiz él mismo, controlando la visión artística completa",
+      "Jean Lurçat comienza el renacimiento de Aubusson — rechaza la imitación de pintura, regresa al lenguaje audaz del tapiz",
+      "Movimiento de arte de fibra — los artistas diseñan y tejen su propio trabajo, sin caricaturista separado",
+      "Herramientas de diseño digital — los tejedores diseñan cartones en Photoshop, Procreate y Canva"
+    ],
+    "keyTakeaways": [
+      "Dibuja tu cartón a escala 1:1 — del mismo tamaño que el tapiz terminado",
+      "Las formas audaces y las áreas de color claras (3–5 colores) son ideales para principiantes",
+      "Transfiere las líneas de límite principales a los hilos de urdimbre con un marcador impermeable fino",
+      "Los diseños geométricos y de zonas horizontales (paisaje, abstracto) son los puntos de partida más fáciles",
+      "Jean Lurçat demostró que la fortaleza del tapiz es la simplicidad audaz, no la fotografía imitada"
+    ]
+  },
+  "tapestry-10": {
+    "tagline": "Retrocede de tu tapiz. Lo que parecía ser dos colores separados se convierte en un tono armonioso único desde el otro lado de la habitación.",
+    "overview": [
+      "Una de las propiedades más mágicas del tapiz es la mezcla óptica de color — la forma en que hilos separados de diferentes colores, vistos desde una cierta distancia, se fusionan en el ojo para crear nuevos colores y tonos. Este es el mismo fenómeno que los pintores impresionistas descubrieron en los años 1880: el puntillismo de Georges Seurat colocaba puntos puros de color uno al lado del otro, sabiendo que el ojo los mezclaría. En el tapiz, los hilos de trama son los puntos, y la 'mezcla' ocurre automáticamente con la distancia.",
+      "La mezcla óptica en tapiz funciona de tres formas principales: (1) Hilo mezclado — dos colores diferentes retorcidos juntos o sostenidos juntos en la aguja, de modo que entren en la trama lado a lado. (2) Sombreado — filas alternas o cuñas de diferentes colores que se mezclan a la distancia. (3) El enfoque 'bouclé' o textural — hilos de diferentes colores en filas adyacentes que crean una superficie jaspeada y mezclada. Los tres enfoques producen diferentes texturas visuales y son apropiados para diferentes partes de un diseño.",
+      "El contexto cambia el color. Un hilo de gris cálido parece marrón cuando está rodeado de azules fríos, y parece lavanda cuando está rodeado de amarillos cálidos. Esto es porque el ojo compensa el color circundante — 've' el contraste relativo, no los valores de color absolutos. Josef Albers pasó décadas explorando este fenómeno en su serie de pinturas 'Homenaje al Cuadrado'. Los tejedores de tapiz deben probar sus colores en contexto — un hilo que se ve perfecto en la madeja puede verse completamente diferente rodeado de los otros colores de la pieza."
+    ],
+    "technical": {
+      "title": "Mezcla de Hilos en la Aguja",
+      "body": [
+        "La forma más simple de crear un color mezclado es pasar dos (o más) hebras de diferentes hilos a través de tu aguja de tapiz y tejerlas como una sola unidad. Una hebra de rojo y una hebra de amarillo tejidas juntas crean un naranja óptico — no tan vívido como hilo naranja puro, pero más cálido y de aspecto más complejo, con una leve variación de textura donde los dos colores se retuercen.",
+        "Prueba este ejercicio de color: teje una pequeña muestra con cuatro combinaciones de aguja mezclada. Primero: una hebra roja + una hebra amarilla (resultado: naranja cálido). Segundo: una hebra azul + una hebra amarilla (resultado: verde salvia). Tercero: una hebra blanca + una hebra roja (resultado: rosa). Cuarto: una hebra negra + cualquier color brillante (resultado: una versión oscura y apagada de ese color). Cada mezcla tiene un carácter diferente del hilo de un solo color del mismo matiz general — más complejo, más natural, más cercano a cómo aparece el color en el mundo real."
+      ]
+    },
+    "incident": {
+      "title": "Josef Albers — El Color nos Miente",
+      "impact": "Significado cultural: La serie 'Homenaje al Cuadrado' de Josef Albers (más de 1.000 pinturas) demostró que el color es fundamentalmente relativo — el mismo color se ve completamente diferente dependiendo de su contexto. Su libro 'Interacción del Color' transformó la educación artística.",
+      "body": [
+        "Josef Albers llegó a la Universidad de Yale en 1950 después de enseñar en la Bauhaus (donde conoció y se casó con Anni Albers, la artista de tapiz). Comenzó una exploración sistemática y de décadas de duración sobre cómo interactúan los colores — y cuán consistentemente el ojo puede ser engañado. En su serie 'Homenaje al Cuadrado', anidó cuadrados de color uno dentro del otro y demostró, pintura tras pintura, que el mismo cuadrado de color exacto se ve completamente diferente dependiendo de qué colores lo rodean.",
+        "La demostración más famosa de Albers: toma un cuadrado gris medio. Colócalo sobre un fondo blanco — se ve gris oscuro. Coloca el mismo cuadrado gris sobre un fondo negro — se ve gris claro. El cuadrado no ha cambiado; solo el contexto ha. Este principio no es una curiosidad — es fundamental para cómo funciona realmente el tapiz (y todo arte visual) en el mundo real. Al planificar un tapiz, siempre rodea tu color de prueba con los colores que realmente aparecerán junto a él. La madeja de hilo te dice casi nada sobre lo que el color hará en contexto."
+      ]
+    },
+    "timeline": [
+      "Chevreul descubre el contraste simultáneo — los colores adyacentes afectan la apariencia mutua",
+      "Seurat exhibe 'Una Tarde de Domingo' — El puntillismo hace que la mezcla óptica sea una técnica de arte consciente",
+      "Josef Albers comienza a enseñar teoría del color en la Bauhaus",
+      "Albers publica 'Interacción del Color' — lectura esencial para cualquier artista que trabaje con color",
+      "Rebecca Mezoff y otros artistas de tapiz sistematizan enfoques de mezcla óptica para tejedores"
+    ],
+    "keyTakeaways": [
+      "Mezcla óptica: hilos separados de diferentes colores se mezclan en el ojo a distancia",
+      "Tres métodos: aguja mezclada (dos hebras), sombreado (filas alternas), áreas de color adyacentes",
+      "El color es relativo, no absoluto — los colores circundantes cambian cómo aparece cualquier color",
+      "Prueba tus colores de hilo rodeados de los otros hilos que usarás — la madeja engaña",
+      "Josef Albers probó: el mismo color se ve completamente diferente dependiendo del contexto"
+    ]
+  },
+  "tapestry-11": {
+    "tagline": "La tapicería no es una reliquia. Es una forma de arte viva practicada por miles de artistas en todo el mundo, en este momento, hoy.",
+    "overview": [
+      "La tejeduría de tapicería se practica hoy más ampliamente que en cualquier momento del siglo pasado. Internet ha conectado tejedores de todo el mundo en comunidades de práctica; los tutoriales en línea (YouTube, Instagram, TikTok) han hecho que las técnicas básicas sean accesibles para principiantes completos; y una nueva generación de artistas de fibra ha llevado la tapicería al mundo del arte contemporáneo, donde está representada en galerías y museos importantes junto a la pintura y la escultura.",
+      "Los artistas de tapicería contemporánea trabajan en una amplia gama de estilos y enfoques. Algunos, como el tejedor escocés Archie Brennan (1931–2019), mantuvieron una conexión cercana a la técnica tradicional de alto telar Gobelin mientras exploraban temas profundamente contemporáneos. Otros, como la artista estadounidense Rebecca Mezoff, han hecho de la instrucción de tapicería su trabajo de vida, escribiendo y enseñando con un rigor y generosidad que ha transformado cómo la gente aprende a tejer. Otros aún utilizan la tapicería como material crudo para arte de instalación, escultura y práctica social.",
+      "Los materiales de la tapicería contemporánea también son más diversos que nunca. La lana y la seda tradicionales siguen siendo centrales, pero los tejedores ahora incorporan algodón, lino, materiales reciclados, alambre, hilo de papel, bambú e incluso objetos encontrados. Algunos trabajan a escala enorme (instalaciones que llenan paredes); otros trabajan en miniatura (tapicerías pequeñas de pocos centímetros de ancho). El elemento compartido es siempre la estructura de urdimbre y trama — encima-debajo, hilo por hilo — que conecta a cada tejedor contemporáneo directamente con aquellos artesanos egipcios de 1400 a.C."
+    ],
+    "technical": {
+      "title": "Encontrando tu Comunidad y Materiales",
+      "body": [
+        "Lo mejor que puede hacer un tejedor de tapicería principiante, después de aprender lo básico, es encontrar su comunidad. Los gremios existen en la mayoría de las ciudades — busca tu 'Handweavers Guild' o 'Fiber Arts Guild' local. Muchos gremios ofrecen talleres para principiantes, tejidas en grupo y acceso a equipos que puedes probar antes de comprar. En línea, la American Tapestry Alliance (americantapestryalliance.org) mantiene un directorio de recursos, exposiciones y una revista de práctica de tapicería.",
+        "Para materiales, comienza con lo que sea accesible e inexpensivo: cordel de algodón suave para urdimbre (hilo de ganchillo o cordel de algodón para redes de pesca) e hilo de lana al 100% para trama en un peso apropiado para tu telar. Muchos tejedores usan urdimbre de alfombra de algodón 8/4 (disponible en tiendas de hilo y proveedores en línea como Halcyon Yarn, Yarn Barn of Kansas o Webs). Las buenas opciones de trama de lana incluyen lana de Harrisville Designs, Bartlettyarns y Malabrigo. A medida que ganes experiencia, desarrollarás opiniones sólidas sobre tus materiales preferidos. Este es uno de los placeres del oficio."
+      ]
+    },
+    "incident": {
+      "title": "Archie Brennan — Tapicería como Arte Contemporáneo",
+      "impact": "Significancia cultural: Brennan, entrenado en el estudio de tapicería tradicional de la Edinburgh College of Art, se convirtió en una de las voces más influyentes para la tapicería como arte plástico — desafiando la suposición de que la tapicería era simplemente artesanía decorativa.",
+      "body": [
+        "Archie Brennan se entrenó en la técnica tradicional de alto telar de tapicería en la Edinburgh y la Edinburgh College of Art, pero su tema era completamente contemporáneo — béisbol, televisión, publicidad, cultura pop, imágenes políticas — tejidas en una técnica de 600 años de antigüedad. Argumentó apasionadamente que la tapicería es un medio de arte plástico completamente realizado, no una artesanía, y que la distinción entre 'arte plástico' y 'artesanía' era un invento reciente y perjudicial.",
+        "Brennan se trasladó a Estados Unidos en los años 90 y enseñó durante muchos años, influyendo en una generación de artistas de tapicería estadounidenses. También fue un maestro tremendamente generoso — su presencia en línea antes de su muerte en 2019 hizo que información técnica compleja estuviera libremente disponible para tejedores en todo el mundo. Creía que la democratización del conocimiento de tapicería era una de las cosas más importantes que podían suceder a la forma de arte, y trabajó hacia ese objetivo durante toda su vida profesional."
+      ]
+    },
+    "timeline": [
+      "Lausanne International Tapestry Biennial — la tapicería entra en el mundo del arte plástico",
+      "American Tapestry Alliance fundada — organización profesional para artistas de tapicería",
+      "Los foros de Internet conectan tejedores de tapicería globalmente — el intercambio de conocimientos se transforma",
+      "Los tutoriales de tapicería en YouTube proliferan — el acceso de principiantes se transforma completamente",
+      "Comunidades de fibra de medios sociales — Instagram, TikTok traen la tapicería a nuevas audiencias",
+      "Tapicería tejida por miles en todo el mundo; representada en galerías de arte contemporáneo importantes"
+    ],
+    "keyTakeaways": [
+      "La tapicería se practica más ampliamente hoy que en cualquier momento del siglo pasado",
+      "Las comunidades en línea y los tutoriales han hecho que el aprendizaje sea accesible para principiantes completos",
+      "Los artistas contemporáneos utilizan técnica tradicional con materiales y temas contemporáneos",
+      "Los gremios, la American Tapestry Alliance y las comunidades en línea son tus mejores recursos",
+      "La mejor urdimbre de principiante: urdimbre de alfombra de algodón 8/4. Mejor trama de principiante: lana al 100%, peso peinado"
+    ]
+  },
+  "tapestry-12": {
+    "tagline": "El tapiz más hermoso que tejerás jamás es el próximo. El segundo más hermoso es el que estás tejiendo en este momento.",
+    "overview": [
+      "Todo lo que has aprendido en este curso se une en el acto de tejer tu primer tapiz. Comprendes la urdimbre y la trama. Sabes cómo leer un cartón y transferirlo al telar. Puedes mezclar colores ópticamente, cambiar colores limpiamente y gestionar uniones simples. Conoces el tramado para gradientes y soumak para textura. Tienes todo el conocimiento que necesitas. Lo único que falta es comenzar.",
+      "Para tu primer tapiz, mantenlo bellamente simple: una pieza de aproximadamente 15 × 20 cm (6 × 8 pulgadas), de tres a cinco colores, un diseño horizontal claro — un paisaje simple, un patrón geométrico abstracto, o incluso solo hermosas franjas de color en tonos que ames. El objetivo de la primera pieza no es producir una obra maestra. El objetivo es terminarla, sentir la textura del tejido terminado, comprender cómo interactúan la urdimbre y la trama en la práctica en lugar de en la teoría, y experimentar el placer tranquilo y absorbente de construir una imagen hilo a hilo.",
+      "El tapiz es uno de los oficios más antiguos y meditativosq. El movimiento repetitivo de pasar la trama a través de la calada, girar y golpear hacia abajo es genuinamente calmante — muchos tejedores lo describen como similar a la meditación o al tejido de punto por su capacidad de tranquilizar la mente. La lenta acumulación de filas que gradualmente revela una imagen tiene su propia alegría particular, diferente de los resultados inmediatos de la pintura o el dibujo. Ten paciencia contigo mismo. El primer tapiz de todo tejedor experimentado tenía tensión desigual, bordes errantes y al menos un cambio de color que no salió como se planeó. Así es siempre como comienza."
+    ],
+    "technical": {
+      "title": "Tu Primer Tapiz: Paso a Paso",
+      "body": [
+        "Paso 1: Elige un diseño simple — tres zonas de color horizontal funcionan hermosamente. Dibuja tu cartón a tamaño real y marca las líneas de límite en tus hilos de urdimbre con un marcador fino. Paso 2: Comienza a tejer en la parte inferior con algunas filas de trama simple en tu color de fondo — esto estabiliza la urdimbre y te da un borde inicial limpio. Paso 3: Trabaja de abajo hacia arriba, cambiando colores según requiera tu diseño. Golpea firmemente cada fila para que no asomen los hilos de urdimbre. Paso 4: Cuando llegues a la parte superior, deja algunas filas extra del color final y asegura tu última fila con un nudo de cabeza de alondra o tejiendo la cola a través de las filas terminadas.",
+        "Paso 5: Extrae el tapiz del telar. Desliza cuidadosamente los bucles de urdimbre de las clavijas (o córtalos si no hay otra opción). Ata los extremos de la urdimbre en pares con nudos por encima cerca del tejido. Recorta o introduce las colas de trama en la parte posterior del tapiz con tu aguja de tapicería. Paso 6: Termina mojado tu tapiz. Llena un recipiente con agua fresca, sumerge suavemente tu tapiz, aprieta suavemente (nunca retuerzas), y exprime el exceso de agua en una toalla. Deja secar plano. Este paso final abre las fibras de lana, nivela el tejido y transforma tu tapiz de 'objeto tejido' en algo que se ve y se siente terminado."
+      ]
+    },
+    "incident": {
+      "title": "Los Tapices Medicis — El Acabado como Transformación",
+      "impact": "Significancia cultural: La colección de tapices de la familia Medici — incluyendo piezas tejidas en Bruselas — demostró cómo el acabado mojado transformó un tapiz recién tejido de una tela suelta en un textil coherente y duradero. La tradición continúa sin cambios hoy.",
+      "body": [
+        "El acabado mojado — sumergir un tapiz terminado en agua fresca para relajar las fibras — ha sido parte de la práctica de tapicería mientras la lana ha sido tejida. Los grandes talleres flamencos de los siglos XIV–XVI regularmente terminaban mojado sus tapices antes de entregarlos a los clientes, y los inventarios Medici anotan qué piezas habían sido 'mojadas y estiradas.' El proceso no ha cambiado en 600 años: agua fresca, presión suave, secar plano.",
+        "Lo que el acabado mojado hace mecánicamente: las fibras de lana tienen escamas microscópicas. En el telar, estas escamas se presionan planas por el proceso de tejido, dejando el tejido sintiéndose ligeramente rígido e desigual. En agua fresca, las escamas se relajan y florecen ligeramente, fijándose en las fibras vecinas y creando una superficie más cohesiva y uniforme. El tapiz a menudo crece ligeramente — una pieza que tenía 20 × 25 cm en el telar puede terminar a 21 × 26 cm — y siempre se ve más terminada, más viva y más asentada después del baño de acabado mojado. Nunca omitas este paso."
+      ]
+    },
+    "timeline": [
+      "Los tejedores egipcios producen los primeros tapices conocidos en lino",
+      "Los talleres flamencos perfeccionan el acabado mojado como práctica estándar",
+      "William Morris termina mojado sus tapices teñidos naturalmente en Merton Abbey",
+      "Renacimiento de las artes de la fibra — miles de nuevos tejedores hacen sus primeros tapices",
+      "Tú — comenzando tu primer tapiz, conectado a 3,500 años de tradición"
+    ],
+    "keyTakeaways": [
+      "Mantén tu primer tapiz simple: tamaño pequeño, 3–5 colores, diseño horizontal claro",
+      "Comienza con algunas filas de tejido simple en la parte inferior para estabilizar y cuadrar la urdimbre",
+      "Golpea firmemente cada fila para que no sea visible la urdimbre — la trama compacta es la característica definitoria del tapiz",
+      "Siempre termina mojado: agua fresca, presión suave, secar plano — transforma la pieza terminada",
+      "El objetivo de tu primer tapiz es terminarlo y experimentar el oficio — no hacer una obra maestra"
+    ]
+  },
+  "nails-01": {
+    "tagline": "Cada manicura impecable comienza mucho antes de la primera gota de esmalte.",
+    "overview": [
+      "La uña no es solo una superficie dura para pintar — es una estructura viva hecha de queratina, la misma proteína que forma el cabello. La lámina ungueal (la parte dura que ves y pintas) se encuentra sobre el lecho ungueal (el tejido rosa debajo). El borde libre es la parte que sobresale más allá de la yema del dedo. La lúnula es la media luna pálida en la base, marcando dónde se forma la lámina ungueal. La cutícula es una capa delgada de piel muerta que migra desde el pliegue ungueal proximal hacia la lámina ungueal — y es una de las primeras cosas que aprende a manejar una técnica profesional de uñas.",
+      "La preparación no es opcional — es toda la base de una manicura duradera. Incluso el esmalte más caro se levantará, astillará o formará burbujas en días si la uña no está preparada correctamente. La lámina ungueal está naturalmente recubierta de aceites y humedad, ambos impiden que el esmalte se adhiera. Antes de aplicar cualquier producto, esos aceites deben ser removidos, la superficie debe ser texturizada ligeramente, y la uña debe ser moldeada correctamente.",
+      "La secuencia de preparación correcta es: remover esmalte antiguo → recortar y moldear → empujar hacia atrás y remover cutículas → pulir ligeramente la lámina ungueal → limpiar con un paño de preparación → aplicar deshidratante → aplicar imprimador (opcional pero recomendado) → aplicar producto. Omitir o invertir pasos crea problemas que ninguna cantidad de acabado brillante puede solucionar."
+    ],
+    "technical": {
+      "title": "Referencia Rápida de Anatomía de la Uña",
+      "body": [
+        "La uña crece desde la matriz — tejido oculto bajo el pliegue ungueal proximal. Cualquier cosa que dañe la matriz (fresado agresivo, cortes profundos cerca de la base) puede alterar permanentemente el crecimiento de la uña. Por eso las técnicas de uñas trabajan cuidadosamente alrededor de la base de cada uña.",
+        "La cutícula y el oniquia son cosas diferentes. La cutícula es tejido muerto que ha migrado hacia la lámina ungueal y debe ser removido. El oniquia es la piel viva en la base de la uña — nunca debe ser cortado, solo empujado suavemente hacia atrás. Cortar piel viva crea micro-heridas que invitan a la infección y representan un riesgo en un entorno profesional."
+      ]
+    },
+    "incident": {
+      "title": "Cómo Un Paso de Preparación Cambió la Industria de Uñas",
+      "impact": "Agregar un paso de deshidratación antes de la aplicación del producto mejoró la durabilidad del servicio en más del 60% en pruebas independientes de salones.",
+      "body": [
+        "A finales de los años 90, conforme los servicios de gel y acrílico explotaban en popularidad, los salones lidiaban con levantamiento y rotura rampante. El problema no era el producto — era la preparación. CND (Creative Nail Design) demostró que el contenido natural de aceite de la lámina ungueal era el predictor más importante del fracaso del producto. Agregar un paso de deshidratación dedicado antes de la aplicación del producto transformó los resultados del salón.",
+        "Este conocimiento cambió la educación de uñas permanentemente. Las compañías de productos comenzaron a enviar deshidratantes e imprimadores en kits de inicio. Hoy, omitir la preparación se considera no profesional — pero la razón está arraigada en la ciencia real que la industria aprendió a través de miles de manicuras fallidas."
+      ]
+    },
+    "timeline": [
+      "Se lanza el primer esmalte de uñas comercial",
+      "Se introducen sistemas de uñas acrílicas en salones profesionales",
+      "Los sistemas de esmalte de uña con luz UV comienzan a entrar en salones estadounidenses",
+      "La investigación de deshidratación de CND transforma los estándares de preparación en toda la industria",
+      "El esmalte de gel removible supera al esmalte tradicional en ingresos de salones",
+      "Los sistemas BIAB y gel constructor renuevan el enfoque en preparación de uñas completa"
+    ],
+    "keyTakeaways": [
+      "La cutícula es piel muerta en la lámina ungueal — el oniquia es piel viva y no debe ser cortado",
+      "La preparación no es opcional — es el factor más importante en la durabilidad del esmalte",
+      "Siempre remover el esmalte antiguo completamente antes de comenzar cualquier paso de preparación",
+      "La matriz de la uña hace crecer la uña — protégela nunca fresando o cortando agresivamente cerca de la base"
+    ]
+  },
+  "nails-02": {
+    "tagline": "El agua es enemiga de la adhesión. Tus uñas se expanden cuando están mojadas — y se contraen cuando se secan, llevándose el esmalte contigo.",
+    "overview": [
+      "Durante décadas, la manicura tradicional comenzaba con un cuenco de agua — sumergías las manos en agua tibia y jabonosa para ablandar las cutículas. Se sentía lujoso y hacía que el trabajo de cutículas fuera más fácil. El problema: las uñas son porosas. Absorben agua y se expanden. Cuando la uña se seca después de remojarse, se contrae — y cualquier cosa unida a la superficie (base coat, gel, acrílico) se somete a ese estrés de contracción, causando separación de la lámina ungueal.",
+      "La regla sin agua, promovida por químicos de productos y educadores de uñas desde principios de los años 2000, simplemente establece: no remojes las uñas antes de aplicar ningún producto para uñas. En su lugar, realiza todo el trabajo de cutículas en seco o con gel removedor de cutículas. La superficie de la uña permanece dimensionalmente estable, el deshidratante funciona en una uña que no ha absorbido humedad, y el producto se une correctamente.",
+      "Esto no significa que la manicura sea menos higiénica o cómoda. Un gel removedor de cutículas adecuadamente ablandado disuelve el tejido muerto tan efectivamente como remojar — frecuentemente mejor. Muchos salones de primer nivel han eliminado el cuenco de dedos por completo. El resultado es una manicura que dura días más sin reducción en la calidad."
+    ],
+    "technical": {
+      "title": "La Ciencia de la Hidratación de Uñas",
+      "body": [
+        "Las uñas se componen de células muertas queratinizadas aplanadas. Como una esponja, la lámina ungueal absorbe agua — expandiéndose una cantidad medible cuando está mojada. El problema clave: el esmalte, base coat, gel y acrílico están diseñados para unirse a la uña a un nivel de humedad específico. Cuando la uña luego se deshidrata y regresa a su tamaño en reposo, el estrés rompe el enlace molecular en la interfaz.",
+        "El ciclo de expansión/contracción es más dramático con remojo prolongado (5+ minutos). Incluso 2–3 minutos en agua causan suficiente hidratación para afectar la adhesión. Por esto las uñas hechas después de una ducha o baño frecuentemente se levantan dentro de días — la uña ya estaba hidratada cuando se aplicó el producto."
+      ]
+    },
+    "incident": {
+      "title": "Cuando un Spa de Hotel de Lujo Descubrió la Regla sin Agua",
+      "impact": "Spas que eliminaron el remojo en cuenco de dedos reportaron que las llamadas de clientes por levantamiento bajaron más del 50% en el primer año.",
+      "body": [
+        "En 2008, varios spas de hoteles de lujo comenzaron a consultar con químicos de productos para uñas sobre quejas crónicas de clientes — manicuras con gel levantándose dentro de 3–4 días a pesar de productos y técnicas de primera categoría. La investigación señaló una variable común: todos los spas todavía estaban usando remojo prolongado en cuenco de dedos como parte de su 'experiencia de lujo' característica.",
+        "Los spas eran escépticos de que eliminar un paso que los clientes amaban mejoraría los resultados. Pero después de un período de prueba donde los técnicos cambiaron al trabajo de cutículas en seco, las quejas de levantamiento bajaron dramáticamente. Hoy, la mayoría de educadores profesionales de uñas enseñan la regla sin agua como un principio fundamental."
+      ]
+    },
+    "timeline": [
+      "El remojo en cuenco de dedos se convierte en estándar en las manicuras estadounidenses",
+      "Los sistemas de uñas en gel llegan — el levantamiento se convierte en una queja importante de la industria",
+      "Los químicos de uñas comienzan a publicar investigaciones sobre hidratación y fallo de adhesión",
+      "La regla sin agua entra en los currículos de educación profesional de uñas",
+      "El auge del esmalte de gel desmontable hace que la regla sin agua sea mayoritaria",
+      "La mayoría de programas de capacitación profesional en gel y BIAB prohíben el remojo en cuenco de dedos"
+    ],
+    "keyTakeaways": [
+      "El agua hace que las uñas se expandan — cuando se secan y se contraen, cualquier producto unido a ellas se levanta",
+      "Elimina el cuenco de dedos; usa gel removedor de cutículas para ablandar las cutículas en su lugar",
+      "Incluso una ducha antes de una manicura puede causar levantamiento prematuro — las uñas hidratadas son menos receptivas al producto",
+      "La regla sin agua se aplica igualmente a gel, acrílico, BIAB y esmalte tradicional"
+    ]
+  },
+  "nails-03": {
+    "tagline": "No puedes adherir a una superficie aceitosa. La deshidratación elimina lo que el ojo no puede ver.",
+    "overview": [
+      "Después de que la uña ha sido moldeada, las cutículas manejadas y la superficie ligeramente pulida, aún hay un obstáculo crítico para la adhesión: los aceites invisibles. La placa ungueal secreta continuamente aceites similares al sebo desde el lecho ungueal debajo. Incluso después del pulido, estos aceites recubren la superficie de la placa ungueal a nivel molecular. Un deshidratante elimina esos aceites al evaporarlos junto con cualquier humedad superficial, dejando una superficie ungueal limpia y libre de aceite.",
+      "Un cebador es un producto separado, no lo mismo que un deshidratante. Mientras que un deshidratante elimina lo que está presente (aceites, humedad), un cebador añade algo a la uña: ya sea un cebador a base de ácido que graba la placa ungueal microscópicamente para adhesión mecánica, o un cebador libre de ácido que crea un puente molecular entre la placa ungueal y la capa de producto. Los cebadores se usan más comúnmente con sistemas de gel duro, acrílico y gel constructor.",
+      "Saber cuándo usar cada producto: el deshidratante se usa en cada servicio, siempre. El cebador se usa cuando se trabaja con sistemas de realce (acrílico, gel duro, gel constructor, BIAB) — rara vez se necesita para esmalte tradicional o gel de remojo, aunque algunos técnicos usan un cebador libre de ácido en clientes propensos al levantamiento."
+    ],
+    "technical": {
+      "title": "Deshidratante vs. Cebador: Qué Hace Cada Uno",
+      "body": [
+        "Los deshidratantes funcionan disolviendo y evaporando los aceites y la humedad superficial de la placa ungueal. La mayoría usan alcohol isopropílico o un disolvente similar. Después de la aplicación, la uña debe verse ligeramente mate — esa apariencia mate es la superficie libre de aceite y humedad que deseas. Aplica el deshidratante y déjalo evaporar completamente antes de tocar la uña.",
+        "Los cebadores a base de ácido (como el cebador de ácido metacrílico, usado históricamente en sistemas acrílicos) graban químicamente la superficie ungueal, creando microporos para el enclavamiento mecánico. Son muy efectivos pero agresivos — pueden quemar la piel y nunca deben tocar la cutícula. Los cebadores libres de ácido funcionan mediante química de adhesión molecular — más suaves y seguros, apropiados para la mayoría de sistemas de gel y gel constructor modernos."
+      ]
+    },
+    "incident": {
+      "title": "La Epidemia de Levantamiento de Acrílico Que Llevó a la Ciencia del Cebador",
+      "impact": "Un ajuste de cuentas a nivel industrial sobre la química de productos llevó al desarrollo de la ciencia moderna del cebador y la categoría de cebador libre de ácido.",
+      "body": [
+        "Durante el auge del acrílico en los años 80, el levantamiento era epidémico. Muchos técnicos se culpaban mutuamente — 'monómero malo', 'la cliente tiene uñas aceitosas', 'proporciones incorrectas'. Pero los químicos de productos que investigaron encontraron casi universalmente la misma causa raíz: preparación inadecuada y sin uso de cebador. Los cebadores de ácido metacrílico habían estado disponibles desde los años 70 pero no se usaban ampliamente.",
+        "El problema con los cebadores de ácido metacrílico: eran agresivos, podían causar quemaduras químicas si se sobraaplicaban, y eran mal entendidos por los trabajadores de salones. Esto impulsó el desarrollo de fórmulas de cebador libre de ácido en los años 90 — productos que lograban la misma adhesión molecular sin el ácido. Hoy, los cebadores libres de ácido son el estándar para los sistemas de realce modernos."
+      ]
+    },
+    "timeline": [
+      "Cebador de ácido metacrílico introducido para sistemas de uñas acrílicas",
+      "Auge del acrílico — las quejas de levantamiento se convierten en un problema de toda la industria",
+      "Se desarrollan las primeras fórmulas de cebador libre de ácido para un uso más seguro",
+      "La educación sobre preparación de uñas se convierte en un módulo requerido en la licencia de cosmetología",
+      "Los sistemas de gel constructor y BIAB crean nueva demanda de educación sobre adhesión",
+      "La ciencia de preparación de uñas se integra en todos los programas de educación de las principales marcas"
+    ],
+    "keyTakeaways": [
+      "El deshidratante elimina aceites y humedad; el cebador crea un puente de adhesión — hacen cosas diferentes",
+      "Siempre aplica deshidratante en cada servicio; el cebador se usa principalmente con sistemas de realce",
+      "Nunca toques la uña después de aplicar deshidratante — los dedos reintroducen aceites",
+      "Los cebadores de ácido son efectivos pero agresivos; los cebadores libres de ácido son más suaves y apropiados para la mayoría de sistemas modernos"
+    ]
+  },
+  "nails-04": {
+    "tagline": "La manicura en seco no es un atajo — es el estándar profesional.",
+    "overview": [
+      "Una manicura en seco es simplemente una manicura realizada sin remojar las uñas en agua. Esta no es una técnica nueva — ha sido el estándar profesional en el mundo de las uñas de resina durante décadas, y rápidamente se está convirtiendo en estándar también para servicios de esmalte tradicional. Todo el servicio se realiza en uñas secas: eliminación de cutícula usando removedor en gel en lugar de remojar, limado en uñas secas y pulido en una superficie seca.",
+      "La secuencia de una manicura en seco completa: (1) Eliminar cualquier producto o esmalte existente. (2) Limar y dar forma a las uñas hasta la longitud y forma deseadas. (3) Aplicar gel removedor de cutícula en el área de la cutícula. (4) Después de 30–60 segundos, empujar suavemente hacia atrás la cutícula con un empujador de metal o palito de naranjo. (5) Usar alicates para remover solo el tejido muerto suelto — nunca cortar piel viva. (6) Pulir ligeramente la placa ungueal para remover el brillo y crear textura de superficie. (7) Limpiar con una almohadilla sin pelusa. (8) Aplicar deshidratador. (9) Aplicar imprimador si se utilizan extensiones. (10) Proceder con tu producto.",
+      "El método en seco hace que el trabajo de cutícula sea más fácil, no más difícil, una vez que te adaptas a él. El gel removedor de cutícula ablanda el tejido muerto tan efectivamente como remojar — y el empujador de cutícula se desliza suavemente en una uña seca. Muchas técnicas encuentran que pueden trabajar más rápido y con mayor precisión sin uñas mojadas y resbaladizas."
+    ],
+    "technical": {
+      "title": "Formas de Uñas: Cuadrada, Redonda, Ovalada, Almendra, Stiletto, Ataúd",
+      "body": [
+        "La forma de la uña se lima antes de otros pasos de preparación. Limar en una sola dirección — el limado de atrás hacia adelante debilita la placa ungueal y causa desprendimiento de capas. Use una lima de grano medio (180–240 grano) para uñas naturales; los granos más gruesos son solo para productos artificiales. Sostenga la lima paralela al borde de la uña para formas cuadradas, en ángulo para óvalos y almendras.",
+        "La forma afecta la durabilidad: las formas cuadradas son las más duraderas (más placa ungueal en el punto de estrés); stiletto y almendra son las más propensas a romperse. Para clientes con uñas débiles, recomiende cuadrovalada (esquinas cuadradas ligeramente redondeadas) como compromiso entre estética y resistencia."
+      ]
+    },
+    "incident": {
+      "title": "La Técnica de Uñas de Celebridades Que Estandarizó el Método en Seco",
+      "impact": "El respaldo público de técnicas de manicura en seco de técnicas de uñas de celebridades aceleró la adopción de la industria por años.",
+      "body": [
+        "Cuando el esmalte de gel desmontable se convirtió en un servicio de mercado masivo a principios de los años 2010, los salones inicialmente intentaron aplicarlo usando sus protocolos de servicio húmedo tradicionales — tazones para dedos, remojo, todo. Los resultados fueron pobres: el gel se desprendía en días, clientes frustrados y daño a las reputaciones de los salones.",
+        "Un puñado de técnicas de uñas de celebridades en Los Ángeles — trabajando con clientes que necesitaban que sus uñas duraran semanas de filmación o giras — ya habían cambiado a protocolos de manicura en seco. Cuando fotos de antes y después de manicuras de gel prístinas de 3 semanas comenzaron a aparecer en redes sociales, la industria de uñas puso atención. El contenido educativo sobre el método en seco explotó, y el estándar profesional cambió."
+      ]
+    },
+    "timeline": [
+      "Estándar de preparación en seco para extensiones de uñas de acrílico",
+      "Remojo en tazón de dedos sigue siendo estándar para manicuras de esmalte tradicional",
+      "El esmalte de gel desmontable explota en popularidad — la epidemia de levantamiento sigue",
+      "El método de manicura en seco es respaldado por educadores de uñas importantes para todos los servicios",
+      "La mayoría de los programas de capacitación de marcas profesionales de uñas adoptan el método en seco como predeterminado",
+      "Estándar de manicura en seco en todos los currículos principales de licencia de tecnología de uñas"
+    ],
+    "keyTakeaways": [
+      "Limar y dar forma en uñas secas — las uñas mojadas son resbaladizas y las medidas son inexactas",
+      "Limar en una sola dirección — el limado de atrás hacia adelante debilita la placa ungueal",
+      "El gel removedor de cutícula es más efectivo que remojar y no hidrata la placa ungueal",
+      "Siempre eliminar solo tejido muerto suelto — nunca cortar piel viva (el oniquia)"
+    ]
+  },
+  "nails-05": {
+    "tagline": "Una capa fina siempre supera a tres capas gruesas.",
+    "overview": [
+      "La aplicación uniforme de esmalte es una habilidad que separa los resultados profesionales de las manicuras caseras. Los principios clave son: capas finas, técnica de brocha adecuada y sellado del borde libre. La mayoría de las personas aplican esmalte en glóbulos gruesos porque parece más rápido y más pigmentado. Lo opuesto es cierto — las capas gruesas tardan más en secarse, atrapan burbujas de aire, se contraen más al curarse y son mucho más propensas a mancharse y astillarse.",
+      "El método de tres trazos es el estándar profesional: (1) Coloca la brocha en el centro de la base de la uña, aproximadamente 1 mm de distancia de la cutícula. Presiona suavemente para abrir las cerdas. Tira la brocha hacia el borde libre en un trazo suave por el centro. (2) Repite desde la base hasta el borde libre en el lado izquierdo. (3) Repite en el lado derecho. Tres trazos, presión ligera, capa fina. Eso es todo.",
+      "Sellar el borde libre significa arrastrar la brocha ligeramente por la punta de la uña después de cada capa. Esto sella el color en el borde — el punto más vulnerable para el astillamiento — y extiende significativamente la vida de la manicura. Solo toma dos segundos adicionales y hace una diferencia medible en cuánto tiempo dura el esmalte."
+    ],
+    "technical": {
+      "title": "Control de Brocha y Consistencia del Esmalte",
+      "body": [
+        "La cantidad de esmalte en la brocha es enormemente importante. Demasiado esmalte y obtienes cutículas inundadas, burbujas de aire y una capa gruesa desigual. Muy poco y el color es irregular y desigual. Limpia un lado de la brocha en el cuello de la botella para eliminar el exceso — la brocha debe verse como una gota de agua, bien cargada en un lado y limpia en el otro.",
+        "La viscosidad del esmalte cambia con la temperatura y la edad. El esmalte frío es espeso y arrastra; caliéntalo en tus manos durante 30 segundos rodando la botella de atrás hacia adelante (nunca agites — agitar introduce burbujas). El esmalte viejo y espeso se puede rescatar con algunas gotas de diluyente de esmalte — no removedor de acetona, que descompone la fórmula permanentemente."
+      ]
+    },
+    "incident": {
+      "title": "Essie Weingarten y la Brocha de Esmalte Perfecta",
+      "impact": "El diseño de brocha plana ancha de Essie influyó en el enfoque de toda la industria de esmalte de uñas hacia la ingeniería de brochas.",
+      "body": [
+        "Cuando Essie Weingarten lanzó su empresa de esmalte de uñas en 1981, era una técnica de uñas con fuertes opiniones sobre el diseño de brochas. La mayoría de los esmaltes de esa época usaban brochas delgadas y pequeñas que requerían muchos trazos para cubrir la uña. Essie diseñó una brocha plana y ancha que cubría más de la placa ungueal en un solo trazo — reduciendo el tiempo de aplicación y mejorando la uniformidad.",
+        "La 'brocha Essie' se hizo famosa en los salones. Las técnicas de uñas la solicitaban específicamente. Hoy, el diseño de brocha se considera uno de los factores más críticos en la usabilidad profesional de un esmalte de uñas, y el enfoque de Essie influyó en cómo cada marca importante aborda la ingeniería de brochas."
+      ]
+    },
+    "timeline": [
+      "Primer esmalte de uñas comercial en botellas pequeñas con brochas básicas",
+      "Revlon introduce color de labios y uñas a juego — las manicuras se vuelven convencionales",
+      "Essie Weingarten lanza Essie con diseño de brocha plana ancha",
+      "El esmalte de gel introduce nuevos requisitos de técnica de brocha (capas finas de UV)",
+      "El auge del arte de uñas crea demanda de brochas de precisión y herramientas de aplicación",
+      "Los sistemas BIAB requieren técnica de capa fina precisa para el curado adecuado"
+    ],
+    "keyTakeaways": [
+      "Siempre aplica capas finas — dos capas finas duran más que una capa gruesa",
+      "Usa el método de tres trazos: centro, lado izquierdo, lado derecho",
+      "Sella el borde libre después de cada capa para prevenir astillas en la punta",
+      "Nunca agites el esmalte — ródalo entre tus manos para mezclar sin introducir burbujas"
+    ]
+  },
+  "nails-06": {
+    "tagline": "Omite la base y está pintando sobre aceite. Omita el top coat y deja el color desprotegido.",
+    "overview": [
+      "Una manicura profesional utiliza tres capas de producto distintas, cada una con una función específica. La base es la cimentación — crea adhesión entre la placa ungueal y el color, previene manchas de esmaltes pigmentados e incluye a menudo ingredientes fortalecedores de uñas. La capa de color proporciona el pigmento — siempre se aplica en dos capas finas, nunca en una gruesa. El top coat sella y protege todo lo que hay debajo, añade brillo y es la defensa principal contra astillas y rasguños.",
+      "Cada capa debe aplicarse completamente y permitirse que se fije antes de aplicar la siguiente. Apresurarse provoca color manchado, arrugas (donde la capa superior tira la capa húmeda debajo hacia ondas) y longevidad reducida. Para esmalte tradicional, un toque ligero en la aplicación final del top coat evita perturbar el color debajo.",
+      "No todos los base coats y top coats son intercambiables. Los base coats rellenadores de surcos son más espesos y están diseñados para clientes con superficies ungueales irregulares. Los base coats fortalecedores contienen ingredientes como calcio o queratina para uñas frágiles. Los top coats de secado rápido contienen disolventes que ayudan a fijar el esmalte más rápido. Los top coats de gel requieren curado UV/LED. Usar el tipo de producto incorrecto puede causar problemas de compatibilidad — siempre manténgase dentro del mismo sistema cuando sea posible."
+    ],
+    "technical": {
+      "title": "Compatibilidad de capas y tiempo de secado",
+      "body": [
+        "Las arrugas (también llamadas 'estallido de disolvente') es un problema común causado por aplicar top coat sobre color que no se ha fijado. El disolvente en el top coat ataca el color aún húmedo debajo, causando que ondule. Solución: espere al menos 2 minutos entre capas de color y 3–5 minutos antes de aplicar top coat — o use un spray/gotas de secado rápido para acelerar el proceso.",
+        "Las gotas de secado rápido (aplicadas sobre la manicura terminada) funcionan reemplazando los disolventes de evaporación lenta en el top coat con disolventes de evaporación rápida, reduciendo dramáticamente el tiempo de secado. También dejan un aceite acondicionador ligero en la superficie. Aplique 1–2 gotas por uña, extendiéndolas con la punta del gotero. No aplique antes del top coat — previenen la adhesión."
+      ]
+    },
+    "incident": {
+      "title": "Cómo OPI cambió el top coat con RapiDry",
+      "impact": "La categoría de top coat de secado rápido fue creada, transformando la capacidad del salón — los manicuristas podían sentar al próximo cliente más rápido y los clientes se iban sin uñas manchadas.",
+      "body": [
+        "Antes de que existieran los top coats de secado rápido, el mayor punto de fricción en una manicura tradicional era la espera. Los clientes se sentaban bajo ventiladores durante 20–30 minutos viendo sus uñas secarse. Un golpe, una llave caída, y toda la manicura se arruinaba. Las uñas manchadas y los clientes enojados eran una realidad diaria para los técnicos de salón.",
+        "La introducción de RapiDry por OPI en 1992 cambió esto. La fórmula utiliza disolventes de evaporación rápida que aceleran el secado en toda la pila de esmalte, no solo en la superficie. De repente las manicuras estaban 'lo suficientemente secas' para salir en 10 minutos. La categoría explotó — hoy casi cada marca de uñas vende una versión de top coat de secado rápido, y es estándar en la mayoría de salones."
+      ]
+    },
+    "timeline": [
+      "Esmalte de uñas antiguo — sin sistema multiestrato estándar",
+      "Los productos de base coat se venden por primera vez separados del esmalte",
+      "El top coat se convierte en práctica estándar profesional",
+      "OPI lanza RapiDry — se crea la categoría de top coat de secado rápido",
+      "El protocolo de sistema de gel de tres capas (base, color, top) se convierte en estándar de la industria",
+      "Los top coats similares al gel traen brillo de nivel gel a sistemas de esmalte tradicionales"
+    ],
+    "keyTakeaways": [
+      "Nunca omita la base — previene manchas y proporciona la capa de adhesión",
+      "Dos capas de color finas siempre superan una capa gruesa",
+      "Espere adecuadamente entre capas — las arrugas son causadas por aplicar top coat sobre color húmedo",
+      "Selle el borde libre en cada capa — base, color y top coat"
+    ]
+  },
+  "nails-07": {
+    "tagline": "El levantamiento no es mala suerte — siempre tiene una causa raíz que puedes encontrar y solucionar.",
+    "overview": [
+      "El levantamiento es cuando el esmalte o gel se separa de la placa ungueal, generalmente comenzando en el borde de la cutícula o en los bordes laterales. Es la queja más común que hacen los clientes de uñas, y casi siempre es causada por uno o más errores de preparación — no por el esmalte en sí. Comprender el patrón específico de levantamiento te dice exactamente dónde en tu rutina de preparación ocurrió el problema.",
+      "El levantamiento en la cutícula específicamente significa que el producto fue aplicado demasiado cerca o tocando la cutícula/oniquia. Cuando el producto toca piel viva, los aceites y el movimiento de la piel eventualmente rompen el sello. La solución: deja un espacio de 1mm entre tu producto y la cutícula. Esto se ve aterrador al principio — parece que estuvieras dejando un hueco sin pintar — pero una vez que apliques tus capas se vuelve invisible.",
+      "El levantamiento en los bordes laterales significa que el producto fue aplicado tocando los pliegues ungueales laterales (piel en los lados de la uña). Mismo principio: cualquier producto que toque la piel se levantará. La técnica adecuada del pincel mantiene el producto solo en la placa ungueal, nunca inundando los lados. Para sistemas de gel, inundar los lados también puede causar picos de calor durante el curado."
+    ],
+    "technical": {
+      "title": "Diagnóstico de Patrón de Levantamiento",
+      "body": [
+        "La ubicación del levantamiento te dice la causa: Levantamiento de cutícula → producto demasiado cerca de la cutícula / paso de deshidratación omitido / cutícula no removida completamente. Levantamiento de bordes laterales → inundación de producto en los lados. Levantamiento de punta → no se selló el borde libre / capa demasiado gruesa en la punta. Levantamiento en el centro de la uña (delaminación) → pulido inadecuado / sin textura de superficie / primer omitido en sistemas de extensión. Levantamiento en toda la uña → no se usó deshidratador.",
+        "Para sistemas de gel, hay una causa adicional: curado incompleto. El gel poco curado es suave y flexible, lo que permite que la capa se separe. Siempre verifica la vida útil de la bombilla de tu lámpara (típicamente 50,000 horas para LEDs) y asegúrate de que la uña se ajuste dentro de la zona de curado de la lámpara. Las uñas curvas y los colores oscuros pueden necesitar tiempos de curado más largos."
+      ]
+    },
+    "incident": {
+      "title": "El Desafío de Gel de 72 Horas Que Probó Que la Preparación lo es Todo",
+      "impact": "Comparaciones lado a lado de aplicaciones de gel preparadas vs. no preparadas compartidas ampliamente — la evidencia visual se convirtió en una piedra angular de la educación ungueal.",
+      "body": [
+        "En 2017, varios educadores de uñas de forma independiente realizaron una demostración simple: aplicaron gel en una mano usando la preparación profesional completa (pulir, deshidratar, primer) y en la otra mano sin preparación (esmalte directamente sobre una uña sin preparar). Fotografiaron los resultados a las 24, 48 y 72 horas.",
+        "Sin excepción, la mano no preparada mostró levantamiento significativo a las 48 horas. La mano completamente preparada se veía impecable a las 72 horas. Estas imágenes se propagaron rápidamente a través de las redes sociales de profesionales de uñas y se convirtieron en algunos de los contenidos educativos sobre uñas más compartidos en línea — prueba visual de lo que los educadores de uñas había estado enseñando durante años."
+      ]
+    },
+    "timeline": [
+      "Se introduce gel polish de remojo — el levantamiento se convierte en queja importante de consumidores",
+      "Los educadores de marcas de uñas comienzan entrenamientos sistemáticos de diagnóstico de levantamiento",
+      "La técnica de brecha de cutícula de 1mm se convierte en enseñanza estándar en educación de gel",
+      "Las demostraciones de comparación preparada vs. no preparada se vuelven virales en plataformas de profesionales de uñas",
+      "El diagnóstico de levantamiento se incluye en la mayoría de exámenes de licencia de uñas nacionales",
+      "Las herramientas de análisis de uñas con IA comienzan a diagnosticar patrones de levantamiento a partir de fotos de clientes"
+    ],
+    "keyTakeaways": [
+      "Siempre deja un espacio de 1mm entre el producto y la cutícula — el producto tocando piel siempre se levanta",
+      "La ubicación del levantamiento te dice qué paso de preparación omitiste",
+      "El levantamiento de toda la uña generalmente significa que el deshidratador fue omitido o que las uñas fueron remojadas antes del servicio",
+      "Para gel, también verifica la zona de curado de tu lámpara — el gel poco curado se levanta desde el centro"
+    ]
+  },
+  "nails-08": {
+    "tagline": "El desconchado comienza en la punta — y el desconchado de punta es casi siempre prevenible.",
+    "overview": [
+      "El desconchado es diferente del levantamiento. El levantamiento es cuando el producto se separa de la lámina ungueal. El desconchado es cuando la punta o el borde del color se quiebra — como una baldosa de cerámica que se desconcha en la esquina. La causa más común es un borde libre que no fue sellado correctamente durante la aplicación. Cuando la punta no se cubre con cada capa de producto, el borde de la pila de esmalte queda expuesto y vulnerable al impacto.",
+      "El paso individual más impactante para prevenir el desconchado de punta: sella el borde libre en cada capa — capa base, cada capa de color y capa superior. Arrastra el pincel por la punta del clavo al final de cada trazo. Esto sella la pila y crea una barrera suave y continua desde la superficie de la lámina ungueal hasta el borde de la punta.",
+      "Otras causas del desconchado: el estilo de vida y la exposición al agua (lavado frecuente de manos, natación o productos químicos del hogar debilitan el esmalte), la uña siendo demasiado larga para el estilo de vida del cliente, y la elección incorrecta de producto (el esmalte tradicional se desconcha más rápido que el gel en clientes con manos activas). Tener una conversación honesta con los clientes sobre su estilo de vida ayuda a establecer expectativas realistas y elegir el servicio correcto."
+    ],
+    "technical": {
+      "title": "Por qué se desconcha la punta: La física",
+      "body": [
+        "El borde libre de la uña es la parte más estresada mecánicamente del sistema. Se impacta repetidamente contra superficies duras — teclados, teléfonos, encimeras. Cada impacto crea una pequeña fractura de estrés en el borde de la pila de esmalte. Con el tiempo, estas fracturas se acumulan hasta que un desconchado visible se despega.",
+        "El sellado crea un sello continuo alrededor del borde. Piénsalo como el canteado de una hoja de madera contrachapada — sin él, el borde se separa; con él, las capas están unificadas. Las capas gruesas en la punta son contraproducentes: un borde más grueso en realidad crea más concentración de estrés en la esquina de la punta. Las capas delgadas y bien selladas superan a las gruesas."
+      ]
+    },
+    "incident": {
+      "title": "Gelish y la revolución del retirable",
+      "impact": "El gel de esmalte retirable, con su dramáticamente mayor resistencia al desconchado sobre el esmalte tradicional, se convirtió en una de las categorías de servicios de uñas de más rápido crecimiento en la historia.",
+      "body": [
+        "El desconchado del esmalte de uñas tradicional era tan aceptado como inevitable que los clientes planificaban su cronograma alrededor de él — 'me pintaré las uñas el día antes del evento.' Cuando Harmony lanzó Gelish en 2009 — un gel de esmalte retirable que se endurecía bajo UV/LED y duraba 2–3 semanas sin desconcharse — fue inicialmente recibido con escepticismo. Otras empresas siguieron con sistemas similares.",
+        "La resistencia al desconchado del gel proviene de su estructura polimérica entrecruzada después del endurecimiento — significativamente más duradera que la película endurecida por evaporación del esmalte tradicional. Pero el gel aún se desconcha desde el borde libre cuando la punta no se sella, recordándole a la industria que la técnica es importante independientemente de la química del producto."
+      ]
+    },
+    "timeline": [
+      "Esmalte de uñas tradicional — desconchado aceptado como normal dentro de días",
+      "Las uñas acrílicas ofrecen una alternativa sin desconchado por primera vez",
+      "Los sistemas de gel de uñas proporcionan una resistencia al desconchado mejorada",
+      "Gelish lanza gel de esmalte retirable — estándar de resistencia al desconchado de 2–3 semanas",
+      "El desconchado de punta sigue siendo la queja principal del cliente incluso con sistemas de gel",
+      "El sellado del borde libre se convierte en un requisito de enseñanza explícito en la educación de uñas"
+    ],
+    "keyTakeaways": [
+      "Sella el borde libre en cada capa individual — capa base, cada capa de color y capa superior",
+      "Las capas gruesas en la punta son peores que las capas delgadas selladas — el grosor crea concentración de estrés",
+      "Los factores del estilo de vida (agua, químicos, uso de teclado) afectan la longevidad — establece expectativas realistas",
+      "El gel de esmalte resiste el desconchado mejor que el esmalte tradicional en clientes con manos activas"
+    ]
+  },
+  "nails-09": {
+    "tagline": "Ya tienes la habilidad. Ahora construye el negocio alrededor de ella.",
+    "overview": [
+      "Iniciar un negocio de uñas siendo adolescente es completamente viable — los suministros para uñas son relativamente asequibles, el servicio está en demanda constante, y puedes comenzar con amigos y familia para construir tu portafolio antes de cobrar tarifas profesionales. Los pasos clave: desarrolla tu habilidad a un nivel profesional consistente, invierte en un kit de suministros básico, documenta tu trabajo en redes sociales, y fija tus precios correctamente desde el principio.",
+      "El error más común que cometen los adolescentes dueños de negocios de uñas es cobrar poco. Cobrar $5 por una manicura completa parece más seguro — pero comunica baja calidad, atrae clientes que no valoran el oficio, y significa que estás trabajando por menos del salario mínimo una vez que factorizas suministros y tiempo. Investiga los precios de salones locales, cobra 20–30% menos como proveedor nuevo, y aumenta los precios a medida que mejore tu habilidad.",
+      "Las redes sociales son tu mejor herramienta de marketing sin costo alguno. Instagram y TikTok son plataformas visuales perfectamente adecuadas para el arte de uñas. Publica cada set que hagas — incluso en ti mismo. Fotos antes y después, videos de proceso, y publicaciones de clientes satisfechos construyen credibilidad más rápido que cualquier publicidad. Usa hashtags locales para alcanzar clientes en tu área."
+    ],
+    "technical": {
+      "title": "Presupuesto de Suministros Básicos y Modelo de Precios",
+      "body": [
+        "Un kit de uñas funcional puede armarse por $80–$150: set de gel (gel polish) ($30–$50 para un kit básico de 12 colores), lámpara LED ($25–$40 para una lámpara básica de 48W), base y top coat ($10–$15), limas y pulidores de uñas ($5–$10), herramientas de cutícula ($10–$15), toallitas sin pelusa y almohadillas de alcohol ($5). Agrega aceite de cutícula y loción para manos para el toque final.",
+        "Fórmula de precios: calcula tu costo de suministro por servicio (típicamente $2–$5 en materiales para una manicura gel), suma tu tiempo (1–1.5 horas), y compara con las tarifas de salones locales. Si los salones cobran $35–$45 por una manicura gel, comenzar a $25–$30 te posiciona como una alternativa asequible con calidad comparable. Aumenta los precios en incrementos de $5 a medida que aumenta la demanda."
+      ]
+    },
+    "incident": {
+      "title": "La Adolescente Que Construyó un Negocio de Uñas de $5,000/Mes Antes de la Graduación",
+      "impact": "Demostró que un negocio de uñas para adolescentes, construido correctamente con redes sociales y precios adecuados, puede generar ingresos significativos dentro de un año escolar.",
+      "body": [
+        "En 2021, una joven de 17 años en los suburbios de Texas documentó su viaje empresarial de uñas en TikTok. Comenzó practicando con amigos, invirtió $120 en un kit básico, y construyó un portafolio de Instagram de 30 sets antes de cobrar a su primer cliente pagador. En 8 meses, estaba completamente reservada los fines de semana y generaba más de $5,000 por mes — suficiente para financiar sus ahorros universitarios.",
+        "Factores clave en su éxito: documentación consistente (publicó cada set), precios transparentes, y responder a cada mensaje y comentario dentro de una hora. Fue profesional en su comunicación antes de serlo en sus precios — y eso construyó confianza que se tradujo en referencias."
+      ]
+    },
+    "timeline": [
+      "Instagram se lanza — el contenido visual de arte de uñas comienza a construir audiencias",
+      "Los adolescentes empresarios de uñas comienzan a aparecer en redes sociales",
+      "Los videos de proceso de TikTok crean nuevo formato para marketing de contenido de uñas",
+      "El auge de belleza en casa por COVID aumenta la demanda de servicios de uñas locales",
+      "Las historias de éxito de negocios de uñas para adolescentes se hacen virales, inspirando una generación de técnicos jóvenes",
+      "Los adolescentes empresarios de uñas utilizan prueba social para cobrar tarifas casi profesionales"
+    ],
+    "keyTakeaways": [
+      "Nunca cobres poco — cobra basado en costo de suministro más tiempo desde el principio",
+      "Documenta cada set en redes sociales — tu portafolio ES tu marketing",
+      "Responde a mensajes rápidamente — la comunicación profesional construye confianza antes que los precios",
+      "Comienza con amigos y familia para construir tu portafolio, luego expande a clientes pagadores"
+    ]
+  },
+  "hair-color-01": {
+    "tagline": "El color del cabello no se queda en la superficie — vive dentro de la fibra.",
+    "overview": [
+      "El cabello no es una varilla sólida — tiene una estructura con tres capas distintas. La capa más externa es la cutícula: escamas superpuestas, como tejas de techo o escamas de pez, que protegen el tallo interno. La capa media es la corteza: la parte más grande del cabello, compuesta de proteínas de queratina y que contiene el pigmento natural del cabello (melanina). La capa más interna es la médula: un núcleo central blando presente en tipos de cabello más gruesos, a veces ausente en cabello fino.",
+      "El color vive en la corteza. El color natural del cabello está determinado por dos tipos de melanina producida por células llamadas melanocitos en el folículo piloso: eumelanina (pigmento marrón y negro) y feomelanina (pigmento rojo y amarillo). La combinación y concentración de estos dos tipos crean todos los colores de cabello natural, desde rubio platino hasta negro azabache. Cuando los productos de color del cabello cambian el color del cabello, están depositando nuevo pigmento en la corteza o removiendo melanina existente de ella.",
+      "La cutícula es la guardiana. Para que el color entre en la corteza, las escamas de la cutícula deben abrirse. Las sustancias alcalinas (como la amoníaco en el color permanente) hacen que la cutícula se hinche y se levante. Las sustancias ácidas (como el vinagre o acondicionadores ácidos) hacen que se cierre y se aplanen. Por eso los productos de color alcalino depositan color efectivamente, y por qué los tratamientos post-color ácidos sellan el color y añaden brillo."
+    ],
+    "technical": {
+      "title": "Las Tres Capas de la Fibra Capilar",
+      "body": [
+        "La salud de la cutícula determina cómo toma el color y cuánto tiempo dura. Las cutículas dañadas (por calor, procesamiento químico o estrés mecánico) tienen escamas levantadas, astilladas o faltantes. En cabello dañado, el color entra fácilmente pero también sale fácilmente — el desvanecimiento es rápido. Las cutículas sanas y lisas retienen el color más tiempo pero pueden requerir más elevación del revelador para permitir que el color entre.",
+        "La porosidad es el término para describir qué tan fácilmente el cabello absorbe y libera humedad y color. El cabello de baja porosidad tiene cutículas cerradas — es más difícil de colorear y toma más tiempo, pero retiene bien el color. El cabello de alta porosidad tiene cutículas abiertas y dañadas — absorbe color rápidamente pero se desvanece rápidamente también. Entender la porosidad de tu cliente guía las opciones de fórmula, tiempos de procesamiento y recomendaciones de cuidado posterior."
+      ]
+    },
+    "incident": {
+      "title": "Eugène Schueller y el Nacimiento del Color de Cabello Moderno",
+      "impact": "El primer tinte capilar sintético, Aureale (posteriormente L'Oréal), transformó el teñido del cabello de un experimento casero peligroso a un servicio profesional — y creó una industria global de más de $100 mil millones.",
+      "body": [
+        "En 1907, el químico francés Eugène Schueller desarrolló el primer tinte capilar sintético, al que llamó Aureale (posteriormente renombrado L'Oréal). Antes de esto, el teñido del cabello usaba tintes a base de plantas peligrosas y sales metálicas que podían causar quemaduras en el cuero cabelludo, colores impredecibles y residuo verde o negro. La fórmula basada en para-fenilendiamina (PPD) de Schueller era más segura, más predecible y creaba colores consistentes.",
+        "La fórmula de Schueller usaba química oxidativa — la misma química fundamental utilizada en el color de cabello profesional hoy. Las moléculas de PPD penetran la cutícula, entran en la corteza y se oxidan por peróxido de hidrógeno en moléculas más grandes que no pueden escapar. Más de un siglo después, PPD sigue siendo un componente central de la mayoría de fórmulas de color permanente, junto con mejoras significativas de seguridad."
+      ]
+    },
+    "timeline": [
+      "Eugène Schueller crea el primer tinte capilar sintético — L'Oréal fundada",
+      "Clairol lanza Nice 'N Easy — primer color permanente para el hogar",
+      "Campaña de Charlie de Revlon asocia el color del cabello con la liberación femenina",
+      "Las categorías de color semi-permanente y demi-permanente se vuelven convencionales",
+      "Los colores de moda (tonos vívidos y no naturales) se vuelven servicio convencional",
+      "El mercado global de color de cabello supera los $40 mil millones anuales"
+    ],
+    "keyTakeaways": [
+      "El color vive en la corteza — para cambiar el color del cabello, debes pasar el producto más allá de la cutícula",
+      "La cutícula se abre en condiciones alcalinas (amoníaco) y se cierra en condiciones ácidas",
+      "La porosidad determina qué tan rápido toma el color y qué tan rápido se desvanece",
+      "La eumelanina (marrón/negro) y la feomelanina (rojo/amarillo) se combinan para crear todos los colores de cabello naturales"
+    ]
+  },
+  "hair-color-02": {
+    "tagline": "Toda conversación profesional sobre color de cabello comienza con los niveles. El nivel 1 es negro. El nivel 10 es rubio platinado más claro.",
+    "overview": [
+      "El sistema de niveles de color de cabello es una escala numérica estandarizada del 1 al 10 que mide la claridad u oscuridad del color del cabello, independientemente del tono. El nivel 1 es el más oscuro (negro). El nivel 10 es el más claro (rubio platinado). A cada color de cabello natural y a cada fórmula de color de cabello artificial se le asigna un nivel. Un nivel 6 podría ser un marrón dorado cálido o un marrón ceniza fresco — el nivel solo te dice qué tan claro u oscuro es, no el tono.",
+      "Por qué importan los niveles: para lograr el resultado de color deseado, necesitas entender tanto dónde está actualmente el cabello del cliente (su nivel existente) como a dónde quiere llegar. Oscurecer siempre es más fácil — puedes depositar color más oscuro en cualquier nivel sin aclarar. Aclarar requiere levantar la melanina existente, lo que requiere revelador y puede requerir decolorante para un levantamiento significativo.",
+      "La regla práctica para cuántos niveles puedes levantar con color permanente estándar más revelador: el revelador de 20 volúmenes levanta 1–2 niveles, 30 volúmenes levanta 2–3 niveles, 40 volúmenes levanta 3–4 niveles. Ir más de 4 niveles más claro con color estándar (sin decolorante) generalmente produce resultados insatisfactorios — el pigmento subyacente permanece y crea tonos cálidos no deseados."
+    ],
+    "technical": {
+      "title": "Entendiendo el Pigmento Subyacente",
+      "body": [
+        "Cuando el cabello se aclara, pasa por una serie predecible de etapas de pigmento subyacente (también llamadas etapas de levantamiento): negro → marrón oscuro → marrón → marrón rojizo → rojo → rojo-naranja → naranja → naranja-amarillo → amarillo → amarillo pálido → casi blanco. Estas etapas son causadas por la eliminación de eumelanina (pigmento oscuro) que revela la feomelina más resistente (pigmento cálido/rojo/amarillo) debajo.",
+        "Conocer el nivel de pigmento subyacente es esencial para predecir resultados. Una cliente en el nivel 4 (marrón oscuro) que quiere llegar al nivel 7 (rubio medio) pasará por etapas rojo-naranja y naranja durante el levantamiento. Sin tonificación, será rubio-naranja, no rubio limpio. El tóner después del levantamiento corrige esto."
+      ]
+    },
+    "incident": {
+      "title": "Cómo Schwarzkopf Estandarizó la Comunicación de Color",
+      "impact": "La adopción de un sistema de numeración estandarizado de nivel y tono hizo posible que los coloristas de todo el mundo se comunicaran con precisión sobre el color del cabello por primera vez.",
+      "body": [
+        "Antes de los sistemas de nivel estandarizados, la comunicación del color de cabello era caótica. El 'rubio oscuro' de una marca era el 'rubio medio' de otra. Los coloristas que visitaban otros salones o trabajaban con clientes de otras ciudades no tenían un idioma compartido. Schwarzkopf Professional, entre otras marcas europeas, impulsó la estandarización del sistema de numeración en la educación profesional del color de cabello a finales de los años 60 y 70.",
+        "El resultado — la escala de nivel 1–10 combinada con un número secundario para el tono (por ejemplo, 6.1 = Nivel 6, tono ceniza) — se convirtió en el estándar profesional internacional. Hoy en día, todas las marcas de color de cabello profesionales usan este sistema o una variante cercana, permitiendo una comunicación precisa entre coloristas, educadores de marcas y clientes a través de idiomas y fronteras."
+      ]
+    },
+    "timeline": [
+      "Primer color de cabello sintético — no existe sistema estandarizado",
+      "Las marcas de color de cabello profesionales comienzan sistemas de clasificación de niveles internos",
+      "Estandarización internacional de la escala de nivel 1–10 en color de cabello profesional",
+      "Sistema de numeración de nivel/tono adoptado por marcas importantes a nivel mundial",
+      "Sistema de niveles enseñado como teoría fundamental en todos los programas de cosmetología",
+      "Las herramientas de coincidencia de color digital usan el sistema de niveles como referencia principal"
+    ],
+    "keyTakeaways": [
+      "Los niveles 1–10 miden solo claridad/oscuridad — no dicen nada sobre el tono (cálido vs. fresco)",
+      "Oscurecer siempre funciona; aclarar requiere entender los volúmenes del revelador",
+      "El pigmento subyacente se revela cuando el cabello se levanta — siempre predice qué se revelará antes de levantar",
+      "Más de 4 niveles de levantamiento con color estándar generalmente requiere decolorante para resultados limpios"
+    ]
+  },
+  "hair-color-03": {
+    "tagline": "La rueda de colores es la herramienta más poderosa del colorista. Los colores opuestos se anulan entre sí.",
+    "overview": [
+      "El tono del color del cabello describe la calidez o frialdad de un color en cualquier nivel dado. Un Nivel 7 puede ser cálido (dorado, cobrizo), neutro (equilibrado) o frío (ceniza, mate). El tono es la segunda mitad del número de fórmula en los sistemas de color profesionales: en 7.1, el 7 es el nivel y .1 es el código de tono para ceniza (frío). Los códigos de tono comunes varían según la marca pero típicamente siguen: .1=ceniza, .2=violeta, .3=oro, .4=cobre, .5=caoba, .6=rojo, .7=marrón.",
+      "La rueda de colores — la herramienta fundamental de toda teoría del color — se aplica directamente a la coloración del cabello. Los colores primarios son rojo, amarillo y azul. Los colores opuestos en la rueda son complementarios — y los colores complementarios se anulan entre sí cuando se mezclan. Este es el principio detrás del tonificado: los tonos anaranjados y opacos se cancelan con azul-violeta (opuesto en la rueda). Los tonos amarillos se cancelan con púrpura. Los tonos rojos se cancelan con verde.",
+      "Por eso el champú púrpura neutraliza los tonos amarillos en el cabello rubio. El pigmento púrpura (violeta) se deposita en los tonos amarillos, y como violeta y amarillo son colores complementarios, se anulan entre sí, produciendo un rubio más limpio y frío. El mismo principio rige cada decisión de tonificación que hace un colorista."
+    ],
+    "technical": {
+      "title": "Códigos de Tono y Corrección de Color Complementario",
+      "body": [
+        "Las fórmulas de color profesionales de la mayoría de las marcas siguen un sistema de notación decimal: el primer número es el nivel, los códigos de tono decimal indican el tono primario y secundario. Una fórmula como 7.43 significa Nivel 7, tono primario cobre (.4), tono secundario oro (.3). Entender esta notación te permite leer cualquier fórmula y predecir el resultado.",
+        "Para corrección de color: identifica primero el tono no deseado, luego selecciona el corrector complementario. Cabello anaranjado después de aclarar → usa tonificador a base de azul (ceniza) en el nivel correcto. Cabello amarillo-dorado opaco → usa tonificador violeta/púrpura. Tonos verdes del cloro de la piscina → usa tonificador a base de rojo. El corrector neutraliza el tono no deseado sin necesariamente cambiar el nivel."
+      ]
+    },
+    "incident": {
+      "title": "Por Qué el Champú Púrpura Es una Categoría de Producto de $500 Millones",
+      "impact": "La aplicación simple de la teoría de la rueda de colores al cuidado del cabello retail creó una de las categorías de cuidado del cabello de más rápido crecimiento de la década.",
+      "body": [
+        "El champú púrpura no fue inventado en los 2010s — los champús tonificadores profesionales han existido por décadas. Pero las redes sociales democratizaron el conocimiento de la teoría del color detrás de ellos. Cuando los influencers de belleza comenzaron a explicar que el púrpura cancela el amarillo porque son colores complementarios, millones de consumidores rubios que nunca habían oído hablar de la rueda de colores comenzaron a comprar champús pigmentados violeta.",
+        "El resultado fue una categoría de consumidor que creció de un producto profesional de nicho a un artículo estándar del pasillo de belleza mainstream generando cientos de millones en ventas anuales globalmente. El principio subyacente — cancelación complementaria de la rueda de colores — no había cambiado. Lo que cambió fue la comprensión pública de la ciencia."
+      ]
+    },
+    "timeline": [
+      "Isaac Newton documenta por primera vez la rueda de colores",
+      "Primer color de cabello sintético — sin sistema de tono estandarizado",
+      "Codificación de tono profesional (.1, .2, .3 etc.) estandarizada",
+      "El champú púrpura existe como producto de profesionales únicamente",
+      "Las redes sociales explican la teoría del color a los consumidores — el champú púrpura llega al mercado masivo",
+      "El champú púrpura y las máscaras tonificadoras son SKU de cuidado del cabello más vendidos globalmente"
+    ],
+    "keyTakeaways": [
+      "El tono es diferente del nivel — el nivel es qué tan claro/oscuro, el tono es cálido vs. frío",
+      "Los colores complementarios se anulan entre sí — este es el principio detrás de todo tonificado",
+      "El anaranjado se cancela con azul, el amarillo se cancela con violeta, el rojo se cancela con verde",
+      "El champú púrpura funciona porque violeta y amarillo son complementarios — la ciencia es teoría del color"
+    ]
+  },
+  "hair-color-04": {
+    "tagline": "Developer realiza dos trabajos: abre la cutícula del cabello y potencia la química del color en su interior.",
+    "overview": [
+      "Developer (también llamado oxidante o peróxido) es peróxido de hidrógeno (H₂O₂) diluido en varias concentraciones. Es el ingrediente activador en la coloración capilar permanente y semipermanente — sin él, el color no tiene levantamiento y no se deposita permanentemente. Developer viene en volúmenes: 10 volúmenes (3% H₂O₂), 20 volúmenes (6%), 30 volúmenes (9%) y 40 volúmenes (12%). El número de volumen indica la cantidad de oxígeno liberado — mayor volumen significa más oxígeno, más levantamiento y mayor potencial de daño capilar.",
+      "Developer realiza dos trabajos separados simultáneamente. Primero, abre la cutícula (inflamando la fibra capilar en el ambiente alcalino del color) para permitir que las moléculas de color entren en la corteza. Segundo, oxida la melanina existente (aclarando/levantando el cabello) y también oxida los precursores de color en la fórmula — estas moléculas pequeñas, una vez oxidadas dentro de la corteza, se convierten en moléculas más grandes que no pueden escapar, depositando color permanentemente.",
+      "Elegir el volumen correcto de developer es una habilidad crítica. La regla: usa el volumen más bajo que logre el nivel de levantamiento deseado. 10 volúmenes es solo para depósito (volverse más oscuro o mismo nivel) sin levantamiento. 20 volúmenes es el estándar para 1–2 niveles de levantamiento o cobertura completa de canas. 30 volúmenes para 2–3 niveles. 40 volúmenes para levantamiento máximo (3–4 niveles) y típicamente solo se usa en decolorantes, no en fórmulas de color estándar."
+    ],
+    "technical": {
+      "title": "Volúmenes de Developer y Sus Usos Apropiados",
+      "body": [
+        "Developer 10 volúmenes (3%): Solo depósito. Sin aclarado significativo. Usado para tonificadores, glazes, color semipermanente y cuando el objetivo es cambio de color del mismo nivel u oscurecer. Daño mínimo, cierra la cutícula suavemente.",
+        "20 volúmenes (6%): Estándar. 1–2 niveles de levantamiento. Usado para color permanente estándar con cobertura de canas o aclarado leve. El volumen de developer más versátil. 30 volúmenes (9%): 2–3 niveles de levantamiento. Para clientes que quieren aclarar significativamente sin decolorante. Más dañino que 20 volúmenes. 40 volúmenes (12%): Levantamiento máximo (3–4 niveles). Típicamente reservado para decolorantes (blanqueador) en cabello resistente, no recomendado en fórmulas de color estándar ya que crea resultados desiguales y dañinos."
+      ]
+    },
+    "incident": {
+      "title": "Cómo 40 Volúmenes Se Convirtió en el Producto Más Mal Usado en Salones",
+      "impact": "El mal uso de developer 40 volúmenes en fórmulas de color estándar fue identificado como una causa principal de quejas de rotura capilar en entornos profesionales.",
+      "body": [
+        "La lógica parecía razonable: si quieres más levantamiento, usa developer de mayor volumen. Mayor fortaleza debe significar mejores resultados. Este malentendido llevó al uso generalizado de developer 40 volúmenes en fórmulas de color permanente estándar — particularmente en salones de alto volumen donde la velocidad se priorizaba sobre la precisión.",
+        "Los resultados eran predecibles para los químicos: 40 volúmenes en color estándar crea levantamiento desigual (porque las moléculas de color procesan más rápido que el levantamiento se controla), daño excesivo en la cutícula y riesgo dramáticamente aumentado de rotura. Los educadores de marcas líderes comenzaron a dedicar sesiones de capacitación completas a la educación sobre volumen de developer, enfatizando que 40 volúmenes pertenece solo en decolorantes — el color estándar raramente debe exceder 30 volúmenes."
+      ]
+    },
+    "timeline": [
+      "Peróxido de hidrógeno descubierto por Louis Jacques Thénard",
+      "H₂O₂ usado por primera vez como aclarador capilar en Europa",
+      "L'Oréal combina H₂O₂ con precursores de color — nace el color moderno para cabello",
+      "Sistema de volumen de developer (10/20/30/40) estandarizado",
+      "El uso excesivo de 40 volúmenes se convierte en un problema documentado en salones",
+      "Sistemas de color con baja amoníaco y menor developer ganan participación de mercado"
+    ],
+    "keyTakeaways": [
+      "Siempre usa el volumen de developer más bajo que logre el resultado deseado",
+      "10 volúmenes = solo depósito; 20 = estándar; 30 = levantamiento significativo; 40 = levantamiento máximo (solo decolorantes)",
+      "Mayor volumen de developer = más daño — nunca uses más de lo necesario",
+      "Developer abre la cutícula Y oxida la melanina Y oxida las moléculas de color — hace tres cosas a la vez"
+    ]
+  },
+  "hair-color-05": {
+    "tagline": "Los colores permanentes. Los semi se desvanecen. Los demi están en el medio. Cada uno tiene su lugar.",
+    "overview": [
+      "Hay tres categorías principales de color de cabello profesional según cuánto tiempo duran y cómo funcionan. El color de cabello permanente utiliza un revelador alcalino para abrir la cutícula, eliminar la melanina y depositar moléculas de color oxidativas que se polimerizan dentro de la corteza — son demasiado grandes para salir y son verdaderamente permanentes hasta que el cabello crece o se corta. Puede aclarar (iluminar) y depositar, proporciona cobertura completa de canas, y dura hasta el crecimiento nuevo.",
+      "El color semi-permanente no contiene revelador ni amoníaco. Funciona depositando pequeñas moléculas de color directamente en la cutícula y ligeramente dentro de ella — no puede aclarar ni cambiar la melanina. Se asienta en o cerca de la superficie del cabello y se desvanece gradualmente en 4–12 lavados. Añade brillo, refresca el color, y es excelente para experimentar con color sin compromiso. No puede cubrir canas resistentes.",
+      "El color demi-permanente utiliza un revelador de bajo volumen (5–10 volumen) y no contiene amoníaco o contiene una concentración muy baja de amoníaco. Entra en la corteza a través de la cutícula ligeramente abierta pero no puede aclarar significativamente la melanina. Dura más que semi-permanente (20–28 lavados) y puede cubrir canas parcial o totalmente dependiendo del porcentaje de canas. Es la opción más suave para cambio de color y es excelente para tonificar, glazuear y refrescar color permanente desvanecido."
+    ],
+    "technical": {
+      "title": "Tabla de comparación: Los tres tipos de color",
+      "body": [
+        "Permanente es el más versátil — puede ir más claro u oscuro, cubre canas completamente, y dura hasta cortarse o crecimiento nuevo. El compromiso es el procesamiento químico más intenso: el amoníaco abre la cutícula agresivamente, el revelador aclara la melanina, y el cabello se altera permanentemente. El color permanente repetido sin mantenimiento acondicionador daña el cabello con el tiempo.",
+        "Demi es el arma secreta del profesional de salón. No aclara pero deposita hermosamente, dura lo suficiente para importar, se desvanece gracefully (sin línea dura de demarcación), y es significativamente más suave que permanente. Muchos coloristas usan permanente en las raíces para cobertura de canas y demi en los largos y puntas para refrescar color sin daño adicional."
+      ]
+    },
+    "incident": {
+      "title": "Cómo Demi-Permanente cambió el servicio de glossing",
+      "impact": "La categoría de servicio glossing/glazing — usando demi-permanente para añadir brillo y tono sin compromiso — se convirtió en uno de los servicios adicionales de salón más solicitados.",
+      "body": [
+        "Redken's Shades EQ, lanzado a finales de los años 90 como un gloss demi-permanente sin amoníaco, creó una nueva categoría de servicio: el gloss o glaze. El concepto — aplicar un tono acondicionador y tratamiento de brillo que dura varias semanas sin compromiso y sin daño — resonó inmediatamente con clientes que querían color refrescado entre citas permanentes.",
+        "El servicio de glossing es ahora estándar en virtualmente cada salón profesional. Los clientes pueden tener su color permanente refrescado, su tono corregido, o simplemente su cabello más brillante y vibrante sin el compromiso completo de una recoloración permanente. Los productos demi-permanentes de cada marca importante ahora compiten en esta categoría."
+      ]
+    },
+    "timeline": [
+      "Color de cabello oxidativo permanente inventado por Schueller",
+      "Primeros colores semi-permanentes disponibles para consumidores",
+      "La categoría demi-permanente se desarrolla como alternativa más suave",
+      "Redken Shades EQ se lanza — categoría de servicio glossing creada",
+      "Colores permanentes sin amoníaco y bajo amoníaco comienzan compitiendo con demi",
+      "Los servicios gloss/glaze se convierten en adicional más solicitado en salones profesionales"
+    ],
+    "keyTakeaways": [
+      "Permanente es el único tipo que puede aclarar cabello — si el cliente necesita aclarado, permanente es la única opción",
+      "Demi dura más que semi y puede cubrir parcial o totalmente canas — la versión más suave de permanente",
+      "Semi deposita color solo en la superficie — excelente para experimentación, brillo, y color sin compromiso",
+      "Un colorista profesional hace coincidir el tipo de fórmula con el objetivo, no solo el matiz de color"
+    ]
+  },
+  "hair-color-06": {
+    "tagline": "Una prueba de parche toma 5 minutos. Una reacción alérgica requiere una ambulancia.",
+    "overview": [
+      "Antes de realizar cualquier servicio de color de cabello químico, se deben realizar dos pruebas: una prueba de alergia cutánea (prueba de parche) y una prueba de mechas. Estas no son extras opcionales — son responsabilidades profesionales y legales. La para-fenilendiamina (PPD), un ingrediente común en el color de cabello permanente y semipermanente, es un alérgeno conocido. Las reacciones van desde dermatitis de contacto hasta anafilaxis potencialmente mortal. Una prueba de parche 48 horas antes del servicio identifica clientes con sensibilidad a PPD antes de que el producto se aplique al cuero cabelludo completo.",
+      "El procedimiento de la prueba de parche: limpiar un área pequeña dentro del codo o detrás de la oreja. Aplicar una pequeña cantidad de la fórmula de color (mezclada en la proporción del servicio) sobre la piel. No cubrirla. Dejar durante 48 horas. Si ocurre enrojecimiento, hinchazón, picazón o ampollas, el servicio no debe proceder y el cliente debe ver a un médico. Si no ocurre reacción, proceder con el servicio.",
+      "Una prueba de mechas evalúa cómo responderá el cabello a la fórmula — verificando levantamiento inesperado, resultado de color, tiempo de procesamiento y cualquier signo de rotura. Esto es especialmente crítico en cabello procesado químicamente previamente, cabello gris o cabello de historial desconocido. Tomar una pequeña mechas de un área inconspicua, aplicar la fórmula, procesar durante el tiempo planeado, luego enjuagar y evaluar antes de comprometerse con el servicio completo."
+    ],
+    "technical": {
+      "title": "Protocolos de Prueba de Parche y Prueba de Mechas",
+      "body": [
+        "El tiempo de la prueba de parche es crítico: debe realizarse 48 horas antes del servicio — no el mismo día, no 24 horas antes. Las reacciones de PPD pueden tardar 24–48 horas en desarrollarse. Una prueba de parche del mismo día no proporciona protección significativa. Algunos coloristas incorporan pruebas de parche en la cita de consulta para garantizar que el requisito de tiempo siempre se cumpla.",
+        "Lista de verificación de evaluación de prueba de mechas: (1) ¿Alcanzó el cabello el nivel deseado? (2) ¿Es el tono correcto? (3) ¿Se rompió el cabello durante el procesamiento o en la prueba de mechas? (4) ¿Cuánto tiempo tomó el procesamiento óptimo? Documentar los hallazgos. Si ocurre rotura en la prueba de mechas, no proceder con el servicio completo — el cabello está demasiado comprometido para el servicio químico planeado."
+      ]
+    },
+    "incident": {
+      "title": "Los Casos de Alergia a PPD Que Cambiaron la Ley de Salones en el Reino Unido",
+      "impact": "Los casos de alto perfil de anafilaxis severa por color de cabello sin pruebas de parche llevaron a directrices profesionales actualizadas e mayor escrutinio regulatorio de las prácticas de pruebas de parche en salones.",
+      "body": [
+        "Entre 2010 y 2015, las autoridades de salud del Reino Unido documentaron una serie de reacciones alérgicas severas al color de cabello — algunas que requirieron hospitalización — muchas de las cuales ocurrieron en clientes que habían estado colorando su cabello durante años sin reacción previa. La sensibilización a PPD puede desarrollarse en cualquier momento, incluso después de años de exposición.",
+        "La Asociación Cosmética, de Artículos de Tocador y Perfumería del Reino Unido (CTPA) y los principales organismos profesionales actualizaron las directrices para requerir pruebas de parche para cada nuevo servicio de color, no solo para clientes de color por primera vez. El mensaje: la tolerancia anterior no garantiza seguridad futura. En el contexto de responsabilidad profesional, realizar un servicio de color sin una prueba de parche deja al colorista expuesto a consecuencias legales y profesionales significativas si ocurre una reacción."
+      ]
+    },
+    "timeline": [
+      "PPD introducida en color de cabello — propiedades alergénicas aún no estudiadas",
+      "Primeros reportes clínicos de dermatitis de contacto por PPD del color de cabello",
+      "Prueba de parche recomendada por organismos profesionales como práctica recomendada",
+      "Serie de casos de anafilaxis severa en el Reino Unido vinculados a servicios sin prueba de parche",
+      "Directrices profesionales del Reino Unido actualizadas: prueba de parche requerida para cada servicio",
+      "Prueba de alergia a PPD incluida en currículos de cosmetología profesional a nivel mundial"
+    ],
+    "keyTakeaways": [
+      "La prueba de parche debe ser 48 horas antes del servicio — las pruebas del mismo día no proporcionan protección",
+      "La sensibilidad a PPD puede desarrollarse en cualquier momento, incluso después de años de uso seguro — probar cada cliente, cada vez",
+      "Una prueba de mechas en una sección pequeña evita descubrir problemas en toda la cabeza",
+      "Sin reacción en la prueba de parche no garantiza sin reacción nunca — la sensibilidad puede desarrollarse en cualquier servicio futuro"
+    ]
+  },
+  "hair-color-07": {
+    "tagline": "La aplicación profesional no es pintura — es seccionar, cronometrar y controlar.",
+    "overview": [
+      "La aplicación profesional del color del cabello comienza antes de mezclar el color — con una consulta exhaustiva, un seccionalizado preciso y un plan de cronometraje. La forma en que se secciona el color determina la uniformidad de la cobertura y evita superponer los extremos previamente coloreados con una fórmula diseñada para el nuevo crecimiento. La superposición es una de las causas más comunes del daño y procesamiento excesivo en las puntas y medios largos.",
+      "Para un retoque de raíz (solo nuevo crecimiento): secciona el cabello en cuatro cuadrantes usando una raya central de la frente a la nuca, y una raya de oreja a oreja. Trabaja a través de cada sección en subsecciones de 1/4 a 1/2 pulgada de ancho, aplicando el color con precisión solo al nuevo crecimiento, sin tocar el cabello previamente coloreado. Comienza en el área más resistente primero — típicamente las áreas con mayor densidad de canas o la corona.",
+      "Para un color total (toda la cabeza, generalmente un color de primera vez): aplica el color a los medios largos y extremos primero, luego aplica a las raíces en los últimos 10–15 minutos de procesamiento. Esto se debe a que las raíces (cerca del cuero cabelludo) se procesan más rápido debido al calor corporal — si las raíces se aplican primero, se procesarán en exceso en el momento en que el resto del cabello esté listo. Trabaja rápida y sistemáticamente a través de todas las secciones."
+    ],
+    "technical": {
+      "title": "Patrones de Seccionalizado y Orden de Aplicación",
+      "body": [
+        "Seccionalizado estándar de cuatro secciones: raya central de frente a nuca + raya de oreja a oreja = cuatro secciones iguales. Etiqueta mentalmente: frente-derecha, frente-izquierda, atrás-derecha, atrás-izquierda. Trabaja a través de cada sección con subsecciones, aplicando el producto metódicamente desde el cuero cabelludo hasta donde comienza el color existente. Las subsecciones consistentes de 1/4 de pulgada aseguran que cada mechón esté cubierto.",
+        "Herramientas de aplicación: la aplicación con cepillo proporciona precisión y trabaja el color en la zona de raíces exhaustivamente. La aplicación con botella es más rápida y funciona mejor para cabello fino o cuando se trabaja solo. Muchos coloristas usan ambas — cepillo para las secciones cerca del rostro (donde importa la precisión) y botella a través de las secciones traseras."
+      ]
+    },
+    "incident": {
+      "title": "Cómo la Técnica de Aplicación Profesional se Convirtió en Enseñable",
+      "impact": "La profesionalización de la educación en color de cabello — creando técnica estandarizada y enseñable — transformó el coloreado de cabello de un servicio adivinar en una habilidad profesional reproducible.",
+      "body": [
+        "Antes de los años 80, la aplicación del color del cabello se transmitía en gran medida de manera informal, con cada colorista desarrollando su propio método. Los resultados eran inconsistentes — incluso dentro del mismo salón. Redken y Wella, independientemente, comenzaron a desarrollar currículos de educación de color estructurados que incluían patrones de seccionalizado estandarizados, protocolos de cronometraje y secuencias de aplicación.",
+        "Estos programas crearon el concepto del color como una habilidad técnica con procedimientos aprendibles, no solo una forma de arte. La reproducibilidad que esto trajo a los servicios de color de cabello elevó la profesión, permitió que los salones mantuvieran la calidad consistente, y eventualmente se convirtió en la base para la educación de color global que aún se enseña hoy."
+      ]
+    },
+    "timeline": [
+      "Coloreado de cabello realizado sin técnica de aplicación estándar",
+      "Redken y Wella crean programas de capacitación estructurada para coloristas",
+      "El seccionalizado de cuatro secciones se convierte en enseñanza estándar en escuelas de cosmetología",
+      "Los protocolos de cronometraje de color se estandarizan en todas las marcas profesionales",
+      "Las redes sociales permiten que los coloristas compartan innovaciones de técnica globalmente",
+      "La técnica de aplicación de color se incluye en todos los exámenes de licencia principales"
+    ],
+    "keyTakeaways": [
+      "Siempre secciona antes de mezclar — nunca apliques de manera desordenada",
+      "Aplica a las áreas más resistentes primero — zonas con alta densidad de canas, gruesas o previamente resistentes",
+      "Para color total: medios largos y extremos primero, raíces en los últimos 10–15 minutos",
+      "Para retoque de raíz: aplica solo al nuevo crecimiento — nunca superpongas sobre el cabello previamente coloreado"
+    ]
+  },
+  "hair-color-08": {
+    "tagline": "Blanqueador no se preocupa por tu línea de tiempo. Se preocupa por la química.",
+    "overview": [
+      "El aclaramiento del cabello (blanqueado) es el servicio más poderoso y potencialmente más dañino en el kit de herramientas del colorista. A diferencia del color, que tanto deposita como aclara, el blanqueador (una mezcla de polvo aclarador y revelador) solo aclara — elimina melanina de la corteza sin depositar nuevo pigmento. El resultado es una fibra capilar más clara, más porosa y estructuralmente más débil.",
+      "Variables de formulación del blanqueador: el tipo químico del polvo aclarador (los polvos a base de persulfato son estándar), el volumen del revelador (20 para aplicaciones en el cuero cabelludo; 30–40 para papelillos fuera del cuero cabelludo en cabello resistente), la proporción de mezcla, y si la mezcla contiene aditivos para la salud del cabello. Los volúmenes de revelador más altos y los tiempos de procesamiento más largos producen más aclarado pero también más daño. El objetivo es lograr el aclarado deseado con el mínimo daño posible.",
+      "Las reglas de seguridad más críticas para el blanqueado: (1) Nunca apliques blanqueador en un cuero cabelludo que haya sido raspado, abrasionado o tenga llagas abiertas. (2) Nunca proceses más allá del punto de aclarado deseado — una vez que la melanina se elimina no puede ser reemplazada. (3) Nunca apliques blanqueador al cabello que haya sido alisado recientemente (superposición química de blanqueador + alisador = rotura o disolución completa del cabello). (4) No apliques calor al blanqueador en el cuero cabelludo — esto acelera el procesamiento de manera impredecible."
+    ],
+    "technical": {
+      "title": "Procesamiento del Blanqueador y Etapas de Aclarado",
+      "body": [
+        "El blanqueador funciona mediante las sales de persulfato en el polvo, activadas por el peróxido de hidrógeno en el revelador, generando una molécula de oxígeno altamente reactiva que oxida y descompone moléculas de melanina. El proceso es visible — puedes ver el cabello progresando a través de las etapas de aclarado (marrón → rojo → naranja → amarillo → amarillo pálido) en tiempo real.",
+        "Formulación en cuero cabelludo vs. fuera del cuero cabelludo: el blanqueador aplicado en el cuero cabelludo usa revelador de volumen 20 (el calor del cuero cabelludo acelera la reacción, y el cuero cabelludo es sensible). Blanqueador fuera del cuero cabelludo (en papelillos, balayaje) usa revelador de volumen 30–40 para un aclarado más agresivo sin preocupaciones de sensibilidad del cuero cabelludo. Nunca uses volumen 40 en el cuero cabelludo."
+      ]
+    },
+    "incident": {
+      "title": "La Revolución de Constructores de Enlaces — Olaplex Redefine el Blanqueado",
+      "impact": "La tecnología de construcción de enlaces, agregada a fórmulas de blanqueador y color, redujo dramáticamente la rotura y el daño — habilitando servicios de aclarado de cabello que previamente hubieran sido imposibles en cabello comprometido.",
+      "body": [
+        "Antes de 2014, el daño severo del cabello por blanqueado era una realidad aceptada por la industria. Los coloristas rutinariamente rechazaban clientes cuyo cabello estaba demasiado comprometido para un aclarado adicional, sabiendo que la rotura era inevitable. Luego Olaplex se lanzó — una molécula constructora de enlaces (bis-aminopropil diglicol dimaleato) que, agregada a fórmulas de blanqueador, reconectaba los enlaces disulfuro rotos durante el proceso de blanqueado.",
+        "Los resultados fueron dramáticos y rápidamente documentados en redes sociales. El cabello que se hubiera roto con blanqueado tradicional sobrevivió servicios tratados con Olaplex con significativamente menos daño. Se creó la categoría de constructor de enlaces — Olaplex se unió a Wellaplex, Fibreplex y docenas de competidores. Hoy, el tratamiento constructor de enlaces se considera práctica profesional estándar para servicios de blanqueado."
+      ]
+    },
+    "timeline": [
+      "Peróxido de hidrógeno usado por primera vez para el aclarado del cabello",
+      "Se desarrollan fórmulas modernas de polvo blanqueador a base de persulfato",
+      "Las técnicas de destacado con papelillo se vuelven convencionales en salones",
+      "Técnica de balayaje (pintura a mano alzada) se generaliza globalmente",
+      "Olaplex se lanza — se crea la categoría de constructor de enlaces",
+      "El tratamiento constructor de enlaces es estándar en todos los servicios de aclarado profesional"
+    ],
+    "keyTakeaways": [
+      "Nunca uses revelador de volumen 40 en el cuero cabelludo — volumen 20 máximo para blanqueado de cuero cabelludo",
+      "Nunca apliques blanqueador sobre cabello químicamente alisado — la rotura o disolución es probable",
+      "Observa las etapas de aclarado en tiempo real — enjuaga cuando se alcanza la etapa deseada",
+      "Agrega un tratamiento constructor de enlaces a fórmulas de blanqueador para minimizar el daño estructural"
+    ]
+  },
+  "hair-color-09": {
+    "tagline": "Toda corrección de color es un diagnóstico antes de ser un tratamiento.",
+    "overview": [
+      "El tonificado es el paso después del aclaramiento que deposita tono sin levantamiento significativo — lleva el cabello decolorado o levantado a un resultado acabado y pulido. Después de la decoloración, el cabello se ubica en algún lugar del espectro de pigmento subyacente (naranja, naranja-amarillo, amarillo, o amarillo pálido dependiendo de cuánto fue levantado). El trabajo del tóner es neutralizar los tonos cálidos no deseados y/o agregar un acabado específico frío, neutro o cálido. Los tóneres son típicamente semipermanentes o semipermanentes, mezclados con revelador de 10–20 volúmenes.",
+      "El color correctivo es la categoría más amplia de servicios que corrigen el color que salió mal — ya sea de una visita anterior al salón o de una aplicación en casa. Antes de comenzar cualquier corrección, se requiere un análisis exhaustivo: ¿Cuál es el nivel y tono actual? ¿Qué tono no es deseado? ¿Por qué falló el servicio anterior? ¿Cuál es la condición actual y porosidad del cabello? ¿Es posible la corrección en una sesión o requerirá múltiples visitas?",
+      "Las correcciones más comunes: (1) Eliminar el amarillamiento después de la decoloración — aplicar un tóner azul o violeta. (2) Color que salió demasiado oscuro — requiere decolorante o removedor de color para levantar primero. (3) Raíces calientes (las raíces son más claras que las puntas después del colorante) — generalmente causado por calor del cuero cabelludo; aplicar una fórmula más oscura a las raíces o tonificar para mezclar. (4) Color desigual — puede requerir un color melt o tonificado para unificar."
+    ],
+    "technical": {
+      "title": "Formulación y Aplicación de Tóner",
+      "body": [
+        "Los tóneres son más comúnmente fórmulas semipermanentes mezcladas con revelador de 10 volúmenes (o 20 volúmenes para depósito más profundo). El nivel objetivo del tóner debe coincidir con el nivel al que se levantó el cabello. Si el cabello se levantó al Nivel 9 (amarillo pálido), seleccionar un tóner de Nivel 9 en el tono deseado. Un tóner más oscuro que el cabello levantado hará que el cabello parezca más oscuro.",
+        "Para corrección de amarillamiento: identificar el tono cálido dominante (naranja = usar tóner azul-ceniza; amarillo = usar tóner violeta/perla). Aplicar tóner uniformemente de raíces a puntas (o solo a las puntas si las raíces ya están tonificadas). Procesar 10–20 minutos o hasta que se logre el tono deseado. La tonificación puede verificarse frecuentemente — cuando el tóner alcanza el resultado deseado, enjuagar inmediatamente."
+      ]
+    },
+    "incident": {
+      "title": "El Color Melt — Una Técnica Correctiva que Se Convirtió en un Servicio",
+      "impact": "La técnica de color melt — mezclar múltiples tonos sin problemas de raíces a puntas — comenzó como una técnica correctiva para color desigual y se convirtió en uno de los servicios de coloración más solicitados.",
+      "body": [
+        "Los color melts surgieron en parte como solución a un problema de corrección común: color desigual con líneas distintas entre diferentes tonos o niveles. En lugar de intentar hacer que toda la cabeza fuera un color uniforme, los coloristas comenzaron a mezclar las variaciones existentes — oscureciendo las raíces, agregando tonos medios a través de las puntas, y aclarando las puntas — creando un gradiente sin problemas.",
+        "Cuando estos resultados aparecieron en las redes sociales, los clientes comenzaron a solicitarlos intencionalmente — no como correcciones sino como el resultado deseado. El color melt se convirtió en una de las tendencias de coloración de cabello que definen la década, todo nacido de una técnica correctiva que convirtió problemas visuales en oportunidad artística."
+      ]
+    },
+    "timeline": [
+      "Los servicios de color correctivo se convierten en una categoría especializada en salones",
+      "Las técnicas de tonificación ganan prominencia a medida que el balayage aumenta la demanda",
+      "El color melt surge como una técnica nombrada para mezclar color desigual",
+      "El champú morado se vuelve generalizado — los clientes comienzan a auto-tonificar en casa",
+      "La educación de corrección de color se convierte en un módulo central en programas de color avanzado",
+      "Los servicios de corrección de color están entre las ofertas de salón con mayor precio"
+    ],
+    "keyTakeaways": [
+      "Siempre diagnosticar antes de corregir — entender qué salió mal y por qué",
+      "El nivel de tóner debe coincidir con el nivel de cabello levantado — el tóner más oscuro hace que el cabello parezca más oscuro",
+      "La corrección de color a menudo requiere múltiples sesiones — establecer expectativas realistas del cliente",
+      "Amarillamiento naranja = tóner azul; amarillamiento amarillo = tóner violeta"
+    ]
+  },
+  "hair-color-10": {
+    "tagline": "Un gran colorista sin clientes es un gran colorista que no está trabajando. Construye el negocio con el mismo cuidado con el que construyes la habilidad.",
+    "overview": [
+      "Convertirse en un colorista profesional requiere una licencia de cosmetología (típicamente 1,000–1,500 horas de escuela más un examen estatal). Más allá de la licencia, la especialización en color — a través de programas de educación de marca, cursos avanzados de color y certificaciones — diferencia a un colorista en un mercado competitivo. Las grandes marcas ofrecen programas de educación gratuitos y pagos (Redken, Wella, L'Oréal Professional, Schwarzkopf) que dan a los coloristas tanto habilidades como credibilidad de marca.",
+      "Los precios de los servicios de color son más complejos que los precios de las uñas — los servicios varían desde un brillo de $40 hasta una corrección compleja de $300+. Factores: tiempo (los servicios de color típicamente duran 1.5–4+ horas), costo del producto (decolorante, tóner, revelador, reconstructor de enlaces pueden costar $15–$30 por servicio) y posición de mercado. Investiga los precios de color de tu mercado local y decide si posicionarte como presupuesto, mercado medio o premium.",
+      "Construir una clientela de color toma tiempo — típicamente 2–3 años para estar consistentemente completamente reservado como colorista nuevo. Estrategias: documenta cada resultado de color en redes sociales, especialízate en una técnica de firma (balayage, especialista en rubios, colores vívidos), solicita referidos de cada cliente satisfecho y colabora con fotógrafos y bloggers locales para contenido de portafolio."
+    ],
+    "technical": {
+      "title": "Modelo de Precios de Servicios de Color",
+      "body": [
+        "Fórmula de precios de servicios de color: Costo del producto + (Tiempo × tarifa por hora) + cuota de gastos generales = precio mínimo viable. Para un servicio de iluminación completa: producto decolorante/tóner $25, 3 horas × $40/hr objetivo = $120, cuota de gastos generales $20 = $165 mínimo. La investigación muestra que los coloristas con mayores ingresos cobran $125–$350 por servicios comparables en mercados medianos a grandes.",
+        "La especialización ordena precios premium. Un 'especialista en balayage' o 'especialista en rubios' puede cobrar 20–40% más que un generalista por el mismo servicio, porque los clientes que buscan ese resultado específico están dispuestos a pagar por experiencia. Desarrollar y comercializar una técnica de firma es una de las inversiones de carrera con mayor ROI que un colorista puede hacer."
+      ]
+    },
+    "incident": {
+      "title": "Cómo Instagram Convirtió el Balayage en una Categoría de Servicio de $3 Mil Millones",
+      "impact": "La viralidad de los resultados de balayage en Instagram creó un pico de demanda sin precedentes que transformó las carreras de coloristas que se habían especializado temprano.",
+      "body": [
+        "Balayage (francés para 'barrida') ha existido como técnica desde los años 70 — un método de pintura a mano alzada utilizado principalmente en salones franceses. Durante décadas fue una técnica de nicho fuera de Francia. Luego Instagram explotó en 2013 y los resultados de degradado suave y besado por el sol del balayage se convirtieron en algunos de los contenidos de belleza más compartidos en la plataforma.",
+        "Los coloristas que habían invertido en capacitación en balayage de repente se encontraron completamente reservados 3 meses de anticipación. Los salones que comercializaban 'especialistas en balayage' vieron aumentos dramáticos de ingresos. La lección: especialización en una técnica visual, fotografiable + documentación en redes sociales = crecimiento acelerado de carrera. El auge del balayage hizo el caso para que cada colorista desarrolle y comercialice una especialidad de firma."
+      ]
+    },
+    "timeline": [
+      "Los requisitos de licencia de cosmetología se estandarizaron por juntas estatales",
+      "Los programas de educación de marca (Redken, Wella) se convierten en diferenciadores importantes de carrera",
+      "Instagram lanza — los resultados de color se vuelven activos compartibles/comercializables",
+      "Balayage se vuelve viral en Instagram — coloristas especialistas ven explosión de reservas",
+      "La especialización en color se convierte en la ruta de carrera estándar para coloristas avanzados",
+      "Los videos de transformación de color de TikTok impulsan la nueva generación de clientela de color"
+    ],
+    "keyTakeaways": [
+      "La licencia de cosmetología es el punto de partida innegociable — sin licencia, sin servicio legal",
+      "Los programas de educación de marca a menudo son gratuitos o fuertemente subvencionados — úsalos para especialización",
+      "Documenta cada resultado de color — las redes sociales son tu portafolio y tu marketing",
+      "La especialización (especialista en rubios, colorista vívido) ordena tasas premium en cualquier mercado"
+    ]
+  },
+  "hair-styling-01": {
+    "tagline": "Todo gran estilo comienza con saber con qué estás trabajando.",
+    "overview": [
+      "La textura del cabello varía enormemente — fino, medio, grueso; liso, ondulado, rizado, muy rizado. El estilista Andre Walker popularizó un sistema de clasificación de cuatro tipos (1–4) que sigue siendo la abreviatura estándar de la industria para la textura, con letras de subcategoría A, B, C que indican el diámetro del rizo dentro de cada tipo.",
+      "Más allá del patrón de rizo, la porosidad (qué tan fácilmente el cabello absorbe y retiene la humedad) y la densidad (hebras por pulgada cuadrada) determinan cada decisión de producto y herramienta. El cabello de alta porosidad absorbe el producto pero pierde humedad rápidamente; el cabello de baja porosidad rechaza el producto hasta que el calor abre la cutícula.",
+      "Dominar la clasificación del cabello no se trata de encasillar a los clientes en categorías — se trata de construir un lenguaje compartido que te permita elegir las técnicas, productos y expectativas correctas antes de que jamás levantes una herramienta."
+    ],
+    "technical": {
+      "title": "El Sistema de Tipos Walker",
+      "body": [
+        "Tipo 1 (liso): 1A fino/flojo, 1B cuerpo medio, 1C grueso y resistente.",
+        "Tipo 2 (ondulado): 2A onda S suelta, 2B onda definida, 2C ondas gruesas con encrespamiento.",
+        "Tipo 3 (rizado): 3A rizos sueltos grandes, 3B rizos elásticos medianos, 3C rizos apretados en sacacorchos.",
+        "Tipo 4 (muy rizado): 4A espiral S apretada, 4B espiral patrón Z, 4C densamente empaquetada con definición mínima.",
+        "Niveles de porosidad: Baja (cutículas cerradas, se necesita calor para abrir), Media (absorción equilibrada), Alta (espacios en la cutícula, absorbe rápido, pierde rápido)."
+      ]
+    },
+    "incident": {
+      "title": "La Revolución del Rizo",
+      "impact": "El cuidado del cabello rizado se convirtió en un segmento de mercado de múltiples mil millones de dólares",
+      "body": [
+        "Durante décadas, la cultura de belleza convencional presionó a las personas con cabello rizado y muy rizado para que lo alisaran. El 'Curly Girl Method' (Lorraine Massey, 2001) y el movimiento del cabello natural de los años 2010 cambiaron eso.",
+        "Los salones que no entendían el cabello Tipo 3–4 perdieron segmentos de clientes completos. Aquellos que entrenaron al personal en técnicas específicas para rizos construyeron libros leales.",
+        "La lección: el conocimiento de la clasificación del cabello no es académico — es ingresos."
+      ]
+    },
+    "timeline": [
+      "Andre Walker publica el sistema de clasificación del cabello en 'Andre Talks Hair'",
+      "El Curly Girl Method de Lorraine Massey lanza cuidado específico para rizos",
+      "El movimiento del cabello natural acelera la innovación de productos Tipo 4",
+      "CurlFest y DevaCurl populariza servicios de salón incluyentes para rizos",
+      "El cuidado del cabello texturizado crece a un segmento de mercado estadounidense de $2.5B"
+    ],
+    "keyTakeaways": [
+      "El sistema 1–4 de Andre Walker es el lenguaje común para el patrón de rizo en entornos profesionales.",
+      "La porosidad y la densidad importan tanto como el tipo de rizo para las decisiones de producto y herramienta.",
+      "El cabello muy rizado Tipo 4 ha sido sistemáticamente desatendido — aprenderlo es una ventaja competitiva.",
+      "La evaluación siempre ocurre en cabello seco y libre de productos para la precisión."
+    ]
+  },
+  "hair-styling-02": {
+    "tagline": "La herramienta correcta a la temperatura correcta es medio estilo.",
+    "overview": [
+      "Las herramientas de peinado profesional — secadores, planchas alisadoras, rizadores, difusores — varían enormemente en calidad, distribución de calor y características de seguridad. La tecnología iónica reduce el encrespamiento neutralizando la carga estática; las placas de cerámica y turmalina distribuyen el calor de manera uniforme y minimizan las zonas calientes.",
+      "El daño por calor es acumulativo y permanente. Los enlaces de proteína (enlaces disulfuro) se rompen por encima de 450°F; los enlaces de hidrógeno que dan forma al cabello se rompen por encima de 140°F — que es exactamente lo que permite el peinado térmico. La línea entre remodelar y dañar es el control de temperatura.",
+      "Los protectores de calor forman una barrera en la cutícula que conduce el calor de manera uniforme y eleva el umbral de daño. Ningún protector elimina el daño — lo reduce. El secado al aire donde sea posible y limitar la frecuencia de calor son la única prevención garantizada."
+    ],
+    "technical": {
+      "title": "Guía de Temperatura por Tipo de Cabello",
+      "body": [
+        "Cabello fino o dañado: 250–300°F (120–150°C) — calor efectivo más bajo.",
+        "Cabello medio/normal: 300–380°F (150–193°C) — rango estándar.",
+        "Cabello grueso, denso o resistente: 380–450°F (193–230°C) — rango profesional máximo.",
+        "Vatios del secador: 1800–2000W los secadores profesionales mueven aire rápidamente (reducir tiempo = reducir daño).",
+        "Botón de aire frío: bloquea los enlaces de hidrógeno en la nueva forma — siempre termina una sección con aire frío."
+      ]
+    },
+    "incident": {
+      "title": "La Epidemia de Planchas Sobrecalentadas",
+      "impact": "Causa principal de quejas de rotura prevenible en sillas profesionales",
+      "body": [
+        "Las planchas alisadoras de consumo que se limitan a 450°F se volvieron omnipresentes. Las clientas con cabello fino comenzaron a llegar con hebras rotas, pérdida de elasticidad y la textura distintiva de 'gomosa cuando está mojada' del cabello dañado por calor.",
+        "Responsabilidad profesional: un estilista que usa 450°F en cabello fino es responsable del resultado. La selección de temperatura es una habilidad de diagnóstico, no una configuración predeterminada."
+      ]
+    },
+    "timeline": [
+      "Tecnología de placa de cerámica introducida en planchas profesionales",
+      "Tecnología de secador iónico se lanza en el mercado profesional",
+      "El revestimiento de turmalina se convierte en estándar en herramientas premium",
+      "Tratamientos de construcción de enlaces (Olaplex) cambian las opciones de reparación de daño por calor",
+      "Las planchas inteligentes con regulación automática de temperatura entran en el mercado"
+    ],
+    "keyTakeaways": [
+      "Adapta la temperatura de la herramienta al tipo de cabello — cabello fino máximo 300°F, cabello grueso hasta 450°F.",
+      "El protector de calor reduce pero no elimina el daño térmico; aplica antes de cada sesión de calor.",
+      "Las herramientas que se mueven rápido causan menos daño que las lentas a la misma temperatura.",
+      "El botón de aire frío no es opcional — bloquea el estilo reformando los enlaces de hidrógeno."
+    ]
+  },
+  "hair-styling-03": {
+    "tagline": "Un excelente blowout es 80% técnica, 20% producto.",
+    "overview": [
+      "El blowout es la habilidad fundamental del salón — un acabado pulido, sin frizz y voluminoso utilizando solo un secador de pelo y un cepillo redondo. Dominarlo requiere comprender la sección (trabajar de abajo hacia arriba), la tensión (mantener los mechones tensos para suavidad) y el flujo de aire direccional (boquilla paralela al tallo del cabello, no perpendicular).",
+      "El diámetro del cepillo redondo determina el resultado: un barril pequeño crea rizos y volumen; un barril grande (2 pulg+) crea volumen liso y recto. El concentrador de boquilla es innegociable — sin él, el flujo de aire es demasiado difuso y el cabello se vuelve áspero causando frizz.",
+      "La estratificación de productos importa: un protector térmico primero, una mousse volumizadora o espuma en la raíz para levantar, y un suero suavizante o crema en las puntas para control del frizz. Demasiado producto en cabello fino mata el volumen; muy poco en cabello grueso invita frizz."
+    ],
+    "technical": {
+      "title": "Orden de Sección del Blowout",
+      "body": [
+        "Paso 1: Secar con toalla hasta ~80% — nunca comiences con cabello goteando.",
+        "Paso 2: Aplicar producto — mousse en raíces, suero en puntas.",
+        "Paso 3: Pinzar el cabello hacia arriba. Libera primero la sección inferior de la nuca.",
+        "Paso 4: Subsección ≤ 1 pulgada de grosor. Coloca el cepillo debajo, enrróllalo hacia adentro o hacia afuera según la dirección deseada.",
+        "Paso 5: La boquilla del secador apunta hacia ABAJO del tallo. Sigue el cepillo con el secador, manteniendo tensión.",
+        "Paso 6: Aire frío para fijar. Libera. Continúa hacia arriba sección por sección.",
+        "Paso 7: Termina con spray de fijación ligera o suero brillo."
+      ]
+    },
+    "incident": {
+      "title": "Modelo de Un Solo Servicio de Drybar",
+      "impact": "Construyó una marca de $255M en un único servicio: el blowout",
+      "body": [
+        "Alli Webb reconoció que muchas mujeres querían blowouts profesionales entre visitas al salón pero no podían justificar una cita completa. Drybar abrió con un servicio, sin cortes, sin color — solo blowouts a $40.",
+        "El concepto probó que dominar una técnica perfectamente es un modelo de negocio viable y altamente rentable. Para 2019 Drybar tenía 150+ ubicaciones y fue adquirida por $255M.",
+        "La lección para cualquier estilista: profundidad supera amplitud al inicio de una carrera."
+      ]
+    },
+    "timeline": [
+      "El secador de pelo eléctrico se convierte en producto de consumo principal",
+      "La técnica de blowout con cepillo redondo se codifica en capacitación profesional",
+      "Drybar abre la primera ubicación, modelo solo blowout",
+      "Las barras de blowout se expanden nacionalmente, técnica elevada a forma de arte",
+      "Drybar adquirida por $255M — blowout validado como negocio completo"
+    ],
+    "keyTakeaways": [
+      "Siempre trabaja de abajo hacia arriba en secciones horizontales no más gruesas de 1 pulgada.",
+      "El concentrador de boquilla y el flujo de aire paralelo son lo que separan un blowout profesional de un desastre con frizz.",
+      "El diámetro del cepillo redondo controla el resultado: barril grande = recto y liso, barril pequeño = volumen rizado.",
+      "El aire frío después de cada sección fija la forma en su lugar."
+    ]
+  },
+  "hair-styling-05": {
+    "tagline": "El diámetro del cilindro es el plano; la dirección del enrollado es la firma.",
+    "overview": [
+      "Los rizadores con pinza y las varillas sin pinza utilizan energía térmica para remodelar el cabello en rizos, pero cada uno tiene un caso de uso distinto. Los rizadores crean rizos de cilindro uniformes con una curvatura definida donde sostiene la pinza; las varillas crean ondas más naturales y abiertas sin el pliegue.",
+      "El diámetro del cilindro determina el tamaño del rizo: 3/4″ crea bucles apretados, 1″ crea rizos definidos, 1.5–2″ crea ondas sueltas. La dirección del enrollado —hacia o lejos de la cara— es la clave para que los rizos se vean intencionales en lugar de aleatorios, y alternar la dirección sección por sección crea la onda de aspecto más natural.",
+      "El tiempo de retención y dejar que el rizo se enfríe antes de soltarlo son los dos pasos que se omiten con mayor frecuencia. Los rizos sostenidos insuficientemente caen rápidamente; los rizos que no se enfrían antes de ser manipulados se desenrollan. Después del peinado, asegura todo con un spray de fijación flexible, no una laca rígida."
+    ],
+    "technical": {
+      "title": "Guía de Cilindros",
+      "body": [
+        "Cilindro 3/4″: bucles apretados, mejor para cabello fino que desea rizos definidos.",
+        "Cilindro 1″: rizo clásico, tamaño más versátil para todas las texturas.",
+        "Cilindro 1.25″: rizo elástico, popular para looks de largo medio.",
+        "Cilindro o varilla 1.5–2″: onda suave, mejor para cabello largo que desea volumen.",
+        "Varilla cónica: cilindro ahusado hace ondas más pequeñas en las puntas, más grandes en la raíz — el aspecto más natural."
+      ]
+    },
+    "incident": {
+      "title": "El Problema del Pliegue de la Pinza",
+      "impact": "Queja más común de rizadores entre estilistas nuevos",
+      "body": [
+        "La pinza del rizador deja un pliegue visible si el cabello se sujeta en el medio de una sección o si el estilista mantiene la pinza cerrada demasiado tiempo en una posición. Técnica profesional: sujeta solo en la punta, enrolla hacia arriba y sigue moviéndote ligeramente para distribuir el calor de manera uniforme.",
+        "La varilla resuelve esto completamente — sin pinza, sin pliegue. Pero el peinado con varilla requiere un guante resistente al calor para evitar quemaduras en la mano que sostiene el extremo del cabello. Omitir el guante es la causa principal de lesiones relacionadas con varillas en los salones."
+      ]
+    },
+    "timeline": [
+      "Marcel Grateau inventa el primer rizador térmico",
+      "Los rizadores eléctricos con control de temperatura entran al mercado",
+      "Hot Tools introduce rizadores con cilindro de oro, se convierte en el estándar de la industria",
+      "La varilla cónica se populariza en tutoriales de YouTube",
+      "Se lanzan sistemas de cilindro espiral e intercambiable"
+    ],
+    "keyTakeaways": [
+      "El tamaño del cilindro es el único determinante más importante del tamaño del rizo — elige primero.",
+      "Alternar la dirección del enrollado (hacia y lejos de la cara) sección por sección crea la onda más natural.",
+      "Nunca sueltes un rizo hasta que se haya enfriado — el calor sigue remodelando los enlaces mientras se disipa.",
+      "Las varillas requieren un guante resistente al calor — omitirlo es un riesgo de quemadura."
+    ]
+  },
+  "hair-styling-06": {
+    "tagline": "El trenzado es geometría — la tensión consistente lo hace hermoso.",
+    "overview": [
+      "El trenzado es una de las técnicas de peinado más antiguas y culturalmente significativas del mundo. En su núcleo técnico, el trenzado se trata de tensión consistente y secciones uniformes. Una recogida desigual (agregar más cabello a una hebra que a otra) o tensión inconsistente (apretada en la raíz, suelta en el medio) crea resultados irregulares y asimétricos.",
+      "Las trenzas de tres hebras (trenza plana) son la base para todos los otros estilos de trenzado. Las trenzas francesas (recogiendo del cuero cabelludo progresivamente) y las trenzas holandesas (la versión invertida que se eleva sobre el cabello) siguen el mismo patrón con la adición de secciones en cada cruce. Las trenzas de caja y las trenzas sin nudo son trabajos de extensiones que requieren conocimientos adicionales sobre la gestión del cabello de extensión sintético o natural.",
+      "El daño por tensión (alopecia de tracción) es una preocupación significativa — las trenzas instaladas demasiado apretadas en la raíz ejercen estrés mecánico en el folículo. Los estilos protectores deben proteger, no dañar."
+    ],
+    "technical": {
+      "title": "Trenza Francesa vs. Trenza Holandesa",
+      "body": [
+        "Trenza francesa: cruzar las hebras externas SOBRE la del medio. Recoger del cuero cabelludo en cada cruce. La trenza queda plana contra la cabeza.",
+        "Trenza holandesa: cruzar las hebras externas BAJO la del medio. Recoger del cuero cabelludo en cada cruce. La trenza sobresale de la cabeza (efecto invertido/3D).",
+        "Ambas requieren recogidas de sección igual en cada cruce — aquí es donde la mayoría de los principiantes pierden consistencia.",
+        "Prevención de alopecia de tracción: dejar 0,25–0,5 pulgadas de holgura en la raíz. Nunca instalar tensión que blanquee o forme hoyuelos en el cuero cabelludo."
+      ]
+    },
+    "incident": {
+      "title": "Alopecia de Tracción — Una Epidemia Prevenible",
+      "impact": "Se estima que 1 de cada 3 mujeres negras experimenta alopecia de tracción; causa principal de caída del cabello en mujeres jóvenes",
+      "body": [
+        "La alopecia de tracción ocurre cuando la tensión mecánica consistente tira de los folículos pilosos más allá de su capacidad de recuperación. La señal clásica: retroceso de la línea del cabello en las sienes y los bordes frontales, frecuentemente con cabellos cortos y rotos en la línea del cabello.",
+        "El cambio de la industria del trenzado hacia 'trenzas sin nudo' (que comienzan sin un nudo y reducen la tensión inmediata en la raíz) es una respuesta directa a esto — y una técnica más saludable para el cliente.",
+        "Los estilistas que ofrecen peinados protectores deben entender esto: los estilos protectores deben proteger, no causar el daño que se supone deben prevenir."
+      ]
+    },
+    "timeline": [
+      "Los peinados trenzados más antiguos conocidos se muestran en el arte del norte de África",
+      "Los estilos de trenza de maíz entran en la moda occidental dominante a través del movimiento Black Power",
+      "Las trenzas de caja se popularizaron globalmente como estilo protector",
+      "La técnica de trenza sin nudo gana tracción como alternativa de menor tensión",
+      "La alopecia de tracción es reconocida como preocupación de salud pública por asociaciones de dermatología"
+    ],
+    "keyTakeaways": [
+      "Trenza francesa = las hebras se cruzan sobre; Trenza holandesa = las hebras se cruzan bajo (crea efecto elevado).",
+      "La recogida de sección uniforme en cada cruce es lo que separa las trenzas limpias de las irregulares.",
+      "La alopecia de tracción es causada por instalación demasiado apretada — los estilos protectores no deben tirar de la línea del cabello.",
+      "Las trenzas sin nudo reducen la tensión de la raíz en comparación con las trenzas de caja tradicionales — recomiendalas cuando sea posible."
+    ]
+  },
+  "hair-styling-07": {
+    "tagline": "Cada peinado recogido es arquitectura — el equilibrio y los puntos de anclaje definen el resultado.",
+    "overview": [
+      "Los peinados recogidos (moños, chignons, rodetes franceses) y semi-recogidos (colas de caballo, medios recogidos) requieren entender la arquitectura de un peinado: dónde se posicionará el peso, cómo anclar las secciones de forma segura, y cómo disimular la mecánica bajo un acabado pulido.",
+      "La cola de caballo parece simple pero es técnicamente exigente: la colocación (demasiado baja se ve descuidada, demasiado alta se ve severa, en el hueso occipital se ve elegante), la distribución de tensión (la goma debe sostener sin dejar marcas en la nuca ni causar rotura), y disimular la goma con una sección envuelta son todas habilidades aprendidas.",
+      "Para moños formales, el cardado (voluminizado) de la base antes de fijar crea la fundación — una superficie lisa no tiene nada para que agarren los pasadores. Los pasadores agarran mejor cuando el lado ondulado mira hacia la cabeza y se insertan con un ligero ángulo hacia abajo. La técnica de pasadores cruzados proporciona el máximo agarre."
+    ],
+    "technical": {
+      "title": "Sistema de Puntos de Anclaje",
+      "body": [
+        "Cada peinado recogido tiene 2–4 puntos de anclaje: secciones firmemente fijadas que sostienen el peso.",
+        "Técnica de pasadores: insertar ligeramente abierto, cerrar sobre el cabello, empujar hacia abajo en la fundación.",
+        "Pasadores cruzados: dos pasadores insertados en direcciones X opuestas para máximo agarre.",
+        "Base cardada: áspera el cabello en las raíces de la sección de fundación antes de fijar — los pasadores se adhieren más seguramente al cabello cardado.",
+        "Regla de goma de cola de caballo: solo gomas para el cabello, nunca bandas elásticas de goma. Las bandas elásticas rompen el cabello."
+      ]
+    },
+    "incident": {
+      "title": "El Problema de Daño por Goma",
+      "impact": "Causa principal de rotura mecánica en usuarios habituales de colas de caballo",
+      "body": [
+        "Usar una cola de caballo apretada en la misma posición todos los días crea una zona de fricción constante en el punto de la goma. El cabello se rompe en esta ubicación — produciendo la línea clásica de 'cola de caballo' de hebras cortas y rotas.",
+        "Prevención: variar la colocación diariamente, usar gomas cubiertas con tela, y nunca dormir con una goma apretada. La técnica de sección envuelta elimina completamente el contacto goma-cabello cubriéndola."
+      ]
+    },
+    "timeline": [
+      "El moño Gibson Girl populariza los peinados recogidos formales en la moda occidental",
+      "Los estilos Beehive y Bouffant llevan los peinados recogidos a extremos arquitectónicos",
+      "La scrunchie se populariza, reduciendo la rotura causada por gomas",
+      "El moño despeinado se convierte en el peinado recogido casual dominante a nivel mundial",
+      "Los peinados recogidos nupciales impulsan el mercado de educación de peinados recogidos de alta gama"
+    ],
+    "keyTakeaways": [
+      "Cardar las secciones de base antes de fijar mejora dramáticamente el agarre del pasador.",
+      "La técnica de pasadores cruzados (dos pasadores en direcciones X opuestas) proporciona el agarre más seguro.",
+      "La colocación de la cola de caballo en el hueso occipital es la posición más universalmente favorecedora.",
+      "Siempre envolver una pequeña sección sobre la goma para disimularla y reducir el daño goma-cabello."
+    ]
+  },
+  "hair-styling-09": {
+    "tagline": "Una consulta de 5 minutos previene una corrección de 5 horas.",
+    "overview": [
+      "La consulta con el cliente es el paso más importante en cualquier cita. Determina si las expectativas coinciden con la realidad, identifica contraindicaciones (servicios químicos recientes, condiciones del cuero cabelludo, medicamentos que afecten el cabello) y construye la relación de confianza que determina si un cliente regresa.",
+      "La consulta utiliza preguntas abiertas ('¿Qué esperas lograr hoy?') en lugar de preguntas cerradas ('¿Quieres un corte?') para permitir que los clientes describan su objetivo con sus propias palabras. Luego reflejas tu comprensión ('Entonces buscas X, y dada tu condición Y actual, te sugeriría Z') — este paso de alineación previene la decepción más común: el cliente quería algo diferente de lo que recibió.",
+      "Gestionar la realidad honestamente es tanto ético como práctico. Prometer resultados que no son alcanzables con la condición actual del cabello del cliente, textura o nivel de compromiso crea clientes insatisfechos y responsabilidad profesional. La frase: 'Definitivamente podemos llegar allí — aquí está la línea de tiempo honesta y los pasos que requiere.'"
+    ],
+    "technical": {
+      "title": "Marco de Consulta",
+      "body": [
+        "Paso 1 — Descubrir: preguntas abiertas sobre el resultado deseado, estilo de vida, rutina de cuidado en casa.",
+        "Paso 2 — Evaluar: examinar condición del cabello, textura, porosidad, servicios actuales, salud del cuero cabelludo.",
+        "Paso 3 — Educar: explicar qué es alcanzable hoy y qué requiere un proceso/línea de tiempo.",
+        "Paso 4 — Alinear: replantear el plan en lenguaje simple y confirmar la aceptación del cliente.",
+        "Paso 5 — Documentar: anotar plan de servicio, productos utilizados y preferencias del cliente para la próxima visita.",
+        "Contraindicaciones a preguntar siempre: relajante/queratina reciente, lesiones en el cuero cabelludo, medicamentos (quimioterapia, anticoagulantes afectan el cabello), coloración DIY en casa."
+      ]
+    },
+    "incident": {
+      "title": "La Brecha de Foto de Inspiración",
+      "impact": "Causa principal de reseñas negativas e insatisfacción del cliente",
+      "body": [
+        "Un cliente muestra una foto de inspiración de alguien con rizos 3A, cabello fino y un bob largo. El cliente tiene cabello rizado 4B, alta densidad y largo medio. Sin una consulta, el estilista podría comenzar a peinar sin identificar que la foto de referencia no es alcanzable con el cabello de este cliente — al menos no en una sesión.",
+        "El término de la industria para esto es la 'brecha de inspiración.' Los profesionales que aprenden a navegarla — 'Me encanta este look. Déjame mostrarte cómo podemos obtener los elementos que funcionan para tu cabello' — construyen clientes leales. Los que o prometen lo imposible o simplemente dicen 'eso no funcionará para ti' pierden clientes."
+      ]
+    },
+    "timeline": [
+      "Vidal Sassoon formaliza la consulta con el cliente como currículo central",
+      "Las juntas estatales comienzan a requerir documentación de consulta en exámenes de licencia",
+      "Las fotos de referencia de Instagram se convierten en herramienta estándar de consulta",
+      "Los formularios de admisión digital y aplicaciones de historial de clientes entran en software de salón",
+      "Post-pandemia, los salones de consulta-primero muestran tasas de retención más altas"
+    ],
+    "keyTakeaways": [
+      "Las preguntas abiertas descubren lo que el cliente realmente quiere — las preguntas cerradas solo confirman lo que asumiste.",
+      "El paso de alineación (reflejar el plan) es lo que previene la insatisfacción más común.",
+      "Siempre pregunta sobre servicios químicos recientes y medicamentos — ambos pueden ser contraindicados.",
+      "Documentar cada visita (servicio, productos, preferencias) permite resultados consistentes entre citas."
+    ]
+  },
+  "driving-1-01": {
+    "tagline": "No puedes conducir legalmente hasta que hayas pasado la primera puerta: el permiso de instrucción.",
+    "overview": [
+      "California requiere que cualquier conductor nuevo menor de 18 años obtenga un permiso de instrucción antes de practicar al volante. La edad mínima para solicitar es de 15 años y 6 meses — no 16. Esta distinción de medio año sorprende a muchos solicitantes. Para solicitar, debes visitar una oficina del DMV en persona, traer prueba de identidad (certificado de nacimiento o pasaporte), prueba de residencia en California, tu número de Seguro Social, y — si eres menor de 18 años — un formulario firmado de Consentimiento Parental (DL 44C) de un padre o tutor legal.",
+      "En el DMV, pagarás la cuota de solicitud (actualmente $39 para un permiso de instrucción no comercial), te harán una prueba de visión, y tomarás la prueba de conocimiento escrito. Si apruebas (38 de 46 preguntas correctas), se te expide un permiso de instrucción temporal en el acto. La tarjeta de permiso de plástico oficial llega por correo en algunas semanas.",
+      "Mientras sostienes un permiso de instrucción debes tener un conductor con licencia que tenga 18 años o más sentado en el asiento del pasajero delantero en todo momento mientras conduces. El conductor supervisor debe tener licencia completa — un titular de permiso no puede supervisar a otro titular de permiso. El permiso de instrucción es válido hasta tu cumpleaños número 18; no necesitas retomar la prueba de conocimiento simplemente porque tu permiso expire antes de que solicites una licencia provisional."
+    ],
+    "technical": {
+      "title": "Requisitos del Permiso de Instrucción de un Vistazo",
+      "body": [
+        "El requisito de consentimiento parental es absoluto para solicitantes menores de 18 años — el DMV no procesará una solicitud sin la firma de un padre o tutor legal. Si un padre no puede asistir en persona, el formulario DL 44C puede completarse con anticipación y traerse a la oficina.",
+        "El examen de visión en el DMV verifica que puedas ver al menos 20/40 en al menos un ojo (con o sin lentes correctivos). Si necesitas gafas o lentes de contacto para cumplir con este estándar, se colocará una restricción en tu licencia requiriéndote que los uses siempre que conduzcas."
+      ]
+    },
+    "incident": {
+      "title": "Por Qué California Bajó la Edad del Permiso a 15½",
+      "impact": "La investigación mostró que más tiempo de práctica supervisada antes de la licencia de conducción en solitario redujo dramáticamente las tasas de accidentes de adolescentes — bajar la edad del permiso a 15½ dio a los adolescentes más tiempo para practicar bajo supervisión de adultos.",
+      "body": [
+        "Antes de la reforma de las licencias graduadas, el marco de California daba a los nuevos conductores adolescentes muy poca experiencia supervisada obligatoria antes de recibir una licencia completa. Estudios del Insurance Institute for Highway Safety encontraron que conductores adolescentes con menos práctica supervisada tenían tasas de accidentes dramáticamente más altas en su primer año conduciendo en solitario.",
+        "La respuesta fue la ley California Graduated Driver License (GDL), que estableció la edad del permiso en 15 años 6 meses, requirió un mínimo de 6 meses de tenencia del permiso, y mandató 50 horas de conducción supervisada (10 de noche) antes de que pudiera expedirse una licencia provisional. El resultado fue medible: las tasas de mortalidad de adolescentes en California disminuyeron significativamente en los años posteriores a la implementación de la GDL."
+      ]
+    },
+    "timeline": [
+      "California expide las primeras licencias de vehículos motorizados",
+      "Edad mínima de conducción estandarizada en California a los 16",
+      "Investigación de GDL en California comienza — edad del permiso reducida a 15½",
+      "California AB 1740 promulgado — ley de licencias graduadas formal",
+      "Restricciones de licencia provisional fortalecidas para conductores menores de 18",
+      "Cuota actual: $39 para permiso de instrucción no comercial"
+    ],
+    "keyTakeaways": [
+      "La edad mínima para un permiso de instrucción es de 15 años y 6 meses — no 16",
+      "Un padre o tutor debe firmar el formulario DL 44C para cualquier solicitante menor de 18",
+      "Un conductor con licencia de 18 años o más debe estar en el asiento delantero en todo momento mientras se tiene un permiso",
+      "El permiso es válido hasta los 18 años — no se necesita retomar la prueba si expira antes de que solicites una licencia provisional"
+    ]
+  },
+  "driving-1-03": {
+    "tagline": "El color y la forma de cada señal es un mensaje antes de que ni siquiera leas las palabras.",
+    "overview": [
+      "Las señales de tránsito están diseñadas para que los conductores las reconozcan de un vistazo — incluso antes de poder leer el texto — mediante el uso de colores y formas estandarizados. Las señales reglamentarias te indican qué debes o no debes hacer. Típicamente son blancas con letras negras, rojas o verdes, o rojas (señales STOP, YIELD, de prohibición). Estás obligado legalmente a obedecer las señales reglamentarias; ignorarlas es una infracción de tránsito.",
+      "La señal STOP es un octágono rojo — ocho lados, siempre rojo. Debes detenerte completamente en la línea de límite, paso peatonal o el borde de la intersección si no hay línea. 'Pasar de largo' una señal STOP (también llamado 'California stop' o 'rolling stop') es ilegal y es una de las infracciones de movimiento más comúnmente citadas. Después de detenerte, cede el paso a todo tránsito y peatones antes de proceder.",
+      "La señal YIELD es un triángulo rojo y blanco apuntando hacia abajo. Significa que debes reducir la velocidad y ceder el derecho de paso al tránsito ya en la intersección o carretera. No necesitas hacer una parada completa a menos que el tránsito lo requiera. Las señales de límite de velocidad son rectángulos blancos con texto negro. Estas son la velocidad máxima que puedes conducir en condiciones ideales — la Ley de Velocidad Básica significa que debes reducir por debajo de los límites publicados siempre que las condiciones (clima, tránsito, visibilidad) sean inseguras."
+    ],
+    "technical": {
+      "title": "Colores y Formas de Señales Reglamentarias",
+      "body": [
+        "Codificación de colores: Rojo = stop, yield, prohibición (no debes hacer algo). Blanco con negro = límites de velocidad, regulaciones. Verde = movimientos permitidos, información de distancia. Amarillo = advertencia. Naranja = zonas de construcción y mantenimiento. Azul = servicios para automovilistas. Marrón = áreas recreativas y culturales.",
+        "Codificación de formas: Octágono (8 lados) = solo STOP. Triángulo apuntando hacia abajo = solo YIELD. Círculo = advertencia de cruce ferroviario. Pentágono (5 lados, forma de casa escolar) = área escolar. Diamante = advertencia. Rectángulo = reglamentaria o informacional. La forma te permite reconocer las señales más críticas incluso cuando no puedes leer el texto — útil de noche, en mal clima, o cuando una señal está dañada."
+      ]
+    },
+    "incident": {
+      "title": "Cómo el Sistema Estandarizado de Señales Salvó Miles de Vidas",
+      "impact": "Antes de 1954, las señales de tránsito variaban por estado e incluso por condado — el mismo color podía significar cosas diferentes a 50 millas de distancia. La estandarización federal creó un único lenguaje nacional de señales de tránsito que redujo dramáticamente los accidentes relacionados con señales.",
+      "body": [
+        "Antes de que el Manual de Dispositivos Uniformes de Control de Tránsito (MUTCD) de la Administración Federal de Carreteras fuera ampliamente adoptado, las señales de tránsito estadounidenses eran un mosaico de diseños locales. Una señal STOP octagonal amarilla en un estado, una circular roja en otro. Los conductores que cruzaban líneas estatales no podían contar con significados consistentes de las señales.",
+        "La estandarización MUTCD — que finalmente requirió el octágono rojo para STOP y el triángulo rojo apuntando hacia abajo para YIELD — creó un lenguaje visual nacional que los conductores podían aprender una vez y aplicar en todas partes. El sistema estandarizado de señales ahora es internacional: la mayoría de los países usan formas y colores muy similares, así que incluso los viajeros que no pueden leer idiomas locales pueden entender las señales de tránsito básicas."
+      ]
+    },
+    "timeline": [
+      "Primer semáforo eléctrico instalado en Cleveland, Ohio",
+      "California adopta los primeros estándares estatales de señales de tránsito",
+      "Primera edición de MUTCD estandariza formas y colores de señales a nivel nacional",
+      "Señal STOP octagonal roja se hace obligatoria en todos los estados de EE. UU.",
+      "Edición MUTCD 2009 — estándar federal actual para señales de tránsito estadounidenses",
+      "California completa actualización estatal de señales a estándares MUTCD 2009"
+    ],
+    "keyTakeaways": [
+      "Las señales rojas significan stop o prohibición — STOP (octágono) y YIELD (triángulo) siempre son rojos",
+      "Las señales rectangulares blancas con texto negro son reglamentarias — límites de velocidad, restricciones de giro",
+      "La forma de octágono significa solo STOP — ninguna otra señal usa un octágono",
+      "Una parada completa en una señal STOP significa que el vehículo debe estar estacionario — los rolling stops son ilegales"
+    ]
+  }
+}

@@ -3,7 +3,7 @@ import { redis } from "@/lib/redis";
 import { getAuthedUsername } from "@/lib/api-auth";
 import { renderToBuffer, Document, Page, View, Text, StyleSheet, Font } from "@react-pdf/renderer";
 import { createElement as h } from "react";
-import { epochs, stages } from "@/data/stages";
+import { epochs, stages } from "@kryptos/core/stages";
 
 Font.register({
   family: "Helvetica",

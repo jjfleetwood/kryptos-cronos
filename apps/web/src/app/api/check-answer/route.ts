@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
-import { quizStage01 } from "@/data/quiz-stage-01";
+import { quizStage01 } from "@kryptos/core/quiz-stage-01";
 import { getAuthedUsername } from "@/lib/api-auth";
 import { awardStageInRedis, awardQuizStageInRedis } from "@/lib/server-progress";
-import { getStage } from "@/data/stages";
+import { getStage } from "@kryptos/core/stages";
 import { canAccessStage } from "@/lib/access";
 import {
   computeStageScore, computeBonusXp, updateSkillLevel,

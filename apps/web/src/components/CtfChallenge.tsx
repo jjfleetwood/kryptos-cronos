@@ -8,10 +8,10 @@ import BackLink from "./BackLink";
 import AttackDiagram from "./AttackDiagram";
 import FlagSuccessModal from "./FlagSuccessModal";
 import HintChatbot from "./HintChatbot";
-import type { CtfConfig, StageConfig, CtfQuizEntry, AuditQuizEntry } from "@/data/types";
+import type { CtfConfig, StageConfig, CtfQuizEntry, AuditQuizEntry } from "@kryptos/core/types";
 import CtfQuizPanel from "./CtfQuizPanel";
 import AuditQuizPanel from "./AuditQuizPanel";
-import { getExtraCommands } from "@/data/stage-commands";
+import { getExtraCommands } from "@kryptos/core/stage-commands";
 import { useLocale } from "@/contexts/LocaleContext";
 
 type LineType = "cmd" | "out" | "err" | "ok" | "warn" | "sys";

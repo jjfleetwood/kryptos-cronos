@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { awardQuizStage } from "@/lib/progress";
 import { useLocale } from "@/contexts/LocaleContext";
-import type { AuditQuizEntry, AuditQuizQuestion } from "@/data/types";
+import type { AuditQuizEntry, AuditQuizQuestion } from "@kryptos/core/types";
 
 type Phase = "question" | "feedback" | "score";
 

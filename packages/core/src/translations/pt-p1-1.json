@@ -1,0 +1,1402 @@
+{
+  "bt-01": {
+    "tagline": "Uma rede é apenas nós e caminhos — o mesmo, seja em estradas ou cabos.",
+    "overview": [
+      "Você está no Porto do Pireu, o antigo porto de Atenas. Antes de poder viajar a qualquer lugar, você precisa entender a rede de estradas, barcos e aviões que conectam o mundo. Uma rede de computadores funciona exatamente da mesma forma: dispositivos (nós) conectados por caminhos (links), cada um capaz de enviar informações a qualquer outro.",
+      "Os antigos gregos construíram redes de estradas para movimentar exércitos e trocar bens. Nós construímos redes de computadores para movimentar dados. Em ambos os casos, os princípios são idênticos: cada nó precisa de um endereço, cada caminho tem uma direção, e a informação viaja de origem ao destino saltando por pontos intermediários.",
+      "Sua missão começa aqui. Leia o mapa do porto, entenda como a rede de rotas conecta Atenas ao mundo e encontre seu caminho para o oeste — em direção a Santa Cruz, California."
+    ],
+    "technical": {
+      "title": "Como as Redes de Computadores São Construídas",
+      "body": [
+        "Uma rede é uma coleção de dispositivos (computadores, telefones, roteadores) conectados por links físicos ou sem fio. Cada dispositivo é um nó. Os dados viajam como sinais elétricos por cabos, ou como ondas de rádio pelo WiFi. A internet é simplesmente uma rede global de redes — milhões de redes menores todas interconectadas.",
+        "As redes são descritas por sua topologia: como os nós estão dispostos. Uma topologia em estrela tem todos os dispositivos se conectando por meio de um hub central. Uma topologia em malha tem dispositivos se conectando diretamente entre si. A internet usa uma topologia semelhante a uma malha para que não haja um único ponto de falha."
+      ]
+    },
+    "incident": {
+      "title": "A Interrupção do Facebook em 2021 — Quando uma Rede Perde Seu Mapa",
+      "impact": "3,5 bilhões de usuários offline por 6 horas; perda de receita de mais de $60M",
+      "body": [
+        "Em 4 de outubro de 2021, engenheiros do Facebook realizaram uma mudança de configuração de rotina que removeu acidentalmente todas as informações de roteamento que diziam à internet como encontrar os servidores do Facebook. Cada caminho em seu mapa de rede foi apagado simultaneamente.",
+        "Ninguém conseguia acessar Facebook, Instagram ou WhatsApp. Até os próprios engenheiros do Facebook não conseguiam fazer login remotamente para resolver o problema — eles tiveram que ir fisicamente ao datacenter e restaurar manualmente as tabelas de roteamento. A rede ainda existia; o mapa de como atravessá-la simplesmente havia desaparecido."
+      ]
+    },
+    "timeline": [
+      "ARPANET — primeiros 4 nós conectados; ancestral da internet nasce",
+      "TCP/IP adotado — todos os nós da ARPANET migram para o protocolo moderno",
+      "World Wide Web lançada — a internet se torna navegável",
+      "Interrupção BGP do Facebook — 3,5B usuários offline quando as tabelas de roteamento foram apagadas"
+    ],
+    "keyTakeaways": [
+      "Uma rede é nós (dispositivos) conectados por links (cabos/WiFi)",
+      "A internet é uma rede de redes — sem proprietário único",
+      "As tabelas de roteamento são o 'mapa' — perca o mapa, perca a rede",
+      "Cada dispositivo precisa de um endereço para enviar e receber dados"
+    ]
+  },
+  "bt-02": {
+    "tagline": "Sem um endereço, nenhum pacote pode chegar até você.",
+    "overview": [
+      "Antes do seu voo decolar de Atenas, você precisa de um cartão de embarque com seu número de assento e destino. Sem esses endereços, a companhia aérea não tem como direcioná-lo ao avião correto. Os endereços IP funcionam de forma idêntica: cada dispositivo na internet recebe um endereço numérico único para que os dados saibam para onde ir e de onde vieram.",
+      "Um endereço IPv4 se parece com 192.168.1.105 — quatro números (0–255) separados por pontos. Cada pacote de dados enviado pela internet carrega um IP de origem e um IP de destino, assim como cada envelope carrega um endereço de remetente e um endereço de destino. Os roteadores leem esses endereços e decidem em qual direção encaminhar o pacote.",
+      "Existem dois espaços de endereçamento: IPs privados (usados dentro da sua rede doméstica, como 192.168.x.x) e IPs públicos (globalmente únicos, atribuídos pelo seu ISP). Seu roteador doméstico traduz entre eles usando NAT — Network Address Translation."
+    ],
+    "technical": {
+      "title": "IPv4 vs IPv6 e Como os Endereços São Atribuídos",
+      "body": [
+        "IPv4 nos dá aproximadamente 4,3 bilhões de endereços únicos — não é suficiente para cada dispositivo na Terra. IPv6 expande isso para 340 undecilhões de endereços usando notação hexadecimal de 128 bits (ex.: 2001:0db8:85a3::8a2e:0370:7334). A maioria das redes agora executa ambos simultaneamente (dual-stack).",
+        "Seu dispositivo obtém um endereço IP de um servidor DHCP — geralmente seu roteador. O roteador obtém um IP público do seu ISP. Faixas de IP privado (RFC 1918): 10.0.0.0/8, 172.16.0.0/12 e 192.168.0.0/16. Esses nunca aparecem na internet pública."
+      ]
+    },
+    "incident": {
+      "title": "A Crise de Esgotamento do IPv4 — Quando os Endereços Acabaram",
+      "impact": "Últimos blocos IPv4 atribuídos; ISPs forçados a compartilhar endereços via CGN",
+      "body": [
+        "Em 3 de fevereiro de 2011, a IANA (autoridade de endereços da internet) entregou os últimos blocos de endereços IPv4 aos cinco registros regionais. A internet havia ficado oficialmente sem endereços IPv4 únicos após 30 anos.",
+        "Os ISPs responderam com Carrier-Grade NAT — ocultando milhares de clientes atrás de um único IP público. Isso quebrou aplicações peer-to-peer e tornou o registro de segurança quase impossível (você não consegue saber qual cliente enviou um ataque se 5.000 compartilham um IP). A solução — IPv6 — existia desde 1998, mas a adoção continua lenta. A partir de 2025, apenas ~45% do tráfego é IPv6."
+      ]
+    },
+    "timeline": [
+      "IPv4 padronizado na RFC 791 — 4,3 bilhões de endereços alocados",
+      "IPv6 projetado para resolver o esgotamento de endereços",
+      "IANA esgota todos os blocos IPv4 — espaço de endereçamento oficialmente cheio",
+      "~45% do tráfego da internet agora usa IPv6"
+    ],
+    "keyTakeaways": [
+      "Cada dispositivo precisa de um endereço IP para se comunicar em uma rede",
+      "IPv4 = 4 números (0–255) separados por pontos; ~4,3 bilhões no total",
+      "IPs privados (192.168.x.x) ficam dentro da sua rede doméstica; IPs públicos enfrentam a internet",
+      "IPv6 resolve o esgotamento com endereços de 128 bits — 340 undecilhões disponíveis"
+    ]
+  },
+  "bt-03": {
+    "tagline": "Ninguém envia uma casa inteira — divide em caixas. A internet faz o mesmo com os dados.",
+    "overview": [
+      "Você chegou ao JFK. Sua bagagem não viajou como um único blob gigante — a companhia aérea a separou em malas individuais, cada uma etiquetada com seu nome, destino e número de sequência. Se uma mala se perder, apenas aquela peça precisa ser reenviada. Os dados na internet viajam exatamente da mesma forma: divididos em pequenos fragmentos chamados pacotes.",
+      "Um pacote tipicamente tem 1.500 bytes (o MTU padrão do Ethernet). Um arquivo grande — digamos, uma foto de 10MB — é dividido em aproximadamente 6.666 pacotes. Cada pacote carrega o IP de destino, o IP de origem, um número de sequência e um pequeno fragmento do payload. No destino, os pacotes são remontados em ordem.",
+      "Esse design é genial: se algum pacote se perder ou for corrompido em trânsito, apenas aquele pacote precisa ser retransmitido. O restante do arquivo já chegou com segurança. É isso que torna o TCP confiável."
+    ],
+    "technical": {
+      "title": "Estrutura de Pacotes e Remontagem TCP",
+      "body": [
+        "Cada pacote tem um cabeçalho e um payload. O cabeçalho contém: IP de origem, IP de destino, protocolo (TCP/UDP), número de sequência e soma de verificação. O payload é o dado real — um fragmento do seu arquivo, um pedaço de uma página web, parte de um stream de vídeo.",
+        "TCP (Protocolo de Controle de Transmissão) garante entrega e ordem. O receptor envia pacotes ACK (confirmação) de volta para cada um recebido. Se um ACK não chegar dentro de um tempo limite, o remetente retransmite aquele pacote. UDP pula o ACK — mais rápido mas sem garantia de entrega ou ordem (usado para videochamadas, jogos)."
+      ]
+    },
+    "incident": {
+      "title": "O Botnet Mirai DDoS — Inundação de Pacotes em Escala",
+      "impact": "Twitter, Netflix, Reddit, CNN offline por horas",
+      "body": [
+        "O botnet Mirai sequestrou 600.000 dispositivos IoT (câmeras, DVRs, roteadores) e os direcionou a todos para enviar uma chuva de pacotes aos servidores DNS da Dyn. No pico, o ataque entregou 1,2 terabits por segundo — centenas de bilhões de pacotes por segundo sobrecarregando cada servidor.",
+        "O ataque explorou a natureza fundamental dos pacotes: qualquer um pode enviá-los para qualquer IP. Não há autenticação no nível do pacote. Os servidores da Dyn não conseguiam distinguir pacotes legítimos de pacotes de ataque, então as tabelas de conexão ficaram cheias e o tráfego legítimo foi descartado. A lição: o volume de pacotes pode ser usado como arma."
+      ]
+    },
+    "timeline": [
+      "TCP inventado por Vint Cerf e Bob Kahn — redes de comutação de pacotes formalizadas",
+      "TCP/IP torna-se o padrão para a ARPANET",
+      "MTU do Ethernet padronizado em 1.500 bytes por pacote",
+      "DDoS Mirai — inundação de pacotes de 1,2 Tbps derruba principais serviços de internet"
+    ],
+    "keyTakeaways": [
+      "Os dados são divididos em pacotes de ~1.500 bytes para transmissão",
+      "Cada pacote carrega IP de origem, IP de destino, número de sequência e payload",
+      "TCP garante entrega e ordem por meio de confirmações ACK",
+      "UDP é mais rápido mas não confiável — usado para áudio/vídeo em tempo real"
+    ]
+  },
+  "bt-04": {
+    "tagline": "O único trabalho de um roteador é ler o destino e decidir: por onde vamos?",
+    "overview": [
+      "Você está dirigindo para o oeste pela I-80 passando por Denver. Em cada cruzamento de rodovias, uma placa diz: pegue esta saída para San Francisco, continue na I-80 para Salt Lake City. Você toma decisões em cada cruzamento. Um roteador faz exatamente isso — lê o endereço IP de destino de um pacote e decide por qual interface encaminhá-lo, com base em uma tabela de roteamento.",
+      "A internet não tem um controlador central. Milhões de roteadores tomam decisões de encaminhamento independentes com base em suas tabelas de roteamento locais. Seu pacote pode passar por 15 roteadores diferentes entre Denver e Santa Cruz, cada um lendo apenas o IP de destino e enviando-o um passo mais próximo.",
+      "As tabelas de roteamento são construídas dinamicamente usando protocolos como BGP (Border Gateway Protocol) — o protocolo que mantém os mapas de roteamento da internet global sincronizados. Quando as rotas BGP do Facebook foram removidas acidentalmente em 2021, cada roteador na internet esqueceu como alcançar o Facebook."
+    ],
+    "technical": {
+      "title": "Como as Tabelas de Roteamento Funcionam",
+      "body": [
+        "Uma tabela de roteamento mapeia faixas de IP de destino a interfaces de saída. Quando um pacote chega, o roteador encontra a rota correspondente mais específica (correspondência de prefixo mais longo) e encaminha o pacote para o próximo salto. Se nenhuma rota específica corresponder, o pacote vai para a rota padrão (geralmente 0.0.0.0/0 — 'envie para cima').",
+        "Roteadores domésticos são simples: tudo local fica na LAN, tudo mais vai para o ISP. Os roteadores de núcleo da internet nos principais pontos de troca têm tabelas com 900.000+ rotas e encaminham milhões de pacotes por segundo em hardware."
+      ]
+    },
+    "incident": {
+      "title": "O Sequestro BGP da China Telecom em 2010",
+      "impact": "15% do tráfego global da internet redirecionado pela China por 18 minutos",
+      "body": [
+        "A China Telecom anunciou acidentalmente (ou intencionalmente) rotas BGP afirmando ser o melhor caminho para 15% dos endereços IP da internet. Os roteadores em todo o mundo atualizaram suas tabelas e começaram a enviar tráfego — incluindo tráfego do governo e militar dos EUA — pela rede da China Telecom.",
+        "Por 18 minutos, e-mails, requisições web e tráfego VPN de senadores americanos, do Exército dos EUA e de grandes corporações fluíam pela infraestrutura chinesa. Nenhuma criptografia foi quebrada — mas o tráfego era legível se não estivesse criptografado. É por isso que a segurança BGP (RPKI) importa: qualquer roteador pode reivindicar qualquer rota."
+      ]
+    },
+    "timeline": [
+      "Primeiro roteador da ARPANET (IMP) implantado na UCLA",
+      "BGP inventado — permite que roteadores compartilhem rotas entre organizações",
+      "Sequestro BGP da China Telecom — 15% da internet redirecionada por 18 minutos",
+      "Apagão BGP do Facebook — tabelas de roteamento apagadas, 3,5B usuários offline"
+    ],
+    "keyTakeaways": [
+      "Os roteadores encaminham pacotes salto a salto com base no IP de destino",
+      "As tabelas de roteamento mapeiam faixas de IP a interfaces de saída",
+      "BGP sincroniza tabelas de roteamento entre redes em nível global",
+      "Qualquer roteador pode anunciar qualquer rota — BGP não tem autenticação integrada"
+    ]
+  },
+  "bt-05": {
+    "tagline": "Você digita 'google.com'. Seu computador não tem ideia de onde fica — até que pergunta ao DNS.",
+    "overview": [
+      "Você para no escritório de viagens AAA em Chicago. Você sabe que quer ir a Santa Cruz — mas precisa do endereço exato para colocar no GPS. DNS (Domain Name System) faz isso para a internet: você digita 'google.com' e o DNS silenciosamente traduz isso para um endereço IP como 142.250.80.46 para que seu computador saiba onde realmente enviar a requisição.",
+      "DNS é um banco de dados distribuído. Existem 13 conjuntos de servidores raiz em todo o mundo, abaixo deles centenas de servidores de domínio de nível superior (.com, .org, .net) e abaixo deles milhões de servidores autoritativos para domínios individuais. O resolvedor DNS do seu roteador consulta essa hierarquia toda vez que você digita um nome de domínio.",
+      "As respostas DNS são armazenadas em cache — seu computador lembra a resposta por um período definido pelo TTL (Time To Live). Isso mantém o DNS rápido. Mas o cache também cria risco: se um atacante envenenar seu cache DNS com uma resposta falsa, você pode ser enviado a um servidor malicioso enquanto acredita estar no real."
+    ],
+    "technical": {
+      "title": "O Processo de Resolução DNS",
+      "body": [
+        "Quando você digita google.com: (1) Seu sistema operacional verifica seu cache local. (2) Se não estiver em cache, pergunta ao seu resolvedor DNS (geralmente seu roteador ou ISP). (3) O resolvedor pergunta a um servidor raiz por .com. (4) A raiz o encaminha aos servidores .com da Verisign. (5) A Verisign o encaminha ao servidor autoritativo do Google. (6) O servidor do Google retorna 142.250.80.46. (7) Seu sistema operacional armazena em cache e se conecta.",
+        "Essa busca completa leva 50–200ms. Buscas em cache levam menos de 1ms. O resolvedor que seu dispositivo usa é definido nas configurações de rede — você pode alterá-lo para qualquer resolvedor público: 1.1.1.1 (Cloudflare), 8.8.8.8 (Google) ou 9.9.9.9 (Quad9). Usar um resolvedor criptografado (DNS-over-HTTPS) impede que seu ISP veja quais sites você está buscando."
+      ]
+    },
+    "incident": {
+      "title": "O Ataque DNS da Dyn em 2016 — Desligando o GPS da Internet",
+      "impact": "Twitter, GitHub, Netflix, Spotify, Reddit inacessíveis na Costa Leste dos EUA",
+      "body": [
+        "Dyn é um dos maiores provedores de DNS — responde 'onde está Twitter.com?' para milhões de consultas por segundo. O botnet Mirai direcionou um ataque DDoS massivo diretamente contra a Dyn. Quando os servidores da Dyn caíram, milhões de consultas DNS de usuários ficaram sem resposta, então os navegadores não conseguiam encontrar o Twitter mesmo que os servidores do Twitter estivessem funcionando perfeitamente.",
+        "A lição: DNS é tão crítico quanto os próprios servidores. Os sites agora usam múltiplos provedores DNS para redundância. Se o DNS falhar, não importa que seu servidor esteja ativo — ninguém consegue encontrá-lo. DNS é o GPS da internet. Desligue o GPS e todos se perdem."
+      ]
+    },
+    "timeline": [
+      "DNS inventado por Paul Mockapetris — substitui o arquivo hosts.txt",
+      "DNS formalizado na RFC 1034/1035 — ainda é o padrão hoje",
+      "Vulnerabilidade de envenenamento de cache DNS de Kaminsky descoberta — falha crítica corrigida",
+      "Ataque DDoS DNS da Dyn — principais sites inacessíveis por horas"
+    ],
+    "keyTakeaways": [
+      "DNS traduz nomes legíveis por humanos (google.com) em endereços IP",
+      "A resolução percorre uma hierarquia: raiz → TLD → servidor autoritativo",
+      "As respostas são armazenadas em cache durante o TTL em segundos para evitar buscas repetidas",
+      "DNS é infraestrutura crítica — atacar o DNS é atacar toda a internet"
+    ]
+  },
+  "bt-06": {
+    "tagline": "Cada placa de rede sai de fábrica com um número de série único. Esse é seu endereço MAC.",
+    "overview": [
+      "Na alfândega do LAX, o agente escaneia seu passaporte. Seu número de passaporte é único globalmente — ninguém mais o compartilha, e está vinculado a você permanentemente. Cada placa de interface de rede (chip WiFi, porta Ethernet) sai do fabricante com um endereço MAC: um identificador de hardware de 48 bits gravado no chip na fábrica.",
+      "Os endereços MAC se parecem com: 00:1A:2B:3C:4D:5E. Os primeiros três bytes (00:1A:2B) identificam o fabricante — isso é chamado de OUI (Organizationally Unique Identifier). Os últimos três bytes são o número de série do dispositivo. O IEEE atribui blocos OUI a fabricantes: Apple, Intel, Cisco, etc.",
+      "Enquanto os endereços IP operam na camada 3 (roteamento pela internet), os endereços MAC operam na camada 2 (dentro da sua rede local). Seu roteador usa endereços MAC para identificar qual dispositivo na LAN é qual. Quando um dispositivo sai da rede local, seu endereço MAC nunca aparece — apenas o IP."
+    ],
+    "technical": {
+      "title": "Estrutura do Endereço MAC e ARP",
+      "body": [
+        "Quando seu dispositivo quer enviar dados para outro dispositivo na mesma rede local, usa ARP (Protocolo de Resolução de Endereços) para encontrar o endereço MAC daquele dispositivo. ARP transmite 'quem tem o IP 192.168.1.1?' e o roteador responde 'sou eu — meu MAC é 00:1A:2B:3C:4D:5E'. Seu dispositivo salva isso em sua tabela ARP.",
+        "Os sistemas operacionais modernos suportam randomização de endereços MAC — toda vez que você se conecta a uma nova rede WiFi, seu dispositivo usa um MAC gerado aleatoriamente em vez do seu permanente. Isso impede que lojas e pontos de acesso rastreiem seu dispositivo entre localizações usando seu endereço MAC."
+      ]
+    },
+    "incident": {
+      "title": "Falsificação ARP — Imitar Dispositivos em uma Rede Local",
+      "impact": "O atacante intercepta todo o tráfego entre a vítima e o roteador",
+      "body": [
+        "ARP não tem autenticação. Um atacante na mesma rede WiFi pode transmitir respostas ARP falsas: 'o IP do roteador é meu — envie todo o tráfego para o meu endereço MAC.' Cada dispositivo na rede atualiza seu cache ARP com a mentira. O atacante se torna um intermediário, lendo e modificando todo o tráfego não criptografado.",
+        "A falsificação ARP é a razão pela qual você nunca deve usar HTTP sem criptografia em WiFi público. O atacante não precisa descriptografar nenhuma senha — simplesmente envenena o ARP e lê seu tráfego enquanto flui pela máquina dele. HTTPS previne isso porque mesmo com o tráfego interceptado, eles não conseguem descriptografá-lo sem a chave privada do certificado."
+      ]
+    },
+    "timeline": [
+      "Ethernet inventada na Xerox PARC — endereços MAC introduzidos",
+      "IEEE padroniza o formato de endereço MAC (48 bits, estrutura OUI)",
+      "ARP (RFC 826) padronizado — autenticação nunca foi adicionada",
+      "iOS 8 introduz randomização de MAC — prevenção de rastreamento começa"
+    ],
+    "keyTakeaways": [
+      "Endereços MAC são identificadores de hardware de 48 bits gravados em placas de rede na fabricação",
+      "Primeiros 3 bytes = OUI do fabricante; últimos 3 bytes = número de série do dispositivo",
+      "MAC opera na camada 2 (rede local); IP opera na camada 3 (internet global)",
+      "ARP não tem autenticação — falsificação ARP é um ataque de rede local real e fácil"
+    ]
+  },
+  "bt-08": {
+    "tagline": "As portas são como vagas em um porto — cada barco atraca em uma vaga designada.",
+    "overview": [
+      "Você chegou ao Porto de Santa Cruz. Cada vaga tem um número: a vaga 22 é para veleiros, a vaga 80 é para barcos de pesca, a vaga 443 é para a balsa. Você não chega apenas ao 'porto' — você atraca em uma vaga específica. As portas de rede funcionam da mesma forma: um servidor que executa múltiplos serviços atribui cada um a um número de porta diferente para que os dados cheguem ao serviço correto.",
+      "Os números de porta vão de 0 a 65535. As portas bem conhecidas (0–1023) são padronizadas: porta 22 (SSH), porta 80 (HTTP), porta 443 (HTTPS), porta 25 (SMTP e-mail), porta 53 (DNS), porta 3306 (MySQL). Um pacote que chega a um servidor inclui tanto um IP de destino quanto uma porta de destino — juntos informam ao sistema operacional qual aplicação deve receber os dados.",
+      "A varredura de portas é a técnica de sondar um servidor para descobrir quais portas têm serviços escutando. É um passo fundamental de reconhecimento tanto em administração de rede legítima quanto em ataques. Entender quais portas estão abertas — e quais serviços essas portas executam — é essencial para entender sua superfície de ataque."
+    ],
+    "technical": {
+      "title": "Portas TCP vs UDP e Números de Porta Comuns",
+      "body": [
+        "Tanto TCP quanto UDP usam números de porta. Um servidor 'escuta' em uma porta chamando bind() e listen() no código. Seu sistema operacional aceita conexões e as passa para o processo de aplicação correto. Executar 'netstat -tlnp' no Linux mostra cada porta que está atualmente escutando e qual processo a possui.",
+        "Portas comuns para memorizar: 21 (FTP), 22 (SSH), 23 (Telnet — sem criptografia, obsoleto), 25 (SMTP), 53 (DNS), 80 (HTTP), 110 (POP3), 143 (IMAP), 443 (HTTPS), 3306 (MySQL), 5432 (PostgreSQL), 6379 (Redis), 27017 (MongoDB). Os atacantes varrem essas portas para encontrar bancos de dados e serviços expostos."
+      ]
+    },
+    "incident": {
+      "title": "Ransomware WannaCry de 2017 — Porta 445 Deixada Aberta",
+      "impact": "NHS do Reino Unido paralisado; mais de $4B em danos",
+      "body": [
+        "WannaCry explorou EternalBlue, uma vulnerabilidade desenvolvida pela NSA no protocolo SMB da Microsoft (porta 445). Qualquer máquina Windows com a porta 445 exposta à internet e sem patches era vulnerável. WannaCry se propagava automaticamente — sem ação do usuário necessária — varrendo portas 445 abertas e explorando a vulnerabilidade.",
+        "O Serviço Nacional de Saúde do Reino Unido foi devastado: os hospitais cancelaram 19.000 consultas, ambulâncias foram desviadas e máquinas de ressonância magnética foram desligadas. A solução? Bloquear a porta 445 no perímetro da rede (algo que deveria ter sido feito anos antes) e aplicar o patch MS17-010. Regras de firewall em uma única porta teriam impedido todo o surto."
+      ]
+    },
+    "timeline": [
+      "Números de porta TCP padronizados na RFC 793",
+      "IANA designada como autoridade para números de portas bem conhecidas (0–1023)",
+      "WannaCry explora a porta 445 aberta — 200K máquinas em 150 países",
+      "Patch EternalBlue (MS17-010) lançado pela Microsoft — a maioria das organizações não havia aplicado"
+    ],
+    "keyTakeaways": [
+      "Portas 0–65535 roteiam o tráfego para serviços específicos em um servidor",
+      "Portas bem conhecidas (0–1023) são padronizadas: 22=SSH, 80=HTTP, 443=HTTPS",
+      "A varredura de portas revela quais serviços estão expostos — os atacantes a usam para reconhecimento",
+      "Fechar portas abertas desnecessárias é um passo fundamental no hardening de segurança"
+    ]
+  },
+  "bt-09": {
+    "tagline": "Santa Cruz tem bairros. As redes têm sub-redes. Mesma ideia — zonas com cruzamentos controlados.",
+    "overview": [
+      "Santa Cruz é dividida em bairros: Westside, Eastside, Downtown e Live Oak. Você pode dirigir livremente dentro do seu bairro, mas para chegar a outro distrito precisa passar por uma interseção específica. As sub-redes funcionam da mesma forma: uma sub-rede é uma divisão lógica de uma rede IP. Os dispositivos na mesma sub-rede se comunicam diretamente; os dispositivos em sub-redes diferentes precisam passar por um roteador.",
+      "Uma sub-rede é definida por um endereço IP e uma máscara de sub-rede. A máscara informa quais bits do endereço IP são a parte de 'rede' e quais são a parte de 'host'. Por exemplo: 192.168.1.0/24 significa que os primeiros 24 bits são a rede (192.168.1) e os últimos 8 bits identificam dispositivos (0–255). Essa sub-rede pode conter até 254 dispositivos.",
+      "A criação de sub-redes é uma ferramenta central para segurança e organização de redes. Uma organização pode colocar servidores em 10.0.1.0/24, estações de trabalho em 10.0.2.0/24 e dispositivos IoT em 10.0.3.0/24. O tráfego entre sub-redes deve passar por um firewall, permitindo controle rigoroso sobre o que pode se comunicar com o quê."
+    ],
+    "technical": {
+      "title": "Lendo a Notação CIDR e Máscaras de Sub-rede",
+      "body": [
+        "A notação CIDR (/24, /16, /8) informa quantos bits estão na porção de rede. /24 = 255.255.255.0 = 254 hosts. /16 = 255.255.0.0 = 65.534 hosts. /8 = 255.0.0.0 = 16 milhões de hosts. Para descobrir se dois IPs estão na mesma sub-rede: aplique a máscara a ambos os IPs com AND bit a bit — se os resultados coincidirem, estão na mesma sub-rede.",
+        "Faixas de IP privado (RFC 1918) para redes internas: 10.0.0.0/8 (grandes empresas), 172.16.0.0/12 (redes médias), 192.168.0.0/16 (residencial/pequeno escritório). Esses endereços nunca são roteados na internet pública — seu roteador os traduz para o seu IP público."
+      ]
+    },
+    "incident": {
+      "title": "Redes Planas e a Violação da Target — Sem Sub-redes = Sem Contenção",
+      "impact": "40 milhões de cartões de crédito roubados; $290M em danos",
+      "body": [
+        "A rede da Target era insuficientemente segmentada. Os atacantes entraram pelas credenciais do fornecedor de HVAC — a Fazio Mechanical tinha acesso remoto à rede da Target para monitoramento dos sistemas de aquecimento. Em uma rede adequadamente segmentada, a sub-rede de HVAC não teria rota para a sub-rede de processamento de pagamentos.",
+        "Em vez disso, os terminais POS (ponto de venda) da Target e os sistemas de HVAC estavam na mesma rede plana. Uma vez que os atacantes tinham as credenciais da Fazio, podiam alcançar diretamente os sistemas POS e instalar malware de captura de cartões de crédito. A segmentação adequada com regras de firewall entre segmentos teria contido a violação. A lição: a segmentação de rede limita o raio de explosão."
+      ]
+    },
+    "timeline": [
+      "Rede por classes (Classe A/B/C) — sub-redes rígidas e ineficientes",
+      "CIDR (Roteamento entre Domínios sem Classes) introduzido — notação /flexível",
+      "Violação da Target — rede plana permite movimento lateral do fornecedor HVAC → POS",
+      "Redes de confiança zero emergem — 'assumir violação, verificar tudo'"
+    ],
+    "keyTakeaways": [
+      "Uma sub-rede agrupa dispositivos que se comunicam diretamente sem um roteador",
+      "A notação CIDR / informa o tamanho da rede: /24 = 254 hosts, /16 = 65.534 hosts",
+      "Dispositivos em sub-redes diferentes devem passar por um roteador ou firewall",
+      "A segmentação de rede limita o raio de explosão da violação — comprometa uma sub-rede, não todas"
+    ]
+  },
+  "bt-10": {
+    "tagline": "Um protocolo é simplesmente um acordo: é assim que falamos para nos entendermos.",
+    "overview": [
+      "Dirigindo pela Highway 1 ao longo do litoral do Pacífico, você segue regras acordadas: dirigir pela direita, sinalizar antes de virar, parar nos semáforos vermelhos. Essas regras permitem que estranhos de diferentes países compartilhem a mesma estrada com segurança. Os protocolos de rede são a mesma coisa: regras acordadas sobre como os dispositivos se comunicam. Sem protocolos, dois dispositivos estariam enviando dados que nenhum poderia interpretar.",
+      "A internet funciona em uma pilha de protocolos em camadas. Na parte inferior, Ethernet e WiFi tratam da transmissão física. Acima disso, IP trata do endereçamento e roteamento. Acima disso, TCP ou UDP tratam da entrega confiável ou rápida. No topo, os protocolos de aplicação como HTTP, SMTP e SSH tratam do serviço real sendo usado. Cada camada se comunica apenas com a camada diretamente acima e abaixo dela.",
+      "Entender protocolos é fundamental para a segurança. Toda vulnerabilidade é, em última análise, uma violação dos pressupostos de um protocolo — um pacote elaborado que explora como TCP trata números de sequência, uma requisição que abusa de como HTTP trata cabeçalhos, uma resposta DNS que mente sobre um mapeamento nome-para-IP."
+    ],
+    "technical": {
+      "title": "O Modelo TCP/IP e as Camadas de Protocolo",
+      "body": [
+        "Camada 1 (Física): bits por cabo/ar. Camada 2 (Enlace de Dados): endereços MAC, quadros Ethernet. Camada 3 (Rede): endereços IP, roteamento. Camada 4 (Transporte): TCP (confiável) ou UDP (rápido). Camadas 5-7 (Aplicação): HTTP, DNS, SMTP, SSH, TLS. Cada camada adiciona um cabeçalho envolvendo a camada superior — um processo chamado encapsulamento.",
+        "TCP usa um handshake de três vias para estabelecer uma conexão: SYN → SYN-ACK → ACK. Garante entrega, ordenamento e correção de erros. UDP envia datagramas sem handshake, sem confirmação, sem ordem garantida — mais rápido e menor sobrecarga, usado para DNS, videochamadas, jogos e streaming ao vivo."
+      ]
+    },
+    "incident": {
+      "title": "O SYN Flood TCP — Explorando o Design do Protocolo",
+      "impact": "Servidores sobrecarregados; base de todos os ataques DDoS modernos",
+      "body": [
+        "O handshake TCP tem uma falha inerente: quando um servidor recebe um SYN, aloca memória para a conexão semi-aberta e aguarda o ACK que completa o handshake. Se o ACK nunca chegar — porque o IP de origem foi falsificado — o servidor aguarda (tipicamente 75 segundos) antes de liberar aquela memória.",
+        "Um SYN flood envia milhões de pacotes SYN com endereços IP de origem falsificados. O servidor preenche sua tabela de conexões com conexões semi-abertas e não consegue mais aceitar tráfego legítimo. Esse ataque explora o próprio design do protocolo — os projetistas do TCP nos anos 70 nunca anteciparam atores maliciosos. As mitigações modernas incluem cookies SYN, que evitam alocar memória até que o handshake se complete."
+      ]
+    },
+    "timeline": [
+      "TCP/IP projetado por Vint Cerf e Bob Kahn",
+      "TCP/IP substitui NCP como protocolo da ARPANET — a internet moderna nasce",
+      "Ataques SYN flood documentados pela primeira vez — falha de design TCP explorada em escala",
+      "Cookies SYN padronizados — mitiga SYN flood sem estado"
+    ],
+    "keyTakeaways": [
+      "Protocolos são regras acordadas para comunicação — sem eles, os dados são ruído",
+      "A internet usa um modelo de 4 camadas: Enlace → Rede → Transporte → Aplicação",
+      "TCP = confiável (handshake, ACK); UDP = rápido (sem garantia)",
+      "Toda vulnerabilidade explora uma falha ou comportamento não previsto em um protocolo"
+    ]
+  },
+  "bt-11": {
+    "tagline": "HTTP publica seu relatório de surf em um quadro público. HTTPS o sela em um envelope.",
+    "overview": [
+      "Você está em Steamer Lane conferindo o relatório de surf. O velho quadro-negro fora da loja de surf (HTTP) é visível para qualquer pessoa que passe — cada turista, cada competidor, cada estranho pode lê-lo. A previsão exclusiva para membros enviada por mensagem de texto (HTTPS) está criptografada — apenas você e o remetente podem lê-la. HTTP e HTTPS são exatamente essa diferença.",
+      "HTTP (HyperText Transfer Protocol) transmite dados em texto simples. Cada roteador, ISP e qualquer pessoa na mesma rede WiFi pode ler seu tráfego HTTP — suas credenciais de login, seus dados pessoais, tudo. HTTPS adiciona criptografia TLS (Transport Layer Security) por cima, tornando o conteúdo ilegível para qualquer pessoa exceto o servidor destinatário.",
+      "A partir de 2025, mais de 95% do tráfego web usa HTTPS. Os navegadores modernos marcam sites HTTP com um aviso de 'Não é seguro'. Mas HTTP ainda existe — e interceptá-lo em WiFi público é trivial. Entender a diferença é o primeiro passo para se proteger online."
+    ],
+    "technical": {
+      "title": "Como TLS Criptografa o Tráfego HTTP",
+      "body": [
+        "Quando você se conecta a um site HTTPS, seu navegador e o servidor realizam um handshake TLS: (1) O servidor envia seu certificado (prova de identidade). (2) O navegador verifica o certificado contra Autoridades de Certificação confiáveis. (3) Ambos os lados concordam com chaves de criptografia usando criptografia assimétrica (RSA ou ECDH). (4) Todo o tráfego subsequente é criptografado com uma chave simétrica (AES-256).",
+        "A URL diz qual usar: http:// envia texto simples, https:// envia criptografado. O ícone de cadeado na barra de endereços do seu navegador indica um certificado TLS válido. Cadeado ausente ou 'Não é seguro' = HTTP ou certificado inválido. Nunca insira senhas ou informações de pagamento em uma página HTTP."
+      ]
+    },
+    "incident": {
+      "title": "O Exploit Firesheep — Roubo de Sessões via HTTP",
+      "impact": "Demonstrou que sessões do Facebook e Twitter podiam ser sequestradas em segundos",
+      "body": [
+        "Eric Butler lançou Firesheep — uma extensão do Firefox que capturava e exibia automaticamente os cookies de sessão de outros usuários na mesma rede WiFi. O Facebook usava HTTPS para o login, mas depois voltava ao HTTP para navegação. Firesheep capturava os cookies de sessão não criptografados e permitia que qualquer pessoa clicasse em um botão para fazer login como aquele usuário.",
+        "Dentro de dias do lançamento, Firesheep havia sido baixado mais de 100.000 vezes. Facebook e Twitter foram forçados a implementar HTTPS em todo lugar — algo que eles tinham resistido por razões de desempenho. A lição: um login por HTTPS não significa nada se a sessão continua por HTTP. Criptografe tudo, não apenas a etapa de autenticação."
+      ]
+    },
+    "timeline": [
+      "HTTP 0.9 introduzido por Tim Berners-Lee — completamente texto simples",
+      "HTTPS introduzido pela Netscape para segurança do comércio eletrônico",
+      "Firesheep: sequestro de sessões por HTTP trivializado — adoção massiva de HTTPS começa",
+      "Chrome marca todos os sites HTTP como 'Não é seguro' — HTTPS torna-se o padrão"
+    ],
+    "keyTakeaways": [
+      "HTTP transmite tudo em texto simples — visível para qualquer pessoa no caminho da rede",
+      "HTTPS adiciona criptografia TLS — conteúdo ilegível sem as chaves de sessão",
+      "Sempre busque https:// e o cadeado antes de inserir qualquer dado sensível",
+      "Mesmo que o login seja HTTPS, um cookie de sessão em texto simples pode ser roubado para sequestrar sua conta"
+    ]
+  },
+  "bt-13": {
+    "tagline": "O cliente pergunta. O servidor responde. Cada interação web é exatamente essa troca.",
+    "overview": [
+      "A escola de surf tem instrutores (servidores) e alunos (clientes). Um aluno (cliente) pergunta 'como fico em pé na prancha?' O instrutor (servidor) responde com a aula. O aluno nunca se torna instrutor. A internet funciona de forma idêntica: um cliente (seu navegador, sua aplicação) faz uma requisição, e um servidor responde. Os papéis são fixos para aquela troca.",
+      "Quando você abre o Instagram, seu telefone (cliente) envia uma requisição aos servidores do Instagram: 'Me dê os posts mais recentes para o meu feed.' O servidor do Instagram processa essa requisição, consulta seu banco de dados e retorna os posts como dados JSON. Sua aplicação os renderiza no feed que você vê. Esse ciclo de requisição-resposta se repete milhares de vezes por dia.",
+      "O modelo cliente-servidor também define responsabilidades de segurança. Os servidores devem validar cada entrada — um cliente malicioso pode enviar qualquer coisa. Os clientes devem validar respostas do servidor — um servidor comprometido pode enviar conteúdo malicioso. Nenhum pode confiar no outro por padrão."
+    ],
+    "technical": {
+      "title": "Ciclo de Requisição-Resposta HTTP",
+      "body": [
+        "Uma requisição HTTP tem: um método (GET, POST, PUT, DELETE), um caminho URL, cabeçalhos (metadados) e opcionalmente um corpo (para POST/PUT). Uma resposta HTTP tem: um código de status (200 OK, 404 Not Found, 500 Server Error), cabeçalhos e um corpo (o conteúdo real).",
+        "APIs REST são a forma padrão pela qual aplicações web se comunicam: GET /users/123 recupera um usuário, POST /users cria um, PUT /users/123 o atualiza, DELETE /users/123 o remove. O servidor mantém o estado e os dados; o cliente é apenas uma camada de exibição e entrada. Essa separação é chamada de padrão arquitetônico 'cliente-servidor'."
+      ]
+    },
+    "incident": {
+      "title": "IDOR — Quando o Servidor Confia Demais no Cliente",
+      "impact": "Dados de outros usuários acessíveis simplesmente mudando um ID na URL",
+      "body": [
+        "IDOR (Referência Direta a Objeto Insegura) ocorre quando um servidor confia que o cliente enviará um ID de objeto válido sem verificar se aquele cliente está autorizado a acessá-lo. Mude /api/invoices/1042 para /api/invoices/1043 e você vê a fatura de outro cliente — porque o servidor nunca verificou se você é dono da fatura 1043.",
+        "Em 2019, pesquisadores descobriram que a API do Facebook Business Manager retornava o número de telefone de qualquer usuário se você soubesse o ID do usuário — e os IDs de usuário eram públicos. O cliente enviou uma requisição com o ID de usuário X; o servidor retornou o número de telefone de X sem verificar se o cliente solicitante estava autorizado a vê-lo. IDOR clássico: 'servidor confia no cliente, servidor não verifica autorização'."
+      ]
+    },
+    "timeline": [
+      "Arquitetura cliente-servidor formalizada no design da ARPANET",
+      "HTTP 0.9 introduz o ciclo de requisição-resposta para a web",
+      "Estilo API REST definido por Roy Fielding em sua tese de doutorado",
+      "IDOR do Facebook expõe números de telefone — servidor confiou cegamente em IDs de cliente"
+    ],
+    "keyTakeaways": [
+      "Cliente pergunta, servidor responde — os papéis não mudam dentro de uma requisição",
+      "Métodos HTTP: GET (ler), POST (criar), PUT (atualizar), DELETE (remover)",
+      "Os servidores devem autorizar cada requisição — nunca confie que o cliente se autorize",
+      "IDOR: servidor retorna dados para qualquer ID sem verificar se o solicitante está autorizado"
+    ]
+  },
+  "bt-15": {
+    "tagline": "O clube de surf carimba seu pulso para que você não pague novamente. Os cookies fazem o mesmo — seu navegador carrega o carimbo.",
+    "overview": [
+      "Quando você se registra no clube de surf, a equipe carimba seu pulso. Durante o resto do dia, você mostra o carimbo — sem necessidade de pagar novamente ou provar sua identidade. Os cookies HTTP funcionam exatamente dessa forma: após você fazer login, o servidor define um cookie (um pequeno valor de texto) no seu navegador. Cada requisição subsequente carrega aquele cookie, e o servidor o lê para saber quem você é.",
+      "HTTP é sem estado por design: cada requisição é independente sem memória de requisições anteriores. Os cookies resolvem isso armazenando um token de sessão no lado do cliente. O token é uma string aleatória (ex.: 'sess=a9f3b2e1...') que é mapeada para seus dados de sessão no servidor. O servidor busca aquele token e sabe: esta é a Alice, ela está logada, tem essas permissões.",
+      "Os cookies têm atributos de segurança: HttpOnly impede que JavaScript leia o cookie (bloqueia roubo por XSS), Secure garante que o cookie viaje apenas por HTTPS e SameSite impede que o cookie seja enviado em requisições entre sites (bloqueia ataques CSRF). A falta desses atributos cria vulnerabilidades graves."
+    ],
+    "technical": {
+      "title": "Atributos de Segurança de Cookies",
+      "body": [
+        "Um cookie de sessão seguro deve ser definido assim: Set-Cookie: sess=abc123; HttpOnly; Secure; SameSite=Strict; Path=/. HttpOnly: JavaScript não pode acessar este cookie (document.cookie não o mostrará). Secure: o navegador só envia este cookie por HTTPS. SameSite=Strict: cookie não é enviado em requisições de origem cruzada (proteção CSRF).",
+        "Fixação de sessão: o atacante define um token de sessão conhecido antes do login, então a vítima faz login com aquele token — o atacante agora tem uma sessão autenticada válida. Mitigação: sempre regenere o token de sessão no login. Sequestro de sessão: o atacante rouba um token válido (via XSS ou sniffing de rede) e o usa para se passar pela vítima."
+      ]
+    },
+    "incident": {
+      "title": "O Roubo de Cookies de Sessão do Slack — Tomada de Conta Sem Cliques",
+      "impact": "Os atacantes roubaram tokens de sessão de funcionários do Slack de repositórios de código",
+      "body": [
+        "Os agentes de ameaça que haviam comprometido Twilio e Cloudflare na mesma campanha acessaram os repositórios GitHub do Slack usando cookies de sessão de funcionários roubados. Em vez de roubar senhas, eles roubaram os tokens de sessão — o que significa que contornaram o 2FA completamente porque a sessão já estava autenticada.",
+        "Esse é o poder do roubo de cookies de sessão: se você tem o cookie, VOCÊ É o usuário do ponto de vista do servidor. O servidor não tem como distinguir uma sessão roubada de uma legítima. As mitigações modernas incluem vincular sessões a endereços IP, fingerprinting de dispositivos e tempos de sessão curtos que exigem reautenticação frequente."
+      ]
+    },
+    "timeline": [
+      "Lou Montulli inventa os cookies HTTP na Netscape para o estado do carrinho de compras",
+      "Roubo de cookies do Hotmail via vulnerabilidades de URL — primeiro ataque importante de cookies",
+      "Firesheep: roubo de cookies de sessão HTTP trivializado em WiFi aberto",
+      "Violação do GitHub do Slack via cookies de sessão roubados — contornou 2FA"
+    ],
+    "keyTakeaways": [
+      "Os cookies resolvem a falta de estado do HTTP armazenando um token de sessão no navegador",
+      "HttpOnly: bloqueia acesso de JavaScript; Secure: apenas HTTPS; SameSite: bloqueia CSRF",
+      "Roubar um cookie de sessão = acesso total à conta, sem necessidade de senha",
+      "Sempre regenere tokens de sessão no login para prevenir fixação de sessão"
+    ]
+  },
+  "bt-17": {
+    "tagline": "Uma onda grande carrega mais água. Uma conexão de alta largura de banda carrega mais dados por segundo.",
+    "overview": [
+      "Pleasure Point tem ondas de todos os tamanhos. Uma onda de 60 centímetros é suficiente para deslizar em uma prancha longa, mas não consegue potencializar um aéreo grande. Uma onda de 3 metros carrega energia suficiente para as manobras mais exigentes. A largura de banda é o equivalente na internet: quantos dados podem fluir por uma conexão por segundo, medida em Mbps (megabits por segundo) ou Gbps.",
+      "A largura de banda é a capacidade máxima; a taxa de transferência efetiva é a transferência real de dados. Uma conexão de 100 Mbps pode atingir apenas 60 Mbps de taxa de transferência efetiva devido à latência, perda de pacotes ou congestionamento de rede — como uma rodovia larga onde os engarrafamentos diminuem a velocidade dos carros abaixo do limite. Entender a diferença importa para diagnosticar redes lentas.",
+      "Os ataques DDoS (Negação de Serviço Distribuída) usam a largura de banda como arma. Os atacantes enviam mais dados do que a largura de banda do alvo consegue absorver — a conexão fica cheia e o tráfego legítimo é descartado. O recorde DDoS da Cloudflare em 2023 atingiu 71 milhões de requisições por segundo — saturando a largura de banda no nível de infraestrutura."
+    ],
+    "technical": {
+      "title": "Largura de Banda vs Latência vs Taxa de Transferência",
+      "body": [
+        "Três medições distintas: Largura de banda = tamanho do tubo (bits máximos/segundo). Latência = atraso (milissegundos do envio ao recebimento, medido por ping). Taxa de transferência = dados realmente transferidos por segundo (sempre ≤ largura de banda). Alta largura de banda + alta latência = rápido mas lento (internet via satélite). Baixa largura de banda + baixa latência = lento mas responsivo (sinal móvel fraco).",
+        "Gargalos: se sua casa tem 1 Gbps mas o link do seu ISP para a internet é de 100 Mbps, sua largura de banda efetiva é 100 Mbps. O link mais lento na cadeia sempre é o gargalo. traceroute revela onde os picos de latência ocorrem, sugerindo onde estão os gargalos ou congestionamentos no caminho."
+      ]
+    },
+    "incident": {
+      "title": "Cloudflare DDoS — Saturação de Largura de Banda de 71 Milhões de RPS",
+      "impact": "Maior ataque DDoS HTTP já registrado; saturação de largura de banda no nível de infraestrutura",
+      "body": [
+        "Em fevereiro de 2023, a Cloudflare mitigou o maior ataque DDoS HTTP já registrado: 71 milhões de requisições por segundo de um botnet de 30.000 endereços IP. O ataque foi direcionado a múltiplos clientes da Cloudflare simultaneamente, tentando saturar a largura de banda no nível de infraestrutura.",
+        "A arquitetura distribuída da Cloudflare em mais de 285 datacenters distribuiu a carga — nenhum datacenter único foi sobrecarregado. Eles mitigaram o ataque em segundos usando análise de tráfego automatizada. A lição: DDoS baseado em largura de banda é resolvido tendo mais capacidade de largura de banda do que o atacante consegue lançar contra você, distribuída globalmente."
+      ]
+    },
+    "timeline": [
+      "ARPANET funciona a 50 Kbps — estado da arte para 1969",
+      "Banda larga (1 Mbps+) começa a substituir conexão discada (56 Kbps)",
+      "Botnet Mirai: DDoS de 1,2 Tbps — ataque de largura de banda na escala de terabit",
+      "Cloudflare: DDoS de 71M requisições/seg — o maior já registrado"
+    ],
+    "keyTakeaways": [
+      "Largura de banda = capacidade máxima; taxa de transferência = taxa de dados real (sempre ≤ largura de banda)",
+      "Latência = atraso em ms; alta latência prejudica aplicações em tempo real mesmo em links de alta largura de banda",
+      "Gargalo = link mais lento na cadeia — sempre limita a taxa de transferência total",
+      "Ataques DDoS de largura de banda saturam o tubo até que o tráfego legítimo não consiga passar"
+    ]
+  },
+  "bt-18": {
+    "tagline": "Você espera o conjunto chegar. A latência é quanto tempo você espera — define sua experiência.",
+    "overview": [
+      "Você está esperando na fila no Boardwalk. O conjunto chega a cada 8–12 minutos — esse intervalo é a latência do oceano. Em redes, a latência é o atraso entre enviar dados e receber uma resposta, medida em milissegundos (ms). Baixa latência (menos de 50ms) é imperceptível. Alta latência (500ms+) faz as aplicações parecerem lentas e as videochamadas travarem.",
+      "A latência é determinada pela física: os dados viajam a aproximadamente 2/3 da velocidade da luz por cabos de fibra óptica. Uma viagem de ida e volta da California para a Europa é ~180ms apenas pela distância física. Adicione o tempo de processamento em cada salto, atrasos de fila em roteadores congestionados e viagens de ida e volta do handshake TLS, e você rapidamente chega a 300–400ms para uma conexão transatlântica.",
+      "A latência importa enormemente para ferramentas de segurança: a detecção de intrusões que leva 500ms para analisar um pacote perde ataques em tempo real. Empresas de trading de alta frequência pagam milhões por conexões de baixa latência porque milissegundos se traduzem diretamente em vantagem competitiva. E para os atacantes, uma conexão de alta latência entre uma vítima e seu monitoramento de segurança cria pontos cegos na detecção."
+    ],
+    "technical": {
+      "title": "Medindo a Latência e Suas Fontes",
+      "body": [
+        "Ping mede o tempo de viagem de ida e volta (RTT): o tempo para um pacote chegar a um host e retornar. Um ping de 20ms significa que os dados levam 10ms em cada direção. Fontes de latência: atraso de propagação (distância/velocidade da luz), atraso de transmissão (largura de banda do link), atraso de processamento (tempo de CPU do roteador), atraso de fila (buffers congestionados). O primeiro domina para conexões de longa distância; o último domina sob carga.",
+        "Ferramentas: ping (RTT básico), traceroute (latência por salto para encontrar gargalos), mtr (ping + traceroute combinados, contínuo). Alta latência em um salto específico no traceroute sugere congestionamento ou um roteador lento naquele ponto. Latência que aumenta proporcionalmente com a distância é normal; picos repentinos indicam congestionamento."
+      ]
+    },
+    "incident": {
+      "title": "A Interrupção da AWS US-East de 2012 — Latência como Falha em Cascata",
+      "impact": "Reddit, Airbnb, Netflix degradados por horas",
+      "body": [
+        "Um evento de rede na AWS US-East-1 causou latência elevada entre zonas de disponibilidade. Os serviços que dependiam de chamadas síncronas entre zonas começaram a expirar — uma chamada de 2ms que de repente levava 2000ms causou falhas em cascata quando os serviços aguardavam respostas que não chegavam rápido o suficiente.",
+        "Isso ilustra como os picos de latência se propagam em cascata: um componente lento faz com que os componentes que aguardam por ele se acumulem, fazendo com que os chamadores desses componentes diminuam a velocidade, até que todo o sistema pare. A solução: projete para a latência — use chamadas assíncronas, estabeleça timeouts agressivos e implemente circuit breakers que falham rapidamente em vez de esperar."
+      ]
+    },
+    "timeline": [
+      "Conceito de ping desenvolvido junto com os protocolos da ARPANET",
+      "Comando ping escrito por Mike Muuss — ainda é a principal ferramenta de latência hoje",
+      "Cascata de latência da AWS US-East-1 — rede lenta causa interrupção parcial de 6 horas",
+      "Melhorias em cabos submarinos reduzem RTT EUA-Europa para menos de 70ms"
+    ],
+    "keyTakeaways": [
+      "Latência = atraso unidirecional em ms; RTT (ping) = 2x a latência unidirecional",
+      "Fontes: propagação (distância), transmissão (largura de banda), processamento, fila (congestionamento)",
+      "traceroute mostra latência por salto — picos indicam congestionamento ou saltos lentos",
+      "A latência se propaga em cascata: um componente lento faz com que todos os chamadores anteriores se acumulem"
+    ]
+  },
+  "bt-19": {
+    "tagline": "Se os registros do campeonato de surf estão falsificados, cada surfista aparece na praia errada.",
+    "overview": [
+      "O arquivo do campeonato de surf Beach Flats armazena o registro oficial de qual surfista ganhou qual evento. Se alguém alterar esses registros — mudando o local de Steamer Lane para Capitola — cada competidor aparece no local errado. O envenenamento de cache DNS faz exatamente isso: corrompe o cache do seu resolvedor DNS para que quando você buscar 'bank.com', obtenha um IP malicioso em vez do real.",
+      "Seu resolvedor DNS armazena em cache as respostas para acelerar buscas futuras. Os ataques de envenenamento de cache injetam uma resposta DNS falsa naquele cache — enganando o resolvedor para que pense que 'yourbank.com' aponta para o servidor do atacante. Cada usuário que depende daquele resolvedor é enviado a um site falso convincente e suas credenciais são roubadas.",
+      "O ataque Kaminsky de 2008 demonstrou que o envenenamento de cache DNS podia ser realizado em grande escala contra qualquer resolvedor DNS. A solução — DNSSEC (Extensões de Segurança DNS) — assina criptograficamente os registros DNS para que a adulteração seja detectável. Mas a adoção do DNSSEC continua baixa, e DNS-over-HTTPS (DoH) é agora a alternativa mais prática para usuários finais."
+    ],
+    "technical": {
+      "title": "Como o Envenenamento de Cache Funciona e a Defesa DNSSEC",
+      "body": [
+        "Envenenamento de cache clássico: o atacante envia uma consulta DNS a um resolvedor, depois o inunda com respostas falsas fingindo ser o servidor autoritativo antes que a resposta real chegue. Se uma resposta falsa chegar primeiro com o ID de transação correto, o resolvedor armazena em cache o registro falso. O ataque Kaminsky tornou isso prático explorando o pequeno espaço de ID de transação de 16 bits.",
+        "DNSSEC adiciona assinaturas digitais aos registros DNS. O servidor autoritativo assina seus registros com uma chave privada. Os resolvedores verificam a assinatura usando a chave pública publicada na hierarquia DNS. Qualquer registro adulterado tem uma assinatura inválida e é rejeitado. Os registros DNSKEY e DS armazenam o material criptográfico no próprio DNS."
+      ]
+    },
+    "incident": {
+      "title": "A Vulnerabilidade de Envenenamento de Cache DNS Kaminsky de 2008",
+      "impact": "Crítica — cada usuário de internet vulnerável; coordenação de patches de emergência entre todos os fornecedores",
+      "body": [
+        "Dan Kaminsky descobriu que o ID de transação DNS de 16 bits e a porta de origem combinados forneciam apenas 32 bits de entropia — o suficiente para um atacante inundar um resolvedor com respostas falsas e ter uma chance razoável de envenenar seu cache em menos de 10 segundos. Essa não era uma vulnerabilidade nova no software — era uma falha fundamental no design do protocolo DNS.",
+        "Kaminsky coordenou secretamente patches com Microsoft, Cisco, BIND e outros durante 3 meses antes de divulgar. O patch adicionou aleatorização de portas de origem, expandindo a entropia de 16 bits para ~32 bits. Um comunicado CERT foi divulgado simultaneamente a todos os fornecedores. É considerada uma das divulgações de vulnerabilidades melhor coordenadas na história."
+      ]
+    },
+    "timeline": [
+      "DNS projetado sem autenticação — envenenamento teoricamente possível desde o primeiro dia",
+      "Primeiro ataque prático de envenenamento de cache DNS demonstrado",
+      "Kaminsky descobre falha crítica no DNS — patches de emergência em todos os fornecedores",
+      "DNSSEC implantado para TLDs .com, .net, .org"
+    ],
+    "keyTakeaways": [
+      "O envenenamento de cache DNS injeta registros falsos no cache de um resolvedor",
+      "O cache envenenado redireciona todos os usuários naquele resolvedor para IPs controlados pelo atacante",
+      "DNSSEC adiciona assinaturas criptográficas para evitar que registros adulterados sejam aceitos",
+      "DNS-over-HTTPS (DoH) previne interceptação pelo ISP e adiciona confidencialidade"
+    ]
+  },
+  "bt-20": {
+    "tagline": "Quando Steamer Lane está lotado, os locais vão para Four Mile. Os balanceadores de carga distribuem a multidão da mesma forma.",
+    "overview": [
+      "Em um dia de ressaca grande, Steamer Lane está superlotado. Os surfistas locais se dispersam — alguns vão para Cowell, alguns para Pleasure Point, alguns para Four Mile. Nenhum pico de ondas fica sobrecarregado. Os balanceadores de carga distribuem o tráfego de rede de entrada entre múltiplos servidores para que nenhum servidor se torne um gargalo ou ponto de falha.",
+      "Um balanceador de carga fica na frente de um grupo de servidores. Quando uma requisição chega, ele escolhe um servidor usando um algoritmo: round-robin (rodízio), least connections (enviar para o menos ocupado) ou IP hash (o mesmo usuário sempre vai para o mesmo servidor). O cliente vê um IP, mas é atendido por um de muitos servidores backend.",
+      "O balanceamento de carga é tanto uma ferramenta de desempenho quanto uma preocupação de segurança. Atacantes que miram uma vulnerabilidade específica do servidor podem precisar continuar atingindo o mesmo backend (persistência de sessão). As equipes de segurança usam balanceadores de carga para absorver tráfego DDoS, encerrar TLS centralmente e rotear tráfego suspeito para honeypots ou inspeção mais profunda."
+    ],
+    "technical": {
+      "title": "Algoritmos de Balanceamento de Carga e Verificações de Saúde",
+      "body": [
+        "Round-robin: cada requisição vai para o próximo servidor em rotação — simples mas ignora a carga do servidor. Least connections: rotear para o servidor com menos conexões ativas — melhor para tamanhos de requisição variáveis. IP hash: fazer hash do IP do cliente e sempre rotear para o mesmo backend — útil para sessões fixas sem cookies.",
+        "Verificações de saúde: os balanceadores de carga sondiam continuamente os backends (HTTP GET /health → 200 OK). Um servidor que falha nas verificações de saúde é removido do pool. Isso permite implantações sem tempo de inatividade: implantar em um servidor, aguardar que as verificações de saúde passem, remover o servidor antigo do pool, repetir em toda a frota."
+      ]
+    },
+    "incident": {
+      "title": "A Vazamento de Token do Heroku/GitHub de 2022 — Balanceador de Carga Expõe Roteamento Interno",
+      "impact": "Tokens privados do GitHub OAuth roubados; milhares de repositórios de clientes acessados",
+      "body": [
+        "Os atacantes obtiveram acesso aos sistemas internos do Heroku e conseguiram consultar o pool de backends do balanceador de carga — descobrindo servidores API internos que não eram destinados ao público. Então usaram a posição de rede privilegiada do balanceador de carga para acessar serviços internos e extrair tokens OAuth armazenados em um banco de dados.",
+        "A lição: os balanceadores de carga têm acesso de rede privilegiado a todos os backends. Um balanceador de carga comprometido (ou mal configurado) pode expor infraestrutura interna que não é destinada à internet. Os balanceadores de carga devem ter regras de saída rigorosas, ser protegidos com hardening, e os endpoints internos ainda devem exigir autenticação mesmo de faixas de rede confiáveis."
+      ]
+    },
+    "timeline": [
+      "Primeiros balanceadores de carga comerciais enviados (Cisco LocalDirector)",
+      "AWS Elastic Load Balancer lançado — balanceamento de carga nativo da nuvem",
+      "DDoS Mirai sobrecarrega Dyn DNS — nenhum balanceador de carga conseguia absorver 1,2 Tbps",
+      "Violação do Heroku via acesso interno do balanceador de carga — tokens roubados do BD"
+    ],
+    "keyTakeaways": [
+      "Os balanceadores de carga distribuem tráfego entre pools de servidores — sem ponto único de falha",
+      "Algoritmos: round-robin (simples), least connections (inteligente), IP hash (fixo)",
+      "As verificações de saúde removem automaticamente servidores com falha do pool",
+      "Os balanceadores de carga têm acesso privilegiado — protegê-los com hardening é crítico"
+    ]
+  },
+  "bt-22": {
+    "tagline": "O barco charter precisa de duas chaves para ligar: a chave de ignição E o código do capitão. Perca uma, o barco fica atracado.",
+    "overview": [
+      "O barco charter no Coast Guard Pier requer duas ações para ligar o motor: inserir a chave de ignição E digitar um código de capitão de 4 dígitos. Alguém que roube apenas a chave não consegue ligar o barco. Alguém que saiba apenas o código também não. A autenticação de dois fatores (2FA) aplica esse princípio aos logins: algo que você sabe (senha) mais algo que você tem (telefone, chave de hardware) ou algo que você é (impressão digital).",
+      "2FA interrompe os ataques de roubo de credenciais instantaneamente. Se um atacante fizer phishing da sua senha, ainda não consegue fazer login sem o segundo fator. As estatísticas de 2023 são contundentes: as contas com 2FA habilitado têm 99,9% menos probabilidade de serem comprometidas do que as sem. Os dados da Microsoft mostram que 2FA bloqueia praticamente todos os ataques automatizados.",
+      "Tipos de segundos fatores: códigos SMS (convenientes mas vulneráveis a troca de SIM), códigos TOTP de aplicativo autenticador (mais seguros, offline), chaves de hardware como YubiKey (mais seguro, resistente a phishing) e biometria (impressão digital, rosto). SMS é o mais fraco — use um aplicativo autenticador ou chave de hardware para contas sensíveis."
+    ],
+    "technical": {
+      "title": "Como TOTP (Aplicativos Autenticadores) Funcionam",
+      "body": [
+        "TOTP (Senha de Uso Único Baseada em Tempo, RFC 6238): quando você configura 2FA com um aplicativo autenticador, o servidor compartilha uma chave secreta com seu aplicativo. A cada 30 segundos, tanto o servidor quanto seu aplicativo calculam independentemente HMAC-SHA1(segredo + janela_de_tempo_atual) e pegam os últimos 6 dígitos. Porque compartilham o segredo e o horário está sincronizado, obtêm o mesmo código de 6 dígitos — sem nenhuma comunicação.",
+        "Troca de SIM: o atacante liga para a sua operadora, se passa por você usando engenharia social, faz com que seu número de telefone seja transferido para o cartão SIM dele. Agora ele recebe seus códigos SMS. Em 2019, a conta do CEO do Twitter Jack Dorsey foi hackeada dessa forma. Aplicativos autenticadores e chaves de hardware são imunes à troca de SIM — eles não usam o número de telefone."
+      ]
+    },
+    "incident": {
+      "title": "O Hack do Uber em 2022 — Engenharia Social Contornando 2FA",
+      "impact": "Acesso completo à rede interna; código-fonte, ferramentas internas, relatórios do HackerOne expostos",
+      "body": [
+        "Um atacante de 18 anos comprometeu o Uber mirando um contratado. O contratado tinha credenciais válidas e 2FA. O atacante usou fadiga de MFA: enviou notificações push de 2FA repetidas até que o contratado, irritado com os avisos constantes, finalmente clicou em 'Aprovar' apenas para pará-los. Depois enviou uma mensagem de texto ao contratado se passando pelo departamento de TI do Uber, dizendo que as aprovações eram um teste.",
+        "Com a sessão aprovada, o atacante encontrou um script de PowerShell em um compartilhamento de arquivos interno contendo credenciais de administrador codificadas no sistema PAM Thycotic do Uber. A partir daí, tinham acesso a tudo. Lição: 2FA não é à prova de engenharia social. 2FA com correspondência de número (mostrar o mesmo número no login e na notificação push) derrota os ataques de fadiga de MFA."
+      ]
+    },
+    "timeline": [
+      "RSA SecurID — primeiro token 2FA de hardware comercial",
+      "Google Authenticator lançado — TOTP torna-se generalizado",
+      "Conta de Jack Dorsey (CEO do Twitter) hackeada via troca de SIM — contornou 2FA por SMS",
+      "Hack do Uber via fadiga de MFA — engenharia social derrota 2FA de notificação push"
+    ],
+    "keyTakeaways": [
+      "2FA requer dois fatores: algo que você sabe + algo que você tem/é",
+      "Contas com 2FA têm 99,9% menos probabilidade de serem comprometidas",
+      "2FA por SMS é o mais fraco — vulnerável a troca de SIM; use um aplicativo autenticador",
+      "Fadiga de MFA: os atacantes enviam spam de notificações push até que a vítima aprove por engano"
+    ]
+  },
+  "bt-23": {
+    "tagline": "Um cadeado de 3 dígitos tem 1.000 combinações. Um cadeado de 6 dígitos tem 1.000.000. O comprimento supera a complexidade sempre.",
+    "overview": [
+      "O armário de iscas da loja de pesca usa um cadeado de combinação. Um cadeado de 3 dígitos (000–999) pode ser forçado tentando todas as 1.000 combinações em minutos. Um cadeado de 6 dígitos leva 1.000x mais tempo. Um cadeado de 8 dígitos: 100.000x mais. A força das senhas funciona com a mesma matemática: mais caracteres = exponencialmente mais combinações = exponencialmente mais tempo para ser forçado.",
+      "A força de uma senha vem da entropia — o número de bits necessários para representá-la como informação. Uma senha aleatória de 8 caracteres usando apenas letras minúsculas tem 26^8 ≈ 200 bilhões de combinações. Adicione maiúsculas (52^8) e números (62^8) — 218 trilhões de combinações. Adicione comprimento para 16 caracteres: 62^16 ≈ 47 sextilhões. Os quebradores de senha modernos funcionam a 100 bilhões de tentativas por segundo em hardware GPU.",
+      "O conselho comum de usar senhas 'complexas' (P@ssw0rd1!) é na verdade menos seguro do que uma frase-senha longa (correct-horse-battery-staple). Os dicionários dos atacantes incluem todas as substituições comuns. O comprimento vence. Use uma frase-senha de 4 ou mais palavras aleatórias, ou deixe um gerenciador de senhas gerar uma string completamente aleatória de 20 caracteres."
+    ],
+    "technical": {
+      "title": "Como a Quebra de Senhas Funciona",
+      "body": [
+        "Quebra offline: o atacante obtém o banco de dados de senhas com hash (via uma violação). Gera hash de tentativas e compara com os hashes roubados. Com uma GPU moderna, eles podem testar 100 bilhões de hashes MD5 por segundo, 10 bilhões de hashes bcrypt por segundo. Os ataques de dicionário testam palavras comuns e padrões primeiro; a força bruta testa todas as combinações de um conjunto de caracteres e comprimento fornecidos.",
+        "Salting: um salt aleatório é adicionado a cada senha antes de fazer hash, então dois usuários com a mesma senha têm hashes diferentes. Isso evita ataques de tabela arco-íris (buscas de hash pré-computadas) e força o atacante a quebrar cada hash individualmente. bcrypt, scrypt e Argon2 são projetados para ser deliberadamente lentos, tornando a quebra em grande escala impraticável."
+      ]
+    },
+    "incident": {
+      "title": "A Violação do RockYou — 32 Milhões de Senhas em Texto Simples",
+      "impact": "32 milhões de senhas de usuário armazenadas em texto simples; senhas mais comuns reveladas; rockyou.txt ainda é usado hoje",
+      "body": [
+        "RockYou armazenou 32 milhões de senhas de usuário em texto simples sem hash. Um ataque de injeção SQL expôs todo o banco de dados. O dump tornou-se a lista de senhas mais famosa em cibersegurança — 'rockyou.txt' ainda é a primeira lista de palavras que cada ferramenta de quebra de senhas tenta. A senha mais comum: '123456' (usada por 290.731 contas). Segunda: '12345'. Terceira: '123456789'.",
+        "A análise revelou que 99% dos usuários escolheram senhas de um pequeno conjunto de padrões: sequências de teclado (qwerty, asdf), palavras simples com sufixos numéricos (password1), nomes e números sequenciais. Cada quebrador de senha moderno começa com esses padrões. Se sua senha é adivinhável por um humano, certamente é adivinhável por uma GPU."
+      ]
+    },
+    "timeline": [
+      "Primeiro sistema de senha de computador no MIT CTSS",
+      "Unix introduz /etc/passwd com senhas hasheadas — salting é inventado",
+      "Violação do RockYou — 32M senhas em texto simples; rockyou.txt nasce",
+      "Violação do LinkedIn — 117M hashes SHA-1 sem salt quebrados em dias"
+    ],
+    "keyTakeaways": [
+      "O comprimento supera a complexidade — 4 palavras aleatórias é mais forte que 8 caracteres complexos",
+      "Use um gerenciador de senhas para gerar e armazenar senhas verdadeiramente aleatórias de 20 caracteres",
+      "Nunca reutilize senhas — uma violação compromete todas as contas que usam aquela senha",
+      "Hash com salt (bcrypt/Argon2) torna a quebra computacionalmente custosa"
+    ]
+  },
+  "bt-24": {
+    "tagline": "Em mar aberto, qualquer um com um rádio pode ouvir a transmissão do seu canal marítimo. WiFi aberto funciona igual.",
+    "overview": [
+      "Na Baía de Monterey, os barcos de pesca se comunicam no canal 16 de rádio marítimo, uma frequência aberta sem criptografia que qualquer pessoa com um rádio pode sintonizar. Suas conversas são públicas. As redes WiFi abertas (cafeterias, aeroportos, hotéis) funcionam de forma idêntica: conexões sem criptografia que qualquer dispositivo dentro do alcance de rádio pode capturar e ler com ferramentas disponíveis gratuitamente.",
+      "Em uma rede WiFi aberta, todo o tráfego sem criptografia — requisições HTTP, consultas DNS, e-mails em texto simples — é visível para qualquer dispositivo na mesma rede. Um atacante com um notebook rodando Wireshark pode capturar todo o tráfego passivamente sem enviar um único pacote. Eles estão apenas ouvindo o meio compartilhado, exatamente como sintonizar um rádio.",
+      "Proteção contra escuta WiFi: HTTPS criptografa o conteúdo do tráfego web (então mesmo se capturado, é ilegível), uma VPN criptografa todo o tráfego do seu dispositivo (incluindo consultas DNS e tráfego de aplicativos), e usar o ponto de acesso do seu telefone em vez do WiFi público evita o risco completamente."
+    ],
+    "technical": {
+      "title": "Escuta WiFi e MITM em Redes Abertas",
+      "body": [
+        "WiFi aberto não usa criptografia entre seu dispositivo e o ponto de acesso — todos os quadros são transmitidos em texto simples. Qualquer dispositivo em modo promíscuo (ouvindo todo o tráfego, não apenas o seu) pode capturar esses quadros. Ferramentas: Wireshark (captura e análise passiva), Aircrack-ng (ataques WiFi ativos), ettercap (MITM na rede local).",
+        "Mesmo em WiFi criptografado com WPA2, todos os dispositivos na rede compartilham a mesma chave de criptografia. Se você souber a senha do WiFi, pode descriptografar o tráfego de outros usuários (no modo WPA2 pessoal). WPA2-Enterprise com certificados de usuário individuais é a solução para ambientes corporativos. Para proteção pessoal: VPN ou HTTPS em todo lugar."
+      ]
+    },
+    "incident": {
+      "title": "O APT Darkhotel — Ataques Direcionados a WiFi de Hotéis",
+      "impact": "Dispositivos de executivos corporativos comprometidos via WiFi de hotéis durante viagens de negócios",
+      "body": [
+        "O grupo APT Darkhotel (suspeito de ser norte-coreano) infiltrou-se em redes WiFi de hotéis de luxo no Japão, China, Rússia e Taiwan. Eles miraram executivos de nível C hospedados nos hotéis, entregando malware por meio de indicadores falsos de atualização de software na rede do hotel. Os atacantes tinham conhecimento prévio dos itinerários de viagem dos executivos.",
+        "Sentados na rede do hotel como intermediários, eles podiam injetar conteúdo malicioso em conexões HTTP, exibir indicadores de atualização falsos e baixar keyloggers quando o alvo clicava em 'atualizar'. A lição: nunca aprove atualizações de software em WiFi de hotel, use uma VPN em qualquer rede pública ou de hotel e use navegação somente com HTTPS."
+      ]
+    },
+    "timeline": [
+      "Padrão WiFi 802.11 introduzido — sem segurança por padrão",
+      "WEP quebrado em minutos — a criptografia WiFi se demonstra inútil",
+      "APT Darkhotel começa a mirar redes WiFi de hotéis",
+      "WPA3 introduz criptografia por sessão — mesmo WiFi de chave compartilhada melhora"
+    ],
+    "keyTakeaways": [
+      "WiFi aberto não é criptografado — cada pacote é visível para qualquer pessoa na rede",
+      "Escuta passiva não requer ataque — apenas ouvir o meio compartilhado",
+      "HTTPS protege o conteúdo mas não o domínio de destino (visível via SNI)",
+      "VPN ou ponto de acesso do telefone são as opções mais seguras em redes não confiáveis"
+    ]
+  },
+  "bt-25": {
+    "tagline": "O melhor golpista nunca força uma fechadura. Convence alguém a abrir a porta.",
+    "overview": [
+      "Na cantina do cais, velhos pescadores trocam histórias exageradas — relatos inflados projetados para impressionar, manipular ou obter informações de outros marinheiros. A engenharia social é o equivalente em cibersegurança: os atacantes manipulam psicologicamente as pessoas para que entreguem informações, acesso ou dinheiro sem necessidade de nenhum hacking técnico.",
+      "A engenharia social explora a natureza humana: confiança, autoridade, medo, urgência, disposição para ajudar e reciprocidade. Um atacante se passando por um técnico de TI pedindo sua senha explora sua deferência à autoridade e sua disposição para ajudar. Uma falsa solicitação de 'transferência urgente' do CEO explora autoridade e pressão de tempo. Nenhum firewall ou antivírus pode impedir que uma pessoa entregue informações.",
+      "Kevin Mitnick — uma vez o hacker mais procurado do mundo — disse famosamente que raramente precisava entrar em sistemas tecnicamente. Ele simplesmente ligava para funcionários, dizia ser de TI e pedia suas senhas. A maioria cumpria. A engenharia social continua sendo o vetor de ataque número 1 precisamente porque os humanos são confiavelmente exploráveis."
+    ],
+    "technical": {
+      "title": "Técnicas de Engenharia Social e Defesas",
+      "body": [
+        "Pretexting: criar um cenário fabricado para estabelecer credibilidade (ex.: 'Sou do departamento de suporte de TI, temos um incidente de segurança e precisamos da sua senha para investigar'). Baiting: deixar pen drives infectados em um estacionamento, esperando que funcionários curiosos os conectem. Tailgating: seguir uma pessoa autorizada por uma porta segura. Vishing: engenharia social baseada em telefone.",
+        "Defesas: verificar identidades por um canal separado (retorne a ligação para o departamento de TI no número conhecido, não no número que te deram). Nunca entregue senhas por telefone ou e-mail — TI legítimo nunca precisa da sua senha. Estabeleça procedimentos de verificação claros para solicitações sensíveis. O treinamento de conscientização de segurança reduz significativamente a suscetibilidade."
+      ]
+    },
+    "incident": {
+      "title": "O Golpe BEC de $120M no Facebook/Google — Faturas de Fornecedores Falsas",
+      "impact": "$120 milhões transferidos para contas bancárias do atacante durante 2 anos",
+      "body": [
+        "Evaldas Rimasauskas criou uma empresa falsa se passando pela Quanta Computer, um fornecedor taiwanês real ao qual Facebook e Google pagavam regularmente. Ele enviou faturas convincentes com contratos e correspondência que pareciam reais. Funcionários de contabilidade em ambas as empresas transferiram mais de $120 milhões para suas contas bancárias lituanas durante dois anos.",
+        "Nenhum sistema foi hackeado. Nenhum malware foi usado. Apenas e-mails cuidadosamente elaborados e faturas falsas explorando a relação de confiança entre os gigantes da tecnologia e seu fornecedor. Rimasauskas foi capturado e extraditado. A lição: controles financeiros (autorização dupla para transferências grandes, verificação de fornecedores via retorno de chamada) são a defesa técnica contra BEC."
+      ]
+    },
+    "timeline": [
+      "Kevin Mitnick começa campanhas de engenharia social contra companhias telefônicas",
+      "A história de Frank Abagnale (Prenda-me Se For Capaz) — aula magistral em engenharia social",
+      "O golpe BEC do Facebook/Google totaliza $120M — engenharia social pura",
+      "As perdas por BEC atingem $2,7B — o crime cibernético número 1 por dano financeiro (FBI IC3)"
+    ],
+    "keyTakeaways": [
+      "A engenharia social explora a psicologia humana, não vulnerabilidades de software",
+      "Urgência, autoridade e medo são as principais alavancas de manipulação",
+      "TI legítimo nunca precisa da sua senha — sempre recuse tais solicitações",
+      "Verifique solicitações financeiras e mudanças de identidade por um canal separado e conhecido"
+    ]
+  },
+  "bt-26": {
+    "tagline": "Uma rachadura conhecida no casco é uma contagem regressiva. Conserte ou afunde.",
+    "overview": [
+      "De volta ao porto de Santa Cruz, o estaleiro de manutenção de barcos conserta cascos. Uma rachadura que foi documentada e relatada precisa ser reparada antes da próxima viagem — ignorar uma rachadura conhecida é arriscar a segurança de toda a tripulação. As vulnerabilidades de software funcionam de forma idêntica: uma vez que um CVE (Common Vulnerabilities and Exposures) é publicado, os atacantes imediatamente começam a escrever exploits. A janela entre a divulgação e o ataque é frequentemente menor que 24 horas.",
+      "As atualizações e patches de software são o mecanismo principal para selar buracos de segurança conhecidos. Quando os pesquisadores descobrem uma vulnerabilidade, eles a relatam ao fornecedor. O fornecedor desenvolve uma solução, a testa e lança um patch. Os usuários que aplicam o patch fecham a vulnerabilidade. Os usuários que não o fazem estão operando com um alvo de exploit conhecido, documentado e publicamente disponível.",
+      "O ransomware WannaCry de 2017 infectou 200.000 computadores usando uma vulnerabilidade que a Microsoft havia corrigido dois meses antes (MS17-010). Cada máquina infectada havia falhado em aplicar um patch disponível. Esse padrão se repete constantemente: a maioria dos ataques bem-sucedidos explora vulnerabilidades conhecidas, não zero-days."
+    ],
+    "technical": {
+      "title": "Sistema CVE, Gestão de Patches e Zero-Days",
+      "body": [
+        "CVE (Common Vulnerabilities and Exposures): um identificador padronizado para vulnerabilidades conhecidas. Formato: CVE-ANO-NÚMERO (ex.: CVE-2021-44228 é Log4Shell). A pontuação CVSS (0–10) classifica a gravidade: 9,0+ é Crítica. O NVD (National Vulnerability Database) rastreia todos os CVEs com detalhes, versões afetadas e patches.",
+        "Zero-day: uma vulnerabilidade desconhecida para o fornecedor — não existe patch. Os atacantes que descobrem zero-days as vendem (preços: $500K–$2M para zero-days de iOS) ou as usam silenciosamente. Uma vez divulgadas, tornam-se n-days — vulnerabilidades conhecidas e que podem ser corrigidas. A maioria dos ataques do mundo real usa n-days, não zero-days, porque a maioria dos sistemas está mal corrigida."
+      ]
+    },
+    "incident": {
+      "title": "Log4Shell — A Vulnerabilidade Que Estava à Vista de Todos",
+      "impact": "Centenas de milhões de dispositivos vulneráveis; CISA a chamou de 'a mais séria' em anos",
+      "body": [
+        "Log4Shell (CVE-2021-44228) foi uma vulnerabilidade crítica no Log4j, uma biblioteca de logging Java usada em tudo, desde servidores de Minecraft até software empresarial até sistemas da NASA. A pontuação CVSS: 10,0 — gravidade máxima. Explorá-la exigia enviar uma única string especialmente elaborada que, quando registrada, desencadeava a execução remota de código.",
+        "A biblioteca havia sido baixada 475 milhões de vezes. Em 72 horas após a divulgação pública, os atacantes estavam varrendo toda a internet em busca de servidores vulneráveis — milhões de tentativas de exploit por hora. Corrigir exigia identificar cada sistema usando Log4j (mais difícil do que parece quando é uma dependência indireta) e atualizá-lo. Algumas organizações levaram meses. A lição: conheça o software do qual o seu software depende."
+      ]
+    },
+    "timeline": [
+      "Sistema CVE lançado pelo MITRE — rastreamento padronizado de vulnerabilidades",
+      "WannaCry: 200K máquinas infectadas via MS17-010 — patch disponível 2 meses antes",
+      "Log4Shell: CVSS 10,0, centenas de milhões de dispositivos, implantação de exploit em 72h",
+      "Catálogo CISA KEV (Known Exploited Vulnerabilities) lançado — correção priorizada"
+    ],
+    "keyTakeaways": [
+      "Aplique patches de segurança imediatamente — os atacantes exploram vulnerabilidades conhecidas em horas",
+      "Pontuações CVE acima de 9,0 são críticas — trate como um exercício de incêndio",
+      "Conheça as dependências do seu software — Log4Shell estava escondido dentro de outro software",
+      "A maioria dos ataques reais usa vulnerabilidades conhecidas e que podem ser corrigidas — não zero-days"
+    ]
+  },
+  "bt-27": {
+    "tagline": "Uma rede rasgada perde toda a captura. Uma violação de dados perde os dados de todos de uma vez.",
+    "overview": [
+      "Na estação de inspeção de Moss Landing, os inspetores verificam a captura. Uma rede rasgada significa que toda a pesca — semanas de trabalho — se derrama no oceano e se perde ou fica contaminada. Uma violação de dados faz o mesmo: uma vulnerabilidade nos sistemas de uma empresa e milhões de dados de clientes se derramam de uma vez. Você confiou à empresa suas informações; a violação afeta você independentemente de você ter feito algo errado ou não.",
+      "As violações de dados expõem credenciais, informações pessoais, dados financeiros e registros médicos. Os dados roubados aparecem em mercados da dark web em dias — vendidos para preenchimento de credenciais, ladrões de identidade e spammers. Seu e-mail e senha de uma violação no Site A são tentados contra o seu banco, seu e-mail, sua VPN de trabalho. Isso é preenchimento de credenciais — tentativas de login automatizadas usando pares conhecidos de nome de usuário/senha.",
+      "Have I Been Pwned (haveibeenpwned.com) permite que você verifique se seu endereço de e-mail aparece em bancos de dados de violações conhecidas. Se aparecer, mude a senha naquele site e em qualquer outro site onde a reutilizou. Habilite 2FA. A violação não foi sua culpa — mas sua resposta determina o dano."
+    ],
+    "technical": {
+      "title": "Ciclo de Vida de Violações e Preenchimento de Credenciais",
+      "body": [
+        "Ciclo de vida da violação: (1) O atacante compromete o banco de dados da empresa. (2) Dados exfiltrados — muitas vezes semanas antes da descoberta. (3) Dados vendidos em fóruns da dark web (com preço conforme o número de registros e tipo de dados). (4) Os preenchimentos de credenciais executam ferramentas automatizadas contra os principais sites. (5) Os logins bem-sucedidos são vendidos como 'listas combinadas'. (6) A violação é descoberta e divulgada eventualmente (média: 197 dias para detecção).",
+        "As ferramentas de preenchimento de credenciais (Sentry MBA, OpenBullet) testam milhões de pares de nome de usuário/senha contra sites alvo por hora. Os sites se defendem com: limitação de taxa, CAPTCHA, detecção de viagens impossíveis (login da Grécia depois da California 1 hora depois) e triagem de senhas de violação (rejeitar senhas encontradas em listas de violações conhecidas no login)."
+      ]
+    },
+    "incident": {
+      "title": "A Violação do Yahoo de 2013 — 3 Bilhões de Contas, Descoberta 3 Anos Depois",
+      "impact": "Redução de $350M no preço de aquisição pela Verizon; a maior violação na história",
+      "body": [
+        "O Yahoo foi violado em 2013. Cada conta do Yahoo — todos os 3 bilhões — foi comprometida. Os atacantes tinham acesso a nomes, endereços de e-mail, números de telefone, datas de nascimento, senhas com hash e perguntas de segurança. O Yahoo não descobriu a violação até 2016, divulgando-a como 500 milhões de contas. Um ano depois, revisaram para 3 bilhões.",
+        "A violação impactou diretamente a aquisição do Yahoo pela Verizon — o preço caiu $350 milhões após a divulgação. Para indivíduos: qualquer conta criada com credenciais do Yahoo (perguntas de segurança como 'o sobrenome de solteira da minha mãe') foi potencialmente comprometida. As perguntas de segurança são particularmente perigosas — as respostas não mudam após uma violação."
+      ]
+    },
+    "timeline": [
+      "Violação do Yahoo — 3B contas, não descoberta por 3 anos",
+      "A violação do LinkedIn de 2012 vem à tona — 117M registros vendidos na dark web",
+      "Violação da Equifax — 147M números de Seguridade Social, datas de nascimento, endereços",
+      "Violação do MOVEit — 2.500+ organizações afetadas por uma única vulnerabilidade de transferência de arquivos"
+    ],
+    "keyTakeaways": [
+      "As violações expõem seus dados mesmo quando você não fez nada errado",
+      "O preenchimento de credenciais tenta sua senha roubada em cada site principal",
+      "Nunca reutilize senhas — uma violação compromete todos os sites que usam aquela senha",
+      "Verifique haveibeenpwned.com regularmente e habilite 2FA em todo lugar"
+    ]
+  },
+  "bt-29": {
+    "tagline": "O capitão do porto controla quem sabe qual barco está em qual atracador. As configurações de privacidade dão a você o mesmo controle sobre seus dados.",
+    "overview": [
+      "O escritório do capitão do porto mantém registros detalhados: quais barcos estão atracados, seus proprietários, seus horários. Essa informação é compartilhada com a Guarda Costeira, o posto de gasolina e o estaleiro — mas não com o público em geral. As configurações de privacidade permitem que você controle o mesmo para sua vida digital: quais aplicativos, serviços e pessoas podem ver quais informações sobre você.",
+      "Cada aplicativo e plataforma social coleta dados. A questão não é se os dados são coletados — é quem tem acesso a eles e para qual finalidade. Os dados de localização dos seus aplicativos telefônicos são vendidos para corretores de dados. Suas informações de perfil do Facebook são extraídas por aplicativos de terceiros. Seu histórico de pesquisa do Google informa a publicidade direcionada. As configurações de privacidade controlam esses fluxos — mas apenas se você as configurar ativamente.",
+      "A minimização de dados é o princípio central: não compartilhe o que não é necessário. Cada informação que você compartilha com uma empresa torna-se uma possível exposição por violação. Números de telefone para 2FA por SMS podem ser usados para troca de SIM. Datas de nascimento reais ajudam a responder perguntas de segurança. A privacidade não se trata apenas de preferência — trata-se de reduzir sua superfície de ataque."
+    ],
+    "technical": {
+      "title": "Configurações de Privacidade Que Realmente Importam",
+      "body": [
+        "Configurações de privacidade de alto impacto: (1) Acesso à localização: mude todos os aplicativos para 'Enquanto em uso' ou 'Nunca' — quase nenhum aplicativo precisa de localização sempre ativa. (2) Permissões de aplicativo: audite o acesso ao microfone, câmera, contatos e fotos — revogue qualquer coisa que não precise. (3) Atividade de conta: Google/Facebook/Apple todos têm painéis 'Minha atividade' onde você pode ver e excluir dados coletados. (4) Rastreamento de anúncios: iOS: Configurações → Privacidade → Rastreamento → desabilitar. Android: Configurações → Privacidade → Anúncios → optar por não participar.",
+        "Exclusões de corretores de dados: empresas como Spokeo, Whitepages e BeenVerified agregam seus registros públicos. Cada uma tem um processo de exclusão. Serviços como DeleteMe automatizam isso. Seu perfil de corretor de dados inclui endereços, números de telefone, parentes e registros de propriedade — tudo útil para engenharia social e phishing direcionado."
+      ]
+    },
+    "incident": {
+      "title": "Cambridge Analytica — 87 Milhões de Perfis do Facebook Extraídos Sem Consentimento",
+      "impact": "Perfilamento político em escala; aceleração do GDPR; multa de $5B da FTC contra o Facebook",
+      "body": [
+        "Cambridge Analytica extraiu os dados de 87 milhões de usuários do Facebook sem o conhecimento deles. Um aplicativo de questionário de personalidade coletou não apenas os dados de quem respondeu ao questionário, mas, explorando a API do Facebook, também coletou os dados de todos os seus amigos. Os dados foram usados para construir perfis psicológicos para publicidade política direcionada.",
+        "Os usuários nunca consentiram que seus dados fossem usados dessa forma. As configurações de privacidade do Facebook naquele momento permitiam que os aplicativos acessassem os dados de amigos por padrão. O escândalo levou a mudanças importantes nas políticas da plataforma, acelerou a aplicação do GDPR na Europa e resultou em uma multa de $5 bilhões da FTC contra o Facebook — a maior penalidade por privacidade na história naquele momento."
+      ]
+    },
+    "timeline": [
+      "Lei CAN-SPAM — primeira lei americana que rege o marketing por e-mail",
+      "Cambridge Analytica começa a extrair dados do Facebook",
+      "GDPR entra em vigor — lei de proteção de dados da UE, impacto global",
+      "Escândalo de Cambridge Analytica — 87M perfis, multa de $5B da FTC contra o Facebook"
+    ],
+    "keyTakeaways": [
+      "Revise as permissões de aplicativos regularmente — revogue qualquer coisa desnecessária",
+      "Mude o acesso à localização para 'Enquanto em uso' — quase nenhum aplicativo precisa de localização sempre ativa",
+      "Use as ferramentas de download de dados da sua plataforma para ver o que foi coletado",
+      "Minimização de dados: cada informação compartilhada é uma possível exposição por violação"
+    ]
+  },
+  "bt-30": {
+    "tagline": "Um homem ao mar tem um protocolo: gritar, lançar o salva-vidas, não abandonar o local, chamar a Guarda Costeira. Os incidentes têm o mesmo protocolo.",
+    "overview": [
+      "Voltando ao Santa Cruz Harbor no final da viagem. Todo barco de pesca segue um protocolo de homem ao mar: gritar 'homem ao mar', lançar o salva-vidas, manter contato visual, se comunicar pelo rádio com a Guarda Costeira, não navegar para longe. O protocolo existe porque o pânico é o inimigo — você precisa de uma sequência ensaiada que funcione sob pressão. A resposta a incidentes de cibersegurança é a mesma: uma resposta preparada e sequenciada a um evento de segurança.",
+      "Quando você suspeita ter sido comprometido — tomada de conta, infecção por malware, clique em phishing — o instinto é entrar em pânico e tentar tudo de uma vez. A resposta correta é metódica: Identificar (confirmar o incidente), Conter (parar o dano), Erradicar (remover a ameaça), Recuperar (restaurar a operação normal) e documentar tudo para revisão pós-incidente.",
+      "No nível pessoal, resposta a incidentes de tomada de conta: mude imediatamente a senha e habilite 2FA, verifique atividade não autorizada (e-mails enviados, compras realizadas, mudanças de perfil), revogue todas as sessões ativas, notifique qualquer pessoa que recebeu mensagens maliciosas da sua conta. No nível organizacional, esse é um processo formal envolvendo equipes de IR, jurídico, relações públicas e notificação regulatória."
+    ],
+    "technical": {
+      "title": "O Framework de Resposta a Incidentes NIST",
+      "body": [
+        "NIST SP 800-61 define quatro fases: (1) Preparação — plano de resposta a incidentes, equipe treinada, ferramentas de monitoramento em vigor antes de qualquer incidente. (2) Detecção e Análise — identificar indicadores de comprometimento (IOCs), determinar o escopo, registrar tudo. (3) Contenção, Erradicação e Recuperação — isolar sistemas afetados, remover malware, corrigir vulnerabilidade, restaurar a partir de backups limpos. (4) Atividade Pós-Incidente — documentar cronologia, análise de causa raiz, atualizar defesas.",
+        "Indicadores de Comprometimento (IOCs): login inesperado de novo local, e-mails de mudança de senha que você não iniciou, dispositivos desconhecidos nas sessões de conta, e-mails inesperados de redefinição de senha, amigos relatando mensagens estranhas da sua conta, alertas de antivírus, tráfego de rede incomum. Qualquer um desses exige investigação imediata."
+      ]
+    },
+    "incident": {
+      "title": "O Ransomware do Colonial Pipeline — Resposta a Incidentes em Grande Escala",
+      "impact": "Maior encerramento de oleoduto dos EUA; escassez de gasolina no leste dos EUA; resgate de $4,4M pago",
+      "body": [
+        "O Colonial Pipeline descobriu ransomware em seus sistemas às 5h30 do dia 7 de maio. Sua decisão de resposta ao incidente: desligar imediatamente o oleoduto operacional para prevenir possível comprometimento de OT (tecnologia operacional) — embora apenas a infecção de sistemas de TI fosse confirmada. Essa decisão de contenção foi controversa mas defensável.",
+        "O ponto de entrada do ataque: uma única senha VPN comprometida encontrada em um banco de dados de credenciais vazadas. Sem 2FA na VPN. O resgate de $4,4M foi pago para obter chaves de descriptografia (o DOJ posteriormente recuperou $2,3M). As operações completas foram retomadas em 15 de maio. Lições: VPN requer 2FA, o monitoramento de credenciais detecta senhas roubadas antes que os atacantes as usem, a segmentação de rede OT/TI limita o raio de explosão."
+      ]
+    },
+    "timeline": [
+      "Worm Morris — primeiro grande incidente de internet; a resposta a incidentes como campo começa",
+      "NIST SP 800-61 publicado — framework formal de resposta a incidentes",
+      "Violação da Sony Pictures — falha na resposta a incidentes, dados excluídos pelo atacante",
+      "Ransomware do Colonial Pipeline — oleoduto fechado por 6 dias, escassez de gasolina"
+    ],
+    "keyTakeaways": [
+      "Fases de resposta a incidentes: Preparar → Detectar → Conter → Erradicar → Recuperar → Revisar",
+      "Conter primeiro — parar a propagação importa mais do que entender a causa inicialmente",
+      "Documentar tudo — a cronologia e evidências apoiam a recuperação e ações legais",
+      "Para comprometimento pessoal: mudar senha, habilitar 2FA, revogar sessões, avaliar o dano"
+    ]
+  },
+  "audit-01": {
+    "tagline": "A governança estabelece a direção. A gestão executa. Confundir os dois é onde as falhas de auditoria começam.",
+    "overview": [
+      "COBIT 2019 é o framework insignia da ISACA para governança e gestão de TI. Define uma separação clara entre governança — que estabelece a direção, avalia opções e monitora resultados — e gestão, que planeja, constrói, executa e monitora atividades em alinhamento com a direção da governança.",
+      "Toda auditoria de TI começa estabelecendo esse limite. O conselho de administração e a liderança executiva governam: aprovam o apetite de risco, estabelecem a direção estratégica e garantem a responsabilização. A liderança de TI gerencia: implementa controles, opera sistemas e reporta o desempenho para cima. Os auditores verificam de forma independente que ambas as camadas estão funcionando.",
+      "O framework COBIT 2019 organiza 40 objetivos de governança e gestão em cinco domínios: Evaluate, Direct and Monitor (EDM) para governança, e Align, Plan and Organise (APO), Build, Acquire and Implement (BAI), Deliver, Service and Support (DSS) e Monitor, Evaluate and Assess (MEA) para gestão."
+    ],
+    "technical": {
+      "title": "Estrutura de Domínios COBIT 2019",
+      "body": [
+        "Os cinco domínios do COBIT se mapeiam diretamente ao ciclo de vida de TI. EDM cobre governança no nível do conselho de administração: apetite de risco, decisões de investimento em TI e monitoramento de desempenho. APO cobre alinhamento estratégico, gestão de riscos e planejamento de recursos humanos. BAI cobre entrega de projetos e gestão de mudanças. DSS cobre operações e gestão de incidentes. MEA cobre avaliação de controles internos e conformidade regulatória.",
+        "Os auditores usam níveis de capacidade COBIT (0–5) para classificar cada objetivo. Nível 0 significa que o processo está incompleto. Nível 3 (Estabelecido) é o mínimo típico para indústrias reguladas. Nível 5 (Otimizando) indica cultura de melhoria contínua."
+      ]
+    },
+    "incident": {
+      "title": "A Falha de Governança de TI da Enron (2001)",
+      "impact": "Maior falência americana na época; perdas de $74B em ações; aprovação da Lei Sarbanes-Oxley",
+      "body": [
+        "O colapso da Enron foi parcialmente uma falha de governança de TI. O conselho de administração exerceu nenhum controle significativo sobre as complexas entidades de propósito especial que ocultavam dívidas. Os sistemas de TI geravam relatórios que a gestão usava para enganar auditores e o conselho de administração. A camada de governança — que deveria ter questionado e verificado — simplesmente aceitou as representações da gestão.",
+        "As consequências produziram a Lei Sarbanes-Oxley (2002), que formalizou requisitos de controles de TI para empresas públicas e inspirou diretamente a ênfase do framework COBIT na supervisão de TI no nível do conselho. O domínio EDM do COBIT é um descendente direto dos requisitos de conformidade da Seção 404 do SOX."
+      ]
+    },
+    "timeline": [
+      "COBIT 1.0 lançado — primeiro framework de auditoria de TI da ISACA",
+      "Colapso da Enron — falhas de governança expõem a necessidade de padrões de supervisão de TI",
+      "Lei Sarbanes-Oxley — Seção 404 obriga controles de TI para empresas públicas",
+      "COBIT 2019 lançado — modelo de governança atualizado, 40 objetivos"
+    ],
+    "keyTakeaways": [
+      "Governança (EDM) estabelece a direção; Gestão (APO/BAI/DSS/MEA) executa",
+      "COBIT classifica capacidade 0–5; Nível 3 é a linha de base da indústria regulada",
+      "Os auditores avaliam ambas as camadas de forma independente — o auto-reporte da gestão não é suficiente",
+      "A conformidade com a Seção 404 do SOX impulsionou a adoção do COBIT em empresas de capital aberto"
+    ]
+  },
+  "audit-02": {
+    "tagline": "Cada controle existe para mitigar um risco. Sem o risco, o controle é apenas sobrecarga.",
+    "overview": [
+      "CRISC (Certified in Risk and Information Systems Control) é o framework de certificação focado em riscos da ISACA. Define uma abordagem estruturada para identificar riscos de TI, avaliar sua probabilidade e impacto, desenvolver respostas a riscos e monitorar o risco ao longo do tempo.",
+      "A avaliação de riscos segue uma metodologia padrão: identificar ameaças e vulnerabilidades, avaliar o risco inerente (antes dos controles), avaliar os controles existentes, calcular o risco residual (após os controles) e comparar o risco residual com o apetite de risco da organização. Os riscos acima do apetite requerem tratamento.",
+      "CRISC define quatro opções de resposta a riscos: Aceitar (conviver com o risco), Mitigar (adicionar controles para reduzi-lo), Transferir (seguro ou transferência contratual) e Evitar (interromper a atividade). Os auditores verificam se cada resposta é apropriada para o nível de risco e se o registro de riscos da organização reflete com precisão a exposição atual."
+    ],
+    "technical": {
+      "title": "Cálculo de Riscos: Inerente vs Residual",
+      "body": [
+        "Risco inerente = Probabilidade × Impacto antes de existirem controles. Um banco de dados crítico exposto à internet sem autenticação tem risco inerente máximo. Risco residual = Risco inerente menos a eficácia dos controles. Um banco de dados atrás de um firewall, com MFA e criptografia, tem risco residual reduzido.",
+        "O apetite de risco é o limite aprovado pelo conselho. Os riscos acima do apetite devem ser tratados. O registro de riscos rastreia cada risco identificado com sua pontuação inerente, controles em vigor, pontuação residual, proprietário e status do tratamento."
+      ]
+    },
+    "incident": {
+      "title": "A Configuração Incorreta na Nuvem do Capital One (2019)",
+      "impact": "106 milhões de registros de clientes expostos; acordo de $190M; CISO renunciou",
+      "body": [
+        "A violação de 2019 do Capital One foi uma falha na avaliação de riscos. O WAF configurado incorretamente que permitiu acesso SSRF ao serviço de metadados do EC2 era uma categoria de risco conhecida — configuração incorreta na nuvem. Mas o registro de riscos não capturou com a severidade correta, e nenhum controle compensatório existia para detectar o abuso do serviço de metadados.",
+        "Uma avaliação de riscos adequada alinhada ao CRISC teria identificado a configuração incorreta na nuvem como um risco de alta probabilidade e alto impacto exigindo monitoramento contínuo. O risco residual após os controles foi avaliado incorretamente como aceitável. O risco residual real era crítico."
+      ]
+    },
+    "timeline": [
+      "Certificação CRISC lançada pela ISACA",
+      "Violação do Capital One — risco de configuração na nuvem não capturado",
+      "NIST SP 800-30 Rev 1 — guia de avaliação de riscos atualizado",
+      "Regras de cibersegurança da SEC — divulgação obrigatória de riscos materiais"
+    ],
+    "keyTakeaways": [
+      "Risco inerente = probabilidade × impacto antes dos controles; risco residual = após os controles",
+      "Respostas a riscos: Aceitar, Mitigar, Transferir, Evitar",
+      "O registro de riscos deve estar atualizado — registros desatualizados criam achados de auditoria",
+      "Risco residual acima do apetite requer plano de tratamento aprovado pelo conselho"
+    ]
+  },
+  "audit-03": {
+    "tagline": "Os controles de aplicação não significam nada se os controles gerais subjacentes estão quebrados.",
+    "overview": [
+      "Os Controles Gerais de TI (ITGCs) são os controles fundamentais que sustentam a confiabilidade de todos os controles no nível de aplicação. Eles não estão vinculados a nenhuma aplicação específica — aplicam-se a todo o ambiente de TI. Se os ITGCs falham, todo controle de aplicação construído sobre eles é questionável.",
+      "Os quatro domínios de ITGC são: Gestão de Mudanças (as mudanças nos sistemas de produção seguem um processo aprovado), Acesso Lógico (apenas usuários autorizados podem acessar sistemas e dados), Operações de TI (os sistemas são executados de forma confiável e os backups são testados) e Desenvolvimento de Programas (novos sistemas são desenvolvidos e testados antes do lançamento em produção).",
+      "Os auditores externos que testam a Seção 404 do SOX dedicam a maior parte do tempo de auditoria de TI aos ITGCs. Uma única falha de ITGC — por exemplo, mudanças de emergência que contornam as aprovações — cria um achado generalizado que questiona todos os relatórios financeiros que o sistema produziu."
+    ],
+    "technical": {
+      "title": "Teste de ITGCs: O Que os Auditores Buscam",
+      "body": [
+        "Teste de Gestão de Mudanças: obter todas as mudanças de produção do período, verificar que cada uma tem um ticket de mudança aprovado, resultados de testes e segregação de funções entre desenvolvedor e aprovador. As mudanças de emergência requerem documentação de aprovação posterior.",
+        "Teste de Acesso Lógico: obter todas as contas de usuário com acesso privilegiado, verificar que cada uma tem uma solicitação de acesso atual e recertificação anual. Verificar funcionários demitidos com contas ativas, contas compartilhadas e contas de serviço com privilégios excessivos."
+      ]
+    },
+    "incident": {
+      "title": "A Falha de Controles de TI da MF Global (2011)",
+      "impact": "$1,6B em fundos de clientes desaparecidos; a empresa colapsou; os clientes foram compensados apenas anos depois",
+      "body": [
+        "A MF Global, uma importante corretora de futuros, entrou em colapso após seus sistemas processarem transferências não autorizadas de fundos segregados de clientes para cobrir perdas de trading proprietário. Os controles gerais de TI — especificamente gestão de mudanças e acesso lógico — não impediram nem detectaram modificações não autorizadas do sistema que permitiram as transferências.",
+        "Os auditores posteriormente descobriram que múltiplas falhas de ITGC criaram um ambiente permissivo: os desenvolvedores tinham acesso à produção, os tickets de mudança eram contornados para 'correções urgentes' e as revisões de acesso não haviam sido realizadas por mais de um ano. Cada falha por si só era um achado; juntas habilitaram uma fraude catastrófica."
+      ]
+    },
+    "timeline": [
+      "SOX promulgado — a Seção 404 torna os ITGCs obrigatórios para empresas públicas",
+      "PCAOB AS 2201 — norma de auditoria para controles internos sobre relatórios financeiros",
+      "Colapso da MF Global — falhas de ITGC permitem o mau uso de $1,6B em fundos de clientes",
+      "Regras cibernéticas da SEC — ITGCs agora incluem controles de reporte de incidentes de cibersegurança"
+    ],
+    "keyTakeaways": [
+      "Os quatro pilares do ITGC: Gestão de Mudanças, Acesso Lógico, Operações de TI, Desenvolvimento de Programas",
+      "As falhas de ITGC são generalizadas — invalidam a confiabilidade em TODOS os controles de aplicação",
+      "As auditorias SOX 404 dedicam a maior parte do tempo aos ITGCs para sistemas financeiros",
+      "Funcionários demitidos com contas ativas é um dos achados de ITGC mais comuns"
+    ]
+  },
+  "audit-04": {
+    "tagline": "O acesso concedido e nunca revisado é acesso permanentemente concedido — independentemente de mudanças de função.",
+    "overview": [
+      "A auditoria de controle de acesso verifica se o princípio de menor privilégio está sendo aplicado: cada usuário tem exatamente as permissões necessárias para realizar seu trabalho, e nada mais. Os auditores verificam isso comparando os direitos de acesso reais com as funções de trabalho, revisando a documentação das solicitações de acesso e examinando as evidências de recertificação.",
+      "Os principais objetivos de controle da ISACA para o controle de acesso são: o provisionamento de acesso segue um processo de solicitação aprovado, o acesso é revisado e recertificado pelo menos anualmente, os funcionários demitidos são removidos imediatamente (dentro de 24 horas para contas privilegiadas) e o acesso privilegiado (direitos de administrador) é restrito e monitorado.",
+      "Os achados de controle de acesso estão entre os mais comuns em qualquer auditoria de TI. Os achados típicos incluem: contas órfãs (ex-funcionários), privilégios excessivos (usuários com direitos de administrador que não precisam mais), contas compartilhadas (sem responsabilização individual) e evidências de recertificação ausentes."
+    ],
+    "technical": {
+      "title": "Abordagem de Teste de Revisão de Acesso",
+      "body": [
+        "Extraia a lista completa de acesso de usuário de cada sistema no escopo. Para cada conta: verifique que há uma solicitação de acesso aprovada, verifique que a conta está atribuída a um funcionário ativo, verifique que o nível de acesso corresponde à função atual do usuário e verifique que a recertificação anual foi concluída. Sinalize qualquer exceção.",
+        "As contas privilegiadas recebem escrutínio adicional. Cada conta de administrador deve ter uma justificativa comercial documentada, um proprietário designado, MFA aplicado e logs de atividade revisados trimestralmente. As contas de serviço devem ter login interativo restrito, senhas complexas rotacionadas anualmente e proprietários documentados."
+      ]
+    },
+    "incident": {
+      "title": "A Falha de Controle de Acesso de Edward Snowden (2013)",
+      "impact": "1,7M documentos classificados exfiltrados; o vazamento de inteligência mais significativo na história dos EUA",
+      "body": [
+        "Snowden era um contratado que acumulou acesso muito além dos requisitos do seu trabalho. Como administrador de sistemas, solicitou e recebeu acesso a materiais que não precisava acessar. Os processos de recertificação não detectaram o acúmulo de direitos de acesso ao longo do tempo.",
+        "As revisões pós-incidente descobriram que os processos de controle de acesso da NSA não estavam alinhados com os princípios de menor privilégio. Os contratados podiam solicitar acesso com supervisão mínima e as revisões de acesso não eram aplicadas de forma consistente. O currículo CISA da ISACA agora usa esse caso para ilustrar por que a recertificação de acesso e a gestão de acesso privilegiado são controles inegociáveis."
+      ]
+    },
+    "timeline": [
+      "Seção 404 do SOX — os controles de acesso tornam-se escopo obrigatório de auditoria",
+      "Snowden — acúmulo de privilégios de contratado expõe lacunas no controle de acesso",
+      "NIST SP 800-53 Rev 4 — controles de gestão de contas privilegiadas formalizados",
+      "Arquitetura Zero Trust — assumir violação, verificar cada solicitação de acesso"
+    ],
+    "keyTakeaways": [
+      "Menor privilégio: cada usuário tem exatamente o que precisa e nada mais",
+      "A recertificação deve ocorrer pelo menos anualmente — evidências ausentes são um achado",
+      "Funcionários demitidos devem ter o acesso removido dentro de 24 horas para contas privilegiadas",
+      "O acúmulo de privilégios ocorre quando o acesso nunca é removido após mudanças de função"
+    ]
+  },
+  "audit-05": {
+    "tagline": "Cada mudança em produção é um experimento controlado. Sem o controle, você está voando às cegas.",
+    "overview": [
+      "Os controles de gestão de mudanças garantem que todas as modificações em sistemas de produção passem por um processo documentado, aprovado e testado antes da implementação. O framework ITIL define três tipos de mudanças: Padrão (pré-aprovada, baixo risco, rotineira), Normal (requer revisão e aprovação do CAB) e Emergência (aprovação expedita para correções críticas, com documentação posterior).",
+      "O Conselho Consultivo de Mudanças (CAB) é o órgão de governança que revisa e aprova mudanças Normais. O CAB tipicamente inclui representação de TI, segurança, operações e partes interessadas do negócio. Seu papel é avaliar riscos, garantir que os testes estejam completos e confirmar que existem planos de reversão antes que as mudanças toquem a produção.",
+      "Os auditores testam a gestão de mudanças por meio de amostragem de mudanças em produção e verificando: existência de ticket de mudança aprovado, documentação de evidências de testes, segregação de funções entre desenvolvedor e aprovador, plano de reversão documentado e revisão pós-implementação concluída. As mudanças de emergência recebem escrutínio adicional — a emergência foi justificada e a aprovação posterior foi obtida?"
+    ],
+    "technical": {
+      "title": "Lista de Verificação de Testes de Gestão de Mudanças",
+      "body": [
+        "Para cada mudança amostrada: (1) Verificar que o ticket de mudança existe e foi aberto antes de a mudança ser realizada. (2) Verificar que a aprovação do CAB está documentada com nome do aprovador e data. (3) Verificar que o desenvolvedor e o aprovador são indivíduos diferentes (segregação de funções). (4) Verificar que os resultados dos testes estão anexados. (5) Verificar que o plano de reversão está documentado. (6) Verificar que a revisão pós-implementação foi concluída dentro de 5 dias úteis.",
+        "Sinais de alerta na gestão de mudanças: mudanças aplicadas fora da janela de manutenção aprovada, desenvolvedor com acesso à produção (sem segregação), taxa de mudanças de emergência superior a 10% (sugere evasão do processo), mudanças sem documentação de testes."
+      ]
+    },
+    "incident": {
+      "title": "O Flash Crash da Knight Capital (2012)",
+      "impact": "Perda de $440M em 45 minutos; colapso da empresa; adquirida por $1,4B a preço de liquidação",
+      "body": [
+        "A Knight Capital implantou novo software de trading em 8 de seus 9 servidores de produção. O 9º servidor ainda executava código legado ativado por um sinalizador reutilizado. Em 45 minutos, o sistema legado executou 4 milhões de operações errôneas. Os controles de gestão de mudanças falharam: a implantação não foi verificada em todos os servidores e nenhum rollback automático foi ativado.",
+        "A revisão pós-incidente descobriu que a Knight carecia de controles adequados de gestão de mudanças para implantações de software. Nenhuma lista de verificação pré-implantação verificou que todos os servidores estavam atualizados. Nenhum monitoramento detectou a anomalia a tempo. Um processo de mudança ITIL adequado com verificação de implantação e alertas automatizados teria detectado a implantação parcial antes da abertura do pregão."
+      ]
+    },
+    "timeline": [
+      "Desastre do Challenger — falhas de gestão de mudanças na decisão do O-ring",
+      "ITIL v2 — processo de gestão de mudanças formalizado para TI",
+      "Knight Capital — perda de $440M por falha de implantação de software",
+      "ITIL 4 — CAB substituído por 'autoridade de mudanças' para ambientes ágeis"
+    ],
+    "keyTakeaways": [
+      "Três tipos de mudanças ITIL: Padrão (pré-aprovada), Normal (CAB), Emergência (expedita + posterior)",
+      "Segregação de funções: desenvolvedor e aprovador devem ser pessoas diferentes",
+      "Taxa de mudanças de emergência superior a 10% sinaliza evasão do processo",
+      "Plano de reversão é obrigatório — se não pode desfazer, não pode aprovar"
+    ]
+  },
+  "audit-06": {
+    "tagline": "Um plano de recuperação que nunca foi testado é uma esperança, não um controle.",
+    "overview": [
+      "As auditorias de Planejamento de Continuidade de Negócios (BCP) e Recuperação de Desastres (DR) verificam se uma organização consegue continuar operações críticas e recuperar sistemas de TI após uma interrupção. O exame CISA da ISACA dedica cobertura significativa a BCP/DR porque os planos de recuperação não testados são um dos achados de auditoria mais comuns — e perigosos.",
+      "Métricas-chave em BCP/DR: o Objetivo de Tempo de Recuperação (RTO) define quanto tempo o negócio pode tolerar que um sistema fique fora de operação. O Objetivo de Ponto de Recuperação (RPO) define quanta perda de dados é aceitável. O Tempo de Inatividade Máximo Tolerável (MTD) é o limite absoluto além do qual o negócio não consegue sobreviver. O BCP deve garantir que RTO e RPO estejam dentro do MTD.",
+      "Os auditores verificam BCP/DR revisando documentação (planos, RTOs, RPOs), examinando evidências de testes (exercícios de mesa, testes completos de DR) e entrevistando partes interessadas. Os achados mais comuns: planos não atualizados após mudanças nos sistemas, RTOs/RPOs não validados contra requisitos do negócio e testes de DR nunca realizados ou com resultados com falhas que não foram remediados."
+    ],
+    "technical": {
+      "title": "RTO, RPO e MTD na Prática",
+      "body": [
+        "Exemplo: Um sistema de processamento de pagamentos tem um MTD de 4 horas (além de 4 horas, multas regulatórias começam e os clientes vão embora). A equipe de TI define o RTO em 2 horas e o RPO em 15 minutos. Isso significa: o sistema deve ser restaurado dentro de 2 horas de uma interrupção, e não mais de 15 minutos de dados de transações podem ser perdidos. A frequência de backup deve ser de pelo menos a cada 15 minutos.",
+        "Os auditores testam essas métricas durante exercícios de DR. Um teste de DR que leva 4 horas para ser concluído tem um RTO real de 4 horas — que pode exceder o objetivo de 2 horas. Evidências de testes de DR com falhas que não foram remediadas são um achado de auditoria significativo."
+      ]
+    },
+    "incident": {
+      "title": "Furacão Katrina — Falhas de Datacenter (2005)",
+      "impact": "Múltiplas instituições financeiras perderam dados; semanas de inatividade; sanções regulatórias",
+      "body": [
+        "O Furacão Katrina expôs falhas sistemáticas de BCP/DR em instituições financeiras de Nova Orleans. Muitas tinham planos de DR que assumiam que um desastre regional não afetaria tanto os sites primários quanto os de backup — mas ambos os sites estavam na mesma zona de inundação. Os RTOs medidos em horas foram na realidade dias quando os sites eram fisicamente inacessíveis.",
+        "Após o Katrina, os reguladores bancários federais emitiram orientações que exigem separação geográfica dos datacenters primários e de backup, testes anuais de DR que incluam failover completo e BCPs que considerem interrupções de várias semanas. A ISACA incorporou esses requisitos no currículo CISA como exemplos de como são os testes inadequados de BCP/DR."
+      ]
+    },
+    "timeline": [
+      "11/9 — as empresas com backups externos e planos de DR se recuperaram; as outras não",
+      "Furacão Katrina — colocalização geográfica de primário/backup exposta",
+      "Furacão Sandy — planos de DR da NYSE e NASDAQ ativados com sucesso",
+      "COVID-19 — lacunas de BCP de trabalho remoto expostas em escala"
+    ],
+    "keyTakeaways": [
+      "RTO = inatividade máxima; RPO = perda de dados máxima; MTD = limite absoluto do negócio",
+      "RTO deve ser menor que MTD — caso contrário o plano falha o negócio",
+      "Testes anuais de DR com resultados documentados são exigidos; testes com falhas devem ser remediados",
+      "Os sites de backup devem ser geograficamente separados dos sites primários"
+    ]
+  },
+  "audit-07": {
+    "tagline": "Um plano de resposta a incidentes que vive em uma pasta do SharePoint e nunca foi exercitado não é um controle.",
+    "overview": [
+      "As auditorias do programa de Resposta a Incidentes (IR) avaliam se uma organização consegue detectar, conter, erradicar e se recuperar de incidentes de segurança de forma eficaz. Os auditores da ISACA usam NIST SP 800-61 como framework principal: as quatro fases são Preparação, Detecção e Análise, Contenção/Erradicação/Recuperação e Atividade Pós-Incidente.",
+      "A fase de Preparação é a mais auditável: existe um plano de IR e está atualizado? Os papéis e responsabilidades estão documentados? O plano foi exercitado (exercício de mesa ou simulação completa) no último ano? As listas de contatos estão atualizadas? Existe um esquema de classificação de severidade documentado?",
+      "Os controles de Detecção e Análise são testados revisando alertas de SIEM, examinando tickets de incidentes e validando que as ferramentas de detecção estão devidamente ajustadas. Os auditores buscam: tempo para detectar (quanto tempo levou para o incidente ser notado?), tempo para conter e se a escalada seguiu o processo documentado."
+    ],
+    "technical": {
+      "title": "Lista de Verificação de Auditoria do Programa de IR",
+      "body": [
+        "Preparação: plano de IR revisado e atualizado nos últimos 12 meses, papéis atribuídos, lista de contatos atualizada, exercício de mesa nos últimos 12 meses, matriz de classificação de severidade definida, plano de comunicação (jurídico/relações públicas/reguladores) documentado.",
+        "Detecção: SIEM implementado e ajustado, retenção de logs atende à política (tipicamente 90 dias online, 1 ano arquivado), limiares de alerta revisados trimestralmente, feeds de inteligência de ameaças integrados. Contenção: manuais para os 5 principais tipos de incidentes (ransomware, violação de dados, ameaça interna, DDoS, phishing) documentados e testados."
+      ]
+    },
+    "incident": {
+      "title": "Falha na Detecção da Violação da Equifax (2017)",
+      "impact": "147M registros comprometidos; acordo da FTC de $575M; renuncia do CISO e CEO",
+      "body": [
+        "A vulnerabilidade do Apache Struts da Equifax foi explorada em 13 de maio de 2017. A empresa não detectou a violação até 29 de julho — 78 dias depois. A ferramenta de inspeção SSL que teria detectado o tráfego malicioso havia expirado há 19 meses devido a uma falha na renovação do certificado. Ninguém percebeu.",
+        "A falha de auditoria do programa de IR foi tripla: a ferramenta de detecção estava quebrada (falha de preparação), nenhum controle compensatório detectou a exfiltração de 78 dias (falha de detecção) e a resposta ao incidente foi lenta após a detecção (falha de resposta). A CISA agora usa a Equifax como o exemplo canônico de deficiências em programas de IR em seus materiais de treinamento."
+      ]
+    },
+    "timeline": [
+      "NIST SP 800-61 publicado pela primeira vez — framework do ciclo de vida de IR",
+      "NIST SP 800-61 Rev 2 — atualizado com orientação sobre ameaças avançadas",
+      "Equifax — tempo de permanência de 78 dias; ferramenta de detecção quebrada",
+      "Regras de cibersegurança da SEC — empresas públicas devem divulgar incidentes dentro de 4 dias úteis"
+    ],
+    "keyTakeaways": [
+      "Quatro fases de IR: Preparação, Detecção e Análise, Contenção/Erradicação/Recuperação, Pós-Incidente",
+      "Exercício de mesa no mínimo anualmente — simulação completa é preferida",
+      "Tempo Médio para Detectar (MTTD) e Tempo Médio para Responder (MTTR) são métricas-chave",
+      "Ferramentas de detecção quebradas sem controles compensatórios = lacuna crítica no programa de IR"
+    ]
+  },
+  "audit-08": {
+    "tagline": "Sua segurança é tão forte quanto o fornecedor mais fraco com acesso aos seus sistemas.",
+    "overview": [
+      "As auditorias de gestão de risco de fornecedores e terceiros (TPRM) verificam se uma organização tem controles adequados sobre os fornecedores, prestadores de serviços e parceiros que acessam seus sistemas ou dados. A ISACA define isso como parte do objetivo de controle APO10 (Gestão de Fornecedores) no COBIT.",
+      "O ciclo de vida do TPRM tem cinco etapas: inventário (conhecer todos os seus fornecedores), classificação (classificá-los por risco), avaliação (avaliar seus controles de segurança), requisitos contratuais (SLAs, direito de auditar, notificação de violação) e monitoramento contínuo (reavaliação anual, monitoramento contínuo para fornecedores críticos).",
+      "O risco de terceiros é o principal vetor de ataque para ataques à cadeia de suprimentos. Os auditores verificam: existe um inventário completo de fornecedores? Os fornecedores são classificados por nível de risco? Os fornecedores de alto risco completam avaliações de segurança anuais? Os contratos incluem cláusulas de direito de auditar e cronogramas de notificação de violação? As permissões de acesso dos fornecedores são revisadas quando o relacionamento termina?"
+    ],
+    "technical": {
+      "title": "Requisitos de Classificação e Avaliação de Fornecedores",
+      "body": [
+        "Fornecedores Tier 1 (Críticos): acesso a dados sensíveis ou sistemas críticos, ou dependências de fonte única. Requerem: avaliação de segurança anual, relatório SOC 2 Type II ou equivalente, direito contratual de auditar, monitoramento contínuo, revisões de acesso trimestrais.",
+        "Fornecedores Tier 2 (Alto): processam dados comerciais ou têm conectividade de rede. Requerem: questionário anual, requisitos de segurança contratual, notificação de violação dentro de 72 horas. Fornecedores Tier 3 (Baixo): sem acesso a sistemas, compras de commodities. Requerem: registro básico de fornecedores e termos de contrato padrão."
+      ]
+    },
+    "incident": {
+      "title": "O Ataque à Cadeia de Suprimentos da SolarWinds (2020)",
+      "impact": "18.000 organizações comprometidas; 9 agências federais americanas violadas; mais de $40M em custos de resposta",
+      "body": [
+        "O ataque da SolarWinds foi um ataque típico à cadeia de suprimentos que explorou relacionamentos de confiança com fornecedores. Os atacantes comprometeram o pipeline de compilação da SolarWinds e inseriram código malicioso na atualização do software Orion. As organizações que não haviam classificado a SolarWinds como fornecedora crítica não tinham monitoramento aprimorado da atividade de rede do software.",
+        "A análise pós-incidente descobriu que muitas organizações afetadas não haviam revisado as permissões de acesso da SolarWinds apesar de o Orion ter ampla visibilidade de rede. As avaliações de risco de fornecedores, quando realizadas, baseavam-se em questionários em vez de examinar o acesso real ao sistema e o comportamento da rede. A orientação da CISA após a SolarWinds informou diretamente os requisitos atualizados de TPRM."
+      ]
+    },
+    "timeline": [
+      "Violação da Target — fornecedor de HVAC usado como ponto de entrada do ataque",
+      "Pipeline de compilação da SolarWinds comprometido (descoberto em dezembro de 2020)",
+      "Ordem Executiva Biden 14028 — requisitos de segurança da cadeia de suprimentos de software",
+      "Regras da SEC — requisitos de divulgação de violação de fornecedores para empresas públicas"
+    ],
+    "keyTakeaways": [
+      "O inventário de fornecedores é a base — você não pode gerenciar o que não identificou",
+      "Fornecedores críticos Tier 1 requerem revisões SOC 2 Type II anuais e cláusulas de direito de auditar",
+      "O acesso de fornecedores deve ser removido quando o relacionamento termina — não eventualmente",
+      "Avaliações apenas por questionário são insuficientes para fornecedores críticos com acesso a sistemas"
+    ]
+  },
+  "audit-10": {
+    "tagline": "Um teste de penetração não autorizado é um crime. A autorização é o único que separa um pentester de um atacante.",
+    "overview": [
+      "Os testes de penetração são um controle crítico em qualquer programa de segurança maduro, mas devem ser adequadamente delimitados, autorizados e documentados para serem eficazes e legais. Os auditores da ISACA revisam os programas de pentest para verificar: definição clara do escopo, autorização escrita dos proprietários do sistema, regras de engajamento (o que é permitido e proibido) e requisitos para o reporte de achados e acompanhamento da remediação.",
+      "O documento de escopo define exatamente quais sistemas estão incluídos no escopo (faixas de IP, domínios, aplicações), quais tipos de testes são permitidos (externo, interno, engenharia social, físico), a janela de testes (datas e horários) e procedimentos de escalada se um achado crítico for descoberto durante o teste. Os sistemas fora do escopo devem estar claramente listados.",
+      "A autorização deve vir do proprietário do sistema, não apenas da gestão de TI. As cargas de trabalho na nuvem requerem autorização do provedor de nuvem (AWS, Azure, GCP têm políticas de testes de penetração). Os sistemas de produção requerem aprovações adicionais e frequentemente exigem que um plano de reversão exista antes que o teste comece."
+    ],
+    "technical": {
+      "title": "Lista de Verificação de Escopo de Pentest",
+      "body": [
+        "O documento de escopo deve incluir: (1) Lista explícita de endereços IP/faixas/domínios dentro do escopo. (2) Lista explícita de sistemas fora do escopo. (3) Tipos de teste permitidos (rede, aplicação web, engenharia social, físico). (4) Janela de testes com datas de início/fim e restrições de horário comercial. (5) Lista de contatos de emergência com procedimentos de escalada. (6) Requisitos de tratamento de dados para credenciais descobertas.",
+        "Lista de verificação de autorização: (1) Autorização escrita assinada pelo proprietário do sistema. (2) Autorização do provedor de nuvem confirmada. (3) Sistemas de terceiros excluídos a menos que seu proprietário forneça autorização separada. (4) Revisão jurídica concluída se o teste cruzar jurisdições."
+      ]
+    },
+    "incident": {
+      "title": "A Disputa de Autorização de Testes de Penetração da AT&T (2010)",
+      "impact": "Pesquisadores de segurança presos; acusações posteriormente arquivadas; destacou a importância da autorização escrita",
+      "body": [
+        "Em 2010, pesquisadores de segurança descobriram uma vulnerabilidade na API de ativação do iPad da AT&T que expôs 114.000 endereços de e-mail dos primeiros usuários do iPad. Eles extraíram um subconjunto dos dados para demonstrar a vulnerabilidade, depois notificaram a AT&T e o Gawker. O FBI investigou os pesquisadores por acesso não autorizado apesar de suas intenções defensivas.",
+        "O caso destacou um princípio fundamental: sem autorização escrita do proprietário do sistema, qualquer acesso, mesmo pesquisa de segurança bem-intencionada, pode ser processado sob a Lei de Fraude e Abuso de Computadores (CFAA). O escopo adequado de pentest e a autorização são tanto um controle de segurança quanto uma proteção legal para os testadores."
+      ]
+    },
+    "timeline": [
+      "CFAA promulgada — o acesso não autorizado a computadores torna-se crime federal",
+      "NIST SP 800-42 — guia sobre testes de segurança de redes publicado",
+      "Incidente AT&T/iPad — requisito de autorização em evidência",
+      "Reforma da CFAA — pesquisa de segurança de boa-fé explicitamente protegida"
+    ],
+    "keyTakeaways": [
+      "A autorização escrita do proprietário do sistema é legalmente exigida antes de qualquer teste",
+      "As cargas de trabalho na nuvem requerem aprovação explícita do provedor de nuvem (cada provedor tem uma política)",
+      "Os sistemas fora do escopo devem estar explicitamente listados — a ambiguidade não protege ninguém",
+      "Todas as credenciais descobertas devem ser tratadas conforme a seção de tratamento de dados do documento de escopo"
+    ]
+  },
+  "audit-11": {
+    "tagline": "Uma afirmação sem evidência é uma opinião. Um achado de auditoria sem evidência é inútil.",
+    "overview": [
+      "A evidência de auditoria é a informação que os auditores usam para sustentar seus achados e conclusões. A ISACA define três atributos que tornam a evidência suficiente: deve ser suficiente (o suficiente para sustentar a conclusão), confiável (de uma fonte credível, obtida por um método sólido) e relevante (realmente aborda o controle que está sendo testado).",
+      "A amostragem de auditoria determina quantos itens testar quando testar cada item é impraticável. A amostragem estatística usa a teoria da probabilidade para projetar resultados para a população completa com um nível de confiança conhecido. A amostragem por julgamento (não estatística) baseia-se na experiência do auditor. Para os propósitos da CISA, os conceitos-chave de amostragem são: definição da população, método de seleção da amostra, determinação do tamanho da amostra e projeção dos resultados.",
+      "Hierarquia de qualidade de evidência (maior para menor): evidência física (observada diretamente), evidência documental (registros, logs, relatórios), evidência testemunhal (entrevistas) e evidência analítica (índices, tendências, comparações). Os auditores preferem evidência de maior qualidade e devem documentar a fonte, o método de coleta e a cadeia de custódia de cada evidência."
+    ],
+    "technical": {
+      "title": "Amostragem Estatística para Auditoria de TI",
+      "body": [
+        "A amostragem de atributos é usada para testar se um controle está funcionando eficazmente. O auditor define: a população (todas as mudanças no T1), o atributo sendo testado (cada mudança tem uma aprovação válida), a taxa de desvio aceitável (5%) e o nível de confiança desejado (95%). As tabelas estatísticas então determinam o tamanho da amostra.",
+        "Para uma população de 1.000 itens, um nível de confiança de 95% com uma taxa de desvio aceitável de 5% requer aproximadamente 60 itens. Se o auditor encontrar 3 desvios em 60 itens (5%), a taxa de desvio na população provavelmente excede o limiar aceitável — o controle não está funcionando eficazmente."
+      ]
+    },
+    "incident": {
+      "title": "Arthur Andersen e Enron — Destruição de Evidências (2002)",
+      "impact": "Arthur Andersen condenado por obstrução; 85.000 funcionários perderam seus empregos; firma dissolvida",
+      "body": [
+        "Arthur Andersen, auditor da Enron, destruiu milhares de documentos e excluiu e-mails após ser informado da investigação da SEC sobre a Enron. A destruição de evidências de auditoria levou à condenação criminal da Arthur Andersen por obstrução da justiça — a primeira condenação de uma grande firma contábil na história dos EUA.",
+        "O caso estabeleceu que as evidências de auditoria devem ser preservadas, não apenas coletadas. Os padrões de auditoria modernos exigem retenção de evidências por um mínimo de 7 anos. As evidências digitais devem ser preservadas em um formato à prova de adulteração, com valores de hash calculados na coleta para detectar modificações posteriores."
+      ]
+    },
+    "timeline": [
+      "Padrões de amostragem da AICPA publicados pela primeira vez para auditoria financeira",
+      "Arthur Andersen — condenação por destruição de evidências; firma dissolvida",
+      "PCAOB AS 1215 — padrões de documentação de auditoria para controles de TI",
+      "ISACA CISA atualizado — tratamento de evidências digitais e documentação de ferramentas de IA"
+    ],
+    "keyTakeaways": [
+      "A evidência deve ser suficiente, confiável e relevante para o controle testado",
+      "A amostragem estatística projeta resultados para a população completa com confiança conhecida",
+      "Taxa de desvio que excede a taxa tolerável significa que o controle não está funcionando eficazmente",
+      "As evidências de auditoria devem ser retidas por 7 anos e preservadas em formato à prova de adulteração"
+    ]
+  },
+  "audit-t01": {
+    "tagline": "Uma API que confia que quem a chama diz quais objetos retornar é uma API que retornará todos os objetos.",
+    "overview": [
+      "BOLA (Broken Object Level Authorization) — classificada como #1 no OWASP API Security Top 10 — ocorre quando um endpoint de API usa um identificador fornecido pelo usuário para recuperar objetos sem verificar se o usuário solicitante tem permissão para acessar aquele objeto específico. O atacante simplesmente muda o ID na requisição.",
+      "As auditorias de segurança de API diferem das auditorias de aplicações web porque as APIs geralmente são projetadas com o pressuposto de que apenas clientes autorizados as chamarão. Mas as APIs são detectáveis e os parâmetros que aceitam são previsíveis. Uma API de pagamento que aceita /api/v1/payments/{payment_id} retornará qualquer pagamento se houver BOLA — não apenas os pagamentos do chamador.",
+      "O OWASP API Top 10 (2023) cobre: BOLA, Autenticação Quebrada, Autorização Quebrada no Nível de Propriedade de Objeto, Consumo Irrestrito de Recursos, Autorização Quebrada no Nível de Função, Acesso Irrestrito a Fluxos de Negócio Sensíveis, Falsificação de Requisição do Lado do Servidor, Configuração Incorreta de Segurança, Gerenciamento Inadequado de Inventário e Consumo Inseguro de APIs."
+    ],
+    "technical": {
+      "title": "Testes de BOLA em Auditorias de API",
+      "body": [
+        "Passo 1: Autentique-se como Usuário A, realize uma ação legítima (ex.: ver seu próprio pagamento). Capture a requisição, anote o ID do objeto na URL ou corpo. Passo 2: Autentique-se como Usuário B. Reproduza a mesma requisição com o ID do objeto do Usuário A. Se a resposta retornar dados do Usuário A, BOLA existe.",
+        "Testes automatizados: use ferramentas como Burp Suite, OWASP ZAP ou Postman. Para cada endpoint de API que aceite um identificador de objeto, faça fuzzing do identificador com IDs sequenciais, UUIDs de outras contas de teste e valores negativos/zero. Monitore as respostas para detectar divulgação de dados inesperada."
+      ]
+    },
+    "incident": {
+      "title": "BOLA da API da Peloton — 3M de Registros de Usuários Expostos (2021)",
+      "impact": "Dados de perfil privados de 3 milhões de usuários expostos; nenhuma autenticação exigida para alguns endpoints",
+      "body": [
+        "A pesquisadora de segurança Jan Masters descobriu que a API da Peloton permitia acesso não autenticado aos dados de perfil de qualquer usuário — incluindo idade, peso, localização, histórico de treinos e gênero — simplesmente consultando o endpoint de ID de usuário. A API não tinha requisito de autenticação para certos endpoints e nenhuma autorização no nível de objeto para outros.",
+        "A Peloton inicialmente contestou o achado, mas aplicou o patch dentro de 90 dias após o pesquisador divulgá-lo à mídia. O incidente ilustrou uma lacuna comum em auditorias de API: os endpoints adicionados durante o desenvolvimento rápido de funcionalidades frequentemente omitem a revisão de autorização que os endpoints estabelecidos recebem. As auditorias de segurança de API devem enumerar todos os endpoints, incluindo os não documentados."
+      ]
+    },
+    "timeline": [
+      "OWASP API Security Top 10 publicado pela primeira vez — BOLA listada como #1",
+      "API da Peloton — 3M usuários expostos via BOLA",
+      "Optus Australia — BOLA de API expõe 9,8M registros de clientes",
+      "OWASP API Top 10 atualizado — BOLA permanece como #1"
+    ],
+    "keyTakeaways": [
+      "BOLA é a vulnerabilidade de API #1 — sempre verifique se quem chama é dono do objeto solicitado",
+      "Teste trocando IDs de objeto entre contas de teste autenticadas",
+      "Endpoints de API não autenticados requerem justificativa explícita em cada auditoria de API",
+      "Enumere todos os endpoints incluindo os não documentados — use logs de API gateway e especificações OpenAPI"
+    ]
+  },
+  "audit-t02": {
+    "tagline": "Um segredo comprometido no git não é mais um segredo. É uma credencial pública com carimbo de tempo.",
+    "overview": [
+      "As auditorias de gestão de segredos identificam credenciais codificadas no código, chaves de API e senhas em código-fonte, arquivos de configuração, pipelines CI/CD e imagens de contêiner. OWASP A07:2021 (Falhas de Identificação e Autenticação) e A02:2021 (Falhas Criptográficas) abordam a gestão de segredos. O GitGuardian reporta que a exposição de segredos em repositórios públicos aumentou 67% em 2022.",
+      "Um programa maduro de gestão de segredos usa um cofre centralizado de segredos (HashiCorp Vault, AWS Secrets Manager, Azure Key Vault) com credenciais dinâmicas de curta duração, rotação automática e registro de acesso. Os segredos são injetados em tempo de execução — nunca armazenados em código, arquivos de configuração ou variáveis de ambiente em texto simples.",
+      "Os auditores testam a gestão de segredos por meio de: varredura de repositórios em busca de credenciais codificadas (truffleHog, detect-secrets, Gitleaks), revisão da configuração do cofre de segredos (políticas de acesso, cronogramas de rotação, log de auditoria), exame de pipelines CI/CD em busca de segredos em texto simples em variáveis e verificação de imagens de contêiner em busca de credenciais incorporadas."
+    ],
+    "technical": {
+      "title": "Varredura de Segredos e Configuração de Vault",
+      "body": [
+        "Varredura de repositório: execute Gitleaks ou detect-secrets contra o histórico completo do git — não apenas o HEAD atual. Um segredo comprometido há três anos e depois removido ainda está no histórico do git e ainda é válido até ser rotacionado. Cada desenvolvedor que clonou o repositório tem uma cópia.",
+        "Melhores práticas de Vault: habilite o log de auditoria em todas as operações do Vault, use segredos dinâmicos (o Vault gera uma credencial de curta duração para cada requisição — sem senha estática), aplique TTLs de segredo (máximo de 24 horas para acesso humano, máximo de 1 hora para sistemas automatizados) e use AppRole ou autenticação do Kubernetes (não autenticação de token com tokens estáticos)."
+      ]
+    },
+    "incident": {
+      "title": "Exposição de Segredos do GitHub do Uber (2022)",
+      "impact": "O atacante acessou o Slack interno, tickets do HackerOne, painéis internos; acordo de liquidação por violação anterior de $148M",
+      "body": [
+        "A violação do Uber em 2022 começou com engenharia social de um contratado, mas o movimento lateral do atacante dependia de encontrar credenciais de administrador codificadas em um script de PowerShell em um compartilhamento de arquivos interno. Essas credenciais deram acesso ao Thycotic (sua ferramenta PAM), que continha credenciais para todos os outros sistemas.",
+        "A causa raiz não foi a engenharia social — foi a credencial codificada em um script que não havia sido parte de nenhum programa de varredura de segredos. O programa de gestão de segredos do Uber não cobria compartilhamentos de arquivos internos e scripts, apenas repositórios de código. Os auditores devem expandir o escopo da varredura de segredos para todos os locais onde credenciais possam existir."
+      ]
+    },
+    "timeline": [
+      "Samsung — código-fonte com chaves AWS enviado para GitHub público",
+      "Violação do Uber — credencial de administrador codificada em script de PowerShell",
+      "Relatório do GitGuardian — 10M segredos expostos em repositórios públicos em 2022",
+      "Violação do CircleCI — segredos extraídos de variáveis de ambiente CI/CD"
+    ],
+    "keyTakeaways": [
+      "Varra o histórico completo do git — segredos removidos do HEAD ainda estão no histórico",
+      "Segredos dinâmicos com TTLs curtos eliminam o valor de uma credencial roubada",
+      "A varredura de segredos deve cobrir: repositórios, variáveis CI/CD, imagens de contêiner, compartilhamentos de arquivos, scripts",
+      "A rotação deve ocorrer após qualquer possível exposição — não apenas conforme agendado"
+    ]
+  },
+  "audit-t03": {
+    "tagline": "Uma conta na nuvem sem guardrails é um cartão de crédito sem limite de gastos apontado para a internet.",
+    "overview": [
+      "As auditorias de segurança na nuvem verificam se os controles preventivos (guardrails que bloqueiam ações perigosas) e os controles detectivos (alertas que identificam violações de política) estão corretamente configurados. A AWS fornece três mecanismos primários de guardrail: Service Control Policies (SCPs) no nível da Organization, AWS Config Rules para monitoramento contínuo de conformidade e CloudTrail para registro de atividade de API.",
+      "Os SCPs são o controle preventivo mais poderoso — definem quais ações podem ser realizadas dentro de uma conta AWS, independentemente do que as políticas de IAM permitam. Um SCP que nega acesso público ao S3 não pode ser anulado por um administrador de IAM dentro da conta. Os SCPs são anexados no nível de Organization, OU ou conta.",
+      "As AWS Config Rules avaliam continuamente os recursos em relação a políticas definidas e identificam recursos em não conformidade. As regras gerenciadas cobrem controles comuns: os buckets S3 não devem ser publicamente acessíveis, as instâncias EC2 devem usar AMIs aprovadas, a conta raiz não deve ter chaves de acesso ativas, o MFA deve estar habilitado em todos os usuários IAM com acesso ao console."
+    ],
+    "technical": {
+      "title": "Principais Guardrails na Nuvem para Auditar",
+      "body": [
+        "Lista de verificação de auditoria de SCP: (1) Negar criação de bucket S3 público. (2) Negar desabilitação do CloudTrail. (3) Negar criação de usuários IAM sem MFA. (4) Restringir a regiões AWS aprovadas. (5) Negar chamadas de API de conta raiz. Verifique que cada SCP está anexado ao nível correto de OU e que não existem exceções para contas de alto risco.",
+        "Auditoria do CloudTrail: verificar que o CloudTrail está habilitado em todas as regiões (não apenas us-east-1), que a validação de arquivo de log está habilitada (cadeia de hash previne adulteração), que os logs são enviados para uma conta de segurança separada (não a mesma conta sendo auditada) e que existem alertas do CloudWatch para: login de conta raiz, mudanças de política de SCP, desabilitação do CloudTrail e mudanças de permissões de IAM."
+      ]
+    },
+    "incident": {
+      "title": "Configuração Incorreta de S3 do Capital One (2019)",
+      "impact": "106M registros de clientes; acordo de $190M; nenhuma regra de AWS Config para acesso a metadados exploráveis por SSRF",
+      "body": [
+        "A violação do Capital One foi habilitada por um WAF mal configurado que permitia SSRF para acessar o serviço de metadados da instância EC2 (169.254.169.254), que retornava credenciais de função IAM com acesso de leitura ao S3. Uma regra de AWS Config que monitorava configurações de WAF vulneráveis a SSRF não existia. O CloudTrail registrou mais de 30 milhões de chamadas de API ao S3 durante 3 meses — mas nenhum alerta foi ativado.",
+        "Duas falhas de guardrail: (1) Nenhuma regra de Config detectou a configuração incorreta do WAF. (2) Os alertas do CloudTrail não foram ajustados para sinalizar o volume incomum de chamadas S3 GetObject. Um alerta do CloudWatch corretamente configurado com um limiar de 1.000 leituras de S3 de uma única função em uma hora teria capturado a exfiltração no primeiro dia."
+      ]
+    },
+    "timeline": [
+      "AWS Config Rules disponível para todos — monitoramento contínuo de conformidade disponível",
+      "AWS SCPs completamente lançados para AWS Organizations",
+      "Capital One — SSRF + configuração incorreta de S3; nenhuma regra de Config detectou",
+      "AWS Security Hub — pontuação de conformidade agregada em todas as regras de Config"
+    ],
+    "keyTakeaways": [
+      "SCPs sobrepõem IAM — são o controle preventivo de maior prioridade na AWS",
+      "CloudTrail deve estar habilitado em TODAS as regiões com validação de arquivo de log e armazenamento entre contas",
+      "As regras de AWS Config fornecem conformidade contínua — não apenas pontual",
+      "Alertas do CloudWatch baseados em volume detectam exfiltração que a detecção baseada em assinaturas não consegue"
+    ]
+  },
+  "audit-t04": {
+    "tagline": "AdministratorAccess anexado a uma conta de desenvolvedor não é um privilégio — é uma superfície de ataque.",
+    "overview": [
+      "A análise de privilégios de IAM identifica contas, funções e contas de serviço com permissões excessivas. Na AWS, as violações mais comuns são: contas de desenvolvedor com AdministratorAccess, funções de serviço com permissões de recursos curinga (*), usuários de IAM em vez de funções de IAM para aplicações e chaves de acesso sem data de expiração.",
+      "O princípio de menor privilégio exige que cada principal (usuário, função, conta de serviço) tenha apenas as permissões necessárias para realizar sua função. O AWS IAM Access Analyzer e ferramentas de terceiros (PMapper, Cloudsplaining) podem identificar automaticamente políticas excessivamente permissivas e caminhos de escalada de privilégios.",
+      "A escalada de privilégios no IAM ocorre quando um usuário com permissões limitadas pode executar uma sequência de chamadas de API para se conceder permissões adicionais. Exemplo: iam:CreatePolicyVersion sozinho permite criar uma nova versão de política que concede AdministratorAccess, depois anexá-la a si mesmo. Os auditores devem verificar esses caminhos indiretos, não apenas as permissões diretas."
+    ],
+    "technical": {
+      "title": "Técnicas de Auditoria de IAM",
+      "body": [
+        "Gerar um relatório de credenciais de IAM: aws iam generate-credential-report && aws iam get-credential-report. Isso mostra cada usuário de IAM com: última senha usada, última chave de acesso usada, MFA habilitado e idade da chave de acesso. Sinalize: conta raiz com chave de acesso ativa, chaves de acesso com mais de 90 dias, usuários com senha nunca usada após 30 dias.",
+        "Análise de políticas: use Cloudsplaining para analisar todas as políticas anexadas. Sinalize: Action: * (curinga), Resource: * com ações sensíveis (iam:*, s3:*, ec2:*), permissões pass-role (iam:PassRole + qualquer serviço = escalada de privilégios) e políticas não anexadas a nenhum principal (dispersão de políticas)."
+      ]
+    },
+    "incident": {
+      "title": "Violação da Okta via Movimento Lateral (2022)",
+      "impact": "366 locatários da Okta de clientes potencialmente acessados; 2,5% dos clientes da Okta afetados",
+      "body": [
+        "A violação da Okta em 2022 ocorreu quando os atacantes comprometeram a estação de trabalho de um engenheiro de suporte da Sitel. A conta do engenheiro de suporte tinha acesso à ferramenta de suporte da Okta com permissões para visualizar locatários de clientes. A falha de revisão de IAM: a conta de suporte tinha permissões mais amplas do que as necessárias para tarefas de suporte, e essas permissões não foram revisadas após uma transição de fornecedor.",
+        "A violação destacou um princípio fundamental de auditoria de IAM: as contas de fornecedores terceiros requerem a mesma análise de menor privilégio que as contas internas. As ferramentas de suporte de fornecedores frequentemente têm permissões elevadas concedidas por 'conveniência' e nunca são revisadas. Uma auditoria de IAM teria sinalizado as permissões excessivamente amplas da conta de suporte."
+      ]
+    },
+    "timeline": [
+      "AWS IAM Access Analyzer lançado — análise de políticas automatizada",
+      "Cloudsplaining lançado — ferramenta de análise de políticas de IAM de código aberto",
+      "SolarWinds — conta de serviço do Orion com amplas permissões de IAM",
+      "Violação da Okta — conta de suporte de fornecedor com permissões excessivas"
+    ],
+    "keyTakeaways": [
+      "AdministratorAccess em usuários individuais de IAM quase nunca é justificado — use funções",
+      "Chaves de acesso com mais de 90 dias são um achado — automatize a rotação",
+      "Caminhos de escalada de privilégios existem além das permissões diretas — use PMapper ou similar",
+      "Contas de fornecedores e serviços precisam da mesma revisão de menor privilégio que as contas humanas"
+    ]
+  },
+  "audit-t05": {
+    "tagline": "Um contêiner rodando como root com um socket de host montado é um contêiner que já escapou.",
+    "overview": [
+      "As auditorias de segurança de contêineres cobrem o ciclo de vida completo do contêiner: construção de imagem (CVEs da imagem base, segredos em camadas), registro de imagem (controles de acesso, assinatura), configuração em tempo de execução (escalada de privilégios, limites de recursos, sistemas de arquivos somente leitura) e segurança do orquestrador (Kubernetes RBAC, políticas de rede, padrões de segurança de pods).",
+      "Os três achados de segurança de contêineres mais críticos são: executar contêineres como root (risco de escalada de privilégios), montar o socket Docker (/var/run/docker.sock) dentro de um contêiner (comprometimento completo do host) e usar imagens base com CVEs críticos conhecidos. O CIS Docker Benchmark fornece mais de 100 controles específicos para testar.",
+      "O Kubernetes adiciona controles no nível do orquestrador: Pod Security Standards (Restricted, Baseline, Privileged), Network Policies (controle de egresso/ingresso entre pods), RBAC (quem pode fazer exec em pods, quem pode ver segredos) e criptografia de Secrets em repouso (criptografia etcd)."
+    ],
+    "technical": {
+      "title": "Varredura de Segurança de Contêineres",
+      "body": [
+        "Varredura de imagem: use Trivy, Grype ou Snyk Container para varrer imagens em busca de CVEs antes de chegarem à produção. Um gate de CI/CD que bloqueie imagens com CVEs CRITICAL impede que código vulnerável seja executado. Varra tanto a camada de aplicação quanto a camada do sistema operacional base — as vulnerabilidades na camada do SO frequentemente são ignoradas.",
+        "Segurança em tempo de execução: revise docker-compose.yml e manifestos do Kubernetes em busca de: user: root ou sem usuário especificado, privileged: true, hostPID ou hostNetwork: true, volumes que montam caminhos do host (especialmente /var/run/docker.sock) e sem limites de recursos (memória/CPU). Esses são todos achados automáticos em uma auditoria de segurança de contêineres."
+      ]
+    },
+    "incident": {
+      "title": "Cryptojacking no Kubernetes da Tesla (2018)",
+      "impact": "Painel de controle do Kubernetes exposto sem autenticação; credenciais extraídas; recursos AWS usados para mineração de criptomoedas",
+      "body": [
+        "Os atacantes descobriram que o painel de controle do Kubernetes da Tesla estava exposto à internet sem autenticação. A partir do painel, encontraram credenciais AWS armazenadas em um segredo do Kubernetes (sem criptografia). Usando essas credenciais, lançaram instâncias EC2 para mineração de criptomoedas, limitadas para evitar detecção em alertas de faturamento.",
+        "As falhas de segurança de contêineres: (1) Painel de controle do Kubernetes exposto publicamente. (2) Segredos armazenados sem criptografia no etcd. (3) Sem política de rede que impedisse o acesso externo ao painel. (4) Sem cotas de recursos que teriam sinalizado lançamentos EC2 anômalos. Este caso impulsiona a adoção do CIS Kubernetes Benchmark em auditorias de segurança de contêineres."
+      ]
+    },
+    "timeline": [
+      "CIS Docker Benchmark v1.0 publicado",
+      "Cryptojacking no Kubernetes da Tesla — painel exposto + segredos sem criptografia",
+      "Kubernetes Pod Security Policies depreciado; substituído por PSA",
+      "Kubernetes Pod Security Admission (PSA) estável — Restricted/Baseline/Privileged"
+    ],
+    "keyTakeaways": [
+      "Nunca execute contêineres como root — especifique um usuário não root na diretiva Dockerfile USER",
+      "Montar /var/run/docker.sock dentro de um contêiner = tomada de controle completa do host",
+      "Varra imagens de contêineres em busca de CVEs no CI/CD antes de enviar ao registro",
+      "O etcd do Kubernetes deve ter criptografia em repouso — os segredos são base64 (não criptografados) por padrão"
+    ]
+  },
+  "audit-t06": {
+    "tagline": "IaC torna a configuração incorreta reproduzível em escala. Um módulo Terraform defeituoso pode configurar incorretamente todos os ambientes.",
+    "overview": [
+      "A varredura de segurança de Infrastructure as Code (IaC) aplica análise estática a templates de Terraform, CloudFormation, Ansible e Pulumi antes de serem implantados. O princípio: encontrar configurações incorretas de segurança na etapa de revisão de código, não após a implantação. As ferramentas incluem tfsec, Checkov, KICS e Terrascan.",
+      "Achados comuns de segurança em IaC: buckets S3 sem criptografia ou bloqueio de acesso público, grupos de segurança com 0.0.0.0/0 (abertos ao mundo) em portas sensíveis, instâncias RDS sem proteção de exclusão ou criptografia, políticas IAM com ações curinga, funções Lambda com permissões IAM excessivas e CloudTrail sem validação de arquivo de log.",
+      "A varredura de IaC é integrada aos pipelines de CI/CD como um gate: as pull requests que introduzem violações de segurança falham na compilação. Isso move a segurança para a esquerda — as configurações incorretas são detectadas antes de se tornarem vulnerabilidades implantadas. O custo de corrigir uma configuração incorreta em um PR é de minutos; o custo após uma violação é de milhões."
+    ],
+    "technical": {
+      "title": "Executando tfsec e Checkov",
+      "body": [
+        "tfsec: tfsec ./terraform/ --minimum-severity HIGH — varre todos os arquivos .tf recursivamente e reporta achados com severidade, descrição e o bloco específico do Terraform que causa o problema. Gera formato SARIF para integração com o GitHub Advanced Security.",
+        "Checkov: checkov -d ./terraform/ --framework terraform --output junitxml — varre e gera saída JUnit XML para integração de CI/CD. O Checkov cobre mais de 1.000 verificações em AWS, Azure, GCP, Kubernetes e Dockerfile. O sinalizador --check CKV_AWS_18 testa verificações específicas para varredura direcionada."
+      ]
+    },
+    "incident": {
+      "title": "Exposição de Dados dos Serviços Conectados da Toyota (2023)",
+      "impact": "Dados de localização de 2,15M clientes e IDs de veículos expostos por 10 anos via armazenamento em nuvem mal configurado",
+      "body": [
+        "A Toyota Connected descobriu que um ambiente de nuvem, configurado em 2013, tinha um bucket de armazenamento incorretamente definido com acesso público. Os dados de localização de veículos de 2,15 milhões de clientes eram publicamente acessíveis por aproximadamente 10 anos. A configuração nunca havia sido auditada em relação às linhas de base de segurança modernas.",
+        "Uma varredura de segurança de IaC ou uma regra de AWS Config para acesso público a buckets S3 teria detectado isso imediatamente. O achado ilustra por que as configurações de nuvem 'herdadas' que precedem as práticas de IaC precisam ser importadas para a gestão de IaC e submetidas à mesma varredura que as novas implantações. As ferramentas de detecção de desvios (Terraform Cloud, AWS Config) podem identificar recursos não gerenciados por IaC."
+      ]
+    },
+    "timeline": [
+      "Lançamento inicial do tfsec — análise estática de segurança do Terraform",
+      "Checkov lançado pela Bridgecrew — scanner de segurança multi-IaC",
+      "GitHub Advanced Security — formato SARIF para resultados de varredura de IaC em PRs",
+      "Toyota — exposição pública de S3 de 10 anos via armazenamento em nuvem mal configurado"
+    ],
+    "keyTakeaways": [
+      "A varredura de IaC no CI/CD detecta configurações incorretas antes da implantação — shift left",
+      "Grupos de segurança com 0.0.0.0/0 nas portas 22/3389 são achados automaticamente CRÍTICOS",
+      "A criptografia do S3 e o bloqueio de acesso público devem ser aplicados no nível de conta via SCP",
+      "Os recursos de nuvem herdados não em IaC devem ser importados e varridos — detecção de desvios"
+    ]
+  }
+}

@@ -2,9 +2,9 @@ import { NextRequest, NextResponse } from "next/server";
 import { createHmac, timingSafeEqual } from "crypto";
 import { redis } from "@/lib/redis";
 import { getAuthedUsername } from "@/lib/api-auth";
-import { TROPHIES, getTrophy, dailyShopTrophies } from "@/data/trophies";
-import { stages } from "@/data/stages";
-import { milestoneBadges } from "@/data/milestone-badges";
+import { TROPHIES, getTrophy, dailyShopTrophies } from "@kryptos/core/trophies";
+import { stages } from "@kryptos/core/stages";
+import { milestoneBadges } from "@kryptos/core/milestone-badges";
 
 function verifyAdminToken(token: string): boolean {
   const secret = process.env.ADMIN_SECRET;

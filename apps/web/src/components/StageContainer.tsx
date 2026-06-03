@@ -4,8 +4,8 @@ import { useState } from "react";
 import StageInfo from "./StageInfo";
 import CtfChallenge from "./CtfChallenge";
 import QuizChallenge from "./QuizChallenge";
-import type { StageConfig, CtfQuizEntry, AuditQuizEntry } from "@/data/types";
-import type { StageTranslation } from "@/data/translations/types";
+import type { StageConfig, CtfQuizEntry, AuditQuizEntry } from "@kryptos/core/types";
+import type { StageTranslation } from "@kryptos/core/translations/types";
 import { useLocale } from "@/contexts/LocaleContext";
 
 type TranslatedQuestion = { q: string; options: [string, string] };

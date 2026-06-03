@@ -1,0 +1,290 @@
+{
+  "audit-t01": {
+    "questions": [
+      {
+        "q": "BOLA jest sklasyfikowana jako #1 w OWASP API Security Top 10, ponieważ API sprawdzające ważny token bez weryfikacji własności obiektu pozwala każdemu uwierzytelnionemu użytkownikowi na dostęp do danych innych użytkowników.",
+        "options": ["Prawda", "Fałsz"]
+      },
+      {
+        "q": "Która technika jest główną metodą testowania BOLA podczas audytu API?",
+        "options": ["Zamiana identyfikatorów obiektów między uwierzytelnionymi kontami testowymi", "Wysyłanie nieprawidłowych ładunków JSON w celu awarii serwera"]
+      },
+      {
+        "q": "W naruszeniu API Peloton (2021), co sprawiło, że podatność BOLA była szczególnie poważna?",
+        "options": ["Niektóre punkty końcowe nie wymagały żadnego uwierzytelnienia", "Peloton przechowywał hasła w postaci jawnego tekstu w swojej bazie danych"]
+      },
+      {
+        "q": "Podczas audytu API pod kątem BOLA wystarczy testować tylko udokumentowane, publicznie wymienione punkty końcowe.",
+        "options": ["Fałsz — nieudokumentowane punkty końcowe muszą być również wyliczane", "Prawda — nieudokumentowane punkty końcowe nie są dostępne dla atakujących"]
+      },
+      {
+        "q": "Bezpieczna odpowiedź API na próbę testu BOLA (Użytkownik A uzyskujący dostęp do obiektu Użytkownika B) powinna być:",
+        "options": ["HTTP 403 Forbidden bez zwracania danych obiektu", "HTTP 200 OK z pustym treścią odpowiedzi"]
+      }
+    ]
+  },
+  "audit-t02": {
+    "questions": [
+      {
+        "q": "Uruchomienie 'git rm' na pliku zawierającym sekret całkowicie usuwa sekret z repozytorium, ponieważ nie istnieją żadne dalsze kopie.",
+        "options": ["Fałsz — sekret pozostaje w historii git w każdym klonie i forku", "Prawda — git rm usuwa plik ze wszystkich gałęzi i historii"]
+      },
+      {
+        "q": "Która funkcja HashiCorp Vault eliminuje ryzyko użycia skradzionego statycznego poświadczenia bazy danych przez atakującego?",
+        "options": ["Dynamiczne sekrety z krótkimi TTL generowane na żądanie", "Przechowywanie sekretów w zaszyfrowanym pliku YAML zaewidencjonowanym w git"]
+      },
+      {
+        "q": "W naruszeniu Uber z 2022 roku, jaka była główna przyczyna umożliwiająca ruch lateralny atakującego?",
+        "options": ["Zakodowane na twardo poświadczenie administratora w skrypcie PowerShell na wewnętrznym udziale plików", "Niezałatana podatność w publicznej aplikacji internetowej Uber"]
+      },
+      {
+        "q": "Programy skanowania sekretów muszą obejmować repozytoria kodu źródłowego, zmienne pipeline CI/CD, obrazy kontenerów, udziały plików i skrypty wewnętrzne.",
+        "options": ["Prawda", "Fałsz — zmienne CI/CD są automatycznie szyfrowane przez dostawcę pipeline"]
+      },
+      {
+        "q": "Jaki jest zalecany maksymalny TTL sekretów dla zautomatyzowanych systemów korzystających z HashiCorp Vault?",
+        "options": ["1 godzina", "24 godziny"]
+      }
+    ]
+  },
+  "audit-t03": {
+    "questions": [
+      {
+        "q": "Zasady kontroli usług AWS (SCP) mogą zostać ominięte przez administratora IAM w tym samym koncie, jeśli jego zasada IAM wyraźnie przyznaje działanie.",
+        "options": ["Fałsz — SCP nadpisują zasady IAM i nie mogą być omijane przez administratorów konta", "Prawda — IAM AdministratorAccess zawsze ma pierwszeństwo przed SCP"]
+      },
+      {
+        "q": "W naruszeniu Capital One (2019), które dwie awarie mechanizmu bezpieczeństwa umożliwiły eksfiltrację 106 milionów rekordów?",
+        "options": ["Żadna reguła Config nie wykryła błędnej konfiguracji WAF i żaden alert CloudWatch nie wyzwolił się na wolumenie wywołań S3", "CloudTrail był wyłączony, a zasobnik S3 miał włączony publiczny dostęp"]
+      },
+      {
+        "q": "CloudTrail musi być włączony we wszystkich regionach AWS, nie tylko us-east-1, aby zapewnić pełne logowanie aktywności API.",
+        "options": ["Prawda", "Fałsz — us-east-1 przechwytuje usługi globalne, więc inne regiony są opcjonalne"]
+      },
+      {
+        "q": "Która kontrola AWS zapewnia CIĄGŁE monitorowanie zgodności zasobów z zdefiniowanymi zasadami?",
+        "options": ["AWS Config Rules", "AWS CloudTrail"]
+      },
+      {
+        "q": "Przechowywanie logów CloudTrail w tym samym koncie, które jest audytowane, to najlepsza praktyka bezpieczeństwa, ponieważ upraszcza dostęp do logów.",
+        "options": ["Fałsz — skompromitowany administrator w tym samym koncie mógłby usunąć logi; wymagane jest przechowywanie między kontami", "Prawda — przechowywanie w tym samym koncie zapewnia szybki dostęp dla zespołu audytu"]
+      }
+    ]
+  },
+  "audit-t04": {
+    "questions": [
+      {
+        "q": "Uprawnienie IAM 'iam:CreatePolicyVersion' samo w sobie może stanowić ścieżkę eskalacji uprawnień do AdministratorAccess.",
+        "options": ["Prawda — użytkownik może utworzyć nową wersję zasady przyznającą pełny dostęp administratora i dołączyć ją do siebie", "Fałsz — CreatePolicyVersion modyfikuje tylko istniejące zasady bez zmiany efektywnych uprawnień"]
+      },
+      {
+        "q": "W naruszeniu Okta z 2022 roku, jaka zasada IAM została naruszona i bezpośrednio umożliwiła dostęp atakującego?",
+        "options": ["Konto wsparcia dostawcy zewnętrznego miało szersze uprawnienia niż potrzebne do jego funkcji", "Okta nie włączyło MFA na swoim koncie root AWS"]
+      },
+      {
+        "q": "Która kombinacja uprawnień IAM tworzy ścieżkę eskalacji uprawnień, pozwalając atakującemu na uruchamianie instancji EC2 z dołączonymi uprzywilejowanymi rolami?",
+        "options": ["iam:PassRole w połączeniu z ec2:RunInstances", "iam:ListRoles w połączeniu z ec2:DescribeInstances"]
+      },
+      {
+        "q": "Klucze dostępu starsze niż 90 dni na aktywnych użytkownikach IAM są uważane za ustalenie bezpieczeństwa.",
+        "options": ["Prawda", "Fałsz — wiek klucza jest bez znaczenia, jeśli klucz nie był ostatnio używany"]
+      },
+      {
+        "q": "Dla aplikacji, najlepsza praktyka AWS IAM zaleca używanie ról IAM zamiast użytkowników IAM z długotrwałymi kluczami dostępu.",
+        "options": ["Prawda — role używają tymczasowych poświadczeń bez kluczy dostępu do rotacji", "Fałsz — użytkownicy IAM są preferowani, ponieważ mają stałą tożsamość dla logów audytu"]
+      }
+    ]
+  },
+  "audit-t05": {
+    "questions": [
+      {
+        "q": "Montowanie gniazda Docker (/var/run/docker.sock) wewnątrz kontenera efektywnie przyznaje temu kontenerowi pełną kontrolę nad hostem.",
+        "options": ["Prawda", "Fałsz — gniazdo pozwala kontenerowi tylko na przeglądanie innych kontenerów, nie na kontrolowanie ich"]
+      },
+      {
+        "q": "W incydencie kryptojackingu Kubernetes Tesla z 2018 roku, jaki punkt początkowego dostępu atakujący wykorzystali?",
+        "options": ["Panel kontrolny Kubernetes wystawiony w Internecie bez uwierzytelnienia", "Kontener uruchomiony jako root umożliwiający eskalację uprawnień"]
+      },
+      {
+        "q": "Kubernetes etcd domyślnie przechowuje Sekrety zaszyfrowane, więc dodatkowa konfiguracja szyfrowania nie jest wymagana.",
+        "options": ["Fałsz — Sekrety Kubernetes są domyślnie kodowane base64 (nie szyfrowane); szyfrowanie w spoczynku musi być wyraźnie skonfigurowane", "Prawda — etcd automatycznie używa szyfrowania AES-256 dla wszystkich przechowywanych obiektów"]
+      },
+      {
+        "q": "Skanowanie CVE obrazów kontenerów powinno odbywać się w pipeline CI/CD przed wypychaniem obrazów do rejestru.",
+        "options": ["Prawda — wykrywanie CVE przed rejestrem zapobiega dotarciu podatnych obrazów do produkcji", "Fałsz — skanowanie po wdrożeniu jest wystarczające, ponieważ kontrole bezpieczeństwa środowiska wykonawczego kompensują"]
+      },
+      {
+        "q": "Specyfikacja kontenera z 'runAsUser: 0' i 'privileged: true' reprezentuje jakie ryzyko podczas audytu Kubernetes?",
+        "options": ["Kontener działa jako root z pełnymi możliwościami jądra hosta — ucieczka procesu oznacza dostęp root na węźle hosta", "Kontener ma dostęp odczytu do systemu plików hosta, ale nie może wykonywać procesów poza swoją przestrzenią nazw"]
+      }
+    ]
+  },
+  "audit-t06": {
+    "questions": [
+      {
+        "q": "Skanowanie bezpieczeństwa IaC w CI/CD wykrywa błędne konfiguracje przed wdrożeniem infrastruktury, przesuwając bezpieczeństwo w lewo.",
+        "options": ["Prawda", "Fałsz — skanowanie IaC może być uruchamiane tylko po wdrożeniu w celu sprawdzenia rzeczywistego stanu zasobów"]
+      },
+      {
+        "q": "W naruszeniu Toyota Connected Services (2023), jaka pojedyncza zautomatyzowana kontrola wykryłaby błędną konfigurację pierwszego dnia w 2013 roku?",
+        "options": ["Reguła AWS Config 's3-bucket-public-read-prohibited' działająca ciągle", "Ręczny test penetracyjny zaplanowany kwartalnie"]
+      },
+      {
+        "q": "Zasób grupy zabezpieczeń Terraform zezwalający na ruch przychodzący z '0.0.0.0/0' na porcie 22 jest klasyfikowany jako jaka ważność przez tfsec?",
+        "options": ["WYSOKIE — SSH otwarte dla całego Internetu to automatyczne znaczące ustalenie", "NISKIE — port 22 to standardowy port administracyjny i oczekuje się, że będzie dostępny"]
+      },
+      {
+        "q": "Które narzędzie wykonuje statyczną analizę bezpieczeństwa specyficznie dla szablonów Terraform?",
+        "options": ["tfsec lub Checkov", "Trivy lub Grype"]
+      },
+      {
+        "q": "Starsze zasoby chmury sprzed zarządzania IaC nie muszą być importowane do skanowania IaC, ponieważ historyczne konfiguracje są zwolnione z bieżących standardów.",
+        "options": ["Fałsz — starsze zasoby muszą być importowane do zarządzania IaC i poddawane tym samym skanowaniom co nowe wdrożenia", "Prawda — retroaktywne skanowanie IaC nie jest wykonalne i tworzy niepotrzebne obciążenie operacyjne"]
+      }
+    ]
+  },
+  "audit-t07": {
+    "questions": [
+      {
+        "q": "SAST (Static Application Security Testing) analizuje kod źródłowy bez jego wykonywania, znajdując podatności takie jak SQL injection przed zbudowaniem aplikacji.",
+        "options": ["Prawda", "Fałsz — SAST wymaga działającej aplikacji do symulowania ataków na aktywne punkty końcowe"]
+      },
+      {
+        "q": "Naruszenie Equifax (2017) było możliwe, ponieważ firma nie miała SCA (Software Composition Analysis) zintegrowanego w pipeline CI/CD do wykrywania podatnej zależności Apache Struts.",
+        "options": ["Prawda — SCA oznaczyłoby CVE natychmiast po wydaniu łatki", "Fałsz — Equifax miał SCA, ale zdecydował się ręcznie pominąć ustalenie"]
+      },
+      {
+        "q": "Kto powinien autoryzować pominięcia fałszywych pozytywów w programie SAST?",
+        "options": ["Inżynier bezpieczeństwa z udokumentowanym uzasadnieniem", "Deweloper, który napisał oznaczony kod, ponieważ najlepiej rozumie kontekst"]
+      },
+      {
+        "q": "Który typ testowania bezpieczeństwa potwierdza, że podatność znaleziona przez SAST jest rzeczywiście możliwa do wykorzystania w działającej aplikacji?",
+        "options": ["DAST (Dynamic Application Security Testing)", "SCA (Software Composition Analysis)"]
+      },
+      {
+        "q": "Log4Shell (CVE-2021-44228) to przykład podatności, którą narzędzia SCA mogą wykryć, ponieważ istnieje w znanych zależnościach open source.",
+        "options": ["Prawda", "Fałsz — Log4Shell to zachowanie środowiska wykonawczego i nie może być wykryte przez statyczne skanowanie zależności"]
+      }
+    ]
+  },
+  "audit-t08": {
+    "questions": [
+      {
+        "q": "Naruszenie Target z 2013 roku powiodło się, ponieważ dostęp sieciowy dostawcy HVAC był w tej samej płaskiej sieci co systemy point-of-sale Target.",
+        "options": ["Prawda", "Fałsz — atakujący przeszedł przez podatność aplikacji internetowej, a nie płaską sieć"]
+      },
+      {
+        "q": "W prawidłowo segmentowanym środowisku AWS, baza danych RDS w prywatnej podsieci powinna mieć grupę zabezpieczeń zezwalającą na port 5432 z jakiego źródła?",
+        "options": ["Tylko z ID grupy zabezpieczeń serwera aplikacji", "0.0.0.0/0, aby zapewnić, że aplikacja zawsze może dotrzeć do bazy danych"]
+      },
+      {
+        "q": "Logi VPC Flow muszą być włączone, aby zweryfikować segmentację sieci, ponieważ zapewniają jedyny zapis rzeczywistego ruchu między podsieciami.",
+        "options": ["Prawda", "Fałsz — reguły grup zabezpieczeń są wystarczającym dowodem, że segmentacja działa bez potrzeby logów ruchu"]
+      },
+      {
+        "q": "PCI DSS wymaga segmentacji sieci w celu zmniejszenia zakresu środowiska danych posiadaczy kart i ograniczenia ruchu lateralnego.",
+        "options": ["Prawda", "Fałsz — PCI DSS zaleca segmentację, ale jej nie wymaga do zgodności"]
+      },
+      {
+        "q": "Podsieć bazy danych z trasą bramy NAT zezwalającą na wychodzący dostęp do Internetu reprezentuje jaki typ ustalenia segmentacji?",
+        "options": ["Luka segmentacji — serwery baz danych nie powinny mieć żadnej trasy wychodzącej do Internetu", "Dopuszczalna konfiguracja — NAT zezwala tylko na wychodzące i nie eksponuje bazy danych na połączenia przychodzące"]
+      }
+    ]
+  },
+  "audit-t09": {
+    "questions": [
+      {
+        "q": "Logi audytu bazy danych przechwytujące tylko operacje DDL i DML (CREATE, INSERT, UPDATE, DELETE) są niewystarczające, ponieważ nie wykrywają eksfiltracji opartej na odczycie przez zapytania SELECT.",
+        "options": ["Prawda", "Fałsz — zapytania SELECT nie modyfikują danych, więc nie mają wymagań dotyczących logowania zgodności"]
+      },
+      {
+        "q": "W naruszeniu Morgan Stanley związanym z likwidacją (2020), jaka jedna kontrola bazy danych sprawiłaby, że dane na zlikwidowanym sprzęcie byłyby nieczytelne?",
+        "options": ["Szyfrowanie w spoczynku — dane bez klucza szyfrowania są nieczytelne nawet na odzyskanym sprzęcie", "Maskowanie na poziomie kolumn — zamaskowane pola wyglądałyby jak wartości zastępcze"]
+      },
+      {
+        "q": "Konto usługi Snowflake (SVC_ETL) z rolą ACCOUNTADMIN, gdy potrzebuje tylko dostępu INSERT do tabel staging, jest klasyfikowane jako który typ ustalenia?",
+        "options": ["Krytyczne — konto ma uprawnienia superadministratora, co oznacza, że każde skompromitowanie daje pełny dostęp do bazy danych", "Średnie — ACCOUNTADMIN to standard dla kont usług uruchamiających zaplanowane zadania ETL"]
+      },
+      {
+        "q": "Bezpieczeństwo na poziomie wiersza (RLS) ogranicza dane dostępne dla skompromitowanego konta użytkownika poprzez podział wierszy na podstawie atrybutów uwierzytelnionego użytkownika.",
+        "options": ["Prawda", "Fałsz — RLS dotyczy tylko administratorów baz danych i nie wpływa na regularne konta analityków"]
+      },
+      {
+        "q": "Rozwojowa baza danych zawierająca kopie PII produkcyjnych musi mieć włączone szyfrowanie w spoczynku, nawet jeśli nie jest środowiskiem produkcyjnym.",
+        "options": ["Prawda — każda baza danych zawierająca wrażliwe dane wymaga szyfrowania niezależnie od etykiety środowiska", "Fałsz — bazy danych rozwojowe są wyłączone z wymogów szyfrowania, ponieważ nie są skierowane do klientów"]
+      }
+    ]
+  },
+  "audit-t10": {
+    "questions": [
+      {
+        "q": "W naruszeniu Equifax (2017), atakujący byli niewykryci przez 78 dni przede wszystkim dlatego, że urządzenie SSL inspection miało wygasły certyfikat i nie sprawdzało ani nie logowało ruchu HTTPS.",
+        "options": ["Prawda", "Fałsz — atakujący używali zaszyfrowanych tuneli, których żaden system monitorujący nie mógł wykryć w tamtym czasie"]
+      },
+      {
+        "q": "Jak jest identyfikowana luka pokrycia logami SIEM podczas audytu?",
+        "options": ["Poprzez porównanie listy źródeł logów SIEM z pełnym inwentarzem zasobów", "Poprzez przeglądanie zaległości alertów SIEM dla systemów, które nigdy nie wygenerowały alertu"]
+      },
+      {
+        "q": "PCI DSS Wymóg 10 nakazuje minimalną retencję logów przez 12 miesięcy, z co najmniej 3 miesiącami natychmiast dostępnymi.",
+        "options": ["Prawda", "Fałsz — PCI DSS wymaga 6 miesięcy retencji z 1 miesiącem natychmiast dostępnym"]
+      },
+      {
+        "q": "SIEM z 4237 niezpotwierdzonymi alertami i MTTA wynoszącym 18,4 godziny wskazuje na skuteczny program monitorowania.",
+        "options": ["Fałsz — to reprezentuje zmęczenie alertami; skuteczne monitorowanie wymaga MTTA poniżej 15 minut dla krytycznych alertów", "Prawda — duże zaległości alertów demonstrują kompleksowe pokrycie wykrywania"]
+      },
+      {
+        "q": "Weryfikacja, że źródła logów aktywnie WYSYŁAJĄ logi — a nie tylko są skonfigurowane do ich wysyłania — to wymagany krok podczas audytu pokrycia logami.",
+        "options": ["Prawda", "Fałsz — weryfikacja konfiguracji jest wystarczająca; aktywne dostarczanie logów można założyć, jeśli nie są zgłaszane żadne błędy"]
+      }
+    ]
+  },
+  "audit-t11": {
+    "questions": [
+      {
+        "q": "Architektura Zero Trust działa na zasadzie, że użytkownicy i urządzenia wewnątrz sieci korporacyjnej powinny być domyślnie zaufani, ponieważ już przeszły przez kontrole obwodowe.",
+        "options": ["Fałsz — Zero Trust wymaga, aby każde żądanie dostępu było uwierzytelniane i autoryzowane niezależnie od lokalizacji sieciowej", "Prawda — wewnętrzna pozycja sieciowa jest prawidłowym sygnałem zaufania w modelu Zero Trust"]
+      },
+      {
+        "q": "Atak SolarWinds (2020) zademonstrował podstawową słabość bezpieczeństwa opartego na obwodzie poprzez wykorzystanie jakiego warunku?",
+        "options": ["Niejawne wewnętrzne zaufanie, które pozwoliło atakującemu na ruch lateralny po wejściu do obwodu", "Błędna konfiguracja Zero Trust, która ujawniła wewnętrzne API w Internecie"]
+      },
+      {
+        "q": "Która metoda uwierzytelniania reprezentuje poziom dojrzałości ZAAWANSOWANY dla filaru Tożsamości w Modelu Dojrzałości Zero Trust CISA?",
+        "options": ["Klucze sprzętowe FIDO2 odporne na phishing zastępujące SMS lub TOTP", "Nazwa użytkownika i hasło z opcjonalnymi jednorazowymi kodami SMS"]
+      },
+      {
+        "q": "ZTNA (Zero Trust Network Access) zastępuje VPN poprzez zapewnianie dostępu specyficznego dla aplikacji bez przyznawania szerokiego dostępu na poziomie sieci.",
+        "options": ["Prawda", "Fałsz — ZTNA i VPN są komplementarne i oba są wymagane w dojrzałej architekturze Zero Trust"]
+      },
+      {
+        "q": "BeyondCorp Google (2014) był znaczący, ponieważ był pierwszą główną implementacją korporacyjną demonstrującą, że wewnętrzna lokalizacja sieciowa nie powinna zapewniać dodatkowego zaufania.",
+        "options": ["Prawda", "Fałsz — BeyondCorp nadal utrzymywał zaufaną strefę wewnętrzną dla stacji roboczych inżynieryjnych"]
+      }
+    ]
+  },
+  "audit-t12": {
+    "questions": [
+      {
+        "q": "Ręczne audyty zgodności zapewniają ciągłe, bieżące pokrycie zasobów chmury, podczas gdy automatyczne sprawdzenia zgodności przechwytują tylko migawkę w danym momencie.",
+        "options": ["Fałsz — automatyczna zgodność jest ciągła; ręczne audyty są migawkami w danym momencie", "Prawda — ludzcy audytorzy mogą oceniać kontekst, który automatyczne narzędzia pomijają, czyniąc ich główną kontrolą"]
+      },
+      {
+        "q": "Błędna konfiguracja publicznego dostępu S3 Toyota przez 10 lat (2013–2023) zostałaby natychmiast wykryta przez którą usługę AWS?",
+        "options": ["Reguła AWS Config 's3-bucket-public-read-prohibited' działająca ciągle", "AWS CloudTrail logujący całą aktywność API S3"]
+      },
+      {
+        "q": "AWS Security Hub zapewnia ujednolicony wynik zgodności poprzez agregowanie ustaleń z Config Rules, GuardDuty, Inspector, Macie i narzędzi stron trzecich.",
+        "options": ["Prawda", "Fałsz — Security Hub agreguje tylko ustalenia GuardDuty i nie integruje się z Config Rules"]
+      },
+      {
+        "q": "Automatyczna naprawa ustalenia reguły Config (np. wyłączenie publicznego zasobnika S3) powinna być logowana w celu zapewnienia ścieżki audytu.",
+        "options": ["Prawda", "Fałsz — działania automatycznej naprawy są deterministyczne i nie muszą być logowane"]
+      },
+      {
+        "q": "Program automatyzacji zgodności, w którym tylko 3 z 67 reguł Config mają włączoną automatyczną naprawę, a ustalenia leżą średnio 47 dni przed naprawą, reprezentuje dojrzałą postawę zgodności.",
+        "options": ["Fałsz — skuteczna automatyzacja zgodności wymaga włączonej automatycznej naprawy dla reguł krytycznych i wysokich z szybką naprawą", "Prawda — 47 dni mieści się w akceptowalnym oknie naprawy dla większości frameworków zgodności"]
+      }
+    ]
+  }
+}

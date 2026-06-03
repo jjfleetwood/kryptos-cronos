@@ -1,0 +1,290 @@
+{
+  "audit-01": {
+    "questions": [
+      {
+        "q": "W COBIT 2019 domena EDM (Evaluate, Direct, Monitor) reprezentuje którą warstwę frameworku?",
+        "options": ["Warstwę zarządzania — nadzór zarządu nad kierunkiem IT i wynikami", "Warstwę zarządzania — zespoły IT planujące, budujące i obsługujące systemy"]
+      },
+      {
+        "q": "Prawda czy fałsz: Poziom zdolności COBIT 2 (Managed) spełnia minimalne wymagania bazowe dla branż regulowanych.",
+        "options": ["Prawda — poziom 2 jest wystarczający dla większości wymogów regulacyjnych", "Fałsz — poziom 3 (Established) jest typowym minimum dla branż regulowanych"]
+      },
+      {
+        "q": "Które prawo z 2002 roku zostało bezpośrednio wywołane przez awarie zarządzania takie jak Enron i sformalizowało wymagania kontroli IT dla spółek publicznych?",
+        "options": ["Ustawa Sarbanes-Oxley, która ustanowiła wymogi kontroli IT w Sekcji 404", "Ustawa Gramm-Leach-Bliley, która ustanowiła wymagania dotyczące prywatności danych finansowych"]
+      },
+      {
+        "q": "COBIT 2019 organizuje swoje cele w ilu domenach zarządzania i zarządzania?",
+        "options": ["Trzy domeny: EDM dla zarządzania, plus APO i DSS dla zarządzania", "Pięć domen: EDM dla zarządzania oraz APO, BAI, DSS, MEA dla zarządzania"]
+      },
+      {
+        "q": "Prawda czy fałsz: Zgodnie z zasadami COBIT, samo-raportowanie kierownictwa do zarządu jest wystarczającym dowodem, że cele zarządzania są osiągane.",
+        "options": ["Prawda — kierownictwo jest odpowiedzialne i jego raportowanie powinno być zaufane jako główny dowód", "Fałsz — audytorzy muszą niezależnie weryfikować zarówno warstwy zarządzania, jak i zarządzania"]
+      }
+    ]
+  },
+  "audit-02": {
+    "questions": [
+      {
+        "q": "W ocenie ryzyka CRISC co oznacza „ryzyko rezydualne”?",
+        "options": ["Ryzyko, które pozostaje po zastosowaniu istniejących kontroli w celu zmniejszenia ryzyka inherentnego", "Początkowa ocena ryzyka obliczona przed rozważeniem jakichkolwiek kontroli"]
+      },
+      {
+        "q": "Prawda czy fałsz: „Akceptacja” jest zawsze prawidłową odpowiedzią na ryzyko, gdy ryzyko rezydualne przekracza zatwierdzone przez zarząd apetyty na ryzyko.",
+        "options": ["Prawda — kierownictwo może zaakceptować dowolne ryzyko, jeśli udokumentuje decyzję", "Fałsz — ryzyko powyżej apetytu wymaga zatwierdzonego przez zarząd planu leczenia; jednostronna akceptacja jest niewystarczająca"]
+      },
+      {
+        "q": "CRISC definiuje cztery opcje odpowiedzi na ryzyko. Której z poniższych NIE MA w tej liście?",
+        "options": ["Ignorowanie — odroczenie decyzji o ryzyku do następnego cyklu audytu", "Przeniesienie — przesunięcie ryzyka na osobę trzecią poprzez ubezpieczenie lub umowę"]
+      },
+      {
+        "q": "Naruszenie Capital One z 2019 roku nastąpiło, ponieważ ryzyko błędnej konfiguracji chmury nie zostało ujęte z właściwą wagą. Co to ilustruje w kontekście rejestrów ryzyka?",
+        "options": ["Rejestry ryzyka muszą być aktualizowane tylko raz w roku, aby pozostały użyteczne do celów audytu", "Nieaktualny lub nieprawidłowo oceniony rejestr ryzyka tworzy niechronioną ekspozycję — ryzyko rezydualne było ocenione jako akceptowalne, choć faktycznie było krytyczne"]
+      },
+      {
+        "q": "Prawda czy fałsz: Ryzyko inherentne obliczane jest jako Prawdopodobieństwo pomnożone przez Wpływ przed zastosowaniem jakichkolwiek kontroli.",
+        "options": ["Prawda — ryzyko inherentne odzwierciedla surową ekspozycję bez żadnych uwzględnionych kontroli", "Fałsz — ryzyko inherentne już uwzględnia podstawowe kontrole obecne w środowisku"]
+      }
+    ]
+  },
+  "audit-03": {
+    "questions": [
+      {
+        "q": "Ogólne kontrole IT (ITGC) różnią się od kontroli aplikacyjnych, ponieważ:",
+        "options": ["Dotyczą tylko konkretnych aplikacji finansowych i generowanych przez nie raportów", "Dotyczą całego środowiska IT i stanowią podstawę wiarygodności wszystkich kontroli aplikacyjnych"]
+      },
+      {
+        "q": "Prawda czy fałsz: Pojedyncza awaria ITGC — taka jak zmiany awaryjne omijające zatwierdzenie — tworzy pervazywne ustalenie, które rzuca cień wątpliwości na każdy raport finansowy wyprodukowany przez dotknięty system.",
+        "options": ["Prawda — awarie ITGC są pervazywne i unieważniają poleganie na wszystkich kontrolach aplikacyjnych w dotkniętym systemie", "Fałsz — awarie ITGC są izolowane do konkretnej zmiany, która została pominięta"]
+      },
+      {
+        "q": "Który z czterech filarów ITGC zapewnia, że tylko autoryzowani użytkownicy mają dostęp do systemów i danych?",
+        "options": ["Dostęp logiczny — egzekwowanie zasady najmniejszych uprawnień i indywidualnej odpowiedzialności", "Operacje komputerowe — zapewnienie niezawodnego działania systemów z przetestowanymi kopiami zapasowymi"]
+      },
+      {
+        "q": "Kiedy audytorzy testują ITGC zarządzania zmianami, jaki stan jest nazywany naruszeniem podziału obowiązków (SoD)?",
+        "options": ["Zmiana zastosowana poza zatwierdzonym oknem konserwacji bez autoryzacji awaryjnej", "Deweloper, który napisał kod, zatwierdził również własny bilet zmiany bez niezależnego przeglądu"]
+      },
+      {
+        "q": "Prawda czy fałsz: Upadek MF Global wykazał, że pojedyncza awaria ITGC w zakresie dostępu logicznego jest wystarczająca do umożliwienia oszustwa, nawet bez innych luk kontrolnych.",
+        "options": ["Prawda — jedna awaria ITGC jest zawsze wystarczająca do umożliwienia znaczącego oszustwa", "Fałsz — MF Global miał wiele jednoczesnych awarii ITGC, które razem stworzyły permisywne środowisko umożliwiające oszustwo"]
+      }
+    ]
+  },
+  "audit-04": {
+    "questions": [
+      {
+        "q": "Zasada najmniejszych uprawnień oznacza:",
+        "options": ["Każdy użytkownik ma dokładnie takie uprawnienia, jakie są potrzebne do wykonania swojej pracy, i nic więcej", "Użytkownicy otrzymują szeroki dostęp na początku, a uprawnienia są zmniejszane dopiero po wykryciu nadużycia"]
+      },
+      {
+        "q": "Prawda czy fałsz: Roczna ponowna certyfikacja dostępu użytkownika jest opcjonalna dla kont nieuprzywilejowanych zgodnie ze standardami ISACA.",
+        "options": ["Prawda — tylko konta uprzywilejowane wymagają rocznej ponownej certyfikacji", "Fałsz — dostęp musi być przeglądany i ponownie certyfikowany co najmniej raz w roku dla wszystkich kont w zakresie"]
+      },
+      {
+        "q": "Jak szybko muszą być deprowizjonowane konta uprzywilejowane po zakończeniu zatrudnienia pracownika?",
+        "options": ["W ciągu 24 godzin od zakończenia zatrudnienia dla kont uprzywilejowanych", "W ciągu 30 dni, zgodnie ze standardowym cyklem przeglądu dostępu"]
+      },
+      {
+        "q": "Sprawa Snowdena jest używana w programie nauczania ISACA przede wszystkim do zilustrowania której awarii kontroli dostępu?",
+        "options": ["Wspólnych kont uniemożliwiających kryminalistyczną atrybucję nieautoryzowanych działań", "Akumulacji uprawnień w czasie — dostęp nigdy nie usuwany po zmianie roli — w połączeniu z nieodpowiednią ponowną certyfikacją"]
+      },
+      {
+        "q": "Prawda czy fałsz: Wspólne konto administratora z czterema użytkownikami jest dopuszczalne, o ile hasło jest złożone i regularnie zmieniane.",
+        "options": ["Prawda — silna higiena hasła kompensuje udostępnianie, gdy MFA nie jest dostępne", "Fałsz — współdzielone konta nie zapewniają indywidualnej odpowiedzialności i uniemożliwiają kryminalistyczną atrybucję działań"]
+      }
+    ]
+  },
+  "audit-05": {
+    "questions": [
+      {
+        "q": "ITIL definiuje trzy typy zmian. Który typ wymaga przeglądu i zatwierdzenia przez Change Advisory Board (CAB) przed wdrożeniem produkcyjnym?",
+        "options": ["Zmiany normalne — wymagają przeglądu CAB w celu oceny ryzyka i potwierdzenia zakończenia testów", "Zmiany standardowe — wstępnie zatwierdzone rutynowe zmiany zgodne z ustaloną procedurą"]
+      },
+      {
+        "q": "Prawda czy fałsz: Wskaźnik zmian awaryjnych powyżej 10% jest generalnie uważany za sygnał ostrzegawczy wskazujący na obchodzenie procesu, a nie rzeczywiste sytuacje awaryjne.",
+        "options": ["Prawda — wysokie wskaźniki zmian awaryjnych sygnalizują, że zespoły omijają normalne kontrole, oznaczając zmiany jako awaryjne", "Fałsz — wskaźniki zmian awaryjnych powyżej 10% są oczekiwane w środowiskach produkcyjnych o wysokim tempie"]
+      },
+      {
+        "q": "Strata Knight Capital w wysokości 440 mln USD w 2012 roku jest przypisywana której awarii zarządzania zmianami?",
+        "options": ["Wdrożenie oprogramowania niezweryfikowane we wszystkich serwerach, bez automatycznego wycofania, gdy częściowe wdrożenie spowodowało błędne transakcje", "Zmiana awaryjna zastosowana bez późniejszego zatwierdzenia CAB, która wprowadziła błąd logiczny w silniku transakcyjnym"]
+      },
+      {
+        "q": "Prawda czy fałsz: Plan wycofania jest opcjonalny dla zmian w systemach niekrytycznych, gdzie ryzyko awarii wdrożenia jest niskie.",
+        "options": ["Prawda — plany wycofania są obowiązkowe tylko dla zmian w systemach finansowych lub krytycznych dla bezpieczeństwa", "Fałsz — plan wycofania jest obowiązkowy dla wszystkich zmian produkcyjnych; jeśli nie możesz tego cofnąć, nie możesz tego zatwierdzić"]
+      },
+      {
+        "q": "CHG-2003 wdrożony we wtorek o 14:37, gdy zatwierdzonym oknem konserwacji są soboty 01:00–05:00, z tą samą osobą jako deweloperem i osobą zatwierdzającą. Ile naruszeń kontroli ITIL to reprezentuje?",
+        "options": ["Jedno naruszenie — liczy się tylko przekroczenie okna konserwacji, ponieważ samozatwierdzenie dewelopera to oddzielny problem SoD", "Dwa naruszenia — zarówno awaria segregacji obowiązków, jak i wdrożenie poza oknem to odrębne awarie kontroli"]
+      }
+    ]
+  },
+  "audit-06": {
+    "questions": [
+      {
+        "q": "Co RPO (Recovery Point Objective) definiuje w kontekście BCP/DR?",
+        "options": ["Jak długo biznes może tolerować niedostępność systemu przed krytycznym uszkodzeniem operacji", "Maksymalną ilość utraty danych, którą biznes może zaakceptować — co napędza wymagania dotyczące częstotliwości kopii zapasowych"]
+      },
+      {
+        "q": "Prawda czy fałsz: Cel RTO wynoszący 2 godziny jest dopuszczalny, gdy Maksymalny Tolerowany Czas Przerwy (MTD) systemu wynosi również 2 godziny.",
+        "options": ["Prawda — osiągnięcie MTD z dokładnym celem RTO spełnia wymaganie BCP", "Fałsz — RTO musi być mniejszy niż MTD, aby zapewnić margines; RTO równy MTD nie pozostawia buforu na komplikacje"]
+      },
+      {
+        "q": "Huragan Katrina ujawnił jaką konkretną wadę projektową BCP/DR w instytucjach finansowych Nowego Orleanu?",
+        "options": ["Podstawowe i zapasowe centra danych znajdowały się w tej samej strefie zalewowej, co oznaczało, że oba były jednocześnie niedostępne", "Wyniki testów DR nie były przeglądane przez organy regulacyjne, więc plany nigdy nie były walidowane w stosunku do rzeczywistych wymagań odzyskiwania"]
+      },
+      {
+        "q": "Prawda czy fałsz: Plan DR, który nigdy nie był pomyślnie testowany z udokumentowanymi wynikami, jest uważany za odpowiednią kontrolę zgodnie ze standardami ISACA.",
+        "options": ["Prawda — udokumentowany plan spełnia wymagania kontroli nawet bez dowodów testów", "Fałsz — niezweryfikowany plan odzyskiwania to nadzieja, a nie kontrola; wymagane są dowody testów z wynikami"]
+      },
+      {
+        "q": "Jeśli test DR pokazuje, że Portal Zarządzania Dotacjami osiągnął rzeczywisty RTO wynoszący 5 godzin 20 minut przy celu 4 godzin, jakie jest ustalenie audytora?",
+        "options": ["Brak ustaleń — MTD wynosi 8 godzin, więc biznes może nadal przetrwać w absolutnym limicie", "Ustalenie WYSOKIE — plan DR nie spełnia zatwierdzonego celu RTO i wymagana jest naprawa, nawet jeśli MTD jeszcze nie został przekroczony"]
+      }
+    ]
+  },
+  "audit-07": {
+    "questions": [
+      {
+        "q": "NIST SP 800-61 definiuje cztery fazy IR. Która faza jest uważana za najbardziej audytowalną, ponieważ ma najwięcej wymagań dotyczących dowodów dokumentacyjnych?",
+        "options": ["Przygotowanie — plany IR, przypisania ról, protokoły ćwiczeń tabletopowych i listy kontaktów są weryfikowalnymi dokumentami", "Zawieranie/Eradykacja/Odzysk — ta faza generuje najwięcej logów systemowych i artefaktów kryminalistycznych"]
+      },
+      {
+        "q": "Prawda czy fałsz: Awaria wykrycia naruszenia Equifax nastąpiła, ponieważ atakujący użyli nowatorskiej techniki zero-day, której żadne narzędzie monitorujące nie mogło wykryć.",
+        "options": ["Prawda — metoda ataku była bezprecedensowa i wykrycie nie było technicznie wykonalne w 2017 roku", "Fałsz — narzędzie SSL inspection, które wykryłoby ruch, miało wygasły certyfikat przez 19 miesięcy z powodu pominiętego odnowienia"]
+      },
+      {
+        "q": "Plan IR ostatnio zaktualizowany 21 miesięcy temu i zawierający 3 otwarte, przeterminowane elementy działań z ostatniego ćwiczenia tabletopowego otrzymałby jaką ogólną ocenę?",
+        "options": ["EFEKTYWNY — plan istnieje i był ćwiczony przynajmniej raz w ciągu ostatnich dwóch lat", "NIEEFEKTYWNY — wymaganie dotyczące aktualności (coroczna aktualizacja) i realizacja elementów działań to obie awarie"]
+      },
+      {
+        "q": "Mean Time to Detect (MTTD) mierzy który konkretny interwał w cyklu życia IR?",
+        "options": ["Czas od wystąpienia zdarzenia incydentu do jego wykrycia przez zespół bezpieczeństwa", "Czas od wykrycia do całkowitej eradykacji zagrożenia ze środowiska"]
+      },
+      {
+        "q": "Prawda czy fałsz: Plan IR, który nie zawiera playbooka ransomware, jest dopuszczalny, jeśli organizacja nigdy nie doświadczyła incydentu ransomware.",
+        "options": ["Prawda — playbooki powinny być opracowywane reaktywnie na podstawie rzeczywistych doświadczeń z incydentami", "Fałsz — playbooki muszą obejmować główny krajobraz zagrożeń organizacji niezależnie od poprzednich incydentów; brak jest ustaleniem audytu"]
+      }
+    ]
+  },
+  "audit-08": {
+    "questions": [
+      {
+        "q": "W modelu kategoryzacji ryzyka dostawców, co odróżnia dostawcę Poziomu 1 (Krytycznego) od dostawcy Poziomu 2 (Wysokiego)?",
+        "options": ["Dostawcy Poziomu 1 mają dostęp do wrażliwych danych lub krytycznych systemów i mogą być zależnościami jednożródłowymi wymagającymi najwyższej częstotliwości oceny", "Dostawcy Poziomu 1 to po prostu największy dostawcy według wartości umowy, niezależnie od poziomu dostępu do systemu"]
+      },
+      {
+        "q": "Prawda czy fałsz: Ocena bezpieczeństwa oparta wyłącznie na kwestionariuszu jest wystarczająca dla dostawcy Poziomu 1 z dostępem administratora do sieci niejawnych.",
+        "options": ["Prawda — kwestionariusze są branżowym standardem dla ocen ryzyka stron trzecich na każdym poziomie", "Fałsz — krytyczni dostawcy Poziomu 1 wymagają raportów SOC 2 Typ II lub równoważnych, plus kontraktowe prawo do audytu; same kwestionariusze są niewystarczające"]
+      },
+      {
+        "q": "Atak na łańcuch dostaw SolarWinds powiódł się przede wszystkim dlatego, że dotknięte organizacje nie zrobiły czego?",
+        "options": ["Nie sklasyfikowały SolarWinds jako krytycznego dostawcy wymagającego rozszerzonego monitorowania aktywności sieciowej jego oprogramowania", "Nie wymagały od SolarWinds używania uwierzytelniania wieloskładnikowego dla kont deweloperów"]
+      },
+      {
+        "q": "Jakie działanie jest wymagane, gdy roczna ocena bezpieczeństwa dostawcy Poziomu 1 przekracza 365 dni?",
+        "options": ["Wydaj ustalenie w następnym raporcie audytu i poproś dostawcę o zaplanowanie nowej oceny w ciągu 90 dni", "Zawieś dostęp dostawcy do systemu do czasu ukończenia aktualnej oceny — kontynuacja dostępu jest nieograniczonym ryzykiem"]
+      },
+      {
+        "q": "Prawda czy fałsz: Uprawnienia dostępu dostawcy mogą być przeglądane i usuwane podczas następnego zaplanowanego kwartalnego przeglądu dostępu po zakończeniu relacji z dostawcą.",
+        "options": ["Prawda — kwartalne przeglądy dostępu to standardowy rytm deprowizjonowania dostępu dostawcy", "Fałsz — dostęp dostawcy musi być deprowizjonowany wraz z zakończeniem relacji, a nie przy następnym zaplanowanym cyklu przeglądu"]
+      }
+    ]
+  },
+  "audit-09": {
+    "questions": [
+      {
+        "q": "RODO Artykuł 5(1)(e) — zasada ograniczenia przechowywania — oznacza, że dane osobowe muszą być:",
+        "options": ["Szyfrowane w spoczynku przez cały czas przechowywania, niezależnie od długości okresu retencji", "Usuwane, gdy nie są już potrzebne do celu, dla którego zostały zebrane, zgodnie z udokumentowanym harmonogramem retencji"]
+      },
+      {
+        "q": "Prawda czy fałsz: Zgodnie z RODO, organizacje muszą powiadomić organ nadzorczy w ciągu 72 godzin od odkrycia naruszenia danych.",
+        "options": ["Prawda — powiadomienie o naruszeniu RODO dla organu nadzorczego jest wymagane w ciągu 72 godzin od wykrycia", "Fałsz — okno 72 godzin dotyczy powiadamiania podmiotów danych; organ nadzorczy ma 30 dni"]
+      },
+      {
+        "q": "Tabela marketing_analytics zawierała 450 000 rekordów przez 3353 dni przy polityce retencji wynoszącej 730 dni. Którą zasadę RODO to narusza i jakie działanie jest wymagane?",
+        "options": ["Artykuł 5(1)(b) ograniczenie celu — dane muszą być zanonimizowane i zachowane do celów badań analitycznych", "Artykuł 5(1)(e) ograniczenie przechowywania — wszystkie rekordy starsze niż 730 dni muszą być natychmiast usunięte i IOD powiadomiony"]
+      },
+      {
+        "q": "Kara RODO wobec Meta w wysokości 1,2 mld EUR w 2023 roku wynikała z której kategorii naruszenia?",
+        "options": ["Transferu danych osobowych UE na serwery w USA po unieważnieniu podstawy prawnej dla tych transferów", "Nieodpowiedzi na wnioski o dostęp podmiotów danych w ciągu ustawowego okna 30 dni"]
+      },
+      {
+        "q": "Prawda czy fałsz: Zgodnie z prawem do usunięcia danych RODO (Artykuł 17), organizacje muszą spełnić żądanie usunięcia w ciągu 30 dni i usunąć dane ze wszystkich systemów, w tym regularnie dostępnych kopii zapasowych.",
+        "options": ["Prawda — usunięcie musi obejmować wszystkie magazyny danych, z których dane mogą być dostępne, w tym aktywne kopie zapasowe", "Fałsz — kopie zapasowe są wyłączone z wymogów usunięcia, ponieważ przywracanie i usuwanie z kopii zapasowych jest technicznie niepraktyczne"]
+      }
+    ]
+  },
+  "audit-10": {
+    "questions": [
+      {
+        "q": "Jaka jest jedyna najważniejsza ochrona prawna dla testera penetracyjnego, która odróżnia jego działalność od przestępczego hakowania?",
+        "options": ["Używanie wyłącznie niedestrukcyjnych technik testowania, które nie mogą powodować przerw systemowych ani utraty danych", "Pisemna autoryzacja podpisana przez właściciela systemu, wyraźnie obejmująca testowane systemy i typy testów"]
+      },
+      {
+        "q": "Prawda czy fałsz: Jeśli obciążenie chmury mieści się w autoryzowanym zakresie IP, dodatkowe zatwierdzenie dostawcy chmury nie jest potrzebne przed jego testowaniem.",
+        "options": ["Prawda — pisemna autoryzacja właściciela systemu obejmuje zasoby chmury, które posiadają, niezależnie od dostawcy hostingu", "Fałsz — obciążenia chmury wymagają wyraźnej autoryzacji dostawcy chmury; AWS, Azure i GCP mają własne polityki zatwierdzania testów penetracyjnych"]
+      },
+      {
+        "q": "Tester penetracyjny skanuje 192.168.30.0/24, czyli sieć bankowości podstawowej wyraźnie wyłączoną z zakresu. Co musi nastąpić dalej?",
+        "options": ["Tester powinien udokumentować dostęp poza zakresem i ujawnić go klientowi w ciągu 24 godzin, a następnie natychmiast zaprzestać wszelkich testów", "Tester powinien kontynuować, jeśli skanowanie było pasywne i nie obejmowało aktywnych prób eksploatacji"]
+      },
+      {
+        "q": "Incydent AT&T/iPad z 2010 roku zilustrował którą zasadę dotyczącą autoryzacji badań bezpieczeństwa?",
+        "options": ["Defensywne intencje i odpowiedzialne ujawnienie chronią badaczy przed ściganiem na mocy CFAA niezależnie od pisemnej autoryzacji", "Bez pisemnej autoryzacji od właściciela systemu, dostęp do systemu — nawet z defensywnymi intencjami — może być ścigany jako nieautoryzowany dostęp"]
+      },
+      {
+        "q": "Prawda czy fałsz: Dokument zakresu wymieniający autoryzowane zakresy IP, ale niewymieniający wyraźnie systemów poza zakresem, zapewnia odpowiednią ochronę dla testera.",
+        "options": ["Prawda — wszystko, co nie jest w autoryzowanym zakresie, jest niejawnie poza zakresem", "Fałsz — systemy poza zakresem muszą być wyraźnie wymienione; niejednoznaczność w dokumentach zakresu nie chroni ani klienta, ani testera"]
+      }
+    ]
+  },
+  "audit-11": {
+    "questions": [
+      {
+        "q": "ISACA definiuje trzy atrybuty, które czynią dowody audytowe wystarczającymi. Która kombinacja jest prawidłowa?",
+        "options": ["Wystarczające, rzetelne i istotne — dowody muszą być wystarczające do poparcia wniosku, z wiarygodnego źródła i rzeczywiście odnosić się do testowanej kontroli", "Kompletne, obiektywne i udokumentowane — dowody muszą obejmować całą populację, być wolne od stronniczości i istnieć w formie pisemnej"]
+      },
+      {
+        "q": "Prawda czy fałsz: W próbkowaniu atrybutów, jeśli wskaźnik odchyleń próbki przekracza tolerowalny wskaźnik odchyleń, audytor musi stwierdzić, że kontrola nie działa skutecznie.",
+        "options": ["Prawda — wskaźnik odchyleń próbki powyżej progu tolerowanego oznacza, że audytor musi stwierdzić, że kontrola nie działa skutecznie lub rozszerzyć testowanie", "Fałsz — pojedynczy wynik próbki nie jest wystarczający do wyciągnięcia jakichkolwiek wniosków na temat skuteczności kontroli"]
+      },
+      {
+        "q": "W próbce 60 biletów zmiany, 5 nie ma zatwierdzenia CAB. Tolerowalny wskaźnik odchyleń wynosi 5%. Jaki jest wskaźnik odchyleń próbki i co stwierdza audytor?",
+        "options": ["8,3% — przekracza to tolerowalny wskaźnik 5%, więc kontrola zarządzania zmianami nie działa skutecznie", "8,3% — ten wynik mieści się w akceptowalnym przedziale ufności, ponieważ populacja wynosi 1450 biletów"]
+      },
+      {
+        "q": "Sprawa Arthur Andersen ustanowiła którą zasadę dotyczącą dowodów audytowych?",
+        "options": ["Dowody cyfrowe muszą być zbierane przy użyciu zautomatyzowanych narzędzi, aby zapewnić obiektywność i kompletność", "Dowody audytowe muszą być zachowane, a nie tylko zebrane — zniszczenie dowodów stanowi utrudnianie wymiaru sprawiedliwości, a wymagana jest retencja przez 7 lat"]
+      },
+      {
+        "q": "Prawda czy fałsz: Dowody zeznaniowe (wywiady) są klasyfikowane wyżej w jakości dowodów audytowych niż dowody dokumentacyjne (zapisy i logi).",
+        "options": ["Prawda — bezpośrednie wywiady z właścicielami procesów dostarczają najbardziej wiarygodnych dowodów na temat działania kontroli", "Fałsz — dowody dokumentacyjne są klasyfikowane wyżej niż zeznaniowe; dowody fizyczne obserwowane bezpośrednio są klasyfikowane najwyżej ze wszystkich"]
+      }
+    ]
+  },
+  "audit-12": {
+    "questions": [
+      {
+        "q": "Standard CISA dla kompletnego ustalenia audytu wymaga czterech elementów. Który zestaw jest prawidłowy?",
+        "options": ["Stan, Kryterium, Przyczyna i Skutek — co znaleziono, co wymaga standard, dlaczego istnieje odchylenie i jakie ryzyko tworzy", "Ustalenie, Dowód, Wpływ i Zalecenie — obserwacja, dane wspierające, konsekwencja biznesowa i sugerowane rozwiązanie"]
+      },
+      {
+        "q": "Prawda czy fałsz: Gdy ustalenie zidentyfikowane w poprzednim cyklu audytu pojawia się niezmienione w bieżącym audycie, audytor powinien zgłosić je kierownictwu i dać im drugi okres naprawy przed eskalacją.",
+        "options": ["Prawda — kierownictwu należy dać dodatkową szansę naprawy przed zaangażowaniem komitetu audytu", "Fałsz — powtarzające się ustalenia są eskalowane bezpośrednio do komitetu audytu, ponieważ odpowiedzialność kierownictwa wyraźnie zawiodła"]
+      },
+      {
+        "q": "Śledzenie naprawy po 30, 60 i 90 dniach od wydania raportu audytu jest najlepiej opisane jako:",
+        "options": ["Opcjonalna najlepsza praktyka demonstrująca jakość audytu, ale niewymagana przez standardy ISACA", "Sama kontrola audytowa — niemonitorywalnej naprawy nie można odróżnić od braku naprawy"]
+      },
+      {
+        "q": "Sprawa Wells Fargo (2016–2023) jest używana w programie nauczania CISA przede wszystkim do zilustrowania jakiego ryzyka audytu?",
+        "options": ["Ryzyko, że zewnętrzni audytorzy nie wykryją oszustwa, gdy kierownictwo używa złożonych instrumentów finansowych do jego ukrycia", "Ryzyko, że kierownictwo uznaje ustalenia i zgadza się na plany naprawy, ale nie wdraża ich — czyniąc powtarzające się ustalenia fundamentalną awarią środowiska kontrolnego"]
+      },
+      {
+        "q": "Prawda czy fałsz: Ustalenie F-2026-01 (konta zakończonych użytkowników niedeprowizjonowane) jest powtarzającym się ustaleniem, jeśli F-2025-01 z ubiegłorocznego audytu opisywało ten sam stan i nigdy nie zostało naprawione.",
+        "options": ["Prawda — ten sam stan, ta sama kontrola, nienaprawiona przez 12+ miesięcy sprawia, że to powtarzające się ustalenie wymaga eskalacji do komitetu audytu", "Fałsz — ID ustaleń są różne, więc każdy roczny przypadek jest traktowany jako nowe ustalenie z nowym harmonogramem naprawy"]
+      }
+    ]
+  }
+}

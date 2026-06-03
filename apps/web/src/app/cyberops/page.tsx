@@ -4,8 +4,8 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { fetchProgress } from "@/lib/progress";
 import { getSession } from "@/lib/auth";
-import { CYBEROPS_DOMAINS, computeCyberOpsReadiness } from "@/data/cyberops-domains";
-import { stagesMeta } from "@/data/stages-meta";
+import { CYBEROPS_DOMAINS, computeCyberOpsReadiness } from "@kryptos/core/cyberops-domains";
+import { stagesMeta } from "@kryptos/core/stages-meta";
 
 const COLOR_MAP: Record<string, { bar: string; text: string; border: string; bg: string; badge: string }> = {
   cyan:    { bar: "bg-cyan-500",    text: "text-cyan-400",    border: "border-cyan-500/30",    bg: "bg-cyan-500/5",    badge: "bg-cyan-500/15 border-cyan-500/30 text-cyan-300" },

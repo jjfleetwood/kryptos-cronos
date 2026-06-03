@@ -1,0 +1,242 @@
+{
+  "quantum-c01": {
+    "questions": [
+      {
+        "q": "W BB84, jaki próg QBER wyzwala przerwanie wymiany kluczy z powodu podejrzanego podsłuchu?",
+        "options": ["Powyżej 11%", "Powyżej 50%"]
+      },
+      {
+        "q": "Prawda czy fałsz: W BB84, Alice i Bob publicznie ujawniają rzeczywiste wartości bitów (0 lub 1) podczas uzgadniania bazy.",
+        "options": ["Fałsz — ujawniają tylko, których baz użyli, nie bity", "Prawda — udostępnianie bitów przez publiczny kanał jest bezpieczne"]
+      },
+      {
+        "q": "Atak intercept-resend przez Eve wprowadza mniej więcej jaki poziom QBER?",
+        "options": ["~25%", "~5%"]
+      },
+      {
+        "q": "Twierdzenie o nieklonowaniu gwarantuje którą własność bezpieczeństwa BB84?",
+        "options": ["Każda próba skopiowania stanu kwantowego zaburza go, czyniąc podsłuchiwaczy wykrywalnymi", "Klucze kwantowe są nieskończenie wielokrotnego użytku bez ryzyka przechwycenia"]
+      },
+      {
+        "q": "Prawda czy fałsz: Chiński satelita Micius (2017) zademonstrował pierwsze intercykontynentalne łącze QKD, łącząc Pekin i Wiedeń na odległości około 7600 km.",
+        "options": ["Prawda", "Fałsz — Micius działał tylko w krajowej sieci Chin"]
+      }
+    ]
+  },
+  "quantum-c02": {
+    "questions": [
+      {
+        "q": "Jaka jest główna słabość bezpieczeństwa zaufanych węzłów przekaźnikowych w dalekobieżnych sieciach QKD?",
+        "options": ["Są klasycznymi komputerami posiadającymi odszyfrowany materiał kluczy i mogą być fizycznie skompromitowane", "Wprowadzają błędy QBER wykrywalne zarówno przez Alice, jak i Boba"]
+      },
+      {
+        "q": "Prawda czy fałsz: Skompromitowany zaufany węzeł przekaźnikowy powoduje mierzalny skok QBER, który alarmuje komunikujące się strony.",
+        "options": ["Fałsz — skompromitowany przekaźnik przekazuje klucze w postaci jawnego tekstu bez sygnału QBER", "Prawda — każda kradzież kluczy w przekaźniku jest wykrywalna przez kwantowe stopy błędów"]
+      },
+      {
+        "q": "Twin-field QKD (TF-QKD) rozszerza zasięg QKD przez który mechanizm?",
+        "options": ["Oba punkty końcowe wysyłają fotony do niezaufanego środkowego przekaźnika, który mierzy interferencję, nie klucz", "Stacje przekaźnikowe odszyfrowują i ponownie szyfrują klucze używając algorytmów opartych na siatkach"]
+      },
+      {
+        "q": "Ile zaufanych węzłów przekaźnikowych używa chińskie kwantowe kręgosłupowe łącze Pekin-Szanghaj (4600 km), z których każdy reprezentuje potencjalny punkt ataku?",
+        "options": ["32", "4"]
+      },
+      {
+        "q": "Prawda czy fałsz: Cisco Universal Quantum Switch ogłoszony w kwietniu 2026 roku wymaga chłodzenia kriogenicznego do przekazywania sygnałów kwantowych bez ujawniania klasycznego materiału klucza.",
+        "options": ["Fałsz — działa w temperaturze pokojowej na standardowym włóknie telekomunikacyjnym", "Prawda — kriogeniczna praca jest wymagana do zachowania stanu kwantowego"]
+      }
+    ]
+  },
+  "quantum-c03": {
+    "questions": [
+      {
+        "q": "Dlaczego Micius działa głównie w nocy, a nie w ciągu dnia?",
+        "options": ["Słoneczny szum fotonowy tłumi sygnały pojedynczych fotonów w ciągu dnia", "Mechanika orbitalna uniemożliwia łączność ze stacjami naziemnymi w ciągu dnia"]
+      },
+      {
+        "q": "Prawda czy fałsz: Łącza światłowodowe chronione przez QKD czynią pasywne techniki zbierania SIGINT, takie jak odgałęzienia kabli i splittery włókien, fizycznie niemożliwymi.",
+        "options": ["Prawda — każdy pomiar zaburza fotony i podnosi QBER", "Fałsz — pasywne zbieranie jest nadal możliwe, ale ograniczone do metadanych"]
+      },
+      {
+        "q": "Jaką strategiczną zmianę wymusza powszechne wdrożenie QKD przez państwa narodowe na agencjach wywiadowczych?",
+        "options": ["Zbieranie musi przesunąć się od pasywnego masowego przechwytywania do aktywnych operacji na punktach końcowych, które kosztują więcej i niosą wyższe ryzyko atrybucji", "Agencje zyskują nowe możliwości pasywnego zbierania, ponieważ punkty końcowe QKD nadają materiał kluczy"]
+      },
+      {
+        "q": "Podczas intercykontynentalnego kwantowego połączenia wideo w 2017 roku, jaką rolę odegrał satelita Micius w wymianie kluczy?",
+        "options": ["Był zaufanym przekaźnikiem — dystrybuując niezależne klucze kwantowe zarówno do stacji naziemnych w Pekinie, jak i Wiedniu", "Zapewniał tylko klasyczne zapasowe uwierzytelnianie, podczas gdy QKD przez włókno przenosiło klucze"]
+      },
+      {
+        "q": "Prawda czy fałsz: NSA wydał CNSA 2.0 w 2022 roku częściowo w odpowiedzi na wdrożenia QKD przez przeciwników, które czynią pasywne zbieranie SIGINT nieskutecznym.",
+        "options": ["Prawda", "Fałsz — CNSA 2.0 został wydany wyłącznie w celu rozwiązania przyszłego zagrożenia ze strony kryptograficznie istotnych komputerów kwantowych"]
+      }
+    ]
+  },
+  "quantum-c04": {
+    "questions": [
+      {
+        "q": "Która z pięciu zasad zwinności kryptograficznej zapewnia, że stary szyfrogram może być nadal odszyfrowany po przejściu algorytmu?",
+        "options": ["Wersjonowanie — tagowanie wszystkich zaszyfrowanych danych identyfikatorem algorytmu", "Negocjacja — uzgadnianie najlepszego wzajemnego algorytmu w czasie działania"]
+      },
+      {
+        "q": "Prawda czy fałsz: Klucze publiczne ML-KEM o rozmiarze 1184 bajtów są mniej więcej tego samego rozmiaru co klucze publiczne RSA-2048, więc nie są potrzebne zmiany schematu bazy danych.",
+        "options": ["Fałsz — klucze publiczne ML-KEM są ~4,6 razy większe niż klucze RSA-2048 i mogą niszczyć niedostatecznie duże kolumny DB", "Prawda — nowoczesne bazy danych automatycznie obsługują dowolny rozmiar klucza"]
+      },
+      {
+        "q": "Wycofanie SHA-1 (2011–2017) jest cytowane jako przestroga. Ile lat organizacje spędziły w awaryjnej naprawie z powodu zakodowanych algorytmów?",
+        "options": ["~7 lat", "~2 lata"]
+      },
+      {
+        "q": "Który produkt Cisco pozwala operatorom skonfigurować uporządkowaną listę preferencji algorytmów (np. ML-KEM-768, X25519Kyber768), aby najsilniejsza wzajemna opcja była automatycznie negocjowana w IKEv2?",
+        "options": ["Cisco IOS-XE z interfejsem SKIP", "Cisco Firepower Threat Defense z dziedzicznym IKEv1"]
+      },
+      {
+        "q": "Prawda czy fałsz: Antywzorzec niszczący zwinność kryptograficzną to zakodowanie RSA w konfiguracji TLS zamiast abstrahowania wyboru algorytmu za konfigurowalnym interfejsem.",
+        "options": ["Prawda", "Fałsz — zakodowanie RSA jest dopuszczalne, o ile rozmiar klucza wynosi 4096 bitów"]
+      }
+    ]
+  },
+  "quantum-c05": {
+    "questions": [
+      {
+        "q": "Dlaczego migracja VPN jest uważana za najwyższy priorytet HNDL dla większości przedsiębiorstw?",
+        "options": ["Ruch VPN nagrany dziś może zostać odszyfrowany, gdy istnieje komputer kwantowy, ponieważ wymiana kluczy DH i ECDH jest łamana przez algorytm Shora", "Punkty końcowe VPN przechowują klucze prywatne w sposób niebezpieczny, czyniąc je łatwiejszymi do eksfiltracji niż inne systemy"]
+      },
+      {
+        "q": "Prawda czy fałsz: W hybrydowym VPN X25519 + ML-KEM-768, atakujący musi złamać tylko ML-KEM-768, aby odszyfrować sesję.",
+        "options": ["Fałsz — oba X25519 i ML-KEM-768 muszą być jednocześnie złamane", "Prawda — ML-KEM jest jedynym komponentem odpornym na kwanty, więc jest pojedynczym punktem awarii"]
+      },
+      {
+        "q": "Który komponent wdrożenia OpenVPN pozostaje bezpieczny przed atakami kwantowymi nawet bez migracji?",
+        "options": ["Szyfrowanie masowe danych AES-256 (algorytm Grovera tylko o połowę zmniejsza efektywną siłę klucza do 128 bitów)", "Uwierzytelnianie certyfikatu RSA-2048"]
+      },
+      {
+        "q": "W grudniu 2023 roku, który dostawca VPN jako pierwszy komercyjnie wdrożył hybrydową post-kwantową wymianę kluczy w produkcji dla wszystkich użytkowników?",
+        "options": ["Mullvad VPN", "ExpressVPN"]
+      },
+      {
+        "q": "Prawda czy fałsz: Migracja certyfikatów uwierzytelniania par VPN z RSA do ML-DSA-65 (FIPS 204) jest zbędna, ponieważ szyfrowanie masowe już zapewnia odporność kwantową.",
+        "options": ["Fałsz — certyfikaty uwierzytelniania muszą również migrować; podpisy RSA są łamane przez algorytm Shora", "Prawda — uwierzytelnianie RSA jest bezpieczne kwantowo, ponieważ jest używane tylko podczas handshake"]
+      }
+    ]
+  },
+  "quantum-c06": {
+    "questions": [
+      {
+        "q": "Dlaczego klucze głównych urzędów certyfikacji (Root CA) są uważane za najwyższy priorytet migracji PQC?",
+        "options": ["Mają okresy ważności 20–30 lat, które mogą przekraczać Q-Day, a sfałszowany podpis główny pozwala atakującemu podszywać się pod dowolną stronę w domenie zaufania", "Główne urzędy certyfikacji generują klucze na żądanie, więc mogą być zastąpione natychmiast bez wysiłku migracji"]
+      },
+      {
+        "q": "Prawda czy fałsz: Strategia certyfikatu dual-stack wydaje jednocześnie zarówno dane uwierzytelniające RSA, jak i ML-DSA, umożliwiając klientom obsługującym PQC użycie ML-DSA, podczas gdy klienci legacy wracają do RSA.",
+        "options": ["Prawda", "Fałsz — certyfikaty dual-stack nie są obsługiwane przez standardy X.509"]
+      },
+      {
+        "q": "Który produkt HSM nie może zostać uaktualniony przez firmware do obsługi ML-KEM i ML-DSA, wymagając pełnej wymiany sprzętu?",
+        "options": ["YubiHSM 2", "Thales Luna 7"]
+      },
+      {
+        "q": "Jak rozmiar pełnego łańcucha certyfikatów ML-DSA (główny + pośredni + jednostka końcowa) porównuje się z równoważnym łańcuchem RSA?",
+        "options": ["~7,5 KB dla PQC vs ~3,6 KB dla RSA — mniej więcej podwójny, co może powodować fragmentację TLS", "Mniej więcej tego samego rozmiaru — ML-DSA był projektowany tak, aby pasować do wymiarów certyfikatów RSA"]
+      },
+      {
+        "q": "Prawda czy fałsz: NIST SP 800-131A Rev 3 wycofuje RSA-2048 dla wszystkich nowych emisji certyfikatów po 2030 roku.",
+        "options": ["Prawda", "Fałsz — RSA-2048 pozostaje zatwierdzony bezterminowo zgodnie z wytycznymi NIST"]
+      }
+    ]
+  },
+  "quantum-c07": {
+    "questions": [
+      {
+        "q": "Której funkcji należy użyć do zwolnienia buforów tajnych kluczy i wspólnych sekretów w liboqs, zamiast standardowego wywołania free()?",
+        "options": ["OQS_MEM_secure_free() — zeruje pamięć przed zwolnieniem", "OQS_KEM_free() — automatycznie obsługuje całą powiązaną pamięć"]
+      },
+      {
+        "q": "Prawda czy fałsz: liboqs jest zwalidowany zgodnie z FIPS 140-3 i może być używany bezpośrednio w systemach federalnych bez ograniczeń.",
+        "options": ["Fałsz — liboqs jest implementacją referencyjną, ale nie jest zwalidowany zgodnie z FIPS 140-3; do użytku federalnego wymagane są AWS-LC (#4800) lub SymCrypt (#4825)", "Prawda — projekt Open Quantum Safe posiada certyfikat FIPS 140-3 dla wszystkich algorytmów standaryzowanych przez NIST"]
+      },
+      {
+        "q": "W maju 2024 roku, która przeglądarka wdrożyła X25519MLKEM768 jako domyślną umowę kluczy TLS, oznaczając pierwsze masowe wdrożenie PQC?",
+        "options": ["Google Chrome 124", "Mozilla Firefox 125"]
+      },
+      {
+        "q": "Jakie jest ryzyko alokacji stosu dla tajnego klucza ML-KEM-768 (2400 bajtów) wewnątrz funkcji?",
+        "options": ["Przepełnienie stosu — duży bufor może przekroczyć limity stosu w typowych systemach", "Brak ryzyka — stos jest zawsze zerowany przez OS po powrocie z funkcji"]
+      },
+      {
+        "q": "Prawda czy fałsz: Klucze ML-KEM powinny być generowane raz i ponownie używane w wielu sesjach, aby zminimalizować koszty obliczeniowe.",
+        "options": ["Fałsz — klucze ML-KEM muszą być efemeryczne; ponowne użycie ujawnia informacje o wspólnym sekrecie", "Prawda — ponowne użycie kluczy jest dopuszczalne i nie wpływa na bezpieczeństwo ML-KEM"]
+      }
+    ]
+  },
+  "quantum-c08": {
+    "questions": [
+      {
+        "q": "FIPS 203 został opublikowany w sierpniu 2024 roku, ale jak długo zazwyczaj trwa walidacja CMVP, tworząc lukę zgodności dla agencji federalnych?",
+        "options": ["12–18 miesięcy", "2–4 tygodnie"]
+      },
+      {
+        "q": "Prawda czy fałsz: AWS-LC otrzymał certyfikat FIPS 140-3 #4800 dla ML-KEM w Q1 2025, stając się pierwszym zwalidowanym modułem, który agencje federalne mogą wdrożyć do bezpiecznej kwantowo wymiany kluczy.",
+        "options": ["Prawda", "Fałsz — AWS-LC był walidowany tylko dla AES-256, nie ML-KEM"]
+      },
+      {
+        "q": "W ramach wyjątku dla konstrukcji hybrydowej, która kombinacja spełnia wymagania zgodności FIPS 140-3 dla ML-DSA przed ukończeniem walidacji CMVP?",
+        "options": ["Podpisuj zarówno RSA-3072 (zwalidowany) JAK I ML-DSA-65 — oba muszą zawieść, aby skompromitować bezpieczeństwo", "Użyj samego ML-DSA-65 z memorandum CISO zwalniającym z wymogów FIPS"]
+      },
+      {
+        "q": "Memorandum OMB M-23-02 wymagało od agencji federalnych ukończenia jakiego działania do roku finansowego 2025?",
+        "options": ["Rozpoczęcie migracji systemów wysokiego priorytetu do PQC", "Ukończenie pełnej migracji PQC w całym przedsiębiorstwie bez pozostałych algorytmów klasycznych"]
+      },
+      {
+        "q": "Prawda czy fałsz: Systemy NSS (National Security Systems) podążają tą samą ścieżką walidacji CMVP co cywilne systemy agencji federalnych.",
+        "options": ["Fałsz — systemy NSS wymagają zatwierdzonego przez NSA urządzenia Type 1 na oddzielnej ścieżce walidacji", "Prawda — zarówno NSS, jak i systemy cywilne są regulowane wyłącznie przez NIST CMVP"]
+      }
+    ]
+  },
+  "quantum-c09": {
+    "questions": [
+      {
+        "q": "Przy kwantyfikacji ryzyka HNDL dla prezentacji zarządu, dlaczego ekspozycja jest traktowana jako 100% pewna, a nie ważona prawdopodobieństwem jak Q-Day?",
+        "options": ["Ponieważ przeciwnicy zbierają zaszyfrowany ruch dzisiaj — dane są już zebrane i zostaną ujawnione w Q-Day niezależnie od niepewności harmonogramu", "Ponieważ Q-Day już nastąpił i wszystkie dane zaszyfrowane RSA są obecnie deszyfrowane"]
+      },
+      {
+        "q": "Prawda czy fałsz: Zgodnie z 5-letnim modelem programu zarządzania kwantowego, wymiana HSM i migracja głównego CA PKI to działania roku 1.",
+        "options": ["Fałsz — to są działania roku 2 (Fundament); rok 1 skupia się na inwentarzu kryptograficznym, scoringu ryzyka i szkoleniu", "Prawda — sprzęt musi być wymieniony przed rozpoczęciem jakiegokolwiek planowania oprogramowania"]
+      },
+      {
+        "q": "Który organ regulacyjny wydał sektorowe wytyczne dotyczące ryzyka kwantowego dla banków i unii kredytowych w 2024 roku, wymagając oceny podczas inspekcji IT?",
+        "options": ["FFIEC (Federal Financial Institutions Examination Council)", "FINRA (Financial Industry Regulatory Authority)"]
+      },
+      {
+        "q": "Jaki jest szacowany całkowity koszt 5-letniego programu migracji PQC opisanego w modelu zarządzania, w porównaniu z oczekiwaną stratą, przed którą chroni?",
+        "options": ["Program za 12 mln USD chroni przed oczekiwaną stratą kwantowego naruszenia 615 mln USD plus kary regulacyjne", "Program za 612 mln USD zapewnia marginalną ochronę przed oczekiwaną stratą 12 mln USD"]
+      },
+      {
+        "q": "Prawda czy fałsz: Inwentarz kryptograficzny (CBOM) jest opcjonalny, jeśli organizacja ma już zestawienie składników oprogramowania (SBOM).",
+        "options": ["Fałsz — CBOM jest pierwszym wymaganym wynikiem zarządzania; nie możesz migrować zasobów kryptograficznych, których nie skatalogowałeś", "Prawda — komponenty SBOM automatycznie wyliczają wszystkie biblioteki kryptograficzne w użyciu"]
+      }
+    ]
+  },
+  "quantum-c10": {
+    "questions": [
+      {
+        "q": "Według modelu priorytetów migracji bezpiecznej kwantowo, która kategoria zasobów powinna być migrowana jako pierwsza?",
+        "options": ["Dane o wysokiej wrażliwości w tranzycie (VPN, TLS dla M&A, rząd) — ekspozycja HNDL napędza priorytet, nie harmonogram Q-Day", "Infrastruktura uwierzytelniania (PKI, podpisywanie kodu) — ponieważ sfałszowane certyfikaty umożliwiają największy zasięg"]
+      },
+      {
+        "q": "Prawda czy fałsz: Apple PQ3, wdrożony w lutym 2024 roku dla iMessage, używa ML-KEM-768 w połączeniu z X25519 i zawiera okresowe ponowne kluczowanie w celu ograniczenia wartości pojedynczego okna zbierania HNDL.",
+        "options": ["Prawda", "Fałsz — Apple PQ3 używa tylko klasycznego ECC; odporność kwantowa jest odroczona do przyszłej wersji"]
+      },
+      {
+        "q": "W kompletnym 10-warstwowym stosie bezpiecznym kwantowo, co produkuje L1 (Inwentarz kryptograficzny)?",
+        "options": ["CBOM (Cryptography Bill of Materials) generowany przez narzędzia takie jak Syft i CycloneDX", "Listę reguł firewalla sieciowego blokujących nieszyfrowany ruch"]
+      },
+      {
+        "q": "Dlaczego zwinność kryptograficzna jest opisywana jako „meta-zdolność” przejścia bezpiecznego kwantowo?",
+        "options": ["Ponieważ nowe algorytmy będą nadal pojawiać się, a niektóre zostaną złamane — zwinność pozwala systemom aktualizować się bez przeprojektowywania", "Ponieważ zwinność eliminuje potrzebę inwentaryzacji zasobów kryptograficznych przed migracją"]
+      },
+      {
+        "q": "Prawda czy fałsz: Historyczne archiwa zaszyfrowane RSA/ECC utworzone przed migracją PQC są w pełni chronione po wdrożeniu warstwy TLS bezpiecznej kwantowo na obwodzie.",
+        "options": ["Fałsz — archiwa sprzed migracji pozostają resztkowym ryzykiem HNDL i muszą być ponownie zaszyfrowane z transportem kluczy PQC, aby były chronione", "Prawda — obwód TLS uniemożliwia atakującemu dostęp do zarchiwizowanych danych"]
+      }
+    ]
+  }
+}

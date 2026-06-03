@@ -1,0 +1,292 @@
+{
+  "quantum-c01": {
+    "questions": [
+      {
+        "q": "In BB84, what QBER threshold triggers an abort of the key exchange due to suspected eavesdropping?",
+        "options": ["Above 11%", "Above 50%"],
+        "correct": 0
+      },
+      {
+        "q": "True or False: In BB84, Alice and Bob publicly reveal the actual bit values (0 or 1) during basis reconciliation.",
+        "options": ["False — they reveal only which bases they used, not the bits", "True — sharing bits over the public channel is safe"],
+        "correct": 0
+      },
+      {
+        "q": "An intercept-resend attack by Eve introduces approximately what level of QBER?",
+        "options": ["~25%", "~5%"],
+        "correct": 0
+      },
+      {
+        "q": "The no-cloning theorem guarantees which BB84 security property?",
+        "options": ["Any attempt to copy a quantum state disturbs it, making eavesdroppers detectable", "Quantum keys are infinitely reusable without risk of interception"],
+        "correct": 0
+      },
+      {
+        "q": "True or False: China's Micius satellite (2017) demonstrated the first intercontinental QKD link, connecting Beijing and Vienna over approximately 7,600 km.",
+        "options": ["True", "False — Micius only operated within China's domestic network"],
+        "correct": 0
+      }
+    ]
+  },
+  "quantum-c02": {
+    "questions": [
+      {
+        "q": "What is the primary security weakness of trusted relay nodes in long-haul QKD networks?",
+        "options": ["They are classical computers that hold decrypted key material and can be physically compromised", "They introduce QBER errors that are detectable by both Alice and Bob"],
+        "correct": 0
+      },
+      {
+        "q": "True or False: A compromised trusted relay node causes a measurable QBER spike that alerts the communicating parties.",
+        "options": ["False — a compromised relay gives plaintext keys with no QBER signal", "True — any key theft at a relay is detectable via quantum error rates"],
+        "correct": 0
+      },
+      {
+        "q": "Twin-field QKD (TF-QKD) extends QKD range by which mechanism?",
+        "options": ["Both endpoints send photons to an untrusted middle relay that measures interference, not the key", "Relay stations decrypt and re-encrypt keys using lattice-based algorithms"],
+        "correct": 0
+      },
+      {
+        "q": "How many trusted relay nodes does China's 4,600 km Beijing-Shanghai quantum backbone use, each representing a potential attack point?",
+        "options": ["32", "4"],
+        "correct": 0
+      },
+      {
+        "q": "True or False: The Cisco Universal Quantum Switch announced in April 2026 requires cryogenic cooling to relay quantum signals without exposing classical key material.",
+        "options": ["False — it operates at room temperature on standard telecom fiber", "True — cryogenic operation is required for quantum state preservation"],
+        "correct": 0
+      }
+    ]
+  },
+  "quantum-c03": {
+    "questions": [
+      {
+        "q": "Why does Micius operate primarily at night rather than during daylight hours?",
+        "options": ["Solar photon background noise overwhelms single-photon signals during the day", "Orbital mechanics prevent line-of-sight to ground stations during daytime"],
+        "correct": 0
+      },
+      {
+        "q": "True or False: QKD-protected fiber links make passive SIGINT collection techniques like cable taps and fiber splices physically impossible.",
+        "options": ["True — any measurement disturbs the photons and raises QBER", "False — passive collection is still possible but limited to metadata"],
+        "correct": 0
+      },
+      {
+        "q": "What strategic shift does widespread nation-state QKD deployment force on intelligence agencies?",
+        "options": ["Collection must shift from passive bulk interception to active endpoint operations, which cost more and carry higher attribution risk", "Agencies gain new passive collection opportunities because QKD endpoints broadcast key material"],
+        "correct": 0
+      },
+      {
+        "q": "During the 2017 intercontinental quantum video call, what role did the Micius satellite play in the key exchange?",
+        "options": ["It was the trusted relay — distributing independent quantum keys to both the Beijing and Vienna ground stations", "It provided only classical backup authentication while fiber QKD carried the keys"],
+        "correct": 0
+      },
+      {
+        "q": "True or False: NSA issued CNSA 2.0 in 2022 partly in response to adversary QKD deployments that render passive SIGINT collection ineffective.",
+        "options": ["True", "False — CNSA 2.0 was issued solely to address the future threat of cryptographically-relevant quantum computers"],
+        "correct": 0
+      }
+    ]
+  },
+  "quantum-c04": {
+    "questions": [
+      {
+        "q": "Which of the five cryptographic agility principles ensures that old ciphertext can still be decrypted after an algorithm transition?",
+        "options": ["Versioning — tagging all encrypted data with an algorithm ID", "Negotiation — agreeing on the best mutual algorithm at runtime"],
+        "correct": 0
+      },
+      {
+        "q": "True or False: ML-KEM public keys at 1184 bytes are roughly the same size as RSA-2048 public keys, so no database schema changes are needed.",
+        "options": ["False — ML-KEM public keys are ~4.6x larger than RSA-2048 keys and can break undersized DB columns", "True — modern databases automatically accommodate any key size"],
+        "correct": 0
+      },
+      {
+        "q": "The SHA-1 deprecation (2011–2017) is cited as a cautionary example. How long did organizations spend in emergency remediation due to hardcoded algorithms?",
+        "options": ["~7 years", "~2 years"],
+        "correct": 0
+      },
+      {
+        "q": "Which Cisco product allows operators to configure an ordered preference list of algorithms (e.g., ML-KEM-768, X25519Kyber768) so the strongest mutual option is auto-negotiated in IKEv2?",
+        "options": ["Cisco IOS-XE with the SKIP interface", "Cisco Firepower Threat Defense with legacy IKEv1"],
+        "correct": 0
+      },
+      {
+        "q": "True or False: An anti-pattern that kills cryptographic agility is hardcoding RSA in a TLS config rather than abstracting algorithm selection behind a configurable interface.",
+        "options": ["True", "False — hardcoding RSA is acceptable as long as key size is 4096 bits"],
+        "correct": 0
+      }
+    ]
+  },
+  "quantum-c05": {
+    "questions": [
+      {
+        "q": "Why is VPN migration considered the highest HNDL priority for most enterprises?",
+        "options": ["VPN traffic recorded today can be decrypted once a quantum computer exists, since DH and ECDH key exchange are broken by Shor's algorithm", "VPN endpoints store private keys insecurely, making them easier to exfiltrate than other systems"],
+        "correct": 0
+      },
+      {
+        "q": "True or False: In a hybrid X25519 + ML-KEM-768 VPN, an attacker only needs to break ML-KEM-768 to decrypt the session.",
+        "options": ["False — both X25519 and ML-KEM-768 must be broken simultaneously", "True — ML-KEM is the only quantum-resistant component so it is the single point of failure"],
+        "correct": 0
+      },
+      {
+        "q": "Which component of an OpenVPN deployment remains safe against quantum attacks even without migration?",
+        "options": ["AES-256 bulk data encryption (Grover's algorithm only halves the effective key strength to 128 bits)", "RSA-2048 certificate authentication"],
+        "correct": 0
+      },
+      {
+        "q": "In December 2023, which VPN provider became the first commercial service to deploy a hybrid post-quantum key exchange in production for all users?",
+        "options": ["Mullvad VPN", "ExpressVPN"],
+        "correct": 0
+      },
+      {
+        "q": "True or False: Migrating VPN peer authentication certificates from RSA to ML-DSA-65 (FIPS 204) is unnecessary because bulk encryption already provides quantum resistance.",
+        "options": ["False — authentication certificates must also migrate; RSA signatures are broken by Shor's algorithm", "True — RSA authentication is quantum-safe because it is only used during handshake"],
+        "correct": 0
+      }
+    ]
+  },
+  "quantum-c06": {
+    "questions": [
+      {
+        "q": "Why are root CA keys considered the highest-priority PQC migration target?",
+        "options": ["They have 20–30 year validity periods that may span Q-Day, and a forged root signature lets an attacker impersonate any site in the trust domain", "Root CAs generate keys on-demand so they can be replaced instantly with no migration effort"],
+        "correct": 0
+      },
+      {
+        "q": "True or False: A dual-stack certificate strategy issues both RSA and ML-DSA credentials simultaneously, allowing PQC-capable clients to use ML-DSA while legacy clients fall back to RSA.",
+        "options": ["True", "False — dual-stack certificates are not supported by X.509 standards"],
+        "correct": 0
+      },
+      {
+        "q": "Which HSM product cannot be upgraded via firmware to support ML-KEM and ML-DSA, requiring full hardware replacement?",
+        "options": ["YubiHSM 2", "Thales Luna 7"],
+        "correct": 0
+      },
+      {
+        "q": "How does the size of a full ML-DSA certificate chain (root + intermediate + end-entity) compare to an equivalent RSA chain?",
+        "options": ["~7.5 KB for PQC vs ~3.6 KB for RSA — roughly double, which can cause TLS fragmentation", "Roughly the same size — ML-DSA was designed to match RSA certificate dimensions"],
+        "correct": 0
+      },
+      {
+        "q": "True or False: NIST SP 800-131A Rev 3 deprecates RSA-2048 for all new certificate issuance after 2030.",
+        "options": ["True", "False — RSA-2048 remains approved indefinitely under NIST guidance"],
+        "correct": 0
+      }
+    ]
+  },
+  "quantum-c07": {
+    "questions": [
+      {
+        "q": "Which function must be used to free secret key and shared secret buffers in liboqs, instead of the standard free() call?",
+        "options": ["OQS_MEM_secure_free() — it zeroes memory before freeing", "OQS_KEM_free() — it handles all associated memory automatically"],
+        "correct": 0
+      },
+      {
+        "q": "True or False: liboqs is FIPS 140-3 validated and can be used directly in federal systems without restriction.",
+        "options": ["False — liboqs is the reference implementation but is not FIPS 140-3 validated; AWS-LC (#4800) or SymCrypt (#4825) are required for federal use", "True — the Open Quantum Safe project holds a FIPS 140-3 certificate for all NIST-standardized algorithms"],
+        "correct": 0
+      },
+      {
+        "q": "In May 2024, which browser deployed X25519MLKEM768 as the default TLS key agreement, marking the first mass-market PQC deployment?",
+        "options": ["Google Chrome 124", "Mozilla Firefox 125"],
+        "correct": 0
+      },
+      {
+        "q": "What is the risk of stack-allocating an ML-KEM-768 secret key (2400 bytes) inside a function?",
+        "options": ["Stack overflow — the large buffer can exceed stack limits on typical systems", "No risk — the stack is always zeroed by the OS after function return"],
+        "correct": 0
+      },
+      {
+        "q": "True or False: ML-KEM keys should be generated once and reused across multiple sessions to minimize compute overhead.",
+        "options": ["False — ML-KEM keys must be ephemeral; reuse leaks information about the shared secret", "True — key reuse is acceptable and does not affect ML-KEM security"],
+        "correct": 0
+      }
+    ]
+  },
+  "quantum-c08": {
+    "questions": [
+      {
+        "q": "FIPS 203 was published in August 2024, but how long does CMVP validation typically take, creating a compliance gap for federal agencies?",
+        "options": ["12–18 months", "2–4 weeks"],
+        "correct": 0
+      },
+      {
+        "q": "True or False: AWS-LC received FIPS 140-3 certificate #4800 for ML-KEM in Q1 2025, making it the first validated module federal agencies can deploy for quantum-safe key exchange.",
+        "options": ["True", "False — AWS-LC was validated for AES-256 only, not ML-KEM"],
+        "correct": 0
+      },
+      {
+        "q": "Under the hybrid construction exception, which combination satisfies FIPS 140-3 compliance for ML-DSA before its CMVP validation is complete?",
+        "options": ["Sign with both RSA-3072 (validated) AND ML-DSA-65 — both must fail to compromise security", "Use ML-DSA-65 alone with a CISO memo waiving the FIPS requirement"],
+        "correct": 0
+      },
+      {
+        "q": "OMB Memorandum M-23-02 required federal agencies to complete which action by FY2025?",
+        "options": ["Begin migrating high-priority systems to PQC", "Complete full enterprise-wide PQC migration with no classical algorithms remaining"],
+        "correct": 0
+      },
+      {
+        "q": "True or False: NSS (National Security Systems) follow the same CMVP validation track as civilian federal agency systems.",
+        "options": ["False — NSS systems require NSA-approved Type 1 devices on a separate validation track", "True — both NSS and civilian systems are governed solely by NIST CMVP"],
+        "correct": 0
+      }
+    ]
+  },
+  "quantum-c09": {
+    "questions": [
+      {
+        "q": "When quantifying HNDL risk for a board presentation, why is the exposure treated as 100% certain rather than probability-weighted like Q-Day?",
+        "options": ["Because adversaries are harvesting encrypted traffic today — the data is already collected and will be exposed at Q-Day regardless of timeline uncertainty", "Because Q-Day has already occurred and all RSA-encrypted data is currently decryptable"],
+        "correct": 0
+      },
+      {
+        "q": "True or False: According to the 5-year quantum governance program model, HSM replacement and PKI root CA migration are Year 1 activities.",
+        "options": ["False — those are Year 2 (Foundation) activities; Year 1 focuses on crypto inventory, risk scoring, and training", "True — hardware must be replaced before any software planning can begin"],
+        "correct": 0
+      },
+      {
+        "q": "Which regulatory body issued sector-specific quantum risk guidance for banks and credit unions in 2024, requiring assessment in IT examinations?",
+        "options": ["FFIEC (Federal Financial Institutions Examination Council)", "FINRA (Financial Industry Regulatory Authority)"],
+        "correct": 0
+      },
+      {
+        "q": "What is the estimated total cost of the 5-year PQC migration program described in the governance model, relative to the expected loss it protects against?",
+        "options": ["$12M program protects against $615M expected quantum breach loss plus regulatory fines", "$612M program delivers marginal protection against a $12M expected loss"],
+        "correct": 0
+      },
+      {
+        "q": "True or False: A crypto inventory (CBOM) is optional if an organization already has a software bill of materials (SBOM).",
+        "options": ["False — CBOM is the first required governance deliverable; you cannot migrate cryptographic assets you have not catalogued", "True — SBOM components automatically enumerate all cryptographic libraries in use"],
+        "correct": 0
+      }
+    ]
+  },
+  "quantum-c10": {
+    "questions": [
+      {
+        "q": "According to the quantum-safe migration priority model, which category of assets should be migrated first?",
+        "options": ["High-sensitivity data in transit (VPN, TLS for M&A, government) — HNDL exposure drives priority, not Q-Day timeline", "Authentication infrastructure (PKI, code signing) — because forged certificates enable the widest blast radius"],
+        "correct": 0
+      },
+      {
+        "q": "True or False: Apple PQ3, deployed in February 2024 for iMessage, uses ML-KEM-768 combined with X25519 and includes periodic re-keying to limit the value of any single HNDL collection window.",
+        "options": ["True", "False — Apple PQ3 uses only classical ECC; quantum resistance is deferred to a future version"],
+        "correct": 0
+      },
+      {
+        "q": "In the complete 10-layer quantum-safe stack, what does L1 (Crypto Inventory) produce?",
+        "options": ["A CBOM (Cryptography Bill of Materials) generated via tools like Syft and CycloneDX", "A list of network firewall rules blocking unencrypted traffic"],
+        "correct": 0
+      },
+      {
+        "q": "Why is cryptographic agility described as the 'meta-capability' of the quantum-safe transition?",
+        "options": ["Because new algorithms will continue to emerge and some will be broken — agility allows systems to update without redesign", "Because agility eliminates the need to inventory cryptographic assets before migration"],
+        "correct": 0
+      },
+      {
+        "q": "True or False: Historical RSA/ECC-encrypted archives created before PQC migration are fully protected once a quantum-safe TLS layer is deployed at the perimeter.",
+        "options": ["False — pre-migration archives remain the residual HNDL risk and must be re-encrypted with PQC key transport to be protected", "True — the TLS perimeter prevents any attacker from accessing archived data"],
+        "correct": 0
+      }
+    ]
+  }
+}

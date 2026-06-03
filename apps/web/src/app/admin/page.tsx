@@ -4,8 +4,8 @@ import { useEffect, useState, useMemo } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { getSession, setSession } from "@/lib/auth";
-import { stages } from "@/data/stages";
-import { CONTENT_FLAGS, type ContentFlag } from "@/data/content-flags";
+import { stages } from "@kryptos/core/stages";
+import { CONTENT_FLAGS, type ContentFlag } from "@kryptos/core/content-flags";
 import { USER_GROUPS, GROUP_ICONS, GROUP_LABELS, type UserGroup } from "@/lib/groups";
 
 type UserRow = {

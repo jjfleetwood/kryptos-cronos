@@ -1,0 +1,1130 @@
+{
+  "audit-cm01": {
+    "questions": [
+      {
+        "q": "NIST SP 800-137 defines Information Security Continuous Monitoring (ISCM) as maintaining ongoing awareness of information security, vulnerabilities, and threats.",
+        "type": "binary",
+        "options": ["True", "False"],
+        "correct": 0
+      },
+      {
+        "q": "The Continuous Diagnostics and Mitigation (CDM) program is managed by the Department of Defense.",
+        "type": "binary",
+        "options": ["True", "False"],
+        "correct": 1
+      },
+      {
+        "q": "CSAM (Cyber Security Assessment and Management) is primarily used to track which category of information?",
+        "type": "binary",
+        "options": ["Security control implementation status", "Financial budget allocations"],
+        "correct": 0
+      },
+      {
+        "q": "An ISCM strategy must be reviewed and updated at least annually according to NIST 800-137.",
+        "type": "binary",
+        "options": ["True", "False"],
+        "correct": 0
+      },
+      {
+        "q": "According to NIST SP 800-137, which of the following is the correct order of ISCM program steps?",
+        "type": "mcq",
+        "options": [
+          "Define → Establish → Implement → Analyze → Respond → Review",
+          "Plan → Do → Check → Act → Monitor → Report",
+          "Identify → Protect → Detect → Respond → Recover → Review",
+          "Assess → Authorize → Monitor → Report → Remediate → Verify"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "What is the primary purpose of defining monitoring frequencies in an ISCM strategy?",
+        "type": "mcq",
+        "options": [
+          "To align monitoring rigor with the risk and criticality of each security control",
+          "To reduce the number of security analysts required",
+          "To satisfy annual audit requirements with minimal effort",
+          "To schedule automated patches across all systems"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Which metric category does NIST 800-137 recommend organizations use to measure ISCM program effectiveness?",
+        "type": "mcq",
+        "options": [
+          "Implementation, Effectiveness/Efficiency, and Impact metrics",
+          "Quantitative, Qualitative, and Mixed metrics",
+          "Tactical, Operational, and Strategic metrics",
+          "Input, Process, and Output metrics"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "In the ISCM framework, which organizational tier is responsible for defining mission/business risk tolerance?",
+        "type": "mcq",
+        "options": [
+          "Tier 1 — Organization",
+          "Tier 2 — Mission/Business Process",
+          "Tier 3 — Information System",
+          "Tier 4 — Operations and Maintenance"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Which of the following best describes the role of CSAM in a federal ISCM program?",
+        "type": "mcq",
+        "options": [
+          "A tool for tracking security control implementation, test results, and POA&M items across systems",
+          "A network packet capture appliance for real-time traffic analysis",
+          "A vulnerability scanner that replaces manual penetration testing",
+          "A cloud access security broker (CASB) for SaaS application monitoring"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "When an ISCM program identifies a control that is no longer effective, which step in the NIST 800-137 process addresses this finding?",
+        "type": "mcq",
+        "options": [
+          "Respond to findings",
+          "Define the monitoring strategy",
+          "Implement the monitoring program",
+          "Establish monitoring metrics"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "audit-cm02": {
+    "questions": [
+      {
+        "q": "Microsoft Sentinel is a cloud-native SIEM and SOAR solution built on Azure.",
+        "type": "binary",
+        "options": ["True", "False"],
+        "correct": 0
+      },
+      {
+        "q": "Splunk's MITRE ATT&CK app maps detections directly to adversary tactics and techniques.",
+        "type": "binary",
+        "options": ["True", "False"],
+        "correct": 0
+      },
+      {
+        "q": "Google Chronicle stores security telemetry in a petabyte-scale data lake with a fixed per-event ingestion cost model.",
+        "type": "binary",
+        "options": ["True", "False"],
+        "correct": 1
+      },
+      {
+        "q": "A correlation rule that fires when five failed logins are followed by a successful login within 10 minutes is an example of a threshold-based detection.",
+        "type": "binary",
+        "options": ["True", "False"],
+        "correct": 0
+      },
+      {
+        "q": "Which MITRE ATT&CK tactic describes an adversary's attempts to steal account credentials?",
+        "type": "mcq",
+        "options": [
+          "Credential Access",
+          "Privilege Escalation",
+          "Lateral Movement",
+          "Discovery"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "In Splunk, what language is used to write detection searches and correlation rules?",
+        "type": "mcq",
+        "options": [
+          "SPL (Search Processing Language)",
+          "KQL (Kusto Query Language)",
+          "YARA",
+          "Sigma"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "What is the primary advantage of using Sigma rules in a next-gen SIEM environment?",
+        "type": "mcq",
+        "options": [
+          "Vendor-agnostic detection logic that can be compiled for multiple SIEM platforms",
+          "Native integration with EDR agents for endpoint telemetry collection",
+          "Automated incident response playbook execution",
+          "Real-time packet capture and deep packet inspection"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Microsoft Sentinel uses which query language for log analytics and detection rules?",
+        "type": "mcq",
+        "options": [
+          "KQL (Kusto Query Language)",
+          "SPL (Search Processing Language)",
+          "SQL",
+          "YARA-L"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "What does 'data normalization' accomplish in a SIEM pipeline?",
+        "type": "mcq",
+        "options": [
+          "Converts log events from different sources into a common schema to enable consistent querying",
+          "Removes duplicate events to reduce storage costs",
+          "Encrypts log data before storage to ensure confidentiality",
+          "Compresses raw logs to improve ingestion throughput"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Google Chronicle's YARA-L language is primarily used for which purpose?",
+        "type": "mcq",
+        "options": [
+          "Writing detection rules that match patterns across normalized security telemetry over time windows",
+          "Scanning binary files for malware signatures",
+          "Defining network firewall allow/deny policies",
+          "Scripting automated incident response workflows"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "audit-cm03": {
+    "questions": [
+      {
+        "q": "UEBA systems establish behavioral baselines for individual users and entities before flagging anomalies.",
+        "type": "binary",
+        "options": ["True", "False"],
+        "correct": 0
+      },
+      {
+        "q": "An anomaly score of zero in a UEBA system always indicates that no threat is present.",
+        "type": "binary",
+        "options": ["True", "False"],
+        "correct": 1
+      },
+      {
+        "q": "Peer group analysis in UEBA compares a user's behavior to others with similar job roles or access patterns.",
+        "type": "binary",
+        "options": ["True", "False"],
+        "correct": 0
+      },
+      {
+        "q": "UEBA solutions can only analyze authentication logs and cannot ingest network or endpoint telemetry.",
+        "type": "binary",
+        "options": ["True", "False"],
+        "correct": 1
+      },
+      {
+        "q": "What is the primary goal of behavioral baseline profiling in a UEBA system?",
+        "type": "mcq",
+        "options": [
+          "To establish normal patterns of behavior so that deviations can be detected as potential threats",
+          "To enforce role-based access control policies across enterprise applications",
+          "To replace signature-based antivirus with heuristic scanning",
+          "To generate compliance reports for SOX and PCI DSS auditors"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Which of the following is a common machine learning technique used in UEBA anomaly detection?",
+        "type": "mcq",
+        "options": [
+          "Unsupervised clustering to group similar behavioral patterns",
+          "Supervised classification with labeled intrusion datasets",
+          "Reinforcement learning for real-time firewall rule updates",
+          "Generative adversarial networks for synthetic log creation"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "An insider threat analyst notices a user who normally accesses 10 files per day suddenly downloaded 2,000 files over a weekend. Which UEBA detection category does this represent?",
+        "type": "mcq",
+        "options": [
+          "Volume anomaly — excessive data access relative to baseline",
+          "Time anomaly — access during non-business hours",
+          "Location anomaly — access from an unusual geographic region",
+          "Privilege anomaly — use of elevated permissions"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "What is 'risk scoring' in the context of UEBA platforms?",
+        "type": "mcq",
+        "options": [
+          "An aggregated numerical score that combines multiple anomalous signals to prioritize investigation",
+          "A static vulnerability severity rating assigned during asset discovery",
+          "A compliance gap percentage calculated from control assessment results",
+          "A penetration test difficulty rating assigned by the red team"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Which data source is most valuable for UEBA when detecting compromised privileged accounts?",
+        "type": "mcq",
+        "options": [
+          "Active Directory and privileged access management (PAM) authentication logs",
+          "Web application firewall (WAF) request logs",
+          "DNS query logs from external resolvers",
+          "Network flow data from perimeter firewalls"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "How does UEBA differ from traditional rule-based SIEM detection?",
+        "type": "mcq",
+        "options": [
+          "UEBA learns individual behavioral patterns dynamically, while rule-based SIEM uses static threshold signatures",
+          "UEBA only works on cloud environments, while SIEM is limited to on-premises data",
+          "UEBA replaces the SIEM entirely and does not integrate with existing security infrastructure",
+          "UEBA requires manual baseline updates weekly, while SIEM baselines update automatically"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "audit-cm04": {
+    "questions": [
+      {
+        "q": "East-west traffic refers to data moving between internal systems within the same data center or network segment.",
+        "type": "binary",
+        "options": ["True", "False"],
+        "correct": 0
+      },
+      {
+        "q": "Network Detection and Response (NDR) solutions rely exclusively on firewall logs for threat detection.",
+        "type": "binary",
+        "options": ["True", "False"],
+        "correct": 1
+      },
+      {
+        "q": "Passive network sensors can capture traffic without introducing latency to production systems.",
+        "type": "binary",
+        "options": ["True", "False"],
+        "correct": 0
+      },
+      {
+        "q": "Threat hunting in NDR is purely reactive, triggered only after an alert is generated by automated detection.",
+        "type": "binary",
+        "options": ["True", "False"],
+        "correct": 1
+      },
+      {
+        "q": "Which protocol is most commonly used by NDR sensors to capture full-packet data at high speed?",
+        "type": "mcq",
+        "options": [
+          "SPAN/mirror ports or network TAPs",
+          "SNMP traps from managed switches",
+          "NetFlow/IPFIX flow records only",
+          "Syslog forwarding from edge routers"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Why is east-west traffic monitoring particularly important in detecting advanced persistent threats (APTs)?",
+        "type": "mcq",
+        "options": [
+          "APTs commonly move laterally between internal systems after initial compromise, bypassing perimeter controls",
+          "APTs primarily attack external-facing web servers that are covered by north-south monitoring",
+          "East-west traffic contains all user authentication events needed for compliance reporting",
+          "NDR sensors on east-west segments replace the need for endpoint detection and response (EDR)"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "What is a 'network baseline' in the context of NDR threat hunting?",
+        "type": "mcq",
+        "options": [
+          "A documented profile of normal traffic patterns, protocols, and communication pairs used to identify deviations",
+          "The initial firewall ruleset deployed during network commissioning",
+          "A vulnerability scan report used to prioritize patch management",
+          "A list of approved IP addresses maintained by the network operations team"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Which NDR capability detects Command and Control (C2) communication by analyzing encrypted traffic without decryption?",
+        "type": "mcq",
+        "options": [
+          "Encrypted traffic analysis (ETA) using TLS metadata, JA3 fingerprinting, and flow patterns",
+          "Deep packet inspection (DPI) that decrypts all TLS sessions via certificate pinning",
+          "DNS sinkholing that redirects known malicious domains to internal honeypots",
+          "BGP route monitoring that detects prefix hijacking by threat actors"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "What distinguishes NDR from traditional Intrusion Detection Systems (IDS)?",
+        "type": "mcq",
+        "options": [
+          "NDR uses machine learning and behavioral analytics across longitudinal traffic data, while IDS relies primarily on signature matching",
+          "NDR is deployed exclusively in cloud environments, while IDS is limited to on-premises networks",
+          "NDR generates compliance reports automatically, while IDS focuses solely on blocking attacks",
+          "NDR requires agents on every endpoint, while IDS operates passively on the network"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "A threat hunter observes repeated SMB connections from a workstation to 15 different internal servers within 5 minutes. Which attack technique does this pattern most likely indicate?",
+        "type": "mcq",
+        "options": [
+          "Lateral movement via SMB protocol scanning (e.g., EternalBlue or credential spraying)",
+          "Data exfiltration via encrypted file transfer",
+          "Command and Control beacon communication",
+          "DNS tunneling for covert data exfiltration"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "audit-cm05": {
+    "questions": [
+      {
+        "q": "Cloud Security Posture Management (CSPM) tools continuously assess cloud infrastructure configurations against security benchmarks.",
+        "type": "binary",
+        "options": ["True", "False"],
+        "correct": 0
+      },
+      {
+        "q": "Configuration drift occurs when cloud resources are modified outside of approved change management processes.",
+        "type": "binary",
+        "options": ["True", "False"],
+        "correct": 0
+      },
+      {
+        "q": "CSPM tools can automatically remediate all misconfigurations without human approval.",
+        "type": "binary",
+        "options": ["True", "False"],
+        "correct": 1
+      },
+      {
+        "q": "CIS Benchmarks are the most widely used security configuration standards evaluated by CSPM tools.",
+        "type": "binary",
+        "options": ["True", "False"],
+        "correct": 0
+      },
+      {
+        "q": "What is the primary difference between CSPM and Cloud Workload Protection Platforms (CWPP)?",
+        "type": "mcq",
+        "options": [
+          "CSPM focuses on configuration and posture of cloud infrastructure, while CWPP protects workloads at runtime",
+          "CSPM scans container images for vulnerabilities, while CWPP manages IAM policies",
+          "CSPM is limited to AWS, while CWPP supports multi-cloud environments",
+          "CSPM replaces firewalls in cloud environments, while CWPP handles identity federation"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Which of the following is an example of a critical misconfiguration that CSPM tools commonly detect?",
+        "type": "mcq",
+        "options": [
+          "An S3 bucket with public read access containing sensitive data",
+          "A virtual machine running an older version of the operating system kernel",
+          "An IAM user with MFA enabled logging in from a new location",
+          "A load balancer routing traffic to a healthy backend instance"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "What does a 'benchmark score' represent in a CSPM platform?",
+        "type": "mcq",
+        "options": [
+          "The percentage of security controls passing against a defined standard such as CIS or NIST",
+          "The average response time for cloud API calls measured in milliseconds",
+          "The cost efficiency rating of cloud resource utilization",
+          "The number of active threats detected in the cloud environment"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Which CSPM capability helps organizations detect when infrastructure-as-code (IaC) templates violate security policies before deployment?",
+        "type": "mcq",
+        "options": [
+          "Shift-left security scanning of Terraform, CloudFormation, or Bicep templates in CI/CD pipelines",
+          "Runtime container scanning of deployed microservices",
+          "Network micro-segmentation enforcement via cloud-native firewalls",
+          "Identity federation with on-premises Active Directory for cloud SSO"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "How does CSPM support multi-cloud environments?",
+        "type": "mcq",
+        "options": [
+          "By providing a unified dashboard that aggregates posture findings across AWS, Azure, GCP, and other cloud providers",
+          "By migrating workloads automatically to the most secure cloud provider",
+          "By enforcing identical network topologies across all cloud environments",
+          "By replacing each cloud provider's native security tools with a single agent"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "What is 'policy-as-code' in the context of CSPM?",
+        "type": "mcq",
+        "options": [
+          "Defining security and compliance rules in machine-readable formats (e.g., Rego/OPA) that can be version-controlled and automatically evaluated",
+          "Manually documenting security policies in PDF format for auditor review",
+          "Writing firewall rules in a scripting language for automated deployment",
+          "Encoding encryption keys within application configuration files"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "audit-cm06": {
+    "questions": [
+      {
+        "q": "STIX (Structured Threat Information eXpression) is a standardized language for representing cyber threat intelligence.",
+        "type": "binary",
+        "options": ["True", "False"],
+        "correct": 0
+      },
+      {
+        "q": "TAXII (Trusted Automated eXchange of Intelligence Information) is a transport protocol for sharing STIX data.",
+        "type": "binary",
+        "options": ["True", "False"],
+        "correct": 0
+      },
+      {
+        "q": "IOC (Indicator of Compromise) feeds always contain actionable, high-fidelity threat data with zero false positives.",
+        "type": "binary",
+        "options": ["True", "False"],
+        "correct": 1
+      },
+      {
+        "q": "Threat Intelligence Platforms (TIPs) can ingest, normalize, and enrich indicators from multiple intelligence sources.",
+        "type": "binary",
+        "options": ["True", "False"],
+        "correct": 0
+      },
+      {
+        "q": "Which of the following best describes the 'Diamond Model' in threat intelligence?",
+        "type": "mcq",
+        "options": [
+          "A framework that analyzes intrusions through four features: adversary, capability, infrastructure, and victim",
+          "A scoring model that rates threat actor sophistication on a diamond-shaped scale",
+          "A network topology model for placing threat intelligence sensors",
+          "A data classification scheme for categorizing intelligence by sensitivity level"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "What does 'indicator enrichment' accomplish in a Threat Intelligence Platform?",
+        "type": "mcq",
+        "options": [
+          "Adds context to raw indicators such as IP reputation, WHOIS data, associated malware families, and ATT&CK technique mappings",
+          "Automatically blocks network traffic matching threat indicators in the firewall",
+          "Converts STIX bundles into human-readable PDF threat reports",
+          "Assigns CVE numbers to newly discovered vulnerabilities"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Which TLP (Traffic Light Protocol) marking indicates that intelligence can be shared with the entire security community publicly?",
+        "type": "mcq",
+        "options": [
+          "TLP:CLEAR (formerly TLP:WHITE)",
+          "TLP:GREEN",
+          "TLP:AMBER",
+          "TLP:RED"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "What is the primary purpose of an Information Sharing and Analysis Center (ISAC) in the context of threat intelligence?",
+        "type": "mcq",
+        "options": [
+          "To facilitate sector-specific sharing of threat intelligence, vulnerabilities, and best practices among member organizations",
+          "To perform independent security audits of critical infrastructure operators",
+          "To manage national cybersecurity incident response on behalf of government agencies",
+          "To develop and maintain the MITRE ATT&CK framework and CVE database"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Which STIX 2.1 object type is used to represent a known threat actor group?",
+        "type": "mcq",
+        "options": [
+          "Threat Actor",
+          "Intrusion Set",
+          "Campaign",
+          "Identity"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Why is threat intelligence 'fusing' important in a SOC workflow?",
+        "type": "mcq",
+        "options": [
+          "It correlates indicators from multiple feeds with internal telemetry to reduce false positives and prioritize alerts",
+          "It merges all SIEM alert queues into a single dashboard to reduce analyst workload",
+          "It encrypts threat intelligence before sharing with external partners",
+          "It automatically patches vulnerabilities identified in threat intelligence reports"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "audit-cm07": {
+    "questions": [
+      {
+        "q": "SOAR stands for Security Orchestration, Automation, and Response.",
+        "type": "binary",
+        "options": ["True", "False"],
+        "correct": 0
+      },
+      {
+        "q": "A SOAR playbook can only be triggered manually by a SOC analyst.",
+        "type": "binary",
+        "options": ["True", "False"],
+        "correct": 1
+      },
+      {
+        "q": "SOAR platforms can integrate with ticketing systems like Jira and ServiceNow to automate case management.",
+        "type": "binary",
+        "options": ["True", "False"],
+        "correct": 0
+      },
+      {
+        "q": "Automated alert triage in SOAR reduces mean time to respond (MTTR) by eliminating manual investigation steps for low-fidelity alerts.",
+        "type": "binary",
+        "options": ["True", "False"],
+        "correct": 0
+      },
+      {
+        "q": "Which of the following is the best example of a SOAR automated response action for a phishing incident?",
+        "type": "mcq",
+        "options": [
+          "Automatically quarantine the sender's email, extract URLs for sandbox detonation, and block malicious domains in the proxy",
+          "Send a Slack message to the SOC team requesting manual analysis",
+          "Generate a weekly phishing awareness training report for end users",
+          "Create a firewall rule blocking all outbound SMTP traffic organization-wide"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "What is the primary difference between orchestration and automation in SOAR?",
+        "type": "mcq",
+        "options": [
+          "Orchestration coordinates actions across multiple tools and systems, while automation executes specific tasks without human intervention",
+          "Orchestration requires human approval for every action, while automation operates completely unsupervised",
+          "Orchestration is limited to on-premises tools, while automation supports cloud-based services only",
+          "Orchestration manages compliance reporting, while automation handles threat detection"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "In SOAR playbook design, what is a 'decision node'?",
+        "type": "mcq",
+        "options": [
+          "A conditional branch point that routes the playbook to different actions based on the outcome of a previous step",
+          "A manual approval gate that pauses the playbook until a senior analyst reviews the case",
+          "A data enrichment step that queries external threat intelligence APIs",
+          "A notification step that sends alert details to the incident commander"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Which metric best measures the effectiveness of SOAR alert triage automation?",
+        "type": "mcq",
+        "options": [
+          "Percentage of alerts automatically closed with high confidence versus those requiring analyst escalation",
+          "Total number of playbooks deployed in the SOAR platform",
+          "The cost per licensed SOAR connector integration",
+          "Number of threat intelligence feeds ingested per day"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "What is 'playbook versioning' and why is it important in SOAR governance?",
+        "type": "mcq",
+        "options": [
+          "Tracking changes to playbook logic over time to enable rollback, audit trails, and controlled testing before production deployment",
+          "Numbering playbooks sequentially to help analysts locate them in the SOAR library",
+          "Assigning severity levels to playbooks based on the incident types they handle",
+          "Scheduling playbooks to run on rotating shifts aligned with SOC staffing patterns"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "How does SOAR reduce analyst alert fatigue?",
+        "type": "mcq",
+        "options": [
+          "By automatically enriching, correlating, and triaging low-fidelity alerts before they reach analysts, surfacing only high-confidence incidents",
+          "By permanently suppressing all alerts below a critical severity threshold",
+          "By distributing alerts randomly across all available analysts to balance workload",
+          "By replacing the SIEM entirely with a simpler alerting interface"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "audit-cm08": {
+    "questions": [
+      {
+        "q": "A honeytoken is a fake credential or data artifact designed to detect unauthorized access when used.",
+        "type": "binary",
+        "options": ["True", "False"],
+        "correct": 0
+      },
+      {
+        "q": "Honeypots should be placed only in the DMZ and never on internal network segments.",
+        "type": "binary",
+        "options": ["True", "False"],
+        "correct": 1
+      },
+      {
+        "q": "Canary tokens generate an alert when an attacker opens a document, visits a URL, or uses a credential containing the token.",
+        "type": "binary",
+        "options": ["True", "False"],
+        "correct": 0
+      },
+      {
+        "q": "A high-interaction honeypot provides a fully functional system that allows attackers to interact deeply, generating richer threat intelligence.",
+        "type": "binary",
+        "options": ["True", "False"],
+        "correct": 0
+      },
+      {
+        "q": "What is the primary security value of deploying honeytokens in an enterprise environment?",
+        "type": "mcq",
+        "options": [
+          "Early detection of insider threats and external attackers who access or use fake assets with near-zero false positive rates",
+          "Replacing endpoint detection agents with passive monitoring of decoy systems",
+          "Generating synthetic threat intelligence for SIEM correlation rules",
+          "Satisfying PCI DSS requirements for network segmentation"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Which of the following is a valid example of a honeytoken deployment?",
+        "type": "mcq",
+        "options": [
+          "A fake AWS access key embedded in a Git repository that triggers an alert when used against AWS APIs",
+          "A firewall rule that redirects all port 22 traffic to a logging server",
+          "A network intrusion detection signature for known malware C2 domains",
+          "A multi-factor authentication token issued to privileged administrators"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "What distinguishes a 'honeynet' from a single honeypot?",
+        "type": "mcq",
+        "options": [
+          "A honeynet is a network of multiple honeypots designed to simulate an entire realistic environment and capture broader attacker activity",
+          "A honeynet is a commercial threat intelligence subscription, while a honeypot is an open-source tool",
+          "A honeynet monitors outbound traffic only, while a honeypot captures inbound connections",
+          "A honeynet is deployed in the cloud, while a honeypot is always on-premises"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "What legal consideration is most important when deploying deception technology?",
+        "type": "mcq",
+        "options": [
+          "Ensuring that deception assets do not entrap legitimate users and that legal counsel reviews engagement rules, especially for active counterattack capabilities",
+          "Obtaining a commercial license for each honeypot software installation",
+          "Filing a patent application for proprietary deception techniques",
+          "Registering all fake domain names used in deception with ICANN"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Which type of honeytoken is most effective for detecting credential theft from Active Directory?",
+        "type": "mcq",
+        "options": [
+          "A fake service account with a strong password that is never legitimately used but monitored for authentication attempts",
+          "A real admin account with enhanced logging enabled",
+          "A network share with read-only access containing synthetic financial documents",
+          "A web application honeypot mimicking an internal HR portal"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Why do deception-based detections have a very low false positive rate compared to rule-based SIEM alerts?",
+        "type": "mcq",
+        "options": [
+          "Because any interaction with a deception asset is inherently suspicious — legitimate users have no reason to access fake resources",
+          "Because deception tools use advanced AI to distinguish attackers from legitimate users",
+          "Because honeypots are invisible to all network traffic and cannot generate spurious alerts",
+          "Because deception assets are placed outside the network perimeter where only attackers can reach them"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "audit-cm09": {
+    "questions": [
+      {
+        "q": "CARTA (Continuous Adaptive Risk and Trust Assessment) is a Gartner framework for continuously evaluating trust rather than granting it statically.",
+        "type": "binary",
+        "options": ["True", "False"],
+        "correct": 0
+      },
+      {
+        "q": "In a Zero Trust architecture, once a user is authenticated at login, their trust level remains constant for the entire session.",
+        "type": "binary",
+        "options": ["True", "False"],
+        "correct": 1
+      },
+      {
+        "q": "Step-up authentication requires a user to provide additional verification when their risk score crosses a defined threshold during a session.",
+        "type": "binary",
+        "options": ["True", "False"],
+        "correct": 0
+      },
+      {
+        "q": "Zero Trust continuous assessment eliminates the need for network perimeter firewalls entirely.",
+        "type": "binary",
+        "options": ["True", "False"],
+        "correct": 1
+      },
+      {
+        "q": "Which of the following signals would most likely trigger a re-authentication event in a CARTA-based system?",
+        "type": "mcq",
+        "options": [
+          "A user suddenly accessing a highly sensitive resource from an unusual geographic location during off-hours",
+          "A user submitting a standard web form that they access daily",
+          "A scheduled system health check completing successfully",
+          "A help desk ticket being automatically routed to Tier 2 support"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "What does 'adaptive trust scoring' mean in a Zero Trust continuous assessment framework?",
+        "type": "mcq",
+        "options": [
+          "Dynamically calculating a trust score based on real-time signals such as device health, user behavior, location, and time of access",
+          "Assigning a permanent trust level to each user based on their employment role",
+          "Scoring vendor risk assessments during the third-party onboarding process",
+          "Rating firewall rules by their effectiveness against known attack techniques"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Which NIST publication provides the primary guidance for Zero Trust Architecture implementation?",
+        "type": "mcq",
+        "options": [
+          "NIST SP 800-207",
+          "NIST SP 800-137",
+          "NIST SP 800-53",
+          "NIST SP 800-171"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "In Zero Trust, what is the role of a Policy Decision Point (PDP)?",
+        "type": "mcq",
+        "options": [
+          "To evaluate access requests against policy rules and grant or deny access based on real-time trust assessment",
+          "To encrypt all data in transit between enterprise applications",
+          "To manage digital certificates for all endpoints in the network",
+          "To aggregate security logs from all network devices into the SIEM"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "What is 'microsegmentation' and how does it relate to Zero Trust?",
+        "type": "mcq",
+        "options": [
+          "Dividing the network into small zones with granular access controls so that lateral movement requires separate authentication and authorization at each boundary",
+          "Splitting large log files into smaller chunks for faster SIEM ingestion",
+          "Partitioning cloud storage buckets by data classification level",
+          "Separating SOC analyst workstations from general enterprise endpoints"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Which of the following best describes the 'never trust, always verify' principle in Zero Trust?",
+        "type": "mcq",
+        "options": [
+          "Every access request must be authenticated, authorized, and continuously validated regardless of network location or previous trust grants",
+          "All external vendors must complete annual security questionnaires before accessing any system",
+          "Network traffic is blocked by default unless explicitly permitted by a firewall whitelist",
+          "Users must re-enter their password every time they switch between enterprise applications"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "audit-cm10": {
+    "questions": [
+      {
+        "q": "XDR (Extended Detection and Response) integrates telemetry from multiple security layers including endpoint, network, email, and cloud.",
+        "type": "binary",
+        "options": ["True", "False"],
+        "correct": 0
+      },
+      {
+        "q": "XDR replaces all existing security tools and requires ripping out the current security stack.",
+        "type": "binary",
+        "options": ["True", "False"],
+        "correct": 1
+      },
+      {
+        "q": "Native XDR solutions are built by a single vendor, while Open XDR solutions integrate third-party tools.",
+        "type": "binary",
+        "options": ["True", "False"],
+        "correct": 0
+      },
+      {
+        "q": "XDR improves detection accuracy by correlating alerts across multiple telemetry sources to build a unified attack story.",
+        "type": "binary",
+        "options": ["True", "False"],
+        "correct": 0
+      },
+      {
+        "q": "Which of the following best describes the primary advantage of XDR over siloed EDR solutions?",
+        "type": "mcq",
+        "options": [
+          "XDR correlates alerts and telemetry across endpoint, network, email, and cloud layers to detect multi-stage attacks that evade single-layer tools",
+          "XDR eliminates the need for a SIEM by replacing log aggregation with real-time streaming analysis",
+          "XDR focuses exclusively on threat hunting in cloud environments rather than on-premises systems",
+          "XDR provides vulnerability scanning capabilities that replace traditional patch management tools"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "What is 'cross-layer telemetry' in an XDR platform?",
+        "type": "mcq",
+        "options": [
+          "Security data collected simultaneously from endpoints, networks, cloud workloads, identity providers, and email systems and correlated in a unified detection engine",
+          "Network packets captured at each OSI layer and reassembled for protocol analysis",
+          "Log data extracted from multiple application layers in a microservices architecture",
+          "Threat intelligence shared across multiple geographic regions by a vendor's global SOC"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Which attack scenario is XDR best suited to detect that traditional siloed tools would likely miss?",
+        "type": "mcq",
+        "options": [
+          "A phishing email delivers malware that compromises an endpoint, which then moves laterally via network protocols to a cloud workload — each step appearing benign in isolation",
+          "A known ransomware signature detected on a single endpoint by antivirus software",
+          "A public-facing web server exploited by a SQL injection attack captured in WAF logs",
+          "A brute force attack against an RDP port detected by a standalone IDS"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "How does XDR differ from SIEM in its approach to detection?",
+        "type": "mcq",
+        "options": [
+          "XDR uses pre-built detection logic tightly integrated with telemetry collection for automated investigation, while SIEM requires analysts to write and maintain correlation rules over normalized logs",
+          "XDR stores all security logs for seven years for compliance, while SIEM only retains data for 90 days",
+          "XDR is deployed as a hardware appliance, while SIEM is always cloud-native",
+          "XDR handles only endpoint threats, while SIEM covers network and application threats"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "What is 'automated investigation' in the context of XDR?",
+        "type": "mcq",
+        "options": [
+          "The platform automatically traces an alert back through correlated telemetry to build an attack timeline and suggest or execute response actions",
+          "An AI tool that writes penetration test reports based on scan results",
+          "A compliance automation feature that maps controls to audit evidence",
+          "A machine learning model that predicts future vulnerabilities before they are exploited"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Which XDR deployment model gives organizations the most control over data residency and tool selection?",
+        "type": "mcq",
+        "options": [
+          "Open XDR, which integrates with best-of-breed third-party tools while providing unified detection and response",
+          "Native XDR from a single vendor, which restricts telemetry to that vendor's product suite",
+          "Cloud-only XDR that centralizes all telemetry in a single vendor's cloud",
+          "Hybrid XDR that deploys hardware sensors on-premises and routes telemetry to a vendor SOC"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "audit-cm11": {
+    "questions": [
+      {
+        "q": "Continuous compliance platforms automate the collection of evidence to demonstrate control effectiveness in real time.",
+        "type": "binary",
+        "options": ["True", "False"],
+        "correct": 0
+      },
+      {
+        "q": "Control mapping allows a single piece of evidence to satisfy requirements from multiple compliance frameworks simultaneously.",
+        "type": "binary",
+        "options": ["True", "False"],
+        "correct": 0
+      },
+      {
+        "q": "Audit readiness means an organization has all required evidence pre-collected and organized before an auditor arrives.",
+        "type": "binary",
+        "options": ["True", "False"],
+        "correct": 0
+      },
+      {
+        "q": "Automated compliance platforms eliminate the need for human judgment in evaluating control effectiveness.",
+        "type": "binary",
+        "options": ["True", "False"],
+        "correct": 1
+      },
+      {
+        "q": "What is 'control mapping' in the context of continuous compliance platforms?",
+        "type": "mcq",
+        "options": [
+          "Linking individual controls to requirements across multiple frameworks (SOC 2, ISO 27001, NIST, PCI DSS) so that one control satisfies overlapping requirements",
+          "Drawing network diagrams that show where security controls are physically deployed",
+          "Assigning ownership of each security control to a specific team member",
+          "Creating a visual map of all compliance gaps identified during an audit"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Which of the following is a key feature of automated evidence collection in continuous compliance?",
+        "type": "mcq",
+        "options": [
+          "API integrations with cloud providers, SaaS tools, and security systems that pull configuration and log data continuously without manual screenshots",
+          "Automated penetration testing that generates evidence of vulnerability remediation",
+          "AI-generated policy documents that replace human-authored security policies",
+          "Automatic submission of compliance reports to regulatory bodies"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "What is the purpose of a 'trust center' in modern compliance platforms like Drata or Vanta?",
+        "type": "mcq",
+        "options": [
+          "A public-facing portal where organizations share their compliance posture, certifications, and security documentation with customers and prospects",
+          "An internal dashboard for the CISO to monitor real-time control effectiveness",
+          "A secure vault for storing audit evidence with access controls for external auditors",
+          "A machine learning model that predicts when compliance violations will occur"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "How does continuous compliance differ from traditional point-in-time compliance assessments?",
+        "type": "mcq",
+        "options": [
+          "Continuous compliance monitors controls 24/7 and alerts on gaps immediately, while point-in-time assessments only evaluate compliance status during scheduled audit windows",
+          "Continuous compliance is cheaper because it eliminates the need for any external auditors",
+          "Continuous compliance applies only to cloud environments, while point-in-time assessments cover on-premises systems",
+          "Continuous compliance generates compliance scores automatically accepted by all regulators without human review"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Which compliance platform capability is most valuable for organizations pursuing multiple certifications simultaneously?",
+        "type": "mcq",
+        "options": [
+          "Cross-framework control mapping that shows how a single control satisfies SOC 2, ISO 27001, HIPAA, and other frameworks simultaneously",
+          "Automated employee background check integration for HR onboarding",
+          "Real-time stock price monitoring for public company disclosure requirements",
+          "Blockchain-based evidence storage that provides immutable audit trails"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "What is a 'gap assessment' in the continuous compliance workflow?",
+        "type": "mcq",
+        "options": [
+          "An automated analysis that identifies controls not yet implemented or failing, and prioritizes remediation tasks for the compliance team",
+          "A penetration test that identifies vulnerabilities in the network perimeter",
+          "A review of policy documents to identify outdated language requiring updates",
+          "An assessment of the time gap between vulnerability discovery and patch deployment"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "audit-cm12": {
+    "questions": [
+      {
+        "q": "MTTD (Mean Time to Detect) measures the average time between when an attack begins and when the SOC first identifies it.",
+        "type": "binary",
+        "options": ["True", "False"],
+        "correct": 0
+      },
+      {
+        "q": "A high alert volume with a low true positive rate is a primary indicator of alert fatigue in a SOC.",
+        "type": "binary",
+        "options": ["True", "False"],
+        "correct": 0
+      },
+      {
+        "q": "MTTR (Mean Time to Respond) begins when an incident is detected and ends when the threat is fully eradicated and systems are restored.",
+        "type": "binary",
+        "options": ["True", "False"],
+        "correct": 0
+      },
+      {
+        "q": "A SOC SLA (Service Level Agreement) defines the maximum acceptable MTTD and MTTR for different incident severity levels.",
+        "type": "binary",
+        "options": ["True", "False"],
+        "correct": 0
+      },
+      {
+        "q": "According to the SOC Capability Maturity Model, which level describes a SOC that proactively hunts for threats using intelligence and advanced analytics?",
+        "type": "mcq",
+        "options": [
+          "Level 4 — Threat Intelligence-Driven and Proactive Hunting",
+          "Level 2 — Reactive with basic SIEM alerting",
+          "Level 3 — Metrics-driven with documented processes",
+          "Level 5 — Fully automated with no human analysts"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Which of the following best describes 'dwell time' as a SOC metric?",
+        "type": "mcq",
+        "options": [
+          "The duration between initial compromise and detection, representing how long an adversary operated undetected in the environment",
+          "The time analysts spend on each alert before escalating to a senior responder",
+          "The number of hours a SOC analyst works before requiring a mandatory rest break",
+          "The time a compromised system remains offline during incident containment"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "What is the 'false positive rate' metric and why is it critical for SOC performance measurement?",
+        "type": "mcq",
+        "options": [
+          "The percentage of alerts that do not represent actual threats; a high rate wastes analyst time, contributes to alert fatigue, and delays response to real incidents",
+          "The rate at which attackers successfully bypass detection controls without triggering any alerts",
+          "The frequency of system outages caused by security tool performance issues",
+          "The percentage of incidents that are incorrectly escalated to executive leadership"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "A SOC reports a MTTD of 48 hours for a critical incident. According to the IBM Cost of a Data Breach Report, how does extended dwell time typically affect breach costs?",
+        "type": "mcq",
+        "options": [
+          "Breaches with longer dwell times (over 200 days) cost significantly more due to greater data exposure and remediation complexity",
+          "Dwell time has no statistically significant impact on breach cost according to IBM research",
+          "Faster detection always increases breach costs because it accelerates adversary activity",
+          "Only dwell times exceeding 1 year have measurable impact on breach severity"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Which technique is most effective for reducing analyst alert fatigue without reducing detection coverage?",
+        "type": "mcq",
+        "options": [
+          "Tuning detection rules to reduce false positives, implementing SOAR for automated triage, and using risk-based alerting to surface only high-confidence threats",
+          "Reducing the total number of security tools to minimize the volume of alerts generated",
+          "Hiring additional Tier 1 analysts to process more alerts per shift",
+          "Setting alert thresholds to critical-only severity to eliminate low and medium alerts entirely"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "What is the purpose of 'shift-left' in SOC operations and how does it improve metrics?",
+        "type": "mcq",
+        "options": [
+          "Moving detection and response capabilities earlier in the attack lifecycle (earlier MTTD) and embedding security earlier in development to reduce the number of vulnerabilities reaching production",
+          "Transferring SOC responsibilities from the night shift to the day shift for better staffing coverage",
+          "Migrating SOC infrastructure from on-premises to a cloud provider for cost reduction",
+          "Reassigning junior analysts to Tier 2 roles to accelerate career development"
+        ],
+        "correct": 0
+      }
+    ]
+  }
+}

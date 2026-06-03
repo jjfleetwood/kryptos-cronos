@@ -1,0 +1,696 @@
+{
+  "audit-t07": {
+    "tagline": "SAST encuentra el agujero antes de que sea perforado. DAST confirma que el agujero es real.",
+    "overview": [
+      "Las pruebas de seguridad de aplicaciones utilizan tres enfoques complementarios: Static Application Security Testing (SAST) analiza el código fuente sin ejecutarlo — encontrando SQL injection, XSS, command injection y secretos codificados antes de la compilación. Dynamic Application Security Testing (DAST) ataca la aplicación en ejecución — confirmando que las vulnerabilidades son explotables. Software Composition Analysis (SCA) identifica CVEs conocidos en dependencias de código abierto.",
+      "En un programa AppSec maduro, los tres se ejecutan en CI/CD: SAST y SCA en cada commit (retroalimentación rápida orientada al desarrollador), DAST en cada despliegue a staging (más lento, integral). Los auditores de seguridad verifican que estas herramientas estén configuradas, que los hallazgos se triendan (no se supriman sin justificación), y que los hallazgos críticos bloqueen las versiones.",
+      "Las herramientas SAST incluyen: Semgrep, Checkmarx, Veracode, SonarQube y CodeQL. Las herramientas DAST incluyen: OWASP ZAP, Burp Suite Enterprise y StackHawk. Las herramientas SCA incluyen: Snyk, Dependabot, OWASP Dependency-Check y Black Duck."
+    ],
+    "technical": {
+      "title": "Lectura de Salida de SAST y DAST",
+      "body": [
+        "Los falsos positivos de SAST son comunes — una consulta SQL parametrizada correctamente aún puede ser marcada si la herramienta SAST no entiende el ORM. Los auditores verifican que las supresiones de falsos positivos tengan justificaciones documentadas firmadas por un ingeniero de seguridad, no solo por el desarrollador que escribió el código.",
+        "DAST requiere una aplicación en ejecución y credenciales de prueba válidas. Los auditores verifican: DAST se ejecuta contra un entorno de staging (no producción), las credenciales de prueba no se comparten con desarrolladores (evita ajustar la aplicación para evitar DAST), y los resultados de DAST de la ejecución más reciente se comparan con la ejecución anterior para detectar regresiones."
+      ]
+    },
+    "incident": {
+      "title": "Vulnerabilidad de Dependencia Apache Struts de Equifax (2017)",
+      "impact": "147M registros; acuerdo de FTC de $575M; explotado a través de CVE conocido en dependencia sin parches",
+      "body": [
+        "La violación de Equifax explotó CVE-2017-5638, una vulnerabilidad crítica en Apache Struts 2 anunciada el 7 de marzo de 2017. Equifax conocía el parche pero no lo había aplicado a todos los sistemas. Una herramienta SCA integrada en CI/CD habría marcado la versión vulnerable de Struts en cada compilación. Un escaneo DAST contra la aplicación accesible públicamente habría confirmado la explotabilidad.",
+        "El intervalo de dos meses entre la liberación del parche y la explotación demuestra el valor de SCA en CI/CD: cuando se publica un nuevo CVE, cada organización que ejecuta software afectado sabe inmediatamente qué aplicaciones son vulnerables. Sin SCA, es posible que no lo sepan durante meses — si es que lo llegan a saber."
+      ]
+    },
+    "timeline": [
+      "Equifax — CVE de Apache Struts explotado 2 meses después de la liberación del parche",
+      "Semgrep de código abierto — análisis de código semántico a velocidad de desarrollador",
+      "Log4Shell — herramientas SCA identifican aplicaciones afectadas en horas",
+      "OpenSSF Scorecard — clasificación de postura de seguridad automatizada para código abierto"
+    ],
+    "keyTakeaways": [
+      "SAST en CI/CD proporciona retroalimentación de seguridad a desarrolladores en cada commit — desplaza la seguridad hacia la izquierda",
+      "SCA identifica dependencias vulnerables — crítico para ataques de cadena de suministro como Log4Shell",
+      "DAST confirma explotabilidad real — reduce falsos positivos de SAST entrando en el backlog",
+      "Las supresiones de falsos positivos requieren aprobación del ingeniero de seguridad, no autoservicio del desarrollador"
+    ]
+  },
+  "audit-t12": {
+    "tagline": "Las verificaciones de cumplimiento manual son instantáneas en un momento específico. El cumplimiento automatizado es la verdad continua.",
+    "overview": [
+      "La automatización del cumplimiento reemplaza las verificaciones de auditoría manual y puntuales con verificación continua y automatizada de controles. AWS Config con Config Rules, AWS Security Hub, Azure Policy y GCP Security Command Center proporcionan puntuación de cumplimiento en tiempo real contra marcos como CIS Benchmarks, PCI DSS, SOC 2 y NIST 800-53.",
+      "AWS Security Hub agrega hallazgos de Config Rules, GuardDuty, Inspector, Macie y herramientas de seguridad de terceros en una puntuación de cumplimiento única. El CIS AWS Foundations Benchmark en Security Hub ejecuta más de 180 controles automatizados y actualiza la puntuación en tiempo real a medida que se crean, modifican o eliminan recursos.",
+      "La automatización del cumplimiento tiene dos componentes: preventivo (SCPs y Azure Policies que bloquean la creación de recursos no compatibles) y de detección (Config Rules y Security Hub que identifican el incumplimiento existente). Los auditores verifican que ambos componentes estén implementados y que los hallazgos de detección se estén remediando, no solo recopilando."
+    ],
+    "technical": {
+      "title": "Implementación del Cumplimiento Continuo",
+      "body": [
+        "Los paquetes de conformidad de AWS Config implementan múltiples Config Rules como una unidad alineada con un marco. El paquete de conformidad 'Operational Best Practices for PCI DSS 3.2.1' proporcionado por AWS implementa 133 reglas con una única implementación. Los hallazgos aparecen en Security Hub con una puntuación de cumplimiento y detalle a nivel de recurso.",
+        "Remediación automática: Config Rules puede activar funciones Lambda que remedian automáticamente los hallazgos. Ejemplo: una Config Rule detecta un bucket S3 con acceso público — una función Lambda aplica automáticamente el bloque de acceso público. Los auditores verifican que la remediación automática esté habilitada para controles críticos y que las acciones de remediación se registren para el registro de auditoría."
+      ]
+    },
+    "incident": {
+      "title": "Toyota S3 Bucket Público — 10 Años de Exposición (2023)",
+      "impact": "2.15M ubicaciones de vehículos de clientes expuestas durante 10 años; no existía ninguna verificación de cumplimiento automatizada",
+      "body": [
+        "La mala configuración de S3 de 10 años de Toyota (acceso público en un bucket que contiene datos de ubicación de vehículos) habría sido detectada el primer día por la regla de AWS Config 's3-bucket-public-read-prohibited'. Esta regla administrada se ejecuta continuamente e identifica cualquier bucket con acceso de lectura público en minutos de la configuración.",
+        "El caso se convirtió en un ejemplo de referencia de por qué importa la automatización del cumplimiento: una auditoría manual verifica un momento específico, pero una Config Rule que se ejecuta continuamente habría detectado la mala configuración de 2013 en 2013, no en 2023. AWS Config estaba disponible en 2013. La organización simplemente no lo había implementado."
+      ]
+    },
+    "timeline": [
+      "AWS Config GA — monitoreo continuo de configuración de recursos",
+      "CIS AWS Foundations Benchmark v1.0 — 49 controles automatizados",
+      "AWS Security Hub GA — cumplimiento agregado en todas las Config Rules",
+      "Toyota — exposición de S3 de 10 años que AWS Config habría detectado en minutos"
+    ],
+    "keyTakeaways": [
+      "La automatización del cumplimiento detecta errores de configuración en minutos, no años después de la implementación",
+      "AWS Security Hub proporciona una puntuación de cumplimiento unificada en más de 180 controles de CIS Benchmark",
+      "La remediación automática de controles críticos (acceso público S3, claves de acceso raíz) es una práctica recomendada",
+      "Las auditorías manuales verifican que la automatización funcione — no reemplazan el monitoreo continuo"
+    ]
+  },
+  "audit-a03": {
+    "tagline": "Regex captura patrones. Claude entiende el contexto. Ambos son necesarios.",
+    "overview": [
+      "Las herramientas tradicionales de escaneo de secretos utilizan patrones regex para detectar formatos de secretos conocidos — prefijos de clave AWS, patrones de token GitHub, encabezados PEM. Capturan secretos bien formateados pero fallan en credenciales ofuscadas, secretos de variables de entorno configurados en configs de CI, secretos en comentarios o formatos de token internos personalizados.",
+      "La detección de secretos impulsada por IA utiliza Claude para razonar sobre el contexto: ¿Es esta una credencial real o un marcador de posición de prueba? ¿Es este nombre de variable sospechosamente similar a credencial aunque el valor se vea inofensivo? ¿Decodifica este blob base64 a una clave privada? La comprensión semántica de Claude captura lo que regex no puede.",
+      "El escáner agentico de secretos combina pre-screening regex (para velocidad y formatos conocidos) con análisis Claude (para contexto y casos extremos). Escanea historial de git, configuraciones de entorno, infraestructura como código, imágenes Docker y definiciones de canalizaciones CI/CD — toda el área de superficie donde se filtran secretos."
+    ],
+    "technical": {
+      "title": "Arquitectura de escaneo de dos fases",
+      "body": [
+        "Fase 1 (rápida, regex): ejecutar truffleHog o detect-secrets en el objetivo. Marcar todas las coincidencias de patrones y cadenas de alta entropía para revisión. Esto produce muchos falsos positivos pero no pierde nada evidente.",
+        "Fase 2 (precisa, Claude): para cada elemento marcado, enviar una ventana de contexto a Claude que contiene el código circundante, la ruta del archivo, el nombre de la variable y el valor sin procesar. Pedir a Claude que clasifique: confirmed_secret, likely_placeholder, false_positive. El juicio de Claude reduce el tiempo de revisión del analista en 80%+ en la práctica."
+      ]
+    },
+    "incident": {
+      "title": "Fuga de secreto GitHub de Uber (2022)",
+      "impact": "57M registros de usuarios; el atacante utilizó la credencial AWS filtrada para acceder a buckets S3",
+      "body": [
+        "La violación de Uber de 2022 comenzó con un ataque de fatiga MFA, pero la capacidad del atacante para moverse lateralmente y acceder a datos de producción se basó en encontrar credenciales codificadas en scripts PowerShell internos de Uber almacenados en un recurso compartido de red. Las credenciales no estaban en los repos de código fuente principal — estaban en scripts operacionales que los escáneres regex no alcanzaban.",
+        "El escaneo impulsado por Claude habría alcanzado esos scripts operacionales. Más importante aún, Claude puede reconocer patrones similares a credenciales en nombres de variables PowerShell (`$uberProdKey`, `$awsToken`) incluso cuando los valores están ofuscados — algo que regex puro no puede hacer sin una lista exhaustiva de nombres de variables."
+      ]
+    },
+    "timeline": [
+      "truffleHog lanzado — primer escáner de secretos de historial de git importante",
+      "Violación de Uber — credenciales codificadas en scripts operacionales no capturadas por escáneres",
+      "La clasificación de secretos aumentada por IA reduce la tasa de falsos positivos en 80%+",
+      "Claude utilizado en canalizaciones de triaje de secretos de producción en empresas Fortune 500"
+    ],
+    "keyTakeaways": [
+      "Regex encuentra formatos; Claude encuentra intención — usa ambos en secuencia",
+      "Escanear más allá de repos de git: configs de CI, imágenes Docker, IaC, scripts operacionales",
+      "Clasificación Claude: confirmed_secret / likely_placeholder / false_positive",
+      "El escaneo de historial de git captura secretos confirmados y 'eliminados' — eliminación ≠ remoción"
+    ]
+  },
+  "audit-cm02": {
+    "tagline": "Las firmas capturan los ataques de ayer. ML captura los de mañana.",
+    "overview": [
+      "Las plataformas SIEM tradicionales (Splunk, ArcSight, QRadar) funcionan con detección basada en firmas: los ingenieros escriben reglas de correlación que coinciden con patrones de ataque conocidos. Este enfoque funciona bien para ataques de productos básicos pero falla contra técnicas novedosas, ataques living-off-the-land (LOTL) y campañas APT de larga duración que se mantienen por debajo de umbrales de reglas individuales.",
+      "Las plataformas SIEM de nueva generación (Microsoft Sentinel, Google Chronicle, Elastic SIEM, Securonix) aumentan la detección basada en reglas con aprendizaje automático: detección de anomalías no supervisada, clasificadores supervisados entrenados en datos de ataque etiquetados y resolución de entidades basada en gráficos. Ingieren datos a escala de petabytes desde APIs en la nube, agentes de endpoint, tomas de red y proveedores de identidad — no solo syslog tradicional.",
+      "El cambio arquitectónico clave en SIEM de nueva generación es la normalización a un esquema común (OCSF — Open Cybersecurity Schema Framework, o Elastic Common Schema) antes del almacenamiento. Esto permite que una única regla de detección coincida en docenas de fuentes de datos. Combinado con enriquecimiento de inteligencia de amenazas en el momento de la ingesta, los analistas ven alertas ricas en contexto en lugar de líneas de registro sin procesar."
+    ],
+    "technical": {
+      "title": "Patrones de Detección ML en SIEM de Nueva Generación",
+      "body": [
+        "Tres técnicas ML dominan la detección en SIEM de nueva generación: (1) Isolation Forest / DBSCAN para detección de valores atípicos no supervisada en líneas base de comportamiento de usuario/entidad; (2) clasificadores de gradient boosting (XGBoost, LightGBM) entrenados en datos de amenaza etiquetados para detección supervisada; (3) redes neuronales de gráficos para detección de movimiento lateral modelando relaciones de autenticación.",
+        "La reducción de falsos positivos es el desafío operacional principal. Un SIEM que genera 10.000 alertas por día con 99% de falsos positivos aún produce 100 incidentes reales enterrados en ruido. Los SIEM de nueva generación utilizan agrupación de alertas, deduplicación y puntuaciones de riesgo UEBA para surfear solo los hallazgos de mayor confianza para revisión del analista."
+      ]
+    },
+    "incident": {
+      "title": "Ataque de Cadena de Suministro SolarWinds Orion — Fallo de SIEM (2020)",
+      "impact": "9 agencias federales estadounidenses comprometidas; período de detección no detectado de 14 meses",
+      "body": [
+        "El ataque SolarWinds SUNBURST troyanizó el proceso de compilación del software Orion, insertando una puerta trasera en actualizaciones legítimas firmadas. El malware fue diseñado para evadir la detección SIEM basada en firmas: imitaba patrones de tráfico legítimos de SolarWinds, utilizaba rutas de red existentes y permanecía inactivo durante 12–14 días después de la instalación antes de activarse.",
+        "FireEye descubrió el ataque no a través de alertas SIEM sino a través de un analista humano notando un registro de dispositivo MFA inusual — una anomalía de comportamiento que un SIEM de nueva generación con UEBA habría marcado automáticamente. Post-incidente, Microsoft Sentinel y otras plataformas de nueva generación desplegaron modelos de comportamiento SUNBURST específicos. El ataque cambió fundamentalmente la industria hacia detección basada en ML para amenazas de cadena de suministro y LOTL."
+      ]
+    },
+    "timeline": [
+      "Era ArcSight / QRadar — SIEM basado en firmas se convierte en estándar empresarial",
+      "Splunk ML Toolkit lanzado — primeras capacidades ML en SIEM tradicional",
+      "Microsoft Sentinel (SIEM nativo en la nube) lanzado; Google Chronicle anunciado",
+      "Ataque SolarWinds expone límites de detección de firmas — adopción de SIEM ML se acelera",
+      "OCSF (Open Cybersecurity Schema Framework) lanzado por AWS, Splunk y 17 socios",
+      "Triaje de alertas asistido por LLM integrado en principales plataformas SIEM"
+    ],
+    "keyTakeaways": [
+      "La detección de firmas se pierde en ataques novedosos — ML detecta anomalías de comportamiento independientes de patrones conocidos",
+      "La normalización de esquemas (OCSF/ECS) en la ingesta permite detección entre fuentes con una única regla",
+      "La reducción de falsos positivos es el desafío operacional #1 de SIEM — la puntuación de riesgo y el agrupamiento ayudan",
+      "SolarWinds mostró que los ataques de cadena de suministro y LOTL requieren detección de comportamiento, no de firmas",
+      "El SIEM de nueva generación ingiere APIs en la nube y proveedores de identidad, no solo syslog tradicional"
+    ]
+  },
+  "mitre-02": {
+    "tagline": "Los atacantes profesionales construyen sus armas antes de elegir sus objetivos.",
+    "overview": [
+      "Resource Development (TA0042) cubre todo lo que un atacante adquiere o construye antes de ejecutar el ataque: infraestructura C2, herramientas de explotación, malware, cuentas comprometidas y certificados digitales para firma de código. Los actores de estados nacionales y grupos criminales sofisticados invierten semanas en esta fase.",
+      "Técnicas clave: T1583 — Acquire Infrastructure (servidores VPS, dominios, cuentas en la nube comprados con tarjetas de crédito robadas o criptomonedas), T1584 — Compromise Infrastructure (hackear sitios web legítimos para usarlos como relés C2), T1587 — Develop Capabilities (malware personalizado, exploits de día cero), T1588 — Obtain Capabilities (comprar herramientas en foros de la dark web).",
+      "Los defensores detectan el desarrollo de recursos a través del intercambio de inteligencia de amenazas — cuando un atacante registra un dominio que parece el de una empresa objetivo (typosquatting), los feeds de inteligencia de amenazas lo marcan. Los registros de Certificate Transparency revelan certificados recién emitidos para dominios imitadores. La monitorización pasiva de DNS detecta infraestructura C2 antes de que se use."
+    ],
+    "technical": {
+      "title": "Patrones de Infraestructura C2",
+      "body": [
+        "La infraestructura C2 moderna utiliza múltiples capas para evadir el desmantelamiento: redirectores (servidores VPS baratos que reenvían tráfico al C2 real), domain fronting (enrutamiento de tráfico C2 a través de CDNs como Cloudflare), y dead drop resolvers (perfiles de redes sociales o posts de Pastebin que contienen la dirección IP actual del C2).",
+        "Los defensores utilizan: verificación de antigüedad del dominio (dominios recién registrados son sospechosos), DNS pasivo (rastrear resoluciones IP-a-dominio a lo largo del tiempo), patrones de privacidad WHOIS (toda la información oculta + registrada con servicio de privacidad = mayor riesgo), y fingerprinting TLS JA3 (los marcos C2 tienen patrones de handshake TLS distintivos)."
+      ]
+    },
+    "incident": {
+      "title": "Lazarus Group — Operation AppleJeus Infrastructure (2018)",
+      "impact": "$2B+ robados; sofisticada infraestructura C2 multicapa utilizada en 30+ países",
+      "body": [
+        "El Lazarus Group de Corea del Norte (APT38) construyó canales elaborados de desarrollo de recursos para Operation AppleJeus: registró empresas de software de criptomonedas que parecían legítimas, construyó sitios web y perfiles de GitHub con aspecto profesional, desarrolló software de negociación de criptomonedas troyanizado, y lo firmó con certificados de firma de código legítimos comprados bajo las identidades falsas de la empresa.",
+        "La infraestructura era tan convincente que las víctimas descargaban y ejecutaban voluntariamente el malware. Toda la operación — registro de empresa, desarrollo de sitio web, desarrollo de software, adquisición de certificados — fue completada antes de que se abordara cualquier objetivo. Este es el desarrollo de recursos a escala de estado nacional."
+      ]
+    },
+    "timeline": [
+      "Lazarus AppleJeus — empresa criptográfica falsa + software troyanizado",
+      "ATT&CK v7 formaliza Resource Development (TA0042) como una táctica",
+      "Domain fronting a través de CDNs mayores en gran medida bloqueado; atacantes cambian a redirectores",
+      "Lazarus roba $600M del Ronin Bridge — mismo patrón de infraestructura"
+    ],
+    "keyTakeaways": [
+      "El desarrollo de recursos ocurre antes de la primera interacción con la víctima — detéctalo con inteligencia de amenazas",
+      "Monitoriza registros de Certificate Transparency para dominios imitadores dirigidos a tu organización",
+      "Antigüedad del dominio + WHOIS oculto + certificado nuevo = patrón de dominio de alto riesgo",
+      "El fingerprinting TLS JA3 identifica marcos C2 por su firma de handshake"
+    ]
+  },
+  "mitre-04": {
+    "tagline": "El mejor malware utiliza herramientas ya instaladas en la máquina de la víctima.",
+    "overview": [
+      "Execution (TA0002) cubre las técnicas que utilizan los atacantes para ejecutar su código malicioso en un sistema objetivo después de obtener acceso inicial. La técnica de ejecución dominante en las intrusiones modernas es T1059 — Command and Scripting Interpreter, específicamente PowerShell (T1059.001), que está integrado en todos los sistemas Windows y es de confianza por defecto.",
+      "Living-off-the-land (LOLBins) execution abusa de herramientas legítimas de Windows: PowerShell, WMI, mshta.exe, regsvr32.exe, certutil.exe y rundll32.exe para ejecutar código proporcionado por atacantes. Debido a que estos son binarios firmados por Microsoft, eluden el whitelist de aplicaciones y muchos productos AV.",
+      "La detección se enfoca en indicadores de comportamiento: PowerShell con la bandera -EncodedCommand (común en malware), PowerShell descargando archivos de internet (IEX (New-Object Net.WebClient).DownloadString), creación de suscripción WMI y scripts sin firmar ejecutándose con bypass de política de ejecución."
+    ],
+    "technical": {
+      "title": "Detección de Ejecución de PowerShell",
+      "body": [
+        "Habilitar PowerShell Script Block Logging (Event ID 4104) — esto captura el contenido real del script decodificado incluso cuando se usa -EncodedCommand. Habilitar Module Logging (Event ID 4103) y Transcription. Estos tres parámetros juntos hacen que PowerShell sea casi transparente para los defensores.",
+        "Constrained Language Mode (CLM) restringe PowerShell para evitar que los atacantes usen tipos .NET, objetos COM y ALLOWED_TYPES. Combinado con AppLocker o WDAC (Windows Defender Application Control), CLM previene la mayoría de técnicas de ejecución basadas en PowerShell."
+      ]
+    },
+    "incident": {
+      "title": "NotPetya — WMI y PSEXEC para Execution (2017)",
+      "impact": "Daños de $10B+; Maersk, FedEx, Merck, Mondelez todos paralizados",
+      "body": [
+        "NotPetya utilizó múltiples técnicas de ejecución después de obtener acceso inicial: WMI (T1047) para ejecución remota, PsExec (T1569.002) para ejecución de movimiento lateral y WMIC para propagarse por la red. Combinó credenciales robadas (a través de credential dumping) con herramientas legítimas de ejecución remota de Windows — un ataque LOLBin clásico.",
+        "Debido a que NotPetya utilizó solo herramientas legítimas de Windows para la ejecución (WMI, PsExec, Task Scheduler), los productos AV tradicionales basados en firmas de malware no se activaron. La cadena de ejecución se veía idéntica a la administración legítima del sistema."
+      ]
+    },
+    "timeline": [
+      "NotPetya — ejecución LOLBin WMI/PsExec causa daño global de $10B",
+      "PowerShell Script Block Logging se convierte en control de detección estándar de SOC",
+      "Despliegue de WDAC + Constrained Language Mode crece en la empresa",
+      "Detección de ejecución impulsada por IA reduce significativamente el tiempo de permanencia"
+    ],
+    "keyTakeaways": [
+      "Habilitar PowerShell Script Block Logging (Event 4104) — decodifica -EncodedCommand",
+      "LOLBins utilizan herramientas firmadas de Microsoft — AV basado en firmas es ciego a ellos",
+      "Constrained Language Mode + AppLocker bloquea la mayoría de técnicas de ejecución de PowerShell",
+      "Detección de comportamiento (PowerShell → conexión de red) supera la detección basada en firmas"
+    ]
+  },
+  "quantum-02": {
+    "tagline": "El algoritmo de 1994 de Peter Shor reduce la factorización RSA de tiempo exponencial a polinómico — haciendo obsoleta toda la criptografía de clave pública actual.",
+    "overview": [
+      "En 1994, el matemático del MIT Peter Shor publicó un algoritmo cuántico que factoriza números enteros grandes en tiempo polinómico — O((log N)³) operaciones cuánticas versus lo mejor clásico de O(e^(64/9 * (log N)^(1/3))) operaciones subexponenciales. Este único algoritmo rompe teóricamente RSA, Diffie-Hellman y criptografía de curva elíptica simultáneamente.",
+      "La seguridad de RSA descansa enteramente en la dificultad de factorizar números semiprimos grandes — multiplicar dos primos es fácil, factorizar el producto es clásicamente inviable. El Algoritmo de Shor utiliza transformada de Fourier cuántica y estimación de fase cuántica para encontrar el período de una función exponencial modular, a partir de la cual se derivan factores eficientemente.",
+      "El algoritmo también se extiende a problemas de logaritmo discreto — rompiendo Diffie-Hellman (incluyendo ECDH). Cualquier criptosistema cuya seguridad dependa de factorización o logaritmos discretos es vulnerable. Esto incluye TLS, SSH, IPsec, firma de código y autoridades de certificación."
+    ],
+    "technical": {
+      "title": "Cómo Funciona el Algoritmo de Shor",
+      "body": [
+        "El Algoritmo de Shor tiene dos partes: (1) una reducción clásica de factorización a búsqueda de período, y (2) un algoritmo cuántico para búsqueda de período usando la Transformada de Fourier Cuántica (QFT). La QFT extrae periodicidad de una superposición cuántica de evaluaciones de funciones — algo clásicamente imposible.",
+        "Para RSA-2048 (un módulo de 2048 bits), Shor requiere aproximadamente 4096 qubits lógicos y billones de operaciones de puertas cuánticas. Las computadoras cuánticas actuales tienen ~100-400 qubits físicos propensos a errores. La corrección de errores requiere ~1000 qubits físicos por qubit lógico — así que se necesitan ~4 millones de qubits físicos."
+      ]
+    },
+    "incident": {
+      "title": "Suite CNSA 2.0 de la NSA — Reconocimiento de la Amenaza Cuántica",
+      "impact": "NSA ordenó migración de algoritmos postcuánticos para todos los sistemas clasificados antes de 2035",
+      "body": [
+        "En septiembre de 2022, la NSA lanzó la Commercial National Security Algorithm Suite 2.0 (CNSA 2.0), ordenando que todos los Sistemas de Seguridad Nacional migren de RSA y ECC a algoritmos resistentes a cuántica antes de 2035. Este fue un reconocimiento explícito del gobierno de que el Algoritmo de Shor representa una amenaza creíble a corto plazo.",
+        "CNSA 2.0 mandató: CRYSTALS-Kyber para establecimiento de clave, CRYSTALS-Dilithium y FALCON para firmas digitales, y XMSS/LMS para firma de firmware. El plazo de 2035 para sistemas clasificados implica una creencia de que los CRQCs podrían surgir para entonces — o que la línea de tiempo de migración requiere comenzar inmediatamente."
+      ]
+    },
+    "timeline": [
+      "Peter Shor publica el Algoritmo de Shor en Bell Labs",
+      "IBM demuestra el Algoritmo de Shor factorizando 15 en una máquina NMR de 7 qubits",
+      "Sycamore de 53 qubits de Google — supremacía cuántica para problema específico",
+      "NSA CNSA 2.0 — mandato de migración postcuántica para sistemas clasificados",
+      "NIST publica FIPS 203/204/205 — primeros estándares PQC"
+    ],
+    "keyTakeaways": [
+      "El Algoritmo de Shor rompe RSA, Diffie-Hellman y ECC simultáneamente — toda la criptografía de clave pública actual",
+      "El algoritmo es conocido y probado — solo el hardware es la barrera",
+      "El mandato de 2035 de la NSA implica que creen que los CRQCs son posibles dentro de ese plazo",
+      "La criptografía simétrica (AES-256, SHA-384) requiere solo duplicar el tamaño de clave/resumen — el algoritmo de Grover reduce la seguridad a la mitad"
+    ]
+  },
+  "quantum-10": {
+    "tagline": "La línea de tiempo de la amenaza cuántica es la incógnita más importante en ciberseguridad — y la ventana para prepararse se está cerrando.",
+    "overview": [
+      "Las agencias de inteligencia, empresas de computación cuántica e investigadores académicos proporcionan estimaciones muy variadas sobre cuándo existirá una Computadora Cuántica Criptográficamente Relevante (CRQC): entre 5 y 30 años. La comunidad de inteligencia Five Eyes (EE.UU., Reino Unido, Canadá, Australia, Nueva Zelanda) ha convergido en un horizonte de planificación de 2030-2035 para sistemas clasificados.",
+      "La clave para los planificadores de seguridad es que no importa cuándo llegue exactamente Q-Day — lo que importa es si su migración se completará antes de que ocurra. Las migraciones criptográficas empresariales toman 3-7 años. NIST publicó los primeros estándares PQC en agosto de 2024. Las organizaciones que comienzan la migración en 2024 pueden realísticamente completarla para 2030-2031. Las organizaciones que comienzan en 2027 no pueden.",
+      "Esta etapa final de Quantum Foundations sintetiza la imagen completa de la amenaza y proporciona el marco de decisión para comenzar la migración post-cuántica. Después de esta etapa, Epoch 4b cubre los algoritmos post-cuánticos específicos, y Epoch 4c cubre QKD y la ejecución de migración empresarial."
+    ],
+    "technical": {
+      "title": "Marco de Decisión de Migración PQC",
+      "body": [
+        "La decisión de migración está impulsada por: (1) tiempo de vida de sensibilidad de datos — ¿cuánto tiempo necesitan permanecer confidenciales los datos? (2) exposición HNDL — ¿se están transmitiendo estos datos sobre infraestructura expuesta a internet donde los adversarios pueden recopilarlos hoy? (3) cronograma de migración — ¿cuánto tiempo llevará actualizar este sistema?",
+        "Recomendación de cronograma de NIST 2024: las organizaciones deben planificar migrar de algoritmos vulnerables a cuántica para 2030 (para datos de alta sensibilidad) y completar todas las migraciones para 2035. Dado los cronogramas típicos de migración empresarial, comenzar en 2024-2025 es necesario para cumplir con el objetivo de 2030."
+      ]
+    },
+    "incident": {
+      "title": "Asesoramiento Conjunto Five Eyes — Orientación sobre Criptografía Post-Cuántica",
+      "impact": "La orientación unificada de Five Eyes crea una línea base global para la planificación de migración PQC",
+      "body": [
+        "En 2023-2024, la comunidad de inteligencia Five Eyes emitió asesoramientos conjuntos sobre criptografía post-cuántica, representando la orientación más significativa de agencias de inteligencia colectiva sobre cualquier tema técnico desde la transición de SSL/TLS. La orientación conjunta unificó cronogramas de migración, recomendaciones de algoritmos y evaluaciones de amenazas en todas las naciones de Five Eyes.",
+        "El mensaje unificado: comience la migración post-cuántica inmediatamente, priorizando sistemas expuestos a internet que manejan datos sensibles de larga duración. La especificidad de la orientación — nombrando algoritmos particulares (CRYSTALS-Kyber, Dilithium), nombrando años de depreciación específicos (2030-2035) y advirtiéndose explícitamente sobre HNDL — refleja el acceso de la comunidad de inteligencia a las capacidades cuánticas del adversario."
+      ]
+    },
+    "timeline": [
+      "NIST publica FIPS 203/204/205 — algoritmos PQC estandarizados",
+      "Asesoramiento conjunto Five Eyes — orientación de migración PQC unificada",
+      "Objetivo: todos los sistemas P1 (máxima sensibilidad) migrados",
+      "Comienzo de depreciación de algoritmo NSA — fase de salida de RSA/ECC",
+      "Hoja de ruta cuántica IBM: sistema de 100K+ qubits — proximidad CRQC",
+      "Mandato NSA: todos los NSS solo en algoritmos CNSA 2.0 (PQC)"
+    ],
+    "keyTakeaways": [
+      "La migración toma 3-7 años — las organizaciones que comienzan en 2024 pueden cumplir con el objetivo de P1 2030",
+      "NIST FIPS 203/204/205 (2024) proporcionan los algoritmos estandarizados — comience a implementar ahora",
+      "La orientación de Five Eyes es la evaluación de amenaza más creíble disponible — trate 2030 como su fecha límite",
+      "La migración post-cuántica no es opcional: NSA prohibirá RSA/ECC en sistemas clasificados para 2035"
+    ]
+  },
+  "quantum-b03": {
+    "tagline": "ML-KEM es el reemplazo directo para RSA y ECDH en intercambio de claves — el algoritmo más importante en criptografía post-cuántica.",
+    "overview": [
+      "ML-KEM (Module Lattice-based Key Encapsulation Mechanism), estandarizado como NIST FIPS 203 en agosto de 2024, es el reemplazo principal para RSA y ECDH en protocolos de intercambio de claves. Reemplaza el intercambio de claves TLS, el establecimiento de claves VPN, y cualquier otro sistema donde dos partes necesiten establecer un secreto compartido.",
+      "ML-KEM se basa en CRYSTALS-Kyber, diseñado por un equipo que incluye IBM, NXP e investigadores académicos. Utiliza el problema Module-LWE — específicamente el supuesto MLWE en redes modulares sobre anillos polinomiales. El algoritmo es lo suficientemente eficiente para todos los despliegues TLS y ha sido adoptado por CloudFlare, Google y las principales bibliotecas TLS.",
+      "ML-KEM viene en tres conjuntos de parámetros: ML-KEM-512 (nivel de seguridad NIST 1, equivalente a AES-128), ML-KEM-768 (nivel 3, equivalente a AES-192), y ML-KEM-1024 (nivel 5, equivalente a AES-256). Para la mayoría de aplicaciones, se recomienda ML-KEM-768."
+    ],
+    "technical": {
+      "title": "Operación ML-KEM — KeyGen, Encapsulate, Decapsulate",
+      "body": [
+        "ML-KEM es un Mecanismo de Encapsulación de Claves (KEM): Alice genera un par de claves (clave pública, clave privada). Bob utiliza la clave pública de Alice para encapsular un secreto compartido aleatorio, produciendo un texto cifrado. Alice utiliza su clave privada para desencapsular el texto cifrado y recuperar el mismo secreto compartido. Ninguna de las partes necesita enviar el secreto en sí.",
+        "La seguridad se basa en la dificultad de distinguir el texto cifrado de algo aleatorio sin la clave privada. La encapsulación introduce ruido LWE que evita la recuperación del secreto sin la clave privada. El secreto compartido K se obtiene mediante una función hash, proporcionando seguridad incluso si el problema MLWE subyacente tiene filtración de información parcial."
+      ]
+    },
+    "incident": {
+      "title": "Cisco Silicon One P200 — Cifrado de 800G a Velocidad de Línea Resistente a Computadoras Cuánticas (2025)",
+      "impact": "Primer ASIC de red de 800G con ML-KEM y ML-DSA integrados en hardware — cifrado resistente a computadoras cuánticas a velocidad de línea sin penalización de rendimiento",
+      "body": [
+        "En octubre de 2025, Cisco anunció Silicon One P200 con puertos de 800G entregando cifrado resistente a computadoras cuánticas a velocidad de línea — el primer ASIC de red importante en integrar PQC estándar NIST (ML-KEM para establecimiento de claves, ML-DSA para firma) directamente en hardware. Esto significa que IPsec y MACsec resistentes a computadoras cuánticas se ejecutan a velocidades de 800G completas sin electrodomésticos de cifrado externos. CloudFlare y Google habían probado que ML-KEM era viable en software; Cisco demostró que es viable en silicio.",
+        "El Silicon One G300 de seguimiento (febrero de 2026) escala a 102.4 Tbit/s de capacidad Ethernet con las mismas capacidades PQC. La arquitectura PQC de pila completa de Cisco — anunciada en Cisco Live 2026 Ámsterdam — cubre integridad de arranque de dispositivo, datos en tránsito y gestión de claves. La interfaz SKIP vincula material clave derivado de QKD directamente en sesiones IPsec/MACsec, habilitando seguridad híbrida PQC+QKD en infraestructura existente."
+      ]
+    },
+    "timeline": [
+      "CRYSTALS-Kyber enviado a la competencia PQC de NIST",
+      "CloudFlare + Google Chrome implementan Kyber768 híbrido en TLS",
+      "NIST FIPS 203 (ML-KEM) publicado — obligatorio para sistemas federales",
+      "Cisco Silicon One P200: ML-KEM + ML-DSA en hardware a velocidad de línea de 800G",
+      "Cisco Silicon One G300: 102.4 Tbit/s con pila PQC completa"
+    ],
+    "keyTakeaways": [
+      "ML-KEM (FIPS 203) es el reemplazo obligatorio para RSA y ECDH en sistemas federales",
+      "Cisco Silicon One P200 entrega ML-KEM a velocidad de línea de 800G — sin penalización de rendimiento en hardware",
+      "Utilizar híbrido (X25519 + ML-KEM-768) durante la migración — seguridad contra atacantes clásicos y cuánticos",
+      "La interfaz SKIP de Cisco vincula claves derivadas de QKD en IPsec/MACsec para una pila híbrida PQC+QKD"
+    ]
+  },
+  "quantum-b07": {
+    "tagline": "Los esquemas híbridos combinan algoritmos clásicos y postcuánticos — seguros tanto contra los atacantes actuales como contra las computadoras cuánticas del futuro.",
+    "overview": [
+      "Durante la transición de la criptografía clásica a la postcuántica, los esquemas híbridos son esenciales. Un intercambio de clave híbrido (por ejemplo, X25519 + ML-KEM-768) combina un algoritmo clásico con un algoritmo PQC. El secreto compartido se deriva de ambos: la seguridad se mantiene si alguno de los dos algoritmos es seguro — los atacantes cuánticos no pueden romper ML-KEM, los atacantes clásicos no pueden romper X25519.",
+      "Los esquemas híbridos resuelven el problema de la gallina y el huevo en el despliegue: las organizaciones pueden desplegar PQC híbrida antes de que todo su ecosistema haya verificado las implementaciones de algoritmos PQC. Si ML-KEM tiene una vulnerabilidad no descubierta, X25519 sigue protegiendo la sesión. Si un CRQC rompe X25519, ML-KEM sigue protegiendo contra atacantes cuánticos.",
+      "Las suites de cifrado híbridas de TLS 1.3 ya están en uso: X25519Kyber768Draft00 (CloudFlare/Google, 2023), X25519MLKEM768 (borrador IETF, 2024). NIST recomienda híbrido durante el período de migración, con PQC pura como objetivo final una vez que se establezca la confianza en el algoritmo."
+    ],
+    "technical": {
+      "title": "Derivación de Clave Híbrida — Combinación de Secretos Compartidos Clásicos y PQC",
+      "body": [
+        "El secreto compartido híbrido K = KDF(K_classical || K_pqc) donde KDF es una función de derivación de clave segura (HKDF-SHA384). Esta construcción es segura si K_classical o K_pqc es indistinguible de aleatorio — un atacante debe romper ambos algoritmos simultáneamente para recuperar K.",
+        "Para TLS 1.3 híbrido: el cliente envía tanto un compartir de clave X25519 como una clave pública ML-KEM en ClientHello. El servidor realiza un acuerdo de clave X25519 y encapsulación ML-KEM, devolviendo el texto cifrado ML-KEM. Ambas partes derivan las claves de sesión usando ambos secretos compartidos como entrada a HKDF."
+      ]
+    },
+    "incident": {
+      "title": "TLS Postcuántico Híbrido IETF — Estandarización en Progreso",
+      "impact": "PQC híbrida será estandarizado en TLS 1.3 — protegiendo miles de millones de conexiones",
+      "body": [
+        "El grupo de trabajo TLS de IETF está estandarizando el intercambio de clave postcuántico híbrido para TLS 1.3. Los borradores de RFC definen suites de cifrado X25519MLKEM768 y SecP256r1MLKEM768, con inclusión planeada en TLS 1.4. Estas suites de cifrado ya han sido desplegadas por CloudFlare (protegiendo 25M+ sitios web) y Google Chrome (3B+ usuarios) utilizando versiones de borrador previas al estándar.",
+        "El enfoque de IETF valida la estrategia híbrida: desplegar ahora con suites de cifrado híbridas previas al estándar, protegiendo las sesiones TLS actuales de ataques HNDL, mientras los estándares PQC puros maduran. Una vez que se establezca la confianza en la implementación (2025-2027), las suites de cifrado ML-KEM puro serán estandarizadas y las suites de cifrado híbridas serán eliminadas gradualmente."
+      ]
+    },
+    "timeline": [
+      "CloudFlare + Chrome despliegan X25519Kyber768 — primer PQC híbrido masivo",
+      "IETF publica borrador de RFC para suite de cifrado TLS híbrida X25519MLKEM768",
+      "Esperado: IETF estandariza suites de cifrado híbridas en TLS 1.3",
+      "Esperado: suites de cifrado ML-KEM puro estandarizadas; híbrido opcional"
+    ],
+    "keyTakeaways": [
+      "Desplegar híbrido (X25519 + ML-KEM-768) inmediatamente — ya está comprobado en producción y proporciona protección HNDL",
+      "Seguridad híbrida: el atacante debe romper TANTO el algoritmo clásico COMO el PQC — no más débil que ninguno de los dos",
+      "Usar X25519MLKEM768 o SecP256r1MLKEM768 — ambos están en borrador de IETF e implementados ampliamente",
+      "ML-KEM puro (sin clásico) es el objetivo final — híbrido es el puente durante la migración"
+    ]
+  },
+  "quantum-b09": {
+    "tagline": "No puedes migrar lo que no has encontrado — el descubrimiento de criptografía es el paso más importante y más subestimado en la migración PQC.",
+    "overview": [
+      "La migración de criptografía post-cuántica comienza con un inventario completo de todos los activos criptográficos en la organización. La TI empresarial moderna tiene criptografía incrustada en miles de lugares: certificados TLS en balanceadores de carga, claves SSH en tuberías CI/CD, claves RSA en soluciones VPN, ECDSA en firma de código, certificados x509 en puertas de enlace API, y módulos de seguridad de hardware en toda la infraestructura.",
+      "Las herramientas de descubrimiento criptográfico escanean bases de código (CBOM — Cryptography Bill of Materials), inventarios de certificados, tráfico de red y archivos de configuración para identificar todo el uso criptográfico. NIST, CISA e ISO están desarrollando estándares CBOM análogos a SBOM (Software Bill of Materials) para permitir la gestión sistemática de activos criptográficos.",
+      "La fase de descubrimiento es más difícil de lo que parece: la criptografía a menudo está enterrada en dependencias, incrustada en firmware binario u oculta en infraestructura administrada por proveedores. Las organizaciones que intentan migración sin descubrimiento completo encuentran activos de cifrado que fueron pasados por alto y deben reiniciar el proceso de migración."
+    ],
+    "technical": {
+      "title": "Herramientas de Descubrimiento Criptográfico y CBOM",
+      "body": [
+        "Herramientas para descubrimiento criptográfico: (1) IBM Cryptography Bill of Materials (CBOM) generator — escanea bases de código para uso de cifrado; (2) CISA's Crypto Inventory Template — hoja de evaluación estructurada; (3) Herramientas de escaneo de red (p. ej., SSL Labs, Qualys SSL) — enumeran certificados; (4) Cryptosense Analyzer — descubre cifrado en código Java/Python; (5) OQS-TLS scanner — identifica TLS listo para PQC versus solo clásico.",
+        "Un CBOM completo incluye: algoritmo utilizado, tamaño de clave, tipo de clave (simétrica/asimétrica/hash), protocolo, sensibilidad de datos, calendario de renovación, propietario y prioridad de migración. Esto se alimenta directamente en el modelo de priorización de migración."
+      ]
+    },
+    "incident": {
+      "title": "Retrospectiva de Heartbleed — Por Qué el Inventario Importa",
+      "impact": "Heartbleed mostró que las organizaciones no sabían qué usaba OpenSSL; la migración PQC requiere no cometer el mismo error",
+      "body": [
+        "La vulnerabilidad Heartbleed de 2014 (CVE-2014-0160 en OpenSSL) causó pánico generalizado porque las organizaciones no sabían qué sistemas usaban OpenSSL y, por lo tanto, cuáles estaban afectados. Muchas grandes organizaciones tardaron semanas en identificar todos los sistemas afectados — durante las cuales los atacantes tenían acceso completo a sus claves privadas.",
+        "La migración PQC es un 'Heartbleed lento': las organizaciones que no mantengan un inventario criptográfico actual enfrentarán el mismo problema de descubrimiento al migrar. La lección es construir descubrimiento continuo de cifrado en el programa de seguridad ahora, para que cuando se acerque Q-Day, el inventario ya exista y la migración pueda proceder rápidamente."
+      ]
+    },
+    "timeline": [
+      "Heartbleed — las organizaciones no podían encontrar todo el uso de OpenSSL",
+      "CISA lanza plantilla de inventario criptográfico PQC y metodología",
+      "NIST comienza estandarización CBOM — cryptography bill of materials",
+      "Las agencias federales completan inventario criptográfico obligatorio (requisito de CISA)",
+      "Esperado: CBOM requerido para contratistas federales"
+    ],
+    "keyTakeaways": [
+      "Comienza inventario de cifrado antes de la migración — descubrirás activos que no sabías que existían",
+      "Utiliza herramientas CBOM (IBM, Cryptosense) y escáneres de red para encontrar todo el uso de cifrado",
+      "Prioriza activos RSA/ECDH expuestos a Internet primero — máxima exposición HNDL",
+      "Mantén un CBOM vivo: los activos criptográficos cambian con cada actualización y despliegue de software"
+    ]
+  },
+  "quantum-c09": {
+    "tagline": "La migración cuántica es un programa de 3-7 años que requiere aprobación de la junta directiva, presupuesto sostenido y coordinación multifuncional — no es un sprint.",
+    "overview": [
+      "La migración cuántica es el programa criptográfico más complejo que la mayoría de las empresas han emprendido. Requiere apoyo a nivel de junta directiva, presupuesto multianual sostenido, coordinación multifuncional (seguridad, infraestructura, desarrollo, adquisiciones) y gestión de proveedores. La mayoría de los CISOs todavía están explicando a sus juntas directivas qué son las computadoras cuánticas.",
+      "La gobernanza cuántica efectiva comienza con la cuantificación del riesgo: traducir la amenaza técnica (HNDL, algoritmo de Shor, cronología de Q-Day) en términos financieros que las juntas directivas entiendan — costos potenciales de violación de datos, multas regulatorias, exposición de inteligencia competitiva. Luego construir un programa por fases: descubrimiento → fundación → sistemas centrales → completitud → sostenimiento.",
+      "El caso de negocio para la inversión en PQC es directo: el costo de la migración (típicamente 0.5-2% del presupuesto anual de TI durante 5 años) es mucho menor que la pérdida esperada de una violación post-Q-Day de registros recopilados hoy. La presión regulatoria (FFIEC, OMB, futuros requisitos de la SEC) proporciona urgencia adicional que resuena con los comités de auditoría."
+    ],
+    "technical": {
+      "title": "Modelo de Cuantificación del Riesgo Cuántico",
+      "body": [
+        "Cálculo de pérdida esperada: (probabilidad de Q-Day en 10 años) × (valor de datos expuestos). La amenaza HNDL NO está ponderada por probabilidad — está ocurriendo ahora. Todos los datos cifrados con RSA transmitidos hoy están potencialmente archivados y serán expuestos en Q-Day independientemente de la incertidumbre en la cronología. Priorizar activos por riesgo HNDL primero (sensibilidad a largo plazo), luego por impacto de Q-Day.",
+        "Fases del programa: Año 1 (Descubrimiento) — inventario criptográfico, calificación de riesgos, evaluación de proveedores, capacitación; Año 2 (Fundación) — reemplazo de HSM, migración de raíz PKI, cadena de herramientas de desarrollo; Año 3 (Core) — VPN, TLS, puertas de enlace de API; Año 4 (Completitud) — sistemas restantes, firma de código; Año 5 (Sostenimiento) — monitoreo continuo, algoritmos emergentes."
+      ]
+    },
+    "incident": {
+      "title": "FFIEC Emite Orientación sobre Riesgo Cuántico para Instituciones Financieras (2024)",
+      "impact": "Primer requisito regulatorio específico del sector para la divulgación de riesgo cuántico y planificación de migración",
+      "body": [
+        "El Consejo Federal de Examen de Instituciones Financieras (FFIEC) emitió orientación que requiere que bancos e instituciones de crédito evalúen riesgos de computación cuántica, incluyan exposición cuántica en exámenes de TI y desarrollen roadmaps de migración. El incumplimiento de la orientación de examen puede afectar calificaciones e desencadenar acciones de ejecución.",
+        "La orientación del FFIEC fue específica del sector y precedió a los requisitos de la SEC — las instituciones financieras deben demostrar conciencia del riesgo cuántico en sus paquetes de examen de TI. Esto creó el caso de negocio para programas cuánticos de CISO en bancos e instituciones de crédito que previamente habían diferido la planificación: el riesgo regulatorio ahora tiene un costo en dólares definido."
+      ]
+    },
+    "timeline": [
+      "NSA CNSA 2.0 — gobierno reconoce amenaza cuántica",
+      "OMB M-23-02 — agencias civiles federales deben planificar migraciones",
+      "Orientación de riesgo cuántico de FFIEC para instituciones financieras",
+      "FIPS 203/204/205 publicados — programas de migración pueden comenzar",
+      "Programas cuánticos de CISO empresariales: presentaciones a la junta comienzan"
+    ],
+    "keyTakeaways": [
+      "Traducir riesgo técnico a términos financieros: pérdida esperada = probabilidad × exposición (riesgo HNDL es 100%)",
+      "Programa por fases de 5 años: Descubrimiento → Fundación → Core → Completitud → Sostenimiento",
+      "Riesgo regulatorio (FFIEC, OMB, SEC) proporciona urgencia para aprobación de junta — cuantificar multas",
+      "Inventario criptográfico (CBOM) es el primer entregable requerido — no puedes migrar lo que no has encontrado",
+      "Reportes a la junta: panel de control de riesgo cuántico trimestral, no solo sesión informativa anual"
+    ]
+  },
+  "nails-10": {
+    "tagline": "Un salón no es solo un negocio de uñas — es un negocio que hace uñas. La distinción importa.",
+    "overview": [
+      "Abrir un salón de uñas requiere más que habilidad — requiere licencia, estructura comercial, un espacio físico, inversión en equipos y sistemas operacionales. Todos los estados en EE.UU. requieren que los técnicos de uñas tengan una licencia de técnico de uñas (típicamente 300–600 horas de escuela de cosmetología más un examen estatal). Un salón también necesita una licencia de salón separada, una licencia comercial de la ciudad y cumplimiento con regulaciones del departamento de salud.",
+      "La ubicación es crítica para un negocio minorista de belleza. Las áreas con alto tráfico peatonal, proximidad a otros negocios complementarios (salones de cabello, spas, boutiques) y estacionamiento accesible impulsan el negocio de clientes. Los términos de arrendamiento comercial, costos de construcción y alquiler continuo son los mayores riesgos financieros al abrir un salón. Muchos dueños exitosos de salones comienzan alquilando un puesto dentro de un salón existente antes de asumir un arrendamiento comercial completo.",
+      "Los costos de inicio para un pequeño salón de uñas (2–4 estaciones) típicamente oscilan entre $15,000 y $50,000: equipos ($2,000–$5,000 por estación incluyendo mesa, silla, silla del cliente y lámpara), construcción y decoración ($5,000–$20,000), suministros iniciales ($2,000–$3,000), licencias y permisos ($500–$2,000), y capital de trabajo para los primeros 3–6 meses de gastos."
+    ],
+    "technical": {
+      "title": "El Modelo de Negocio del Salón de Uñas",
+      "body": [
+        "Modelo de ingresos: un salón de uñas gana dinero por servicio. Ticket de servicio promedio en EE.UU.: manicura de gel $35–$55, pedicura $45–$65, add-ons de arte de uñas $5–$25. Un solo técnico puede servir 4–6 clientes por día. Un salón de 3 sillas completamente reservado puede generar $800–$1,500 por día en ingresos brutos. Los gastos (alquiler, suministros, servicios, seguro, personal) típicamente consumen 60–70% de los ingresos.",
+        "Modelos de personal: puedes contratar técnicos como empleados (pagas impuestos sobre nómina y beneficios, pero controlas horarios y calidad) o alquilar sillas a contratistas independientes (menos gestión, pero también menos control). La mayoría de pequeños salones comienzan con puestos operados por el dueño y crecen contratando empleados a medida que la demanda lo justifica."
+      ]
+    },
+    "incident": {
+      "title": "Cómo el Modelo de Alquiler de Puestos Cambió la Propiedad de Salones",
+      "impact": "El alquiler de puestos dio a miles de técnicos de uñas una ruta hacia la propiedad empresarial sin el riesgo completo de un arrendamiento de salón — se convirtió en el modelo dominante en salones de uñas estadounidenses.",
+      "body": [
+        "Antes de que el alquiler de puestos se generalizara, convertirse en dueño de salón significaba asumir un arrendamiento comercial completo — un riesgo financiero significativo para alguien recién salido de la escuela de cosmetología. El modelo de alquiler de puestos, que surgió en California en los años 80, cambió esto: un dueño de salón alquila estaciones de trabajo individuales a técnicos independientes, quienes pagan un alquiler semanal fijo y se quedan con sus propios ingresos.",
+        "Para técnicos de uñas, el alquiler de puestos ofrecía una ruta para construir una clientela independiente dentro de un espacio establecido. Hoy, la mayoría de salones de uñas en EE.UU. operan bajo alguna forma de alquiler de puestos o modelo de comisión. Muchos dueños de salones de uñas comenzaron como arrendatarios de puestos, construyeron su clientela, ahorraron sus ingresos y eventualmente abrieron su propio espacio."
+      ]
+    },
+    "timeline": [
+      "El modelo de alquiler de puestos emerge en salones de uñas y cabello de California",
+      "La comunidad de salones de uñas vietnamita-estadounidense comienza rápida expansión en EE.UU.",
+      "La industria de salones de uñas alcanza $6 billones en ingresos anuales en EE.UU.",
+      "El auge del esmalte de gel impulsa la demanda de nuevos conceptos de salones solo de uñas",
+      "COVID fuerza reservas digitales y sistemas sin contacto — la industria se adapta",
+      "La industria de salones de uñas en EE.UU. se estima en $12+ billones anuales"
+    ],
+    "keyTakeaways": [
+      "Obtén tu licencia de técnico de uñas primero — ningún estado te permite operar sin ella",
+      "Considera alquilar un puesto dentro de un salón existente antes de asumir un arrendamiento comercial",
+      "Planifica 3–6 meses de gastos operativos en reserva antes del día de apertura",
+      "La reputación de tu negocio se construye antes de que abras — construye tu lista de clientes y redes sociales primero"
+    ]
+  },
+  "hair-styling-04": {
+    "tagline": "Una pasada bien hecha es mejor que cinco pasadas mal hechas.",
+    "overview": [
+      "La plancha de cabello (plancha alisadora) es una de las herramientas más poderosas y más mal utilizadas en el peinado. Las placas de cerámica o titanio aplican calor de contacto directo para remodelar los enlaces de hidrógeno del cabello. El resultado depende de tres variables: temperatura (adaptada al tipo de cabello), tamaño de la placa (adaptado al grosor de la sección) y velocidad (lo suficientemente lenta para remodelar, lo suficientemente rápida para no quemar).",
+      "Los errores comunes incluyen secciones superpuestas (recalentamiento de cabello ya peinado), pausas en medio de la hebra (punto caliente = rotura) y usar la plancha en cabello mojado o húmedo (la explosión de vapor dentro de la corteza causa daño de porosidad irreversible, a veces llamado efecto de 'freír').",
+      "Más allá del alisado, la plancha de cabello es una herramienta de peinado versátil: una rotación de 90° crea una onda, envolver el cabello alrededor del cilindro crea rizos suaves, y apretar con un giro crea una onda definida — cada resultado del mismo dispositivo."
+    ],
+    "technical": {
+      "title": "Variables de la Plancha de Cabello",
+      "body": [
+        "Temperatura: Fino = 250–300°F, Medio = 300–380°F, Grueso = 380–450°F.",
+        "Espesor de la sección: No debe exceder el ancho de la placa. Secciones más delgadas = mejor penetración de calor = menos pasadas necesarias.",
+        "Velocidad: Lo suficientemente lenta para la transferencia de calor (~3–5 segundos por pulgada), pero movimiento continuo — nunca estático.",
+        "Tipo de placa: Cerámica (calor uniforme, suave), Titanio (se calienta más rápido, mejor para cabello grueso), Turmalina (iónica + cerámica).",
+        "El cabello debe estar 100% seco antes de usar la plancha. Incluso la humedad leve causa daño por vapor."
+      ]
+    },
+    "incident": {
+      "title": "El Desastre del Cabello Húmedo",
+      "impact": "Causa principal de rotura aguda por peinado con calor",
+      "body": [
+        "Las moléculas de agua atrapadas en la corteza del cabello se convierten en vapor cuando una plancha pasa a través. El vapor no tiene a dónde ir — explota hacia afuera, literalmente destrozando la cutícula desde adentro. El resultado es inmediato: cabello que se rompe, se divide y desarrolla una textura esponjosa cuando está mojado.",
+        "Esto es irreversible. La única solución es dejarlo crecer. La prevención es simple: siempre confirma que el cabello está 100% seco antes de planchar, o usa un secador de cabello para eliminar completamente la humedad primero."
+      ]
+    },
+    "timeline": [
+      "Isaac Shero patenta la plancha de alisado de cabello",
+      "Las planchas de placa cerámica entran al mercado profesional",
+      "ghd se lanza, popularizando la plancha de cabello cerámica en el mercado general",
+      "Se introducen placas de titanio para segmentos de cabello grueso y rizado",
+      "Las planchas inteligentes con sensores de temperatura se vuelven ampliamente disponibles"
+    ],
+    "keyTakeaways": [
+      "El cabello debe estar 100% seco antes de planchar — el cabello húmedo causa daño irreversible por vapor.",
+      "El movimiento continuo es obligatorio — hacer una pausa crea puntos calientes y rotura.",
+      "Haz coincidir la temperatura con el tipo de cabello; cabello fino/dañado máximo 300°F.",
+      "Una plancha de cabello puede crear ondas y rizos con variación de técnica, no solo alisar."
+    ]
+  },
+  "hair-styling-08": {
+    "tagline": "El cabello rizado es una textura viva — trabaja con él, no en contra.",
+    "overview": [
+      "El cabello rizado y ondulado (tipos 2C–4C) requiere técnicas fundamentalmente diferentes al cuidado del cabello liso. Los desafíos principales son la retención de humedad, el control del frizz y la definición del rizo sin alterar el patrón natural. El principio fundamental: menos manipulación equivale a más definición.",
+      "Plopping es una técnica sin calor donde el cabello mojado, con producto aplicado, se baja suavemente sobre una toalla de microfibra o camiseta, se envuelve durante 20-30 minutos y se libera. Esto mejora el agrupamiento natural del rizo sin el frizz por frotamiento de toalla. El difusor dispersa el aire del secador ampliamente sobre grupos de rizos, levantándolos desde la raíz mientras mantiene el patrón de rizo intacto.",
+      "Los productos de peinado para cabello rizado siguen el método LCO (Líquido, Crema, Aceite) o LOC (Líquido, Aceite, Crema) para estratificar humedad y sellarla. Se aplica agua primero (cabello mojado o húmedo), luego una crema para definición, luego un aceite o gel para sellar. La 'costra de gel' — una sensación crujiente cuando el gel se seca — es intencional; se rompe con pellizcadas después del secado para liberar rizos suaves."
+    ],
+    "technical": {
+      "title": "Glosario de Técnicas de Rizo",
+      "body": [
+        "Plopping: cabello mojado bajado en toalla de microfibra, envuelto 20-30 min, se libera sin frizz.",
+        "Difusor: adjuntar cuenco difusor al secador; calor bajo, velocidad baja; sostener o envolver grupos de rizos.",
+        "Manos rezando: deslizar el producto por el eje del cabello (sin frotar) para recubrir sin perturbar el rizo.",
+        "Pellizcando: cubriendo y exprimiendo rizos hacia arriba para fomentar agrupamiento y definición.",
+        "Costra de gel: dejar el gel secar duro, pellizcar para 'romper la costra' y revelar rizos suaves definidos.",
+        "Piña: coleta alta suelta para dormir, preserva los rizos durante la noche."
+      ]
+    },
+    "incident": {
+      "title": "La Controversia de DevaCurl",
+      "impact": "Miles de miembros de la comunidad de rizos reportaron caída del cabello — escándalo de reformulación de productos",
+      "body": [
+        "DevaCurl fue la marca angular de la comunidad de cabello rizado. En 2020, miles de usuarios reportaron pérdida súbita de cabello, irritación del cuero cabelludo y rotura vinculadas a reformulaciones de productos que introducían ingredientes potencialmente sensibilizantes.",
+        "La lección para estilistas: conoce los ingredientes de tus productos, prueba parches de nuevas formulaciones en ti mismo o en una hebra antes de aplicarlas en clientes, y mantén diversificación de marca en tus ofertas — ninguna marca debería ser irreemplazable."
+      ]
+    },
+    "timeline": [
+      "El Método Curly Girl de Lorraine Massey define la filosofía sin sulfatos y sin calor",
+      "DevaCurl se lanza, construye el mercado de productos específicos para rizos",
+      "Los tutoriales de YouTube democratizan la educación de técnicas de rizo globalmente",
+      "El método de estratificación LCO/LOC se adopta ampliamente en comunidades de rizo",
+      "Controversia de DevaCurl; la comunidad de rizo diversifica la lealtad a la marca"
+    ],
+    "keyTakeaways": [
+      "Plopping reemplaza el secado áspero con toalla y es el reductor de frizz más importante para cabello rizado.",
+      "El difusor usa calor bajo y velocidad de aire baja para secar grupos de rizos sin alterar su patrón.",
+      "Nunca toques el cabello rizado mientras se seca — manipulación durante el secado = frizz.",
+      "La costra de gel es intencional: pellízcala solo después de que el cabello esté completamente seco."
+    ]
+  },
+  "hair-styling-10": {
+    "tagline": "Tus habilidades logran que los clientes se sienten. Tu sentido empresarial los mantiene ahí.",
+    "overview": [
+      "Lanzar un negocio de estilismo capilar requiere dos caminos paralelos: dominar el oficio técnico y construir la infraestructura empresarial. En EE.UU., se requiere licencia de cosmetología o barbería para ejercer profesionalmente — típicamente 1,000–1,500 horas de educación mandatadas por el estado más un examen práctico y escrito.",
+      "Hay cuatro modelos empresariales principales para estilistas: empleado (el salón paga salario + comisión), renta de cabina (renta una estación, mantén todos los ingresos, paga tus propios impuestos y suministros), renta de suite (estudio privado, independencia total) y propiedad de salón. La renta de cabina y suite son los caminos empresariales más comunes porque requieren capital inicial mínimo comparado con la propiedad.",
+      "Un 'portafolio' — tu lista de clientes — es el verdadero activo del negocio de un estilista. Construirlo requiere presencia consistente en redes sociales (Instagram y TikTok son los canales principales de descubrimiento), incentivos de boca en boca (descuentos por referencia) y un hábito de reprogramación: siempre intenta programar la siguiente cita antes de que el cliente se levante de la silla."
+    ],
+    "technical": {
+      "title": "Economía de Renta de Cabina",
+      "body": [
+        "Rango de renta de cabina: $200–$800/semana dependiendo del mercado y ubicación del salón.",
+        "Como arrendatario de cabina eres un contratista independiente: paga impuesto de trabajo por cuenta propia (~15.3%), compra tus propios productos y seguro, gestiona tu propia reserva.",
+        "Fórmula de equilibrio: (renta de cabina semanal + suministros + seguro) / promedio de ticket de servicio = clientes necesarios por semana.",
+        "Regla de oro: necesitas 20–30 clientes regulares comprometidos antes de que la renta de cabina sea financieramente estable.",
+        "Licencia de cosmetología: ~1,000–1,500 horas (dependiendo del estado), examen escrito + práctico, renovación cada 2–4 años."
+      ]
+    },
+    "incident": {
+      "title": "El Cambio en el Descubrimiento en Redes Sociales",
+      "impact": "Instagram y TikTok ahora impulsan la mayoría de la adquisición de nuevos clientes de salón menores de 35 años",
+      "body": [
+        "Antes de las redes sociales, los nuevos clientes encontraban estilistas a través de las Páginas Amarillas, clientes que entran solos o boca en boca. Hoy, la mayoría de clientes menores de 35 años descubren nuevos estilistas a través de Reels de Instagram o videos de TikTok — específicamente videos de transformación, demostraciones de técnica y publicaciones antes/después.",
+        "Un estilista que publica consistentemente y documenta su trabajo construye un portafolio descubrible. Un estilista que depende solo de clientes que entran solos y referencias crece 3–5 veces más lentamente. La inversión es tiempo, no dinero — un smartphone es todo lo que se necesita."
+      ]
+    },
+    "timeline": [
+      "La licencia de cosmetología se vuelve estándar en todos los estados de EE.UU.",
+      "El modelo de renta de cabina gana popularidad como alternativa al modelo de empleado",
+      "Instagram se convierte en la plataforma principal de portafolio visual para estilistas",
+      "Los conceptos de renta de suite (Sola Salons, MY SALON Suite) se expanden a nivel nacional",
+      "Los tutoriales de estilismo de TikTok impulsan el descubrimiento viral de estilistas individuales"
+    ],
+    "keyTakeaways": [
+      "La licencia de cosmetología o barbería es legalmente requerida para ejercer profesionalmente en los 50 estados de EE.UU.",
+      "Los arrendatarios de cabina son contratistas independientes — impuesto de trabajo por cuenta propia, suministros, seguro son tu responsabilidad.",
+      "Necesitas aproximadamente 20–30 clientes regulares comprometidos antes de que la renta de cabina sea financieramente estable.",
+      "Siempre reprograma la siguiente cita antes de que el cliente se vaya — la retención es más barata que la adquisición."
+    ]
+  },
+  "driving-1-02": {
+    "tagline": "Casi la mitad de los que presentan la prueba por primera vez fallan. Los que aprueban leen el manual — cada página.",
+    "overview": [
+      "El examen de conocimientos escrito del DMV de California consta de 46 preguntas de opción múltiple. Para aprobar, debe responder correctamente al menos 38 preguntas — esa es una puntuación del 82,6%. Las preguntas se extraen directamente del Manual del Conductor de California, que está disponible de forma gratuita en el sitio web del DMV o en cualquier oficina del DMV. Todas las respuestas están en el manual; no hay preguntas trampa. Si estudia el manual, aprobará.",
+      "La prueba está disponible en múltiples idiomas incluyendo inglés, español, chino, vietnamita y varios otros. También puede solicitar una versión de audio. Para los solicitantes menores de 18 años, la prueba cubre el mismo material que la prueba para adultos. Si falla la prueba de conocimientos, puede tomarla hasta tres veces antes de tener que pagar nuevamente la tarifa de solicitud y comenzar de nuevo.",
+      "Estrategia de estudio: lea el manual de principio a fin al menos una vez — preste especial atención a los límites de velocidad, las reglas de derecho de paso, las distancias de señalización y las reglas de licencia graduada para conductores adolescentes. Luego tome tantas pruebas de práctica como sea posible utilizando materiales de práctica aprobados por el DMV. Dedique tiempo de estudio adicional a las áreas donde comete más errores."
+    ],
+    "technical": {
+      "title": "Formato de la Prueba Escrita y Reglas de Reintento",
+      "body": [
+        "La prueba de 46 preguntas no se divide por tema — las preguntas de todas las áreas del manual se mezclan. Verá preguntas sobre señales de tráfico, leyes de velocidad, derecho de paso, leyes de alcohol y drogas, y prácticas de manejo seguro. La prueba tiene límite de tiempo pero la mayoría de los solicitantes terminan con mucho tiempo de sobra.",
+        "Si falla la prueba, debe esperar hasta el siguiente día hábil para tomarla de nuevo (no puede tomarla el mismo día). Después de tres fracasos, debe pagar nuevamente la tarifa de solicitud de $39 para recibir tres intentos más. No hay límite en los intentos totales, pero cada serie de tres intentos cuesta la tarifa de solicitud."
+      ]
+    },
+    "incident": {
+      "title": "Casi la Mitad de los Californianos Fallan la Prueba Escrita en el Primer Intento",
+      "impact": "Los datos del DMV de California muestran que aproximadamente el 48–50% de los solicitantes por primera vez fallan la prueba de conocimientos escrito — una tasa de fracaso que se ha mantenido obstinadamente alta a pesar de que el manual está disponible de forma gratuita.",
+      "body": [
+        "El DMV no publica oficialmente las tasas de aprobación/fracaso anuales por año, pero los datos obtenidos a través de solicitudes de registros públicos e informados por medios de comunicación de California han mostrado constantemente que aproximadamente la mitad de los que presentan la prueba por primera vez fallan. Las preguntas que se pierden con más frecuencia involucran datos numéricos específicos: límites de velocidad exactos en diferentes zonas, distancias precisas para reglas de señalización y estacionamiento, y los límites de BAC específicos para diferentes grupos de edad.",
+        "Los funcionarios del DMV han atribuido la alta tasa de fracaso a los solicitantes que dependen de la memoria de ver a otras personas conducir en lugar de leer realmente el manual. El consejo es simple y consistente: lea cada página del Manual del Conductor de California al menos una vez antes de presentarse a la prueba. Las respuestas están todas allí."
+      ]
+    },
+    "timeline": [
+      "California comienza a requerir una prueba de conocimientos escrito para nuevos conductores",
+      "Manual del Conductor de California estandarizado como la fuente oficial de la prueba",
+      "Las pruebas basadas en computadora reemplazan las pruebas en papel en la mayoría de las oficinas del DMV",
+      "El DMV lanza pruebas de práctica en línea en dmv.ca.gov",
+      "Los registros públicos muestran que ~50% de los que presentan la prueba por primera vez fallan",
+      "Manual disponible en 8 idiomas; versión de audio disponible bajo solicitud"
+    ],
+    "keyTakeaways": [
+      "La prueba consta de 46 preguntas; necesita 38 correctas (82,6%) para aprobar",
+      "Todas las respuestas están en el Manual del Conductor de California — no hay preguntas trampa",
+      "Si falla, puede tomarla hasta 3 veces por tarifa de solicitud pagada",
+      "Casi el 50% de los solicitantes por primera vez fallan — los que leen el manual completo aprueban a una tasa mucho más alta"
+    ]
+  },
+  "driving-1-05": {
+    "tagline": "El límite de velocidad publicado es el máximo — la Ley de Velocidad Básica significa que puede ser necesario ir más lentamente.",
+    "overview": [
+      "California tiene dos leyes de velocidad complementarias. La Ley de Límite de Velocidad Absoluta dice que no puede exceder el límite de velocidad publicado bajo ninguna circunstancia — este es el número en el letrero blanco. La Ley de Velocidad Básica (Código Vehicular Sección 22350) dice que nunca puede conducir más rápido de lo que es seguro para las condiciones actuales, independientemente del límite publicado. En niebla, lluvia, tráfico pesado, o en una carretera resbaladiza, puede ser necesario conducir significativamente por debajo del límite publicado. Puede ser citado por violar la Ley de Velocidad Básica incluso cuando conduce por debajo del límite publicado si las condiciones hacían que su velocidad fuera insegura.",
+      "Los límites de velocidad prima facie (predeterminados) de California se aplican cuando no se publica ningún otro límite. Valores predeterminados clave: 15 mph cerca de cruces ferroviarios sin puertas o señales, 15 mph en callejones, 25 mph en distritos residenciales, 25 mph en zonas escolares durante horario escolar, 55 mph en carreteras de dos carriles sin dividir, 65 mph en la mayoría de las autopistas, y 70 mph en autopistas donde se publique específicamente.",
+      "Mantener una distancia segura de seguimiento es tan importante como la velocidad. La regla de 3 segundos: elija un objeto fijo adelante; cuando el vehículo en frente lo pasa, cuente 'uno-mil-uno, uno-mil-dos, uno-mil-tres' — si pasa el objeto antes de terminar de contar, está siguiendo demasiado de cerca. Aumente a 4 segundos en lluvia o de noche, y 5 o más segundos en carreteras resbaladizas o cuando sigue a camiones grandes."
+    ],
+    "technical": {
+      "title": "Límites de Velocidad de California y la Regla de Seguimiento de 3 Segundos",
+      "body": [
+        "Los límites de velocidad más comúnmente evaluados en el examen del DMV: 25 mph zona residencial/escolar, 55 mph carretera de dos carriles sin dividir, 65 mph autopista, 70 mph autopista donde se publica, 15 mph cerca de cruces ferroviarios sin puertas o señales (Código Vehicular 22352). Las carreteras con dos o más carriles en una dirección también tienen una ley de velocidad mínima — conducir demasiado lentamente en el carril rápido también es una infracción.",
+        "La regla de 3 segundos se aplica independientemente de la velocidad — a 65 mph necesita aproximadamente 300 pies para detenerse en una emergencia. El acoso en la carretera es una causa principal de colisiones traseras. Los camiones grandes y las motocicletas requieren distancia de seguimiento adicional: los camiones necesitan distancias de frenado mucho más largas; las motocicletas necesitan 3 segundos completos aunque se detienen más rápido, porque son más pequeñas y más fáciles de perder de vista."
+      ]
+    },
+    "incident": {
+      "title": "Cómo el Acoso en la Carretera Se Convirtió en la Causa de Choques Más Común de California",
+      "impact": "La Oficina de Seguridad Vial de California reporta consistentemente colisiones traseras causadas por seguimiento demasiado cercano como uno de los tres tipos de colisión principales en el estado, causando decenas de miles de lesiones anualmente.",
+      "body": [
+        "Los datos de la Oficina de Seguridad Vial de California para 2022 mostraron colisiones traseras entre los tipos de colisión más frecuentes en el estado. El factor común: distancia de seguimiento insuficiente. A 65 mph, el conductor promedio necesita aproximadamente 1.5 segundos solo para percibir y reaccionar a una parada repentina — y luego distancia adicional para realmente frenar el vehículo. Una distancia de seguimiento de 1 largo de coche a velocidades de autopista es peligrosamente inadecuada.",
+        "Los datos de cumplimiento muestran que las citaciones por acoso en la carretera han aumentado a medida que la grabación en cámara de tablero se ha vuelto más común en cumplimiento. Varias ciudades de California han comenzado programas automatizados de análisis de colisiones traseras para identificar corredores de alto acoso en carreteras para cumplimiento e educación dirigidos."
+      ]
+    },
+    "timeline": [
+      "California promulga su primera Ley de Velocidad Básica estatal",
+      "El Código Vehicular de California §22350 codifica la Ley de Velocidad Básica en forma actual",
+      "Se promulga el límite nacional de 55 mph (Crisis Energética) — California cumple",
+      "Se deroga la ley nacional de 55 mph — California establece 65/70 mph en autopistas",
+      "La CHP comienza campaña de cumplimiento estatal 'Siguiendo Demasiado de Cerca'",
+      "Las colisiones traseras permanecen en el top-3 de tipo de colisión en California"
+    ],
+    "keyTakeaways": [
+      "La Ley de Velocidad Básica significa que puede ser citado por conducir por debajo del límite publicado si las condiciones hacen que su velocidad sea insegura",
+      "25 mph en zonas residenciales y escolares, 55 mph en carreteras de dos carriles sin dividir, 65 mph en la mayoría de las autopistas",
+      "Cerca de un cruce ferroviario sin puertas: reduzca a 15 mph",
+      "Use la regla de 3 segundos para distancia de seguimiento; aumente a 4+ segundos en mal tiempo o de noche"
+    ]
+  },
+  "driving-2-05": {
+    "tagline": "Estacionar en paralelo en San Francisco es un rito de iniciación. Domina la técnica y ningún espacio te intimidará.",
+    "overview": [
+      "El estacionamiento en paralelo utiliza puntos de referencia en lugar de estimación. Colócate al lado del auto frente al espacio, alineado y a aproximadamente 2 pies de distancia. Cuando tu parachoques trasero pasa el parachoques trasero del auto frontal, gira el volante bruscamente hacia la acera. Cuando tu auto está en un ángulo aproximado de 45 grados y tu puerta frontal se alinea con el parachoques trasero del auto frontal, gira el volante bruscamente en la otra dirección para enderezar. Ajusta hacia adelante y hacia atrás para centrar en el espacio.",
+      "El estacionamiento perpendicular (la mayoría de los estacionamientos) requiere centrar tu auto entre las líneas. Elige un punto de referencia — la mayoría de los conductores usan la alineación del espejo lateral con la línea. Acércate lentamente, gira suavemente y endereza antes de llegar al límite del espacio. Retrocede cuando sea posible — es mucho más seguro retroceder hacia un espacio que retroceder hacia el tráfico.",
+      "Curvar las ruedas es requerido por ley en colinas en muchos estados y evita que tu auto ruede hacia el tráfico si los frenos fallan. En una bajada con acera: gira las ruedas hacia la acera (derecha). En una subida con acera: gira las ruedas alejadas de la acera (izquierda, para que la acera te detenga). En una colina sin acera: siempre gira las ruedas hacia el borde de la carretera."
+    ],
+    "technical": {
+      "title": "Puntos de Referencia para Estacionamiento en Paralelo",
+      "body": [
+        "El método de puntos de referencia elimina la adivinanza del estacionamiento en paralelo. En lugar de estimar el ángulo, reaccionas a desencadenantes visuales específicos que son iguales cada vez. Una vez que encuentres los puntos de referencia de tu auto mediante la práctica, el estacionamiento en paralelo se convierte en una secuencia mecánica confiable — no una estimación estresante.",
+        "Para estacionamiento en subida/bajada: 'Derecha, derecha, izquierda' es una ayuda de memoria común — bajada con acera: derecha (hacia la acera). Subida con acera: izquierda (alejada de la acera, para que la acera atrape la rueda si rueda). Sin acera en ninguna dirección: derecha (hacia el borde para que el auto ruede fuera de la carretera, no hacia el tráfico). Siempre pon la transmisión en Estacionamiento y aplica el freno de estacionamiento en cualquier inclinación."
+      ]
+    },
+    "incident": {
+      "title": "Auto Descontrolado en San Francisco — Por Qué Importa Curvar las Ruedas",
+      "impact": "Múltiples incidentes de autos estacionados rodando hacia el tráfico o peatones en colinas empinadas",
+      "body": [
+        "Las colinas empinadas de San Francisco (algunas superiores a 30 grados) hacen que curvar las ruedas sea un requisito legal, no solo una sugerencia. Cada año, ocurren múltiples incidentes donde autos dejados en marcha pero sin ruedas curvadas o frenos de estacionamiento enganchados comienzan a rodar. Un auto sedán pequeño rodando down una colina empinada de San Francisco puede alcanzar más de 30 mph antes de llegar a una intersección.",
+        "El Código Vehicular de California Sección 22526(b) requiere que los conductores establezcan el freno de estacionamiento y curbeen las ruedas en cualquier colina superior a 3 por ciento de pendiente. La mayoría de los conductores no conocen la ley — y muchos no entienden que un cable del freno de estacionamiento puede estirarse con el tiempo, haciendo que curbar las ruedas sea la última línea de defensa. Se necesitan 2 segundos para girar la rueda — puede prevenir una catástrofe."
+      ]
+    },
+    "timeline": [
+      "Primeras regulaciones de estacionamiento promulgadas en la ciudad de Nueva York",
+      "Parquímetros generalizados en ciudades estadounidenses — el estacionamiento en paralelo se convierte en una habilidad requerida",
+      "California obliga a curbar las ruedas en colinas — primer estado estadounidense en hacerlo",
+      "El estacionamiento en paralelo sigue siendo en la mayoría de las pruebas de conducción estadounidenses como una habilidad fundamental"
+    ],
+    "keyTakeaways": [
+      "Utiliza puntos de referencia para el estacionamiento en paralelo — no adivinanzas — para resultados consistentes",
+      "Retrocede hacia espacios perpendiculares cuando sea posible — mucho más seguro que retroceder hacia el tráfico",
+      "Bajada con acera: gira las ruedas hacia la acera (derecha). Subida con acera: gira hacia afuera (izquierda)",
+      "Siempre aplica el freno de estacionamiento en colinas — no confíes únicamente en 'Estacionamiento'"
+    ]
+  }
+}

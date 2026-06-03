@@ -1,0 +1,732 @@
+{
+  "driving-1-06": {
+    "tagline": "El derecho de paso nunca se 'toma' — siempre se 'cede'. Lo cedes; no lo reclamas.",
+    "overview": [
+      "Las reglas de derecho de paso determinan quién procede y quién espera en intersecciones, pasos de peatones y otros puntos de conflicto. El principio crítico en California: el derecho de paso es algo que cedes, no algo que reclamas. Incluso si técnicamente tienes derecho de paso, por ley estás obligado a ceder cuando sea necesario para evitar una colisión. Reclamar tu derecho de paso y causar un accidente es una violación.",
+      "En un cruce de 4 vías, los vehículos proceden en el orden en que llegaron. Si dos vehículos llegan al mismo tiempo, el vehículo a la izquierda cede al vehículo a la derecha. Si tres o cuatro vehículos llegan simultáneamente, aplica la misma regla — mira hacia tu derecha, y si hay un coche allí, cede. En intersecciones no controladas (sin señales o semáforos), cede al tráfico ya en la intersección y a los vehículos que se aproximan desde la derecha.",
+      "Los peatones siempre tienen derecho de paso en pasos de peatones marcados — debes ceder cuando un peatón está en o entrando al paso de peatones. Los peatones también tienen derecho de paso en pasos de peatones sin marcar en intersecciones. Cuando veas o escuches un vehículo de emergencia con luces y sirena, debes inmediatamente dirigirte al borde derecho de la carretera y detenerte hasta que pase el vehículo de emergencia. En una calle de un solo sentido, dirígete al borde más cercano — derecho o izquierdo."
+    ],
+    "technical": {
+      "title": "Reglas de Derecho de Paso de un Vistazo",
+      "body": [
+        "Orden de prioridad en cruce de 4 vías: (1) Primero en llegar va primero. (2) Llegada simultánea: el vehículo a la derecha va primero. (3) Cuando se enfrentan yendo recto: ambos van. (4) Cuando se enfrentan y uno está girando a la izquierda: el que gira a la izquierda cede al conductor que va recto. Esta última regla causa muchos accidentes — un giro a la izquierda en una intersección siempre cede al tráfico que viene de frente yendo recto.",
+        "Autobuses escolares: cuando un autobús escolar se detiene y activa sus luces rojas parpadeantes (no amarillas), todo el tráfico en una carretera no dividida debe detenerse en ambas direcciones al menos 25 pies de distancia. En una autopista dividida (barrera física entre carriles opuestos), solo el tráfico viajando en la misma dirección que el autobús debe detenerse. Las luces amarillas parpadeantes significan que el autobús se está preparando para detenerse — reduce la velocidad y prepárate para detenerte. Luces rojas = parada completa requerida."
+      ]
+    },
+    "incident": {
+      "title": "El Giro a la Izquierda Que No Cedió — El Accidente de Intersección Más Común de California",
+      "impact": "Las violaciones de giro a la izquierda — no ceder al tráfico recto que viene de frente — están consistentemente entre las principales causas de accidentes de intersección con lesiones graves en California, representando miles de lesiones y cientos de muertes por año.",
+      "body": [
+        "Los datos de la Oficina de Seguridad del Tráfico de California muestran consistentemente que los accidentes por giro a la izquierda están entre los tipos de accidentes de intersección más graves — cuando un vehículo que gira es golpeado por el tráfico que viene de frente, el impacto es a menudo un T-bone a alta velocidad en la puerta del conductor. El escenario más común: un conductor juzga mal la velocidad de un vehículo que se aproxima y comienza un giro a la izquierda, pensando que tiene tiempo.",
+        "La regla legal es inequívoca: un vehículo que hace un giro a la izquierda debe ceder a todo el tráfico que viene de frente. No hay defensa de 'pensé que tenía tiempo suficiente'. El conductor que gira es responsable. Esta regla es una de las más frecuentemente evaluadas en el examen de conocimientos del DMV porque es frecuentemente malinterpretada en la conducción real."
+      ]
+    },
+    "timeline": [
+      "California establece el primer estatuto de derecho de paso para vehículos motorizados",
+      "El Código de Vehículos de California codifica las reglas modernas de derecho de paso",
+      "El derecho de paso del peatón en pasos de peatones se fortalece en la ley de CA",
+      "Los requisitos de ceder a vehículos de emergencia se aclaran en el Código de Vehículos de CA",
+      "La aplicación de la ley de luz roja de autobús escolar se incrementa en todo el estado",
+      "Los accidentes por giro a la izquierda se mantienen en el top-3 de tipos graves de accidentes de intersección en CA"
+    ],
+    "keyTakeaways": [
+      "El derecho de paso se cede, no se toma — debes ceder incluso cuando técnicamente tienes derecho de paso para evitar un accidente",
+      "En un empate de cruce de 4 vías, cede al vehículo a tu derecha",
+      "Un giro a la izquierda siempre cede al tráfico recto que viene de frente",
+      "Dirígete a la derecha y detente cuando un vehículo de emergencia se acerca con luces y sirena"
+    ]
+  },
+  "driving-1-07": {
+    "tagline": "Para conductores menores de 21 años, incluso una bebida puede costarle su licencia. La ley de tolerancia cero de California es exactamente eso — cero.",
+    "overview": [
+      "Las leyes de DUI de California tienen dos umbrales clave de BAC. Para conductores de 21 años o más, es ilegal conducir con un contenido de alcohol en sangre del 0.08% o superior — esto es un DUI (Conducción Bajo la Influencia). Para conductores menores de 21 años, California tiene una ley de tolerancia cero: es ilegal conducir con cualquier cantidad medible de alcohol en su sistema — un BAC del 0.01% o superior resulta en una suspensión automática de licencia. Puede obtener una violación de tolerancia cero por una sola bebida. Para conductores comerciales, el límite es BAC del 0.04%.",
+      "Los conductores adolescentes que reciben una licencia provisional (a los 16 años después de 6 meses de posesión del permiso y 50 horas de práctica) enfrentan restricciones adicionales durante los primeros 12 meses o hasta que cumplan 18 años, lo que sea posterior. Estas restricciones prohíben: conducir entre las 11 PM y las 5 AM, y transportar pasajeros menores de 20 años a menos que un conductor con licencia de 25 años o más esté en el vehículo, o que un padre, tutor, o un pariente adulto con licencia esté presente.",
+      "La ley de teléfono celular de California es estricta. Ningún conductor — independientemente de la edad — puede usar un teléfono de mano mientras conduce. El uso manos libres (Bluetooth, altavoz en el panel) está permitido para conductores de 18 años o más. Los conductores menores de 18 años no pueden usar un teléfono móvil de ninguna manera mientras conducen — sin llamadas, sin textos, sin manos libres. Enviar o leer un texto mientras se conduce es explícitamente ilegal para todos los conductores."
+    ],
+    "technical": {
+      "title": "Límites de BAC, Restricciones para Adolescentes, y Reglas de Teléfono",
+      "body": [
+        "Una primera condena por DUI en California conlleva una pena mínima de 48 horas de cárcel (o 3-5 días de servicio comunitario en algunos casos), una multa de aproximadamente $390 base (con evaluaciones de penalización que a menudo hacen que el total sea $1,500–$2,000 o más), suspensión de licencia, escuela de DUI requerida, e instalación de un dispositivo de bloqueo del encendido en muchos casos. Un DUI permanece en su registro de conducción durante 10 años.",
+        "La restricción de pasajeros de licencia provisional tiene una excepción para parientes adultos con licencia. Si un hermano u otro pariente con licencia completa está en el auto, es legal. Pero un amigo que tiene un permiso o un amigo que es menor de 20 con licencia completa no califica — el pasajero debe ser un adulto con licencia mayor de 25 años o un padre, tutor, o pariente con licencia."
+      ]
+    },
+    "incident": {
+      "title": "Cómo la Ley de Tolerancia Cero de California Cambió las Estadísticas de DUI en Adolescentes",
+      "impact": "Después de que California promulgara la tolerancia cero (BAC del 0.01% para conductores menores de 21) en 1994, las muertes de conductores adolescentes relacionadas con alcohol disminuyeron más del 40% dentro de 5 años — una de las reducciones más dramáticas en la historia de la seguridad vial de adolescentes.",
+      "body": [
+        "Antes de la tolerancia cero, el umbral de DUI era el mismo para todos los conductores: BAC del 0.08%. Los adolescentes que bebían 'un poco' antes de conducir podían evitar una acusación de DUI siempre que se mantuvieran por debajo del 0.08%. Los estudios mostraron que esto llevó a una aceptación generalizada de 'una cerveza o dos antes de conducir' entre adolescentes que sabían que podían pasar una prueba de sobriedad.",
+        "La ley de tolerancia cero de California de 1994 eliminó esta laguna para conductores menores de 21. Cualquier cantidad medible de alcohol — incluso BAC del 0.01% — desencadenó suspensión automática de licencia y otras sanciones. Los datos de NHTSA mostraron una caída dramática en accidentes relacionados con alcohol entre conductores adolescentes de California en los años posteriores a la promulgación, inspirando leyes similares en todos los otros estados."
+      ]
+    },
+    "timeline": [
+      "California aumenta la edad mínima para beber de 18 a 19; luego a 21 en 1986",
+      "California promulga marco de licencia graduada para conductores adolescentes",
+      "Ley de tolerancia cero de California (BAC del 0.01% menor de 21) promulgada — muertes disminuyen 40%",
+      "Ley de teléfono celular de California prohíbe el uso de mano para todos los conductores",
+      "California expande la prohibición de mensajes de texto — uso de cualquier dispositivo de mano es ilegal",
+      "California aumenta requisitos de bloqueo de encendido para DUI de primer delito"
+    ],
+    "keyTakeaways": [
+      "Conductores menores de 21 enfrentan tolerancia cero — un BAC del 0.01% o más es una violación",
+      "Conductores de 21+ enfrentan DUI a BAC del 0.08% o superior",
+      "Los titulares de licencia provisional no pueden conducir de 11 PM a 5 AM ni transportar pasajeros menores de 20 (primeros 12 meses)",
+      "Conductores menores de 18 no pueden usar un teléfono celular de ninguna manera mientras conducen — ni siquiera manos libres"
+    ]
+  },
+  "driving-1-08": {
+    "tagline": "El examinador no intenta reprobarte — intenta verificar que puedas conducir de manera segura. Demuéstralo.",
+    "overview": [
+      "La prueba de manejo detrás del volante del DMV de California generalmente dura 20 minutos y se realiza en carreteras públicas cerca de la oficina del DMV. Un examinador se sienta en el asiento del pasajero delantero y califica tu conducción usando un formulario estandarizado. Se te pedirá que realices giros, cambios de carril, detenciones en intersecciones y típicamente un estacionamiento en paralelo o un cambio de dirección (giro de tres puntos). El examinador no te dice dónde ir — da instrucciones una a la vez.",
+      "El sistema de puntuación distingue entre errores críticos y errores menores. Un error crítico (también llamado fallo inmediato) causa un fallo automático independientemente de qué tan bien hiciste el resto de la prueba. Los errores críticos incluyen: pasar un semáforo en rojo, no ceder el paso a un peatón, requerir que el examinador tome el control físico del vehículo, ir en la dirección equivocada en una calle de un solo sentido, o exceder significativamente el límite de velocidad. Los errores menores (deducciones de puntos) pueden acumularse — más de 15 errores menores también es una puntuación de fallo.",
+      "Lo que los examinadores buscan en cada maniobra: verificar los espejos antes y después de las acciones, señalar al menos 100 pies antes de girar, frenado suave y gradual (no detenciones abruptas), mantener la posición correcta del carril, identificar correctamente y ceder en señales de alto y semáforos, y velocidad apropiada para las condiciones. Las razones más comunes para el fallo son no verificar los espejos, detenciones incompletas y no mirar antes de cambiar de carril."
+    ],
+    "technical": {
+      "title": "Calificación de Prueba de Manejo: Errores Críticos vs. Menores",
+      "body": [
+        "Errores críticos que causan fallo inmediato: (1) Pasar un semáforo en rojo o una señal de alto. (2) No ceder el paso a un peatón en un paso peatonal. (3) Velocidad insegura (exceder significativamente el límite o velocidad insegura para las condiciones). (4) El examinador debe intervenir físicamente. (5) Ir en la dirección equivocada en una calle de un solo sentido. (6) Colisión o casi-colisión que requiera acción de emergencia. Cualquiera de estos termina la prueba inmediatamente.",
+        "La maniobra más comúnmente fallida en la prueba de manejo de California es la verificación de observación — específicamente, no mirar sobre el hombro (verificación de punto ciego) antes de cambiar de carril o alejarse de una acera. El examinador estará observando tu cabeza — gírala visible y deliberadamente para verificar el punto ciego."
+      ]
+    },
+    "incident": {
+      "title": "Por Qué 'No Mirar' Causa Más Fallos en Pruebas de California Que Cualquier Otra Cosa",
+      "impact": "Los materiales de entrenamiento interno de examinadores del DMV citan fallos de observación — no verificar espejos, no hacer verificaciones de hombro — como la razón única más común para fallos en pruebas de manejo en California, representando casi el 30% de todos los fallos de prueba.",
+      "body": [
+        "Muchos candidatos se enfocaban intensamente en habilidades mecánicas — frenado suave, dirección precisa — mientras olvidan que el examinador califica los hábitos de observación tan pesadamente como el control del vehículo. Un solicitante puede realizar un cambio de carril textualmente perfecto físicamente pero fallar si no giró la cabeza para verificar el punto ciego.",
+        "Los instructores de manejo constantemente aconsejan hacer verificaciones de observación obvias y deliberadas para la prueba — gira tu cabeza visiblemente cuando verificas los puntos ciegos para que el examinador pueda verte haciéndolo. Las verificaciones de espejo deben incluir mover realmente tus ojos al espejo — los examinadores experimentados pueden distinguir la diferencia entre una verificación de espejo real y una falsa."
+      ]
+    },
+    "timeline": [
+      "California comienza a requerir pruebas de manejo detrás del volante para nuevas licencias",
+      "Formulario de puntuación estandarizado introducido en todas las oficinas del DMV de CA",
+      "La ley GDL requiere prueba de manejo detrás del volante para todos los solicitantes de licencia provisional",
+      "El DMV revisa categorías de errores críticos siguiendo investigación de seguridad",
+      "Las verificaciones de observación identificadas como causa principal de fallo en prueba de manejo",
+      "California procesa aproximadamente 1.4 millones de pruebas de manejo detrás del volante anualmente"
+    ],
+    "keyTakeaways": [
+      "Cualquier error crítico único (pasar un semáforo en rojo, no ceder a un peatón) es un fallo automático",
+      "Más de 15 errores menores también resultan en una puntuación de fallo",
+      "Fallos de observación — no verificar espejos y puntos ciegos — son la razón más común para fallar",
+      "Señala al menos 100 pies antes de girar; haz que las verificaciones de punto ciego de hombro sean visibles y deliberadas"
+    ]
+  },
+  "driving-2-01": {
+    "tagline": "Un piloto revisa la cabina antes de cada vuelo. Un excelente conductor hace lo mismo antes de cada viaje.",
+    "overview": [
+      "Antes de girar la llave, dedica 60 segundos a tu ejercicio de cabina. Ajusta tu asiento para que tus pies alcancen los pedales con una ligera flexión de rodillas y tus manos descansen cómodamente en el volante. Ajusta el espejo retrovisor para enmarcar toda la ventana trasera. Configura ambos espejos laterales para que solo se vea una pequeña franja de tu propio auto en el borde interior — la mayoría de conductores novatos los orientan demasiado hacia adentro.",
+      "Abrocha tu cinturón de seguridad antes de hacer cualquier otra cosa. La correa del hombro debe pasar por tu pecho y hombro, nunca detrás de tu espalda o bajo tu brazo. Un cinturón mal colocado es casi tan peligroso como no llevar cinturón — puede causar lesiones internas graves en un choque.",
+      "Escanea las luces de advertencia de tu tablero. Todas las luces se iluminarán brevemente cuando enciendas el auto — eso es normal. Si alguna permanece encendida después del inicio, consulta tu manual del propietario. Las más importantes de reconocer: la luz de batería (problema eléctrico), la luz de presión de aceite (detén el auto), el indicador de temperatura (sobrecalentamiento) y la luz de revisión del motor (servicio pronto)."
+    ],
+    "technical": {
+      "title": "El Ejercicio de Cabina — En Orden",
+      "body": [
+        "El ejercicio de cabina es la secuencia profesional utilizada en programas de capacitación de conductores en todo el mundo. Hacerlo de la misma manera cada vez construye un hábito confiable que previene accidentes antes de que comiencen.",
+        "Las luces de advertencia comunican la salud de tu auto. La luz de presión de aceite es la más crítica — conducir con baja presión de aceite incluso por unos pocos minutos puede destruir un motor. Si se enciende mientras conduces, estaciona de manera segura e inmediatamente. Nunca ignores una advertencia del tablero solo porque el auto todavía parece conducirse normalmente."
+      ]
+    },
+    "incident": {
+      "title": "El Problema de Ajuste de Espejos — Estadísticas de Choques en Adolescentes",
+      "impact": "Los espejos configurados para pasajeros adultos — no ajustados para conductores adolescentes — contribuyen a choques por puntos ciegos",
+      "body": [
+        "Los estudios muestran que un gran porcentaje de conductores principiantes piden prestado un auto familiar sin reajustar los espejos y el asiento configurados para otro conductor. Un espejo orientado para alguien 5 pulgadas más alto muestra principalmente cielo en lugar del carril detrás de ti. El auto se siente bien para conducir — no te das cuenta de que tu cobertura trasera es casi cero.",
+        "Según datos de NHTSA, los conductores adolescentes (16–19) tienen casi 3 veces más probabilidad de estar en un choque fatal por milla conducida que los conductores de 20 años o más. La falta de configuración adecuada del vehículo antes de conducir es un hábito entrenable que reduce directamente este riesgo. El ejercicio de cabina de 60 segundos es uno de los hábitos de mayor valor que un conductor nuevo puede desarrollar."
+      ]
+    },
+    "timeline": [
+      "Volvo introduce el cinturón de seguridad de tres puntos — primer dispositivo de seguridad estándar",
+      "La ley estadounidense requiere cinturones de seguridad en todos los autos nuevos",
+      "Nueva York se convierte en el primer estado estadounidense en exigir el uso de cinturón de seguridad — otros le siguen",
+      "Los cinturones de seguridad aún salvan aproximadamente 15,000 vidas estadounidenses por año"
+    ],
+    "keyTakeaways": [
+      "Ajusta el asiento para que tus pies alcancen los pedales con una ligera flexión de rodilla",
+      "Los espejos laterales deben mostrar solo una pequeña franja de tu auto — no el interior de la puerta",
+      "La correa del hombro del cinturón de seguridad debe pasar por el pecho y el hombro — nunca detrás de tu espalda",
+      "Luz de presión de aceite mientras conduces = estaciona inmediatamente y apaga el motor"
+    ]
+  },
+  "driving-2-02": {
+    "tagline": "Los pasajeros de un buen conductor apenas notan cuando el auto comienza o se detiene. Ese es el objetivo.",
+    "overview": [
+      "El frenado suave significa aplicar presión progresivamente mayor a medida que desaceleradas, luego aflojar justo antes de detenerte completamente. La mayoría de los conductores nuevos cometen dos errores: frenar demasiado tarde (necesitando presionar fuerte de repente) o soltar el freno abruptamente en la parada (causando un tirón hacia adelante). Comienza a frenar más temprano de lo que parece necesario y afloja suavemente el pedal mientras te acercas a cero.",
+      "La aceleración suave significa presionar el pedal de gas gradualmente desde una parada, no pegar tu pie hacia abajo. En una calle residencial, apunta a alcanzar tu velocidad objetivo dentro de 2–3 segundos. Los arranques bruscos desperdician combustible, desgastan las llantas y asustan a otros usuarios de la vía. En superficies resbaladizas, la aceleración agresiva causa patinaje de ruedas.",
+      "Cubrir el freno significa mover tu pie derecho del acelerador al pedal de freno (sosteniéndolo sin presionar) cuando anticipas que necesitarás frenar — cerca de intersecciones, detrás de autos lentos, en estacionamientos. Esto reduce el tiempo de reacción de aproximadamente 0.5 segundos a casi cero. Es uno de los hábitos más importantes que los conductores nuevos deben desarrollar."
+    ],
+    "technical": {
+      "title": "Frenado Progresivo y el Umbral",
+      "body": [
+        "Frenado progresivo: presiona suavemente primero para desplazar el peso hacia adelante, luego aumenta la presión para desacelerar, luego afloja cerca de la parada. Esto mantiene a los pasajeros cómodos y previene la activación del ABS durante paradas normales. ABS (Sistema Antibloqueo de Frenos) es para paradas de emergencia — previene el bloqueo de ruedas, pero no debe activarse en conducción de rutina.",
+        "La regla de 3 segundos para frenar: elige un punto fijo cuando el auto adelante pase, y cuenta 3 segundos antes de alcanzar el mismo punto. Si llegas en menos de 3 segundos, estás siguiendo demasiado de cerca y tus distancias de frenado son demasiado cortas. Reduce la velocidad y aumenta la brecha."
+      ]
+    },
+    "incident": {
+      "title": "Choques por Alcance — El Tipo de Choque Más Común para Conductores Nuevos",
+      "impact": "Las colisiones por alcance representan aproximadamente el 29% de todos los choques graves — la mayoría causados por seguir demasiado de cerca o frenado tardío",
+      "body": [
+        "Los datos de NHTSA muestran que las colisiones por alcance son el tipo de choque más común en EE.UU. Para conductores adolescentes y nuevos específicamente, la distancia de seguimiento es el factor contribuyente principal. A 30 mph, se necesitan aproximadamente 75 pies para detenerse — y un conductor nuevo puede necesitar 0.5–1.0 segundo adicional de tiempo de reacción en comparación con un conductor experimentado, agregando 22–44 pies antes de que el frenado comience.",
+        "La solución no es reflejo más rápido — es más distancia de seguimiento y cubrimiento de freno más temprano. Si ya estás sosteniendo el freno y tienes una distancia de seguimiento de 4+ segundos, has eliminado la mayoría del riesgo de alcanzar el auto adelante. Los conductores experimentados no son más rápidos; están mejor posicionados para que la velocidad nunca sea un problema."
+      ]
+    },
+    "timeline": [
+      "Frenos de cuatro ruedas introducidos — anteriormente solo las ruedas traseras tenían frenos",
+      "NHTSA fundada — comienza a recopilar datos de choques y establecer estándares de seguridad",
+      "ABS introducido en autos de producción — previene bloqueo durante paradas de pánico",
+      "Las colisiones por alcance siguen siendo el tipo de choque grave más común a pesar del ABS y ESC"
+    ],
+    "keyTakeaways": [
+      "Comienza a frenar más temprano de lo que parece necesario — presión suave y progresiva desde el inicio",
+      "Llega a una parada completa en cada señal de alto — los arranques rodantes son ilegales y peligrosos",
+      "Cubre el freno cerca de cualquier intersección, vehículo lento o estacionamiento",
+      "Una brecha de seguimiento de 3 segundos a 25 mph te da tiempo para reaccionar y detenerte seguramente"
+    ]
+  },
+  "driving-2-03": {
+    "tagline": "Cada giro tiene una preparación, una ejecución y un aterrizaje. Domina los tres y se sentirá sin esfuerzo.",
+    "overview": [
+      "El entrenamiento moderno de conducción recomienda la técnica de dirección push-pull (shuffle) para la mayoría de las situaciones: una mano empuja hacia arriba mientras la otra tira hacia abajo, manteniendo ambas manos en el volante en todo momento. El hand-over-hand aún se usa para giros más cerrados y lentos (estacionamientos, giros en U). Nunca dejes que el volante gire libremente a través de tus manos después de un giro — pierdes el control de la recuperación.",
+      "Señaliza al menos 100 pies antes de cualquier giro en un entorno residencial o urbano — en autopistas, señaliza más temprano (200–300 pies). La señal comunica tu intención a otros conductores, ciclistas y peatones antes de que comiences a frenar. Activar la señal a mitad del giro o después de que ya hayas comenzado a frenar no advierte nada.",
+      "Después de un giro, deberías terminar en el carril más cercano a ti en la carretera en la que giraste. Giros a la izquierda desde una calle de dos sentidos: giras hacia el carril disponible más a la izquierda. Giros a la derecha desde una calle de un sentido o dos sentidos: giras hacia el carril más a la derecha. Esta regla previene colisiones cuando dos autos giran simultáneamente desde direcciones opuestas."
+    ],
+    "technical": {
+      "title": "Dirección Push-Pull y Selección de Carril de Giro",
+      "body": [
+        "Técnica push-pull (shuffle): comienza con las manos en las 9 y las 3 (o las 8 y las 4). Para girar a la derecha, empuja hacia arriba con tu mano derecha mientras tu mano izquierda tira hacia abajo, luego desliza tu mano derecha hacia abajo y repite. Ambas manos mantienen contacto. Esta técnica previene que el airbag rompa tus brazos si se despliega (las manos cruzadas sobre el volante es peligroso en un despliegue de airbag).",
+        "Giros amplios vs estrechos: un giro a la derecha se abre si no comienzas a girar lo suficientemente temprano — los principiantes a menudo se deslizan hacia el carril contrario. Un giro a la izquierda puede ser demasiado cerrado si cortas la esquina — terminas en el carril incorrecto. El punto de referencia para giros a la derecha: cuando el frente del auto llega a la esquina de la intersección, comienza a girar. Practica lentamente en un estacionamiento hasta que se vuelva instinto."
+      ]
+    },
+    "incident": {
+      "title": "El Giro a la Izquierda en el Carril Incorrecto — Un Error Clásico del Conductor Nuevo",
+      "impact": "Las colisiones de giro a la izquierda son responsables de ~61% de todos los accidentes en intersecciones",
+      "body": [
+        "La FHWA reporta que los giros a la izquierda están involucrados en la mayoría de los accidentes en intersecciones — mucho más que los giros a la derecha. Para conductores nuevos, el error más común es girar demasiado amplio o demasiado cerrado y terminar en el carril incorrecto. Un giro a la izquierda que se abre hacia el carril derecho te pone frente a frente con el tráfico contrario. Un giro a la izquierda que corta esquinas te pone en el medio de la intersección.",
+        "La solución es una regla simple: después de cualquier giro, termina en el carril equivalente al que comenzaste. Practica en estacionamientos vacíos, pintando líneas de carril imaginarias en tu mente. Una vez que la posición de aterrizaje se vuelva automática, la carga cognitiva del giro real disminuye drásticamente y puedes enfocarte en los peligros."
+      ]
+    },
+    "timeline": [
+      "Señales de giro introducidas por primera vez como característica estándar en autos",
+      "Dirección hand-over-hand enseñada como estándar — más tarde actualizada a push-pull",
+      "Dirección push-pull (shuffle) adoptada como técnica preferida en la mayoría de los programas de entrenamiento",
+      "Los giros a la izquierda siguen siendo la maniobra de intersección más peligrosa para conductores nuevos"
+    ],
+    "keyTakeaways": [
+      "Señaliza al menos 100 pies antes de girar — antes de que comiences a frenar",
+      "La técnica push-pull mantiene ambas manos en el volante y es más segura durante el despliegue del airbag",
+      "Después de un giro a la derecha, aterriza en el carril más a la derecha; después de un giro a la izquierda, aterriza en el carril más a la izquierda",
+      "Frena antes del giro, no durante — frenar a mitad del giro reduce la tracción y el control"
+    ]
+  },
+  "driving-2-04": {
+    "tagline": "Todo cambio de carril seguro requiere una verificación de tres pasos: espejos, señal, hombro. En ese orden, siempre.",
+    "overview": [
+      "La verificación de espejo-señal-hombro es la secuencia profesional para cada cambio de carril y fusión. Paso 1: verifica tu espejo retrovisor y espejos laterales para evaluar el tráfico detrás y a tu lado. Paso 2: señala tu intención. Paso 3: realiza una verificación de hombro — una breve mirada sobre tu hombro hacia el punto ciego (el área que tus espejos no pueden ver). Solo después de completar los tres pasos puedes moverte al carril nuevo suavemente.",
+      "Los puntos ciegos son las áreas junto a tus paneles traseros que los espejos no cubren. En un sedán estándar, los puntos ciegos están aproximadamente junto a tus puertas traseras en cada lado. Un coche puede estar completamente escondido ahí. Algunos vehículos nuevos tienen sistemas de monitoreo de punto ciego, pero siempre debes hacer una verificación de hombro de todas formas — la tecnología asiste pero no reemplaza el hábito.",
+      "Fusionarse en una autopista requiere igualar la velocidad del tráfico de la autopista antes de llegar al final de la rampa de entrada. No te fusiones a 35 mph cuando el tráfico de la autopista se mueve a 65 mph — la diferencia de velocidad crea una situación peligrosa para ti y los coches detrás de ti. Usa toda la longitud de la rampa para acelerar, señala temprano, y fusionate suavemente en un espacio."
+    ],
+    "technical": {
+      "title": "Geometría del Punto Ciego y la Verificación de Hombro",
+      "body": [
+        "Incluso los espejos perfectamente ajustados dejan un punto ciego de aproximadamente 10–20 pies de largo junto a cada puerta trasera. Una motocicleta, bicicleta o coche estrecho puede estar completamente en ese punto ciego. La verificación de hombro toma menos de un segundo: brevemente gira tu cabeza 45 grados para mirar sobre tu hombro hacia la carretera en esa zona. Nunca gires tu cabeza más de lo necesario — tus manos naturalmente siguen tu cabeza y te harán conducir en esa dirección.",
+        "Para una fusión en autopista, la técnica es: acelera en la rampa para igualar la velocidad del tráfico, verifica espejos y señala temprano (en el primer tercio de la rampa), realiza una verificación de hombro, encuentra un espacio, y gira suavemente hacia el espacio. Si llegas al final de la rampa sin un espacio, el carril de fusión es obligatorio — nunca te detengas en una rampa de autopista a menos que no tengas otra opción."
+      ]
+    },
+    "incident": {
+      "title": "Accidentes por Punto Ciego — Por Qué la Verificación de Hombro Salva Vidas",
+      "impact": "Más de 840,000 accidentes por punto ciego ocurren anualmente en EE.UU. — la mayoría durante cambios de carril",
+      "body": [
+        "La NHTSA estima que más de 840,000 accidentes por año en Estados Unidos implican puntos ciegos — y la mayoría de estos ocurren durante cambios de carril. La mayoría de conductores verifican sus espejos, pero omiten la verificación de hombro, asumiendo que los espejos lo vieron todo. Una motocicleta moviéndose a 70 mph puede viajar desde detrás de tu parachoques trasero hacia tu punto ciego en menos de 2 segundos.",
+        "Los conductores nuevos están desproporcionadamente involucrados en estos accidentes porque la verificación de espejos y la verificación de hombro aún no son hábitos automáticos. La memoria muscular para la secuencia de tres pasos toma cientos de repeticiones para volverse verdaderamente automática. Los instructores de conducción recomiendan narrar los pasos en voz alta durante la práctica ('espejos, señal, hombro') hasta que la secuencia se internalice."
+      ]
+    },
+    "timeline": [
+      "Ford Model T — los coches antiguos no tienen espejos en absoluto",
+      "NHTSA requiere espejos retrovisores en todos los vehículos nuevos de EE.UU.",
+      "Primeros coches de producción con sistemas de radar de monitoreo de punto ciego",
+      "A pesar de la tecnología BSM, las verificaciones de hombro siguen siendo esenciales — los puntos ciegos no se eliminan completamente"
+    ],
+    "keyTakeaways": [
+      "Espejo-Señal-Hombro: siempre en este orden, en cada cambio de carril",
+      "Los puntos ciegos están junto a tus paneles traseros — los espejos no pueden cubrirlos",
+      "Iguala la velocidad del tráfico de autopista antes de fusionarte — nunca te fusiones a la mitad de la velocidad del tráfico",
+      "Encuentra un espacio de 4 segundos antes de cambiar de carril — luego muévete suavemente, no abruptamente"
+    ]
+  },
+  "driving-2-06": {
+    "tagline": "La autopista es en realidad uno de los lugares más seguros para conducir — si comprendes las reglas que la mantienen así.",
+    "overview": [
+      "Conducir en autopista parece intimidante al principio por la velocidad, pero velocidades más altas significan flujo de tráfico más predecible y menos intersecciones. Las reglas clave: entrar a velocidad de autopista (usa el carril de entrada completo), mantente a la derecha excepto para adelantar (los carriles izquierdos son para adelantar, no para circular), mantén una distancia mínima de 4 segundos a 65 mph (más en condiciones adversas), y señaliza y muévete a la derecha temprano antes de tu salida.",
+      "La distancia de seguimiento en una autopista es crítica porque a 65 mph, tu auto viaja aproximadamente 95 pies por segundo. Un espacio de 4 segundos significa aproximadamente 380 pies — aproximadamente la longitud de un campo de fútbol americano. La mayoría de conductores novatos subestiman drásticamente esto. Una técnica simple: elige un punto fijo cuando el auto que va adelante lo pasa y cuenta '1-1000, 2-1000, 3-1000, 4-1000' antes de que llegues al mismo punto.",
+      "Para salir, comienza a moverte al carril derecho al menos media milla antes de tu salida. Señaliza temprano (300 pies), toma la rampa de salida a una velocidad controlada — la mayoría de las rampas están diseñadas para 35–45 mph, no para velocidad de autopista. Desacelera en la rampa, no antes de entrar en ella."
+    ],
+    "technical": {
+      "title": "Distancia de Seguimiento en Autopista y la Regla de 4 Segundos",
+      "body": [
+        "A 65 mph, la regla estándar de 2 segundos de seguimiento no es suficiente. Los vehículos en autopista se mueven a alta velocidad y los peligros pueden ser mucho más grandes (escombros, amontonamientos de múltiples autos). NHTSA recomienda una distancia de seguimiento mínima de 4 segundos a velocidades de autopista, aumentando a 6–8 segundos en lluvia y 10+ segundos en nieve o hielo.",
+        "Disciplina de carril en autopistas de múltiples carriles: viaja en el carril derecho a menos que estés adelantando. Después de pasar, regresa al carril derecho prontamente. Estacionarse en el carril izquierdo obliga a conductores más rápidos a pasar por la derecha — una maniobra más peligrosa. En California, circular en el carril izquierdo cuando no estás adelantando es ilegal (Código de Vehículos Sección 21654)."
+      ]
+    },
+    "incident": {
+      "title": "Amontonamiento de Múltiples Autos en Autopista — El Costo de Ir Muy Cerca a Velocidad",
+      "impact": "Amontonamiento de 48 autos en niebla — distancia de seguimiento inadecuada a velocidad, cero tiempo de reacción",
+      "body": [
+        "Uno de los aspectos más mortales de conducir en autopista es el amontonamiento de reacción en cadena. Un vehículo se detiene o ralentiza de repente, el auto inmediatamente detrás tiene distancia de seguimiento insuficiente, frena pero no puede detenerse, el impacto empuja ese auto hacia el que va adelante, y en segundos una reacción en cadena que involucra docenas de autos se despliega. En niebla o lluvia, donde la visibilidad se reduce, el efecto se amplifica.",
+        "En EE.UU., NHTSA estima que las violaciones de distancia de seguimiento (ir muy cerca) contribuyen a más de 1.7 millones de choques traseros por año. A 65 mph con un espacio de seguimiento de 1 segundo (lo que la mayoría de conductores que van muy cerca mantienen), tienes aproximadamente 60 pies de advertencia — aproximadamente la mitad de la distancia necesaria para detenerse, incluso con tiempo de reacción perfecto y frenado máximo."
+      ]
+    },
+    "timeline": [
+      "Pennsylvania Turnpike abre — primera autopista de acceso limitado de EE.UU.",
+      "Sistema de Carreteras Interestatal creado — 46,000+ millas de autopistas construidas",
+      "Límite de velocidad nacional de 55 mph introducido durante la crisis del petróleo",
+      "Ir muy cerca sigue siendo un factor en 1.7M+ choques traseros anuales en EE.UU."
+    ],
+    "keyTakeaways": [
+      "Incorporarse a velocidad de autopista — usa el carril de entrada completo para acelerar antes de entrar",
+      "Mantente a la derecha excepto para adelantar — los carriles izquierdos son para adelantamiento, no para circular",
+      "Mantén un espacio de seguimiento mínimo de 4 segundos a 65 mph — el doble en lluvia",
+      "Comienza a moverte al carril derecho al menos media milla antes de tu salida"
+    ]
+  },
+  "driving-2-08": {
+    "tagline": "Tu primer viaje en solitario se sentirá diferente — más vivo, más real. Estás listo. Confía en tu entrenamiento.",
+    "overview": [
+      "Antes de tu primer viaje en solitario, planifica una ruta que ya hayas conducido con tu instructor o un padre. Las carreteras familiares significan que puedes enfocarte en la técnica de conducción en lugar de la navegación. Mantén tus primeros viajes en solitario cortos — 15 minutos es suficiente. Evita autopistas, tráfico en hora pico y condiciones desafiantes para tus primeros viajes independientes. Construye confianza gradualmente.",
+      "Si te pierdes, no entres en pánico. Estaciona en un lugar seguro y bien iluminado, usa la aplicación de navegación de tu teléfono y recalibra. Nunca intentes leer un mapa o ingresar direcciones mientras te mueves. Una regla simple: si no estás seguro de hacia dónde ir, opta por estacionar en lugar de hacer un giro apresurado o cambio de carril.",
+      "Manejo del estrés del tráfico: todo conductor, incluyendo los experimentados, a veces se encuentra con momentos estresantes — un conductor agresivo, un casi accidente, condiciones inesperadas del camino. Si te sientes abrumado, la respuesta correcta es reducir la velocidad, aumentar la distancia de seguimiento y encontrar un lugar seguro para estacionar y recuperarte. Conducir bajo estrés alto es peligroso. No hay vergüenza en hacer una pausa."
+    ],
+    "technical": {
+      "title": "Lista de Verificación Posterior a la Conducción y Construcción de Confianza",
+      "body": [
+        "Después de cada viaje en solitario, dedica dos minutos a una revisión mental. ¿Qué salió bien? ¿Qué fue desafiante? ¿Qué harías diferente? Esta práctica reflexiva acelera la mejora más rápido que la práctica sola. Incluso los conductores profesionales utilizan técnicas de debrief — los conductores de Fórmula 1 dedican tanto tiempo a revisar datos como tiempo en la pista.",
+        "Construcción de una biblioteca mental de peligros: los conductores experimentados reconocen peligros antes de que se desarrollen — una pelota rodando hacia la calle puede significar que un niño está siguiendo, un hueco en autos estacionados cerca de una escuela significa que peatones pueden aparecer. Cada viaje en solitario construye esta biblioteca mental. El objetivo del primer año de conducción es acumular esas experiencias de manera segura, que es por qué las rutas familiares y los entornos de bajo riesgo importan tanto."
+      ]
+    },
+    "incident": {
+      "title": "Estadísticas de Accidentes en Adolescentes — El Primer Año Detrás del Volante",
+      "impact": "Los conductores adolescentes (16-17) tienen 3 veces más probabilidad de chocar por milla que los conductores 20+ — el riesgo de accidente alcanza su pico en los primeros 6 meses de conducción en solitario",
+      "body": [
+        "La Fundación AAA para la Seguridad del Tráfico encontró que los conductores adolescentes están involucrados en aproximadamente 3 choques fatales por 100 millones de millas conducidas — casi 3 veces la tasa de conductores de 20 años o más. Críticamente, la tasa de accidentes es más alta en los primeros seis meses de conducción en solitario y baja significativamente después del primer año. Esta es la razón por la que las leyes de licencias graduadas en la mayoría de los estados restringen la conducción nocturna, el número de pasajeros y el uso de autopistas para conductores nuevos.",
+        "La evidencia es clara: el momento más peligroso para conducir es justo después de obtener tu licencia — no porque no tengas habilidades, sino porque las habilidades aún no son automáticas. Cuando algo inesperado sucede, un conductor inexperto es más propenso a ser abrumado porque todavía están manejando conscientemente los conceptos básicos. Cada viaje familiar en solitario bajo condiciones normales construye la competencia automática que hace situaciones inusuales manejables."
+      ]
+    },
+    "timeline": [
+      "Primera licencia de conducir emitida en EE.UU. — Massachusetts",
+      "Concepto de Licencia de Conducción Graduada desarrollado — implementado estado por estado a lo largo de décadas",
+      "Primera ley GDL en EE.UU. (California) restringe conducción nocturna y pasajeros de adolescentes",
+      "Todos los estados de EE.UU. tienen programas GDL — las tasas de accidentes para adolescentes han caído 50% desde 1995"
+    ],
+    "keyTakeaways": [
+      "Planifica tus primeros viajes en solitario en rutas familiares y de bajo tráfico durante horas de luz diurna",
+      "Si te pierdes, estaciona de manera segura antes de usar tu teléfono — nunca navegues mientras te mueves",
+      "Si el estrés del tráfico se siente abrumador, reduce la velocidad, aumenta la distancia de seguimiento y estaciona",
+      "Un debrief de 2 minutos después de cada viaje acelera tu mejora dramáticamente"
+    ]
+  },
+  "driving-3-02": {
+    "tagline": "Conducir defensivamente significa asumir que otros conductores cometerán errores — y estar preparado cuando lo hagan.",
+    "overview": [
+      "La conducción defensiva es un conjunto de hábitos y marcos mentales que te ayudan a anticipar y reaccionar ante peligros antes de que se conviertan en emergencias. La filosofía central: no puedes controlar a otros conductores, las condiciones de la carretera o las fallas mecánicas — pero sí puedes controlar tu propia posición, velocidad y disposición para reaccionar. Los conductores defensivos asumen que otros autos harán lo incorrecto y se posicionan para tener opciones cuando eso sucede.",
+      "Escanear 12–15 segundos adelante (la distancia que tu auto recorrerá en ese tiempo) te da el tiempo de procesamiento para identificar peligros y tomar decisiones suaves en lugar de entrar en pánico. En calles urbanas, 12–15 segundos es aproximadamente una manzana completa. En la autopista, es un cuarto de milla. La mayoría de los conductores novatos se enfocan solo en el auto directamente enfrente — los conductores experimentados escanean el panorama completo.",
+      "El método SIPDE — Escanear, Identificar, Predecir, Decidir, Ejecutar — es el proceso sistemático que los oficiales de la CHP y los programas de educación vial utilizan para enseñar respuesta a peligros. Escanea el entorno ampliamente, Identifica peligros específicos, Predice cómo podrían desarrollarse esos peligros, Decide una respuesta, Ejecútala suavemente. Ejecutar este proceso continuamente transforma la conducción reactiva en conducción proactiva."
+    ],
+    "technical": {
+      "title": "El Método SIPDE y Gestión del Espacio",
+      "body": [
+        "Cubrir el freno significa retirar tu pie del acelerador y mantenerlo suspendido sobre el pedal de freno — sin presionar — cuando un peligro se está desarrollando. Esto reduce el tiempo de reacción al frenado de 0.75 segundos a menos de 0.3 segundos. Es la diferencia entre detenerse a tiempo o no. Siempre cubre el freno cuando: hay peatones cerca de la carretera, autos se están fusionando desde una rampa, o ves luces de freno adelante.",
+        "La regla de distancia de seguimiento de 3 segundos (amplía a 4-5 segundos en lluvia o tráfico pesado) te proporciona un amortiguador para reacción y frenado. Elige un punto fijo — una señal, una sombra — y cuenta después de que el auto de enfrente la pase. Si pasas el mismo punto antes de contar hasta tres, estás demasiado cerca. El espacio es tu recurso de seguridad más importante."
+      ]
+    },
+    "incident": {
+      "title": "El Estudio de la CHP sobre Colisiones Traseras",
+      "impact": "Las colisiones traseras representan casi el 29% de todos los accidentes de tráfico en California — y son entre los tipos de choques más prevenibles con una distancia de seguimiento adecuada y hábitos de escaneo.",
+      "body": [
+        "Los datos de seguridad vial de 2019 de la Patrulla de Carreteras de California mostraron colisiones traseras como uno de los tipos de choques más comunes en las autopistas de California — casi el 30% de todos los accidentes reportados. En la gran mayoría de los casos, los investigadores señalaron que el conductor responsable tenía distancia de seguimiento inadecuada o reaccionó a un peligro que había sido visible varios segundos antes del choque.",
+        "Los programas de capacitación de la CHP enfatizan que la mayoría de los choques traseros no son 'repentinos' — el peligro estaba presente, el conductor simplemente no estaba escaneando lo suficientemente lejos adelante para verlo a tiempo. El marco SIPDE, enseñado en la Academia de la CHP, aborda directamente esto: entrena a los conductores a procesar peligros en la marca de 12–15 segundos en lugar de esperar hasta que estén a 2 segundos de distancia."
+      ]
+    },
+    "timeline": [
+      "Primeros programas formales de capacitación de conductores establecidos en escuelas secundarias estadounidenses",
+      "El Consejo Nacional de Seguridad codifica la 'conducción defensiva' como un plan de estudios formal",
+      "El método SIPDE se introduce en la educación de conducción profesional",
+      "California requiere conceptos de conducción defensiva en el plan de estudios de licencias del DMV",
+      "Las compañías de seguros comienzan a ofrecer descuentos en primas por finalización de cursos de conducción defensiva",
+      "Los sistemas ADAS (frenado automático, mantenimiento de carril) comienzan a complementar — pero no reemplazar — la conducción defensiva"
+    ],
+    "keyTakeaways": [
+      "Escanea 12–15 segundos adelante para que los peligros se procesen temprano, no en el último segundo",
+      "Cubre el freno cerca de peatones, vehículos que se fusionan y peligros en desarrollo — reduce 0.5 segundos del tiempo de reacción",
+      "Mantén una distancia de seguimiento mínima de 3 segundos — más en clima adverso",
+      "Usa SIPDE: Escanear, Identificar, Predecir, Decidir, Ejecutar — continuamente, no solo en emergencias"
+    ]
+  },
+  "driving-3-03": {
+    "tagline": "La ira en la carretera convierte un viaje frustrante en una situación peligrosa — para todos.",
+    "overview": [
+      "La ira en la carretera es un comportamiento agresivo o violento de un conductor en respuesta a una infracción de tránsito percibida por otro conductor. Escala desde la frustración (una reacción normal) hasta acciones agresivas (peligrosas y potencialmente criminales). Los desencadenantes comunes incluyen ser cortado, alguien conduciendo lentamente en el carril rápido, acoso vehicular, o un insulto percibido. El problema: la 'infracción' es frecuentemente involuntaria, y aunque sea intencional, responder con agresión crea resultados mucho peores que la molestia original.",
+      "La desescalada es siempre la respuesta correcta cuando otro conductor se vuelve agresivo. Esto significa: no hacer contacto visual, no hacer gestos ni gritar, no frenar abruptamente, no acelerar para 'mantenerle el ritmo'. Tu objetivo es separarte del agresor — cambia de carril, ve más lentamente, toma una salida diferente. Igualar la agresión es cómo los incidentes menores se convierten en choques o altercados.",
+      "Si un conductor agresivo te sigue o está amenazante, no conduzcas a casa. Conduce a una estación de policía, un lugar público concurrido, o llama al 911. La CHP se puede contactar en las carreteras de California a través del 911 o #77 desde un teléfono celular. Quedarse en tu auto en un lugar público con las puertas cerradas es mucho más seguro que enfrentarse o bajar del vehículo."
+    ],
+    "technical": {
+      "title": "Reconociendo y Respondiendo a Conductores Agresivos",
+      "body": [
+        "Señales de advertencia de que otro conductor es agresivo: exceso de velocidad y cambios de carril erráticos, acoso vehicular, bocina repetida, destello agresivo de faros, gestos obscenos, gritos o amenazas. Si ves estas señales dirigidas a cualquier auto (incluyendo el tuyo), crea espacio entre tú y ese conductor inmediatamente.",
+        "Manejando tu propia frustración: reconoce que los errores de otros conductores generalmente no son personales. Un conductor que te cortó probablemente no te vio — no te estaban buscando. Nombra la frustración internamente ('eso fue irritante') pero no la alimentes. Los podcasts, la música, y la respiración controlada ayudan. Evita conducir cuando estés emocionalmente escalado."
+      ]
+    },
+    "incident": {
+      "title": "El Tiroteo por Ira en la Carretera de la I-5, Sacramento",
+      "impact": "Un niño de 6 años fue fatalmente disparado después de un incidente de ira en la carretera entre dos vehículos en la I-5. El caso se convirtió en noticia nacional y un ejemplo paradigmático del potencial mortal de la escalada de ira en la carretera.",
+      "body": [
+        "En abril de 2021, un incidente de ira en la carretera en la Interestatal 5 en Sacramento terminó con un niño de 6 años disparado y muerto mientras viajaba en el auto de su familia. La alteración comenzó con una disputa entre dos conductores. Los investigadores determinaron que el niño era una víctima inocente de una confrontación escalada en la que no tenía nada que ver.",
+        "El caso fue significativo no porque los tiroteos por ira en la carretera sean comunes, sino porque demostró en los términos más claros posibles qué puede suceder cuando los conductores se enfrentan con agresión en lugar de desengancharse. Las agencias de aplicación de la ley de California utilizaron el caso en campañas de conciencia pública sobre ira en la carretera. La lección es inequívoca: ninguna disputa de carril, ningún insulto percibido, vale la pena enfrentarse con una persona desconocida en un estado mental desconocido."
+      ]
+    },
+    "timeline": [
+      "El término 'ira en la carretera' acuñado por reportera de televisión de Los Ángeles después de ola de tiroteos en autopistas",
+      "Estudio de la Fundación AAA define la ira en la carretera como un problema distinto de seguridad vial",
+      "California promulga sanciones más severas por asalto con vehículo en casos de ira en la carretera",
+      "Encuesta de AAA: casi el 80% de los conductores estadounidenses expresaron ira o agresión al menos una vez en el año pasado",
+      "Los incidentes de ira en la carretera relacionados con armas de fuego alcanzan niveles récord en EE.UU. (investigación de Everytown)",
+      "La CHP lanza campaña expandida de Conciencia sobre Ira en la Carretera en las autopistas de California"
+    ],
+    "keyTakeaways": [
+      "Nunca iguales la agresión — desengánchate yendo más lentamente, cambiando de carril, o saliendo",
+      "No hagas contacto visual, no hagas gestos, ni grites a un conductor agresivo",
+      "Si te siguen, no vayas a casa — conduce a una estación de policía o un lugar público concurrido y llama al 911",
+      "En California, marca #77 desde un teléfono celular para comunicarte con despacho de la CHP"
+    ]
+  },
+  "driving-3-05": {
+    "tagline": "No necesitas ser mecánico para mantener tu auto seguro — pero sí necesitas conocer lo básico.",
+    "overview": [
+      "Un auto mal mantenido es un riesgo de seguridad. Los reventones de neumáticos, fallos de frenos y motores sobrecalentados causan miles de accidentes cada año en EE.UU. — muchos de los cuales una inspección básica podría haber prevenido. Aprender a revisar neumáticos, aceite y luces, y a reconocer las luces de advertencia del tablero, es parte de la responsabilidad de ser propietario de un vehículo. La ley de California requiere que los vehículos estén en condiciones seguras para operar, y un vehículo no apto para circular puede ser citado.",
+      "Los neumáticos son el elemento de mantenimiento más crítico para la seguridad en un vehículo. La presión baja de neumáticos aumenta la distancia de frenado y hace más probable un reventón. La banda de rodadura desgastada reduce la tracción, especialmente en condiciones húmedas. La profundidad mínima legal de banda de rodadura en California es 2/32 de pulgada — puedes verificar con una moneda de un centavo (la cabeza de Lincoln desaparece si tienes suficiente banda de rodadura). La presión de los neumáticos debe revisarse mensualmente y antes de cualquier viaje largo; revisa la etiqueta dentro de la jamba de tu puerta del conductor para la PSI recomendada.",
+      "Las luces de advertencia del tablero se dividen en dos niveles de urgencia: luces rojas que significan dejar de conducir lo antes posible (presión de aceite, temperatura, sistema de frenos, batería), y luces amarillas/ámbar que significan visitar un taller pronto pero no son inmediatamente peligrosas (revisar motor, control de tracción, presión de neumáticos). Nunca ignores una luz de advertencia roja — continuar conduciendo puede causar daño catastrófico del motor o frenos."
+    ],
+    "technical": {
+      "title": "Revisión Mensual de Seguridad del Vehículo",
+      "body": [
+        "Revisión del nivel de aceite: el motor debe estar apagado por lo menos 5 minutos. Extrae la varilla medidora, límpiala, reinsértala completamente, extrae nuevamente. El nivel de aceite debe estar entre las marcas MÍN y MÁX. El aceite debe ser ámbar/marrón — el aceite negro y granuloso necesita cambio. Aceite lechoso (se ve como café con crema) indica que el refrigerante se mezcla con el aceite — deja de conducir inmediatamente y haz que lo inspeccionen.",
+        "Nivel de refrigerante: revisa el depósito de desbordamiento translúcido cuando el motor esté FRÍO. Nunca abras la tapa del radiador en un motor caliente — el refrigerante presurizado puede causar quemaduras graves. El refrigerante debe estar entre MÍN y MÁX. El refrigerante bajo causa sobrecalentamiento, que puede deformar la culata del motor — una falla extremadamente costosa."
+      ]
+    },
+    "incident": {
+      "title": "El Reventón de Neumático en I-15 — Falla de Profundidad de Banda de Rodadura",
+      "impact": "El SUV de una familia sufrió un reventón catastrófico de neumático trasero a 75 mph debido a banda de rodadura desgastada por debajo del mínimo legal. El vehículo volcó. El análisis de NHTSA de los neumáticos confirmó que la banda de rodadura era menor a 1/32 de pulgada — la mitad del mínimo legal. Tres de cuatro pasajeros resultaron heridos.",
+      "body": [
+        "En verano de 2018, una familia que conducía en I-15 en el Desierto de Mojave experimentó un reventón repentino de neumático trasero a velocidad de autopista. La inspección post-accidente reveló que la banda de rodadura del neumático había sido desgastada a 1/32 de pulgada — significativamente por debajo del mínimo legal de 2/32. El calor de la conducción desértica de verano agravó el riesgo; las temperaturas altas aumentan la presión de los neumáticos y estresan el caucho envejecido.",
+        "Los oficiales de la CHP que respondieron señalaron que el vehículo había pasado una inspección de smog reciente — que no incluye inspección de neumáticos. Este caso se convirtió en un punto de referencia en campañas de seguridad vial de California enfatizando que las inspecciones de seguridad son responsabilidad del conductor, no del estado. Una prueba de moneda de un centavo hecha antes del viaje habría identificado los neumáticos desgastados inmediatamente."
+      ]
+    },
+    "timeline": [
+      "El DOT de EE.UU. establece profundidad mínima de banda de rodadura de neumático de 2/32 de pulgada a nivel nacional",
+      "Recall de neumáticos Ford Explorer/Firestone — 271 muertes — renueva el enfoque público en la seguridad de neumáticos",
+      "TPMS (Sistema de Monitoreo de Presión de Neumáticos) requerido en todos los vehículos nuevos de EE.UU.",
+      "Estudio de AAA: casi 1 de cada 3 vehículos conducidos con al menos un neumático inseguro",
+      "NHTSA: los accidentes relacionados con neumáticos causan ~600 muertes anualmente en EE.UU.",
+      "California BAR (Oficina de Reparación Automotriz) añade profundidad de neumático a la lista de verificación de inspección de seguridad"
+    ],
+    "keyTakeaways": [
+      "Revisa la presión de los neumáticos mensualmente y antes de viajes largos — encuentra la PSI recomendada en la etiqueta de la jamba de la puerta",
+      "Haz la prueba de la moneda: inserta una moneda de un centavo en la ranura de banda de rodadura — si la cabeza de Lincoln desaparece, tienes suficiente banda de rodadura",
+      "Las luces rojas del tablero significan detenerse lo antes posible — no continúes conduciendo",
+      "Revisa el nivel de aceite en un motor frío — aceite lechoso significa detente e inspecciona inmediatamente"
+    ]
+  },
+  "driving-3-06": {
+    "tagline": "Saber qué hacer después de un choque — y qué no decir — te protege legal y físicamente.",
+    "overview": [
+      "Todo conductor debe saber exactamente qué hacer si se ve involucrado en un choque, porque es muy difícil pensar con claridad inmediatamente después. La ley de California impone obligaciones específicas a los conductores involucrados en choques: debes detenerte, proporcionar tu información y prestar ayuda si es necesario. Abandonar la escena de un choque que involucre lesiones es un delito grave según la ley de California.",
+      "Nunca admitas culpa en la escena. Incluso si crees que causaste el choque, la determinación de culpa es compleja e involucra factores de los que es posible que no estés consciente — la velocidad del otro conductor, su intoxicación, las condiciones del camino, fallas mecánicas. Las declaraciones hechas en la escena son admisibles en la corte y pueden ser usadas en tu contra en reclamaciones de seguros y demandas. Simplemente proporciona tu información, verifica si hay lesiones, llama al 911 si es necesario, y coopera con la policía.",
+      "California requiere que los conductores presenten un formulario SR-1 (Reporte de Accidente de Tránsito Ocurrido en California) ante la DMV dentro de 10 días cuando un choque involucra lesiones, muerte, o daños a la propiedad que excedan $1,000 en la propiedad de cualquier persona. No presentar cuando sea requerido puede resultar en la suspensión de tu licencia. Esto es separado de cualquier informe policial — debes presentar el SR-1 tú mismo.",
+      "California requiere que los conductores presenten un formulario SR-1 (Reporte de Accidente de Tránsito Ocurrido en California) ante la DMV dentro de 10 días cuando un choque involucra lesiones, muerte, o daños a la propiedad que excedan $1,000 en la propiedad de cualquier persona. No presentar cuando sea requerido puede resultar en la suspensión de tu licencia. Esto es separado de cualquier informe policial — debes presentar el SR-1 tú mismo."
+    ],
+    "technical": {
+      "title": "Documentación de la Escena del Choque",
+      "body": [
+        "Fotografía todo antes de mover los vehículos (si es seguro): daño a ambos vehículos, placas de matrícula, señales de tránsito e intersección, marcas de derrapaje, cualquier lesión visible, y la escena general. Las fotos tienen marca de tiempo y georeferenciación en teléfonos modernos y son evidencia poderosa. Toma más fotos de las que creas que necesitas.",
+        "Información a intercambiar: nombre completo, dirección, número de teléfono, número de licencia de conducir, registro del vehículo, nombre de la compañía aseguradora y número de póliza. No compartas más que esto. No firmes nada que otro conductor te ofrezca. No aceptes dinero en efectivo para 'resolver' en la escena — las lesiones pueden no ser aparentes inmediatamente."
+      ]
+    },
+    "incident": {
+      "title": "El Problema del 'Lo Siento' — Cómo las Disculpas Afectan los Reclamos de Seguros",
+      "impact": "La disculpa verbal de un conductor en la escena fue utilizada como una admisión de culpa en una demanda posterior, resultando en un fallo en su contra a pesar de la evidencia que sugería culpa compartida.",
+      "body": [
+        "En un caso civil de Los Angeles de 2005, un conductor que dijo 'Lo siento mucho, debería haberte visto' en la escena del choque encontró que esas palabras fueron presentadas como evidencia y tratadas como una admisión de responsabilidad. Según la ley de California, las declaraciones hechas en la escena son admisibles, y una disculpa — incluso una reflexiva y empática — puede funcionar como una admisión legal de culpa.",
+        "California se encuentra entre los estados que han debatido 'leyes de disculpas' (que protegen las declaraciones apologéticas de ser usadas como admisiones), pero hasta ahora, las disculpas en escenas de choques permanecen admisibles. Los profesionales legales aconsejan universalmente: expresa preocupación genuina por el bienestar de la otra parte ('¿Estás bien? ¿Necesitas ayuda?'), llama al 911, intercambia información — pero no hagas declaraciones sobre culpa, causa, o responsabilidad."
+      ]
+    },
+    "timeline": [
+      "California primero requiere que los conductores se detengan y proporcionen información después de un choque",
+      "Huida del lugar del accidente que causa lesiones elevada a delito grave en California",
+      "Formulario SR-1 actualizado — opción de presentación electrónica agregada por DMV",
+      "Estudio de la industria de seguros: admisiones verbales de culpa afectan el 23% de los reclamos controvertidos",
+      "Adopción de cámaras de tablero aumenta — la evidencia en video cambia la documentación posterior al choque",
+      "California considera expandir el privilegio médico de disculpas — aún no promulgado"
+    ],
+    "keyTakeaways": [
+      "Detente inmediatamente — abandonar la escena de un choque con lesiones es un delito grave en California",
+      "Nunca admitas culpa — no digas nada sobre quién causó el choque; simplemente intercambia información",
+      "Documenta todo: fotos de daño, placas, diseño de la escena, lesiones",
+      "Presenta SR-1 ante la DMV dentro de 10 días si el daño excede $1,000 o hay lesión o muerte"
+    ]
+  },
+  "driving-3-07": {
+    "tagline": "El hombro de la autopista es uno de los lugares más peligrosos de California — trátalo como tal.",
+    "overview": [
+      "Los desgloses de vehículos son comunes — AAA responde a más de 32 millones de llamadas de servicio en EE.UU. cada año. Saber cómo manejar un desglose de manera segura, particularmente en una autopista, puede evitar que una situación ya estresante se convierta en una fatal. Los hombros de las autopistas son particularmente peligrosos porque los vehículos viajan a altas velocidades cerca y los conductores no siempre están alertas a obstáculos estacionarios.",
+      "Si tu vehículo se desglosa o necesitas detenerte en una autopista, activa las luces de emergencia inmediatamente. Dirige hacia la derecha lo más posible — hacia el hombro, contra la barrera de protección si hay una presente. Si es posible, sal en la siguiente salida en lugar de detenerte en la línea principal de la autopista. Una vez detenido, mantén las luces de emergencia encendidas, no abras la puerta del conductor hacia el tráfico, y no te pares entre tu auto y los carriles de circulación.",
+      "Los triángulos de emergencia o bengalas deben colocarse 10 pies detrás del vehículo y a 100 y 200 pies — la distancia de advertencia estándar. Sin embargo, en una autopista, la CHP recomienda permanecer dentro del vehículo bloqueado (con cinturones de seguridad puestos) en lugar de estar afuera, porque un conductor distraído que golpee tu auto detenido es mucho más sobrevivible adentro que afuera del vehículo."
+    ],
+    "technical": {
+      "title": "Desglose en Autopista — Acciones Prioritarias",
+      "body": [
+        "Llamar pidiendo ayuda: AAA se puede contactar al 1-800-222-4357. Los conductores de California también pueden contactar a CHP marcando #77 desde un teléfono celular, o presionando el botón SOS en vehículos equipados con servicios conectados (OnStar, BMW Assist, etc.). Proporciona tu ubicación usando el número de autopista, dirección de viaje, y el marcador de milla más cercano (señales verdes en la mayoría de las autopistas de California).",
+        "Muévelo o Déjalo: Si tu auto aún es conducible después de un impacto menor o un pinchazo, la ley 'Move It' de California te requiere moverte al hombro o a la ubicación segura más cercana fuera de la carretera. Bloquear un carril de circulación cuando el auto es movible crea un riesgo grave de choque secundario y también es pasible de citación."
+      ]
+    },
+    "incident": {
+      "title": "La Ley Move It y Choques Secundarios en California",
+      "impact": "Antes de la ley 'Move It', los vehículos averiados en carriles de circulación estaban involucrados en miles de choques secundarios anualmente. Los datos de la CHP mostraron una reducción medible después de que los conductores fueron requeridos por ley a mover vehículos deshabilitados al hombro cuando era posible.",
+      "body": [
+        "Los choques secundarios — choques que ocurren cuando otro vehículo golpea un vehículo ya deshabilitado en la carretera — fueron un problema significativo de seguridad vial en California. Los conductores que se detuvieron en carriles de circulación después de pequeños choques o pinchazo crearon embotellamientos peligrosos donde los choques traseros eran frecuentes, a veces fatales.",
+        "California promulgó la ley 'Move It' en 2007, requiriendo a los conductores mover su vehículo fuera de los carriles de circulación y a un lugar seguro cuando es seguro hacerlo después de un choque o desglose. Los oficiales de CHP ahora pueden dirigir a los conductores a mover sus vehículos. La ley ha contribuido a una reducción en incidentes de choques secundarios, aunque el problema sigue siendo significativo cuando los conductores dejan vehículos en carriles de circulación innecesariamente."
+      ]
+    },
+    "timeline": [
+      "AAA expande servicio de emergencia en carretera a los 50 estados",
+      "Sistema automático de notificación de emergencia OnStar introducido en vehículos",
+      "Ley 'Move It' de California promulgada — vehículos deshabilitados deben ser movidos de carriles de circulación",
+      "CHP actualiza protocolos de seguridad en autopistas — recomienda permanecer dentro del vehículo en carreteras de alta velocidad",
+      "Patrulla de Servicio de Autopistas de California expandida — remolques gratuitos fuera de autopistas durante horas pico",
+      "Datos de AAA: los pinchazo siguen siendo la llamada de asistencia en carretera #1 en California"
+    ],
+    "keyTakeaways": [
+      "Activa las luces de emergencia inmediatamente cuando los problemas comiencen — luego dirige hacia el hombro derecho",
+      "En la autopista, permanece dentro del auto con cinturones de seguridad puestos — ser golpeado dentro del auto es mucho más sobrevivible que ser golpeado afuera",
+      "Llama a AAA (1-800-222-4357) o CHP (#77) — da tu ubicación como número de autopista, dirección, y marcador de milla",
+      "Si tu auto es movible después de un choque, la ley de California te requiere moverlo fuera del carril de circulación"
+    ]
+  },
+  "driving-3-08": {
+    "tagline": "Los mejores conductores son reflexivos, no solo hábiles — hacen que la carretera sea mejor para todos.",
+    "overview": [
+      "La habilidad técnica de conducción es una parte de ser un buen conductor. La otra parte es el carácter — cortesía, paciencia y responsabilidad en la carretera. Los estudios demuestran consistentemente que la actitud y el comportamiento del conductor son más predictivos del riesgo de accidente que la mayoría de las habilidades técnicas. Los conductores que tratan la carretera como un recurso compartido, muestran cortesía a otros usuarios y mantienen una mentalidad paciente tienen tasas de accidentes significativamente más bajas que aquellos que conducen de manera agresiva o impaciente.",
+      "El cierre de cremallera es uno de los aspectos más incomprendidos de la cortesía al conducir. Cuando dos carriles deben fusionarse en uno, el método más eficiente y seguro es que ambos carriles se llenen hasta el punto de fusión y se alternen — como una cremallera. Los conductores tempranos que consideran a los usuarios de carriles tardíos como 'tramposos' en realidad crean retenciones más largas y congestionadas. La DMV de California respalda la fusión tardía como la técnica correcta en situaciones de cierre de carriles.",
+      "California tiene una ley de ralentí (CVC 22515, y las regulaciones de la Junta de Recursos del Aire de California) — ralentí de vehículos diésel más de 5 minutos está prohibido, y muchas ordenanzas locales restringen el ralentí de vehículos de gasolina cerca de escuelas y residencias. Más allá de la ley, el ralentí innecesario desperdicia combustible y produce emisiones. Apagar el motor cuando se detiene durante más de un minuto es la opción cortés y ambientalmente responsable."
+    ],
+    "technical": {
+      "title": "Cierre de Cremallera y Cortesías Comunes",
+      "body": [
+        "Permitir que las personas se fusionen o entren desde una calle lateral cuando el tráfico es intenso te cuesta menos de 2 segundos y reduce drásticamente el estrés del otro conductor. El efecto mariposa de un conductor cortés en una carretera congestionada puede propagarse — cuando los conductores se sienten menos frustrados, toman menos decisiones agresivas. La investigación de flujo de tráfico muestra que el comportamiento de fusión cooperativa reduce los tiempos totales de rendimiento.",
+        "Ayudar a conductores nuevos: si tienes la oportunidad de estar con un conductor permisionario (un hermano menor, un amigo), comparte lo que sabes. Narra tu escaneo defensivo, explica la regla de 3 segundos, demuestra cubrir el freno. El mayor desafío de los conductores nuevos no es saber qué hacen automáticamente los conductores experimentados. Tu transmisión de buenos hábitos es una de las contribuciones de seguridad vial de mayor impacto que un ciudadano privado puede hacer."
+      ]
+    },
+    "incident": {
+      "title": "Estudio de Cierre de Cremallera de MnDOT — Ingeniería de Tráfico Confirma Cortesía",
+      "impact": "El estado de Minnesota ejecutó una campaña pública para normalizar la fusión tardía (cierre de cremallera) después de que los ingenieros de tráfico demostraron que redujo las retenciones en zonas de construcción hasta en un 40%. California posteriormente respaldó la misma técnica.",
+      "body": [
+        "El Departamento de Transporte de Minnesota estudió el comportamiento del conductor en situaciones de cierre de carriles y encontró que la fusión temprana — donde todos los conductores se fusionaban en el carril abierto tan pronto como veían la señal de cierre — creaba retenciones 40% más largas de lo necesario e incrementaba la frustración y agresión del conductor. La alternativa, usar ambos carriles hasta el punto de fusión y alternar (el cierre de cremallera), redujo drásticamente la longitud de la retención y mejoró el rendimiento.",
+        "MnDOT lanzó una campaña de educación pública normalizando la fusión de cremallera. El mensaje contraintuitivo — 'la persona que espera en el carril cerrándose hasta el último momento lo está haciendo correctamente' — requería superar años de comportamiento del conductor profundamente arraigado. California, citando la misma investigación, ha respaldado desde entonces la fusión de cremallera como el comportamiento correcto en situaciones de construcción y cierre de carriles."
+      ]
+    },
+    "timeline": [
+      "La investigación de flujo de tráfico establece la fusión cooperativa como óptima",
+      "Los incidentes de ira vial alcanzan su máximo — la cortesía del conductor se convierte en un enfoque de seguridad pública",
+      "La campaña de cierre de cremallera de MnDOT demuestra mejora medible del tráfico",
+      "California respalda la fusión de cremallera en la orientación de zonas de construcción",
+      "La Junta de Recursos del Aire de California endurece las restricciones de ralentí cerca de escuelas y residencias",
+      "La cortesía del conductor clasificada como el factor principal para reducir la ira vial urbana según encuesta de AAA"
+    ],
+    "keyTakeaways": [
+      "El cierre de cremallera — usar ambos carriles hasta el punto de fusión y alternar — es la técnica correcta y más eficiente",
+      "Permitir que las personas se fusionen y ser paciente te cuesta segundos pero reduce significativamente la frustración en la carretera",
+      "La ley de California prohíbe el ralentí diésel extendido; apaga tu motor cuando te detienes durante más de un minuto",
+      "Compartir conocimientos de conducción con conductores nuevos es una de las cosas de seguridad vial de mayor impacto que puedes hacer"
+    ]
+  },
+  "baseball-1-01": {
+    "tagline": "Antes de poder jugar el juego, tienes que entender el campo — y por qué tiene la forma que tiene.",
+    "overview": [
+      "El béisbol se juega en un campo de juego en forma de diamante con cuatro bases — primera, segunda, tercera y el plato de home — separadas 90 pies (60 pies en la mayoría de las ligas juveniles). El campo de juego es un cuadrado rotado 45 grados para que las bases formen una forma de diamante. Más allá del campo de juego está el jardín, extendiéndose hasta la pared del jardín. El territorio legal es el área entre las dos líneas de falta que se extienden desde el plato de home a través de la primera y tercera base y continúan hacia el jardín.",
+      "Un equipo coloca nueve jugadores en el campo, cada uno en una posición específica: lanzador (1), catcher (2), primera base (3), segunda base (4), tercera base (5), shortstop (6), jardinero izquierdo (7), jardinero central (8), y jardinero derecho (9). Estos números se utilizan en las tarjetas de anotación y en la puntuación (por ejemplo, un doble play 6-4-3 significa shortstop a segunda base a primera base).",
+      "Un juego de béisbol consta de nueve entradas (seis en la mayoría de las ligas juveniles). Cada entrada tiene dos mitades — el equipo visitante batea primero (parte superior de la entrada), el equipo local batea segundo (parte inferior de la entrada). Cada equipo es retirado después de tres outs. Para anotar una carrera, un bateador debe llegar a una base, avanzar alrededor de las tres bases y tocar el plato de home antes del tercer out de la entrada. El equipo con más carreras después de nueve entradas gana."
+    ],
+    "technical": {
+      "title": "El Diamante de Béisbol — Dimensiones y Diseño",
+      "body": [
+        "El campo de juego consiste en las cuatro bases (incluyendo el plato de home) y las áreas entre ellas. El montículo del lanzador está en el centro del diamante, a 60 pies 6 pulgadas del plato de home (46 pies en las divisiones menores de Little League). La caja del bateador está a ambos lados del plato de home, y el catcher se agacha directamente detrás de ella. Los dugouts están a ambos lados del campo, donde el equipo se sienta cuando no está bateando o en el campo.",
+        "El territorio de falta es el área fuera de las dos líneas de falta. Una pelota golpeada hacia territorio de falta es generalmente una bola de falta (un strike si el bateador tiene menos de dos strikes; sin penalización adicional después de dos strikes, con algunas excepciones). Una bola de falta atrapada en el aire por un fielder es un out. La determinación de legal/falta se basa en dónde la pelota primero toca el terreno más allá de la primera o tercera base."
+      ]
+    },
+    "incident": {
+      "title": "La Primera Serie Mundial de Little League — 1947",
+      "impact": "La primera Serie Mundial de Little League estableció a Williamsport como el hogar espiritual del béisbol juvenil, una tradición que continúa hoy en día con 20 equipos de alrededor del mundo compitiendo anualmente ante audiencias globales.",
+      "body": [
+        "Little League Baseball fue fundada en 1939 por Carl Stotz en Williamsport, Pensilvania, con solo tres equipos. Ocho años después, en 1947, Stotz organizó la primera Serie Mundial de Little League — una competición regional que atrajo equipos de toda Pensilvania. Fue modesta según los estándares de hoy, pero estableció el modelo para lo que se convertiría en uno de los eventos deportivos juveniles más vistos del mundo.",
+        "Hoy en día, la Serie Mundial de Little League presenta 20 equipos que representan regiones a través de Estados Unidos y países alrededor del mundo. Los juegos se transmiten a nivel nacional en ESPN y ABC. El torneo ha producido algunos de los momentos más memorables del béisbol — y miles de jugadores que continuaron sus carreras en béisbol profesional. La serie permanece en Williamsport, en el Estadio Howard J. Lamade, a solo millas de donde Carl Stotz por primera vez colocó esos tres equipos originales."
+      ]
+    },
+    "timeline": [
+      "Abner Doubleday acreditado (algo mitológicamente) con inventar el béisbol en Cooperstown, NY",
+      "Se funda la National League of Professional Base Ball Clubs",
+      "Se juega la primera Serie Mundial moderna — Boston Americans vs. Pittsburgh Pirates",
+      "Little League Baseball fundada por Carl Stotz en Williamsport, Pensilvania",
+      "Se celebra la primera Serie Mundial de Little League en Williamsport",
+      "Little League se abre oficialmente a las niñas",
+      "Little League opera en más de 80 países en todo el mundo"
+    ],
+    "keyTakeaways": [
+      "El diamante de béisbol tiene cuatro bases 90 pies separadas (60 pies en la mayoría de las ligas juveniles) — home, primera, segunda, tercera",
+      "Nueve jugadores toman el campo, cada uno con una posición numerada (lanzador=1, catcher=2, y así sucesivamente hasta jardinero derecho=9)",
+      "Cada entrada tiene dos mitades — tres outs por media entrada; nueve entradas por juego",
+      "Para anotar, un jugador debe avanzar alrededor de las tres bases y tocar el plato de home antes de que termine la entrada"
+    ]
+  },
+  "baseball-1-02": {
+    "tagline": "No puedes jugar el juego correctamente si no conoces las reglas — y conocerlas protege a tu equipo.",
+    "overview": [
+      "El béisbol tiene un conjunto bien organizado de reglas, pero varias reglas clave confunden a los nuevos jugadores. Tres strikes y estás fuera — pero solo ciertos lanzamientos cuentan como strikes: un lanzamiento en la zona de strike que no golpeas, cualquier lanzamiento que golpees y falles, o un lanzamiento que golpees de foul (con la excepción de que una bola foul no puede ser el tercer strike, excepto en un intento de bunt). Cuatro bolas — lanzamientos fuera de la zona de strike que el bateador no golpea — le dan al bateador un walk (base libre en primera).",
+      "Hay dos formas principales de registrar un out en un corredor: outs forzados y outs de etiqueta. Un out forzado ocurre cuando un corredor se ve obligado a avanzar a la siguiente base porque un bateador se convierte en corredor (o porque los corredores detrás fuerzan a los corredores adelante). Para registrar un out forzado, el fildeador solo necesita tocar la base mientras sostiene la pelota — no se requiere etiqueta. Un out de etiqueta requiere que el fildeador etiquete físicamente al corredor con la pelota mientras el corredor no está tocando una base.",
+      "La regla de la bola voladora de infield es una de las reglas más malentendidas del béisbol. Se aplica cuando hay corredores en primera y segunda (o bases llenas), menos de dos outs, y se golpea una bola voladora justa al infield que un fildeador de infield puede atrapar con esfuerzo ordinario. En esta situación, el bateador es automáticamente declarado fuera — incluso si el fildeador la deja caer intencionalmente. Esta regla existe para evitar que los fildeadores dejen caer deliberadamente pop-ups fáciles para crear un juego doble o triple barato."
+    ],
+    "technical": {
+      "title": "Hits vs. Errores — Anotando el Juego",
+      "body": [
+        "Un hit es cuando un bateador llega a base por su propia habilidad — una pelota golpeada en territorio justo que no puede ser fildeada con esfuerzo ordinario, o que cae para un hit de base antes de que se pueda registrar un out. Un error es cuando un fildeador comete un error en una pelota que debería haber sido fildeada con esfuerzo ordinario — soltar una bola voladora que se puede atrapar, lanzar descontroladamente, o manipular mal un rodillo de rutina. Un error se le carga al fildeador; el bateador llega a base pero no se le acredita un hit.",
+        "Distinguir hits de errores importa para las estadísticas (el promedio de bateo solo cuenta hits) y para propósitos de anotación. El anotador oficial hace este juicio. En el béisbol juvenil, aprender a distinguir estos juegos construye baseball IQ. Un concepto clave: el beneficio de la duda va al bateador — si un juego es borderline, anótalo como hit."
+      ]
+    },
+    "incident": {
+      "title": "La Famosa Controversia de la Regla de Bola Voladora de Infield — NLDS 2012",
+      "impact": "Una llamada de regla de bola voladora de infield en la parte baja de la 8ª entrada de un juego de playoff de eliminación (Cardinals vs. Braves) desencadenó una gran controversia cuando una bola que cayó en el campo izquierdo poco profundo fue llamada bajo la regla — los aficionados lanzaron escombros al campo, y el juego fue retrasado. El juego destacó cuán ampliamente malentendida sigue siendo esta regla incluso entre aficionados adultos.",
+      "body": [
+        "En el juego de Wild Card de la NLDS 2012 entre los St. Louis Cardinals y Atlanta Braves, con los Braves perdiendo 6-3 y corredores en primera y segunda con un out en la 8ª entrada, el paracortos Pete Kozma se posicionó bajo un pop-up en el campo izquierdo poco profundo. Cuando la pelota bajaba — muy más allá del infield normal — el árbitro del campo izquierdo gritó 'bola voladora de infield, el bateador está fuera.' La pelota cayó, el corredor en segunda avanzó a tercera, y la confusión reinó.",
+        "Los aficionados de los Braves — e incluso muchos jugadores — estaban furiosos, argumentando que la pelota estaba demasiado lejos en el outfield para que la regla se aplicara. La regla requiere que la pelota sea capturada 'con esfuerzo ordinario' por un fildeador de infield, pero la llamada es un juicio del árbitro. El juego, aunque controvertido, era argumentablemente correcto. El incidente se convirtió en un momento de enseñanza viral para la educación de reglas de béisbol, demostrando que incluso en el béisbol profesional de playoff, la regla de bola voladora de infield sigue siendo ampliamente malentendida."
+      ]
+    },
+    "timeline": [
+      "La Liga Nacional codifica las primeras reglas de béisbol moderno incluyendo el out de tres strikes",
+      "Se introduce la regla de bola voladora de infield para evitar que los fildeadores dejen caer deliberadamente pop-ups",
+      "Se actualiza la regla de bola foul — las bolas foul cuentan como strikes (excepto la tercera)",
+      "El bateador acreditado con hit en walk cambió — los walks ya no se cuentan como turnos al bate",
+      "Se adopta la regla del Bateador Designado por la Liga Americana",
+      "MLB adopta reloj de lanzamiento, restricciones de cambio, y bases más grandes — los cambios de reglas más significativos en décadas"
+    ],
+    "keyTakeaways": [
+      "Tres strikes = out; cuatro bolas = walk. Las bolas foul cuentan como strikes pero no pueden ser el tercer strike",
+      "Los outs forzados solo requieren tocar la base; los outs de etiqueta requieren etiquetar el cuerpo del corredor",
+      "La regla de bola voladora de infield retira automáticamente al bateador en un pop-up de infield capturado con corredores en primera y segunda (o bases llenas) y menos de 2 outs",
+      "Un hit requiere la habilidad del bateador; un error es un error del fildeador — el bateador llega a base pero no recibe crédito de hit"
+    ]
+  },
+  "baseball-1-03": {
+    "tagline": "Golpear una pelota redonda con un bate redondo directamente es la habilidad más difícil en el deporte — estos fundamentos lo hacen posible.",
+    "overview": [
+      "El bateo es ampliamente considerado la habilidad más difícil en los deportes profesionales — incluso los mejores bateadores en la historia no lograban un hit aproximadamente el 70% de las veces. Para jugadores jóvenes, el objetivo es más simple: hacer contacto consistente, desarrollar una mecánica repetible y construir confianza en la caja de bateo. Los fundamentos del bateo no cambian desde las Pequeñas Ligas hasta las Grandes Ligas — solo la velocidad y movimiento de los lanzamientos.",
+      "Una postura de bateo adecuada comienza con los pies separados al ancho de los hombros, rodillas ligeramente flexionadas, peso equilibrado sobre las plantas de los pies. El cuerpo enfrenta el plato de home (o ligeramente hacia el lanzador). Las manos sostienen el bate con los nudillos de golpe — los nudillos del medio de ambas manos — alineados. Este agarre permite que las muñecas giren adecuadamente durante el swing. Las manos comienzan a la altura de los hombros, aproximadamente alineadas con el hombro trasero.",
+      "El swing es una secuencia: carga (desplazar el peso al pie trasero, las manos se mueven ligeramente hacia atrás), stride (paso pequeño hacia el lanzador con el pie delantero — solo unos pocos centímetros, manteniendo el pie delantero cerrado), rotación de caderas (las caderas disparan hacia el lanzador, generando potencia), contacto (los brazos se extienden, las manos permanecen a través de la pelota), y seguimiento (el bate continúa toda la vuelta hacia el hombro trasero). Los errores más comunes: pisar en la cubeta (el pie delantero se aleja del plato en lugar de hacia el lanzador), soltar el codo trasero, y levantar la cabeza antes del contacto."
+    ],
+    "technical": {
+      "title": "La Mecánica de un Buen Swing",
+      "body": [
+        "Los ojos en la pelota: la señal más importante para los bateadores jóvenes. Observa la pelota desde el punto de lanzamiento del lanzador hasta la zona de contacto. Muchos bateadores jóvenes miran al fielder, a la pared del jardín exterior, o anticipan la pelota en lugar de seguirla. Mantén la cabeza hacia abajo y los ojos enfocados a través de la zona — no hacia arriba para ver dónde la golpeaste.",
+        "La rotación de caderas es de donde proviene la potencia. Los bateadores jóvenes que solo usan los brazos generan roletazos débiles y elevados débiles. Enseñar a los jugadores a 'aplastar el insecto' — rotando el talón trasero en el suelo mientras las caderas disparan — conecta la parte inferior del cuerpo con el swing. Las manos siguen a las caderas, no al revés."
+      ]
+    },
+    "incident": {
+      "title": "Ted Williams y la Ciencia del Bateo",
+      "impact": "Ted Williams, quien bateó .406 en 1941 — el último jugador en batear sobre .400 en una temporada — escribió 'The Science of Hitting' en 1971, el manual de bateo más influyente en la historia del béisbol. Su desglose de la zona de strike en 77 celdas individuales y análisis del ángulo del bate a través del contacto transformó la forma en que se enseña el bateo.",
+      "body": [
+        "Ted Williams llegó a Fenway Park en 1939 como un jugador de 20 años con un enfoque obsesivo y analítico del bateo. Estudió lanzadores, rastreó mentalmente cada turno al bate, y pensó más profundamente sobre la mecánica del bateo que cualquier jugador antes que él. En 1941, bateó .406 — rechazando sentarse en un doble juego el último día de la temporada que hubiera preservado su promedio de .400 — y fue 6-por-8 para terminar en .406. Ningún jugador ha bateado .400 desde entonces.",
+        "El libro de Williams de 1971 'The Science of Hitting' introdujo conceptos — particularmente el diagrama de la zona de strike y la importancia de esperar un buen lanzamiento en la zona donde el promedio del bateador era más alto — que ahora son fundamentales para la instrucción de bateo en todos los niveles. Williams es la prueba de que los mejores bateadores son estudiosos, no solo atletas: estudió el oficio hasta que lo entendió más profundamente que nadie."
+      ]
+    },
+    "timeline": [
+      "El bateo de potencia de Babe Ruth transforma el béisbol de científico a juego de potencia",
+      "Ted Williams debuta en Fenway Park — comienza su enfoque analítico del bateo",
+      "Williams batea .406 — última temporada de .400 en la historia de las Grandes Ligas",
+      "Williams publica 'The Science of Hitting' — aún el texto de bateo estándar",
+      "Los tees de bateo para jóvenes y los ejercicios de lanzamiento suave se convierten en estándar en el desarrollo del béisbol de viajes",
+      "La tecnología de seguimiento Statcast revoluciona la comprensión de la velocidad de salida y el ángulo de lanzamiento"
+    ],
+    "keyTakeaways": [
+      "Alinea los nudillos de golpe en el agarre para permitir la rotación adecuada de la muñeca a través del contacto",
+      "Nunca pises en la cubeta — el pie delantero debe avanzar hacia el lanzador, no alejarse del plato",
+      "La potencia proviene de la rotación de caderas — las manos siguen a las caderas, no al revés",
+      "Mantén los ojos en la pelota todo el camino a través del contacto — levantar la cabeza temprano causa contacto débil y elevados"
+    ]
+  },
+  "baseball-1-04": {
+    "tagline": "El brazo de un lanzador es precioso — lanza con buena mecánica y respeta tu conteo de lanzamientos.",
+    "overview": [
+      "El lanzamiento es un movimiento atlético de cuerpo completo que ejerce un estrés significativo en el brazo, particularmente en el codo y el hombro. Para lanzadores juveniles, entender la mecánica adecuada y respetar los límites del conteo de lanzamientos no se trata solo de rendimiento — se trata de la salud del brazo. Las lesiones por uso excesivo en el lanzamiento juvenil han alcanzado niveles epidémicos en los Estados Unidos, con lesiones como desgarros del LCA (cirugía de Tommy John) cada vez más comunes en jugadores de apenas 15 años.",
+      "El fastball de cuatro costuras es el lanzamiento fundamental para todos los lanzadores juveniles. Para sujetarlo: coloca tus dedos índice y medio a través de las cuatro costuras (las costuras que forman una forma de 'C' en la parte superior de la pelota), con el pulgar debajo para sostén. El agarre debe ser firme pero no apretado — apretar demasiado fuerte crea tensión en el antebrazo que reduce la velocidad e incrementa el riesgo de lesión.",
+      "Secuencia de mecánica de lanzamiento: comienza con una postura equilibrada en el montículo, inicia el movimiento, avanza hacia home con el pie delantero (longitud de stride aproximadamente 80–90% de la altura para la mayoría de lanzadores), rota las caderas y hombros, libera la pelota con el brazo viajando en un arco natural, y completa el seguimiento completamente — el brazo debe terminar en el muslo del lado del guante. El seguimiento incompleto es una causa importante del estrés en el brazo."
+    ],
+    "technical": {
+      "title": "Conteo de Lanzamientos de Little League y Requisitos de Descanso",
+      "body": [
+        "Little League Baseball tiene reglas estrictas de conteo de lanzamientos diseñadas para proteger los brazos jóvenes. Los límites dependen de la edad: edades 7–8: máximo 50 lanzamientos/día; edades 9–10: máximo 75 lanzamientos/día; edades 11–12: máximo 85 lanzamientos/día; edades 13–16: máximo 95 lanzamientos/día; edades 17–18: máximo 105 lanzamientos/día. Estos son máximos — los entrenadores deben monitorear la fatiga del brazo independientemente del conteo.",
+        "Los días de descanso requeridos son igualmente importantes. Si un lanzador realiza 66+ lanzamientos, requiere 4 días de calendario de descanso antes de lanzar nuevamente (edades 13 en adelante). Los conteos de lanzamientos más bajos requieren proporcionalmente menos días de descanso. Los entrenadores y padres que ignoran los requisitos de descanso por el bien de ganar son la fuente principal de lesiones en el brazo juvenil. Ningún resultado de juego vale la salud del brazo a largo plazo de un niño."
+      ]
+    },
+    "incident": {
+      "title": "La Epidemia de Lesiones en Brazos Juveniles — Investigación ASMI 2007",
+      "impact": "La investigación del Dr. James Andrews y colegas en ASMI documentó que lanzadores juveniles que lanzaron más de 100 entradas por año tuvieron un riesgo 3.5× mayor de lesión grave en el brazo — impulsando la adopción de reglas de conteo de lanzamientos en el béisbol juvenil en toda la nación.",
+      "body": [
+        "En 2007, el Dr. James Andrews y colegas en el American Sports Medicine Institute (ASMI) publicaron investigación mostrando que lanzadores juveniles que lanzaron más de 100 entradas por año eran 3.5 veces más propensos a sufrir lesión grave en el brazo que aquellos que lanzaron menos entradas. El estudio también encontró que jugar béisbol durante todo el año (particularmente lanzar) sin descanso adecuado era un factor de riesgo importante.",
+        "La investigación provocó cambios significativos en el béisbol juvenil. Little League International adoptó reglas formales de conteo de lanzamientos en 2007. USA Baseball creó las directrices 'Pitch Smart', que ahora son respaldadas por cada organización mayor de béisbol juvenil en el país. El mensaje central: el brazo de un lanzador no es reemplazable. Protegerlo en el béisbol juvenil protege la capacidad de un niño de jugar de por vida."
+      ]
+    },
+    "timeline": [
+      "Las lesiones en brazos juveniles comienzan a aumentar a medida que el béisbol durante todo el año se vuelve común",
+      "USA Baseball y ASMI comienzan a estudiar lesiones por lanzamiento en jóvenes",
+      "Little League Baseball adopta reglas formales de conteo de lanzamientos — edades 7–18",
+      "USA Baseball lanza las directrices 'Pitch Smart' — programa de cuidado del brazo basado en ciencia",
+      "Cirugías de Tommy John en jugadores menores de 20 años se duplican comparadas con niveles de 2000 (datos ASMI)",
+      "La especialización durante todo el año identificada como factor de riesgo principal — participación en múltiples deportes recomendada"
+    ],
+    "keyTakeaways": [
+      "Sujeta el fastball de cuatro costuras a través de las cuatro costuras, almohadillas de dedos en el cuero — no demasiado apretado",
+      "Completa el seguimiento completamente — el brazo termina en el muslo del lado del guante — el seguimiento incompleto lesiona los codos",
+      "Los límites de conteo de lanzamientos de Little League existen para proteger los brazos jóvenes — edades 11–12 el máximo es 85 lanzamientos/día",
+      "Los requisitos de descanso después de lanzar son obligatorios — 66+ lanzamientos requiere 4 días de descanso antes de lanzar nuevamente"
+    ]
+  },
+  "baseball-1-05": {
+    "tagline": "Todo gran juego en el campo comienza con la posición de espera correcta — antes de que la bola sea golpeada.",
+    "overview": [
+      "La defensa en el béisbol comienza antes de que la bola sea lanzada. Un jugador en la posición de espera correcta — postura atlética, guante hacia afuera y listo, en las puntas de los pies — puede reaccionar a cualquier bola más rápido y de manera más limpia que uno que es sorprendido de pies planos. La posición de espera es: pies ligeramente más separados que el ancho de los hombros, rodillas dobladas, peso hacia adelante en las puntas de los pies, guante a la altura de la cintura frente al cuerpo, ojos arriba y rastreando al bateador.",
+      "El juego de bolas en tierra requiere acercarse a la bola en lugar de esperar a que llegue. La técnica: avanzar rápidamente para tomar la bola al frente (sin dejar que la bola te juegue), bajar el cuerpo (espalda paralela al suelo), colocar el guante hacia abajo con los dedos apuntando al suelo (para evitar que los botes cortos reboten sobre el guante), ver la bola entrar al guante, jugar con ambas manos (la mano de lanzamiento se cierra sobre la bola en el guante). El error común: enderezarse demasiado temprano e intentar jugar a la altura de la cadera — las bolas pasan entre las piernas.",
+      "Mecánica de lanzamiento: agarrar la bola con un agarre de fastball de cuatro costuras a través de las costuras (lanzamiento recto y preciso), alinear el hombro delantero hacia el objetivo, pisar con el pie delantero hacia el lanzamiento, rotar caderas y hombros, extender el brazo naturalmente, y seguir adelante. La precisión de un lanzamiento proviene del agarre consistente y la alineación del hombro delantero."
+    ],
+    "technical": {
+      "title": "Posicionamiento de Bolas Elevadas y Juego con Dos Manos",
+      "body": [
+        "Capturar bolas elevadas: moverse bajo la bola temprano — llegar al lugar antes de que la bola llegue y dejar que venga hacia ti. Posiciónate para que la bola venga ligeramente hacia ti (no alejándose). Date un pequeño salto de cuervo (un paso de arrastre) antes de lanzar, lo que te permite generar impulso hacia tu objetivo. Dos manos siempre que sea posible: usa la mano de lanzamiento para cerrar sobre la bola mientras entra al guante, asegurándola y permitiendo una transferencia más rápida al lanzamiento.",
+        "Juzgar bolas elevadas es una habilidad que se desarrolla con la repetición — el sonido del bate y la trayectoria inicial de la bola son las pistas principales. Una bola golpeada alta y recta es más fácil de rastrear; un línea es más difícil. Los jardineros nunca deben retroceder — siempre gira y corre hacia el lugar de aterrizaje proyectado de la bola, luego deja que la bola venga hacia ti."
+      ]
+    },
+    "incident": {
+      "title": "Roberto Clemente y el Arte del Lanzamiento en el Jardín",
+      "impact": "El brazo del jardín de Roberto Clemente es ampliamente considerado el mejor en la historia del béisbol — ganó 12 Guantes de Oro consecutivos y era famoso por sacar corredores en las bases que intentaban tomar bases extra. Su brazo se convirtió en la plantilla para la instrucción de lanzamiento en el jardín.",
+      "body": [
+        "Roberto Clemente jugó el jardín derecho para los Pittsburgh Pirates de 1955 a 1972 y ganó 12 Guantes de Oro consecutivos — el premio defensivo más prestigioso en el béisbol. Los gerentes contrarios le dirían a sus corredores: no intenten tomar bases extra contra Clemente. Su brazo — poderoso, preciso y notablemente rápido del guante al lanzamiento — sacaba corredores en cualquier base, incluyendo el plato, desde el límite de advertencia del jardín derecho.",
+        "La técnica de Clemente fue estudiada por entrenadores durante generaciones: utilizaba una acción de brazo baja y compacta, golpeaba al cutoff man con precisión, y anticipaba hacia dónde irían los corredores de bases antes de que la bola fuera golpeada. Su juego defensivo sigue siendo el punto de referencia para la instrucción del jardín. Fue asesinado en un accidente de avión el 31 de diciembre de 1972, mientras entregaba suministros de ayuda para desastres a Nicaragua — una de las figuras más queridas del béisbol, recordado por su carácter tanto como por su talento."
+      ]
+    },
+    "timeline": [
+      "Roberto Clemente se une a los Pittsburgh Pirates — transforma la defensa del jardín",
+      "Clemente gana el primer Premio Guante de Oro — gana 12 consecutivos",
+      "Los Premios Guante de Oro de Rawlings se convierten en el estándar de la industria para la excelencia defensiva",
+      "Los programas de béisbol juvenil comienzan a enseñar formalmente la técnica de 'cargar la bola'",
+      "La técnica de juego con dos manos se estandariza en el currículo de entrenamiento juvenil",
+      "Las métricas defensivas Statcast cambian cómo se evalúa el posicionamiento del jardín"
+    ],
+    "keyTakeaways": [
+      "Comienza cada lanzamiento en la posición de espera — peso hacia adelante, rodillas dobladas, guante hacia adelante",
+      "Carga bolas en tierra; baja con los dedos del guante apuntando hacia abajo para evitar que las bolas pasen bajo el guante",
+      "Siempre intenta usar dos manos — la mano de lanzamiento se cierra sobre la bola para una transferencia más rápida y segura",
+      "Agarra la bola con un agarre de cuatro costuras antes de lanzar para máxima precisión y alcance"
+    ]
+  }
+}

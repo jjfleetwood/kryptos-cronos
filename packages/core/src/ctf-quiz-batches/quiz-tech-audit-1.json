@@ -1,0 +1,350 @@
+{
+  "audit-01": {
+    "questions": [
+      {
+        "q": "In COBIT 2019, the EDM domain (Evaluate, Direct, Monitor) represents which layer of the framework?",
+        "options": ["The governance layer — board-level oversight of IT direction and outcomes", "The management layer — IT teams planning, building, and operating systems"],
+        "correct": 0
+      },
+      {
+        "q": "True or False: A COBIT capability level of 2 (Managed) meets the minimum baseline required for regulated industries.",
+        "options": ["True — level 2 is sufficient for most regulatory requirements", "False — level 3 (Established) is the typical minimum for regulated industries"],
+        "correct": 1
+      },
+      {
+        "q": "Which 2002 legislation was directly triggered by governance failures like Enron and formalized IT controls requirements for public companies?",
+        "options": ["The Sarbanes-Oxley Act, which established IT controls requirements under Section 404", "The Gramm-Leach-Bliley Act, which established financial data privacy requirements"],
+        "correct": 0
+      },
+      {
+        "q": "COBIT 2019 organizes its objectives across how many governance and management domains?",
+        "options": ["Three domains: EDM for governance, plus APO and DSS for management", "Five domains: EDM for governance, and APO, BAI, DSS, MEA for management"],
+        "correct": 1
+      },
+      {
+        "q": "True or False: According to COBIT principles, management self-reporting to the board is sufficient evidence that governance objectives are being met.",
+        "options": ["True — management is accountable and their reporting should be trusted as primary evidence", "False — auditors must independently verify both governance and management layers"],
+        "correct": 1
+      }
+    ]
+  },
+  "audit-02": {
+    "questions": [
+      {
+        "q": "In a CRISC risk assessment, what does 'residual risk' mean?",
+        "options": ["The risk that remains after existing controls have been applied to reduce inherent risk", "The initial risk score calculated before any controls are considered"],
+        "correct": 0
+      },
+      {
+        "q": "True or False: 'Accept' is always a valid risk response when residual risk exceeds the board-approved risk appetite.",
+        "options": ["True — management can accept any risk if they document the decision", "False — risks above appetite require a board-approved treatment plan; unilateral acceptance is not sufficient"],
+        "correct": 1
+      },
+      {
+        "q": "CRISC defines four risk response options. Which of these is NOT one of them?",
+        "options": ["Ignore — defer the risk decision until the next audit cycle", "Transfer — shift the risk to a third party through insurance or contract"],
+        "correct": 0
+      },
+      {
+        "q": "The Capital One 2019 breach occurred because cloud misconfiguration risk was not captured at the correct severity. What does this illustrate about risk registers?",
+        "options": ["Risk registers only need to be updated annually to remain useful for audit purposes", "A stale or incorrectly scored risk register creates unmitigated exposure — residual risk was assessed as acceptable when it was actually critical"],
+        "correct": 1
+      },
+      {
+        "q": "True or False: Inherent risk is calculated as Likelihood multiplied by Impact before any controls are applied.",
+        "options": ["True — inherent risk reflects raw exposure with no controls factored in", "False — inherent risk already accounts for basic controls present in the environment"],
+        "correct": 0
+      }
+    ]
+  },
+  "audit-03": {
+    "questions": [
+      {
+        "q": "IT General Controls (ITGCs) differ from application controls because they:",
+        "options": ["Apply only to specific financial applications and the reports they generate", "Apply to the entire IT environment and underpin the reliability of all application controls"],
+        "correct": 1
+      },
+      {
+        "q": "True or False: A single ITGC failure — such as emergency changes bypassing approval — creates a pervasive finding that casts doubt on every financial report the affected system produced.",
+        "options": ["True — ITGC failures are pervasive and invalidate reliance on all application controls in the affected system", "False — ITGC failures are isolated to the specific change that was bypassed"],
+        "correct": 0
+      },
+      {
+        "q": "Which of the four ITGC pillars ensures that only authorized users can access systems and data?",
+        "options": ["Logical Access — enforcing least privilege and individual accountability", "Computer Operations — ensuring systems run reliably with tested backups"],
+        "correct": 0
+      },
+      {
+        "q": "When auditors test Change Management ITGCs, what condition is called a Segregation of Duties (SoD) violation?",
+        "options": ["A change applied outside the approved maintenance window without emergency authorization", "The developer who wrote the code also approved their own change ticket with no independent review"],
+        "correct": 1
+      },
+      {
+        "q": "True or False: The MF Global collapse demonstrated that a single ITGC failure in logical access is sufficient to enable fraud, even without other control gaps.",
+        "options": ["True — one ITGC failure is always sufficient to enable significant fraud", "False — MF Global had multiple simultaneous ITGC failures that together created the permissive environment enabling the fraud"],
+        "correct": 1
+      }
+    ]
+  },
+  "audit-04": {
+    "questions": [
+      {
+        "q": "The principle of least privilege means:",
+        "options": ["Every user has exactly the permissions needed to perform their job, and nothing more", "Users are granted broad access initially and permissions are reduced only when abuse is detected"],
+        "correct": 0
+      },
+      {
+        "q": "True or False: Annual recertification of user access is optional for non-privileged accounts under ISACA standards.",
+        "options": ["True — only privileged accounts require annual recertification", "False — access must be reviewed and recertified at least annually for all accounts in scope"],
+        "correct": 1
+      },
+      {
+        "q": "How quickly must privileged accounts be deprovisioned when an employee is terminated?",
+        "options": ["Within 24 hours of termination for privileged accounts", "Within 30 days, consistent with the standard access review cycle"],
+        "correct": 0
+      },
+      {
+        "q": "The Snowden case is used in ISACA curriculum primarily to illustrate which access control failure?",
+        "options": ["Shared accounts that prevent forensic attribution of unauthorized actions", "Privilege accumulation over time — access never removed after role changes — combined with inadequate recertification"],
+        "correct": 1
+      },
+      {
+        "q": "True or False: A shared admin account with four users is acceptable as long as the password is complex and rotated regularly.",
+        "options": ["True — strong password hygiene compensates for sharing when MFA is not available", "False — shared accounts provide no individual accountability and prevent forensic attribution of actions"],
+        "correct": 1
+      }
+    ]
+  },
+  "audit-05": {
+    "questions": [
+      {
+        "q": "ITIL defines three change types. Which type requires Change Advisory Board (CAB) review and approval before production deployment?",
+        "options": ["Normal changes — they require CAB review to assess risk and confirm testing is complete", "Standard changes — pre-approved routine changes that follow an established template"],
+        "correct": 0
+      },
+      {
+        "q": "True or False: An emergency change rate above 10% is generally considered a red flag that indicates process circumvention rather than genuine emergencies.",
+        "options": ["True — high emergency change rates signal that teams are bypassing normal controls by labeling changes as emergencies", "False — emergency change rates above 10% are expected in high-velocity production environments"],
+        "correct": 0
+      },
+      {
+        "q": "The Knight Capital $440M loss in 2012 is attributed to which change management failure?",
+        "options": ["A software deployment not verified across all servers, with no automated rollback when the partial deployment caused erroneous trades", "An emergency change applied without post-hoc CAB approval that introduced a logic error in the trading engine"],
+        "correct": 0
+      },
+      {
+        "q": "True or False: A rollback plan is optional for changes to non-critical systems where the risk of deployment failure is low.",
+        "options": ["True — rollback plans are only mandatory for changes to financial or safety-critical systems", "False — a rollback plan is mandatory for all production changes; if you cannot undo it, you cannot approve it"],
+        "correct": 1
+      },
+      {
+        "q": "A CHG-2003 deployed on a Tuesday at 14:37 when the approved maintenance window is Saturdays 01:00–05:00, with the same person as both developer and approver. How many ITIL control violations does this represent?",
+        "options": ["One violation — only the maintenance window breach counts since the developer self-approval is a separate SoD issue", "Two violations — both the Segregation of Duties failure and the out-of-window deployment are distinct control failures"],
+        "correct": 1
+      }
+    ]
+  },
+  "audit-06": {
+    "questions": [
+      {
+        "q": "What does RPO (Recovery Point Objective) define in a BCP/DR context?",
+        "options": ["How long the business can tolerate a system being down before operations are critically impaired", "The maximum amount of data loss the business can accept — which drives backup frequency requirements"],
+        "correct": 1
+      },
+      {
+        "q": "True or False: An RTO target of 2 hours is acceptable when the system's Maximum Tolerable Downtime (MTD) is also 2 hours.",
+        "options": ["True — meeting the MTD with the exact RTO target satisfies the BCP requirement", "False — the RTO must be less than the MTD to provide margin; an RTO equal to the MTD leaves no buffer for complications"],
+        "correct": 1
+      },
+      {
+        "q": "Hurricane Katrina exposed what specific BCP/DR design flaw at New Orleans financial institutions?",
+        "options": ["Primary and backup data centers were located in the same flood zone, meaning both were inaccessible simultaneously", "DR test results had not been reviewed by regulators, so plans were never validated against actual recovery requirements"],
+        "correct": 0
+      },
+      {
+        "q": "True or False: A DR plan that has never been successfully tested with documented results is considered an adequate control by ISACA standards.",
+        "options": ["True — a documented plan satisfies the control requirement even without test evidence", "False — an untested recovery plan is a hope, not a control; test evidence with results is required"],
+        "correct": 1
+      },
+      {
+        "q": "If a DR test shows the Grant Management Portal achieved an actual RTO of 5 hours 20 minutes against a 4-hour target, what is the auditor's finding?",
+        "options": ["No finding — the MTD is 8 hours, so the business can still survive within the absolute limit", "A HIGH finding — the DR plan does not meet its approved RTO target and remediation is required even if the MTD is not yet breached"],
+        "correct": 1
+      }
+    ]
+  },
+  "audit-07": {
+    "questions": [
+      {
+        "q": "NIST SP 800-61 defines four IR phases. Which phase is considered the most auditable because it has the most documentary evidence requirements?",
+        "options": ["Preparation — IR plans, role assignments, tabletop exercise records, and contact lists are all verifiable documents", "Containment/Eradication/Recovery — this phase produces the most system logs and forensic artifacts"],
+        "correct": 0
+      },
+      {
+        "q": "True or False: The Equifax breach detection failure occurred because attackers used a novel zero-day technique that no monitoring tool could have detected.",
+        "options": ["True — the attack method was unprecedented and detection was not technically feasible in 2017", "False — the SSL inspection tool that would have detected the traffic had been expired for 19 months due to a missed certificate renewal"],
+        "correct": 1
+      },
+      {
+        "q": "An IR plan that was last updated 21 months ago and has 3 open, overdue action items from the last tabletop exercise would receive what overall rating?",
+        "options": ["EFFECTIVE — the plan exists and has been exercised at least once in the past two years", "INEFFECTIVE — currency requirement (annual update) and follow-through on action items are both failures"],
+        "correct": 1
+      },
+      {
+        "q": "Mean Time to Detect (MTTD) measures which specific interval in the IR lifecycle?",
+        "options": ["The time from when the incident event occurred to when it was detected by the security team", "The time from detection to when the threat was fully eradicated from the environment"],
+        "correct": 0
+      },
+      {
+        "q": "True or False: An IR plan that does not include a ransomware playbook is acceptable if the organization has never experienced a ransomware incident.",
+        "options": ["True — playbooks should be developed reactively based on actual incident experience", "False — playbooks must cover the organization's primary threat landscape regardless of prior incidents; absence is an audit finding"],
+        "correct": 1
+      }
+    ]
+  },
+  "audit-08": {
+    "questions": [
+      {
+        "q": "In a vendor risk tiering model, what distinguishes a Tier 1 (Critical) vendor from a Tier 2 (High) vendor?",
+        "options": ["Tier 1 vendors have access to sensitive data or critical systems and may be single-source dependencies requiring the highest assessment frequency", "Tier 1 vendors are simply the largest vendors by contract value, regardless of their level of system access"],
+        "correct": 0
+      },
+      {
+        "q": "True or False: A questionnaire-only security assessment is sufficient for a Tier 1 vendor with admin access to classified networks.",
+        "options": ["True — questionnaires are the industry standard for third-party risk assessments at any tier", "False — Tier 1 critical vendors require SOC 2 Type II reports or equivalent, plus contractual right-to-audit; questionnaires alone are insufficient"],
+        "correct": 1
+      },
+      {
+        "q": "The SolarWinds supply chain attack succeeded primarily because affected organizations failed to do what?",
+        "options": ["Classify SolarWinds as a critical vendor requiring enhanced monitoring of its software's network activity", "Require SolarWinds to use multi-factor authentication for its developer accounts"],
+        "correct": 0
+      },
+      {
+        "q": "What action is required when a Tier 1 vendor's annual security assessment lapses beyond 365 days?",
+        "options": ["Issue a finding in the next audit report and request the vendor schedule a new assessment within 90 days", "Suspend the vendor's system access until a current assessment is completed — continued access is an unmitigated risk"],
+        "correct": 1
+      },
+      {
+        "q": "True or False: Vendor access permissions can be reviewed and removed at the next scheduled quarterly access review after a vendor relationship ends.",
+        "options": ["True — quarterly access reviews are the standard cadence for vendor access deprovisioning", "False — vendor access must be deprovisioned when the relationship ends, not at the next scheduled review cycle"],
+        "correct": 1
+      }
+    ]
+  },
+  "audit-09": {
+    "questions": [
+      {
+        "q": "GDPR Article 5(1)(e) — the storage limitation principle — means personal data must be:",
+        "options": ["Encrypted at rest for as long as it is retained, regardless of how long the retention period is", "Deleted once it is no longer necessary for the purpose for which it was collected, per the documented retention schedule"],
+        "correct": 1
+      },
+      {
+        "q": "True or False: Under GDPR, organizations must notify the supervisory authority within 72 hours of discovering a data breach.",
+        "options": ["True — GDPR breach notification to the supervisory authority is required within 72 hours of discovery", "False — the 72-hour window applies to notifying data subjects; the supervisory authority has 30 days"],
+        "correct": 0
+      },
+      {
+        "q": "The marketing_analytics table retained 450,000 records for 3,353 days against a 730-day retention policy. What GDPR principle does this violate and what is the required action?",
+        "options": ["Article 5(1)(b) purpose limitation — the data must be anonymized and retained for analytics research purposes", "Article 5(1)(e) storage limitation — all records older than 730 days must be deleted immediately and the DPO notified"],
+        "correct": 1
+      },
+      {
+        "q": "Meta's €1.2B GDPR fine in 2023 resulted from which category of violation?",
+        "options": ["Transferring EU personal data to US servers after the legal basis for those transfers was invalidated", "Failing to respond to data subject access requests within the 30-day statutory window"],
+        "correct": 0
+      },
+      {
+        "q": "True or False: Under GDPR's right to erasure (Article 17), organizations must fulfill a deletion request within 30 days and remove data from all systems, including routinely accessed backups.",
+        "options": ["True — deletion must cover all data stores from which the data can be accessed, including active backups", "False — backups are excluded from erasure requirements because restoring and deleting from backups is technically impractical"],
+        "correct": 0
+      }
+    ]
+  },
+  "audit-10": {
+    "questions": [
+      {
+        "q": "What is the single most important legal protection for a penetration tester that distinguishes their activity from criminal hacking?",
+        "options": ["Using only non-destructive testing techniques that cannot cause system outages or data loss", "Written authorization signed by the system owner that explicitly covers the systems and test types being performed"],
+        "correct": 1
+      },
+      {
+        "q": "True or False: If a cloud workload is within the authorized IP range, no additional cloud provider approval is needed before testing it.",
+        "options": ["True — the system owner's written authorization covers cloud resources they own, regardless of hosting provider", "False — cloud workloads require explicit cloud provider authorization; AWS, Azure, and GCP each have their own pentest approval policies"],
+        "correct": 1
+      },
+      {
+        "q": "A penetration tester scans 192.168.30.0/24, which is the core banking network listed as explicitly out of scope. What must happen next?",
+        "options": ["The tester should document the out-of-scope access and disclose it to the client within 24 hours, then cease all testing immediately", "The tester should continue if the scan was passive and did not include any active exploitation attempts"],
+        "correct": 0
+      },
+      {
+        "q": "The AT&T/iPad incident in 2010 illustrated which principle about security research authorization?",
+        "options": ["Defensive intent and responsible disclosure protect researchers from prosecution under the CFAA regardless of written authorization", "Without written authorization from the system owner, access to a system — even with defensive intent — can be prosecuted as unauthorized access"],
+        "correct": 1
+      },
+      {
+        "q": "True or False: A scope document that lists authorized IP ranges but does not explicitly list out-of-scope systems provides adequate protection for the tester.",
+        "options": ["True — anything not in the authorized range is implicitly out of scope", "False — out-of-scope systems must be explicitly listed; ambiguity in scope documents protects neither the client nor the tester"],
+        "correct": 1
+      }
+    ]
+  },
+  "audit-11": {
+    "questions": [
+      {
+        "q": "ISACA defines three attributes that make audit evidence sufficient. Which combination is correct?",
+        "options": ["Sufficient, reliable, and relevant — evidence must be enough to support the conclusion, from a credible source, and must actually address the control tested", "Complete, objective, and documented — evidence must cover the full population, be free of bias, and exist in written form"],
+        "correct": 0
+      },
+      {
+        "q": "True or False: In attribute sampling, if the sample deviation rate exceeds the tolerable deviation rate, the auditor must conclude the control is not operating effectively.",
+        "options": ["True — a sample deviation rate above the tolerable threshold means the auditor must conclude the control is not operating effectively or expand testing", "False — a single sample result is not sufficient to draw any conclusion about control effectiveness"],
+        "correct": 0
+      },
+      {
+        "q": "In a sample of 60 change tickets, 5 have no CAB approval. The tolerable deviation rate is 5%. What is the sample deviation rate and what does the auditor conclude?",
+        "options": ["8.3% — this exceeds the 5% tolerable rate, so the change management control is not operating effectively", "8.3% — this result is within the acceptable confidence interval since the population is 1,450 tickets"],
+        "correct": 0
+      },
+      {
+        "q": "The Arthur Andersen case established which principle about audit evidence?",
+        "options": ["Digital evidence must be collected using automated tools to ensure objectivity and completeness", "Audit evidence must be preserved, not just collected — destruction of evidence is obstruction of justice, and retention of 7 years is required"],
+        "correct": 1
+      },
+      {
+        "q": "True or False: Testimonial evidence (interviews) is ranked higher in audit evidence quality than documentary evidence (records and logs).",
+        "options": ["True — direct interviews with process owners provide the most reliable evidence about control operation", "False — documentary evidence ranks higher than testimonial evidence; physical evidence observed directly ranks highest of all"],
+        "correct": 1
+      }
+    ]
+  },
+  "audit-12": {
+    "questions": [
+      {
+        "q": "The CISA standard for a complete audit finding requires four elements. Which set is correct?",
+        "options": ["Condition, Criteria, Cause, and Effect — what was found, what the standard requires, why the deviation exists, and what risk it creates", "Finding, Evidence, Impact, and Recommendation — the observation, supporting data, business consequence, and suggested fix"],
+        "correct": 0
+      },
+      {
+        "q": "True or False: When a finding identified in a prior audit cycle appears unchanged in the current audit, the auditor should report it to management and allow them a second remediation period before escalating.",
+        "options": ["True — management should be given an additional remediation opportunity before the audit committee is involved", "False — repeat findings are escalated directly to the audit committee because management accountability has demonstrably failed"],
+        "correct": 1
+      },
+      {
+        "q": "Remediation tracking at 30, 60, and 90 days after an audit report is issued is best described as:",
+        "options": ["An optional best practice that demonstrates audit quality but is not required by ISACA standards", "An audit control itself — untracked remediation is indistinguishable from no remediation"],
+        "correct": 1
+      },
+      {
+        "q": "The Wells Fargo case (2016–2023) is used in CISA curriculum primarily to illustrate what audit risk?",
+        "options": ["The risk that external auditors will fail to detect fraud when management uses complex financial instruments to conceal it", "The risk that management acknowledges findings and agrees to remediation plans but fails to implement them — making repeat findings a fundamental control environment failure"],
+        "correct": 1
+      },
+      {
+        "q": "True or False: Finding F-2026-01 (terminated user accounts not deprovisioned) is a repeat finding if F-2025-01 from the prior year audit described the same condition and was never remediated.",
+        "options": ["True — same condition, same control, not remediated in 12+ months makes this a repeat finding requiring audit committee escalation", "False — the finding IDs are different, so each year's instance is treated as a new finding with a fresh remediation timeline"],
+        "correct": 0
+      }
+    ]
+  }
+}

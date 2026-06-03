@@ -1,0 +1,2554 @@
+{
+  "audit-01": {
+    "questions": [
+      {
+        "q": "En COBIT 2019, el dominio EDM (Evaluar, Dirigir, Monitorear) representa qué capa del marco de trabajo?",
+        "options": [
+          "La capa de gobernanza — supervisión a nivel de junta directiva sobre la dirección y los resultados de TI",
+          "La capa de gestión — equipos de TI que planifican, construyen y operan sistemas"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Verdadero o Falso: Un nivel de capacidad 2 (Gestionado) en COBIT cumple el requisito mínimo base para industrias reguladas.",
+        "options": [
+          "Verdadero — el nivel 2 es suficiente para la mayoría de los requisitos regulatorios",
+          "Falso — el nivel 3 (Establecido) es el mínimo típico para industrias reguladas"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "¿Qué legislación de 2002 fue impulsada directamente por fallos de gobernanza como Enron y formalizó los requisitos de controles de TI para empresas públicas?",
+        "options": [
+          "La Ley Sarbanes-Oxley, que estableció requisitos de controles de TI bajo la Sección 404",
+          "La Ley Gramm-Leach-Bliley, que estableció requisitos de privacidad de datos financieros"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "COBIT 2019 organiza sus objetivos en cuántos dominios de gobernanza y gestión?",
+        "options": [
+          "Tres dominios: EDM para gobernanza, más APO y DSS para gestión",
+          "Cinco dominios: EDM para gobernanza, y APO, BAI, DSS, MEA para gestión"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "Verdadero o Falso: Según los principios de COBIT, el autorreporte de la dirección a la junta es evidencia suficiente de que se están cumpliendo los objetivos de gobernanza.",
+        "options": [
+          "Verdadero — la dirección es responsable y sus informes deben tomarse como evidencia primaria",
+          "Falso — los auditores deben verificar de forma independiente tanto la capa de gobernanza como la de gestión"
+        ],
+        "correct": 1
+      }
+    ]
+  },
+  "audit-02": {
+    "questions": [
+      {
+        "q": "En una evaluación de riesgos CRISC, ¿qué significa 'riesgo residual'?",
+        "options": [
+          "El riesgo que permanece después de que los controles existentes se han aplicado para reducir el riesgo inherente",
+          "La puntuación de riesgo inicial calculada antes de considerar ningún control"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Verdadero o Falso: 'Aceptar' siempre es una respuesta válida al riesgo cuando el riesgo residual supera el apetito de riesgo aprobado por la junta.",
+        "options": [
+          "Verdadero — la dirección puede aceptar cualquier riesgo si documenta la decisión",
+          "Falso — los riesgos que superan el apetito requieren un plan de tratamiento aprobado por la junta; la aceptación unilateral no es suficiente"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "CRISC define cuatro opciones de respuesta al riesgo. ¿Cuál de estas NO es una de ellas?",
+        "options": [
+          "Ignorar — aplazar la decisión sobre el riesgo hasta el próximo ciclo de auditoría",
+          "Transferir — trasladar el riesgo a un tercero mediante seguros o contratos"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "La brecha de Capital One en 2019 ocurrió porque el riesgo de mala configuración en la nube no se registró con la gravedad correcta. ¿Qué ilustra esto sobre los registros de riesgos?",
+        "options": [
+          "Los registros de riesgos solo necesitan actualizarse anualmente para ser útiles en auditorías",
+          "Un registro de riesgos desactualizado o con puntuación incorrecta genera exposición sin mitigar — el riesgo residual se evaluó como aceptable cuando en realidad era crítico"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "Verdadero o Falso: El riesgo inherente se calcula como Probabilidad multiplicada por Impacto antes de aplicar ningún control.",
+        "options": [
+          "Verdadero — el riesgo inherente refleja la exposición bruta sin controles",
+          "Falso — el riesgo inherente ya tiene en cuenta los controles básicos presentes en el entorno"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "audit-03": {
+    "questions": [
+      {
+        "q": "Los Controles Generales de TI (ITGC) se diferencian de los controles de aplicación porque:",
+        "options": [
+          "Se aplican solo a aplicaciones financieras específicas y a los informes que generan",
+          "Se aplican a todo el entorno de TI y sustentan la fiabilidad de todos los controles de aplicación"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "Verdadero o Falso: Un solo fallo en un ITGC — como cambios de emergencia que evitan la aprobación — genera un hallazgo generalizado que pone en duda todos los informes financieros producidos por el sistema afectado.",
+        "options": [
+          "Verdadero — los fallos de ITGC son generalizados e invalidan la confianza en todos los controles de aplicación del sistema afectado",
+          "Falso — los fallos de ITGC se limitan al cambio específico que fue omitido"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "¿Cuál de los cuatro pilares de los ITGC garantiza que solo los usuarios autorizados puedan acceder a los sistemas y datos?",
+        "options": [
+          "Acceso Lógico — aplicar el principio de mínimo privilegio y responsabilidad individual",
+          "Operaciones Informáticas — garantizar que los sistemas funcionen de forma fiable con copias de seguridad probadas"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Cuando los auditores prueban los ITGC de Gestión de Cambios, ¿qué condición se denomina violación de Segregación de Funciones (SoD)?",
+        "options": [
+          "Un cambio aplicado fuera de la ventana de mantenimiento aprobada sin autorización de emergencia",
+          "El desarrollador que escribió el código también aprobó su propio ticket de cambio sin revisión independiente"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "Verdadero o Falso: El colapso de MF Global demostró que un solo fallo de ITGC en acceso lógico es suficiente para habilitar el fraude, incluso sin otras brechas de control.",
+        "options": [
+          "Verdadero — un fallo de ITGC es siempre suficiente para habilitar fraude significativo",
+          "Falso — MF Global tuvo múltiples fallos simultáneos de ITGC que juntos crearon el entorno permisivo que posibilitó el fraude"
+        ],
+        "correct": 1
+      }
+    ]
+  },
+  "audit-04": {
+    "questions": [
+      {
+        "q": "El principio de mínimo privilegio significa:",
+        "options": [
+          "Cada usuario tiene exactamente los permisos necesarios para realizar su trabajo, y nada más",
+          "A los usuarios se les otorga acceso amplio inicialmente y los permisos se reducen solo cuando se detecta un abuso"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Verdadero o Falso: La recertificación anual de acceso de usuarios es opcional para cuentas sin privilegios según los estándares de ISACA.",
+        "options": [
+          "Verdadero — solo las cuentas con privilegios requieren recertificación anual",
+          "Falso — el acceso debe revisarse y recertificarse al menos anualmente para todas las cuentas en el alcance"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "¿Con qué rapidez deben eliminarse las cuentas con privilegios cuando se rescinde a un empleado?",
+        "options": [
+          "Dentro de las 24 horas posteriores al cese para cuentas con privilegios",
+          "Dentro de 30 días, en línea con el ciclo estándar de revisión de acceso"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "El caso Snowden se utiliza en el currículo de ISACA principalmente para ilustrar qué fallo de control de acceso?",
+        "options": [
+          "Cuentas compartidas que impiden la atribución forense de acciones no autorizadas",
+          "Acumulación de privilegios con el tiempo — acceso nunca eliminado tras cambios de rol — combinada con recertificación inadecuada"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "Verdadero o Falso: Una cuenta de administrador compartida por cuatro usuarios es aceptable siempre que la contraseña sea compleja y se rote regularmente.",
+        "options": [
+          "Verdadero — una buena higiene de contraseñas compensa el uso compartido cuando no hay MFA disponible",
+          "Falso — las cuentas compartidas no permiten responsabilidad individual ni atribución forense de acciones"
+        ],
+        "correct": 1
+      }
+    ]
+  },
+  "audit-05": {
+    "questions": [
+      {
+        "q": "ITIL define tres tipos de cambio. ¿Qué tipo requiere revisión y aprobación del Comité Asesor de Cambios (CAB) antes de la implantación en producción?",
+        "options": [
+          "Cambios normales — requieren revisión del CAB para evaluar el riesgo y confirmar que las pruebas están completas",
+          "Cambios estándar — cambios rutinarios pre-aprobados que siguen una plantilla establecida"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Verdadero o Falso: Una tasa de cambios de emergencia superior al 10% se considera generalmente una señal de alerta que indica elusión del proceso en lugar de emergencias reales.",
+        "options": [
+          "Verdadero — las altas tasas de cambios de emergencia indican que los equipos evitan los controles normales etiquetando cambios como emergencias",
+          "Falso — tasas de cambios de emergencia superiores al 10% son esperadas en entornos de producción de alta velocidad"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "La pérdida de $440 millones de Knight Capital en 2012 se atribuye a qué fallo en la gestión de cambios?",
+        "options": [
+          "Un despliegue de software no verificado en todos los servidores, sin rollback automático cuando el despliegue parcial causó operaciones erróneas",
+          "Un cambio de emergencia aplicado sin aprobación posterior del CAB que introdujo un error lógico en el motor de trading"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Verdadero o Falso: Un plan de reversión es opcional para cambios en sistemas no críticos donde el riesgo de fallo de despliegue es bajo.",
+        "options": [
+          "Verdadero — los planes de reversión solo son obligatorios para cambios en sistemas financieros o de seguridad crítica",
+          "Falso — un plan de reversión es obligatorio para todos los cambios en producción; si no se puede deshacer, no se puede aprobar"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "Un CHG-2003 desplegado un martes a las 14:37 cuando la ventana de mantenimiento aprobada es los sábados de 01:00 a 05:00, y con la misma persona como desarrollador y aprobador. ¿Cuántas violaciones de control ITIL representa esto?",
+        "options": [
+          "Una violación — solo cuenta el incumplimiento de la ventana de mantenimiento, ya que la autoaprobación del desarrollador es un problema SoD separado",
+          "Dos violaciones — tanto el fallo de Segregación de Funciones como el despliegue fuera de ventana son fallos de control distintos"
+        ],
+        "correct": 1
+      }
+    ]
+  },
+  "audit-06": {
+    "questions": [
+      {
+        "q": "¿Qué define el RPO (Objetivo de Punto de Recuperación) en un contexto de BCP/DR?",
+        "options": [
+          "El tiempo que el negocio puede tolerar que un sistema esté caído antes de que las operaciones se vean críticamente afectadas",
+          "La pérdida máxima de datos que el negocio puede aceptar — lo que determina la frecuencia requerida de copias de seguridad"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "Verdadero o Falso: Un objetivo de RTO de 2 horas es aceptable cuando el Tiempo Máximo Tolerable de Inactividad (MTD) del sistema también es de 2 horas.",
+        "options": [
+          "Verdadero — cumplir el MTD con el objetivo de RTO exacto satisface el requisito del BCP",
+          "Falso — el RTO debe ser menor que el MTD para proporcionar margen; un RTO igual al MTD no deja margen para complicaciones"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "El huracán Katrina expuso qué fallo específico de diseño en BCP/DR en las instituciones financieras de Nueva Orleans?",
+        "options": [
+          "Los centros de datos principal y de respaldo estaban ubicados en la misma zona de inundación, lo que los hizo inaccesibles simultáneamente",
+          "Los resultados de las pruebas de DR no habían sido revisados por los reguladores, por lo que los planes nunca fueron validados frente a los requisitos reales de recuperación"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Verdadero o Falso: Un plan de DR que nunca ha sido probado exitosamente con resultados documentados se considera un control adecuado según los estándares de ISACA.",
+        "options": [
+          "Verdadero — un plan documentado cumple el requisito de control aunque no haya evidencia de pruebas",
+          "Falso — un plan de recuperación no probado es una esperanza, no un control; se requiere evidencia de pruebas con resultados"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "Si una prueba de DR muestra que el Portal de Gestión de Becas alcanzó un RTO real de 5 horas y 20 minutos frente a un objetivo de 4 horas, ¿cuál es el hallazgo del auditor?",
+        "options": [
+          "Sin hallazgo — el MTD es de 8 horas, por lo que el negocio aún puede sobrevivir dentro del límite absoluto",
+          "Hallazgo ALTO — el plan de DR no cumple su objetivo de RTO aprobado y se requiere remediación aunque el MTD no haya sido superado"
+        ],
+        "correct": 1
+      }
+    ]
+  },
+  "audit-07": {
+    "questions": [
+      {
+        "q": "NIST SP 800-61 define cuatro fases de IR. ¿Qué fase se considera la más auditable porque tiene más requisitos de evidencia documental?",
+        "options": [
+          "Preparación — los planes de IR, asignaciones de roles, registros de ejercicios de simulación y listas de contactos son todos documentos verificables",
+          "Contención/Erradicación/Recuperación — esta fase produce más registros de sistema y artefactos forenses"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Verdadero o Falso: El fallo de detección en la brecha de Equifax ocurrió porque los atacantes utilizaron una técnica de día cero novedosa que ninguna herramienta de monitoreo podría haber detectado.",
+        "options": [
+          "Verdadero — el método de ataque era sin precedentes y la detección no era técnicamente factible en 2017",
+          "Falso — la herramienta de inspección SSL que habría detectado el tráfico llevaba 19 meses caducada por no haber renovado el certificado"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "Un plan de IR que no fue actualizado hace 21 meses y tiene 3 puntos de acción vencidos pendientes del último ejercicio de simulación recibiría qué calificación general?",
+        "options": [
+          "EFECTIVO — el plan existe y ha sido ejercitado al menos una vez en los últimos dos años",
+          "INEFECTIVO — el requisito de vigencia (actualización anual) y el seguimiento de puntos de acción son ambos fallos"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "El Tiempo Medio de Detección (MTTD) mide qué intervalo específico en el ciclo de vida de IR?",
+        "options": [
+          "El tiempo desde que ocurrió el incidente hasta que fue detectado por el equipo de seguridad",
+          "El tiempo desde la detección hasta que la amenaza fue completamente erradicada del entorno"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Verdadero o Falso: Un plan de IR que no incluye un manual de respuesta a ransomware es aceptable si la organización nunca ha experimentado un incidente de ransomware.",
+        "options": [
+          "Verdadero — los manuales deben desarrollarse de forma reactiva basándose en la experiencia real de incidentes",
+          "Falso — los manuales deben cubrir el panorama de amenazas principal de la organización independientemente de incidentes previos; la ausencia es un hallazgo de auditoría"
+        ],
+        "correct": 1
+      }
+    ]
+  },
+  "audit-08": {
+    "questions": [
+      {
+        "q": "En un modelo de clasificación por niveles de riesgo de proveedores, ¿qué distingue a un proveedor de Nivel 1 (Crítico) de uno de Nivel 2 (Alto)?",
+        "options": [
+          "Los proveedores de Nivel 1 tienen acceso a datos sensibles o sistemas críticos y pueden ser dependencias de fuente única que requieren la mayor frecuencia de evaluación",
+          "Los proveedores de Nivel 1 son simplemente los proveedores más grandes por valor de contrato, independientemente de su nivel de acceso al sistema"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Verdadero o Falso: Una evaluación de seguridad solo mediante cuestionario es suficiente para un proveedor de Nivel 1 con acceso de administrador a redes clasificadas.",
+        "options": [
+          "Verdadero — los cuestionarios son el estándar de la industria para evaluaciones de riesgo de terceros en cualquier nivel",
+          "Falso — los proveedores críticos de Nivel 1 requieren informes SOC 2 Tipo II o equivalentes, más derecho contractual de auditoría; los cuestionarios solos son insuficientes"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "El ataque a la cadena de suministro de SolarWinds tuvo éxito principalmente porque las organizaciones afectadas no hicieron qué?",
+        "options": [
+          "Clasificar a SolarWinds como proveedor crítico que requería monitoreo mejorado de la actividad de red de su software",
+          "Exigir a SolarWinds el uso de autenticación multifactor para sus cuentas de desarrolladores"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "¿Qué acción se requiere cuando la evaluación de seguridad anual de un proveedor de Nivel 1 supera los 365 días sin renovarse?",
+        "options": [
+          "Emitir un hallazgo en el próximo informe de auditoría y solicitar al proveedor que programe una nueva evaluación en un plazo de 90 días",
+          "Suspender el acceso del proveedor al sistema hasta que se complete una evaluación actualizada — el acceso continuo es un riesgo no mitigado"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "Verdadero o Falso: Los permisos de acceso de proveedores pueden revisarse y eliminarse en la próxima revisión trimestral de acceso programada tras finalizar la relación con el proveedor.",
+        "options": [
+          "Verdadero — las revisiones trimestrales de acceso son el calendario estándar para la eliminación del acceso de proveedores",
+          "Falso — el acceso del proveedor debe eliminarse cuando finaliza la relación, no en el próximo ciclo de revisión programado"
+        ],
+        "correct": 1
+      }
+    ]
+  },
+  "audit-09": {
+    "questions": [
+      {
+        "q": "El principio de limitación del almacenamiento del Artículo 5(1)(e) del RGPD significa que los datos personales deben ser:",
+        "options": [
+          "Cifrados en reposo durante todo el tiempo que se retengan, independientemente de la duración del período de retención",
+          "Eliminados una vez que ya no sean necesarios para el propósito por el que fueron recopilados, según el calendario de retención documentado"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "Verdadero o Falso: Bajo el RGPD, las organizaciones deben notificar a la autoridad supervisora dentro de las 72 horas posteriores al descubrimiento de una violación de datos.",
+        "options": [
+          "Verdadero — la notificación de brechas del RGPD a la autoridad supervisora se requiere dentro de las 72 horas desde el descubrimiento",
+          "Falso — el plazo de 72 horas aplica para notificar a los interesados; la autoridad supervisora tiene 30 días"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "La tabla marketing_analytics retuvo 450.000 registros durante 3.353 días frente a una política de retención de 730 días. ¿Qué principio del RGPD viola esto y qué acción se requiere?",
+        "options": [
+          "Artículo 5(1)(b) limitación de la finalidad — los datos deben anonimizarse y retenerse para fines de investigación analítica",
+          "Artículo 5(1)(e) limitación del almacenamiento — todos los registros con más de 730 días deben eliminarse inmediatamente y notificarse al DPO"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "La multa de 1.200 millones de euros del RGPD impuesta a Meta en 2023 resultó de qué categoría de infracción?",
+        "options": [
+          "Transferir datos personales de ciudadanos de la UE a servidores estadounidenses después de que se invalidara la base legal para esas transferencias",
+          "No responder a las solicitudes de acceso de los interesados dentro del plazo legal de 30 días"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Verdadero o Falso: Bajo el derecho de supresión del RGPD (Artículo 17), las organizaciones deben cumplir una solicitud de eliminación en 30 días y eliminar los datos de todos los sistemas, incluidas las copias de seguridad de acceso habitual.",
+        "options": [
+          "Verdadero — la eliminación debe cubrir todos los almacenes de datos desde los que se puede acceder a los datos, incluidas las copias de seguridad activas",
+          "Falso — las copias de seguridad están excluidas de los requisitos de supresión porque restaurar y eliminar de ellas es técnicamente impracticable"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "audit-10": {
+    "questions": [
+      {
+        "q": "¿Cuál es la protección legal más importante para un pentester que distingue su actividad del hackeo criminal?",
+        "options": [
+          "Usar únicamente técnicas de prueba no destructivas que no puedan causar interrupciones del sistema o pérdida de datos",
+          "Autorización escrita firmada por el propietario del sistema que cubra explícitamente los sistemas y tipos de prueba que se realizarán"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "Verdadero o Falso: Si una carga de trabajo en la nube está dentro del rango de IP autorizado, no se necesita aprobación adicional del proveedor de nube antes de probarla.",
+        "options": [
+          "Verdadero — la autorización escrita del propietario del sistema cubre los recursos en la nube que posee, independientemente del proveedor de alojamiento",
+          "Falso — las cargas de trabajo en la nube requieren autorización explícita del proveedor; AWS, Azure y GCP tienen sus propias políticas de aprobación para pentests"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "Un pentester escanea 192.168.30.0/24, que es la red bancaria principal indicada como explícitamente fuera del alcance. ¿Qué debe ocurrir a continuación?",
+        "options": [
+          "El tester debe documentar el acceso fuera del alcance y comunicárselo al cliente en un plazo de 24 horas, deteniendo todas las pruebas de inmediato",
+          "El tester puede continuar si el escaneo fue pasivo y no incluyó intentos de explotación activa"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "El incidente de AT&T/iPad en 2010 ilustró qué principio sobre la autorización en investigación de seguridad?",
+        "options": [
+          "La intención defensiva y la divulgación responsable protegen a los investigadores de procesamiento bajo la CFAA independientemente de la autorización escrita",
+          "Sin autorización escrita del propietario del sistema, el acceso a un sistema — incluso con intención defensiva — puede ser procesado como acceso no autorizado"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "Verdadero o Falso: Un documento de alcance que lista rangos de IP autorizados pero no menciona explícitamente los sistemas fuera del alcance proporciona protección adecuada para el tester.",
+        "options": [
+          "Verdadero — todo lo que no esté en el rango autorizado está implícitamente fuera del alcance",
+          "Falso — los sistemas fuera del alcance deben listarse explícitamente; la ambigüedad en los documentos de alcance no protege ni al cliente ni al tester"
+        ],
+        "correct": 1
+      }
+    ]
+  },
+  "audit-11": {
+    "questions": [
+      {
+        "q": "ISACA define tres atributos que hacen que la evidencia de auditoría sea suficiente. ¿Cuál combinación es correcta?",
+        "options": [
+          "Suficiente, fiable y relevante — la evidencia debe ser suficiente para respaldar la conclusión, provenir de una fuente creíble y abordar realmente el control probado",
+          "Completa, objetiva y documentada — la evidencia debe cubrir la población completa, estar libre de sesgo y existir en forma escrita"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Verdadero o Falso: En el muestreo por atributos, si la tasa de desviación de la muestra supera la tasa de desviación tolerable, el auditor debe concluir que el control no está operando eficazmente.",
+        "options": [
+          "Verdadero — una tasa de desviación muestral superior al umbral tolerable significa que el auditor debe concluir que el control no opera eficazmente o ampliar las pruebas",
+          "Falso — un solo resultado de muestra no es suficiente para sacar ninguna conclusión sobre la eficacia del control"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "En una muestra de 60 tickets de cambio, 5 no tienen aprobación del CAB. La tasa de desviación tolerable es del 5%. ¿Cuál es la tasa de desviación de la muestra y qué concluye el auditor?",
+        "options": [
+          "8,3% — esto supera la tasa tolerable del 5%, por lo que el control de gestión de cambios no opera eficazmente",
+          "8,3% — este resultado está dentro del intervalo de confianza aceptable ya que la población es de 1.450 tickets"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "El caso Arthur Andersen estableció qué principio sobre la evidencia de auditoría?",
+        "options": [
+          "La evidencia digital debe recopilarse mediante herramientas automatizadas para garantizar objetividad e integridad",
+          "La evidencia de auditoría debe preservarse, no solo recopilarse — la destrucción de evidencia es obstrucción a la justicia, y se requiere una retención de 7 años"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "Verdadero o Falso: La evidencia testimonial (entrevistas) tiene mayor calidad que la evidencia documental (registros y logs) en auditoría.",
+        "options": [
+          "Verdadero — las entrevistas directas con los propietarios del proceso proporcionan la evidencia más fiable sobre la operación del control",
+          "Falso — la evidencia documental tiene mayor rango que la testimonial; la evidencia física observada directamente ocupa el rango más alto de todos"
+        ],
+        "correct": 1
+      }
+    ]
+  },
+  "audit-12": {
+    "questions": [
+      {
+        "q": "El estándar CISA para un hallazgo de auditoría completo requiere cuatro elementos. ¿Cuál conjunto es correcto?",
+        "options": [
+          "Condición, Criterio, Causa y Efecto — qué se encontró, qué exige el estándar, por qué existe la desviación y qué riesgo genera",
+          "Hallazgo, Evidencia, Impacto y Recomendación — la observación, los datos de respaldo, la consecuencia empresarial y la corrección sugerida"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Verdadero o Falso: Cuando un hallazgo identificado en un ciclo de auditoría anterior aparece sin cambios en la auditoría actual, el auditor debe reportarlo a la dirección y darle un segundo período de remediación antes de escalar.",
+        "options": [
+          "Verdadero — a la dirección debe dársele una oportunidad adicional de remediación antes de involucrar al comité de auditoría",
+          "Falso — los hallazgos repetidos se escalan directamente al comité de auditoría porque la responsabilidad de la dirección ha fallado de forma demostrable"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "El seguimiento de la remediación a los 30, 60 y 90 días después de emitir un informe de auditoría se describe mejor como:",
+        "options": [
+          "Una buena práctica opcional que demuestra calidad de auditoría pero no es requerida por los estándares de ISACA",
+          "Un control de auditoría en sí mismo — una remediación sin seguimiento es indistinguible de ninguna remediación"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "El caso Wells Fargo (2016–2023) se utiliza en el currículo de CISA principalmente para ilustrar qué riesgo de auditoría?",
+        "options": [
+          "El riesgo de que los auditores externos no detecten el fraude cuando la dirección utiliza instrumentos financieros complejos para ocultarlo",
+          "El riesgo de que la dirección reconozca los hallazgos y acepte planes de remediación pero no los implemente — haciendo de los hallazgos repetidos un fallo fundamental del entorno de control"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "Verdadero o Falso: El hallazgo F-2026-01 (cuentas de usuarios dados de baja no eliminadas) es un hallazgo repetido si F-2025-01 de la auditoría del año anterior describía la misma condición y nunca fue remediado.",
+        "options": [
+          "Verdadero — misma condición, mismo control, no remediado en más de 12 meses convierte esto en un hallazgo repetido que requiere escalada al comité de auditoría",
+          "Falso — los IDs de hallazgo son diferentes, por lo que la instancia de cada año se trata como un hallazgo nuevo con un plazo de remediación nuevo"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "audit-t01": {
+    "questions": [
+      {
+        "q": "BOLA ocupa el primer lugar en el OWASP API Security Top 10 porque una API que verifica un token válido pero no comprueba la propiedad del objeto permite que cualquier usuario autenticado acceda a los datos de cualquier otro usuario.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "¿Cuál es la técnica principal para probar BOLA en una auditoría de API?",
+        "options": [
+          "Intercambiar IDs de objetos entre cuentas de prueba autenticadas",
+          "Enviar cargas JSON malformadas para hacer caer el servidor"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "En la brecha de la API de Peloton (2021), ¿qué hizo especialmente grave la vulnerabilidad BOLA?",
+        "options": [
+          "Algunos endpoints no requerían ninguna autenticación",
+          "Peloton almacenaba las contraseñas en texto plano en su base de datos"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Al auditar una API en busca de BOLA, es suficiente probar únicamente los endpoints documentados y públicamente listados.",
+        "options": [
+          "Falso — los endpoints no documentados también deben enumerarse",
+          "Verdadero — los endpoints no documentados no son accesibles para los atacantes"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Una respuesta segura de la API ante un intento de prueba de BOLA (Usuario A accediendo al objeto del Usuario B) debe ser:",
+        "options": [
+          "HTTP 403 Prohibido sin que se devuelvan datos del objeto",
+          "HTTP 200 OK con un cuerpo de respuesta vacío"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "audit-t02": {
+    "questions": [
+      {
+        "q": "Ejecutar 'git rm' en un archivo que contiene un secreto elimina completamente el secreto del repositorio porque no quedan más copias.",
+        "options": [
+          "Falso — el secreto permanece en el historial de git en cada clon y bifurcación",
+          "Verdadero — git rm elimina el archivo de todas las ramas e historial"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "¿Qué función de HashiCorp Vault elimina el riesgo de que un credencial de base de datos estático robado sea utilizado por un atacante?",
+        "options": [
+          "Secretos dinámicos con TTL cortos generados por solicitud",
+          "Almacenar secretos en un archivo YAML cifrado añadido al repositorio git"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "En la brecha de Uber de 2022, ¿cuál fue la causa raíz que permitió el movimiento lateral del atacante?",
+        "options": [
+          "Una credencial de administrador codificada en un script de PowerShell en un recurso compartido de archivos interno",
+          "Una vulnerabilidad sin parchear en la aplicación web de cara al público de Uber"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Los programas de escaneo de secretos deben cubrir repositorios de código fuente, variables de pipelines de CI/CD, imágenes de contenedores, recursos compartidos de archivos y scripts internos.",
+        "options": [
+          "Verdadero",
+          "Falso — las variables de CI/CD son cifradas automáticamente por el proveedor del pipeline"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "¿Cuál es el TTL máximo recomendado para secretos en sistemas automatizados que acceden a HashiCorp Vault?",
+        "options": [
+          "1 hora",
+          "24 horas"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "audit-t03": {
+    "questions": [
+      {
+        "q": "Las Políticas de Control de Servicios (SCP) de AWS pueden ser anuladas por un administrador de IAM dentro de la misma cuenta si su política de IAM concede explícitamente la acción.",
+        "options": [
+          "Falso — las SCP anulan las políticas de IAM y no pueden ser evitadas por administradores dentro de la cuenta",
+          "Verdadero — AdministratorAccess de IAM siempre tiene precedencia sobre las SCP"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "En la brecha de Capital One (2019), ¿qué dos fallos de guardarraíles permitieron la exfiltración de 106 millones de registros?",
+        "options": [
+          "Ninguna regla de Config detectó la mala configuración del WAF y ninguna alerta de CloudWatch se activó ante el volumen de llamadas a S3",
+          "CloudTrail estaba deshabilitado y el bucket de S3 tenía acceso público habilitado"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "CloudTrail debe habilitarse en todas las regiones de AWS, no solo en us-east-1, para garantizar el registro completo de la actividad de la API.",
+        "options": [
+          "Verdadero",
+          "Falso — us-east-1 captura los servicios globales por lo que las otras regiones son opcionales"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "¿Qué control de AWS proporciona monitoreo de cumplimiento CONTINUO de recursos frente a políticas definidas?",
+        "options": [
+          "AWS Config Rules",
+          "AWS CloudTrail"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Almacenar los logs de CloudTrail en la misma cuenta que se está auditando es una buena práctica de seguridad porque simplifica el acceso a los registros.",
+        "options": [
+          "Falso — un administrador comprometido en la misma cuenta podría eliminar los logs; se requiere almacenamiento en cuenta separada",
+          "Verdadero — el almacenamiento en la misma cuenta garantiza un acceso rápido al equipo de auditoría"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "audit-t04": {
+    "questions": [
+      {
+        "q": "El permiso de IAM 'iam:CreatePolicyVersion' por sí solo puede representar una vía de escalada de privilegios hasta AdministratorAccess.",
+        "options": [
+          "Verdadero — un usuario puede crear una nueva versión de política que otorgue acceso total de administrador y adjuntársela a sí mismo",
+          "Falso — CreatePolicyVersion solo modifica políticas existentes sin cambiar los permisos efectivos"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "En la brecha de Okta de 2022, ¿qué principio de IAM había sido violado y que habilitó directamente el acceso del atacante?",
+        "options": [
+          "La cuenta de soporte de un proveedor externo tenía permisos más amplios de los necesarios para su función",
+          "Okta no había habilitado MFA en su cuenta raíz de AWS"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "¿Qué combinación de permisos de IAM crea una vía de escalada de privilegios al permitir que un atacante lance instancias EC2 con roles privilegiados adjuntos?",
+        "options": [
+          "iam:PassRole combinado con ec2:RunInstances",
+          "iam:ListRoles combinado con ec2:DescribeInstances"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Las claves de acceso con más de 90 días de antigüedad en usuarios activos de IAM se consideran un hallazgo de seguridad.",
+        "options": [
+          "Verdadero",
+          "Falso — la antigüedad de la clave es irrelevante si la clave no se ha utilizado recientemente"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Para aplicaciones, la buena práctica de AWS IAM recomienda usar roles de IAM en lugar de usuarios de IAM con claves de acceso de larga duración.",
+        "options": [
+          "Verdadero — los roles utilizan credenciales temporales sin claves de acceso que rotar",
+          "Falso — los usuarios de IAM son preferidos porque tienen una identidad fija para los registros de auditoría"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "audit-t05": {
+    "questions": [
+      {
+        "q": "Montar el socket de Docker (/var/run/docker.sock) dentro de un contenedor otorga efectivamente a ese contenedor control total sobre el host.",
+        "options": [
+          "Verdadero",
+          "Falso — el socket solo permite al contenedor ver otros contenedores, no controlarlos"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "En el incidente de criptominería de Kubernetes de Tesla en 2018, ¿qué punto de acceso inicial explotaron los atacantes?",
+        "options": [
+          "Un panel de Kubernetes expuesto a internet sin autenticación",
+          "Un contenedor que se ejecutaba como root y permitía escalada de privilegios"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Kubernetes etcd almacena los Secrets cifrados por defecto, por lo que no se requiere configuración de cifrado adicional.",
+        "options": [
+          "Falso — los Secrets de Kubernetes están codificados en base64 (no cifrados) por defecto; el cifrado en reposo debe configurarse explícitamente",
+          "Verdadero — etcd utiliza cifrado AES-256 para todos los objetos almacenados de forma automática"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "El escaneo de CVE en imágenes de contenedores debe realizarse en el pipeline de CI/CD antes de que las imágenes se publiquen en el registro.",
+        "options": [
+          "Verdadero — detectar CVEs antes del registro evita que imágenes vulnerables lleguen a producción",
+          "Falso — el escaneo tras el despliegue es suficiente porque los controles de seguridad en tiempo de ejecución compensan"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Una especificación de contenedor con 'runAsUser: 0' y 'privileged: true' representa qué riesgo en una auditoría de Kubernetes?",
+        "options": [
+          "El contenedor se ejecuta como root con todas las capacidades del kernel del host — un escape del proceso equivale a root en el nodo host",
+          "El contenedor tiene acceso de lectura al sistema de archivos del host pero no puede ejecutar procesos fuera de su espacio de nombres"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "audit-t06": {
+    "questions": [
+      {
+        "q": "El escaneo de seguridad de IaC en CI/CD detecta errores de configuración antes de desplegar la infraestructura, desplazando la seguridad hacia la izquierda.",
+        "options": [
+          "Verdadero",
+          "Falso — el escaneo de IaC solo puede ejecutarse después del despliegue para verificar el estado real de los recursos"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "En la brecha de los Servicios Conectados de Toyota (2023), ¿qué control automatizado único habría detectado la mala configuración el mismo día en 2013?",
+        "options": [
+          "La regla de AWS Config 's3-bucket-public-read-prohibited' ejecutándose de forma continua",
+          "Una prueba de penetración manual programada trimestralmente"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Un recurso de grupo de seguridad de Terraform que permite entrada desde '0.0.0.0/0' en el puerto 22 es clasificado con qué gravedad por tfsec?",
+        "options": [
+          "ALTA — SSH abierto a toda internet es automáticamente un hallazgo significativo",
+          "BAJA — el puerto 22 es un puerto administrativo estándar y se espera que sea accesible"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "¿Qué herramienta realiza análisis de seguridad estático específicamente en plantillas de Terraform?",
+        "options": [
+          "tfsec o Checkov",
+          "Trivy o Grype"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Los recursos en la nube heredados que son anteriores a la gestión de IaC no necesitan importarse al escaneo de IaC porque las configuraciones históricas están exentas de los estándares actuales.",
+        "options": [
+          "Falso — los recursos heredados deben importarse a la gestión de IaC y someterse al mismo escaneo que los nuevos despliegues",
+          "Verdadero — el escaneo retroactivo de IaC no es factible y genera una carga operativa innecesaria"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "audit-t07": {
+    "questions": [
+      {
+        "q": "SAST (Pruebas de Seguridad de Aplicaciones Estáticas) analiza el código fuente sin ejecutarlo, detectando vulnerabilidades como inyección SQL antes de que se compile la aplicación.",
+        "options": [
+          "Verdadero",
+          "Falso — SAST requiere una aplicación en ejecución para simular ataques contra endpoints activos"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "La brecha de Equifax (2017) fue posible porque la empresa no tenía SCA (Análisis de Composición de Software) integrado en su pipeline de CI/CD para detectar la dependencia vulnerable de Apache Struts.",
+        "options": [
+          "Verdadero — SCA habría marcado el CVE inmediatamente cuando se publicó el parche",
+          "Falso — Equifax tenía SCA pero eligió suprimir el hallazgo manualmente"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "¿Quién debe autorizar las supresiones de falsos positivos en un programa de SAST?",
+        "options": [
+          "Un ingeniero de seguridad con justificación documentada",
+          "El desarrollador que escribió el código marcado, ya que conoce mejor el contexto"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "¿Qué tipo de prueba de seguridad confirma que una vulnerabilidad encontrada por SAST es realmente explotable en la aplicación en ejecución?",
+        "options": [
+          "DAST (Pruebas de Seguridad de Aplicaciones Dinámicas)",
+          "SCA (Análisis de Composición de Software)"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Log4Shell (CVE-2021-44228) es un ejemplo de vulnerabilidad que las herramientas SCA pueden detectar porque existe en una dependencia de código abierto conocida.",
+        "options": [
+          "Verdadero",
+          "Falso — Log4Shell es un comportamiento en tiempo de ejecución y no puede detectarse mediante escaneo estático de dependencias"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "audit-t08": {
+    "questions": [
+      {
+        "q": "La brecha de Target en 2013 tuvo éxito porque el acceso de red de un proveedor de climatización estaba en la misma red plana que los sistemas de punto de venta de Target.",
+        "options": [
+          "Verdadero",
+          "Falso — el atacante pivotó a través de una vulnerabilidad de aplicación web, no de una red plana"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "En un entorno de AWS correctamente segmentado, una base de datos RDS en una subred privada debe tener un grupo de seguridad que permita el puerto 5432 desde qué origen?",
+        "options": [
+          "Solo el ID del grupo de seguridad del servidor de aplicaciones",
+          "0.0.0.0/0, para garantizar que la aplicación siempre pueda alcanzar la base de datos"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Los VPC Flow Logs deben estar habilitados para validar la segmentación de red porque proporcionan el único registro del tráfico real entre subredes.",
+        "options": [
+          "Verdadero",
+          "Falso — las reglas de los grupos de seguridad son prueba suficiente de que la segmentación funciona sin necesitar registros de tráfico"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "PCI DSS requiere segmentación de red para reducir el alcance del entorno de datos del titular de la tarjeta y limitar el movimiento lateral.",
+        "options": [
+          "Verdadero",
+          "Falso — PCI DSS recomienda la segmentación pero no la exige para el cumplimiento"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Una subred de base de datos con una ruta de gateway NAT que permite el acceso a internet de salida representa qué tipo de hallazgo de segmentación?",
+        "options": [
+          "Una brecha de segmentación — los servidores de base de datos no deben tener ninguna ruta de internet de salida",
+          "Una configuración aceptable — el NAT solo permite salida y no expone la base de datos a conexiones entrantes"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "audit-t09": {
+    "questions": [
+      {
+        "q": "Los registros de auditoría de bases de datos que capturan solo operaciones DDL y DML (CREATE, INSERT, UPDATE, DELETE) son insuficientes porque pierden la exfiltración basada en lectura mediante consultas SELECT.",
+        "options": [
+          "Verdadero",
+          "Falso — las consultas SELECT no modifican datos, por lo que no presentan ningún requisito de registro de cumplimiento"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "En la brecha de desmantelamiento de Morgan Stanley (2020), ¿qué control de base de datos habría hecho ilegibles los datos en el hardware desmantelado?",
+        "options": [
+          "Cifrado en reposo — los datos sin la clave de cifrado son ilegibles incluso en hardware recuperado",
+          "Enmascaramiento a nivel de columna — los campos enmascarados habrían aparecido como valores de marcador de posición"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Una cuenta de servicio de Snowflake (SVC_ETL) con el rol ACCOUNTADMIN cuando solo necesita acceso INSERT a tablas de preparación se clasifica como qué tipo de hallazgo?",
+        "options": [
+          "Crítico — la cuenta tiene derechos de superadministrador, lo que significa que cualquier compromiso otorga acceso completo a la base de datos",
+          "Medio — ACCOUNTADMIN es estándar para cuentas de servicio que ejecutan trabajos ETL programados"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "La seguridad a nivel de fila (RLS) limita los datos a los que puede acceder una cuenta de usuario comprometida al particionar filas según los atributos del usuario autenticado.",
+        "options": [
+          "Verdadero",
+          "Falso — RLS solo se aplica a los administradores de bases de datos y no afecta a las cuentas de analistas regulares"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Una base de datos de desarrollo que contiene copias de PII de producción debe tener cifrado en reposo habilitado, aunque no sea el entorno de producción.",
+        "options": [
+          "Verdadero — cualquier base de datos que contenga datos sensibles requiere cifrado independientemente de la etiqueta del entorno",
+          "Falso — las bases de datos de desarrollo están excluidas de los requisitos de cifrado porque no están orientadas al cliente"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "audit-t10": {
+    "questions": [
+      {
+        "q": "En la brecha de Equifax (2017), los atacantes pasaron desapercibidos durante 78 días principalmente porque un dispositivo de inspección SSL tenía un certificado caducado y no inspeccionaba ni registraba el tráfico HTTPS.",
+        "options": [
+          "Verdadero",
+          "Falso — el atacante usó túneles cifrados que ningún sistema de monitoreo podía detectar en ese momento"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "¿Cómo se identifica una brecha en la cobertura de logs del SIEM durante una auditoría?",
+        "options": [
+          "Comparando la lista de fuentes de logs del SIEM contra el inventario completo de activos",
+          "Revisando el backlog de alertas del SIEM en busca de sistemas que nunca hayan generado una alerta"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "El Requisito 10 de PCI DSS exige una retención mínima de logs de 12 meses, con al menos 3 meses inmediatamente accesibles.",
+        "options": [
+          "Verdadero",
+          "Falso — PCI DSS requiere 6 meses de retención con 1 mes inmediatamente accesible"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Un SIEM con 4.237 alertas no reconocidas y un MTTA de 18,4 horas indica un programa de monitoreo eficaz.",
+        "options": [
+          "Falso — esto representa fatiga de alertas; el monitoreo eficaz requiere un MTTA inferior a 15 minutos para alertas críticas",
+          "Verdadero — un gran backlog de alertas demuestra una cobertura de detección completa"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Verificar que las fuentes de logs estén ENVIANDO logs activamente — no solo configuradas para hacerlo — es un paso obligatorio en una auditoría de cobertura de logs.",
+        "options": [
+          "Verdadero",
+          "Falso — la verificación de la configuración es suficiente; se puede asumir la entrega activa de logs si no se reportan errores"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "audit-t11": {
+    "questions": [
+      {
+        "q": "La arquitectura de Confianza Cero opera bajo el principio de que los usuarios y dispositivos dentro de la red corporativa deben ser confiables por defecto porque ya han pasado los controles perimetrales.",
+        "options": [
+          "Falso — Confianza Cero requiere que cada solicitud de acceso sea autenticada y autorizada independientemente de la ubicación en la red",
+          "Verdadero — la posición en la red interna es una señal de confianza válida en un modelo de Confianza Cero"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "El ataque a SolarWinds (2020) demostró una debilidad fundamental de la seguridad perimetral al explotar qué condición?",
+        "options": [
+          "Confianza interna implícita que permitió al atacante moverse lateralmente una vez dentro del perímetro",
+          "Una mala configuración de Confianza Cero que expuso APIs internas a internet"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "¿Qué método de autenticación representa el nivel de madurez AVANZADO para el pilar de Identidad en el Modelo de Madurez de Confianza Cero de CISA?",
+        "options": [
+          "Claves de hardware FIDO2 resistentes al phishing que reemplazan el SMS o TOTP",
+          "Nombre de usuario y contraseña con códigos SMS de un solo uso opcionales"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "ZTNA (Acceso a Red de Confianza Cero) reemplaza a la VPN proporcionando acceso específico a aplicaciones sin otorgar acceso amplio a nivel de red.",
+        "options": [
+          "Verdadero",
+          "Falso — ZTNA y VPN son complementarios y ambos son necesarios en una arquitectura de Confianza Cero madura"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "BeyondCorp de Google (2014) fue significativo porque fue la primera implementación empresarial a gran escala que demostró que la ubicación en la red interna no debe proporcionar confianza adicional.",
+        "options": [
+          "Verdadero",
+          "Falso — BeyondCorp mantuvo una zona interna de confianza para las estaciones de trabajo de ingeniería"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "audit-t12": {
+    "questions": [
+      {
+        "q": "Las auditorías de cumplimiento manuales proporcionan cobertura continua y en tiempo real de los recursos en la nube, mientras que las comprobaciones de cumplimiento automatizadas solo capturan una instantánea puntual.",
+        "options": [
+          "Falso — el cumplimiento automatizado es continuo; las auditorías manuales son instantáneas puntuales",
+          "Verdadero — los auditores humanos pueden evaluar el contexto que las herramientas automatizadas pierden, convirtiéndolos en el control principal"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "La mala configuración de acceso público en S3 de Toyota durante 10 años (2013–2023) habría sido detectada de inmediato por qué servicio de AWS?",
+        "options": [
+          "La regla de AWS Config 's3-bucket-public-read-prohibited' ejecutándose continuamente",
+          "AWS CloudTrail registrando toda la actividad de la API de S3"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "AWS Security Hub proporciona una puntuación de cumplimiento unificada al agregar hallazgos de Config Rules, GuardDuty, Inspector, Macie y herramientas de terceros.",
+        "options": [
+          "Verdadero",
+          "Falso — Security Hub solo agrega hallazgos de GuardDuty y no se integra con Config Rules"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "La auto-remediación de un hallazgo de Config Rule (como deshabilitar un bucket de S3 público) debe registrarse para proporcionar una pista de auditoría.",
+        "options": [
+          "Verdadero",
+          "Falso — las acciones de auto-remediación son deterministas y no necesitan registrarse"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Un programa de automatización de cumplimiento en el que solo 3 de 67 reglas de Config tienen auto-remediación habilitada y los hallazgos permanecen un promedio de 47 días antes de la remediación representa una postura de cumplimiento madura.",
+        "options": [
+          "Falso — la automatización eficaz del cumplimiento requiere auto-remediación habilitada para reglas críticas y de alta prioridad con remediación oportuna",
+          "Verdadero — 47 días está dentro de la ventana de remediación aceptable para la mayoría de los marcos de cumplimiento"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "audit-a01": {
+    "questions": [
+      {
+        "q": "En la API de uso de herramientas de Claude, ¿qué utiliza Claude para decidir cuándo llamar a una herramienta específica?",
+        "options": [
+          "El campo de descripción de la herramienta",
+          "El campo input_schema de la herramienta"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Verdadero o Falso: En el bucle agéntico, Claude ejecuta las herramientas directamente dentro de la llamada a la API.",
+        "options": [
+          "Verdadero — Claude ejecuta herramientas internamente",
+          "Falso — tu código ejecuta la herramienta y devuelve un tool_result"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "¿Qué vector de la brecha de Capital One habría detectado antes una herramienta de auditoría agéntica que monitoreara las reglas del WAF?",
+        "options": [
+          "Una desviación de la configuración de referencia conocida del WAF",
+          "Un bucket de S3 sin cifrar creado por un desarrollador"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Una definición de herramienta requiere tres partes. ¿Cuál conjunto es correcto?",
+        "options": [
+          "name, description e input_schema",
+          "name, endpoint y output_schema"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Verdadero o Falso: Siempre debes validar las entradas de herramientas en el servidor porque Claude siempre pasa argumentos con la forma perfecta.",
+        "options": [
+          "Verdadero — Claude nunca envía formas de argumentos inesperadas",
+          "Falso — Claude puede pasar formas de argumentos inesperadas; valida siempre en el servidor"
+        ],
+        "correct": 1
+      }
+    ]
+  },
+  "audit-a02": {
+    "questions": [
+      {
+        "q": "¿Qué porcentaje de las organizaciones típicamente tienen endpoints de API no documentados fuera de su inventario oficial?",
+        "options": [
+          "60% o más",
+          "Menos del 10%"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Verdadero o Falso: En la enumeración de API agéntica, Claude debe aplicar los límites de velocidad y las reglas de alcance directamente mediante su razonamiento en el prompt.",
+        "options": [
+          "Verdadero — el criterio de Claude es suficiente para la aplicación del alcance",
+          "Falso — los límites de velocidad y el alcance deben aplicarse en las implementaciones de herramientas, no por Claude"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "La exposición de la API de Peloton (2021) fue descubierta porque una versión de la API requería autenticación mientras otra no. ¿Qué ilustra esto?",
+        "options": [
+          "Regresión de autenticación — una versión más nueva debilitó la autenticación respecto a una versión anterior",
+          "Un rol de IAM excesivamente permisivo adjunto al servidor de API"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "En el bucle del agente de enumeración, ¿qué hace Claude cuando stop_reason es 'end_turn'?",
+        "options": [
+          "Ha sintetizado su informe final y no se necesitan más llamadas a herramientas",
+          "Encontró un error y el bucle debe reiniciarse desde el principio"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Verdadero o Falso: La técnica principal para encontrar APIs en la sombra es comparar la tabla de rutas activas del gateway de API contra la especificación OpenAPI oficial.",
+        "options": [
+          "Verdadero — la comparación entre rutas activas y la especificación documentada revela endpoints no documentados",
+          "Falso — las APIs en la sombra se encuentran mediante fuerza bruta de todas las rutas de URL posibles"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "audit-a03": {
+    "questions": [
+      {
+        "q": "¿Cuál es la principal limitación de los escáneres de secretos solo con regex, como truffleHog?",
+        "options": [
+          "Detectan secretos bien formateados pero pierden credenciales ofuscadas y casos dependientes del contexto",
+          "Son demasiado lentos para uso en producción en repositorios grandes"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Verdadero o Falso: Eliminar un archivo que contiene un secreto de un repositorio git elimina permanentemente el secreto de todas las copias del repositorio.",
+        "options": [
+          "Verdadero — git rm elimina el archivo del historial",
+          "Falso — el secreto permanece en el historial de git; cada desarrollador que clonó el repositorio aún lo tiene"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "En la arquitectura de escaneo en dos fases, ¿cuál es la clasificación de salida de Claude para cada hallazgo?",
+        "options": [
+          "confirmed_secret, likely_placeholder o false_positive",
+          "critical, high, medium o low"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "La brecha de Uber de 2022 involucró credenciales en scripts de PowerShell en un recurso compartido de red. ¿Qué destaca esto?",
+        "options": [
+          "El escaneo de secretos debe extenderse más allá de los repositorios git a configuraciones de CI, IaC, scripts operativos y más",
+          "Los escáneres de regex son suficientes cuando cubren todas las ramas de git incluyendo las ramas de características"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Verdadero o Falso: La clasificación de secretos con IA puede reducir el tiempo de revisión de los analistas en un 80% o más en comparación con la salida solo de regex.",
+        "options": [
+          "Verdadero — la clasificación contextual de Claude reduce drásticamente el ruido de falsos positivos",
+          "Falso — la clasificación por IA añade sobrecarga de procesamiento que ralentiza el triaje"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "audit-a04": {
+    "questions": [
+      {
+        "q": "¿Por qué el inventario de recursos en la nube se considera un requisito previo para todas las comprobaciones de auditoría posteriores?",
+        "options": [
+          "No se pueden evaluar controles sobre recursos que no se han enumerado",
+          "Los proveedores de nube requieren el envío del inventario antes de conceder acceso a la API de auditoría"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Verdadero o Falso: La exposición de datos de Toyota en 2023 duró 10 años porque la mala configuración era técnicamente indetectable.",
+        "options": [
+          "Verdadero — la configuración de acceso público era una función oculta del proveedor de nube",
+          "Falso — era una simple mala configuración de acceso público que un escaneo automatizado semanal habría detectado"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "¿Qué revela un gráfico de dependencias de recursos que una lista de inventario estándar no muestra?",
+        "options": [
+          "Qué roles de IAM pueden acceder a qué buckets, permitiendo análisis de cadenas de privilegios",
+          "La región geográfica donde está desplegado cada recurso"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "¿Qué hallazgo se considera CRÍTICO en una auditoría de enumeración en la nube?",
+        "options": [
+          "Una función Lambda con AdministratorAccess adjunto",
+          "Un bucket de S3 sin versionado habilitado"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Verdadero o Falso: Un agente de enumeración en la nube que use el SDK de AWS puede completar un inventario en minutos, en comparación con días para la revisión manual.",
+        "options": [
+          "Verdadero — la enumeración agéntica es drásticamente más rápida que la revisión manual por consola",
+          "Falso — los límites de velocidad de la API hacen que la enumeración agéntica sea más lenta que la revisión manual"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "audit-a05": {
+    "questions": [
+      {
+        "q": "¿Qué acción de IAM es un vector clásico de escalada de privilegios que el analizador de políticas de Claude busca específicamente?",
+        "options": [
+          "iam:PassRole sin restricciones de Condition",
+          "s3:GetObject en un ARN de bucket específico"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Verdadero o Falso: Claude solo puede detectar escalada de privilegios en declaraciones de política de IAM individuales, no entre múltiples capas de políticas.",
+        "options": [
+          "Verdadero — Claude analiza una declaración a la vez",
+          "Falso — Claude razona sobre los permisos efectivos entre capas de políticas basadas en identidad y en recursos"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "En la brecha de Capital One, ¿qué convirtió una vulnerabilidad SSRF del WAF en una brecha de 106 millones de registros?",
+        "options": [
+          "Un rol de IAM excesivamente permisivo en la instancia EC2 del WAF con amplio acceso a S3",
+          "Una base de datos RDS accesible públicamente sin cifrado"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "¿Cuál es la remediación recomendada para una política con s3:* en Resource '*'?",
+        "options": [
+          "Delimitar la acción a las operaciones específicas requeridas y al ARN del bucket específico",
+          "Agregar una declaración Deny para s3:DeleteObject para limitar el daño"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Verdadero o Falso: iam:CreatePolicyVersion es un vector de escalada de privilegios porque permite a un atacante crear una nueva versión de cualquier política, incluidas las políticas adjuntas a roles de administrador.",
+        "options": [
+          "Verdadero — esta acción puede usarse para otorgar permisos de administrador a través de una política existente",
+          "Falso — CreatePolicyVersion solo afecta a las políticas que ya posee el invocador"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "audit-a06": {
+    "questions": [
+      {
+        "q": "¿Cuál es la ventaja principal de usar MCP (Protocolo de Contexto de Modelo) frente a escribir integraciones de herramientas personalizadas para cada sistema de auditoría?",
+        "options": [
+          "MCP proporciona un protocolo estandarizado para que los servidores pre-construidos funcionen en diferentes entornos de Claude",
+          "MCP da a Claude acceso de escritura directa a bases de datos sin claves de API"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Verdadero o Falso: La misma configuración de servidor MCP funciona tanto en Claude Code IDE como en pipelines de API de producción.",
+        "options": [
+          "Verdadero — MCP está diseñado para funcionar de forma uniforme entre Claude Code y la API de Anthropic",
+          "Falso — los servidores MCP deben configurarse por separado para uso en IDE y en API"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "¿Qué mecanismos de transporte admite MCP?",
+        "options": [
+          "stdio o HTTP+SSE",
+          "Solo WebSockets"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "El ataque SUNBURST a SolarWinds (2020) tuvo éxito en parte porque ninguna herramienta correlacionó anomalías entre qué tres sistemas?",
+        "options": [
+          "Servidor git, sistema de compilación y repositorio de artefactos",
+          "Logs de firewall, registros DNS y registros de auditoría de IAM"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Verdadero o Falso: Los servidores MCP exponen dos tipos de primitivas: recursos (datos de solo lectura) y herramientas (funciones invocables que pueden modificar el estado).",
+        "options": [
+          "Verdadero — los recursos y las herramientas son las dos primitivas principales de MCP",
+          "Falso — MCP solo admite recursos de solo lectura; las operaciones de escritura requieren integraciones de herramientas personalizadas"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "audit-a07": {
+    "questions": [
+      {
+        "q": "¿En qué etapa se integra la revisión agéntica de IaC en el flujo de trabajo de desarrollo?",
+        "options": [
+          "Durante la revisión del pull request, antes de que el cambio de infraestructura se fusione y aplique",
+          "Después del despliegue, comparando la configuración en vivo con el estado de Terraform confirmado"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Verdadero o Falso: Claude debe ser programado explícitamente con reglas como 'publicly_accessible = true en RDS es un hallazgo' para detectar malas configuraciones de IaC.",
+        "options": [
+          "Verdadero — Claude requiere un conjunto exhaustivo de reglas para identificar cada tipo de mala configuración",
+          "Falso — Claude comprende la semántica de IaC y puede identificar malas configuraciones sin reglas explícitas"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "¿Qué estándar de seguridad se referencia como base para las revisiones de auditoría de Terraform?",
+        "options": [
+          "CIS AWS Foundations Benchmark",
+          "Medidas técnicas del Artículo 32 del RGPD"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "¿Cuál es el mecanismo de aplicación que impide a los desarrolladores omitir un hallazgo crítico de IaC?",
+        "options": [
+          "Los hallazgos críticos bloquean la fusión del PR mediante comprobaciones de estado obligatorias",
+          "Los desarrolladores reciben una notificación por correo electrónico y deben autocertificar que el hallazgo es aceptable"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Verdadero o Falso: La filtración del código fuente de Twitch (2021) demostró que los archivos de IaC expuestos pueden ayudar a los atacantes a mapear la infraestructura en la nube incluso cuando no se tiene acceso directo a través de IaC.",
+        "options": [
+          "Verdadero — las configuraciones de Terraform en la filtración revelaron la arquitectura de AWS de Twitch a los atacantes",
+          "Falso — los archivos de Terraform no contienen información sensible sobre la infraestructura en vivo"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "audit-a08": {
+    "questions": [
+      {
+        "q": "¿Qué porcentaje del tiempo de auditoría tradicional se dedica típicamente a la recopilación de evidencias?",
+        "options": [
+          "Aproximadamente el 60%",
+          "Aproximadamente el 10%"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Verdadero o Falso: El valor de Claude en la validación de evidencias es confirmar que existe un archivo de evidencias, no evaluar si realmente demuestra que el control funciona.",
+        "options": [
+          "Verdadero — la existencia del archivo de evidencias es suficiente para el cumplimiento",
+          "Falso — Claude evalúa si la evidencia satisface realmente el requisito del control, no solo su presencia"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "¿Cuáles son los tres resultados de evaluación de evidencias de Claude para cada control?",
+        "options": [
+          "satisfied, partially satisfied o not satisfied",
+          "pass, warn o fail"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "En la brecha de Equifax (2017), ¿qué brecha en la recopilación de evidencias permitió que la vulnerabilidad de Apache Struts pasara desapercibida?",
+        "options": [
+          "La evidencia de parches existía pero no verificaba los sistemas web específicos y vulnerables orientados al exterior",
+          "Equifax no tenía política de gestión de parches y por tanto no recopilaba ninguna evidencia"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Verdadero o Falso: Un sistema agéntico de recopilación de evidencias mapea cada artefacto a un requisito de control específico (p. ej., NIST, criterio SOC 2) e incluye la evaluación de Claude.",
+        "options": [
+          "Verdadero — el mapeo estructurado a controles con evaluación es el resultado clave",
+          "Falso — los sistemas agénticos recopilan exportaciones brutas sin mapearlas a controles específicos"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "audit-a09": {
+    "questions": [
+      {
+        "q": "En un pipeline de auditoría multiagente, ¿cuál es la responsabilidad principal del agente orquestador?",
+        "options": [
+          "Planificar la auditoría, delegar en especialistas, sintetizar hallazgos entre dominios y producir el informe final",
+          "Ejecutar directamente todas las llamadas a herramientas específicas del dominio sin involucrar a agentes especialistas"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Verdadero o Falso: En el patrón orquestador-especialista, los agentes especialistas deben comunicarse directamente entre sí para mejorar el análisis entre dominios.",
+        "options": [
+          "Verdadero — la comunicación directa entre especialistas mejora la precisión de la correlación",
+          "Falso — los especialistas no deben comunicarse entre sí; toda la síntesis ocurre a nivel del orquestador"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "¿Por qué los agentes especialistas deben devolver JSON estructurado en lugar de lenguaje natural?",
+        "options": [
+          "Para que el orquestador pueda analizar y correlacionar hallazgos entre dominios de forma fiable",
+          "Porque Claude no puede leer la salida en lenguaje natural de los subagentes"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "La brecha de MOVEit (2023) involucró inyección SQL, exposición a internet y permisos de base de datos. ¿Qué ilustra esto sobre las auditorías de dominio único?",
+        "options": [
+          "Cada especialista lo habría detectado parcialmente, pero se necesitaba síntesis entre dominios para ver la cadena de riesgo completa",
+          "Solo se necesitaba una auditoría de red porque la causa raíz fue el servidor MOVEit expuesto a internet"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Verdadero o Falso: Ejecutar agentes especialistas en paralelo refleja cómo operan los equipos de auditoría humanos con especialistas de dominio.",
+        "options": [
+          "Verdadero — los flujos de trabajo paralelos de especialistas coinciden con la estructura de los compromisos de auditoría humanos",
+          "Falso — los equipos de auditoría humanos ejecutan todos los flujos de trabajo secuencialmente para evitar hallazgos contradictorios"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "audit-a10": {
+    "questions": [
+      {
+        "q": "¿Qué porcentaje del tiempo de un auditor se dedica típicamente a la redacción de informes?",
+        "options": [
+          "Del 30 al 40 por ciento",
+          "Menos del 5 por ciento"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Verdadero o Falso: Las recomendaciones de auditoría vagas como 'mejorar la postura de seguridad de IoT' tienen la misma probabilidad de implementarse que las recomendaciones específicas con propietario asignado y fecha límite.",
+        "options": [
+          "Verdadero — todas las recomendaciones de auditoría reciben la misma prioridad de remediación",
+          "Falso — las recomendaciones vagas se postergan; las recomendaciones específicas con propietarios y fechas límite se implementan"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "¿Cuál es el enfoque recomendado para la generación de informes con Claude en auditorías muy grandes con 500 o más hallazgos?",
+        "options": [
+          "Dividir por dominio para generar borradores de secciones y luego sintetizar un resumen ejecutivo a partir de los resúmenes de sección",
+          "Enviar todos los hallazgos en un único prompt independientemente del tamaño para mantener el contexto completo"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "¿Qué cuatro elementos debe incluir cada sección de hallazgos según el patrón de prompt del sistema de generación de informes?",
+        "options": [
+          "Título del hallazgo, observación, riesgo y recomendación (más un campo de respuesta de la dirección)",
+          "Número de CVE, puntuación CVSS, activo afectado y fecha límite de parche"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Verdadero o Falso: El DDoS de Dyn (2016) demostró que el lenguaje genérico en los informes de auditoría puede retrasar la remediación al no producir recomendaciones priorizadas y accionables.",
+        "options": [
+          "Verdadero — existían evaluaciones de seguridad de IoT previas pero sus recomendaciones vagas no se implementaron",
+          "Falso — Dyn no tenía evaluaciones de seguridad previas que cubrieran riesgos de IoT"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "audit-a11": {
+    "questions": [
+      {
+        "q": "¿Cuál es la limitación fundamental de las auditorías de TI puntuales tradicionales frente al monitoreo de cumplimiento continuo?",
+        "options": [
+          "Las auditorías puntuales capturan el estado del control en el momento de la auditoría, que puede estar desactualizado meses o años cuando realmente importa",
+          "Las auditorías puntuales son más costosas que el monitoreo continuo"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Verdadero o Falso: Cuando un centinela de monitoreo continuo detecta un hallazgo CRÍTICO, solo debe registrar el hallazgo para la próxima revisión de auditoría programada.",
+        "options": [
+          "Verdadero — el registro es la respuesta adecuada para los hallazgos del centinela automatizado",
+          "Falso — los hallazgos CRÍTICOS deben activar inmediatamente PagerDuty, alertas de Slack y un ticket de Jira"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "¿Qué mecanismo de programación se describe para ejecutar un agente de cumplimiento de Claude en un cron diario en AWS?",
+        "options": [
+          "Regla de AWS EventBridge que activa una función Lambda",
+          "Alarma de AWS CloudWatch que sondea un tema SNS"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "La brecha de LastPass (2022) tuvo un tiempo de permanencia de cuatro meses. ¿Qué capacidad de monitoreo habría acortado la ventana del atacante?",
+        "options": [
+          "Monitoreo de línea de base de comportamiento que detecte patrones anómalos de acceso IAM y eventos de autenticación",
+          "Instantáneas estáticas diarias de configuración de permisos de buckets S3"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Verdadero o Falso: Las reglas de supresión en un sistema de monitoreo continuo son importantes para evitar la fatiga de alertas ante riesgos conocidos y aceptados con controles compensatorios.",
+        "options": [
+          "Verdadero — sin supresión, los hallazgos recurrentes aceptables hacen que los analistas ignoren las alertas reales",
+          "Falso — todos los hallazgos deben generar siempre alertas independientemente del estado de aceptación conocido"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "audit-a12": {
+    "questions": [
+      {
+        "q": "En el pipeline de auditoría agéntica completo, ¿qué fase debe completarse secuencialmente antes de que puedan comenzar las fases de análisis de dominio en paralelo?",
+        "options": [
+          "La enumeración de inventario de la Fase 1, porque todos los agentes de dominio dependen de la lista de recursos",
+          "La síntesis de la Fase 3, porque los agentes de dominio necesitan el contexto entre dominios primero"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Verdadero o Falso: El pipeline de auditoría agéntica pretende reemplazar completamente a los auditores automatizando todo el criterio de auditoría.",
+        "options": [
+          "Verdadero — el objetivo es la auditoría completamente autónoma sin intervención humana",
+          "Falso — los agentes eliminan el trabajo mecánico para que los auditores puedan centrarse en el criterio, el contexto de riesgo y la comunicación con las partes interesadas"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "¿Qué dos fases de salida del pipeline completo pueden ejecutarse en paralelo después de que se completa la síntesis?",
+        "options": [
+          "Generación de informes y ensamblaje del paquete de evidencias",
+          "Enumeración de inventario y análisis del dominio IAM"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "La brecha de MGM Resorts (2023) causó más de $100 millones en pérdidas en 10 días. ¿Qué brecha de auditoría abordó el pipeline agéntico?",
+        "options": [
+          "El entorno era demasiado grande para que los auditores manuales lo evaluaran de forma integral y mantuvieran una visión de riesgo actualizada",
+          "MGM no tenía infraestructura en la nube y la brecha explotó solo sistemas locales"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Verdadero o Falso: Después de completar un compromiso de auditoría agéntica, activar un centinela continuo es parte de la fase final del pipeline para detectar la desviación de configuración posterior a la auditoría.",
+        "options": [
+          "Verdadero — el centinela se activa con la línea de base de auditoría para detectar desviaciones en los días y semanas siguientes",
+          "Falso — el centinela es un producto separado que debe configurarse manualmente después de entregar el paquete de auditoría"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "audit-cm01": {
+    "questions": [
+      {
+        "q": "NIST SP 800-137 define el ISCM como un ciclo continuo de seis pasos. ¿Es 'Revisar' el paso final?",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "¿Qué nivel de monitoreo es responsable de la gobernanza y la estrategia en el marco ISCM?\nA) El nivel del sistema de información (equipo SOC)\nB) El nivel organizacional (gobernanza del CISO)",
+        "options": [
+          "A) El nivel del sistema de información",
+          "B) El nivel organizacional"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "Según NIST 800-137, ¿debe ser la misma la frecuencia de monitoreo para todos los sistemas independientemente de su criticidad?",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "La brecha de la OPM pasó desapercibida durante más de un año. ¿Cuál fue el factor principal que contribuyó?\nA) Ausencia de un programa ISCM funcional con detección de anomalías\nB) Los atacantes utilizaron exploits de día cero que ninguna herramienta podía detectar",
+        "options": [
+          "A) Ausencia de un programa ISCM funcional",
+          "B) Exploits de día cero indetectables"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Un sistema de ALTO impacto debe monitorearse de forma continua (aproximadamente cada 1 hora) bajo el marco de frecuencia del ISCM. ¿Es esto correcto?",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "audit-cm02": {
+    "questions": [
+      {
+        "q": "Los SIEM tradicionales basados en firmas son eficaces para detectar ataques de vivir de la tierra (LOTL) que permanecen por debajo de los umbrales de reglas individuales. ¿Es esto verdad?",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "¿Cuál es el propósito principal de la normalización de esquemas (OCSF/ECS) en el momento de la ingesta en un SIEM de próxima generación?\nA) Comprimir los datos de log y reducir los costes de almacenamiento\nB) Permitir que una única regla de detección coincida entre docenas de fuentes de datos",
+        "options": [
+          "A) Comprimir datos de log para reducir costes de almacenamiento",
+          "B) Permitir que una regla coincida entre muchas fuentes de datos"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "El malware SUNBURST de SolarWinds fue descubierto mediante una alerta de firma del SIEM que detectó patrones de ataque conocidos. ¿Es esto correcto?",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "¿Qué técnica de ML es más adecuada para detectar anomalías novedosas de inicio de sesión de usuarios cuando no existe datos de ataque etiquetados?\nA) Isolation Forest (detección de valores atípicos no supervisada)\nB) XGBoost entrenado con datos de amenazas etiquetados (clasificación supervisada)",
+        "options": [
+          "A) Isolation Forest (no supervisado)",
+          "B) XGBoost (supervisado)"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "La reducción de falsos positivos es el principal desafío operativo en los despliegues de SIEM de próxima generación. ¿Es esto preciso?",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "audit-cm03": {
+    "questions": [
+      {
+        "q": "UEBA puede detectar a un atacante que usa credenciales robadas pero válidas comparando su comportamiento con la línea de base de la propia cuenta. ¿Es esto verdad?",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "¿Cuál es la ventaja clave del enfoque de encadenamiento de puntuaciones de riesgo de UEBA frente a las alertas de regla única?\nA) Reduce los falsos positivos al requerir que múltiples señales de baja confianza se acumulen en una alerta de alta confianza\nB) Elimina la necesidad de líneas de base de comportamiento usando solo coincidencia de firmas",
+        "options": [
+          "A) Múltiples señales se acumulan para reducir falsos positivos",
+          "B) Elimina las líneas de base mediante coincidencia de firmas"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Los sistemas UEBA son típicamente fiables para la precisión de detección desde el primer día de despliegue, sin necesidad de período de línea de base. ¿Es esto correcto?",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "En el caso de amenaza interna de Tesla, ¿qué fuente de datos habría proporcionado la señal UEBA más temprana?\nA) Registros del firewall de red del perímetro corporativo\nB) Descargas masivas de archivos de RRHH y actividad de dispositivos USB fuera de los patrones normales",
+        "options": [
+          "A) Registros del firewall de red",
+          "B) Descargas de archivos de RRHH y actividad de dispositivos USB"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "Un CFO y un analista junior deben compartir la misma línea de base de comportamiento de UEBA ya que trabajan en la misma organización. ¿Es esto verdad?",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ],
+        "correct": 1
+      }
+    ]
+  },
+  "audit-cm04": {
+    "questions": [
+      {
+        "q": "NDR puede detectar balizamiento C2 en tráfico HTTPS cifrado analizando patrones de temporización de conexión y tamaño de carga útil, sin descifrar el tráfico. ¿Es esto verdad?",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "¿Qué hace a NDR especialmente valioso frente a EDR para cubrir dispositivos IoT y OT?\nA) NDR observa pasivamente el tráfico de red sin requerir un agente en los dispositivos monitoreados\nB) NDR descifra todo el tráfico TLS para inspeccionar las cargas útiles a nivel de aplicación",
+        "options": [
+          "A) Observación pasiva sin agente requerido",
+          "B) Descifra todo el tráfico TLS para inspección de carga útil"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Un servidor web que inicia grandes volúmenes de conexiones HTTPS salientes inesperadas se considera un patrón de comportamiento normal en las líneas de base de NDR. ¿Es esto correcto?",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "En el ataque Hafnium Exchange, ¿qué anomalía de comportamiento detectaron las organizaciones equipadas con NDR?\nA) Servidores Exchange iniciando conexiones externas — una desviación de su rol de red esperado\nB) Paquetes HTTP malformados que coincidían con firmas de vulnerabilidades conocidas",
+        "options": [
+          "A) Servidores Exchange iniciando conexiones externas inesperadas",
+          "B) Paquetes HTTP malformados que coinciden con firmas"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Las huellas digitales TLS JA3 pueden identificar familias específicas de malware incluso cuando el tráfico está cifrado y la carga útil no puede leerse. ¿Es esto verdad?",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "audit-cm05": {
+    "questions": [
+      {
+        "q": "Las plataformas CSPM requieren agentes endpoint instalados en cada recurso de la nube para auditar las configuraciones de seguridad. ¿Es esto correcto?",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "¿Qué modela el análisis de rutas de ataque de CSPM que una comprobación estándar de mala configuración de un solo recurso no puede?\nA) Cómo un atacante podría encadenar múltiples malas configuraciones para llegar a datos sensibles\nB) Si los recursos individuales cumplen con los controles del CIS Benchmark",
+        "options": [
+          "A) Cadenas de malas configuraciones que llevan a datos sensibles",
+          "B) Cumplimiento individual de recursos con CIS Benchmark"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "La brecha de Capital One fue causada principalmente por una vulnerabilidad de software en un servicio en la nube, no por una mala configuración. ¿Es esto verdad?",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "¿Qué hallazgo marcaría una plataforma CSPM como la amenaza de mayor gravedad?\nA) Un bucket de S3 con cifrado en el servidor deshabilitado\nB) Una instancia EC2 de cara al público con un rol IAM que otorga Action:* Resource:* a todos los buckets S3",
+        "options": [
+          "A) Bucket de S3 sin cifrado",
+          "B) EC2 pública con rol IAM de acceso total a todos los S3"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "CSPM ha evolucionado de verificar configuraciones individuales de recursos a realizar análisis de rutas de ataque basado en grafos. ¿Es esto preciso?",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "audit-cm06": {
+    "questions": [
+      {
+        "q": "STIX define el modelo de datos para objetos de inteligencia de amenazas, mientras que TAXII es el protocolo de transporte para compartir esos datos. ¿Es esto correcto?",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "¿Qué papel juega una Plataforma de Inteligencia de Amenazas (TIP) entre los feeds de inteligencia bruta y el SIEM?\nA) Agrega, deduplica y puntúa los feeds antes de exponer un endpoint TAXII unificado\nB) Genera nuevas firmas de amenazas analizando muestras de malware en un sandbox",
+        "options": [
+          "A) Agrega, deduplica y puntúa los feeds",
+          "B) Genera firmas a partir del análisis de malware en sandbox"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Volt Typhoon fue detectado principalmente mediante reglas SIEM basadas en firmas que coincidían con sus hashes de malware conocidos. ¿Es esto verdad?",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "¿Por qué los indicadores STIX incluyen puntuaciones de confianza y fechas de expiración?\nA) Para evitar que IoC obsoletos o de baja confianza generen alertas de falsos positivos\nB) Para clasificar qué actores de amenazas son más sofisticados",
+        "options": [
+          "A) Para evitar que IoC obsoletos generen falsos positivos",
+          "B) Para clasificar la sofisticación de los actores de amenazas"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "El Intercambio Automatizado de Indicadores (AIS) de CISA proporciona acceso STIX/TAXII gratuito a cualquier organización suscriptora. ¿Es esto verdad?",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "audit-cm07": {
+    "questions": [
+      {
+        "q": "Un manual de SOAR debe ejecutar acciones de alto impacto como deshabilitar la cuenta de un CEO automáticamente sin ningún paso de aprobación humana. ¿Es esta una práctica recomendada?",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "¿Cuál es la métrica principal utilizada para medir el valor de SOAR en un SOC?\nA) MTTR — Tiempo Medio de Respuesta\nB) MTTD — Tiempo Medio de Detección",
+        "options": [
+          "A) MTTR — Tiempo Medio de Respuesta",
+          "B) MTTD — Tiempo Medio de Detección"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "El orden correcto de diseño del manual de SOAR es: responder primero, luego enriquecer el contexto para confirmar la decisión. ¿Es este el enfoque recomendado?",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "En la brecha de Twilio de 2022, ¿qué acción automatizada de SOAR habría limitado el impacto en cascada en 125 organizaciones aguas abajo?\nA) Suspender las cuentas afectadas en minutos tras detectar autenticación anómala\nB) Bloquear todo el tráfico SMS hasta que se complete una revisión manual",
+        "options": [
+          "A) Suspensión automática de cuentas afectadas al detectar autenticación anómala",
+          "B) Bloquear todo el tráfico SMS hasta revisión manual"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Los manuales de SOAR deben tratarse como código de producción — sujetos a control de versiones, revisión por pares y despliegue gradual. ¿Es esto verdad?",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "audit-cm08": {
+    "questions": [
+      {
+        "q": "Los honeytokens generan frecuentes falsos positivos porque los usuarios legítimos pueden acceder accidentalmente a ellos durante operaciones normales. ¿Es esto verdad?",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "¿Por qué las cuentas señuelo de Active Directory con SPNs Kerberoastables son especialmente efectivas para detectar atacantes?\nA) Solicitar un ticket Kerberos para un SPN señuelo revela a un atacante realizando reconocimiento de escalada de privilegios\nB) Bloquean automáticamente el intento de inicio de sesión del atacante cuando se consulta el SPN",
+        "options": [
+          "A) La solicitud del ticket SPN revela el reconocimiento del atacante",
+          "B) Bloquea automáticamente el inicio de sesión del atacante al consultar el SPN"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Una clave de acceso honeytoken de AWS IAM desplegada con una política de denegación total crea riesgo operacional si un atacante la usa, porque el atacante puede acceder a los recursos de AWS. ¿Es esto correcto?",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "En la brecha de Uber de 2022, ¿qué tecnología de engaño podría haber proporcionado una advertencia temprana durante la fase de movimiento lateral?\nA) Honeytokens — credenciales falsas incrustadas junto a las reales en repositorios internos\nB) Un servidor honeypot de red que simula una base de datos interna",
+        "options": [
+          "A) Honeytokens en repositorios internos",
+          "B) Un servidor honeypot de base de datos de red"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "La escala importa en los despliegues de engaño — desplegar cientos de señuelos aumenta significativamente la probabilidad de que un atacante en movimiento lateral active uno. ¿Es esto verdad?",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "audit-cm09": {
+    "questions": [
+      {
+        "q": "La Arquitectura de Confianza Cero opera bajo el principio de 'confiar pero verificar' — una vez que un usuario está dentro de la red corporativa, se le otorga confianza implícita. ¿Es esto correcto?",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "¿Qué llevó a Google a diseñar la arquitectura de Confianza Cero BeyondCorp?\nA) La Operación Aurora — un ataque patrocinado por el estado chino que explotó la confianza implícita en el tráfico de red interno\nB) Un requisito regulatorio del NIST para eliminar el uso de VPN corporativa",
+        "options": [
+          "A) La Operación Aurora expuso la confianza implícita de la red interna",
+          "B) Requisito regulatorio del NIST para eliminar las VPN"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Bajo Confianza Cero CARTA, el nivel de confianza de una sesión se fija permanentemente en el momento de la autenticación inicial y no puede cambiar a mitad de sesión. ¿Es esto verdad?",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "¿Qué componente de una arquitectura de Confianza Cero toma la decisión de permitir o denegar el acceso?\nA) El Punto de Decisión de Política (PDP)\nB) El Proveedor de Identidad (IDP)",
+        "options": [
+          "A) El Punto de Decisión de Política (PDP)",
+          "B) El Proveedor de Identidad (IDP)"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "El monitoreo de Confianza Cero genera telemetría de auditoría más rica que el monitoreo perimetral tradicional porque se registra cada decisión de acceso — no solo los eventos de seguridad. ¿Es esto verdad?",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "audit-cm10": {
+    "questions": [
+      {
+        "q": "XDR requiere que los analistas naveguen entre consolas separadas de EDR, NDR e identidad para correlacionar manualmente las alertas en un incidente. ¿Es así como funciona XDR?",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "¿Cómo correlaciona automáticamente las alertas de diferentes fuentes de telemetría el gráfico de entidades de XDR?\nA) Encontrando alertas que comparten la misma entidad (host, IP, usuario) dentro de una ventana temporal\nB) Haciendo coincidir el texto de las alertas con una biblioteca de descripciones de ataques conocidos",
+        "options": [
+          "A) Entidades compartidas dentro de una ventana temporal",
+          "B) Texto de alerta comparado con descripciones de ataques"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "El etiquetado de técnicas MITRE ATT&CK en XDR ayuda a los analistas a entender la narrativa de la cadena de ataque en lugar de investigar alertas de forma aislada. ¿Es esto verdad?",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "En la brecha de Microsoft por Lapsus$, ¿cuál fue el fallo clave de detección que XDR fue diseñado para abordar?\nA) Señales dispares entre múltiples fuentes de telemetría no se correlacionaron en una vista de incidente única a tiempo\nB) Los atacantes usaron una vulnerabilidad de día cero sin firma de detección existente",
+        "options": [
+          "A) Señales no correlacionadas entre fuentes a tiempo",
+          "B) Vulnerabilidad de día cero indetectable"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "La propuesta de valor principal de XDR es que los analistas trabajan con alertas individuales en lugar de incidentes agrupados, lo que permite una investigación más granular. ¿Es esto correcto?",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ],
+        "correct": 1
+      }
+    ]
+  },
+  "audit-cm11": {
+    "questions": [
+      {
+        "q": "Las auditorías de cumplimiento anuales tradicionales proporcionan una visión continua y en tiempo real de la efectividad de los controles de seguridad de una organización durante todo el año. ¿Es esto verdad?",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "¿Cuál es el mecanismo principal que usan las plataformas de cumplimiento continuo para recopilar evidencia de controles?\nA) Llamadas de API automatizadas a sistemas de proveedor de nube e IDP de forma programada\nB) Cuestionarios manuales enviados a los propietarios de sistemas trimestralmente",
+        "options": [
+          "A) Llamadas de API automatizadas a sistemas de nube e IDP",
+          "B) Cuestionarios trimestrales manuales a propietarios de sistemas"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "El monitoreo de cumplimiento continuo puede reducir el tiempo de preparación de auditorías en un 60–80% automatizando la recopilación de evidencias. ¿Es esto preciso?",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "La orden de consentimiento de la FTC sobre Drizly fue significativa para los programas de cumplimiento principalmente porque:\nA) Estableció que los ejecutivos individuales pueden ser considerados personalmente responsables de fallos sistémicos de cumplimiento\nB) Requirió a Drizly someterse a una auditoría de seguridad única en los 90 días posteriores a la brecha",
+        "options": [
+          "A) Los ejecutivos son personalmente responsables de los fallos sistémicos",
+          "B) Se requirió una auditoría de seguridad única a los 90 días"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "En un programa de cumplimiento continuo, la desviación de control — cuando un control sale del cumplimiento entre ciclos de auditoría — se detecta de inmediato en lugar de en la próxima auditoría anual. ¿Es esto verdad?",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "audit-cm12": {
+    "questions": [
+      {
+        "q": "El informe de Coste de una Brecha de Datos de IBM de 2023 encontró que el MTTD mediano de la industria era de aproximadamente 21 días. ¿Es esto correcto?",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "¿Qué nivel de madurez del SOC es el objetivo mínimo recomendado para organizaciones empresariales según el modelo CREST?\nA) Nivel 3 (Proactivo — búsqueda de amenazas y detección conductual)\nB) Nivel 1 (Reactivo — impulsado por incidentes sin monitoreo proactivo)",
+        "options": [
+          "A) Nivel 3 — Proactivo",
+          "B) Nivel 1 — Reactivo"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Una tasa de falsos positivos superior al 5% es aceptable para un SOC maduro porque los analistas están entrenados para manejar grandes volúmenes de alertas. ¿Es esto verdad?",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "La brecha de MGM Resorts en 2023 demostró que el fallo del MTTD es puramente un problema técnico — unas herramientas de detección más rápidas habrían prevenido completamente la pérdida de $100 millones. ¿Es esto preciso?",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "¿Qué objetivo de cobertura de automatización de SOAR se necesita para lograr un MTTR inferior a una hora a escala?\nA) Más del 70% de los tipos de alerta cubiertos por manuales automatizados\nB) Más del 20% de los tipos de alerta cubiertos por manuales automatizados",
+        "options": [
+          "A) Más del 70% de cobertura de automatización",
+          "B) Más del 20% de cobertura de automatización"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "umbrella-01": {
+    "questions": [
+      {
+        "q": "Cisco Umbrella bloquea amenazas a nivel de DNS — antes de que se establezca cualquier conexión TCP/UDP.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "¿Cuáles son las direcciones IP de los resolvers DNS principales de Umbrella?",
+        "options": [
+          "8.8.8.8 y 8.8.4.4",
+          "208.67.222.222 y 208.67.220.220"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "Umbrella requiere descifrado TLS para bloquear el tráfico C2 HTTPS cifrado.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "Cisco adquirió OpenDNS (ahora Umbrella) por aproximadamente 635 millones de dólares en qué año?",
+        "options": [
+          "2015",
+          "2010"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "En el escenario de neutralización de Trickbot en octubre de 2020, ¿qué actor de amenazas operaba la infraestructura C2 de Trickbot?",
+        "options": [
+          "LAZARUS GROUP",
+          "WIZARD SPIDER"
+        ],
+        "correct": 1
+      }
+    ]
+  },
+  "umbrella-02": {
+    "questions": [
+      {
+        "q": "El tunelizado DNS codifica datos en etiquetas de subdominio y funciona a través de firewalls estrictos porque el puerto UDP 53 raramente está bloqueado.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Un usuario normal genera aproximadamente 2.000 consultas DNS por día — aproximadamente lo mismo que un túnel DNS.",
+        "options": [
+          "Falso",
+          "Verdadero"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "¿Qué huella de herramienta se identificó en el escenario del túnel DNS del banco de Singapur?",
+        "options": [
+          "dnscat2 v0.07",
+          "iodine v0.7"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "OilRig (APT34) usó principalmente qué tipo de registro DNS para sus túneles de exfiltración?",
+        "options": [
+          "Registros MX",
+          "Registros TXT"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "Bloquear un dominio de túnel a nivel NXDOMAIN es más robusto que filtrar por longitud de etiqueta de subdominio.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "umbrella-03": {
+    "questions": [
+      {
+        "q": "El malware DGA genera cientos de dominios por día, pero el atacante solo necesita registrar uno o dos para mantener el acceso C2.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Conficker, la primera botnet DGA de gran escala, generaba aproximadamente cuántos dominios por día?",
+        "options": [
+          "2.500",
+          "250"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "Bloquear un solo dominio generado por DGA es suficiente para detener una botnet basada en DGA.",
+        "options": [
+          "Falso",
+          "Verdadero"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "En el escenario del hospital del NHS, ¿qué carga útil de ransomware intentaba entregar Emotet?",
+        "options": [
+          "LockBit",
+          "Ryuk"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "La detección DGA basada en ML de Umbrella marca tormentas de NXDOMAIN combinadas con nombres de dominio de alta entropía (de apariencia generada por máquina).",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "umbrella-04": {
+    "questions": [
+      {
+        "q": "En el fast flux de flujo simple, el nombre de dominio en sí mismo rota cada pocos minutos junto con las direcciones IP.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "El doble flujo extiende el flujo simple rotando también qué tipo de registro DNS además de los registros A?",
+        "options": [
+          "Registros CNAME",
+          "Registros NS (servidor de nombres)"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "Las listas de bloqueo basadas en IP son una defensa eficaz a largo plazo contra las redes de fast flux.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "Umbrella derrota al fast flux bloqueando a nivel del nombre de dominio, haciendo irrelevante la rotación de IP.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "En el escenario de la empresa de trading, ¿a cuántas direcciones IP únicas resolvió el dominio flux-c2.net en 24 horas?",
+        "options": [
+          "28",
+          "287"
+        ],
+        "correct": 1
+      }
+    ]
+  },
+  "umbrella-05": {
+    "questions": [
+      {
+        "q": "El reenlazamiento DNS funciona cambiando el registro DNS de un dominio a una IP privada después de que expira el TTL, engañando al navegador para que trate el recurso interno como del mismo origen.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Umbrella detecta el reenlazamiento DNS marcando los dominios públicos que devuelven direcciones IP privadas RFC-1918 en sus respuestas DNS.",
+        "options": [
+          "Falso",
+          "Verdadero"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "Después de un reenlazamiento DNS exitoso, el navegador bloquea la solicitud al recurso interno porque detecta una violación de origen cruzado.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "Un ataque de reenlazamiento DNS requiere que el atacante controle el servidor de nombres autoritativo para el dominio malicioso.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "En el escenario del laboratorio de IoT, ¿qué tipo de dispositivo estaba expuesto en 192.168.10.1?",
+        "options": [
+          "Cámara IP",
+          "Router del laboratorio (TP-Link AX3000)"
+        ],
+        "correct": 1
+      }
+    ]
+  },
+  "umbrella-06": {
+    "questions": [
+      {
+        "q": "Los ataques de homógrafos IDN utilizan caracteres Unicode que parecen visualmente idénticos a las letras ASCII, haciendo que el dominio malicioso sea indetectable a simple vista en navegadores antiguos.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Un certificado TLS de Let's Encrypt en un dominio de apariencia similar es un indicador de confianza fiable que confirma que el sitio es legítimo.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "La detección de dominios similares de Umbrella solo puede detectar dominios de coincidencia exacta — no puede identificar errores tipográficos de un solo carácter.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "En el escenario del contratista del Pentágono, ¿qué sustitución de caracteres hacía difícil detectar el dominio similar?",
+        "options": [
+          "Cero ('0') reemplazando la letra 'a' en la posición 8",
+          "Letra cirílica 'с' reemplazando la latina 'c' en la posición 1"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "NOBELIUM (APT29) se atribuye a qué servicio de inteligencia de estado-nación?",
+        "options": [
+          "MSS chino",
+          "SVR ruso"
+        ],
+        "correct": 1
+      }
+    ]
+  },
+  "umbrella-07": {
+    "questions": [
+      {
+        "q": "En la jerarquía de políticas de Umbrella, una entrada de lista de permitidos personalizada anula los bloqueos de categorías de seguridad como Malware y C2.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "¿Qué tipo de entrada en la lista de permitidos es más segura y sigue las mejores prácticas de Umbrella?",
+        "options": [
+          "*.update-service.io sin fecha de expiración aplicada globalmente",
+          "pkg.update-service.io con fecha de expiración limitada al grupo WORKSTATIONS"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "La regla de lista de permitidos fraudulenta (RULE-2023-0092) en el escenario del distrito escolar fue añadida por una cuenta que estaba activa en el momento del incidente.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "Los operadores de LockBit explotaron la entrada de lista de permitidos con comodín registrando un subdominio bajo el dominio comodín permitido.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "¿Cuánto costó en total el ataque de LockBit al distrito escolar en rescate y recuperación?",
+        "options": [
+          "2,1 millones de dólares",
+          "21 millones de dólares"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "umbrella-08": {
+    "questions": [
+      {
+        "q": "Cuando el malware usa DoH (DNS sobre HTTPS) con una IP de resolver codificada como 1.1.1.1:443, el resolver DNS estándar de Cisco Umbrella ve y bloquea las consultas.",
+        "options": [
+          "Falso",
+          "Verdadero"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Godlua (2019) fue el primer malware confirmado en usar DoH para evasión de C2. Tenía como objetivo qué tipo de sistemas?",
+        "options": [
+          "Estaciones de trabajo Windows en redes financieras",
+          "Servidores Linux y Windows en toda la región Asia-Pacífico"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "El cliente itinerante de Umbrella bloquea todas las conexiones DoH, incluidas las que van al propio endpoint DoH en la nube de Umbrella (208.67.222.222:443).",
+        "options": [
+          "Falso",
+          "Verdadero"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "En el escenario de Tokio, el proceso sospechoso que realizaba conexiones DoH se llamaba svchost32.exe — un proceso legítimo del sistema Windows.",
+        "options": [
+          "Falso",
+          "Verdadero"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "La carga útil DoH decodificada en el escenario de Tokio reveló una consulta DNS para qué dominio?",
+        "options": [
+          "c2-prime.net",
+          "volt-stage.net"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "umbrella-09": {
+    "questions": [
+      {
+        "q": "El DNS pasivo registra resoluciones DNS históricas, permitiendo a los analistas descubrir dominios que compartieron IPs con servidores C2 conocidos.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Talos envía dominios maliciosos confirmados a Umbrella a nivel global en aproximadamente 4 horas tras la confirmación del analista.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "En la campaña de Scattered Spider (UNC3944), Talos bloqueó la infraestructura de la campaña después de que la mayoría de los ataques ya hubieran tenido éxito.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "¿Cuántos dominios se identificaron en la infraestructura de la campaña de Scattered Spider de 2023 mediante pivoting de DNS pasivo?",
+        "options": [
+          "147",
+          "47"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "En el escenario, los 47 dominios de la campaña de Scattered Spider fueron registrados en el mismo registrador en pocos días usando pago en criptomoneda.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "umbrella-10": {
+    "questions": [
+      {
+        "q": "Los logs DNS pueden identificar hosts comprometidos — incluidos dispositivos OT/SCADA no gestionados — más rápidamente que la telemetría EDR por sí sola.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "VOLT TYPHOON (APT chino) utilizó principalmente malware personalizado con una gran huella de exploits para persistir en la infraestructura crítica de EE. UU.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "El contenimiento DNS bloquea los dominios C2 para todos los hosts infectados simultáneamente, incluidos los dispositivos OT y SCADA no gestionados.",
+        "options": [
+          "Falso",
+          "Verdadero"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "En el escenario de ERCOT, ¿cuántos hosts OT se encontraron consultando el dominio C2 de VOLT TYPHOON?",
+        "options": [
+          "3",
+          "7"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "Las Directrices de Protección de Infraestructura Crítica de CISA (CPG 2.S) recomiendan la seguridad a nivel de DNS como control de referencia para los operadores de infraestructura crítica.",
+        "options": [
+          "Verdadero",
+          "Falso"
+        ],
+        "correct": 0
+      }
+    ]
+  }
+}

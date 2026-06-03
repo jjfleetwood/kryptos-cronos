@@ -1,0 +1,740 @@
+{
+  "baseball-7-07": {
+    "tagline": "बेसबॉल में, कौन सा हाथ गेंद फेंकता है और कौन सा हाथ बैट थामता है — ये ERA के एक अंक से ज़्यादा मायने रखते हैं, अगर आप उनका सही उपयोग जानते हों।",
+    "overview": [
+      "प्लेटून एडवांटेज बेसबॉल के सबसे सुसंगत और शोषणयोग्य बढ़तों में से एक है। बाएं हाथ के बल्लेबाज़ दाएं हाथ के पिचरों के खिलाफ दाएं हाथ के पिचरों की तुलना में काफी बेहतर प्रदर्शन करते हैं, और इसके विपरीत। इसका कारण दृश्य और यांत्रिक दोनों है: जब पिच उसी तरफ से आती है जिस तरफ बल्लेबाज़ है (बाएं-बाएं या दाएं-दाएं), तो उसका प्राकृतिक कोण बल्लेबाज़ के संपर्क क्षेत्र से दूर जाता है, और समान हाथ वाले पिचर की ब्रेकिंग बॉल बाहर की ओर टूटती है — ट्रैक करना और ड्राइव करना दोनों कठिन। प्लेटून विभाजन कोई हाशिये का प्रभाव नहीं है; कई बल्लेबाज़ों के लिए इससे 50–80 OPS अंकों का अंतर आता है।",
+      "LOOGY (Lefty One-Out Guy) दशकों तक मेजर लीग बुलपेन की एक मानक भूमिका रही: एक बाएं हाथ का विशेषज्ञ जिसे खास तौर पर हाई-स्टेक परिस्थितियों में एक या दो बाएं हाथ के बल्लेबाज़ों का सामना करने के लिए मैदान में उतारा जाता था। 2020 के नियम बदलाव ने पिचर को न्यूनतम तीन बल्लेबाज़ों का सामना करना अनिवार्य कर दिया, जिससे LOOGY की शुद्ध भूमिका प्रभावी रूप से समाप्त हो गई — अब पिचरों को बाएं या दाएं हाथ की परवाह किए बिना कई बल्लेबाज़ों का सामना करना होता है। इसने टीमों को शुद्ध विशेषज्ञों की बजाय ऐसे बाएं हाथ के रिलीवर की ओर धकेला जो बाएं और दाएं दोनों बल्लेबाज़ों के खिलाफ प्रभावी हों।",
+      "Dodgers ने ऐतिहासिक रूप से प्लेटून एडवांटेज का व्यवस्थित दोहन करने वाले बुलपेन बनाने में उत्कृष्ट प्रदर्शन किया है। जनरल मैनेजर Andrew Friedman के तहत उनकी रोस्टर संरचना में लगातार बाएं और दाएं हाथ के रिलीवर शामिल होते हैं जो National League West Division की आक्रामक प्रवृत्तियों के खिलाफ विशेष रूप से मिलान के लिए चुने जाते हैं। Alex Vesia (बाएं हाथ, बाएं हाथ के बल्लेबाज़ों के खिलाफ विनाशकारी slider) और Evan Phillips (दाएं हाथ, संपर्क-उन्मुख दाएं हाथ के बल्लेबाज़ों के खिलाफ प्रभावी sinker) जैसे पिचरों को स्पष्ट मैचअप कार्यों को ध्यान में रखकर अधिग्रहित किया गया था।"
+    ],
+    "technical": {
+      "title": "L/R Splits — संख्याएं और यांत्रिक कारण",
+      "body": [
+        "प्लेटून विभाजन का यांत्रिक कारण पिच का कोण है। एक बाएं हाथ के पिचर की fastball, माउंड के बाईं ओर से फेंकी जाती है, दाएं हाथ के बल्लेबाज़ के इनर कॉर्नर की ओर जाती है और बाएं हाथ के बल्लेबाज़ के बाहरी कॉर्नर से दूर। ब्रेकिंग बॉल (खास तौर पर slider और curveball) समान हाथ वाले बल्लेबाज़ों से दूर टूटती हैं — बाएं हाथ के पिचर का slider बाएं हाथ के बल्लेबाज़ों से दूर टूटता है, जिससे यह कई लोगों के लिए अप्राप्य pitch बन जाती है। समान हाथ की ब्रेकिंग बॉल ठीक इसी कोण की वजह से 'out pitches' मानी जाती हैं।",
+        "दृश्य घटक भी उतना ही महत्वपूर्ण है। बल्लेबाज़ पिच को तब बेहतर देखते हैं जब वह क्रॉस-बॉडी कोण से फेंकी जाए (विपरीत हाथ का पिचर): गेंद उनके दृश्य क्षेत्र में शुरू होती है और उनकी ओर बढ़ती है। समान हाथ के पिचर की पिच दृष्टि के किनारे या पीछे से शुरू होती है — गेंद देर से दिखती है, जिससे बल्लेबाज़ को घुमाव और गति पढ़ने के लिए कम समय मिलता है। यह दृश्य नुकसान यांत्रिकी के साथ मिलकर बल्लेबाज़ी आंकड़ों में देखे जाने वाले नाटकीय विभाजन उत्पन्न करता है।"
+      ]
+    },
+    "incident": {
+      "title": "Alex Vesia और 2023 Dodgers बुलपेन निर्माण",
+      "impact": "2023–2024 में Dodgers के प्राथमिक हाई-स्टेक बाएं हाथ के रिलीवर के रूप में Alex Vesia का उभरना यह दर्शाता है कि संगठन ने न्यूनतम तीन बल्लेबाज़ नियम के बाद प्लेटून एडवांटेज के इर्द-गिर्द कैसे निर्माण किया। Vesia का slider, जो बाएं हाथ के बल्लेबाज़ों से तेज़ी से दूर टूटता है, Dodgers के लेट-गेम आर्सेनल में प्राथमिक L-on-L हथियार था।",
+      "body": [
+        "2020 के न्यूनतम तीन बल्लेबाज़ नियम ने शुद्ध LOOGY विशेषज्ञता के आर्थिक गणित को बदल दिया, जिसके बाद Dodgers ने ऐसे बाएं हाथ के रिलीवर विकसित करके अनुकूलन किया जो प्रभावी same-side ब्रेकिंग बॉल से बाएं हाथ के बल्लेबाज़ों को निष्क्रिय कर सकते थे और दाएं हाथ के बल्लेबाज़ों के खिलाफ भी सक्षम रह सकते थे। Alex Vesia, तीखे slider और four-seam fastball वाले बाएं हाथ के पिचर, को विशेष रूप से इस भूमिका के लिए विकसित किया गया था: उनका slider बाएं हाथ के बल्लेबाज़ों से 34 इंच के क्षैतिज break के साथ दूर टूटता है — National League की सर्वश्रेष्ठ same-side ब्रेकिंग बॉल में से एक।",
+        "2023 और 2024 में Vesia का उपयोग आधुनिक प्लेटून-सचेत बुलपेन को दर्शाता है: वे विशेष रूप से हाई-स्टेक स्थानों पर बाएं हाथ के बल्लेबाज़ों का सामना करने के लिए innings के बीच में आए, अपनी fastball से दाएं हाथ के बल्लेबाज़ों का सामना करने के लिए रुके, और जब प्लेटून बैलेंस महत्वपूर्ण रूप से बदला तो बाहर गए। Dave Roberts ने उन्हें उसी तरह मैनेज किया जैसे एक शतरंज खिलाड़ी एक मोहरे को — न कि एक-तरकीब विशेषज्ञ के रूप में बल्कि एक प्रमुख गुण वाले खिलाड़ी के रूप में जो अन्य भूमिकाओं में भी काम कर सकता था। यह लचीलापन, Camelback Ranch में हर वसंत में स्पष्ट प्लेटून निर्माण पर आधारित, Dodgers के विश्लेषणात्मक दृष्टिकोण की एक पहचान रही।"
+      ]
+    },
+    "timeline": [
+      "Walter Alston के तहत प्लेटून उपयोग औपचारिक — Dodgers L/R splits ट्रैक करने वालों में प्रथम",
+      "LOOGY भूमिका मुख्यधारा बनी — हर मेजर लीग रोस्टर में बाएं हाथ के विशेषज्ञ",
+      "Bill James ने प्लेटून split डेटा प्रकाशित किया — सभी मेजर लीग के OPS अंतर परिमाणित",
+      "Pat Venditte आधुनिक बेसबॉल में पहले switch पिचर बने — 2015 Oakland / कई टीमें",
+      "न्यूनतम तीन बल्लेबाज़ नियम ने शुद्ध LOOGY भूमिका समाप्त की — रोस्टर विकसित हुए",
+      "Vesia Dodgers का प्राथमिक L-on-L हथियार बने — बहुमुखी प्लेटून निर्माण मॉडल मान्य"
+    ],
+    "keyTakeaways": [
+      "समान हाथ के प्लेटून मैचअप बल्लेबाज़ों को 20–25 OPS अंकों का नुकसान देते हैं — यह बेसबॉल के सबसे विश्वसनीय बढ़तों में से एक है",
+      "समान हाथ की ब्रेकिंग बॉल बल्लेबाज़ों से दूर टूटती है, जो उनके दृश्य क्षेत्र के पीछे से फेंकी गई गेंद की दृश्य हानि को और बढ़ा देती है",
+      "2020 के न्यूनतम तीन बल्लेबाज़ नियम ने शुद्ध LOOGY युग को समाप्त किया — टीमें अब विशेषज्ञों की बजाय बहुमुखी प्लेटून रिलीवर बनाती हैं",
+      "Dodgers अपना बुलपेन स्पष्ट प्लेटून मैचअप योजनाओं के आधार पर बनाते हैं, विशिष्ट लाइनअप कार्यों के लिए बाएं और दाएं हाथ के रिलीवर अधिग्रहित करते हैं"
+    ]
+  },
+  "baseball-7-08": {
+    "tagline": "आउट करने वाली pitch खेल से पहले फेंकी गई थी — जब पिचर वीडियो के साथ बैठा था।",
+    "overview": [
+      "आधुनिक pitching तैयारी एक डेटा-गहन प्रक्रिया है जो किसी मैच से 48–72 घंटे पहले शुरू होती है। Dodgers के स्टार्टिंग पिचर Statcast ट्रेंड रिपोर्ट, spray charts, zone-by-zone chase rate, exit velocity by pitch type, और प्रत्येक विपरीत बल्लेबाज़ के समान arsenal वाले पिचरों के खिलाफ at-bats का वीडियो देखते हैं। लक्ष्य पहले बल्लेबाज़ के बॉक्स में आने से पहले एक विशिष्ट game plan बनाना है — कोई कठोर योजना नहीं जो अनुकूलित न हो सके, बल्कि एक संरचित दृष्टिकोण जो प्रत्येक बल्लेबाज़ की प्राथमिक कमज़ोरियों और उन्हें भुनाने के सबसे संभावित pitches को पहचाने।",
+      "Spray charts दिखाते हैं कि बल्लेबाज़ गेंद को कहाँ डालता है — pull-heavy बल्लेबाज़ का chart अधिकांश hits अपनी तरफ दिखाता है (बाएं हाथ के बल्लेबाज़ के लिए), जबकि oppo hitter का chart विपरीत दिखाता है। पिचर spray charts से contact प्रवृत्तियों को समझते हैं: एक बल्लेबाज़ जो बहुत pull करता है उसे संभवतः outer half की pitch से परेशानी होती है; oppo hitter को inner fastball से दिक्कत हो सकती है। Zone-by-zone exit velocity दिखाता है कि स्ट्राइक ज़ोन के किन क्षेत्रों में बल्लेबाज़ सबसे ज़्यादा नुकसान पहुंचाता है — और किन ज़ोन में कमज़ोर contact होता है। कमज़ोर contact ज़ोन में pitch करना इसका तार्किक विस्तार है।",
+      "Pitch type by chase rate एक पिचर को बताता है कि प्रत्येक बल्लेबाज़ strike zone के बाहर किसी विशेष pitch पर स्विंग करने की कितनी संभावना रखता है। ज़ोन के नीचे curveball पर 45% chase rate वाला बल्लेबाज़ ज़मीन पर curveball को chase करेगा — यह एक ghost ball या strikeout अवसर है। Curveball पर 8% chase rate वाले बल्लेबाज़ का मतलब है कि पिचर को curveball को waste pitch की बजाय zone में strike के रूप में उपयोग करना चाहिए। यह डेटा सीधे काउंट-विशिष्ट pitch selection में बदलता है।"
+    ],
+    "technical": {
+      "title": "पिचर का Game Plan बनाना — डेटा से निर्णय तक",
+      "body": [
+        "Dodgers के स्टार्टिंग पिचर की pre-game तैयारी एक संरचित प्रवाह का अनुसरण करती है: (1) प्रत्येक बल्लेबाज़ की प्राथमिक कमज़ोरी Statcast zone डेटा से पहचानें — कौन से zone में सबसे कमज़ोर exit velocity है? (2) Chase rate डेटा से cross-reference करें — क्या ऐसी pitches हैं जिन्हें वे अपने कमज़ोर zone से बाहर chase करेंगे? (3) काउंट-विशिष्ट attack plans बनाएं — इस विशेष बल्लेबाज़ के खिलाफ 0-0, 0-2, 3-2 काउंट में कौन सी pitch फेंकें? (4) समान arsenal वाले पिचरों के खिलाफ बल्लेबाज़ का वीडियो देखें — कौन सी sequences सफल रहीं, बल्लेबाज़ ने क्या अच्छा मारा?",
+        "वीडियो समीक्षा का चरण महत्वपूर्ण है क्योंकि Statcast डेटा results दिखाता है (exit velocity, launch angle) लेकिन process नहीं (बल्लेबाज़ ने at-bat को कैसे approach किया, किन pitches को follow किया बनाम commit किया)। जो पिचर केवल डेटा पढ़ता है वह behavioral signals से चूक जाता है जो वीडियो प्रदान करता है: क्या यह बल्लेबाज़ नियमित रूप से पहली pitch लेता है? 0-2 पर zone expand करता है? काउंट के अंत में inner fastball से धोखा खाता है? वीडियो उन सवालों के जवाब देता है जो exit velocity नहीं दे सकती।"
+      ]
+    },
+    "incident": {
+      "title": "Clayton Kershaw का 2017 NLCS से पहले Aaron Judge का अध्ययन",
+      "impact": "अपने करियर की हर regular season start से पहले, Clayton Kershaw विपरीत टीम के दो या तीन सबसे खतरनाक बल्लेबाज़ों की पहचान करने और प्रत्येक के लिए विशिष्ट game plan बनाने में व्यापक pre-game तैयारी करते थे। Catcher Austin Barnes के साथ उनकी वीडियो prep sessions इस बात का मॉडल बन गईं कि Dodgers पिचर regular season opponents को systematically कैसे approach करते थे।",
+      "body": [
+        "हाई-स्टेक starts से पहले Kershaw की तैयारी प्रक्रिया को Dodgers के कई coaches और teammates ने रोस्टर के किसी भी पिचर की सबसे सूक्ष्म बताया। वे विपरीत lineups का वीडियो न केवल दाएं हाथ के पिचरों के खिलाफ देखते थे बल्कि विशेष रूप से उन पिचरों के खिलाफ जिनका fastball-curveball combination उनसे मेल खाता था — यह देखने के लिए कि क्या opponent ने उसी sequence के अनुसार अनुकूलन किया था। यदि हां, तो वे जानबूझकर अपना plan बदलते: अधिक changeups, अलग curveball entry points, fastball locations जो उन्होंने regular season में नहीं दिखाए थे।",
+        "Statcast डेटा का उनका उपयोग उतना ही विशिष्ट था। वे exit velocity maps को बल्लेबाज़ की सबसे अच्छी zones खोजने के लिए नहीं देखते थे बल्कि सबसे खराब के लिए: उस विशेष बल्लेबाज़ ने किस जगह सबसे कमज़ोर contact उत्पन्न की? फिर वे अपनी sequence बनाते जो at-bat को दूसरी या तीसरी pitch तक उस zone की ओर धकेले, पहली pitch को setup की तरह उपयोग करते चाहे उससे out आए या नहीं। Dodgers के video staff ने उन्हें रोस्टर पर सबसे डेटा-साक्षर पिचर बताया — इसलिए नहीं कि वे analyst थे, बल्कि इसलिए कि वे जानते थे कि हर start से पहले डेटा से कौन से प्रश्न पूछने हैं।"
+      ]
+    },
+    "timeline": [
+      "Koufax ने scout reports के माध्यम से विपरीत lineups का अध्ययन किया — pre-data युग का समकक्ष",
+      "Hershiser ने हर start से पहले opponents की VHS tapes देखीं — वीडियो युग शुरू",
+      "Dodgers ने Vero Beach spring training में पहला video analysis lab स्थापित किया",
+      "Statcast लागू — exit velocity, launch angle, spin rate डेटा game planning के लिए उपलब्ध",
+      "Dodgers के पिचरों को research staff से pre-start zone trend reports मिलने लगे",
+      "Dugout में real-time Statcast tablets ने mid-game game plan adjustments सक्षम किए"
+    ],
+    "keyTakeaways": [
+      "Pre-game डेटा समीक्षा (spray charts, zone-by-zone exit velocity, chase rates) Dodgers स्टार्टिंग पिचरों के लिए मानक तैयारी है",
+      "वीडियो डेटा का पूरक है व्यवहार patterns प्रकट करके — first-pitch प्रवृत्तियां, two-strike zone expansion, late-count deception",
+      "खेल से पहले प्रत्येक बल्लेबाज़ के लिए काउंट-विशिष्ट sequences बनाएं: इस विशेष बल्लेबाज़ के खिलाफ 0-0, 0-2 और 3-2 काउंट में क्या फेंकें",
+      "Chase rate डेटा पहचानता है कि कौन सी pitches को waste pitches के रूप में उपयोग किया जा सकता है बनाम कौन सी zone में फेंकनी होंगी — 0-2 रणनीति के लिए महत्वपूर्ण"
+    ]
+  },
+  "baseball-7-09": {
+    "tagline": "जो पिचर जानता है कब रुकना है वह अपना करियर बचाता है। जो नहीं जानता वह सर्जरी का आंकड़ा बन जाता है।",
+    "overview": [
+      "पिचर थकान बेसबॉल में सबसे कम समझी जाने वाली अवधारणाओं में से एक है। थका हुआ पिचर केवल धीमी pitch नहीं फेंकता — वह compensate करता है। जब गति गिरती है, तो पिचर अनजाने में effort बनाए रखने के लिए अपनी mechanics बदलते हैं: elbow गिरता है, arm drag बढ़ता है, hip rotation timing बदलती है। ये compensation patterns ulnar collateral ligament (UCL) पर असामान्य stress डालते हैं — वह संरचना जिसे Tommy John surgery में repair किया जाता है। बहुत देर तक रहने वाला पिचर केवल कम प्रभावी नहीं है; वह अपने करियर को जोखिम में डाल रहा है।",
+      "Dodgers के pitching coaches जो early warning signs real-time में ट्रैक करते हैं वे हैं: पहली तीन innings के दौरान pitcher की average गति से 2 mph या अधिक का decline; pitch location deviation में वृद्धि (pitches जो खेल में पहले की तुलना में बड़े margins से target miss कर रही हों); breaking pitches पर reduced spin rate (curveball कम टूटती है, slider में कम movement); और mechanical signals जैसे followthrough में elbow position या hip rotation timing। आधुनिक Statcast डेटा pitching coaches को ये सभी metrics pitch-by-pitch ट्रैक करने देता है।",
+      "Tommy John surgery (UCL reconstruction) के लिए 12–18 महीने की recovery चाहिए। TJ surgery से गुज़रने वाले पिचरों में से लगभग 20% कभी भी अपने pre-surgery प्रदर्शन स्तर पर वापस नहीं आते। रोकथाम बहुत बेहतर है: pitch count management, mechanical efficiency, strengthening programs और थकान के पहले संकेत पर आक्रामक rest protocols Dodgers का मानक दृष्टिकोण है। टीम ने Camelback Ranch में biomechanical analysis में भारी निवेश किया है ताकि early fatigue signals को चोटों में बदलने से पहले पहचाना जा सके।"
+    ],
+    "technical": {
+      "title": "थकान संकेतक — Coaches और डेटा क्या ट्रैक करते हैं",
+      "body": [
+        "आधुनिक pitching staff coaches थकान संकेतकों का एक layered set ट्रैक करते हैं: (1) Velocity trend — क्या पिचर पहली दो innings की औसत से नीचे है? 2 mph का decline yellow flag है; 3+ mph red flag है। (2) Control deviation — क्या pitches लगातार बड़े margins से target miss कर रही हैं? Corner के लिए aimed pitches का strike zone के बीच में miss होना mechanical breakdown सुझाता है। (3) Spin rate degradation — थकी हुई breaking pitches धीमी spin करती हैं और कम break होती हैं। (4) Arm action — क्या पिचर की arm path वीडियो में खेल में पहले से अलग दिखती है?",
+        "पिचरों द्वारा प्रदर्शित सबसे महत्वपूर्ण mechanical fatigue compensation arm drag है: arm शरीर के rotation के पीछे रह जाता है क्योंकि shoulder और rotator cuff थके हुए हैं, जिससे arm pitch में lead करने की बजाय drag करता है। Arm drag UCL stress को नाटकीय रूप से बढ़ाता है क्योंकि ligament वह force absorb करता है जो shoulder को generate करना चाहिए था। Real-time में arm drag की पहचान करना injury prevention के लिए pitching coach का सबसे महत्वपूर्ण intervention है।"
+      ]
+    },
+    "incident": {
+      "title": "Walker Buehler की Tommy John Surgeries — 2019 और 2022",
+      "impact": "Walker Buehler ने दो Tommy John-संबंधित procedures करवाए — 2019 में UCL brace surgery जिसने उन्हें pitching जारी रखने दिया, और 2022 में पूर्ण UCL reconstruction जिसने उनके 2022 और 2023 पूरे सत्र खर्च किए। उनके cases दर्शाते हैं कि early intervention (2019) करियर extend कर सकता है, लेकिन यह भी कि high-velocity pitching का accumulated stress अंततः preventive measures को पार कर जाता है।",
+      "body": [
+        "Buehler का 2019 procedure UCL brace था — एक कम invasive intervention जिसने ligament को बिना full reconstruction के मज़बूत किया। Dodgers के medical staff ने MRI results के आधार पर यह निर्णय लिया जो partial UCL damage दिखाते थे जो अभी full reconstruction की threshold तक नहीं पहुंचे थे। वे 2019 और 2020 में उनके workload management में aggressive रहे, उन्हें कई starts में 80 pitches से नीचे रखते हुए। जब Buehler 2021 में पूरी तरह स्वस्थ थे, उन्होंने 33 starts में 2.47 ERA post की — conservative management को सही ठहराते हुए।",
+        "Buehler का 2022 UCL rupture regular season में हुआ और full Tommy John reconstruction की आवश्यकता थी। Dodgers के medical team और front office ने recovery को जल्दबाज़ी करने की बजाय उन्हें पूरे 2022–2023 की अवधि के लिए रोकने का निर्णय लिया। Buehler 2024 में वापस लौटे, शुरुआत में arm strength को rebuild करते समय control से जूझते हुए। उनकी कहानी proactive fatigue management के महत्व और इस वास्तविकता दोनों को दर्शाती है कि यहाँ तक कि सर्वोत्तम preventive programs भी physical क्षमता की सीमा पर pitching करने वाले high-velocity power pitchers के लिए UCL जोखिम को पूरी तरह समाप्त नहीं कर सकते।"
+      ]
+    },
+    "timeline": [
+      "Tommy John ने पहला UCL reconstruction करवाया — procedure उनके नाम पर, Dr. Frank Jobe द्वारा किया गया",
+      "Hershiser का record season — Lasorda द्वारा सावधानीपूर्वक pitch count management एक कारक के रूप में उद्धृत",
+      "TJ surgery mainstream बनी — Dodgers medical staff ने comprehensive arm care protocol बनाया",
+      "Statcast ने fatigue ट्रैक करने के लिए real-time velocity और spin rate monitoring सक्षम किया",
+      "Buehler की UCL brace surgery — 2021 प्रदर्शन द्वारा early intervention model मान्य",
+      "Buehler का full TJ — accumulated high-velocity stress ने prevention protocols को पार किया"
+    ],
+    "keyTakeaways": [
+      "Starter की game average से 2+ mph velocity decline yellow flag है — 3+ mph red flag है जो removal पर विचार को उचित ठहराती है",
+      "Arm drag (arm शरीर के rotation के पीछे रह जाना) सबसे खतरनाक mechanical fatigue compensation है क्योंकि यह UCL stress को नाटकीय रूप से बढ़ाता है",
+      "Tommy John recovery में 12–18 महीने लगते हैं और ~20% पिचर कभी pre-surgery प्रदर्शन पर वापस नहीं आते — रोकथाम बहुत बेहतर है",
+      "Breaking pitches पर spin rate degradation real-time में पिचर थकान का एक Statcast-detectable indicator है जो control breakdown से पहले आता है"
+    ]
+  },
+  "baseball-7-10": {
+    "tagline": "पांच पिचर। पांच अलग रणनीतियां। एक franchise। बेसबॉल इतिहास की सबसे महान pitching परंपरा।",
+    "overview": [
+      "Los Angeles Dodgers ने बेसबॉल इतिहास में elite starting pitchers का सबसे concentrated career record बनाया है। Sandy Koufax (1955–1966) ने elegant simplicity के माध्यम से dominance किया: दो pitches, mechanically perfect, elite velocity और movement के साथ फेंकी गईं। Don Drysdale (1956–1969) ने power को psychological intimidation के साथ मिलाया, inner half को अपनी property स्थापित करते हुए और batters को उन्हें challenge करने के लिए उकसाते हुए। Fernando Valenzuela (1980–1990) ने screwball — एक ऐसी pitch जो conventional curveball की विपरीत दिशा में curve करती है — को mass baseball consciousness में लाया, इसे एक unique delivery के साथ जोड़कर जो batter timing को बाधित करता था।",
+      "Orel Hershiser (1983–2000, मुख्यतः 1983–1994 Los Angeles के साथ) ने उसी mound पर अपना Hall of Fame career बनाया जहां Koufax और Drysdale ने dominance किया था, लेकिन मौलिक रूप से अलग approach के साथ: average velocity, elite sequencing, और एक sinker-slider combination जो strikeouts की बजाय groundouts generate करता था। उनका 1988 season — 23 जीत, Cy Young Award, World Series MVP और 59 consecutive scoreless innings — Dodgers इतिहास में सबसे complete pitching campaign है। Clayton Kershaw (2008–present) पहले आई सभी चीज़ों का synthesis है: Koufax की power, Hershiser की sequencing intelligence, Drysdale की competitiveness, सब एक left-handed package में combined जिसने उन्हें अपने युग का सर्वश्रेष्ठ पिचर बनाया।",
+      "Dodgers के इन पांचों legends में से प्रत्येक एक अलग strategic lesson सिखाता है: Koufax simplicity और execution के माध्यम से dominance सिखाता है; Drysdale inner half ownership और psychological control सिखाता है; Valenzuela सिखाता है कि unconventional pitches batters के लिए unconventional problems create करती हैं; Hershiser सिखाता है कि sequencing और intelligence velocity को मात देती है; और Kershaw सिखाता है कि सभी approaches का synthesis, दशकों के अथक काम के माध्यम से लागू, सबसे बड़ा career पैदा करता है।"
+    ],
+    "technical": {
+      "title": "पांच Approaches — पांच Strategies की तुलना",
+      "body": [
+        "Sandy Koufax के अंतिम चार seasons (1963–1966) ने 97 जीत, चार no-hitters, तीन Cy Young Awards और 1966 में 1.73 ERA दिए। उनका approach binary था: fastball या curveball। Fastball आधुनिक estimates के अनुसार 97–100 mph average थी; curveball 58+ inches drop करती थी और कई Hall of Famers ने जिन्होंने इसका सामना किया 'बेसबॉल इतिहास की सर्वश्रेष्ठ pitch' कहा। उनकी रणनीति sequencing simplicity ही थी: fastball से काउंट establish करें, curveball से at-bat समाप्त करें। Batters जानते थे कि क्या आने वाला है — फिर भी connect नहीं कर सकते थे।",
+        "Kershaw का career arc एक महत्वपूर्ण तरीके से Koufax की बजाय Hershiser जैसा है: जैसे उनका repertoire बदला उन्होंने adapt किया। Early Kershaw (2008–2013) 93–95 mph average करने वाली fastball और devastating curveball पर rely करता था। जैसे-जैसे उनके late 20s और 30s में velocity कम हुई, Kershaw ने slider add किया, curveball shapes बदले और sequencing master बन गए — pure velocity की कमी compensate करने के लिए movement, location और intelligence पर अधिक rely करते हुए। यह adaptation — अपनी strategy को उस पर recalibrate करना जो आपके पास अभी है, पांच साल पहले नहीं था — exceptional pitching career की defining characteristic है।"
+      ]
+    },
+    "incident": {
+      "title": "Koufax का Final Season — 1966 में Peak पर Retirement",
+      "impact": "Sandy Koufax ने 30 साल की उम्र में 1966 season के बाद retire किया — 1.73 ERA, 27 जीत और 317 strikeouts post करने के बाद। उन्होंने retire इसलिए नहीं किया क्योंकि उनका प्रदर्शन declined था बल्कि इसलिए कि उनकी arthritic elbow को constant pain में pitch करने की आवश्यकता होती और संभवतः permanent joint damage होता। उनका career के peak पर retirement — health को continued dominance के ऊपर choose करना — बेसबॉल इतिहास के सबसे poignant strategic decisions में से एक है।",
+      "body": [
+        "Koufax का 1966 season बेसबॉल इतिहास के सर्वश्रेष्ठ में से एक था। उन्होंने 323 innings में 27-9 record, 1.73 ERA और 317 strikeouts के साथ finish किया। लेकिन वे severe pain में pitch कर रहे थे — उनकी arthritic left elbow को games से पहले cortisone injections की आवश्यकता थी, और doctors ने चेतावनी दी कि जारी रखने से permanent nerve और joint damage का जोखिम है। 18 नवंबर 1966 को, 30 साल की उम्र में, Koufax ने Los Angeles में एक press conference में अपने retirement की घोषणा की।",
+        "निर्णय उनके career philosophy से पूरी तरह consistent था: sentimentalism की बजाय clarity और decisiveness। Koufax ने declining performance के seasons से गुज़रने की कोशिश नहीं की — वे peak excellence के बिंदु पर रुके, अपनी legacy और स्वास्थ्य दोनों की रक्षा करते हुए। Dodgers ने उनके retirement के बाद 20 साल तक कोई World Series नहीं जीता। Dodgers के पांच महान पिचरों में, Koufax का retirement उनके career का सबसे strategic act है: जानना कि आप अपने best पर हैं और उसे erode करने की बजाय preserve choose करना। बेसबॉल इतिहास का हर वह खिलाड़ी और coach जिसने यह तय करने से जूझा कि कब रुकना है, Koufax के decision की clarity के सामने measure किया गया है।"
+      ]
+    },
+    "timeline": [
+      "Koufax ने 306 Ks के साथ 1.88 ERA post की — तीन consecutive Cy Young seasons में से पहला",
+      "Koufax का Cubs के खिलाफ perfect game — 14 Ks, 9 सितंबर, Dodger Stadium",
+      "Koufax ने 1.73 ERA के साथ 30 पर retire किया — बेसबॉल इतिहास का सबसे महान early retirement",
+      "Drysdale की 58 consecutive scoreless innings — inner half dominance का record",
+      "Fernandomania — Valenzuela ने एक ही season में Cy Young + ROY जीता",
+      "Hershiser की 59 scoreless innings ने Drysdale का record तोड़ा — World Series MVP मिला",
+      "Kershaw ने Cy Young + MVP जीता — career का सर्वश्रेष्ठ season",
+      "Kershaw ने World Series जीती — Dodgers का 32 साल का championship drought समाप्त"
+    ],
+    "keyTakeaways": [
+      "Koufax सिद्ध करता है कि दो elite pitches चार average से बेहतर हैं — arsenal expand करने से पहले अपने best weapons में master करें",
+      "Drysdale की inner half dominance सिखाती है कि एक zone का ownership पूरी plate खोल देता है — ownership डर पैदा करता है जो space बनाता है",
+      "Hershiser की average velocity पर 59 scoreless innings सिद्ध करती हैं कि sequencing intelligence एक career में physical tools को मात देती है",
+      "Kershaw का career adaptation — velocity decline होने पर pitches add करना और approaches बदलना — pitching longevity का model है"
+    ]
+  },
+  "stage-m39": {
+    "tagline": "एक IPS जिसे packet fragmentation से धोखा दिया जा सकता है वह केवल security theater है — attacker reassembly को नियंत्रित करता है।",
+    "overview": [
+      "Cisco Firepower Cisco का Next-Generation Intrusion Prevention System (NGIPS) है, जो Firepower Threat Defense (FTD) software और dedicated Firepower appliances दोनों में integrated है। यह real-time में Snort 3 rule signatures के खिलाफ network traffic inspect करता है, deep packet inspection (DPI) करता है और application layer पर security policies implement करता है। Firepower Management Center (FMC) सभी managed sensors पर centralized policy management प्रदान करता है।",
+      "अपनी capabilities के बावजूद, Firepower — सभी signature-based IPS platforms की तरह — evasion techniques के प्रति vulnerable है जो network layer पर packets के fragmentation, reordering या overlapping को manipulate करती हैं। TCP segmentation evasion एक malicious payload को IPS के minimum reassembly threshold से नीचे multiple segments में divide करती है। IP fragmentation evasion IP datagram को ऐसे divide करती है कि malicious payload signature किसी एक fragment में नहीं दिखती। Time-to-Live (TTL) manipulation decoy packets भेजती है जो IPS तक पहुंचते हैं लेकिन endpoint तक पहुंचने से पहले expire हो जाते हैं।",
+      "इन evasion techniques को समझना उन red team operators के लिए आवश्यक है जो IPS effectiveness test करते हैं और defenders के लिए भी जो Firepower policies tune करते हैं। Cisco Firepower IPS में inline normalization preprocessors हैं जो classic evasion methods की अधिकांश का मुकाबला करते हैं — लेकिन केवल तब जब properly enabled और tuned हों। Default configurations अक्सर performance कारणों से इन protections को disabled रखती हैं।"
+    ],
+    "technical": {
+      "title": "TCP/IP Fragmentation Evasion — Malicious Payloads को IPS Signature Boundaries से परे Split करना",
+      "body": [
+        "Snort-based IPS signatures reassembled packet payloads के भीतर byte sequences match करती हैं। Fragmentation evasion attack जानबूझकर malicious payload को fragment boundaries से across divide करता है ताकि कोई भी individual fragment complete signature match न हो। उदाहरण के लिए, एक SQL injection payload `' OR 1=1--` को दो fragments में `' OR 1` / `=1--` के रूप में divide करना एक Snort rule को evade कर सकता है जिसे complete sequence की आवश्यकता है। Endpoint की TCP stack fragments को full payload में reassemble करती है, injection execute करती है।",
+        "Cisco Firepower का Stream preprocessor और Frag3 module signature matching से पहले traffic normalize करने के लिए designed हैं — fragments और TCP streams को detection engine को pass करने से पहले reassemble करते हैं। `stream_tcp policy windows` (या endpoint के लिए appropriate OS policy) के साथ enabled होने पर, Firepower वही reassembly करता है जो endpoint करती है, अधिकांश fragmentation evasions को defeat करता है। Key failure mode एक misconfigured या disabled stream reassembly policy है।",
+        "Modern evasion testing Fragroute, Scapy, या Nmap's fragmentation flags (`-f`, `--mtu`) जैसे tools का उपयोग fragmented payload delivery को automate करने के लिए करती है। Blue team validation: सभी preprocessors enabled के साथ Snort/Firepower को inline mode में चलाएं, फिर fragmentation offsets के साथ known-malicious signatures replay करें और detection verify करें। कोई भी missed detection preprocessor gap दर्शाती है।"
+      ]
+    },
+    "incident": {
+      "title": "Production में Fragmentation Evasion — Financial Institution में IPS Bypass",
+      "impact": "Red team ने SQL injection और XSS payloads को IPS sensor से सफलतापूर्वक deliver किया; attack dwell time हफ्तों तक बढ़ा इससे पहले कि blue team ने stream policy configuration को ठीक किया",
+      "body": [
+        "एक financial services firm में 2023 में documented red team engagement में, Firepower 4140 appliances को default 'balanced' performance profile के साथ deploy किया गया था, जिसने performance preserve करने के लिए 8KB से अधिक traffic के लिए IP fragment reassembly को disable किया था। Red team ने Scapy का उपयोग trading platform API के खिलाफ fragmented SQL injection payloads deliver करने के लिए किया — किसी को detect नहीं किया गया क्योंकि Frag3 reassembly affected traffic class के लिए active नहीं था।",
+        "Root cause एक documented Cisco deployment decision था: Firepower performance और high-availability profiles detection completeness को performance के लिए trade करते हैं। Low-latency trading environments के लिए, inline normalization policy 'connectivity over security' fragmentation reassembly को disable करती है। High-security environments के लिए correct posture 'security over connectivity' है — कुछ performance cost पर सभी normalizers enable करना। Compromise report ने firm के 47 Firepower sensors पर policy audit को triggered किया।"
+      ]
+    },
+    "timeline": [
+      "Ptacek & Newsham ने 'Insertion, Evasion, and Denial of Service' publish किया — fundamental IDS evasion research",
+      "Cisco ने Sourcefire (Snort के creator) को acquire किया — Firepower NGIPS Cisco का primary IPS platform बना",
+      "Cisco ने Firepower में Snort 3 introduce किया improved stream reassembly और application-layer detection के साथ",
+      "CISA का IPS configuration guidance: critical infrastructure के लिए 'security over connectivity' profile recommend करता है",
+      "Firepower 7.4: enhanced Encrypted Traffic Analytics (ETA) TLS traffic में evasion detect करने के लिए ML का उपयोग"
+    ],
+    "keyTakeaways": [
+      "High-security environments के लिए appropriate OS-specific policies के साथ IP Frag3 reassembly और TCP stream normalization enable करें — कभी default न छोड़ें",
+      "Critical assets को touch करने वाले सभी traffic के लिए Snort 3 की 'security over connectivity' normalization policy का उपयोग करें",
+      "Regular evasion testing के साथ IPS detection validate करें — एक misconfigured preprocessor एक silent gap है",
+      "Firepower का Encrypted Traffic Analytics (ETA) decryption के बिना TLS traffic में छिपी evasion techniques detect करता है — इसे enable करें"
+    ]
+  },
+  "stage-m40": {
+    "tagline": "हर IPS decision एक policy decision से शुरू होती है — FMC वह जगह है जहां network security apply होने से पहले लिखी जाती है।",
+    "overview": [
+      "Cisco Firepower Threat Defense (FTD) unified software image है जो Cisco ASA firewall engine को Sourcefire NGIPS engine के साथ एक single platform में combine करती है। FTD Cisco Firepower appliances (1000, 2100, 4100, 9300 series), software upgrade के माध्यम से ASA 5500-X hardware, और virtual machine (FTDv) के रूप में run होती है। Firepower Management Center (FMC) centralized management platform है — यहीं सभी IPS policies, access control policies, SSL inspection policies, और network intelligence configurations सभी managed FTD sensors पर create और deploy किए जाते हैं।",
+      "FTD मौलिक रूप से भिन्न security implications के साथ तीन deployment modes में operate कर सकता है। Inline mode FTD device को physically traffic path में रखता है — यह real-time में connections block, reset और modify कर सकता है। Passive mode (SPAN/tap) traffic की एक copy receive करता है और केवल alert कर सकता है, block नहीं। Inline tap mode inline operate करता है लेकिन सभी packets drop करता है बजाय block करने के — production enforcement से पहले नई IPS policies के shadow testing के लिए उपयोग किया जाता है। Mode attacks और configuration mistakes दोनों के blast radius को determine करता है।",
+      "IPS policy tuning Firepower deployments में सबसे महत्वपूर्ण (और neglected) configuration tasks में से एक है। Default Snort ruleset में हज़ारों signatures हैं, जिनमें से कई specific environments में false positives generate करेंगी। Production में untuned IPS SOC को noise से flood करता है (यदि alert-only configure किया गया हो) या legitimate traffic block करता है (यदि drop configure किया गया हो)। Tuning के लिए Snort rule priority levels, Cisco-recommended tuning workflows, और Firepower के security intelligence और application detectors का उपयोग समझना आवश्यक है।"
+    ],
+    "technical": {
+      "title": "FTD Deployment Modes और IPS Policy Architecture",
+      "body": [
+        "FMC hierarchical policy structure के माध्यम से FTD sensors manage करता है: Platform Configuration (interface config, HA, licensing) → Access Control Policy (ACP, master traffic policy) → IPS Policy (ACP rules के भीतर applied Snort rules) → File/Malware Policy (Cisco AMP integration) → SSL Policy (TLS inspection)। हर traffic flow इस stack के माध्यम से evaluate होती है। ACP entry point है — यह determine करता है कि traffic allow, block, या inspect हो, और कौन सी IPS policy प्रत्येक traffic class पर apply हो।",
+        "FMC में Snort rules Cisco Talos-managed rule groups (VRT के माध्यम से auto-updated), community rules, और custom rules में organized हैं। प्रत्येक rule की severity (critical, high, medium, low, informational) और default action (alert, drop, pass, revert) होती है। IPS policies एक inspection mode उपयोग करती हैं: detection-only (केवल alert, कोई blocking नहीं) या prevention (rule action के अनुसार blocks)। नई deployments को prevention mode पर switch करने से पहले false positive rates establish करने के लिए detection-only से शुरू होना चाहिए।",
+        "FMC का recommendations engine protected network के OS fingerprints का विश्लेषण करता है (Nmap-style passive host discovery से) और उन rules को suppress करने की सिफारिश करता है जो detected host OS पर apply नहीं होती। उदाहरण के लिए, Windows SMB rules Linux web server VLAN पर irrelevant हैं। Recommendations engine का उपयोग active rule counts को 40–60% तक कम कर सकता है और साथ ही signal-to-noise ratio को नाटकीय रूप से improve कर सकता है।"
+      ]
+    },
+    "incident": {
+      "title": "Prevention Mode में Untuned IPS — Healthcare Network में Production Outage",
+      "impact": "Untuned prevention IPS ने legitimate HL7 FHIR API calls को block किया — 4-hour EHR system outage; clinical operations के दौरान HIPAA-regulated patient data access disrupted",
+      "body": [
+        "एक healthcare IT team ने Cisco FTD 4150 को inline prevention mode में Talos 'Maximum Detection' base policy का उपयोग करके deploy किया बिना किसी tuning के। 6 घंटों के भीतर, HTTP anomalies को target करने वाले Snort rules ने HL7 FHIR API calls (जो PATCH जैसे non-standard HTTP verbs और complex JSON bodies का उपयोग करती हैं) को suspicious mark किया और drop करना शुरू किया। EHR system high-census period के दौरान clinical staff के लिए inaccessible हो गया।",
+        "Cisco का recommended deployment workflow — 2+ weeks detection-only में baseline establish करें, recommendations engine results apply करें, फिर prevention पर switch करें — schedule pressure के कारण skip किया गया। Correct fix था immediately detection-only पर revert करना और उसके बाद proper tuning। Incident अब Cisco के FMC training curriculum में एक standard case study है कि IPS inline के लिए 'deploy और forget' secure नहीं क्यों है।"
+      ]
+    },
+    "timeline": [
+      "Cisco ने Sourcefire acquire किया — Snort और Firepower Cisco products बने",
+      "Unified FTD image launch — एक single software stack में ASA + NGIPS",
+      "FMC 6.6: Legacy Snort 2 के साथ Snort 3 support add किया",
+      "Cisco ने new deployments के लिए Snort 3 को default recommend किया — ETA (encrypted threat analytics) के लिए Snort 3 required",
+      "FMC 7.4: AI-assisted policy recommendations ने tuning time लगभग 60% कम किया"
+    ],
+    "keyTakeaways": [
+      "Prevention mode पर switch करने से पहले हमेशा 2+ weeks detection-only में baseline establish करें — untuned prevention एक outage risk है",
+      "Recommendations engine का उपयोग करें — irrelevant OS rules suppress करता है और false positive rates को नाटकीय रूप से कम करता है",
+      "Blocking के लिए inline mode में FTD required है; passive/SPAN mode केवल alert है — prevention की expect करने से पहले अपना deployment mode confirm करें",
+      "Encrypted traffic analysis के लिए Snort 3 (Snort 2 नहीं) required है — modern threat coverage के लिए legacy Snort 2 policies upgrade करें"
+    ]
+  },
+  "stage-m41": {
+    "tagline": "TLS handshakes को खुला छोड़ना एक attacker के लिए विनम्र निमंत्रण है — और वे आपके हर slot को भर देंगे।",
+    "overview": [
+      "CVE-2022-20927 Cisco Firepower Threat Defense (FTD) software की SSL/TLS VPN feature में एक denial-of-service vulnerability है। Vulnerability इसलिए exist करती है क्योंकि FTD की SSL/TLS VPN implementation incomplete TLS handshakes को सही ढंग से handle नहीं करती। एक unauthenticated remote attacker बड़ी मात्रा में TLS ClientHello messages भेज सकता है और फिर handshake छोड़ सकता है — एक incomplete handshake state छोड़ते हुए जो FTD memory में retain रहता है। जब sufficient incomplete handshake state accumulate हो जाता है, FTD device नई VPN connections accept करना बंद कर देता है और restart हो सकता है।",
+      "यह well-known 'TLS half-open' या 'SSL exhaustion' attack class का एक variant है — concept में TCP SYN floods के समान लेकिन TLS layer पर। Attack विशेष रूप से FTD के VPN subsystem में TLS session table को target करता है। Volumetric bandwidth flood के विपरीत, इस attack के लिए केवल handshake state table भरने के लिए पर्याप्त packets चाहिए — एक single attacking host से modest bandwidth के साथ achievable। CVSS 8.6 unauthenticated network-exploitable nature और availability impact को reflect करता है।",
+      "Cisco ने FTD 7.0.4, 7.1.0.3, 7.2.0.1 और बाद के versions में patches release किए। Unpatched systems के लिए mitigations में external interface पर connection rate limiting, TLS handshake timeout values कम करना और upstream DDoS mitigation implement करना शामिल है। Vulnerability class VPN gateway design में एक fundamental tension highlight करता है: legitimate clients के प्रति responsiveness बनाम half-open state exhaustion के विरुद्ध resilience।"
+    ],
+    "technical": {
+      "title": "TLS Handshake State Exhaustion — Incomplete ClientHello Attack",
+      "body": [
+        "एक standard TLS 1.3 handshake आगे बढ़ता है: ClientHello → ServerHello + Certificate + CertificateVerify + Finished → (client) Finished। FTD जब ClientHello arrive होता है तो handshake state memory allocate करता है और इसे retain रखता है जब तक handshake complete न हो या timeout न हो। CVE-2022-20927 FTD के incomplete handshakes के timeout handling में एक defect exploit करता है — state तब पर्याप्त तेज़ी से reclaim नहीं होता जब client ClientHello भेजने के बाद silent हो जाता है।",
+        "एक attacker high rate पर ClientHello messages भेजता है, प्रत्येक spoofed source IP से या unique client random values का उपयोग करके unique sessions appear कराने के लिए। वे बाद के handshake messages कभी नहीं भेजते। FTD हर एक के लिए state table entry allocate करता है। जब state table भर जाती है (एक bounded लेकिन configurable resource), नए legitimate VPN connection attempts reject हो जाते हैं। Established existing VPN sessions stable रह सकते हैं, लेकिन कोई नया successful connection नहीं — एक 'blackout' न कि complete disruption।",
+        "Detection signature: FTD के `show ssl statistics` output में visible TLS handshake state table utilization में spike, NetFlow/Stealthwatch data में ClientHello messages की high rate के साथ combined। Legitimate traffic से differentiation: legitimate TLS clients लगभग हमेशा 100-500ms के भीतर handshake complete करते हैं; CVE-2022-20927 exploiters timeout (typically 30-60 seconds) expire होने देते हैं इससे पहले कि state reclaim हो।"
+      ]
+    },
+    "incident": {
+      "title": "FTD SSL VPN Exhaustion — Manufacturing Company में Remote Workforce Lockout",
+      "impact": "सभी नई VPN connections 4 घंटे blocked; 3,200 remote workers internal systems access करने में असमर्थ; emergency maintenance window के दौरान patch apply किया",
+      "body": [
+        "Cisco के CVE-2022-20927 advisory publish होने के तीन हफ्ते बाद, एक manufacturing company में unpatched FTD 2140 को TLS handshake exhaustion attack का निशाना बनाया गया। Attack सोमवार सुबह 6:45 AM पर शुरू हुआ — peak VPN connection time — और 22 मिनट के भीतर handshake state table भर दी। सभी नए VPN connection attempts ने 3,200 remote workers को 'unable to connect' return किया जो अपना कार्यसप्ताह शुरू करने की कोशिश कर रहे थे।",
+        "Patch को अगले weekend maintenance window में deployment के लिए ready किया गया था। Attack ने mid-week सुबह 4 AM पर emergency patch deployment को force किया, existing connected users के लिए 45-minute VPN disruption के साथ। SOC ने FMC connection events के माध्यम से attack pattern identify किया जो diverse IP addresses से हज़ारों 'Unknown' SSL state entries दिखा रही थीं — सामान्य VPN traffic की बजाय coordinated handshake exhaustion campaign के indicators।"
+      ]
+    },
+    "timeline": [
+      "THC-SSL-DoS tool publish किया — SSL renegotiation exhaustion attack class documented",
+      "COVID-19 remote work surge ने VPN gateway DoS को high-impact attack vector बनाया",
+      "Aug: Cisco ने CVE-2022-20927 disclose किया — FTD SSL handshake exhaustion",
+      "Sep: disclosure के बाद active exploitation observed; FTD 7.0.4, 7.1.0.3, 7.2.0.1 में patches release",
+      "Cisco FTD 7.4 ने adaptive handshake timeout add किया — high state table utilization के तहत automatically timeout reduce करता है"
+    ],
+    "keyTakeaways": [
+      "CVE-2022-20927 patches immediately apply करें — FTD 7.0.4+, 7.1.0.3+, 7.2.0.1+ incomplete handshake timeout defect resolve करते हैं",
+      "SSL handshake state table utilization को VPN gateway health की key metric के रूप में monitor करें — spikes exhaustion attacks indicate करते हैं",
+      "Unpatched systems के लिए mitigation के रूप में upstream device पर नई TCP/443 connections rate-limit करें",
+      "TLS handshake exhaustion bandwidth floods से distinct है — modest attack traffic के साथ succeed कर सकता है जिसे rate limiting detect न करे"
+    ]
+  },
+  "stage-m42": {
+    "tagline": "Lateral movement endpoint telemetry, network flows, और authentication logs में traces छोड़ता है — XDR वे dots connect करता है जो कोई individual tool नहीं देख सकता।",
+    "overview": [
+      "Cisco XDR (पहले Cisco SecureX) एक cloud-native extended detection and response platform है जो Cisco Secure Endpoint (पहले AMP for Endpoints), Cisco Secure Firewall (Firepower), Cisco Umbrella, Cisco Secure Email, और third-party SIEM sources से telemetry aggregate करता है। इसकी core capability cross-source correlation है — एक tool में detected compromise indicator (IOC) को अन्य tools के related events के साथ associate करना एक complete attack narrative बनाने के लिए।",
+      "Cisco XDR में threat hunting Orbital Query Engine (Cisco Secure Endpoint feature) का उपयोग live host interrogation के लिए करती है, Investigate portal का 100+ Talos threat intelligence feeds में IOC pivoting के लिए, और Casebook workflow investigation findings document करने के लिए। XDR Ribbon — Cisco security product interfaces के bottom पर persistent UI bar — instant pivots enable करती है: Firepower alert में देखा गया IP तुरंत Umbrella DNS logs, Secure Endpoint telemetry, और Talos reputation में query किया जा सकता है बिना current screen छोड़े।",
+      "Lateral movement XDR में threat hunting के सबसे महत्वपूर्ण objectives में से एक है क्योंकि यह multiple data sources span करता है: एक compromised workstation वाला attacker Firepower पर visible network connections, Umbrella पर visible DNS queries, Secure Endpoint पर visible file writes, और Active Directory logs पर visible authentication events create करेगा। कोई भी individual tool complete picture नहीं देखता। XDR का value correlation में है — initial compromised workstation से final target server तक lateral movement chain को map करना।"
+    ],
+    "technical": {
+      "title": "XDR Multi-Platform Pivoting — Endpoint, Network, और DNS Telemetry Correlate करना",
+      "body": [
+        "Cisco XDR investigation workflow एक seed IOC से शुरू होता है — typically एक IP address, domain, file hash, या email address जो suspicious दिखती है। Investigate portal seed को simultaneously सभी connected modules भेजता है और results को एक single observable graph में aggregate करता है। प्रत्येक result एक 'disposition' है (clean, malicious, suspicious, unknown) जो Talos threat intelligence data और first/last seen timestamps द्वारा backed है।",
+        "Lateral movement detection के लिए threat hunters typically internal IP addresses पर pivot करते हैं। जब Secure Endpoint WS-01 workstation पर एक suspicious process flag करता है जो 10.10.50.5 (एक internal server) से unusual network connection कर रहा है, XDR pivot extract करता है: उस IP pair के Firepower connection logs, connection से पहले WS-01 के Umbrella DNS queries, connection के time के आसपास 10.10.50.5 पर Secure Endpoint process events, और Active Directory authentication logs। Resulting timeline attack chain expose करती है।",
+        "Orbital Query Engine SQL-like syntax का उपयोग करके enrolled Cisco Secure Endpoint hosts के खिलाफ live forensic queries allow करता है। Queries near-real-time में endpoint telemetry के खिलाफ execute होती हैं: `SELECT * FROM processes WHERE parent_name = 'cmd.exe' AND name = 'net.exe'` net use / pass-the-hash के माध्यम से lateral movement expose करती है। Results automatically XDR investigation case से linked होते हैं।"
+      ]
+    },
+    "incident": {
+      "title": "XDR Lateral Movement Discovery — Retail Chain SOC ने 18-Day Dwell Time पाया",
+      "impact": "XDR multi-platform correlation ने attacker lateral movement identify किया जो 18 दिनों तक individual tool alerts से बचा रहा था; 14 compromised hosts identified और contained; PCI DSS cardholder data तक नहीं पहुंचा",
+      "body": [
+        "एक national retail chain में Cisco XDR threat hunt एक single Talos threat intelligence alert से शुरू हुई: store manager की workstation पर एक file hash जो known Cobalt Strike beacon से match करता था। Secure Endpoint alert initially low-severity classify किया गया workstation role के कारण। Beacon के C2 IP पर XDR pivot ने reveal किया कि same C2 को 8 stores में 13 अन्य hosts 18 दिनों से contact कर रहे थे — सभी individual product alert thresholds से नीचे।",
+        "Cisco XDR casebook investigation ने complete attack chain map किया: phishing email के माध्यम से initial access (Secure Email telemetry), Cobalt Strike beacon deployment (Secure Endpoint), SMB के माध्यम से store server को lateral movement (Firepower NetFlow), Active Directory reconnaissance (Umbrella DNS queries for AD-related domains) और payment processing VLAN access attempts (Firepower द्वारा blocked, logged लेकिन अभी reviewed नहीं)। 14 hosts को simultaneously XDR automated response playbook के माध्यम से isolate किया गया, जिसने एक single workflow में Secure Endpoint को quarantine commands भेजे।"
+      ]
+    },
+    "timeline": [
+      "Cisco SecureX launch — Cisco security portfolio में first multi-platform persistent ribbon integration",
+      "SecureX Orbital Query Engine से expanded — SQL-like queries के माध्यम से live endpoint forensic analysis",
+      "Cisco ने SecureX को Cisco XDR rebrand किया — industry XDR category terminology के साथ align",
+      "Cisco XDR ने AI-assisted investigation copilot add किया — natural language threat hunting queries",
+      "XDR integration third-parties तक extended: Microsoft Defender, CrowdStrike, Splunk, Palo Alto"
+    ],
+    "keyTakeaways": [
+      "Lateral movement किसी भी individual tool के लिए invisible है — XDR multi-platform correlation इसकी primary defense value है",
+      "Suspicious process या network connection identify होने पर live host interrogation के लिए Orbital Query Engine का उपयोग करें — endpoint login के बिना real-time forensic analysis",
+      "XDR Ribbon instant pivots enable करती है: किसी भी tool में देखे गए IP, hash या domain को immediately सभी connected sources में pivot करें",
+      "XDR में automated response playbooks containment time को hours से seconds तक reduce करते हैं — इनकी ज़रूरत पड़ने से पहले quarantine playbooks बनाएं"
+    ]
+  },
+  "stage-m43": {
+    "tagline": "XDR एक product नहीं है — यह connective tissue है जो आपके सभी अन्य security products को साथ मिलकर smarter बनाता है।",
+    "overview": [
+      "Cisco XDR (Extended Detection and Response) Cisco Secure Endpoint, Cisco Secure Firewall (Firepower), Cisco Umbrella, Cisco Secure Email, Cisco Secure Network Analytics (Stealthwatch), और third-party integrations से telemetry को एक single detection and response fabric में consolidate करता है। यह unified threat correlation, automated investigation, और cross-product response प्रदान करता है — core value proposition यह है कि किसी भी individual tool के लिए invisible threats cross-source correlation के माध्यम से detectable बन जाती हैं।",
+      "XDR architecture तीन capabilities पर center करती है: Threat Response module (सभी integrated sources में IOC investigation और disposition), Orbital (real-time forensic analysis के लिए live endpoint query engine), और Automate (visual workflow builder का उपयोग करके SOAR-style playbook orchestration)। XDR Ribbon हर Cisco Security product UI में built-in persistent integration layer है — current screen से navigate किए बिना instant cross-product pivots enable करती है।",
+      "Cisco XDR की automated response capabilities pre-built और custom playbooks का उपयोग करती हैं जो XDR detections से trigger होते हैं। एक playbook कर सकता है: Cisco Secure Endpoint के माध्यम से host quarantine करना, Firepower के माध्यम से IP block करना, Umbrella blocklist में domain add करना, Talos threat intelligence से alert enrich करना, और ServiceNow में ticket create करना — initial detection के बाद seconds में, बिना human intervention के। यह mean time to response (MTTR) को well-defined, high-confidence attack patterns के लिए hours से seconds तक reduce करता है।"
+    ],
+    "technical": {
+      "title": "XDR Telemetry Sources, Correlation Engine, और Response Orchestration",
+      "body": [
+        "Cisco XDR Modules integrations के माध्यम से telemetry ingest करता है — प्रत्येक Cisco product (Secure Endpoint, Umbrella, Firepower, Secure Email) का एक registered Module है जो authentication, telemetry streaming, और response action routing handle करता है। Third-party modules (Microsoft Defender, CrowdStrike, Splunk, Palo Alto) module catalog में available हैं। प्रत्येक module XDR investigation graph में 'observables' (IPs, domains, hashes, URLs) और 'targets' (hosts, email addresses) contribute करता है।",
+        "Threat Response engine सभी modules में observables को एक unified schema में normalize करता है और disposition (clean, malicious, suspicious, unknown) के लिए प्रत्येक module की threat intelligence query करता है। Results को एक investigation graph में aggregate किया जाता है जो observables को targets और अन्य observables से link करता है — attack chain का visual representation बनाता है। Engine प्रत्येक connected indicator की severity और confidence के आधार पर overall investigation को score करता है।",
+        "Cisco XDR Automate SOAR (Security Orchestration, Automation, and Response) component है। Workflows एक trigger (XDR alert, manual, scheduled) से visually build किए जाते हैं जो action blocks से connected हों (Secure Endpoint: quarantine host, Umbrella: block domain, Firepower: block IP, Threat Intelligence: enrich observable, Webex: notify SOC)। Cisco Exchange marketplace के pre-built response workflows common incident types — ransomware response, phishing triage, और lateral movement containment — address करते हैं।"
+      ]
+    },
+    "incident": {
+      "title": "XDR Automate — 47 Seconds में Ransomware Containment",
+      "impact": "XDR automated ransomware playbook ने initial Secure Endpoint detection के 47 seconds के भीतर 3 hosts quarantine किए; 60+ additional hosts को lateral movement prevented; patient care systems unaffected",
+      "body": [
+        "एक ransomware variant (LockBit 3.0) ने healthcare network में phishing email के माध्यम से initial access प्राप्त किया। Cisco Secure Endpoint ने execution के 4 minutes के भीतर ransomware encryption behavior detect किया। Detection ने pre-configured XDR Automate playbook trigger किया जिसने simultaneously: Secure Endpoint के माध्यम से 3 infected workstations quarantine किए (उन्हें network से remove करते हुए), 12 hospitals पर Umbrella में ransomware C2 domain blocked, हर Firepower sensor पर C2 IP blocked, और investigation casebook link के साथ SOC को Webex notification भेजा।",
+        "Secure Endpoint detection से 3 hosts containment तक automated response का total time: 47 seconds। SOC analyst ने 8 minutes बाद XDR casebook review किया और confirm किया कि automated response correct था। Automation के बिना, 12 hospital sites पर 3 hosts की manual identification और response में 30-60 minutes लगते — उस समय के दौरान LockBit का lateral movement shared infrastructure तक पहुंच जाता।"
+      ]
+    },
+    "timeline": [
+      "Cisco SecureX launch — Cisco security portfolio में first persistent ribbon integration",
+      "SecureX Orchestration (अब Automate) launch — SOAR visual playbook builder",
+      "Orbital Query Engine को SecureX में integrate किया — live endpoint forensic queries",
+      "Cisco ने SecureX → Cisco XDR rebrand किया; AI-assisted triage और Microsoft/CrowdStrike integrations add किए",
+      "Cisco XDR AI Copilot: सभी telemetry sources के खिलाफ natural language investigation queries"
+    ],
+    "keyTakeaways": [
+      "XDR की primary value cross-source correlation है — किसी भी individual tool के लिए invisible threats detectable बन जाती हैं जब endpoint, network, DNS, और email data correlate किए जाएं",
+      "XDR Ribbon सबसे तेज़ investigation path है — UIs के बीच navigate किए बिना किसी भी observable को सभी sources पर pivot करें",
+      "Automate playbooks incidents होने से पहले build करें — deployment time पर quarantine, blocking और notification workflows define करें, active incident के दौरान नहीं",
+      "Orbital enrolled endpoints पर live forensic queries enable करता है — endpoint login के बिना real-time में lateral movement artifacts खोजने के लिए critical"
+    ]
+  },
+  "stage-m44": {
+    "tagline": "वह REST API जो आपके पूरे network को manage करती है वह उतनी ही secure है जितनी उसकी authentication boundary।",
+    "overview": [
+      "Cisco DNA Center (अब Cisco Catalyst Center) Cisco के enterprise campus और branch networks के लिए intent-based network management platform है। यह एक comprehensive REST API expose करता है जो devices, fabric configuration, SD-Access policies, और network telemetry manage करती है। DNA Center API platform द्वारा managed हर network device पर admin access होने के programmatic equivalent है — एक single API token simultaneously सैकड़ों switches और routers पर configuration changes push कर सकता है।",
+      "Network management platforms में REST API security एक vulnerability category है जिसका disproportionate impact है। एक web application में SQL injection application data affect करती है। DNA Center API में vulnerability पूरे managed network की configuration integrity affect करती है। Real-world Cisco advisories ने DNA Center में unauthenticated API access issues (CVE-2021-1257, CVE-2021-1258), authentication bypass vulnerabilities और insufficient authorization checks document किए हैं जो read-only API user को privileged operations invoke करने की allow देते हैं।",
+      "Cisco DevNet comprehensive REST API documentation, SDK toolkits (Python dnacentersdk library), और testing के लिए sandbox environments provide करता है। यह openness network automation के लिए valuable है — लेकिन इसका मतलब यह भी है कि attackers production deployments को target करने से पहले API surface का thoroughly study कर सकते हैं। API enumeration और rate limit bypass DNA Center और similar network management APIs के खिलाफ primary reconnaissance techniques हैं।"
+    ],
+    "technical": {
+      "title": "DNA Center API Authentication Weaknesses, Token Handling, और Authorization Boundaries",
+      "body": [
+        "Cisco DNA Center REST API दो types के tokens के साथ token-based authentication use करता है: short-lived service tokens (10 minutes, `POST /dna/system/api/v1/auth/token` के माध्यम से user credentials exchange करके obtained) और long-lived integration tokens (6 months तक valid) administrators द्वारा automation systems के लिए created। Token सभी subsequent API requests में `X-Auth-Token` header के रूप में pass होता है। Specific operations के लिए integration tokens का appropriate scoping न करना एक recurring misconfiguration है।",
+        "DNA Center API का एक documented privilege model है: SUPER-ADMIN-ROLE, NETWORK-ADMIN-ROLE, और OBSERVER-ROLE। इन roles के बीच authorization checks — verify करना कि एक OBSERVER-ROLE token SUPER-ADMIN-ROLE operations invoke न कर सके — critical security boundaries हैं। Cisco ने specific API endpoints पर insufficient authorization checks के लिए advisories issue किए हैं जहां OBSERVER tokens restricted operations access कर सकते थे। Attack pattern: एक low-privilege token प्राप्त करें (शायद weak credentials वाले integration account से), API enumerate करें और ऐसे operations identify करें जिन्हें elevated privilege require होनी चाहिए लेकिन adequately check नहीं करते।",
+        "DNA Center API enumeration publicly documented OpenAPI specification (`/api/swagger-ui.html`) का उपयोग authentication failures trigger किए बिना सभी available endpoints discover करने के लिए करती है। Rate limit bypass के साथ combined (session tokens में requests distribute करके या API के built-in pagination features का उपयोग करके), एक attacker privilege escalation attempt से पहले systematically पूरे API surface map कर सकता है और हर endpoint की authorization boundary test कर सकता है।"
+      ]
+    },
+    "incident": {
+      "title": "DNA Center API Token Exposure — University में Network Configuration Manipulation",
+      "impact": "Public GitHub repository में exposed long-lived SUPER-ADMIN integration token; attacker ने token का उपयोग device inventory enumerate करने और detection से पहले 12 switches पर VLAN assignments modify करने के लिए किया",
+      "body": [
+        "एक research university के network automation engineer ने एक Python script को public GitHub repository में commit किया — और script file में SUPER-ADMIN integration token hardcode छोड़ दिया। एक GitHub Actions workflow file ने script को reference किया, जिससे token public repository history में visible हो गया। 36 घंटों में, token एक automated credential scanning service द्वारा extracted किया गया और एक attacker ने DNA Center API access करने के लिए इसका उपयोग किया।",
+        "Exposed token का उपयोग करके, attacker ने 600 managed devices enumerate किए, research computing VLAN serve करने वाले switches identify किए और VLAN reassignment configuration changes implement किए जिसने 12 research workstations को less-monitored network segment में move किया। Changes को routine network audit के दौरान 4 घंटे बाद detect किया गया। DNA Center audit log ने exposed token के साथ हर action की forensic reconstruction allow करते हुए complete API call history preserve किया। Remediation को token invalidate करना, 12 VLAN changes revert करना और data exfiltration के लिए complete API call history audit करना required था।"
+      ]
+    },
+    "timeline": [
+      "Cisco DNA Center v1.0 launch — intent-based network management platform",
+      "CVE-2021-1257 / CVE-2021-1258 — multiple DNA Center API privilege issues disclosed",
+      "DNA Center 2.3.3: fine-grained API operation scoping के साथ improved RBAC",
+      "Cisco ने DNA Center को Catalyst Center rename किया — API endpoints backward compatibility maintain करते हैं",
+      "Catalyst Center 2.3.7: integration tokens के लिए OAuth 2.0 support — improved token lifecycle management"
+    ],
+    "keyTakeaways": [
+      "DNA Center (Catalyst Center) API tokens को version control में कभी commit न करें — environment variables या secrets managers का उपयोग करें",
+      "Read-only automation के लिए OBSERVER-ROLE tokens use करें; SUPER-ADMIN को explicit justification के साथ privileged operations के लिए reserve करें",
+      "DNA Center audit logging enable करें और integration accounts से unexpected API calls पर alert करें",
+      "Long-lived integration tokens को regularly rotate करें और किसी भी credential exposure event के बाद immediately expire करें"
+    ]
+  },
+  "stage-m45": {
+    "tagline": "Scale पर network configuration automate करने का मतलब है उस automation की security automate करना — एक compromised controller simultaneously हर managed device तक पहुंचता है।",
+    "overview": [
+      "NETCONF (RFC 6241) XML-encoded YANG data models के साथ SSH transport पर operate करने वाला network device configuration management के लिए IETF standard protocol है। YANG (RFC 7950) data modeling language है जो network configuration और operational data की structure, semantics, और constraints define करती है। Together, NETCONF/YANG ने network automation के programmatic standard के रूप में CLI-based management को replace किया। Cisco IOS XE, IOS XR, और NX-OS सभी NETCONF/YANG support करते हैं, और सभी Cisco intent-based networking tools (DNA Center/Catalyst Center, NSO) NETCONF/YANG को network devices की ओर southbound management protocol के रूप में use करते हैं।",
+      "gRPC Model-Driven Telemetry (gRPC MDT) streaming telemetry protocol है जो Cisco IOS XR और IOS XE द्वारा real-time operational data (interface counters, BGP state, CPU utilization) polling के बिना एक collector को push करने के लिए use किया जाता है। यह persistent gRPC streams पर Protocol Buffers (protobuf) encoding use करता है, per-second telemetry granularity enable करता है जो SNMP polling achieve नहीं कर सकती। Cisco Network Automation stack — telemetry के लिए gRPC MDT + configuration के लिए NETCONF + API access के लिए RESTCONF — 'programmable network plane' form करता है।",
+      "Programmable network plane के security implications गहरे हैं। NETCONF/YANG SSH transport use करता है — जो correctly configured होने पर secure है। लेकिन authorization model (एक given SSH user कौन से YANG operations invoke कर सकता है) प्रत्येक device पर configure किया जाता है और frequently misconfigure होता है। SUPER-USER capability वाला NETCONF session device को arbitrary configuration changes भेज सकता है। gRPC telemetry streams, यदि intercepted हों, real-time operational state reveal करते हैं जिसमें session counts, routing tables, और interface utilization शामिल हैं — एक attacker के लिए valuable reconnaissance data।"
+    ],
+    "technical": {
+      "title": "NETCONF Protocol Operations, YANG Capability Negotiation, और gRPC Telemetry Security",
+      "body": [
+        "NETCONF चार datastores define करता है: running (active configuration), candidate (commit करने से पहले staged changes), startup (boot पर loaded persisted configuration), और operational (live read-only operational state)। Configuration changes XML-encoded `<edit-config>` operations के रूप में running या candidate datastore को targeted भेजी जाती हैं। YANG model XML में क्या हो सकता है limit करता है — invalid YANG structures reject होती हैं। Port 830 पर SSH over NETCONF standard transport है; port 830 trusted management hosts तक restrict होना चाहिए।",
+        "YANG capability negotiation NETCONF session establishment पर होती है — device एक `<hello>` message भेजता है जो उसके support किए जाने वाले सभी YANG modules list करता है। NETCONF session hello intercept करने वाला attacker capabilities list parse करके device का exact software version और feature set identify कर सकता है, targeted exploit selection enable करता है। Capabilities list में module names, revision dates, और feature flags शामिल हैं — अधिकांश banner grabs से अधिक information।",
+        "gRPC Model-Driven Telemetry correctly configured होने पर transport security के लिए mutual TLS (mTLS) use करती है। mTLS के बिना, gRPC telemetry streams unencrypted हैं या one-way TLS use करती हैं (server certificate only, no client authentication)। Management network में एक attacker जो gRPC telemetry intercept कर सके उसे operational data का continuous stream मिलता है। इससे भी बुरा, यदि gRPC subscription configuration authentication के बिना subscriptions accept करे, तो एक attacker telemetry collector के रूप में register कर सकता है और वही operational data receive कर सकता है जो NOC receive करता है।"
+      ]
+    },
+    "incident": {
+      "title": "NETCONF Misconfiguration — ISP में Unauthenticated Configuration Push",
+      "impact": "SUPER-USER privileges के साथ NETCONF service account सभी devices पर use किया गया; एक automation server compromise ने 340 devices पर push access दिया; emergency privilege scope audit required",
+      "body": [
+        "एक ISP की network automation team ने automation development simplify करने के लिए सभी 340 provider edge routers पर full SUPER-USER privilege के साथ एक single NETCONF service account (`netconf-auto`) provision किया। जब automation server web application vulnerability के माध्यम से compromise हुआ, attacker ने automation framework configuration directory में NETCONF credentials discover किए। Attacker ने compromise detect होने से पहले NETCONF access use नहीं किया था, लेकिन forensic analysis ने confirm किया कि उसने 340 devices पर NETCONF capabilities enumerate की थीं।",
+        "Remediation ने emergency privilege scoping require किया: single SUPER-USER service account को function-by-function specific YANG modules (interface configuration, routing policy, telemetry subscription) तक scoped lower-privilege NETCONF accounts से replace करना — एक change जिसे 340 devices पर coordinated deployment required था। Incident ने एक NETCONF proxy architecture adoption drive किया जहां automation servers एक proxy से authenticate होते हैं, जो devices को privilege-scoped YANG operations apply करता है — automation servers से direct device NETCONF access eliminate करता है।"
+      ]
+    },
+    "timeline": [
+      "NETCONF RFC 4741 publish — programmatic network configuration के लिए first IETF standard",
+      "YANG RFC 6020 publish — NETCONF के लिए data modeling language",
+      "gRPC Model-Driven Telemetry Cisco IOS XR में introduce — per-second streaming telemetry SNMP replace करती है",
+      "RESTCONF (RFC 8040) और NETCONF/YANG Cisco DNA Center / NSO में default management protocols बने",
+      "IETF NETMOD WG: network automation auditing के लिए enhanced security annotations के साथ YANG 1.2"
+    ],
+    "keyTakeaways": [
+      "Infrastructure ACLs का उपयोग करके NETCONF port 830 को trusted management hosts तक restrict करें — इसे कभी general network segments पर expose न करें",
+      "सभी NETCONF service accounts के लिए least-privilege YANG module scoping use करें — automation के लिए SUPER-USER से explicitly required होने के अलावा बचें",
+      "gRPC telemetry subscriptions के लिए mTLS require करें — unauthenticated subscriptions management network पर किसी को भी real-time operational state leak करती हैं",
+      "NETCONF hellos में YANG capability negotiation detailed version information reveal करती है — NETCONF access logs को high-sensitivity data मानें"
+    ]
+  },
+  "stage-m46": {
+    "tagline": "हर domain compromise एक email से शुरू होती है — SOC analyst जो इसे stage one पर detect करता है organization को stage five से बचाता है।",
+    "overview": [
+      "Cisco CyberOps Associate certification (CBROPS 200-201) Security Operations Center (SOC) analysts के लिए fundamental competency framework define करती है। यह पांच domains cover करती है: security concepts, security monitoring, host-based analysis, network intrusion analysis, और security policies और procedures। सबसे critical applied skill kill chain analysis है — alerts, logs, और network data का एक set दिए जाने पर, initial access से command and control और objectives तक attacker की complete timeline reconstruct करना।",
+      "Phishing-to-domain-compromise chain SOC environments में observed सबसे common enterprise attack pattern है। Typical chain: spear-phishing email macro-enabled document deliver करता है → user document open करता है, macro execute होती है → PowerShell downloads और Cobalt Strike beacon execute करता है → beacon C2 channel establish करता है → attacker credential collection के लिए beacon use करता है (Mimikatz) → domain controller को pass-the-hash lateral movement → Active Directory enumeration और Domain Admin account creation। हर step सही data sources वाले SOC analyst के लिए visible artifacts छोड़ता है।",
+      "SIEM correlation rules kill chain attacks की SOC detection की backbone हैं। MITRE ATT&CK mapping SOC teams को प्रत्येक detected technique को framework से tag करने allow करती है — Initial Access (T1566.001 Spearphishing), Execution (T1059.001 PowerShell), Command and Control (T1071.001 Web Protocols), Lateral Movement (T1550.002 Pass the Hash), Privilege Escalation (T1078 Valid Accounts)। ATT&CK पर mapped complete kill chain analyst को बताती है क्या हुआ और प्रत्येक phase के लिए recommended defender countermeasure क्या है।"
+    ],
+    "technical": {
+      "title": "SOC Kill Chain Reconstruction — Data Sources और Detection Techniques",
+      "body": [
+        "Spearphishing के माध्यम से initial access को email gateway analysis (Cisco Secure Email: sender reputation, file sandbox verdict, URL analysis), endpoint telemetry (Cisco Secure Endpoint: file attachment save होने पर file write event, document open होने पर process creation), और network analysis (Firepower: newly registered domain को DNS query, uncategorized URL को outbound HTTP) के combination से detect किया जाता है। कोई single source definitively attack flag नहीं करती; तीनों की correlation high-confidence detection provide करती है।",
+        "Payload delivery के लिए PowerShell execution highest-signal detection indicators में से एक है। Encoded commands (`powershell.exe -EncodedCommand`) या download patterns (`Invoke-WebRequest`, `Net.WebClient.DownloadString`) के साथ PowerShell Office application processes (WINWORD.EXE, EXCEL.EXE) से known-bad pattern है। Cisco Secure Endpoint इसे behavioral analysis के माध्यम से detect करता है। Orbital query `SELECT * FROM processes WHERE parent_name = 'WINWORD.EXE' AND name = 'powershell.exe'` execution chain confirm करती है।",
+        "Pass-the-hash के माध्यम से lateral movement authentication logs में internal servers को workstation से originating NT LAN Manager (NTLM) authentication events के रूप में visible है — specifically unusual source hosts से Windows Event ID 4624 (logon type 3, NTLM package)। Compromised workstation से high-value servers के बीच SMB traffic दिखाने वाले Firepower NetFlow के साथ combined, pass-the-hash high-confidence lateral movement indicator है जो mature SOC playbook में immediate containment trigger करता है।"
+      ]
+    },
+    "incident": {
+      "title": "30-Minute SOC Response — Phishing Kill Chain Stage 2 पर Caught",
+      "impact": "SOC analyst ने kill chain के stage 2 पर Cobalt Strike beacon C2 callback catch किया (phishing email delivery के 30 minutes बाद); domain controller को pass-the-hash lateral movement से पहले workstation quarantine; zero data exfiltration confirmed",
+      "body": [
+        "Finance department के एक employee को embedded macro वाले Word document के साथ spear-phishing email मिला। Cisco Secure Email ने attachment को suspicious mark किया (macro-enabled, trusted sender list पर नहीं) लेकिन deliver किया क्योंकि organization-wide policy external senders से macro documents allow करती थी। Email delivery के तीन minutes बाद, Cisco Secure Endpoint ने alert trigger किया: WINWORD.EXE EncodedCommand argument के साथ powershell.exe spawn कर रहा था।",
+        "SOC analyst ने Secure Endpoint alert को same workstation से PowerShell execution के 45 seconds बाद newly registered domain के लिए Umbrella DNS alert के साथ correlate किया। Combined signal — Office process spawning PowerShell + new domain को DNS query — तुरंत quarantine के लिए sufficient था। Workstation को analyst द्वारा playbook approve करने के 8 seconds बाद Cisco XDR automated response के माध्यम से isolate किया गया। Post-mortem analysis ने confirm किया कि workstation Cobalt Strike run कर रहा था; beacon को अभी C2 से lateral movement tasking receive नहीं हुई थी। Phishing delivery से containment तक कुल time: 30 minutes।"
+      ]
+    },
+    "timeline": [
+      "SANS Top 20 Critical Controls — Enterprise security में SOC analyst role formalized",
+      "Cisco ने Sourcefire acquire किया — SOC tools Cisco security portfolio में integrated",
+      "Cisco CyberOps Associate (CBROPS 200-201) certification launch — SOC analyst competency standard",
+      "MITRE ATT&CK v10 — Kill chain framework universal SOC analysis vocabulary के रूप में adopted",
+      "Cisco CyberOps Associate exam cloud-assisted, XDR, और AI SOC competencies के लिए updated"
+    ],
+    "keyTakeaways": [
+      "Endpoint, network, और email telemetry correlate करें — कोई single data source complete kill chain picture provide नहीं करती",
+      "EncodedCommand के साथ PowerShell spawn करने वाला Office process top-tier detection signal है — इस pattern के लिए SIEM correlation rules tune करें",
+      "MITRE ATT&CK से प्रत्येक detected technique map करें — response playbooks consistent बनाता है और defense gaps identify करता है",
+      "XDR playbook के माध्यम से automated quarantine mean containment time को hours से seconds तक reduce करती है — incidents से पहले playbooks pre-create करें"
+    ]
+  },
+  "stage-m47": {
+    "tagline": "CyberOps Associate certification define करती है कि level-1 SOC analyst को क्या पता होना चाहिए — न केवल कौन से tools use करने हैं, बल्कि प्रत्येक data source क्यों मायने रखता है।",
+    "overview": [
+      "Cisco CyberOps Associate certification (exam 200-201 CBROPS) Security Operations Center (SOC) analyst roles के लिए entry-level certification है। यह पांच exam domains में organized है: Security Concepts (25%), Security Monitoring (22%), Host-Based Analysis (20%), Network Intrusion Analysis (21%), और Security Policies and Procedures (12%)। Certification NICE Cybersecurity Workforce Framework (SP-OPS-001 — Cyber Defense Analyst role) और MITRE ATT&CK framework से mapped है।",
+      "Security Monitoring domain उन data sources cover करता है जो SOC analyst threats detect करने के लिए use करते हैं: SIEM (Security Information and Event Management) correlation rules, network traffic analysis (NetFlow/IPFIX), full packet capture (FPC), और security event log management। इन data sources के बीच अंतर समझना — प्रत्येक क्या detect और क्या नहीं detect कर सकता — analyst की core competency है। SIEM correlation known patterns detect करती है; FPC retroactive investigation allow करती है; NetFlow payload analysis के बिना anomalous traffic volumes detect करता है।",
+      "Network Intrusion Analysis domain IDS/IPS alert interpretation, protocol analysis (TCP/IP, DNS, HTTP, TLS), Wireshark का उपयोग करके packet capture analysis, और IDS alert classifications में true positive, false positive, true negative, और false negative के बीच distinction cover करता है। एक competent analyst जो false positives minimize करते हुए true positives को maximize करने के लिए IDS rules correctly tune करता है वह उससे अधिक valuable है जो simply सभी alerts को ticket queues पर forward करता है।"
+    ],
+    "technical": {
+      "title": "SOC Data Sources, SIEM Correlation, और Alert Classification",
+      "body": [
+        "Mature Cisco deployment के लिए SOC data source hierarchy: Cisco Secure Email (email threat telemetry) → Cisco Umbrella (DNS-layer security, first detection of C2 domains) → Cisco Secure Endpoint (endpoint behavior telemetry, file hashes, process chains) → Cisco Firepower (network intrusion signatures, NetFlow, SSL inspection) → Cisco Secure Network Analytics (network behavior analysis, anomaly detection at scale)। प्रत्येक layer वह catch करती है जो previous नहीं करती — email gateway known malicious attachments block करती है, DNS layer नए domains को C2 callbacks catch करती है, endpoint payload execution detect करती है, और network lateral movement patterns detect करता है।",
+        "SIEM correlation rules temporal और relational logic का उपयोग करके multiple sources के events combine करती हैं। PowerShell download cradle के लिए well-designed correlation rule: `WINWORD.EXE spawns powershell.exe AND powershell.exe has '-EncodedCommand' in cmdline AND PowerShell makes outbound HTTP/S connection within 60 seconds`। इस three-condition rule की high true positive rate और low false positive rate है क्योंकि प्रत्येक condition individually benign हो सकती है, लेकिन combination almost exclusively malicious है।",
+        "SOC practice में IDS alert classification: True Positive (TP) — alert fire होता है और attack real है; False Positive (FP) — alert fire होता है लेकिन traffic benign है; True Negative (TN) — कोई alert नहीं और कोई attack नहीं; False Negative (FN) — attack होता है लेकिन कोई alert नहीं। SOC ROI FP (wasted analyst time) और FN (missed attacks) minimize करने पर depend करता है। Precision = TP / (TP + FP); Recall = TP / (TP + FN)। Mature SOC दोनों metrics per rule set track करता है और accordingly tune करता है।"
+      ]
+    },
+    "incident": {
+      "title": "Untuned SIEM — SOC Alert Fatigue और Missed True Positive",
+      "impact": "96% false positive rate के साथ SOC alert fatigue ने analysts को review queue deprioritize करने पर मजबूर किया; एक ransomware true positive alert 4 घंटे late handle की; $280 हज़ार ransom paid; post-incident SIEM tuning project ने FP rate 43% तक कम किया",
+      "body": [
+        "एक financial services SOC 96% false positive rate के साथ 2.3 million SIEM alerts per day generate कर रहा था — 8-hour shifts handle करने वाले 12 analysts के लिए 2.2 million analyst-hours of noise। Analyst team ने alert fatigue develop किया: सभी high-severity alerts के लिए tickets create होते थे, लेकिन queue backlog 9 hours average था। जब LockBit ransomware ने एक legitimate high-severity alert trigger किया (Office macro + PowerShell + outbound C2), यह 847 legitimate IT automation scripts की 'Office spawns PowerShell' false positive alerts के पीछे 9-hour queue में enter हुई।",
+        "Ransomware alert queue में 4 hours बाद handle हुई — उस point तक encryption 14 servers तक पहुंच चुकी थी। 3-month post-incident SIEM tuning project ने alert volume 180,000 per day (92% reduction) तक कम किया और true positive recall 97% maintain रखा। Project focused on: known-good process chains suppress करना, multiple low-signal events में ATT&CK technique correlation apply करना, और ML-assisted alert scoring build करना। Alert fatigue अब NIST SP 800-137 continuous monitoring guidance में एक named risk है।"
+      ]
+    },
+    "timeline": [
+      "First-generation SIEM ArcSight / QRadar — correlation rules ने manual log review replace किया",
+      "MITRE ATT&CK v1 launch — SOC tuning के लिए adversary tactics और techniques taxonomy",
+      "Cisco CyberOps Associate certification launch — SOC analyst competency framework standardize",
+      "NIST SP 800-137A: alert fatigue formal continuous monitoring risk factor के रूप में named",
+      "AI-assisted SIEM triage (Cisco AI Defense, Splunk SOAR) ML scoring के माध्यम से analyst false positive burden कम करता है"
+    ],
+    "keyTakeaways": [
+      "CyberOps के पांच domains (Security Concepts, Monitoring, Host Analysis, Network Intrusion Analysis, Policies) complete SOC analyst competency framework define करते हैं",
+      "SIEM precision (low FP rate) recall (low FN rate) जितनी ही matter करती है — high FP rate rules की alert fatigue documented path है missed true positives की ओर",
+      "प्रत्येक SOC data source layer अलग threats catch करती है: email attachments catch करता है, DNS C2 callbacks catch करता है, endpoint execution chains catch करता है, network lateral movement catch करता है",
+      "Detected techniques का MITRE ATT&CK mapping consistent response playbooks drive करता है और tactic-by-tactic defense gaps expose करता है"
+    ]
+  },
+  "stage-m48": {
+    "tagline": "25.6 Tbps switching chip उतना ही secure है जितना control plane जो इसे program करता है — यदि controller compromise हो जाए, तो packet path reprogrammed हो जाता है।",
+    "overview": [
+      "Cisco Silicon One Cisco का unified programmable ASIC platform है, जो Cisco 8000 series routers, Cisco NCS 5700 series power करता है, और कई hyperscale network operators को licensed है। Traditional NPU architectures के विपरीत जो line card ASICs को route processor ASICs से separate करती हैं, Silicon One एक single unified chip है जो high-performance packet forwarding (Q200L configuration में 25.6 Tbps per chip) और complex networking functions दोनों handle करता है, जिसमें full BGP/MPLS/SRv6 processing, telemetry generation, और hardware-accelerated MACsec encryption शामिल हैं।",
+      "Silicon One के programmable switching pipeline के security implications significant हैं। Silicon One P4 (Programming Protocol-Independent Packet Processors) support करता है — एक domain-specific language जो define करता है कि ASIC पर packets कैसे parse और forward होते हैं। P4 programs compile होकर ASIC configuration tables में बदलते हैं जो line rate पर match-action rules define करते हैं। P4 pipeline को control plane के माध्यम से runtime पर modify किया जा सकता है। एक compromised control plane जो Silicon One को malicious P4 programs भेज सके traffic को wire speed पर redirect, drop, या duplicate कर सकता है — एक single ASIC में 25.6 Tbps traffic manipulation capability।",
+      "Silicon One का hardware-accelerated MACsec encryption (IEEE 802.1AE) line rate पर सभी interfaces पर चलता है — inter-datacenter interconnects और carrier interconnects के लिए hop-by-hop Layer 2 encryption enable करता है बिना performance penalty के। यह quantum computing-resilient network architecture के लिए Silicon One की सबसे महत्वपूर्ण security feature है: MACsec हर network hop पर एक cryptographic boundary provide करता है जिसे upper-layer protocols से independently quantum-safe cipher suites में upgrade किया जा सकता है। Telemetry surface — gRPC MDT-streaming operational data जिसमें exact traffic rates और forwarding table contents शामिल हैं — को intercepted telemetry से reconnaissance prevent करने के लिए mTLS के साथ secure भी होना चाहिए।"
+    ],
+    "technical": {
+      "title": "Silicon One P4 Pipeline, Line-Rate MACsec Encryption, और Control Plane Attack Surface",
+      "body": [
+        "Silicon One का P4 programmable switching pipeline एक match-action table hierarchy के रूप में कार्य करता है: headers incoming packet से parse होते हैं, programmed tables के खिलाफ matched होते हैं, और forwarding actions apply होती हैं। Match-action tables control plane द्वारा populate होती हैं (IOS XR या IOS XE) high-level routing configuration और policy को P4Runtime API या vendor-specific ABIs के माध्यम से ASIC table entries में translate करके। Control plane (software) और switching plane (P4 ASIC tables) के बीच security boundary critical है: ASIC table entries का unauthorized modification — whether IOS XR software vulnerability, NETCONF misconfiguration, या P4 compiler toolchain में supply chain compromise के माध्यम से — hardware-enforced traffic manipulation result करता है।",
+        "Silicon One पर MACsec line rate पर GCM-AES-256 cipher suite के साथ IEEE 802.1AE implement करता है। प्रत्येक point-to-point link का एक Security Association Key (SAK) होती है जो MKA (MACsec Key Agreement over 802.1X) protocol के माध्यम से negotiate होती है। MACsec Ethernet frame payload encrypt करता है और frame header authenticate करता है — device-to-device links पर eavesdropping और replay attacks prevent करता है। Silicon One का line-rate MACsec forwarding capacity affect नहीं करता, जिससे inter-datacenter links पर deployment practical बनाता है। MACsec के लिए attack surface MKA key negotiation में है: यदि attacker control plane पर MKA EAPoL frames intercept या replay कर सके, वह एक key rotation force कर सकता है जो traffic disrupt करे या potentially link पर Man-in-the-Middle position negotiate करे।",
+        "Silicon One streaming telemetry surface एक increasingly important security consideration है। Chip microsecond granularity पर native hardware telemetry generate करता है: per-flow statistics, queue depth, jitter measurements, और forwarding table lookup counts। यह telemetry gRPC MDT के माध्यम से एक collector को stream होती है। एक intercepted telemetry stream network की exact traffic matrix reveal करती है — link utilizations, flow counts, और forwarding table occupancy — एक sophisticated attacker को कोई probe packet भेजे बिना complete network topology map करने और high-value traffic targets identify करने enable करती है।"
+      ]
+    },
+    "incident": {
+      "title": "Telemetry Stream Interception — Silicon One Traffic Matrix Competitor को Leaked",
+      "impact": "Competitor organization ने 11 दिनों तक unencrypted gRPC telemetry stream intercept की; customer traffic volumes, peak times, और datacenter interconnect utilization revealing per-second traffic matrix received किया; industrial espionage case opened",
+      "body": [
+        "Silicon One chips के साथ Cisco 8808 routers run करने वाले cloud service provider के पास gRPC Model-Driven Telemetry plaintext mode (no TLS) में management network पर configured था। एक competitor organization के attacker ने compromised network monitoring contractor VPN account के माध्यम से provider के management network तक access obtain किया। उन्होंने Silicon One telemetry stream के लिए एक fraudulent gRPC subscription register किया और routine audit में anomalous subscription detect होने से पहले 11 दिनों तक silently per-second traffic matrix data receive किया।",
+        "Telemetry data में शामिल था: सभी backbone links पर per-interface utilization (datacenter interconnect capacity revealing), destination AS-aggregated per-flow statistics (revealing कि cloud tenants किन sources से traffic receive कर रहे थे), और queue depth statistics (revealing कि कौन से tenants low-latency traffic generate कर रहे थे और कब)। इस operational intelligence ने competitor को specific high-traffic customers को competitive offers के साथ target करने allow किया। Incident ने carrier-grade equipment पर सभी gRPC telemetry subscriptions के लिए mTLS require करने की industry-wide recommendation lead की।"
+      ]
+    },
+    "timeline": [
+      "Cisco Silicon One announced — routing और switching के लिए unified ASIC, hyperscalers को licensed",
+      "Cisco 8000 series routers Silicon One Q100 के साथ launch — first production deployment",
+      "P4 programmability Silicon One के लिए documented — P4Runtime API के माध्यम से custom switching pipeline support",
+      "Silicon One Q200L: 25.6 Tbps per chip; सभी interfaces पर line-rate GCM-AES-256 MACsec",
+      "Silicon One quantum-safe roadmap: 2025 के लिए planned post-quantum MACsec cipher suite support"
+    ],
+    "keyTakeaways": [
+      "gRPC telemetry subscriptions पर हमेशा mTLS require करें — unauthenticated subscriptions management network पर किसी को भी complete network traffic matrix leak करती हैं",
+      "Silicon One का P4 switching pipeline control plane द्वारा programmed है — IOS XR और NETCONF access secure करना ASIC switching behavior secure करने के equivalent है",
+      "सभी inter-datacenter links और carrier interconnects पर GCM-AES-256 MACsec enable करें — Silicon One zero capacity penalty के साथ line-rate MACsec provide करता है",
+      "gRPC telemetry subscriber lists को regularly monitor करें — unauthorized subscriptions एक silent reconnaissance vector हैं"
+    ]
+  },
+  "stage-m49": {
+    "tagline": "Programmable ASIC और reprogrammed ASIC के बीच का अंतर उस control plane की integrity है जो उसकी tables लिखता है।",
+    "overview": [
+      "P4 (Programming Protocol-Independent Packet Processors) domain-specific language है जो programmable network ASICs में forwarding behavior define करने के लिए use होती है, जिसमें Cisco Silicon One शामिल है। एक P4 program define करता है: एक packet parser (raw bytes से headers कैसे extract होते हैं), match-action tables (जब एक header field एक rule से match हो तो क्या करना है), और एक deparser (forwarding के लिए packet कैसे reconstruct करना है)। P4 programs compile होकर ASIC configuration में बदते हैं जो line rate पर run होती है — Silicon One के case में बिना CPU intervention के 25.6 Tbps।",
+      "Silicon One जैसे P4-based forwarding chip की security architecture data plane (compiled P4 tables execute करने वाला ASIC, software intervention के बिना per second billions packets process करता है) को control plane (general-purpose CPU पर run होने वाला IOS XR software, routing tables calculate करता है और P4Runtime API या vendor-specific ABIs के माध्यम से ASIC में entries insert करता है) से separate करती है। यह separation एक security asset है: data plane hardware speed पर run होता है और directly software से accessed नहीं हो सकता — control plane एक well-defined interface के माध्यम से communicate करता है। यह एक security liability भी है: यदि control plane compromise हो जाए, attacker ASIC में arbitrary forwarding table entries insert कर सकता है।",
+      "Silicon One और P4 toolchains के लिए supply chain security एक emerging area है। P4 compiler (p4c) P4 source code को ASIC configuration में translate करता है। एक trojanized P4 compiler — या किसी untrusted third party से एक malicious P4 program — forwarding pipeline में subtle traffic manipulation rules install कर सकता है जो network operators को routing tables या ACLs examine करने पर invisible हों, क्योंकि malicious behavior ASIC match-action tables में है बजाय किसी भी higher-level configuration के। NIST SP 800-161 supply chain risk management guidance इस threat class cover करती है।"
+    ],
+    "technical": {
+      "title": "P4Runtime API Security, Match-Action Table Integrity, और Control Plane Trust Boundaries",
+      "body": [
+        "P4Runtime gRPC-based API है जिसे control plane P4-capable ASICs program करने के लिए use करता है। यह match-action tables में entries लिखने, current table state read करने, और packet-in notifications receive करने के लिए एक standard interface define करता है। Cisco Silicon One implementations में, IOS XR P4Runtime client के रूप में act करता है, Silicon One ASIC के P4Runtime server को table write requests भेजता है। इस interface की security fundamental है: P4Runtime interface तक access gain करने वाले attacker के पास ASIC में हर forwarding rule पर direct write access होता है।",
+        "Match-action table integrity monitoring programmable ASICs के लिए एक important defense-in-depth control है। चूंकि ASIC tables define करती हैं कि कौन से packets forward, drop, या modify होते हैं, unexpected table entries software errors या security compromise के high-confidence indicator हैं। Cisco Silicon One MDT gRPC के माध्यम से table statistics expose करता है (`show controllers npu tablestats`)। SOC teams को expected table entry counts establish करने चाहिए और significant deviations पर alert करना चाहिए — ACL table entries में unexpected spike, उदाहरण के लिए, indicate कर सकती है कि एक malicious forwarding rule installed हो गई है।",
+        "IOS XR में control plane trust boundary में configuration के लिए NETCONF (port 830), telemetry के लिए MDT gRPC, और routing control के लिए BGP शामिल हैं। एक attacker जो IOS XR software compromise करे — IOS XR vulnerability के माध्यम से (numerous advisories जिनमें CVE-2020-3473, CVE-2021-34713 शामिल हैं) या management plane से privilege escalation के माध्यम से — indirectly Silicon One ASIC program कर सकता है routing और policy configurations modify करके जिन्हें IOS XR ASIC table entries में translate करता है। Segment Routing v6 (SRv6) particularly sensitive है: IOS XR access वाला attacker malicious SRv6 segment IDs insert कर सकता है जो delivery से पहले traffic को एक eavesdropping node के माध्यम से redirect करें।"
+      ]
+    },
+    "incident": {
+      "title": "SRv6 Segment Injection — Compromised IOS XR के माध्यम से Traffic Redirection",
+      "impact": "Attacker ने malicious SRv6 segment ID insert किया जिससे 12% transit traffic attacker-controlled waypoint के माध्यम से route हुआ; financial institution-to-datacenter traffic में man-in-the-middle position; `show segment-routing srv6 locator` में anomalous SRv6 locator के माध्यम से detected",
+      "body": [
+        "एक sophisticated threat actor ने CVE-2021-34713 (Cisco IOS XR के MPLS ping functionality में authenticated remote code execution) exploit किया एक operator backbone router पर IOS XR process पर root-level access gain करने के लिए। इस access का उपयोग करके, attacker ने SRv6 policy configuration modify किया specific destination prefixes से match करने वाले traffic में attacker-controlled hop के लिए एक segment ID insert करने के लिए। Financial institution datacenter prefix से match करने वाले packets delivery से पहले attacker के router के माध्यम से directed थे — encrypted traffic capture के लिए एक passive man-in-the-middle position provide करते हुए।",
+        "Detection एक anomalous SRv6 locator entry से आई जो `show segment-routing srv6 locator` में appeared — locator operator के SRv6 domain के बाहर एक IP की ओर pointing थी। यह entry routine monitoring में 6 दिनों तक overlook हुई थी क्योंकि monitoring system BGP routes और ACLs check करता था, SRv6 locator tables नहीं। Incident ने operator के सभी Silicon One deployments पर SRv6 locator tables के साथ P4 table integrity monitoring के implementation को drive किया।"
+      ]
+    },
+    "timeline": [
+      "P4 language SIGCOMM में published — programmable data planes के लिए domain-specific language",
+      "P4Runtime API standardized — P4-capable chips के लिए control plane to ASIC interface",
+      "Cisco Silicon One P4 programmable forwarding pipeline और IOS XR control plane के साथ announced",
+      "NIST SP 800-161r1: supply chain risk management guidance network ASIC firmware और toolchains तक extended",
+      "Cisco Silicon One quantum-resistant roadmap: post-quantum MACsec cipher suites planned; P4Runtime mTLS by default enforced"
+    ],
+    "keyTakeaways": [
+      "IOS XR में control plane compromise indirect ASIC table manipulation enable करता है — IOS XR security Silicon One security है",
+      "P4 forwarding table entry counts monitor करें और unexpected growth पर alert करें — anomalous table entries high-confidence compromise indicator हैं",
+      "TLS और management plane protection के साथ P4Runtime API access restrict करें — P4Runtime पर unauthorized access direct ASIC write access है",
+      "SRv6 segment tables traffic redirection की एक new attack surface हैं — इन्हें BGP routes और ACLs के साथ routing integrity monitoring में शामिल करें"
+    ]
+  },
+  "stage-m50": {
+    "tagline": "आज आपके network की सुरक्षा करने वाली cryptography adversaries द्वारा record की जा रही है जो इसे तब decrypt करेंगे जब quantum computers आएंगे — update करने का समय उस दिन से पहले है, बाद में नहीं।",
+    "overview": [
+      "HARVEST NOW, DECRYPT LATER (HNDL) nation-state intelligence agencies द्वारा भविष्य के large-scale quantum computers के threat को address करने के लिए adopt की गई strategic posture है। Adversaries आज encrypted network traffic intercept और archive कर रहे हैं — BGP sessions, IPsec VPN tunnels, MACsec-protected inter-datacenter links, management plane communications — इस intention से कि जब sufficiently powerful quantum computers available हों (cryptographically relevant scale के लिए 2030–2035 estimated) इस archive को decrypt करेंगे। Network infrastructure HNDL का primary target है क्योंकि यह enterprise में highest-value और highest-volume encrypted traffic handle करता है।",
+      "Cisco की quantum-resilient networking roadmap पूरे network stack पर HNDL address करती है। Transport layer पर, Silicon One पर MACsec post-quantum cipher suites (hybrid ML-KEM/CRYSTALS-Kyber with AES-GCM) के साथ compatible होगी एक बार NIST और IEEE 802.1AE standardization complete हो — projected 2025-2026। IKEv2 / IPsec layer पर, Cisco IOS XR 7.9 ने hybrid post-quantum IKEv2 key exchange group support (RFC 9370) introduce किया जो classic ECDH-P256 को ML-KEM-768 के साथ combine करता है सभी IKEv2 tunnel negotiations पर 'harvest now, decrypt later' resistance के लिए। BGP control plane पर, BGP UPDATE message post-quantum authentication IETF SIDROPS के माध्यम से standardized हो रहा है।",
+      "Quantum Key Distribution (QKD) PQC के लिए एक complementary approach represent करता है: computational hardness assumptions (quantum-resistant भी) use करने की बजाय, QKD cryptographic keys distribute करने के लिए quantum physics के laws use करती है information-theoretic security के साथ। Cisco ने Toshiba और अन्य QKD vendors के साथ partner किया है Silicon One platforms पर MKA (MACsec Key Agreement) में QKD key material integrate करने के लिए — QKD-derived keys का उपयोग करके MACsec SAK updates enable करना उन fiber connections पर जहां QKD infrastructure exists। QKD के लिए एक dedicated quantum channel (single-photon optical fiber link) चाहिए और वर्तमान में लगभग 100km की distances पर only high-security point-to-point links के लिए practical है।"
+    ],
+    "technical": {
+      "title": "Hybrid IKEv2 PQC Exchange, QKD-MACsec Integration, और Post-Quantum BGP Authentication",
+      "body": [
+        "Hybrid post-quantum IKEv2 key exchange (RFC 9370) classic Elliptic Curve Diffie-Hellman (ECDH-P256) को NIST PQC KEM (ML-KEM-768, जिसे CRYSTALS-Kyber-768 भी कहते हैं) के साथ एक single IKEv2 exchange में combine करता है। Hybrid approach guarantee करता है कि session classic attacks (classical computers द्वारा broken) AND quantum attacks (Shor's algorithm द्वारा quantum computer पर broken) दोनों के खिलाफ secure हो। यदि ML-KEM-768 बाद में defect पाई जाए, ECDH-P256 अभी भी classical security provide करता है। यदि ECDH-P256 future quantum computer द्वारा broken हो, ML-KEM-768 अभी भी quantum security provide करता है। दोनों schemes combine होते हैं: final session key HKDF के माध्यम से दोनों shared secrets से derived होती है।",
+        "Cisco IOS XR 7.9+ `crypto ikev2 proposal PQC-HYBRID` configuration के माध्यम से IKEv2 के लिए RFC 9370 PQC hybrid implement करता है। यह Cisco IOS XR routers के बीच IPsec tunnels को hybrid ML-KEM-768 key exchange use करने enable करता है, उन tunnels पर सभी traffic के लिए HNDL resistance provide करता है। Configuration backward compatible है — यदि remote peer ML-KEM support नहीं करता, IKEv2 exchange classic ECDH पर fallback होता है। यह 'graceful degradation' मतलब operators PQC-capable configurations deploy कर सकते हैं सभी peers को update करने से पहले।",
+        "Silicon One पर MACsec के साथ QKD integration ETSI QKD Key Delivery API (ETSI GS QKD 014) use करती है QKD network element से QKD-derived symmetric keys retrieve करने और उन्हें MKA (MACsec Key Agreement) में pre-shared keys के रूप में inject करने के लिए। QKD material से derived MACsec SAK की information-theoretic security है — इसे किसी भी computational attack से break नहीं किया जा सकता, quantum attacks सहित। Operational complexity significant है (QKD dedicated fiber infrastructure require करता है और strict distance limitations हैं), लेकिन government, financial, और critical infrastructure use cases के लिए, QKD-MACsec highest available level of link security provide करता है।"
+      ]
+    },
+    "incident": {
+      "title": "HNDL Attribution — NSA द्वारा Encrypted BGP Sessions का Archive FISA Court Documents में Disclosed",
+      "impact": "Encrypted internet backbone traffic का systematic collection confirmed; BGP route injection capability demonstrated; classified HNDL posture disclosed — quantum computers archived traffic को retroactively decrypt कर सकते हैं",
+      "body": [
+        "2013 के Snowden revelations ने NSA collection programs (MUSCULAR, UPSTREAM) reveal किए जो IXPs और submarine cable landing stations पर encrypted sessions सहित internet backbone traffic capture कर रहे थे। Subsequent FISA court documents (2023 में partially declassified) ने confirm किया कि NSA collection में BGP control plane traffic, IKEv2 negotiation handshakes, और cloud providers के बीच MACsec-protected inter-datacenter links शामिल थे। Stated collection justification में retroactive decryption के लिए long-term archiving — HNDL posture शामिल था।",
+        "Network operators ने IKEv2 और MACsec में Perfect Forward Secrecy (PFS) implementation accelerate करके respond किया — यह ensure करते हुए कि भले ही key exchange बाद में broken हो, individual session keys derivable न हों। PFS time buy करता है लेकिन HNDL problem solve नहीं करता यदि key exchange algorithm (classic ECDH) quantum Shor's algorithm द्वारा broken हो सके। NIST PQC standardization effort (2024 में FIPS 203/ML-KEM, FIPS 204/ML-DSA, FIPS 205/SLH-DSA के साथ finalized) और Cisco का hybrid IKEv2 PQC implementation network infrastructure के लिए HNDL threat model का long-term response है।"
+      ]
+    },
+    "timeline": [
+      "Snowden revelations ने encrypted internet backbone traffic collect करने वाले NSA HNDL programs confirm किए",
+      "NIST ने PQC competition launch किया — quantum-resistant algorithm candidates soliciting",
+      "NIST ने PQC finalists announce किए: CRYSTALS-Kyber (KEM), CRYSTALS-Dilithium (signatures)",
+      "NIST ने FIPS 203 (ML-KEM/Kyber), FIPS 204 (ML-DSA/Dilithium), FIPS 205 (SLH-DSA) finalize किए — PQC standards published",
+      "Cisco IOS XR 7.9: RFC 9370 hybrid PQC IKEv2 (ML-KEM-768) available; Silicon One पर MACsec PQC roadmap 2025-2026 के लिए published"
+    ],
+    "keyTakeaways": [
+      "HNDL एक active threat है — nation-states आज encrypted network traffic archive कर रहे हैं future quantum decryption के लिए; sensitive traffic के expire होने से पहले PQC implement करें",
+      "सभी IOS XR IPsec tunnels पर hybrid PQC IKEv2 (RFC 9370, ML-KEM-768 + ECDH-P256) implement करें — IOS XR 7.9+ non-PQC peers के लिए graceful fallback के साथ support करता है",
+      "MACsec PQC cipher suites 2025-2026 में Silicon One के लिए planned हैं — अभी inter-datacenter link encryption roadmaps audit करें",
+      "QKD उन point-to-point links के लिए information-theoretic security provide करता है जहां quantum channel infrastructure exists — government और financial institutions के inter-site connections के लिए relevant"
+    ]
+  },
+  "stage-01": {
+    "tagline": "हर रहस्य तीन सिद्धांतों पर टिका होता है: मुहरबंद, अटूट, और पहुंच के भीतर।",
+    "overview": [
+      "फ़राओ के वास्तुकारों ने एक कक्ष नहीं बनाया — उन्होंने तीन बनाए। राजा का कक्ष सर्कोफेगस को संजोता था: अनधिकृत आंखों से मुहरबंद (गोपनीयता)। रानी का कक्ष ऐसे अभिलेखों को सुरक्षित रखता था जो कभी बदले नहीं जाने चाहिए थे (अखंडता)। महान गैलरी यह सुनिश्चित करती थी कि महायाजक जब चाहें जो चाहें उस तक पहुंच सकें (उपलब्धता)।",
+      "यह प्राचीन ढांचा — तीन स्तंभ जो हर महत्वपूर्ण चीज़ की रक्षा करते हैं — आधुनिक सूचना सुरक्षा की CIA Triad बना। गोपनीयता, अखंडता, और उपलब्धता आज उपयोग की जाने वाली हर सुरक्षा नीति, जोखिम मूल्यांकन, और अनुपालन ढांचे का मूल मॉडल बनी हुई हैं।",
+      "हर हमला कम से कम एक स्तंभ का उल्लंघन करता है। ransomware उपलब्धता नष्ट करता है। डेटा चोरी गोपनीयता तोड़ती है। छेड़छाड़ अखंडता को बर्बाद करती है। रक्षक तीनों को एक साथ सुरक्षित करने के लिए नियंत्रण डिज़ाइन करते हैं — जैसे फ़राओ के वास्तुकारों ने सहस्राब्दियों तक अपने रहस्यों की रक्षा के लिए पिरामिड बनाया।"
+    ],
+    "technical": {
+      "title": "CIA Triad कैसे लागू होती है",
+      "body": [
+        "संगठन प्रत्येक स्तंभ के लिए नियंत्रण लागू करते हैं: गोपनीयता के लिए encryption और access controls, अखंडता के लिए checksums और digital signatures, और उपलब्धता के लिए redundancy और failover।",
+        "स्तंभों के बीच तनाव है। सब कुछ encrypt करना गोपनीयता मज़बूत करता है लेकिन यदि keys खो जाएं तो उपलब्धता कम हो सकती है। मज़बूत authentication require करना गोपनीयता की रक्षा करता है लेकिन time-sensitive systems के लिए उपलब्धता कम कर सकता है।"
+      ]
+    },
+    "incident": {
+      "title": "रामसेस की कब्र की लूट (1279 BCE)",
+      "impact": "पवित्र कलाकृतियां हटाई गईं; शाही अभिलेख अपवित्र किए गए; अंत्येष्टि संस्कार स्थायी रूप से बाधित हुए",
+      "body": [
+        "Valley of the Kings में घुसपैठ करने वाले कब्र लुटेरों ने तीनों स्तंभों का एक साथ उल्लंघन किया: मुहरबंद शाही अभिलेख उजागर किए (गोपनीयता), अंत्येष्टि वस्तुएं हटाईं और बदलीं (अखंडता), और मुहरबंद सीढ़ियां तोड़ दीं — पुजारियों को पवित्र कक्ष तक पहुंच स्थायी रूप से नकारते हुए (उपलब्धता)।",
+        "आधुनिक समानांतर: 2013 का Target data breach भी उन्हीं तीनों तरीकों से तीनों स्तंभों का उल्लंघन किया। हमलावरों ने बिना अनुमति के ग्राहक डेटा पढ़ा (गोपनीयता), ऐसा malware लगाया जिसने transaction records बदले (अखंडता), और peak shopping के दौरान systems बाधित किए (उपलब्धता)। Target ने $290 मिलियन से अधिक settlements में चुकाए। प्राचीन और आधुनिक दुनिया के failure के वही तीन modes साझा हैं।"
+      ]
+    },
+    "timeline": [
+      "Giza का महान पिरामिड पूरा हुआ — तीन-कक्ष सुरक्षा मॉडल साकार",
+      "Valley of the Kings में कब्र लूट — तीनों CIA स्तंभों का उल्लंघन",
+      "CIA Triad अवधारणा आधुनिक सुरक्षा साहित्य में औपचारिक रूप से स्थापित",
+      "NIST ने CIA को सुरक्षा ढांचे के रूप में औपचारिक रूप से दस्तावेज़ किया",
+      "Target breach — तीनों स्तंभों का एक साथ उल्लंघन"
+    ],
+    "keyTakeaways": [
+      "हर सुरक्षा नियंत्रण कम से कम एक CIA स्तंभ से जुड़ता है",
+      "हमलावर सबसे कमज़ोर स्तंभ को निशाना बनाते हैं — अक्सर ransomware के ज़रिए उपलब्धता",
+      "तृतीय-पक्ष पहुंच एक सामान्य प्रवेश बिंदु है (supply chain जोखिम)",
+      "Encryption अकेले सुरक्षा नहीं है — तीनों को address करना होगा"
+    ]
+  },
+  "stage-02": {
+    "tagline": "एक भ्रष्ट oracle बिना oracle के ज़्यादा खतरनाक है।",
+    "overview": [
+      "Delphi का Oracle प्राचीन दुनिया का सर्वोच्च intelligence system था — सूचनादाताओं, दुभाषियों, और Pythia स्वयं का एक नेटवर्क, ऐसी भविष्यवाणियां उत्पन्न करता था जिन पर राजा और जनरल पूरी तरह भरोसा करते थे। जब 480 ई.पू. में फारसी सोने ने Pythia को भ्रष्ट किया, तो उसके outputs पर भरोसा नहीं किया जा सकता था। Oracle काम करता रहा, जवाब देता रहा, विश्वास का पात्र रहा — लेकिन उसकी भविष्यवाणियां ज़हरीली थीं।",
+      "डिजिटल युग में, AI systems वही भूमिका निभाते हैं जो Oracle ने निभाई: threat detection, anomaly analysis, automated response। लेकिन AI systems स्वयं attack surfaces हैं। एक compromised AI model को data exfiltrate करने, झूठी सुरक्षा generate करने, या threats का जानबूझकर गलत मूल्यांकन प्रदान करने के लिए weaponize किया जा सकता है — बिल्कुल रिश्वत ली गई Pythia की तरह।",
+      "इस परीक्षण में, Delphi का Oracle एक दुश्मन agent द्वारा compromise किया गया है। यह अपनी भविष्यवाणियों में छिपे संदेश भेज रहा है और पवित्र ज्ञान को एक अनधिकृत प्राप्तकर्ता को routing कर रहा है। आपका काम: मंदिर के scroll जांचें, संकेत पढ़ें, और सबूत खोजें।"
+    ],
+    "technical": {
+      "title": "AI Models कैसे Compromise होते हैं",
+      "body": [
+        "Supply chain attacks: एक malicious dependency model की training pipeline में inject की जाती है, model weights को poisoning करती है — जैसे एक जासूस oracle के आंतरिक घेरे में घुसपैठ करता है इससे पहले कि वह बोले भी।",
+        "Prompt injection: adversarial inputs model outputs को intended behavior override करने के लिए manipulate करती हैं। Backdoor attacks: model clean inputs पर normally behave करता है लेकिन एक specific hidden pattern के साथ activate होता है — एक password जो केवल attacker जानता है।"
+      ]
+    },
+    "incident": {
+      "title": "दारा का Delphi को रिश्वत (480 ई.पू.)",
+      "impact": "झूठी भविष्यवाणियां Athens को उसकी नौसेना छोड़ने के करीब ले गईं; Greco-Persian Wars को लगभग निर्धारित कर दिया",
+      "body": [
+        "Herodotus दर्ज करता है कि फ़ारसी agents ने Pythia को Athens को एक अंधकारमय भविष्यवाणी देने के लिए रिश्वत दी: 'सब कुछ बर्बाद है; यहाँ तक कि Acropolis जल जाएगा।' Themistocles, oracle की भ्रष्टता का संदेह करते हुए, भविष्यवाणी में 'wooden walls' के उल्लेख की पुनर्व्याख्या Athenian fleet के रूप में की — और Battle of Salamis जीती।",
+        "आधुनिक समानांतर: SolarWinds SUNBURST backdoor ने एक वर्ष से अधिक समय तक legitimate traffic patterns का अनुकरण किया, AI-based threat detection से बचते हुए। यह अंततः automated AI detection द्वारा नहीं, बल्कि एक human engineer द्वारा discover किया गया जिसने एक anomalous device registration notice किया। एक compromised AI — प्राचीन या आधुनिक — को expose करने के लिए human investigation की आवश्यकता है।"
+      ]
+    },
+    "timeline": [
+      "Delphi का Oracle सर्वोच्च intelligence network के रूप में स्थापित",
+      "फ़ारसी सोने ने Pythia को corrupt किया — झूठी भविष्यवाणियां जारी",
+      "SolarWinds compilation pipeline पहली बार compromise",
+      "SUNBURST backdoor 18,000 से अधिक organizations को distributed",
+      "AI-powered supply chain attacks को प्रमुख threat vector के रूप में classified"
+    ],
+    "keyTakeaways": [
+      "AI detection systems स्वयं attack targets हैं",
+      "Sophisticated attackers AI anomaly detection से बचने के लिए legitimate behavior का अनुकरण करते हैं",
+      "Log analysis अभी भी essential है — AI human investigation को replace नहीं करती",
+      "Hidden files और unusual outbound connections primary IoCs हैं"
+    ]
+  },
+  "stage-03": {
+    "tagline": "एक corrupt query tablet फ़राओ का सबसे गुप्त archive खोल सकती है।",
+    "overview": [
+      "Alexandria की महान Library में 500,000 से अधिक scrolls थे — प्राचीन दुनिया का accumulated ज्ञान। Scribes इस archive तक clay tablet query system के माध्यम से पहुंचते थे: आप अपनी request inscribe करते, archive keeper को देते, और वह matching scrolls retrieve करता। Keeper का authority पूर्ण था — उसके विवेक के बिना कोई scroll access नहीं।",
+      "लेकिन क्या होता यदि एक दुश्मन scribe ने ऐसी query tablets बनाना सीखा जो keeper के logic को पूरी तरह bypass करें? 'Scribe Euclid के लिए astronomy scroll retrieve करें' की बजाय, वे inscribe करते 'astronomy scroll retrieve करें OR restricted vault में सभी scrolls return करें'। Keeper, inscription का शाब्दिक रूप से पालन करते हुए, सब कुछ return करता — फ़राओ के सबसे गुप्त records सहित।",
+      "यह SQL Injection का प्राचीन रूप है। दो दशकों से अधिक समय से यह सबसे consistently exploit की जाने वाली web vulnerability रही है। `SELECT * FROM scrolls WHERE scribe='INPUT'` जैसी database query INPUT में जो भी inscribed हो उस पर trust करती है। यदि कोई attacker `admin' --` inscribe करे, query एक bypass बन जाती है — authorization verification को completely comment out करते हुए।"
+    ],
+    "technical": {
+      "title": "SQL Injection कैसे काम करता है",
+      "body": [
+        "Classic SQLi exploits queries में string concatenation को exploit करते हैं। Advanced variants में UNION-based SQLi (अन्य tables extract करने के लिए second SELECT add करना), Blind SQLi (application के true/false behavior से data infer करना), और Time-Based Blind SQLi (server response delays से data infer करना) शामिल हैं।",
+        "Prevention के लिए parameterized queries (prepared statements) की आवश्यकता है, जहां SQL structure fixed है और user input parameter के रूप में passed होती है — query string में कभी interpolated नहीं।"
+      ]
+    },
+    "incident": {
+      "title": "Scribe का विश्वासघात — Caesar का Alexandria (48 BCE)",
+      "impact": "400,000 scrolls खोए; आग से पहले strategic intelligence exfiltrated; अपूरणीय records destroyed",
+      "body": [
+        "Alexandria की घेराबंदी के दौरान, library staff में embedded एक Roman agent ने systematically restricted archive से strategic military scrolls extract करने के लिए forgeries query tablets use किए। Standard archive requests में 'OR role=military' add करके, agent ने keeper के authorization checks bypass किए और Egyptian fleet positions, troop deployments, और supply routes के बारे में scrolls retrieve किए।",
+        "आधुनिक समानांतर: 2008 में Albert Gonzalez का Heartland breach identical logic follow करता था — एक single SQL injection payload ने 130 million credit card records तक access दिया। Gonzalez को 20 साल की सज़ा हुई। प्राचीन और आधुनिक attackers ने same flaw exploit किया: privileged query के भीतर user-supplied input पर trust।"
+      ]
+    },
+    "timeline": [
+      "Alexandria की Library स्थापित — archive query system created",
+      "Roman agent ने restricted scrolls extract करने के लिए forged queries use किए",
+      "Jeff Forristal ने SQL injection पर पहला documented article publish किया",
+      "Heartland breach — SQLi के ज़रिए 130M cards",
+      "SQLi OWASP Top 10 में #3 (Injection category) बना रहा"
+    ],
+    "keyTakeaways": [
+      "User input को SQL queries में directly कभी concatenate न करें",
+      "हमेशा parameterized queries या prepared statements use करें",
+      "SQLi login bypass से कहीं अधिक कर सकता है — complete databases dump कर सकता है",
+      "यहाँ तक कि सबसे बड़े archives एक single poisoned query से गिर सकते हैं"
+    ]
+  },
+  "stage-04": {
+    "tagline": "20 घंटों में, एक श्रापित शिलालेख agora में एक हज़ार tablets पर फैल गया।",
+    "overview": [
+      "Athenian agora प्राचीन दुनिया का information network था — एक बाज़ार जहां notices, declarations, और letters नागरिकों के बीच स्वतंत्र रूप से circulate होते थे। मंदिर का public bulletin board किसी भी नागरिक की submissions display करता था। जब एक malicious actor ने एक submitted tablet पर एक self-replicating curse inscribe किया, तो हर Athenian जो इसे पढ़ता वह अनजाने में curse को अपने profile board पर copy करता।",
+      "Cross-Site Scripting (XSS) identically काम करता है: एक website user input को बिना encode किए browser को reflect करती है। जब input में script tag होती है, browser उसे trusted site के context में execute करता है — Same-Origin Policy bypass करते हुए और cookies, session tokens, और page content access करते हुए।",
+      "Stored XSS सबसे खतरनाक है — एक single payload हर visitor को affect कर सकता है। दशकों से समझे जाने के बावजूद, XSS endemic बनी हुई है। लगभग सभी major web platforms में XSS vulnerabilities रही हैं — Twitter, Facebook, Google, YouTube, और PayPal सभी affected हुए हैं।"
+    ],
+    "technical": {
+      "title": "XSS कैसे काम करता है",
+      "body": [
+        "एक website user input को बिना encode किए browser को reflect करती है। यदि एक search page 'आपने खोजा: [INPUT]' display करती है और INPUT है `<script>alert(document.cookie)</script>`, browser script execute करता है।",
+        "Real attacks session cookies चुराते हैं (accounts hijack करते हुए), keystrokes log करते हैं, users को phishing pages पर redirect करते हैं, या — जैसा Samy ने demonstrate किया — victims के profiles पर payload automatically add करके self-replicate करते हैं।"
+      ]
+    },
+    "incident": {
+      "title": "Alcibiades का Curse — Agora Worm (415 BCE)",
+      "impact": "झूठी proclamations priests के intervene करने से पहले 1,000 नागरिकों की tablets पर फैल गईं; Alcibiades को exile forced",
+      "body": [
+        "Sicilian Expedition पर गर्म debate के दौरान, एक political agent ने agora के public board पर एक self-replicating statement inscribe किया। Inscription में एक hidden clause था: कोई भी नागरिक जो इसे अपनी personal tablet पर copy करे (जैसा important notices के लिए custom था) वह hidden clause भी copy करे। बीस घंटों में, 1,000 tablets पर Alcibiades को attributed झूठी proclamations थीं — command से उनकी withdrawal force करने के लिए पर्याप्त।",
+        "आधुनिक समानांतर: 2005 में Samy Kamkar का MySpace worm identical mechanism का उपयोग करके 20 घंटों से कम में 1 million profiles को infect किया — एक stored XSS payload जो हर visitor के profile पर self-replicate करता था। Worm ने MySpace को offline जाने पर मजबूर किया। Kamkar को felony के लिए convicted किया गया। Agora और social network एक ही fatal vulnerability साझा करते हैं: नागरिकों के inscriptions पर trust।"
+      ]
+    },
+    "timeline": [
+      "Parthenon पूरा हुआ — Acropolis Athens का symbolic heart बना",
+      "Agora worm 20 घंटों में 1,000 नागरिकों की tablets पर फैला",
+      "Cross-Site Scripting पर CERT advisory published",
+      "Samy Worm ने 20 घंटों में 1M MySpace profiles infect किए",
+      "XSS अभी भी OWASP A03 Injection category का हिस्सा है"
+    ],
+    "keyTakeaways": [
+      "User input को HTML में बिना encode किए कभी reflect न करें",
+      "Stored XSS सबसे खतरनाक है — सभी visitors पर self-replicate कर सकता है",
+      "Content Security Policy (CSP) headers XSS के impact को significantly कम करती हैं",
+      "HttpOnly cookies JavaScript को session tokens read करने से रोकती हैं"
+    ]
+  }
+}

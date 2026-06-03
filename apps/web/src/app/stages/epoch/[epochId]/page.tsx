@@ -3,20 +3,20 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
-import { stagesMeta as allStages, epochs } from "@/data/stages-meta";
+import { stagesMeta as allStages, epochs } from "@kryptos/core/stages-meta";
 import { fetchProgress, fetchQuizProgress } from "@/lib/progress";
 import GaugeBar from "@/components/GaugeBar";
 import { getSession, setSession } from "@/lib/auth";
 import { epochAccent, cardBorder, cardEmojiBg } from "@/app/stages/epoch-theme";
-import { getContentFlag } from "@/data/content-flags";
+import { getContentFlag } from "@kryptos/core/content-flags";
 import { useLocale } from "@/contexts/LocaleContext";
 import { useGroup } from "@/contexts/GroupContext";
-import metaEs from "@/data/translations/meta-es.json";
-import metaFr from "@/data/translations/meta-fr.json";
-import metaDe from "@/data/translations/meta-de.json";
-import metaHi from "@/data/translations/meta-hi.json";
-import metaPt from "@/data/translations/meta-pt.json";
-import metaPl from "@/data/translations/meta-pl.json";
+import metaEs from "@kryptos/core/translations/meta-es.json";
+import metaFr from "@kryptos/core/translations/meta-fr.json";
+import metaDe from "@kryptos/core/translations/meta-de.json";
+import metaHi from "@kryptos/core/translations/meta-hi.json";
+import metaPt from "@kryptos/core/translations/meta-pt.json";
+import metaPl from "@kryptos/core/translations/meta-pl.json";
 
 type StageMeta = { t: string; w: string };
 type EpochMeta = { n: string; s: string; d: string };

@@ -4,8 +4,8 @@ import { redis } from "@/lib/redis";
 import { getServerSession } from "@/lib/server-session";
 import { logAdminAction, extractAdminUsername } from "@/lib/audit";
 import { awardStageInRedis } from "@/lib/server-progress";
-import { stages } from "@/data/stages";
-import { TROPHIES, dailyShopTrophies } from "@/data/trophies";
+import { stages } from "@kryptos/core/stages";
+import { TROPHIES, dailyShopTrophies } from "@kryptos/core/trophies";
 
 function verifyAdminToken(token: string): boolean {
   const secret = process.env.ADMIN_SECRET;

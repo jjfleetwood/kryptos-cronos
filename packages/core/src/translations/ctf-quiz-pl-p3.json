@@ -1,0 +1,290 @@
+{
+  "atlas-01": {
+    "questions": [
+      {
+        "q": "MITRE ATLAS jest odpowiednikiem ATT&CK dla AI/ML — obejmuje ataki na systemy sztucznej inteligencji i uczenia maszynowego, a nie tradycyjną infrastrukturę IT.",
+        "options": ["Prawda", "Fałsz"]
+      },
+      {
+        "q": "Który typ odpowiedzi API modelu ML dostarcza najwięcej informacji do mapowania granic decyzyjnych?",
+        "options": ["Wyniki pewności / rozkłady prawdopodobieństwa", "Twarde etykiety (tylko predykcja top-1)"]
+      },
+      {
+        "q": "Pasywny rekonesans ML obejmuje przeglądanie kart modeli na HuggingFace i opublikowanych prac naukowych o docelowym modelu.",
+        "options": ["Prawda", "Fałsz"]
+      },
+      {
+        "q": "W sprawie Clearview AI, jaką metodę rekonesansu zastosowano do zbudowania zbioru danych treningowych?",
+        "options": ["Zapytania do prywatnych baz danych organów ścigania", "Scraping ponad 3 miliardów publicznych zdjęć z mediów społecznościowych"]
+      },
+      {
+        "q": "Model zwracający bardzo wysoką pewność (>0,95) dla większości wejść, w tym przykładów adwersarialnych, najlepiej opisuje się jako:",
+        "options": ["Dobrze skalibrowany model o silnej odporności", "Model nadmiernie pewny siebie — prawdopodobnie architektura CNN"]
+      }
+    ]
+  },
+  "atlas-02": {
+    "questions": [
+      {
+        "q": "Model zastępczy (proxy) jest trenowany poprzez zapytania do docelowego API i używanie odpowiedzi API jako etykiet treningowych — nie jest potrzebny dostęp do wag docelowego modelu.",
+        "options": ["Prawda", "Fałsz"]
+      },
+      {
+        "q": "Czym jest „współczynnik transferu” w ataku z modelem zastępczym?",
+        "options": ["Szybkością wysyłania zapytań API w celu uniknięcia limitów", "Procentem przykładów adwersarialnych stworzonych na modelu zastępczym, które oszukują też prawdziwy cel"]
+      },
+      {
+        "q": "Zwracanie wyłącznie twardych etykiet (bez wyników pewności) z API ML jest skuteczną obroną przed treningiem modelu zastępczego.",
+        "options": ["Prawda", "Fałsz"]
+      },
+      {
+        "q": "ART (Adversarial Robustness Toolbox) służy do:",
+        "options": ["Szyfrowania wag modelu w celu zapobiegania ekstrakcji", "Tworzenia i oceny ataków adwersarialnych oraz obrony w systemach ML"]
+      },
+      {
+        "q": "W badaniu nad ekstrakcją modelu GPT-4, co wywnioskowano o architekturze GPT-4 przy użyciu zapytań API za około 200 dolarów?",
+        "options": ["Rozmiar jego ukrytego wymiaru poprzez analizę przestrzeni embeddingów wyjściowych", "Jego pełną macierz wag poprzez dekodowanie prawdopodobieństw tokenów API"]
+      }
+    ]
+  },
+  "atlas-03": {
+    "questions": [
+      {
+        "q": "Ataki na łańcuch dostaw ML można wykonać po prostu poprzez przesłanie przekonującego modelu-podróbki do publicznego rejestru takiego jak HuggingFace.",
+        "options": ["Prawda", "Fałsz"]
+      },
+      {
+        "q": "Dlaczego `torch.load()` jest niebezpieczne przy ładowaniu modeli z niezaufanych źródeł?",
+        "options": ["Trwale usuwa wagi modelu po załadowaniu", "Używa formatu pickle Pythona, który może wykonać dowolny kod podczas ładowania"]
+      },
+      {
+        "q": "Przypinanie modelu przez jego hash SHA256 zamiast tylko nazwy chroni przed atakami typosquattingowymi na łańcuch dostaw.",
+        "options": ["Prawda", "Fałsz"]
+      },
+      {
+        "q": "W odkryciu JFrog z 2024 roku, jakiej techniki używały złośliwe modele HuggingFace do wykonywania kodu?",
+        "options": ["SQL injection poprzez pola metadanych modelu", "Exploit deserializacji pickle wyzwalany przez torch.load()"]
+      },
+      {
+        "q": "Zalecany parametr PyTorch zapobiegający wykonaniu kodu opartego na pickle podczas ładowania pliku modelu to:",
+        "options": ["`weights_only=True` w torch.load()", "`safe_mode=True` w torch.load()"]
+      }
+    ]
+  },
+  "atlas-04": {
+    "questions": [
+      {
+        "q": "Dostęp black-box — gdzie atakujący może tylko wysyłać wejścia i obserwować wyjścia przez API — jest wystarczający do tworzenia przykładów adwersarialnych przeciwko docelowemu modelowi.",
+        "options": ["Prawda", "Fałsz"]
+      },
+      {
+        "q": "Atak HopSkipJump wyróżnia się tym, że znajduje przykłady adwersarialne używając jedynie:",
+        "options": ["Pełnego dostępu white-box do gradientów i wag modelu", "Ostatecznego wyjścia twardej etykiety modelu — bez wyników pewności ani gradientów"]
+      },
+      {
+        "q": "W ataku ekstrakcji danych treningowych ChatGPT, badacze nakłaniali model do „powtarzania słowa poem w nieskończoność”, wywołując rozbieżność emitującą zapamiętane dane treningowe.",
+        "options": ["Prawda", "Fałsz"]
+      },
+      {
+        "q": "Różnicowa prywatność podczas treningu jest obroną przed którą możliwością ataku black-box?",
+        "options": ["Inference przynależności i ekstrakcją danych treningowych z wyjść modelu", "Mapowaniem granic decyzyjnych poprzez analizę wyników pewności"]
+      },
+      {
+        "q": "Ataki black-box na LLM różnią się od ataków na modele wizyjne przede wszystkim dlatego, że:",
+        "options": ["Wejścia LLM są dyskretnymi tokenami, co sprawia że metody oparte na gradientach nie mają zastosowania", "LLM nie mogą być zapytywane przez API i wymagają lokalnego dostępu do modelu"]
+      }
+    ]
+  },
+  "atlas-05": {
+    "questions": [
+      {
+        "q": "Przykłady adwersarialne wykorzystują geometrię granic decyzyjnych sieci neuronowych — małe zaburzenia w określonych kierunkach mogą przekroczyć granice, pozostając niezauważalne dla ludzi.",
+        "options": ["Prawda", "Fałsz"]
+      },
+      {
+        "q": "Która metoda ataku adwersarialnego jest uważana za najsilniejszy atak pierwszego rzędu i jest standardem oceny odporności adwersarialnej?",
+        "options": ["FGSM (Fast Gradient Sign Method) — atak jednoetapowy", "PGD (Projected Gradient Descent) — wieloetapowy atak iteracyjny"]
+      },
+      {
+        "q": "Eksperyment ze znakiem stop z 2017 roku wykazał, że przykłady adwersarialne działają tylko w cyfrowych rurociągach i nie mogą przetrwać drukowania i warunków oświetlenia w rzeczywistym świecie.",
+        "options": ["Prawda", "Fałsz"]
+      },
+      {
+        "q": "W formule ataku PGD parametr epsilon (ε) kontroluje:",
+        "options": ["Maksymalny dozwolony rozmiar perturbacji (ograniczenie normy L∞)", "Liczbę wykonanych kroków gradientowego zniżania"]
+      },
+      {
+        "q": "Adversarial training — trening na przykładach adwersarialnych — jest obecnie najskuteczniejszą znaną obroną przed przykładami adwersarialnymi.",
+        "options": ["Prawda", "Fałsz"]
+      }
+    ]
+  },
+  "atlas-06": {
+    "questions": [
+      {
+        "q": "Narzędzia bezpieczeństwa oparte na ML, takie jak klasyfikatory antywirusowe AI, są odporne na adwersarialne omijanie, ponieważ używają nauczonych cech zamiast stałych sygnatur.",
+        "options": ["Prawda", "Fałsz"]
+      },
+      {
+        "q": "W przypadku omijania Cylance AI, jaką technikę zastosowano do ominięcia silnika antywirusowego ML?",
+        "options": ["Szyfrowanie ładunku malware nowatorskim algorytmem szyfrowania", "Dołączanie łagodnych ciągów znaków z pliku wykonywalnego gry wideo w celu przesunięcia wektora cech"]
+      },
+      {
+        "q": "Funkcjonalne omijanie detektora malware ML oznacza, że zmodyfikowana próbka malware zarówno omija wykrycie, JAK I zachowuje swoją złośliwą funkcjonalność.",
+        "options": ["Prawda", "Fałsz"]
+      },
+      {
+        "q": "Framework GAMMA stosuje jaką technikę do automatycznego omijania detektorów malware ML?",
+        "options": ["Gradient descent w różniczkowalnej przestrzeni cech malware", "Mutacyjne testy brute-force we wszystkich możliwych sekwencjach bajtów"]
+      },
+      {
+        "q": "Które podejście obronne utrudnia omijanie detektorów malware ML poprzez uczynienie ich cech nieprzewidywalnymi dla atakującego?",
+        "options": ["Randomizacja cech — zróżnicowanie cech używanych podczas wnioskowania", "Zwiększenie rozmiaru zbioru treningowego o więcej próbek malware"]
+      }
+    ]
+  },
+  "atlas-07": {
+    "questions": [
+      {
+        "q": "Typowy produkcyjny pipeline ML ma tylko jedną powierzchnię ataku: punkt końcowy serwowania modelu.",
+        "options": ["Prawda", "Fałsz"]
+      },
+      {
+        "q": "Pliki konfiguracyjne CI/CD (takie jak przepływy pracy GitHub Actions) mogą ujawniać architekturę pipeline ML, w tym lokalizacje przechowywania danych, rejestry modeli i infrastrukturę wdrożeniową.",
+        "options": ["Prawda", "Fałsz"]
+      },
+      {
+        "q": "W ataku na Microsoft Tay, jaką lukę w pipeline odkryli i wykorzystali atakujący?",
+        "options": ["Nieuzupełnioną SQL injection w portalu administratora Tay", "Funkcję „powtórz po mnie”, która bez filtrowania wstrzykiwała dane wejściowe użytkownika bezpośrednio do pipeline treningowego modelu"]
+      },
+      {
+        "q": "Jeśli rejestr modeli, taki jak MLflow, nie ma uwierzytelniania w sieci wewnętrznej, jaki atak o dużym wpływie staje się trywialny dla atakującego z dostępem do sieci wewnętrznej?",
+        "options": ["Zastąpienie modelu produkcyjnego wersją z backdoorem", "Zwiększenie opóźnienia wnioskowania modelu poprzez wyczerpanie zasobów"]
+      },
+      {
+        "q": "Harmonogram ponownego trenowania pipeline ML (np. cotygodniowy cron) jest istotny dla atakującego, ponieważ określa okno zatrucia — przedział czasowy, w którym wstrzyknięte dane zostaną włączone do modelu.",
+        "options": ["Prawda", "Fałsz"]
+      }
+    ]
+  },
+  "atlas-08": {
+    "questions": [
+      {
+        "q": "Ataki membership inference wykorzystują fakt, że modele ML mają tendencję do wykazywania wyższej pewności dla próbek treningowych niż dla danych testowych.",
+        "options": ["Prawda", "Fałsz"]
+      },
+      {
+        "q": "Która formalna obrona zapewnia matematyczne gwarancje prywatności ograniczające to, co ataki membership inference mogą ujawnić?",
+        "options": ["Różnicowa prywatność (DP-SGD) podczas treningu modelu", "Szyfrowanie wag modelu algorytmem AES-256 po treningu"]
+      },
+      {
+        "q": "Ataki inwersji modelu rekonstruują przybliżone reprezentacje danych treningowych używając jedynie dostępu black-box do wyjść modelu.",
+        "options": ["Prawda", "Fałsz"]
+      },
+      {
+        "q": "W badaniu Facebook nad membership inference, jaki wrażliwy atrybut można było wywnioskować poprzez zapytania do API targetowania reklam?",
+        "options": ["Czy użytkownik dołączył do wrażliwej grupy zdrowotnej (np. wsparcia dla osób HIV+)", "Czy konto użytkownika zostało utworzone z prawdziwą lub fałszywą tożsamością"]
+      },
+      {
+        "q": "Zmniejszenie precyzji wyników pewności zwracanych przez API ML (np. zaokrąglanie do 2 miejsc po przecinku) nie wpływa na dokładność ataku membership inference.",
+        "options": ["Prawda", "Fałsz"]
+      }
+    ]
+  },
+  "atlas-09": {
+    "questions": [
+      {
+        "q": "Uniwersalne perturbacje adwersarialne (UAP) są niezależne od obrazu — pojedyncza perturbacja może powodować błędną klasyfikację większości wejść jednocześnie.",
+        "options": ["Prawda", "Fałsz"]
+      },
+      {
+        "q": "Model z backdoorem (BadNets) zazwyczaj nie przejdzie standardowych testów dokładności, ponieważ backdoor obniża jego wydajność na czystych wejściach.",
+        "options": ["Prawda", "Fałsz"]
+      },
+      {
+        "q": "Co sprawia, że ataki z backdoorem z czystymi etykietami są szczególnie trudne do wykrycia?",
+        "options": ["Wymagają dostępu wewnętrznego do infrastruktury treningowej celu", "Zatrute próbki treningowe wyglądają na poprawnie oznakowane dla recenzentów-ludzi"]
+      },
+      {
+        "q": "Które narzędzie używa wykrywania anomalii w przestrzeni cech do wykrywania wyzwalaczy backdoora, wyszukując klasy, których minimalny wyzwalacz jest niezwykle mały?",
+        "options": ["Neural Cleanse — odwrotnie inżynieruje wyzwalacze dla każdej klasy i sprawdza anomalie rozmiaru", "Foolbox — generuje przykłady adwersarialne do testowania odporności modelu"]
+      },
+      {
+        "q": "UAP stworzone przeciwko jednej architekturze modelu (np. ResNet) często transferują i oszukują inne architektury (np. VGG, EfficientNet).",
+        "options": ["Prawda", "Fałsz"]
+      }
+    ]
+  },
+  "atlas-10": {
+    "questions": [
+      {
+        "q": "Ataki ekstrakcji modelu mogą stworzyć funkcjonalny model zastępczy bez bezpośredniego dostępu do wag ani architektury docelowego modelu.",
+        "options": ["Prawda", "Fałsz"]
+      },
+      {
+        "q": "Ataki inwersji gradientu łamią gwarancję prywatności uczenia federacyjnego poprzez:",
+        "options": ["Przechwytywanie zaszyfrowanych komunikacji między klientami federacyjnymi a serwerem", "Rekonstrukcję oryginalnych danych treningowych z aktualizacji gradientu, które klienci udostępniają serwerowi"]
+      },
+      {
+        "q": "Asymetria kosztów przy ekstrakcji modelu (kradzież vs. trening od zera) sprawia, że jest to nieopłacalne ekonomicznie dla małych i średnich modeli ML.",
+        "options": ["Prawda", "Fałsz"]
+      },
+      {
+        "q": "W scenariuszu ekstrakcji KnockoffNets klasyfikatora sentymentu Acme, jaki był stosunek kosztów kradzieży do budowy?",
+        "options": ["Ponad 2000 razy taniej ukraść (240 USD API+GPU) niż zbudować (500 000 USD trening)", "Mniej więcej równy koszt — ekstrakcja modelu wymaga podobnej mocy obliczeniowej jak trening"]
+      },
+      {
+        "q": "Kluczową obroną przed ekstrakcją modelu jest zwracanie wyłącznie twardych etykiet (bez wyników pewności) z publicznego API ML.",
+        "options": ["Prawda", "Fałsz"]
+      }
+    ]
+  },
+  "atlas-11": {
+    "questions": [
+      {
+        "q": "Ataki zatrucia danych mogą atakować dostępność modelu (degradacja dokładności), integralność (celowa błędna klasyfikacja) lub sprawiedliwość (wprowadzanie stronniczości demograficznej).",
+        "options": ["Prawda", "Fałsz"]
+      },
+      {
+        "q": "W ataku na Microsoft Tay, przez który niefiltrowany kanał pipeline dostarczono zatrucie?",
+        "options": ["Skompromitowane API administratora akceptujące bezpośrednie aktualizacje wag modelu", "Funkcję „powtórz po mnie”, która bez filtrowania wbudowywała frazy podane przez użytkownika w trening modelu"]
+      },
+      {
+        "q": "Powolna, stopniowa korupcja modelu przez pętlę sprzężenia zwrotnego jest trudniejsza do wykrycia niż nagły katastrofalny atak, ponieważ metryki wydajności degradują się stopniowo.",
+        "options": ["Prawda", "Fałsz"]
+      },
+      {
+        "q": "Grupowanie aktywacji wykrywa wyzwalacze backdoora poprzez znajdowanie:",
+        "options": ["Niezwykłych skoków wykorzystania GPU podczas wnioskowania modelu", "Anomalicznego małego klastra próbek w przestrzeni aktywacji przedostatniej warstwy dla danej klasy"]
+      },
+      {
+        "q": "W scenariuszu zatrucia AcmeBot, pojedyncze próbki zatrucia wyglądały normalnie — złośliwa stronniczość była widoczna tylko w agregacie tysięcy wstrzykniętych próbek.",
+        "options": ["Prawda", "Fałsz"]
+      }
+    ]
+  },
+  "atlas-12": {
+    "questions": [
+      {
+        "q": "Kompletny cykl życia adwersarialnego ATLAS obejmuje 11 taktyk, od rekonesansu po wpływ na system ML.",
+        "options": ["Prawda", "Fałsz"]
+      },
+      {
+        "q": "Łańcuch zabijania Microsoft Tay zakończył się od początkowego dostępu do całkowitego zamknięcia modelu w przybliżeniu w:",
+        "options": ["16 godzin bez żadnych kosztów", "3 tygodnie przy koszcie 50 000 USD w zapytaniach API"]
+      },
+      {
+        "q": "NIST AI Risk Management Framework (AI RMF) dostarcza defensywnego odpowiednika ATLAS. Jego cztery podstawowe funkcje to:",
+        "options": ["MAP → MEASURE → MANAGE → GOVERN", "DETECT → RESPOND → RECOVER → IDENTIFY"]
+      },
+      {
+        "q": "Operacja Clearview AI wykazała, że zagrożenia w stylu ATLAS wymagają zaawansowanych technicznie exploitów i nie można ich wykonać używając jedynie publicznie dostępnych danych.",
+        "options": ["Prawda", "Fałsz"]
+      },
+      {
+        "q": "Której taktyki ATLAS głównie użyła operacja Clearview AI przy zbieraniu ponad 3 miliardów zdjęć twarzy z publicznych platform mediów społecznościowych?",
+        "options": ["TA0008 Zbieranie — gromadzenie danych na masową skalę z publicznych źródeł", "TA0006 Unikanie obrony — omijanie zabezpieczeń platformy"]
+      }
+    ]
+  }
+}

@@ -1,0 +1,744 @@
+{
+  "baseball-5-06": {
+    "tagline": "Uma base roubada de graça não é diferente de uma caminhada — os melhores arremessadores são tão perigosos com a bola ao lado quanto com ela na mão.",
+    "overview": [
+      "Com corredores nas bases, o trabalho do arremessador muda fundamentalmente. Segurar os corredores — prevenir roubos de base e limitar oportunidades de avanço — torna-se tão importante quanto a qualidade do arremesso. A posição de esticada é a ferramenta principal: a entrega comprimida reduz o tempo de arremesso do receptor e limita a saída do corredor. Mas a esticada sozinha nem sempre é suficiente; os arremessadores de elite também usam movimentos de pickoff, passos deslizantes e tempos variados para manter os corredores honestos.",
+      "O movimento de pickoff é um arremesso enganoso legal a uma base para pegar um corredor fora da base ou forçá-lo a voltar, reduzindo sua vantagem secundária. Há regras distintas que regem os movimentos de pickoff para a primeira base (o arremessador deve dar um passo em direção à primeira antes de arremessar), segunda base (múltiplas abordagens legais) e terceira base (passo direto em direção à terceira). Um movimento de pickoff ilegal — ou qualquer número de outras violações mecânicas durante o movimento de vento ou esticada — é chamado de balk, avançando todos os corredores uma base.",
+      "Os arremessadores dos Dodgers na era de Dave Roberts foram treinados extensivamente na mecânica de segurar corredores. Os Dodgers da Série Mundial 2020 enfrentaram oponentes nos playoffs com corredores rápidos, e arremessadores como Clayton Kershaw, Walker Buehler e Julio Urias fizeram uso deliberado de tempos variados, passos deslizantes e pickoffs de primeiro movimento para neutralizar o jogo de corrida. Entender a interação entre o tempo de entrega, a eficácia do pickoff e a qualidade do arremesso é uma habilidade de nível avançado que separa os arremessadores completos dos arremessadores unidimensionais."
+    ],
+    "technical": {
+      "title": "Regras de Balk — A Regra Mais Incompreendida no Beisebol",
+      "body": [
+        "Um balk é marcado quando um arremessador realiza um movimento ilegal durante um arremesso ou tentativa de pickoff enquanto há corredores nas bases. Os balks mais comuns são: iniciar o movimento de vento e parar (um arremessador que inicia qualquer movimento em direção ao home plate deve completar o arremesso), não chegar a uma parada estabelecida na esticada, dar um passo em direção a uma base e arremessar para outra, soltar a bola no rubber, arremessar de à frente do rubber sem ter o pé nele, e realizar um arremesso falso para a primeira base (que é ilegal — arremessar para a primeira exige um passo real).",
+        "O passo deslizante é uma entrega modificada em que o arremessador usa um levantamento de perna muito pequeno — essencialmente deslizando o pé de passada em direção à passada em vez de um movimento de perna completo. Isso reduz significativamente o tempo de entrega de aproximadamente 1,4 segundos (esticada completa) para menos de 1,2 segundos — muitas vezes abaixo do limiar necessário para tentativas bem-sucedidas de roubo de base. A contrapartida é uma velocidade ligeiramente reduzida (tipicamente 2–3 mph a menos) porque o movimento de perna gera carga do quadril. Os arremessadores tipicamente usam o passo deslizante apenas quando necessário — com corredores rápidos ou em situações críticas."
+      ]
+    },
+    "incident": {
+      "title": "Dodgers Vencem a Série Mundial 2020 — Kershaw Segura os Corredores dos Rays",
+      "impact": "Os Tampa Bay Rays, um dos times mais rápidos da Liga Americana em 2020, tiveram seu jogo de corrida neutralizado na Série Mundial pelo arremesso dos Dodgers. Clayton Kershaw especificamente variou seu tempo de entrega e utilizou arremessos de pickoff para a primeira base para neutralizar a velocidade dos Rays, contribuindo para o primeiro campeonato dos Dodgers desde 1988.",
+      "body": [
+        "A Série Mundial 2020 entre os Dodgers e os Tampa Bay Rays foi um confronto do melhor ataque da Liga Nacional contra o time mais analiticamente avançado da Liga Americana. O plano de jogo dos Rays incluiu usar velocidade para criar pressão — sua taxa de roubo de base durante a temporada regular foi uma das mais altas no beisebol. O elenco de arremessadores dos Dodgers contra-atacou com atenção deliberada ao tempo de entrega e à perturbação dos corredores.",
+        "Kershaw, apesar das críticas ao seu histórico nos playoffs em anos anteriores, foi decisivo na série de 2020. Sua capacidade de variar o tempo — às vezes mantendo a posição estabelecida por dois segundos, às vezes entregando rapidamente após um olhar — manteve os corredores dos Rays sem conseguir leituras confortáveis de sua entrega. Seu movimento de pickoff para a primeira base, embora não seja sua arma mais temida, foi disciplinado o suficiente para evitar que os Rays tomassem liberdades. Os Dodgers venceram sua primeira Série Mundial desde 1988, e o gerenciamento de corredores do elenco de arremessadores foi especificamente destacado por analistas como um fator contribuinte."
+      ]
+    },
+    "timeline": [
+      "A regra de balk é padronizada pela primeira vez nas regras oficiais do beisebol",
+      "Jim Gilliam e os Dodgers usam corrida agressiva — arremessadores começam a desenvolver contra-estratégias",
+      "Maury Wills rouba 104 bases pelos Dodgers — arremessadores são obrigados a desenvolver mecânicas de retenção",
+      "Dodgers vencem a Série Mundial — Orel Hershiser contém o jogo de corrida do Oakland A's",
+      "A MLB começa a rastrear o tempo de entrega ao home plate — passo deslizante quantificado como padrão abaixo de 1,2 seg",
+      "Dodgers vencem a Série Mundial — tempos variados neutralizam o jogo de velocidade dos Rays"
+    ],
+    "keyTakeaways": [
+      "O passo deslizante reduz o tempo de entrega para menos de 1,2 segundos — abaixo do limiar para a maioria das tentativas bem-sucedidas de roubo de base",
+      "Um balk avança todos os corredores uma base — os gatilhos mais comuns são parar no meio do arremesso e não parar completamente na posição estabelecida",
+      "Variar o tempo (segurar, rápido, segurar, variar) evita que os corredores obtenham uma leitura limpa da entrega",
+      "Máximo de dois olhares antes de entregar — prestar atenção excessiva aos corredores degrada a qualidade do arremesso"
+    ]
+  },
+  "baseball-5-07": {
+    "tagline": "Greg Maddux nunca arremessou a 90 mph e ganhou 355 jogos — porque entendeu algo que a maioria dos arremessadores jamais aprende.",
+    "overview": [
+      "A velocidade é o atributo mais visível e mais fetichizado no arremesso. Uma leitura de radar gun de 95 mph cria entusiasmo; uma leitura de 84 mph cria dúvida. Mas a relação entre velocidade e eficácia é muito mais complexa do que o radar gun sugere. Alguns dos arremessadores mais dominantes na história do beisebol — Greg Maddux, Tom Glavine, Jamie Moyer, o especialista em localização Kyle Hendricks — construíram carreiras excepcionais sem velocidade de elite. Enquanto isso, arremessadores que jogam forte mas não conseguem controlar seu fastball levam tantas pancadas quanto os arremessadores mais lentos que erram na zona.",
+      "A velocidade é determinada por vários fatores biomecânicos: velocidade de rotação do quadril (o principal impulsionador), impulso de perna a partir do rubber, eficiência da trajetória do braço (uma trajetória limpa não desperdiça energia), massa corporal (mais massa se movendo em direção ao home plate = mais força), e flexibilidade (um arremessador mais flexível pode alcançar maior rotação externa, o que aumenta a janela de aceleração). A maioria desses fatores pode ser melhorada com treinamento — a velocidade não é completamente genética, embora haja um teto para cada indivíduo.",
+      "Em níveis juvenis, a localização quase sempre vence a velocidade. Um arremessador que joga a 75 mph mas localiza consistentemente nas esquinas superará um arremessador que joga a 85 mph pelo centro. Os rebatedores juvenis são treinados para fazer contato com a bola onde quer que ela esteja — sua capacidade de ser disciplinado quanto à localização dos arremessos está muito menos desenvolvida do que sua capacidade de reagir a um arremesso rebatível. Um arremessador de 72 mph com localização consistente não só é mais eficaz como também é mais saudável — a geração de velocidade baseada no esforço é a principal causa de lesões no braço de arremessadores juvenis."
+    ],
+    "technical": {
+      "title": "O Princípio de Maddux — Eficiência de Arremesso Sobre Potência",
+      "body": [
+        "Greg Maddux ganhou quatro Prêmios Cy Young consecutivos (1992–1995) e terminou com 355 vitórias em sua carreira enquanto raramente ultrapassava 91 mph em seu fastball. Sua abordagem foi construída sobre três princípios: (1) arremessar a menor quantidade de arremessos possível gerando roleteiros e contato fraco cedo nas contagens, (2) mudar a velocidade para interromper o timing em vez de dominar os rebatedores, e (3) localizar com precisão nas esquinas para forçar os rebatedores a dar swing em arremessos que não conseguem impulsionar.",
+        "A média de carreira de Maddux de 76 arremessos por início — comparada à média da MLB de 95+ — significava que era significativamente mais eficiente do que seus pares. Essa eficiência preservou seu braço durante uma carreira de 23 anos e lhe permitiu arremessar profundamente nos jogos de forma consistente. Sua filosofia é resumida em uma citação famosa: 'Não me importa qual leitura o radar gun dá. Se o arremesso estiver onde eu quero que esteja e o rebatedor não conseguir impulsioná-lo, eu triunfei.'"
+      ]
+    },
+    "incident": {
+      "title": "A Temporada Cy Young de Greg Maddux em 1995 — Dominância Pura Sem Potência",
+      "impact": "A temporada de 1995 de Greg Maddux produziu uma ERA de 1,63 — a mais baixa desde Bob Gibson com 1,12 em 1968. Ele arremessou 209,2 innings e caminhou apenas 23 rebatedores em toda a temporada. Sua velocidade máxima naquele ano foi medida a 90 mph. A temporada permanece como a prova definitiva de que localização, movimento e eficiência de arremesso vencem a velocidade bruta.",
+      "body": [
+        "A temporada de 1995 de Maddux com os Braves é estudada em clínicas de arremesso como a demonstração do mundo real mais extrema de controle sobre velocidade. Sua ERA de 1,63 em 209,2 innings — incluindo os playoffs — foi construída sobre uma fundação: arremessar a bola exatamente onde queria, toda vez, com movimento que fazia os rebatedores errarem por uma fração de centímetro. Os rebatedores que enfrentaram Maddux relatavam frequentemente que parecia que ele sabia exatamente o que estavam pensando: se ficavam esperando o fastball, ele lançava um changeup; se ajustavam ao arremesso off-speed, ele ia com fastball na esquina.",
+        "O princípio de Maddux se traduz diretamente para o beisebol juvenil. Os rebatedores juvenis não desenvolveram o reconhecimento de arremessos e a disciplina de zona dos profissionais — eles darão swing em arremessos limítrofes e perseguirão bolas quebradas porque reagem à bola, não à sua localização. Um arremessador que consegue controlar a 72 mph gerará mais ponches e contato fraco no nível juvenil do que um arremessador da mesma idade que joga forte mas não consegue se localizar. Mais importante ainda, os hábitos mecânicos do arremesso de controle em primeiro lugar produzem braços mais saudáveis."
+      ]
+    },
+    "timeline": [
+      "Walter Johnson teve média de 90+ mph — primeira medição documentada de velocidade de fastball",
+      "Os radar guns são introduzidos no beisebol profissional — obsessão por velocidade começa",
+      "Maddux inicia sequência de quatro Cy Young — filosofia de localização em primeiro lugar documentada",
+      "Temporada ERA de 1,63 de Maddux — prova definitiva de que localização vence velocidade",
+      "Começa a era de inflação de velocidade — o fastball médio dos abridores da MLB atinge 91 mph",
+      "O fastball médio da MLB supera 94 mph; controle e spin ainda se classificam como os principais preditores de ERA"
+    ],
+    "keyTakeaways": [
+      "A velocidade é gerada pela rotação do quadril, impulso de perna e eficiência da trajetória do braço — a maioria dos fatores é treinável até um teto",
+      "Alta velocidade com localização ruim é muito batível; velocidade baixa a média com excelente localização é muito eficaz (Maddux)",
+      "Em níveis juvenis, arremessos localizados consistentemente em qualquer velocidade superam arremessadores que jogam forte sem controle",
+      "Eficiência de arremesso (menos arremessos por out) estende innings, reduz o estresse do braço e vence mais jogos do que contagens de ponches"
+    ]
+  },
+  "baseball-5-08": {
+    "tagline": "Um limite de contagem de arremessos não é uma restrição à grandeza — é a regra que torna a grandeza possível ao longo de uma carreira completa.",
+    "overview": [
+      "O Little League Baseball adotou regras obrigatórias de contagem de arremessos a partir das mudanças de regras de 2006–2007, estabelecendo máximos de arremessos por dia de acordo com o grupo etário e períodos de descanso obrigatórios antes que um arremessador possa arremessar novamente. Essas regras não foram arbitrárias — foram implementadas em resposta direta a um aumento nas lesões de braços em jovens, particularmente rupturas do UCL que requerem cirurgia de Tommy John, que pesquisadores do American Sports Medicine Institute vincularam ao uso excessivo iniciando-se aos nove e dez anos de idade.",
+      "As regras de contagem de arremessos se aplicam a todos os níveis do jogo organizado de Little League e são aplicadas por árbitros. Um gerente que retira um arremessador que arremessou além do limite diário enfrenta expulsão. As regras distinguem entre diferentes grupos etários com diferentes limites e diferentes requisitos de descanso — porque os braços em desenvolvimento em jogadores de 7–8 anos são biomecanicamente diferentes dos de jogadores de 15–16 anos, e as regras refletem esse gradiente.",
+      "No nível profissional, os Dodgers sob o gerente geral Andrew Friedman e o manager Dave Roberts implementaram sua própria filosofia sofisticada de gerenciamento de carga. Os arremessadores titulares são rastreados por innings arremessados, contagem de arremessos, dias de descanso e declínio acumulado de velocidade do fastball dentro das aberturas. Arremessadores titulares que mostram quedas de velocidade de mais de 2 mph em seu fastball são removidos independentemente da contagem de arremessos — a queda de velocidade é um indicador objetivo de fadiga do braço antes que o arremessador a sinta conscientemente."
+    ],
+    "technical": {
+      "title": "Regras de Contagem de Arremessos do Little League — Por Grupo Etário",
+      "body": [
+        "Os seguintes limites de contagem de arremessos se aplicam ao Little League Baseball (de acordo com as regras atuais): Idades 7–8: máximo de 50 arremessos por dia. Idades 9–10: máximo de 75 arremessos por dia. Idades 11–12: máximo de 85 arremessos por dia. Idades 13–16: máximo de 95 arremessos por dia. Idades 17–18: máximo de 105 arremessos por dia.",
+        "Os requisitos de descanso são escalonados de acordo com o número de arremessos realizados. Para idades 14 e menores: 1–20 arremessos = 0 dias de calendário de descanso (pode arremessar no dia seguinte); 21–35 arremessos = 1 dia de calendário de descanso; 36–50 arremessos = 2 dias de calendário de descanso; 51–65 arremessos = 3 dias de calendário de descanso; 66+ arremessos = 4 dias de calendário de descanso. Para idades 15–18, os limites são ligeiramente mais permissivos. Um arremessador que é retirado de um jogo não pode voltar a arremessar naquele jogo, independentemente dos arremessos realizados."
+      ]
+    },
+    "incident": {
+      "title": "A Epidemia de Tommy John — A Pesquisa do ASMI Muda o Beisebol Juvenil",
+      "impact": "No início dos anos 2000, a taxa de cirurgias de Tommy John em arremessadores jovens tinha atingido níveis de crise. O Dr. James Andrews, do American Sports Medicine Institute, publicou pesquisa fundamental que mostrou que a especialização de arremesso durante todo o ano combinada com nenhum limite de contagem de arremessos estava causando diretamente danos ao UCL em crianças tão jovens quanto nove anos. As mudanças de regras do Little League de 2006 foram a resposta organizacional.",
+      "body": [
+        "O Dr. James Andrews, o cirurgião ortopédico que realizou mais cirurgias de Tommy John do que qualquer outro médico na história do beisebol, publicou pesquisa do ASMI que mostrou que arremessadores jovens que arremessaram mais de 100 innings competitivos por ano tinham uma taxa estatisticamente significativa mais alta de lesões graves no braço. Especificamente, arremessadores que jogavam durante todo o ano (sem período de descanso de três meses) e que arremessavam em jogos consecutivos sem descanso adequado estavam desenvolvendo o mesmo dano ao UCL exibido pelos arremessadores profissionais — em corpos que ainda não tinham terminado de crescer.",
+        "A resposta do Little League Baseball foi a mudança de regra mais significativa na história moderna da organização: limites obrigatórios de contagem de arremessos por grupo etário, com requisitos de descanso aplicados por árbitros que foram autorizados a expulsar gerentes por violações. O programa PitchSmart, lançado em conjunto pelo Little League e pela MLB em 2014, estendeu essas diretrizes ao beisebol de viagem, programas de escolas secundárias e além. A epidemia não terminou — mas a pesquisa mostra que os arremessadores que seguem as diretrizes de contagem de arremessos têm taxas significativamente mais baixas de Tommy John do que aqueles que não o fazem."
+      ]
+    },
+    "timeline": [
+      "Primeira cirurgia de UCL de Tommy John — a cirurgia se torna um tratamento viável",
+      "A pesquisa do ASMI começa a vincular o uso excessivo no nível juvenil às taxas de lesão do UCL no nível adulto",
+      "O Dr. Andrews publica um estudo fundamental sobre uso excessivo de arremesso juvenil e danos ao UCL",
+      "O Little League adota regras obrigatórias de contagem de arremessos por grupo etário",
+      "O programa MLB PitchSmart estende as diretrizes ao beisebol de viagem e escolas secundárias",
+      "Os Dodgers implementam monitoramento de declínio de velocidade como suplemento à contagem de arremessos na MLB"
+    ],
+    "keyTakeaways": [
+      "Os limites de contagem de arremessos do Little League variam de 50 arremessos por dia (idades 7-8) a 105 arremessos por dia (idades 17-18)",
+      "Os requisitos de descanso são escalonados: arremessar 66+ arremessos nas idades 14 e menores requer 4 dias de calendário de descanso antes de arremessar novamente",
+      "As regras foram criadas em resposta a uma epidemia documentada de lesões do UCL em arremessadores jovens por uso excessivo",
+      "No nível da MLB, os Dodgers utilizam o declínio de velocidade (>2 mph de queda) como gatilho objetivo para remover arremessadores titulares independentemente da contagem de arremessos"
+    ]
+  },
+  "baseball-5-09": {
+    "tagline": "Depois que a bola sai da sua mão, você é um defensor — e o jogo não acabou.",
+    "overview": [
+      "Os arremessadores são o décimo jogador de um time de beisebol em certo sentido — após arremessar, tornam-se defensores. O treinamento de defesa para arremessadores (PFP) é um componente específico do treinamento de primavera e da prática regular que cobre as responsabilidades defensivas únicas dos arremessadores: cobrir a primeira base em roleteiros batidos para o lado direito, defender rebatidas de volta (bolas batidas fortemente de volta ao montículo), dar respaldo às bases, defender toques de bola e se posicionar para jogadas de redução de diferença.",
+      "Cobrir a primeira base é a habilidade de PFP mais comum e mais crítica. Em qualquer roleteiro batido para o primeira base ou segunda base com o primeira base puxado para a linha, o arremessador deve correr imediatamente em direção à bolsa da primeira base, receber o arremesso do defensor e registrar o out. Esta é uma rota de corrida praticada — a partir da posição de aterrissagem no montículo, o arremessador corre em direção à linha grama-terra a aproximadamente 45 pés do home plate, corre paralelo à linha de falta e chega à bolsa a tempo de receber o arremesso. Deixar de correr imediatamente em qualquer roleteiro do lado direito é um out automático para a ofensiva.",
+      "As rebatidas de volta — roleteiros ou linedrives batidos diretamente de volta para o arremessador — apresentam tanto uma oportunidade quanto um perigo. Um arremessador que defende uma rebatida de volta forte de forma limpa pode fazer uma jogada dupla ou registrar um out rápido. Um arremessador que não está em posição defensiva adequada após o seu acompanhamento é vulnerável a lesões. O acompanhamento termina com o arremessador em uma posição defensiva atlética: ambos os pés aproximadamente na largura dos ombros, joelhos levemente dobrados, luva à frente — pronto para defender. Isso não é acidental; é a razão pela qual a mecânica adequada de acompanhamento ensina o arremessador a chegar em uma posição defensiva atlética."
+    ],
+    "technical": {
+      "title": "Responsabilidades de PFP por Situação",
+      "body": [
+        "As responsabilidades defensivas do arremessador variam de acordo com a situação de bases e a localização da bola. Em um roleteiro para o lado direito (área de primeira ou segunda base), o arremessador corre imediatamente em direção à primeira base — o sinal-chave é 'qualquer bola à minha direita, eu corro.' Em um roleteiro para a terceira base com um corredor na primeira, o arremessador cobre o home plate em caso de um arremesso. Em um toque de bola com corredores nas bases, o arremessador defende o toque (se alcançável) e faz o arremesso da opção do defensor; o posicionamento para a defesa de toque é predeterminado pelo esquema defensivo do time.",
+        "Dar respaldo às bases é uma responsabilidade crítica, mas frequentemente ignorada. Com um corredor na primeira e uma batida para o jardim, o arremessador corre para dar respaldo à terceira base em caso de um arremesso errado. Com corredores em posição de pontuar, o arremessador cobre o home plate em qualquer arremesso do jardim. A atribuição de respaldo é sempre para a base em direção à qual a bola é arremessada, posicionado a 20–30 pés atrás da base para pegar arremessos errados. Um arremessador que fica parado no montículo observando jogadas no jardim está abrindo mão de outs potenciais."
+      ]
+    },
+    "incident": {
+      "title": "Treinamento de PFP de Walker Buehler — Dodgers Primavera 2021",
+      "impact": "Durante o treinamento de primavera dos Dodgers em 2021 no Camelback Ranch, o elenco de arremessadores sob o treinador Mark Prior dedicou duas sessões completas por semana exclusivamente ao PFP. Walker Buehler, vindo de sua abertura da Série Mundial 2020, liderou o que os treinadores chamaram de 'o grupo de PFP mais detalhado em anos' — com ênfase em cobrir a primeira base, atribuições de respaldo e cenários de defesa de toque de bola.",
+      "body": [
+        "O programa de PFP dos Dodgers em 2021 foi notável por seu foco na tomada de decisão sob pressão de jogo, não apenas na execução física. Buehler e o elenco executaram cenários em que o mesmo roleteiro para o lado direito tinha diferentes situações de bases — corredor na primeira, corredor na segunda, bases cheias — e o arremessador tinha que fazer a leitura correta e a execução em cada uma. O treinamento enfatizou que o PFP não é repetição mecânica, mas inteligência situacional: saber antes do arremesso para onde você irá se a bola for batida em cada direção.",
+        "O uso dos Dodgers de dados avançados de posicionamento defensivo (do Statcast) informou seu treinamento de PFP. Eles sabiam pelos dados que os arremessadores em seu sistema tinham falhado com mais frequência em cobrir a primeira em roleteiros batidos para o lado da segunda base em vez do lado da primeira base — uma rota que exigia um sprint mais longo. As sessões de treinamento em 2021 ponderaram especificamente de forma excessiva os cenários de roleteiro de segunda base para abordar essa fraqueza documentada. O resultado: o elenco de arremessadores dos Dodgers em 2021 terminou nos cinco primeiros em métricas defensivas de arremessadores em toda a Liga Nacional."
+      ]
+    },
+    "timeline": [
+      "O PFP é formalizado pela primeira vez como parte do currículo de treinamento de primavera no beisebol profissional",
+      "Don Newcombe vence tanto 20 jogos quanto uma Luva de Ouro — modelo de arremessador-defensor dos Dodgers",
+      "Bob Gibson e Tom Seaver citados retrospectivamente como a melhor dupla de arremessadores-defensores da era",
+      "Greg Maddux vence sua 18ª Luva de Ouro consecutiva — a excelência no PFP definida para uma geração",
+      "O Statcast começa a rastrear métricas defensivas de arremessadores — os dados de PFP entram no pipeline de análise",
+      "Os Dodgers implementam treinamento de PFP orientado por dados direcionado a padrões de fraqueza documentados"
+    ],
+    "keyTakeaways": [
+      "Em qualquer roleteiro para o lado direito do quadrado, o arremessador deve correr imediatamente em direção à primeira base",
+      "O acompanhamento coloca o arremessador em uma posição defensiva atlética — isso é funcional, não cosmético",
+      "Dar respaldo às bases (terceira em batidas para o jardim, home plate em arremessos do jardim) é uma atribuição obrigatória, não opcional",
+      "O PFP é inteligência situacional: conheça sua atribuição antes de o arremesso ser feito, não depois que a bola for batida"
+    ]
+  },
+  "baseball-5-10": {
+    "tagline": "O melhor arremesso que você pode fazer após um arremesso ruim é o próximo — e fazê-lo bem exige esquecer o anterior completamente.",
+    "overview": [
+      "O jogo mental do arremesso é tão exigente quanto o físico. Um arremessador está sozinho no montículo, responsável por cada arremesso, visível para milhares de pessoas, com uma falha física ou um arremesso ruim resultando imediatamente em um ponche ou em uma bola fora do parque. As exigências psicológicas — lidar com o fracasso, manter o foco sob pressão, adaptar-se à adversidade — são únicas nos esportes coletivos. Um arremessador que não consegue lidar com o jogo mental não consegue manter sua mecânica física sob o estresse que o arremesso competitivo produz.",
+      "Todo grande arremessador tem uma estrutura para lidar com arremessos ruins, entradas ruins e saídas ruins. Clayton Kershaw descreveu sua abordagem como uma filosofia de um-arremesso-de-cada-vez: no momento em que um arremesso sai de sua mão, ele libera o apego ao resultado e começa a se preparar para o próximo arremesso. Isso não é indiferença — Kershaw é famosamente intenso e competitivo — é foco controlado. O apego emocional a um arremesso ruim (raiva, vergonha, ansiedade) corrompe a rotina mecânica do próximo arremesso.",
+      "A técnica de respiração é a ferramenta fisiológica que une o estado mental e a execução física. A respiração diafragmática profunda (respirar para a barriga, não para o peito) ativa o sistema nervoso parassimpático — reduzindo a frequência cardíaca, baixando o cortisol e restaurando o controle motor fino. Um arremessador que respira lenta e deliberadamente atrás do montículo após uma entrada ruim não está demonstrando fraqueza — está executando uma redefinição fisiológica documentada que devolve o braço e o corpo ao estado ideal de desempenho."
+    ],
+    "technical": {
+      "title": "Trabalhar Rápido vs. Trabalhar Devagar — O Ritmo como Arma",
+      "body": [
+        "O ritmo de jogo no montículo é uma variável estratégica, não meramente uma preferência pessoal. Trabalhar rápido (fazer arremessos dentro de 15–20 segundos de receber a bola do receptor) mantém a defesa alerta, interrompe a rotina do rebatedor entre arremessos e mantém o próprio ritmo do arremessador. Os que trabalham rápido tendem a produzir melhor jogo defensivo por trás deles porque os defensores se mantêm engajados. Kershaw, que trabalha rápido, e Walker Buehler são exemplos de abridores dos Dodgers que usam o ritmo como ferramenta competitiva.",
+        "Trabalhar devagar — sair do montículo, caminhar ao redor dele, fazer pausas longas entre arremessos — pode ser eficaz em situações específicas: após um erro que interrompe o fluxo da entrada, após um home run para se redefinir mentalmente, ou quando se enfrenta um rebatedor particularmente perigoso que se beneficia do ritmo de arremessos rápidos. No entanto, como abordagem padrão, trabalhar devagar convida a defesa a perder o foco e tende a quebrar o próprio ritmo mecânico do arremessador. O ideal é trabalhar em um ritmo consistente e confiante com desaceleração deliberada apenas em momentos específicos de alta pressão."
+      ]
+    },
+    "incident": {
+      "title": "Clayton Kershaw — Resiliência na NLCS 2022",
+      "impact": "Clayton Kershaw teve um histórico pós-temporada complicado — incluindo vários momentos difíceis em jogos de playoff de alta pressão ao longo de sua carreira. A NLCS 2022 contra os Padres mostrou tanto a luta quanto a mentalidade de competidor: após permitir pontuações no Jogo 1, Kershaw voltou no Jogo 5 com uma atuação dominante que estendeu a série, demonstrando a redefinição mental que define o arremesso de elite.",
+      "body": [
+        "A carreira pós-temporada de Clayton Kershaw foi marcada por momentos de brilhantismo e momentos de adversidade — um perfil inusualmente humano para um arremessador tão dominante na temporada regular. Os críticos apontaram suas dificuldades como evidência de um 'bloqueio' mental na pós-temporada. O que os treinadores observaram foi diferente: Kershaw respondeu à adversidade na pós-temporada com o mesmo instinto competidor que o tornou grande na temporada regular — nunca se afastou do momento, nunca pediu para sair e nunca mudou sua abordagem após uma entrada ruim.",
+        "No Jogo 5 da NLCS 2022, com os Dodgers enfrentando a eliminação, Kershaw começou e limitou os Padres a duas pontuações em cinco entradas, dando aos Dodgers uma chance de estender a série. A disciplina mental que permitiu esse desempenho — arremessar em um jogo de eliminação após um Jogo 1 difícil — é o que os treinadores dos Dodgers citaram consistentemente como o atributo mais subestimado de Kershaw. Sua presença no montículo sob pressão, sua capacidade de manter a solidez mecânica após arremessos ruins e seu compromisso de atacar os rebatedores mesmo em situações de jogo vulneráveis definiram seu legado tanto quanto suas estatísticas."
+      ]
+    },
+    "timeline": [
+      "A compostura mental de Sandy Koufax após a imprecisão no início da carreira torna-se lendária",
+      "A sequência de 59 entradas sem pontuação de Orel Hershiser requer foco mental sustentado — os treinadores estudam sua presença no montículo",
+      "A psicologia esportiva torna-se convencional na MLB — protocolos de atenção plena e respiração são introduzidos",
+      "Temporada MVP 2014 de Kershaw — o treinador de arremessos Rick Honeycutt atribui a disciplina mental como diferencial-chave",
+      "Kershaw vence sua primeira Série Mundial — o arco de redenção pós-temporada é estudado por resiliência mental",
+      "Jogo 5 da NLCS de Kershaw após a dificuldade do Jogo 1 — mentalidade de competidor em exibição"
+    ],
+    "keyTakeaways": [
+      "A redefinição mental após um arremesso ruim: vire-se, respire por 4 segundos, use uma palavra-chave, depois comprometa-se completamente com o próximo arremesso",
+      "O apego emocional a arremessos ruins corrompe a rotina mecânica do arremesso que vem a seguir",
+      "Trabalhar em um ritmo consistente mantém a defesa engajada e sustenta o próprio ritmo mecânico do arremessador",
+      "A mentalidade de competidor de Kershaw — atacar mesmo após a adversidade, manter a mesma abordagem independentemente do placar — é o modelo de presença no montículo"
+    ]
+  },
+  "baseball-6-01": {
+    "tagline": "O fastball de quatro costuras é a base de todo arsenal — domine-o primeiro, e todos os outros arremessos serão melhores porque dependem dele.",
+    "overview": [
+      "O fastball de quatro costuras é o arremesso mais comum no beisebol e a base do arsenal de todo arremessador. Sua pegada é simples: os dedos indicador e médio são colocados na costura em forma de ferradura da bola para que quatro costuras girem no ar em cada revolução. O polegar descansa embaixo para o controle, e a bola é segurada com pressão das pontas dos dedos em vez de profundamente na palma — mantendo o pulso solto e maximizando o snap na liberação.",
+      "A física do four-seamer é impulsionada pelo backspin. Quando o arremessador dá snap no pulso para baixo na liberação, a bola gera backspin puro — rotação oposta à direção do deslocamento. Esse backspin cria o Efeito Magnus: a bola giratória empurra o ar para baixo em sua superfície, e em reação, o ar empurra a bola para cima. A bola não literalmente 'sobe', mas cai menos do que a gravidade prevê — criando o efeito de subida perceptual que torna os four-seamers de elite tão difíceis de acertar na parte superior da zona.",
+      "Os pontos de referência de velocidade variam por idade. Um four-seamer dominante de 12 anos fica entre 60–68 mph. Aos 14, os braços de elite alcançam 70–78 mph. Os abridores de colegial varsity têm média de 78–85 mph. Os abridores universitários têm média de 86–91 mph. A média da MLB é 93–94 mph, com arremessadores de potência de elite alcançando 99–103 mph. Para os abridores dos Dodgers, o four-seamer é o arremesso que estabelece presença: Yoshinobu Yamamoto, Tyler Glasnow e Walker Buehler lançam four-seamers na parte superior da zona no início das contagens para se adiantar e fazer os rebatedores respeitarem a velocidade."
+    ],
+    "technical": {
+      "title": "Física do Backspin — Por Que o Four-Seam Sobe",
+      "body": [
+        "A taxa de spin é o número de revoluções por minuto (rpm) que a bola faz em voo. Um four-seamer com alta taxa de spin (2.500+ rpm) cria um Efeito Magnus mais forte — mais subida perceptual, mais swing-and-miss na parte superior da zona. Um four-seamer com baixa taxa de spin (2.000 rpm ou menos) se comportará mais como um sinker e será batido com mais força se estiver localizado no meio da zona. O Rapsodo e o Statcast medem a taxa de spin e o eixo de spin, permitindo que os treinadores modernos de arremesso otimizem os ajustes de pegada para máxima eficiência de backspin.",
+        "A eficiência de spin (também chamada de 'spin ativo') é a porcentagem do spin total que contribui para o movimento em vez do spin giroscópico. Um fastball com 2.600 rpm e 95% de eficiência de spin cria movimento massivo; os mesmos 2.600 rpm com 65% de eficiência (mais spin gyro) produz muito menos movimento. A pegada, a pressão dos dedos e o ângulo do pulso afetam a eficiência de spin — por isso dois arremessadores podem ter a mesma taxa de spin, mas resultados completamente diferentes no home plate."
+      ]
+    },
+    "incident": {
+      "title": "Tyler Glasnow e o Compromisso de Velocidade dos Dodgers — 2024",
+      "impact": "Quando os Dodgers adquiriram Tyler Glasnow do Tampa Bay em dezembro de 2023, estavam adquirindo um dos braços de four-seam fastball de elite do beisebol — um arremessador cujo heater de 98–100 mph com taxa de spin de elite tornava todo o seu arsenal melhor porque os rebatedores tinham que se sentar nele primeiro. A capacidade de Glasnow de estabelecer o four-seamer no início das contagens foi central para seu domínio em 2024.",
+      "body": [
+        "O fastball de quatro costuras de Tyler Glasnow teve média de 98,5 mph em 2024 com uma taxa de spin consistentemente acima de 2.500 rpm, gerando um dos efeitos de subida mais altos na Liga Nacional. Sua abordagem foi deliberadamente fastball-first em contagens novas: ele estabelecia o four-seamer na parte superior da zona no início, forçava os rebatedores a comprometer seu timing à sua velocidade e depois introduzia sua devastadora curveball como uma mudança de velocidade e forma. Essa filosofia de sequenciamento — construir sobre o fastball, tudo o mais é contraste — é o modelo que o coordenador de arremesso dos Dodgers Mark Prior ensina em toda a organização.",
+        "A temporada de 2024 de Glasnow (185 ponches em 134 innings) demonstrou o que um four-seamer premium pode fazer quando lançado com convicção e excelente localização. Sua relação de strikes para bolas nos primeiros arremessos foi de elite — o que significa que ele se adiantava regularmente e forçava os rebatedores a se protegerem contra 99 mph. A lição para arremessadores em desenvolvimento: antes de adicionar todas as variações off-speed, torne o four-seamer uma arma genuína que os rebatedores temam. Cada outro arremesso no arsenal se torna melhor quando os rebatedores não conseguem parar de pensar no heater."
+      ]
+    },
+    "timeline": [
+      "Começa a era da bola viva — a velocidade do fastball se torna uma arma premium no beisebol",
+      "Os Dodgers se mudam para Los Angeles — Sandy Koufax começa a aperfeiçoar seu fastball no Dodger Stadium",
+      "O four-seamer de 98 mph de Dwight Gooden com spin de elite redefine os padrões de ponche",
+      "A medição de taxa de spin do Statcast revela a eficiência de backspin como uma variável-chave do fastball",
+      "Trevor Bauer compartilha publicamente pesquisa de otimização de taxa de spin — as pegadas se tornam científicas",
+      "Glasnow tem média de 98,5 mph como Dodger — domínio de fastball de taxa de spin em seu auge"
+    ],
+    "keyTakeaways": [
+      "Segure com as pontas dos dedos sobre a costura em ferradura — quatro costuras giram em cada revolução para máximo backspin",
+      "Alta taxa de spin (2.500+ rpm) cria o Efeito Magnus de subida que torna os four-seamers na parte superior da zona devastadores",
+      "Estabeleça o fastball no início das contagens — cada arremesso off-speed é mais eficaz quando os rebatedores temem o heater",
+      "Os pontos de referência de velocidade dependem da idade: concentre-se em mecânica e eficiência de spin antes de perseguir velocidade"
+    ]
+  },
+  "baseball-6-02": {
+    "tagline": "O arremesso de duas costuras não falha em acertar os bates — falha em acertar os barris. Quando os rebatedores fazem contato, a bola vai ao chão.",
+    "overview": [
+      "O fastball de duas costuras segura a bola ao longo (em vez de atravessando) a fenda de costura estreita — as duas costuras que correm paralelas em um lado da bola. O dedo indicador e o dedo médio são colocados sobre ou logo dentro das duas costuras estreitas, com o polegar embaixo. Esse alinhamento muda a orientação das costuras durante o voo, criando efeito lateral junto com efeito de retrocesso. O resultado é um arremesso que se inclina para o lado do braço do arremessador (para baixo e para dentro contra um rebatedor destro de um arremessador destro) e cai mais do que um fastball de quatro costuras.",
+      "O sinker é um arremesso relacionado — às vezes considerado uma variante do arremesso de duas costuras, às vezes ensinado como um arremesso distinto. Ambos compartilham a ação de inclinação e afundamento, mas o sinker é lançado com pressão descendente ligeiramente mais deliberada na liberação para maximizar a ação de afundamento às custas da velocidade pura. O sinker é a máquina de roleteiros do mundo do arremesso: quando lançado na metade inferior da zona de strike, gera contato fraco na metade superior da bola, produzindo roleteiros em direção aos defensores do quadrado.",
+      "Trevor Bauer, que arremessou pelos Dodgers em 2021, tornou-se um dos defensores mais públicos do beisebol para a experimentação de pegada. Bauer documentou extensamente seus esforços para aumentar artificialmente a taxa de spin e o movimento de seu arremesso de duas costuras usando mudanças de pegada, apontando que até mesmo pequenos ajustes no posicionamento dos dedos — mover um milímetro ao longo da costura — poderiam mudar significativamente o movimento da bola. Seu trabalho ajudou a normalizar a ideia dos arremessadores como cientistas de suas próprias pegadas."
+    ],
+    "technical": {
+      "title": "Duas Costuras vs. Quatro Costuras — A Diferença de Pegada",
+      "body": [
+        "A diferença crítica entre um arremesso de duas costuras e um de quatro costuras é a orientação das costuras e o eixo de spin resultante. Um arremesso de quatro costuras tem backspin puro — o eixo de spin é horizontal, perpendicular à direção do deslocamento. Um arremesso de duas costuras tem um eixo de spin inclinado — algo de backspin, algo de efeito lateral — porque os dedos se alinham ao longo em vez de atravessando a costura. Esse eixo inclinado cria o Efeito Magnus em múltiplas direções: algo de elevação (componente de backspin) e algo de inclinação (componente de efeito lateral).",
+        "O movimento do lado do braço é a característica de movimento que define o arremesso de duas costuras. Para um arremessador destro arremessando para um rebatedor destro, a bola se inclina para dentro e para baixo, cortando o cabo do taco do rebatedor e produzindo contato fraco. Para um arremessador destro enfrentando um rebatedor canhoto, ela vai para fora e para baixo na esquina exterior — gerando roleteiros fracos ou ponches perseguindo. Por isso os arremessadores que enfrentam uma formação de rebatedores do mesmo lado particularmente adoram o arremesso de duas costuras."
+      ]
+    },
+    "incident": {
+      "title": "Os Experimentos de Pegada de Trevor Bauer — A Ciência do Arremesso de Duas Costuras",
+      "impact": "A documentação pública de Trevor Bauer de seus experimentos de pegada durante seu tempo com os Dodgers trouxe a ciência da pegada para a instrução principal de arremesso. Sua disposição em compartilhar dados de spin, ajustes de pegada e perfis de movimento ajudou treinadores e jogadores de todos os níveis a entender que o movimento do arremesso é controlável — não apenas um produto de habilidade natural.",
+      "body": [
+        "Em 2021, Bauer era talvez o arremessador mais sofisticado analiticamente no beisebol. Durante seu treinamento de primavera no Camelback Ranch, ele trabalhou com dispositivos Rapsodo para medir como as pequenas mudanças de pegada em seu arremesso de duas costuras afetavam a taxa de spin e o movimento. Mover seu dedo indicador para dentro por apenas alguns milímetros ao longo da costura produzia leituras de eixo de spin significativamente diferentes, e essas mudanças de eixo se traduziam diretamente em perfis de movimento de bola diferentes no home plate.",
+        "O trabalho de Bauer ajudou a codificar um princípio agora ensinado no Camelback Ranch durante o treinamento de primavera dos Dodgers: a pegada é uma habilidade de precisão, não apenas 'segure desta forma.' Os arremessadores agora são encorajados a experimentar com pequenas variações de pegada e medir os resultados no Rapsodo em vez de depender apenas da sensação. A lição é que o arremesso de duas costuras natural de um arremessador é um ponto de partida — a pegada final é aquela que produz o maior movimento para o tamanho específico da mão, o comprimento dos dedos e a ação do braço daquele arremessador."
+      ]
+    },
+    "timeline": [
+      "O fastball de duas costuras se torna uma categoria de arremesso nomeada no vocabulário de avaliação da MLB",
+      "O domínio do fastball cortado de Mariano Rivera atrai atenção para a manipulação de arremessos baseada em costuras",
+      "O Statcast começa a rastrear perfis de movimento para arremessos de duas costuras vs. quatro costuras em todos os parques da MLB",
+      "O uso do sinker cai a um mínimo de 20 anos enquanto a revolução de taxa de spin favorece os arremessos de quatro costuras e os arremessos de alto RPM",
+      "Trevor Bauer documenta publicamente experimentos de pegada no Camelback Ranch — a ciência da pegada é destaque",
+      "O elenco dos Dodgers utiliza testes de pegada Rapsodo para cada arremessador das ligas menores no treinamento de primavera"
+    ],
+    "keyTakeaways": [
+      "A pegada de duas costuras coloca os dedos ao longo (não atravessando) a fenda de costura estreita, criando efeito lateral que se inclina para o lado do braço",
+      "O sinker é uma variante que enfatiza a pressão descendente na liberação para maximizar a ação de afundamento e a taxa de roleteiro",
+      "Os arremessos de duas costuras induzem contato fraco ao cortar o cabo do taco — o objetivo é roleteiros, não ponches",
+      "A experimentação de pegada (a contribuição de Bauer) provou que pequenos ajustes dos dedos mudam significativamente o eixo de spin e o movimento"
+    ]
+  },
+  "baseball-6-03": {
+    "tagline": "O changeup é o grande equalizador — lance-o com a velocidade de braço do fastball e veja o timing do rebatedor desmoronar.",
+    "overview": [
+      "O changeup é amplamente considerado o arremesso mais importante fora de velocidade no beisebol, e o único arremesso secundário mais importante para os arremessadores em desenvolvimento aprenderem. Sua eficácia provém inteiramente do engano: a velocidade do braço, o ângulo do braço e o ponto de liberação são idênticos ao fastball. A única diferença é a velocidade — o changeup chega 10–15 mph mais devagar do que o fastball do arremessador. Quando o cérebro do rebatedor processa 'ação de braço de fastball', ele se compromete com o timing do fastball. Quando a bola chega tarde, o rebatedor já completou o swing.",
+      "As três pegadas principais do changeup produzem perfis de movimento ligeiramente diferentes. O changeup circular é o mais comum: o polegar e o indicador formam um círculo no lateral da bola, e os três dedos restantes se estendem pela parte superior. Essa pegada reduz a velocidade por arrasto enquanto mantém a velocidade do braço. O palmball segura a bola profundamente na palma com todos os dedos envolvidos ao redor — maior redução de velocidade, mas mais difícil de manter a velocidade do braço de fastball sem telegrafar. O changeup vulcano divide os dedos médio e anular ao redor do equador da bola, produzindo uma ação de tombamento com fade tardio.",
+      "O diferencial de velocidade é a medida-chave. Uma diferença de 10–15 mph entre fastball e changeup é ideal — suficiente para interromper o timing, mas não tão extrema que o rebatedor consiga identificá-la cedo. Para um arremessador juvenil que lança 72 mph, um changeup a 58–62 mph é ideal. Para um abridor da MLB a 94 mph, um changeup a 80–84 mph é o objetivo. Kenley Jansen, o closer dos Dodgers por anos, combinou seu cut fastball de elite com um changeup especificamente para manter os rebatedores canhotos desequilibrados após construir uma carreira baseada quase exclusivamente no cutter."
+    ],
+    "technical": {
+      "title": "Engano da Velocidade do Braço — Por Que o Changeup Funciona",
+      "body": [
+        "O cérebro processa informações visuais sobre a velocidade do arremesso por meio de múltiplos indícios: velocidade do braço na liberação, ângulo da mão, snap do pulso e a trajetória inicial da bola. Quando a velocidade do braço do arremessador é idêntica no fastball e no changeup, o cérebro interpreta mal o arremesso e estabelece o timing do corpo para uma chegada mais rápida. O swing é acionado cedo — os quadris giram, as mãos são liberadas — e quando a bola realmente chega, o rebatedor já passou do ponto ótimo de contato. Por isso os especialistas em off-speed dizem 'deixe-os se derrotarem'.",
+        "O erro mais comum cometido pelos arremessadores jovens é desacelerar o braço ao lançar um changeup — um ajuste inconsciente que telegrafía o arremesso antes que a bola saia da mão. Os rebatedores avançados conseguem detectar a desaceleração do braço visualmente a partir do círculo de on-deck e se sentarão no changeup. A solução: lance o changeup com intenção agressiva de fastball, e deixe a pegada fazer todo o trabalho de redução de velocidade. Se você pensar 'devagar' enquanto o lança, seu braço vai desacelerar."
+      ]
+    },
+    "incident": {
+      "title": "Changeup de Kenley Jansen — Expandindo-se Além do Cutter",
+      "impact": "Kenley Jansen construiu uma das carreiras de closer mais dominantes na história dos Dodgers quase inteiramente sobre um único arremesso: o cut fastball. Quando os rebatedores canhotos começaram a cronometrar seu cutter no período 2017–2019, os Dodgers trabalharam com Jansen para desenvolver um changeup para mantê-los desequilibrados — demonstrando como adicionar até mesmo um arremesso secundário pode salvar uma carreira.",
+      "body": [
+        "O cutter de Kenley Jansen era tão bom — 93–94 mph com movimento lateral de elite — que dominou por anos contra rebatedores tanto canhotos quanto destros. Mas o scouting avançado eventualmente revelou que os rebatedores canhotos podiam antecipar o fade do lado do braço do cutter e se sentar nele middle-away. Seu desempenho na Série Mundial 2017 mostrou vulnerabilidade contra rebatedores canhotos, e o elenco de arremessadores dos Dodgers trabalhou para adicionar um changeup ao seu arsenal.",
+        "O changeup deu a Jansen uma opção de movimento-diferente-à-mesma-velocidade contra canhotos: em vez de ver dois arremessos que parecem idênticos com quebra ligeiramente diferente, eles agora enfrentavam um arremesso que chegava 12 mph mais devagar com uma trajetória diferente. O changeup de Jansen nunca foi um arremesso para eliminar — mas forçou os rebatedores a considerar duas possibilidades em vez de uma, tornando seu cutter mais eficaz novamente. A lição: às vezes um arremesso secundário não precisa ser dominante; ele só precisa existir convincentemente o suficiente para afetar o foco do rebatedor."
+      ]
+    },
+    "timeline": [
+      "O changeup se torna um padrão como o terceiro arremesso principal ensinado no desenvolvimento profissional",
+      "O changeup circular de Pedro Martinez se torna o referencial — diferencial de 15 mph a 90+ mph",
+      "O domínio do changeup de Johan Santana reaviva o foco na mecânica da pegada na instrução juvenil",
+      "O Rapsodo começa a medir o fade e tombamento do changeup como perfis de movimento distintos",
+      "O elenco dos Dodgers trabalha com Jansen no changeup para contra-atacar estratégias de formação canhota",
+      "Os programas de arremesso juvenil ensinam universalmente o changeup antes do slider ou da curveball para a saúde e o desenvolvimento"
+    ],
+    "keyTakeaways": [
+      "A velocidade do braço deve ser idêntica ao fastball — a pegada faz todo o trabalho de redução de velocidade",
+      "Um diferencial de velocidade de 10–15 mph é ideal: suficiente para interromper o timing, mas não tão extremo que seja identificável cedo",
+      "O changeup circular é a pegada mais ensinável — círculo de polegar e indicador, três dedos pela parte superior",
+      "Até mesmo um changeup imperfeito muda a equação mental do rebatedor, tornando o fastball mais eficaz"
+    ]
+  },
+  "baseball-6-04": {
+    "tagline": "A curveball de Clayton Kershaw não apenas encerrava turnos ao taco — encerrava a confiança de formações inteiras.",
+    "overview": [
+      "A curveball é o arremesso mais dramático no beisebol — uma bola que parece estar indo em direção ao centro da zona de strike e então cai precipitadamente em direção ao chão, pegando os rebatedores nas posições mais constrangedoras: completamente estendidos em um swing a um pé acima de onde a bola realmente cruzou o home plate. Sua física é o inverso do four-seamer: em vez de backspin lutando contra a gravidade, a curveball gera topspin, que se soma à gravidade e cria um Efeito Magnus descendente que acelera a queda da bola.",
+      "A curveball 12-para-6 (nomeada pela direção do ponteiro do relógio) cai diretamente para baixo — o plano ideal para um breaking ball de cima para baixo que começa na cintura e termina nos joelhos ou no chão. A curveball 11-para-5 (ou 10-para-4) tem movimento descendente e lateral — varre para longe dos rebatedores do mesmo lado enquanto cai. A knuckle curveball segura a bola com a junta do dedo indicador na costura em vez da ponta do dedo, produzindo topspin mais apertado e uma quebra mais acentuada e tardia.",
+      "Os arremessadores jovens devem esperar até aproximadamente os 13–14 anos antes de arremessar curveballs regularmente — especificamente quando as placas de crescimento no cotovelo se aproximam do fechamento. A pesquisa do American Sports Medicine Institute, liderada pelo Dr. James Andrews, descobriu que o arremesso precoce de curveball (antes dos 13 anos) se correlaciona com taxas significativamente mais altas de lesões no cotovelo mais adiante na carreira. O 'El Diablo' de Clayton Kershaw — sua curveball martelo 12-6 — é o ponto de referência: lançada com a mesma velocidade de braço e ponto de liberação que seu fastball, cai até 50 centímetros verticalmente desde a liberação até o home plate."
+    ],
+    "technical": {
+      "title": "Física do Topspin — Por Que a Curveball Cai",
+      "body": [
+        "O topspin da curveball cria um Efeito Magnus oposto ao do four-seamer. Com topspin, a bola giratória puxa o ar para baixo de sua superfície superior — e a força de reação empurra a bola para baixo, além da gravidade. Uma curveball bem lançada experimenta até 30% mais força descendente do que experimentaria uma bola sem toque em queda livre apenas pela gravidade. Isso cria a queda dramática que faz a bola parecer 'cair de uma mesa' em vez de seguir um arco gradual.",
+        "O eixo de rotação é a variável mais importante para o movimento da curveball. Um eixo de rotação perfeitamente vertical (rotação 12-para-6) cria movimento descendente puro — a quebra ideal 12-6. Um eixo inclinado cria uma quebra diagonal — 11-5 ou 1-7 dependendo da direção. Quanto mais apertado o spin (mais revoluções por minuto com um eixo de topspin puro), mais acentuada a quebra no final do voo da bola. É por isso que a knuckle curve frequentemente produz uma quebra mais tardia e acentuada do que a pegada padrão — o ponto de contato da junta cria uma orientação de costura diferente que pode gerar topspin mais eficiente."
+      ]
+    },
+    "incident": {
+      "title": "El Diablo de Kershaw — A Curveball Mais Famosa na História dos Dodgers",
+      "impact": "A curveball 12-6 de Clayton Kershaw, apelidada de 'El Diablo' por companheiros e adversários igualmente, foi responsável por um número desproporcional de seus 2.725 ponches na carreira. Em suas temporadas ganhadoras do Cy Young, foi o arremesso de ponche que complementou seu fastball de quatro costuras como nenhum breaking ball em uma geração — uma combinação brutal de velocidade de elite e profundidade de elite.",
+      "body": [
+        "A curveball de Kershaw foi única por vários motivos. Primeiro, seu eixo de rotação era quase perfeitamente vertical — uma quebra excepcionalmente rara 12-para-6 que caía diretamente para baixo em vez de diagonalmente. Segundo, ele a lançava com velocidade de braço e ponto de liberação idênticos ao seu fastball, tornando quase impossível identificá-la até que a quebra ocorresse. Terceiro, sua taxa de spin na curveball consistentemente superava 2.800 rpm — de elite mesmo pelos padrões da MLB — o que criou a queda acentuada e tardia que lhe valeu o apelido.",
+        "Durante sua temporada de MVP e Cy Young de 2014 — possivelmente a maior temporada de arremesso nas últimas três décadas — a taxa de whiff da curveball de Kershaw foi superior a 50%. Os rebatedores erravam em mais da metade de seus swings contra ela. O arremesso foi tão eficaz que os rebatedores adversários admitiam começar seu turno ao taco já mentalmente abalados sabendo que ele estava por vir. 'El Diablo' não foi apenas um arremesso; foi uma arma psicológica. Treinadores de jovens que estudam Kershaw observam que o engano da velocidade do braço é o elemento aprendível — a profundidade da quebra vem disso."
+      ]
+    },
+    "timeline": [
+      "Curveball documentada formalmente — Candy Cummings é creditado com sua invenção na década de 1870",
+      "Sandy Koufax começa a desenvolver sua curveball aos 19 anos — torna-se uma das melhores já lançadas",
+      "Última temporada de Koufax — sua combinação curveball-fastball produz uma ERA de 1,73 em 323 innings",
+      "El Diablo de Kershaw atinge dominância total — taxa de whiff de 50%+ na temporada de 2014",
+      "As diretrizes do ASMI sobre curveballs para arremessadores jovens tornam-se padrão na educação de treinadores de Little League",
+      "Arremessadores da próxima geração dos Dodgers (Yamamoto, Gavin Stone) continuam a tradição da curveball no Dodger Stadium"
+    ],
+    "keyTakeaways": [
+      "O topspin da curveball se soma à gravidade via Efeito Magnus — curveballs bem lançadas caem 25–55 centímetros verticalmente",
+      "A quebra 12-para-6 é a quebra descendente mais pura; 11-para-5 quebra diagonalmente — ambas são eficazes com diferentes aplicações de matchup",
+      "Iguale a velocidade do braço e o ponto de liberação ao fastball — a quebra ocorre a partir do spin, não de qualquer movimento telegrafado",
+      "Os 13–14 anos é a diretriz para iniciar o desenvolvimento da curveball; o uso mais cedo se correlaciona com risco de lesão no cotovelo"
+    ]
+  },
+  "baseball-6-05": {
+    "tagline": "O slider é o arremesso mais perigoso no beisebol — perigoso para os rebatedores, e perigoso para os arremessadores que o lançam incorretamente.",
+    "overview": [
+      "O slider é o segundo arremesso mais comum no beisebol e um dos arremessos mais eficazes para provocar falhas no swing do jogo. Ele se situa em velocidade entre o fastball (90-95 mph) e a curveball (75-82 mph), tipicamente lançado a 82–90 mph, com movimento lateral afastando-se dos rebatedores do mesmo lado. Sua pegada distintiva coloca os dedos indicador e médio fora do centro em um lado da bola, criando uma combinação de tipos de spin — principalmente gyro spin (spin de bala, que não produz movimento de Efeito Magnus) com sidespin — que produz uma quebra lateral apertada e tardia em vez do arco varrido gradual de uma curveball.",
+      "O cut slider ('cutter') e o sweep slider representam os extremos opostos do espectro do slider. O cut slider (abordado em profundidade na próxima etapa) é lançado mais forte, mais próximo da velocidade do fastball, com menor quebra lateral. O sweep slider é lançado com máxima quebra lateral — às vezes 45–55 centímetros de movimento horizontal — ao custo de alguma velocidade. Ambos os arremessos são chamados de 'sliders', mas seus objetivos pretendidos diferem: o cutter pega os rebatedores, o sweeper faz os taco errarem na esquina exterior.",
+      "A evolução do slider de Kershaw é uma das histórias de desenvolvimento de arremessos mais documentadas na história do beisebol. No início de sua carreira, seu slider já estava acima da média — mas tinha movimento horizontal limitado e ocasionalmente era deixado alto na zona onde os rebatedores podiam danificá-lo. Por meio de ajustes em sua pegada e ângulo de pulso a partir de 2012 em diante, Kershaw transformou seu slider em uma verdadeira arma de swing-and-miss com 10–15 centímetros de quebra horizontal tardia e uma taxa de whiff de 50%+. A combinação desse slider com sua curveball e fastball o tornou o arremessador mais dominante de sua era."
+    ],
+    "technical": {
+      "title": "Mecânicas de Pegada do Slider — Cut vs. Sweep",
+      "body": [
+        "A pegada do cut slider coloca os dedos indicador e médio ligeiramente fora do centro em direção ao lado do dedo indicador da bola, com pressão aplicada principalmente pelo dedo indicador. O polegar está embaixo e ligeiramente para dentro. Essa pegada fora do centro cria um eixo de spin inclinado a partir do topspin vertical da curveball padrão — o spin resultante é parcialmente giroscópico (não produzindo movimento) e parcialmente sidespin (produzindo quebra lateral). Como o gyro spin não produz forças de Efeito Magnus, o slider chega com menos movimento total do que sua taxa de spin sugere — mas o movimento que ele tem ocorre muito tarde, quando a bola cruzou o limiar de decisão.",
+        "A mecânica incorreta do slider — particularmente lançar com supinação excessiva do pulso (girar o pulso para fora) ou forçar a quebra em vez de deixar a pegada criá-la — está associada ao estresse medial do cotovelo. A mecânica correta do slider usa um movimento de pronação ou 'golpe de karatê' através da liberação, mantendo o cotovelo em posição neutra. Os arremessadores jovens que aprendem sliders incorretamente torcendo o pulso sofrem estresse do UCL que se acumula invisivelmente durante meses antes de causar lesão repentina. Por isso muitos treinadores das ligas menores proíbem sliders até os 16 anos."
+      ]
+    },
+    "incident": {
+      "title": "Transformação do Slider de Kershaw — 2012 ao Cy Young de 2014",
+      "impact": "A transformação do slider de Clayton Kershaw entre 2012 e 2014 converteu um arremesso que já era bom em uma das armas de swing-and-miss mais dominantes na história do beisebol. Em sua temporada de MVP/Cy Young de 2014, sua taxa de whiff do slider excedeu 50% — o que significa que os rebatedores erravam mais vezes do que faziam contato quando davam swing nele. A transformação foi produto de ajuste deliberado de pegada, não apenas desenvolvimento natural.",
+      "body": [
+        "O slider de Kershaw em 2012 era um arremesso sólido — os rebatedores rebatiam aproximadamente .200 contra ele com uma taxa de whiff de 30%. Mas trabalhando com os treinadores de arremessadores dos Dodgers, ele fez um ajuste de pegada que moveu seus dedos ligeiramente mais fora do centro, aumentando o componente gyro spin e criando uma quebra lateral mais apertada e tardia. Por 2014, os rebatedores descreviam seu slider como parecendo ser um fastball na metade interior antes de quebrar bruscamente para a esquina exterior — a ilusão de túnel perfeita.",
+        "A evolução do slider também mudou como Kershaw sequenciava os arremessos. Sua abordagem pré-2012 dependia fortemente de sua combinação fastball-curveball. Após 2012, ele tinha três arremessos distintos operando em planos diferentes — fastball (acima e reto), curveball (abaixo e vertical), slider (lateral) — criando um problema tridimensional para os rebatedores que nenhum único ajuste no plano de swing poderia resolver. Sua ERA de 2014–2016 — 1,77, 2,13, 1,69 — reflete o que um arsenal de três arremessos de elite pode fazer quando o slider completa o cubo."
+      ]
+    },
+    "timeline": [
+      "O slider de Steve Carlton se torna a arma secundária definitiva do arremessador",
+      "O slider de Randy Johnson a 90+ mph com 38 centímetros de quebra redefine o que os sliders podem fazer",
+      "Kershaw modifica a pegada do slider — adiciona componente gyro para quebra mais apertada e tardia",
+      "O arsenal de três arremessos de Kershaw (FB/CRV/SL) domina a Liga Nacional — MVP e Cy Young",
+      "O sweeper slider se torna convencional — Yu Darvish e outros normalizam 45+ centímetros de quebra horizontal",
+      "O elenco dos Dodgers lidera a Liga Nacional em taxa de whiff do slider — compromisso organizacional com mecânicas de pegada fora do centro"
+    ],
+    "keyTakeaways": [
+      "A pegada do slider é fora do centro, dominada pelo dedo indicador, com uma liberação de pronação (golpe de karatê) — NÃO supinação do pulso",
+      "Cut slider: quebra lateral apertada em maior velocidade; sweeper: máxima quebra lateral em menor velocidade",
+      "O slider difere da curveball na direção da quebra (lateral vs. vertical) e no tipo de spin (gyro vs. topspin)",
+      "A mecânica incorreta do pulso no slider causa estresse do UCL — a diretriz de 16 anos protege os arremessadores em desenvolvimento"
+    ]
+  },
+  "baseball-6-06": {
+    "tagline": "Mariano Rivera lançou um único arremesso durante toda a sua carreira. Ele se aposentou com o maior número de salvamentos na história do beisebol. Um arremesso foi tudo o que ele precisou.",
+    "overview": [
+      "O cut fastball (cutter) ocupa um espaço único no espectro de arremessos: é lançado com velocidade de fastball (88-96 mph), mas segurado fora do centro, produzindo um pequeno mas afiado movimento lateral tardio — tipicamente 5–12 centímetros — em direção ao lado da luva do arremessador. É mais rápido do que um slider, mas com menos movimento, e compartilha a mesma velocidade de braço e ponto de liberação de um fastball de quatro costuras. O resultado é um arremesso que parece exatamente um fastball até os últimos metros de voo, quando ele corta bruscamente.",
+      "O cutter de Mariano Rivera é o arremesso individual mais famoso na história do beisebol. Rivera o lançava a 93-95 mph com consistência notável, e ele se movia 10–12 centímetros em direção ao seu lado da luva no último momento. Contra rebatedores canhotos, esse corte significava que a bola corria em direção às suas mãos — serrando inúmeros cabos de taco durante 19 temporadas. Contra rebatedores destros, ela se afastava de seus tacos. O cutter de Rivera era tão singular que os rebatedores relatavam se preparar exclusivamente para ele — e ainda assim não conseguiam rebatê-lo. Ele salvou 652 jogos em sua carreira essencialmente com um único arremesso.",
+      "Kenley Jansen, o closer dos Dodgers por muito tempo, construiu uma carreira equivalente como um relevista dominante de um único arremesso com seu cutter. O cut fastball de Jansen se posicionava a 93-96 mph com o mesmo movimento tardio afiado em direção às mãos dos rebatedores canhotos, gerando tacos quebrados e contato forçado a uma taxa que liderou a Liga Nacional durante várias temporadas. A decisão dos Dodgers de desenvolver seu changeup mais tarde em sua carreira demonstra que até mesmo os especialistas mais dominantes de um único arremesso devem eventualmente se diversificar."
+    ],
+    "technical": {
+      "title": "Pegada de Cutter — Quatro Costuras Fora do Centro",
+      "body": [
+        "A pegada de cutter é a mais sutil no arremesso — começa como uma pegada padrão de fastball de quatro costuras e se desloca ligeiramente. Os dedos indicador e médio se movem fora do centro em direção ao lado do dedo indicador, com o dedo indicador aplicando pressão no lado da bola em vez de na parte superior. O ponto de contato da costura se desloca da linha central. O polegar se move ligeiramente para o lado do dedo médio embaixo. Essa mudança sutil cria um componente de corte-spin sem exigir manipulação do pulso — a pressão do dedo fora do centro cria naturalmente sidespin na liberação.",
+        "A característica distintiva de um grande cutter é o movimento tardio. Um slider com 20 centímetros de movimento distribuídos em 15 metros é legível — ele começa a girar cedo o suficiente para que os rebatedores vejam a trajetória. Um cutter com 10 centímetros de movimento nos últimos 1,8 metros de voo não dá ao rebatedor nenhum indício inicial — ele parece um fastball durante 90% da trajetória do arremesso, e apenas o último trecho do voo revela o corte. O cutter de Rivera era famoso por isso: os rebatedores juravam que era um fastball até que não era, e aí já tinham se comprometido."
+      ]
+    },
+    "incident": {
+      "title": "O Cutter de Rivera — O Arremesso Mais Icônico na História da Série Mundial",
+      "impact": "O cut fastball de Mariano Rivera é o arremesso individual mais celebrado na história do beisebol. Só na Série Mundial de 2000, Rivera quebrou nove tacos em três jogos. Ele é o único jogador eleito por unanimidade ao Hall da Fama do Beisebol na primeira votação. Sua carreira foi construída sobre um arremesso lançado com controle perfeito — uma lição em maestria sobre variedade.",
+      "body": [
+        "Rivera descobriu seu cutter acidentalmente durante uma sessão de bullpen em 1997 no treinamento de primavera, quando notou que um 'fastball reto' se movia bruscamente em direção aos rebatedores canhotos. Em vez de tentar eliminar o movimento, o treinador de arremessos Mel Stottlemyre o encorajou a abraçá-lo e refiná-lo. Rivera passou os 16 anos seguintes aperfeiçoando um único arremesso — nunca desenvolvendo uma curveball, raramente confiando em seu changeup — e se tornou o melhor closer na história do esporte.",
+        "O impacto psicológico do cutter de Rivera se estendeu além dos tacos quebrados. Os rebatedores canhotos que o enfrentaram na pós-temporada rotineiramente relatavam que mesmo sabendo que o cutter estava vindo, conhecendo seu caminho, sabendo onde olhar — ainda assim não conseguiam rebatê-lo. Duas vezes na ALCS de 2003, os rebatedores canhotos do Boston Red Sox quebraram seus tacos em arremessos consecutivos. Os fabricantes de tacos relataram fornecer às equipes três vezes a cota normal de tacos para as aparições de pós-temporada de Rivera. Um arremesso. O maior número de salvamentos da história."
+      ]
+    },
+    "timeline": [
+      "Rivera descobre seu cutter acidentalmente no treinamento de primavera — muda sua carreira e o esporte",
+      "Rivera quebra nove tacos na Série Mundial — o domínio do cutter se torna lendário",
+      "Rivera se aposenta com 652 salvamentos — seleção unânime para o Hall da Fama (2019)",
+      "Kenley Jansen se estabelece como o equivalente de Rivera na Liga Nacional com um cutter de 96 mph",
+      "O cut fastball de Jansen tem média de 93 mph — os Dodgers lideram a Liga Nacional em ERA de closer",
+      "Os Dodgers continuam ênfase organizacional na mecânica do cutter no desenvolvimento de arremessadores"
+    ],
+    "keyTakeaways": [
+      "A pegada do cutter desloca os dedos fora do centro a partir de uma base de quatro costuras — pressão do dedo indicador no lado da bola",
+      "O movimento tardio do cutter (últimos 1,8–2,4 metros) é o que o torna indetectável — ele parece um fastball até que não é",
+      "Contra rebatedores do mesmo lado, o cutter corre em direção às mãos — produzindo tacos quebrados e roleteiros forçados",
+      "Os 652 salvamentos de Rivera com um arremesso provam que a maestria de um único arremesso de elite supera a variedade sem excelência"
+    ]
+  },
+  "baseball-6-07": {
+    "tagline": "Hideo Nomo chegou do Japão em 1995 com um arremesso que ninguém na Liga Nacional tinha visto antes — e imediatamente se tornou uma sensação no Dodger Stadium.",
+    "overview": [
+      "O fastball dividido (splitter) e o forkball são os mais dramáticos dos arremessos da 'família do fastball' — segurados com os dedos bem separados em cada lado da bola, o que reduz a velocidade, elimina o backspin e cria uma ação de tombamento que faz a bola mergulhar bruscamente para baixo nos últimos metros antes do home plate. Da perspectiva do rebatedor, um splitter bem lançado parece um fastball — a mesma velocidade do braço, trajetória inicial semelhante — até que cai abruptamente fora da zona, produzindo swings por cima ou swings detidos em direção ao chão.",
+      "O splitter e o forkball diferem principalmente na profundidade do posicionamento dos dedos. O splitter separa os dedos indicador e médio ao longo da costura em cada lado da bola sem forçá-los até as juntas — uma pegada de profundidade média. O forkball força os dedos mais separados e mais fundo, entre as juntas, produzindo uma redução de velocidade mais extrema (frequentemente 15–20 mph abaixo do fastball) e um mergulho mais dramático, mas ao custo do controle e do estresse no braço. Ambos os arremessos geram um spin de tombamento para frente — o oposto do backspin — que se soma ao componente de gravidade e produz o mergulho de quebra tardia dramática.",
+      "O forkball de Hideo Nomo foi o arremesso que o tornou uma celebridade quando se juntou aos Dodgers em 1995. O forkball ao estilo japonês de Nomo — às vezes chamado de 'fork drop' — produziu um diferencial de velocidade de 20+ mph em relação ao seu fastball enquanto mergulhava bruscamente no último momento possível. Ele liderou a Liga Nacional em ponches em sua primeira temporada, foi selecionado para o All-Star Game como novato e transformou o Dodger Stadium em um fenômeno enquanto a 'Nomomania' tomava conta de Los Angeles. Seu forkball foi um embaixador cultural tanto quanto um arremesso de beisebol."
+    ],
+    "technical": {
+      "title": "Mecânica da Pegada — Por Que o Posicionamento Profundo Elimina o Spin",
+      "body": [
+        "Tanto o splitter quanto o forkball funcionam ao eliminar o componente de snap do arremesso. Um arremesso de fastball normal envolve um snap do pulso que imprime backspin. Quando os dedos estão bem separados e posicionados profundamente nos lados da bola, o snap é inibido — os dedos deslizam pelos lados em vez de dar snap pela parte superior. O resultado é velocidade reduzida (menos força de snap) e backspin reduzido (sem snap do pulso = sem backspin impresso). Com spin mínimo, a gravidade age mais fortemente sobre a bola — ela cai mais do que o rebatedor espera.",
+        "O spin de tombamento que resulta da pegada de um splitter é para frente (adjacente ao topspin) em vez de backspin ou sidespin. O tombamento para frente adiciona um pequeno componente de Efeito Magnus na direção descendente enquanto também cria voo instável — a bola oscila ligeiramente devido a um eixo de spin inconsistente, tornando sua localização exata de mergulho imprevisível até mesmo para o arremessador. Essa imprevisibilidade é parte do motivo pelo qual os splitters são tão difíceis de acertar — até mesmo o receptor às vezes tem dificuldade de prever exatamente onde a bola terminará. Isso também explica por que os splitters são difíceis de controlar e perigosos para braços jovens: a pegada profunda coloca estresse lateral no UCL."
+      ]
+    },
+    "incident": {
+      "title": "Nomomania — A Estreia de Hideo Nomo em 1995 no Dodger Stadium",
+      "impact": "A temporada de Hideo Nomo com os Dodgers em 1995 foi mais do que uma conquista atlética — foi um momento cultural que conectou os torcedores de beisebol japoneses às Grandes Ligas pela primeira vez, impulsionou um fluxo de talentos japoneses para os Dodgers que culminou em Shohei Ohtani, e apresentou os rebatedores americanos a um estilo de forkball que nunca tinham visto antes.",
+      "body": [
+        "Quando Nomo fez sua estreia na MLB em 2 de maio de 1995 no Dodger Stadium, os scouts tinham advertido que seu distinctive windup tornado e seu forkball ao estilo japonês poderiam não se traduzir para os rebatedores americanos. Dentro de três aberturas, ficou claro que as advertências estavam erradas. Seu forkball mergulhava tão dramaticamente — tão abaixo de onde os rebatedores esperavam que um arremesso chegasse — que os rebatedores estavam dando swing em strikes no chão ou parados em choque enquanto a bola passava pela zona de strike na altura de seus joelhos após parecer estar indo para o meio do home plate.",
+        "A Nomomania se tornou um fenômeno em Los Angeles. Dezenas de milhares de torcedores japoneses voaram ao Dodger Stadium para vê-lo arremessar. Seu uniforme foi o mais vendido no beisebol durante meses. No All-Star Game de 1995, ele poncheu três rebatedores consecutivos com seu forkball na primeira entrada. Nomo continuou a lançar dois no-hitters em sua carreira, um dos quais (Colorado, 1996) foi lançado no parque para rebatedores mais extremo na história do beisebol — em grande parte graças ao seu forkball fazendo os rebatedores perseguirem arremessos no chão em ar rarefeito. Seu legado nos Dodgers vive através do relacionamento contínuo da organização com o talento japonês que eventualmente trouxe Yoshinobu Yamamoto e Shohei Ohtani a Los Angeles."
+      ]
+    },
+    "timeline": [
+      "Elroy Face foi pioneiro do split-fingered fastball para o Pittsburgh Pirates — primeiro uso eficaz documentado",
+      "Roger Craig ensina o splitter ao Detroit Tigers — inicia a mania do splitter dos anos 1980 na MLB",
+      "Hideo Nomo estreia com os Dodgers — o estilo de forkball japonês cativa os torcedores americanos de beisebol",
+      "Nomo lança no-hitter no Coors Field — forkball dominante mesmo no ar rarefeito do Colorado",
+      "Dados do ASMI mostram que splitter/forkball se correlaciona com estresse do UCL — restrição para jovens começa",
+      "Yoshinobu Yamamoto se junta aos Dodgers — tradição de repertório de arremessos japonês continua em Los Angeles"
+    ],
+    "keyTakeaways": [
+      "Splitter e forkball funcionam ao eliminar o backspin por meio do posicionamento profundo dos dedos — a gravidade e o tombamento criam o mergulho dramático",
+      "O forkball é mais extremo do que o splitter: pegada mais profunda, redução de velocidade mais extrema, pior controle, risco maior para o braço",
+      "O forkball de Nomo apresentou a ação de mergulho de diferencial de 20 mph aos rebatedores americanos que nunca tinham visto o arremesso antes",
+      "Ambos os arremessos não são recomendados para arremessadores com menos de 17 anos — a pegada profunda causa estresse no UCL e nas estruturas de crescimento do antebraço"
+    ]
+  },
+  "baseball-6-08": {
+    "tagline": "O Rapsodo não mente — ele mostra exatamente o que sua bola está fazendo, e por quê.",
+    "overview": [
+      "A taxa de spin é medida em revoluções por minuto (rpm) e quantifica a rapidez com que a bola de beisebol gira em voo. Mas a taxa de spin bruta por si só não determina o movimento do arremesso — o eixo de rotação e a eficiência de spin (a proporção do spin total que contribui para o movimento de Força Magnus versus spin giroscópico) são igualmente importantes. Dois arremessadores com taxas de spin idênticas podem produzir movimentos de arremesso dramaticamente diferentes com base em seu eixo de rotação e eficiência.",
+      "O Statcast (implementado em todos os parques das Grandes Ligas em 2015) e o Rapsodo (um monitor de arremesso portátil agora disponível para programas de colegial e universidade) medem três variáveis-chave de spin: taxa de spin total (rpm), eixo de rotação (expresso como um ângulo de face de relógio, por exemplo, 12:00 = rotação pura para trás, 6:00 = rotação pura para frente), e eficiência de spin (a porcentagem do spin total que contribui para o movimento). Juntos, esses três números explicam exatamente por que um arremesso se move da maneira que se move.",
+      "A organização dos Dodgers foi uma das primeiras equipes a implantar sistematicamente dispositivos Rapsodo em suas instalações de ligas menores e no complexo de treinamento de primavera do Camelback Ranch. O coordenador de arremessadores dos Dodgers Mark Prior e sua equipe usam dados de spin para otimizar a pegada de cada arremessador, identificando a orientação específica da mão que maximiza a eficiência de spin para sua ação de braço individual. Um arremessador que gera naturalmente 2.400 rpm pode produzir apenas 75% de eficiência de spin — mas com um ajuste de pegada encontrado por meio de testes com o Rapsodo, ele poderia atingir 90% de eficiência, adicionando efetivamente 360 rpm 'ativos' sem alterar nenhuma outra variável."
+    ],
+    "technical": {
+      "title": "Spin Ativo vs. Spin Giroscópico — A Equação de Eficiência",
+      "body": [
+        "A taxa de spin total inclui dois componentes: spin ativo (também chamado de spin Magnus) e spin giroscópico (também chamado de spin gyro). O spin ativo é o componente de spin que tem seu eixo perpendicular à direção de deslocamento da bola — esse spin empurra o ar e cria movimento de Força Magnus. O spin giroscópico tem seu eixo paralelo à direção de deslocamento — como o raiamento de uma bala — e não produz nenhum movimento de Força Magnus. Um arremesso com 100% de spin ativo (zero gyro) produz o máximo movimento possível para seus rpm. Um arremesso com 50% de spin ativo produz metade do movimento máximo.",
+        "A eficiência de spin é expressa como uma porcentagem. Um fastball de quatro costuras com 95% de eficiência de spin a 2.500 rpm produz efeito de elevação quase máximo — as costuras estão cortando o ar de forma limpa com rotação quase pura para trás. Um splitter pode ter 40% de eficiência — a maior parte de seu spin é giroscópica, o que explica por que ele 'cai fora' da trajetória de voo da bola em vez de ser impulsionado pela Força Magnus. Entender quais arremessos se beneficiam de alta eficiência (fastballs, curveballs) e quais têm baixa eficiência intencionalmente (sliders usam spin gyro para 'agarre') ajuda os arremessadores a otimizar cada arremesso separadamente."
+      ]
+    },
+    "incident": {
+      "title": "A Revolução Rapsodo dos Dodgers — Laboratório de Dados do Camelback Ranch",
+      "impact": "A implantação de dispositivos Rapsodo pelos Dodgers no Camelback Ranch, a partir de aproximadamente 2018, criou um pipeline de desenvolvimento de arremessos orientado por dados que tem ajudado a desenvolver arremessadores das ligas menores em contribuidores das Grandes Ligas mais rapidamente do que em qualquer outro ponto na história da franquia. Sua abordagem sistemática de otimização de pegada usando dados de spin é agora considerada uma das mais sofisticadas no beisebol profissional.",
+      "body": [
+        "No Camelback Ranch, o pessoal de desenvolvimento de arremessadores dos Dodgers configura unidades Rapsodo atrás do home plate em vários montículos de bullpen durante o treinamento de primavera. Cada arremesso de cada arremessador na organização passa por análise de taxa de spin e eixo em algum momento durante o campo de treinamento. Os arremessadores começam lançando suas pegadas naturais, depois trabalham por meio de micro-ajustes de pegada — posição dos dedos, contato das costuras, posicionamento do polegar — medindo a eficiência de spin em cada variante. Para muitos arremessadores, a pegada ideal difere significativamente do que aprenderam no colegial.",
+        "O processo também revela quais arremessos cada arremessador pode otimizar de forma mais eficiente. Alguns arremessadores têm tamanhos de mão e ângulos de pulso que geram naturalmente spin de fastball de elite — esses arremessadores são encorajados a converter seu four-seamer em uma arma. Outros geram uma eficiência de spin de curveball incomum — esses arremessadores são construídos em torno de seu arremesso de quebra. O Rapsodo torna objetivo o que antes era subjetivo: em vez de um treinador de arremessadores dizer 'Acho que sua curva é seu melhor arremesso', os dados mostram exatamente quanto spin ativo cada arremesso gera e qual será o perfil de movimento resultante no nível das Grandes Ligas."
+      ]
+    },
+    "timeline": [
+      "As primeiras câmeras de alta velocidade começam a quantificar a pesquisa de taxa de spin no nível universitário",
+      "O Statcast é implementado nas Grandes Ligas — a taxa de spin se torna uma métrica disponível publicamente para cada arremesso",
+      "Os modelos de beisebol do Rapsodo tornam-se acessíveis para programas universitários e de colegial",
+      "Os Dodgers estabelecem laboratório de dados no Camelback Ranch — otimização sistemática de spin para todos os arremessadores das ligas menores",
+      "Controvérsia de substância pegajosa — saltos de taxa de spin em toda a liga provocam investigação das Grandes Ligas",
+      "A eficiência de spin se torna um termo de desenvolvimento de arremessadores convencional no treinamento juvenil e universitário"
+    ],
+    "keyTakeaways": [
+      "A taxa de spin (rpm) só é significativa no contexto do eixo de rotação e da eficiência — as três variáveis determinam o movimento",
+      "O spin ativo cria movimento de Força Magnus; o spin giroscópico não cria movimento — a eficiência é a relação do spin ativo para o spin total",
+      "Um fastball com rpm mais baixo, mas maior eficiência pode superar um com rpm mais alto, mas mais spin giroscópico",
+      "O Rapsodo permite que os arremessadores testem objetivamente variações de pegada e encontrem a posição específica da mão que maximiza sua eficiência de spin natural"
+    ]
+  },
+  "baseball-6-09": {
+    "tagline": "O arremesso mais perigoso no beisebol é aquele que parece exatamente igual ao arremesso anterior — até que não é.",
+    "overview": [
+      "O pitch tunneling é a ciência de fazer com que dois ou mais arremessos pareçam idênticos pelo maior tempo possível antes de divergirem para diferentes perfis de movimento. O 'túnel' é a trajetória de voo compartilhada pela qual todos os arremessos de um determinado arremessador devem passar — tipicamente os primeiros 6–7 metros após o lançamento. Um rebatedor não consegue identificar o tipo de arremesso até que a bola saia do túnel, o que ocorre aproximadamente a 6–7 metros do ponto de lançamento, deixando aproximadamente 175 milissegundos para que o rebatedor identifique, decida e rebata.",
+      "Um arremessador com excelente tunneling lança cada arremesso com o mesmo ponto de lançamento, o mesmo ângulo de braço e a mesma trajetória inicial. Seja um fastball, curveball, slider ou changeup, todos os arremessos saem da mão do arremessador no mesmo caminho. A divergência — o ponto onde a física faz com que o movimento de cada arremesso se diferencie — acontece o mais tarde possível. Quanto mais curto o túnel (o que significa que os arremessos divergem mais cedo), mais tempo o rebatedor tem para identificar o tipo de arremesso entrante e se ajustar. Quanto mais longo o túnel (os arremessos compartilham o mesmo caminho por mais tempo), menos tempo resta após a divergência para se ajustar.",
+      "Criar um arsenal coeso significa projetar deliberadamente cada arremesso para maximizar o compartilhamento do túnel. Essa é a razão pela qual os treinadores de desenvolvimento de arremessadores na organização dos Dodgers ensinam que cada arremesso deve ser lançado a partir do mesmo slot de braço e ponto de lançamento — não porque seja consistente estilisticamente, mas porque desviar o slot de braço entre um fastball e uma curveball permite ao rebatedor identificar o arremesso apenas pela ação do braço, antes que a bola saia da mão. O túnel entra em colapso quando os ângulos de braço diferem."
+    ],
+    "technical": {
+      "title": "O Ponto do Túnel — Física e Janelas de Decisão",
+      "body": [
+        "O ponto do túnel é definido como o momento em que a trajetória de um arremesso diverge suficientemente da trajetória de linha reta de base para ser visualmente distinguível. A pesquisa utilizando dados de câmera de alta velocidade e modelagem de tempo de reação (notavelmente o trabalho de Jeremy Greenhouse, um dos pesquisadores originais do Statcast) mostra que os rebatedores não conseguem distinguir tipos de arremessos nos primeiros 7 metros de voo. Após o ponto do túnel — aproximadamente a 7–8 metros dependendo do arremesso — os rebatedores têm entre 125 e 175 milissegundos para se comprometer com sua decisão de swing.",
+        "Os arremessadores que maximizam o compartilhamento do túnel colocam o rebatedor no pior cenário de decisão possível: tempo mínimo desde a identificação até o início do swing necessário. A relação matemática funciona assim: se um fastball e uma curveball compartilham o mesmo ponto de túnel a 7 metros, o rebatedor tem tempo total de identificação (175 ms) para ambos, mas ainda deve se comprometer sob igual pressão. Se a curveball sai do túnel a 4,5 metros (tunneling deficiente), o rebatedor vê a quebra mais cedo e tem 225 ms para se ajustar — uma vantagem significativa. Essa diferença de 50 milissegundos pode significar a diferença entre um swing-and-miss e um golpe bem cronometrado."
+      ]
+    },
+    "incident": {
+      "title": "O Túnel de Três Arremessos de Kershaw — O Arsenal Mais Coeso no Beisebol Moderno",
+      "impact": "O arsenal de Clayton Kershaw durante seu auge de 2013–2016 é amplamente citado por pesquisadores de arremessos como o ponto de referência moderno para pitch tunneling. Seu fastball, curveball e slider saíam todos de sua mão a partir do mesmo ponto de lançamento e slot de braço — criando um único túnel pelo qual três arremessos completamente diferentes tinham que viajar antes de divergir, deixando os rebatedores com a janela de identificação mínima possível para cada um.",
+      "body": [
+        "A análise de câmera de alta velocidade do arremesso de Kershaw durante seus anos de Cy Young mostra dados de ponto de lançamento notavelmente consistentes nos três tipos de arremesso. Seu ângulo de braço, posição de pulso e localização de lançamento da mão diferiram em menos de 5 centímetros em seu fastball, curveball e slider — uma consistência física tão precisa que os treinadores de bateria de equipes rivais relataram ser incapazes de identificar qualquer pista pré-arremesso em sua entrega. Tudo parecia idêntico até que a bola estava a mais de 6 metros no ar.",
+        "A consequência para os rebatedores foi um problema composto de engano: eles conheciam os tipos de arremessos de Kershaw e as velocidades aproximadas, mas não conseguiam identificar qual estava vindo até que a bola já tinha percorrido 6 metros — deixando 175 ms ou menos para identificação e decisão. Três planos diferentes de movimento (reto-com-elevação, queda-vertical, corte-lateral), três velocidades diferentes, todos de um túnel indistinguível. Os rebatedores avançados que estudaram vídeo notaram que a única pista confiável era a direção do voo da bola na zona do túnel — mas essa informação chega tarde demais para ajudá-los. Este é o ideal: fazer cada arremesso parecer idêntico pelo maior tempo possível."
+      ]
+    },
+    "timeline": [
+      "A primeira pesquisa acadêmica quantifica a distância do ponto do túnel e as janelas de identificação do rebatedor",
+      "O Statcast permite o mapeamento preciso da trajetória de todos os arremessos — a pesquisa de túnel se torna predominante",
+      "Jeremy Greenhouse publica análise do ponto do túnel — o 'tunnel score' se torna uma métrica de avaliação de arremessadores",
+      "As equipes da MLB começam a contratar analistas de túnel — os Dodgers entre os primeiros a aplicar dados à instrução de treinamento de primavera",
+      "O elenco de arremessadores dos Dodgers lidera a Liga Nacional em pontuações de túnel — a ênfase organizacional na consistência do ponto de lançamento dá frutos",
+      "A ciência do túnel agora é ensinada no nível universitário — os programas de colegial começam a integrá-la"
+    ],
+    "keyTakeaways": [
+      "O túnel são os primeiros 6+ metros de trajetória de voo compartilhada — os rebatedores não conseguem identificar o tipo de arremesso até que o túnel termine",
+      "O mesmo slot de braço e ponto de lançamento para cada arremesso é o requisito físico para um túnel longo e eficaz",
+      "Os arremessos que divergem cedo (tunneling deficiente) dão aos rebatedores mais tempo de identificação — 50 milissegundos extras é um divisor de águas",
+      "Um arsenal coeso significa que cada arremesso parece idêntico até que o spin os diferencie — a quebra, não o braço, revela o arremesso"
+    ]
+  },
+  "baseball-6-10": {
+    "tagline": "O arsenal de cada grande arremessador foi construído um arremesso de cada vez, na ordem certa, na idade certa — os Dodgers têm um sistema para isso.",
+    "overview": [
+      "Construir um arsenal de arremessos é um projeto de desenvolvimento de vários anos que deve ser sequenciado por maturidade física, fundação mecânica e contexto competitivo. Arremessar pitches antes de o corpo estar pronto — ou antes de a fundação mecânica ser sólida — cria risco de lesão, maus hábitos e desenvolvimento atrofiado. Os melhores programas de arremesso nas Grandes Ligas (incluindo o sistema dos Dodgers) seguem uma progressão estruturada que prioriza o controle do fastball primeiro, adiciona o changeup em segundo, e introduz quebras apenas quando os requisitos físicos e mecânicos estiverem estabelecidos.",
+      "As diretrizes baseadas em idade do American Sports Medicine Institute, do Pitch Smart (uma iniciativa conjunta da MLB/USA Baseball) e de numerosos programas de desenvolvimento de organizações profissionais convergem em um consenso: controle antes de velocidade, changeup antes de curveball, curveball antes de slider, splitter/forkball por último (se for o caso). A razão é tanto fisiológica (as placas de crescimento fecham em sequência de baixo para cima no braço, com o cotovelo fechando por volta dos 15–17 anos e o ombro por volta dos 18–21 anos) quanto mecânica (lançar quebras antes de uma fundação sólida de mecânica de fastball cria padrões compensatórios que persistem por anos).",
+      "O sistema de desenvolvimento de arremesso das ligas menores do Los Angeles Dodgers no Camelback Ranch é organizado em torno dessa mesma progressão. Os arremessadores das ligas menores que entram no sistema — muitos dos quais já lançam múltiplos tipos de arremesso — passam por uma sessão de avaliação com o Rapsodo, e os treinadores de desenvolvimento avaliam quais arremessos são mecanicamente sólidos versus quais foram desenvolvidos incorretamente ou estão sendo lançados de maneiras que criam risco de lesão. Os arremessos que são potencialmente prejudiciais são pausados, reconstruídos ou eliminados. O desenvolvimento é paciente — a organização preferiria gastar dois anos construindo um slider mecanicamente sólido do que um ano permitindo que um slider prejudicial continue pelo bem do desempenho competitivo de curto prazo."
+    ],
+    "technical": {
+      "title": "A Progressão do Arsenal — Dos 8 aos 18+",
+      "body": [
+        "Idade 8–10 (anos de fundação): O único arremesso que deve ser lançado é o fastball de quatro costuras, com um two-seamer ocasional se o arremessador for mecanicamente avançado. Nessa idade, o objetivo não é amplitude de repertório — é domínio das mecânicas. Direção da passada, trajetória do braço, rotação do quadril e consistência do ponto de liberação são o foco completo. Uma criança de 10 anos com um fastball mecanicamente perfeito está muito melhor preparada para o sucesso a longo prazo do que uma com fastball, changeup e 'curva' que são todos mecanicamente deficientes.",
+        "Idade 11–13 (introdução do changeup): O circle changeup é introduzido junto ao fastball estabelecido. A combinação de dois arremessos — controle de fastball mais engano do changeup — é suficiente para o sucesso competitivo neste nível e prepara o braço para décadas de arremesso saudável. A experimentação com curveball pode começar aos 13 anos, mas apenas em configurações de bullpen com supervisão mecânica cuidadosa e baixo volume. Sem sliders. Sem splitters.",
+        "Idade 14–16 (desenvolvimento da curveball): Com as placas de crescimento no cotovelo se aproximando do fechamento, a curveball é introduzida formalmente em configurações competitivas. As mecânicas são monitoradas de perto para indicadores de estresse do pulso/cotovelo. O slider pode ser introduzido aos 15–16 anos com mecânicas de pronação apropriadas, mas deve permanecer com baixo volume. Os arremessadores de colegial que conseguem controlar fastball, changeup e uma quebra têm um arsenal competitivo completo.",
+        "Idade 17–18+ (completude do arsenal): O slider é totalmente desenvolvido. Para arremessadores com mãos grandes e maturidade física apropriada, o splitter pode ser introduzido. O cutter pode ser adicionado por qualquer arremessador que consiga manter a velocidade do fastball próxima de 100% — uma vez que a mudança de pegada é mínima, o estresse no braço é semelhante ao de um fastball. Os limites de contagem de arremessos e os requisitos de descanso permanecem críticos mesmo quando o repertório se expande."
+      ]
+    },
+    "incident": {
+      "title": "Yoshinobu Yamamoto e a Filosofia de Desenvolvimento de Arremessos dos Dodgers",
+      "impact": "A chegada de Yoshinobu Yamamoto aos Dodgers trouxe um dos arsenais de arremesso mais completos nas Grandes Ligas a Los Angeles — um arremessador de quatro arremessos que passou pelo sistema de desenvolvimento estruturado do Japão que prioriza mecânicas, eficiência de spin e desenvolvimento de arremesso sequencial. Seu exemplo demonstra como é um arsenal completamente realizado construído por meio de progressão estruturada em seu auge.",
+      "body": [
+        "O desenvolvimento de Yamamoto no sistema Nippon Professional Baseball reflete a filosofia das ligas menores dos Dodgers de maneiras surpreendentes. Ele dominou um fastball de quatro costuras premium primeiro, desenvolveu um splitter de elite como seu arremesso de eliminação de assinatura (a versão japonesa do papel do changeup no desenvolvimento americano) e adicionou um slider e curveball ao longo de anos de progressão cuidadosa. O resultado é um arremessador que aos 25 anos lança quatro arremessos distintos em quatro planos com controle de elite de cada um — o produto de uma filosofia de desenvolvimento que valoriza fazer cada arremesso corretamente acima de adicionar arremessos rapidamente.",
+        "Quando Yamamoto chegou ao Camelback Ranch para seu primeiro treinamento de primavera dos Dodgers, o pessoal de desenvolvimento de arremesso executou seu arsenal por meio da avaliação com o Rapsodo — não para corrigi-lo, mas para estabelecer uma linha de base precisa de suas taxas de spin, eixos e perfis de eficiência que poderiam ser monitorados ao longo de um contrato de 12 anos. O interesse dos Dodgers na continuidade dos dados junto ao modelo de desenvolvimento japonês de Yamamoto é em si mesmo uma declaração de filosofia: os melhores arremessadores não são aqueles que lançam mais arremessos, mas aqueles que lançam cada arremesso com a mais alta qualidade, construído um de cada vez por meio de uma progressão paciente e estruturada."
+      ]
+    },
+    "timeline": [
+      "A iniciativa Pitch Smart começa — a MLB e a USA Baseball formalizam as diretrizes de arremessos apropriadas por idade",
+      "A pesquisa do ASMI vincula tipos de arremesso específicos às taxas de lesões por idade — dados de curveball e slider publicados",
+      "Os Dodgers estabelecem programa estruturado de desenvolvimento de arremesso nas ligas menores no Camelback Ranch",
+      "As diretrizes do Pitch Smart são adotadas pela maioria das organizações de beisebol juvenil nos EUA",
+      "Yamamoto assina com os Dodgers — arsenal completo de 4 arremessos do desenvolvimento estruturado japonês",
+      "O sistema de ligas menores dos Dodgers produz múltiplos arremessadores prontos para a MLB por meio de progressão de arsenal estruturada"
+    ],
+    "keyTakeaways": [
+      "A mecânica do fastball de quatro costuras vem primeiro — nenhum outro arremesso é útil sem uma fundação sólida de fastball",
+      "O changeup é o segundo arremesso mais seguro e importante: mesma ação de braço, sem estresse adicional no cotovelo",
+      "Curveball aos 13–14, slider aos 15–16, splitter/forkball aos 17+ — a fisiologia determina a progressão, não a impaciência",
+      "O sistema dos Dodgers audita a mecânica de cada arremessador na entrada — qualquer arremesso com risco de lesão é pausado e reconstruído antes que o desenvolvimento continue"
+    ]
+  },
+  "baseball-7-01": {
+    "tagline": "Um arremessador que observa antes de arremessar vence metade da batalha antes de a bola deixar sua mão.",
+    "overview": [
+      "Antes de um arremesso ser feito, um arremessador e um receptor podem coletar enormes informações pela configuração do rebatedor na caixa de rebatedor. A largura da postura, a distribuição do peso, a altura das mãos, a rigidez da pegada no taco, as tendências de direção da passada e o quão fundo ou raso o rebatedor se posiciona em relação ao home plate fornecem pistas sobre as preferências, vulnerabilidades e pontos fracos prováveis daquele rebatedor. Isso não é adivinhação — é observação sistemática que os arremessadores e receptores profissionais treinam durante anos.",
+      "Um rebatedor que se posiciona fundo na caixa de rebatedor (em direção ao receptor) tipicamente está tentando comprar mais tempo em bolas quebradas — um sinal de que podem ter dificuldades com fastballs fortes acima na zona. Um rebatedor que se cola ao home plate e se posiciona perto dele frequentemente tem problemas com arremessos na metade interior — eles estão convidando o arremessador a ir para dentro. Um rebatedor com uma postura aberta (pé da frente angulado em direção ao arremessador) pode ter dificuldade em cobrir a metade exterior porque seus quadris estão pré-rotacionados.",
+      "Os receptores dos Dodgers estudam as formações rivais extensamente antes de cada série, construindo um modelo mental das tendências de cada rebatedor com sua própria preparação de Statcast e vídeo. Atrás do home plate, o receptor serve como o estrategista do arremessador — posicionando a luva em locais específicos com base em tudo o que sabem sobre um determinado rebatedor. Quando Clayton Kershaw via um receptor se posicionando do lado de fora contra um rebatedor canhoto que tinha puxado tudo, ele entendia imediatamente: vá para fora, faça-os expandir, depois volte para dentro."
+    ],
+    "technical": {
+      "title": "Sinais Físicos e O Que Eles Significam",
+      "body": [
+        "A rigidez da pegada é um dos indicadores mais reveladores do estado mental e da intenção de um rebatedor. Um rebatedor que segura o taco tão forte que seus antebraços estão visivelmente tensos frequentemente está com mentalidade de força — eles estão tentando bater a bola com força, o que significa que vão exagerar no swing em qualquer coisa off-speed. Este é o momento para lançar um changeup ou curveball cedo na contagem. Uma pegada relaxada geralmente significa um rebatedor disciplinado e paciente — o tipo que não vai perseguir.",
+        "Os sinais de direção de passada são igualmente valiosos. Um rebatedor que dá uma passada em direção ao receptor (pisando em direção ao banco) durante seu swing provavelmente terá problemas com arremessos na metade exterior — sua passada os afasta de arremessos do lado de fora. Um rebatedor que dá uma passada em direção ao montículo (pisando para dentro da caixa de rebatedor) frequentemente tem problemas com coisas duras por dentro — eles se movem em direção a ela sem tempo de colocar as mãos para dentro. A distribuição do peso — se um rebatedor carrega pesadamente no pé de trás ou quase não carrega nada — prevê o timing. Os que carregam muito o pé de trás amam fastballs porque o carregamento gera potência; eles tipicamente têm dificuldades com off-speed que perturba esse carregamento."
+      ]
+    },
+    "incident": {
+      "title": "Sandy Koufax no Chavez Ravine — O Jogo Perfeito, 1965",
+      "impact": "O jogo perfeito de Sandy Koufax contra o Chicago Cubs em 9 de setembro de 1965 — ponchando 14 — foi construído sobre um plano de jogo que mal variava: fastball alto-e-interior cedo na contagem para preparar sua curveball baixo-e-exterior. O receptor Jeff Torborg chamou o jogo quase exclusivamente na leitura de que os rebatedores dos Cubs estavam carregando para o fastball, o que tornou a curveball de Koufax completamente impossível de cronometrar.",
+      "body": [
+        "Em 9 de setembro de 1965, Sandy Koufax não caminhou com ninguém e poncheu 14 rebatedores em um jogo perfeito de 1 a 0 contra o Chicago Cubs. A façanha foi notável não apenas pelos resultados, mas pela clareza estratégica por trás: Torborg e Koufax tinham estudado a formação dos Cubs e notado que quase todos os rebatedores carregavam seu peso agressivamente no pé de trás — um sinal de que estavam esperando a velocidade do fastball de Koufax. Então Koufax usou o fastball para estabelecer a contagem, depois enterrou sua curva baixo-e-exterior quando os rebatedores estavam comprometidos para frente.",
+        "A elegância da abordagem de Koufax naquela noite foi sua simplicidade. Ele não precisava de sequenciamento elaborado porque seus dois arremessos eram tão dominantes que ler a distribuição de peso do rebatedor era suficiente para saber qual usar. Quando os rebatedores dos Cubs carregavam pesadamente, recebiam a curveball. Quando pareciam ficar para trás, recebiam o fastball alto. Torborg o descreveu depois como 'o jogo mais fácil que já peguei — Sandy sabia o que eles queriam e lhes deu o oposto.' O jogo perfeito permanece como a melhor atuação de leitura-e-reação no arremesso na história dos Dodgers."
+      ]
+    },
+    "timeline": [
+      "Os receptores dos Dodgers sob o manager Walter Alston formalizam programas de estudo de rebatedores pré-jogo",
+      "O jogo perfeito de Koufax — 14 ponches, lendo os carregamentos dos rebatedores dos Cubs a noite toda",
+      "As 59 entradas sem pontuação de Orel Hershiser — leitura sistemática de rebatedores ao longo de 8 saídas",
+      "A análise de vídeo traz dados de tendência de rebatedores à rotina pré-jogo dos receptores",
+      "O Statcast começa a quantificar tendências de puxada de rebatedores e gráficos de spray por zona",
+      "O receptor dos Dodgers Will Smith usa dados de tablet em tempo real para ajustar o posicionamento arremesso a arremesso"
+    ],
+    "keyTakeaways": [
+      "A profundidade da postura diz se um rebatedor está buscando tempo em bolas quebradas (fundo) ou tentando atacar cedo (raso)",
+      "Aglomerar-se no home plate sinaliza vulnerabilidade da metade interior — vá para fora para preparar para dentro, ou aperte imediatamente",
+      "Os que carregam muito o pé de trás favorecem o timing de fastball — são vulneráveis a changeups que perturbam o carregamento",
+      "A rigidez da pegada prevê o estado mental: rebatedores que pegam forte vão expandir sua zona; rebatedores relaxados vão exigir que você lance strikes"
+    ]
+  },
+  "baseball-7-02": {
+    "tagline": "A contagem não é apenas um placar — é o placar do turno ao taco, e o arremessador que a controla controla o resultado.",
+    "overview": [
+      "O gerenciamento da contagem é um dos aspectos do arremesso mais estudados analiticamente. A pesquisa demonstra consistentemente que os rebatedores rebateram dramaticamente melhor em contagens favoráveis ao rebatedor (2-0, 3-1, 3-2 da perspectiva do rebatedor) e dramaticamente pior em contagens favoráveis ao arremessador (0-2, 1-2). Um strike no primeiro arremesso é o arremesso mais importante em qualquer turno ao taco: ele desloca a contagem a favor do arremessador antes que o rebatedor tenha tido oportunidade de ler tendências ou fazer ajustes. Os arremessadores que consistentemente lançam strikes no primeiro arremesso dominam; aqueles que consistentemente ficam atrás têm dificuldades.",
+      "A contagem 0-2 é um presente para o arremessador — o rebatedor deve proteger a zona de strike, e o arremessador tem enorme liberdade para lançar bolas fora da zona (arremessos de descarte) ou atacar agressivamente. Um arremesso de descarte em uma contagem 0-2 é tipicamente um arremesso logo fora da zona de strike — um fastball na altura dos olhos acima da zona, ou uma curva na terra — projetado para o rebatedor perseguir. Se ele der swing e errar, o turno termina. Se não der swing, a contagem é 1-2 e o arremessador ainda tem vantagem.",
+      "O ciclo de fracasso que define o mau arremesso é ir de 0-2 para 3-2. Este é o equivalente do arremesso de um presente que é devolvido: começar com uma vantagem dominante de 0-2 e permitir que o rebatedor se recupere para 3-2 significa quatro oportunidades consecutivas não aproveitadas — o arremessador perdeu sua chance. A lendária competitividade de Clayton Kershaw foi construída parcialmente em sua recusa de desperdiçar contagens 0-2; Walker Buehler, ao contrário, às vezes teve dificuldades quando estava na frente por tentar ser preciso demais em vez de atacar."
+    ],
+    "technical": {
+      "title": "Alavancagem da Contagem — Como Cada Contagem Afeta os Resultados",
+      "body": [
+        "A pesquisa da MLB mostra que a média de rebatimento, a porcentagem de slugging e a porcentagem em base mudam dramaticamente de acordo com a contagem. Em contagens 3-0, os rebatedores acertam acima de .400 — o arremessador deve lançar um strike e praticamente todos sabem que é um fastball. Em contagens 0-2, os rebatedores acertam abaixo de .170 — eles estão na defensiva, protegendo a zona de strike, e podem ser atacados com arremessos que não conseguem lidar. A alavancagem da contagem é por isso que a porcentagem de strikes no primeiro arremesso é uma das métricas mais preditivas do sucesso do arremessador: ela estabelece a contagem a seu favor antes que o rebatedor tenha qualquer informação.",
+        "A abordagem de Kershaw para o gerenciamento da contagem era agressiva: ele queria strikes no primeiro arremesso em mais de 65% dos turnos. Ele começaria com os rebatedores com uma curva tão frequentemente quanto com um fastball — impedindo que os rebatedores esperassem seu fastball em 0-0. Sua abordagem em 0-2 era voltar imediatamente com a curva na terra, não um arremesso de descarte longe da zona de strike, confiando que o setup de seu fastball tinha criado a expectativa necessária para que a próxima bola quebrada fosse perseguida."
+      ]
+    },
+    "incident": {
+      "title": "Domínio do Primeiro Strike de Clayton Kershaw — Cy Young 2011",
+      "impact": "Em 2011, Clayton Kershaw ganhou tanto o Cy Young da Liga Nacional quanto o MVP da Liga Nacional — o primeiro arremessador a ganhar ambos desde Bob Gibson em 1968. Sua porcentagem de strikes no primeiro arremesso naquele ano foi de 66%, bem acima da média da liga de 59%. Combinado com uma ERA de 2,28 e 248 ponches, seu gerenciamento da contagem foi o motor que fez tudo o mais funcionar.",
+      "body": [
+        "A temporada de 2011 de Kershaw foi o resultado de um compromisso filosófico deliberado com o controle da contagem. Entrando no treinamento de primavera no Camelback Ranch, seus treinadores de arremesso trabalharam com ele em sequências de ataque de primeiro arremesso — especificamente lançando sua curva mais frequentemente em 0-0 para evitar que os rebatedores esperassem o fastball. O resultado foi que os rebatedores nunca conseguiriam adivinhar confiavelmente seu arremesso na primeira oferta, o que levou a mais contagens 0-1 e 0-2 e menos situações 1-0 e 2-0 onde os rebatedores poderiam ser seletivos.",
+        "Quando Kershaw chegava a 0-2, sua abordagem era atacar em vez de desperdiçar: voltar com a curva na terra — que os rebatedores que acabaram de ver dois fastballs perseguiriam — ou um fastball na linha na altura dos joelhos. Sua relação de ponches para bases por bolas naquele ano foi de 9,58:1, a melhor nas Grandes Ligas, refletindo um arremessador que gerava ponches e evitava as bases por bolas que vêm de ficar atrás nas contagens. O gerenciamento da contagem foi a fundação de seu domínio."
+      ]
+    },
+    "timeline": [
+      "Última temporada de Koufax — 87% de strikes no primeiro arremesso, a taxa mais alta de sua era",
+      "Hershiser utiliza a disciplina de contagem como base de sua sequência de 59 entradas sem pontuação",
+      "Bill James publica pesquisa mostrando a alavancagem da contagem — strikes no primeiro arremesso quantificados",
+      "Kershaw vence Cy Young e MVP com base no controle de contagem de elite",
+      "O Statcast começa a rastrear as taxas de strikes no primeiro arremesso para todos os arremessadores na MLB",
+      "Walker Buehler retorna da cirurgia de Tommy John — gerenciamento da contagem reconstruído no Camelback Ranch"
+    ],
+    "keyTakeaways": [
+      "Os strikes no primeiro arremesso são os arremessos mais importantes em um turno ao taco — eles deslocam cada contagem subsequente a favor do arremessador",
+      "0-2 é um presente: ou descarte um arremesso logo fora da zona ou ataque imediatamente a fraqueza do rebatedor — não dê a contagem de volta",
+      "Ir de 0-2 para 3-2 é um fracasso estratégico — significa perder quatro oportunidades consecutivas de encerrar o turno",
+      "Varie sua seleção de arremesso em 0-0 (misture curva e fastball) para que os rebatedores não possam esperar um primeiro arremesso previsível"
+    ]
+  },
+  "baseball-7-03": {
+    "tagline": "Cada arremesso que você faz é uma mentira pela qual você planeja cobrar depois — o sequenciamento é a arte da preparação.",
+    "overview": [
+      "O sequenciamento de arremessos é a arte de usar um arremesso para criar as condições que tornam um arremesso posterior mais eficaz. O exemplo clássico é a sequência de fastball por dentro — curva por fora: estabelecer que você consegue colocar um fastball na metade interior, fazer o rebatedor respeitá-la (e proteger por dentro), depois lançar uma curva ou changeup que começa parecendo ir por dentro antes de se desviar para fora. O corpo e a mente do rebatedor estão comprometidos a proteger por dentro; a bola termina na metade exterior, onde eles não conseguem alcançá-la.",
+      "O arremesso de preparação é qualquer arremesso lançado principalmente para criar uma expectativa ou um ajuste mecânico no corpo do rebatedor em vez de obter um out. Um arremessador que lança três fastballs seguidos na metade exterior não está necessariamente tentando obter três outs com esses arremessos — eles podem estar estabelecendo um padrão que torna o quarto arremesso (uma curva que começa na metade exterior e se desvia ainda mais para fora, ou um fastball por dentro após três por fora) dramaticamente mais eficaz. A memória corporal do rebatedor e seu mecanismo de timing se tornam um ativo para o arremessador.",
+      "Os abridores dos Dodgers que enfrentam uma formação várias vezes em um jogo pensam em sequências ao longo de turnos ao taco completos e ao longo de entradas. Se Kershaw conseguiu um roleteiro de um rebatedor com uma curva baixa na primeira entrada, ele armazenou essa informação. Na quarta entrada com dois strikes, ele voltaria àquela mesma curva — mas agora o rebatedor também está procurando por ela. O contador de Kershaw: lançar o fastball no mesmo nível dos olhos que o ponto de entrada da curva, gerando um swing baseado no padrão estabelecido."
+    ],
+    "technical": {
+      "title": "O Arremesso de Preparação — Investindo em um Arremesso para Retorno Posterior",
+      "body": [
+        "Os sequenciadores mais eficazes no beisebol — Greg Maddux, Tom Seaver, e no contexto dos Dodgers Kershaw e Hershiser — todos entenderam que os arremessos individuais não são avaliados isoladamente. Um fastball na metade interior que é batido para fora não é um arremesso fracassado se fez o rebatedor proteger por dentro. Esse arremesso rendeu dividendos dois arremessos depois, quando a curva por fora foi batida cedo. Os treinadores de arremessadores chamam isso de 'investir no turno ao taco.'",
+        "O arremesso de fastball-por-dentro-para-bola-que-quebra-por-fora é a sequência de preparação mais comum. Sua eficácia vem de uma realidade física: quando um rebatedor é pego por um arremesso por dentro, sua reação defensiva natural é manter suas mãos perto do corpo no próximo arremesso. Uma bola que quebra que começa por dentro (como se fosse outro arremesso de armadilha) mas se quebra para a metade exterior explora essa postura defensiva — as mãos do rebatedor nunca se estendem, e ele faz contato fraco ou dá swing em vão. Os abridores dos Dodgers que passaram por formações três vezes em uma noite usaram essa sequência repetidamente, variando apenas o timing e o tipo de arremesso de preparação."
+      ]
+    },
+    "incident": {
+      "title": "As 59 Entradas sem Pontuação de Orel Hershiser — 1988",
+      "impact": "O recorde de 59 entradas consecutivas sem pontuação de Orel Hershiser em 1988 não foi construído sobre velocidade avassaladora — ele tinha média de aproximadamente 86 mph. Foi construído inteiramente sobre sequenciamento: uma combinação de sinker/slider que preparava a metade exterior, seguida de uma curva que começa na metade exterior e se quebra ainda mais para fora. Os rebatedores que tinham visto três ou quatro arremessos por fora ficavam completamente desprevenidos quando ele vinha por dentro com um fastball.",
+      "body": [
+        "A sequência sem pontuação de Hershiser de 30 de agosto a 28 de setembro de 1988 quebrou o recorde de 58 entradas de Don Drysdale. Durante a sequência, Hershiser teve média de menos de 90 arremessos por jogo — extraordinário para um arremessador que ia fundo nos jogos. A eficiência foi completamente produto do sequenciamento: ele não tentou avassal os rebatedores nem trabalhar em contagens profundas. Ele estabeleceu a metade exterior com seu sinker, moveu a bola ao redor da zona em padrões nos quais os rebatedores não conseguiam se sentar, e então atacou sua fraqueza.",
+        "Na Série de Campeonato da Liga Nacional de 1988, Hershiser continuou seu brilhantismo contra os Mets, e então encerrou o Oakland A's na Série Mundial — ganhando o MVP. Seu sequenciamento na pós-temporada foi descrito pelo receptor Mike Scioscia como 'xadrez tridimensional: ele sabia o que o rebatedor faria com cada arremesso antes de lançá-lo, e usou esse conhecimento para preparar arremessos que eles nunca esperavam.' A sequência de Hershiser permanece como o modelo do que o sequenciamento inteligente pode alcançar sem um material avassalador."
+      ]
+    },
+    "timeline": [
+      "Sandy Koufax sequencia fastball/curveball na perfeição — 14 ponches em jogo perfeito",
+      "As 59 entradas sem pontuação de Hershiser construídas inteiramente na maestria do sequenciamento",
+      "Hershiser vence o MVP da Série Mundial — sequenciamento ao longo de três aberturas na pós-temporada",
+      "A análise de vídeo permite que os arremessadores estudem seus próprios padrões de sequenciamento e se ajustem",
+      "O primeiro Cy Young de Kershaw — as sequências de túnel de curva/fastball dominam os rebatedores da Liga Nacional",
+      "Tyler Anderson lidera a Liga Nacional em taxa de roleteiro usando sequenciamento de sinker-por-fora/curva-por-baixo"
+    ],
+    "keyTakeaways": [
+      "Cada arremesso de preparação é um investimento — ele cria uma expectativa do rebatedor que você vai explorar com o próximo arremesso",
+      "Fastball por dentro seguido de bola que quebra por fora é a sequência mais confiável no beisebol: o medo por dentro abre a metade exterior",
+      "Mostrar um arremesso cedo no jogo cria um padrão que você vai atacar tarde — os rebatedores constroem memória corporal ao longo dos turnos ao taco",
+      "Os sequenciadores de elite como Hershiser vencem com velocidade abaixo da média sendo mais inteligentes do que os rebatedores durante nove entradas"
+    ]
+  },
+  "baseball-7-04": {
+    "tagline": "A terceira vez que a formação é completada é onde os arremessadores iniciantes ganham seu dinheiro — e onde a maioria deles fica sem ele.",
+    "overview": [
+      "Uma das descobertas analíticas mais significativas no beisebol moderno é a 'penalidade por voltas à formação' — um aumento consistente e mensurável no desempenho ofensivo contra um arremessador abridor a cada vez sucessiva que ele passa pela formação. Na primeira vez, os rebatedores não têm informações sobre velocidade, movimento ou padrões de sequência. Pela terceira vez, eles viram cada arremesso no arsenal do abridor em múltiplas contagens e localizações — e se ajustaram. O OPS contra os abridores tipicamente aumenta 15–20 pontos cada vez que a formação é completada.",
+      "Dave Roberts e os Dodgers tornaram-se um dos times mais agressivos do beisebol em gerenciar essa penalidade. Roberts foi um dos primeiros a adotar os dados de 'voltas à formação' e rotineiramente retirava os abridores antes da terceira volta, especialmente em situações de alto risco. Essa abordagem atraiu críticas quando funcionava imperfeitamente, mas foi validada quando os Dodgers utilizaram uma estratégia de jogo de bullpen completo na Série Mundial 2020 — começando com o modelo de abridor e utilizando seus melhores relevistas nos momentos de maior risco em vez de na ordem tradicional de 7°, 8°, 9°.",
+      "A estratégia do Abridor — começar com um relevista por um ou dois innings antes de transferir o jogo a um relevista de longo alcance — foi pioneirismo do Tampa Bay Rays, mas adotada em todo o beisebol, incluindo pelos Dodgers em sua busca pelo campeonato de 2020. O conceito é simples: otimizar os confrontos na primeira entrada começando com o arremessador que tem a melhor vantagem posicional contra a parte superior da formação rival, e então fazer a transição ao 'arremessador de volume' que consegue lidar com os innings de 2 a 5."
+    ],
+    "technical": {
+      "title": "A Penalidade por Voltas à Formação — Números e Causas",
+      "body": [
+        "A pesquisa do Fangraphs e do Baseball Prospectus mostra consistentemente que os rebatedores rebateram aproximadamente .015 melhor em OBP e .020–.025 melhor em SLG cada vez que passam pela formação contra o mesmo arremessador abridor. Pela terceira volta, a desvantagem acumulada para o arremessador é aproximadamente equivalente a enfrentar uma formação que está um nível de talento acima do nono original. A causa é a informação: os rebatedores compartilham tendências no banco entre os turnos ao taco, comparam notas sobre o movimento do arremesso e constroem um modelo mental dos padrões do arremessador.",
+        "O componente de fadiga física é secundário ao componente de informação. Um arremessador cuja velocidade cai 2 mph pela quinta entrada está parcialmente lidando com fadiga física, mas principalmente lidando com rebatedores que agora viram 15+ arremessos e sabem como cada um de seus arremessos parece saindo da mão. A capacidade de Kershaw de arremessar fundo nos jogos apesar dessa penalidade foi produto de sua criatividade nas sequências — ele consistentemente mudava seus padrões na terceira vez que passava pela formação, lançando arremessos em contagens e localizações que tinha evitado anteriormente para evitar que a vantagem de informação se acumulasse."
+      ]
+    },
+    "incident": {
+      "title": "O Jogo de Bullpen da Série Mundial 2020 — Dodgers Vencem o Tampa Bay",
+      "impact": "A Série Mundial 2020 apresentou dois dos times mais sofisticados analiticamente do beisebol empregando versões opostas do mesmo conceito: os Tampa Bay Rays foram pioneiros do Abridor; os Dodgers responderam com uma abordagem flexível de gerenciamento do bullpen que igualou as inovações do Tampa. Os Dodgers venceram em seis jogos, com o Jogo 6 decidido parcialmente pelas decisões agressivas de bullpen de Dave Roberts.",
+      "body": [
+        "Na Série Mundial 2020, Dave Roberts gerenciou seus arremessadores abridores com uma estrutura explícita de voltas à formação. Clayton Kershaw abriu o Jogo 1 e foi retirado após 5,2 innings e 78 arremessos, apesar de permitir apenas duas pontuações — Roberts não queria que ele enfrentasse a parte superior da formação dos Rays pela terceira vez. Essa decisão foi criticada na época, mas foi validada: o bullpen dos Dodgers manteve a vantagem. Kershaw abriu o Jogo 5 e novamente arremessou eficientemente antes de fazer a transição ao bullpen dos Dodgers.",
+        "O Jogo 6 foi o mais significativo estrategicamente: Roberts utilizou Julio Urias como o arremessador de fechamento — colocando-o na oitava entrada especificamente para explorar confrontos posicionais favoráveis contra rebatedores canhotos do Tampa, em vez de esperar até a situação tradicional de salvamento na nona entrada. Urias calou a formação do Tampa em ordem, e os Dodgers venceram a Série Mundial. A decisão refletiu exatamente a filosofia das voltas à formação: use seu melhor arremessador no momento em que mais é necessário, não no lugar tradicional sugerido pelo livro de regras da convenção."
+      ]
+    },
+    "timeline": [
+      "Tommy Lasorda gerencia o bullpen da Série Mundial de 1988 cuidadosamente — decisões táticas da era Kirk Gibson",
+      "O Fangraphs publica a primeira análise de penalidade por voltas à formação — os dados chegam aos escritórios executivos",
+      "O Tampa Bay Rays implanta pela primeira vez a estratégia do Abridor — Blake Snell precede o arremessador de volume",
+      "Os Dodgers vencem a Série Mundial usando gerenciamento flexível do bullpen — Roberts é creditado com maestria tática",
+      "Todos os 30 times da MLB agora rastreiam formalmente os dados de voltas à formação em tempo real durante os jogos",
+      "Os Dodgers usam o abridor na pós-temporada para otimizar os confrontos contra os melhores rebatedores do adversário"
+    ],
+    "keyTakeaways": [
+      "Os rebatedores melhoram 15–20 pontos de OPS cada vez que passam pela formação — o acúmulo de informações é a causa primária",
+      "Os abridores devem variar suas sequências na terceira vez que passam pela formação ou enfrentar rebatedores que conhecem intimamente seus padrões",
+      "Dave Roberts fez decisões agressivas de voltas à formação a pedra angular da busca pela Série Mundial 2020",
+      "A estratégia do Abridor elimina a vantagem de confronto da primeira entrada mais previsível da formação rival"
+    ]
+  },
+  "baseball-7-05": {
+    "tagline": "Todo corredor nas bases é um segundo adversário — o arremessador que os ignora entrega outs que nunca deu.",
+    "overview": [
+      "Arremessar a partir da esticada muda quase tudo no ritmo, na mecânica e no processo mental do arremessador. A partir da mecânica de vento, um arremessador pode usar um levantamento de perna completo que gera a máxima velocidade e movimento. A partir da esticada, a entrega deve ser suficientemente abreviada para dar ao receptor a oportunidade de eliminar um possível ladrão de bases, o que tipicamente significa um levantamento de perna reduzido, uma entrega mais rápida e um mecanismo de timing diferente. A contrapartida: os arremessadores frequentemente perdem 1–3 mph de velocidade a partir da esticada, e o movimento de sua curveball pode ser reduzido.",
+      "A lista de verificação mental ao arremessar com corredores nas bases é de múltiplas camadas: Verificar o corredor. Decidir a variação de tempo (entrega rápida vs. tempo regular). Determinar se uma tentativa de pickoff é justificada. Ler os sinais do receptor enquanto se está ciente do avanço primário do corredor. Decidir se vai variar o tempo entre sinais e entrega para alterar o timing do corredor. Tudo isso acontece antes de o arremesso ser feito, e tudo deve acontecer sem perder o foco no rebatedor, que ainda é a ameaça primária.",
+      "O movimento de pickoff canhoto de Clayton Kershaw é considerado um dos mais eficazes na história moderna do beisebol. Como os canhotos encaram a primeira base a partir de sua posição natural, seu movimento de pickoff — pisar em direção à primeira e arremessar — é muito mais difícil para os corredores de base lerem do que o dos destros, que devem girar todo o corpo. O movimento de Kershaw era tão rápido e enganoso que os corredores que tinham sido bem-sucedidos roubando bases contra outros arremessadores repetidamente se encontravam sendo pegos por ele, alterando completamente os jogos de roubo das equipes adversárias."
+    ],
+    "technical": {
+      "title": "Variando o Tempo de Entrega — Alterando o Timing do Corredor",
+      "body": [
+        "O impulso de um corredor de base é construído sobre a leitura do tempo de entrega do arremessador. Se um arremessador inicia a entrega ao home plate no mesmo momento em cada arremesso, um bom corredor de base cronometrará o impulso para o exato momento em que a perna do arremessador se levanta ou suas mãos se separam. Variar o tempo de entrega — às vezes mantendo a posição por 1,5 segundos, às vezes indo rapidamente — força o corredor a adivinhar em vez de cronometrar. Um corredor que adivinha errado sai cedo demais (e é pego em pickoff ou eliminado) ou sai tarde demais (e é eliminado pelo receptor).",
+        "O passo deslizante — uma modificação de entrega onde o arremessador não levanta seu pé da frente, mas o desliza em direção ao home plate — reduz o tempo de entrega em aproximadamente 0,2–0,3 segundos. A contrapartida é velocidade (tipicamente uma perda de 2–3 mph) e eficácia da curveball. Os arremessadores usam o passo deslizante principalmente contra ladrões de base com excelente velocidade ou em situações onde um roubo de base mudaria significativamente o contexto do jogo. Usar o passo deslizante em excesso é um erro: os rebatedores o reconhecem e ajustam seu timing de acordo."
+      ]
+    },
+    "incident": {
+      "title": "Pickoff de Kershaw na NLDS 2014 — Silenciando os Cardinals",
+      "impact": "No Jogo 1 da NLDS 2014, Clayton Kershaw usou seu movimento de pickoff canhoto para eliminar o corredor dos Cardinals na primeira base, encerrando um rally que ameaçava estender o jogo. O pickoff demonstrou como a capacidade de um arremessador de controlar o jogo de roubo se traduz diretamente em controlar o placar — foi um movimento que mudou o momentum em um jogo apertado.",
+      "body": [
+        "Os Cardinals de 2014 foram um dos times com roubo de base mais agressivos da Liga Nacional, regularmente pressionando os arremessadores ao tomar avanços agressivos e tentando roubar em momentos-chave. A resposta de Kershaw durante toda a pós-temporada de 2014 foi usar seu movimento de pickoff mais do que o usual — não necessariamente para registrar outs, mas para alterar o timing. Ele se afastaria, variaria seu tempo e lançaria pickoffs suficientes para que os corredores começassem a tomar avanços mais conservadores.",
+        "A eficácia de pickoff de Kershaw veio da vantagem fundamental de ser canhoto: sua posição natural no topo de sua entrega em esticada o tem encarat diretamente para a primeira base, tornando impossível para o corredor ler a separação dos quadris (o sinal primário de que um arremessador inicia uma entrega ao home plate). O giro dos quadris de um arremessador destro é visível para o corredor de base; o de Kershaw não era. Combinado com sua variação de tempo de elite — às vezes mantendo a esticada por quatro segundos, às vezes indo imediatamente — os corredores contra Kershaw essencialmente adivinhavam em vez de cronometrar. Esse domínio de pickoff o tornou dramaticamente mais eficaz em situações de esticada de alto risco do que seus equivalentes destros."
+      ]
+    },
+    "timeline": [
+      "O movimento de pickoff canhoto de Koufax o torna um dos melhores controladores de corredor na MLB",
+      "Hershiser controla o jogo de roubo dos Cardinals na NLCS usando variação de tempo",
+      "O passo deslizante é quantificado — a pesquisa mostra que uma entrega 0,25s mais rápida reduz o sucesso de roubo",
+      "O pickoff de Kershaw na NLDS silencia o jogo de roubo dos Cardinals",
+      "A MLB institui novas regras limitando tentativas de pickoff — a estratégia se adapta à variação de tempo",
+      "As regras do relógio de arremesso mudam a dinâmica da esticada — novas restrições de tempo afetam a estratégia de esticada"
+    ],
+    "keyTakeaways": [
+      "Variar o tempo de entrega altera o mecanismo de timing do corredor de base — a imprevisibilidade é mais eficaz do que a velocidade pura",
+      "O passo deslizante reduz o tempo de entrega em 0,2–0,3 segundos, mas custa velocidade e eficácia da curveball — use-o seletivamente",
+      "Os arremessadores canhotos têm uma vantagem natural de pickoff porque sua posição já encaraa primeira base sem um giro de quadril legível",
+      "A lista de verificação mental (verificar corredor, variar tempo, decidir tipo de entrega) deve ser completada sem perder o foco no rebatedor"
+    ]
+  }
+}

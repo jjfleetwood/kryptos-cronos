@@ -1,0 +1,89 @@
+{
+  "stage-m34": {
+    "questions": [
+      {
+        "q": "CVE-2023-20198 allows an unauthenticated attacker to create a privilege-15 account on Cisco IOS XE by sending a crafted HTTP request to the Web UI.",
+        "options": ["True", "False"],
+        "correct": 0
+      },
+      {
+        "q": "What CVSS score did CVE-2023-20198 receive, reflecting the maximum possible severity?",
+        "options": ["A) CVSS 9.8 — Critical but authentication is required", "B) CVSS 10.0 — no authentication, no user interaction, complete compromise"],
+        "correct": 1
+      },
+      {
+        "q": "Privilege level 15 in Cisco IOS is equivalent to a read-only observer role with no ability to change device configuration.",
+        "options": ["True", "False"],
+        "correct": 1
+      },
+      {
+        "q": "Which command correctly disables the IOS XE HTTP management interface to remediate the CVE-2023-20198 attack surface?",
+        "options": ["A) no ip http server  /  no ip http secure-server", "B) ip http access-class deny any"],
+        "correct": 0
+      },
+      {
+        "q": "By the time Cisco published its first advisory on October 16, 2023, over 50,000 IOS XE devices had already been implanted.",
+        "options": ["True", "False"],
+        "correct": 0
+      }
+    ]
+  },
+  "stage-m36": {
+    "questions": [
+      {
+        "q": "The ArcaneDoor campaign targeted Cisco ASA and FTD devices — the very perimeter security appliances designed to protect networks from external threats.",
+        "options": ["True", "False"],
+        "correct": 0
+      },
+      {
+        "q": "Which malware family in the ArcaneDoor campaign provided persistent access that survived device reboots and software upgrades?",
+        "options": ["A) Line Runner — installed as a malicious ASDM plugin in the plugin directory", "B) Line Dancer — an in-memory shellcode implant that reloads on boot"],
+        "correct": 0
+      },
+      {
+        "q": "Line Dancer, the ArcaneDoor in-memory implant, is easily detected using standard IOS XE log analysis and the 'show users' command.",
+        "options": ["True", "False"],
+        "correct": 1
+      },
+      {
+        "q": "What IOS XE inspection technique most reliably detects a Line Runner plugin implant after a suspected ArcaneDoor compromise?",
+        "options": ["A) show ip route — malicious routes indicate implant activity", "B) dir disk0:*.zip — unexpected ZIP archives in the plugin directory are the implant indicator"],
+        "correct": 1
+      },
+      {
+        "q": "The ArcaneDoor threat actor (UAT4356 / STORM-1849) was attributed to a nation-state with advanced zero-day development capability.",
+        "options": ["True", "False"],
+        "correct": 0
+      }
+    ]
+  },
+  "stage-m37": {
+    "questions": [
+      {
+        "q": "CVE-2018-0171 exploits the Cisco Smart Install protocol on TCP port 4786 and requires valid credentials to trigger the buffer overflow.",
+        "options": ["True", "False"],
+        "correct": 1
+      },
+      {
+        "q": "Which U.S. government agencies issued a joint alert attributing mass CVE-2018-0171 exploitation to Russian state actor APT28 (GRU)?",
+        "options": ["A) FBI and CISA, in joint Technical Alert TA18-106A", "B) NSA and Cyber Command, in a classified advisory"],
+        "correct": 0
+      },
+      {
+        "q": "Smart Install Client is enabled by default on many Cisco IOS and IOS XE devices, even when the device is not being used for zero-touch provisioning.",
+        "options": ["True", "False"],
+        "correct": 0
+      },
+      {
+        "q": "What is the correct IOS command to disable the Smart Install Client and eliminate the CVE-2018-0171 attack surface?",
+        "options": ["A) no vstack", "B) ip tcp intercept list BLOCK-SMI"],
+        "correct": 0
+      },
+      {
+        "q": "At peak exposure, security researchers identified over 250,000 devices with TCP port 4786 accessible from the internet.",
+        "options": ["True", "False"],
+        "correct": 0
+      }
+    ]
+  }
+}

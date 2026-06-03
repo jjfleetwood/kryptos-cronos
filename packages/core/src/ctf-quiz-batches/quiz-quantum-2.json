@@ -1,0 +1,292 @@
+{
+  "quantum-b01": {
+    "questions": [
+      {
+        "q": "How many algorithms were originally submitted to the NIST Post-Quantum Cryptography competition in 2016?",
+        "options": ["69 algorithms", "42 algorithms"],
+        "correct": 0
+      },
+      {
+        "q": "True or False: FIPS 203 standardizes ML-DSA (CRYSTALS-Dilithium) for digital signatures.",
+        "options": ["True", "False"],
+        "correct": 1
+      },
+      {
+        "q": "Which algorithm was broken by a single researcher in approximately 1 hour in July 2022, despite being a NIST Round 4 finalist?",
+        "options": ["SIKE/SIDH", "RAINBOW"],
+        "correct": 0
+      },
+      {
+        "q": "True or False: SLH-DSA (SPHINCS+) relies on lattice hardness assumptions for its security.",
+        "options": ["True", "False"],
+        "correct": 1
+      },
+      {
+        "q": "Which NIST FIPS standard covers ML-KEM (CRYSTALS-Kyber) for key encapsulation?",
+        "options": ["FIPS 203", "FIPS 204"],
+        "correct": 0
+      }
+    ]
+  },
+  "quantum-b02": {
+    "questions": [
+      {
+        "q": "What does the 'E' stand for in the LWE (Learning With Errors) problem?",
+        "options": ["Errors", "Encryption"],
+        "correct": 0
+      },
+      {
+        "q": "True or False: The noise vector in LWE can be removed without a significant performance cost, making LWE easy to solve classically.",
+        "options": ["True", "False"],
+        "correct": 1
+      },
+      {
+        "q": "Who introduced the Learning With Errors problem in 2005?",
+        "options": ["Oded Regev", "Peter Shor"],
+        "correct": 0
+      },
+      {
+        "q": "True or False: Quantum algorithms (such as Grover's and Shor's) provide only a polynomial speedup over classical attacks against LWE.",
+        "options": ["True", "False"],
+        "correct": 0
+      },
+      {
+        "q": "Which variant of LWE is used in ML-KEM and ML-DSA for better performance while keeping the same hardness guarantees?",
+        "options": ["Module-LWE", "Ring-LWE"],
+        "correct": 0
+      }
+    ]
+  },
+  "quantum-b03": {
+    "questions": [
+      {
+        "q": "True or False: In ML-KEM key exchange, the shared secret is transmitted directly from Bob to Alice over the network.",
+        "options": ["True", "False"],
+        "correct": 1
+      },
+      {
+        "q": "Which ML-KEM parameter set is recommended for most general-purpose applications (NIST security level 3)?",
+        "options": ["ML-KEM-768", "ML-KEM-512"],
+        "correct": 0
+      },
+      {
+        "q": "True or False: Cisco Silicon One P200 delivers ML-KEM key encapsulation at 800G line rate in hardware without a performance penalty.",
+        "options": ["True", "False"],
+        "correct": 0
+      },
+      {
+        "q": "What is the public key size for ML-KEM-768?",
+        "options": ["1184 bytes", "256 bytes"],
+        "correct": 0
+      },
+      {
+        "q": "True or False: ML-KEM (FIPS 203) is a drop-in replacement for RSA and ECDH key exchange in protocols like TLS and IKEv2.",
+        "options": ["True", "False"],
+        "correct": 0
+      }
+    ]
+  },
+  "quantum-b04": {
+    "questions": [
+      {
+        "q": "True or False: ML-DSA (FIPS 204) produces smaller signatures than ECDSA-256.",
+        "options": ["True", "False"],
+        "correct": 1
+      },
+      {
+        "q": "Which hardness problem does ML-DSA rely on for its security?",
+        "options": ["Module-LWE and Module-SIS", "RSA integer factorization"],
+        "correct": 0
+      },
+      {
+        "q": "True or False: Cisco deploys ML-DSA only in TLS handshakes, not in firmware boot chain or IPsec.",
+        "options": ["True", "False"],
+        "correct": 1
+      },
+      {
+        "q": "Which signing technique does ML-DSA use to ensure signatures don't leak private key information?",
+        "options": ["Rejection sampling", "Padding oracle"],
+        "correct": 0
+      },
+      {
+        "q": "Approximately how large is an ML-DSA-65 signature?",
+        "options": ["3293 bytes", "64 bytes"],
+        "correct": 0
+      }
+    ]
+  },
+  "quantum-b05": {
+    "questions": [
+      {
+        "q": "True or False: SLH-DSA (SPHINCS+) relies solely on hash function security, with no algebraic hardness assumptions.",
+        "options": ["True", "False"],
+        "correct": 0
+      },
+      {
+        "q": "Which use case is SLH-DSA most strongly recommended for, given its conservative security assumptions?",
+        "options": ["Root CA signing", "High-volume TLS leaf certificate signing"],
+        "correct": 0
+      },
+      {
+        "q": "True or False: SLH-DSA requires state management between signatures, similar to the original XMSS scheme.",
+        "options": ["True", "False"],
+        "correct": 1
+      },
+      {
+        "q": "What is the approximate signature size for the SLH-DSA-SHA2-128s parameter set?",
+        "options": ["7856 bytes", "666 bytes"],
+        "correct": 0
+      },
+      {
+        "q": "True or False: If lattice-based algorithms like ML-DSA were broken, SLH-DSA would also immediately become insecure.",
+        "options": ["True", "False"],
+        "correct": 1
+      }
+    ]
+  },
+  "quantum-b06": {
+    "questions": [
+      {
+        "q": "Which mathematical structure does FALCON (FN-DSA) use as its security foundation?",
+        "options": ["NTRU lattices", "Module-LWE lattices"],
+        "correct": 0
+      },
+      {
+        "q": "True or False: FALCON-512 produces smaller signatures than ML-DSA-44, making it preferred for bandwidth-constrained IoT deployments.",
+        "options": ["True", "False"],
+        "correct": 0
+      },
+      {
+        "q": "True or False: FALCON is simpler and safer to implement from scratch than ML-DSA, making it the default recommendation for most enterprise applications.",
+        "options": ["True", "False"],
+        "correct": 1
+      },
+      {
+        "q": "What technique does FALCON use to achieve its compact signature sizes?",
+        "options": ["Fast Fourier Transform Gaussian sampling", "Rejection sampling over polynomial rings"],
+        "correct": 0
+      },
+      {
+        "q": "Approximately how large is a FALCON-512 signature compared to an ML-DSA-44 signature?",
+        "options": ["Roughly 10x smaller (666 bytes vs 2420 bytes)", "Roughly the same size"],
+        "correct": 0
+      }
+    ]
+  },
+  "quantum-b07": {
+    "questions": [
+      {
+        "q": "True or False: In a hybrid key exchange (X25519 + ML-KEM-768), an attacker must break BOTH algorithms simultaneously to recover the session key.",
+        "options": ["True", "False"],
+        "correct": 0
+      },
+      {
+        "q": "Which hash-based key derivation function is used to combine the classical and PQC shared secrets in a hybrid scheme?",
+        "options": ["HKDF-SHA384", "PBKDF2-SHA256"],
+        "correct": 0
+      },
+      {
+        "q": "True or False: Deploying hybrid TLS (X25519MLKEM768) requires changes to the existing Certificate Authority infrastructure before it can be used.",
+        "options": ["True", "False"],
+        "correct": 1
+      },
+      {
+        "q": "Which organization first deployed hybrid X25519Kyber768 in production, protecting millions of HTTPS connections?",
+        "options": ["CloudFlare", "Let's Encrypt"],
+        "correct": 0
+      },
+      {
+        "q": "True or False: Pure ML-KEM (without X25519) is the recommended long-term goal, with hybrid serving as a bridge during the migration period.",
+        "options": ["True", "False"],
+        "correct": 0
+      }
+    ]
+  },
+  "quantum-b08": {
+    "questions": [
+      {
+        "q": "True or False: Deploying PQC key exchange in TLS (Layer 1) requires updating existing CA-issued certificates before it can protect sessions from HNDL attacks.",
+        "options": ["True", "False"],
+        "correct": 1
+      },
+      {
+        "q": "Which OpenSSL-compatible provider enables PQC ciphersuites including X25519MLKEM768 in TLS 1.3 today?",
+        "options": ["OQS provider (Open Quantum Safe)", "BouncyCastle PQC extension"],
+        "correct": 0
+      },
+      {
+        "q": "Approximately how much larger are PQC (ML-DSA) TLS certificates compared to ECDSA certificates?",
+        "options": ["3–4 KB larger", "Roughly the same size"],
+        "correct": 0
+      },
+      {
+        "q": "True or False: Let's Encrypt has already completed issuing PQC certificates for all 400 million active certificate holders as of 2025.",
+        "options": ["True", "False"],
+        "correct": 1
+      },
+      {
+        "q": "Which TLS version is best positioned for PQC migration due to its clean separation of key exchange, authentication, and encryption?",
+        "options": ["TLS 1.3", "TLS 1.2"],
+        "correct": 0
+      }
+    ]
+  },
+  "quantum-b09": {
+    "questions": [
+      {
+        "q": "True or False: A Cryptography Bill of Materials (CBOM) is a structured inventory of all cryptographic assets in an organization, analogous to an SBOM.",
+        "options": ["True", "False"],
+        "correct": 0
+      },
+      {
+        "q": "Which 2014 vulnerability became a cautionary tale for PQC migration, demonstrating that organizations often don't know which systems use a given library?",
+        "options": ["Heartbleed (CVE-2014-0160)", "Shellshock (CVE-2014-6271)"],
+        "correct": 0
+      },
+      {
+        "q": "True or False: Internet-facing RSA and ECDH certificate assets should be given the lowest migration priority since they are already protected by firewalls.",
+        "options": ["True", "False"],
+        "correct": 1
+      },
+      {
+        "q": "Which migration priority (P1–P4) should internet-facing RSA/ECDSA certificates receive in a CBOM risk classification?",
+        "options": ["P1 — migrate immediately", "P3 — migrate within 5 years"],
+        "correct": 0
+      },
+      {
+        "q": "True or False: A CBOM is a one-time deliverable — once generated, it does not need to be updated as software changes.",
+        "options": ["True", "False"],
+        "correct": 1
+      }
+    ]
+  },
+  "quantum-b10": {
+    "questions": [
+      {
+        "q": "True or False: A PQC implementation that passes all NIST ACVTS Known-Answer Tests (KATs) is automatically considered safe from timing side-channel attacks.",
+        "options": ["True", "False"],
+        "correct": 1
+      },
+      {
+        "q": "In the 2022 Kyber-90s timing attack, approximately how many measurements were needed to recover the private key?",
+        "options": ["200,000 measurements", "2 billion measurements"],
+        "correct": 0
+      },
+      {
+        "q": "True or False: Constant-time operation means the cryptographic function completes in identical wall-clock time regardless of the values of secret inputs.",
+        "options": ["True", "False"],
+        "correct": 0
+      },
+      {
+        "q": "Which PQC algorithm has the most complex and side-channel-prone implementation due to its Gaussian sampling requirement?",
+        "options": ["FALCON (FN-DSA)", "ML-KEM (Kyber)"],
+        "correct": 0
+      },
+      {
+        "q": "True or False: Federal systems must use FIPS 140-3 validated PQC modules — rolling a custom PQC implementation is acceptable for federal use.",
+        "options": ["True", "False"],
+        "correct": 1
+      }
+    ]
+  }
+}

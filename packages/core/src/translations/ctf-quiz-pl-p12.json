@@ -1,0 +1,290 @@
+{
+  "audit-cm01": {
+    "questions": [
+      {
+        "q": "NIST SP 800-137 definiuje ISCM jako ciągły cykl sześciu kroków. Czy ostatnim krokiem jest „Przegląd”?",
+        "options": ["Prawda", "Fałsz"]
+      },
+      {
+        "q": "Która warstwa monitorowania jest odpowiedzialna za zarządzanie i strategię w ramach ISCM?\nA) Warstwa systemu informatycznego (zespół SOC)\nB) Warstwa organizacyjna (zarządzanie CISO)",
+        "options": ["A) Warstwa systemu informatycznego", "B) Warstwa organizacyjna"]
+      },
+      {
+        "q": "Zgodnie z NIST 800-137, czy częstotliwość monitorowania powinna być taka sama dla wszystkich systemów niezależnie od krytyczności?",
+        "options": ["Prawda", "Fałsz"]
+      },
+      {
+        "q": "Naruszenie OPM pozostawało niewykryte przez ponad rok. Jaki był główny czynnik przyczyniający się?\nA) Brak działającego programu ISCM z wykrywaniem anomalii\nB) Atakujący używali exploitów zero-day, których żadne narzędzie nie mogło wykryć",
+        "options": ["A) Brak działającego programu ISCM", "B) Niewykrywalne exploity zero-day"]
+      },
+      {
+        "q": "System o WYSOKIM wpływie powinien być monitorowany ciągle (około co 1 godzinę) w ramach frameworku częstotliwości ISCM. Czy to jest prawidłowe?",
+        "options": ["Prawda", "Fałsz"]
+      }
+    ]
+  },
+  "audit-cm02": {
+    "questions": [
+      {
+        "q": "Tradycyjne SIEM oparte na sygnaturach są skuteczne w wykrywaniu ataków living-off-the-land (LOTL), które pozostają poniżej progów indywidualnych reguł. Czy to prawda?",
+        "options": ["Prawda", "Fałsz"]
+      },
+      {
+        "q": "Jaki jest główny cel normalizacji schematu (OCSF/ECS) w czasie pobrania w następnej generacji SIEM?\nA) Kompresja danych logów i zmniejszenie kosztów przechowywania\nB) Umożliwienie jednej regule wykrywania dopasowania do dziesiątek źródeł danych",
+        "options": ["A) Kompresja danych logów w celu zmniejszenia kosztów przechowywania", "B) Umożliwienie jednej regule dopasowania do wielu źródeł danych"]
+      },
+      {
+        "q": "Malware SolarWinds SUNBURST został odkryty przez alert sygnatury SIEM wyzwalający na znanych wzorcach ataku. Czy to jest prawidłowe?",
+        "options": ["Prawda", "Fałsz"]
+      },
+      {
+        "q": "Która technika ML jest najlepiej dostosowana do wykrywania nowych anomalii logowania użytkownika, gdy nie istnieją żadne oznakowane dane ataku?\nA) Isolation Forest (nienadzorowane wykrywanie anomalii)\nB) XGBoost trenowany na oznakowanych danych zagrożeń (nadzorowana klasyfikacja)",
+        "options": ["A) Isolation Forest (nienadzorowany)", "B) XGBoost (nadzorowany)"]
+      },
+      {
+        "q": "Redukcja fałszywych pozytywów to główne wyzwanie operacyjne w wdrożeniach SIEM następnej generacji. Czy to jest dokładne?",
+        "options": ["Prawda", "Fałsz"]
+      }
+    ]
+  },
+  "audit-cm03": {
+    "questions": [
+      {
+        "q": "UEBA może wykryć atakującego używającego skradzionych, ale ważnych poświadczeń poprzez porównanie jego zachowania z własną bazową linią konta. Czy to prawda?",
+        "options": ["Prawda", "Fałsz"]
+      },
+      {
+        "q": "Jaka jest kluczowa zaleta podejścia łańcuchowania wyników ryzyka UEBA w porównaniu z alertowaniem opartym na jednej regule?\nA) Zmniejsza fałszywe pozytywy, wymagając wielu sygnałów niskiej pewności do złożenia się w alert wysokiej pewności\nB) Eliminuje potrzebę bazowych linii zachowania poprzez używanie tylko dopasowania sygnatur",
+        "options": ["A) Wiele sygnałów sumuje się, aby zmniejszyć fałszywe pozytywy", "B) Eliminuje bazowe linie poprzez dopasowanie sygnatur"]
+      },
+      {
+        "q": "Systemy UEBA są zazwyczaj niezawodne pod względem dokładności wykrywania od pierwszego dnia wdrożenia, bez potrzeby okresu bazowania. Czy to jest prawidłowe?",
+        "options": ["Prawda", "Fałsz"]
+      },
+      {
+        "q": "W sprawie zagrożenia wewnętrznego Tesla, które źródło danych zapewniłoby najsilniejszy wczesny sygnał UEBA?\nA) Logi firewalla sieciowego obwodu korporacyjnego\nB) Duże pobieranie plików HR i aktywność urządzeń USB poza normalnymi wzorcami",
+        "options": ["A) Logi firewalla sieciowego", "B) Pobieranie plików HR i aktywność urządzeń USB"]
+      },
+      {
+        "q": "Dyrektor finansowy i junior analityk powinni dzielić tę samą bazową linię zachowania UEBA, ponieważ pracują w tej samej organizacji. Czy to prawda?",
+        "options": ["Prawda", "Fałsz"]
+      }
+    ]
+  },
+  "audit-cm04": {
+    "questions": [
+      {
+        "q": "NDR może wykrywać beaconowanie C2 w zaszyfrowanym ruchu HTTPS poprzez analizowanie wzorców czasu połączenia i rozmiaru ładunku, bez odszyfrowywania ruchu. Czy to prawda?",
+        "options": ["Prawda", "Fałsz"]
+      },
+      {
+        "q": "Co sprawia, że NDR jest wyjątkowo cenny w porównaniu z EDR do pokrycia urządzeń IoT i OT?\nA) NDR pasywnie obserwuje ruch sieciowy bez wymagania agenta na monitorowanych urządzeniach\nB) NDR odszyfrowuje cały ruch TLS w celu sprawdzenia ładunków na warstwie aplikacji",
+        "options": ["A) Pasywna obserwacja bez wymaganego agenta", "B) Odszyfrowuje cały ruch TLS do inspekcji ładunków"]
+      },
+      {
+        "q": "Serwer webowy inicjujący duże wolumeny nieoczekiwanych wychodzących połączeń HTTPS jest uważany za normalny wzorzec behawioralny w bazowych liniach NDR. Czy to jest prawidłowe?",
+        "options": ["Prawda", "Fałsz"]
+      },
+      {
+        "q": "W ataku Hafnium Exchange, jaką anomalię behawioralną wykryły organizacje wyposażone w NDR?\nA) Serwery Exchange inicjujące zewnętrzne połączenia — odchylenie od ich oczekiwanej roli sieciowej\nB) Zniekształcone pakiety HTTP dopasowujące znane sygnatury podatności",
+        "options": ["A) Serwery Exchange inicjujące nieoczekiwane połączenia zewnętrzne", "B) Zniekształcone pakiety HTTP dopasowujące sygnatury"]
+      },
+      {
+        "q": "Odciski palców TLS JA3 mogą identyfikować konkretne rodziny malware, nawet gdy ruch jest zaszyfrowany i ładunek nie może być odczytany. Czy to prawda?",
+        "options": ["Prawda", "Fałsz"]
+      }
+    ]
+  },
+  "audit-cm05": {
+    "questions": [
+      {
+        "q": "Platformy CSPM wymagają zainstalowania agentów na każdym zasobie chmury do audytu konfiguracji bezpieczeństwa. Czy to jest prawidłowe?",
+        "options": ["Prawda", "Fałsz"]
+      },
+      {
+        "q": "Co analiza ścieżki ataku CSPM modeluje, czego standardowe sprawdzenie błędnej konfiguracji pojedynczego zasobu nie może?\nA) Jak atakujący może łączyć wiele błędnych konfiguracji, aby dotrzeć do wrażliwych danych\nB) Czy poszczególne zasoby spełniają kontrole CIS Benchmark",
+        "options": ["A) Łańcuchy błędnych konfiguracji prowadzące do wrażliwych danych", "B) Indywidualna zgodność zasobów z CIS Benchmark"]
+      },
+      {
+        "q": "Naruszenie Capital One było spowodowane przede wszystkim podatnością oprogramowania w usłudze chmury, a nie błędną konfiguracją. Czy to prawda?",
+        "options": ["Prawda", "Fałsz"]
+      },
+      {
+        "q": "Które ustalenie platforma CSPM oznaczyłaby jako zagrożenie o najwyższej ważności?\nA) Zasobnik S3 z wyłączonym szyfrowaniem po stronie serwera\nB) Publiczna instancja EC2 z rolą IAM przyznającą Action:* Resource:* do wszystkich zasobników S3",
+        "options": ["A) Zasobnik S3 bez szyfrowania", "B) Publiczne EC2 z rolą IAM pełnego dostępu do S3"]
+      },
+      {
+        "q": "CSPM ewoluował od sprawdzania indywidualnych konfiguracji zasobów do wykonywania analizy ścieżek ataku opartej na grafach. Czy to jest dokładne?",
+        "options": ["Prawda", "Fałsz"]
+      }
+    ]
+  },
+  "audit-cm06": {
+    "questions": [
+      {
+        "q": "STIX definiuje model danych dla obiektów threat intelligence, podczas gdy TAXII to protokół transportowy do udostępniania tych danych. Czy to jest prawidłowe?",
+        "options": ["Prawda", "Fałsz"]
+      },
+      {
+        "q": "Jaką rolę pełni Threat Intelligence Platform (TIP) między surowymi feedami wywiadu a SIEM?\nA) Agreguje, deduplikuje i ocenia feedy przed udostępnieniem ujednoliconego punktu końcowego TAXII\nB) Generuje nowe sygnatury zagrożeń poprzez analizowanie próbek malware w sandboxie",
+        "options": ["A) Agreguje, deduplikuje i ocenia feedy", "B) Generuje sygnatury z sandboxowania malware"]
+      },
+      {
+        "q": "Volt Typhoon został wykryty przede wszystkim przez reguły SIEM oparte na sygnaturach dopasowujące jego znane hashe malware. Czy to prawda?",
+        "options": ["Prawda", "Fałsz"]
+      },
+      {
+        "q": "Dlaczego wskaźniki STIX zawierają wyniki pewności i daty wygaśnięcia?\nA) Aby zapobiec generowaniu fałszywych pozytywnych alertów przez przestarzałe lub mało wiarygodne IoC\nB) Aby klasyfikować, którzy aktorzy zagrożeń są najbardziej zaawansowani",
+        "options": ["A) Aby zapobiec generowaniu fałszywych pozytywów przez przestarzałe IoC", "B) Aby klasyfikować wyrafinowanie aktorów zagrożeń"]
+      },
+      {
+        "q": "Automated Indicator Sharing (AIS) CISA zapewnia bezpłatny dostęp STIX/TAXII dla każdej subskrybującej organizacji. Czy to prawda?",
+        "options": ["Prawda", "Fałsz"]
+      }
+    ]
+  },
+  "audit-cm07": {
+    "questions": [
+      {
+        "q": "Playbook SOAR powinien wykonywać działania o wysokim wpływie, takie jak wyłączanie konta dyrektora generalnego, automatycznie bez żadnego kroku zatwierdzenia przez człowieka. Czy to jest zalecana praktyka?",
+        "options": ["Prawda", "Fałsz"]
+      },
+      {
+        "q": "Jaki jest główny wskaźnik używany do mierzenia wartości SOAR w SOC?\nA) MTTR — Mean Time to Respond\nB) MTTD — Mean Time to Detect",
+        "options": ["A) MTTR — Mean Time to Respond", "B) MTTD — Mean Time to Detect"]
+      },
+      {
+        "q": "Prawidłowa kolejność projektowania playbooka SOAR to: najpierw reaguj, a następnie wzbogać kontekst, aby potwierdzić decyzję. Czy to jest zalecane podejście?",
+        "options": ["Prawda", "Fałsz"]
+      },
+      {
+        "q": "W naruszeniu Twilio z 2022 roku, jakie zautomatyzowane działanie SOAR mogłoby ograniczyć kaskadowy wpływ na 125 organizacji downstream?\nA) Zawieszenie dotkniętych kont w minutach od wykrycia anomalnego uwierzytelnienia\nB) Zablokowanie całego ruchu SMS do czasu ukończenia ręcznego przeglądu",
+        "options": ["A) Automatyczne zawieszenie dotkniętych kont przy anomalnym uwierzytelnieniu", "B) Zablokowanie całego ruchu SMS oczekując na ręczny przegląd"]
+      },
+      {
+        "q": "Playbooki SOAR powinny być traktowane jak kod produkcyjny — podlegający kontroli wersji, przeglądowi przez współpracowników i stopniowemu wdrożeniu. Czy to prawda?",
+        "options": ["Prawda", "Fałsz"]
+      }
+    ]
+  },
+  "audit-cm08": {
+    "questions": [
+      {
+        "q": "Honeytokeny generują częste fałszywe pozytywy, ponieważ legalni użytkownicy mogą przypadkowo uzyskiwać do nich dostęp podczas normalnych operacji. Czy to prawda?",
+        "options": ["Prawda", "Fałsz"]
+      },
+      {
+        "q": "Dlaczego konta-pułapki Active Directory z Kerberoastowalnymi SPN są szczególnie skuteczne do wykrywania atakujących?\nA) Żądanie biletu Kerberos dla dekoratywnego SPN ujawnia atakującego wykonującego rekonesans eskalacji uprawnień\nB) Automatycznie blokują próbę logowania atakującego, gdy SPN jest odpytywany",
+        "options": ["A) Żądanie biletu SPN ujawnia rekonesans atakującego", "B) Automatycznie blokuje logowanie atakującego przy odpytaniu SPN"]
+      },
+      {
+        "q": "Klucz dostępu AWS IAM honeytoken wdrożony z zasadą deny-all stwarza ryzyko operacyjne, jeśli atakujący go używa, ponieważ atakujący może uzyskać dostęp do zasobów AWS. Czy to jest prawidłowe?",
+        "options": ["Prawda", "Fałsz"]
+      },
+      {
+        "q": "W naruszeniu Uber z 2022 roku, jaka technologia oszustwa mogłaby zapewnić wczesne ostrzeżenie podczas fazy ruchu lateralnego?\nA) Honeytokeny — fałszywe poświadczenia osadzone obok prawdziwych w wewnętrznych repozytoriach\nB) Serwer honeypot sieciowy imitujący wewnętrzną bazę danych",
+        "options": ["A) Honeytokeny w wewnętrznych repozytoriach", "B) Sieciowy serwer honeypot bazy danych"]
+      },
+      {
+        "q": "Skala ma znaczenie w wdrożeniach oszustwa — wdrożenie setek pułapek znacznie zwiększa prawdopodobieństwo, że atakujący poruszający się lateralnie wyzwoli jedną. Czy to prawda?",
+        "options": ["Prawda", "Fałsz"]
+      }
+    ]
+  },
+  "audit-cm09": {
+    "questions": [
+      {
+        "q": "Architektura Zero Trust działa na zasadzie „ufaj, ale weryfikuj” — gdy użytkownik jest wewnątrz sieci korporacyjnej, przyznawane jest niejawne zaufanie. Czy to jest prawidłowe?",
+        "options": ["Prawda", "Fałsz"]
+      },
+      {
+        "q": "Co skłoniło Google do zaprojektowania architektury Zero Trust BeyondCorp?\nA) Operacja Aurora — chiński atak sponsorowany przez państwo, który wykorzystał niejawne zaufanie w wewnętrznym ruchu sieciowym\nB) Wymóg regulacyjny NIST do wyeliminowania korporacyjnego użycia VPN",
+        "options": ["A) Operacja Aurora ujawniła niejawne zaufanie sieci wewnętrznej", "B) Wymóg regulacyjny NIST do wyeliminowania VPN"]
+      },
+      {
+        "q": "W ramach Zero Trust CARTA, poziom zaufania sesji jest trwale ustalany w momencie początkowego uwierzytelnienia i nie może się zmieniać w trakcie sesji. Czy to prawda?",
+        "options": ["Prawda", "Fałsz"]
+      },
+      {
+        "q": "Który komponent architektury Zero Trust podejmuje decyzję o zezwoleniu/odmowie dostępu?\nA) Punkt decyzji o zasadach (PDP)\nB) Dostawca tożsamości (IDP)",
+        "options": ["A) Punkt decyzji o zasadach (PDP)", "B) Dostawca tożsamości (IDP)"]
+      },
+      {
+        "q": "Monitorowanie Zero Trust generuje bogatsze dane telemetryczne audytu niż tradycyjne monitorowanie obwodowe, ponieważ każda decyzja o dostępie — a nie tylko zdarzenia bezpieczeństwa — jest logowana. Czy to prawda?",
+        "options": ["Prawda", "Fałsz"]
+      }
+    ]
+  },
+  "audit-cm10": {
+    "questions": [
+      {
+        "q": "XDR wymaga od analityków przestawiania się między oddzielnymi konsolami EDR, NDR i tożsamości w celu ręcznego korelowania alertów w incydent. Czy tak działa XDR?",
+        "options": ["Prawda", "Fałsz"]
+      },
+      {
+        "q": "Jak korelacja grafu encji XDR automatycznie łączy alerty z różnych źródeł telemetrii?\nA) Poprzez znajdowanie alertów dzielących tę samą encję (host, IP, użytkownik) w oknie czasowym\nB) Poprzez dopasowywanie tekstu alertu do biblioteki znanych opisów ataku",
+        "options": ["A) Wspólne encje w oknie czasowym", "B) Tekst alertu dopasowany do opisów ataku"]
+      },
+      {
+        "q": "Tagowanie technik MITRE ATT&CK w XDR pomaga analitykom rozumieć narrację łańcucha ataku zamiast badania alertów w izolacji. Czy to prawda?",
+        "options": ["Prawda", "Fałsz"]
+      },
+      {
+        "q": "W naruszeniu Lapsus$ Microsoft, jaka była kluczowa awaria wykrywania, którą XDR miał rozwiązać?\nA) Rozproszone sygnały w wielu źródłach telemetrii nie były korelowane w pojedynczy widok incydentu na czas\nB) Atakujący używali podatności zero-day bez istniejącej sygnatury wykrywania",
+        "options": ["A) Sygnały niekorelowane w różnych źródłach na czas", "B) Niewykrywalna podatność zero-day"]
+      },
+      {
+        "q": "Główna propozycja wartości XDR polega na tym, że analitycy pracują z indywidualnymi alertami, a nie zgrupowanymi incydentami, umożliwiając bardziej szczegółowe dochodzenie. Czy to jest prawidłowe?",
+        "options": ["Prawda", "Fałsz"]
+      }
+    ]
+  },
+  "audit-cm11": {
+    "questions": [
+      {
+        "q": "Tradycyjne roczne audyty zgodności zapewniają ciągły, bieżący widok skuteczności kontroli bezpieczeństwa organizacji przez cały rok. Czy to prawda?",
+        "options": ["Prawda", "Fałsz"]
+      },
+      {
+        "q": "Jaki jest główny mechanizm używany przez platformy ciągłej zgodności do zbierania dowodów kontroli?\nA) Zautomatyzowane wywołania API do systemów dostawcy chmury i IDP zgodnie z harmonogramem\nB) Ręczne kwestionariusze wysyłane do właścicieli systemów co kwartał",
+        "options": ["A) Zautomatyzowane wywołania API do systemów chmury i IDP", "B) Ręczne kwartalne kwestionariusze dla właścicieli systemów"]
+      },
+      {
+        "q": "Ciągłe monitorowanie zgodności może zmniejszyć czas przygotowania do audytu o 60–80% poprzez automatyzację zbierania dowodów. Czy to jest dokładne?",
+        "options": ["Prawda", "Fałsz"]
+      },
+      {
+        "q": "Nakaz zgody FTC wobec Drizly był znaczący dla programów zgodności przede wszystkim dlatego, że:\nA) Ustalił, że poszczególni kierownicy mogą być osobiście odpowiedzialni za systemowe awarie zgodności\nB) Wymagał od Drizly poddania się jednorazowemu audytowi bezpieczeństwa w ciągu 90 dni od naruszenia",
+        "options": ["A) Kierownicy osobiście odpowiedzialni za systemowe awarie", "B) Wymagał jednorazowego audytu bezpieczeństwa w ciągu 90 dni"]
+      },
+      {
+        "q": "W programie ciągłej zgodności, dryft kontroli — gdy kontrola wychodzi poza zakres zgodności między cyklami audytu — jest wykrywany natychmiast, a nie podczas następnego rocznego audytu. Czy to prawda?",
+        "options": ["Prawda", "Fałsz"]
+      }
+    ]
+  },
+  "audit-cm12": {
+    "questions": [
+      {
+        "q": "Raport IBM o kosztach naruszenia danych z 2023 roku wykazał, że mediana branżowa MTTD wynosiła około 21 dni. Czy to jest prawidłowe?",
+        "options": ["Prawda", "Fałsz"]
+      },
+      {
+        "q": "Który poziom dojrzałości SOC jest minimalnym zalecanym celem dla organizacji korporacyjnych zgodnie z modelem CREST?\nA) Poziom 3 (Proaktywny — threat hunting i wykrywanie behawioralne)\nB) Poziom 1 (Reaktywny — sterowany incydentami bez proaktywnego monitorowania)",
+        "options": ["A) Poziom 3 — Proaktywny", "B) Poziom 1 — Reaktywny"]
+      },
+      {
+        "q": "Wskaźnik fałszywych pozytywów powyżej 5% jest uważany za dopuszczalny dla dojrzałego SOC, ponieważ analitycy są przeszkoleni do obsługi dużych wolumenów alertów. Czy to prawda?",
+        "options": ["Prawda", "Fałsz"]
+      },
+      {
+        "q": "Naruszenie MGM Resorts w 2023 roku wykazało, że awaria MTTD to czysto problem techniczny — szybsze narzędzia wykrywania w pełni zapobiegłyby stracie 100 mln USD. Czy to jest dokładne?",
+        "options": ["Prawda", "Fałsz"]
+      },
+      {
+        "q": "Jaki cel pokrycia automatyzacją SOAR jest potrzebny do osiągnięcia sub-godzinnego MTTR w skali?\nA) Ponad 70% typów alertów objętych zautomatyzowanymi playbookami\nB) Ponad 20% typów alertów objętych zautomatyzowanymi playbookami",
+        "options": ["A) Ponad 70% pokrycia automatyzacją", "B) Ponad 20% pokrycia automatyzacją"]
+      }
+    ]
+  }
+}

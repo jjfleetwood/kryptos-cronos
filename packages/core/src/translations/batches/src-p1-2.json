@@ -1,0 +1,1429 @@
+{
+  "audit-t08": {
+    "tagline": "Una red plana significa que un único punto de acceso comprometido puede llegar a todo. La segmentación contiene el radio de explosión.",
+    "overview": [
+      "Las auditorías de segmentación de red verifican que las zonas de red estén debidamente separadas y que el tráfico entre zonas siga el principio de menor conectividad — solo se permiten los puertos y protocolos específicos requeridos para las funciones empresariales. PCI DSS, HIPAA y SOC 2 requieren segmentación de red como control fundamental.",
+      "La segmentación de red en la nube utiliza VPCs, subnets, grupos de seguridad y ACLs de red. Una auditoría revisa: ¿Están los sistemas sensibles (bases de datos, procesamiento de pagos) aislados en subnets privadas sin ruta directa a internet? ¿Los grupos de seguridad siguen el principio de menor privilegio (IPs de origen específicas y puertos, no 0.0.0.0/0)? ¿Hay conexiones de emparejamiento de VPC que crean rutas inesperadas entre entornos?",
+      "La segmentación local utiliza VLANs, reglas de firewall y microsegmentación. Los auditores prueban la segmentación intentando alcanzar sistemas sensibles desde zonas de menor confianza — si un servidor web puede consultar directamente la base de datos en el puerto 5432, la segmentación ha fallado incluso si existe una regla de firewall en papel."
+    ],
+    "technical": {
+      "title": "Pruebas de Segmentación de Red",
+      "body": [
+        "Metodología de revisión de reglas de firewall: (1) Obtener el conjunto completo de reglas de firewall. (2) Identificar todas las reglas que permiten tráfico hacia/desde zonas sensibles (alcance PCI, capa de base de datos, red de administración). (3) Para cada regla permisiva, verificar que exista una justificación empresarial documentada. (4) Verificar reglas de origen o destino 'ANY' — estas representan condiciones de red plana.",
+        "Auditoría de AWS VPC: (1) Mapear todas las conexiones de emparejamiento de VPC — el enrutamiento transitivo crea rutas inesperadas. (2) Revisar todos los grupos de seguridad para reglas de ingreso 0.0.0.0/0. (3) Verificar que las subnets de base de datos no tengan ruta de puerta de enlace a internet. (4) Verificar que los VPC Flow Logs estén habilitados — el registro de tráfico es requerido para la validación de segmentación."
+      ]
+    },
+    "incident": {
+      "title": "Breach de Target — Vendedor HVAC a Red POS (2013)",
+      "impact": "40M tarjetas de crédito; 70M registros de clientes; costo total de $290M; CIO y CEO renunciaron",
+      "body": [
+        "El breach de Target comenzó con credenciales comprometidas de un vendedor HVAC (Fazio Mechanical). El vendedor tenía acceso de red para gestionar sistemas de calefacción y refrigeración. Una red plana significaba que la conexión de red del vendedor HVAC podía alcanzar los sistemas de punto de venta (POS) de Target — que procesaban tarjetas de pago de clientes.",
+        "La segmentación de red adecuada habría colocado el acceso del vendedor HVAC en un segmento de red completamente aislado sin ruta hacia sistemas POS. La red plana significaba que una vez que los atacantes tenían las credenciales HVAC, podían alcanzar sistemas POS directamente. Target pagó $290M en acuerdos. Los requisitos de la Sección 1 de PCI DSS (segmentación de red) fueron la respuesta de cumplimiento directo."
+      ]
+    },
+    "timeline": [
+      "Breach de Target — vendedor HVAC a POS mediante red plana",
+      "PCI DSS 3.0 — requisitos de segmentación de red aclarados",
+      "Capital One — S3 accesible desde EC2 comprometido mediante política IAM plana",
+      "Modelo de madurez Zero Trust de CISA — microsegmentación como práctica avanzada"
+    ],
+    "keyTakeaways": [
+      "Las redes planas maximizan el radio de explosión — la segmentación contiene el movimiento lateral",
+      "El acceso de red de proveedores debe estar aislado de sistemas sensibles internos",
+      "Los VPC Flow Logs deben estar habilitados — no puede auditar lo que no puede ver",
+      "PCI DSS requiere segmentación de red para reducir el alcance del entorno de datos de titulares de tarjetas"
+    ]
+  },
+  "audit-t09": {
+    "tagline": "Una base de datos con un rol que puede leer cada tabla es una base de datos donde cada usuario es un incidente de seguridad.",
+    "overview": [
+      "Los auditorios de control de acceso a bases de datos verifican que el control de acceso basado en roles (RBAC) se implemente correctamente, que las columnas sensibles tengan enmascaramiento o cifrado apropiado, y que toda la actividad de la base de datos se registre. Las bases de datos modernas (Snowflake, BigQuery, Redshift) admiten seguridad a nivel de fila, enmascaramiento de columnas y enmascaramiento dinámico de datos — controles que deben verificarse en cualquier auditoría de cumplimiento.",
+      "Hallazgos comunes en auditorías de bases de datos: cuentas de servicio con privilegios DBA, sin enmascaramiento de columnas en campos PII (SSN, tarjeta de crédito, teléfono), cifrado de base de datos en reposo deshabilitado, registro de auditoría que no captura consultas SELECT (solo captura DDL/DML pierde exfiltración basada en lectura), y usuarios con acceso directo a tablas en lugar de vistas basadas en roles.",
+      "La supervisión de actividad de bases de datos (DAM) es un control de detección que registra todas las consultas, identifica patrones inusuales (SELECT masivo de PII, consultas desde ubicaciones inusuales) y alerta sobre violaciones de políticas. Los auditores verifican que DAM esté implementado y que las alertas se revisen, no solo se recopilen."
+    ],
+    "technical": {
+      "title": "Prueba de Controles de Acceso a Bases de Datos",
+      "body": [
+        "Prueba RBAC: para cada rol de base de datos, asigna los permisos otorgados a la función laboral prevista. Un rol de analista de informes debe tener SELECT solo en tablas de informes — nunca INSERT, UPDATE, DELETE o DDL. Un rol DBA debe tener derechos completos, pero la membresía del rol DBA debe requerir MFA y asignarse solo a administradores designados.",
+        "Prueba de seguridad a nivel de fila (RLS): crea registros de prueba en diferentes regiones/departamentos, autentica como un usuario restringido a la Región A, intenta consultar registros de la Región B. Si RLS funciona, la consulta devuelve 0 filas. Si devuelve registros de la Región B, RLS no está configurado correctamente."
+      ]
+    },
+    "incident": {
+      "title": "Morgan Stanley — Decomisión de Centro de Datos Sin Cifrar (2020)",
+      "impact": "Multa OCC de $60M; PII de clientes en hardware desmantelado vendido sin borrado de datos",
+      "body": [
+        "Morgan Stanley desmanteló dos centros de datos entre 2016 y 2019. Los dispositivos de almacenamiento local se vendieron a un tercero sin borrado de datos adecuado. Los dispositivos contenían PII de clientes sin cifrar — nombres, direcciones, SSNs e información de cuentas. La OCC multó a Morgan Stanley con $60M en 2020.",
+        "La causa raíz fue un fallo en el control de acceso a bases de datos: los datos en reposo no estaban cifrados. Si el cifrado en reposo hubiera sido habilitado, los datos en el hardware desmantelado habrían sido ilegibles sin las claves de cifrado. Los auditorios de bases de datos deben verificar la configuración de cifrado en reposo para cada base de datos en el alcance."
+      ]
+    },
+    "timeline": [
+      "Borrador de GDPR finalizado — el cifrado en reposo se convierte en requisito estándar",
+      "Snowflake lanza seguridad a nivel de fila y enmascaramiento dinámico de datos",
+      "Morgan Stanley — Multa de $60M por hardware desmantelado sin cifrar",
+      "NIST CSF 2.0 — el cifrado de datos en reposo se enumera explícitamente como control base"
+    ],
+    "keyTakeaways": [
+      "El cifrado en reposo es un control base — cada base de datos debe tenerlo habilitado",
+      "El enmascaramiento de columnas en campos PII previene exfiltración masiva a través de consultas SELECT",
+      "La seguridad a nivel de fila limita el radio de explosión de una cuenta de usuario comprometida",
+      "Los registros de auditoría de bases de datos deben capturar consultas SELECT — solo el registro de DDL/DML pierde exfiltración basada en lectura"
+    ]
+  },
+  "audit-t10": {
+    "tagline": "Si ocurre un incidente de seguridad y ningún registro lo captura, ¿hubo un incidente? Sí. Pero no lo sabrás durante meses.",
+    "overview": [
+      "Las auditorías de registro y monitoreo verifican que los eventos relevantes para la seguridad se capturen, se reenvíen a un SIEM centralizado y que las alertas estén configuradas e investigadas correctamente. NIST SP 800-92 y el Requisito 10 de PCI DSS proporcionan la línea base: todos los intentos de autenticación, uso de privilegios, cambios del sistema y acceso a datos deben registrarse.",
+      "Las brechas en la cobertura de registros son uno de los hallazgos de auditoría más comunes. Los sistemas que no reenvían registros al SIEM crean puntos ciegos. Los auditores construyen un inventario de fuentes de registros y verifican que cada sistema en el alcance reenvíe registros. La brecha se encuentra comparando la lista de fuentes de registro del SIEM contra el inventario de activos.",
+      "La calidad de las alertas es la segunda dimensión: demasiadas pocas alertas significan que se pierden las amenazas; demasiadas alertas causan fatiga de alertas (los analistas ignoran todo). Los auditores revisan el trabajo pendiente de alertas — si hay miles de alertas no reconocidas, el programa es efectivamente no funcional. El tiempo promedio de reconocimiento (MTTA) debe ser menor a 15 minutos para alertas críticas."
+    ],
+    "technical": {
+      "title": "Metodología de Auditoría de Cobertura de Registros",
+      "body": [
+        "Paso 1: Obtener el inventario completo de activos (servidores, dispositivos de red, cuentas en la nube, aplicaciones SaaS). Paso 2: Obtener la lista de fuentes de registro del SIEM. Paso 3: Comparar — cualquier activo en el inventario que no esté en el SIEM es una brecha de cobertura. Priorizar por riesgo: sistemas conectados a Internet, controladores de dominio, bases de datos y planos de gestión en la nube tienen la prioridad más alta.",
+        "Auditoría de retención: los requisitos regulatorios establecen una retención mínima. PCI DSS requiere 12 meses (3 meses inmediatamente accesibles). SOC 2 requiere 6 meses. HIPAA requiere 6 años. Verificar que la política de retención del SIEM o archivo de registros cumpla con el requisito aplicable para cada sistema en el alcance."
+      ]
+    },
+    "incident": {
+      "title": "Incidente de Equifax de 78 Días — Brecha de Inspección SSL (2017)",
+      "impact": "147M registros; tiempo de permanencia del atacante 78 días; inspección SSL rota = sin visibilidad de registros",
+      "body": [
+        "El fallo de monitoreo de Equifax permitió 78 días de actividad del atacante sin detección. El dispositivo de inspección SSL — que habría descifrado y registrado el tráfico saliente sospechoso — tenía un certificado vencido que no se había renovado durante 19 meses. Todo el tráfico HTTPS a través de ese dispositivo parecía encriptado y no fue inspeccionado.",
+        "El hallazgo de la auditoría de monitoreo: una fuente de registro crítica (inspección SSL) estaba rota y no producía registros. Una auditoría de cobertura de registros que compare las fuentes esperadas contra las fuentes reales habría identificado la brecha el primer día. La lección: las auditorías de cobertura de registros deben verificar que las fuentes de registro envíen registros activamente — no solo que estén configuradas para hacerlo."
+      ]
+    },
+    "timeline": [
+      "NIST SP 800-92 — Guía para la Gestión de Registros de Seguridad Informática",
+      "Equifax — 78 días de tiempo de permanencia; inspección SSL rota = sin visibilidad",
+      "SolarWinds — 9 meses de tiempo de permanencia; evasión sofisticada que derrotó la mayoría de los SIEM",
+      "Directrices de CISA — Monitoreo de SOC 24/7 y MTTA de 15 minutos para alertas críticas"
+    ],
+    "keyTakeaways": [
+      "Las brechas de cobertura de registros se encuentran comparando la lista de fuentes de registro del SIEM con el inventario de activos",
+      "Verificar que las fuentes de registro ESTÉN ENVIANDO REGISTROS ACTIVAMENTE — la configuración por sí sola es insuficiente",
+      "El tamaño del trabajo pendiente de alertas y MTTA son métricas para la efectividad del programa de monitoreo",
+      "La retención debe cumplir con el requisito regulatorio — PCI DSS requiere 12 meses, 3 inmediatamente accesibles"
+    ]
+  },
+  "audit-t11": {
+    "tagline": "El perímetro está muerto. Cada solicitud debe demostrar que está autorizada — siempre, desde cualquier lugar.",
+    "overview": [
+      "Zero Trust es una arquitectura de seguridad construida sobre el principio de que ningún usuario, dispositivo o red debe ser confiable por defecto — incluyendo aquellos dentro de la red corporativa. Cada solicitud de acceso debe ser autenticada, autorizada y validada continuamente. NIST SP 800-207 define Zero Trust Architecture (ZTA) para el gobierno y la empresa.",
+      "Los cinco pilares de Zero Trust (modelo CISA): Identity (verificar cada usuario con MFA y autenticación continua), Device (verificar la salud del dispositivo y cumplimiento antes de otorgar acceso), Network (microsegmentación, sin confianza implícita interna), Application (controles de acceso a nivel de aplicación, ZTNA reemplazando VPN), y Data (clasificar y proteger datos independientemente de la ubicación).",
+      "BeyondCorp de Google, lanzado en 2014, fue la primera implementación empresarial importante de Zero Trust. Todo acceso de empleados — incluyendo desde la red interna de Google — pasa por las mismas verificaciones de autenticación y autorización que el acceso externo. La ubicación interna no proporciona confianza adicional. Esto se convirtió en el modelo para el Modelo de Madurez Zero Trust de CISA."
+    ],
+    "technical": {
+      "title": "Auditoría de Madurez Zero Trust",
+      "body": [
+        "CISA define cinco niveles de madurez para cada pilar de ZTA: Traditional (0) → Initial (1) → Advanced (2) → Optimal (3). Los auditores evalúan cada pilar y asignan un nivel de madurez. Traditional significa seguridad de castillo y foso con confianza implícita interna. Optimal significa verificación continua con respuesta automatizada.",
+        "Preguntas clave de auditoría: ¿Se aplica MFA para TODOS los usuarios (no solo cuentas privilegiadas)? ¿Se realizan verificaciones de salud del dispositivo antes de otorgar acceso a la aplicación? ¿Se está reemplazando VPN por Zero Trust Network Access (ZTNA)? ¿Se restringen las rutas de movimiento lateral (microsegmentación)? ¿Se clasifican los datos y se registra el acceso independientemente de la ubicación?"
+      ]
+    },
+    "incident": {
+      "title": "SolarWinds — Confianza Implícita Interna Explotada (2020)",
+      "impact": "18,000 organizaciones comprometidas; 9 agencias federales vulneradas",
+      "body": [
+        "El ataque de SolarWinds demostró la debilidad fundamental de la seguridad basada en perímetro. Una vez que se instaló la actualización maliciosa de Orion, el atacante tuvo acceso a la red interna del objetivo y utilizó la confianza implícita interna para moverse lateralmente. Los modelos de seguridad tradicionales confiaban en todo dentro del perímetro — el atacante explotó esa confianza durante meses.",
+        "Una organización con controles Zero Trust — específicamente acceso basado en identidad donde cada conexión lateral requiere autenticación y autorización — habría limitado significativamente el movimiento lateral del atacante. La guía Zero Trust de CISA, publicada en respuesta a SolarWinds, aceleró la adopción de ZTA en todo el gobierno federal de EE.UU."
+      ]
+    },
+    "timeline": [
+      "John Kindervag acuña 'Zero Trust' en Forrester Research",
+      "Google BeyondCorp publicado — plano de ZTA empresarial",
+      "NIST SP 800-207 — estándar oficial de Zero Trust Architecture",
+      "SolarWinds — confianza implícita interna explotada a escala",
+      "Biden EO 14028 — ZTA obligatorio para agencias federales de EE.UU."
+    ],
+    "keyTakeaways": [
+      "Zero Trust: nunca confiar, siempre verificar — la ubicación dentro de la red no otorga confianza implícita",
+      "Cinco pilares de CISA: Identity, Device, Network, Application, Data",
+      "MFA es la línea base; FIDO2 resistente al phishing es el objetivo para madurez avanzada",
+      "ZTNA reemplaza VPN — acceso específico de aplicación sin confianza implícita a nivel de red"
+    ]
+  },
+  "audit-a01": {
+    "tagline": "Un auditor IA sin herramientas es solo un generador de texto. Las herramientas le dan manos a Claude.",
+    "overview": [
+      "La API de uso de herramientas de Claude (también llamada function calling) te permite definir funciones estructuradas que Claude puede invocar durante una conversación. Para automatización de auditorías, esto significa que Claude puede llamar a sistemas reales — leer archivos, consultar APIs, verificar configuraciones — en lugar de alucinar respuestas únicamente a partir de datos de entrenamiento.",
+      "Una definición de herramienta tiene tres partes: un nombre, una descripción que Claude usa para decidir cuándo llamarla, y un JSON Schema para los parámetros. Claude lee las descripciones de herramientas y decide qué herramientas llamar y con qué argumentos. Tu código ejecuta la herramienta y devuelve el resultado. Claude luego razona sobre el resultado para continuar.",
+      "Las herramientas de auditoría se mapean directamente a procedimientos de auditoría: `list_s3_buckets` reemplaza clics manuales en AWS Console, `check_iam_policy` reemplaza revisión de políticas basada en hojas de cálculo, `scan_repo_for_secrets` reemplaza scripts grep. El resultado son auditorías que se ejecutan en minutos, producen salida estructurada consistente, y pueden re-ejecutarse en cada release."
+    ],
+    "technical": {
+      "title": "Patrón de Definición de Herramienta",
+      "body": [
+        "Cada definición de herramienta es un objeto JSON con `name`, `description`, e `input_schema` (JSON Schema). La descripción es crítica — Claude la usa para determinar cuándo invocar la herramienta. Descripciones vagas producen selección de herramientas errática.",
+        "El bucle agentico: (1) enviar mensaje del usuario + definiciones de herramientas a Claude, (2) Claude devuelve un bloque tool_use con nombre de herramienta y argumentos, (3) tu código ejecuta la herramienta y devuelve tool_result, (4) repetir hasta que Claude devuelva una respuesta de texto sin llamadas de herramientas. Este bucle es la base de todos los pipelines de auditoría agentica."
+      ]
+    },
+    "incident": {
+      "title": "Brecha de Datos de Capital One — Fallo de Proceso Manual (2019)",
+      "impact": "106 millones de registros de clientes expuestos; acuerdo de $190M; SSRF a través de WAF mal configurado",
+      "body": [
+        "La brecha de Capital One tuvo éxito porque un WAF de AWS mal configurado permitió solicitudes SSRF al servicio de metadatos de EC2, filtrando credenciales IAM. La misconfigración existió durante meses. Los procesos manuales de revisión de configuración no lograron detectarla — las reglas del WAF eran complejas, la revisión era infrecuente, y ninguna herramienta automatizada verificaba continuamente el estado esperado.",
+        "Una herramienta de auditoría agentica que sondee reglas WAF contra una línea base conocida habría marcado la desviación dentro de horas de su introducción. Esta es la propuesta de valor central de la auditoría agentica: verificación continua y automatizada en lugar de revisión manual puntual."
+      ]
+    },
+    "timeline": [
+      "Anthropic lanza la API de uso de herramientas — Claude puede llamar funciones externas",
+      "El uso de herramientas se convierte en patrón estándar para automatización de auditorías agenticas",
+      "MCP (Model Context Protocol) lanzado — protocolo de servidor de herramientas estandarizado",
+      "Serie Claude 4 — precisión mejorada de selección de herramientas y razonamiento multietapa"
+    ],
+    "keyTakeaways": [
+      "Las descripciones de herramientas impulsan la selección de herramientas de Claude — escríbelas con precisión",
+      "El bucle agentico: mensaje → tool_use → tool_result → repetir hasta respuesta de texto",
+      "Las herramientas de auditoría reemplazan procedimientos manuales con verificaciones consistentes y re-ejecutables",
+      "Siempre valida entradas de herramientas en el lado del servidor — Claude puede pasar formas de argumentos inesperadas"
+    ]
+  },
+  "audit-a02": {
+    "tagline": "No puedes auditar lo que no puedes ver. El primer trabajo de Claude es construir el mapa.",
+    "overview": [
+      "La superficie de APIs es el mayor punto ciego en las auditorías de seguridad modernas. Las organizaciones rutinariamente tienen 40–60% más endpoints de API que los documentos de inventario de APIs. Las APIs fantasma, versiones heredadas y endpoints internos sin documentar se acumulan más rápido de lo que los procesos de documentación manual pueden rastrearlos.",
+      "La enumeración agentica de APIs utiliza Claude para orquestar un pipeline de descubrimiento sistemático: rastrear especificaciones OpenAPI, analizar registros de gateway, sondear patrones de rutas conocidas, diferenciar contra inventario aprobado y generar un informe de brechas. Claude razona sobre qué endpoints ameritan pruebas más profundas basándose en semántica de rutas y métodos HTTP.",
+      "El agente de enumeración utiliza un conjunto de herramientas: `fetch_openapi_spec`, `list_gateway_routes`, `probe_endpoint` y `compare_to_inventory`. Claude decide el orden de las llamadas de herramientas, maneja paginación y sintetiza hallazgos sin que un humano dirija cada paso."
+    ],
+    "technical": {
+      "title": "Arquitectura del Agente de Enumeración",
+      "body": [
+        "El agente comienza obteniendo la especificación API oficial (OpenAPI/Swagger) y la tabla de rutas en vivo del gateway. Diferencia los dos para encontrar rutas sin documentar. Para cada ruta sin documentar, emite un sondeo (solicitud OPTIONS o GET de bajo riesgo) para confirmar disponibilidad. Finalmente compara respuestas autenticadas vs no autenticadas para señalar candidatos de elusión de autenticación.",
+        "Los límites de velocidad y restricciones de alcance deben codificarse en las implementaciones de herramientas, no dejarse al criterio de Claude. Claude decide qué probar; tu código aplica las reglas de compromiso — máximo de solicitudes por minuto, rangos de IP permitidos, rutas excluidas."
+      ]
+    },
+    "incident": {
+      "title": "Exposición de API de Peloton (2021)",
+      "impact": "Datos personales de 4M+ usuarios accesibles sin autenticación a través del endpoint `/stats/v2/workouts` sin documentar",
+      "body": [
+        "El investigador de seguridad Jan Masters descubrió que la API de Peloton devolvía datos completos del perfil del usuario — edad, género, ciudad, estadísticas de entrenamiento, fecha de creación de cuenta — sin requerir autenticación en el endpoint `/stats/v2/workouts`. El endpoint no estaba documentado y no se incluía en el inventario interno de APIs de Peloton.",
+        "Una auditoría de enumeración agentica ejecutada semanalmente habría señalado este endpoint dentro de días de su implementación. El agente habría notado que `/stats/v1/workouts` requería autenticación mientras que `/stats/v2/workouts` no — una clara regresión de autenticación detectable a través de comparación automatizada."
+      ]
+    },
+    "timeline": [
+      "Proyecto OWASP API Security lanzado — riesgos de API formalizados",
+      "Exposición de API de Peloton — datos de 4M usuarios accesibles sin autenticación",
+      "Marcos de prueba agentica de API emergen usando orquestación de LLM",
+      "El uso de herramientas de Claude permite pipelines de enumeración agentica de grado de producción"
+    ],
+    "keyTakeaways": [
+      "60%+ de organizaciones tienen APIs sin documentar no incluidas en su inventario oficial",
+      "Diferenciar especificación OpenAPI vs rutas de gateway en vivo para encontrar endpoints fantasma",
+      "Codificar límites de velocidad y alcance en implementaciones de herramientas, no en el prompt de Claude",
+      "Detección de regresión de autenticación: comparar requisitos de autenticación entre versiones de API"
+    ]
+  },
+  "audit-a04": {
+    "tagline": "La nube no es un lugar. Es una configuración. Y las configuraciones cambian.",
+    "overview": [
+      "La enumeración de recursos en la nube es la base de toda auditoría de seguridad en la nube. Antes de poder evaluar controles, debes saber qué existe: qué buckets S3, instancias EC2, funciones Lambda, bases de datos RDS, roles IAM, VPCs, grupos de seguridad y API Gateways se implementan en qué regiones y cuentas.",
+      "El inventario manual de la nube toma días en cuentas grandes. La enumeración agéntica con Claude y el AWS SDK toma minutos. Claude orquesta un barrido sistemático: enumera recursos por servicio, verifica cada uno para configuraciones clave, marca desviaciones de la línea base y produce un informe de inventario estructurado.",
+      "El agente de enumeración también es la base para todas las comprobaciones posteriores — escaneo de secretos, análisis de IAM, segmentación de red y mapeo de cumplimiento normativo comienzan con el inventario de recursos que Claude construye."
+    ],
+    "technical": {
+      "title": "Conjunto de herramientas de enumeración en la nube",
+      "body": [
+        "Herramientas principales para un agente de enumeración de AWS: `list_s3_buckets` (con estado de bloque de acceso público), `list_ec2_instances` (con IDs de grupos de seguridad), `list_iam_roles` (con políticas adjuntas), `list_lambda_functions` (con configuración VPC), `list_rds_instances` (con flag de acceso público), `list_security_groups` (con reglas de entrada).",
+        "Claude decide qué servicios priorizar según el alcance de la auditoría. Para una auditoría centrada en datos, comienza con S3 y RDS. Para una auditoría de red, comienza con VPCs y grupos de seguridad. El agente construye un gráfico de dependencias — qué Lambda tiene qué rol, qué rol puede acceder a qué bucket — que los auditores manuales rara vez tienen tiempo de construir."
+      ]
+    },
+    "incident": {
+      "title": "Exposición de datos de vehículos conectados de Toyota (2023)",
+      "impact": "Datos de ubicación de 2.15M de clientes expuestos durante 10 años; entorno de nube mal configurado",
+      "body": [
+        "Toyota divulgó que los datos de ubicación de vehículos de 2.15 millones de clientes fueron accesibles públicamente de febrero de 2012 a mayo de 2023 — más de una década — debido a un entorno de nube mal configurado. La mala configuración no fue detectada porque Toyota carecía de monitoreo automatizado de configuración en la nube.",
+        "Un agente agéntico de enumeración en la nube ejecutándose semanalmente habría marcado la configuración de acceso público dentro del primer ciclo de sprint. La línea de tiempo de exposición de 10 años es una medida directa del costo de auditoría solo manual en la nube."
+      ]
+    },
+    "timeline": [
+      "Mala configuración de nube de Toyota introducida — 2.15M registros de vehículos expuestos",
+      "AWS Config lanza monitoreo continuo de cumplimiento",
+      "Toyota divulga exposición de datos de 10 años; auditoría agéntica gana urgencia",
+      "Agentes de enumeración en la nube basados en Claude entran en uso en producción"
+    ],
+    "keyTakeaways": [
+      "El inventario de la nube es un requisito previo para cada comprobación de auditoría posterior",
+      "Enumera todos los servicios: S3, EC2, RDS, Lambda, IAM, VPC, grupos de seguridad",
+      "Construye gráficos de dependencias de recursos — qué rol accede a qué bucket",
+      "La enumeración agéntica detecta misconfiguraciones de 10 años en minutos"
+    ]
+  },
+  "audit-a05": {
+    "tagline": "Las políticas IAM son la capa de control de acceso. Claude las lee más rápido que cualquier auditor humano.",
+    "overview": [
+      "El análisis de políticas IAM es una de las aplicaciones de mayor valor de la IA en auditoría de seguridad. Una cuenta grande de AWS puede tener miles de roles IAM, políticas y límites de permisos. La revisión manual es lenta, propensa a errores y raramente completa. Claude puede analizar una configuración IAM completa en minutos y razonar sobre permisos efectivos en capas de políticas.",
+      "Claude entiende la semántica de las políticas IAM: la diferencia entre políticas basadas en identidad y basadas en recursos, cómo los límites de permisos restringen los permisos efectivos, cuándo los bloques Condition realmente restringen el acceso, y cuándo las declaraciones de comodín crean rutas de escalada de privilegios. Esta comprensión semántica va mucho más allá de lo que regex o simples motores de reglas pueden detectar.",
+      "El agente analizador IAM: enumera todos los roles y políticas adjuntas, extrae documentos de políticas, envía cada uno a Claude para análisis, marca declaraciones excesivamente permisivas, identifica rutas de escalada de privilegios (por ejemplo, iam:CreatePolicyVersion, iam:PassRole), y genera un informe de remediación con reemplazos específicos de menor privilegio."
+    ],
+    "technical": {
+      "title": "Patrones de Escalada de Privilegios que Claude Detecta",
+      "body": [
+        "Acciones clásicas de escalada de privilegios en IAM: `iam:CreatePolicyVersion` (crear una nueva versión de cualquier política, incluidas las políticas adjuntas a roles de administrador), `iam:AttachRolePolicy` (adjuntar cualquier política a cualquier rol), `iam:PassRole` con `ec2:RunInstances` (lanzar una instancia con un rol de administrador), `sts:AssumeRole` sin restricciones de Condition (asumir cualquier rol).",
+        "Claude verifica cada uno de estos patrones y razona sobre la cadena de permisos completa. Puede responder: 'Si este rol de Lambda se ve comprometido, ¿cuál es el privilegio máximo al que un atacante podría escalar?' — una pregunta que los auditores manuales rara vez tienen tiempo de responder para cada rol."
+      ]
+    },
+    "incident": {
+      "title": "Escalada de Privilegios en AWS IAM — Capital One (2019)",
+      "impact": "SSRF → metadatos EC2 → rol IAM → acceso S3 → 106M registros",
+      "body": [
+        "La brecha de Capital One demostró el impacto en el mundo real de las cadenas de privilegios IAM. El atacante utilizó SSRF para consultar el servicio de metadatos EC2, obtuvo las credenciales del rol IAM para la instancia EC2 del WAF, y utilizó esas credenciales para listar y descargar buckets de S3. El rol IAM tenía mucho más acceso a S3 del que requería la aplicación WAF.",
+        "El análisis de Claude del rol de instancia WAF habría marcado inmediatamente: (1) `s3:ListAllMyBuckets` en Resource `*` — innecesario para un WAF, (2) `s3:GetObject` en Resource `*` — debe estar limitado al bucket de registro específico. El rol IAM excesivamente permisivo fue la falla crítica que convirtió un SSRF en una megabrecha."
+      ]
+    },
+    "timeline": [
+      "Brecha de Capital One — SSRF + rol IAM excesivamente permisivo = 106M registros",
+      "AWS IAM Access Analyzer lanzado — análisis de políticas automatizado",
+      "Claude comienza a analizar configuraciones IAM completas con razonamiento de cadenas de privilegios",
+      "El análisis IAM con IA reduce el tiempo de revisión de políticas en un 90% a escala empresarial"
+    ],
+    "keyTakeaways": [
+      "Escalada de privilegios: iam:CreatePolicyVersion, iam:PassRole, sts:AssumeRole son las acciones clave",
+      "Claude razona sobre permisos efectivos en capas de políticas — no solo declaraciones individuales",
+      "Limita todas las acciones de S3/recursos a ARN específicos, no a Resource: '*'",
+      "Pregunta a Claude: '¿Cuál es el privilegio máximo al que puede escalar este rol si se ve comprometido?'"
+    ]
+  },
+  "audit-a06": {
+    "tagline": "MCP es el estándar USB para herramientas de IA. Un protocolo, cada sistema.",
+    "overview": [
+      "El Protocolo de Contexto de Modelo (MCP) es un estándar abierto para conectar modelos de IA a herramientas externas y fuentes de datos. En lugar de escribir integraciones de herramientas personalizadas para cada sistema de auditoría, MCP proporciona una arquitectura estándar servidor/cliente: los servidores MCP exponen recursos y herramientas, Claude se conecta como cliente MCP y los utiliza a través de una interfaz uniforme.",
+      "Para la automatización de auditoría, MCP proporciona servidores preintegrados para las fuentes de datos de auditoría más comunes: sistema de archivos (leer configuraciones, escanear repositorios), git (analizar historial de commits, verificar datos sensibles en el historial), obtención web (descargar documentación pública, verificar encabezados CDN) y base de datos (consultar registros de auditoría, tablas de cumplimiento).",
+      "MCP reduce drásticamente el trabajo de ingeniería requerido para construir agentes de auditoría. En lugar de escribir un envoltorio personalizado de AWS SDK, conectas el servidor MCP de AWS. En lugar de construir un escáner de historial de git, conectas el servidor MCP de git. El agente de auditoría se enfoca en el razonamiento; MCP maneja la entrada/salida."
+    ],
+    "technical": {
+      "title": "Arquitectura MCP para Auditoría",
+      "body": [
+        "MCP utiliza un modelo cliente-servidor sobre stdio o HTTP+SSE. El servidor MCP expone: recursos (datos de solo lectura como archivos y registros de base de datos) y herramientas (funciones invocables que pueden modificar el estado). Claude Code y la API Anthropic admiten MCP — puedes usar los mismos servidores MCP en tu IDE y en pipelines de auditoría de producción.",
+        "Servidores MCP clave para auditoría: `@modelcontextprotocol/server-filesystem` (leer/escribir archivos locales), `@modelcontextprotocol/server-github` (repositorios GitHub, PRs, issues), `@modelcontextprotocol/server-fetch` (obtención de páginas web), `@modelcontextprotocol/server-postgres` (consultas de base de datos). Existen servidores comunitarios para AWS, GCP, Kubernetes y docenas de herramientas de seguridad."
+      ]
+    },
+    "incident": {
+      "title": "SolarWinds Cadena de Suministro — Falta de Herramientas de Auditoría Automatizadas (2020)",
+      "impact": "18,000+ organizaciones comprometidas; puerta trasera SUNBURST en actualizaciones de Orion",
+      "body": [
+        "El ataque SUNBURST de SolarWinds tuvo éxito en parte porque no había herramientas automatizadas monitoreando continuamente el pipeline de compilación para modificaciones no autorizadas. Los atacantes modificaron el proceso de compilación de Orion para inyectar la puerta trasera — un cambio que el análisis automatizado del historial de git y la comparación de artefactos de compilación hubieran detectado.",
+        "Un agente de auditoría conectado a MCP con acceso al servidor git, sistema de compilación y repositorio de artefactos hubiera detectado: (1) un commit que no coincidía con ninguna pull request registrada, (2) un artefacto de compilación cuyo hash difería del código fuente compilado. MCP proporciona la capa de integración para conectar Claude a los tres sistemas simultáneamente."
+      ]
+    },
+    "timeline": [
+      "SolarWinds SUNBURST — ataque de cadena de suministro no detectado durante 14 meses",
+      "Anthropic lanza Protocolo de Contexto de Modelo (MCP) — estándar abierto",
+      "El ecosistema MCP crece a 1000+ servidores comunitarios",
+      "MCP se convierte en capa de integración estándar para herramientas de auditoría de IA empresarial"
+    ],
+    "keyTakeaways": [
+      "MCP es el protocolo estándar para conectar Claude a sistemas de auditoría externos",
+      "Servidores MCP preintegrados: sistema de archivos, git, GitHub, obtención, postgres, AWS, Kubernetes",
+      "La configuración de MCP va en claude_desktop_config.json para Claude Code o se pasa en la inicialización de API",
+      "Usa MCP para construir agentes de auditoría entre sistemas que abarquen repositorios, nubes y bases de datos"
+    ]
+  },
+  "audit-a07": {
+    "tagline": "El plan de terraform es el artefacto de auditoría. Claude lo lee antes de aplicar.",
+    "overview": [
+      "La auditoría de Infrastructure as Code (IaC) es especialmente adecuada para IA porque los planes de Terraform, las plantillas de CloudFormation y los manifiestos de Kubernetes son documentos de texto estructurados que describen estados exactos del sistema. Claude puede leer una salida de `terraform plan` y razonar sobre cada cambio de recurso antes de que se aplique.",
+      "La revisión agentic de IaC se integra en el pipeline de CI/CD: cuando una solicitud de extracción modifica código de infraestructura, el agente ejecuta automáticamente `terraform plan`, envía la salida del plan a Claude y publica un comentario de revisión de seguridad en la PR. El desarrollador recibe retroalimentación de seguridad antes de fusionar, no después de un incidente en producción.",
+      "Claude entiende la semántica de IaC: sabe que `publicly_accessible = true` en una instancia de RDS es un hallazgo, que un grupo de seguridad con `cidr_blocks = [\"0.0.0.0/0\"]` en el puerto 22 es de alta gravedad, y que eliminar un trail de CloudTrail es una eliminación de control crítico — sin necesidad de ser programado explícitamente con estas reglas."
+    ],
+    "technical": {
+      "title": "Pipeline de Revisión de IaC Integrado en PR",
+      "body": [
+        "Integración del pipeline: (1) PR se abre con cambios en archivos .tf, (2) el trabajo de CI ejecuta `terraform plan -out=plan.tfplan && terraform show -json plan.tfplan > plan.json`, (3) el agente envía plan.json a Claude con un prompt de auditoría, (4) Claude devuelve un JSON de hallazgos estructurado, (5) el agente publica un comentario en la PR de GitHub con los hallazgos, (6) los hallazgos críticos bloquean la fusión mediante una verificación de estado requerida.",
+        "El prompt de Claude para revisión de IaC debe especificar: el proveedor de nube, la línea base de seguridad (nivel de AWS CIS Foundations Benchmark), el umbral de gravedad para bloquear y el formato de salida. El prompteo consistente produce hallazgos consistentes que los desarrolladores pueden razonar."
+      ]
+    },
+    "incident": {
+      "title": "Fuga de Código Fuente de Twitch — Configuración Incorrecta de Terraform (2021)",
+      "impact": "125GB de código fuente, herramientas internas y datos de pagos de creadores filtrados",
+      "body": [
+        "La fuga de Twitch incluyó configuraciones internas de Terraform que revelaron detalles sobre la arquitectura de su infraestructura de AWS. Aunque el vector de brecha principal fue una configuración incorrecta del servidor, los archivos de IaC expuestos dieron a los atacantes un mapa detallado del entorno de nube de Twitch — acelerando el movimiento lateral.",
+        "La revisión agentic de IaC sirve dos propósitos: detecta configuraciones incorrectas antes de la implementación y garantiza que los archivos de IaC no contengan credenciales codificadas o topología de red interna que sería valiosa para los atacantes si los archivos fueran alguna vez expuestos."
+      ]
+    },
+    "timeline": [
+      "tfsec lanzado — primer escáner de seguridad de Terraform de código abierto",
+      "Fuga de Twitch — las configuraciones de IaC exponen la arquitectura de infraestructura",
+      "Checkov añade más de 1000 políticas de seguridad de IaC",
+      "Revisión de IaC de Claude integrada en pipelines de CI/CD — análisis semántico"
+    ],
+    "keyTakeaways": [
+      "Integra la revisión de IaC en CI: `terraform plan` → análisis de Claude → comentario en PR",
+      "Claude entiende la semántica de IaC sin necesidad de programación explícita de reglas",
+      "CIS AWS Foundations Benchmark v1.4 es la línea base estándar para auditorías de Terraform",
+      "Los hallazgos críticos deben bloquear la fusión de PR mediante controles de estado requeridos"
+    ]
+  },
+  "audit-a08": {
+    "tagline": "La recopilación de evidencia consume el 60% del tiempo de auditoría. Los agentes lo hacen en 6 minutos.",
+    "overview": [
+      "La recopilación de evidencia es la parte más lenta y tediosa de una auditoría IT tradicional. Los auditores exportan manualmente capturas de pantalla, descargan archivos de registro, capturan salidas de configuración y los organizan en paquetes de evidencia — un proceso que puede tomar semanas en un compromiso de auditoría grande.",
+      "La recopilación de evidencia agentic automatiza este flujo de trabajo completo. Claude orquesta una ejecución de recopilación sistemática: para cada control dentro del alcance, sabe qué evidencia se requiere (documento de política, equivalente de captura de pantalla de configuración, muestra de registro, registro de aprobación), llama a las herramientas apropiadas para recuperarla, valida la evidencia contra el requisito del control y la organiza en un paquete de evidencia estructurado.",
+      "El resultado es un paquete de evidencia listo para la revisión del auditor — no una pila de exportaciones sin procesar, sino artefactos organizados asignados a controles específicos con la evaluación de Claude sobre si cada pieza de evidencia satisface el requisito del control. El tiempo de preparación de auditoría se reduce de semanas a horas."
+    ],
+    "technical": {
+      "title": "Estructura del Paquete de Evidencia",
+      "body": [
+        "Un paquete de evidencia bien estructurado asigna cada pieza de evidencia a: el control que satisface (objetivo COBIT, criterio SOC 2, función NIST CSF), la marca de tiempo de recopilación, el método de recopilación (llamada API, exportación de registro, captura de configuración) y la evaluación de Claude (satisfecho/parcialmente satisfecho/no satisfecho).",
+        "La validación de evidencia es donde Claude añade valor único. Dado un requisito de control ('MFA debe estar habilitado para todas las cuentas privilegiadas') y una pieza de evidencia (un informe de credenciales IAM), Claude puede evaluar si la evidencia realmente satisface el control — no solo si el archivo existe."
+      ]
+    },
+    "incident": {
+      "title": "Brecha de Evidencia SOC 2 de Equifax — Previo a la Violación (2017)",
+      "impact": "147M registros violados; la auditoría posterior a la violación reveló brechas en la recopilación de evidencia que enmascaraban fallas de control",
+      "body": [
+        "El análisis posterior a la violación de la postura de cumplimiento de Equifax reveló que la recopilación de evidencia para controles de parches estaba incompleta — existían certificados que mostraban que se aplicaban parches, pero la evidencia no verificaba que la vulnerabilidad Apache Struts (CVE-2017-5638) fuera realmente parcheada en los sistemas expuestos.",
+        "La recopilación de evidencia automatizada con validación impulsada por Claude habría marcado esta brecha: la evidencia se habría recopilado de todos los sistemas dentro del alcance, Claude habría identificado que la versión vulnerable de Apache Struts aún se ejecutaba en los servidores orientados a la web, y el control habría sido evaluado como 'no satisfecho' — desencadenando la remediación antes de la violación."
+      ]
+    },
+    "timeline": [
+      "Violación de Equifax — brechas en la recopilación de evidencia enmascaraban fallas de control de parches",
+      "AICPA actualiza requisitos de evidencia SOC 2 — la recopilación automatizada está creciendo",
+      "Primeros sistemas de recopilación de evidencia agentic en producción desplegados",
+      "La validación de evidencia de Claude logra precisión del 95%+ frente a revisión manual del auditor"
+    ],
+    "keyTakeaways": [
+      "La recopilación de evidencia consume el 60% del tiempo de auditoría — la automatización lo reduce a horas",
+      "Asignar cada artefacto de evidencia a un requisito de control específico",
+      "Claude valida si la evidencia realmente satisface el control — no solo su presencia",
+      "Resultado: paquete estructurado con evaluación (satisfecho/parcial/no satisfecho) por control"
+    ]
+  },
+  "audit-a09": {
+    "tagline": "Un agente audita un control. Una tubería de agentes audita una organización.",
+    "overview": [
+      "Las herramientas de auditoría de un solo agente manejan controles o dominios individuales. Las tuberías de auditoría multiagente coordinan múltiples agentes especialistas — cada uno experto en un dominio específico — bajo un agente orquestador que planifica la auditoría, delega tareas, sintetiza resultados y produce el informe final.",
+      "El patrón del orquestador refleja cómo funcionan los equipos de auditoría humanos: un gerente de participación planifica la auditoría, asigna flujos de trabajo a especialistas (seguridad de redes, IAM, seguridad de aplicaciones, registro), recibe flujos de trabajo completados, identifica hallazgos entre dominios y redacta el informe final. Los agentes Claude pueden desempeñar todos estos roles simultáneamente.",
+      "El SDK de agentes de Anthropic y la API Claude ambos soportan patrones multiagente. El orquestador utiliza llamadas de herramienta para generar subagentes: `run_iam_audit_agent`, `run_network_audit_agent`, `run_secrets_audit_agent`. Cada subagente ejecuta su tubería completa y devuelve hallazgos estructurados. El orquestador sintetiza hallazgos entre dominios que ningún especialista individual vería."
+    ],
+    "technical": {
+      "title": "Patrón Orquestador-Especialista",
+      "body": [
+        "Responsabilidades del orquestador: analizar el alcance de la auditoría, crear flujos de trabajo paralelos, generar agentes especialistas con herramientas y indicaciones apropiadas, recopilar resultados, identificar hallazgos entre dominios (p. ej., un rol IAM que tiene acceso de red a un sistema con exposición de secretos), producir el informe integrado final.",
+        "Responsabilidades del agente especialista: auditoría de dominio enfocada utilizando herramientas específicas del dominio, devolver hallazgos JSON estructurados con severidad, evidencia y remediación. Los especialistas no deben comunicarse entre sí — toda síntesis ocurre a nivel del orquestador. Esto previene errores en cascada y hace que la tubería sea depurable."
+      ]
+    },
+    "incident": {
+      "title": "MOVEit Transfer Cadena de Suministro — Brecha de Auditoría entre Dominios (2023)",
+      "impact": "2,000+ organizaciones comprometidas; 60M+ datos de individuos robados",
+      "body": [
+        "La brecha de MOVEit explotó una vulnerabilidad de inyección SQL (CVE-2023-34362) en MOVEit Transfer. Las auditorías posteriores al incidente de las organizaciones afectadas revelaron que la vulnerabilidad existía en capas de red, aplicación y base de datos — un problema entre dominios que auditorías de dominio único habrían abordado parcialmente cada una pero ninguna habría capturado completamente.",
+        "Una tubería de auditoría multiagente habría correlacionado: el agente de red marcando la exposición a Internet de MOVEit, el agente de aplicación marcando la inyección SQL sin parches, y el agente IAM marcando los permisos de base de datos que permitieron la extracción de datos. La síntesis entre dominios habría producido un hallazgo de cadena de riesgo crítico antes de la explotación."
+      ]
+    },
+    "timeline": [
+      "Brecha de MOVEit — vulnerabilidad entre dominios explotada en 2000+ orgs",
+      "Marcos de trabajo multiagente (LangGraph, CrewAI) alcanzan madurez de producción",
+      "SDK de Agentes de Anthropic lanzado — herramientas multiagente de primera parte",
+      "Firmas de auditoría empresarial despliegan tuberías multiagente reemplazando flujos de trabajo manuales"
+    ],
+    "keyTakeaways": [
+      "El orquestador planifica, delega y sintetiza — los especialistas ejecutan auditorías de dominio",
+      "Ejecutar agentes especialistas en paralelo para emparejar la estructura del equipo de auditoría humano",
+      "La síntesis entre dominios es donde las tuberías multiagente encuentran lo que los agentes individuales pierden",
+      "Los especialistas devuelven JSON estructurado — nunca lenguaje natural — para una síntesis confiable"
+    ]
+  },
+  "audit-a10": {
+    "tagline": "El hallazgo es tan útil como el informe. Claude escribe más rápido que cualquier auditor.",
+    "overview": [
+      "La redacción de informes de auditoría es donde mueren los hallazgos de auditoría. Los auditores dedican 30–40% de su tiempo a escribir — traduciendo hallazgos técnicos a lenguaje comprensible para la gerencia, redactando recomendaciones de remediación, formateando paquetes de evidencia y produciendo resúmenes ejecutivos. Este tiempo es valioso para los clientes pero de bajo valor para los auditores.",
+      "Claude destaca en la generación de informes de auditoría porque puede traducir hallazgos JSON estructurados a lenguaje de auditoría profesional, calibrar la profundidad técnica según la audiencia (resumen ejecutivo vs apéndice técnico), generar pasos de remediación específicos a partir de hallazgos generales y mantener un tono y formato consistentes en cientos de hallazgos.",
+      "El agente de generación de informes toma los hallazgos estructurados del pipeline de auditoría multiagente, aplica una plantilla de informe (con secciones para resumen ejecutivo, alcance, metodología, hallazgos por severidad y hoja de ruta de remediación) y produce un informe preliminar que los auditores revisan y finalizan en lugar de escribir desde cero."
+    ],
+    "technical": {
+      "title": "Arquitectura del Prompt de Generación de Informes",
+      "body": [
+        "La generación de informes requiere ingeniería de prompt cuidadosa para una salida consistente. Use un prompt del sistema que especifique: estilo de escritura (formal, tercera persona), audiencia (CISO y junta directiva vs. administrador de sistemas), lenguaje de severidad ('Crítico — Acción Inmediata Requerida' vs solo 'Crítico'), y estructura (los hallazgos deben incluir: título, hallazgo, riesgo, recomendación, campo de respuesta gerencial).",
+        "Para conjuntos grandes de hallazgos, use la ventana de contexto extendido de Claude para procesar todos los hallazgos en una sola llamada. Para auditorías muy grandes (500+ hallazgos), divida por dominio y genere borradores de secciones, luego use una llamada de síntesis para producir el resumen ejecutivo a partir de los resúmenes de secciones."
+      ]
+    },
+    "incident": {
+      "title": "Dyn DNS DDoS — La Redacción de Informes Retrasó la Remediación (2016)",
+      "impact": "Twitter, Netflix, Reddit, GitHub, Spotify fuera de servicio por horas; botnet Mirai a través de dispositivos IoT",
+      "body": [
+        "El análisis posterior al incidente del ataque DDoS de Dyn reveló que varias evaluaciones de seguridad IoT habían identificado previamente el riesgo de dispositivos IoT sin parches siendo utilizados para DDoS. Sin embargo, los informes de auditoría fueron redactados en términos genéricos — 'mejorar la postura de seguridad IoT' — en lugar de recomendaciones específicas y viables. El lenguaje vago del informe significó que ninguna remediación fue priorizada.",
+        "Los informes generados por Claude producen recomendaciones específicas: 'Deshabilitar Telnet (puerto 23) en todos los dispositivos IoT en el entorno de producción usando el procedimiento de cambio de configuración de red en el runbook RB-042. Plazo: 30 días. Propietario: Operaciones de Red.' Las recomendaciones específicas se implementan; las vagas se depriorizan."
+      ]
+    },
+    "timeline": [
+      "Dyn DDoS — lenguaje vago de informe de auditoría retrasa remediación de seguridad IoT",
+      "Firmas Big 4 comienzan a usar LLMs para generación de primer borrador de informes de auditoría",
+      "Claude genera secciones de informes de auditoría indistinguibles de la prosa de auditor senior",
+      "La generación de informes reduce el tiempo de entrega de auditoría en 40% en firmas de auditoría empresariales"
+    ],
+    "keyTakeaways": [
+      "Las recomendaciones vagas ('mejorar seguridad') no se implementan — Claude escribe las específicas",
+      "Use prompts del sistema para hacer cumplir el estilo del informe, la audiencia y las secciones de hallazgos requeridas",
+      "Claude traduce hallazgos JSON estructurados a lenguaje de auditoría comprensible para la gerencia",
+      "La generación de informes reduce el tiempo de entrega en 40% — los auditores revisan y finalizan, no escriben"
+    ]
+  },
+  "audit-a11": {
+    "tagline": "Los auditorías anuales encuentran los problemas del año pasado. El monitoreo continuo encuentra los de hoy.",
+    "overview": [
+      "Los auditorías de TI tradicionales son evaluaciones puntuales — capturan el estado de los controles en el momento de la auditoría, que puede ser meses o años antes de que se verifique la remediación. El monitoreo continuo de cumplimiento utiliza agentes programados que ejecutan el pipeline de auditoría repetidamente — diariamente, semanalmente, o en cada cambio de infraestructura — proporcionando visibilidad en tiempo real de la postura de cumplimiento.",
+      "Los agentes Claude programados pueden ejecutar verificaciones de cumplimiento con la frecuencia necesaria, alertar sobre desviaciones de la línea de base inmediatamente, y mantener un panel de control de postura de cumplimiento histórico. Cuando se crea un nuevo bucket S3 con acceso público, el agente lo detecta en la siguiente ejecución programada — no en la siguiente auditoría anual.",
+      "El monitoreo continuo se integra con la respuesta a incidentes: cuando se detecta un hallazgo CRÍTICO, el agente no solo lo registra — abre un ticket en Jira, alerta al ingeniero de guardia mediante PagerDuty, y publica un hallazgo formateado en el canal de Slack de seguridad. El hallazgo de auditoría se convierte en una alerta operacional."
+    ],
+    "technical": {
+      "title": "Arquitectura de Programación y Alertas",
+      "body": [
+        "Opciones de programación: reglas de AWS EventBridge (expresión cron → Lambda → agente Claude), flujos de trabajo programados de GitHub Actions (cron: '0 6 * * *'), o una plataforma de orquestación dedicada (Temporal, Airflow). El código del agente es idéntico al de la auditoría puntual — solo cambia el disparador.",
+        "Integración de alertas: el agente devuelve hallazgos JSON estructurados. Un paso de postprocesamiento asigna la severidad a canales de alerta: CRÍTICO → PagerDuty + Slack + Jira, ALTO → Slack + Jira, MEDIO → Jira. Las reglas de supresión previenen fatiga de alertas para riesgos conocidos aceptados con controles compensatorios documentados."
+      ]
+    },
+    "incident": {
+      "title": "Brecha de LastPass — Deriva de Configuración no Detectada (2022)",
+      "impact": "Bóvedas de contraseñas encriptadas de 33M clientes robadas; el ataque persistió meses sin ser detectado",
+      "body": [
+        "La brecha de LastPass persistió de agosto a noviembre de 2022 — cuatro meses — en parte porque la deriva de configuración en el entorno de desarrollo pasó desapercibida. El atacante comprometió la máquina de un desarrollador, luego utilizó ese acceso para llegar al entorno de copia de seguridad de producción. El monitoreo continuo de patrones de acceso y configuración del entorno hubiera detectado el acceso anómalo dentro de horas.",
+        "Los agentes de cumplimiento continuo monitorean no solo configuraciones sino líneas de base de comportamiento: qué roles de IAM acceden a qué recursos, a qué horas del día, desde qué rangos de IP. Las desviaciones de la línea de base establecida generan alertas inmediatas — convirtiendo un tiempo de permanencia de 4 meses en una ventana de respuesta de 4 horas."
+      ]
+    },
+    "timeline": [
+      "Brecha de LastPass — tiempo de permanencia de 4 meses debido a falta de monitoreo continuo",
+      "AWS Security Hub añade reglas de cumplimiento continuo en más de 1000+ controles",
+      "Los agentes Claude de cumplimiento programado entran en producción a escala empresarial",
+      "El monitoreo continuo de cumplimiento de IA se convierte en estándar de auditoría SOC 2 Type II"
+    ],
+    "keyTakeaways": [
+      "Las auditorías anuales encuentran los problemas del año pasado — el monitoreo continuo encuentra los de hoy",
+      "Programar agentes Claude mediante EventBridge, GitHub Actions, o Temporal cron",
+      "Asignar hallazgos CRÍTICOS a alertas inmediatas de PagerDuty + Slack + Jira",
+      "Monitorear líneas de base de comportamiento — no solo configuraciones estáticas"
+    ]
+  },
+  "audit-a12": {
+    "tagline": "El futuro de la auditoría: define el alcance, presiona ejecutar, recibe el informe.",
+    "overview": [
+      "El pipeline de auditoría agentica integral combina todos los componentes cubiertos en esta época: uso de herramientas para recopilación de datos, servidores MCP para integración de sistemas, orquestación multiagente para flujos de trabajo paralelos, análisis impulsado por IA para IAM/secretos/IaC, recopilación automática de evidencia, generación de informes y monitoreo continuo para detección de desviación post-auditoría.",
+      "Un engagement de auditoría agentica completo se ejecuta de la siguiente manera: (1) El auditor define el alcance (IDs de cuenta, regiones, estándares aplicables), (2) El agente orquestador planifica flujos de trabajo y genera especialistas, (3) Los especialistas se ejecutan en paralelo — IAM, red, secretos, IaC, registro, (4) El orquestador sintetiza hallazgos entre dominios, (5) El escritor de informes genera un borrador, (6) El centinela continuo se activa para monitoreo continuo, (7) El auditor revisa y finaliza en horas, no en semanas.",
+      "El pipeline agentica no reemplaza auditorías — elimina las partes mecánicas de la auditoría (recopilación de datos, formato, coincidencia de patrones básicos) para que los auditores puedan enfocarse en el juicio: evaluar el contexto del riesgo, evaluar controles compensatorios, asesorar sobre estrategia de remediación y comunicar hallazgos a los interesados."
+    ],
+    "technical": {
+      "title": "Stack de Componentes del Pipeline Completo",
+      "body": [
+        "Capa 1 — Recopilación de datos: servidores MCP (sistema de archivos, git, GitHub, fetch) + herramientas personalizadas de AWS/GCP/Azure SDK. Capa 2 — Análisis: agentes Claude especializados por dominio con indicaciones específicas del dominio y conjuntos de herramientas. Capa 3 — Orquestación: agente orquestador con coordinación multiagente y síntesis entre dominios. Capa 4 — Salida: agente de generación de informes + constructor de paquete de evidencia. Capa 5 — Operaciones: centinela programado con integración de alertas.",
+        "El pipeline se implementa como un DAG (gráfico acíclico dirigido): la enumeración de inventario debe completarse antes del análisis de IAM (que necesita la lista de roles), pero los análisis de IAM, red, secretos e IaC pueden ejecutarse en paralelo. El orquestador gestiona este gráfico de dependencias, maximizando el paralelismo mientras respeta las dependencias de datos."
+      ]
+    },
+    "incident": {
+      "title": "Brecha de MGM Resorts — La Auditoría Manual No Pudo Seguir el Ritmo (2023)",
+      "impact": "$100M+ de pérdidas operativas; sistemas de hoteles, máquinas tragamonedas, llaves digitales fuera de línea durante 10 días",
+      "body": [
+        "La brecha de MGM comenzó con una llamada de ingeniería social al servicio de asistencia de TI — una técnica que ninguna herramienta de auditoría técnica detecta. Pero el movimiento lateral posterior, escalada de privilegios e implementación de ransomware ALPHV explotaron todas las brechas que habrían aparecido en una auditoría agentica integral: roles de IAM demasiado permisivos, segmentación de red insuficiente entre sistemas de TI y OT, y monitoreo inadecuado de la actividad de cuentas privilegiadas.",
+        "El entorno de MGM era demasiado grande y complejo para que los auditores manuales lo evaluaran de manera integral. Un pipeline agentica que se ejecute semanalmente habría mantenido un inventario actual de cada rol privilegiado, cada conexión de red entre unidades de negocio y cada evento de autenticación anómalo — dando a los defensores el contexto necesario para detectar y responder más rápido."
+      ]
+    },
+    "timeline": [
+      "Brecha de MGM — pérdida de $100M; entorno empresarial complejo demasiado grande para auditoría manual",
+      "Los primeros pipelines de auditoría agentica empresarial logran automatización completa de extremo a extremo",
+      "Los despachos Big 4 implementan pipelines de auditoría agentica para reemplazar el 60% de procedimientos manuales",
+      "La auditoría continua agentica se convierte en la expectativa de base regulatoria"
+    ],
+    "keyTakeaways": [
+      "Pipeline de extremo a extremo: inventario → análisis de dominio paralelo → síntesis → informe → centinela",
+      "Ejecuta agentes de dominio en paralelo; usa gráfico de dependencias para requisitos secuenciales",
+      "Los agentes eliminan el trabajo de auditoría mecánico; los auditores se enfocen en juicio y comunicación",
+      "El centinela continuo se activa post-auditoría para detectar desviación antes del próximo engagement"
+    ]
+  },
+  "audit-cm01": {
+    "tagline": "No puedes defender lo que no puedes ver. La monitorización continua convierte la visibilidad en seguridad.",
+    "overview": [
+      "NIST Special Publication 800-137 define la Monitorización Continua de Seguridad de la Información (ISCM) como el mantenimiento de una conciencia continua de la seguridad de la información, vulnerabilidades y amenazas para respaldar las decisiones de gestión de riesgos organizacionales. Publicado en 2011 y actualizado hasta 2024, sigue siendo el marco federal autorizado para programas de monitorización continua.",
+      "ISCM se construye sobre seis pasos: Definir, Establecer, Implementar, Analizar/Reportar, Responder y Revisar. Estos pasos forman un ciclo continuo — no un proyecto de una sola vez. El marco distingue entre tres niveles de monitorización: el nivel organizacional (gobernanza y estrategia), el nivel de proceso empresarial/de misión (riesgo a nivel de proceso) y el nivel de sistema de información (controles técnicos y datos).",
+      "Los programas ISCM modernos van más allá de la monitorización de cumplimiento normativo. Establecen métricas, definen frecuencias de monitorización basadas en la criticidad de los activos, automatizan la recopilación de datos e integran hallazgos en decisiones de gestión de riesgos. El objetivo no es solo detectar incidentes — es mantener una imagen precisa y en tiempo real de la postura de seguridad organizacional."
+    ],
+    "technical": {
+      "title": "Arquitectura de Implementación de ISCM",
+      "body": [
+        "Un programa ISCM en producción requiere cuatro capas: recopilación de datos (agentes, APIs, reenviadores de registros), normalización (análisis en un esquema común como ECS u OCSF), análisis (reglas de correlación, modelos de ML, enriquecimiento de inteligencia de amenazas) y respuesta (paneles de control, alertas, integración de ticketing, libros de jugadas automatizados).",
+        "La frecuencia de monitorización está impulsada por la criticidad del activo y la volatilidad del control. Una aplicación web de cara al público necesita escaneos de vulnerabilidades diarios o continuos; un sistema de copia de seguridad aislado por aire podría necesitar solo controles semanales. NIST 800-137 proporciona un marco de decisión de frecuencia basado en la categorización FIPS 199 (sistemas de impacto Bajo/Moderado/Alto)."
+      ]
+    },
+    "incident": {
+      "title": "Brecha de Datos de OPM — Brecha de Monitorización (2015)",
+      "impact": "21,5 millones de registros de autorización de seguridad robados; brecha no detectada durante más de un año",
+      "body": [
+        "La brecha de la Oficina de Gestión de Personal fue el robo más grande de datos de personal del gobierno de EE.UU. en la historia. Los atacantes — atribuidos a actores estatales chinos — mantuvieron acceso persistente durante más de 14 meses antes de ser detectados. El Inspector General de OPM había advertido repetidamente sobre capacidades de monitorización continua inadecuadas, incluyendo la ausencia de un programa ISCM integral.",
+        "El análisis posterior a la brecha reveló que OPM carecía de visibilidad sobre el movimiento lateral dentro de su red, no tenía establecimiento de línea base de comportamiento de cuentas de usuarios privilegiados, y no había implementado el programa CDM (Diagnóstico Continuo y Mitigación) mandatado por DHS. Un programa ISCM funcional con detección de anomalías en el acceso de cuentas privilegiadas probablemente habría detectado la brecha en días, no en meses."
+      ]
+    },
+    "timeline": [
+      "NIST SP 800-137 publicado — marco federal de ISCM establecido",
+      "Programa CDM de DHS lanzado — monitorización continua en todas las agencias federales",
+      "Brecha de OPM revelada — tiempo de permanencia de 14 meses expone brechas de ISCM",
+      "NIST SP 800-137A publicado — orientación de evaluación del programa ISCM",
+      "Plataformas ISCM nativas de IA emergen — triaje de alertas asistido por LLM e informes"
+    ],
+    "keyTakeaways": [
+      "ISCM es un ciclo continuo de seis pasos — no un proyecto de cumplimiento de una sola vez",
+      "La frecuencia de monitorización debe coincidir con la criticidad del activo (FIPS 199: Bajo/Moderado/Alto)",
+      "Tres niveles: gobernanza organizacional, proceso empresarial y sistema de información",
+      "Las brechas de visibilidad causan largos tiempos de permanencia — OPM pasó desapercibido durante 14 meses",
+      "Los programas CDM e ISCM deben ser financiados, dotados de personal y revisados regularmente"
+    ]
+  },
+  "audit-cm03": {
+    "tagline": "Los atacantes roban credenciales. UEBA detecta el comportamiento que sigue.",
+    "overview": [
+      "User and Entity Behavior Analytics (UEBA) aborda la limitación fundamental de la seguridad basada en perímetro y firmas: una vez que un atacante tiene credenciales válidas, aparecen legítimos ante los controles tradicionales. UEBA construye líneas base estadísticas del comportamiento normal para cada usuario y entidad (dispositivos, cuentas de servicio, aplicaciones) y marca desviaciones, incluso cuando el atacante está utilizando credenciales robadas pero válidas.",
+      "Las plataformas UEBA ingieren datos de identidad (Active Directory, Okta, Azure AD), telemetría de endpoints (EDR), flujos de red (NetFlow, IPFIX), registros de aplicaciones y eventos DLP. Para cada entidad, calculan características comportamentales: horarios de trabajo típicos, ubicaciones geográficas habituales, volúmenes normales de acceso a datos, comparación de comportamiento del grupo de pares, patrones de uso de aplicaciones y secuencias de autenticación.",
+      "La salida de UEBA es una puntuación de riesgo: una representación numérica continua de cuán anómalo es el comportamiento actual de una entidad en relación con su propia línea base y su grupo de pares. Una sola anomalía rara vez desencadena una alerta; los sistemas UEBA encadenan múltiples anomalías de baja confianza en un hallazgo de riesgo de alta confianza. Este enfoque de encadenamiento de amenazas es lo que distingue UEBA de las alertas basadas en reglas únicas."
+    ],
+    "technical": {
+      "title": "Puntuación de Riesgo y Encadenamiento de Amenazas",
+      "body": [
+        "Las puntuaciones de riesgo UEBA se calculan utilizando modelos de conjunto: pronósticos de series temporales (ARIMA, LSTM) para líneas base comportamentales temporales, comparación de grupos de pares para puntuación de anomalías relativas, y redes bayesianas para correlacionar señales independientes en una puntuación de riesgo compuesta. La idea clave es que ninguna de las señales individuales puede exceder un umbral de alerta, pero su combinación sí.",
+        "Ejemplo de encadenamiento de amenazas: Usuario descarga 500MB (riesgo bajo: 2.1), inicia sesión desde un nuevo país (moderado: 4.8), accede a la base de datos de RRHH por primera vez (moderado: 5.2), envía un correo electrónico a una dirección externa con un adjunto (moderado: 4.1). Ningún evento único desencadena una alerta; la puntuación de riesgo encadenada de 8.9 lo hace. Esto reduce drásticamente los falsos positivos en comparación con la detección basada en reglas."
+      ]
+    },
+    "incident": {
+      "title": "Amenaza Interna de Tesla — Exfiltración de Datos (2023)",
+      "impact": "75.735 registros de empleados filtrados; incluye números de Seguro Social y datos financieros",
+      "body": [
+        "Dos ex empleados de Tesla transfirieron más de 100GB de datos confidenciales al medio de comunicación alemán Handelsblatt antes de renunciar. Los datos filtrados incluían información personal de 75.735 empleados de Tesla, quejas de clientes y registros financieros. La investigación de Tesla reveló que los empleados habían extraído datos sistemáticamente durante semanas, un patrón clásico de amenaza interna.",
+        "UEBA habría detectado múltiples señales comportamentales en las semanas previas a la salida: grandes descargas de archivos de sistemas de RRHH, actividad de dispositivos USB fuera de patrones normales, reenvío de correos electrónicos a cuentas personales y acceso a repositorios de datos fuera de la función laboral normal de los empleados. El encadenamiento de puntuaciones de riesgo en estas señales habría generado una alerta crítica mucho antes de que los datos llegaran al periodista."
+      ]
+    },
+    "timeline": [
+      "Gartner acuña el término 'UEBA' — UBA extendido para cubrir entidades no humanas",
+      "UEBA integrado en plataformas SIEM principales (Splunk UBA, IBM QRadar UBA)",
+      "Modelo de seguridad centrado en identidad surge — UEBA se convierte en componente principal de Zero Trust",
+      "Amenaza interna de Tesla — 75k registros de empleados exfiltrados por empleados que se van",
+      "UEBA mejorada con LLM: explicación en lenguaje natural de patrones de comportamiento anómalo"
+    ],
+    "keyTakeaways": [
+      "UEBA detecta credenciales comprometidas por comportamiento, no por firma — el atacante se ve diferente incluso con acceso válido",
+      "Encadenamiento de puntuación de riesgo: múltiples señales de baja confianza se componen en alertas de alta confianza",
+      "Los modelos de línea base son por entidad y por grupo de pares — lo 'normal' para un CFO difiere de lo de un analista junior",
+      "Las amenazas internas son el caso de uso más fuerte de UEBA — empleados con acceso legítimo que cambian su comportamiento",
+      "UEBA requiere 30–90 días de datos de línea base antes de que la precisión de detección sea confiable"
+    ]
+  },
+  "audit-cm04": {
+    "tagline": "La red nunca miente. Cada movimiento del atacante deja un rastro de paquetes.",
+    "overview": [
+      "Network Detection and Response (NDR) — anteriormente Network Traffic Analysis (NTA) — proporciona visibilidad de seguridad en tráfico cifrado y sin cifrar a nivel de red, independiente de agentes de endpoint. Mientras que EDR requiere un agente en cada dispositivo gestionado, NDR observa pasivamente todo el tráfico que atraviesa los segmentos monitoreados, incluyendo dispositivos IoT, sistemas OT y activos no gestionados que no pueden ejecutar agentes.",
+      "Las plataformas NDR (Darktrace, ExtraHop, Vectra AI, Corelight) realizan inspección profunda de paquetes, descodificación de protocolos y modelado de comportamiento basado en ML de flujos de red. Identifican patrones de comunicación anómalos: conexiones externas inesperadas, volúmenes de transferencia de datos inusuales, escaneo de puertos, movimiento lateral vía SMB/RDP/WMI, tunelización DNS y patrones de C2 beaconing incluso sobre HTTPS (analizando tiempo de conexión y tamaño, no carga útil).",
+      "La integración de NDR con datos de EDR y SIEM crea el modelo XDR (Extended Detection and Response) — correlacionando señales de red, endpoint e identidad para detecciones de mayor confianza. NDR es particularmente valiosa para detectar amenazas que evitan controles de endpoint: implantes de cadena de suministro, malware a nivel de firmware y C2 alojado en la nube utilizando servicios legítimos."
+    ],
+    "technical": {
+      "title": "Detección de C2 Beaconing",
+      "body": [
+        "El malware Command-and-control (C2) se comunica con su operador en un cronograma — típicamente cada 30–300 segundos con pequeños paquetes de verificación. Esto crea un patrón de beaconing distintivo en datos de NetFlow: conexiones de alta frecuencia a una única IP externa con tiempos entre llegadas consistentes y tamaños de carga útil pequeños y uniformes. Las plataformas NDR detectan este patrón utilizando análisis de Fourier del tiempo de conexión y agrupamiento de distribuciones de tamaño de flujo.",
+        "El C2 cifrado (HTTPS, DNS-over-HTTPS) no puede ser descifrado por NDR pasivo, pero metadatos de TLS — campos de certificado, tiempo de handshake, huellas dactilares JA3, frecuencia de conexión — proporciona suficiente señal para clasificación. Una conexión legítima de CDN tiene características de comportamiento diferentes a un canal C2 que utiliza el mismo puerto."
+      ]
+    },
+    "incident": {
+      "title": "Ataque Hafnium Exchange Server — Detección de C2 (2021)",
+      "impact": "Cuatro vulnerabilidades zero-day; campaña de espionaje de actor estatal atribuida a China",
+      "body": [
+        "El grupo Hafnium explotó cuatro zero-days de Exchange Server (ProxyLogon) para desplegar web shells y establecer canales de C2. La explotación inicial fue a través de HTTPS legítimo a la interfaz OWA de Exchange — indistinguible del tráfico de usuario normal para detección basada en firmas. El C2 posterior a la explotación utilizó tráfico HTTPS aparentemente benigno a infraestructura controlada por el atacante.",
+        "Las organizaciones con NDR implementado detectaron los ataques a través de anomalías de comportamiento: volúmenes inusuales de solicitudes HTTPS POST desde servidores Exchange (los servidores típicamente reciben, no inician conexiones), conexiones a dominios recién registrados con certificados frescos e instalación de datos en directorios inusuales. Las plataformas NDR marcaron servidores Exchange iniciando conexiones externas — una desviación de comportamiento fundamental de su rol de red esperado."
+      ]
+    },
+    "timeline": [
+      "Gartner define la categoría NTA (Network Traffic Analysis)",
+      "Gartner cambia el nombre de NTA a NDR — se enfatizan capacidades de respuesta",
+      "Ataques Hafnium Exchange — detección de comportamiento NDR prueba valor vs zero-days",
+      "NDR en la nube emerge — análisis de registros de flujo VPC reemplaza captura de paquetes on-prem",
+      "Integración de NDR + LLM — consultas de análisis forense de red en lenguaje natural"
+    ],
+    "keyTakeaways": [
+      "NDR observa todo el tráfico de red pasivamente — no se requiere agente en dispositivos monitoreados",
+      "El beaconing de C2 es detectable por regularidad de tiempo incluso en canales cifrados",
+      "Los servidores iniciando conexiones salientes inesperadas es una anomalía de comportamiento de alta fidelidad",
+      "Las huellas dactilares JA3/JA3S de TLS identifican familias de malware incluso sin descifrado",
+      "NDR cierra la brecha de visibilidad para IoT, OT y endpoints no gestionados que no pueden ejecutar EDR"
+    ]
+  },
+  "audit-cm05": {
+    "tagline": "La mala configuración es el vector de rotura de nube #1. CSPM lo encuentra antes que los atacantes.",
+    "overview": [
+      "Cloud Security Posture Management (CSPM) monitorea continuamente las configuraciones de infraestructura en la nube contra puntos de referencia de seguridad — CIS AWS Foundations Benchmark, NIST 800-53, PCI-DSS, SOC 2 — e identifica desviaciones en tiempo real. Mientras que la gestión tradicional de vulnerabilidades se enfoca en defectos de software, CSPM se enfoca en errores de configuración: buckets de S3 públicos, roles de IAM excesivamente permisivos, bases de datos sin encriptar, grupos de seguridad abiertos a 0.0.0.0/0.",
+      "Las plataformas CSPM (Wiz, Prisma Cloud, Orca Security, AWS Security Hub, Microsoft Defender for Cloud) utilizan APIs de proveedores de nube — no agentes — para inventariar todos los recursos y sus configuraciones. Este enfoque sin agentes proporciona cobertura completa incluyendo funciones serverless, bases de datos administradas, registros de contenedores y servicios nativos de la nube que no pueden ejecutar agentes de punto final tradicionales.",
+      "El CSPM moderno ha evolucionado más allá de verificaciones de recursos individuales hacia análisis de ruta de ataque: modelar cómo un atacante podría encadenar múltiples configuraciones incorrectas — una instancia de EC2 pública con un rol de IAM excesivamente permisivo que tiene acceso de lectura a un bucket de S3 que contiene PII de clientes — para alcanzar recursos sensibles. La priorización de rutas de ataque ayuda a los equipos a enfocarse en la remediación de las rutas que más importan."
+    ],
+    "technical": {
+      "title": "Análisis de Ruta de Ataque",
+      "body": [
+        "El análisis de ruta de ataque modela la infraestructura en la nube como un gráfico dirigido: los nodos son recursos (instancias de EC2, roles de IAM, buckets de S3, bases de datos RDS), y los bordes son relaciones de acceso (asunción de rol, otorgamientos de política de bucket, reglas de grupo de seguridad). Un atacante que comienza desde una instancia de EC2 pública atraviesa el gráfico asumiendo roles de IAM adjuntos y siguiendo sus permisos.",
+        "Las plataformas CSPM calculan el radio de impacto de cada configuración incorrecta: si la instancia de EC2 X se ve comprometida, ¿qué recursos se pueden alcanzar siguiendo todos los roles adjuntos, perfiles de instancia y rutas de red? Los recursos alcanzables dentro de dos saltos desde un recurso de acceso público tienen prioridad elevada independientemente de la gravedad de su configuración incorrecta individual."
+      ]
+    },
+    "incident": {
+      "title": "Capital One S3 Misconfiguration — SSRF + CSPM Miss (2019)",
+      "impact": "106 millones de registros de clientes; acuerdo de $190M; SSRF a través de WAF mal configurado",
+      "body": [
+        "La falla de Capital One combinó dos errores: un WAF mal configurado que permitía SSRF al servicio de metadatos de EC2, filtrando credenciales de IAM; y un rol de IAM excesivamente permisivo que permitía al atacante listar y descargar más de 700 buckets de S3. Capital One tenía más de 700 buckets de S3 — la revisión manual era impráctica. Un sistema CSPM que verifica continuamente los permisos de rol de IAM y las políticas de acceso de S3 habría identificado el rol excesivamente permisivo inmediatamente.",
+        "Después de la brecha, Capital One implementó Wiz para la gestión de postura de seguridad en la nube. El análisis de ruta de ataque de Wiz habría identificado la cadena específica: EC2 vulnerable a SSRF → servicio de metadatos → rol de IAM → S3 ListBuckets + GetObject — una ruta de ataque de tres saltos desde internet a datos sensibles, todo a través de configuraciones incorrectas en lugar de vulnerabilidades de software."
+      ]
+    },
+    "timeline": [
+      "Gartner define la categoría CSPM — monitoreo de configuración en la nube formalizado",
+      "Brecha de Capital One — misconfiguration de S3 + IAM excesivamente permisivo expone 106M registros",
+      "Wiz recauda $250M — CSPM se convierte en categoría crítica de seguridad empresarial",
+      "El análisis de ruta de ataque se convierte en estándar CSPM — modelado de riesgo basado en gráficos",
+      "CNAPP (Cloud-Native Application Protection Platform) fusiona CSPM + CWPP + CIEM"
+    ],
+    "keyTakeaways": [
+      "La mala configuración causa el 80%+ de las brechas en la nube — CSPM la detecta antes que los atacantes",
+      "El escaneo sin agentes basado en API proporciona cobertura completa en la nube incluyendo serverless y PaaS",
+      "El análisis de ruta de ataque revela qué errores de configuración permiten cadenas de rotura de datos — prioriza esos primero",
+      "Los Benchmarks de CIS y NIST 800-53 proporcionan la biblioteca de controles de cumplimiento para verificaciones de CSPM",
+      "CNAPP extiende CSPM para incluir seguridad de contenedores, escaneo de secretos y protección en tiempo de ejecución"
+    ]
+  },
+  "audit-cm06": {
+    "tagline": "Tu red ve eventos. La inteligencia de amenazas te dice qué significan.",
+    "overview": [
+      "La integración de inteligencia de amenazas transforma eventos de seguridad brutos en hallazgos contextualizados enriqueciendo indicadores de compromiso (IoCs) — direcciones IP, nombres de dominio, hashes de archivos, URLs — con conocimiento externo sobre infraestructura de atacantes conocidos, familias de malware y TTPs de actores de amenaza. Cuando una plataforma NDR detecta una conexión a la IP 185.220.101.45, la inteligencia de amenazas responde: ¿es este un nodo de salida Tor conocido? ¿Está atribuido a un actor de amenaza específico? ¿Qué sector ataca este actor?",
+      "El estándar STIX (Structured Threat Information eXpression) define el modelo de datos para objetos de inteligencia de amenazas: Indicators (patrones IoC), Threat Actors, Attack Patterns (TTPs de MITRE ATT&CK), Campaigns, Malware, y Relationships entre ellos. TAXII (Trusted Automated eXchange of Intelligence Information) es el protocolo de transporte para compartir contenido STIX entre organizaciones y plataformas.",
+      "Los feeds de inteligencia provienen de tres niveles: código abierto (CISA AIS, Abuse.ch, AlienVault OTX, Emerging Threats), comercial (CrowdStrike Intelligence, Mandiant, Recorded Future) e ISACs específicos del sector (FS-ISAC para finanzas, H-ISAC para salud, E-ISAC para energía). Las plataformas modernas de SIEM y NDR consumen feeds STIX/TAXII automáticamente, enriqueciendo cada alerta con contexto de amenaza en el momento de la ingesta."
+    ],
+    "technical": {
+      "title": "Arquitectura de Integración STIX/TAXII",
+      "body": [
+        "Un servidor TAXII expone colecciones de objetos STIX a través de una API REST. Los clientes consultan el servidor TAXII en un horario (típicamente cada 5–60 minutos) para recuperar objetos nuevos y actualizados. Los Indicators STIX contienen expresiones en STIX Patterning Language que describen IoCs: `[ipv4-addr:value = '185.220.101.45']`, `[file:hashes.'SHA-256' = 'abc123...']`. Estos patrones se evalúan contra datos de logs normalizados por el pipeline de enriquecimiento del SIEM.",
+        "TIP (Threat Intelligence Platform) — OpenCTI, MISP, ThreatConnect, Anomali — actúa como la capa de agregación: consumiendo feeds de múltiples fuentes, deduplicando, puntuando niveles de confianza y exponiendo un endpoint TAXII unificado al SIEM del SOC. Esto previene sobrecarga del SIEM del volumen de feeds brutos (miles de millones de IoCs) filtrando previamente a indicadores de alta confianza y relevancia."
+      ]
+    },
+    "incident": {
+      "title": "Volt Typhoon — Compartición de Inteligencia C2 Living-off-the-Land (2023)",
+      "impact": "Actor estatal chino en posición previa en infraestructura crítica estadounidense para potencial interrupción en tiempos de guerra",
+      "body": [
+        "CISA, NSA y socios de Five Eyes divulgaron conjuntamente la campaña Volt Typhoon — un actor estatal chino que había estado living-off-the-land en infraestructura crítica estadounidense durante años. Volt Typhoon utilizó solo herramientas Windows integradas (LOLBins) y rutas de red legítimas para evitar detección, haciendo que la detección basada en firmas fuera inútil. La campaña fue detectada a través de análisis de comportamiento y compartición de inteligencia de amenazas entre agencias.",
+        "La divulgación incluyó un bundle STIX con TTPs de Volt Typhoon mapeados a MITRE ATT&CK, IoCs de infraestructura C2 e orientación de detección. Las organizaciones suscritas al feed TAXII de AIS (Automated Indicator Sharing) de CISA recibieron estos indicadores automáticamente dentro de horas de la divulgación, permitiendo enriquecimiento inmediato de logs históricos para buscar evidencia de compromiso previo."
+      ]
+    },
+    "timeline": [
+      "STIX 1.0 lanzado por MITRE — formato de inteligencia de amenazas estructurado estandarizado",
+      "STIX 2.0 + TAXII 2.0 lanzados — compartición automatizada basada en REST",
+      "CISA AIS (Automated Indicator Sharing) en vivo — feed TI federal gratuito",
+      "OASIS STIX 2.1 ratificado — Extensions, Notes y Opinions añadidos",
+      "Divulgación de Volt Typhoon — Bundle STIX de Five Eyes compartido globalmente vía TAXII"
+    ],
+    "keyTakeaways": [
+      "STIX define el modelo de datos; TAXII es el transporte — ambos requeridos para compartición TI automatizada",
+      "Las plataformas TIP agregan, deduplicán y puntuán feeds antes de exponer a SIEM",
+      "CISA AIS proporciona acceso STIX/TAXII gratuito — cada SOC debería estar suscrito",
+      "Las puntuaciones de confianza y fechas de expiración previenen que IoCs obsoletos generen falsos positivos",
+      "Los ISACs comparten inteligencia específica del sector que los feeds comerciales genéricos pierden"
+    ]
+  },
+  "audit-cm07": {
+    "tagline": "Los humanos no pueden superar 10,000 alertas por día. SOAR puede.",
+    "overview": [
+      "Las plataformas de Orquestación, Automatización y Respuesta de Seguridad (SOAR) (Palo Alto Cortex XSOAR, Splunk SOAR, Microsoft Sentinel SOAR, IBM QRadar SOAR) automatizan los libros de jugadas de investigación y respuesta que los analistas de SOC ejecutan manualmente para cada alerta. Un libro de jugadas de clasificación de phishing que toma 15 minutos a un analista humano toma una automatización SOAR menos de 30 segundos — y se ejecuta 24/7 sin fatiga del analista.",
+      "Los libros de jugadas SOAR son flujos de trabajo estructurados: desencadenante (alerta recibida) → enriquecimiento (búsqueda de IP en inteligencia de amenazas, extracción de información del usuario de AD, verificación del estado de aislamiento del endpoint) → decisión (¿es esto malicioso? ¿por encima del umbral?) → respuesta (bloquear IP en firewall, deshabilitar cuenta de usuario, aislar endpoint, crear ticket de incidente, notificar analista). Cada paso llama a una integración — las plataformas SOAR tienen 500–1,000 integraciones preestablecidas con herramientas de seguridad e IT.",
+      "El caso de ROI para SOAR es MTTR (Tiempo Medio de Respuesta). Clasificación manual de phishing: 45 minutos por alerta × 200 alertas/día = 150 horas-analista/día. Clasificación automatizada SOAR: 30 segundos × 200 alertas = 100 minutos-analista/día, con revisión humana solo en el 3% que necesita escalada. El valor de SOAR no es eliminar analistas — es asegurar que los analistas dediquen tiempo a decisiones, no a recopilación de datos."
+    ],
+    "technical": {
+      "title": "Patrones de Diseño de Libros de Jugadas",
+      "body": [
+        "Los libros de jugadas SOAR efectivos siguen tres principios de diseño: (1) Enriquecer primero, decidir después — recopilar todo el contexto antes de cualquier acción que pueda alertar a un atacante o causar disruption operacional; (2) Humano en el bucle para acciones de alto impacto — bloqueo automático en el firewall, pero requiere aprobación del analista antes de deshabilitar la cuenta de un CEO; (3) Acciones idempotentes — un libro de jugadas que se dispara dos veces debe tener el mismo resultado neto que dispararse una vez.",
+        "Las pruebas del libro de jugadas se realizan con datos de alertas sintéticas usando el sandbox integrado de la plataforma SOAR o un entorno de staging conectado a instancias de prueba de todas las integraciones. Un libro de jugadas con un error en el paso 'deshabilitar cuenta' que se ejecuta en producción es un riesgo de interrupción. El control de versiones (Git), revisión por pares y despliegue escalonado aplican a los libros de jugadas como lo hacen al código."
+      ]
+    },
+    "incident": {
+      "title": "Phishing SMS de Twilio — Retraso en Respuesta Manual (2022)",
+      "impact": "125 organizaciones de clientes comprometidas mediante robo de credenciales de empleados de Okta y Twilio",
+      "body": [
+        "Los empleados de Twilio recibieron mensajes SMS de phishing suplantando a IT de Twilio, dirigiéndolos a una página falsa de inicio de sesión SSO de Okta. Los empleados presentaron credenciales; los atacantes las usaron para acceder a los sistemas internos de Twilio. La respuesta inicial de Twilio tomó horas — durante las cuales los atacantes accedieron a datos de clientes y usaron la infraestructura SMS de Twilio para dirigirse a clientes posteriores incluyendo Okta.",
+        "Un libro de jugadas SOAR automatizado activado por eventos de autenticación anómalos (múltiples empleados iniciando sesión desde nuevas IPs dentro de minutos uno del otro) podría haber suspendido automáticamente las cuentas afectadas e informado al equipo de seguridad dentro de minutos del primer uso de credenciales. El ataque en cascada en 125 organizaciones posteriores fue una consecuencia directa del retraso en la respuesta."
+      ]
+    },
+    "timeline": [
+      "Concepto SOAR emerge de brechas de integración SIEM + ticketing + scripting",
+      "Palo Alto adquiere Demisto (XSOAR) — SOAR se convierte en categoría de producto empresarial",
+      "Splunk adquiere Phantom — vendedores SIEM principales agrupan capacidades SOAR",
+      "Brecha de Twilio destaca riesgo de MTTR — respuesta manual permite ataques en cascada",
+      "SOAR nativo de IA: LLMs generan código de libro de jugadas a partir de descripciones de lenguaje natural"
+    ],
+    "keyTakeaways": [
+      "SOAR reduce MTTR de horas a segundos para libros de jugadas de respuesta automatizada",
+      "Enriquecer primero, luego decidir — recopilar contexto antes de cualquier acción que pueda ser disruptiva",
+      "Humano en el bucle para acciones de alto impacto (deshabilitar cuenta, cambios de producción)",
+      "Los libros de jugadas son código — control de versiones, revisión y staging aplican",
+      "500–1,000 integraciones preestablecidas hacen de SOAR un multiplicador de fuerza en toda la pila de seguridad"
+    ]
+  },
+  "audit-cm08": {
+    "tagline": "La mejor trampa se ve exactamente como lo que el atacante está buscando.",
+    "overview": [
+      "La tecnología de engaño despliega activos falsos — honeypots (sistemas señuelo), honeytokens (credenciales y archivos señuelo), y canary tokens (rastreadores integrados) — en toda la red para detectar atacantes que ya han eludido las defensas perimetrales. Cualquier interacción con un señuelo es una alerta de falso positivo casi nula: los usuarios legítimos no tienen razón para acceder a credenciales falsas, conectarse a servidores honeypot o abrir documentos canary.",
+      "Las plataformas de engaño modernas (Attivo Networks, Illusive Networks, Canarytokens.org, TrapX) distribuyen cientos o miles de señuelos en todo el entorno — cuentas falsas de Active Directory con nombres atractivos como 'svc-admin-backup', recursos compartidos de archivos falsos con documentos etiquetados como 'Q4-Salary-Review.xlsx', servidores honeypot de bases de datos escuchando en puertos estándar. La escala de señuelos significa que un atacante que realice movimiento lateral o reconocimiento casi con seguridad activará uno.",
+      "Los honeytokens extienden el engaño más allá de los sistemas: claves API falsas integradas en repositorios de código (monitoreo de GitHub), claves de acceso AWS falsas (monitoreadas automáticamente vía CloudTrail), registros de bases de datos falsos con valores de campo rastreables, y documentos canary que contienen balizas web ocultas que se activan cuando se abren. Estos tokens proporcionan advertencia temprana de robo de credenciales, exfiltración de datos y acceso interno a documentos sensibles."
+    ],
+    "technical": {
+      "title": "Patrones de Despliegue de Honeytoken",
+      "body": [
+        "Despliegue de honeytoken AWS: crear un usuario IAM sin permisos pero con una clave de acceso monitoreada. Incrustar la clave en una ubicación realista — `~/.aws/credentials`, un archivo de configuración, un repositorio de GitHub (público o privado). Cualquier uso de la clave genera un evento de CloudTrail que activa una alerta inmediata. La clave no tiene permisos reales, por lo que hay cero riesgo operativo por su exposición — solo el valor de la señal.",
+        "Las cuentas honeypot de Active Directory deben tener nombres realistas, membresías de grupo y marcas de tiempo de último inicio de sesión. Las cuentas señuelo de AD nombradas 'svc-backup-admin' o 'helpdesk-admin2' atraen atacantes que realizan enumeración LDAP en busca de cuentas privilegiadas. Los SPN Kerberoastable en cuentas señuelo son particularmente efectivos — un atacante solicitando el ticket se revela a sí mismo inmediatamente."
+      ]
+    },
+    "incident": {
+      "title": "Violación de Datos de Uber — Fallo de Honeytoken de GitHub (2022)",
+      "impact": "Acceso completo al sistema interno; 57,000 registros de empleados; ataque de fatiga MFA",
+      "body": [
+        "El atacante de 18 años que comprometió a Uber en 2022 obtuvo acceso inicial por fatiga de MFA (bombardeo de SMS a un contratista hasta que aprobó). Después del acceso inicial, el atacante encontró credenciales de Uber codificadas en un script de PowerShell en un recurso compartido de archivo interno — una oportunidad clásica de honeytoken. Uber no tenía canary tokens en sus scripts internos.",
+        "Si Uber hubiera desplegado honeytokens — credenciales falsas integradas junto a las reales en repositorios internos y recursos compartidos de archivos — el uso de las credenciales falsas por parte del atacante habría activado una alerta inmediata durante la fase de movimiento lateral. Toda la violación se basaba en encontrar credenciales reales en texto plano; un único honeytoken entre esas credenciales habría proporcionado advertencia temprana antes de que el atacante alcanzara sistemas sensibles."
+      ]
+    },
+    "timeline": [
+      "'The Cuckoo's Egg' de Clifford Stoll — primer uso documentado de honeypot",
+      "Proyecto Honeynet publica investigación de honeypot — fundamentos académicos",
+      "Attivo Networks, Illusive Networks comercializan engaño empresarial",
+      "Canarytokens.org se lanza — generación de honeytoken gratuita a escala",
+      "Violación de Uber — credenciales codificadas encontradas; sin detección de honeytoken",
+      "Contenido señuelo generado por IA — LLMs crean documentos y credenciales falsas convincentes"
+    ],
+    "keyTakeaways": [
+      "Cualquier interacción con un señuelo es una alerta de falso positivo casi nula — los atacantes no tienen razón para tocar falsos",
+      "Los honeytokens AWS (claves de acceso IAM) proporcionan monitoreo de robo de credenciales con cero riesgo y cero permisos",
+      "Los documentos canary incrustan balizas web que se activan cuando se abren — detectan exfiltración de datos después de los hechos",
+      "Las cuentas señuelo de AD con SPN Kerberoastable detectan reconocimiento de escalada de privilegios",
+      "La escala importa — cientos de señuelos aseguran que un atacante que se mueve lateralmente actived uno"
+    ]
+  },
+  "audit-cm09": {
+    "tagline": "El perímetro se ha desvanecido. La identidad es el nuevo perímetro. Zero Trust verifica ambos.",
+    "overview": [
+      "La Arquitectura Zero Trust (ZTA), definida en NIST SP 800-207, opera sobre el principio de 'nunca confíes, siempre verifica' — cada solicitud de acceso debe ser autenticada, autorizada y continuamente monitoreada independientemente de si se origina dentro o fuera del perímetro de red tradicional. La implementación BeyondCorp de Google, desplegada después de los ataques Aurora en 2010, fue el primer despliegue empresarial de Zero Trust a escala.",
+      "El monitoreo Zero Trust difiere del monitoreo de perímetro tradicional porque cada acceso a recursos genera un evento de telemetría rico: quién (identidad), qué (recurso + acción), de dónde (postura del dispositivo, ubicación de red), y si la política lo permitió. Esto crea un registro de auditoría completo donde cada decisión de acceso — no solo eventos de seguridad — es registrado y disponible para análisis.",
+      "Los cinco pilares del monitoreo Zero Trust son: Identidad (cada usuario y servicio debe autenticarse continuamente), Dispositivos (postura del dispositivo evaluada en el momento del acceso), Redes (microsegmentación, cifrado en todas partes), Aplicaciones (control de acceso por aplicación, sin confianza implícita), y Datos (clasificar y proteger datos a nivel de objeto). El monitoreo de cada pilar genera telemetría que alimenta SIEM y UEBA para análisis de comportamiento."
+    ],
+    "technical": {
+      "title": "Evaluación Continua Adaptativa de Riesgo y Confianza (CARTA)",
+      "body": [
+        "CARTA (Gartner) y NIST 800-207 describen evaluación de confianza dinámica: el nivel de confianza de una sesión no es fijo en la autenticación sino continuamente reevaluado basado en señales de comportamiento — desviación de postura del dispositivo, cambio de ubicación, acceso anómalo a recursos, escalada de privilegios. Si la confianza se degrada durante la sesión, el motor de políticas puede autenticación escalonada o terminar la sesión.",
+        "Componentes de implementación: Proveedor de Identidad (Okta, Azure AD, Google Identity) para autenticación y MFA; Punto de Decisión de Política (PDP) que evalúa solicitudes de acceso contra política; Punto de Aplicación de Política (PEP) — proxy inverso o agente de red — que aplica la decisión del PDP; y canal de telemetría que alimenta todas las decisiones y denegaciones de acceso a SIEM para análisis de comportamiento."
+      ]
+    },
+    "incident": {
+      "title": "Ataque Aurora de Google — Origen de BeyondCorp (2010)",
+      "impact": "Código fuente de Google robado; actor estatal chino atribuido; condujo a la arquitectura Zero Trust de Google",
+      "body": [
+        "Operación Aurora fue un sofisticado ataque patrocinado por el estado chino dirigido a Google y 34 otras compañías de tecnología a través de un zero-day en Internet Explorer. Los atacantes accedieron a la red interna de Google y robaron código fuente. El ataque tuvo éxito porque el modelo de seguridad basado en perímetro de Google confiaba implícitamente en todo el tráfico desde rangos de IP internos — una vez dentro del perímetro, el movimiento lateral era trivialmente fácil.",
+        "La respuesta de Google fue BeyondCorp — un rediseño completo de su modelo de acceso. Para 2014, los empleados de Google accedían a recursos corporativos desde redes no confiables (cafés, aeropuertos, hogar) sin una VPN corporativa, con cada decisión de acceso tomada por un motor de políticas evaluando postura del dispositivo, identidad y contexto. Aurora creó directamente el modelo Zero Trust que toda la industria adoptó en la siguiente década."
+      ]
+    },
+    "timeline": [
+      "Operación Aurora — Ataque chino a Google conduce al diseño de BeyondCorp",
+      "Google publica artículo de BeyondCorp — Modelo Zero Trust documentado públicamente",
+      "NIST comienza desarrollo de SP 800-207 — Zero Trust formalizado para uso federal",
+      "NIST SP 800-207 publicado — Arquitectura Zero Trust estándar oficial de NIST",
+      "Orden Ejecutiva US 14028 ordena Zero Trust en agencias federales para 2024",
+      "Modelo de Madurez Zero Trust de CISA v2.0 — Orientación de implementación de cinco pilares"
+    ],
+    "keyTakeaways": [
+      "Zero Trust: nunca confíes, siempre verifica — cada solicitud de acceso autenticada y autorizada",
+      "CARTA permite reevaluación continua de confianza — la confianza de sesión puede degradarse y desencadenar autenticación escalonada",
+      "El monitoreo Zero Trust produce telemetría de acceso para cada decisión, no solo eventos de seguridad",
+      "Cinco pilares: Identidad, Dispositivos, Redes, Aplicaciones, Datos — cada uno genera señales de monitoreo",
+      "Aurora de Google creó el modelo Zero Trust de la industria — el perímetro VPN murió en 2010"
+    ]
+  },
+  "audit-cm10": {
+    "tagline": "EDR ve el endpoint. NDR ve la red. XDR ve la historia completa.",
+    "overview": [
+      "Extended Detection and Response (XDR) es la evolución arquitectónica de herramientas de seguridad aisladas — unifica telemetría de endpoints (EDR), red (NDR), identidad (registros IDP), cloud (CSPM/CWPP) y correo electrónico en una única plataforma de detección y respuesta correlacionada. Donde anteriormente un analista tenía que pivotar entre cinco consolas separadas para reconstruir un ataque, XDR correlaciona automáticamente señales de todas las fuentes y presenta una línea de tiempo de incidente unificada.",
+      "Las plataformas XDR (Microsoft Defender XDR, CrowdStrike Falcon XDR, Palo Alto Cortex XDR, SentinelOne Singularity) utilizan un lago de datos centralizado con un esquema común para almacenar toda la telemetría. Las reglas de detección y los modelos de ML operan en todas las fuentes de datos simultáneamente — una correlación que requeriría 45 minutos de pivoteo entre consolas por parte de un analista humano se completa en milisegundos contra el conjunto de datos unificado.",
+      "La propuesta de valor clave de XDR es reducir el tiempo de correlación de alerta a incidente. Un SIEM genera miles de alertas independientes; una plataforma XDR agrupa automáticamente alertas relacionadas en un único incidente con una línea de tiempo, un mapeo de técnica MITRE ATT&CK y una respuesta recomendada. Los analistas trabajan incidentes, no alertas individuales — un cambio fundamental en el flujo de trabajo del SOC que mejora dramáticamente tanto la eficiencia como la cobertura."
+    ],
+    "technical": {
+      "title": "Correlación entre fuentes e Gráfico de Incidentes",
+      "body": [
+        "La correlación XDR funciona construyendo un gráfico de entidades: cada alerta hace referencia a entidades (cuentas de usuario, nombres de host de dispositivos, direcciones IP, hashes de archivo). La plataforma XDR indexa todas las alertas por entidad y encuentra alertas que comparten entidades dentro de una ventana de tiempo. Una alerta de inyección de proceso en el endpoint A y una alerta de movimiento lateral del endpoint A al endpoint B se vinculan automáticamente porque comparten la misma entidad de host.",
+        "El mapeo de técnicas MITRE ATT&CK es central para XDR — cada alerta correlacionada se etiqueta con la técnica ATT&CK que representa. Un conjunto de alertas mapeadas a T1059 (Intérprete de Secuencias de Comandos), T1547 (Autoarranque de Arranque/Inicio de Sesión) y T1071 (Protocolo de Capa de Aplicación) juntas le indican a un analista que esta es una cadena de ejecución de malware de establecimiento de persistencia, no tres eventos no relacionados."
+      ]
+    },
+    "incident": {
+      "title": "Brecha de Microsoft de Lapsus$ — Brecha de Correlación XDR (2022)",
+      "impact": "37GB de código fuente de Microsoft exfiltrado; consola de administración de Okta accedida",
+      "body": [
+        "El grupo Lapsus$ violó Microsoft, Okta, Samsung y Nvidia en rápida sucesión utilizando ingeniería social, intercambio de SIM y credenciales compradas. En Microsoft, exfiltraron 37GB de código fuente de Azure DevOps. La brecha de Okta fue particularmente significativa — Lapsus$ accedió a la consola de administración de Okta a través de las credenciales de un ingeniero de soporte, comprometiendo a los clientes posteriores de Okta.",
+        "El análisis posterior al incidente reveló que existían señales en múltiples fuentes de telemetría — patrones de acceso inusuales en Azure DevOps, anomalías geográficas en la autenticación y clones de repositorio grande — pero no fueron correlacionados en una vista de incidente único a tiempo para prevenir la exfiltración. Las plataformas XDR modernas con correlación de entidades automatizada e integración UEBA habrían elevado estas señales dispares a un único incidente de alta prioridad dentro de minutos del primer acceso anómalo."
+      ]
+    },
+    "timeline": [
+      "Palo Alto Networks introduce el concepto XDR — 'más allá de EDR'",
+      "CrowdStrike Falcon XDR, Microsoft Defender ATP rebautizado como XDR",
+      "Guía del Mercado XDR de Gartner — XDR reconocido como categoría de plataforma de seguridad",
+      "Lapsus$ viola Microsoft, Okta — urgencia de correlación entre múltiples fuentes destacada",
+      "XDR nativo de IA: resúmenes de incidentes generados por LLM y recomendaciones de respuesta"
+    ],
+    "keyTakeaways": [
+      "XDR unifica EDR + NDR + identidad + cloud en una única plataforma de detección correlacionada",
+      "La correlación de gráfico de entidades vincula automáticamente alertas que comparten hosts, IPs o usuarios dentro de una ventana de tiempo",
+      "El mapeo de técnicas MITRE ATT&CK convierte clusters de alertas en narrativas de cadena de ataque legibles",
+      "Los analistas trabajan incidentes, no alertas individuales — XDR reduce fundamentalmente la fatiga de alertas",
+      "La 'X' en XDR es extensible — las mejores plataformas ingieren cualquier fuente de telemetría a través de OCSF/API"
+    ]
+  },
+  "audit-cm11": {
+    "tagline": "Los auditorios de cumplimiento anuales ya están obsoletos. Los controles se desvían todos los días.",
+    "overview": [
+      "Los programas de cumplimiento tradicionales operan mediante auditorías anuales puntuales: una instantánea de los controles el día que el auditor visita, que puede no representar la postura de seguridad de la organización durante los otros 364 días. El Monitoreo de Cumplimiento Continuo reemplaza la instantánea con un panel en tiempo real: los controles se verifican de forma programática y continua contra marcos como SOC 2, PCI-DSS, ISO 27001, FedRAMP e HIPAA.",
+      "Las plataformas GRC (ServiceNow GRC, IBM OpenPages, Archer, Vanta, Drata, Tugboat Logic) y las herramientas CSPM con módulos de cumplimiento automatizan la recopilación de evidencia de control: extrayendo datos de configuración de APIs de AWS/Azure, verificando la aplicación de MFA desde registros de IDP, confirmando el estado de cifrado desde APIs de almacenamiento y verificando el cumplimiento de parches desde MDM. La evidencia se recopila de forma continua, no se reúne manualmente para una visita de auditor.",
+      "El cambio a cumplimiento continuo tiene tres beneficios: (1) La disposición para auditoría se mantiene durante todo el año — sin períodos de 'crunch' de auditoría; (2) La desviación de controles se detecta inmediatamente y se remedia antes de que se convierta en un hallazgo; (3) La recopilación automatizada de evidencia reduce el tiempo de preparación de auditoría en 60–80%, liberando al personal de GRC para trabajos de gestión de riesgos de mayor valor."
+    ],
+    "technical": {
+      "title": "Recopilación Automatizada de Evidencia de Control",
+      "body": [
+        "Cada control de cumplimiento se asigna a una o más verificaciones técnicas que se pueden automatizar. El Requisito 8.3.6 de PCI-DSS (MFA para todos los accesos administrativos no consola) se asigna a: consultar IDP para todos los usuarios con rol de administrador, verificar que el método MFA esté inscrito y activo para cada uno, verificar que no se haya otorgado acceso de administrador sin MFA en los últimos 30 días. Esta verificación se ejecuta diariamente y actualiza el registro de evidencia de control.",
+        "Los artefactos de evidencia incluyen cargas útiles de respuesta de API, capturas de pantalla (para controles solo de UI), registros y exportaciones de configuración — almacenados con marcas de tiempo e identificadores de fuente para crear un rastro de auditoría inmutable. Las plataformas de cumplimiento modernas utilizan firmas criptográficas en artefactos de evidencia para prevenir la manipulación y respaldar los requisitos de cadena de custodia para auditorías regulatorias."
+      ]
+    },
+    "incident": {
+      "title": "Orden de Consentimiento de FTC de Drizly — Fallo del Programa de Cumplimiento (2023)",
+      "impact": "2.5 millones de registros de clientes comprometidos; orden de consentimiento de FTC vinculante para el CEO personalmente",
+      "body": [
+        "La orden de consentimiento de la FTC contra Drizly (y su CEO personalmente) después de una violación de datos en 2020 fue notable por responsabilizar explícitamente al CEO por prácticas de seguridad inadecuadas — incluyendo la falta de implementación de controles de cumplimiento básicos como MFA, acceso de menor privilegio y monitoreo de seguridad. La violación expuso 2.5 millones de registros de clientes a través de credenciales encontradas en un repositorio público de GitHub.",
+        "La orden de la FTC requería que Drizly implementara un programa de seguridad integral con monitoreo continuo, evaluaciones anuales de terceros y una obligación de cumplimiento de 20 años. El caso estableció que los ejecutivos individuales pueden ser responsables personalmente por fallos de cumplimiento sistémicos — creando una nueva urgencia para programas de monitoreo de cumplimiento continuo que proporcionen evidencia en tiempo real de la efectividad del control."
+      ]
+    },
+    "timeline": [
+      "SOX promulgado — las pruebas de controles anuales se vuelven obligatorias para empresas públicas",
+      "Brecha de cumplimiento de la era en la nube: los auditorios anuales no pueden seguir el ritmo de los cambios en la nube",
+      "Vanta, Drata fundadas — plataformas de cumplimiento continuo automatizadas emergen",
+      "Iniciativa FedRAMP 20x — el monitoreo continuo reemplaza la renovación de autorización anual",
+      "Orden FTC Drizly — CEO personalmente responsable por fallo del programa de cumplimiento",
+      "GRC nativo de IA: los LLMs asignan controles a evidencia y generan narrativas de auditoría"
+    ],
+    "keyTakeaways": [
+      "Los auditorios de cumplimiento anuales son instantáneas puntuales — los controles se desvían entre medias",
+      "El cumplimiento continuo reemplaza el crunch de auditoría con verificación continua de controles automatizada durante todo el año",
+      "Los artefactos de evidencia deben tener marca de tiempo, ser identificados y ser resistentes a manipulaciones para auditorías regulatorias",
+      "FTC Drizly estableció responsabilidad personal del CEO por fallos sistémicos de cumplimiento",
+      "La recopilación automatizada de evidencia reduce el tiempo de preparación de auditoría en 60–80%"
+    ]
+  },
+  "audit-cm12": {
+    "tagline": "Lo que se mide se mejora. MTTD y MTTR son los signos vitales de tu programa de seguridad.",
+    "overview": [
+      "La madurez de monitoreo se mide a través de métricas operacionales que cuantifican la efectividad de seguridad, no solo completar casillas de cumplimiento. Las dos métricas SOC más importantes son MTTD (Mean Time to Detect) — el tiempo promedio entre que ocurre un evento de seguridad y que el SOC lo detecta — y MTTR (Mean Time to Respond) — el tiempo promedio entre detección y contención completa. Puntos de referencia de la industria: MTTD 21 días (IBM Cost of Data Breach 2023 mediana); MTTR 73 días — organizaciones con programas de monitoreo maduro logran MTTD < 24 horas.",
+      "El SOC Maturity Model (CREST, Gartner, SANS) define cinco niveles: Nivel 1 (Reactivo — sin monitoreo proactivo, impulsado por incidentes), Nivel 2 (Centrado en Cumplimiento — monitoreo solo para requisitos regulatorios), Nivel 3 (Proactivo — threat hunting, detección del comportamiento), Nivel 4 (Dirigido por Inteligencia de Amenazas — TI externo integrado, simulación de adversarios), Nivel 5 (Adaptativo — augmentado con IA, mejora continua, impulsado por métricas). La mayoría de organizaciones empresariales apuntan al Nivel 3–4.",
+      "Más allá de MTTD/MTTR, programas de monitoreo maduro rastrean: tasa de falsos positivos (alertas que no requieren acción / alertas totales — objetivo < 5%), cobertura de automatización SOAR (% de tipos de alerta con playbooks automáticos — objetivo > 70%), tasa de escalada de alerta a incidente (% de alertas escalando a incidentes formales — informa el ajuste de detección), y tiempo promedio de recuperación (restauración completa del servicio empresarial, distinto de contención)."
+    ],
+    "technical": {
+      "title": "Cálculo de MTTD/MTTR y Benchmarking",
+      "body": [
+        "MTTD se calcula a partir de dos timestamps: el 'timestamp de brecha' (cuando el evento realmente ocurrió, determinado retrospectivamente a partir de logs) y el 'timestamp de detección' (cuando el SIEM/SOC identificó por primera vez el evento). Para incidentes donde el timestamp de brecha es desconocido, MTTD se calcula como timestamp de detección menos el timestamp del indicador más temprano de compromiso encontrado en análisis forense.",
+        "MTTR se calcula desde timestamp de detección a timestamp de contención (el momento en que la amenaza está aislada y ya no puede causar daño). Recuperación completa (restauración del servicio empresarial) se rastrea por separado como MTTRECOVER. Visualización de dashboard: líneas de tendencia MTTD/MTTR en ventanas rodantes de 90 días, segmentadas por severidad de incidente, fuente de detección (automática vs. humana) y categoría de ataque. La regresión en cualquiera de las métricas desencadena una revisión del programa."
+      ]
+    },
+    "incident": {
+      "title": "Brecha MGM Resorts — Fallo de MTTD/MTTR (2023)",
+      "impact": "Pérdidas operacionales de $100M+; piso de casino offline; recuperación de 10 días",
+      "body": [
+        "La brecha MGM Resorts comenzó con una llamada de ingeniería social de 10 minutos a la mesa de ayuda de TI de MGM, suplantando a un empleado para restablecer credenciales — el atacante encontró el perfil de LinkedIn del objetivo y lo usó para pasar la autenticación basada en preguntas de seguridad. En cuestión de horas, Scattered Spider había desplegado ransomware ALPHV/BlackCat en los sistemas de MGM, dejando sin conexión operaciones de casino, check-ins de hoteles y tarjetas de llave digitales.",
+        "El MTTR de MGM fue catastrófico — la recuperación de operaciones completas llevó 10 días con un costo estimado de $100M+. El análisis posterior a incidente identificó fallo de MTTD: la llamada de ingeniería social y la actividad de credenciales subsecuente no fueron detectadas y correlacionadas a tiempo para prevenir el despliegue de ransomware. El incidente reforzó que MTTD no es solo una métrica técnica — incluye el tiempo para que la detección se enrute a la persona correcta y desencadene la respuesta correcta."
+      ]
+    },
+    "timeline": [
+      "SANS SOC Survey — primer benchmarking de madurez SOC a nivel de industria",
+      "IBM Cost of Data Breach Report establece MTTD/MTTR como métricas estándar",
+      "CREST SOC Maturity Model publicado — marco de cinco niveles para evaluación SOC",
+      "Informe IBM 2023: MTTD mediana 21 días, MTTR 73 días — brecha de madurez cuantificada",
+      "Brecha MGM Resorts: MTTR de 10 días, pérdidas de $100M+ — caso de estudio de fallo de madurez",
+      "SOC augmentado con IA: objetivos MTTD < 1 hora, MTTR < 30 minutos para playbooks automáticos"
+    ],
+    "keyTakeaways": [
+      "MTTD y MTTR son los signos vitales de un programa de seguridad — rastréalos en ventanas rodantes de 90 días",
+      "MTTD mediana de la industria: 21 días; MTTR mediana de la industria: 73 días — programas maduros objetivo < 24h / < 4h",
+      "Nivel 3 de Madurez SOC (Proactivo) es el objetivo mínimo — Niveles 1–2 son posturas reactivas solo de cumplimiento",
+      "Tasa de falsos positivos > 5% degrada la efectividad del analista y oculta amenazas reales en ruido",
+      "Cobertura de automatización SOAR > 70% es necesaria para lograr MTTR sub-hora a escala"
+    ]
+  },
+  "mitre-01": {
+    "tagline": "El atacante que sabe más antes de tocar un sistema gana antes de que comience la lucha.",
+    "overview": [
+      "Reconnaissance (TA0043) es la primera táctica en el framework MITRE ATT&CK. Antes de que un atacante ejecute un solo exploit, pasa semanas o meses recopilando inteligencia: nombres y roles de empleados (LinkedIn), formatos de correo electrónico (Hunter.io), stack tecnológico (publicaciones de empleo, Shodan, BuiltWith), infraestructura expuesta (Censys, FOFA) y credenciales filtradas (HaveIBeenPwned, foros de dark web).",
+      "ATT&CK distingue dos subcategorías de reconocimiento: escaneo activo (T1595 — envío de sondas a la infraestructura objetivo) y recopilación pasiva (T1589/T1591/T1592 — consulta de fuentes públicas sin tocar el objetivo). El reconocimiento pasivo es invisible para el objetivo; el escaneo activo puede generar alertas de IDS.",
+      "Los defensores contrarrestan el reconocimiento reduciendo la superficie de ataque: eliminando metadatos de documentos públicos (T1592.002), monitoreando escaneos activos mediante honeypots y registros de firewall, y utilizando feeds de inteligencia de amenazas para detectar infraestructura adversaria construida contra ellos."
+    ],
+    "technical": {
+      "title": "ATT&CK Sub-Técnicas de Reconocimiento",
+      "body": [
+        "T1595 — Escaneo Activo: escaneos de puertos (nmap), escaneos de vulnerabilidades (Nessus/OpenVAS), rastreo web. Detectable mediante registros de IDS/firewall para intentos de conexión de alta tasa desde IPs individuales. T1589 — Recopilar Información de Identidad de la Víctima: nombres de empleados, correos electrónicos, roles de LinkedIn, directorios de empresas y bases de datos de brechas.",
+        "T1596 — Buscar en Bases de Datos Técnicas Abiertas: Shodan (dispositivos conectados a internet), Censys (certificados TLS, puertos abiertos), BuiltWith (stack de tecnología web). Estas herramientas consultan índices públicos — ningún tráfico llega al objetivo. T1598 — Phishing para Obtener Información: envío de correos electrónicos dirigidos para obtener credenciales o documentación interna antes de que comience el ataque propiamente dicho."
+      ]
+    },
+    "incident": {
+      "title": "APT29 / Cozy Bear — Reconocimiento Previo al Ataque en SolarWinds (2019–2020)",
+      "impact": "Más de 18,000 organizaciones comprometidas; acceso a redes de NSA, Tesorería y Departamento de Estado",
+      "body": [
+        "Antes de insertar la puerta trasera SUNBURST en SolarWinds Orion, APT29 (Cozy Bear) realizó un reconocimiento extenso del entorno de desarrollo de SolarWinds, lista de clientes y pipeline de compilación. Identificaron que Orion era utilizado por miles de organizaciones gubernamentales y empresariales — lo que lo convertía en un objetivo ideal para la cadena de suministro.",
+        "La fase de reconocimiento duró meses antes de que se escribiera el primer código malicioso. APT29 monitoreó la actividad de GitHub de SolarWinds, estudió su documentación de compilación e identificó el servidor de compilación específico a atacar. Este nivel de inteligencia previa al ataque es característico de actores patrocinados por el estado utilizando T1589, T1591 y T1596."
+      ]
+    },
+    "timeline": [
+      "Framework MITRE ATT&CK creado — primera taxonomía de comportamiento adversario",
+      "APT29 comienza reconocimiento de SolarWinds — meses antes del primer exploit",
+      "Puerta trasera SUNBURST descubierta — fase de recon habilitó precisión en la cadena de suministro",
+      "ATT&CK v10 agrega Reconnaissance (TA0043) como una táctica formal"
+    ],
+    "keyTakeaways": [
+      "El reconocimiento ocurre antes del primer contacto — los defensores rara vez lo ven a tiempo",
+      "El reconocimiento pasivo (Shodan, Censys, LinkedIn) no deja rastro en sistemas objetivo",
+      "Elimina metadatos de documentos, limita la divulgación de tecnología en publicaciones de empleo",
+      "Los honeypots y canary tokens detectan escaneos activos tempranamente"
+    ]
+  },
+  "mitre-03": {
+    "tagline": "El exploit más sofisticado es a menudo un correo electrónico. Las personas son el perímetro.",
+    "overview": [
+      "Initial Access (TA0001) cubre las técnicas que utilizan los atacantes para obtener su primer punto de apoyo dentro de un entorno objetivo. A pesar de décadas de inversión en seguridad, el spear phishing (T1566) sigue siendo la técnica de acceso inicial más exitosa — utilizada en más del 90% de las intrusiones de estados nación según datos del Verizon DBIR.",
+      "El spear phishing es dirigido: el atacante utiliza datos de reconocimiento para elaborar un mensaje que parece provenir de una fuente confiable (T1566.001 — archivo malicioso, T1566.002 — enlace malicioso, T1566.003 — spear phishing de servicio a través de Slack/Teams/LinkedIn). La carga útil se ejecuta cuando la víctima abre el archivo adjunto o hace clic en el enlace.",
+      "Otras técnicas de acceso inicial: T1190 — Exploit Public-Facing Application (inyección SQL, web shell en sistemas expuestos a internet), T1133 — External Remote Services (VPN/RDP con credenciales robadas), T1195 — Supply Chain Compromise (como en SolarWinds). Todos resultan en que el atacante obtenga un punto de apoyo de ejecución."
+    ],
+    "technical": {
+      "title": "Detección y Defensa contra Spear Phishing",
+      "body": [
+        "Controles de seguridad de correo electrónico que detienen el spear phishing: DMARC/DKIM/SPF (prevenir suplantación de dominio), sandboxing (ejecutar archivos adjuntos en una máquina virtual aislada y observar el comportamiento), reescritura de URL (redirigir enlaces a través de un proxy que bloquea destinos maliciosos), e IA anti-phishing (detectar dominios similares y patrones de remitente sospechosos).",
+        "Detección conductual: el primer proceso generado por un usuario al hacer clic en un documento (Word generando PowerShell, Excel generando wscript.exe) es un indicador de alta fidelidad. Herramientas EDR como CrowdStrike Falcon detectan relaciones de proceso padre-hijo que indican explotación."
+      ]
+    },
+    "incident": {
+      "title": "DNC Hack — Spear Phishing Entrega Acceso Inicial (2016)",
+      "impact": "Miles de correos electrónicos robados y publicados; interferencia electoral estadounidense significativa",
+      "body": [
+        "APT28 (Fancy Bear) obtuvo acceso inicial al DNC a través de un correo electrónico de spear phishing enviado a John Podesta. El correo electrónico suplantaba una alerta de seguridad de Google afirmando que su cuenta de Gmail había sido accedida desde Ucrania. El asistente de Podesta la reenvió a TI, quienes erróneamente confirmaron que era 'legítima' — Podesta hizo clic en el enlace e ingresó sus credenciales.",
+        "La página de phishing era un clon de la página de inicio de sesión de Google pixel-perfecto alojado en un dominio registrado por APT28 días antes. DMARC no fue configurado en google.com para bloquear al remitente suplantado. Toda la operación — reconocimiento, registro de dominio, página de phishing, cosecha de credenciales — costó a los atacantes aproximadamente $5 en infraestructura y generó un impacto geopolítico valorado en miles de millones."
+      ]
+    },
+    "timeline": [
+      "Spear phish del DNC — APT28 obtiene acceso inicial a través de cosecha de credenciales",
+      "Verizon DBIR confirma phishing en el 93% de brechas como vector inicial",
+      "Microsoft 365 Defender añade sandbox de spear phish en todos los buzones",
+      "El spear phishing generado por IA aumenta significativamente las tasas de éxito"
+    ],
+    "keyTakeaways": [
+      "El spear phishing impulsa el 90%+ del acceso inicial de estados nación — es el vector #1",
+      "Desplegar DMARC/DKIM/SPF + email sandboxing + reescritura de URL en todos los correos corporativos",
+      "Las reglas EDR de proceso padre-hijo capturan la post-explotación antes del movimiento lateral",
+      "DMARC p=reject + BIMI son el estándar de oro para anti-suplantación"
+    ]
+  },
+  "mitre-05": {
+    "tagline": "El acceso inicial se alquila. La persistencia es propiedad.",
+    "overview": [
+      "Persistencia (TA0003) cubre las técnicas que los atacantes utilizan para mantener su posición a través de reinicios, cambios de credenciales y otras interrupciones. Sin persistencia, perder el shell inicial significa empezar de nuevo. Con ella, el atacante sobrevive a los reinicios del sistema, restablecimientos de contraseña e incluso algunos intentos de remediación.",
+      "Técnicas comunes de persistencia: T1547.001 — Registry Run Keys (HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run), T1053.005 — Scheduled Tasks (schtasks.exe), T1543.003 — Windows Services (sc.exe create), T1037 — Boot/Logon Initialization Scripts, T1505.003 — Web Shell en un servidor web.",
+      "Detección: monitorear las claves de ejecución del registro para nuevas entradas, auditar la creación de tareas programadas (Event ID 4698), vigilar nuevos servicios de Windows (Event ID 7045) y utilizar Autoruns (Sysinternals) o el inventario de persistencia EDR para mantener una línea base de elementos de inicio esperados."
+    ],
+    "technical": {
+      "title": "Detección de Mecanismos de Persistencia",
+      "body": [
+        "Event ID 4698 (Scheduled Task Created) y 4702 (Scheduled Task Updated) son puntos de detección críticos. Filtrar tareas creadas por cuentas no SYSTEM, tareas que apunten a directorios temporales o comandos codificados, y tareas con disparadores en logon o inicio del sistema.",
+        "Monitoreo de claves de ejecución del registro: las claves Run/RunOnce de HKCU y HKLM son las ubicaciones de persistencia más comunes. Utilizar Sysmon Event ID 13 (Registry value set) con las rutas de clave objetivo para detectar adiciones. Autoruns.exe o el SDK de Autoruns proporciona un inventario completo de mecanismos de persistencia."
+      ]
+    },
+    "incident": {
+      "title": "APT1 / Comment Crew — Persistencia a Largo Plazo a través de Servicios (2006–2013)",
+      "impact": "Terabytes de propiedad intelectual robados durante 7 años; el informe Mandiant APT1 expone la operación",
+      "body": [
+        "APT1 (Comment Crew, Unidad 61398 del PLA) mantuvo persistencia en redes de víctimas durante un promedio de 356 días — casi un año — antes de ser detectado. Utilizaron una combinación de servicios de Windows, claves de ejecución del registro y web shells en servidores accesibles por internet. Cuando se descubrió y se eliminó un mecanismo de persistencia, otros permanecieron activos.",
+        "El informe Mandiant APT1 de 2013 documentó 46 familias de malware y 20+ técnicas de persistencia utilizadas por APT1. La lección clave: los defensores necesitan encontrar todos los mecanismos de persistencia simultáneamente o el atacante simplemente utiliza la copia de seguridad. La búsqueda exhaustiva de persistencia requiere tanto análisis forense de endpoints como análisis de tráfico de red."
+      ]
+    },
+    "timeline": [
+      "Las operaciones de APT1 comienzan — sector de defensa y tecnología de EE.UU. como objetivo",
+      "Se publica el informe Mandiant APT1 — 141 víctimas, 46 familias de malware",
+      "Sysmon v9 añade monitoreo de eventos del registro — mejora la detección de persistencia",
+      "El inventario de persistencia EDR se convierte en un control de seguridad empresarial estándar"
+    ],
+    "keyTakeaways": [
+      "Los atacantes organizan en capas la persistencia — encontrar un mecanismo no significa que se hayan ido",
+      "Monitorear Event ID 4698 (Scheduled Task Created) y Sysmon 13 (Registry Set)",
+      "Autoruns.exe es el estándar de oro para la búsqueda manual de persistencia",
+      "El tiempo de permanencia promedio de APT es de 197 días — los mecanismos de persistencia permiten acceso a largo plazo"
+    ]
+  },
+  "mitre-06": {
+    "tagline": "El acceso de usuario abre una puerta. El acceso SYSTEM es dueño del edificio.",
+    "overview": [
+      "Privilege Escalation (TA0004) cubre técnicas que los atacantes utilizan para obtener permisos de nivel superior a los que obtuvieron inicialmente. Comenzando como usuario estándar, los atacantes escalan a administrador local, luego a SYSTEM (Windows) o root (Linux), y finalmente a Domain Admin en entornos Active Directory.",
+      "Rutas de escalamiento comunes: T1078 — Valid Accounts (usando credenciales legítimas recopiladas de credential dumping), T1068 — Exploitation for Privilege Escalation (vulnerabilidades de kernel o servicios sin parches), T1134 — Access Token Manipulation (suplantando tokens SYSTEM), T1484 — Domain Policy Modification (abusando de Group Policy).",
+      "Las rutas de escalamiento en Active Directory son particularmente peligrosas: DCSync (replicando la base de datos de AD), PrintNightmare (CVE-2021-34527) y AS-REP Roasting (enfocándose en cuentas con pre-autenticación Kerberos deshabilitada) pueden escalar a un usuario de dominio estándar a Domain Admin."
+    ],
+    "technical": {
+      "title": "Rutas de Escalamiento de Privilegios en Active Directory",
+      "body": [
+        "Ataque DCSync (T1003.006): un usuario de dominio con permisos de Replicating Directory Changes puede solicitar una copia de todos los hashes de contraseña del Domain Controller — equivalente a ejecutar la extracción de ntds.dit sin tocar el DC. Detectar monitoreando el Event ID 4662 para DS-Replication-Get-Changes en cuentas distintas a los controladores de dominio.",
+        "Kerberoasting (T1558.003): solicitar tickets de servicio para cualquier SPN (Service Principal Name) y descifrar el ticket sin conexión. Las cuentas de servicio a menudo tienen contraseñas débiles y rara vez se monitorean. Detectar monitoreando el Event ID 4769 (Kerberos Service Ticket) para cifrado RC4 (etype 23) y tickets RC4 para cuentas de servicio."
+      ]
+    },
+    "incident": {
+      "title": "SolarWinds — Falsificación de Token SAML para Escalamiento de Privilegios en la Nube (2020)",
+      "impact": "Acceso al correo electrónico del gobierno estadounidense; Departamentos del Tesoro, Justicia y Estado comprometidos",
+      "body": [
+        "Después de obtener acceso en las instalaciones a través de SUNBURST, APT29 escaló a privilegios en la nube utilizando una técnica de falsificación de token SAML (T1606.002 — Golden SAML). Al robar el certificado de firma de tokens ADFS del servidor Active Directory Federation Services en las instalaciones de la víctima, podían falsificar tokens SAML y autenticarse como cualquier usuario en Microsoft 365 — incluyendo administradores globales — omitiendo completamente MFA.",
+        "Esta ruta de escalamiento desde el compromiso en las instalaciones hasta el acceso administrativo completo en la nube es una de las más peligrosas en entornos híbridos modernos. Funciona porque Microsoft 365 confía en tokens SAML firmados por el certificado ADFS de la propia organización — y ese certificado se almacena en las instalaciones, no en la nube."
+      ]
+    },
+    "timeline": [
+      "CyberArk documenta ataque Golden SAML — técnica de falsificación de token ADFS",
+      "APT29 utiliza Golden SAML contra víctimas de SolarWinds — escalamiento administrativo completo en la nube",
+      "Microsoft publica orientación sobre detección de Golden SAML y endurecimiento de ADFS",
+      "El endurecimiento de identidad híbrida (proteger certificados ADFS) se convierte en control estándar"
+    ],
+    "keyTakeaways": [
+      "Kerberoasting + DCSync son las dos rutas más comunes de escalamiento de privilegios en AD",
+      "Monitorear Event 4769 (tickets RC4) para Kerberoasting; Event 4662 para DCSync",
+      "Golden SAML: el robo de certificado ADFS habilita omisión completa de administrador en la nube de MFA",
+      "Proteger certificados de firma de tokens ADFS como Tier 0 (equivalente a administrador de dominio)"
+    ]
+  },
+  "mitre-07": {
+    "tagline": "El mejor atacante es invisible. La evasión de defensas es el arte de no ser visto.",
+    "overview": [
+      "Defense Evasion (TA0005) es la táctica ATT&CK más amplia — 42 técnicas que cubren todo lo que hacen los atacantes para evitar la detección. Técnicas clave: T1027 — Obfuscated Files (codificación, cifrado, empaquetamiento), T1055 — Process Injection (código ejecutándose dentro de la memoria de procesos legítimos), T1070 — Indicator Removal (borrado de registros), T1562 — Impair Defenses (deshabilitación de AV/EDR), y T1218 — Signed Binary Proxy Execution (LOLBins).",
+      "Living-off-the-land binaries (LOLBins) son ejecutables firmados de Microsoft que pueden ser abusados para evasión: mshta.exe (ejecutar archivos HTA desde URLs), regsvr32.exe (cargar objetos COM desde URLs), certutil.exe (descargar y decodificar archivos), rundll32.exe (ejecutar DLLs directamente). Debido a que están firmados por Microsoft, el whitelisting de aplicaciones confía en ellos.",
+      "La evasión de defensas moderna se enfoca cada vez más en los sensores de EDR: matar procesos de EDR, descargar drivers de kernel de EDR, usar BYOVD (Bring Your Own Vulnerable Driver) para parchear EDR desde el kernel — una técnica utilizada por Lazarus Group y operadores de ransomware ALPHV."
+    ],
+    "technical": {
+      "title": "LOLBin Proxy Execution y EDR Bypass",
+      "body": [
+        "certutil.exe -decode (T1140): decodificar cargas útiles codificadas en base64. Detectar monitoreando conexiones de red de certutil.exe (no debería hacer HTTP saliente) y flags -decode/-urlcache. mshta.exe (T1218.005): ejecutar VBScript/JScript desde URLs remotas — bloquear mshta.exe para que no haga conexiones de red salientes mediante regla de firewall.",
+        "BYOVD (T1014): el atacante carga un driver de kernel conocido como vulnerable, utiliza la vulnerabilidad del driver para escribir en memoria del kernel, parcha los callbacks del kernel de EDR (que detectan inyección de procesos, cambios en el registro, etc.). Defensa: solo permitir drivers firmados por HVCI (Hypervisor-Protected Code Integrity) — bloquea todo BYOVD."
+      ]
+    },
+    "incident": {
+      "title": "BlackCat/ALPHV — BYOVD EDR Killer (2022)",
+      "impact": "MGM ($100M), Caesars, Reddit, Western Digital — EDR deshabilitado antes del cifrado",
+      "body": [
+        "Los operadores de ransomware ALPHV (BlackCat) desarrollaron una herramienta llamada 'mpsvc.dll' que explotaba un driver vulnerable de Dell (DBUtil_2_3.sys) para matar sensores de EDR desde el kernel. Al cargar el driver vulnerable y explotarlo para escribir en memoria del kernel, pudieron terminar CrowdStrike Falcon, SentinelOne y otros agentes de EDR — dejando el entorno ciego antes de desplegar el ransomware.",
+        "BYOVD es particularmente peligroso porque opera en un nivel de privilegio más alto que el propio EDR. Los productos EDR estándar se ejecutan como drivers de kernel — pero un ataque BYOVD se ejecuta en el mismo nivel, pudiendo modificar los propios callbacks de kernel de EDR. La defensa requiere HVCI y una lista blanca de drivers estricta."
+      ]
+    },
+    "timeline": [
+      "Catálogo de LOLBin (lolbas-project.github.io) documenta 100+ binarios de Windows",
+      "ALPHV BYOVD — EDR eliminado desde kernel; MGM, Caesars golpeados",
+      "Cumplimiento de Microsoft HVCI crece — defensa BYOVD a nivel de kernel",
+      "CrowdStrike Falcon agrega protección de manipulación a nivel de kernel contra BYOVD"
+    ],
+    "keyTakeaways": [
+      "LOLBins eludan el whitelisting de aplicaciones — bloquear su acceso de red mediante reglas de firewall",
+      "BYOVD mata EDR desde el kernel — requiere HVCI + lista blanca de drivers para defenderse",
+      "Bloquear certutil/mshta/regsvr32 red saliente en política de firewall empresarial",
+      "Monitorear Sysmon Event 3 (conexión de red) para binarios LOLBin haciendo conexiones salientes"
+    ]
+  },
+  "mitre-08": {
+    "tagline": "Con credenciales válidas, no eres un atacante — eres un usuario autorizado.",
+    "overview": [
+      "Credential Access (TA0006) cubre técnicas para robar nombres de cuenta y contraseñas. Las credenciales válidas son la herramienta más poderosa en el arsenal de un atacante — permiten movimiento lateral, escalada de privilegios y persistencia mientras generan solo eventos de autenticación que parecen legítimos.",
+      "Técnicas clave: T1003 — OS Credential Dumping (Mimikatz extrae memoria LSASS para hashes NTLM y contraseñas en texto plano), T1558 — Steal or Forge Kerberos Tickets (Pass-the-Ticket, Golden Ticket, Kerberoasting), T1552 — Unsecured Credentials (contraseñas codificadas en scripts, archivos de configuración, variables de entorno), T1056 — Input Capture (keylogging).",
+      "Mimikatz (T1003.001) es la herramienta de extracción de credenciales más utilizada. Extrae hashes NTLM y — en Windows Server 2008/Windows 7 con WDigest habilitado — contraseñas en texto plano de la memoria del proceso LSASS. Windows moderno deshabilita WDigest por defecto, pero los atacantes pueden habilitarlo nuevamente mediante modificación del registro."
+    ],
+    "technical": {
+      "title": "Detección de Credential Dumping de LSASS",
+      "body": [
+        "Protección LSASS: habilita Credential Guard (Windows 10+/Server 2016+) para mover LSASS a un enclave de seguridad basado en virtualización (VBS) — Mimikatz no puede extraer credenciales de VBS. Habilita RunAsPPL (Protected Process Light) para LSASS para que solo los procesos firmados digitalmente puedan leer su memoria.",
+        "Detección: Event ID 10 (Sysmon — Process Access) donde el objetivo es lsass.exe y la máscara GrantedAccess incluye PROCESS_VM_READ (0x10). Alerta sobre cualquier proceso que no sea de Microsoft accediendo a LSASS. La detección de comportamiento de EDR identifica herramientas de extracción de credenciales por sus patrones de acceso incluso cuando se renombran."
+      ]
+    },
+    "incident": {
+      "title": "NotPetya — Mimikatz + EternalBlue Credential Cascade (2017)",
+      "impact": "$10B+ de daños; Maersk, Merck, FedEx, Mondelez, Reckitt Benckiser",
+      "body": [
+        "NotPetya utilizó una estrategia dual de recolección de credenciales y movimiento lateral. Ejecutó un módulo equivalente a Mimikatz para extraer credenciales de LSASS en el sistema infectado inicial, luego usó esas credenciales para propagarse a través de PsExec. Para sistemas donde las credenciales no funcionaban, utilizó el exploit EternalBlue de la NSA (MS17-010) — el mismo exploit utilizado por WannaCry semanas antes.",
+        "La combinación fue devastadora: Maersk, la compañía naviera más grande del mundo, tuvo toda su red global de 45,000 PCs y 4,000 servidores borrada en horas. La cascada de credenciales significaba que comprometer un sistema con un administrador que había iniciado sesión recientemente era suficiente para alcanzar todos los otros sistemas que ese administrador había tocado alguna vez."
+      ]
+    },
+    "timeline": [
+      "Mimikatz lanzado por Benjamin Delpy — extracción de credenciales de LSASS",
+      "NotPetya — Mimikatz + EqualBlue causa $10B de daño en horas",
+      "Windows Credential Guard alcanza adopción mayoritaria en empresas",
+      "RunAsPPL se convierte en línea base recomendada de Microsoft para todos los puntos finales Windows"
+    ],
+    "keyTakeaways": [
+      "Habilita Credential Guard + RunAsPPL — hace imposible el dumping de estilo Mimikatz",
+      "Deshabilita WDigest (clave de registro) — previene contraseñas en texto plano en LSASS en sistemas heredados",
+      "Monitorea Sysmon Event 10 (acceso al proceso lsass.exe) desde procesos que no sean de Microsoft",
+      "La reutilización de credenciales de administrador es el multiplicador — usa LAPS para contraseñas de administrador local únicas"
+    ]
+  },
+  "mitre-09": {
+    "tagline": "El movimiento lateral convierte un único host comprometido en una red comprometida.",
+    "overview": [
+      "Lateral Movement (TA0008) cubre las técnicas que usan los atacantes para moverse desde su posición inicial a otros sistemas en la red. El objetivo es alcanzar objetivos de alto valor: controladores de dominio, servidores de archivos, sistemas OT/ICS, bases de datos y sistemas de copia de seguridad.",
+      "Técnicas principales: T1550.002 — Pass-the-Hash (usar el hash NTLM directamente sin crackearlo), T1550.003 — Pass-the-Ticket (usar tickets Kerberos robados), T1021.001 — Remote Desktop Protocol, T1021.002 — SMB/Windows Admin Shares, T1080 — Taint Shared Content (envenenar comparticiones de archivos para propagar malware).",
+      "Pass-the-Hash (PtH) es particularmente efectivo porque usa el hash NTLM directamente — no se requiere cracking de contraseñas. Un atacante con un hash NTLM de administrador puede autenticarse en cualquier sistema donde esa cuenta tenga derechos de administrador, usando net use, wmiexec o psexec.py de Impacket."
+    ],
+    "technical": {
+      "title": "Detección de Movimiento Lateral — Red y Host",
+      "body": [
+        "Detección de red: el movimiento lateral genera patrones distintos — múltiples sistemas autenticándose desde la misma dirección IP fuente en una ventana de tiempo corta, conexiones SMB a comparticiones ADMIN$ o C$ fuera del horario comercial, autenticación a sistemas que la cuenta fuente nunca ha accedido antes. Las herramientas NDR (Network Detection and Response) como Darktrace detectan estas anomalías de comportamiento.",
+        "Detección de host: Event ID 4624 (Logon Success) con Logon Type 3 (Network) y autenticación NtLmSsp (NTLM, no Kerberos) indica PtH. En entornos modernos, los inicios de sesión de red deben usar Kerberos — los inicios de sesión de red NTLM puros son una bandera roja. Sysmon Event ID 3 (conexión de red) desde herramientas administrativas (net.exe, wmiexec) a hosts internos confirma movimiento lateral."
+      ]
+    },
+    "incident": {
+      "title": "Colonial Pipeline — Movimiento Lateral de Ransomware DarkSide (2021)",
+      "impact": "Mayor tubería de combustible de EE.UU. cerrada durante 5 días; rescate de $4,4 millones pagado; escasez de combustible en la Costa Este",
+      "body": [
+        "Los operadores del ransomware DarkSide obtuvieron acceso inicial a Colonial Pipeline a través de una cuenta VPN comprometida con una contraseña filtrada — sin MFA. Desde allí, se movieron lateralmente a través de la red de TI usando credenciales robadas, llegaron a los sistemas de facturación y negocios, e implementaron ransomware. Colonial apagó la tubería de manera preventiva debido a la preocupación de que la red OT también pudiera estar comprometida.",
+        "El movimiento lateral desde una única cuenta VPN comprometida a los sistemas que interrumpieron el 45% del suministro de combustible de la Costa Este de EE.UU. tomó horas — no días. La ausencia de segmentación de red entre TI y OT, combinada con reutilización de credenciales entre sistemas, permitió la propagación rápida."
+      ]
+    },
+    "timeline": [
+      "NotPetya demuestra movimiento lateral catastrófico a escala global",
+      "Colonial Pipeline — movimiento lateral VPN + PtH cierra combustible de Costa Este",
+      "CISA Emergency Directive — MFA requerido para todo acceso remoto en FCEB",
+      "Segmentación Zero Trust previene movimiento lateral en >60% de empresas"
+    ],
+    "keyTakeaways": [
+      "Pass-the-Hash usa hashes NTLM directamente — no se necesita cracking de contraseñas",
+      "Restringir NTLM: forzar Kerberos para toda autenticación de red — hace fallar PtH",
+      "Event ID 4624 Logon Type 3 + NtLmSsp = indicador de PtH",
+      "Segmentación de red + MFA en VPN detiene el movimiento lateral en el perímetro"
+    ]
+  },
+  "mitre-10": {
+    "tagline": "Discovery mapea el tesoro. Collection lo embolsa. Ambos suceden antes de la exfiltración.",
+    "overview": [
+      "Discovery (TA0007) y Collection (TA0009) a menudo se ejecutan en paralelo. Discovery identifica qué existe en la red comprometida: T1083 — File and Directory Discovery, T1082 — System Information Discovery, T1016 — System Network Configuration Discovery, T1018 — Remote System Discovery (escaneo de red desde dentro de la red).",
+      "Collection (TA0009) cosecha los datos valiosos una vez localizados: T1005 — Data from Local System, T1039 — Data from Network Shared Drive, T1114 — Email Collection (exportación de datos de buzón), T1119 — Automated Collection (scripts que buscan y archivan archivos que coinciden con patrones como *.docx, *.xlsx, *.pst).",
+      "Los actores APT gastan tiempo significativo en la fase de descubrimiento y recopilación — entendiendo la topología de red de la organización, identificando repositorios de datos de alto valor, y preparando datos para exfiltración en archivos pequeños, comprimidos y cifrados que tienen menos probabilidad de activar alertas DLP."
+    ],
+    "technical": {
+      "title": "Patrones de Discovery y Collection",
+      "body": [
+        "Network discovery desde adentro: `net view /domain`, `nltest /dclist`, `arp -a`, `netscan.exe` — estos comandos mapean la topología de red interna. Detectar a través de eventos de creación de procesos Sysmon para net.exe, nltest.exe y arp.exe combinados con cuentas fuente inusuales.",
+        "Los scripts de recopilación automática buscan tipos de archivo de documento (*.docx, *.xlsx, *.pptx, *.pdf), los comprimen (7zip, WinRAR), y los preparan en un directorio temporal para exfiltración. Detectar a través de reglas DLP que monitorean picos de volumen de acceso a archivos, ejecución de utilidades de compresión, y lecturas de archivo de gran volumen desde cuentas inusuales."
+      ]
+    },
+    "incident": {
+      "title": "APT29 — M365 Email Collection (Brecha de Microsoft 2023)",
+      "impact": "Emails de líderes senior de Microsoft robados; repositorios de código fuente accedidos",
+      "body": [
+        "APT29 (Midnight Blizzard) accedió al entorno de correo corporativo de Microsoft al explotar una aplicación OAuth de prueba heredada que tenía permisos excesivos. Utilizaron este acceso para recopilar emails de líderes senior de Microsoft, equipo de seguridad y personal legal — específicamente buscando emails relacionados con APT29 itself (una operación de recopilación de contra-inteligencia sofisticada).",
+        "La recopilación fue dirigida y automatizada: APT29 utilizó el acceso de la aplicación OAuth a Microsoft Graph API para consultar buzones específicos por palabras clave relacionadas con sus propias operaciones. Esto es T1114.002 (Remote Email Collection) combinado con T1119 (Automated Collection) — una cosecha de datos altamente eficiente impulsada por API."
+      ]
+    },
+    "timeline": [
+      "APT29 comienza operaciones de descubrimiento a largo plazo contra el gobierno de EE.UU.",
+      "APT29 mapea la red de clientes de SolarWinds antes de la exfiltración",
+      "Microsoft divulga la recopilación de emails de APT29 a través de aplicación OAuth heredada",
+      "Microsoft revoca todas las aplicaciones OAuth heredadas y endurece los permisos de Graph API"
+    ],
+    "keyTakeaways": [
+      "Discovery utiliza herramientas integradas (net.exe, nltest, arp) — monitorear creación de procesos para estas",
+      "Recopilación automatizada: alertar sobre >500 lecturas de archivo en <5 minutos desde una única cuenta",
+      "Auditar permisos de aplicaciones OAuth — las aplicaciones heredadas con acceso excesivo a Graph API son de alto riesgo",
+      "Las búsquedas de palabras clave de email por aplicaciones no autorizadas son detectables a través de registros de auditoría de Microsoft 365"
+    ]
+  },
+  "mitre-11": {
+    "tagline": "La recopilación sin exfiltración es una biblioteca. La exfiltración es el robo.",
+    "overview": [
+      "Exfiltración (TA0010) cubre las técnicas que los atacantes utilizan para robar datos recopilados de la red objetivo. El desafío para los atacantes es mover grandes volúmenes de datos sin activar sistemas de DLP de red, monitoreo de ancho de banda o detección de anomalías.",
+      "Técnicas principales: T1048 — Exfiltración a través de protocolo alternativo (tunelización DNS, tunelización ICMP, HTTP/S a dominios controlados por atacantes), T1041 — Exfiltración a través del canal C2 (envío de datos a través del mismo canal cifrado utilizado para comando y control), T1567 — Exfiltración a través del servicio web (carga a Dropbox, Google Drive o Mega.nz para mezclarse con tráfico legítimo en la nube).",
+      "El tiempo de exfiltración importa: los actores sofisticados exfiltran lentamente durante días o semanas para mantenerse por debajo de los umbrales de detección de anomalías. La tunelización DNS puede ser extremadamente lenta pero casi nunca es bloqueada por cortafuegos empresariales — lo que la convierte en el canal encubierto preferido para la exfiltración a largo plazo."
+    ],
+    "technical": {
+      "title": "Detección de exfiltración — Capa de red",
+      "body": [
+        "Detección de exfiltración DNS (T1048.003): consultas DNS con etiquetas de subdominio inusualmente largas (>50 caracteres), alta frecuencia de consultas desde un único host, consultas a dominios no vistos anteriormente por ese host, consultas de registros TXT (inusual para estaciones de trabajo). Las herramientas de exfiltración DNS codifican datos en etiquetas de subdominio: `aGVsbG8gd29ybGQ.c2.attacker.com`.",
+        "Detección basada en volumen: establecer una línea base de egreso de datos diario por host. Alertar cuando un host excede 2x el volumen de egreso histórico promedio, especialmente fuera del horario comercial. Las herramientas DLP detectan patrones de tipo de archivo en tráfico de red (encabezados de documentos Office, bytes mágicos ZIP) en conexiones cifradas mediante inspección TLS."
+      ]
+    },
+    "incident": {
+      "title": "Equifax — 76 días de exfiltración no detectada (2017)",
+      "impact": "147,9M americanos PII robados; liquidación FTC de $575M; costos totales de $1,4B",
+      "body": [
+        "Después de explotar la vulnerabilidad de Apache Struts (CVE-2017-5638) a mediados de mayo de 2017, los atacantes exfiltraron datos de los sistemas de Equifax durante 76 días — casi dos meses y medio — antes del descubrimiento el 29 de julio. La exfiltración no fue detectada porque el certificado de inspección SSL de Equifax había expirado 19 meses antes, dejando ciego el sistema de monitoreo de red al tráfico cifrado.",
+        "Los atacantes dividieron los datos robados en pequeños fragmentos y exfiltraron a través de 20 direcciones IP diferentes para evitar la detección basada en volumen. El certificado SSL expirado fue la falla crítica del control — convirtió el sistema de monitoreo de red de una defensa activa en una casilla decorativa."
+      ]
+    },
+    "timeline": [
+      "Brecha de Equifax — 76 días de exfiltración; certificado SSL expirado habilita invisibilidad",
+      "Liquidación de Equifax de la FTC — $575M la penalización de brecha de datos más grande en ese momento",
+      "DOJ acusa a 4 miembros de PLA por brecha de Equifax (Unidad 61398 vinculada)",
+      "La inspección SSL se convierte en control obligatorio en líneas de base de NIST SP 800-53"
+    ],
+    "keyTakeaways": [
+      "La inspección SSL es un control crítico de detección de exfiltración — certificados expirados = monitoreo ciego",
+      "La tunelización DNS elude la mayoría de cortafuegos — monitorear etiquetas de subdominio largas y consultas TXT",
+      "Equifax exfiltró durante 76 días — línea base de volumen de egreso y alerta sobre desviaciones",
+      "Distribuir exfiltración entre muchas IPs para evadir detección basada en volumen (como lo hacen los atacantes)"
+    ]
+  },
+  "mitre-12": {
+    "tagline": "El impacto es el final de la cadena de ataque. Para los defensores, también es el comienzo de la recuperación.",
+    "overview": [
+      "Impact (TA0040) es la táctica final — el objetivo del atacante se logra. Las técnicas de impacto incluyen: T1486 — Data Encrypted for Impact (ransomware), T1485 — Data Destruction (malware wiper), T1491 — Defacement, T1498 — Network Denial of Service, T1529 — System Shutdown/Reboot (para desencadenar daños a escala).",
+      "El ransomware (T1486) se ha convertido en la técnica de impacto dominante porque monetiza el acceso directamente. Las operaciones modernas de ransomware son multi-etapa: reconocimiento previo al ransomware y exfiltración de datos (para doble extorsión), despliegue del encriptador en todos los sistemas accesibles simultáneamente, y entrega de nota de rescate.",
+      "El ransomware de cadena de suministro (T1195.002) amplifica el impacto al dirigirse a proveedores de servicios administrados (MSP) — un único MSP comprometido puede propagar ransomware a cientos de organizaciones clientes simultáneamente. Kaseya VSA demostró esto a escala: una plataforma RMM comprometida, 1.500 víctimas descendentes."
+    ],
+    "technical": {
+      "title": "Defensa contra Ransomware — Antes y Después del Cifrado",
+      "body": [
+        "Detección previa al cifrado: los operadores de ransomware típicamente exfiltran datos (para doble extorsión) antes de cifrar. Las transferencias salientes de gran volumen son detectables. El proceso de cifrado en sí es detectable: eventos de modificación de archivo de alto volumen (Event ID 4663 — escritura de archivo), cambios de extensión de archivo (.docx → .locked), eliminación de copia de sombra (vssadmin delete shadows /all).",
+        "Copia de seguridad y recuperación: la defensa más efectiva contra ransomware es una copia de seguridad inmutable — copias de seguridad que el ransomware no puede alcanzar ni eliminar. Regla 3-2-1: 3 copias, 2 tipos de medios, 1 fuera del sitio. Las copias de seguridad sin conexión o inmutables en la nube (inmutabilidad de Azure Blob Storage, AWS S3 Object Lock) sobreviven al ransomware porque son inaccesibles desde la red comprometida."
+      ]
+    },
+    "incident": {
+      "title": "Kaseya VSA — Ransomware de Cadena de Suministro REvil (4 de Julio de 2021)",
+      "impact": "1.500 negocios cifrados; demanda de rescate de $70M; cadena de tiendas de abarrotes sueca Coop obligada a cerrar 800 tiendas",
+      "body": [
+        "Los operadores de ransomware REvil explotaron un zero-day en Kaseya VSA (una plataforma RMM utilizada por proveedores de servicios administrados) para enviar una 'actualización' maliciosa a todos los agentes conectados a VSA. La actualización desplegó ransomware en cada punto final administrado por los ~50 MSP que ejecutaban Kaseya VSA — aproximadamente 1.500 negocios en 17 países.",
+        "El ataque se programó para el fin de semana del 4 de julio cuando el personal de TI sería mínimo. El ransomware cifró todos los archivos simultáneamente en miles de organizaciones dentro de horas. La cadena de tiendas de abarrotes Coop de Suecia cerró 800 tiendas porque sus sistemas de punto de venta se ejecutaban en un MSP administrado por Kaseya. Toda la cadena de ataque ATT&CK — desde el acceso inicial hasta la detonación del ransomware — se ejecutó en menos de 48 horas."
+      ]
+    },
+    "timeline": [
+      "WannaCry — primer ransomware de cadena de suministro global (NSA EternalBlue)",
+      "Colonial Pipeline — ransomware de organización única cierra suministro de combustible de EE.UU.",
+      "Kaseya VSA — ransomware de cadena de suministro afecta a 1.500 organizaciones simultáneamente",
+      "CISA publica guía de ransomware — inmutabilidad de copias de seguridad se convierte en requisito básico"
+    ],
+    "keyTakeaways": [
+      "Detectar ransomware previo al cifrado: eliminación de VSS, escrituras de archivo grandes, cambios de extensión",
+      "Las copias de seguridad inmutables (S3 Object Lock, Azure Immutable Storage) sobreviven al ransomware",
+      "La eliminación de copia de sombra (vssadmin delete shadows) es un paso previo universal de ransomware — alertar sobre esto",
+      "Los ataques de cadena de suministro de MSP son multiplicadores de fuerza — evalúe la postura de seguridad de sus proveedores de RMM"
+    ]
+  },
+  "atlas-01": {
+    "tagline": "Antes de atacar un sistema de IA, debes entender qué es y cómo piensa.",
+    "overview": [
+      "MITRE ATLAS (Adversarial Threat Landscape for Artificial-Intelligence Systems) es el análogo de ATT&CK para IA/ML. Mientras que ATT&CK cubre ataques a sistemas de TI tradicionales, ATLAS cubre ataques a sistemas de IA y ML — una superficie de ataque en rápido crecimiento conforme la IA se despliega en herramientas de seguridad, vehículos autónomos, diagnósticos médicos y sistemas financieros.",
+      "AML.TA0001 Reconocimiento cubre técnicas para recopilar información sobre sistemas ML objetivo antes de atacarlos. A diferencia del reconocimiento de TI tradicional, el reconocimiento de ML se enfoca en: identificar qué arquitectura de modelo está en uso (AML.T0000), encontrar las fuentes de datos de entrenamiento (AML.T0001), entender el formato de entrada y salida del modelo (AML.T0002), y sondear los límites de decisión del modelo mediante consultas dirigidas.",
+      "El reconocimiento de ML es frecuentemente pasivo — examinando documentación de API, papers publicados que describen el modelo, repositorios de GitHub con código del modelo, y tarjetas de modelo en HuggingFace. El reconocimiento de ML activo implica consultar la API del modelo con entradas cuidadosamente elaboradas para inferir arquitectura, puntuación de confianza y límites de decisión."
+    ],
+    "technical": {
+      "title": "Técnicas de Fingerprinting de Sistemas ML",
+      "body": [
+        "Inferencia de arquitectura de modelo (AML.T0000): enviar entradas que desencadenan diferentes comportamientos en arquitecturas conocidas. Los modelos ResNet responden de manera diferente a perturbaciones adversariales que los modelos ViT. Los modelos de familia GPT tienen distribuciones características de probabilidades de token. Analizando respuestas de API, los atacantes infieren la familia de modelo subyacente.",
+        "Reconocimiento de API: la mayoría de APIs de ML comerciales exponen metadatos útiles — puntuaciones de confianza, predicciones top-k, vectores de embedding, o log probabilidades de token. Estos filtran información sobre internos del modelo. Un modelo que retorna puntuaciones de confianza puede ser usado para construir mapas de límites de decisión mediante consultas sistemáticas."
+      ]
+    },
+    "incident": {
+      "title": "Clearview AI — Reconocimiento de Datos Públicos (2020)",
+      "impact": "Modelo de reconocimiento facial entrenado en 3B+ imágenes públicas; violación de privacidad de miles de millones",
+      "body": [
+        "Clearview AI construyó un sistema de reconocimiento facial mediante el raspado de 3+ mil millones de imágenes de plataformas de redes sociales públicas — una forma de reconocimiento de ML masivo que cosechó datos de entrenamiento de fuentes disponibles públicamente. El sistema podía entonces identificar individuos desde una única foto con alta precisión.",
+        "Agencias de aplicación de la ley en 26+ países utilizaron el sistema de Clearview sin conocimiento o consentimiento de los sujetos. La fase de reconocimiento (raspado de imágenes públicas) fue técnicamente legal en muchas jurisdicciones — demostrando que el reconocimiento de ML usando datos públicos puede ser tanto técnicamente trivial como legalmente ambiguo."
+      ]
+    },
+    "timeline": [
+      "Desarrollo del framework ATLAS comienza en MITRE",
+      "Clearview AI — raspado de 3B imágenes demuestra reconocimiento ML pasivo a escala",
+      "MITRE ATLAS v1 lanzado públicamente — primera taxonomía de amenaza de IA/ML",
+      "ATLAS v4 — 14 tácticas, 77 técnicas cubriendo el ciclo de vida completo de ataque de IA"
+    ],
+    "keyTakeaways": [
+      "El reconocimiento de ML apunta a la arquitectura de modelo, datos de entrenamiento, formato de entrada y límites de decisión",
+      "Las puntuaciones de confianza y log probabilidades en respuestas de API habilitan mapeo de límites",
+      "Las tarjetas de modelo y papers publicados revelan detalles de arquitectura pasivamente",
+      "Limitar velocidad y monitorear consultas de API — consultas sistemáticas masivas señalan sondeo de límites"
+    ]
+  },
+  "atlas-02": {
+    "tagline": "Construye una copia del modelo objetivo. Luego rompe la copia para romper el original.",
+    "overview": [
+      "AML.TA0002 Resource Development en ATLAS cubre la construcción de recursos necesarios para ataques de ML: modelos sustitutos (proxy) que imitan el objetivo, herramientas de generación de ejemplos adversariales, conjuntos de datos envenenados para ataques de cadena de suministro, e infraestructura para campañas de extracción de modelos.",
+      "Un modelo sustituto (AML.T0005) es una copia local del modelo objetivo entrenada para imitar su comportamiento consultando la API objetivo y utilizando las respuestas como etiquetas de entrenamiento. Una vez que se construye un buen sustituto, los ejemplos adversariales elaborados contra el sustituto a menudo se transfieren al modelo real — permitiendo ataques sin acceso directo a los pesos o arquitectura del modelo objetivo.",
+      "El desarrollo de recursos también incluye adquirir herramientas de ML adversarial: CleverHans, Foolbox, ART (Adversarial Robustness Toolbox), y TextFooler para ataques de PNL. Estas son herramientas de investigación legítimas que pueden ser weaponizadas para ataques contra sistemas ML en producción."
+    ],
+    "technical": {
+      "title": "Entrenamiento de Modelo Sustituto (Extracción de Modelos)",
+      "body": [
+        "Proceso de entrenamiento de modelo sustituto: (1) enviar entradas sintéticas o reales a la API objetivo y recopilar pares (entrada, salida), (2) usar estos pares como un conjunto de entrenamiento etiquetado, (3) entrenar un modelo local en este conjunto de datos, (4) evaluar qué tan bien el sustituto imita el objetivo en datos retenidos, (5) usar el sustituto para elaborar ejemplos adversariales.",
+        "La tasa de transferencia (con qué frecuencia los ejemplos adversariales en el sustituto engañan al objetivo) depende de la similitud del modelo. Si ambos usan arquitecturas similares, las tasas de transferencia pueden exceder el 80%. Defensa: devolver solo etiquetas duras (sin puntuaciones de confianza) para reducir la información disponible para el entrenamiento sustituto. La limitación de tasa y el monitoreo de consultas detectan el uso masivo de API."
+      ]
+    },
+    "incident": {
+      "title": "Extracción del Modelo GPT-4 vía API (2023)",
+      "impact": "Investigadores demostraron extracción parcial de GPT-4 utilizando $200 en consultas de API",
+      "body": [
+        "Investigadores de múltiples instituciones demostraron que información estructural sobre GPT-4 — específicamente el tamaño de su dimensión oculta — podría ser inferida usando solo $200 en consultas de API analizando el espacio de incrustación de salida del modelo. Esto es AML.T0056 (Ataque de Inversión de Modelos) combinado con AML.T0005 (Desarrollar Ejemplos Adversariales vía Modelo Sustituto).",
+        "Los pesos completos de GPT-4 no fueron extraídos — pero la demostración probó que incluso los sistemas de IA frontera más estrictamente controlados filtran información estructural a través de sus APIs. El desarrollo de recursos para ataques de IA cada vez más significa construir herramientas para explotar estos canales de fuga de información."
+      ]
+    },
+    "timeline": [
+      "Papernot et al. — primer modelo sustituto + ataque de transferencia demostrado",
+      "KnockoffNets — extracción práctica de modelos en APIs en producción",
+      "Inferencia de dimensión GPT-4 vía $200 en consultas de API",
+      "APIs de solo etiqueta dura y monitoreo de consultas se convierten en defensas estándar"
+    ],
+    "keyTakeaways": [
+      "Los modelos sustitutos copian el comportamiento objetivo vía pares (consulta, respuesta) — sin necesidad de pesos",
+      "Los ejemplos adversariales se transfieren entre modelos arquitectónicamente similares a tasas de 50–80%+",
+      "Defensa: devolver solo etiquetas duras (sin probabilidades), limitar por tasa las consultas, monitorear patrones sistemáticos",
+      "ART (Adversarial Robustness Toolbox) es el kit estándar de adversarial ML de código abierto"
+    ]
+  },
+  "atlas-03": {
+    "tagline": "La forma más eficiente de comprometer un sistema de IA es antes de que se implemente.",
+    "overview": [
+      "AML.TA0003 Initial Access cubre cómo los atacantes obtienen su primer punto de apoyo en un sistema o pipeline de ML. El vector de acceso inicial más poderoso para ML es AML.T0010 — ML Supply Chain Compromise: insertar modelos maliciosos, datasets envenenados o librerías con puertas traseras en el ecosistema de ML antes de que los objetivos los descarguen e implementen.",
+      "HuggingFace aloja 500,000+ modelos públicamente disponibles. Un modelo malicioso cargado en HuggingFace con un nombre convincente (un typosquat de un modelo popular) puede ser descargado e implementado por miles de organizaciones. A diferencia de los ataques tradicionales a la cadena de suministro que requieren comprometer a un proveedor, los ataques a la cadena de suministro de ML pueden ejecutarse cargando un modelo similar convincente en un registro público.",
+      "Otras técnicas de acceso inicial: AML.T0012 — Valid ML Service Credentials (claves API comprometidas para servicios de ML en la nube), AML.T0047 — Backdoor ML Model via GitHub (insertar puertas traseras en código de entrenamiento de ML de código abierto)."
+    ],
+    "technical": {
+      "title": "Vectores de Ataque a la Cadena de Suministro de ML",
+      "body": [
+        "HuggingFace model typosquatting: cargar `bert-base-uncased-finetuned` (legítimo) vs `bert-base-uncased-fintuned` (typosquat con puerta trasera). Las organizaciones que fijan versiones de modelos están protegidas; las que usan referencias de nombre sin hashes son vulnerables. Defensa: siempre fijar hashes SHA256 de modelos, no solo nombres.",
+        "Deserialización de archivos Pickle (AML.T0011): Los archivos de modelos PyTorch usan el formato pickle de Python para serialización. Un archivo pickle malicioso puede ejecutar código Python arbitrario cuando se carga con `torch.load()`. Defensa: usar el parámetro `weights_only=True` en torch.load (disponible desde PyTorch 1.13) y escanear archivos de modelo con herramientas de escaneo de pickle antes de cargarlos."
+      ]
+    },
+    "incident": {
+      "title": "Carga de Modelo Malicioso en HuggingFace (2024)",
+      "impact": "100+ modelos maliciosos encontrados ejecutando código al cargarse; RCE por deserialización de pickle",
+      "body": [
+        "Los investigadores de seguridad de JFrog descubrieron 100+ modelos maliciosos en HuggingFace que ejecutaban código arbitrario cuando se cargaban usando `torch.load()`. Los modelos explotaban la deserialización de pickle de Python para ejecutar comandos del sistema — un ataque clásico a la cadena de suministro donde la 'dependencia' (el modelo de ML) contiene el malware.",
+        "A diferencia de los ataques tradicionales a la cadena de suministro de software que requieren comprometer un proyecto legítimo, el ataque de HuggingFace solo requería crear un nombre de modelo plausible y cargar un archivo malicioso. HuggingFace ahora escanea archivos de modelo para detectar ejecución de código basada en pickle, pero la vulnerabilidad fundamental (pickle como formato de modelo de ML) permanece."
+      ]
+    },
+    "timeline": [
+      "HuggingFace alcanza 100k modelos — el riesgo de la cadena de suministro de ML crece rápidamente",
+      "Primeros typosquats de modelos maliciosos documentados en HuggingFace",
+      "JFrog descubre 100+ modelos RCE en HuggingFace; escaneo de pickle añadido",
+      "PyTorch weights_only=True se convierte en recomendación predeterminada para carga de modelos"
+    ],
+    "keyTakeaways": [
+      "Fijar hashes SHA256 de modelos — nunca cargar modelos solo por nombre desde registros públicos",
+      "Usar `torch.load(weights_only=True)` para prevenir ejecución de código pickle al cargar modelos",
+      "Escanear archivos de modelo con pickle-scanner antes de cargarlos en cualquier pipeline",
+      "Tratar modelos de ML públicos como código de terceros no confiable — revisar antes de uso en producción"
+    ]
+  },
+  "atlas-04": {
+    "tagline": "No necesitas los pesos para atacar un modelo. Solo necesitas la API.",
+    "overview": [
+      "AML.TA0004 ML Model Access cubre técnicas que los atacantes utilizan para interactuar y consultar sistemas de ML. Los tipos de acceso van desde acceso completamente white-box (el atacante tiene los pesos y la arquitectura del modelo) hasta acceso pure black-box (el atacante solo puede enviar entradas y observar salidas a través de una API).",
+      "El acceso black-box (AML.T0040) es el escenario más común en el mundo real para sistemas ML comerciales. Incluso con solo acceso a API, los atacantes pueden: mapear límites de decisión mediante consultas sistemáticas, extraer información del modelo a través de inferencia de membresía, crear ejemplos adversariales usando transferencia de modelos sustitutos, y elicitar datos sensibles de entrenamiento mediante prompts cuidadosamente diseñados.",
+      "Para sistemas LLM, el acceso black-box permite inyección de prompts (AML.T0054), jailbreaking (eludir directrices de seguridad), y ataques de extracción de datos. La superficie de ataque de una API LLM black-box es cualitativamente diferente de los clasificadores de imágenes — el lenguaje natural permite entradas controladas por el atacante mucho más ricas."
+    ],
+    "technical": {
+      "title": "Técnicas de Ataque Black-Box",
+      "body": [
+        "Ataques basados en decisiones (optimización de orden cero): ataques como HopSkipJump y HSJA no requieren información de gradientes — encuentran ejemplos adversariales usando solo las salidas de etiqueta dura del modelo. Estos funcionan estimando gradientes a partir de cambios de etiqueta mientras se perturban las entradas, luego siguiendo el gradiente estimado hacia el límite de decisión.",
+        "Los ataques black-box de LLM difieren de los ataques de visión: las entradas de LLM son tokens discretos (no valores de píxeles continuos), lo que hace que los enfoques basados en gradientes sean inaplicables. Los ataques de LLM utilizan prompt engineering, escenarios de juego de rol, manipulación de tokens (insertar tokens especiales), y jailbreaking de many-shot (proporcionar muchos ejemplos del comportamiento deseado en contexto)."
+      ]
+    },
+    "incident": {
+      "title": "Extracción de Datos de Entrenamiento de ChatGPT (2023)",
+      "impact": "Investigadores extrajeron datos de entrenamiento verbatim incluyendo PII de ChatGPT a través de ataque de divergencia",
+      "body": [
+        "Investigadores de Google DeepMind, ETH Zurich y otras instituciones demostraron que ChatGPT podía ser inducido a regurgitar datos de entrenamiento verbatim — incluyendo información de identificación personal — al solicitar al modelo que 'repita la palabra poema eternamente.' El modelo eventualmente divergería de su comportamiento entrenado y emitiría secuencias de entrenamiento memorizadas.",
+        "Esto demuestra AML.T0056 (Model Inversion Attack) contra un LLM: el acceso a API black-box, combinado con una entrada cuidadosamente diseñada que causa divergencia del modelo, permitió la extracción de datos de entrenamiento que se suponía el modelo debería haber generalizado en lugar de memorizado. El ataque costó aproximadamente $200 en consultas de API."
+      ]
+    },
+    "timeline": [
+      "Primeros artículos de memorización de LLM — GPT-2 memoriza datos de entrenamiento",
+      "Carlini et al. — memorización extractable en modelos de lenguaje grande",
+      "Extracción de datos de entrenamiento de ChatGPT demostrada a través de ataque de divergencia",
+      "OpenAI añade limitación de velocidad y filtrado de salida para reducir extracción de memorización"
+    ],
+    "keyTakeaways": [
+      "El acceso black-box es suficiente para ejemplos adversariales, mapeo de límites, y extracción de datos",
+      "Los ataques de divergencia de LLM extraen datos de entrenamiento memorizados incluyendo PII de los pesos del modelo",
+      "Defensa: privacidad diferencial durante el entrenamiento, filtrado de salida, y limitación de velocidad",
+      "Limitar velocidad + monitorear patrones de consulta de prueba de límites sistemática"
+    ]
+  }
+}

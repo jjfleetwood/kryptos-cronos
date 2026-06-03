@@ -2,8 +2,8 @@ import { NextRequest, NextResponse } from "next/server";
 import { createHmac, timingSafeEqual } from "crypto";
 import { redis } from "@/lib/redis";
 import { getServerSession } from "@/lib/server-session";
-import { SHOP_ITEMS } from "@/data/shop-items";
-import { TROPHIES } from "@/data/trophies";
+import { SHOP_ITEMS } from "@kryptos/core/shop-items";
+import { TROPHIES } from "@kryptos/core/trophies";
 
 function verifyAdminToken(token: string): boolean {
   const secret = process.env.ADMIN_SECRET;

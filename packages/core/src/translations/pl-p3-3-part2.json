@@ -1,0 +1,374 @@
+{
+  "baseball-7-01": {
+    "tagline": "Miotacz, który obserwuje przed rzucaniem, wygrywa połowę bitwy zanim piłka opuści jego rękę.",
+    "overview": [
+      "Zanim zostanie wykonany rzut, miotacz i łapacz mogą zgromadzić ogromną ilość informacji z ustawienia pałkarza w boksie. Szerokość postawy, rozkład ciężaru, wysokość dłoni, sztywność chwytu kija, tendencje kierunkowe kroku i jak głęboko lub płytko stoi pałkarz w stosunku do bazy domowej dostarczają wskazówek o preferencjach, podatnościach i prawdopodobnych słabościach pałkarza. To nie jest zgadywanie — to systematyczna obserwacja, którą zawodowi miotacze i łapacze ćwiczą latami.",
+      "Pałkarz stojący głęboko w boksie (w kierunku łapacza) zazwyczaj próbuje zyskać czas na łamane piłki — sygnał, że może mieć trudności z twardymi fastballami w górnej części strefy. Pałkarz tłoczący się przy bazie i stojący blisko niej często ma problemy z rzutami w wewnętrznej połowie — zapraszając miotacza do wejścia do środka. Pałkarz z otwartą postawą (przednia stopa skierowana w kącie w stronę miotacza) może mieć trudności z zakryciem zewnętrznej połowy, ponieważ jego biodra są wstępnie obrócone.",
+      "Łapacze Dodgers badają alineacje rywali przed każdą serią, budując mentalny model tendencji każdego pałkarza z własnymi danymi Statcast i materiałami wideo. Za bazą domową łapacz służy jako strateg miotacza — ustawiając rękawicę w konkretnych lokalizacjach opartych na wszystkim, co wiedzą o danym pałkarzu. Gdy Clayton Kershaw widział łapacza ustawiającego się na zewnątrz wobec lewostronnego pałkarza, który wszystko ciągnął, natychmiast rozumiał: idź na zewnątrz, spraw, by się rozszerzył, a następnie wróć do środka."
+    ],
+    "technical": {
+      "title": "Sygnały Fizyczne i Co Oznaczają",
+      "body": [
+        "Sztywność chwytu to jeden z najbardziej odkrywczych wskaźników stanu mentalnego i intencji pałkarza. Pałkarz trzymający kij tak mocno, że jego przedramiona są wyraźnie napięte, jest często nastawiony bojowo — próbuje mocno uderzyć piłkę, co oznacza, że przepuści każdy off-speed rzut. To jest moment na early changeup lub curveball. Zrelaksowany chwyt zazwyczaj oznacza zdyscyplinowanego i cierpliwego pałkarza — takiego, który nie będzie gonił.",
+        "Sygnały kierunku kroku są równie cenne. Pałkarz kroczący w kierunku łapacza (stąpający w stronę ławki) podczas swingu prawdopodobnie będzie miał problemy z rzutami w zewnętrznej połowie — jego krok oddala go od rzutów na zewnątrz. Pałkarz kroczący w stronę pagórka (stąpający do wewnątrz rzutu) często ma problemy z twardymi rzeczami wewnątrz — porusza się ku nim bez czasu na wciągnięcie dłoni. Rozkład ciężaru — czy pałkarz obciąża mocno tylną stopę, czy ledwo ją obciąża — przewiduje timing. Pałkarze z dużym obciążeniem tylnej stopy kochają fastball, bo obciążenie generuje moc; zazwyczaj mają trudności z off-speed zaburzającym to obciążenie."
+      ]
+    },
+    "incident": {
+      "title": "Sandy Koufax w Chavez Ravine — Idealny Mecz, 1965",
+      "impact": "Idealny mecz Sandy'ego Koufaksa przeciwko Chicago Cubs 9 września 1965 roku — 14 strikeoutów — był zbudowany na planie gry, który ledwo się zmieniał: fastball góra-i-wewnątrz wcześnie w licznikach, by przygotować curveball dół-i-na-zewnątrz. Łapacz Jeff Torborg prowadził mecz prawie wyłącznie na podstawie odczytu, że pałkarze Cubs obciążają fastball Koufaksa, co czyniło curveball Koufaksa całkowicie nie do uderzenia.",
+      "body": [
+        "9 września 1965 roku Sandy Koufax nie zaliczył ani jednego za uderzenia i ponaczył 14 pałkarzy w idealnym meczu 1-0 przeciwko Chicago Cubs. Wyczyn był godny uwagi nie tylko wynikami, lecz strategiczną jasnością za nim: Torborg i Koufax przestudiowali alineację Cubs i zauważyli, że niemal wszyscy pałkarze agresywnie obciążali ciężar na tylną stopę — sygnał, że czekali na prędkość fastball Koufaksa. Więc Koufax używał fastball do ustanawiania licznika, a następnie zakopywał swoją curveball dół-i-na-zewnątrz, gdy pałkarze byli zaangażowani do przodu.",
+        "Elegancja podejścia Koufaksa tamtej nocy leżała w jego prostocie. Nie potrzebował skomplikowanego sekwencjonowania, bo jego dwa rzuty były tak dominujące, że odczytanie rozkładu ciężaru pałkarza wystarczyło, by wiedzieć, którego użyć. Gdy pałkarze Cubs mocno obciążali — dostawali curveball. Gdy wydawali się czekać z tyłu — dostawali wysoki fastball. Torborg opisał to później jako »najłatwiejszy mecz, jaki kiedykolwiek prowadziłem — Sandy wiedział, czego chcieli i dał im odwrotność«. Idealny mecz pozostaje najlepszym występem opartym na odczycie-i-reakcji w historii Dodgers."
+      ]
+    },
+    "timeline": [
+      "Łapacze Dodgers pod menedżerem Walterem Alstonem formalizują programy nauki pałkarzy przed meczem",
+      "Idealny mecz Koufaksa — 14 K, odczytując obciążenia pałkarzy Cubs przez całą noc",
+      "59 inningów bez biegaczy Orela Hershisera — systematyczne odczytywanie pałkarzy przez 8 startów",
+      "Analiza wideo przynosi dane o tendencjach pałkarzy do rutyny przed meczem łapaczy",
+      "Statcast zaczyna kwantyfikować tendencje ciągnięcia pałkarzy i wykresy spray'u według strefy",
+      "Łapacz Dodgers Will Smith używa danych z tabletu w czasie rzeczywistym do dostosowywania ustawienia rzut po rzucie"
+    ],
+    "keyTakeaways": [
+      "Głębokość postawy mówi ci, czy pałkarz szuka czasu na łamane piłki (głęboko) czy próbuje atakować wcześnie (płytko)",
+      "Tłoczenie się przy bazie sygnalizuje podatność na wewnętrzną połowę — idź na zewnątrz, by przygotować wewnątrz lub wejdź od razu do środka",
+      "Mocne obciążenie tylnej stopy faworyzuje timing fastball — pałkarze są podatni na changeup zaburzający to obciążenie",
+      "Sztywność chwytu przewiduje stan mentalny: pałkarze trzymający mocno rozszerzą swoją strefę; zrelaksowani zmuszą cię do rzucania strajków"
+    ]
+  },
+  "baseball-7-02": {
+    "tagline": "Licznik to nie tylko wynik — to tablica wyników kolejki pałkarza, a miotacz, który go kontroluje, kontroluje wynik.",
+    "overview": [
+      "Zarządzanie licznikiem to jeden z najbardziej analitycznie badanych aspektów miotania. Badania konsekwentnie pokazują, że pałkarze uderzają dramatycznie lepiej w licznikach korzystnych dla pałkarza (2-0, 3-1, 3-2 z perspektywy pałkarza) i dramatycznie gorzej w licznikach korzystnych dla miotacza (0-2, 1-2). Strajk na pierwszym rzucie to najważniejszy rzut w każdej kolejce: przesuwa licznik na korzyść miotacza, zanim pałkarz miał okazję odczytać tendencje lub dokonać korekt. Miotacze, którzy konsekwentnie rzucają strajki na pierwszym rzucie, dominują; ci, którzy konsekwentnie zostają w tyle, mają trudności.",
+      "Licznik 0-2 to dar dla miotacza — pałkarz musi chronić strefę strajku, a miotacz ma ogromną swobodę rzucania piłek poza strefą (rzuty do wyrzucenia) lub agresywnego atakowania. Rzut do wyrzucenia przy liczniku 0-2 to typowo rzut tuż poza strefą strajku — fastball na poziomie oczu powyżej strefy lub curveball w ziemi — zaprojektowany tak, by pałkarz go gonił. Jeśli swinguje i chybi, kolejka kończy się. Jeśli nie swinguje, licznik wynosi 1-2 i miotacz nadal ma przewagę.",
+      "Cykl niepowodzenia definiujący złe miotanie to przejście z 0-2 do 3-2. To miotaniowy odpowiednik prezentu, który zostaje zwrócony: zaczęcie z dominującą przewagą 0-2 i pozwolenie pałkarzowi na odrobienie do 3-2 oznacza cztery kolejne nie zdobyte auty — miotacz zmarnował swoją szansę. Legendarna rywalizacyjność Claytona Kershawa była częściowo zbudowana na jego odmowie marnowania liczników 0-2; Walker Buehler, dla kontrastu, czasem miał trudności, gdy był z przodu, próbując być zbyt precyzyjny zamiast atakować."
+    ],
+    "technical": {
+      "title": "Dźwignia Licznika — Jak Każdy Licznik Wpływa na Wyniki",
+      "body": [
+        "Badania MLB pokazują, że średnia uderzeń, procent slugging i procent na bazie zmieniają się dramatycznie w zależności od licznika. Przy liczniku 3-0 pałkarze uderzają powyżej 0,400 — miotacz musi rzucić strajka i praktycznie wszyscy wiedzą, że to fastball. Przy liczniku 0-2 pałkarze uderzają poniżej 0,170 — są defensywni, chronią strefę strajku i mogą być atakowani rzutami, z którymi nie potrafią sobie poradzić. Dźwignia licznika jest powodem, dla którego procent strajków na pierwszym rzucie to jedna z najbardziej predykcyjnych metryk sukcesu miotacza: ustanawia licznik na twoją korzyść zanim pałkarz ma jakiekolwiek informacje.",
+        "Podejście Kershawa do zarządzania licznikiem było agresywne: chciał strajków na pierwszym rzucie w ponad 65% kolejek. Zaczynał pałkarzy curveball tak samo często jak fastballem — uniemożliwiając pałkarzom czekanie na fastball przy 0-0. Jego podejście przy 0-2 polegało na natychmiastowym powrocie z curveball w ziemi, nie rzutem do wyrzucenia daleko od strefy strajku, ufając, że ustawienie fastball stworzyło oczekiwanie konieczne do gonionej kolejnej łamanej piłki."
+      ]
+    },
+    "incident": {
+      "title": "Dominacja Pierwszego Strajku Claytona Kershawa — Cy Young 2011",
+      "impact": "W 2011 roku Clayton Kershaw zdobył zarówno Cy Young Ligi Narodowej, jak i MVP Ligi Narodowej — pierwszy miotacz zdobywający oba od Boba Gibsona w 1968 roku. Jego procent strajków na pierwszym rzucie w tamtym roku wynosił 66%, znacznie powyżej średniej ligowej 59%. W połączeniu z ERA 2,28 i 248 strikeoutami, jego zarządzanie licznikiem było silnikiem napędzającym wszystko inne.",
+      "body": [
+        "Sezon 2011 Kershawa był efektem celowego filozoficznego zaangażowania w kontrolę licznika. Wchodząc w wiosenny trening w Camelback Ranch, jego trenerzy miotaczy pracowali z nim nad sekwencjami ataku pierwszego rzutu — konkretnie rzucania curveball częściej przy 0-0, by uniemożliwić pałkarzom czekanie na fastball. Wynikiem było to, że pałkarze nigdy nie mogli pewnie zgadnąć jego rzutu na pierwszą ofertę, co prowadziło do większej liczby liczników 0-1 i 0-2 oraz mniejszej liczby sytuacji 1-0 i 2-0, gdzie pałkarze mogliby być selektywni.",
+        "Gdy Kershaw dochodził do 0-2, jego podejście było atakowanie zamiast marnowania: powrót z curveball w ziemi — którą pałkarze, którzy właśnie widzieli dwa fastballe, gonili — lub fastball na linii na poziomie kolan. Jego stosunek strikeoutów do base on balls w tamtym roku wynosił 9,58:1, najlepszy w Major League, odzwierciedlając miotacza, który generował strikeouty i unikał base on balls wynikających z pozostawania w tyle w licznikach. Zarządzanie licznikiem stanowiło fundament jego dominacji."
+      ]
+    },
+    "timeline": [
+      "Ostatni sezon Koufaksa — 87% strajków na pierwszym rzucie, najwyższy wskaźnik swojej epoki",
+      "Hershiser używa dyscypliny licznika jako podstawy swojej serii 59 inningów bez biegaczy",
+      "Bill James publikuje badania pokazujące dźwignię licznika — strajki na pierwszym rzucie skwantyfikowane",
+      "Kershaw zdobywa Cy Young i MVP oparty na elitarnej kontroli licznika",
+      "Statcast zaczyna śledzić wskaźniki strajków na pierwszym rzucie dla wszystkich miotaczy w MLB",
+      "Walker Buehler wraca po operacji TJ — zarządzanie licznikiem przebudowane w Camelback Ranch"
+    ],
+    "keyTakeaways": [
+      "Strajki na pierwszym rzucie to najważniejsze rzuty w kolejce — przesuwają każdy kolejny licznik na korzyść miotacza",
+      "0-2 to dar: albo wyrzuć rzut tuż poza strefą, albo natychmiast zaatakuj słabość pałkarza — nie oddawaj licznika",
+      "Przejście z 0-2 do 3-2 to strategiczne niepowodzenie — oznacza utratę czterech kolejnych okazji do zakończenia kolejki",
+      "Zmieniaj dobór rzutów przy 0-0 (mieszaj curveball i fastball), by pałkarze nie mogli czekać na przewidywalny pierwszy rzut"
+    ]
+  },
+  "baseball-7-03": {
+    "tagline": "Każdy rzut, który wykonujesz, to kłamstwo, na którym planujesz zarobić później — sekwencjonowanie to sztuka przygotowania.",
+    "overview": [
+      "Sekwencjonowanie rzutów to sztuka używania jednego rzutu do tworzenia warunków, które czynią późniejszy rzut bardziej skutecznym. Klasyczny przykład to sekwencja fastball wewnątrz — curveball na zewnątrz: ustanów, że możesz umieścić fastball w wewnętrznej połowie, spraw, by pałkarz go szanował (i chronił wewnątrz), a następnie rzuć curveball lub changeup, który zaczyna wyglądać jakby szedł wewnątrz, zanim odchyli się na zewnątrz. Ciało i umysł pałkarza są zaangażowane w ochronę wewnątrz; piłka kończy w zewnętrznej połowie, gdzie nie mogą jej dosięgnąć.",
+      "Rzut przygotowujący to każdy rzut wykonany głównie w celu stworzenia oczekiwania lub mechanicznej korekty w ciele pałkarza, zamiast zaliczania autu. Miotacz rzucający trzy fastballe z rzędu w zewnętrzną połowę niekoniecznie próbuje zaliczyć trzy auty tymi rzutami — może ustanawiać wzorzec, który sprawia, że czwarty rzut (curveball zaczynająca się w zewnętrznej połowie i odbiegająca dalej na zewnątrz, lub fastball wewnątrz po trzech na zewnątrz) jest dramatycznie bardziej skuteczny. Pamięć mięśniowa i mechanizm timingu pałkarza stają się aktywem dla miotacza.",
+      "Startujący Dodgers napotykający kolejkę kilkakrotnie w meczu myślą o sekwencjach przez całe kolejki pałkarzy i przez całe inningi. Jeśli Kershaw zaliczył groundout od pałkarza na niskiej curveball w pierwszym inningu, przechowywał tę informację. W czwartym inningu przy dwóch strajkach wróciłby do tej samej curveball — ale teraz pałkarz też jej szuka. Kontra Kershawa: rzucić fastball na tym samym poziomie co punkt wejścia curveball, generując swing oparty na ustanowionym wzorcu."
+    ],
+    "technical": {
+      "title": "Rzut Przygotowujący — Inwestowanie w Rzut dla Późniejszego Zwrotu",
+      "body": [
+        "Najskuteczniejsi sekwencerzy w baseballu — Greg Maddux, Tom Seaver i w kontekście Dodgers Kershaw i Hershiser — wszyscy rozumieli, że poszczególne rzuty nie są oceniane w izolacji. Fastball w wewnętrznej połowie uderzony na zewnątrz to nie nieudany rzut, jeśli spowodował, że pałkarz chroni wewnątrz. Ten rzut dał dywidendy dwa rzuty później, gdy curveball na zewnątrz została uderzona wcześnie. Trenerzy miotaczy nazywają to »inwestowaniem w kolejkę«.",
+        "Sekwencja fastball-wewnątrz-do-piłki-łamiącej-na-zewnątrz to najczęstsza sekwencja przygotowująca. Jej skuteczność wynika z fizycznej rzeczywistości: gdy pałkarz jest złapany przez rzut wewnątrz, jego naturalna reakcja obronna to trzymanie dłoni blisko ciała przy następnym rzucie. Piłka łamiąca zaczynająca się wewnątrz (jakby to był kolejny pułapkowy rzut), ale łamiąca się w kierunku zewnętrznej połowy, eksploatuje tę postawę obronną — dłonie pałkarza nigdy się nie wyciągają, a on nawiązuje słaby kontakt lub chybia. Startujący Dodgers przechodząc przez kolejkę trzy razy w nocy używali tej sekwencji wielokrotnie, zmieniając tylko timing i typ rzutu przygotowującego."
+      ]
+    },
+    "incident": {
+      "title": "59 Inningów Orela Hershisera Bez Biegaczy — 1988",
+      "impact": "Rekord Orela Hershisera 59 kolejnych inningów bez biegaczy w 1988 roku nie był zbudowany na druzgocącej prędkości — uśredniał około 86 mph. Był zbudowany wyłącznie na sekwencjonowaniu: kombinacja sinker/slider przygotowująca zewnętrzną połowę, następnie curveball zaczynająca się w zewnętrznej połowie i łamiąca dalej na zewnątrz. Pałkarze, którzy widzieli trzy lub cztery rzuty na zewnątrz, byli całkowicie zaskoczeni, gdy przyszedł do środka z fastballem.",
+      "body": [
+        "Seria bez biegaczy Hershisera od 30 sierpnia do 28 września 1988 roku pobiła rekord 58 inningów Dona Drysdale'a. Podczas serii Hershiser uśredniał mniej niż 90 rzutów na mecz — niezwykłe dla miotacza wchodzącego głęboko w mecze. Wydajność była całkowicie produktem sekwencjonowania: nie próbował przygniatać pałkarzy ani pracować głęboko w licznikach. Ustanawiał zewnętrzną połowę swoim sinkerem, poruszał piłką po strefie w wzorcach, na których pałkarze nie mogli siedzieć, a następnie atakował ich słabość.",
+        "W Mistrzostwach Ligowych Ligi Narodowej 1988 Hershiser kontynuował swój blask przeciwko Mets, a następnie zamknął Oakland Athletics w World Series — zdobywając MVP. Jego sekwencjonowanie w postseasonie zostało opisane przez łapacza Mike'a Sciosc jako »trójwymiarowe szachy: wiedział, co zrobi pałkarz z każdym rzutem przed jego wykonaniem, i używał tej wiedzy, by przygotowywać rzuty, których nigdy nie oczekiwali«. Seria Hershisera pozostaje modelem tego, co inteligentne sekwencjonowanie może osiągnąć bez druzgocącego materiału."
+      ]
+    },
+    "timeline": [
+      "Sandy Koufax sekwencjonuje fastball/curveball perfekcyjnie — 14 K w idealnym meczu",
+      "59 inningów bez biegaczy Hershisera zbudowanych wyłącznie na mistrzostwie sekwencjonowania",
+      "Hershiser zdobywa MVP World Series — sekwencjonowanie przez trzy starty postseasonu",
+      "Analiza wideo pozwala miotaczom studiować własne wzorce sekwencjonowania i dostosowywać",
+      "Pierwszy Cy Young Kershawa — sekwencje tunelowania curveball/fastball dominują nad pałkarzami Ligi Narodowej",
+      "Tyler Anderson prowadzi Ligę Narodową we wskaźniku groundout używając sekwencjonowania sinker-na-zewnątrz/curveball-w-dół"
+    ],
+    "keyTakeaways": [
+      "Każdy rzut przygotowujący to inwestycja — tworzy oczekiwanie pałkarza, które wyeksploatujesz następnym rzutem",
+      "Fastball wewnątrz następnie łamana piłka na zewnątrz to najbardziej niezawodna sekwencja w baseballu: strach wewnątrz otwiera zewnętrzną połowę",
+      "Pokazanie rzutu wcześnie w meczu tworzy wzorzec, który zaatakujesz późno — pałkarze budują pamięć mięśniową przez kolejki",
+      "Elitarni sekwencerzy jak Hershiser wygrywają z poniżej-średnią prędkością, będąc mądrzejszymi od pałkarzy przez dziewięć inningów"
+    ]
+  },
+  "baseball-7-04": {
+    "tagline": "Trzecie przejście przez kolejkę to miejsce, gdzie nowicjuszowi miotacze zarabiają pieniądze — i gdzie większość z nich ich traci.",
+    "overview": [
+      "Jednym z najbardziej znaczących odkryć analitycznych we współczesnym baseballu jest »kara za okrążenia kolejki« — konsekwentny i mierzalny wzrost ofensywnych wyników przeciwko startującemu miotaczowi za każdym kolejnym przejściem przez alineację. Pierwszym razem przechodząc przez kolejkę, pałkarze nie mają informacji o prędkości, ruchu ani wzorcach sekwencji. Do trzeciego razu widzieli każdy rzut w arsenale startera w wielu licznikach i lokalizacjach — i dokonali korekt. OPS przeciwko startującym zazwyczaj wzrasta o 15–20 punktów za każdym razem, gdy kolejka jest przejdena.",
+      "Dave Roberts i Dodgers stali się jednym z najbardziej agresywnych zespołów w baseballu w zarządzaniu tą karą. Roberts był wczesnym adoptatorem danych »okrążeń kolejki« i rutynowo usuwał starterów przed trzecim okrążeniem, szczególnie w sytuacjach wysokiego ryzyka. To podejście przyciągało krytykę, gdy działało niedoskonale, ale zostało potwierdzone, gdy Dodgers zastosowali strategię pełnego meczu bullpen w World Series 2020 — zaczynając z modelem openera i używając swoich najlepszych relieverów w momentach najwyższego ryzyka zamiast w tradycyjnym porządku 7., 8., 9.",
+      "Strategia Openera — zaczynanie relievera przez jeden lub dwa inningi przed przekazaniem meczu do long relievera — była pionierowana przez Tampa Bay Rays, ale przyjęta w całym baseballu, w tym przez Dodgers w ich biegu po mistrzostwo 2020. Koncepcja jest prosta: zoptymalizuj starcia w pierwszym inningu, zaczynając od miotacza mającego najlepszą pozycyjną przewagę nad górą alineacji rywala, a następnie przejdź do »miotacza woluminowego« mogącego obsłużyć inningi 2 do 5."
+    ],
+    "technical": {
+      "title": "Kara za Okrążenia Kolejki — Liczby i Przyczyny",
+      "body": [
+        "Badania Fangraphs i Baseball Prospectus konsekwentnie pokazują, że pałkarze uderzają około 0,015 lepiej w OBP i 0,020–0,025 lepiej w SLG za każdym razem, gdy przechodzą przez kolejkę przeciwko temu samemu startującemu miotaczowi. Do trzeciego okrążenia zagregowana niekorzystność dla miotacza jest mniej więcej równoważna napotykaniu alineacji o jeden poziom talentu wyższej niż pierwotna dziewiątka. Przyczyną jest informacja: pałkarze dzielą tendencje w ławce między kolejkami, porównują notatki na temat ruchu rzutów i budują mentalny model wzorców miotacza.",
+        "Komponent zmęczenia fizycznego jest drugorzędny wobec komponentu informacyjnego. Miotacz, którego prędkość spada o 2 mph do piątego inningu, częściowo radzi sobie ze zmęczeniem fizycznym, ale głównie ma do czynienia z pałkarzami, którzy teraz widzieli ponad 15 rzutów i wiedzą, jak wygląda każdy z jego rzutów z ręki. Zdolność Kershawa do rzucania głęboko w meczach pomimo tej kary była produktem jego kreatywności w sekwencjonowaniu — konsekwentnie zmieniał wzorce przy trzecim przejściu przez kolejkę, rzucając rzuty w licznikach i lokalizacjach, których wcześniej unikał, by zapobiec kumulacji przewagi informacyjnej."
+      ]
+    },
+    "incident": {
+      "title": "Mecz Bullpen World Series 2020 — Dodgers Pokonują Tampa Bay",
+      "impact": "World Series 2020 zaprezentowała dwa z najbardziej analitycznie zaawansowanych zespołów w baseballu stosujących przeciwne wersje tej samej koncepcji: Tampa Bay Rays były pionierami Openera; Dodgers odpowiedzieli elastycznym podejściem do zarządzania bullpen równoważącym innowacje Tampa. Dodgers wygrali w sześciu meczach, z Meczem 6 częściowo rozstrzygniętym przez agresywne decyzje bullpen Dave'a Robertsa.",
+      "body": [
+        "W World Series 2020 Dave Roberts zarządzał swoimi startującymi miotaczami z wyraźnymi ramami okrążeń kolejki. Clayton Kershaw otworzył Mecz 1 i został usunięty po 5,2 inningu i 78 rzutach, pomimo dopuszczenia tylko dwóch biegaczy — Roberts nie chciał, by napotykał górę alineacji Rays po raz trzeci. Ta decyzja była krytykowana w danej chwili, ale została potwierdzona: bullpen Dodgers utrzymał przewagę. Kershaw otworzył Mecz 5 i ponownie rzucał wydajnie przed przejściem do bullpen Dodgers.",
+        "Mecz 6 był strategicznie najbardziej znaczący: Roberts użył Julio Uriasa jako miotacza zamykającego — wystawiając go w ósmym inningu konkretnie w celu eksploatacji korzystnych pozycyjnych starć wobec lewostronnych pałkarzy Tampa, zamiast czekać do tradycyjnej sytuacji save'a w dziewiątym. Urias zgasił alineację Tampa kolejno, a Dodgers wygrali World Series. Decyzja dokładnie odzwierciedlała filozofię okrążeń kolejki: użyj swojego najlepszego miotacza w momencie, gdy jest najbardziej potrzebny, nie w tradycyjnym miejscu sugerowanym przez konwencjonalne przepisy."
+      ]
+    },
+    "timeline": [
+      "Tommy Lasorda ostrożnie zarządza bullpen WS 1988 — taktyczne decyzje epoki Kirk Gibson",
+      "Fangraphs publikuje pierwszą analizę kary za okrążenia kolejki — dane trafiają do biur zarządzania",
+      "Tampa Bay Rays po raz pierwszy wdrażają strategię Openera — Blake Snell poprzedza miotacza woluminowego",
+      "Dodgers wygrywają WS używając elastycznego zarządzania bullpen — Roberts uznany za taktyczne mistrzostwo",
+      "Wszystkie 30 drużyn MLB teraz formalnie śledzą dane okrążeń kolejki w czasie rzeczywistym podczas meczów",
+      "Dodgers używają openera w postseasonie do optymalizacji starć wobec najlepszych pałkarzy przeciwnika"
+    ],
+    "keyTakeaways": [
+      "Pałkarze poprawiają OPS o 15–20 punktów za każdym razem, gdy przechodzą przez kolejkę — kumulacja informacji jest główną przyczyną",
+      "Starterzy muszą zmieniać sekwencje przy trzecim przejściu przez kolejkę lub napotykać pałkarzy, którzy dobrze znają ich wzorce",
+      "Dave Roberts uczynił agresywne decyzje okrążeń kolejki kamieniem węgielnym biegu World Series 2020",
+      "Strategia Openera eliminuje najbardziej przewidywalną przewagę starcia pierwszego inningu rywala"
+    ]
+  },
+  "baseball-7-05": {
+    "tagline": "Każdy biegacz na bazie to drugi przeciwnik — miotacz, który go ignoruje, oddaje auty, których nigdy nie oddał.",
+    "overview": [
+      "Rzucanie ze stretch zmienia niemal wszystko w rytmie, mechanice i procesie mentalnym miotacza. Z mechaniki wiatraka miotacz może użyć pełnego impulsu nogi generującego maksymalną prędkość i ruch. Ze stretch podanie musi być wystarczająco skrócone, by dać łapaczowi szansę na wyeliminowanie potencjalnego złodzieja baz, co zazwyczaj oznacza zredukowany impuls nogi, szybsze podanie i inny mechanizm timingu. Kompromis: miotacze często tracą 1–3 mph prędkości ze stretch, a ruch ich curveball może być zredukowany.",
+      "Mentalna lista kontrolna przy rzucaniu z biegaczami na bazach jest wielowarstwowa: sprawdź biegacza. Zdecyduj o wariancie tempa (szybkie podanie a regularne tempo). Określ, czy próba pickoffa jest uzasadniona. Odczytaj sygnały łapacza, będąc świadomym głównego odbioru biegacza. Zdecyduj, czy zmienić timing między sygnałami a podaniem, by zaburzyć timing biegacza. Wszystko to dzieje się przed rzutem, a wszystko musi się wydarzyć bez utraty skupienia na pałkarzu, który nadal jest głównym zagrożeniem.",
+      "Ruch pickoff lewej ręki Claytona Kershawa jest uważany za jeden z najskuteczniejszych we współczesnej historii baseballu. Ponieważ leworęczni miotacze naturalnie zwracają twarz ku pierwszej bazie, ich ruch pickoff — stąpnięcie ku pierwszej i rzucenie — jest znacznie trudniejszy do odczytania dla biegaczy niż u praworęcznych, którzy muszą obrócić całe ciało. Ruch Kershawa był tak szybki i mylący, że biegacze, którzy regularnie kradli bazy od innych miotaczy, wielokrotnie byli łapani przez niego na pickoff, całkowicie zmieniając gry kradzieży baz drużyn przeciwnych."
+    ],
+    "technical": {
+      "title": "Zmiana Tempa Podania — Zaburzanie Timingu Biegacza",
+      "body": [
+        "Impulsy biegacza bazowego budują się na odczytywaniu tempa podania miotacza. Jeśli miotacz zaczyna podanie do bazy w tej samej chwili przy każdym rzucie, dobry biegacz bazowy będzie synchronizował impuls z dokładnym momentem uniesienia nogi miotacza lub rozdzielenia dłoni. Zmiana tempa podania — czasem utrzymywanie pozycji przez 1,5 sekundy, czasem szybkie przejście — zmusza biegacza do zgadywania zamiast synchronizacji. Biegacz, który zgaduje źle, startuje za wcześnie (i jest złapany na pickoff lub out) lub za późno (i jest out przez łapacza).",
+        "Krok ześlizgowy — modyfikacja podania, gdzie miotacz nie unosi przedniej nogi, lecz ześlizguje ją ku bazie domowej — redukuje czas podania o około 0,2–0,3 sekundy. Kompromisem jest prędkość (zazwyczaj utrata 2–3 mph) i skuteczność curveball. Miotacze używają kroku ześlizgowego głównie przeciwko złodziejom baz z doskonałą prędkością lub w sytuacjach, gdy kradzież bazy znacząco zmieniłaby kontekst meczu. Nadmierne używanie kroku ześlizgowego to błąd: pałkarze go rozpoznają i dostosowują timing odpowiednio."
+      ]
+    },
+    "incident": {
+      "title": "Pickoff Kershawa w NLDS 2014 — Uciszenie Cardinals",
+      "impact": "W Meczu 1 NLDS 2014 Clayton Kershaw użył swojego leworęcznego ruchu pickoff, by wyłapać biegacza Cardinals na pierwszej bazie, kończąc rally grożące przedłużeniem meczu. Pickoff zademonstrował, jak zdolność miotacza do kontrolowania gry kradzieży baz bezpośrednio przekłada się na kontrolę wyniku — był to ruch, który zmienił impet w zaciekłym meczu.",
+      "body": [
+        "Cardinals z 2014 roku byli jednym z najbardziej agresywnych zespołów kradzieży baz w Lidze Narodowej, regularnie naciskając na miotaczy, biorąc agresywne odbiory i próbując kraść w kluczowych momentach. Odpowiedzią Kershawa przez całe postseason 2014 było używanie ruchu pickoff częściej niż zwykle — niekoniecznie, by zaliczać auty, lecz by zaburzać timing. Odchodziłby, zmieniałby tempo i rzucał wystarczająco wiele razy, że biegacze zaczęli brać bardziej konserwatywne odbiory.",
+        "Skuteczność pickoff Kershawa wynikała z fundamentalnej przewagi bycia leworęcznym: jego naturalna pozycja na szczycie stretch bezpośrednio zwraca twarz ku pierwszej bazie, czyniąc niemożliwym dla biegacza odczytanie rozdzielenia bioder (główny sygnał, że miotacz zaczyna podanie do bazy). Obrót bioder praworęcznego miotacza jest widoczny dla biegacza; u Kershawa nie był. W połączeniu z jego elitarną zmianą tempa — czasem utrzymując stretch przez cztery sekundy, czasem idąc natychmiast — biegacze naprzeciwko Kershawa w zasadzie zgadywali zamiast synchronizować. To mistrzostwo pickoff czyniło go dramatycznie bardziej skutecznym w sytuacjach stretch wysokiego ryzyka niż jego praworęczni odpowiednicy."
+      ]
+    },
+    "timeline": [
+      "Leworęczny ruch pickoff Koufaksa czyni go jednym z najlepszych kontrolerów w MLB",
+      "Hershiser kontroluje grę kradzieży baz Cardinals w NLCS używając zmiany tempa",
+      "Krok ześlizgowy jest skwantyfikowany — badania pokazują, że podanie szybsze o 0,25 s redukuje sukces kradzieży",
+      "Pickoff Kershawa w NLDS ucisza grę kradzieży baz Cardinals",
+      "MLB wprowadza nowe zasady ograniczające próby pickoff — strategia adaptuje się do zmiany tempa",
+      "Zasady zegara rzutowego zmieniają dynamikę stretch — nowe ograniczenia czasowe wpływają na strategię stretch"
+    ],
+    "keyTakeaways": [
+      "Zmiana tempa podania zaburza mechanizm timingu biegacza bazowego — nieprzewidywalność jest bardziej skuteczna niż sama prędkość",
+      "Krok ześlizgowy redukuje czas podania o 0,2–0,3 sekundy, ale kosztuje prędkość i skuteczność curveball — używaj go selektywnie",
+      "Leworęczni miotacze mają naturalną przewagę pickoff, bo ich pozycja już zwraca twarz ku pierwszej bazie bez czytelnego obrotu bioder",
+      "Lista kontrolna mentalna (sprawdź biegacza, zmień tempo, zdecyduj o typie podania) musi być wykonana bez utraty skupienia na pałkarzu"
+    ]
+  },
+  "baseball-7-06": {
+    "tagline": "Moment najwyższej dźwigni nie wymaga twojego najbardziej ostrożnego rzutu — wymaga najbardziej zdecydowanego.",
+    "overview": [
+      "Sytuacje wysokiej dźwigni — bazy pełne przy jednym aucie w wyrównanym meczu, wyrównujący biegacz na drugiej przy dwóch autach w dziewiątym, biegacz na trzeciej bez autów — fundamentalnie zmieniają mentalny rachunek doboru rzutów. W sytuacjach niskiej dźwigni miotacz może pozwolić sobie na gryzienie narożników, wydawanie rzutów i głęboką pracę w licznikach bez katastrofalnych konsekwencji. W sytuacjach wysokiej dźwigni koszt zaliczenia baz uderzenia dramatycznie wzrasta: w sytuacji pełnych baz hit scores a run bez dotknięcia piłki przez obronę.",
+      "Centralne napięcie w miotaniu wysokiej dźwigni to między agresywnym atakowaniem strefy strajku (rzucaj strajki, ufaj swojemu repertuarowi, akceptuj ryzyko kontaktu) a gryzieniem krawędzi (próbując być perfekcyjnym, ryzykując bazy na uderzeniach, zostawaniem w tyle w licznikach). Analizy konsekwentnie pokazują, że miotacze gryzący w sytuacjach wysokiej dźwigni zawodzą w wyższym tempie niż ci atakujący: baza na uderzeniu w sytuacji pełnych baz to gwarantowana szkoda; piłka w grze może zostać złapana. Atakowanie strefy zmusza pałkarza do zasłużenia na każdego biegacza.",
+      "Kenley Jansen, historyczny lider save'ów Dodgers, zbudował karierę na jednej z najbardziej odrębnych filozofii wysokiej dźwigni wśród nowoczesnych zamykających: druzgocący cut fastball rzucany 93–95 mph przy prawie każdym liczniku, w prawie każdej lokalizacji, do lewostronnych i prawostronnych pałkarzy. Jego podejście było przeciwieństwem gryzienia — czysty atak, ufaj rzutowi i pozwól pracować obronie. W swoim szczycie przeciwni pałkarze wiedzieli, że cutter nadchodzi, i mimo to nie mogli go trafić."
+    ],
+    "technical": {
+      "title": "Atakowanie a Gryzienie — Filozofia Miotania Wysokiej Dźwigni",
+      "body": [
+        "Decyzja »atakuj lub gryź« nie jest binarna — istnieje na spektrum. Miotacz atakujący oznacza rzucanie rzutów w lokalizacjach, które są trudne do trafienia, ale nadal wyraźnie wewnątrz lub blisko strefy strajku, ufając swojemu repertuarowi do generowania słabego kontaktu lub fly ballów nawet gdy pałkarz nawiązuje kontakt. Miotacz gryzący rzuca na samej krawędzi strefy, oczekując strajków wzywanych na kwestionowanych rzutach. Gryzienie zawodzi przy wysokiej dźwigni, bo: sędzia nie zawsze współpracuje przy kwestionowanych decyzjach; miotacz zostaje w tyle w licznikach próbując być perfekcyjnym; i pałkarz w końcu dostaje rzut do uderzenia, gdy gryzący musi wrócić do strefy.",
+        "Obchodzenie (celowe lub pół-celowe zaliczanie baz) pałkarza w sytuacjach wysokiej dźwigni jest okazjonalnie poprawne — gdy następny pałkarz jest dramatycznie słabszy, gdy unika się przewagi pozycyjnej, lub gdy pierwsza baza jest wolna w sytuacji wymuszonego autu. Ale obchodzenie musi być celową strategiczną decyzją, a nie paniczną reakcją na dźwignię. Filozofia Kershawa: »Wolę dopuścić hit niż zaliczać bazy. Hit wymaga od pałkarza pokonania mojego rzutu. Baza na uderzeniu to całkowicie moje niepowodzenie.«"
+      ]
+    },
+    "incident": {
+      "title": "Kenley Jansen Zamyka World Series 2020",
+      "impact": "Kenley Jansen zaliczył ostatni aut World Series 2020 — pierwsze mistrzostwo Dodgers od 32 lat. Jego cut fastball — ten sam rzut, który rzucał 90% czasu przez całą karierę — wyeliminował ostatniego pałkarza Tampa Bay słabym rolką do pierwszej bazy. Moment uwieńczył karierę definiującą, jak wygląda franczyzowy zamykający.",
+      "body": [
+        "Save World Series 2020 Kenleya Jansena był jego najbardziej celebrowanym momentem w karierze, która przyniosła ponad 350 save'ów z Dodgers. Jego podejście w Meczu 6 było identyczne z podejściem w każdym meczu: cut fastball, 93–95 mph, atakując obie strony bazy. Pałkarze, którzy go studiowali, wiedzieli, że cutter nadchodzi — nie miało to znaczenia. Rzut poruszał się późno w obu kierunkach (wewnątrz dla prawostronnych, na zewnątrz dla lewostronnych) z prędkością prawie fastball, dając pałkarzom wzrokowe wrażenie fastball do napędzenia, podczas gdy późne przełamanie produkowało złapany kontakt lub fly balle.",
+        "Filozofia Jansena w sytuacjach wysokiej dźwigni była prosta: »Mój najlepszy rzut contra twoje najlepsze uderzenie. To wszystko.« Nie szukał słabości ani nie budował sekwencji w sposób, w jaki mógłby starter — miał jeden rzut i rzucał go z przekonaniem. W momentach najwyższej dźwigni baseballu to przekonanie — gotowość do atakowania zamiast defensywy — to co oddziela wielkich zamykających od po prostu dobrych. Out kończący serię przez Jansena w 2020 roku ucieleśniał wszystko, co Dodgers zbudowali przez 32 lata oczekiwania: zdecydowany, agresywny i wykonany bez wątpliwości."
+      ]
+    },
+    "timeline": [
+      "Curveball Jay'a Howella ustawia Hershisera — filozofia wysokiej dźwigni bullpen Dodgers zdefiniowana",
+      "Kenley Jansen debiutuje w Major League — dynastia zamykającego Dodgers się zaczyna",
+      "Wyniki Jansena w NLCS konsolidują go jako najlepszego zamykającego w historii Dodgers",
+      "Fangraphs publikuje badania wskaźnika ataku wysokiej dźwigni — gryzienie udowodnione jako nieskuteczne",
+      "Jansen rejestruje ostatni aut World Series — 32-letnia sucha seria mistrzowska kończy się",
+      "Blake Treinen i Evan Phillips tworzą most wysokiej dźwigni Dodgers do Ryan/Treinen"
+    ],
+    "keyTakeaways": [
+      "W sytuacjach pełnych baz atakowanie strefy redukuje ryzyko baz na uderzeniu — baza na uderzeniu scores a run bez dotknięcia piłki przez obronę",
+      "Gryzienie w sytuacjach wysokiej dźwigni zawodzi: sędziowie miss narożniki, liczniki się pogarszają, a pałkarz w końcu dostaje rzut do uderzenia",
+      "Ponad 350 save'ów Kenleya Jansena dowodzi, że jeden dominujący rzut rzucany z przekonaniem wystarcza do zamykania meczów na najwyższym poziomie",
+      "Obchodzenie pałkarza jest poprawne tylko jako celowa strategiczna decyzja, a nie jako reakcja na presję dźwigni"
+    ]
+  },
+  "baseball-7-07": {
+    "tagline": "W baseballu, która ręka rzuca piłkę i która trzyma kij, jest warte więcej niż punkt ERA — jeśli wiesz, jak ich używać.",
+    "overview": [
+      "Przewaga platoonowa to jeden z najbardziej konsekwentnych i exploitowalnych atutów w baseballu. Lewostroni pałkarze uderzają dramatycznie lepiej przeciwko prawostronnym miotaczom niż lewostronnym, i vice versa. Powód jest wzrokowy i mechaniczny: rzut rzucony z tej samej strony co pałkarz (lewy-lewy lub prawy-prawy) ma naturalny kąt oddalający go od strefy kontaktu pałkarza, a łamane piłki miotaczy tej samej ręki łamią się na zewnątrz — trudniejsze do śledzenia i trudniejsze do napędzenia. Podział platoonowy to nie marginalny efekt; dla wielu pałkarzy reprezentuje różnicę OPS wynoszącą 50–80 punktów.",
+      "LOOGY (Lefty One-Out Guy) był przez dziesięciolecia standardową rolą bullpen w Major League: lewostronny specjalista wprowadzany konkretnie, by zmierzyć się z jednym lub dwoma lewostronymi pałkarzami w sytuacjach wysokiego ryzyka. Zmiana przepisów z 2020 roku wymagająca, by miotacze zmierzyli się z minimum trzema pałkarzami, skutecznie wyeliminowała rolę czystego LOOGY — teraz miotacze muszą napotykać wielu pałkarzy niezależnie od strony ręki. To popchnęło drużyny ku lewostronnym relieverom skutecznym zarówno wobec lewostronnych, jak i prawostronnych pałkarzy, zamiast czystych specjalistów.",
+      "Dodgers historycznie wyróżniali się w budowaniu bullpenów systematycznie eksploatujących przewagi platoonowe. Budowa ich roster pod dyrektorem generalnym Andrewem Friedmanem konsekwentnie obejmuje lewostronnych i prawostronnych relieverów konkretnie dopasowanych do ofensywnych tendencji w Zachodniej Dywizji Ligi Narodowej. Miotacze tacy jak Alex Vesia (leworęczny, druzgocący slider wobec lewostronnych pałkarzy) i Evan Phillips (praworęczny, dominujący sinker wobec prawostronnych pałkarzy kontaktowych) byli pozyskiwani z wyraźnymi funkcjami dopasowania w myśli."
+    ],
+    "technical": {
+      "title": "Podziały L/R — Liczby i Mechaniczne Przyczyny",
+      "body": [
+        "Mechanicznym powodem podziałów platoonowych jest kąt rzutu. Fastball lewostronnego miotacza, rzucony z lewej strony pagórka, biegnie w kierunku wewnętrznego narożnika prawostronnego pałkarza i oddala się od zewnętrznego narożnika lewostronnego pałkarza. Łamane piłki (szczególnie slidery i curveball) łamią się oddalając od pałkarzy tej samej ręki — slider lewostronnego miotacza łamie się od lewostronnych pałkarzy, czyniąc go nieossigniętym rzutem dla wielu. Łamane piłki tej samej strony są uważane za »out pitches« właśnie z powodu tego kąta.",
+        "Komponent wzrokowy jest równie ważny. Pałkarze lepiej widzą rzuty, gdy są rzucane z kątem skrzyżowanym (miotacz przeciwnej ręki): piłka zaczyna się w ich polu widzenia i porusza się ku nim. Rzuty od miotaczy tej samej ręki zaczynają się na krawędzi widzenia lub za nią — piłka pojawia się później, dając pałkarzowi mniej czasu na odczytanie obrotu i prędkości. Ta wada wzrokowa sumuje się z mechaniką, produkując dramatyczne podziały widoczne w statystykach bicia."
+      ]
+    },
+    "incident": {
+      "title": "Alex Vesia i Budowa Bullpen Dodgers 2023",
+      "impact": "Wyłonienie się Alexa Vesii jako głównego lewostronnego relievera wysokiego ryzyka Dodgers w 2023–2024 exemplifikowało, jak organizacja budowała wokół przewag platoonowych po tym, jak zasada minimum trzech pałkarzy wyeliminowała czystych LOOGY. Slider Vesii, łamiący się ostro od lewostronnych pałkarzy, był główną bronią lewy-na-lewego w arsenale końcowego meczu Dodgers.",
+      "body": [
+        "Po tym, jak zmiana przepisów minimum trzech pałkarzy z 2020 roku zmieniła ekonomiczny rachunek czystej specjalizacji LOOGY, Dodgers dostosowali się, rozwijając lewostronnych relieverów mogących neutralizować lewostronnych pałkarzy dominującymi łamanymi piłkami tej samej strony, pozostając jednocześnie kompetentnymi wobec prawostronnych. Alex Vesia, leworęczny z ostrym sliderem i czteroszwowym fastballem, był rozwijany konkretnie do tej roli: jego slider łamie się od lewostronnych pałkarzy z poziomym przełamaniem 34 cali — jedna z najlepszych łamanych piłek tej samej strony w Lidze Narodowej.",
+        "Użycie Vesii w 2023 i 2024 roku odzwierciedlało nowoczesny bullpen świadomy platoonów: wchodził w środku inningów konkretnie, by napotykać lewostronnych pałkarzy w miejscach wysokiego ryzyka, zostawał, by napotykać prawostronnych fastballem i wychodził, gdy bilans platoonowy znacząco się przesuwał. Dave Roberts zarządzał nim jak szachista pionkiem — nie jako specjalistą jednej sztuczki, lecz jako graczem z dominującym atrybutem, który nadal mógł funkcjonować w innych rolach. Ta elastyczność, zbudowana na wyraźnej budowie platoonowej w Camelback Ranch każdej wiosny, była znakiem rozpoznawczym analitycznego podejścia Dodgers."
+      ]
+    },
+    "timeline": [
+      "Użycie platoonu sformalizowane pod Walterem Alstonem — Dodgers wśród pierwszych śledzących podziały L/R",
+      "Rola LOOGY staje się dominująca — lewostronni specjaliści na każdym rosterze Major League",
+      "Bill James publikuje dane podziałów platoonowych — różnice OPS skwantyfikowane dla całego Major League",
+      "Pat Venditte staje się pierwszym switch pitcherem we współczesnym baseballu — 2015 Oakland / wiele drużyn",
+      "Zasada minimum trzech pałkarzy eliminuje czystą rolę LOOGY — rostery ewoluują",
+      "Vesia staje się główną bronią L-na-L Dodgers — model budowy wszechstronnego platoonu potwierdzony"
+    ],
+    "keyTakeaways": [
+      "Dopasowania platoonowe tej samej strony produkują wadę OPS 20–25 punktów dla pałkarzy — to jeden z najbardziej niezawodnych atutów w baseballu",
+      "Łamane piłki tej samej strony łamią się od pałkarzy, potęgując wzrokową wadę piłki rzucanej zza ich pola widzenia",
+      "Zasada minimum trzech pałkarzy z 2020 roku zakończyła erę czystego LOOGY — drużyny teraz budują wszechstronnych platoonowych relieverów zamiast specjalistów",
+      "Dodgers budują swój bullpen wokół wyraźnych planów dopasowań platoonowych, pozyskując lewostronnych i prawostronnych relieverów do specyficznych funkcji alineacji"
+    ]
+  },
+  "baseball-7-08": {
+    "tagline": "Rzut powodujący aut został wykonany przed meczem — gdy miotacz siedział z wideo.",
+    "overview": [
+      "Nowoczesne przygotowanie miotacza to intensywny proces danych zaczynający się 48–72 godziny przed startem. Startujący miotacze Dodgers przeglądają raporty tendencji Statcast, wykresy spray'u, wskaźniki gonnienia według strefy, prędkości wyjścia według typu rzutu i wideo kolejek pałkarzy każdego przeciwnego pałkarza wobec miotaczy z podobnymi arsenałami. Celem jest zbudowanie konkretnego planu gry zanim pierwszy pałkarz podejdzie do boksu — nie sztywnego planu niemogącego się dostosować, lecz ustrukturyzowanego podejścia identyfikującego główne słabości każdego pałkarza i rzuty najbardziej prawdopodobnie je eksploatujące.",
+      "Wykresy spray'u pokazują, gdzie pałkarz ma tendencję do wstawiania piłki w grę — wykres pałkarza mocno ciągnącego pokazuje większość hitów po lewej stronie (dla lewostronnego pałkarza), podczas gdy pałkarz ciągnący w przeciwne pole pokazuje odwrotność. Miotacze używają wykresów spray'u do rozumienia tendencji kontaktu: pałkarz mocno ciągnący prawdopodobnie ma trudności z rzutami w zewnętrznej połowie; pałkarz ciągnący w przeciwne pole może mieć problemy z fastballami wewnątrz. Prędkość wyjścia według strefy pokazuje, które obszary strefy strajku pałkarz powoduje największe szkody — i jakie strefy produkują słaby kontakt. Rzucanie do stref słabego kontaktu to logiczne rozszerzenie.",
+      "Wskaźnik gonnienia według typu rzutu mówi miotaczowi, jak prawdopodobne jest, że każdy pałkarz swinguje na konkretny rzut poza strefą strajku. Pałkarz z 45% wskaźnikiem gonnienia na curveball poniżej strefy będzie gonił curveball w ziemi — to ghost pitch lub okazja na chybiony swing. Pałkarz z 8% wskaźnikiem gonnienia na curveball oznacza, że miotacz musi używać curveball jako strajka w strefie, a nie rzutu do wyrzucenia. Te dane bezpośrednio przekładają się na konkretny dobór rzutów według licznika."
+    ],
+    "technical": {
+      "title": "Budowanie Planu Gry Miotacza — Od Danych do Decyzji",
+      "body": [
+        "Przygotowanie przed meczem startującego miotacza Dodgers przebiega ustrukturyzowanym przepływem: (1) Zidentyfikuj główną podatność każdego pałkarza z danych strefy Statcast — które strefy produkują najsłabszą prędkość wyjścia? (2) Skrzyżuj z danymi wskaźnika gonnienia — czy są rzuty, które będą gonić poza swoją słabą strefą? (3) Zbuduj konkretne plany ataku według licznika — jaki rzut rzucić przy licznikach 0-0, 0-2, 3-2 wobec tego konkretnego pałkarza? (4) Przejrzyj wideo pałkarza wobec miotaczy z podobnym arsenałem — jakie sekwencje zadziałały, co pałkarz dobrze uderzył?",
+        "Krok przeglądu wideo jest krytyczny, bo dane Statcast pokazują wyniki (prędkość wyjścia, kąt lotu) ale nie proces (jak pałkarz podszedł do kolejki, na jakie rzuty patrzył kontra na jakie się angażował). Miotacz odczytujący tylko dane przeoczy behawioralne sygnały dostarczane przez wideo: czy ten pałkarz rutynowo bierze pierwszy rzut? Czy rozszerza strefę przy 0-2? Czy jest oszukiwany fastballami wewnątrz pod koniec licznika? Wideo odpowiada na pytania, których prędkość wyjścia nie może."
+      ]
+    },
+    "incident": {
+      "title": "Clayton Kershaw Studiuje Aarona Judge'a Przed NLCS 2017",
+      "impact": "Przed każdym startem sezonu regularnego w swojej karierze, Clayton Kershaw spędzał obszerny czas na przygotowaniu przed meczem, identyfikując dwóch lub trzech najniebezpieczniejszych pałkarzy drużyny przeciwnej i budując konkretne plany gry dla każdego. Jego sesje przygotowania wideo z catcherem Austinem Barnesem stały się modelem, jak miotacze Dodgers systematycznie podchodzili do przeciwników sezonu regularnego.",
+      "body": [
+        "Proces przygotowania Kershawa przed startami wysokiego ryzyka był opisywany przez wielu trenerów i kolegów z Dodgers jako najbardziej skrupulatny spośród wszystkich miotaczy w rosterze. Przeglądał wideo alineacji przeciwnych nie tylko wobec prawostronnych miotaczy, ale konkretnie wobec miotaczy, których kombinacja fastball-curveball pasowała do jego — szukając, czy przeciwnik dostosował się do podobnej sekwencji. Jeśli tak, celowo zmieniał swój plan: więcej changeupów, różne punkty wejścia curveball, lokalizacje fastball, których nie pokazał w sezonie regularnym.",
+        "Jego użycie danych Statcast było równie konkretne. Przeglądał mapy prędkości wyjścia nie po to, by znaleźć najlepsze strefy pałkarzy, lecz najgorsze: gdzie konkretny pałkarz produkował najsłabszy kontakt? Następnie budował sekwencję, by pchać kolejkę ku tej strefie przy drugim lub trzecim rzucie, używając pierwszego rzutu jako przygotowania niezależnie od tego, czy generował aut. Personel wideo Dodgers opisywał go jako najbardziej biegłego w danych miotacza w rosterze — nie dlatego, że był analitykiem, lecz dlatego, że wiedział dokładnie, jakie pytania zadawać danym przed każdym startem."
+      ]
+    },
+    "timeline": [
+      "Koufax studiuje alineacje przeciwnych przez raporty skautów — odpowiednik ery przed danymi",
+      "Hershiser ogląda kasety VHS przeciwników przed każdym startem — era wideo się zaczyna",
+      "Dodgers instalują pierwsze laboratorium analizy wideo na wiosennym treningu w Vero Beach",
+      "Statcast wdrożony — dane prędkości wyjścia, kąta lotu, wskaźnika obrotu dostępne do planowania gry",
+      "Miotacze Dodgers zaczynają otrzymywać przed-startowe raporty tendencji strefowych od personelu badawczego",
+      "Tablety Statcast w czasie rzeczywistym w ławce umożliwiają korekty planu gry w połowie meczu"
+    ],
+    "keyTakeaways": [
+      "Przegląd danych przed meczem (wykresy spray'u, prędkość wyjścia według strefy, wskaźnik gonnienia) to standardowe przygotowanie dla startujących Dodgers",
+      "Wideo uzupełnia dane, ujawniając wzorce behawioralne — tendencje pierwszego rzutu, rozszerzenie strefy przy dwóch strajkach, oszukiwanie końca licznika",
+      "Zbuduj konkretne sekwencje według licznika dla każdego pałkarza przed meczem: jaki rzut przy licznikach 0-0, 0-2 i 3-2 wobec tego konkretnego pałkarza",
+      "Dane wskaźnika gonnienia identyfikują, które rzuty mogą być używane jako rzuty do wyrzucenia versus które muszą być rzucane w strefę — krytyczne dla strategii 0-2"
+    ]
+  },
+  "baseball-7-09": {
+    "tagline": "Miotacz, który wie, kiedy skończyć, ratuje swoją karierę. Ten, który nie wie, staje się statystyką chirurgii.",
+    "overview": [
+      "Zmęczenie miotacza to jedno z najbardziej niezrozumianych pojęć w baseballu. Zmęczony miotacz nie rzuca po prostu wolniej — kompensuje. Gdy prędkość spada, miotacze nieświadomie zmieniają mechanikę, by utrzymać wysiłek: łokieć opada, opóźnienie ramienia wzrasta, timing obrotu bioder przesuwa się. Te wzorce kompensacyjne nakładają nienormalne naprężenie na więzadło poboczne łokciowe (UCL) — strukturę naprawianą w operacji Tommy John. Miotacz, który zostaje zbyt długo, jest nie tylko mniej skuteczny; ryzykuje swoją karierę.",
+      "Wczesne sygnały ostrzegawcze zmęczenia, które trenerzy miotaczy Dodgers śledzą w czasie rzeczywistym to: spadek prędkości o 2 mph lub więcej od średniej startera w ciągu pierwszych trzech inningów; zwiększone odchylenie lokalizacji rzutu (rzuty chybiające celów o większe marginesy niż wcześniej w meczu); zredukowany spin rate na łamanych rzutach (curveball łamie się krócej, slider ma mniejszy ruch); i sygnały mechaniczne jak pozycja łokcia w follow-through lub timing obrotu bioder. Nowoczesne dane Statcast pozwalają trenerom miotaczy śledzić wszystkie te metryki rzut po rzucie.",
+      "Operacja Tommy John (rekonstrukcja UCL) wymaga 12–18 miesięcy rekonwalescencji. Spośród miotaczy przechodzących operację TJ, około 20% nigdy nie wraca do poprzedniego poziomu wydajności. Zapobieganie jest zdecydowanie preferowane: zarządzanie liczbą rzutów, wydajność mechaniczna, programy wzmacniające i agresywne protokoły odpoczynku przy pierwszych oznakach zmęczenia to standardowe podejście Dodgers. Drużyna mocno zainwestowała w analizę biomechaniczną w Camelback Ranch, by identyfikować wczesne sygnały zmęczenia zanim staną się kontuzjami."
+    ],
+    "technical": {
+      "title": "Wskaźniki Zmęczenia — Co Śledzą Trenerzy i Dane",
+      "body": [
+        "Trenerzy nowoczesnego kadry miotaczy śledzą warstwowy zestaw wskaźników zmęczenia: (1) Trend prędkości — czy miotacz jest poniżej swojej średniej z pierwszych dwóch inningów? Spadek o 2 mph to żółta flaga; 3+ mph to czerwona flaga. (2) Odchylenie kontroli — czy rzuty konsekwentnie chybiają celów o większe marginesy? Chybienia w środku strefy strajku przy rzutach przeznaczonych do narożnika sugerują mechaniczny upadek. (3) Degradacja spin rate — zmęczone łamane rzuty obracają się wolniej i mają mniejsze przełamanie. (4) Akcja ramienia — czy tor ramienia miotacza na wideo wygląda inaczej niż wcześniej w meczu?",
+        "Najważniejsza mechaniczna kompensacja zmęczenia wykazywana przez miotaczy to opóźnienie ramienia: ramię pozostaje w tyle za obrotem ciała, bo bark i stożek rotatorów są zmęczone, powodując, że ramię zostaje w tyle przez rzut zamiast go prowadzić. Opóźnienie ramienia dramatycznie zwiększa naprężenie UCL, bo więzadło absorbuje siłę, którą bark powinien generować. Identyfikowanie opóźnienia ramienia w czasie rzeczywistym to najważniejsza interwencja trenera miotaczy w zapobieganiu kontuzjom."
+      ]
+    },
+    "incident": {
+      "title": "Operacje Tommy John Walkera Buehlerа — 2019 i 2022",
+      "impact": "Walker Buehler przeszedł dwie procedury związane z Tommy John — operację wzmacniania UCL w 2019 roku, która pozwoliła mu kontynuować rzucanie, i pełną rekonstrukcję UCL w 2022 roku kosztującą go pełne sezony 2022 i 2023. Jego przypadki reprezentują, jak wczesna interwencja (2019) może przedłużyć karierę, ale też jak skumulowany stres miotania z wysoką prędkością ostatecznie przewyższa środki zapobiegawcze.",
+      "body": [
+        "Procedura Buehlerа z 2019 roku to było wzmacnianie UCL — mniej inwazyjna interwencja wzmacniająca więzadło bez pełnej rekonstrukcji. Personel medyczny Dodgers podjął decyzję na podstawie wyników MRI pokazujących częściowe uszkodzenie UCL, które jeszcze nie osiągnęło progu wymagającego pełnej rekonstrukcji. Agresywnie zarządzali jego obciążeniem w 2019 i 2020, utrzymując go poniżej 80 rzutów w wielu startach. Gdy Buehler był w pełni zdrowy w 2021 roku, uzyskał ERA 2,47 w 33 startach — uzasadniając konserwatywne zarządzanie.",
+        "Jego zerwanie UCL z 2022 roku nastąpiło w sezonie regularnym i wymagało pełnej rekonstrukcji Tommy John. Personel medyczny i biuro administracyjne Dodgers podjęli decyzję o zatrzymaniu go przez cały okres 2022–2023 zamiast przyspieszać powrót. Buehler wrócił w 2024 roku, początkowo mając trudności z kontrolą podczas odbudowywania siły ramienia. Jego historia ilustruje zarówno znaczenie proaktywnego zarządzania zmęczeniem, jak i rzeczywistość, że nawet najlepsze programy prewencyjne nie mogą całkowicie wyeliminować ryzyka UCL dla siłowych miotaczy o wysokiej prędkości rzucających na krawędzi możliwości fizycznych."
+      ]
+    },
+    "timeline": [
+      "Tommy John przechodzi pierwszą rekonstrukcję UCL — procedura nazwana jego imieniem, wykonana przez dr Franka Jobe'a",
+      "Rekordowy sezon Hershisera — ostrożne zarządzanie liczbą rzutów przez Lasordę wymieniane jako czynnik",
+      "Operacja TJ staje się głównym nurtem — personel medyczny Dodgers buduje kompleksowy protokół opieki nad ramieniem",
+      "Statcast umożliwia monitorowanie prędkości i spin rate w czasie rzeczywistym do śledzenia zmęczenia",
+      "Operacja wzmacniania UCL Buehlerа — model wczesnej interwencji potwierdzony wynikami 2021",
+      "Pełna TJ Buehlerа — skumulowany stres przy wysokiej prędkości przewyższa protokoły prewencji"
+    ],
+    "keyTakeaways": [
+      "Spadek prędkości o 2+ mph od średniej meczu startera to żółta flaga zmęczenia — 3+ mph to czerwona flaga uzasadniająca rozważenie usunięcia",
+      "Opóźnienie ramienia (ramię zostaje w tyle za obrotem ciała) to najniebezpieczniejsza mechaniczna kompensacja zmęczenia, bo dramatycznie zwiększa naprężenie UCL",
+      "Rekonwalescencja po Tommy John trwa 12–18 miesięcy, a ~20% miotaczy nigdy nie wraca do wcześniejszych wyników — zapobieganie jest zdecydowanie preferowane",
+      "Degradacja spin rate na łamanych rzutach to wykrywalny przez Statcast wskaźnik zmęczenia miotacza w czasie rzeczywistym poprzedzający upadek kontroli"
+    ]
+  },
+  "baseball-7-10": {
+    "tagline": "Pięciu miotaczy. Pięć różnych strategii. Jedna franczyza. Największa tradycja miotania w historii baseballu.",
+    "overview": [
+      "Los Angeles Dodgers wyprodukowali najbardziej skoncentrowaną karierę elitarnych startujących miotaczy w historii baseballu. Sandy Koufax (1955–1966) dominował przez elegancką prostotę: dwa rzuty, mechanicznie doskonałe, rzucane z elitarną prędkością i ruchem. Don Drysdale (1956–1969) łączył siłę z psychologicznym zastraszaniem, ustanawiając wewnętrzną połowę jako swoją własność i zmuszając pałkarzy do podjęcia wyzwania. Fernando Valenzuela (1980–1990) przyniósł screwball — rzut zakrzywiający się w przeciwnym kierunku do konwencjonalnej curveball — do masowej świadomości baseballu, łącząc go z unikalnym ruchem zaburzającym timing pałkarza.",
+      "Orel Hershiser (1983–2000, głównie 1983–1994 z Los Angeles) zbudował swoją karierę Hall of Fame na tym samym pagórku, na którym Koufax i Drysdale dominowali, ale z fundamentalnie różnym podejściem: przeciętna prędkość, elitarne sekwencjonowanie i kombinacja sinker-slider generująca groundery zamiast strikeoutów. Jego sezon 1988 — 23 zwycięstwa, Cy Young, MVP World Series i 59 kolejnych inningów bez dopuszczenia biegaczy — to najbardziej kompletna kampania miotania w historii Dodgers. Clayton Kershaw (2008–obecnie) reprezentuje syntezę wszystkiego, co przyszło wcześniej: siłę Koufaksa, intelekt sekwencjonowania Hershisera, rywalizacyjność Drysdale'a — wszystko połączone w lewostronnym pakiecie, który uczynił go najlepszym miotaczem swojej epoki.",
+      "Każda z tych pięciu legend Dodgers uczy innej lekcji strategicznej: Koufax uczy prostoty i dominacji przez wykonanie; Drysdale uczy własności wewnętrznej połowy i psychologicznej kontroli; Valenzuela uczy, że niekonwencjonalne rzuty tworzą niekonwencjonalne problemy dla pałkarzy; Hershiser uczy, że sekwencjonowanie i inteligencja przewyższają prędkość; a Kershaw uczy, że synteza wszystkich podejść, stosowana przez dekady nieustannej pracy, to co tworzy największą karierę."
+    ],
+    "technical": {
+      "title": "Pięć Podejść — Pięć Porównanych Strategii",
+      "body": [
+        "Cztery ostatnie sezony Sandy'ego Koufaksa (1963–1966) przyniosły 97 zwycięstw, cztery no-hittery, trzy nagrody Cy Young i ERA 1,73 w 1966 roku. Jego podejście było binarne: fastball lub curveball. Fastball uśredniał 97–100 mph według nowoczesnych szacunków; curveball opadał o 58+ cali i był nazywany »najlepszym rzutem w historii baseballu« przez wielu członków Hall of Fame, którzy mu stawiali czoła. Jego strategia była samą prostotą sekwencjonowania: użyj fastball do ustanowienia licznika, użyj curveball do zakończenia kolejki. Pałkarze wiedzieli dokładnie, co nadchodzi — i tak nie mogli trafić.",
+        "Łuk kariery Kershawa najbardziej przypomina Hershisera w ważny sposób: dostosowywał się w miarę zmiany repertuaru. Wczesny Kershaw (2008–2013) opierał się na fastballu uśredniającym 93–95 mph i druzgocącej curveball. Gdy prędkość spadła w późnych dwudziestych i trzydziestych latach, Kershaw dodał slider, zmienił kształty curveball i stał się mistrzem sekwencjonowania — bardziej polegając na ruchu, lokalizacji i inteligencji w celu kompensacji za redukcję czystego repertuaru. To dostosowanie — rekalibracja strategii wokół tego, co masz teraz, nie co miałeś pięć lat temu — to definiująca cecha wyjątkowej kariery miotania."
+      ]
+    },
+    "incident": {
+      "title": "Ostatni Sezon Koufaksa — Emerytura w 1966 na Szczycie",
+      "impact": "Sandy Koufax przeszedł na emeryturę po sezonie 1966 w wieku 30 lat — po uzyskaniu ERA 1,73, 27 zwycięstwach i 317 strikeoutach. Przeszedł na emeryturę nie dlatego, że jego wyniki spadały, lecz dlatego, że jego artretyczny łokieć wymagałby rzucania w stałym bólu i prawdopodobnie prowadziłby do trwałego uszkodzenia stawu. Jego emerytura na szczycie kariery — wybór zdrowia ponad dalszą dominacją — to jedna z najbardziej wzruszających strategicznych decyzji w historii baseballu.",
+      "body": [
+        "Sezon 1966 Koufaksa był jednym z najlepszych w historii baseballu. Zakończył go z rekordem 27-9, ERA 1,73 i 317 strikeoutami w 323 inningach. Ale rzucał w silnym bólu — jego artretyczny lewy łokieć wymagał zastrzyków kortyzonu przed meczami, a lekarze ostrzegali, że kontynuowanie ryzykowałoby trwałe uszkodzenie nerwów i stawów. 18 listopada 1966 roku, w wieku 30 lat, Koufax ogłosił emeryturę na konferencji prasowej w Los Angeles.",
+        "Decyzja była całkowicie spójna z jego filozofią kariery: jasność i decyzyjność ponad sentymentalizmem. Koufax nie próbował przebrnąć przez sezony malejących wyników — zatrzymał się w punkcie szczytowej doskonałości, chroniąc zarówno swoje dziedzictwo, jak i zdrowie. Dodgers nie wygrali kolejnej World Series przez 20 lat po jego emeryturze. Spośród pięciu wielkich miotaczy Dodgers, emerytura Koufaksa wyróżnia się jako najbardziej strategiczny akt jego kariery: wiedząc, kiedy jesteś najlepszy i wybierając zachowanie tego zamiast jego erozji. Każdy zawodnik i trener w historii baseballu, który zmagał się z pytaniem, kiedy skończyć grać, był mierzony wobec jasności decyzji Koufaksa."
+      ]
+    },
+    "timeline": [
+      "Koufax uzyskuje ERA 1,88 z 306 strikeoutami — pierwszy z trzech kolejnych sezonów Cy Young",
+      "Idealny mecz Koufaksa vs. Cubs — 14 K, 9 września, Dodger Stadium",
+      "Koufax przechodzi na emeryturę w wieku 30 lat z ERA 1,73 — największa wczesna emerytura w historii baseballu",
+      "58 kolejnych inningów bez biegaczy Drysdale'a — rekord dominacji wewnętrznej połowy",
+      "Fernandomania — Valenzuela zdobywa Cy Young + ROY w tym samym sezonie",
+      "59 inningów bez biegaczy Hershisera bije rekord Drysdale'a — MVP World Series następuje",
+      "Kershaw zdobywa Cy Young + MVP — najlepszy sezon jego kariery",
+      "Kershaw zdobywa World Series — 32-letnia sucha seria mistrzowska Dodgers kończy się"
+    ],
+    "keyTakeaways": [
+      "Koufax dowodzi, że dwa elitarne rzuty pokonują cztery przeciętne — zdominuj swoje najlepsze bronie zanim rozszerzysz arsenał",
+      "Dominacja wewnętrznej połowy Drysdale'a uczy, że bycie właścicielem strefy otwiera całą bazę — własność tworzy strach tworzący przestrzeń",
+      "59 inningów bez biegaczy Hershisera przy przeciętnej prędkości dowodzi, że inteligencja sekwencjonowania przewyższa fizyczne narzędzia przez całą karierę",
+      "Dostosowanie kariery Kershawa — dodawanie rzutów i zmiana podejść w miarę spadku prędkości — to model długowieczności miotania"
+    ]
+  }
+}

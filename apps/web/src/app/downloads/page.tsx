@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { stageDownloads } from "@/data/stage-downloads";
+import { stageDownloads } from "@kryptos/core/stage-downloads";
 
 const ALL_DOWNLOADS = Object.entries(stageDownloads).flatMap(([stageId, files]) =>
   files.map((f) => ({ ...f, stageId }))
