@@ -1,5 +1,5 @@
 import "server-only";
-import { createClient } from "@supabase/supabase-js";
+import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 import { createServerClient } from "@supabase/ssr";
 import { cookies } from "next/headers";
 
@@ -23,8 +23,28 @@ const anonKey = () => {
 
 // Service role client — privileged, never sent to browser.
 // Use for: creating users, reading any user, setting app_metadata.
-export const supabaseAdmin = createClient(url(), serviceKey(), {
-  auth: { autoRefreshToken: false, persistSession: false },
+//
+// Lazily constructed so that importing this module never requires env at build
+// time. `next build` collects route metadata by importing every API route; an
+// eager `createClient(url(), ...)` would throw "SUPABASE_URL not configured" in
+// any environment without the secrets (e.g. Vercel Preview). The real client is
+// built on first property access (request time), where the env is present.
+let _supabaseAdmin: SupabaseClient | null = null;
+function getSupabaseAdmin(): SupabaseClient {
+  if (!_supabaseAdmin) {
+    _supabaseAdmin = createClient(url(), serviceKey(), {
+      auth: { autoRefreshToken: false, persistSession: false },
+    });
+  }
+  return _supabaseAdmin;
+}
+
+export const supabaseAdmin: SupabaseClient = new Proxy({} as SupabaseClient, {
+  get(_target, prop, receiver) {
+    const client = getSupabaseAdmin();
+    const value = Reflect.get(client as object, prop, receiver);
+    return typeof value === "function" ? value.bind(client) : value;
+  },
 });
 
 // SSR client — reads and writes Supabase session cookies via next/headers.
