@@ -579,15 +579,15 @@ satellite_qkd_loss(500, 0)   # 500km altitude, directly overhead`,
       tagline: "Systems without cryptographic agility get stuck on vulnerable algorithms for years — MD5 in 2012, DES in 2005, TLS 1.0 in 2020.",
       year: 2024,
       overview: [
-        "The PQC migration is the largest cryptographic transition in history. The lesson from previous transitions — MD5 to SHA-2, DES to AES, TLS 1.0 to 1.3 — is that systems without cryptographic agility get stuck. Organizations running MD5 in 2012 were paying emergency incident response costs. Those with agile crypto swapped hash functions in a sprint.",
-        "Cryptographic agility means designing systems so that cryptographic algorithms, key sizes, and parameter sets can be changed without redesigning the whole application. This requires abstracting algorithm selection behind interfaces, versioning all encrypted data, supporting parallel algorithm execution during transitions, and automated crypto inventory.",
-        "For the PQC migration specifically, agility addresses: algorithm negotiation (X25519 vs ML-KEM), key size changes (1.2KB RSA cert vs 2.5KB ML-DSA cert), protocol parameter changes (MTU for larger handshakes), and certificate chain changes (dual-stack RSA + ML-DSA during transition).",
+        "PQC migration is the largest cryptographic transition in history, and past transitions taught one lesson:\n- MD5→SHA-2, DES→AES, TLS 1.0→1.3 — systems without crypto agility get stuck.\n- Organizations running MD5 in 2012 paid emergency incident-response costs; those with agile crypto swapped hash functions in a sprint.",
+        "Cryptographic agility means swapping algorithms without redesigning the app:\n- Algorithms, key sizes, and parameter sets must be changeable through interfaces.\n- That requires abstracting algorithm selection, versioning all encrypted data, supporting parallel algorithms during transitions, and automated crypto inventory.",
+        "For PQC specifically, agility absorbs several concrete changes:\n- Algorithm negotiation (X25519 vs ML-KEM) and key-size growth (1.2KB RSA cert vs 2.5KB ML-DSA cert).\n- Protocol parameter changes (MTU for larger handshakes) and dual-stack RSA + ML-DSA certificate chains during transition.",
       ],
       technical: {
         title: "Cryptographic Agility Design Patterns",
         body: [
-          "Five agility principles: (1) Algorithm abstraction — never hardcode algorithm names; use configuration or negotiation. (2) Negotiation — support multiple algorithms simultaneously; agree on best mutual option. (3) Versioning — tag all encrypted data with algorithm ID so old data can still be decrypted. (4) Parallel verification — accept both old and new algorithm signatures during transition windows. (5) Rollback — maintain ability to fall back to proven algorithms if new ones fail.",
-          "Anti-patterns that kill agility: RSA hardcoded in TLS config; database columns sized for 256-byte RSA keys (ML-KEM needs 1568 bytes); JWT libraries pinning RS256; certificate policy requiring RSA key type; MTU assumptions (ML-KEM public key is 1184 bytes — exceeds many fragmentation thresholds).",
+          "Five agility principles keep migration flexible:\n- Algorithm abstraction (never hardcode names; use config/negotiation), negotiation (support several, pick the best mutual one), and versioning (tag encrypted data with an algorithm ID).\n- Parallel verification (accept both old and new signatures in transition windows) and rollback (fall back to proven algorithms if new ones fail).",
+          "The anti-patterns that kill agility are everywhere:\n- RSA hardcoded in TLS config; database columns sized for 256-byte RSA keys (ML-KEM needs 1568); JWT libraries pinning RS256.\n- Certificate policies requiring RSA key type; MTU assumptions (ML-KEM's 1184-byte public key exceeds many fragmentation thresholds).",
         ],
         codeExample: {
           label: "Agile crypto interface — Python example",
@@ -623,8 +623,8 @@ def pack_ciphertext(algo_id: AlgoID, version: int, ct: bytes) -> bytes:
         where: "Cisco IOS-XE, NX-OS, and ASA/Firepower deployments globally",
         impact: "Cisco's agile PQC architecture lets operators swap ML-KEM for ML-KEM-1024, or add QKD key material, without replacing hardware or rebuilding VPN configs",
         body: [
-          "The SHA-1 deprecation (2011-2017) is the canonical lesson in crypto agility failure: 7 years of legacy pain because certificates were hardcoded, storage was sized for 256-byte keys, and upgrade procedures required emergency change control. The PQC transition is larger — ML-KEM public keys are 1184 bytes (4.6x RSA-2048), ML-DSA signatures are 3293 bytes (51x ECDSA). Without agility, the PQC migration will be SHA-1 times ten.",
-          "Cisco's response — announced at Cisco Live 2026 Amsterdam — is a fully agile PQC architecture. IOS-XE and NX-OS support negotiated algorithm selection: operators configure an ordered preference list (ML-KEM-768, X25519Kyber768, ML-KEM-1024) and the platform negotiates the strongest mutual option. The SKIP interface is algorithm-agnostic — it accepts ML-KEM keys, QKD-derived keys, or hybrid combinations without configuration changes. When NIST finalizes the next algorithm cycle, Cisco platforms update via signed software — no hardware replacement.",
+          "The SHA-1 deprecation (2011–2017) is the canonical agility-failure lesson:\n- Seven years of legacy pain because certificates were hardcoded, storage was sized for 256-byte keys, and upgrades needed emergency change control.\n- PQC is far larger — ML-KEM public keys are 1184 bytes (4.6x RSA-2048), ML-DSA signatures 3293 bytes (51x ECDSA); without agility, it's SHA-1 times ten.",
+          "Cisco's answer (Cisco Live 2026 Amsterdam) is a fully agile PQC architecture:\n- IOS-XE and NX-OS negotiate algorithms from an ordered preference list (ML-KEM-768, X25519Kyber768, ML-KEM-1024), picking the strongest mutual option.\n- The SKIP interface is algorithm-agnostic — accepting ML-KEM, QKD-derived, or hybrid keys with no config change — and the next NIST cycle updates via signed software, no hardware swap.",
         ],
       },
       diagram: {
