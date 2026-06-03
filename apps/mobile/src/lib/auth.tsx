@@ -3,6 +3,12 @@ import type { Session } from "@supabase/supabase-js";
 import { supabase } from "./supabase";
 import { api } from "./api";
 import { registerForPush, unregisterPush } from "./notifications";
+import { identifyPurchases, logOutPurchases } from "./purchases";
+
+function usernameOf(session: Session | null): string | null {
+  const u = session?.user?.user_metadata?.username;
+  return typeof u === "string" ? u : null;
+}
 
 type AuthState = {
   session: Session | null;
@@ -22,18 +28,24 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     supabase.auth.getSession().then(({ data }) => {
       setSession(data.session);
       setLoading(false);
-      if (data.session) registerForPush();
+      if (data.session) {
+        registerForPush();
+        const uname = usernameOf(data.session);
+        if (uname) identifyPurchases(uname);
+      }
     });
     const { data: sub } = supabase.auth.onAuthStateChange((_event, s) => setSession(s));
     return () => sub.subscription.unsubscribe();
   }, []);
 
   async function signIn(email: string, password: string) {
-    const { error } = await supabase.auth.signInWithPassword({ email: email.trim(), password });
+    const { data, error } = await supabase.auth.signInWithPassword({ email: email.trim(), password });
     if (error) return { error: error.message };
     // Ensure a Redis user record exists (mobile bypasses /api/auth/register).
     await api.bootstrap().catch(() => {});
     registerForPush();
+    const uname = usernameOf(data.session);
+    if (uname) identifyPurchases(uname);
     return {};
   }
 
@@ -48,11 +60,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     // provision the Redis record now; otherwise it happens on first signIn.
     await api.bootstrap().catch(() => {});
     registerForPush();
+    identifyPurchases(username.toLowerCase().trim());
     return {};
   }
 
   async function signOut() {
     await unregisterPush(); // clear the token server-side while the session is still valid
+    await logOutPurchases();
     await supabase.auth.signOut();
   }
 

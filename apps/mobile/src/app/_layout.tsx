@@ -4,6 +4,7 @@ import { ActivityIndicator, View } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { StatusBar } from "expo-status-bar";
 import { AuthProvider, useAuth } from "@/lib/auth";
+import { configurePurchases } from "@/lib/purchases";
 
 function Gate() {
   const { session, loading } = useAuth();
@@ -28,6 +29,7 @@ function Gate() {
 }
 
 export default function RootLayout() {
+  useEffect(() => { configurePurchases(); }, []);
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <StatusBar style="light" />

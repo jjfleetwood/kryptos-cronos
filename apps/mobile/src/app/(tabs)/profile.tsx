@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { ActivityIndicator, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
+import { useRouter } from "expo-router";
 import { useAuth } from "@/lib/auth";
 import { api } from "@/lib/api";
 import type { Me, Progress } from "@kryptos/api-client";
@@ -15,6 +16,7 @@ function Stat({ label, value }: { label: string; value: number }) {
 
 export default function Profile() {
   const { signOut } = useAuth();
+  const router = useRouter();
   const [me, setMe] = useState<Me | null>(null);
   const [progress, setProgress] = useState<Progress | null>(null);
   const [loading, setLoading] = useState(true);
@@ -43,6 +45,10 @@ export default function Profile() {
         <Stat label="Streak" value={progress?.streak ?? 0} />
       </View>
 
+      <Pressable style={s.proBtn} onPress={() => router.push("/upgrade")}>
+        <Text style={s.proText}>⭐ Kryptós Pro</Text>
+      </Pressable>
+
       <Pressable style={s.signout} onPress={signOut}>
         <Text style={s.signoutText}>Sign out</Text>
       </Pressable>
@@ -67,8 +73,13 @@ const s = StyleSheet.create({
   },
   statValue: { color: "#fff", fontSize: 22, fontWeight: "900" },
   statLabel: { color: "#5b6577", fontSize: 11, textTransform: "uppercase", marginTop: 4 },
+  proBtn: {
+    marginTop: 28, borderColor: "rgba(34,211,238,0.4)", borderWidth: 1, backgroundColor: "rgba(34,211,238,0.1)",
+    borderRadius: 12, paddingVertical: 15, alignItems: "center",
+  },
+  proText: { color: "#22d3ee", fontWeight: "800", fontSize: 15 },
   signout: {
-    marginTop: 32, borderColor: "#3a2330", borderWidth: 1, backgroundColor: "rgba(248,113,113,0.08)",
+    marginTop: 12, borderColor: "#3a2330", borderWidth: 1, backgroundColor: "rgba(248,113,113,0.08)",
     borderRadius: 12, paddingVertical: 14, alignItems: "center",
   },
   signoutText: { color: "#f87171", fontWeight: "700" },
