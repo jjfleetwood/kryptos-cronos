@@ -4,6 +4,7 @@ import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import { getStage } from "@kryptos/core/stages";
 import type { QuizQuestion, StageConfig } from "@kryptos/core/types";
 import { api } from "@/lib/api";
+import AriaChat from "@/components/AriaChat";
 
 const PER_ATTEMPT = 5;
 
@@ -38,9 +39,24 @@ export default function StageScreen() {
   const [checking, setChecking] = useState(false);
   const [score, setScore] = useState(0);
   const [done, setDone] = useState(false);
+  const [ariaOpen, setAriaOpen] = useState(false);
 
-  const header = (title: string) => (
-    <Stack.Screen options={{ headerShown: true, title, headerStyle: { backgroundColor: "#0d1117" }, headerTintColor: "#fff" }} />
+  const header = (title: string, withAria = false) => (
+    <Stack.Screen
+      options={{
+        headerShown: true,
+        title,
+        headerStyle: { backgroundColor: "#0d1117" },
+        headerTintColor: "#fff",
+        headerRight: withAria
+          ? () => (
+              <Pressable onPress={() => setAriaOpen(true)} hitSlop={12}>
+                <Text style={{ fontSize: 20 }}>💬</Text>
+              </Pressable>
+            )
+          : undefined,
+      }}
+    />
   );
 
   if (!stage) {
@@ -111,7 +127,8 @@ export default function StageScreen() {
 
   return (
     <ScrollView style={s.root} contentContainerStyle={{ padding: 16, paddingBottom: 40 }}>
-      {header(stage.title)}
+      {header(stage.title, true)}
+      <AriaChat stage={stage} visible={ariaOpen} onClose={() => setAriaOpen(false)} />
 
       <View style={s.progressRow}>
         <Text style={s.typeBadge}>{q.type}</Text>
