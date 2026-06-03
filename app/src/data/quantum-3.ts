@@ -920,15 +920,15 @@ Endpoint = peer.example.com:51820
       tagline: "A Root CA key with a 20-year validity period spans Q-Day — the single most dangerous artifact in your cryptographic inventory.",
       year: 2024,
       overview: [
-        "The PKI infrastructure underpinning the internet is built on RSA and ECDSA — both vulnerable to quantum computers. Certificate authorities, OCSP responders, CRLs, HSMs, smart cards, and every certificate-relying application must be migrated to PQC algorithms.",
-        "Root CA keys have 20-30 year lifespans — by design. A root CA key issued in 2010 that is still active in 2035, when quantum computers may be viable, represents a single point of failure for the entire trust hierarchy. If a quantum adversary forges a root CA signature, they can impersonate any site in the CA's trust domain.",
-        "The dual-stack strategy addresses the transition problem: issue certificates with both RSA-2048 (or ECDSA) and ML-DSA-65 keys simultaneously. PQC-capable clients verify ML-DSA; legacy clients fall back to RSA. The same Subject Alternative Names (SANs) cover both certificates, enabling gradual cutover without interoperability breaks.",
+        "The internet's PKI is built on RSA and ECDSA — both quantum-vulnerable:\n- Every layer must migrate to PQC: certificate authorities, OCSP responders, CRLs, HSMs, and smart cards.\n- So must every certificate-relying application.",
+        "Root CA keys are a 20–30 year single point of failure by design:\n- A root key issued in 2010 and still active in 2035, when quantum computers may be viable, exposes the whole trust hierarchy.\n- Forge a root CA signature and a quantum adversary can impersonate any site in that CA's trust domain.",
+        "The dual-stack strategy bridges the transition:\n- Issue certificates carrying both RSA-2048 (or ECDSA) and ML-DSA-65 keys at once; PQC-capable clients verify ML-DSA, legacy clients fall back to RSA.\n- The same Subject Alternative Names cover both, enabling gradual cutover without interoperability breaks.",
       ],
       technical: {
         title: "PKI Quantum Migration Challenges",
         body: [
-          "Certificate size impact: ML-DSA-65 certificate is ~2.5KB vs RSA-2048 at ~1.2KB. A full chain (root + intermediate + end-entity) is ~7.5KB for PQC vs ~3.6KB for RSA. This can exceed TLS record sizes and cause fragmentation. QUIC and TLS 1.3 handle this better than TLS 1.2, which is another reason to enforce TLS 1.3.",
-          "HSM support is gating: most enterprise HSMs require firmware updates to support ML-KEM and ML-DSA. Thales Luna 7 (firmware 7.8+), AWS CloudHSM (preview), and Microsoft Azure Managed HSM support ML-KEM and ML-DSA. YubiHSM 2 hardware cannot be updated — replacement is required.",
+          "Certificate size is the first hurdle:\n- An ML-DSA-65 certificate is ~2.5KB vs RSA-2048's ~1.2KB; a full chain is ~7.5KB for PQC vs ~3.6KB for RSA.\n- That can exceed TLS record sizes and cause fragmentation — QUIC and TLS 1.3 handle it far better than TLS 1.2, another reason to enforce TLS 1.3.",
+          "HSM support is the gating dependency:\n- Most enterprise HSMs need firmware updates for ML-KEM and ML-DSA — Thales Luna 7 (firmware 7.8+), AWS CloudHSM (preview), and Azure Managed HSM support them.\n- YubiHSM 2 hardware can't be updated, so it has to be replaced.",
         ],
         codeExample: {
           label: "Generate ML-DSA-65 root CA certificate (OpenSSL + oqs-provider)",
@@ -963,8 +963,8 @@ openssl x509 -in root-ca-mldsa65.crt -text -noout | head -30
         where: "DigiCert Certificate Authority — global trust anchor",
         impact: "First production-grade ML-DSA certificates issued by a major CA — begins the trust chain migration",
         body: [
-          "In October 2024, DigiCert issued the first ML-DSA (FIPS 204) test certificates from a production root CA, available to enterprise customers for testing. These certificates chain to a dedicated PQC test root, allowing organizations to test their PQC certificate handling without affecting production trust chains.",
-          "The milestone demonstrates that the PKI ecosystem is ready to begin the transition. DigiCert also published a PQC migration guide covering dual-stack certificate issuance, HSM firmware requirements, and a 3-year migration roadmap from initial testing to full production deployment of ML-DSA certificates.",
+          "In October 2024, DigiCert issued the first ML-DSA (FIPS 204) test certificates from a production root CA:\n- They're available to enterprise customers for testing, chaining to a dedicated PQC test root.\n- That lets organizations exercise their PQC certificate handling without touching production trust chains.",
+          "The milestone shows the PKI ecosystem is ready to begin the transition:\n- DigiCert also published a PQC migration guide covering dual-stack issuance and HSM firmware requirements.\n- It lays out a 3-year roadmap from initial testing to full production deployment of ML-DSA certificates.",
         ],
       },
       diagram: {
