@@ -1,10 +1,12 @@
 # Technical Bill of Materials — Kryptós CronOS
 
-**Version:** v1.0.0
-**Last Updated:** 2026-05-26
+**Version:** v2.0.0
+**Last Updated:** 2026-06-03
 **Status:** Current
 
 A complete component registry — every library, service, infrastructure piece, and key source file, with version, role, and dependency linkages.
+
+> **Monorepo note:** the project is a **Turborepo monorepo** (npm workspaces): `apps/web` (Next.js + API, deployed) · `apps/mobile` (Expo / React Native) · `packages/core` (`@kryptos/core` — content + types, formerly `src/data`) · `packages/api-client` (`@kryptos/api-client`). Paths below labeled `src/lib/*` live under **`apps/web/`**; curriculum/content modules live under **`packages/core/src/`**.
 
 ---
 
@@ -48,9 +50,17 @@ graph TB
         Vercel["Vercel\nHosting + CDN"]
         Upstash["Upstash\nServerless Redis"]
         Resend["Resend\nTransactional Email"]
-        Stripe["Stripe\nPayment Processing"]
+        Stripe["Stripe\nWeb Payments"]
+        RevenueCat["RevenueCat\nMobile IAP"]
+        Supabase["Supabase\nAuth + mobile JWT"]
         Anthropic["Anthropic API\nClaude Haiku-4-5"]
+        Expo["Expo\nMobile + Push"]
+        Plausible["Plausible\nAnalytics"]
         GitHub["GitHub\nSource + CI/CD"]
+    end
+
+    subgraph Mobile["Mobile Client (apps/mobile)"]
+        ExpoApp["Expo / React Native\nbearer JWT → /api/v1"]
     end
 
     Browser --> Edge
@@ -78,6 +88,20 @@ graph TB
 | `remark-gfm` | ^4.0.1 | GitHub Flavored Markdown plugin (tables, task lists) | `DocsViewer.tsx` |
 | `mermaid` | ^11.15.0 | Client-side diagram rendering (ERD, flowchart, sequence) | `MermaidDiagram.tsx` |
 | `stripe` | ^22.1.1 | Stripe server-side SDK for checkout + webhooks | `/api/stripe/*`, `/api/webhooks/stripe` |
+| `@supabase/supabase-js` | ^2.x | Supabase Auth client (web parallel + admin) | `apps/web/src/lib/supabase.ts` |
+| `@supabase/ssr` | ^0.x | Supabase SSR cookie client | `apps/web/src/lib/supabase.ts` |
+| `jose` | ^5.x | Local JWKS verification of Supabase bearer JWTs (mobile auth) | `apps/web/src/lib/supabase-jwt.ts` |
+| `turbo` | ^2.x | Monorepo task runner (build/lint/dev orchestration) | root `turbo.json` |
+
+### Mobile workspace (`apps/mobile`) — key dependencies
+
+| Package | Role |
+|---|---|
+| `expo` (SDK 56) + `expo-router` | React Native app shell + file-based routing |
+| `@supabase/supabase-js` + `@react-native-async-storage/async-storage` | Mobile auth + session persistence |
+| `react-native-purchases` | RevenueCat in-app purchases (iOS/Android) |
+| `expo-notifications` | Push notification registration + handling |
+| `@kryptos/core`, `@kryptos/api-client` | Shared content/types + typed API client |
 
 ### Dev Dependencies
 
@@ -104,6 +128,10 @@ graph TB
 | **Resend** | Free/Pro | Transactional email — registration alerts, password reset, stage completion | `/api/auth/register`, `/api/forgot-password`, `server-progress.ts` | `RESEND_API_KEY` |
 | **Stripe** | Live | Pro subscription payments — monthly ($13.99) and yearly ($99) | `/api/stripe/checkout`, `/api/webhooks/stripe` | `STRIPE_SECRET_KEY`, `STRIPE_WEBHOOK_SECRET` |
 | **Anthropic** | API | Claude Haiku-4-5 for ARIA Socratic AI chatbot | `/api/hint` | `ANTHROPIC_API_KEY` |
+| **Supabase** | Free | Auth (web parallel + mobile JWT identity source) | `src/lib/supabase.ts`, `src/lib/supabase-jwt.ts` | `SUPABASE_URL`, `SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY` |
+| **RevenueCat** | Free < $2.5k/mo | Mobile in-app purchases (iOS/Android), unified with Stripe | `/api/webhooks/revenuecat`, mobile `react-native-purchases` | `REVENUECAT_WEBHOOK_AUTH` (+ mobile public keys) |
+| **Expo / EAS** | Free | Mobile app build/submit + Expo Push notifications | `apps/mobile`, `/api/push/*` | `CRON_SECRET` (streak cron); `EXPO_PUBLIC_*` (mobile) |
+| **Plausible** | ~$9/mo | Privacy-friendly analytics (no cookies/PII) | script in `apps/web` layout; CSP allowlist in `proxy.ts` | none (script tag) |
 | **GitHub** | Free | Source control + CI pipeline (Actions) | `.github/workflows/ci.yml` | Repo secrets for env vars |
 
 ---
@@ -160,7 +188,7 @@ graph LR
 | `src/lib/redis.ts` | Server Library | Upstash Redis client singleton | `@upstash/redis` |
 | `src/lib/access.ts` | Server Library (server-only) | `canAccessStage()` — trial expiry + tier check | `redis.ts`, `auth.ts` |
 | `src/lib/server-progress.ts` | Server Library | `awardStageInRedis()` — XP, coins, badges, leaderboard | `redis.ts`, `resend` |
-| `src/data/stages.ts` | Server Data | Epoch config + full stage array (all 438 stages) | All epoch files |
+| `packages/core/src/stages.ts` | Server Data | Epoch config + full stage array (all 458 stages, 38 epochs) | All epoch files |
 | `src/data/stages-meta.ts` | Shared Data | Client-safe listing metadata — no CTF/quiz secrets | `types.ts` |
 | `src/data/stage-flags.ts` | Server Data (server-only) | Flag store for CTF validation | `server-only` |
 | `src/data/trophies.ts` | Shared Data | 51 trophies across 8 tiers; `dailyShopTrophies()` | — |
@@ -180,12 +208,15 @@ graph LR
 
 ## API Route Map
 
+> Gameplay/user routes accept **either** the HMAC `session_token` cookie (web) **or** an `Authorization: Bearer <supabase-jwt>` (mobile), resolved by `getAuthedUsername()`. They are also served under `/api/v1/*` (next.config rewrite) for the mobile client.
+
 | Route | Method | Auth | Purpose |
 |---|---|---|---|
-| `/api/auth/register` | POST | None | Create account, PBKDF2 hash, set session cookie |
-| `/api/auth/login` | POST | None | Verify password, set session + admin cookies |
+| `/api/auth/register` | POST | None | Create account, PBKDF2-600k hash, parallel Supabase, set session cookie |
+| `/api/auth/login` | POST | None | Verify password (lockout after 5), set session + admin cookies |
+| `/api/auth/bootstrap` | POST | Bearer | Provision Redis record for Supabase-only (mobile) accounts |
 | `/api/auth/session` | DELETE | Session | Logout — clear cookies |
-| `/api/auth/me` | GET | Session | Return `{username, email, isAdmin, tier}` |
+| `/api/auth/me` | GET | Cookie or Bearer | Return `{username, email, isAdmin, tier}` |
 | `/api/admin-session` | POST | Admin secret | Issue HMAC admin cookie |
 | `/api/progress` | GET | Session | Fetch user progress from Redis |
 | `/api/progress` | POST | Session | Award stage: XP, coins, badges, leaderboard |
@@ -199,8 +230,11 @@ graph LR
 | `/api/docs/[file]` | GET | Admin cookie | Serve secured-docs file |
 | `/api/feedback` | POST | None | Store feedback + email notification |
 | `/api/forgot-password` | POST | None | Send reset email (rate-limited) |
-| `/api/stripe/checkout` | POST | Session | Create Stripe checkout session |
-| `/api/webhooks/stripe` | POST | Stripe signature | Handle subscription lifecycle events |
+| `/api/stripe/checkout` | POST | Session | Create Stripe checkout session (web) |
+| `/api/webhooks/stripe` | POST | Stripe signature | Web subscription lifecycle → `proStripe` |
+| `/api/webhooks/revenuecat` | POST | RC auth header | Mobile IAP lifecycle → `rcProExpiry` |
+| `/api/push/register` | POST/DELETE | Cookie or Bearer | Store/clear Expo push token (`push:tokens`) |
+| `/api/push/streak-reminder` | GET | `CRON_SECRET` bearer | Vercel Cron — daily streak-at-risk push |
 | `/api/admin/users` | GET | Admin | List all users with stats |
 | `/api/admin/set-tier` | POST | Admin | Manually set user tier |
 | `/api/admin/set-skin` | POST | Admin | Set user skin/age level |
@@ -214,21 +248,22 @@ graph LR
 ```mermaid
 flowchart LR
     subgraph Dev["Development"]
-        LocalDev["localhost:3000\nnpm run dev"]
-        DevBranch["git branch: dev"]
+        LocalDev["localhost:3000\nturbo run dev"]
+        FeatBranch["(risky) feature branch"]
     end
 
-    subgraph CI["GitHub Actions CI"]
-        Lint["ESLint\n0 errors required"]
-        TSC["tsc --noEmit\n--skipLibCheck"]
-        Build["next build\nproduction build"]
-        Audit["npm audit\nno critical CVEs"]
+    subgraph CI["GitHub Actions CI (root)"]
+        Install["npm ci\nall workspaces"]
+        Lint["turbo run lint\n0 errors required"]
+        TSC["tsc --noEmit\n-p apps/web/tsconfig.json"]
+        Build["turbo run build\nproduction build"]
+        Audit["npm audit"]
     end
 
     subgraph Prod["Production"]
-        Master["git branch: master"]
-        Vercel["Vercel\nkryptoscronos.com"]
-        Preview["Vercel Preview\ndev branch URL"]
+        Master["git branch: master\n(single source of truth)"]
+        Vercel["Vercel\nRoot Dir = apps/web\nkryptoscronos.com"]
+        Preview["Vercel Preview\nfeature branch URL"]
     end
 
     subgraph Secrets["Environment Secrets"]
@@ -236,8 +271,9 @@ flowchart LR
         VercelEnv["Vercel Env Vars\nall production secrets"]
     end
 
-    LocalDev --> DevBranch
-    DevBranch -->|push| CI
+    LocalDev --> Master
+    LocalDev --> FeatBranch
+    FeatBranch -->|push| CI
     CI --> Preview
     Master -->|push| CI
     CI --> Vercel
@@ -251,7 +287,9 @@ flowchart LR
 
 | Control | Implementation | File |
 |---|---|---|
-| Password hashing | PBKDF2-SHA256, 100k iterations | `src/lib/auth.ts` |
+| Password hashing | PBKDF2-SHA256, 600k iterations (OWASP 2024); auto-rehash on login | `src/lib/crypto-utils.ts` |
+| Bearer auth (mobile) | Supabase JWT verified via local JWKS (`jose`) + `getUser()` fallback; identity from verified email claim | `src/lib/supabase-jwt.ts`, `src/lib/api-auth.ts` |
+| Account lockout | 5 failed logins → 15-min lock per username | `/api/auth/login` |
 | Session tokens | HMAC-SHA256 signed, HttpOnly cookie, 30-day expiry | `src/lib/auth.ts` |
 | Admin tokens | HMAC-SHA256 signed, HttpOnly cookie, 24-hour expiry | `src/lib/auth.ts` |
 | Route protection | Edge middleware — admin cookie checked before `/admin/**` | `src/proxy.ts` |
