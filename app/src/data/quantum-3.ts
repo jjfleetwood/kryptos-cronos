@@ -1456,15 +1456,15 @@ kms = boto3.client('kms', region_name='us-east-1')
       tagline: "The quantum migration is a 3-7 year program requiring board approval, sustained budget, and cross-functional coordination — not a sprint.",
       year: 2025,
       overview: [
-        "The quantum migration is the most complex cryptographic program most enterprises have ever undertaken. It requires board-level support, sustained multi-year budget, cross-functional coordination (security, infrastructure, development, procurement), and vendor management. Most CISOs are still explaining what quantum computers are to their boards.",
-        "Effective quantum governance starts with risk quantification: translate the technical threat (HNDL, Shor's algorithm, Q-Day timeline) into financial terms that boards understand — potential data breach costs, regulatory fines, competitive intelligence exposure. Then build a phased program: discovery → foundation → core systems → complete → sustain.",
-        "The business case for PQC investment is straightforward: the cost of migration (typically 0.5-2% of annual IT budget over 5 years) is far less than the expected loss from a post-Q-Day breach of records collected today. Regulatory pressure (FFIEC, OMB, future SEC requirements) provides additional urgency that resonates with audit committees.",
+        "Quantum migration is the most complex cryptographic program most enterprises have ever undertaken:\n- It needs board-level support, sustained multi-year budget, and cross-functional coordination (security, infrastructure, development, procurement), plus vendor management.\n- Most CISOs are still explaining what quantum computers are to their boards.",
+        "Effective governance starts with risk quantification:\n- Translate the technical threat (HNDL, Shor's, the Q-Day timeline) into financial terms boards understand — breach costs, regulatory fines, competitive-intelligence exposure.\n- Then build a phased program: discovery → foundation → core systems → complete → sustain.",
+        "The business case is straightforward:\n- Migration typically costs 0.5–2% of annual IT budget over 5 years — far less than the expected loss from a post-Q-Day breach of records collected today.\n- Regulatory pressure (FFIEC, OMB, future SEC requirements) adds urgency that resonates with audit committees.",
       ],
       technical: {
         title: "Quantum Risk Quantification Model",
         body: [
-          "Expected loss calculation: (probability of Q-Day in 10yr) × (value of exposed data). HNDL threat is NOT probability-weighted — it is happening now. All RSA-encrypted data transmitted today is potentially archived and will be exposed at Q-Day regardless of timeline uncertainty. Prioritize assets by HNDL risk first (long-term sensitivity), then by Q-Day impact.",
-          "Program phasing: Year 1 (Discovery) — crypto inventory, risk scoring, vendor assessment, training; Year 2 (Foundation) — HSM replacement, PKI root migration, development toolchain; Year 3 (Core) — VPN, TLS, API gateways; Year 4 (Complete) — remaining systems, code signing; Year 5 (Sustain) — continuous monitoring, emerging algorithms.",
+          "The expected-loss model needs one HNDL caveat:\n- Expected loss = (probability of Q-Day in 10yr) × (value of exposed data) — but HNDL is NOT probability-weighted; it's happening now.\n- All RSA-encrypted data sent today is potentially archived and exposed at Q-Day regardless of timeline, so prioritize by HNDL risk (long-term sensitivity) first, then by Q-Day impact.",
+          "A five-year phasing plan keeps the program tractable:\n- Year 1 Discovery (inventory, risk scoring, vendor assessment, training); Year 2 Foundation (HSM replacement, PKI root migration, dev toolchain).\n- Year 3 Core (VPN, TLS, API gateways); Year 4 Complete (remaining systems, code signing); Year 5 Sustain (continuous monitoring, emerging algorithms).",
         ],
         codeExample: {
           label: "Quantum risk financial model (Python)",
@@ -1505,8 +1505,8 @@ for asset, data in assets.items():
         where: "All FFIEC-regulated financial institutions (banks, credit unions, thrifts)",
         impact: "First sector-specific regulatory requirement for quantum risk disclosure and migration planning",
         body: [
-          "The Federal Financial Institutions Examination Council (FFIEC) issued guidance requiring banks and credit unions to assess quantum computing risks, include quantum exposure in IT examinations, and develop migration roadmaps. Non-compliance with examination guidance can affect ratings and trigger enforcement actions.",
-          "The FFIEC guidance was sector-specific and preceded SEC requirements — financial institutions must demonstrate quantum risk awareness in their IT examination packages. This created the business case for CISO quantum programs at banks and credit unions that had previously deferred planning: regulatory risk now has a defined dollar cost.",
+          "The FFIEC issued the first sector-specific quantum-risk requirement:\n- It requires banks and credit unions to assess quantum risks, fold quantum exposure into IT examinations, and develop migration roadmaps.\n- Non-compliance with examination guidance can hit ratings and trigger enforcement actions.",
+          "The guidance preceded SEC requirements and changed the calculus:\n- Financial institutions must now demonstrate quantum-risk awareness in their IT examination packages.\n- That built the business case for CISO quantum programs at banks that had deferred planning — regulatory risk now carries a defined dollar cost.",
         ],
       },
       diagram: {
