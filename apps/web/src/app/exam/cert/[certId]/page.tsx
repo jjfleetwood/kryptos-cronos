@@ -15,6 +15,8 @@ const CERT_META: Record<string, CertMeta> = {
   "comptia-aiplus": { name: "CompTIA AI+", code: "2024 blueprint", hex: "#38bdf8", text: "text-sky-400", btn: "bg-sky-500 hover:bg-sky-400", border: "border-sky-500/40" },
   "aws-aip": { name: "AWS Certified AI Practitioner", code: "AIF-C01", hex: "#fb7185", text: "text-rose-400", btn: "bg-rose-500 hover:bg-rose-400", border: "border-rose-500/40" },
   "gcp-pmle": { name: "Google Cloud Professional ML Engineer", code: "PMLE", hex: "#22c55e", text: "text-green-400", btn: "bg-green-500 hover:bg-green-400", border: "border-green-500/40" },
+  "isaca-aaia": { name: "ISACA Advanced in AI Audit", code: "AAIA", hex: "#fbbf24", text: "text-amber-400", btn: "bg-amber-500 hover:bg-amber-400", border: "border-amber-500/40" },
+  "isaca-aaism": { name: "ISACA Advanced in AI Security Management", code: "AAISM", hex: "#e879f9", text: "text-fuchsia-400", btn: "bg-fuchsia-500 hover:bg-fuchsia-400", border: "border-fuchsia-500/40" },
 };
 
 export default async function CertExamPage({ params }: { params: Promise<{ certId: string }> }) {

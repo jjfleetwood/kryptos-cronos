@@ -5,7 +5,7 @@ import type { CertId } from "@kryptos/core/cert-domains";
 const VALID_CERTS: CertId[] = [
   "comptia-secplus", "isc2-cc", "comptia-netplus", "comptia-cysa",
   "isaca-cisa", "isaca-cism", "isaca-crisc", "comptia-aiplus",
-  "aws-aip", "gcp-pmle",
+  "aws-aip", "gcp-pmle", "isaca-aaia", "isaca-aaism",
 ];
 
 // Exam shape per mode: how many questions, time limit, and pass threshold.

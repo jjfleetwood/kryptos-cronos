@@ -259,6 +259,50 @@ const CERTS: CertConfig[] = [
     bgClass: "bg-green-500/5",
     badgeClass: "bg-green-500/15 border-green-500/30 text-green-300",
   },
+  {
+    id: "isaca-aaia",
+    name: "ISACA Advanced in AI Audit",
+    examCode: "AAIA",
+    emoji: "📑",
+    tagline: "ISACA's audit-focused AI credential (launched 2025), built for CISA-track professionals. AAIA validates the ability to govern, assess, and audit AI and machine-learning systems — AI risk, AI operations, and the tools and techniques for auditing models, data, and agentic pipelines.",
+    examUrl: "https://www.isaca.org/credentialing/aaia",
+    salaryRange: "$110k – $150k",
+    jobCount: "Emerging — high demand",
+    cost: "$575 member / $760 non-member",
+    questions: "75",
+    passingScore: "450 / 800",
+    prerequisites: "Active CISA recommended (AI/audit experience)",
+    studyHours: "40–60 hours",
+    gradient: "linear-gradient(135deg, rgba(245,158,11,0.08) 0%, rgba(217,119,6,0.06) 100%)",
+    ringColor: "#fbbf24",
+    accentClass: "text-amber-400",
+    barClass: "bg-amber-500",
+    borderClass: "border-amber-500/30",
+    bgClass: "bg-amber-500/5",
+    badgeClass: "bg-amber-500/15 border-amber-500/30 text-amber-300",
+  },
+  {
+    id: "isaca-aaism",
+    name: "ISACA Advanced in AI Security Management",
+    examCode: "AAISM",
+    emoji: "🔏",
+    tagline: "ISACA's AI security-management credential (launched 2025) for CISM/CISSP-track leaders. AAISM validates building and running an AI security program — AI security governance, AI risk management, and the controls and operations that secure machine-learning systems in production.",
+    examUrl: "https://www.isaca.org/credentialing/aaism",
+    salaryRange: "$130k – $180k",
+    jobCount: "Emerging — high demand",
+    cost: "$575 member / $760 non-member",
+    questions: "75",
+    passingScore: "450 / 800",
+    prerequisites: "Active CISM or CISSP",
+    studyHours: "40–60 hours",
+    gradient: "linear-gradient(135deg, rgba(217,70,239,0.08) 0%, rgba(192,38,211,0.06) 100%)",
+    ringColor: "#e879f9",
+    accentClass: "text-fuchsia-400",
+    barClass: "bg-fuchsia-500",
+    borderClass: "border-fuchsia-500/30",
+    bgClass: "bg-fuchsia-500/5",
+    badgeClass: "bg-fuchsia-500/15 border-fuchsia-500/30 text-fuchsia-300",
+  },
 ];
 
 // ─── Stage lookup helpers ──────────────────────────────────────────────────────
@@ -647,11 +691,11 @@ export default function CertsPage() {
             <span className="text-xs px-2.5 py-1 rounded-full border text-indigo-400 bg-indigo-400/10 border-indigo-400/30 font-semibold">
               Certification Paths
             </span>
-            <span className="text-xs text-gray-600">Security+ · CySA+ · CISA · AI+ · AWS · Google Cloud</span>
+            <span className="text-xs text-gray-600">Security+ · CySA+ · CISA · AI+ · ISACA AAIA / AAISM · AWS · Google Cloud</span>
           </div>
           <h1 className="text-3xl sm:text-4xl font-black text-white mb-2">Certificate Paths</h1>
           <p className="text-gray-400 leading-relaxed max-w-2xl">
-            Track your readiness for ten industry-recognized certifications. Every stage you complete maps
+            Track your readiness for twelve industry-recognized certifications. Every stage you complete maps
             to real exam domains — see exactly where you stand and which stages to tackle next.
             Also check the <Link href="/cyberops" className="text-cyan-400 hover:text-cyan-300 transition-colors">CyberOps Associate tracker</Link> for the Cisco-specific path, or build a <Link href="/resume" className="text-cyan-400 hover:text-cyan-300 transition-colors">resume</Link> from your completed stages.
           </p>
@@ -731,8 +775,9 @@ export default function CertsPage() {
 
             <p className="mt-8 text-center text-gray-700 text-xs leading-relaxed">
               Stage-to-domain mappings reflect official exam blueprints (SY0-701, N10-009, CS0-003, CC v1.0, AI+, AIF-C01, GCP PMLE).
-              Completing all mapped stages does not guarantee exam passage — use this as a readiness guide alongside
-              official study materials and practice exams.
+              ISACA AAIA and AAISM are new (2025) AI credentials — their domain weightings here are best-effort approximations
+              pending the official exam content outlines. Completing all mapped stages does not guarantee exam passage — use this as
+              a readiness guide alongside official study materials and practice exams.
             </p>
           </div>
         </div>

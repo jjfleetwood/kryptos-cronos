@@ -14,7 +14,9 @@ export type CertId =
   | "isaca-crisc"
   | "comptia-aiplus"
   | "aws-aip"
-  | "gcp-pmle";
+  | "gcp-pmle"
+  | "isaca-aaia"
+  | "isaca-aaism";
 
 export type CertDomain = {
   certId: CertId;
@@ -116,6 +118,24 @@ export const GCP_PMLE_DOMAINS: CertDomainDef[] = [
   { id: "gcpml-monitoring",  name: "Monitoring AI Solutions",                       weight: 13 },
 ];
 
+// ISACA Advanced in AI Audit (AAIA, launched 2025 — CISA-track AI auditing credential)
+// NOTE: domain weights are best-effort approximations of ISACA's 2025 job-practice
+// areas; confirm against the official AAIA exam content outline before marketing.
+export const AAIA_DOMAINS: CertDomainDef[] = [
+  { id: "aaia-governance", name: "AI Governance & Risk",            weight: 35 },
+  { id: "aaia-operations", name: "AI Operations",                   weight: 30 },
+  { id: "aaia-audit",      name: "AI Auditing Tools & Techniques",  weight: 35 },
+];
+
+// ISACA Advanced in AI Security Management (AAISM, launched 2025 — CISM-track AI security credential)
+// NOTE: domain weights are best-effort approximations; confirm against the official
+// AAISM exam content outline before marketing.
+export const AAISM_DOMAINS: CertDomainDef[] = [
+  { id: "aaism-governance", name: "AI Security Governance & Program", weight: 33 },
+  { id: "aaism-risk",       name: "AI Risk Management",               weight: 34 },
+  { id: "aaism-controls",   name: "AI Technologies, Controls & Ops",  weight: 33 },
+];
+
 // ─── Helper builders ────────────────────────────────────────────────────────────
 
 function sp(...domainIds: string[]): CertDomain[] {
@@ -185,6 +205,20 @@ function gcpml(...domainIds: string[]): CertDomain[] {
   return domainIds.map((id) => {
     const def = GCP_PMLE_DOMAINS.find((d) => d.id === id)!;
     return { certId: "gcp-pmle" as CertId, domainId: id, domainName: def.name };
+  });
+}
+
+function aaia(...domainIds: string[]): CertDomain[] {
+  return domainIds.map((id) => {
+    const def = AAIA_DOMAINS.find((d) => d.id === id)!;
+    return { certId: "isaca-aaia" as CertId, domainId: id, domainName: def.name };
+  });
+}
+
+function aaism(...domainIds: string[]): CertDomain[] {
+  return domainIds.map((id) => {
+    const def = AAISM_DOMAINS.find((d) => d.id === id)!;
+    return { certId: "isaca-aaism" as CertId, domainId: id, domainName: def.name };
   });
 }
 
@@ -568,6 +602,84 @@ for (const [stageId, doms] of Object.entries(AI_PLATFORM_CERT_DOMAINS)) {
   CERT_DOMAINS[stageId] = [...(CERT_DOMAINS[stageId] ?? []), ...doms];
 }
 
+// ─── ISACA AI cert mappings (AAIA + AAISM) ──────────────────────────────────────
+// AAIA (AI Audit) and AAISM (AI Security Management) are ISACA's 2025 AI credentials.
+// They cover the AI-native epochs only — MITRE ATLAS, OWASP LLM, Emerging Tech, the
+// agentic AI audit epoch, AI-enhanced continuous monitoring, and the AI-security Cisco
+// stages. Quantum/crypto and pure-security stages are intentionally excluded so the
+// readiness rings stay credible. Per-stage domains vary by the stage's actual topic.
+const ISACA_AI_CERT_DOMAINS: Record<string, CertDomain[]> = {
+
+  // ── MITRE ATLAS (atlas-01 → atlas-12) — adversarial ML threat landscape ───────
+  "atlas-01": combine(aaism("aaism-risk"),                  aaia("aaia-operations")),                    // Reconnaissance
+  "atlas-02": combine(aaism("aaism-risk", "aaism-controls"), aaia("aaia-operations", "aaia-audit")),     // Resource Development
+  "atlas-03": combine(aaism("aaism-risk", "aaism-controls"), aaia("aaia-operations", "aaia-governance")), // Initial Access (supply chain)
+  "atlas-04": combine(aaism("aaism-controls", "aaism-risk"), aaia("aaia-operations")),                   // ML Model Access
+  "atlas-05": combine(aaism("aaism-controls", "aaism-risk"), aaia("aaia-operations", "aaia-audit")),     // Execution (adversarial inputs)
+  "atlas-06": combine(aaism("aaism-controls"),              aaia("aaia-audit")),                         // Defense Evasion
+  "atlas-07": combine(aaism("aaism-risk"),                  aaia("aaia-operations", "aaia-audit")),      // Discovery
+  "atlas-08": combine(aaism("aaism-risk", "aaism-controls"), aaia("aaia-operations")),                   // Collection (membership inference)
+  "atlas-09": combine(aaism("aaism-controls", "aaism-risk"), aaia("aaia-audit")),                        // ML Attack Staging
+  "atlas-10": combine(aaism("aaism-risk", "aaism-controls"), aaia("aaia-operations", "aaia-governance")), // Exfiltration (model stealing)
+  "atlas-11": combine(aaism("aaism-risk", "aaism-controls"), aaia("aaia-governance", "aaia-operations")), // Impact (backdoor poisoning)
+  "atlas-12": combine(aaism("aaism-governance", "aaism-risk"), aaia("aaia-governance")),                 // Synthesis / kill chain
+
+  // ── OWASP LLM Top 10 (llm-01 → llm-12) — generative-AI app security ───────────
+  "llm-01": combine(aaism("aaism-controls", "aaism-risk"), aaia("aaia-operations", "aaia-audit")),  // Prompt Injection
+  "llm-02": combine(aaism("aaism-risk", "aaism-controls"), aaia("aaia-governance", "aaia-operations")), // Sensitive Info Disclosure
+  "llm-03": combine(aaism("aaism-risk", "aaism-governance"), aaia("aaia-governance", "aaia-operations")), // Supply Chain
+  "llm-04": combine(aaism("aaism-risk", "aaism-controls"), aaia("aaia-operations")),                // Data & Model Poisoning
+  "llm-05": combine(aaism("aaism-controls"),              aaia("aaia-audit")),                      // Improper Output Handling
+  "llm-06": combine(aaism("aaism-risk", "aaism-controls"), aaia("aaia-governance", "aaia-operations")), // Excessive Agency
+  "llm-07": combine(aaism("aaism-controls"),              aaia("aaia-audit")),                      // System Prompt Leakage
+  "llm-08": combine(aaism("aaism-controls"),              aaia("aaia-operations")),                 // Vector & Embedding Weaknesses
+  "llm-09": combine(aaism("aaism-risk", "aaism-governance"), aaia("aaia-governance")),              // Misinformation
+  "llm-10": combine(aaism("aaism-controls", "aaism-risk"), aaia("aaia-operations")),                // Unbounded Consumption
+  "llm-11": combine(aaism("aaism-controls", "aaism-risk"), aaia("aaia-audit")),                     // Red Teaming
+  "llm-12": combine(aaism("aaism-governance", "aaism-controls"), aaia("aaia-governance", "aaia-audit")), // Defense-in-Depth program
+
+  // ── Emerging Tech & Deep Learning Risk (emerging-01 → emerging-10) ────────────
+  "emerging-01": combine(aaism("aaism-risk", "aaism-controls"), aaia("aaia-operations")),                   // Adversarial examples
+  "emerging-02": combine(aaism("aaism-risk", "aaism-governance"), aaia("aaia-governance")),                 // Poisoning/RLHF/model-card gov
+  "emerging-03": combine(aaism("aaism-risk", "aaism-controls"), aaia("aaia-operations")),                   // FL gradient leakage
+  "emerging-04": combine(aaism("aaism-risk", "aaism-governance"), aaia("aaia-governance", "aaia-operations")), // Deepfakes/fraud/provenance
+  "emerging-05": combine(aaism("aaism-risk", "aaism-controls"), aaia("aaia-operations")),                   // LLM-assisted offense
+  "emerging-06": combine(aaism("aaism-controls", "aaism-risk"), aaia("aaia-operations", "aaia-audit")),     // Model extraction/side-channel
+  "emerging-07": combine(aaism("aaism-governance"),            aaia("aaia-governance")),                    // EU AI Act / NIST AI RMF
+  "emerging-08": combine(aaism("aaism-risk", "aaism-controls"), aaia("aaia-operations", "aaia-audit")),     // Agentic AI / MCP security
+  "emerging-09": combine(aaism("aaism-risk"),                 aaia("aaia-operations")),                     // Quantum ML threats
+  "emerging-10": combine(aaism("aaism-governance", "aaism-risk"), aaia("aaia-governance")),                 // ERM integration / board
+
+  // ── Agentic AI audit (audit-a01 → audit-a12) — AAIA core; AAISM gets governance ──
+  "audit-a01": combine(aaia("aaia-audit")),                                          // tool-use basics
+  "audit-a02": combine(aaia("aaia-audit", "aaia-operations")),                        // API enumeration
+  "audit-a03": combine(aaia("aaia-audit")),                                          // secrets detection
+  "audit-a04": combine(aaia("aaia-audit", "aaia-operations")),                        // cloud enumeration
+  "audit-a05": combine(aaia("aaia-audit", "aaia-governance"), aaism("aaism-controls")), // IAM policy analyzer
+  "audit-a06": combine(aaia("aaia-operations", "aaia-audit")),                        // MCP integration
+  "audit-a07": combine(aaia("aaia-audit")),                                          // IaC review
+  "audit-a08": combine(aaia("aaia-audit", "aaia-governance")),                        // evidence collection
+  "audit-a09": combine(aaia("aaia-operations", "aaia-audit")),                        // multi-agent pipeline
+  "audit-a10": combine(aaia("aaia-audit", "aaia-governance")),                        // report generation
+  "audit-a11": combine(aaia("aaia-operations", "aaia-governance"), aaism("aaism-governance")), // continuous compliance
+  "audit-a12": combine(aaia("aaia-governance", "aaia-audit", "aaia-operations"), aaism("aaism-governance")), // end-to-end synthesis
+
+  // ── AI-enhanced continuous monitoring (ML detection) → AAIA operations ────────
+  "audit-cm02": combine(aaia("aaia-operations")),  // ML-enhanced SIEM
+  "audit-cm03": combine(aaia("aaia-operations")),  // UEBA
+  "audit-cm10": combine(aaia("aaia-operations")),  // XDR
+
+  // ── Cisco AI-security stages (m42, m43, m50) → AAISM controls ─────────────────
+  "stage-m42": combine(aaism("aaism-controls")),                          // XDR threat hunting
+  "stage-m43": combine(aaism("aaism-controls", "aaism-governance")),       // XDR architecture
+  "stage-m50": combine(aaism("aaism-controls")),                          // quantum-safe networking
+
+};
+
+for (const [stageId, doms] of Object.entries(ISACA_AI_CERT_DOMAINS)) {
+  CERT_DOMAINS[stageId] = [...(CERT_DOMAINS[stageId] ?? []), ...doms];
+}
+
 // ─── Cert display metadata (single source of truth for badges) ──────────────────
 // `short` is the compact label used on module badges; `badgeCls` mirrors the
 // accent color of the matching card on /certs so the two surfaces stay in sync.
@@ -583,13 +695,15 @@ export const CERT_META: Record<CertId, { short: string; badgeCls: string }> = {
   "comptia-aiplus":  { short: "AI+",       badgeCls: "border-sky-500/25 bg-sky-500/8 text-sky-400 hover:border-sky-400/50" },
   "aws-aip":         { short: "AWS AIP",   badgeCls: "border-rose-500/25 bg-rose-500/8 text-rose-400 hover:border-rose-400/50" },
   "gcp-pmle":        { short: "GCP MLE",   badgeCls: "border-green-500/25 bg-green-500/8 text-green-400 hover:border-green-400/50" },
+  "isaca-aaia":      { short: "AAIA",      badgeCls: "border-amber-500/25 bg-amber-500/8 text-amber-400 hover:border-amber-400/50" },
+  "isaca-aaism":     { short: "AAISM",     badgeCls: "border-fuchsia-500/25 bg-fuchsia-500/8 text-fuchsia-400 hover:border-fuchsia-400/50" },
 };
 
 // Priority order for rendering badges on a module (most foundational first).
 const CERT_ORDER: CertId[] = [
   "comptia-secplus", "comptia-cysa", "comptia-netplus", "isc2-cc",
   "isaca-cisa", "isaca-cism", "isaca-crisc", "comptia-aiplus",
-  "aws-aip", "gcp-pmle",
+  "aws-aip", "gcp-pmle", "isaca-aaia", "isaca-aaism",
 ];
 
 // Compact domain labels for badges. Falls back to the full domain name.
@@ -631,6 +745,12 @@ const DOMAIN_SHORT: Record<string, string> = {
   "gcpml-lowcode": "Low-Code AI", "gcpml-collaborate": "Data & Model Mgmt",
   "gcpml-scaling": "Scaling Prototypes", "gcpml-serving": "Serving & Scaling",
   "gcpml-pipelines": "ML Pipelines", "gcpml-monitoring": "Monitoring",
+  // ISACA AAIA
+  "aaia-governance": "AI Gov & Risk", "aaia-operations": "AI Operations",
+  "aaia-audit": "AI Audit Techniques",
+  // ISACA AAISM
+  "aaism-governance": "AI Gov & Program", "aaism-risk": "AI Risk Mgmt",
+  "aaism-controls": "AI Controls & Ops",
 };
 
 export function shortDomainName(domainId: string, fallback?: string): string {
@@ -683,6 +803,8 @@ export function getDomainsForCert(certId: CertId): CertDomainDef[] {
   if (certId === "comptia-aiplus") return AIPLUS_DOMAINS;
   if (certId === "aws-aip") return AWS_AIP_DOMAINS;
   if (certId === "gcp-pmle") return GCP_PMLE_DOMAINS;
+  if (certId === "isaca-aaia") return AAIA_DOMAINS;
+  if (certId === "isaca-aaism") return AAISM_DOMAINS;
   return [];
 }
 
