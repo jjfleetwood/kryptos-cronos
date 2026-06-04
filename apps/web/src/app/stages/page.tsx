@@ -59,7 +59,7 @@ const epochGroups = [
     id: "quantumEra",
     labelKey: "stages.tracks.quantumEra",
     descKey: "stages.tracks.quantumEraDesc",
-    epochIds: ["quantum-intro", "quantum-1", "quantum-2", "quantum-3", "quantum-4", "quantum-5"],
+    epochIds: ["quantum-intro", "quantum-deep", "quantum-1", "quantum-2", "quantum-3", "quantum-4", "quantum-5"],
   },
   {
     id: "enterprise",
@@ -104,7 +104,7 @@ const SECURITY_EPOCHS = new Set([
   "first-journey", "ancient", "computing-foundations",
   "tech-audit-1", "tech-audit-2", "tech-audit-3", "tech-audit-4",
   "mitre", "mitre-atlas", "owasp-llm",
-  "quantum-intro", "quantum-1", "quantum-2", "quantum-3", "quantum-5",
+  "quantum-intro", "quantum-deep", "quantum-1", "quantum-2", "quantum-3", "quantum-5",
   "cisco-core", "cisco-enterprise", "cisco-secops", "cisco-advanced", "umbrella",
   "physics-of-hacking",
 ]);
