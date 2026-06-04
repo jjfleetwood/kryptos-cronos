@@ -1,32 +1,15 @@
 import { NextRequest, NextResponse } from "next/server";
-import { createHmac, timingSafeEqual } from "crypto";
 import { redis } from "@/lib/redis";
 import { getServerSession } from "@/lib/server-session";
+import { requireAdmin } from "@/lib/admin-auth";
 import { SHOP_ITEMS } from "@kryptos/core/shop-items";
 import { TROPHIES } from "@kryptos/core/trophies";
-
-function verifyAdminToken(token: string): boolean {
-  const secret = process.env.ADMIN_SECRET;
-  if (!secret || !token) return false;
-  const colonIdx = token.lastIndexOf(":");
-  if (colonIdx === -1) return false;
-  const user = token.slice(0, colonIdx);
-  const sig = token.slice(colonIdx + 1);
-  if (!user || !sig) return false;
-  const expected = createHmac("sha256", secret).update(user).digest("hex");
-  try {
-    const a = Buffer.from(sig, "hex");
-    const b = Buffer.from(expected, "hex");
-    return a.length === b.length && timingSafeEqual(a, b);
-  } catch { return false; }
-}
 
 /** GET /api/admin/catalog
  *  Admin-only. Returns all shop items + all trophies with claimed counts and admin's inventory.
  */
 export async function GET(req: NextRequest) {
-  const adminToken = req.cookies.get("admin_token")?.value ?? "";
-  if (!verifyAdminToken(adminToken)) {
+  if (!(await requireAdmin(req))) {
     return NextResponse.json({ error: "unauthorized" }, { status: 401 });
   }
 

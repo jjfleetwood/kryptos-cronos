@@ -1,13 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
-import { createHmac } from "crypto";
 import { getServerSession } from "@/lib/server-session";
+import { signAdminToken } from "@/lib/admin-token";
 import { redis } from "@/lib/redis";
-
-function signToken(username: string): string {
-  const secret = process.env.ADMIN_SECRET;
-  if (!secret) throw new Error("ADMIN_SECRET is not configured");
-  return createHmac("sha256", secret).update(username).digest("hex");
-}
 
 // Issues the admin_token cookie — but ONLY for a caller who has already
 // password-authenticated AS the admin. Identity is taken from the verified
@@ -34,7 +28,7 @@ export async function POST(req: NextRequest) {
 
   let token: string;
   try {
-    token = `${lower}:${signToken(lower)}`;
+    token = signAdminToken(lower);
   } catch {
     return NextResponse.json({ isAdmin: false }, { status: 500 });
   }

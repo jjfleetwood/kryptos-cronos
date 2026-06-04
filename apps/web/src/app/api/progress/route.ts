@@ -1,31 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
-import { createHmac, timingSafeEqual } from "crypto";
 import { redis } from "@/lib/redis";
 import { stages } from "@kryptos/core/stages";
 import { stageFlags } from "@kryptos/core/stage-flags";
 import { getAuthedUsername } from "@/lib/api-auth";
+import { verifyAdminToken } from "@/lib/admin-token";
 import { awardStageInRedis } from "@/lib/server-progress";
 
-function extractAdminUsername(req: NextRequest): string | null {
-  const secret = process.env.ADMIN_SECRET;
-  const token = req.cookies.get("admin_token")?.value ?? "";
-  if (!secret || !token) return null;
-  const colonIdx = token.lastIndexOf(":");
-  if (colonIdx === -1) return null;
-  const user = token.slice(0, colonIdx);
-  const sig = token.slice(colonIdx + 1);
-  if (!user || !sig) return null;
-  const expected = createHmac("sha256", secret).update(user).digest("hex");
-  try {
-    const a = Buffer.from(sig, "hex");
-    const b = Buffer.from(expected, "hex");
-    if (a.length !== b.length || !timingSafeEqual(a, b)) return null;
-    return user;
-  } catch { return null; }
-}
-
 export async function GET(req: NextRequest) {
-  const username = await getAuthedUsername(req) ?? extractAdminUsername(req);
+  const username = await getAuthedUsername(req) ?? verifyAdminToken(req.cookies.get("admin_token")?.value);
   if (!username) return NextResponse.json({ error: "unauthorized" }, { status: 401 });
 
   const lower = username.toLowerCase();

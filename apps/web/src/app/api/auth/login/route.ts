@@ -1,8 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
-import { timingSafeEqual, createHmac } from "crypto";
+import { timingSafeEqual } from "crypto";
 import { redis } from "@/lib/redis";
 import { hashPassword, PBKDF2_ITERATIONS } from "@/lib/crypto-utils";
 import { signSessionToken, sessionCookieOptions } from "@/lib/server-session";
+import { signAdminToken } from "@/lib/admin-token";
 import { supabaseAdmin, createSupabaseServerClient } from "@/lib/supabase";
 import { getClientIp } from "@/lib/client-ip";
 
@@ -115,11 +116,9 @@ export async function POST(req: NextRequest) {
 
   // Grant admin cookie if eligible
   const adminUsername = process.env.ADMIN_USERNAME;
-  const secret = process.env.ADMIN_SECRET;
   const isElevated = (adminUsername && username === adminUsername.toLowerCase()) || data.isAdmin === "true";
-  if (secret && isElevated) {
-    const sig = createHmac("sha256", secret).update(username).digest("hex");
-    res.cookies.set("admin_token", `${username}:${sig}`, {
+  if (process.env.ADMIN_SECRET && isElevated) {
+    res.cookies.set("admin_token", signAdminToken(username), {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
       sameSite: "lax",

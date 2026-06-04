@@ -1,8 +1,8 @@
 import "server-only";
 import type { NextRequest } from "next/server";
-import { createHmac, timingSafeEqual } from "crypto";
 import { getServerSession } from "./server-session";
 import { verifySupabaseJwt } from "./supabase-jwt";
+import { verifyAdminToken } from "./admin-token";
 
 function bearerToken(req: NextRequest): string | null {
   const header = req.headers.get("authorization");
@@ -14,22 +14,7 @@ function bearerToken(req: NextRequest): string | null {
 // Verify the HMAC-signed admin_token cookie and return the admin username, or null.
 // Centralized here so routes can opt into an admin-identity fallback consistently.
 export function extractAdminUsername(req: NextRequest): string | null {
-  const secret = process.env.ADMIN_SECRET;
-  const token = req.cookies.get("admin_token")?.value ?? "";
-  if (!secret || !token) return null;
-  const colonIdx = token.lastIndexOf(":");
-  if (colonIdx === -1) return null;
-  const user = token.slice(0, colonIdx);
-  const sig = token.slice(colonIdx + 1);
-  if (!user || !sig) return null;
-  const expected = createHmac("sha256", secret).update(user).digest("hex");
-  try {
-    const a = Buffer.from(sig, "hex");
-    const b = Buffer.from(expected, "hex");
-    return a.length === b.length && timingSafeEqual(a, b) ? user.toLowerCase() : null;
-  } catch {
-    return null;
-  }
+  return verifyAdminToken(req.cookies.get("admin_token")?.value);
 }
 
 // Unified identity resolver for API route handlers. Accepts a bearer Supabase

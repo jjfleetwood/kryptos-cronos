@@ -1,28 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
-import { createHmac, timingSafeEqual } from "crypto";
 import { redis } from "@/lib/redis";
-import { logAdminAction, extractAdminUsername } from "@/lib/audit";
-
-function verifyAdminToken(token: string): boolean {
-  const secret = process.env.ADMIN_SECRET;
-  if (!secret) return false;
-  const colonIdx = token.lastIndexOf(":");
-  if (colonIdx === -1) return false;
-  const username = token.slice(0, colonIdx);
-  const signature = token.slice(colonIdx + 1);
-  if (!username || !signature) return false;
-  const expected = createHmac("sha256", secret).update(username).digest("hex");
-  try {
-    const sigBuf = Buffer.from(signature, "hex");
-    const expBuf = Buffer.from(expected, "hex");
-    if (sigBuf.length !== expBuf.length) return false;
-    return timingSafeEqual(sigBuf, expBuf);
-  } catch { return false; }
-}
+import { logAdminAction } from "@/lib/audit";
+import { requireAdmin } from "@/lib/admin-auth";
 
 export async function POST(req: NextRequest) {
-  const token = req.cookies.get("admin_token")?.value;
-  if (!token || !verifyAdminToken(token)) {
+  const admin = await requireAdmin(req);
+  if (!admin) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
@@ -38,6 +21,6 @@ export async function POST(req: NextRequest) {
   if (!exists) return NextResponse.json({ error: "User not found" }, { status: 404 });
 
   await redis.hset(`user:${username}`, { tier });
-  logAdminAction(extractAdminUsername(token!) ?? "admin", "set-tier", `${username}:${tier}`).catch(() => {});
+  logAdminAction(admin, "set-tier", `${username}:${tier}`).catch(() => {});
   return NextResponse.json({ ok: true, username, tier });
 }

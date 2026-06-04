@@ -1,33 +1,15 @@
 import { NextRequest, NextResponse } from "next/server";
-import { createHmac, timingSafeEqual } from "crypto";
 import { redis } from "@/lib/redis";
 import { getAuthedUsername } from "@/lib/api-auth";
+import { verifyAdminToken } from "@/lib/admin-token";
 import { SHOP_ITEMS, getItem } from "@kryptos/core/shop-items";
-
-function verifyAdminToken(token: string): boolean {
-  const secret = process.env.ADMIN_SECRET;
-  if (!secret) return false;
-  const colonIdx = token.lastIndexOf(":");
-  if (colonIdx === -1) return false;
-  const username = token.slice(0, colonIdx);
-  const signature = token.slice(colonIdx + 1);
-  if (!username || !signature) return false;
-  const expected = createHmac("sha256", secret).update(username).digest("hex");
-  try {
-    const sigBuf = Buffer.from(signature, "hex");
-    const expBuf = Buffer.from(expected, "hex");
-    if (sigBuf.length !== expBuf.length) return false;
-    return timingSafeEqual(sigBuf, expBuf);
-  } catch { return false; }
-}
 
 /** GET /api/shop — returns shop catalog + user's inventory and spendable balance */
 export async function GET(req: NextRequest) {
   const username = await getAuthedUsername(req);
   if (!username) return NextResponse.json({ error: "unauthorized" }, { status: 401 });
 
-  const adminToken = req.cookies.get("admin_token")?.value ?? "";
-  const isAdmin = verifyAdminToken(adminToken);
+  const isAdmin = verifyAdminToken(req.cookies.get("admin_token")?.value) !== null;
 
   const lower = username.toLowerCase();
   const [progressData, inventoryData] = await Promise.all([
@@ -121,8 +103,7 @@ export async function PATCH(req: NextRequest) {
   if (!item) return NextResponse.json({ error: "item not found" }, { status: 404 });
 
   const lower = username.toLowerCase();
-  const patchAdminToken = req.cookies.get("admin_token")?.value ?? "";
-  const patchIsAdmin = verifyAdminToken(patchAdminToken);
+  const patchIsAdmin = verifyAdminToken(req.cookies.get("admin_token")?.value) !== null;
 
   // Admin can equip any item; auto-add to inventory if not already owned
   const owned = await redis.sismember(`inventory:${lower}`, item.id);

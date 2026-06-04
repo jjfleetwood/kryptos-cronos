@@ -1,28 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { createHmac, timingSafeEqual } from "crypto";
-
-function verifyAdminToken(token: string): boolean {
-  const secret = process.env.ADMIN_SECRET;
-  if (!secret) return false;
-
-  const colonIdx = token.lastIndexOf(":");
-  if (colonIdx === -1) return false;
-
-  const username = token.slice(0, colonIdx);
-  const signature = token.slice(colonIdx + 1);
-  if (!username || !signature) return false;
-
-  const expected = createHmac("sha256", secret).update(username).digest("hex");
-
-  try {
-    const sigBuf = Buffer.from(signature, "hex");
-    const expBuf = Buffer.from(expected, "hex");
-    if (sigBuf.length !== expBuf.length) return false;
-    return timingSafeEqual(sigBuf, expBuf);
-  } catch {
-    return false;
-  }
-}
+import { verifyAdminToken } from "@/lib/admin-token";
 
 // Cross-origin clients (mobile web / Expo dev) reach the API with bearer tokens,
 // not cookies — so CORS here is credential-less and origin-allowlisted. Native
@@ -58,8 +35,7 @@ export function proxy(req: NextRequest) {
 
   // Admin route protection
   if (req.nextUrl.pathname.startsWith("/admin")) {
-    const token = req.cookies.get("admin_token")?.value;
-    if (!token || !verifyAdminToken(token)) {
+    if (!verifyAdminToken(req.cookies.get("admin_token")?.value)) {
       return NextResponse.redirect(new URL("/stages", req.url));
     }
   }

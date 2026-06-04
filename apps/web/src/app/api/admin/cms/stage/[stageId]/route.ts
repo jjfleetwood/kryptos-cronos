@@ -1,33 +1,14 @@
 import { NextRequest, NextResponse } from "next/server";
-import { createHmac, timingSafeEqual } from "crypto";
 import { getStageOverride, saveStageOverride, deleteStageOverride, type StageOverride } from "@/lib/cms";
 import { getStage } from "@kryptos/core/stages";
-import { logAdminAction } from "@/lib/audit";
-
-function verifyAdmin(req: NextRequest): boolean {
-  const token = req.cookies.get("admin_token")?.value;
-  if (!token) return false;
-  const secret = process.env.ADMIN_SECRET;
-  if (!secret) return false;
-  const colonIdx = token.lastIndexOf(":");
-  if (colonIdx === -1) return false;
-  const username = token.slice(0, colonIdx);
-  const sig = token.slice(colonIdx + 1);
-  const expected = createHmac("sha256", secret).update(username).digest("hex");
-  try {
-    const a = Buffer.from(sig, "hex");
-    const b = Buffer.from(expected, "hex");
-    return a.length === b.length && timingSafeEqual(a, b);
-  } catch {
-    return false;
-  }
-}
+import { logAdminAction, extractAdminUsername } from "@/lib/audit";
+import { requireAdmin } from "@/lib/admin-auth";
 
 type Params = { params: Promise<{ stageId: string }> };
 
 /** GET — returns current override + defaults for a stage */
 export async function GET(req: NextRequest, { params }: Params) {
-  if (!verifyAdmin(req)) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  if (!(await requireAdmin(req))) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
   const { stageId } = await params;
   const stage = getStage(stageId);
@@ -49,25 +30,25 @@ export async function GET(req: NextRequest, { params }: Params) {
 
 /** PUT — save content overrides */
 export async function PUT(req: NextRequest, { params }: Params) {
-  if (!verifyAdmin(req)) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  if (!(await requireAdmin(req))) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
   const { stageId } = await params;
   if (!getStage(stageId)) return NextResponse.json({ error: "Stage not found" }, { status: 404 });
 
   const body = (await req.json()) as StageOverride;
   await saveStageOverride(stageId, body);
-  const adminName = req.cookies.get("admin_token")?.value?.split(":").slice(0, -1).join(":") ?? "admin";
+  const adminName = extractAdminUsername(req.cookies.get("admin_token")?.value ?? "") ?? "admin";
   logAdminAction(adminName, "cms-stage-save", stageId).catch(() => {});
   return NextResponse.json({ ok: true });
 }
 
 /** DELETE — clear all overrides (revert to defaults) */
 export async function DELETE(req: NextRequest, { params }: Params) {
-  if (!verifyAdmin(req)) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  if (!(await requireAdmin(req))) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
   const { stageId } = await params;
   await deleteStageOverride(stageId);
-  const adminName = req.cookies.get("admin_token")?.value?.split(":").slice(0, -1).join(":") ?? "admin";
+  const adminName = extractAdminUsername(req.cookies.get("admin_token")?.value ?? "") ?? "admin";
   logAdminAction(adminName, "cms-stage-delete", stageId).catch(() => {});
   return NextResponse.json({ ok: true });
 }

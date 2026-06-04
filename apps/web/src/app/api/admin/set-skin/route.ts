@@ -1,32 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
-import { createHmac, timingSafeEqual } from "crypto";
 import { redis } from "@/lib/redis";
-import { logAdminAction, extractAdminUsername } from "@/lib/audit";
+import { logAdminAction } from "@/lib/audit";
+import { requireAdmin } from "@/lib/admin-auth";
 
 const VALID_SKINS = new Set(["youth", "standard", "mature"]);
 
-function verifyAdminToken(token: string): boolean {
-  const secret = process.env.ADMIN_SECRET;
-  if (!secret) return false;
-  const colonIdx = token.lastIndexOf(":");
-  if (colonIdx === -1) return false;
-  const username = token.slice(0, colonIdx);
-  const signature = token.slice(colonIdx + 1);
-  if (!username || !signature) return false;
-  const expected = createHmac("sha256", secret).update(username).digest("hex");
-  try {
-    const sigBuf = Buffer.from(signature, "hex");
-    const expBuf = Buffer.from(expected, "hex");
-    if (sigBuf.length !== expBuf.length) return false;
-    return timingSafeEqual(sigBuf, expBuf);
-  } catch {
-    return false;
-  }
-}
-
 export async function POST(req: NextRequest) {
-  const token = req.cookies.get("admin_token")?.value;
-  if (!token || !verifyAdminToken(token)) {
+  const admin = await requireAdmin(req);
+  if (!admin) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
@@ -36,6 +17,6 @@ export async function POST(req: NextRequest) {
   }
 
   await redis.hset(`progress:${body.username.toLowerCase()}`, { skin: body.skin });
-  logAdminAction(extractAdminUsername(token!) ?? "admin", "set-skin", `${body.username.toLowerCase()}:${body.skin}`).catch(() => {});
+  logAdminAction(admin, "set-skin", `${body.username.toLowerCase()}:${body.skin}`).catch(() => {});
   return NextResponse.json({ ok: true });
 }

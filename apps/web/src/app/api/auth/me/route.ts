@@ -1,34 +1,16 @@
 import { NextRequest, NextResponse } from "next/server";
 import { redis } from "@/lib/redis";
 import { getAuthedUsername } from "@/lib/api-auth";
-import { createHmac, timingSafeEqual } from "crypto";
-
-function verifyAdminToken(token: string): boolean {
-  const secret = process.env.ADMIN_SECRET;
-  if (!secret) return false;
-  const colonIdx = token.lastIndexOf(":");
-  if (colonIdx === -1) return false;
-  const username = token.slice(0, colonIdx);
-  const sig = token.slice(colonIdx + 1);
-  const expected = createHmac("sha256", secret).update(username).digest("hex");
-  try {
-    const a = Buffer.from(sig, "hex");
-    const b = Buffer.from(expected, "hex");
-    return a.length === b.length && timingSafeEqual(a, b);
-  } catch {
-    return false;
-  }
-}
+import { verifyAdminToken } from "@/lib/admin-token";
 
 export async function GET(req: NextRequest) {
   let username = await getAuthedUsername(req);
-  const adminToken = req.cookies.get("admin_token")?.value ?? "";
-  const isAdmin = verifyAdminToken(adminToken);
+  const adminUser = verifyAdminToken(req.cookies.get("admin_token")?.value);
+  const isAdmin = adminUser !== null;
 
   // Fallback: use admin token identity when session cookie is absent
-  if (!username && isAdmin) {
-    const colonIdx = adminToken.lastIndexOf(":");
-    username = colonIdx > 0 ? adminToken.slice(0, colonIdx) : null;
+  if (!username && adminUser) {
+    username = adminUser;
   }
 
   if (!username) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });

@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from "next/server";
-import { createHmac, timingSafeEqual } from "crypto";
 import {
   getRestrictedEpochs,
   getEpochAllowlist,
@@ -8,29 +7,11 @@ import {
   revokeEpochAccess,
 } from "@/lib/cms";
 import { epochs } from "@kryptos/core/stages";
-
-function verifyAdmin(req: NextRequest): boolean {
-  const token = req.cookies.get("admin_token")?.value;
-  if (!token) return false;
-  const secret = process.env.ADMIN_SECRET;
-  if (!secret) return false;
-  const colonIdx = token.lastIndexOf(":");
-  if (colonIdx === -1) return false;
-  const username = token.slice(0, colonIdx);
-  const sig = token.slice(colonIdx + 1);
-  const expected = createHmac("sha256", secret).update(username).digest("hex");
-  try {
-    const a = Buffer.from(sig, "hex");
-    const b = Buffer.from(expected, "hex");
-    return a.length === b.length && timingSafeEqual(a, b);
-  } catch {
-    return false;
-  }
-}
+import { requireAdmin } from "@/lib/admin-auth";
 
 /** GET — returns all epoch access config */
 export async function GET(req: NextRequest) {
-  if (!verifyAdmin(req)) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  if (!(await requireAdmin(req))) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
   const restricted = await getRestrictedEpochs();
   const allowlists: Record<string, string[]> = {};
@@ -53,7 +34,7 @@ type AccessBody =
 
 /** POST — toggle restriction or manage allowlist */
 export async function POST(req: NextRequest) {
-  if (!verifyAdmin(req)) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  if (!(await requireAdmin(req))) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
   const body = (await req.json()) as AccessBody;
   const { action, epochId } = body;

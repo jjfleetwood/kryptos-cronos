@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import { createHmac, timingSafeEqual } from "crypto";
+import { timingSafeEqual } from "crypto";
+import { verifyAdminToken } from "@/lib/admin-token";
 import { stages } from "@kryptos/core/stages";
 import { stageFlags } from "@kryptos/core/stage-flags";
 import { getAuthedUsername } from "@/lib/api-auth";
@@ -18,24 +19,6 @@ import {
   computeStageScore, computeBonusXp, updateSkillLevel,
   getHintsUsed, getWrongAttempts, trackWrongAttempt, getRecommendedNext,
 } from "@/lib/difficulty";
-
-function verifyAdminToken(token: string): string | null {
-  const secret = process.env.ADMIN_SECRET;
-  if (!secret || !token) return null;
-  const colonIdx = token.lastIndexOf(":");
-  if (colonIdx === -1) return null;
-  const user = token.slice(0, colonIdx);
-  const sig = token.slice(colonIdx + 1);
-  if (!user || !sig) return null;
-  const expected = createHmac("sha256", secret).update(user).digest("hex");
-  try {
-    const a = Buffer.from(sig, "hex");
-    const b = Buffer.from(expected, "hex");
-    if (a.length !== b.length || !timingSafeEqual(a, b)) return null;
-    return user;
-  } catch { return null; }
-}
-
 
 export async function POST(req: NextRequest) {
   const body = await req.json().catch(() => null);

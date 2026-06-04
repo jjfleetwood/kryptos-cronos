@@ -1,24 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
-import { createHmac, timingSafeEqual, randomBytes } from "crypto";
+import { randomBytes } from "crypto";
 import { redis } from "@/lib/redis";
 import { logAdminAction } from "@/lib/audit";
-
-function verifyAdminToken(token: string): boolean {
-  const secret = process.env.ADMIN_SECRET;
-  if (!secret) return false;
-  const colonIdx = token.lastIndexOf(":");
-  if (colonIdx === -1) return false;
-  const username = token.slice(0, colonIdx);
-  const signature = token.slice(colonIdx + 1);
-  if (!username || !signature) return false;
-  const expected = createHmac("sha256", secret).update(username).digest("hex");
-  try {
-    const sigBuf = Buffer.from(signature, "hex");
-    const expBuf = Buffer.from(expected, "hex");
-    if (sigBuf.length !== expBuf.length) return false;
-    return timingSafeEqual(sigBuf, expBuf);
-  } catch { return false; }
-}
+import { requireAdmin } from "@/lib/admin-auth";
 
 function randomSegment() {
   const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789"; // no 0/O/1/I confusion
@@ -32,13 +16,8 @@ function generateCode() {
   return `KRYPTOS-${randomSegment()}-${randomSegment()}`;
 }
 
-function isAdmin(req: NextRequest): boolean {
-  const token = req.cookies.get("admin_token")?.value;
-  return !!token && verifyAdminToken(token);
-}
-
 export async function GET(req: NextRequest) {
-  if (!isAdmin(req)) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  if (!(await requireAdmin(req))) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
   const keys = await redis.zrange("voucher:index", 0, -1, { rev: true });
   if (!keys.length) return NextResponse.json([]);
@@ -64,7 +43,8 @@ export async function GET(req: NextRequest) {
 }
 
 export async function POST(req: NextRequest) {
-  if (!isAdmin(req)) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  const admin = await requireAdmin(req);
+  if (!admin) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
   const body = await req.json() as { count?: number; usesLimit?: number; durationDays?: number };
   const count = Math.min(Number(body.count ?? 1), 50);
@@ -74,10 +54,7 @@ export async function POST(req: NextRequest) {
   const codes: string[] = [];
   const now = Date.now();
 
-  // Extract admin username from token for createdBy
-  const token = req.cookies.get("admin_token")?.value ?? "";
-  const colonIdx = token.lastIndexOf(":");
-  const createdBy = colonIdx > 0 ? token.slice(0, colonIdx) : "admin";
+  const createdBy = admin;
 
   for (let i = 0; i < count; i++) {
     let code: string;
@@ -101,7 +78,8 @@ export async function POST(req: NextRequest) {
 
 // Revoke a voucher by zeroing usesLeft
 export async function PATCH(req: NextRequest) {
-  if (!isAdmin(req)) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  const admin = await requireAdmin(req);
+  if (!admin) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
   const body = await req.json() as { code?: string };
   const code = body.code?.trim().toUpperCase();
@@ -112,9 +90,6 @@ export async function PATCH(req: NextRequest) {
   if (!exists) return NextResponse.json({ error: "Voucher not found" }, { status: 404 });
 
   await redis.hset(key, { usesLeft: "0" });
-  const revoker = req.cookies.get("admin_token")?.value ?? "";
-  const colonIdx = revoker.lastIndexOf(":");
-  const revokerName = colonIdx > 0 ? revoker.slice(0, colonIdx) : "admin";
-  logAdminAction(revokerName, "revoke-voucher", code).catch(() => {});
+  logAdminAction(admin, "revoke-voucher", code).catch(() => {});
   return NextResponse.json({ ok: true });
 }

@@ -1,28 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
-import { createHmac, timingSafeEqual } from "crypto";
 import { redis } from "@/lib/redis";
 import { logAdminAction } from "@/lib/audit";
-
-function extractCallerUsername(token: string): string | null {
-  const secret = process.env.ADMIN_SECRET;
-  if (!secret || !token) return null;
-  const colonIdx = token.lastIndexOf(":");
-  if (colonIdx === -1) return null;
-  const username = token.slice(0, colonIdx);
-  const sig = token.slice(colonIdx + 1);
-  if (!username || !sig) return null;
-  const expected = createHmac("sha256", secret).update(username).digest("hex");
-  try {
-    const a = Buffer.from(sig, "hex");
-    const b = Buffer.from(expected, "hex");
-    if (a.length !== b.length || !timingSafeEqual(a, b)) return null;
-    return username;
-  } catch { return null; }
-}
+import { requireAdmin, revokeAdminSessions } from "@/lib/admin-auth";
 
 export async function POST(req: NextRequest) {
-  const token = req.cookies.get("admin_token")?.value ?? "";
-  const callerUsername = extractCallerUsername(token);
+  const callerUsername = await requireAdmin(req);
   if (!callerUsername) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
@@ -51,6 +33,7 @@ export async function POST(req: NextRequest) {
     await redis.hset(`user:${target}`, { isAdmin: "true" });
   } else {
     await redis.hdel(`user:${target}`, "isAdmin");
+    await revokeAdminSessions(target); // invalidate any live admin tokens for the de-admin'd user
   }
 
   logAdminAction(callerUsername, grant ? "grant-admin" : "revoke-admin", target).catch(() => {});

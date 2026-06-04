@@ -1,29 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
-import { createHmac, timingSafeEqual } from "crypto";
 import { redis } from "@/lib/redis";
 import { getAuthedUsername } from "@/lib/api-auth";
+import { verifyAdminToken } from "@/lib/admin-token";
 import { TROPHIES, getTrophy, dailyShopTrophies } from "@kryptos/core/trophies";
 import { stages } from "@kryptos/core/stages";
 import { milestoneBadges } from "@kryptos/core/milestone-badges";
-
-function verifyAdminToken(token: string): boolean {
-  const secret = process.env.ADMIN_SECRET;
-  if (!secret) return false;
-  const colonIdx = token.lastIndexOf(":");
-  if (colonIdx === -1) return false;
-  const username = token.slice(0, colonIdx);
-  const signature = token.slice(colonIdx + 1);
-  if (!username || !signature) return false;
-  const expected = createHmac("sha256", secret).update(username).digest("hex");
-  try {
-    const sigBuf = Buffer.from(signature, "hex");
-    const expBuf = Buffer.from(expected, "hex");
-    if (sigBuf.length !== expBuf.length) return false;
-    return timingSafeEqual(sigBuf, expBuf);
-  } catch {
-    return false;
-  }
-}
 
 async function getClaimedCounts(ids: string[]): Promise<Record<string, number>> {
   if (ids.length === 0) return {};
@@ -44,8 +25,7 @@ export async function GET(req: NextRequest) {
   if (!username) return NextResponse.json({ error: "unauthorized" }, { status: 401 });
   const lower = username.toLowerCase();
 
-  const adminToken = req.cookies.get("admin_token")?.value ?? "";
-  const isAdmin = verifyAdminToken(adminToken);
+  const isAdmin = verifyAdminToken(req.cookies.get("admin_token")?.value) !== null;
 
   const [inventoryRaw, progressData] = await Promise.all([
     redis.smembers(`inventory:${lower}`),
@@ -115,8 +95,7 @@ export async function POST(req: NextRequest) {
   if (!trophy) return NextResponse.json({ error: "Trophy not found" }, { status: 404 });
 
   // Verify it's in the user's daily rotation (prevents buying arbitrary trophies)
-  const adminToken = req.cookies.get("admin_token")?.value ?? "";
-  const isAdmin = verifyAdminToken(adminToken);
+  const isAdmin = verifyAdminToken(req.cookies.get("admin_token")?.value) !== null;
   if (!isAdmin) {
     const shopToday = dailyShopTrophies(lower, 10);
     if (!shopToday.some((t) => t.id === trophyId)) {

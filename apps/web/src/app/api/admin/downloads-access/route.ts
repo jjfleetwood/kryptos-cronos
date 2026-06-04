@@ -1,35 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
-import { createHmac, timingSafeEqual } from "crypto";
 import { redis } from "@/lib/redis";
-import { logAdminAction, extractAdminUsername } from "@/lib/audit";
+import { logAdminAction } from "@/lib/audit";
+import { requireAdmin } from "@/lib/admin-auth";
 
 const MODE_KEY = "feature:downloads:mode";
 const ALLOWLIST_KEY = "feature:downloads:allowlist";
 
-function verifyAdminToken(token: string): boolean {
-  const secret = process.env.ADMIN_SECRET;
-  if (!secret) return false;
-  const colonIdx = token.lastIndexOf(":");
-  if (colonIdx === -1) return false;
-  const username = token.slice(0, colonIdx);
-  const signature = token.slice(colonIdx + 1);
-  if (!username || !signature) return false;
-  const expected = createHmac("sha256", secret).update(username).digest("hex");
-  try {
-    const sigBuf = Buffer.from(signature, "hex");
-    const expBuf = Buffer.from(expected, "hex");
-    if (sigBuf.length !== expBuf.length) return false;
-    return timingSafeEqual(sigBuf, expBuf);
-  } catch { return false; }
-}
-
-function isAdmin(req: NextRequest): boolean {
-  const token = req.cookies.get("admin_token")?.value;
-  return !!token && verifyAdminToken(token);
-}
-
 export async function GET(req: NextRequest) {
-  if (!isAdmin(req)) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  if (!(await requireAdmin(req))) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
   const [mode, members] = await Promise.all([
     redis.get(MODE_KEY),
@@ -43,10 +21,10 @@ export async function GET(req: NextRequest) {
 }
 
 export async function POST(req: NextRequest) {
-  if (!isAdmin(req)) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  const admin = await requireAdmin(req);
+  if (!admin) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
   const body = await req.json() as { action: string; mode?: string; username?: string };
-  const admin = extractAdminUsername(req.cookies.get("admin_token")?.value ?? "") ?? "admin";
 
   if (body.action === "set-mode") {
     if (!["off", "allowlist", "all"].includes(body.mode ?? "")) {

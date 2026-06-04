@@ -1,27 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
-import { createHmac, timingSafeEqual } from "crypto";
 import { redis } from "@/lib/redis";
 import { getServerSession } from "@/lib/server-session";
-import { logAdminAction, extractAdminUsername } from "@/lib/audit";
+import { logAdminAction } from "@/lib/audit";
+import { requireAdmin } from "@/lib/admin-auth";
 import { awardStageInRedis } from "@/lib/server-progress";
 import { stages } from "@kryptos/core/stages";
 import { TROPHIES, dailyShopTrophies } from "@kryptos/core/trophies";
-
-function verifyAdminToken(token: string): boolean {
-  const secret = process.env.ADMIN_SECRET;
-  if (!secret || !token) return false;
-  const colonIdx = token.lastIndexOf(":");
-  if (colonIdx === -1) return false;
-  const user = token.slice(0, colonIdx);
-  const sig = token.slice(colonIdx + 1);
-  if (!user || !sig) return false;
-  const expected = createHmac("sha256", secret).update(user).digest("hex");
-  try {
-    const a = Buffer.from(sig, "hex");
-    const b = Buffer.from(expected, "hex");
-    return a.length === b.length && timingSafeEqual(a, b);
-  } catch { return false; }
-}
 
 /** POST /api/admin/award-stage
  *  Admin-only. Awards a stage completion to a user and optionally grants a random trophy.
@@ -29,8 +13,8 @@ function verifyAdminToken(token: string): boolean {
  *  username defaults to the session user if omitted.
  */
 export async function POST(req: NextRequest) {
-  const adminToken = req.cookies.get("admin_token")?.value ?? "";
-  if (!verifyAdminToken(adminToken)) {
+  const admin = await requireAdmin(req);
+  if (!admin) {
     return NextResponse.json({ error: "unauthorized" }, { status: 401 });
   }
 
@@ -70,7 +54,7 @@ export async function POST(req: NextRequest) {
     }
   }
 
-  logAdminAction(extractAdminUsername(adminToken) ?? "admin", "award-stage", `${username}:${stage.id}`).catch(() => {});
+  logAdminAction(admin, "award-stage", `${username}:${stage.id}`).catch(() => {});
   return NextResponse.json({
     ok: true,
     username,
