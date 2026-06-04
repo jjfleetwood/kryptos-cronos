@@ -35,7 +35,7 @@ const epochGroups = [
     id: "coreSecurity",
     labelKey: "stages.tracks.coreSecurity",
     descKey: "stages.tracks.coreSecurityDesc",
-    epochIds: ["first-journey", "ancient"],
+    epochIds: ["first-journey", "ancient", "computing-foundations"],
   },
   {
     id: "techAudit",
@@ -101,7 +101,7 @@ const extendedGroups = [
 // career = Security tracks | curious = full curriculum (security + non-security)
 // Mirrors filterStagesByGroup in epoch page: career and curious are equivalent
 const SECURITY_EPOCHS = new Set([
-  "first-journey", "ancient",
+  "first-journey", "ancient", "computing-foundations",
   "tech-audit-1", "tech-audit-2", "tech-audit-3", "tech-audit-4",
   "mitre", "mitre-atlas", "owasp-llm",
   "quantum-intro", "quantum-1", "quantum-2", "quantum-3", "quantum-5",
