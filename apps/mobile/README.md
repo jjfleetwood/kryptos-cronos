@@ -98,8 +98,10 @@ apps/mobile/
 
 ## Notes / gotchas
 
-- **`typedRoutes` is temporarily disabled** in `app.json`. Re-enable it after running
-  `npx expo start` once (which generates `.expo/types` for typed route hrefs).
+- **`typedRoutes` is enabled** in `app.json`. The strict route-href union is generated
+  into `.expo/types` on the first `npx expo start` (a gitignored, per-machine artifact);
+  until then `tsc` treats hrefs loosely. Run `expo start` once on a new checkout so bad
+  hrefs are caught.
 - **Push + IAP backend** must be configured for full functionality: set `CRON_SECRET`
   and `REVENUECAT_WEBHOOK_AUTH` in Vercel, create RevenueCat products/offering (entitlement
   `pro`) + the webhook. See `docs/MOBILE_ROADMAP.md` (Phases 3, 5, 6).

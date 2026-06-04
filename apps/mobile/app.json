@@ -46,7 +46,7 @@
       "expo-notifications"
     ],
     "experiments": {
-      "typedRoutes": false,
+      "typedRoutes": true,
       "reactCompiler": true
     }
   }
