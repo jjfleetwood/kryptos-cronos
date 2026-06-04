@@ -506,6 +506,18 @@ export const CERT_DOMAINS: Record<string, CertDomain[]> = {
   "quantum-d09": combine(sp("general-security", "security-architecture"), cisa("cisa-protection"), cism("cism-program"), crisc("crisc-it-security", "crisc-risk-response")),
   "quantum-d10": combine(sp("security-architecture"), cisa("cisa-operations", "cisa-protection"), cism("cism-program"), crisc("crisc-risk-assessment", "crisc-risk-response")),
 
+  // ── quantum-5 (Quantum-Safe Migration Engineering): quantum-e01..e10 ──────────
+  "quantum-e01": combine(sp("security-program", "general-security"), cc("security-principles"), cy("cysa-vuln-mgmt"), cisa("cisa-audit-process", "cisa-protection"), cism("cism-program"), crisc("crisc-risk-assessment")), // CBOM discovery
+  "quantum-e02": combine(sp("security-architecture", "general-security"), cc("security-principles"), cisa("cisa-protection"), cism("cism-program"), crisc("crisc-it-security")), // crypto-agility
+  "quantum-e03": combine(sp("general-security", "security-architecture"), cc("network-security"), np("net-security"), cisa("cisa-protection"), cism("cism-program"), crisc("crisc-it-security")), // hybrid TLS
+  "quantum-e04": combine(sp("general-security", "security-architecture"), cc("network-security"), np("net-security", "net-implementations"), cisa("cisa-protection"), cism("cism-program"), crisc("crisc-it-security")), // SSH/IPsec/WireGuard
+  "quantum-e05": combine(sp("general-security", "security-architecture"), cc("security-principles", "access-controls"), cisa("cisa-protection"), cism("cism-program"), crisc("crisc-it-security")), // PKI & cert migration
+  "quantum-e06": combine(sp("security-architecture", "general-security"), cc("security-principles"), cy("cysa-vuln-mgmt"), cisa("cisa-acquisition", "cisa-protection"), cism("cism-program"), crisc("crisc-it-security")), // library migration
+  "quantum-e07": combine(sp("security-architecture"), cc("network-security"), np("net-security"), cisa("cisa-protection"), cism("cism-program"), crisc("crisc-it-security")), // performance & sizing
+  "quantum-e08": combine(sp("general-security", "security-program"), cc("security-principles"), cy("cysa-vuln-mgmt"), cisa("cisa-audit-process", "cisa-protection"), cism("cism-program"), crisc("crisc-governance")), // validation / FIPS 140-3
+  "quantum-e09": combine(sp("security-operations", "security-architecture"), cc("security-operations-cc"), cisa("cisa-operations"), cism("cism-program", "cism-incident"), crisc("crisc-risk-response")), // rollout & rollback
+  "quantum-e10": combine(sp("general-security", "security-architecture"), cc("security-principles"), cisa("cisa-protection", "cisa-acquisition"), cism("cism-program"), crisc("crisc-it-security", "crisc-risk-assessment")), // embedded / firmware
+
   // ── emerging-tech (AI/Deep Learning Risk): emerging-01..10 → AI+ + MITRE ATLAS domains ──
   "emerging-01": combine(ai("aiplus-security", "aiplus-models"), cisa("cisa-protection")),
   "emerging-02": combine(ai("aiplus-security", "aiplus-models", "aiplus-data"), cisa("cisa-protection")),

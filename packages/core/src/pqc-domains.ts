@@ -62,6 +62,7 @@ export const PQC_PHASES: PqcPhase[] = [
     stageIds: [
       "quantum-b09", // Discovering & cataloging cryptographic assets for PQC migration
       "quantum-d01", // CBOM — Cryptographic Bill of Materials
+      "quantum-e01", // Building the CBOM (migration engineering)
     ],
   },
   {
@@ -147,6 +148,13 @@ export const PQC_PHASES: PqcPhase[] = [
       "quantum-d03", // NIST FIPS 203/204/205 deployment
       "quantum-d08", // Hybrid cryptography (X25519 + ML-KEM-768)
       "quantum-d09", // Quantum-safe architecture (crypto agility)
+      "quantum-e02", // Crypto-agility by design
+      "quantum-e03", // Hybrid key exchange in TLS 1.3
+      "quantum-e04", // PQC for SSH, IPsec & WireGuard
+      "quantum-e05", // PKI & certificate migration
+      "quantum-e06", // Library migration (OpenSSL providers, liboqs)
+      "quantum-e07", // Performance & sizing
+      "quantum-e10", // Constrained & embedded PQC
     ],
   },
   {
@@ -169,6 +177,8 @@ export const PQC_PHASES: PqcPhase[] = [
       "quantum-b10", // PQC testing — validation, interoperability, side-channels
       "quantum-c08", // Validating PQC modules under FIPS 140-3 / CMVP
       "quantum-c10", // End-to-end quantum-safe architecture
+      "quantum-e08", // Validation — FIPS 140-3 / CMVP, interop & side-channels
+      "quantum-e09", // Rollout & rollback — staged cutover, monitoring, runbooks
     ],
   },
 ];
