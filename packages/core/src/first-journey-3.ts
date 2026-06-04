@@ -25,8 +25,8 @@ export const firstJourneyStages3: StageConfig[] = [
       technical: {
         title: "Phishing Indicators and Types",
         body: [
-          "Key indicators: mismatched sender domain (display name says 'PayPal Support' but email is from paypa1-support@gmail.com), urgent or threatening language ('Your account will be closed in 24 hours'), requests for credentials or payment, links that don't match the stated destination (hover to see real URL), unexpected attachments.",
-          "Types: spear phishing (targeted at a specific person, uses personal details to seem credible), whaling (targets executives for wire transfer fraud — 'CEO fraud'), vishing (voice phishing — phone calls), smishing (SMS phishing). Business Email Compromise (BEC) costs organizations $2.7B per year — the most financially damaging cybercrime category.",
+          "A handful of indicators give phishing away:\n- Mismatched sender domain — the display name says 'PayPal Support' but the email is from `paypa1-support@gmail.com`.\n- Urgent or threatening language — 'Your account will be closed in 24 hours'.\n- Requests for credentials or payment.\n- Links that don't match their stated destination — hover to see the real URL.\n- Unexpected attachments.",
+          "Phishing comes in several flavors:\n- Spear phishing — targeted at a specific person, using personal details to seem credible.\n- Whaling — targets executives for wire-transfer fraud ('CEO fraud').\n- Vishing — voice phishing over phone calls.\n- Smishing — SMS phishing.\nBusiness Email Compromise (BEC) costs organizations $2.7B per year — the most financially damaging cybercrime category.",
         ],
         codeExample: {
           label: "Analyzing a suspicious email from the command line",
@@ -215,7 +215,7 @@ dig TXT example.com | grep spf
       overview: [
         "The charter boat at Coast Guard Pier requires two actions to start the engine: insert the ignition key AND enter a 4-digit captain's code. Someone stealing just the key can't start the boat. Someone who knows just the code can't either. Two-factor authentication (2FA) applies this principle to logins: something you know (password) plus something you have (phone, hardware key) or something you are (fingerprint).",
         "2FA stops credential theft attacks cold. If an attacker phishes your password, they still can't log in without the second factor. The 2023 statistics are stark: accounts with 2FA enabled are 99.9% less likely to be compromised than those without. Microsoft's data shows 2FA blocks virtually all automated attacks.",
-        "Types of second factors: SMS codes (convenient but vulnerable to SIM swapping), authenticator app TOTP codes (more secure, offline), hardware keys like YubiKey (most secure, phishing-resistant), and biometrics (fingerprint, face). SMS is the weakest — use an authenticator app or hardware key for sensitive accounts.",
+        "Second factors come in several forms:\n- SMS codes — convenient but vulnerable to SIM swapping.\n- Authenticator app TOTP codes — more secure, and they work offline.\n- Hardware keys like YubiKey — the most secure, and phishing-resistant.\n- Biometrics — fingerprint or face.\nSMS is the weakest — use an authenticator app or hardware key for sensitive accounts.",
       ],
       technical: {
         title: "How TOTP (Authenticator Apps) Work",
@@ -449,7 +449,7 @@ def password_entropy(length, charset_size):
         impact: "32 million passwords stored in plaintext; most common passwords revealed; rockyou.txt still used today",
         body: [
           "RockYou stored 32 million user passwords in plaintext with no hashing. An SQL injection attack exposed the entire database. The dump became the most famous password list in cybersecurity — 'rockyou.txt' is still the first wordlist every password cracking tool tries. The most common password: '123456' (used by 290,731 accounts). Second: '12345'. Third: '123456789'.",
-          "The analysis revealed that 99% of users chose passwords from a tiny set of patterns: keyboard walks (qwerty, asdf), simple words with number suffixes (password1), names, and sequential numbers. Every modern password cracker starts with these patterns. If your password is guessable by a human, it's certainly guessable by a GPU.",
+          "The analysis revealed that 99% of users chose passwords from a tiny set of patterns:\n- Keyboard walks — qwerty, asdf.\n- Simple words with number suffixes — password1.\n- Names.\n- Sequential numbers.\nEvery modern password cracker starts with these patterns. If your password is guessable by a human, it's certainly guessable by a GPU.",
         ],
       },
       diagram: {
@@ -620,12 +620,12 @@ def password_entropy(length, charset_size):
       overview: [
         "Out on Monterey Bay, fishing boats communicate on marine radio channel 16 — an open, unencrypted frequency anyone with a radio can tune into. Your conversations are public. Open WiFi networks (coffee shops, airports, hotels) work identically: unencrypted connections that anyone within radio range can capture and read with freely available tools.",
         "On an open WiFi network, all unencrypted traffic — HTTP requests, DNS queries, plaintext emails — is visible to any device on the same network. An attacker with a laptop running Wireshark can capture all traffic passively without sending a single packet. They're just listening on the shared medium, exactly like tuning a radio.",
-        "The protection against WiFi eavesdropping: HTTPS encrypts the content of web traffic (so even if captured, it's unreadable), a VPN encrypts all traffic from your device (including DNS queries and app traffic), and using your phone's hotspot instead of public WiFi avoids the risk entirely.",
+        "There are a few protections against WiFi eavesdropping:\n- HTTPS encrypts the content of web traffic, so even if captured it's unreadable.\n- A VPN encrypts all traffic from your device, including DNS queries and app traffic.\n- Using your phone's hotspot instead of public WiFi avoids the risk entirely.",
       ],
       technical: {
         title: "WiFi Eavesdropping and MITM on Open Networks",
         body: [
-          "Open WiFi uses no encryption between your device and the access point — all frames are transmitted in plaintext. Any device in promiscuous mode (listening to all traffic, not just its own) can capture these frames. Tools: Wireshark (passive capture and analysis), Aircrack-ng (active WiFi attacks), ettercap (MITM on local network).",
+          "Open WiFi uses no encryption between your device and the access point — all frames are transmitted in plaintext, so any device in promiscuous mode (listening to all traffic, not just its own) can capture them. A few tools make this routine:\n- Wireshark — passive capture and analysis.\n- Aircrack-ng — active WiFi attacks.\n- ettercap — MITM on the local network.",
           "Even on WPA2-encrypted WiFi, all devices on the network share the same encryption key. If you know the WiFi password, you can decrypt other users' traffic (in personal WPA2 mode). WPA2-Enterprise with individual user certificates is the solution for corporate environments. For personal protection: VPN or HTTPS everywhere.",
         ],
         codeExample: {
@@ -822,8 +822,8 @@ def password_entropy(length, charset_size):
       technical: {
         title: "Social Engineering Techniques and Defenses",
         body: [
-          "Pretexting: creating a fabricated scenario to establish credibility (e.g., 'I'm from the IT helpdesk, we're having a security incident and need your password to investigate'). Baiting: leaving infected USB drives in a parking lot, waiting for curious employees to plug them in. Tailgating: following an authorized person through a secure door. Vishing: phone-based social engineering.",
-          "Defenses: verify identities through a separate channel (call back the IT department on the known number, not the number they gave you). Never give passwords over the phone or email — legitimate IT never needs your password. Establish clear verification procedures for sensitive requests. Security awareness training significantly reduces susceptibility.",
+          "Attackers have a standard toolkit of techniques:\n- Pretexting — fabricating a scenario to establish credibility ('I'm from the IT helpdesk, we're having a security incident and need your password to investigate').\n- Baiting — leaving infected USB drives in a parking lot, waiting for curious employees to plug them in.\n- Tailgating — following an authorized person through a secure door.\n- Vishing — phone-based social engineering.",
+          "A few defenses blunt these attacks:\n- Verify identities through a separate channel — call back the IT department on the known number, not the number they gave you.\n- Never give passwords over the phone or email — legitimate IT never needs your password.\n- Establish clear verification procedures for sensitive requests.\n- Run security-awareness training, which significantly reduces susceptibility.",
         ],
         codeExample: {
           label: "Identifying social engineering in practice",
@@ -1014,7 +1014,7 @@ RESPONSE PROTOCOL:
       technical: {
         title: "CVE System, Patch Management, and Zero-Days",
         body: [
-          "CVE (Common Vulnerabilities and Exposures): a standardized identifier for known vulnerabilities. Format: CVE-YEAR-NUMBER (e.g., CVE-2021-44228 is Log4Shell). CVSS score (0–10) rates severity: 9.0+ is Critical. The NVD (National Vulnerability Database) tracks all CVEs with details, affected versions, and patches.",
+          "The CVE system gives every known vulnerability a common reference:\n- CVE (Common Vulnerabilities and Exposures) — a standardized identifier in the format CVE-YEAR-NUMBER (e.g., CVE-2021-44228 is Log4Shell).\n- CVSS — a 0–10 severity score, where 9.0+ is Critical.\n- NVD (National Vulnerability Database) — tracks all CVEs with details, affected versions, and patches.",
           "Zero-day: a vulnerability that is unknown to the vendor — no patch exists. Attackers who discover zero-days either sell them (prices: $500K–$2M for iOS zero-days) or use them quietly. Once disclosed, they become n-days — known, patchable vulnerabilities. Most real-world attacks use n-days, not zero-days, because most systems are poorly patched.",
         ],
         codeExample: {
@@ -1214,8 +1214,8 @@ sudo apt install unattended-upgrades`,
       technical: {
         title: "Breach Lifecycle and Credential Stuffing",
         body: [
-          "Breach lifecycle: (1) Attacker compromises company database. (2) Data exfiltrated — often weeks before discovery. (3) Data sold on dark web forums (priced by record count and data type). (4) Credential stuffers run automated tools against major sites. (5) Successful logins are sold as 'combo lists'. (6) Breach eventually discovered and disclosed (average: 197 days to detection).",
-          "Credential stuffing tools (Sentry MBA, OpenBullet) test millions of username/password pairs against target sites per hour. Sites defend with: rate limiting, CAPTCHA, impossible travel detection (login from Greece then California 1 hour later), and breach password screening (reject passwords found in known breach lists at login).",
+          "A breach typically moves through a predictable lifecycle:\n- Attacker compromises the company database.\n- Data is exfiltrated — often weeks before discovery.\n- Data is sold on dark-web forums, priced by record count and data type.\n- Credential stuffers run automated tools against major sites.\n- Successful logins are resold as 'combo lists'.\n- The breach is eventually discovered and disclosed (average: 197 days to detection).",
+          "Credential-stuffing tools (Sentry MBA, OpenBullet) test millions of username/password pairs against target sites per hour. Sites defend with several layers:\n- Rate limiting.\n- CAPTCHA.\n- Impossible-travel detection — a login from Greece then California an hour later.\n- Breach-password screening — rejecting passwords found in known breach lists at login.",
         ],
         codeExample: {
           label: "Checking your exposure and protecting accounts",
@@ -1412,7 +1412,7 @@ python -c "import pwnedpasswords; print(pwnedpasswords.check('yourpassword'))"
       year: 2025,
       overview: [
         "Diving in the Monterey Bay kelp forest requires reading the water carefully — beautiful kelp canopy can hide rocks, sudden depth changes, and strong currents. Safe browsing requires the same vigilance: URLs that look legitimate can hide malicious redirects, typosquatted domains, or script-injecting pages. The surface looks safe; the hazard is underneath.",
-        "Malicious URLs come in several forms: typosquatting (paypa1.com, g00gle.com), homograph attacks (using Unicode characters that look like Latin letters), URL shorteners that hide the real destination, open redirects (legitimate site redirecting to malicious one), and deceptive subdomains (paypal.attacker.com — the real domain is attacker.com, not paypal.com).",
+        "Malicious URLs come in several forms:\n- Typosquatting — paypa1.com, g00gle.com.\n- Homograph attacks — Unicode characters that look like Latin letters.\n- URL shorteners — hiding the real destination.\n- Open redirects — a legitimate site redirecting to a malicious one.\n- Deceptive subdomains — paypal.attacker.com, where the real domain is attacker.com, not paypal.com.",
         "Before clicking any link: hover to see the real URL in the status bar. Read the domain from right to left — the rightmost portion before the first / is the actual domain. paypal.com.attacker.ru — the domain is attacker.ru. Look for HTTPS but remember that phishing sites use HTTPS too. Use Google Safe Browsing or VirusTotal to scan suspicious URLs before visiting.",
       ],
       technical: {
@@ -1606,7 +1606,7 @@ print(url.netloc)  # = "secure.paypal.com.attacker.ru"
       technical: {
         title: "Privacy Settings That Actually Matter",
         body: [
-          "High-impact privacy settings: (1) Location access: change all apps to 'While Using' or 'Never' — almost no app needs always-on location. (2) App permissions: audit microphone, camera, contacts, and photo access — revoke anything that doesn't need it. (3) Account activity: Google/Facebook/Apple all have 'My Activity' dashboards where you can see and delete collected data. (4) Ad tracking: iOS: Settings → Privacy → Tracking → disable. Android: Settings → Privacy → Ads → opt out.",
+          "A few high-impact privacy settings are worth changing first:\n- Location access — set apps to 'While Using' or 'Never'; almost no app needs always-on location.\n- App permissions — audit microphone, camera, contacts, and photo access, and revoke anything that doesn't need it.\n- Account activity — Google, Facebook, and Apple all have 'My Activity' dashboards where you can see and delete collected data.\n- Ad tracking — on iOS, Settings → Privacy → Tracking → disable; on Android, Settings → Privacy → Ads → opt out.",
           "Data broker opt-outs: companies like Spokeo, Whitepages, and BeenVerified aggregate your public records. Each has an opt-out process. Services like DeleteMe automate this. Your data broker profile includes addresses, phone numbers, relatives, and property records — all useful for social engineering and targeted phishing.",
         ],
         codeExample: {
@@ -1783,8 +1783,8 @@ print(url.netloc)  # = "secure.paypal.com.attacker.ru"
       technical: {
         title: "The NIST Incident Response Framework",
         body: [
-          "NIST SP 800-61 defines four phases: (1) Preparation — incident response plan, trained team, monitoring tools in place before any incident. (2) Detection & Analysis — identify indicators of compromise (IOCs), determine scope, log everything. (3) Containment, Eradication & Recovery — isolate affected systems, remove malware, patch vulnerability, restore from clean backups. (4) Post-Incident Activity — document timeline, root cause analysis, update defenses.",
-          "Indicators of Compromise (IOCs): unexpected login from new location, password change emails you didn't initiate, unfamiliar devices in account sessions, unexpected password reset emails, friends reporting strange messages from your account, antivirus alerts, unusual network traffic. Any of these demands immediate investigation.",
+          "NIST SP 800-61 defines four phases:\n- Preparation — an incident-response plan, a trained team, and monitoring tools in place before any incident.\n- Detection & Analysis — identify indicators of compromise (IOCs), determine scope, and log everything.\n- Containment, Eradication & Recovery — isolate affected systems, remove malware, patch the vulnerability, and restore from clean backups.\n- Post-Incident Activity — document the timeline, run root-cause analysis, and update defenses.",
+          "A handful of indicators of compromise (IOCs) each demand immediate investigation:\n- An unexpected login from a new location.\n- Password-change emails you didn't initiate.\n- Unfamiliar devices in your account sessions.\n- Unexpected password-reset emails.\n- Friends reporting strange messages from your account.\n- Antivirus alerts.\n- Unusual network traffic.",
         ],
         codeExample: {
           label: "Immediate incident response steps for account compromise",

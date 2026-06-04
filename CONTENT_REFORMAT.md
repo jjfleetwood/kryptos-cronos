@@ -2,7 +2,7 @@
 
 **Goal:** break dense walls-of-text in **all three briefing sections — `overview`, `technical.body` (Technical Deep-Dive), and `incident.body` (Real-World Incident)** — into scannable **bulleted-with-dialogue** format. Approved by Jacob (style locked).
 
-**Status:** 54 stages reformatted platform-wide — ALL four tech-audit epochs fully done (tech-audit-1/2/3/4, 12/12 each), plus owasp-llm llm-09 and stages.ts stage-m01–m05 (see scanner). The grind is in-scope **security / tech-audit / AI epochs + first-journey + ancient** (~250 stages). Extended curriculum (baseball, driving, french/italian, paris/milan, nails, hair, tapestry — ~210 stages) is **OUT OF SCOPE** unless Jacob says otherwise. **Quiz rollout is DONE (203/203, v1.23.0)** — this is the remaining grind.
+**Status:** ✅ **IN-SCOPE GRIND COMPLETE.** Every in-scope epoch in the order list below is ticked — all security / tech-audit / AI / quantum epochs + cisco-2/3/4/5 + umbrella + stages.ts (ancient + cisco-core) + first-journey ×3 (bt-01..30). Extended curriculum (baseball, driving, french/italian, paris/milan, nails, hair, tapestry — ~210 stages) remains **OUT OF SCOPE** unless Jacob says otherwise. **Quiz rollout is DONE (203/203, v1.23.0).**
 
 ## Coloring (shipped in `RichText.tsx` — do NOT re-edit the component)
 - `'single-quoted'` terms → amber pill; backtick `code` → cyan monospace pill.
@@ -45,7 +45,7 @@
 - [x] cisco-5 — ALL 12 DONE (stage-m39..m50) ✅
 - [x] umbrella — ALL 10 DONE (umbrella-01..10) ✅
 - [x] stages.ts (ancient + cisco-core) — ALL DONE (stage-01..12 + stage-m01..m12) ✅
-- [ ] first-journey ×3 — bt-01..30 (30) — adult-beginner tone; lighter, already fairly tight
+- [x] first-journey ×3 — ALL 30 DONE (bt-01..30) ✅ — light-touch bullets (genuine lists only; warm beginner narrative kept as prose)
 
 ## OUT OF SCOPE (do not touch unless Jacob asks)
 baseball-1..7, driving-1..3, french-basics, italian-basics, paris, milan, nails, hair-color, hair-styling, tapestry.

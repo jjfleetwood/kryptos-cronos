@@ -25,7 +25,7 @@ export const firstJourneyStages2: StageConfig[] = [
       technical: {
         title: "How TLS Encrypts HTTP Traffic",
         body: [
-          "When you connect to an HTTPS site, your browser and the server perform a TLS handshake: (1) Server sends its certificate (proves identity). (2) Browser verifies the certificate against trusted Certificate Authorities. (3) Both sides agree on encryption keys using asymmetric cryptography (RSA or ECDH). (4) All subsequent traffic is encrypted with a symmetric key (AES-256).",
+          "When you connect to an HTTPS site, your browser and the server perform a TLS handshake:\n- The server sends its certificate (proving identity).\n- The browser verifies that certificate against trusted Certificate Authorities.\n- Both sides agree on encryption keys using asymmetric cryptography (RSA or ECDH).\n- All subsequent traffic is encrypted with a symmetric key (AES-256).",
           "The URL tells you which to use: http:// sends plaintext, https:// sends encrypted. The padlock icon in your browser's address bar indicates a valid TLS certificate. Missing padlock or 'Not Secure' = HTTP or invalid certificate. Never enter passwords or payment info on an HTTP page.",
         ],
         codeExample: {
@@ -237,7 +237,7 @@ curl -I http://google.com
       technical: {
         title: "What Happens When You Type a URL",
         body: [
-          "Step by step: (1) DNS lookup for the domain. (2) TCP connection to the server's IP:port. (3) TLS handshake (if HTTPS). (4) HTTP GET request sent. (5) Server responds with HTML. (6) Browser parses HTML, finds CSS/JS/image links. (7) Browser fetches each sub-resource (more requests). (8) CSS applied, layout computed, page painted. (9) JavaScript executed. Total time: 200ms–2s for a modern page.",
+          "Step by step, typing a URL kicks off a precise sequence:\n- DNS lookup for the domain.\n- TCP connection to the server's IP:port.\n- TLS handshake (if HTTPS).\n- HTTP GET request sent.\n- Server responds with HTML.\n- Browser parses HTML, finds CSS/JS/image links.\n- Browser fetches each sub-resource (more requests).\n- CSS applied, layout computed, page painted.\n- JavaScript executed.\nTotal time: 200ms–2s for a modern page.",
           "Browser developer tools (F12 → Network tab) show every single request made during page load: URL, status code, size, timing, request/response headers. This is invaluable for debugging and for understanding what data a page is sending and receiving.",
         ],
         codeExample: {
@@ -440,8 +440,8 @@ curl -A "Mozilla/5.0" https://example.com`,
       technical: {
         title: "HTTP Request-Response Cycle",
         body: [
-          "An HTTP request has: a method (GET, POST, PUT, DELETE), a URL path, headers (metadata), and optionally a body (for POST/PUT). An HTTP response has: a status code (200 OK, 404 Not Found, 500 Server Error), headers, and a body (the actual content).",
-          "REST APIs are the standard way web applications communicate: GET /users/123 retrieves a user, POST /users creates one, PUT /users/123 updates it, DELETE /users/123 removes it. The server maintains state and data; the client is just a display and input layer. This separation is called the 'client-server' architectural pattern.",
+          "An HTTP exchange has two halves, each with a fixed structure:\n- A request — a method (GET, POST, PUT, DELETE), a URL path, headers (metadata), and optionally a body (for POST/PUT).\n- A response — a status code (200 OK, 404 Not Found, 500 Server Error), headers, and a body (the actual content).",
+          "REST APIs are the standard way web applications communicate, mapping HTTP methods to actions:\n- GET /users/123 retrieves a user.\n- POST /users creates one.\n- PUT /users/123 updates it.\n- DELETE /users/123 removes it.\nThe server holds the state and data; the client is just a display and input layer — the 'client-server' architectural pattern.",
         ],
         codeExample: {
           label: "Making HTTP requests with curl and Python",
@@ -597,13 +597,13 @@ print(resp.json())   # parse JSON response`,
       year: 2025,
       overview: [
         "The lifeguard at Cowell Beach wears a badge proving they're certified. Before you trust them to pull you from a rip current, you can verify that badge. TLS certificates work identically: before your browser sends any sensitive data to a server, it verifies the server's certificate — proof that the server is who it claims to be, signed by a trusted authority.",
-        "A TLS certificate contains: the domain name it's valid for, the certificate authority (CA) that signed it, the server's public key, and an expiry date. Your browser ships with a list of trusted CAs (like DigiCert, Let's Encrypt, Comodo). If the certificate is valid, signed by a trusted CA, and matches the domain, the padlock appears and encrypted communication begins.",
+        "A TLS certificate contains:\n- The domain name it's valid for.\n- The certificate authority (CA) that signed it.\n- The server's public key.\n- An expiry date.\nYour browser ships with a list of trusted CAs (DigiCert, Let's Encrypt, Comodo), and if the certificate is valid, signed by a trusted CA, and matches the domain, the padlock appears and encrypted communication begins.",
         "Certificate errors are serious warnings. 'Your connection is not private' means either the certificate is expired, self-signed, doesn't match the domain, or was issued by an untrusted CA. Clicking through this warning means you're communicating with an unverified server — a potential impersonator.",
       ],
       technical: {
         title: "How TLS Certificates and the PKI Work",
         body: [
-          "Public Key Infrastructure (PKI): CAs are trusted third parties that verify identities and sign certificates. The process: (1) Server generates a key pair. (2) Server sends a Certificate Signing Request (CSR) to a CA. (3) CA verifies the server owns the domain (via DNS or file challenge). (4) CA signs the certificate with its private key. (5) Browser verifies the signature using the CA's public key (built into the browser).",
+          "Public Key Infrastructure (PKI) relies on CAs — trusted third parties that verify identities and sign certificates — and the process runs:\n- Server generates a key pair.\n- Server sends a Certificate Signing Request (CSR) to a CA.\n- CA verifies the server owns the domain (via DNS or file challenge).\n- CA signs the certificate with its private key.\n- Browser verifies the signature using the CA's public key (built into the browser).",
           "Let's Encrypt revolutionized TLS by making certificates free and automatic. Before 2016, a certificate cost $100–500/yr. Now any domain can get a 90-day certificate in 60 seconds via ACME protocol. This led to near-universal HTTPS adoption. Caveat: a Let's Encrypt cert proves domain control, not that the site is legitimate — phishing sites use them too.",
         ],
         codeExample: {
@@ -818,7 +818,7 @@ curl -v https://example.com 2>&1 | grep -A5 "SSL connection"`,
       overview: [
         "When you check in at the surf club, the staff stamps your wrist. For the rest of the day, you flash the stamp — no need to pay again or prove your identity. HTTP cookies work exactly this way: after you log in, the server sets a cookie (a small text value) in your browser. Every subsequent request carries that cookie, and the server reads it to know who you are.",
         "HTTP is stateless by design: each request is independent with no memory of previous requests. Cookies solve this by storing a session token on the client side. The token is a random string (e.g., 'sess=a9f3b2e1...') that maps to your session data on the server. The server looks up that token and knows: this is Alice, she's logged in, she has these permissions.",
-        "Cookies have security attributes: HttpOnly prevents JavaScript from reading the cookie (blocks XSS theft), Secure ensures the cookie only travels over HTTPS, and SameSite prevents the cookie from being sent in cross-site requests (blocks CSRF attacks). Missing these attributes creates serious vulnerabilities.",
+        "Cookies carry security attributes that matter a lot:\n- HttpOnly — prevents JavaScript from reading the cookie (blocks XSS theft).\n- Secure — ensures the cookie only travels over HTTPS.\n- SameSite — prevents the cookie from being sent in cross-site requests (blocks CSRF).\nMissing these attributes creates serious vulnerabilities.",
       ],
       technical: {
         title: "Cookie Security Attributes",
@@ -1028,8 +1028,8 @@ curl -I https://example.com | grep Set-Cookie
       technical: {
         title: "REST APIs, Authentication, and Common Vulnerabilities",
         body: [
-          "REST APIs communicate over HTTP using JSON. Authentication: API keys (a secret token in the request header), OAuth 2.0 (delegated access tokens), or JWT (JSON Web Tokens). Always sent in the Authorization header: 'Authorization: Bearer <token>'. Never in the URL where it will appear in logs.",
-          "OWASP API Security Top 10: Broken Object Level Authorization (IDOR), Broken Authentication, Excessive Data Exposure, Lack of Resource Limits (no rate limiting), Function Level Authorization failures. The most common: APIs return more data than the app displays — attackers call the API directly and see all the hidden fields.",
+          "REST APIs communicate over HTTP using JSON, and there are three common authentication methods:\n- API keys — a secret token in the request header.\n- OAuth 2.0 — delegated access tokens.\n- JWT (JSON Web Tokens).\nAlways send them in the Authorization header (`Authorization: Bearer <token>`), never in the URL where they'll appear in logs.",
+          "The OWASP API Security Top 10 highlights the recurring failures:\n- Broken Object Level Authorization (IDOR).\n- Broken Authentication.\n- Excessive Data Exposure.\n- Lack of Resource Limits (no rate limiting).\n- Function Level Authorization failures.\nThe most common in practice: APIs return more data than the app displays — attackers call the API directly and see all the hidden fields.",
         ],
         codeExample: {
           label: "Calling REST APIs with curl and Python",
@@ -1230,7 +1230,7 @@ print(resp.json())`,
       technical: {
         title: "Bandwidth vs Latency vs Throughput",
         body: [
-          "Three distinct measurements: Bandwidth = pipe size (maximum bits/second). Latency = delay (milliseconds from send to receive, measured by ping). Throughput = actual data transferred per second (always ≤ bandwidth). High bandwidth + high latency = fast but laggy (satellite internet). Low bandwidth + low latency = slow but responsive (poor mobile signal).",
+          "There are three distinct measurements people often confuse:\n- Bandwidth = pipe size (maximum bits/second).\n- Latency = delay (milliseconds from send to receive, measured by ping).\n- Throughput = actual data transferred per second (always ≤ bandwidth).\nThe combinations matter: high bandwidth + high latency is fast but laggy (satellite internet); low bandwidth + low latency is slow but responsive (poor mobile signal).",
           "Bottlenecks: if your home is 1 Gbps but your ISP's link to the internet is 100 Mbps, your effective bandwidth is 100 Mbps. The slowest link in the chain is always the bottleneck. traceroute reveals where latency spikes, suggesting where bottlenecks or congestion occur on the path.",
         ],
         codeExample: {
@@ -1449,8 +1449,8 @@ traceroute google.com
       technical: {
         title: "Measuring Latency and Its Sources",
         body: [
-          "Ping measures round-trip time (RTT): the time for a packet to reach a host and return. A ping of 20ms means data takes 10ms each way. Sources of latency: propagation delay (distance/speed of light), transmission delay (link bandwidth), processing delay (router CPU time), queuing delay (congested buffers). The first dominates for long-distance connections; the last dominates under load.",
-          "Tools: ping (basic RTT), traceroute (per-hop latency to find bottlenecks), mtr (ping + traceroute combined, continuous). High latency at a specific hop in traceroute suggests congestion or a slow router at that point. Latency that increases proportionally with distance is normal; sudden spikes indicate congestion.",
+          "Ping measures round-trip time (RTT) — a ping of 20ms means data takes 10ms each way — and latency comes from four sources:\n- Propagation delay — distance / speed of light.\n- Transmission delay — link bandwidth.\n- Processing delay — router CPU time.\n- Queuing delay — congested buffers.\nThe first dominates for long-distance connections; the last dominates under load.",
+          "A few tools cover latency diagnosis:\n- ping — basic RTT.\n- traceroute — per-hop latency to find bottlenecks.\n- mtr — ping + traceroute combined, continuous.\nHigh latency at a specific hop suggests congestion or a slow router there; latency that grows with distance is normal, while sudden spikes indicate congestion.",
         ],
         codeExample: {
           label: "Measuring and diagnosing latency",
@@ -1648,8 +1648,8 @@ ping 9.9.9.9     # Quad9`,
       technical: {
         title: "How Cache Poisoning Works and DNSSEC Defense",
         body: [
-          "Classic cache poisoning: attacker sends a DNS query to a resolver, then floods it with fake responses pretending to be the authoritative server before the real response arrives. If one fake response arrives first with the right transaction ID, the resolver caches the fake record. The Kaminsky attack made this practical by exploiting the small 16-bit transaction ID space.",
-          "DNSSEC adds digital signatures to DNS records. The authoritative server signs its records with a private key. Resolvers verify the signature using the public key published in the DNS hierarchy. Any tampered record has an invalid signature and is rejected. DNSKEY and DS records store the cryptographic material in DNS itself.",
+          "Classic cache poisoning is a race:\n- The attacker sends a DNS query to a resolver.\n- They then flood it with fake responses pretending to be the authoritative server, before the real response arrives.\n- If one fake response arrives first with the right transaction ID, the resolver caches the fake record.\nThe Kaminsky attack made this practical by exploiting the small 16-bit transaction-ID space.",
+          "DNSSEC adds digital signatures to DNS records to make tampering detectable:\n- The authoritative server signs its records with a private key.\n- Resolvers verify the signature using the public key published in the DNS hierarchy.\n- Any tampered record has an invalid signature and is rejected.\nDNSKEY and DS records store the cryptographic material in DNS itself.",
         ],
         codeExample: {
           label: "Detecting poisoned DNS and using secure resolvers",
@@ -1862,8 +1862,8 @@ dig DS yourbank.com @8.8.8.8  # DS = Delegation Signer record`,
       technical: {
         title: "Load Balancing Algorithms and Health Checks",
         body: [
-          "Round-robin: each request goes to the next server in rotation — simple but ignores server load. Least connections: route to the server with fewest active connections — better for varying request sizes. IP hash: hash the client IP and always route to the same backend — useful for sticky sessions without cookies.",
-          "Health checks: load balancers continuously probe backends (HTTP GET /health → 200 OK). A server that fails health checks is removed from the pool. This enables zero-downtime deployments: deploy to one server, wait for health check to pass, remove old server from pool, repeat across the fleet.",
+          "Three common algorithms decide which backend gets a request:\n- Round-robin — each request goes to the next server in rotation; simple but ignores server load.\n- Least connections — route to the server with fewest active connections; better for varying request sizes.\n- IP hash — hash the client IP and always route to the same backend; useful for sticky sessions without cookies.",
+          "Health checks let the balancer continuously probe backends (HTTP GET /health → 200 OK), and any server that fails is removed from the pool. This enables zero-downtime deployments:\n- Deploy to one server and wait for its health check to pass.\n- Remove the old server from the pool.\n- Repeat across the fleet.",
         ],
         codeExample: {
           label: "Nginx load balancer configuration",

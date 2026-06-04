@@ -29,14 +29,14 @@ export const firstJourneyStages: StageConfig[] = [
       year: 2025,
       overview: [
         "You're standing at the Port of Piraeus, the ancient harbor of Athens. Before you can travel anywhere, you need to understand the network of roads, ships, and planes that connect the world. A computer network works exactly the same way: devices (nodes) connected by paths (links), each able to send information to any other.",
-        "The ancient Greeks built road networks to move armies and trade goods. We build computer networks to move data. In both cases, the principles are identical: every node needs an address, every path has a direction, and information travels from source to destination by hopping through intermediate points.",
+        "The ancient Greeks built road networks to move armies and trade goods; we build computer networks to move data — and in both cases the principles are identical:\n- Every node needs an address.\n- Every path has a direction.\n- Information travels from source to destination by hopping through intermediate points.",
         "Your mission begins here. Read the port map, understand how the network of routes connects Athens to the world, and find your path west — toward Santa Cruz, California.",
       ],
       technical: {
         title: "How Computer Networks Are Built",
         body: [
           "A network is a collection of devices (computers, phones, routers) connected by physical or wireless links. Each device is a node. Data travels as electrical signals over cables, or as radio waves over WiFi. The internet is just a global network of networks — millions of smaller networks all interconnected.",
-          "The shape of a network — how its devices are wired together — is called its topology. In a 'star' shape, every device connects through one central point (think of your home WiFi router). In a 'mesh' shape, devices connect to many others directly. The internet is mesh-like on purpose: if one path breaks, data just takes another, so there's no single point of failure.",
+          "The shape of a network — how its devices are wired together — is called its topology:\n- In a 'star' shape, every device connects through one central point (think of your home WiFi router).\n- In a 'mesh' shape, devices connect to many others directly.\nThe internet is mesh-like on purpose: if one path breaks, data just takes another, so there's no single point of failure.",
         ],
         codeExample: {
           label: "Checking your network connections on Linux/Mac",
@@ -322,13 +322,13 @@ traceroute google.com`,
       overview: [
         "Before your flight leaves Athens, you need a boarding pass with your seat number and destination. Without those addresses, the airline has no way to route you to the right plane. IP addresses work identically: every device on the internet is assigned a unique numerical address so that data knows where to go and where to come back from.",
         "An IPv4 address looks like 192.168.1.105 — four numbers (0–255) separated by dots. Every packet of data sent over the internet carries a source IP and a destination IP, just like every envelope carries a from address and a to address. Routers read those addresses and decide which direction to forward the packet.",
-        "There are two address spaces: private IPs (used inside your home network, like 192.168.x.x) and public IPs (globally unique, assigned by your ISP). Your home router translates between them using NAT — Network Address Translation.",
+        "There are two address spaces, and your home router bridges them with NAT — Network Address Translation:\n- Private IPs — used inside your home network, like 192.168.x.x.\n- Public IPs — globally unique, assigned by your ISP.",
       ],
       technical: {
         title: "IPv4 vs IPv6 and How Addresses Are Assigned",
         body: [
           "IPv4 gives us about 4.3 billion unique addresses — not enough for every device on earth. IPv6 expands this to 340 undecillion addresses using 128-bit hex notation (e.g., 2001:0db8:85a3::8a2e:0370:7334). Most networks now run both simultaneously (dual-stack).",
-          "Your device gets an IP address from a DHCP server — usually your router. The router itself gets a public IP from your ISP. Private IP ranges (RFC 1918): 10.0.0.0/8, 172.16.0.0/12, and 192.168.0.0/16. These never appear on the public internet.",
+          "Your device gets an IP address from a DHCP server — usually your router — and the router itself gets a public IP from your ISP. The private IP ranges (RFC 1918) that never appear on the public internet are:\n- 10.0.0.0/8.\n- 172.16.0.0/12.\n- 192.168.0.0/16.",
         ],
         codeExample: {
           label: "Finding your IP addresses",
@@ -499,8 +499,8 @@ ping google.com       # shows Google's IP address`,
       technical: {
         title: "Packet Structure and TCP Reassembly",
         body: [
-          "Every packet has a header and a payload. The header contains: source IP, destination IP, protocol (TCP/UDP), sequence number, and checksum. The payload is the actual data — a fragment of your file, a piece of a web page, part of a video stream.",
-          "TCP (Transmission Control Protocol) guarantees delivery and order. The receiver sends ACK (acknowledgment) packets back for each one received. If no ACK arrives within a timeout, the sender retransmits that packet. UDP skips the ACK — faster but no guarantee of delivery or order (used for video calls, gaming).",
+          "Every packet has a header and a payload. The header contains:\n- Source IP and destination IP.\n- Protocol (TCP/UDP).\n- Sequence number.\n- Checksum.\nThe payload is the actual data — a fragment of your file, a piece of a web page, part of a video stream.",
+          "The two main transport protocols make opposite trade-offs:\n- TCP (Transmission Control Protocol) guarantees delivery and order — the receiver sends an ACK for each packet, and if no ACK arrives within a timeout, the sender retransmits.\n- UDP skips the ACK — faster but with no guarantee of delivery or order (used for video calls and gaming).",
         ],
         codeExample: {
           label: "Capturing and inspecting packets with tcpdump",
@@ -689,8 +689,8 @@ sudo tcpdump -w capture.pcap`,
       technical: {
         title: "How Routing Tables Work",
         body: [
-          "A routing table maps destination IP ranges to outgoing interfaces. When a packet arrives, the router finds the most specific matching route (longest prefix match) and forwards the packet to the next hop. If no specific route matches, the packet goes to the default route (usually 0.0.0.0/0 — 'send it upstream').",
-          "Home routers are simple: everything local stays on the LAN, everything else goes to your ISP. Core internet routers at major exchange points have tables with 900,000+ routes and forward millions of packets per second in hardware.",
+          "A routing table maps destination IP ranges to outgoing interfaces, and when a packet arrives the router decides where to send it:\n- It finds the most specific matching route (longest prefix match) and forwards the packet to that next hop.\n- If no specific route matches, the packet goes to the default route (usually 0.0.0.0/0 — 'send it upstream').",
+          "Routers vary enormously in scale:\n- Home routers are simple — everything local stays on the LAN, everything else goes to your ISP.\n- Core internet routers at major exchange points carry tables with 900,000+ routes and forward millions of packets per second in hardware.",
         ],
         codeExample: {
           label: "Viewing routing tables and tracing packet paths",
@@ -871,13 +871,13 @@ tracert google.com         # Windows
       year: 2025,
       overview: [
         "You stop at the AAA travel office in Chicago. You know you want to go to Santa Cruz — but you need the exact address to put in the GPS. DNS (Domain Name System) does this for the internet: you type 'google.com' and DNS silently translates that into an IP address like 142.250.80.46 so your computer knows where to actually send the request.",
-        "DNS is a distributed database. There are 13 sets of root name servers worldwide, below them hundreds of top-level domain servers (.com, .org, .net), and below them millions of authoritative servers for individual domains. Your router's DNS resolver queries this hierarchy every time you type a domain name.",
+        "DNS is a distributed database arranged as a hierarchy your router's resolver queries every time you type a domain:\n- 13 sets of root name servers worldwide.\n- Below them, hundreds of top-level domain servers (.com, .org, .net).\n- Below them, millions of authoritative servers for individual domains.",
         "DNS responses are cached — your computer remembers the answer for a period defined by the TTL (Time To Live). This keeps DNS fast. But caching also creates risk: if an attacker poisons your DNS cache with a fake answer, you could be sent to a malicious server while thinking you're on the real one.",
       ],
       technical: {
         title: "The DNS Resolution Process",
         body: [
-          "When you type google.com: (1) Your OS checks its local cache. (2) If not cached, it asks your DNS resolver (usually your router or ISP). (3) The resolver asks a root name server for .com. (4) The root refers it to Verisign's .com servers. (5) Verisign refers it to Google's authoritative server. (6) Google's server returns 142.250.80.46. (7) Your OS caches it and connects.",
+          "When you type google.com, the lookup walks the hierarchy:\n- Your OS checks its local cache.\n- If not cached, it asks your DNS resolver (usually your router or ISP).\n- The resolver asks a root name server for .com.\n- The root refers it to Verisign's .com servers.\n- Verisign refers it to Google's authoritative server.\n- Google's server returns 142.250.80.46.\n- Your OS caches it and connects.",
           "This full lookup takes 50–200ms. Cached lookups take <1ms. The resolver your device uses is set in network settings — you can change it to any public resolver: 1.1.1.1 (Cloudflare), 8.8.8.8 (Google), or 9.9.9.9 (Quad9). Using an encrypted resolver (DNS-over-HTTPS) prevents your ISP from seeing what sites you're looking up.",
         ],
         codeExample: {
@@ -1069,8 +1069,8 @@ cat /etc/resolv.conf     # Linux/Mac`,
       year: 2025,
       overview: [
         "At LAX customs, the agent scans your passport. Your passport number is globally unique — no two people share it, and it's linked to you permanently. Every network interface card (WiFi chip, Ethernet port) ships from its manufacturer with a MAC address: a 48-bit hardware identifier burned into the chip at the factory.",
-        "MAC addresses look like this: 00:1A:2B:3C:4D:5E. The first three bytes (00:1A:2B) identify the manufacturer — this is called the OUI (Organizationally Unique Identifier). The last three bytes are the device serial. IEEE assigns OUI blocks to manufacturers: Apple, Intel, Cisco, etc.",
-        "While IP addresses operate at layer 3 (routing across the internet), MAC addresses operate at layer 2 (within your local network). Your router uses MAC addresses to identify which device on the LAN is which. When a device leaves the local network, its MAC address never appears — only the IP.",
+        "MAC addresses look like this: 00:1A:2B:3C:4D:5E, and the 48 bits split into two halves:\n- The first three bytes (00:1A:2B) identify the manufacturer — the OUI (Organizationally Unique Identifier).\n- The last three bytes are the device serial.\nIEEE assigns OUI blocks to manufacturers like Apple, Intel, and Cisco.",
+        "IP and MAC addresses operate at different layers:\n- IP addresses work at layer 3 — routing across the internet.\n- MAC addresses work at layer 2 — within your local network.\nYour router uses MAC addresses to tell which device on the LAN is which, and when a device leaves the local network its MAC never appears — only the IP.",
       ],
       technical: {
         title: "MAC Address Structure and ARP",
@@ -1247,13 +1247,13 @@ curl https://api.macvendors.com/00:1A:2B
       overview: [
         "You've almost reached Santa Cruz. At the city limits there's a checkpoint: commercial trucks take the Highway 17 bypass, tourists go through downtown, and unauthorized vehicles get turned around. A firewall works identically: it inspects each packet's source IP, destination IP, port, and protocol, then applies a ruleset — allow or deny.",
         "Firewalls sit between your network and the internet (or between network segments within an organization). Every packet attempting to cross the boundary is evaluated against the rules in order. The first rule that matches wins. Most firewalls end with a default-deny rule: anything not explicitly permitted is blocked.",
-        "Modern 'next-generation' firewalls (NGFWs) go deeper — they can inspect packet contents, identify applications, detect malware signatures, and block based on domain reputation. But the core concept is always the same: rules-based packet filtering.",
+        "Modern 'next-generation' firewalls (NGFWs) go deeper:\n- Inspect packet contents.\n- Identify applications.\n- Detect malware signatures.\n- Block based on domain reputation.\nBut the core concept is always the same: rules-based packet filtering.",
       ],
       technical: {
         title: "Firewall Rule Structure and Types",
         body: [
-          "A firewall rule specifies: source IP (or range), destination IP (or range), protocol (TCP/UDP/ICMP), port (or range), and action (allow/deny/log). Rules are evaluated top-to-bottom; first match wins. This means rule order matters — a broad allow rule above a narrow deny rule will never let the deny fire.",
-          "Types: packet-filtering firewalls (stateless — each packet evaluated independently), stateful firewalls (track connection state — only allow return traffic for established sessions), and application-layer firewalls (deep packet inspection, can read HTTP/HTTPS content). Your home router runs a stateful firewall by default.",
+          "A firewall rule specifies five things:\n- Source IP (or range).\n- Destination IP (or range).\n- Protocol (TCP/UDP/ICMP).\n- Port (or range).\n- Action (allow/deny/log).\nRules are evaluated top-to-bottom, first match wins — so order matters: a broad allow rule above a narrow deny rule will never let the deny fire.",
+          "Firewalls come in three types:\n- Packet-filtering — stateless, each packet evaluated independently.\n- Stateful — track connection state, only allowing return traffic for established sessions.\n- Application-layer — deep packet inspection, can read HTTP/HTTPS content.\nYour home router runs a stateful firewall by default.",
         ],
         codeExample: {
           label: "Basic firewall rules with iptables (Linux)",
@@ -1447,7 +1447,7 @@ sudo iptables -A OUTPUT -j ACCEPT`,
       year: 2025,
       overview: [
         "You've arrived at Santa Cruz Harbor. Every slip has a number: slip 22 is for sailboats, slip 80 is for fishing vessels, slip 443 is for the ferry. You don't just arrive at 'the harbor' — you dock at a specific slip. Network ports work the same way: a server running multiple services assigns each to a different port number so data goes to the right service.",
-        "Port numbers range from 0 to 65535. The well-known ports (0–1023) are standardized: port 22 (SSH), port 80 (HTTP), port 443 (HTTPS), port 25 (SMTP email), port 53 (DNS), port 3306 (MySQL). A packet arriving at a server includes both a destination IP and a destination port — together they tell the OS which application should receive the data.",
+        "Port numbers range from 0 to 65535, and the well-known ports (0–1023) are standardized:\n- 22 (SSH).\n- 80 (HTTP).\n- 443 (HTTPS).\n- 25 (SMTP email).\n- 53 (DNS).\n- 3306 (MySQL).\nA packet arriving at a server includes both a destination IP and a destination port — together they tell the OS which application should receive the data.",
         "Port scanning is the technique of probing a server to discover which ports have services listening. It's a fundamental recon step in both legitimate network administration and in attacks. Understanding which ports are open — and which services those ports run — is essential to understanding your attack surface.",
       ],
       technical: {
@@ -1634,12 +1634,12 @@ nc -zv 192.168.1.1 22    # test port 22 (SSH)`,
       overview: [
         "Santa Cruz is divided into neighborhoods: the Westside, the Eastside, Downtown, and Live Oak. You can drive freely within your neighborhood, but to reach another district you go through a specific intersection. Subnets work the same way: a subnet is a logical division of an IP network. Devices on the same subnet communicate directly; devices on different subnets must go through a router.",
         "A subnet is defined by an IP address and a subnet mask. The mask tells you which bits of the IP address are the 'network' part and which are the 'host' part. For example: 192.168.1.0/24 means the first 24 bits are the network (192.168.1) and the last 8 bits identify devices (0–255). This subnet holds up to 254 devices.",
-        "Subnetting is a core tool for network security and organization. An organization might put servers on 10.0.1.0/24, workstations on 10.0.2.0/24, and IoT devices on 10.0.3.0/24. Traffic between subnets must pass through a firewall, allowing strict control over what can talk to what.",
+        "Subnetting is a core tool for network security and organization — an organization might split its address space by device type:\n- Servers on 10.0.1.0/24.\n- Workstations on 10.0.2.0/24.\n- IoT devices on 10.0.3.0/24.\nTraffic between subnets must pass through a firewall, allowing strict control over what can talk to what.",
       ],
       technical: {
         title: "Reading CIDR Notation and Subnet Masks",
         body: [
-          "CIDR notation (/24, /16, /8) tells you how many bits are in the network portion. /24 = 255.255.255.0 = 254 hosts. /16 = 255.255.0.0 = 65,534 hosts. /8 = 255.0.0.0 = 16 million hosts. To find if two IPs are on the same subnet: apply the mask to both IPs with bitwise AND — if the results match, they're in the same subnet.",
+          "CIDR notation (/24, /16, /8) tells you how many bits are in the network portion:\n- /24 = 255.255.255.0 = 254 hosts.\n- /16 = 255.255.0.0 = 65,534 hosts.\n- /8 = 255.0.0.0 = 16 million hosts.\nTo check if two IPs share a subnet, apply the mask to both with a bitwise AND — if the results match, they're in the same subnet.",
           "Private IP ranges (RFC 1918) for internal networks: 10.0.0.0/8 (large enterprises), 172.16.0.0/12 (medium networks), 192.168.0.0/16 (home/small office). These addresses are never routed on the public internet — your router NATs them to your public IP.",
         ],
         codeExample: {
@@ -1835,13 +1835,13 @@ ipcalc 192.168.1.0/24
       year: 2025,
       overview: [
         "Driving Highway 1 along the Pacific coast, you follow agreed rules: drive on the right, signal before turning, stop at red lights. These rules let strangers from different countries share the same road safely. Network protocols are the same: agreed-upon rules for how devices communicate. Without protocols, two devices would be sending data neither could interpret.",
-        "The internet runs on a layered protocol stack. At the bottom, Ethernet and WiFi handle physical transmission. Above that, IP handles addressing and routing. Above that, TCP or UDP handle reliable or fast delivery. At the top, application protocols like HTTP, SMTP, and SSH handle the actual service being used. Each layer only talks to the layer directly above and below it.",
+        "The internet runs on a layered protocol stack, each layer talking only to the ones directly above and below it:\n- At the bottom, Ethernet and WiFi handle physical transmission.\n- Above that, IP handles addressing and routing.\n- Above that, TCP or UDP handle reliable or fast delivery.\n- At the top, application protocols like HTTP, SMTP, and SSH handle the actual service being used.",
         "Understanding protocols is fundamental to security. Every vulnerability is ultimately a violation of a protocol's assumptions — a crafted packet that exploits the way TCP handles sequence numbers, a request that abuses how HTTP handles headers, a DNS response that lies about a name-to-IP mapping.",
       ],
       technical: {
         title: "The TCP/IP Model and Protocol Layers",
         body: [
-          "Layer 1 (Physical): bits over wire/air. Layer 2 (Data Link): MAC addresses, Ethernet frames. Layer 3 (Network): IP addresses, routing. Layer 4 (Transport): TCP (reliable) or UDP (fast). Layer 5-7 (Application): HTTP, DNS, SMTP, SSH, TLS. Each layer adds a header wrapping the layer above — a process called encapsulation.",
+          "The TCP/IP model stacks layers, each adding a header wrapping the layer above (encapsulation):\n- Layer 1 (Physical) — bits over wire/air.\n- Layer 2 (Data Link) — MAC addresses, Ethernet frames.\n- Layer 3 (Network) — IP addresses, routing.\n- Layer 4 (Transport) — TCP (reliable) or UDP (fast).\n- Layers 5–7 (Application) — HTTP, DNS, SMTP, SSH, TLS.",
           "TCP uses a three-way handshake to establish a connection: SYN → SYN-ACK → ACK. It guarantees delivery, ordering, and error correction. UDP sends datagrams with no handshake, no acknowledgment, no guaranteed order — faster and lower overhead, used for DNS, video calls, games, and streaming.",
         ],
         codeExample: {
