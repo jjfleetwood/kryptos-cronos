@@ -672,6 +672,7 @@ export default function CertsPage() {
 
   const navItems = [
     { id: "cyberops", label: "Cisco CyberOps", emoji: "🎓" },
+    { id: "pqc", label: "PQC Migration", emoji: "🔐" },
     ...CERTS.map((c) => ({ id: c.id, label: c.name, emoji: c.emoji })),
   ];
 
@@ -697,7 +698,7 @@ export default function CertsPage() {
           <p className="text-gray-400 leading-relaxed max-w-2xl">
             Track your readiness for twelve industry-recognized certifications. Every stage you complete maps
             to real exam domains — see exactly where you stand and which stages to tackle next.
-            Also check the <Link href="/cyberops" className="text-cyan-400 hover:text-cyan-300 transition-colors">CyberOps Associate tracker</Link> for the Cisco-specific path, or build a <Link href="/resume" className="text-cyan-400 hover:text-cyan-300 transition-colors">resume</Link> from your completed stages.
+            Also check the <Link href="/cyberops" className="text-cyan-400 hover:text-cyan-300 transition-colors">CyberOps Associate tracker</Link> for the Cisco-specific path, the <Link href="/pqc" className="text-cyan-400 hover:text-cyan-300 transition-colors">PQC Migration tracker</Link> for quantum-readiness, or build a <Link href="/resume" className="text-cyan-400 hover:text-cyan-300 transition-colors">resume</Link> from your completed stages.
           </p>
         </div>
 
@@ -755,6 +756,37 @@ export default function CertsPage() {
                   style={{ background: "linear-gradient(90deg, #22d3ee, #818cf8)" }}
                 >
                   Open the CyberOps tracker →
+                </Link>
+              </div>
+            </div>
+
+            {/* PQC Migration — framework tracker */}
+            <div id="pqc" className="scroll-mt-24 mb-6 rounded-2xl border border-violet-500/30 bg-violet-500/5 p-6">
+              <div className="flex items-start justify-between gap-4 flex-wrap">
+                <div className="min-w-0">
+                  <div className="flex items-center gap-2 mb-1 flex-wrap">
+                    <span className="text-2xl">🔐</span>
+                    <h2 className="text-xl font-black text-white">Quantum-Safe Migration</h2>
+                    <span className="text-xs font-mono px-2 py-0.5 rounded-full border border-violet-500/30 bg-violet-500/10 text-violet-300">Framework tracker</span>
+                  </div>
+                  <p className="text-gray-400 text-sm max-w-xl leading-relaxed">
+                    Track post-quantum cryptography migration readiness against the NSA/CISA/NIST roadmap —
+                    governance, CBOM discovery, risk, NIST FIPS 203/204/205, hybrid deployment, and validation.
+                    Your Quantum Era stages map to the six migration phases. Not a cert exam — quantum-safe skills
+                    are credentialed through the crypto, risk, and AI certs below.
+                  </p>
+                  <div className="flex flex-wrap items-center gap-2 mt-3 text-xs text-gray-500">
+                    <span>🧭 6 phases</span><span className="text-gray-700">·</span>
+                    <span>📅 CNSA 2.0 by 2035</span><span className="text-gray-700">·</span>
+                    <span>40+ quantum stages</span>
+                  </div>
+                </div>
+                <Link
+                  href="/pqc"
+                  className="flex-shrink-0 px-5 py-2.5 rounded-xl text-sm font-bold text-white transition-all hover:scale-105"
+                  style={{ background: "linear-gradient(90deg, #22d3ee, #8b5cf6)" }}
+                >
+                  Open the PQC tracker →
                 </Link>
               </div>
             </div>
