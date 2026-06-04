@@ -42,7 +42,7 @@
 - [x] cisco-2 — ALL 13 DONE (stage-m13..m25) ✅
 - [x] cisco-3 — ALL 8 DONE (stage-m26..m33) ✅
 - [x] cisco-4 — ALL 5 DONE (stage-m34..m38) ✅
-- [ ] cisco-5 — stage-m39..m50 (12)
+- [x] cisco-5 — ALL 12 DONE (stage-m39..m50) ✅
 - [ ] umbrella — umbrella-01..10 (10)
 - [ ] stages.ts (ancient) — stage-m01..m05 ✅; remaining stage-01..12 + stage-m06..m12 (19)
 - [ ] first-journey ×3 — bt-01..30 (30) — adult-beginner tone; lighter, already fairly tight
