@@ -65,7 +65,7 @@ const epochGroups = [
     id: "enterprise",
     labelKey: "stages.tracks.enterprise",
     descKey: "stages.tracks.enterpriseDesc",
-    epochIds: ["cisco-core", "cisco-enterprise", "cisco-secops", "cisco-advanced", "umbrella"],
+    epochIds: ["cisco-core", "cisco-enterprise", "cisco-secops", "cisco-advanced", "umbrella", "physics-of-hacking"],
   },
 ];
 
@@ -106,6 +106,7 @@ const SECURITY_EPOCHS = new Set([
   "mitre", "mitre-atlas", "owasp-llm",
   "quantum-intro", "quantum-1", "quantum-2", "quantum-3", "quantum-5",
   "cisco-core", "cisco-enterprise", "cisco-secops", "cisco-advanced", "umbrella",
+  "physics-of-hacking",
 ]);
 const NON_SECURITY_EPOCHS = new Set([
   "tapestry", "nails", "hair-color", "hair-styling",

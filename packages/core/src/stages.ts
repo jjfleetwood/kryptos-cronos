@@ -16,6 +16,7 @@ import { quantum4Epoch, quantum4Stages } from "./quantum-4";
 import { quantum5Epoch, quantum5Stages } from "./quantum-5";
 import { quantumIntroEpoch, quantumIntroStages } from "./quantum-intro";
 import { computingFoundationsEpoch, computingFoundationsStages } from "./computing-foundations";
+import { physicsOfHackingEpoch, physicsOfHackingStages } from "./physics-of-hacking";
 import { emergingTechEpoch, emergingTechStages } from "./emerging-tech";
 import { cisco2Stages } from "./cisco-2";
 import { cisco3Stages } from "./cisco-3";
@@ -106,6 +107,7 @@ export const epochs: EpochConfig[] = [
   quantum5Epoch,
   quantumIntroEpoch,
   computingFoundationsEpoch,
+  physicsOfHackingEpoch,
   emergingTechEpoch,
   umbrellaEpoch,
   tapestryEpoch,
@@ -146,6 +148,7 @@ export const stages: StageConfig[] = [
   ...quantum5Stages,
   ...quantumIntroStages,
   ...computingFoundationsStages,
+  ...physicsOfHackingStages,
   ...emergingTechStages,
   ...umbrellaStages,
   ...tapestryStages,
