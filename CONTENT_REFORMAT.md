@@ -41,7 +41,7 @@
 - [x] emerging-tech — ALL 10 DONE (emerging-01..10) ✅
 - [x] cisco-2 — ALL 13 DONE (stage-m13..m25) ✅
 - [x] cisco-3 — ALL 8 DONE (stage-m26..m33) ✅
-- [ ] cisco-4 — stage-m34..m38 (5)
+- [x] cisco-4 — ALL 5 DONE (stage-m34..m38) ✅
 - [ ] cisco-5 — stage-m39..m50 (12)
 - [ ] umbrella — umbrella-01..10 (10)
 - [ ] stages.ts (ancient) — stage-m01..m05 ✅; remaining stage-01..12 + stage-m06..m12 (19)
