@@ -4,6 +4,7 @@ import { redis } from "@/lib/redis";
 import { hashPassword, PBKDF2_ITERATIONS } from "@/lib/crypto-utils";
 import { signSessionToken, sessionCookieOptions } from "@/lib/server-session";
 import { supabaseAdmin, createSupabaseServerClient } from "@/lib/supabase";
+import { getClientIp } from "@/lib/client-ip";
 
 async function isRateLimited(ip: string): Promise<boolean> {
   const key = `rate:login:${ip}`;
@@ -35,7 +36,7 @@ function safeCompare(a: string, b: string): boolean {
 }
 
 export async function POST(req: NextRequest) {
-  const ip = req.headers.get("x-real-ip") ?? req.headers.get("x-forwarded-for")?.split(",")[0].trim() ?? "unknown";
+  const ip = getClientIp(req);
 
   const body = await req.json().catch(() => null);
   if (!body?.username || !body?.password || typeof body.username !== "string" || typeof body.password !== "string") {

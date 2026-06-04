@@ -6,6 +6,14 @@ import { getAuthedUsername } from "@/lib/api-auth";
 import { awardStageInRedis } from "@/lib/server-progress";
 import { canAccessStage } from "@/lib/access";
 import { redis } from "@/lib/redis";
+import { isRateLimited } from "@/lib/rate-limit";
+import { getClientIp } from "@/lib/client-ip";
+
+function safeFlagEqual(a: string, b: string): boolean {
+  const ab = Buffer.from(a);
+  const bb = Buffer.from(b);
+  return ab.length === bb.length && timingSafeEqual(ab, bb);
+}
 import {
   computeStageScore, computeBonusXp, updateSkillLevel,
   getHintsUsed, getWrongAttempts, trackWrongAttempt, getRecommendedNext,
@@ -53,7 +61,14 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ correct: false }, { status: 403 });
   }
 
-  const correct = body.flag.trim() === correctFlag;
+  // Throttle flag-submission attempts (per user+stage, or per IP+stage if anon)
+  // to prevent brute-forcing and timing harvesting.
+  const rlId = `${username ?? getClientIp(req)}:${body.stageId}`;
+  if (await isRateLimited("flag", rlId, 30, 600)) {
+    return NextResponse.json({ correct: false, error: "Too many attempts. Slow down." }, { status: 429 });
+  }
+
+  const correct = safeFlagEqual(body.flag.trim(), correctFlag);
   if (!correct) {
     if (username) {
       trackWrongAttempt(username, stage.id).catch(() => {});
@@ -75,7 +90,13 @@ export async function POST(req: NextRequest) {
       getWrongAttempts(username, stage.id),
     ]);
 
-    const stageScore = computeStageScore(timeTakenMs, hintsUsed, wrongAttempts);
+    // Clean-solve bonus from SERVER-tracked signals only (hints + wrong attempts).
+    // Client-supplied timeTakenMs is deliberately NOT used for scoring — a client
+    // could claim an instant solve to inflate the bonus. A neutral 10-min value is
+    // passed so the bonus reflects a hint-free, error-free solve, not a fast one.
+    // (timeTakenMs still drives only the self-imposed time PENALTY below.)
+    const NEUTRAL_TIME_MS = 10 * 60 * 1000;
+    const stageScore = computeStageScore(NEUTRAL_TIME_MS, hintsUsed, wrongAttempts);
     const bonusXp = computeBonusXp(stageScore, stage.xp);
 
     const progress = await awardStageInRedis(username, stage.id, stage.badge.id, timePenaltyXp, bonusXp);

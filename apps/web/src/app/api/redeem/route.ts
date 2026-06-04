@@ -1,10 +1,16 @@
 import { NextRequest, NextResponse } from "next/server";
 import { redis } from "@/lib/redis";
 import { getAuthedUsername } from "@/lib/api-auth";
+import { isRateLimited } from "@/lib/rate-limit";
 
 export async function POST(req: NextRequest) {
   const username = await getAuthedUsername(req);
   if (!username) return NextResponse.json({ error: "Sign in to redeem a code." }, { status: 401 });
+
+  // Throttle redemption attempts per user to prevent brute-forcing voucher codes.
+  if (await isRateLimited("redeem", username.toLowerCase(), 10, 3600)) {
+    return NextResponse.json({ error: "Too many attempts. Try again later." }, { status: 429 });
+  }
 
   const { code } = await req.json() as { code?: string };
   if (!code) return NextResponse.json({ error: "No code provided." }, { status: 400 });

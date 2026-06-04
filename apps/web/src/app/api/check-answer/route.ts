@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from "next/server";
 import { quizStage01 } from "@kryptos/core/quiz-stage-01";
 import { getAuthedUsername } from "@/lib/api-auth";
 import { awardStageInRedis, awardQuizStageInRedis } from "@/lib/server-progress";
+import { isRateLimited } from "@/lib/rate-limit";
+import { getClientIp } from "@/lib/client-ip";
 import { getStage } from "@kryptos/core/stages";
 import { canAccessStage } from "@/lib/access";
 import {
@@ -25,6 +27,13 @@ export async function POST(req: NextRequest) {
   }
 
   const username = await getAuthedUsername(req);
+
+  // Throttle answer submissions (per user+stage, or per IP+stage if anon).
+  const rlId = `${username ?? getClientIp(req)}:${body.stageId}`;
+  if (await isRateLimited("answer", rlId, 60, 600)) {
+    return NextResponse.json({ correct: false, error: "Too many attempts. Slow down." }, { status: 429 });
+  }
+
   if (!await canAccessStage(body.stageId, username)) {
     return NextResponse.json({ correct: false }, { status: 403 });
   }

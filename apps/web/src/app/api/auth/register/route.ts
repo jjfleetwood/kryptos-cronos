@@ -4,6 +4,7 @@ import { hashPassword, generateSalt, PBKDF2_ITERATIONS } from "@/lib/crypto-util
 import { signSessionToken, sessionCookieOptions } from "@/lib/server-session";
 import { createHmac } from "crypto";
 import { supabaseAdmin } from "@/lib/supabase";
+import { getClientIp } from "@/lib/client-ip";
 
 function escapeHtml(s: string): string {
   return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
@@ -17,7 +18,7 @@ async function isRateLimited(ip: string): Promise<boolean> {
 }
 
 export async function POST(req: NextRequest) {
-  const ip = req.headers.get("x-real-ip") ?? req.headers.get("x-forwarded-for")?.split(",")[0].trim() ?? "unknown";
+  const ip = getClientIp(req);
 
   if (await isRateLimited(ip)) {
     return NextResponse.json({ error: "Too many requests. Try again later." }, { status: 429 });

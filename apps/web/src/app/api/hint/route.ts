@@ -1,23 +1,23 @@
 import { NextRequest, NextResponse } from "next/server";
-import { redis } from "@/lib/redis";
 import { getAuthedUsername } from "@/lib/api-auth";
 import { trackHint, getSkillLevel, adaptiveCooldownSeconds } from "@/lib/difficulty";
-
-async function isRateLimited(ip: string): Promise<boolean> {
-  const key = `rate:hint:${ip}`;
-  const count = await redis.incr(key);
-  if (count === 1) await redis.expire(key, 900); // 15-minute window
-  return count > 15;
-}
+import { isRateLimited } from "@/lib/rate-limit";
+import { getClientIp } from "@/lib/client-ip";
 
 export async function POST(req: NextRequest) {
-  const ip = req.headers.get("x-real-ip") ?? req.headers.get("x-forwarded-for")?.split(",")[0].trim() ?? "unknown";
-
-  if (await isRateLimited(ip)) {
+  // ARIA calls the paid Claude API — require a signed-in user and rate-limit per
+  // user (non-spoofable), with a per-IP backstop, to prevent cost abuse.
+  const username = await getAuthedUsername(req);
+  if (!username) {
+    return NextResponse.json({ error: "Sign in to use ARIA." }, { status: 401 });
+  }
+  const ip = getClientIp(req);
+  if (
+    (await isRateLimited("hint:user", username, 30, 900)) ||
+    (await isRateLimited("hint:ip", ip, 60, 900))
+  ) {
     return NextResponse.json({ error: "Too many requests. Take a breather and try again." }, { status: 429 });
   }
-
-  const username = await getAuthedUsername(req);
 
   const body = await req.json().catch(() => null) as {
     message?: string;
