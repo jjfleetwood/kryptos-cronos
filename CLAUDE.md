@@ -2,7 +2,7 @@
 
 ## What This Is
 
-Gamified cybersecurity + AI training platform. 38 curriculum epochs, 458 CTF/quiz stages, live leaderboard, admin dashboard, 24 downloadable MCP server templates. Built with Next.js 16 / React 19 / TypeScript / Tailwind CSS / Upstash Redis / Resend.
+Gamified cybersecurity + AI training platform. 39 curriculum epochs, 468 CTF/quiz stages, live leaderboard, admin dashboard, 24 downloadable MCP server templates. Built with Next.js 16 / React 19 / TypeScript / Tailwind CSS / Upstash Redis / Resend.
 
 **Live:** kryptoscronos.com  
 **Repo:** github.com/jjfleetwood/kryptos-cronos  
@@ -99,6 +99,7 @@ CI runs on: pushes to `master` and PRs targeting `master`. Config: `.github/work
 /certs                    → CompTIA Security+ SY0-701 + ISC² CC readiness rings, per-domain progress
 /resume                   → resume builder — skills auto-suggested from completed epochs, PDF export
 /cyberops                 → Cisco CyberOps Associate (CBROPS 200-201) exam readiness dashboard
+/pqc                      → PQC migration readiness tracker (NSA/CISA/NIST roadmap, 6 phases; framework, not a cert)
 /shop                     → avatar item shop (🛒 Shop tab) + daily trophy showcase (💎 Treasures tab)
 /trophies                 → owned trophy collection vault (admin: full library with supply counters)
 /avatar                   → avatar customization — equip/unequip owned items
@@ -135,7 +136,8 @@ Back navigation: `BackLink` uses `backHref` prop (passed from `StageContainer`) 
 | 13 | `quantum-1` | Quantum Era: Threats | 10 | quantum-01 → quantum-10 | Cyan |
 | 14 | `quantum-2` | Quantum Era: PQC | 10 | quantum-b01 → quantum-b10 | Teal |
 | 15 | `quantum-3` | Quantum Era: QKD | 10 | quantum-c01 → quantum-c10 | Sky |
-| 37 | `quantum-4` | Quantum Risk Management | 10 | quantum-d01 → quantum-d10 | Emerald |
+| 37 | `quantum-4` | Quantum Risk Management | 10 | quantum-d01 → quantum-d10 | Indigo |
+| 39 | `quantum-5` | Quantum-Safe Migration Engineering | 10 | quantum-e01 → quantum-e10 | Blue |
 | 38 | `emerging-tech` | Emerging Tech & Deep Learning Risk | 10 | emerging-01 → emerging-10 | Violet |
 | 16 | `umbrella` | Cisco Umbrella / SASE | 10 | umbrella-01 → umbrella-10 | Green |
 | 17 | `tapestry` | Tapestry | 12 | tapestry-01 → tapestry-12 | Yellow |
@@ -158,7 +160,7 @@ Back navigation: `BackLink` uses `backHref` prop (passed from `StageContainer`) 
 | 35 | `french-basics` | French Basics | 20 | french-01 → french-20 | Sky |
 | 36 | `italian-basics` | Italian Basics | 20 | italian-01 → italian-20 | Green |
 
-**Track groups (stages page — public):** Core Security · Tech Audit · Threat Frameworks · AI Security · Quantum Era (quantum-1/2/3/4 + emerging-tech) · Defend the Enterprise  
+**Track groups (stages page — public):** Core Security · Tech Audit · Threat Frameworks · AI Security · Quantum Era (quantum-1/2/3/4/5) · Defend the Enterprise  
 **Extended curriculum (curious group only):** Crafts · Driving · Baseball · Travel  
 **Hidden from public nav (accessible via direct URL):** all extended tracks
 
@@ -373,7 +375,7 @@ Local dev: `.env.local` in `app/` (gitignored).
 - ✅ **quantum-4 epoch — Quantum Risk Management** (10 CTF stages, quantum-d01..d10, emerald): CBOM / Cryptographic Bill of Materials, Harvest Now Decrypt Later (HNDL) threat assessment, NIST FIPS 203/204/205 deployment, CNSA 2.0 NSS mandate, CISA migration roadmap (5-phase), sector risk (finance/healthcare/SCADA/blockchain), board briefing + SEC disclosure, hybrid cryptography (X25519+ML-KEM-768), quantum-safe architecture (crypto agility, Let's Encrypt model), third-party quantum supply chain risk
 - ✅ **emerging-tech epoch — Emerging Tech & Deep Learning Risk** (10 quiz stages, emerging-01..10, violet): adversarial examples + physical-world attacks, foundation model supply chain (BadNets, pickle RCE), federated learning gradient inversion + DP-SGD, deepfakes + C2PA + $25M Hong Kong fraud, AI-augmented threat actors (nation-state LLM use), edge AI model extraction + TEE defense, EU AI Act + NIST AI RMF + CFPB ECOA governance, agentic AI + MCP prompt injection, quantum-AI convergence (NISQ era + CRQC HNDL risk to models), ERM integration (WEF #1 risk, scenario planning, KRIs)
 - ✅ **cert-domains** — quantum-d01..d10 and emerging-01..10 mapped to CISA/CISM/CRISC/AI+; quantum-01..10 and quantum-b01..b10 merged with CompTIA AI+ domains (eliminated duplicate section); AI+ stage count now 97 stages
-- ✅ 458 stages total, 38 epochs
+- ✅ 458 stages total, 38 epochs (now 468 / 39 with quantum-5)
 
 ## What's Shipped (v1.21.0)
 
