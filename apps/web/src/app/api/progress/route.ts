@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createHmac, timingSafeEqual } from "crypto";
 import { redis } from "@/lib/redis";
+import { stages } from "@kryptos/core/stages";
+import { stageFlags } from "@kryptos/core/stage-flags";
 import { getAuthedUsername } from "@/lib/api-auth";
 import { awardStageInRedis } from "@/lib/server-progress";
 
@@ -52,7 +54,7 @@ export async function GET(req: NextRequest) {
 }
 
 export async function POST(req: NextRequest) {
-  // Session cookie required — username is taken from the verified token, not the body
+  // Identity is taken from the verified token, never the body.
   const username = await getAuthedUsername(req);
   if (!username) {
     return NextResponse.json({ error: "unauthorized" }, { status: 401 });
@@ -63,6 +65,24 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "stageId required" }, { status: 400 });
   }
 
-  const progress = await awardStageInRedis(username, body.stageId, body.badgeId ?? undefined);
+  const stage = stages.find((s) => s.id === body.stageId);
+  if (!stage) {
+    return NextResponse.json({ error: "unknown stage" }, { status: 400 });
+  }
+
+  // SECURITY: any stage with a server-side flag must be completed via
+  // /api/check-flag, which verifies the submitted flag. Refusing them here
+  // prevents a client from forging completion — and the XP, leaderboard rank,
+  // badges, and certificate-readiness that flow from it — by simply naming a
+  // stageId. (Only genuinely flag-less, command-solved stages reach the award.)
+  if (stageFlags[body.stageId]) {
+    return NextResponse.json(
+      { error: "This stage is completed by submitting its flag." },
+      { status: 403 }
+    );
+  }
+
+  // Grant only the stage's own badge — never an arbitrary client-supplied id.
+  const progress = await awardStageInRedis(username, stage.id, stage.badge?.id);
   return NextResponse.json({ ok: true, progress });
 }
