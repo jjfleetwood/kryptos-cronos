@@ -39,7 +39,7 @@
 - [x] quantum-3 — ALL 10 DONE (quantum-c01..c10) ✅
 - [x] quantum-4 — ALL 10 DONE (quantum-d01..d10) ✅
 - [x] emerging-tech — ALL 10 DONE (emerging-01..10) ✅
-- [ ] cisco-2 — stage-m13..m25 (13)
+- [x] cisco-2 — ALL 13 DONE (stage-m13..m25) ✅
 - [ ] cisco-3 — stage-m26..m33 (8)
 - [ ] cisco-4 — stage-m34..m38 (5)
 - [ ] cisco-5 — stage-m39..m50 (12)

@@ -13,7 +13,7 @@
 import fs from "node:fs";
 import path from "node:path";
 
-const DATA_DIR = "src/data";
+const DATA_DIR = "../../packages/core/src"; // content moved to @kryptos/core in the monorepo
 const BULLET = "\\n- "; // the 4 source characters: backslash, n, dash, space
 const THRESHOLD = 3; // >= this many bullet lines across the 3 sections => "done"
 
