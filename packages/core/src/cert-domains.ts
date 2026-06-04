@@ -31,13 +31,12 @@ export type CertDomainDef = {
 // ─── Domain definitions ────────────────────────────────────────────────────────
 
 export const COMPTIA_DOMAINS: CertDomainDef[] = [
-  { id: "general-security",      name: "General Security Concepts",               weight: 12 },
+  { id: "general-security",      name: "General Security Concepts",               weight: 12 }, // SY0-701 Domain 1 — includes cryptographic solutions (obj 1.4)
   { id: "threats-vulns",         name: "Threats, Vulnerabilities & Mitigations",  weight: 22 },
   { id: "security-architecture", name: "Security Architecture",                   weight: 18 },
   { id: "security-operations",   name: "Security Operations",                     weight: 28 },
   { id: "security-program",      name: "Security Program Management & Oversight", weight: 20 },
-  { id: "cryptography",          name: "Cryptography & PKI",                      weight: 12 },
-];
+]; // 5 official SY0-701 domains, weights sum to 100
 
 export const ISC2_DOMAINS: CertDomainDef[] = [
   { id: "security-principles",    name: "Security Principles",                         weight: 26 },
@@ -214,7 +213,7 @@ export const CERT_DOMAINS: Record<string, CertDomain[]> = {
   "bt-11": combine(sp("general-security"),           cc("network-security"),    np("net-security"),      cisa("cisa-protection"), crisc("crisc-it-security")),
   "bt-12": combine(sp("general-security"),           cc("security-principles"), np("net-fundamentals"),  cisa("cisa-protection"), crisc("crisc-it-security")),
   "bt-13": combine(sp("general-security"),           cc("network-security"),    np("net-fundamentals"),  cisa("cisa-protection"), crisc("crisc-it-security")),
-  "bt-14": combine(sp("cryptography"),               cc("network-security"),    np("net-security"),      cisa("cisa-protection"), crisc("crisc-it-security")),
+  "bt-14": combine(sp("general-security"),               cc("network-security"),    np("net-security"),      cisa("cisa-protection"), crisc("crisc-it-security")),
   "bt-15": combine(sp("general-security"),           cc("security-principles"), np("net-security"),      cisa("cisa-protection"), crisc("crisc-it-security")),
   "bt-16": combine(sp("general-security"),           cc("network-security"),    np("net-fundamentals"),  cisa("cisa-protection"), crisc("crisc-it-security")),
   "bt-17": combine(sp("general-security"),           cc("network-security"),    np("net-operations"),    cisa("cisa-operations"), crisc("crisc-it-security")),
@@ -240,7 +239,7 @@ export const CERT_DOMAINS: Record<string, CertDomain[]> = {
   "stage-02": combine(sp("threats-vulns", "general-security"), cc("security-principles"), cisa("cisa-protection"),           cism("cism-risk"),                 crisc("crisc-risk-assessment")),
   "stage-03": combine(sp("threats-vulns"),                  cc("security-principles", "access-controls"), cisa("cisa-protection"), cism("cism-risk"), crisc("crisc-risk-assessment"), cy("cysa-vuln-mgmt")),
   "stage-04": combine(sp("threats-vulns"),                  cc("security-principles"),    cisa("cisa-protection"),           cism("cism-risk"),                 crisc("crisc-risk-assessment"), cy("cysa-vuln-mgmt")),
-  "stage-05": combine(sp("cryptography", "threats-vulns"),  cc("security-principles", "network-security"), cisa("cisa-protection"), cism("cism-risk"), crisc("crisc-risk-assessment")),
+  "stage-05": combine(sp("general-security", "threats-vulns"),  cc("security-principles", "network-security"), cisa("cisa-protection"), cism("cism-risk"), crisc("crisc-risk-assessment")),
   "stage-06": combine(sp("threats-vulns"),                  cc("access-controls"),        cisa("cisa-protection"),           cism("cism-risk"),                 crisc("crisc-risk-assessment"), cy("cysa-vuln-mgmt")),
   "stage-07": combine(sp("general-security", "threats-vulns"), cc("access-controls"),     cisa("cisa-protection"),           cism("cism-risk"),                 crisc("crisc-risk-assessment")),
   "stage-08": combine(sp("threats-vulns"),                  cc("security-principles"),    cisa("cisa-protection", "cisa-operations"), cism("cism-risk", "cism-incident"), crisc("crisc-risk-assessment"), cy("cysa-vuln-mgmt")),
@@ -264,7 +263,7 @@ export const CERT_DOMAINS: Record<string, CertDomain[]> = {
   "stage-m12": combine(sp("threats-vulns"), cc("network-security"), np("net-implementations"), cy("cysa-vuln-mgmt"), cisa("cisa-protection"), cism("cism-risk"), crisc("crisc-risk-assessment", "crisc-it-security")), // IOS DHCP remote code execution
 
   // ── cisco-enterprise (stage-m13 → stage-m25) — enterprise attack campaigns ───
-  "stage-m13": combine(sp("security-architecture", "threats-vulns", "cryptography"), cc("network-security"), np("net-implementations"), cisa("cisa-protection"), cism("cism-risk"), crisc("crisc-risk-assessment", "crisc-it-security")), // ASA IKEv1/IKEv2 VPN heap overflow RCE
+  "stage-m13": combine(sp("security-architecture", "threats-vulns", "general-security"), cc("network-security"), np("net-implementations"), cisa("cisa-protection"), cism("cism-risk"), crisc("crisc-risk-assessment", "crisc-it-security")), // ASA IKEv1/IKEv2 VPN heap overflow RCE
   "stage-m14": combine(sp("threats-vulns", "security-architecture"), cc("network-security"), np("net-implementations", "net-troubleshooting"), cisa("cisa-protection"), cism("cism-risk"), crisc("crisc-risk-assessment", "crisc-it-security")), // IOS CMP Telnet RCE
   "stage-m15": combine(sp("threats-vulns"), cc("network-security"), np("net-troubleshooting"), cisa("cisa-protection"), cism("cism-risk"), crisc("crisc-risk-assessment", "crisc-it-security")), // IOS XR CDP format string
   "stage-m16": combine(sp("threats-vulns", "security-architecture"), cc("network-security"), np("net-security", "net-implementations"), cisa("cisa-protection"), cism("cism-risk"), crisc("crisc-risk-assessment", "crisc-it-security")), // RV340/RV345 web UI RCE
@@ -275,7 +274,7 @@ export const CERT_DOMAINS: Record<string, CertDomain[]> = {
   "stage-m21": combine(sp("threats-vulns", "security-operations"), cc("network-security"), np("net-troubleshooting"), cisa("cisa-operations", "cisa-protection"), cism("cism-risk", "cism-incident"), crisc("crisc-risk-response", "crisc-it-security")), // ASA/FTD management DoS (availability)
   "stage-m22": combine(sp("threats-vulns", "security-operations"), cc("network-security"), np("net-troubleshooting"), cisa("cisa-operations", "cisa-protection"), cism("cism-incident", "cism-risk"), crisc("crisc-risk-response", "crisc-it-security")), // ASA/FTD persistent RCE (ArcaneDoor implant)
   "stage-m23": combine(sp("threats-vulns", "security-architecture"), cc("access-controls", "network-security"), np("net-operations"), cisa("cisa-protection"), cism("cism-risk"), crisc("crisc-risk-assessment", "crisc-it-security")), // SD-WAN vManage SQL injection
-  "stage-m24": combine(sp("threats-vulns", "cryptography"), cc("network-security"), np("net-implementations"), cisa("cisa-protection"), cism("cism-risk"), crisc("crisc-risk-assessment", "crisc-it-security")), // IOS GET VPN GDOI group-key RCE
+  "stage-m24": combine(sp("threats-vulns", "general-security"), cc("network-security"), np("net-implementations"), cisa("cisa-protection"), cism("cism-risk"), crisc("crisc-risk-assessment", "crisc-it-security")), // IOS GET VPN GDOI group-key RCE
   "stage-m25": combine(sp("threats-vulns", "security-operations"), cc("access-controls", "network-security"), np("net-troubleshooting"), cisa("cisa-protection", "cisa-operations"), cism("cism-risk"), crisc("crisc-risk-assessment", "crisc-it-security")), // ASA web services path traversal + DoS
 
   // ── cisco-secops (stage-m26 → stage-m38) — security operations ───────────────
@@ -303,9 +302,9 @@ export const CERT_DOMAINS: Record<string, CertDomain[]> = {
   "stage-m45": combine(sp("security-architecture"), cc("access-controls"), np("net-operations"), cy("cysa-security-ops"), cisa("cisa-acquisition", "cisa-operations"), cism("cism-program"), crisc("crisc-it-security")), // NETCONF/YANG/gRPC automation attack surface
   "stage-m46": combine(sp("security-operations", "threats-vulns"), cc("security-operations-cc"), np("net-troubleshooting"), cy("cysa-security-ops", "cysa-ir"), cisa("cisa-operations"), cism("cism-incident"), crisc("crisc-risk-response")), // SOC phishing→domain-compromise kill chain
   "stage-m47": combine(sp("security-operations", "security-architecture"), cc("security-operations-cc"), np("net-troubleshooting"), cy("cysa-security-ops"), cisa("cisa-operations"), cism("cism-program", "cism-incident"), crisc("crisc-risk-response")), // CyberOps SOC competencies, monitoring architecture
-  "stage-m48": combine(sp("security-architecture", "cryptography"), cc("network-security"), np("net-implementations"), cy("cysa-security-ops"), cisa("cisa-protection", "cisa-acquisition"), cism("cism-program"), crisc("crisc-it-security")), // Silicon One ASIC: P4 integrity, MACsec hw crypto
+  "stage-m48": combine(sp("security-architecture", "general-security"), cc("network-security"), np("net-implementations"), cy("cysa-security-ops"), cisa("cisa-protection", "cisa-acquisition"), cism("cism-program"), crisc("crisc-it-security")), // Silicon One ASIC: P4 integrity, MACsec hw crypto
   "stage-m49": combine(sp("security-architecture", "threats-vulns"), cc("network-security"), np("net-implementations"), cy("cysa-vuln-mgmt"), cisa("cisa-acquisition", "cisa-protection"), cism("cism-program", "cism-risk"), crisc("crisc-it-security", "crisc-risk-assessment")), // Silicon One P4, supply-chain integrity, control plane
-  "stage-m50": combine(sp("cryptography", "security-architecture"), cc("network-security"), np("net-implementations"), cy("cysa-security-ops"), cisa("cisa-protection"), cism("cism-program"), crisc("crisc-it-security"), ai("aiplus-security", "aiplus-infrastructure")), // Quantum-safe networking: PQC, QKD, HNDL
+  "stage-m50": combine(sp("general-security", "security-architecture"), cc("network-security"), np("net-implementations"), cy("cysa-security-ops"), cisa("cisa-protection"), cism("cism-program"), crisc("crisc-it-security"), ai("aiplus-security", "aiplus-infrastructure")), // Quantum-safe networking: PQC, QKD, HNDL
 
   // ── umbrella (umbrella-01 → umbrella-10) — Cisco Umbrella/SASE ───────────────
   "umbrella-01": combine(sp("security-architecture"), cc("network-security"), np("net-security"), cy("cysa-security-ops"), cisa("cisa-protection"), cism("cism-program"), crisc("crisc-it-security")),
@@ -340,7 +339,7 @@ export const CERT_DOMAINS: Record<string, CertDomain[]> = {
   // CISA Domain 3 (Acquisition/Dev/Impl) + Domain 5 (Protection)
   // CISM Domain 3 (Program) | CRISC Domain 2 (Risk Assessment)
   "audit-t01": combine(sp("threats-vulns", "security-architecture"), cc("access-controls"), cy("cysa-vuln-mgmt"), cisa("cisa-acquisition", "cisa-protection"), cism("cism-program"), crisc("crisc-risk-assessment")), // OWASP API Top 10 — BOLA
-  "audit-t02": combine(sp("security-architecture", "cryptography"), cc("access-controls"), cy("cysa-vuln-mgmt"), cisa("cisa-protection"), cism("cism-program"), crisc("crisc-it-security")), // Secrets management — Vault, rotation
+  "audit-t02": combine(sp("security-architecture", "general-security"), cc("access-controls"), cy("cysa-vuln-mgmt"), cisa("cisa-protection"), cism("cism-program"), crisc("crisc-it-security")), // Secrets management — Vault, rotation
   "audit-t03": combine(sp("security-architecture", "security-operations"), cc("access-controls"), cy("cysa-security-ops"), cisa("cisa-governance", "cisa-operations"), cism("cism-program"), crisc("crisc-it-security")), // AWS SCPs, Config Rules, CloudTrail
   "audit-t04": combine(sp("security-architecture"), cc("access-controls"), cy("cysa-vuln-mgmt"), cisa("cisa-protection"), cism("cism-program"), crisc("crisc-risk-assessment")), // IAM privilege analysis — least privilege
   "audit-t05": combine(sp("security-architecture", "threats-vulns"), cc("access-controls"), cy("cysa-vuln-mgmt"), cisa("cisa-acquisition", "cisa-protection"), cism("cism-program"), crisc("crisc-risk-assessment")), // Container security — image scan & runtime
@@ -391,7 +390,7 @@ export const CERT_DOMAINS: Record<string, CertDomain[]> = {
   "mitre-05": combine(sp("security-operations", "threats-vulns"), cc("security-operations-cc"), cy("cysa-security-ops"), cisa("cisa-operations"), cism("cism-incident"), crisc("crisc-risk-response")), // TA0003 Persistence (run keys, scheduled tasks)
   "mitre-06": combine(sp("threats-vulns", "security-operations"), cc("access-controls", "security-operations-cc"), cy("cysa-security-ops"), cisa("cisa-protection"), cism("cism-incident"), crisc("crisc-risk-response")), // TA0004 Privilege Escalation
   "mitre-07": combine(sp("security-operations", "threats-vulns"), cc("security-operations-cc"), cy("cysa-security-ops"), cisa("cisa-operations"), cism("cism-incident"), crisc("crisc-risk-response")), // TA0005 Defense Evasion (LOLBins)
-  "mitre-08": combine(sp("threats-vulns", "cryptography"), cc("access-controls"), cy("cysa-security-ops"), cisa("cisa-protection"), cism("cism-incident"), crisc("crisc-risk-response")), // TA0006 Credential Access (Mimikatz)
+  "mitre-08": combine(sp("threats-vulns", "general-security"), cc("access-controls"), cy("cysa-security-ops"), cisa("cisa-protection"), cism("cism-incident"), crisc("crisc-risk-response")), // TA0006 Credential Access (Mimikatz)
   "mitre-09": combine(sp("security-operations", "threats-vulns"), cc("access-controls", "network-security"), np("net-security"), cy("cysa-security-ops"), cisa("cisa-operations"), cism("cism-incident"), crisc("crisc-risk-response")), // TA0008 Lateral Movement (Pass-the-Hash)
   "mitre-10": combine(sp("security-operations", "threats-vulns"), cc("security-operations-cc"), cy("cysa-security-ops"), cisa("cisa-operations"), cism("cism-incident"), crisc("crisc-risk-response")), // TA0007+TA0009 Discovery & Collection
   "mitre-11": combine(sp("security-operations", "threats-vulns"), cc("security-operations-cc"), cy("cysa-security-ops", "cysa-ir"), cisa("cisa-protection", "cisa-operations"), cism("cism-incident"), crisc("crisc-risk-response")), // TA0010 Exfiltration (DLP evasion)
@@ -426,51 +425,51 @@ export const CERT_DOMAINS: Record<string, CertDomain[]> = {
   "llm-12": combine(sp("threats-vulns", "general-security"), cc("security-principles"), cy("cysa-vuln-mgmt"), cisa("cisa-protection"), cism("cism-risk"), crisc("crisc-risk-assessment"), ai("aiplus-security", "aiplus-infrastructure")),
 
   // ── quantum-1 (quantum-01 → quantum-10) — quantum threat landscape ────────────
-  "quantum-01": combine(sp("cryptography"), cc("security-principles"), cisa("cisa-protection"), cism("cism-risk"), crisc("crisc-it-security"), ai("aiplus-concepts", "aiplus-security")), // Superposition — quantum-threat foundation
-  "quantum-02": combine(sp("cryptography", "threats-vulns"), cc("security-principles"), cisa("cisa-protection"), cism("cism-risk"), crisc("crisc-risk-assessment"), ai("aiplus-security", "aiplus-concepts")), // Shor's algorithm (RSA/ECC killer)
-  "quantum-03": combine(sp("cryptography", "threats-vulns"), cc("security-principles"), cisa("cisa-protection"), cism("cism-risk"), crisc("crisc-risk-assessment"), ai("aiplus-security", "aiplus-concepts")), // Grover's algorithm (AES weakening)
-  "quantum-04": combine(sp("cryptography", "threats-vulns"), cc("security-principles"), cisa("cisa-protection"), cism("cism-risk"), crisc("crisc-risk-assessment"), ai("aiplus-security")), // HNDL — harvest now, decrypt later
-  "quantum-05": combine(sp("cryptography", "security-architecture"), cc("security-principles", "network-security"), cisa("cisa-protection"), cism("cism-risk"), crisc("crisc-it-security"), ai("aiplus-concepts")), // Entanglement — QKD/networking foundation
-  "quantum-06": combine(sp("cryptography"), cc("security-principles"), cisa("cisa-protection"), cism("cism-risk"), crisc("crisc-it-security"), ai("aiplus-concepts", "aiplus-infrastructure")), // NISQ — where we are now
-  "quantum-07": combine(sp("cryptography"), cc("security-principles"), cisa("cisa-protection"), cism("cism-risk"), crisc("crisc-it-security"), ai("aiplus-concepts", "aiplus-infrastructure")), // Quantum error correction
+  "quantum-01": combine(sp("general-security"), cc("security-principles"), cisa("cisa-protection"), cism("cism-risk"), crisc("crisc-it-security"), ai("aiplus-concepts", "aiplus-security")), // Superposition — quantum-threat foundation
+  "quantum-02": combine(sp("general-security", "threats-vulns"), cc("security-principles"), cisa("cisa-protection"), cism("cism-risk"), crisc("crisc-risk-assessment"), ai("aiplus-security", "aiplus-concepts")), // Shor's algorithm (RSA/ECC killer)
+  "quantum-03": combine(sp("general-security", "threats-vulns"), cc("security-principles"), cisa("cisa-protection"), cism("cism-risk"), crisc("crisc-risk-assessment"), ai("aiplus-security", "aiplus-concepts")), // Grover's algorithm (AES weakening)
+  "quantum-04": combine(sp("general-security", "threats-vulns"), cc("security-principles"), cisa("cisa-protection"), cism("cism-risk"), crisc("crisc-risk-assessment"), ai("aiplus-security")), // HNDL — harvest now, decrypt later
+  "quantum-05": combine(sp("general-security", "security-architecture"), cc("security-principles", "network-security"), cisa("cisa-protection"), cism("cism-risk"), crisc("crisc-it-security"), ai("aiplus-concepts")), // Entanglement — QKD/networking foundation
+  "quantum-06": combine(sp("general-security"), cc("security-principles"), cisa("cisa-protection"), cism("cism-risk"), crisc("crisc-it-security"), ai("aiplus-concepts", "aiplus-infrastructure")), // NISQ — where we are now
+  "quantum-07": combine(sp("general-security"), cc("security-principles"), cisa("cisa-protection"), cism("cism-risk"), crisc("crisc-it-security"), ai("aiplus-concepts", "aiplus-infrastructure")), // Quantum error correction
   "quantum-08": combine(sp("security-program"), cc("security-principles"), cisa("cisa-governance"), cism("cism-risk"), crisc("crisc-risk-assessment", "crisc-governance"), ai("aiplus-security")), // Organizational quantum-risk assessment
-  "quantum-09": combine(sp("cryptography", "security-architecture"), cc("security-principles"), cisa("cisa-protection"), cism("cism-risk"), crisc("crisc-it-security"), ai("aiplus-security", "aiplus-concepts")), // Quantum RNG — seeding crypto
+  "quantum-09": combine(sp("general-security", "security-architecture"), cc("security-principles"), cisa("cisa-protection"), cism("cism-risk"), crisc("crisc-it-security"), ai("aiplus-security", "aiplus-concepts")), // Quantum RNG — seeding crypto
   "quantum-10": combine(sp("security-program"), cc("security-principles"), cisa("cisa-governance"), cism("cism-risk"), crisc("crisc-governance", "crisc-risk-assessment"), ai("aiplus-concepts")), // Quantum timeline — when to act
 
   // ── quantum-2 (quantum-b01 → quantum-b10) — post-quantum cryptography ─────────
-  "quantum-b01": combine(sp("cryptography", "security-program"), cc("security-principles"), cisa("cisa-governance", "cisa-protection"), cism("cism-program"), crisc("crisc-governance"), ai("aiplus-security")), // NIST PQC standardization (governance)
-  "quantum-b02": combine(sp("cryptography"), cc("security-principles"), cisa("cisa-protection"), cism("cism-program"), crisc("crisc-it-security"), ai("aiplus-concepts")), // Learning With Errors — PQC math foundation
-  "quantum-b03": combine(sp("cryptography", "security-architecture"), cc("security-principles"), cisa("cisa-protection"), cism("cism-program"), crisc("crisc-it-security"), ai("aiplus-infrastructure")), // ML-KEM (Kyber) — FIPS 203 KEM
-  "quantum-b04": combine(sp("cryptography", "security-architecture"), cc("security-principles"), cisa("cisa-protection"), cism("cism-program"), crisc("crisc-it-security"), ai("aiplus-infrastructure")), // ML-DSA (Dilithium) — FIPS 204 signatures
-  "quantum-b05": combine(sp("cryptography", "security-architecture"), cc("security-principles"), cisa("cisa-protection"), cism("cism-program"), crisc("crisc-it-security"), ai("aiplus-infrastructure")), // SLH-DSA (SPHINCS+) — FIPS 205 hash signatures
-  "quantum-b06": combine(sp("cryptography", "security-architecture"), cc("security-principles"), cisa("cisa-protection"), cism("cism-program"), crisc("crisc-it-security"), ai("aiplus-infrastructure")), // FN-DSA (FALCON) — compact lattice signatures
-  "quantum-b07": combine(sp("cryptography", "security-architecture"), cc("security-principles"), cisa("cisa-protection", "cisa-operations"), cism("cism-program"), crisc("crisc-risk-response", "crisc-it-security"), ai("aiplus-infrastructure", "aiplus-security")), // Hybrid classical+PQC migration
-  "quantum-b08": combine(sp("cryptography", "security-architecture"), cc("network-security"), np("net-security"), cisa("cisa-protection"), cism("cism-program"), crisc("crisc-it-security"), ai("aiplus-infrastructure")), // Deploying PQC in TLS 1.3
-  "quantum-b09": combine(sp("cryptography", "security-program"), cc("security-principles"), cisa("cisa-audit-process", "cisa-protection"), cism("cism-program"), crisc("crisc-risk-assessment"), ai("aiplus-security")), // Crypto asset discovery / CBOM for migration
-  "quantum-b10": combine(sp("cryptography", "security-architecture"), cc("security-principles"), cy("cysa-vuln-mgmt"), cisa("cisa-protection"), cism("cism-program"), crisc("crisc-it-security"), ai("aiplus-infrastructure")), // PQC testing — validation, interop, side-channels
+  "quantum-b01": combine(sp("general-security", "security-program"), cc("security-principles"), cisa("cisa-governance", "cisa-protection"), cism("cism-program"), crisc("crisc-governance"), ai("aiplus-security")), // NIST PQC standardization (governance)
+  "quantum-b02": combine(sp("general-security"), cc("security-principles"), cisa("cisa-protection"), cism("cism-program"), crisc("crisc-it-security"), ai("aiplus-concepts")), // Learning With Errors — PQC math foundation
+  "quantum-b03": combine(sp("general-security", "security-architecture"), cc("security-principles"), cisa("cisa-protection"), cism("cism-program"), crisc("crisc-it-security"), ai("aiplus-infrastructure")), // ML-KEM (Kyber) — FIPS 203 KEM
+  "quantum-b04": combine(sp("general-security", "security-architecture"), cc("security-principles"), cisa("cisa-protection"), cism("cism-program"), crisc("crisc-it-security"), ai("aiplus-infrastructure")), // ML-DSA (Dilithium) — FIPS 204 signatures
+  "quantum-b05": combine(sp("general-security", "security-architecture"), cc("security-principles"), cisa("cisa-protection"), cism("cism-program"), crisc("crisc-it-security"), ai("aiplus-infrastructure")), // SLH-DSA (SPHINCS+) — FIPS 205 hash signatures
+  "quantum-b06": combine(sp("general-security", "security-architecture"), cc("security-principles"), cisa("cisa-protection"), cism("cism-program"), crisc("crisc-it-security"), ai("aiplus-infrastructure")), // FN-DSA (FALCON) — compact lattice signatures
+  "quantum-b07": combine(sp("general-security", "security-architecture"), cc("security-principles"), cisa("cisa-protection", "cisa-operations"), cism("cism-program"), crisc("crisc-risk-response", "crisc-it-security"), ai("aiplus-infrastructure", "aiplus-security")), // Hybrid classical+PQC migration
+  "quantum-b08": combine(sp("general-security", "security-architecture"), cc("network-security"), np("net-security"), cisa("cisa-protection"), cism("cism-program"), crisc("crisc-it-security"), ai("aiplus-infrastructure")), // Deploying PQC in TLS 1.3
+  "quantum-b09": combine(sp("general-security", "security-program"), cc("security-principles"), cisa("cisa-audit-process", "cisa-protection"), cism("cism-program"), crisc("crisc-risk-assessment"), ai("aiplus-security")), // Crypto asset discovery / CBOM for migration
+  "quantum-b10": combine(sp("general-security", "security-architecture"), cc("security-principles"), cy("cysa-vuln-mgmt"), cisa("cisa-protection"), cism("cism-program"), crisc("crisc-it-security"), ai("aiplus-infrastructure")), // PQC testing — validation, interop, side-channels
 
   // ── quantum-3 (quantum-c01 → quantum-c10) — quantum key distribution ──────────
-  "quantum-c01": combine(sp("cryptography", "security-architecture"), cc("security-principles", "network-security"), cisa("cisa-protection"), cism("cism-program"), crisc("crisc-it-security")), // QKD — security guaranteed by physics
-  "quantum-c02": combine(sp("cryptography", "security-architecture"), cc("network-security"), np("net-implementations"), cisa("cisa-protection"), cism("cism-program"), crisc("crisc-it-security")), // Trusted nodes, fiber & satellite QKD
-  "quantum-c03": combine(sp("cryptography", "threats-vulns"), cc("security-principles"), cisa("cisa-protection"), cism("cism-risk"), crisc("crisc-risk-assessment")), // State-sponsored quantum networks & SIGINT
-  "quantum-c04": combine(sp("security-architecture", "cryptography"), cc("security-principles"), cisa("cisa-protection"), cism("cism-program"), crisc("crisc-it-security")), // Crypto-agility — swap algorithms without downtime
-  "quantum-c05": combine(sp("cryptography", "security-architecture"), cc("network-security"), np("net-security", "net-implementations"), cisa("cisa-protection"), cism("cism-program"), crisc("crisc-it-security")), // WireGuard + ML-KEM hybrid key exchange
-  "quantum-c06": combine(sp("cryptography", "security-architecture"), cc("security-principles"), cisa("cisa-protection"), cism("cism-program"), crisc("crisc-it-security")), // Root CAs, cert chains & HSM firmware
-  "quantum-c07": combine(sp("cryptography", "security-architecture"), cc("security-principles"), cy("cysa-vuln-mgmt"), cisa("cisa-acquisition", "cisa-protection"), cism("cism-program"), crisc("crisc-it-security")), // Deploying PQC via Open Quantum Safe
-  "quantum-c08": combine(sp("cryptography", "security-program"), cc("security-principles"), cisa("cisa-audit-process", "cisa-protection"), cism("cism-program"), crisc("crisc-governance")), // FIPS 140-3 / CMVP validation
+  "quantum-c01": combine(sp("general-security", "security-architecture"), cc("security-principles", "network-security"), cisa("cisa-protection"), cism("cism-program"), crisc("crisc-it-security")), // QKD — security guaranteed by physics
+  "quantum-c02": combine(sp("general-security", "security-architecture"), cc("network-security"), np("net-implementations"), cisa("cisa-protection"), cism("cism-program"), crisc("crisc-it-security")), // Trusted nodes, fiber & satellite QKD
+  "quantum-c03": combine(sp("general-security", "threats-vulns"), cc("security-principles"), cisa("cisa-protection"), cism("cism-risk"), crisc("crisc-risk-assessment")), // State-sponsored quantum networks & SIGINT
+  "quantum-c04": combine(sp("security-architecture", "general-security"), cc("security-principles"), cisa("cisa-protection"), cism("cism-program"), crisc("crisc-it-security")), // Crypto-agility — swap algorithms without downtime
+  "quantum-c05": combine(sp("general-security", "security-architecture"), cc("network-security"), np("net-security", "net-implementations"), cisa("cisa-protection"), cism("cism-program"), crisc("crisc-it-security")), // WireGuard + ML-KEM hybrid key exchange
+  "quantum-c06": combine(sp("general-security", "security-architecture"), cc("security-principles"), cisa("cisa-protection"), cism("cism-program"), crisc("crisc-it-security")), // Root CAs, cert chains & HSM firmware
+  "quantum-c07": combine(sp("general-security", "security-architecture"), cc("security-principles"), cy("cysa-vuln-mgmt"), cisa("cisa-acquisition", "cisa-protection"), cism("cism-program"), crisc("crisc-it-security")), // Deploying PQC via Open Quantum Safe
+  "quantum-c08": combine(sp("general-security", "security-program"), cc("security-principles"), cisa("cisa-audit-process", "cisa-protection"), cism("cism-program"), crisc("crisc-governance")), // FIPS 140-3 / CMVP validation
   "quantum-c09": combine(sp("security-program"), cc("security-principles"), cisa("cisa-governance"), cism("cism-governance", "cism-program"), crisc("crisc-governance", "crisc-risk-response")), // CISO briefing, board reporting, budget
-  "quantum-c10": combine(sp("security-architecture", "cryptography"), cc("security-principles"), cisa("cisa-protection", "cisa-governance"), cism("cism-program"), crisc("crisc-it-security", "crisc-governance")), // End-to-end quantum-safe architecture
+  "quantum-c10": combine(sp("security-architecture", "general-security"), cc("security-principles"), cisa("cisa-protection", "cisa-governance"), cism("cism-program"), crisc("crisc-it-security", "crisc-governance")), // End-to-end quantum-safe architecture
 
   // ── quantum-4 (Risk Management): quantum-d01..d10 → CISA + CISM + CRISC + AI Security ──
   "quantum-d01": combine(sp("security-architecture"), cisa("cisa-protection", "cisa-operations"), cism("cism-program"), crisc("crisc-risk-assessment", "crisc-it-security"), ai("aiplus-security")),
   "quantum-d02": combine(sp("security-architecture"), cisa("cisa-protection", "cisa-operations"), cism("cism-program"), crisc("crisc-risk-assessment"), ai("aiplus-security")),
-  "quantum-d03": combine(sp("cryptography", "security-architecture"), cisa("cisa-protection"), cism("cism-program"), crisc("crisc-it-security"), ai("aiplus-security", "aiplus-infrastructure")),
-  "quantum-d04": combine(sp("cryptography", "security-architecture"), cisa("cisa-protection"), cism("cism-program"), crisc("crisc-risk-response", "crisc-it-security")),
+  "quantum-d03": combine(sp("general-security", "security-architecture"), cisa("cisa-protection"), cism("cism-program"), crisc("crisc-it-security"), ai("aiplus-security", "aiplus-infrastructure")),
+  "quantum-d04": combine(sp("general-security", "security-architecture"), cisa("cisa-protection"), cism("cism-program"), crisc("crisc-risk-response", "crisc-it-security")),
   "quantum-d05": combine(sp("security-architecture"), cisa("cisa-operations", "cisa-protection"), cism("cism-program"), crisc("crisc-risk-assessment", "crisc-risk-response")),
   "quantum-d06": combine(sp("security-architecture"), cisa("cisa-operations", "cisa-protection"), cism("cism-program"), crisc("crisc-risk-assessment")),
   "quantum-d07": combine(sp("security-architecture"), cisa("cisa-governance"), cism("cism-governance", "cism-program"), crisc("crisc-governance", "crisc-risk-assessment")),
-  "quantum-d08": combine(sp("cryptography", "security-architecture"), cisa("cisa-protection"), cism("cism-program"), crisc("crisc-it-security")),
-  "quantum-d09": combine(sp("cryptography", "security-architecture"), cisa("cisa-protection"), cism("cism-program"), crisc("crisc-it-security", "crisc-risk-response")),
+  "quantum-d08": combine(sp("general-security", "security-architecture"), cisa("cisa-protection"), cism("cism-program"), crisc("crisc-it-security")),
+  "quantum-d09": combine(sp("general-security", "security-architecture"), cisa("cisa-protection"), cism("cism-program"), crisc("crisc-it-security", "crisc-risk-response")),
   "quantum-d10": combine(sp("security-architecture"), cisa("cisa-operations", "cisa-protection"), cism("cism-program"), crisc("crisc-risk-assessment", "crisc-risk-response")),
 
   // ── emerging-tech (AI/Deep Learning Risk): emerging-01..10 → AI+ + MITRE ATLAS domains ──
@@ -598,7 +597,7 @@ const DOMAIN_SHORT: Record<string, string> = {
   // Security+
   "general-security": "General Concepts", "threats-vulns": "Threats & Vulns",
   "security-architecture": "Security Arch", "security-operations": "Security Ops",
-  "security-program": "Program Mgmt", "cryptography": "Cryptography",
+  "security-program": "Program Mgmt",
   // ISC² CC
   "security-principles": "Security Principles", "bc-dr-ir": "BC/DR & IR",
   "access-controls": "Access Controls", "network-security": "Network Security",
