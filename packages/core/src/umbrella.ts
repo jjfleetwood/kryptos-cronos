@@ -28,14 +28,14 @@ export const umbrellaStages: StageConfig[] = [
       year: 2023,
       overview: [
         "Cisco Umbrella (formerly OpenDNS) operates the world's largest commercial recursive DNS resolver, processing over 620 billion DNS queries daily from 190 countries. By sitting at the DNS layer, Umbrella can block malicious connections before they are established — no traffic inspection required.",
-        "Traditional security tools like firewalls and proxies only see traffic after a connection is made. Umbrella intercepts at the DNS resolution step, allowing it to block malware callbacks, phishing sites, and command-and-control infrastructure before any data moves. This makes it uniquely effective against threats that other tools miss.",
-        "Umbrella integrates Cisco Talos threat intelligence — the world's largest commercial threat intelligence team — to keep its blocklists current. When Talos identifies a new C2 domain, Umbrella blocks it globally within minutes, protecting all customers simultaneously.",
+        "Traditional tools like firewalls and proxies only see traffic after a connection is made, but Umbrella intercepts at the DNS resolution step:\n- It blocks malware callbacks, phishing sites, and command-and-control infrastructure before any data moves.\n- That makes it uniquely effective against threats other tools miss.",
+        "Umbrella integrates Cisco Talos threat intelligence — the world's largest commercial threat-intel team — to keep its blocklists current, so when Talos identifies a new C2 domain, Umbrella blocks it globally within minutes, protecting all customers at once.",
       ],
       technical: {
         title: "How Cisco Umbrella Intercepts DNS",
         body: [
-          "When an endpoint sends a DNS query, the request travels to the configured resolver. In an Umbrella-protected environment, all DNS traffic is forwarded to Umbrella's resolvers (208.67.222.222 / 208.67.220.220) via the roaming client, virtual appliance, or network-level DNS redirect.",
-          "Umbrella checks each query against its categorization database and Talos threat feeds. Allowed domains resolve normally. Blocked domains return NXDOMAIN or a redirect to a block page in under 2ms. Policy can be applied per user, group, network, or device.",
+          "When an endpoint sends a DNS query, the request travels to the configured resolver — and in an Umbrella-protected environment, all DNS traffic is forwarded to Umbrella's resolvers (208.67.222.222 / 208.67.220.220) via one of:\n- The roaming client.\n- A virtual appliance.\n- A network-level DNS redirect.",
+          "Umbrella then checks each query against its categorization database and Talos threat feeds:\n- Allowed domains resolve normally.\n- Blocked domains return NXDOMAIN or a redirect to a block page in under 2ms.\n- Policy can be applied per user, group, network, or device.",
           "The key advantage: Umbrella blocks at DNS before the TCP/UDP connection is ever established. Even encrypted HTTPS C2 traffic is blocked without decryption — the DNS query never resolves.",
         ],
         codeExample: {
@@ -209,15 +209,15 @@ export const umbrellaStages: StageConfig[] = [
       year: 2022,
       overview: [
         "DNS tunneling encodes arbitrary data inside DNS query and response packets, turning the DNS protocol into a covert communication channel. Because DNS traffic (UDP/53) is almost universally allowed through firewalls, and because DNS is inherently bidirectional, it creates a reliable tunnel even through the most restrictive network controls.",
-        "Tools like dnscat2 and iodine establish full TCP/IP tunnels over DNS: the client encodes data in subdomain labels (e.g., aGVsbG8=.tunnel.attacker.com) and the authoritative nameserver for attacker.com decodes them. An attacker with code execution on an air-gapped or firewalled machine can exfiltrate data, establish a reverse shell, or receive C2 commands — all over port 53.",
-        "Cisco Umbrella detects DNS tunneling through behavioral analysis: abnormally high query rates, unusually long subdomain labels, high entropy in query strings, and abnormal TXT/NULL record usage. A normal user generates ~200 DNS queries per day; a DNS tunnel generates thousands per minute.",
+        "Tools like dnscat2 and iodine establish full TCP/IP tunnels over DNS — the client encodes data in subdomain labels (e.g. `aGVsbG8=.tunnel.attacker.com`) and the authoritative nameserver for attacker.com decodes them. So an attacker with code execution on an air-gapped or firewalled machine can, all over port 53:\n- Exfiltrate data.\n- Establish a reverse shell.\n- Receive C2 commands.",
+        "Cisco Umbrella detects DNS tunneling through behavioral analysis:\n- Abnormally high query rates.\n- Unusually long subdomain labels.\n- High entropy in query strings.\n- Abnormal TXT/NULL record usage.\nA normal user generates ~200 DNS queries per day; a DNS tunnel generates thousands per minute.",
       ],
       technical: {
         title: "How DNS Tunneling Works",
         body: [
           "In a DNS tunnel, the attacker controls a domain (tunnel.evil.com) and its authoritative nameserver. The victim machine runs a tunneling client (dnscat2, iodine) that encodes outbound data as subdomain labels in DNS A or TXT queries. The attacker's nameserver decodes the data and sends responses with encoded return data.",
           "Data capacity is constrained by DNS label limits (63 chars per label, 253 chars total domain name). Typical throughput: 1–10 KB/s. This is enough for a reverse shell, credential exfiltration, or slow data theft over weeks. iodine can achieve up to 1Mbit/s using NULL record payloads.",
-          "Detection signatures: query labels >40 chars, high entropy (base64/hex encoded), >10 queries/second to a single domain, TXT or NULL record queries, and domains registered within the last 30 days.",
+          "Detection signatures cluster into a recognizable profile:\n- Query labels >40 chars.\n- High entropy (base64/hex encoded).\n- >10 queries/second to a single domain.\n- TXT or NULL record queries.\n- Domains registered within the last 30 days.",
         ],
         codeExample: {
           label: "DNS tunnel query — data encoded in subdomain labels",
@@ -392,13 +392,13 @@ export const umbrellaStages: StageConfig[] = [
       overview: [
         "Domain Generation Algorithms (DGAs) are used by malware to generate large numbers of pseudo-random domain names that the infected host attempts to resolve. The attacker pre-computes the same algorithm and registers only one or two of the generated domains as the actual C2 server. This makes takedown nearly impossible — blocking one domain is useless if the malware can generate 1,000 more.",
         "DGA families like Conficker, GameOver Zeus, Locky, and Emotet generate domains using seeds like the current date, making the domain list predictable for the attacker (who can register next week's domain in advance) but unpredictable for defenders who don't know the algorithm.",
-        "Cisco Umbrella detects DGA domains through statistical analysis of DNS query streams: high NXDOMAIN rates, high entropy in domain names (random-looking character distributions), short domain lifespans, and patterns in query timing that match known DGA families.",
+        "Cisco Umbrella detects DGA domains through statistical analysis of DNS query streams:\n- High NXDOMAIN rates.\n- High entropy in domain names (random-looking character distributions).\n- Short domain lifespans.\n- Query-timing patterns matching known DGA families.",
       ],
       technical: {
         title: "How DGAs Work and How Umbrella Detects Them",
         body: [
           "A typical DGA seeds a pseudo-random number generator with a value the malware and attacker can both compute (current date, a hard-coded constant, or a value from a public source). It generates N domains per seed cycle — daily, weekly, or per-hour. The malware attempts to resolve all of them; most return NXDOMAIN. The one that resolves is the active C2.",
-          "Conficker used a date-seeded DGA generating 250 domains/day across multiple TLDs. GameOver Zeus used a P2P DGA. Locky's DGA generated 1,000 domains/day. Emotet changed DGA algorithms every major version. Defeating a DGA botnet requires either reverse-engineering the algorithm (to sink-hole future domains) or detecting the infection via NXDOMAIN storm analysis.",
+          "DGA families vary widely in scale and design:\n- Conficker — a date-seeded DGA generating 250 domains/day across multiple TLDs.\n- GameOver Zeus — a P2P DGA.\n- Locky — 1,000 domains/day.\n- Emotet — changed DGA algorithms every major version.\nDefeating a DGA botnet requires either reverse-engineering the algorithm (to sinkhole future domains) or detecting the infection via NXDOMAIN-storm analysis.",
           "Umbrella's DGA detection uses machine learning on query streams: it flags hosts generating >50 NXDOMAIN responses within a short window, especially where the failing domains show high lexical entropy (consonant clusters, alternating patterns typical of PRNG output). Known DGA family fingerprints are matched against Talos signatures.",
         ],
         codeExample: {
@@ -577,15 +577,15 @@ for i in range(100):
       year: 2023,
       overview: [
         "Fast flux is a DNS evasion technique where the IP addresses associated with a domain rotate rapidly — typically every 300 seconds (the TTL) — through a large pool of compromised hosts acting as proxies. The actual malicious server sits behind this rotating shield. Blocking any individual IP is useless; the next query returns a different one.",
-        "Single-flux fast flux rotates A records only. Double-flux (more advanced) also rotates the NS records for the domain, making the authoritative nameserver itself a moving target. This makes infrastructure takedown nearly impossible without seizing the registrar-level domain record.",
-        "Cisco Umbrella detects fast flux through TTL analysis and IP diversity metrics: domains with TTLs of 300s or less, more than 30 unique IPs in 24 hours, IPs spanning multiple ASNs and countries, and low TTL/high IP-diversity ratios that don't match legitimate CDN patterns.",
+        "There are two variants, differing in how much they rotate:\n- Single-flux rotates the A records only.\n- Double-flux (more advanced) also rotates the NS records, making the authoritative nameserver itself a moving target.\nThat makes infrastructure takedown nearly impossible without seizing the registrar-level domain record.",
+        "Cisco Umbrella detects fast flux through TTL analysis and IP-diversity metrics:\n- TTLs of 300s or less.\n- More than 30 unique IPs in 24 hours.\n- IPs spanning multiple ASNs and countries.\n- Low-TTL / high-IP-diversity ratios that don't match legitimate CDN patterns.",
       ],
       technical: {
         title: "Single-Flux and Double-Flux Architecture",
         body: [
           "In single-flux networks, the attacker registers a domain and configures its DNS to return a rotating set of IP addresses — all belonging to compromised hosts (bots). Each bot forwards traffic to the real backend server. TTL is set to 300 seconds, forcing resolvers to re-query frequently and preventing caching from exposing the full IP pool.",
           "Double-flux extends this by also rotating the NS records. The nameservers for the malicious domain are themselves compromised hosts, making it impossible to identify and block the authoritative DNS server. Storm Worm (2007) pioneered double-flux at scale, using millions of infected PCs as both flux nodes and nameservers.",
-          "Detection heuristics: TTL ≤ 300s, unique IPs per domain per 24h > 30, geographic span > 5 countries, ASN count > 10, no pattern matching legitimate CDN providers (Cloudflare, Akamai, Fastly all show consistent ASN/IP ranges despite IP rotation).",
+          "Detection heuristics combine several thresholds:\n- TTL ≤ 300s.\n- Unique IPs per domain per 24h > 30.\n- Geographic span > 5 countries.\n- ASN count > 10.\n- No match to legitimate CDN providers — Cloudflare, Akamai, and Fastly all show consistent ASN/IP ranges despite rotating IPs.",
         ],
         codeExample: {
           label: "Fast flux DNS response — A record rotating every 300s",
@@ -757,16 +757,16 @@ for i in range(100):
       tagline: "Your browser thinks it's talking to attacker.com. After one DNS query, it's actually talking to your router.",
       year: 2022,
       overview: [
-        "DNS rebinding attacks exploit the browser's same-origin policy by manipulating DNS to make the browser believe that a malicious external site shares an origin with an internal resource. The attack begins with the victim visiting a page on attacker.com. After a short TTL expires, the attacker changes attacker.com's DNS record to resolve to an internal IP (e.g., 192.168.1.1). The browser — still on the attacker.com origin — now makes requests to the router admin panel, smart home devices, or internal APIs.",
+        "DNS rebinding attacks abuse the browser's same-origin policy by manipulating DNS to make the browser believe a malicious external site shares an origin with an internal resource:\n- The victim visits a page on attacker.com.\n- After a short TTL expires, the attacker changes attacker.com's DNS record to an internal IP (e.g. 192.168.1.1).\n- The browser — still on the attacker.com origin — now makes requests to the router admin panel, smart-home devices, or internal APIs.",
         "Any device reachable at a predictable internal IP with an HTTP interface is vulnerable. Home routers, smart speakers, IP cameras, industrial control systems, and internal developer APIs have all been compromised via DNS rebinding. The browser enforces no cross-origin restrictions because, from its perspective, everything is on the attacker.com origin.",
         "Cisco Umbrella detects DNS rebinding by identifying DNS responses that return private/RFC-1918 IP addresses (10.x.x.x, 172.16-31.x.x, 192.168.x.x) for publicly-registered domains. These responses are inherently suspicious — a public domain should never legitimately resolve to a private IP.",
       ],
       technical: {
         title: "DNS Rebinding Attack Sequence",
         body: [
-          "Step 1: Victim visits attacker.com (low TTL: 60s). The page loads malicious JavaScript. The JavaScript waits for the DNS record to expire (60 seconds). During this time, the attacker changes attacker.com's A record to 192.168.1.1.",
-          "Step 2: The JavaScript makes a fetch() request to http://attacker.com/api/data. The browser re-resolves attacker.com — now getting 192.168.1.1. The request goes to the router, which responds. The browser sees this as a same-origin response and allows the JavaScript to read it.",
-          "Step 3: The JavaScript exfiltrates router configuration, admin credentials, or internal API data to the attacker's real server via a secondary channel. The victim sees nothing unusual — their browser showed a legitimate-looking webpage.",
+          "Step 1 — the setup:\n- The victim visits attacker.com (low TTL: 60s), and the page loads malicious JavaScript.\n- The JavaScript waits for the DNS record to expire (60 seconds).\n- During that wait, the attacker changes attacker.com's A record to 192.168.1.1.",
+          "Step 2 — the rebind:\n- The JavaScript makes a `fetch()` request to `http://attacker.com/api/data`.\n- The browser re-resolves attacker.com — now getting 192.168.1.1 — so the request goes to the router, which responds.\n- The browser sees a same-origin response and lets the JavaScript read it.",
+          "Step 3 — exfiltration:\n- The JavaScript ships router configuration, admin credentials, or internal API data to the attacker's real server via a secondary channel.\n- The victim sees nothing unusual — their browser just showed a legitimate-looking webpage.",
         ],
         codeExample: {
           label: "DNS rebinding — TTL manipulation and same-origin exploit",
@@ -938,14 +938,14 @@ fetch("http://attacker.com/admin/config.json")
       tagline: "The domain looks identical to the real one. One character is different — and it's owned by the attacker.",
       year: 2023,
       overview: [
-        "Lookalike domain attacks use domains that visually resemble legitimate ones to deceive users and bypass security filters. Techniques include typosquatting (paypa1.com vs paypal.com), combosquatting (paypal-security.com), homograph attacks using Unicode characters that look identical to ASCII letters (paypaⅼ.com using Unicode 'l'), and brand impersonation using new TLDs (cisco.tech vs cisco.com).",
+        "Lookalike domain attacks use domains that visually resemble legitimate ones to deceive users and bypass security filters, via several techniques:\n- Typosquatting — paypa1.com vs paypal.com.\n- Combosquatting — paypal-security.com.\n- Homograph attacks — Unicode characters that look identical to ASCII letters (paypaⅼ.com using a Unicode 'l').\n- Brand impersonation using new TLDs — cisco.tech vs cisco.com.",
         "These domains are used for spear phishing, credential harvesting, and business email compromise (BEC). An employee who receives a password reset email from 'security@micros0ft.com' may not notice the zero instead of 'o'. A government contractor clicking a link to 'defence-contracts.gov.agency-portal.net' may not realize the .gov component is not the actual domain.",
         "Cisco Umbrella's lookalike detection uses string similarity algorithms (edit distance, homoglyph mapping), brand protection feeds, and newly-registered domain analysis to flag and block lookalike domains before any user interaction.",
       ],
       technical: {
         title: "Lookalike Domain Techniques",
         body: [
-          "Typosquatting registers domains with common typing errors: missing letters (paypl.com), transpositions (paypla.com), or substitutions (paypa1.com). Combosquatting adds words that suggest legitimacy: paypal-secure.com, paypal-login.net, account-paypal.com. These pass casual visual inspection and often bypass email filters that only check exact-match blocklists.",
+          "Squatting comes in two flavors, both designed to slip past casual inspection and exact-match blocklists:\n- Typosquatting registers common typing errors — missing letters (paypl.com), transpositions (paypla.com), or substitutions (paypa1.com).\n- Combosquatting adds legitimacy-suggesting words — paypal-secure.com, paypal-login.net, account-paypal.com.",
           "IDN (International Domain Name) homograph attacks use Unicode characters with identical or nearly-identical glyphs to ASCII. The Cyrillic 'а' (U+0430) looks identical to the Latin 'a' (U+0061) in most fonts. A domain using Cyrillic characters can be visually indistinguishable from its ASCII counterpart while resolving to a completely different IP. Browsers display the Punycode (xn-- prefix) in the address bar for mixed-script domains, but many users don't notice.",
           "Brand protection feeds and edit-distance scoring let Umbrella flag domains within 1-2 character edits of protected brands. Talos maintains a registry of Fortune 500 brand names and government agency names; any newly-registered domain with edit distance ≤ 2 is automatically flagged for review.",
         ],
@@ -1120,15 +1120,15 @@ ed("microsoft.com", "micros0ft.com")  # → 1  (zero sub)
       tagline: "Someone added an allow-list rule that bypasses every security category. Find it before the ransomware does.",
       year: 2023,
       overview: [
-        "Cisco Umbrella's policy engine allows organizations to define granular DNS filtering rules by security category, content category, application, user identity, and network segment. Policies stack hierarchically: global policy → group policy → individual policy. When correctly configured, Umbrella silently enforces security controls across an entire organization without requiring endpoint agents.",
+        "Cisco Umbrella's policy engine lets organizations define granular DNS filtering rules — by security category, content category, application, user identity, and network segment:\n- Policies stack hierarchically: global policy → group policy → individual policy.\n- Configured correctly, Umbrella silently enforces security controls across an entire organization with no endpoint agents required.",
         "Misconfigured policies are a common attack enabler. A single overly-broad allow-list entry — perhaps added to fix a business application — can create a bypass that renders security categories ineffective. In school districts, government agencies, and healthcare networks, policy misconfigurations have allowed ransomware C2 traffic to bypass DNS-layer controls that should have blocked it.",
         "Umbrella's policy audit tools allow security teams to identify shadow allow-list rules, entries added outside change management, and rules that conflict with security category blocks. Regular policy review is as important as the initial configuration.",
       ],
       technical: {
         title: "Umbrella Policy Hierarchy and Bypass Mechanics",
         body: [
-          "Umbrella evaluates policies from most-specific to least-specific: custom block lists → custom allow lists → security category blocks → content category settings → default policy. An entry in the allow list at any level overrides security category blocks at all levels. This means a single incorrectly added allow-list entry for a wildcard domain can punch a hole in all security category filtering.",
-          "Common misconfigurations: wildcard allow-list entries (*.io allowing all .io domains), IP-based allow-lists that bypass domain inspection, entries added by IT staff without security review, and 'temporary' exceptions that never get removed. Attackers who gain access to the Umbrella admin console can add allow-list entries to pre-stage ransomware delivery.",
+          "Umbrella evaluates policies from most-specific to least-specific:\n- Custom block lists → custom allow lists → security category blocks → content category settings → default policy.\n- An allow-list entry at any level overrides security category blocks at all levels.\n- So a single bad allow-list entry for a wildcard domain can punch a hole in all security-category filtering.",
+          "Common misconfigurations recur across deployments:\n- Wildcard allow-list entries (*.io allowing every .io domain).\n- IP-based allow-lists that bypass domain inspection.\n- Entries added by IT staff without security review.\n- 'Temporary' exceptions that never get removed.\nAttackers who reach the Umbrella admin console can add allow-list entries to pre-stage ransomware delivery.",
           "Policy audit commands: review all allow-list entries sorted by creation date, flag entries wider than necessary (wildcards, broad IP ranges), identify entries added outside change management windows, and cross-reference with security incidents.",
         ],
         codeExample: {
@@ -1295,14 +1295,14 @@ umbrella policy audit --allow-list --older-than 90d --sort created`,
       overview: [
         "DNS over HTTPS (DoH) encrypts DNS queries inside HTTPS traffic to protect user privacy from ISP surveillance. But the same encryption that protects legitimate users also allows malware to bypass DNS-layer security controls entirely. When an endpoint sends DoH requests directly to an external resolver (Google 8.8.8.8, Cloudflare 1.1.1.1), all DNS queries bypass Cisco Umbrella and appear as ordinary HTTPS traffic.",
         "Malware families including Godlua (2019), Trickbot (2020), and various ransomware droppers hardcode DoH resolver endpoints to evade corporate DNS security. An infected endpoint using DoH to resolve C2 domains will have all its DNS queries encrypted and sent to an external server — Umbrella's resolver is never consulted and has no visibility into the queries.",
-        "Cisco Umbrella defeats DoH evasion through two mechanisms: the roaming client blocks outbound connections to known DoH resolver IPs (8.8.8.8:443, 1.1.1.1:443, etc.) from any process other than the Umbrella client itself; and Umbrella's own roaming client provides DoH-encrypted DNS to the Umbrella cloud, maintaining security without sacrificing encryption.",
+        "Cisco Umbrella defeats DoH evasion through two mechanisms:\n- The roaming client blocks outbound connections to known DoH resolver IPs (8.8.8.8:443, 1.1.1.1:443, etc.) from any process other than the Umbrella client itself.\n- Umbrella's own roaming client provides DoH-encrypted DNS to the Umbrella cloud — maintaining security without sacrificing encryption.",
       ],
       technical: {
         title: "DoH Evasion and Umbrella's Counter-Strategy",
         body: [
           "Standard DNS (UDP/53) flows through the network in plaintext — Umbrella sits in this path and inspects every query. DoH wraps DNS queries in HTTPS (TCP/443 to a specific IP), making them indistinguishable from normal web traffic in network captures. A firewall rule blocking UDP/53 to external IPs forces clients through Umbrella, but DoH bypasses this entirely.",
           "Hardcoded DoH endpoints are detectable: connections to 8.8.8.8:443, 1.1.1.1:443, 9.9.9.9:443, or 208.67.222.222:443 (Umbrella's own DoH) from unexpected processes are anomalous. The Umbrella roaming client monitors for these connections and can block them from non-Umbrella processes, forcing all DoH traffic through the Umbrella cloud instead.",
-          "Enterprise policy: configure network firewalls to block TCP/443 to known DoH resolver IPs (except Umbrella's own 208.67.222.222); deploy Umbrella roaming client to intercept all DNS including DoH; monitor for HTTPS connections to resolver IPs from endpoint processes that are not the Umbrella client.",
+          "The enterprise policy comes down to three controls:\n- Configure network firewalls to block TCP/443 to known DoH resolver IPs (except Umbrella's own 208.67.222.222).\n- Deploy the Umbrella roaming client to intercept all DNS including DoH.\n- Monitor for HTTPS connections to resolver IPs from endpoint processes that aren't the Umbrella client.",
         ],
         codeExample: {
           label: "DoH evasion — malware bypassing Umbrella via hardcoded resolver",
@@ -1475,15 +1475,15 @@ umbrella policy audit --allow-list --older-than 90d --sort created`,
       year: 2023,
       overview: [
         "Cisco Talos is the world's largest commercial threat intelligence team — over 300 researchers, reverse engineers, and intelligence analysts monitoring global threat activity 24/7. Talos feeds threat intelligence directly into Cisco Umbrella, updating blocklists globally within minutes of new infrastructure discovery. When Talos identifies a new APT campaign, ransomware family, or phishing kit, Umbrella blocks the associated domains for all customers simultaneously.",
-        "Talos operates Umbrella Investigate — a threat intelligence platform that provides rich context about domains: reputation scores, WHOIS data, passive DNS history, associated IPs and ASNs, malware sample associations, and threat actor attribution. SOC analysts use Investigate to pivot from a single suspicious domain to a full picture of an attacker's infrastructure.",
+        "Talos operates Umbrella Investigate — a threat-intel platform that provides rich context about domains:\n- Reputation scores and WHOIS data.\n- Passive DNS history and associated IPs and ASNs.\n- Malware-sample associations and threat-actor attribution.\nSOC analysts use Investigate to pivot from a single suspicious domain to a full picture of an attacker's infrastructure.",
         "Passive DNS (pDNS) is a cornerstone of threat intelligence: recording historical DNS resolutions allows analysts to discover which domains shared IPs with known C2 servers, identify domain infrastructure registered by the same actor, and track threat actors as they migrate infrastructure across hosting providers.",
       ],
       technical: {
         title: "Talos Intelligence Pipeline — From Discovery to Block",
         body: [
           "Talos analysts monitor honeypots, malware sandboxes, partner feeds (ISACs, government agencies, security vendors), and their own sensor network of 1M+ telemetry sources. When a new domain is flagged — by a sandbox detonation, honeypot connection, or partner feed — it enters the Talos analysis pipeline.",
-          "Analysis includes: WHOIS registration patterns (bulk-registered, privacy-protected, recently created), DNS resolution history via passive DNS, SSL certificate metadata (issuer, SANs, fingerprint), HTTP/HTTPS response content analysis, and malware sample association via hash lookup. High-confidence malicious domains are pushed to Umbrella within 4 minutes of analyst confirmation.",
-          "Talos Investigate's pivot capabilities: from a C2 domain → find all IPs it has resolved to → find all other domains that resolved to those IPs → identify shared hosting infrastructure → attribute to threat actor → map the full campaign. This technique uncovered the full Lazarus Group APT38 banking infrastructure in 2018.",
+          "The analysis pulls together several signals:\n- WHOIS registration patterns (bulk-registered, privacy-protected, recently created).\n- DNS resolution history via passive DNS.\n- SSL certificate metadata (issuer, SANs, fingerprint).\n- HTTP/HTTPS response content analysis.\n- Malware-sample association via hash lookup.\nHigh-confidence malicious domains are pushed to Umbrella within 4 minutes of analyst confirmation.",
+          "Talos Investigate's pivot chain turns one indicator into a campaign map:\n- From a C2 domain → find all IPs it has resolved to.\n- → find all other domains that resolved to those IPs → identify shared hosting infrastructure.\n- → attribute to a threat actor → map the full campaign.\nThe technique uncovered the full Lazarus Group APT38 banking infrastructure in 2018.",
         ],
         codeExample: {
           label: "Talos Investigate — passive DNS pivot to map APT infrastructure",
@@ -1654,16 +1654,16 @@ talos-investigate domain loader-cdn.com --whois-correlate
       tagline: "The ransomware is staged and ready to deploy. You have the DNS logs, the threat intel, and 20 minutes.",
       year: 2023,
       overview: [
-        "A full DNS-based incident response workflow combines all Umbrella capabilities: detecting anomalous DNS activity, correlating with threat intelligence, identifying the full scope of compromise, and achieving containment through DNS-layer blocking — all before the attacker's final payload executes. Speed is the critical variable: modern ransomware groups operate a 'dwell time' of hours to days between initial access and payload deployment.",
+        "A full DNS-based incident-response workflow combines all of Umbrella's capabilities, all before the attacker's final payload executes:\n- Detecting anomalous DNS activity.\n- Correlating it with threat intelligence.\n- Identifying the full scope of compromise.\n- Achieving containment through DNS-layer blocking.\nSpeed is the critical variable: modern ransomware groups run a 'dwell time' of hours to days between initial access and payload deployment.",
         "In critical infrastructure environments like power grids, water treatment facilities, and financial clearing systems, a successful ransomware attack can have consequences beyond data loss — operational disruption to systems that millions depend on. DNS-layer security provides a last-chance interception point: even if an endpoint is compromised, if its C2 communication can be blocked at DNS, the attacker loses command and control and cannot trigger the final encryption stage.",
-        "CISA and NIST both recommend DNS-layer security as a core component of critical infrastructure protection (NIST SP 800-189, CISA CPG 2.S). Umbrella's role in IR: identify infected hosts via DNS log analysis, scope the compromise via shared C2 domains, achieve partial containment via DNS blocking, and provide timeline data for forensic investigation.",
+        "CISA and NIST both recommend DNS-layer security as a core component of critical-infrastructure protection (NIST SP 800-189, CISA CPG 2.S), and Umbrella's role in IR is to:\n- Identify infected hosts via DNS log analysis.\n- Scope the compromise via shared C2 domains.\n- Achieve partial containment via DNS blocking.\n- Provide timeline data for forensic investigation.",
       ],
       technical: {
         title: "DNS-Based IR Workflow — From Alert to Containment",
         body: [
-          "Phase 1 — Detection: Umbrella behavioral analytics generate an alert (DGA storm, C2 callback, fast flux). The SOC analyst pulls the full DNS activity log for the affected hosts and identifies the timeline of initial infection, lateral movement (new hosts querying the same C2), and pre-ransomware staging commands (file staging, backup deletion commands encoded in DNS tunneling queries).",
-          "Phase 2 — Scoping: The analyst pivots from the initial C2 domain using Talos Investigate to identify all related infrastructure. Cross-reference all internal hosts' DNS logs against the full C2 domain list to identify every compromised endpoint. This is faster and more complete than waiting for EDR telemetry, which may be delayed or absent on unmanaged devices.",
-          "Phase 3 — Containment: Push all identified C2 domains to Umbrella's custom block list. This severs command and control for all infected hosts simultaneously — even those not yet identified by EDR. Block the malware staging domains to prevent payload delivery. Isolate confirmed hosts at the network level. DNS containment buys time for full forensic response and clean rebuilds.",
+          "Phase 1 — Detection:\n- Umbrella behavioral analytics generate an alert (DGA storm, C2 callback, fast flux).\n- The SOC analyst pulls the full DNS activity log for the affected hosts.\n- From it they reconstruct the timeline: initial infection, lateral movement (new hosts querying the same C2), and pre-ransomware staging commands (file staging, backup-deletion commands encoded in DNS-tunneling queries).",
+          "Phase 2 — Scoping:\n- The analyst pivots from the initial C2 domain using Talos Investigate to identify all related infrastructure.\n- They cross-reference every internal host's DNS logs against the full C2 domain list to find every compromised endpoint.\n- This is faster and more complete than waiting for EDR telemetry, which may be delayed or absent on unmanaged devices.",
+          "Phase 3 — Containment:\n- Push all identified C2 domains to Umbrella's custom block list, severing command and control for every infected host at once — even those EDR hasn't yet flagged.\n- Block the malware staging domains to prevent payload delivery.\n- Isolate confirmed hosts at the network level.\nDNS containment buys time for full forensic response and clean rebuilds.",
         ],
         codeExample: {
           label: "DNS IR workflow — Umbrella log analysis and mass containment",
