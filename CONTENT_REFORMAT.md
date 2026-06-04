@@ -44,7 +44,7 @@
 - [x] cisco-4 — ALL 5 DONE (stage-m34..m38) ✅
 - [x] cisco-5 — ALL 12 DONE (stage-m39..m50) ✅
 - [x] umbrella — ALL 10 DONE (umbrella-01..10) ✅
-- [ ] stages.ts (ancient) — stage-m01..m05 ✅; remaining stage-01..12 + stage-m06..m12 (19)
+- [x] stages.ts (ancient + cisco-core) — ALL DONE (stage-01..12 + stage-m01..m12) ✅
 - [ ] first-journey ×3 — bt-01..30 (30) — adult-beginner tone; lighter, already fairly tight
 
 ## OUT OF SCOPE (do not touch unless Jacob asks)
