@@ -5,7 +5,7 @@ export const secFoundationsEpoch: EpochConfig = {
   name: "Security Foundations",
   subtitle: "Governance, Controls, Physical Security & Resilience",
   description:
-    "Hands-on hacking teaches you how attacks work — but certification exams (Security+, ISC² CC, and the ISACA governance certs) also test the foundational, conceptual half of security: the taxonomy of controls and frameworks, physical security and deception, change management, cryptographic solutions, identity and access management, data protection, resilience and disaster recovery, and security awareness. This epoch rounds out the curriculum with the concepts every security professional must know — the exam-objective bedrock beneath the exploits.",
+    "Hands-on hacking teaches you how attacks work — but certification exams (Security+, Network+, CySA+, ISC² CC, and the ISACA governance certs) also test the foundational, conceptual half of security: the taxonomy of controls and frameworks, physical security and deception, change management, cryptographic solutions, identity and access management, data protection, resilience and disaster recovery, and security awareness. This epoch rounds out the curriculum with the concepts every security professional must know — the exam-objective bedrock beneath the exploits.",
   emoji: "🏛️",
   color: "slate",
   unlocked: true,
@@ -1242,6 +1242,467 @@ export const secFoundationsStages: StageConfig[] = [
           ],
           correctIndex: 1,
           explanation: "Fear of punishment is the enemy of detection: an employee who hides a mistake turns a quick, containable incident into a weeks-long undetected breach. Effective programs build a blame-light culture with easy, encouraged reporting (e.g., a one-click 'report phish' button) so people raise a hand immediately. Early reporting dramatically shrinks an incident's impact — making reporting rate, not just click rate, the key program metric.",
+        },
+      ],
+    },
+  },
+  // ─── 09: Network Media, Cabling & Topologies ─────────────────────────────────
+  {
+    epochId: "sec-foundations",
+    wonder: { name: "A Network Wiring Closet", location: "Every Building's Backbone", era: "Present Day", emoji: "🔌" },
+    id: "sec-foundations-09",
+    order: 9,
+    title: "Network Media, Cabling & Topologies",
+    subtitle: "Copper vs fiber, transceivers, and how networks are wired together",
+    category: "cybersecurity",
+    xp: 200,
+    badge: { id: "secf-badge-09", name: "Cable Cartographer", emoji: "🔌" },
+    challengeType: "quiz",
+    info: {
+      tagline: "Before packets fly, signals travel over physical media — and Network+ wants you to know the wires, the light, and the shapes.",
+      year: 2024,
+      overview: [
+        "At the physical layer, data travels over MEDIA. COPPER twisted-pair (the familiar RJ45 Ethernet cable) comes in categories with rising bandwidth: Cat5e (1 Gbps), Cat6 (1–10 Gbps short runs), Cat6a (10 Gbps to 100 m), Cat7/Cat8 (data-center). Twisted pair is cheap and easy but limited to ~100 m and susceptible to electromagnetic interference (EMI), so shielded variants (STP) exist for noisy environments. FIBER-OPTIC carries data as light: single-mode fiber (SMF, a tiny core) goes long distances (kilometers) at high speed; multimode fiber (MMF, a larger core) is cheaper for short data-center runs. Fiber is immune to EMI, doesn't emit a tappable signal like copper, and supports the highest bandwidths — but costs more and is more fragile.",
+        "TRANSCEIVERS connect a device to the media. Hot-swappable modules — SFP (1 Gbps), SFP+ (10 Gbps), QSFP/QSFP28 (40/100 Gbps) — plug into switch and router ports and accept either copper or fiber, letting one device speak many media types. Connectors include RJ45 for copper and LC/SC for fiber. Power over Ethernet (PoE) carries electrical power alongside data on copper to run APs, cameras, and phones without a separate power cable. Choosing media is an engineering trade-off of distance, bandwidth, cost, and interference resistance.",
+        "TOPOLOGY describes how nodes are connected. STAR (every device to a central switch) is the dominant modern LAN topology — simple, and a single cable fault only affects one device. MESH connects many nodes directly (full or partial) for redundancy — common in WANs and wireless backhauls, since there are multiple paths if one link fails. The hierarchical THREE-TIER model (core / distribution / access) structures large campus networks for scalability, while a collapsed core merges layers for smaller sites. Modern data centers favor SPINE-LEAF, where every leaf switch connects to every spine switch, giving predictable, low-latency 'east-west' traffic for server-to-server communication. Point-to-point links a single pair of nodes. Knowing these shapes — and that physical and logical topology can differ — is core Network+ literacy.",
+      ],
+      technical: {
+        title: "Choosing Media and Topology",
+        body: [
+          "Media decision factors: distance (fiber for long/backbone, copper for short access), bandwidth (fiber and higher Cat for more), interference (fiber or STP in noisy/industrial settings), security (fiber is harder to tap and doesn't radiate), and cost (copper is cheaper for short runs). A typical building uses fiber for the backbone between closets and copper to the desk, with PoE powering endpoints.",
+          "Topology decision factors: star for LAN access (simple, fault-isolated), spine-leaf for data centers (uniform low-latency east-west), three-tier for large campuses (scalable hierarchy), and mesh for redundancy where uptime is critical. Remember the physical-vs-logical distinction: a network physically wired as a star can behave logically as a different topology depending on switching/VLAN configuration.",
+        ],
+        codeExample: {
+          label: "Media + Topology Quick Reference",
+          code: `  COPPER (twisted pair, RJ45, ~100 m, EMI-prone):
+   Cat5e 1G · Cat6 1–10G(short) · Cat6a 10G@100m · Cat7/8 data-center
+   + PoE: power + data on one copper cable (APs, cameras, phones)
+  FIBER (light, EMI-immune, hard to tap):
+   SMF single-mode = long distance/high speed · MMF multimode = short/cheaper
+   connectors: RJ45 (copper) · LC/SC (fiber)
+  TRANSCEIVERS (hot-swap modules):
+   SFP 1G · SFP+ 10G · QSFP/QSFP28 40/100G (copper or fiber)
+
+  TOPOLOGIES:
+   STAR        all → central switch (modern LAN; fault-isolated)
+   MESH        many direct links (redundancy; WAN/wireless)
+   THREE-TIER  core / distribution / access (large campus)
+   SPINE-LEAF  every leaf ↔ every spine (data center east-west)
+   POINT-TO-POINT  one pair · collapsed core = merged layers
+  physical topology ≠ logical topology (switching/VLANs)`,
+        },
+      },
+      incident: {
+        title: "When the Backbone Is a Single Cable",
+        when: "Recurring — submarine and backbone fiber cuts",
+        where: "Worldwide undersea and terrestrial fiber",
+        impact: "Major outages — from severed undersea cables disrupting whole regions' connectivity to a backhoe cutting a city's backbone — repeatedly show that the physical layer is a real attack and failure surface, and that redundancy in media and topology is not optional.",
+        body: [
+          "The internet runs on physical cables, and they break. Undersea fiber cuts (from ship anchors, earthquakes, or sabotage) have knocked entire countries and regions partly offline; a single backhoe striking a buried backbone has taken down a city's connectivity. Because so much traffic funnels through a few high-capacity fiber paths, a physical cut can have outsized impact — a stark reminder that bandwidth and uptime ultimately depend on copper and glass in the ground and on the seafloor.",
+          "The defense is the same principle that drives topology and media choices: redundancy and diverse paths. Mesh and multi-path designs, diverse physical routes (so a single cut doesn't sever everything), and a mix of media protect against physical failure. For Network+, the takeaway is that the physical layer — the cables, transceivers, and topology — is foundational: the most sophisticated routing can't move data over a cable that's been cut, and resilient designs assume the physical layer will sometimes fail.",
+        ],
+      },
+      diagram: {
+        nodes: [
+          { label: "Choose the Media", sub: "copper vs fiber, distance/EMI/cost", type: "system" },
+          { label: "Connect with Transceivers", sub: "SFP/SFP+/QSFP, RJ45/LC", type: "attacker" },
+          { label: "Lay Out the Topology", sub: "star, spine-leaf, three-tier, mesh", type: "victim" },
+          { label: "Build for Redundancy", sub: "diverse paths survive a cut", type: "result" },
+        ],
+      },
+      timeline: [
+        { year: 1983, event: "Twisted-pair Ethernet over copper begins displacing coax" },
+        { year: 2002, event: "10 Gigabit Ethernet drives fiber into data-center backbones" },
+        { year: 2010, event: "Spine-leaf architectures rise to handle east-west data-center traffic" },
+        { year: 2020, event: "400G optics and QSFP-DD push fiber bandwidth higher", highlight: true },
+        { year: 2024, event: "Undersea cable cuts repeatedly disrupt regional connectivity, spotlighting physical resilience" },
+      ],
+      keyTakeaways: [
+        "Copper (twisted pair, RJ45, ~100 m, EMI-prone, categories Cat5e→Cat8) is cheap for short runs; fiber (SMF long / MMF short) is EMI-immune, hard to tap, and high-bandwidth",
+        "Transceivers (SFP 1G / SFP+ 10G / QSFP 40-100G) connect devices to copper or fiber; PoE carries power and data on one cable",
+        "Star is the modern LAN topology; spine-leaf suits data centers; three-tier (core/distribution/access) scales campuses; mesh adds redundancy",
+        "The physical layer is a real failure/attack surface — design diverse paths and redundancy because cables get cut",
+      ],
+      references: [
+        { title: "CompTIA Network+ N10-009 Objectives", url: "https://www.comptia.org/certifications/network" },
+        { title: "Cabling & Media — Cisco Networking Basics", url: "https://www.cisco.com/c/en/us/solutions/small-business/resource-center/networking.html" },
+        { title: "Spine-Leaf Architecture Explained", url: "https://www.cloudflare.com/learning/network-layer/what-is-a-network/" },
+      ],
+    },
+    quiz: {
+      questions: [
+        {
+          id: "secf-09-q1",
+          type: "Media Choice",
+          challenge: `  A campus needs a high-speed backbone link between
+  two buildings 800 meters apart, through an area with
+  heavy electrical interference.`,
+          text: "Which media best fits a long-distance, EMI-heavy backbone run?",
+          options: [
+            "Cat6 twisted-pair copper",
+            "Single-mode fiber — long distance, highest bandwidth, and immune to electromagnetic interference",
+            "Coaxial cable",
+            "Wi-Fi only",
+          ],
+          correctIndex: 1,
+          explanation: "Twisted-pair copper is limited to about 100 m and is susceptible to EMI, so it can't span 800 m through electrical noise. Single-mode fiber carries light over kilometers at high bandwidth and is immune to electromagnetic interference (and harder to tap), making it the right choice for a long, noisy backbone run. Multimode fiber would work for shorter data-center runs; copper suits short access links to the desk.",
+        },
+        {
+          id: "secf-09-q2",
+          type: "Transceivers",
+          challenge: `  A network engineer needs to connect a switch port
+  to either a copper or fiber uplink at 10 Gbps using
+  a hot-swappable module.`,
+          text: "What kind of component plugs into the port to provide this connection?",
+          options: [
+            "An RJ45 crimp connector",
+            "A transceiver such as an SFP+ module (10 Gbps), which accepts copper or fiber",
+            "A punchdown block",
+            "A PoE injector",
+          ],
+          correctIndex: 1,
+          explanation: "Transceivers are hot-swappable modules that plug into switch/router ports to connect to the media. SFP handles 1 Gbps, SFP+ 10 Gbps, and QSFP/QSFP28 40/100 Gbps, and they come in copper or fiber variants — so one device can speak many media types by swapping modules. RJ45 is a copper connector, a punchdown block terminates cabling, and a PoE injector adds power, not a 10G media interface.",
+        },
+        {
+          id: "secf-09-q3",
+          type: "Topology",
+          challenge: `  A modern data center needs predictable, low-latency
+  communication between any two servers, where every
+  access switch connects to every backbone switch.`,
+          text: "Which topology provides this uniform, low-latency east-west connectivity?",
+          options: [
+            "Bus topology",
+            "Spine-leaf — every leaf switch connects to every spine switch, giving consistent server-to-server latency",
+            "Point-to-point",
+            "A single star with one switch",
+          ],
+          correctIndex: 1,
+          explanation: "Spine-leaf is the data-center topology where every leaf (access) switch connects to every spine (backbone) switch, so any server-to-server ('east-west') path crosses the same number of hops — predictable, low latency, and easy to scale by adding spines. Star suits general LAN access; three-tier (core/distribution/access) scales campuses; mesh adds redundancy. Modern virtualized data centers favor spine-leaf for heavy server-to-server traffic.",
+        },
+        {
+          id: "secf-09-q4",
+          type: "Physical Resilience",
+          challenge: `  A region loses much of its internet connectivity
+  when a single undersea fiber cable is severed by a
+  ship's anchor.`,
+          text: "What design principle prevents a single cable cut from causing a major outage?",
+          options: [
+            "Using faster transceivers",
+            "Redundancy with diverse physical paths (mesh/multi-path) so no single cut severs all connectivity",
+            "Switching everything to copper",
+            "Nothing — physical cuts are unavoidable and unmitigable",
+          ],
+          correctIndex: 1,
+          explanation: "The physical layer is a real failure surface — cables get cut by anchors, backhoes, and disasters. The defense is redundancy with diverse physical paths: mesh and multi-path topologies and physically separate cable routes so a single cut doesn't sever everything. The same logic drives topology and media choices for uptime. Faster transceivers or different cable types don't help if there's only one path to cut.",
+        },
+      ],
+    },
+  },
+
+  // ─── 10: Network Troubleshooting Methodology & Tools ──────────────────────────
+  {
+    epochId: "sec-foundations",
+    wonder: { name: "A Help Desk at 3 A.M.", location: "When the Network Is Down", era: "Present Day", emoji: "🛠️" },
+    id: "sec-foundations-10",
+    order: 10,
+    title: "Network Troubleshooting Methodology & Tools",
+    subtitle: "The 7-step process and the tools that find the fault",
+    category: "cybersecurity",
+    xp: 200,
+    badge: { id: "secf-badge-10", name: "Fault Finder", emoji: "🛠️" },
+    challengeType: "quiz",
+    info: {
+      tagline: "When the network breaks, guessing wastes hours. A methodology turns chaos into a systematic hunt for the root cause.",
+      year: 2024,
+      overview: [
+        "Network+ teaches a structured TROUBLESHOOTING METHODOLOGY so engineers fix problems systematically instead of randomly swapping parts. The seven steps: (1) IDENTIFY THE PROBLEM — gather information, question users, identify symptoms, determine if anything recently changed, and duplicate the problem if possible; (2) ESTABLISH A THEORY of probable cause, questioning the obvious and considering multiple possibilities (top-to-bottom or bottom-to-top of the OSI model); (3) TEST THE THEORY to confirm or deny it — if confirmed, move on; if not, form a new theory or escalate; (4) ESTABLISH A PLAN OF ACTION to resolve the problem and identify potential effects; (5) IMPLEMENT THE SOLUTION or escalate as necessary; (6) VERIFY FULL SYSTEM FUNCTIONALITY and, if applicable, implement preventive measures; and (7) DOCUMENT findings, actions, and outcomes. Following the steps in order — especially resisting the urge to skip from symptom to a guessed fix — is what the exam tests.",
+        "The methodology is paired with TOOLS. Software/command-line tools: ping (basic reachability and latency), traceroute/tracert (path and where it fails), nslookup/dig (DNS resolution), ipconfig/ifconfig/ip (local IP configuration), netstat (active connections and listening ports), arp (IP-to-MAC mappings), tcpdump and Wireshark (packet capture and protocol analysis), nmap (host/port discovery), and iperf/speed tests (throughput). Hardware tools: a cable tester and wire-map tester (verify pinout and continuity), a toner/probe (trace a cable in a bundle), a TDR/OTDR (find the distance to a cable fault in copper/fiber), a light meter (measure optical power), and a network tap (capture traffic inline). Picking the right tool for the symptom is half the battle.",
+        "Common issues map to predictable causes: name-resolution failures point to DNS; an address conflict or no address points to DHCP or a static-IP mistake (APIPA 169.254.x.x means no DHCP); a half/full duplex MISMATCH causes slowness and errors; a switching loop (no spanning tree) causes broadcast storms; and latency, jitter, and packet loss degrade real-time apps. The disciplined flow — identify, theorize, test, plan, implement, verify, document — combined with the right diagnostic tool, is how professionals (and the exam) resolve network problems. Documentation closes the loop: the fix for today's outage becomes tomorrow's faster diagnosis.",
+      ],
+      technical: {
+        title: "Methodology Meets the Right Tool",
+        body: [
+          "Work the steps in order and let the OSI model guide your theories: is it physical (cable/link light), data-link (switch/VLAN/duplex), network (IP/routing/gateway), or higher (DNS/application)? Start where the evidence points. Confirm the theory with a targeted test before changing anything, and after the fix, verify the whole system works and document what you found and did.",
+          "Match tool to symptom: 'can't reach a host' → ping then traceroute to see where it stops; 'site won't load but IP works' → nslookup/dig for DNS; 'no/odd IP address' → ipconfig/ifconfig (169.254.x.x = DHCP failure); 'intermittent slowness' → check duplex, then packet-capture with Wireshark; 'physical link issues' → cable tester/wire map, toner to trace, TDR to locate a break, light meter for fiber power. Documentation of findings and changes is the final, mandatory step.",
+        ],
+        codeExample: {
+          label: "Troubleshooting Methodology + Toolbox",
+          code: `  THE 7 STEPS (in order):
+   1 IDENTIFY the problem (info, symptoms, recent changes, reproduce)
+   2 THEORY of probable cause (question the obvious; OSI top↔bottom)
+   3 TEST the theory (confirm/deny → new theory or ESCALATE)
+   4 PLAN of action (and potential effects)
+   5 IMPLEMENT (or escalate)
+   6 VERIFY full functionality (+ preventive measures)
+   7 DOCUMENT findings, actions, outcomes
+
+  SOFTWARE TOOLS:
+   ping reachability · traceroute path · nslookup/dig DNS ·
+   ipconfig/ifconfig IP · netstat connections · arp IP↔MAC ·
+   tcpdump/Wireshark capture · nmap discovery · iperf throughput
+  HARDWARE TOOLS:
+   cable tester / wire map · toner+probe (trace) · TDR/OTDR (find break) ·
+   light meter (fiber) · network tap (inline capture)
+
+  SYMPTOM → CAUSE: DNS fail→name svc · 169.254.x.x→DHCP fail ·
+   slow+errors→duplex mismatch · broadcast storm→switching loop`,
+        },
+      },
+      incident: {
+        title: "Why Guessing Fails: The Cost of Skipping Steps",
+        when: "Every unstructured outage response",
+        where: "Network operations everywhere",
+        impact: "Countless prolonged outages trace to teams that jumped from symptom to a guessed fix, swapped working parts, and never identified the real cause — the reason the structured methodology exists and is tested.",
+        body: [
+          "A classic failure mode in operations: an outage hits, pressure mounts, and the team starts changing things — rebooting devices, replacing cables, editing configs — without first identifying the problem or forming a testable theory. Sometimes it works by luck; often it makes things worse, masks the real cause, and turns a 20-minute fix into a multi-hour ordeal, occasionally introducing new faults. Worse, without documentation, the same problem recurs and is re-diagnosed from scratch.",
+          "The structured methodology exists precisely to counter this. Identifying the problem and forming a theory before acting, testing the theory before implementing, verifying after, and documenting at the end converts a frantic guessing game into a repeatable, fast diagnosis. The discipline — and choosing the right tool (ping vs DNS lookup vs packet capture vs cable tester) for the symptom — is what separates professionals from part-swappers, which is exactly why Network+ devotes a whole domain to it.",
+        ],
+      },
+      diagram: {
+        nodes: [
+          { label: "Identify + Theorize", sub: "symptoms, recent change, OSI", type: "system" },
+          { label: "Test the Theory", sub: "right tool: ping/dig/Wireshark", type: "attacker" },
+          { label: "Plan + Implement", sub: "fix or escalate", type: "victim" },
+          { label: "Verify + Document", sub: "confirm, prevent, record", type: "result" },
+        ],
+      },
+      timeline: [
+        { year: 1969, event: "ping's ancestor concepts emerge with ARPANET diagnostics" },
+        { year: 1987, event: "traceroute written to map packet paths and find failures" },
+        { year: 1998, event: "Wireshark (Ethereal) brings deep packet analysis to everyone" },
+        { year: 2009, event: "Structured troubleshooting methodology formalized in CompTIA curricula", highlight: true },
+        { year: 2024, event: "AIOps adds automated anomaly detection, but the methodology still governs the fix" },
+      ],
+      keyTakeaways: [
+        "Follow the 7 steps in order: identify → theory → test → plan → implement → verify → document (don't jump from symptom to guessed fix)",
+        "Let the OSI model guide theories: physical (cable), data-link (switch/duplex), network (IP/routing), or higher (DNS/app)",
+        "Match tool to symptom: ping/traceroute for reachability, nslookup/dig for DNS, ipconfig for IP, Wireshark for deep analysis, cable tester/TDR for physical",
+        "169.254.x.x means DHCP failed; duplex mismatch causes slowness/errors; switching loops cause broadcast storms — and always document the fix",
+      ],
+      references: [
+        { title: "CompTIA Network+ Troubleshooting Methodology", url: "https://www.comptia.org/certifications/network" },
+        { title: "Wireshark User Guide", url: "https://www.wireshark.org/docs/" },
+        { title: "Network Troubleshooting Tools — Cisco", url: "https://www.cisco.com/c/en/us/support/docs/ip/routing-information-protocol-rip/13730-ext-ping-trace.html" },
+      ],
+    },
+    quiz: {
+      questions: [
+        {
+          id: "secf-10-q1",
+          type: "Methodology Order",
+          challenge: `  A network goes down. Under pressure, an engineer
+  immediately starts replacing cables and rebooting
+  switches before understanding the symptoms.`,
+          text: "What should be the FIRST step of the troubleshooting methodology?",
+          options: [
+            "Implement a solution immediately",
+            "Identify the problem — gather information, question users, note symptoms and recent changes",
+            "Document the outcome",
+            "Replace hardware until it works",
+          ],
+          correctIndex: 1,
+          explanation: "The first step is to identify the problem: gather information, question users, determine the symptoms, check what recently changed, and reproduce the issue if possible. Jumping straight to implementing fixes (swapping cables, rebooting) without identifying the problem or forming a testable theory wastes time, can make things worse, and often masks the real cause. The ordered steps — identify, theorize, test, plan, implement, verify, document — exist to prevent exactly this.",
+        },
+        {
+          id: "secf-10-q2",
+          type: "Tool Selection",
+          challenge: `  A user reports they can reach a website by its IP
+  address but not by its domain name. Everything else
+  on the network works.`,
+          text: "Which tool best diagnoses this name-resolution problem?",
+          options: [
+            "A cable tester",
+            "nslookup or dig — to test DNS name resolution",
+            "ping by IP only",
+            "A light meter",
+          ],
+          correctIndex: 1,
+          explanation: "Reaching a site by IP but not by name points squarely at DNS (name resolution). nslookup or dig query DNS to see whether the name resolves and which server answers, confirming or denying a DNS problem. A cable tester checks physical wiring; ping by IP already works here; a light meter measures fiber optical power. Matching the tool to the symptom — DNS symptom → DNS tool — is core troubleshooting skill.",
+        },
+        {
+          id: "secf-10-q3",
+          type: "Symptom Diagnosis",
+          challenge: `  A workstation can't reach anything on the network,
+  and its IP address is shown as 169.254.43.12.`,
+          text: "What does a 169.254.x.x (APIPA) address indicate?",
+          options: [
+            "A successful static IP configuration",
+            "The device failed to obtain an address from DHCP and self-assigned an APIPA address",
+            "A DNS server problem",
+            "A duplex mismatch",
+          ],
+          correctIndex: 1,
+          explanation: "A 169.254.x.x address is an APIPA (Automatic Private IP Addressing) self-assignment that a Windows host gives itself when it cannot reach a DHCP server. It signals a DHCP failure — the DHCP server is down/unreachable, the scope is exhausted, or there's a connectivity problem to it. The fix is to restore DHCP reachability or assign a valid address. Recognizing APIPA as 'DHCP failed' is a classic Network+ diagnostic.",
+        },
+        {
+          id: "secf-10-q4",
+          type: "Verify & Document",
+          challenge: `  An engineer fixes a routing issue and the affected
+  user can now browse. The engineer closes the ticket
+  and moves on without checking anything else or
+  writing down what happened.`,
+          text: "Which final methodology steps did the engineer skip?",
+          options: [
+            "None — the fix worked, so the job is done",
+            "Verify FULL system functionality (and add preventive measures) and DOCUMENT findings, actions, and outcomes",
+            "Establish a theory",
+            "Identify the problem",
+          ],
+          correctIndex: 1,
+          explanation: "The last two steps are mandatory: verify full system functionality (confirm the whole system works, not just the one symptom, and implement preventive measures where possible) and document the findings, actions, and outcomes. Skipping verification risks an incomplete fix or new side effects; skipping documentation means the next occurrence is re-diagnosed from scratch and lessons are lost. Closing the ticket the moment one symptom clears is a common, costly shortcut.",
+        },
+      ],
+    },
+  },
+
+  // ─── 11: Security Operations Reporting, Metrics & Communication ───────────────
+  {
+    epochId: "sec-foundations",
+    wonder: { name: "The Boardroom & the SOC", location: "Where Risk Meets Leadership", era: "Present Day", emoji: "📊" },
+    id: "sec-foundations-11",
+    order: 11,
+    title: "Security Operations Reporting & Metrics",
+    subtitle: "Communicating vulnerabilities and incidents to the people who must act",
+    category: "cybersecurity",
+    xp: 220,
+    badge: { id: "secf-badge-11", name: "Signal Reporter", emoji: "📊" },
+    challengeType: "quiz",
+    info: {
+      tagline: "Finding the problem is only half the job — security work that isn't clearly reported to the right people doesn't get fixed.",
+      year: 2018,
+      overview: [
+        "A huge part of real security operations — and a full domain of the CySA+ exam — is REPORTING AND COMMUNICATION: turning technical findings into action by the right stakeholders. Vulnerability management reporting starts with identifying STAKEHOLDERS (system owners, IT, management, compliance) and tailoring the message: executives need risk and business impact, while engineers need specific remediation steps. Effective reports PRIORITIZE (by severity/CVSS, asset criticality, and exploitability rather than raw counts), include METRICS and trends (open vulnerabilities over time, mean time to remediate, SLA compliance), define clear ACTION PLANS with owners and deadlines, and support compliance obligations. A report that buries the critical, exploitable, internet-facing vulnerability in a list of 5,000 low findings has failed.",
+        "Incident response reporting is about communicating during and after an incident. During an incident, a communication plan defines WHO is told and WHEN: internal stakeholders (executives, legal, HR, PR) and external ones (affected customers, regulators, law enforcement, partners) — with regulatory breach-notification deadlines (e.g., GDPR's 72 hours) creating hard timelines. After an incident, the team produces a root cause analysis, a lessons-learned report, and an executive summary, and tracks metrics/KPIs like mean time to detect (MTTD), mean time to respond (MTTR), and dwell time. The goal is to drive improvement and meet legal obligations, not to assign blame.",
+        "Communication quality determines outcomes. Reports must be tailored to the audience (technical depth for engineers, business risk for leadership), be timely (a perfect report delivered too late is useless), and be honest and clear. The catastrophic counter-example is the cover-up: hiding or downplaying a breach turns a security incident into a legal, financial, and reputational disaster — as Uber learned in 2016. Strong reporting and communication — prioritized vulnerability reports with action plans, a tested incident communication plan, clear stakeholder identification, and meaningful metrics — are what convert security operations into actual risk reduction and keep an organization on the right side of the law.",
+      ],
+      technical: {
+        title: "Reporting That Drives Action",
+        body: [
+          "Vulnerability reporting: identify stakeholders and tailor by audience; prioritize by risk (CVSS × asset criticality × exploitability/exposure), not count; include trends and metrics (open findings over time, MTTR, SLA adherence); and give every critical finding an owner, a remediation action, and a deadline. Compliance reporting maps findings to obligations (PCI, HIPAA, etc.).",
+          "Incident reporting and communication: have a pre-built communication plan defining internal (exec/legal/PR/HR) and external (customers/regulators/law enforcement) audiences and notification timelines (regulatory deadlines like GDPR's 72 hours). Produce a root cause analysis, lessons-learned, and an executive summary; track KPIs (MTTD, MTTR, dwell time) to measure and improve. Never conceal a breach — cover-ups create far larger legal and reputational damage than the breach itself.",
+        ],
+        codeExample: {
+          label: "Security Reporting Essentials",
+          code: `  VULNERABILITY REPORTING:
+   ✓ Identify STAKEHOLDERS · tailor by audience (exec=risk, eng=fix)
+   ✓ PRIORITIZE by risk: CVSS × asset criticality × exploitability
+     (not raw counts — surface the critical, internet-facing, exploitable one)
+   ✓ METRICS/trends: open vulns over time · MTTR · SLA compliance
+   ✓ ACTION PLAN: owner + remediation + deadline · compliance mapping
+
+  INCIDENT REPORTING & COMMUNICATION:
+   WHO + WHEN (plan): internal exec/legal/PR/HR · external customers/
+     regulators/law enforcement · notification DEADLINES (GDPR 72h)
+   AFTER: root cause analysis · lessons learned · executive summary
+   KPIs: MTTD (detect) · MTTR (respond) · DWELL TIME
+
+  TAILOR to audience · be TIMELY · be HONEST
+   ✗ NEVER conceal a breach (cover-up = bigger legal/reputational damage)`,
+        },
+      },
+      incident: {
+        title: "The Uber Breach Cover-Up",
+        when: "2016 (disclosed 2017)",
+        where: "Uber",
+        impact: "Uber concealed a breach of 57 million users' data, paying the attackers $100,000 to stay quiet and disguising it as a 'bug bounty' — the cover-up led to regulatory penalties and a criminal conviction of the security chief, proving that failing to report is worse than the breach.",
+        body: [
+          "In 2016, attackers stole the personal data of about 57 million Uber riders and drivers. Rather than disclose the breach to regulators and affected users as required, Uber paid the attackers $100,000 to delete the data and keep quiet, disguising the payment as a bug-bounty reward, and hid the incident for over a year. When it came out, the consequences dwarfed the breach itself: a $148 million settlement with US states, action from regulators worldwide, and — notably — a federal criminal conviction of Uber's chief security officer for obstruction and concealment.",
+          "The case is the definitive lesson in security reporting and communication: the obligation to report a breach to the right stakeholders and regulators within required timelines is not optional, and concealment turns a manageable incident into a legal and reputational catastrophe. It underscores why incident response includes a communication plan, why breach-notification laws exist, and why honest, timely reporting — to leadership, regulators, and affected people — is a core competency, not an afterthought.",
+        ],
+      },
+      diagram: {
+        nodes: [
+          { label: "Findings: Vuln or Incident", sub: "the technical truth", type: "attacker" },
+          { label: "Identify Stakeholders", sub: "exec, eng, legal, regulators", type: "system" },
+          { label: "Prioritize + Tailor + Time It", sub: "risk-ranked, audience-fit, on deadline", type: "victim" },
+          { label: "Action, Metrics, Lessons", sub: "owners, MTTR, RCA — drive fixes", type: "result" },
+        ],
+      },
+      timeline: [
+        { year: 2003, event: "California SB 1386 launches modern breach-notification law" },
+        { year: 2016, event: "Uber conceals a 57M-record breach and pays hush money", highlight: true },
+        { year: 2018, event: "GDPR mandates 72-hour breach notification to regulators" },
+        { year: 2022, event: "Uber's former CSO convicted over the 2016 cover-up — a landmark for reporting duty" },
+        { year: 2023, event: "SEC requires public companies to disclose material cyber incidents promptly" },
+      ],
+      keyTakeaways: [
+        "Reporting & communication is a full CySA+ domain — security work that isn't clearly reported to the right stakeholders doesn't get fixed",
+        "Prioritize vulnerability reports by risk (CVSS × asset criticality × exploitability), include metrics/trends and action plans with owners and deadlines — not raw counts",
+        "Incident communication plans define who/when for internal (exec/legal/PR) and external (customers/regulators) audiences, with regulatory deadlines (GDPR 72h); track MTTD/MTTR/dwell time",
+        "Tailor to the audience, be timely and honest — and never conceal a breach: the Uber cover-up caused far more damage than the breach itself",
+      ],
+      references: [
+        { title: "CompTIA CySA+ CS0-003 Objectives", url: "https://www.comptia.org/certifications/cybersecurity-analyst" },
+        { title: "NIST SP 800-61 — Computer Security Incident Handling", url: "https://csrc.nist.gov/pubs/sp/800/61/r2/final" },
+        { title: "FTC: Uber Settlement", url: "https://www.ftc.gov/news-events" },
+      ],
+    },
+    quiz: {
+      questions: [
+        {
+          id: "secf-11-q1",
+          type: "Prioritization",
+          challenge: `  A vulnerability scan returns 5,000 findings. The
+  analyst must report them to leadership in a way
+  that drives the right fixes first.`,
+          text: "How should the report prioritize, rather than just listing all 5,000?",
+          options: [
+            "Alphabetically by hostname",
+            "By risk — combining severity/CVSS, asset criticality, and exploitability/exposure — so the critical, internet-facing, exploitable issues surface first",
+            "By the order the scanner found them",
+            "Only by raw count per system",
+          ],
+          correctIndex: 1,
+          explanation: "Effective vulnerability reporting prioritizes by risk, not raw counts: combine severity (CVSS), asset criticality (how important the system is), and exploitability/exposure (is it internet-facing, is there a known exploit). This surfaces the genuinely dangerous findings — the critical, exploitable, internet-facing vulnerability — instead of burying them among thousands of lows. Each priority finding should carry an owner, a remediation action, and a deadline so the report drives action.",
+        },
+        {
+          id: "secf-11-q2",
+          type: "Audience",
+          challenge: `  A security analyst must brief both the engineering
+  team and the executive board about the same set of
+  vulnerabilities.`,
+          text: "How should the communication differ between these audiences?",
+          options: [
+            "Give both the identical raw technical scan output",
+            "Tailor it: executives get business risk and impact; engineers get specific, actionable remediation steps",
+            "Tell the executives the most technical details possible",
+            "Don't report to executives at all",
+          ],
+          correctIndex: 1,
+          explanation: "Reports must be tailored to the audience. Executives need the business risk, impact, and decisions required (risk-focused, concise); engineers need the specific, actionable technical remediation steps. Handing both the same raw scan output fails both — executives can't act on packet-level detail, and engineers need more than a risk summary. Identifying stakeholders and matching the message to each is central to security reporting.",
+        },
+        {
+          id: "secf-11-q3",
+          type: "Incident Metrics",
+          challenge: `  After an incident, leadership asks how quickly the
+  team detected and responded, and how long the
+  attacker was inside before being caught.`,
+          text: "Which metrics answer these questions?",
+          options: [
+            "CVSS and CIA",
+            "MTTD (mean time to detect), MTTR (mean time to respond), and dwell time (how long the attacker was present)",
+            "RTO and RPO only",
+            "Bandwidth and latency",
+          ],
+          correctIndex: 1,
+          explanation: "Incident response KPIs measure detection and response performance: mean time to detect (MTTD) is how long until the incident was noticed; mean time to respond (MTTR) is how long to contain/resolve it; and dwell time is how long the attacker was present before discovery. Tracking these over time drives improvement and informs leadership. CVSS measures vulnerability severity; RTO/RPO are recovery objectives; bandwidth/latency are network metrics.",
+        },
+        {
+          id: "secf-11-q4",
+          type: "Reporting Duty",
+          challenge: `  A company discovers a breach of millions of users'
+  data. To avoid embarrassment, executives pay the
+  attackers to stay quiet and hide the incident from
+  regulators and users for over a year.`,
+          text: "What does the Uber case teach about breach reporting?",
+          options: [
+            "Concealing a breach is a smart way to protect reputation",
+            "Failing to report a breach is worse than the breach: it violates notification laws and causes far greater legal, financial, and reputational damage — even criminal liability",
+            "Breaches never need to be reported",
+            "Only the technical team needs to know",
+          ],
+          correctIndex: 1,
+          explanation: "The 2016 Uber cover-up — concealing a 57-million-record breach, paying hush money disguised as a bug bounty — led to a $148M settlement and a criminal conviction of the security chief. It shows that breach reporting to regulators and affected people within required timelines (e.g., GDPR's 72 hours) is a legal obligation, and concealment turns a manageable incident into a catastrophe. Honest, timely communication to the right stakeholders is a core security-operations competency.",
         },
       ],
     },

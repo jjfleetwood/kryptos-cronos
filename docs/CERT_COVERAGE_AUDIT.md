@@ -44,8 +44,8 @@ Cross-cutting conceptual objectives the CTF/exploit content underserves; each st
 ## Per-cert status
 - [x] Security+ (SY0-701) — conceptual gaps CLOSED via sec-foundations 01–08 (controls/frameworks, physical security & deception, change mgmt, resilience/BCDR, crypto solutions, IAM, data protection/classification, awareness). Exploit domains (2.x threats, 4.x ops) already strong.
 - [x] ISC² CC — thin BCDR (6) + access-controls reinforced by sec-foundations 02/04/05/06/07. Adequate.
-- [ ] Network+ (N10-009) — fundamentals/ops/troubleshooting thinnish; deep-probe pending.
-- [ ] CySA+ (CS0-003) — Reporting & Communication thin (8); deep-probe pending.
+- [x] Network+ (N10-009) — fundamentals well-covered in first-journey (mapped). True gaps (media/cabling/transceivers, topologies, troubleshooting methodology) CLOSED via sec-foundations 09/10.
+- [x] CySA+ (CS0-003) — Reporting & Communication (17%, no dedicated lesson) CLOSED via sec-foundations 11 (vuln/IR reporting, stakeholder comms, MTTD/MTTR/dwell, breach-notification duty). Technical domains already strong.
 - [ ] CISA / CISM / CRISC — large mapped counts; audit-process/governance specifics deep-probe pending.
 - [ ] CompTIA AI+ — Data Science Fundamentals thin (6); deep-probe pending.
 - [ ] AWS AIP — AI/ML & GenAI fundamentals thin; deep-probe pending.
@@ -54,4 +54,5 @@ Cross-cutting conceptual objectives the CTF/exploit content underserves; each st
 
 ## Status log
 - (start) snapshot computed; sec-foundations epoch planned; building Security+ gap stages first.
-- BUILT sec-foundations epoch (8 stages) + cert mappings + registered in stages.ts; tsc clean. Closes Security+ conceptual gaps & ISC² CC BCDR/access. NEXT: deep-probe Network+ & CySA+, then CISA/CISM/CRISC, then AI certs.
+- BUILT sec-foundations epoch (8 stages) + cert mappings + registered in stages.ts; tsc clean. Closes Security+ conceptual gaps & ISC² CC BCDR/access.
+- EXTENDED sec-foundations to 11 stages: 09 Network Media/Cabling/Topologies (Net+), 10 Network Troubleshooting Methodology/Tools (Net+), 11 Security Operations Reporting & Metrics (CySA+ reporting/IR + Sec+/CISM/CISA). Security-core certs (Sec+, CC, Net+, CySA+) DONE. NEXT: CISA/CISM/CRISC deep-probe, then AI certs.
