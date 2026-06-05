@@ -529,6 +529,14 @@ export const CERT_DOMAINS: Record<string, CertDomain[]> = {
   "emerging-08": combine(ai("aiplus-security", "aiplus-concepts"), cisa("cisa-protection"), sp("threats-vulns")),
   "emerging-09": combine(ai("aiplus-security", "aiplus-infrastructure", "aiplus-concepts"), cisa("cisa-protection")),
   "emerging-10": combine(ai("aiplus-security", "aiplus-concepts"), cisa("cisa-governance"), cism("cism-governance", "cism-program"), crisc("crisc-governance", "crisc-risk-assessment")),
+  "sec-foundations-01": combine(sp("general-security"), cc("security-principles"), cisa("cisa-governance"), cism("cism-governance"), crisc("crisc-governance")),
+  "sec-foundations-02": combine(sp("general-security"), cc("security-principles"), cisa("cisa-protection")),
+  "sec-foundations-03": combine(sp("general-security"), cisa("cisa-operations"), crisc("crisc-it-security")),
+  "sec-foundations-04": combine(sp("security-architecture"), cc("bc-dr-ir"), cisa("cisa-operations"), cism("cism-incident"), crisc("crisc-risk-response")),
+  "sec-foundations-05": combine(sp("general-security"), cc("security-principles"), cisa("cisa-protection")),
+  "sec-foundations-06": combine(sp("security-operations"), cc("access-controls"), cisa("cisa-protection"), cism("cism-program")),
+  "sec-foundations-07": combine(sp("security-architecture"), cc("security-principles"), cisa("cisa-protection"), crisc("crisc-it-security")),
+  "sec-foundations-08": combine(sp("security-program"), cc("security-operations-cc"), cism("cism-program"), crisc("crisc-governance")),
 
 };
 
