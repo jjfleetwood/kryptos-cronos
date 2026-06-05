@@ -87,7 +87,7 @@ const extendedGroups = [
     id: "sports",
     labelKey: "stages.tracks.sports",
     descKey: "stages.tracks.sportsDesc",
-    epochIds: ["baseball-1", "baseball-2", "baseball-3", "baseball-4", "baseball-5", "baseball-6", "baseball-7"],
+    epochIds: ["baseball-1", "baseball-2", "baseball-3", "baseball-4", "baseball-5", "baseball-6", "baseball-7", "baseball-8", "baseball-9", "baseball-10", "baseball-11", "baseball-12", "baseball-13", "baseball-14", "baseball-15"],
   },
   {
     id: "travel",

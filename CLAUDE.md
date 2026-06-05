@@ -2,11 +2,11 @@
 
 ## What This Is
 
-Gamified cybersecurity + AI training platform. 58 curriculum epochs, 681 CTF/quiz stages, live leaderboard, admin dashboard, 24 downloadable MCP server templates. Built with Next.js 16 / React 19 / TypeScript / Tailwind CSS / Upstash Redis / Resend.
+Gamified cybersecurity + AI training platform. 55 curriculum epochs, 683 CTF/quiz stages, live leaderboard, admin dashboard, 24 downloadable MCP server templates. Built with Next.js 16 / React 19 / TypeScript / Tailwind CSS / Upstash Redis / Resend.
 
 **Live:** kryptoscronos.com  
 **Repo:** github.com/jjfleetwood/kryptos-cronos  
-**Current version:** v1.30.0 (as of 2026-06-05)
+**Current version:** v1.30.1 (as of 2026-06-05)
 
 ---
 

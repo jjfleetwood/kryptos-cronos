@@ -14,7 +14,7 @@ export const baseball6Epoch: EpochConfig = {
 export const baseball6Stages: StageConfig[] = [
   // ─── baseball-6-01: Four-Seam Fastball ────────────────────────────────────────
   {
-    epochId: "baseball-5",
+    epochId: "baseball-6",
     wonder: {
       name: "Dodger Stadium — The Mound",
       location: "Los Angeles, California",
@@ -22,7 +22,7 @@ export const baseball6Stages: StageConfig[] = [
       emoji: "⚾",
     },
     id: "baseball-6-01",
-    order: 11,
+    order: 1,
     title: "Four-Seam Fastball",
     subtitle: "Grip, backspin, rise effect, and establishing the heater",
     category: "sports",
@@ -210,7 +210,7 @@ export const baseball6Stages: StageConfig[] = [
 
   // ─── baseball-6-02: Two-Seam Fastball and Sinker ─────────────────────────────
   {
-    epochId: "baseball-5",
+    epochId: "baseball-6",
     wonder: {
       name: "Camelback Ranch — Dodgers Spring Training",
       location: "Glendale, Arizona",
@@ -218,7 +218,7 @@ export const baseball6Stages: StageConfig[] = [
       emoji: "🏜️",
     },
     id: "baseball-6-02",
-    order: 12,
+    order: 2,
     title: "Two-Seam Fastball and Sinker",
     subtitle: "Tailing action, ground balls, and grip science",
     category: "sports",
@@ -404,7 +404,7 @@ export const baseball6Stages: StageConfig[] = [
 
   // ─── baseball-6-03: The Changeup ─────────────────────────────────────────────
   {
-    epochId: "baseball-5",
+    epochId: "baseball-6",
     wonder: {
       name: "Dodger Stadium — Bullpen Mound",
       location: "Los Angeles, California",
@@ -412,7 +412,7 @@ export const baseball6Stages: StageConfig[] = [
       emoji: "🎭",
     },
     id: "baseball-6-03",
-    order: 13,
+    order: 3,
     title: "The Changeup",
     subtitle: "Arm speed deception, speed differential, and youth development",
     category: "sports",
@@ -594,7 +594,7 @@ export const baseball6Stages: StageConfig[] = [
 
   // ─── baseball-6-04: The Curveball ────────────────────────────────────────────
   {
-    epochId: "baseball-5",
+    epochId: "baseball-6",
     wonder: {
       name: "Dodger Stadium — The Mound (Kershaw's Office)",
       location: "Los Angeles, California",
@@ -602,7 +602,7 @@ export const baseball6Stages: StageConfig[] = [
       emoji: "🌊",
     },
     id: "baseball-6-04",
-    order: 14,
+    order: 4,
     title: "The Curveball",
     subtitle: "12-6 break, knuckle curve, spin axis, and when to learn it",
     category: "sports",
@@ -789,7 +789,7 @@ export const baseball6Stages: StageConfig[] = [
 
   // ─── baseball-6-05: The Slider ────────────────────────────────────────────────
   {
-    epochId: "baseball-5",
+    epochId: "baseball-6",
     wonder: {
       name: "Dodger Stadium — Bullpen at Game Speed",
       location: "Los Angeles, California",
@@ -797,7 +797,7 @@ export const baseball6Stages: StageConfig[] = [
       emoji: "↗️",
     },
     id: "baseball-6-05",
-    order: 15,
+    order: 5,
     title: "The Slider",
     subtitle: "Cut vs. sweep, arm safety, and Kershaw's slider evolution",
     category: "sports",
@@ -976,7 +976,7 @@ export const baseball6Stages: StageConfig[] = [
 
   // ─── baseball-6-06: The Cutter ────────────────────────────────────────────────
   {
-    epochId: "baseball-5",
+    epochId: "baseball-6",
     wonder: {
       name: "Yankee Stadium (Rivera's Cathedral)",
       location: "The Bronx, New York",
@@ -984,7 +984,7 @@ export const baseball6Stages: StageConfig[] = [
       emoji: "✂️",
     },
     id: "baseball-6-06",
-    order: 16,
+    order: 6,
     title: "The Cutter",
     subtitle: "Mariano Rivera's weapon, off-center 4-seam, and Kenley Jansen's career",
     category: "sports",
@@ -1171,7 +1171,7 @@ export const baseball6Stages: StageConfig[] = [
 
   // ─── baseball-6-07: Splitter and Forkball ────────────────────────────────────
   {
-    epochId: "baseball-5",
+    epochId: "baseball-6",
     wonder: {
       name: "Dodger Stadium — 1995 Season (Nomo's Debut)",
       location: "Los Angeles, California",
@@ -1179,7 +1179,7 @@ export const baseball6Stages: StageConfig[] = [
       emoji: "🇯🇵",
     },
     id: "baseball-6-07",
-    order: 17,
+    order: 7,
     title: "The Splitter and Forkball",
     subtitle: "Deep grip, tumbling action, and Hideo Nomo's legacy",
     category: "sports",
@@ -1362,7 +1362,7 @@ export const baseball6Stages: StageConfig[] = [
 
   // ─── baseball-6-08: Spin Rate, Spin Axis, and Rapsodo ────────────────────────
   {
-    epochId: "baseball-5",
+    epochId: "baseball-6",
     wonder: {
       name: "Camelback Ranch — Rapsodo Lab",
       location: "Glendale, Arizona",
@@ -1370,7 +1370,7 @@ export const baseball6Stages: StageConfig[] = [
       emoji: "🔬",
     },
     id: "baseball-6-08",
-    order: 18,
+    order: 8,
     title: "Spin Rate, Spin Axis, and Rapsodo",
     subtitle: "How Statcast measures spin and how Dodger coaches use the data",
     category: "sports",
@@ -1563,7 +1563,7 @@ export const baseball6Stages: StageConfig[] = [
 
   // ─── baseball-6-09: Pitch Tunneling and Deception ────────────────────────────
   {
-    epochId: "baseball-5",
+    epochId: "baseball-6",
     wonder: {
       name: "Dodger Stadium — From Pitcher's Mound to Home Plate",
       location: "Los Angeles, California",
@@ -1571,7 +1571,7 @@ export const baseball6Stages: StageConfig[] = [
       emoji: "🔭",
     },
     id: "baseball-6-09",
-    order: 19,
+    order: 9,
     title: "Pitch Tunneling and Deception",
     subtitle: "Tunnel point, shared release, and building a cohesive arsenal",
     category: "sports",
@@ -1764,7 +1764,7 @@ export const baseball6Stages: StageConfig[] = [
 
   // ─── baseball-6-10: Building Your Arsenal by Age ─────────────────────────────
   {
-    epochId: "baseball-5",
+    epochId: "baseball-6",
     wonder: {
       name: "Camelback Ranch — Minor League Fields",
       location: "Glendale, Arizona",
@@ -1772,7 +1772,7 @@ export const baseball6Stages: StageConfig[] = [
       emoji: "🌱",
     },
     id: "baseball-6-10",
-    order: 20,
+    order: 10,
     title: "Building Your Arsenal by Age",
     subtitle: "Age-appropriate pitch development and the Dodger minor league ladder",
     category: "sports",

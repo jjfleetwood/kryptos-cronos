@@ -2,6 +2,16 @@
 
 ---
 
+## v1.30.1 — 2026-06-05
+
+**Baseball: Pitcher restored to 3 epochs + position epochs now visible**
+
+- **Un-merged Pitcher into 3 epochs** again (The Art of Pitching · Pitch Arsenal · Pitching Strategy), mirroring the 3-epoch Hitting track — reversing the earlier consolidation. Non-destructive: all 30 pitcher stages, ids, images, and progress preserved; only `epochId`/`order` restored and the epochs re-registered.
+- **Fixed the stages page so all baseball epochs display.** The sports track hard-coded `epochIds: baseball-1..7`, so the 8 position epochs (Catcher → Right Field) never appeared and it still referenced the merged-away pitcher epochs. Updated to list all 15 baseball epochs (baseball-1..15).
+- **Corrected long-standing count drift:** the headline figures are now the true registered totals — **683 stages across 55 epochs** (the docs had drifted to 681/58).
+
+---
+
 ## v1.30.0 — 2026-06-05
 
 **Certification coverage audit — close objective-level gaps across all 12 certs**

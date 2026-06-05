@@ -38,8 +38,8 @@ import { baseball2Epoch, baseball2Stages } from "./baseball-2";
 import { baseball3Epoch, baseball3Stages } from "./baseball-3";
 import { baseball4Epoch, baseball4Stages } from "./baseball-4";
 import { baseball5Epoch, baseball5Stages } from "./baseball-5";
-import { baseball6Stages } from "./baseball-6";
-import { baseball7Stages } from "./baseball-7";
+import { baseball6Epoch, baseball6Stages } from "./baseball-6";
+import { baseball7Epoch, baseball7Stages } from "./baseball-7";
 import { baseball8Epoch, baseball8Stages } from "./baseball-8";
 import { baseball9Epoch, baseball9Stages } from "./baseball-9";
 import { baseball10Epoch, baseball10Stages } from "./baseball-10";
@@ -144,6 +144,8 @@ export const epochs: EpochConfig[] = [
   baseball3Epoch,
   baseball4Epoch,
   baseball5Epoch,
+  baseball6Epoch,
+  baseball7Epoch,
   baseball8Epoch,
   baseball9Epoch,
   baseball10Epoch,
