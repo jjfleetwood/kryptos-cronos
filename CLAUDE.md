@@ -6,7 +6,7 @@ Gamified cybersecurity + AI training platform. 50 curriculum epochs, 582 CTF/qui
 
 **Live:** kryptoscronos.com  
 **Repo:** github.com/jjfleetwood/kryptos-cronos  
-**Current version:** v1.26.0 (as of 2026-06-03)
+**Current version:** v1.27.0 (as of 2026-06-04)
 
 ---
 
@@ -349,6 +349,15 @@ Local dev: `.env.local` in `app/` (gitignored).
 - **Target sponsors:** CrowdStrike, AWS, SentinelOne, CompTIA, ISC²
 
 ---
+
+## What's Shipped (v1.27.0)
+
+- ✅ **Debate & Speech track — 8 epochs / 80 stages / 320 quiz questions** (`debate-1`…`debate-8`): Foundations · Argumentation & Logic · The Formats · Research & Case Construction · Clash · Rhetoric, Delivery & Persuasion · Competitive & Professional Mastery (NSDA degrees, Toastmasters, WUDC/WSDC, the TOC) · The Psychology of Debate (Kahneman/Cialdini/McGuire/Damasio/Dweck). New "Debate & Speech" extended track group on `/stages`
+- ✅ **`/debate` skill-and-credential tracker** — `/certs`-style per-domain progress + an NSDA-style degree ladder (Merit→Premier Distinction, by stages completed) + real-credential reference cards (NSDA/Academic All American, Toastmasters Pathways/DTM, NDT/CEDA/NPDA/AFA, WUDC/WSDC, TOC). `packages/core/debate-domains.ts`; banner on every debate epoch page
+- ✅ **ARIA hint monetization** — `/api/hint` gates by tier: free = 5 hints/mission (persistent Redis count, refresh-proof) + fixed cooldown; Pro/trial = unlimited + adaptive cooldown. `402 {upgrade}` + `hintsRemaining`; `HintChatbot` shows remaining count + Upgrade CTA. Dormant under `OPEN_ACCESS`
+- ✅ **Security hardening** — centralized admin token into `lib/admin-token.ts` (pure/Edge-safe) + `lib/admin-auth.ts` (`requireAdmin`, Redis revocation); **v2 token** `v2.<user>.<iatMs>.<hmac>` with 8h expiry replacing ~15 inline verifiers; `grant-admin` revokes live cookies on de-admin. Plus fixes: admin-session takeover bypass (session-derived identity), progress forgery (rejects stageFlags stages), hint/redeem/check-flag rate limits, constant-time flag compare, neutralized bonus-XP timing, centralized client-IP/rate-limit helpers
+- ✅ **CR7 extended-track spot-check** — fact-vetted French/Italian/Driving/Travel/Crafts; fixed a `baseball-2` timeline bug (literal `, highlight: false` shown in event text)
+- ✅ Counts: **50 epochs / 582 stages**; docs reconciled (README/CURRICULUM/ARCHITECTURE/pitch decks) from the stale 458/38 figure
 
 ## What's Shipped (v1.26.0)
 

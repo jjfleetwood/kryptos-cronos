@@ -1,7 +1,7 @@
 # Kryptós CronOS — Curriculum Reference
 **Version:** 3.7  
 **Date:** 2026-06-03  
-**Total stages:** 458 across 38 epochs (delivered on **web + native mobile** from the shared `@kryptos/core` content package)
+**Total stages:** 582 across 50 epochs (delivered on **web + native mobile** from the shared `@kryptos/core` content package)
 
 ---
 
@@ -384,7 +384,20 @@ The chess match on the mound — count management, pitch sequencing, platoon spl
 | 36 | Italian Basics | 20 | ~1,200 |
 | 37 | Quantum Risk Management | 10 | ~600 |
 | 38 | Emerging Tech & Deep Learning Risk | 10 | ~600 |
-| | **Total** | **458** | **~82,350** |
+| 39 | Quantum-Safe Migration Engineering | 10 | ~3,500 |
+| 40 | Quantum for Curious Minds (beginner) | 10 | ~3,500 |
+| 41 | Quantum, Deeper (intermediate physics) | 10 | ~3,500 |
+| 42 | How Computers Really Work (beginner) | 10 | ~3,500 |
+| 43 | The Physics of Hacking | 10 | ~3,500 |
+| 44 | Debate: Foundations | 10 | ~3,500 |
+| 45 | Debate: Argumentation & Logic | 10 | ~3,500 |
+| 46 | Debate: The Formats | 10 | ~3,500 |
+| 47 | Debate: Research & Case Construction | 10 | ~3,500 |
+| 48 | Debate: Clash | 10 | ~3,500 |
+| 49 | Debate: Rhetoric, Delivery & Persuasion | 10 | ~3,500 |
+| 50 | Debate: Competitive & Professional Mastery | 10 | ~3,500 |
+| 51 | Debate: The Psychology of Debate | 10 | ~3,500 |
+| | **Total** | **582** | **~110,000** |
 
 ---
 

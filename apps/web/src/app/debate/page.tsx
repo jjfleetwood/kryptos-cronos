@@ -5,7 +5,6 @@ import Link from "next/link";
 import { fetchProgress } from "@/lib/progress";
 import { getSession } from "@/lib/auth";
 import {
-  DEBATE_DOMAINS,
   DEBATE_DEGREES,
   DEBATE_CREDENTIALS,
   computeDebateReadiness,

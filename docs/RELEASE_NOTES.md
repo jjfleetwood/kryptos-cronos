@@ -2,6 +2,19 @@
 
 ---
 
+## v1.27.0 — 2026-06-04
+
+**Debate & Speech track (8 epochs / 80 stages), /debate credential tracker, ARIA hint monetization, and a security hardening sprint**
+
+- **New Debate & Speech track — 8 epochs, 80 stages, 320 quiz questions.** A full extended-curriculum track taking a learner from zero to professional: `debate-1` Foundations · `debate-2` Argumentation & Logic · `debate-3` The Formats (Policy/LD/PF/Parli/BP/Worlds/Congress/Mock Trial/Extemp) · `debate-4` Research & Case Construction · `debate-5` Clash · `debate-6` Rhetoric, Delivery & Persuasion · `debate-7` Competitive & Professional Mastery (NSDA degrees, Toastmasters, WUDC/WSDC, the TOC) · `debate-8` The Psychology of Debate (research-grounded: Kahneman, Cialdini, McGuire, Damasio, Dweck). Each stage carries the full StageInfo briefing + a 4-question quiz. Registered in `@kryptos/core/stages`, themed, and grouped as a new "Debate & Speech" extended track on `/stages`.
+- **`/debate` skill-and-credential tracker.** A `/certs`-style readiness page: per-domain progress across the 8 debate domains, an NSDA-style degree ladder (Merit → Premier Distinction) advanced by stages completed, and real-credential reference cards (NSDA degrees + Academic All American, Toastmasters Pathways/DTM, collegiate/international championships, the TOC bid system). `packages/core/debate-domains.ts`; tracker banner on every debate epoch page.
+- **ARIA hint monetization.** `/api/hint` now gates by tier: free users get 5 ARIA hints per mission (persistent Redis count, refresh-proof); Pro/trial get unlimited guidance + the adaptive cooldown. Returns `hintsRemaining` and a `402 {upgrade}` once spent; `HintChatbot` shows the remaining count and an Upgrade-to-Pro CTA. Dormant under `OPEN_ACCESS`; activates with the paywall at launch.
+- **Security hardening sprint.** Centralized the admin-token into two modules (`lib/admin-token.ts` pure/Edge-safe, `lib/admin-auth.ts` server-only with Redis-backed revocation), replacing ~15 copy-pasted inline HMAC verifiers. New **v2 token format** `v2.<user>.<issuedAtMs>.<hmac>` adds an 8-hour server-side expiry; `requireAdmin()` layers per-user revocation; `grant-admin` revokes live admin cookies when de-admining. Plus prior-fixed findings: admin-session takeover bypass (identity now session-derived), progress forgery (rejects stageFlags stages), per-user rate limits on hint/redeem/check-flag, constant-time flag comparison, neutralized bonus-XP timing, and a centralized client-IP/rate-limit helper.
+- **CR7 — extended-track fact-vet.** Spot-checked all five extended families against known facts (French, Italian, Driving/CA, Travel/Paris, Crafts); fixed a user-facing data bug in `baseball-2` (a misplaced quote had folded literal `, highlight: false` into a timeline event's displayed text).
+- **Counts:** 50 epochs / 582 stages (was 49/572 → +1 epoch /+10 stages this release; the headline figure also reconciles prior content not yet reflected in the docs).
+
+---
+
 ## v1.26.0 — 2026-06-03
 
 **Cross-platform: native mobile app, monorepo, mobile billing & analytics**

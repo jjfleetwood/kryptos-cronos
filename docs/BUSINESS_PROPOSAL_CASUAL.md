@@ -1,6 +1,6 @@
 # Kryptós CronOS — The Pitch
 **May 2026 | For people who get it**
-**Last updated: 2026-06-03 (v1.25.0)**
+**Last updated: 2026-06-04 (v1.27.0)**
 
 ---
 
@@ -28,11 +28,11 @@ It's a game. It's also real security training. And that combination is genuinely
 
 ---
 
-## What exists today (v1.25.0 — web live at kryptoscronos.com; native mobile app in development)
+## What exists today (v1.27.0 — web live at kryptoscronos.com; native mobile app in development)
 
 This isn't a pitch deck with a mockup. It's a working product:
 
-- **458 fully built stages** across 38 curriculum epochs and 10 learning tracks
+- **582 fully built stages** across 50 curriculum epochs and 11 learning tracks
 - **Cross-platform** — the Next.js web app (live) plus a native **iOS/Android app** (Expo, code-complete, pre-store) sharing one backend; mobile adds push streak-nudges and RevenueCat in-app purchases
 - **Privacy-friendly analytics** — Plausible, live (GDPR-compliant) — so we can actually measure traffic, funnels, and retention
 - **7-day free trial → Pro paywall** — Stripe checkout (monthly $13.99 / annual $99, SAVE 41%); webhook lifecycle handling; no credit card required to start
@@ -59,7 +59,7 @@ Built by one founder with an AI development environment. The adaptive difficulty
 
 ---
 
-## The 10 curriculum tracks we have today
+## The 11 curriculum tracks we have today
 
 ### Track 1: Core Security (42 stages)
 The entry point. Our First Journey (30 beginner-friendly CTF stages) + Foundations (12 stages on landmark attacks):

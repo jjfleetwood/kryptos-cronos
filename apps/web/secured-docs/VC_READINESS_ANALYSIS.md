@@ -41,7 +41,7 @@ A VC will spend 20 minutes on the product before meeting 1. Here is what they wi
 
 | Observation | Why It Matters |
 |---|---|
-| 458 stages across 38 epochs, all loading cleanly | 6–12 months of content effort, hard to replicate fast |
+| 582 stages across 50 epochs, all loading cleanly | 6–12 months of content effort, hard to replicate fast |
 | Cross-platform — Next.js web (live) + native iOS/Android app (Expo, code-complete) sharing one backend via a typed client | Monorepo with shared `@kryptos/core`; mobile expands TAM + retention (push streak nudges) |
 | ARIA AI tutor in-production with Socratic framing | No competitor has this working in prod; Anthropic SDK wired correctly |
 | Adaptive difficulty engine — XP bonus, skill tracking, recommended next | Shows product thinking beyond a content dump |

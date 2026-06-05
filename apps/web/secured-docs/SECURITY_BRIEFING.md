@@ -1,12 +1,23 @@
 # Kryptós CronOS — Security Briefing
 **Classification:** Internal  
-**Version:** 5.5  
-**Date:** 2026-06-03  
-**Current version:** v1.25.0
+**Version:** 5.6  
+**Date:** 2026-06-04  
+**Current version:** v1.27.0
 
 ---
 
-## Changelog — v5.5 (2026-06-03) — Mobile IAP, push, analytics & monorepo
+## Changelog — v5.6 (2026-06-04) — Admin-token hardening, progress-forgery fix, ARIA hint monetization
+
+**Net attack surface: reduced.** This release closes admin-session and gameplay-integrity gaps and adds a tier gate; the new content and tracker add no new server surface.
+
+- **Centralized admin token with expiry + revocation.** The admin cookie was previously an HMAC over the username with **no expiry and no revocation**, verified by ~15 copy-pasted inline verifiers. It is now a single canonical primitive: `lib/admin-token.ts` (pure, Edge-safe — used by `proxy.ts`) mints/verifies a **v2 token** `v2.<user>.<issuedAtMs>.<hmac>` with an **8-hour server-side expiry**; `lib/admin-auth.ts` (`import "server-only"`) adds `requireAdmin()`, which layers a **per-user revocation epoch** (`admin:revokedBefore:<user>`) on top of signature + expiry. Legacy non-expiring tokens are no longer accepted (admins re-login once). `grant-admin` now calls `revokeAdminSessions(target)` when de-admining, so a demoted user's live admin cookie dies immediately. All admin-gated routes migrated to `requireAdmin`.
+- **Admin-session takeover bypass — fixed.** `POST /api/admin-session` previously minted a valid admin cookie to anyone who POSTed `{ username: <ADMIN_USERNAME> }` with no credential. Identity is now derived from the verified `session_token` cookie (`getServerSession`), and the route additionally checks super-admin / `isAdmin` flag before issuing.
+- **Progress forgery — fixed.** `POST /api/progress` now rejects stages that have a server-side flag (those must be solved via `/api/check-flag`), validates the stage exists, and grants only the stage's own `badge.id` — closing a path to self-award XP/badges for flag-gated stages.
+- **Rate limits + timing.** Per-user (non-spoofable) + per-IP rate limits on ARIA hints, voucher redeem, and flag/answer checks; constant-time flag comparison; neutralized the bonus-XP timing side channel; centralized client-IP extraction and the Redis rate-limit helper.
+- **ARIA hint monetization — no new surface.** `/api/hint` reads tier server-side (`getUserTier`) and caps free users at 5 hints/mission via the existing persistent Redis hint counter; it reuses the existing bearer/session auth and rate limits, writes no new user-controlled Redis keys, and returns a 402 with an upgrade prompt when spent.
+- **Debate track + `/debate` tracker — data + read-only.** 8 new epochs are pure stage-data files (no new API routes, Redis keys, or env vars). The `/debate` page is a read-only client view over the existing `/api/progress`; `packages/core/debate-domains.ts` is static content.
+
+
 
 **New authenticated surfaces — reviewed.** Building on v5.4's bearer auth, the mobile rollout adds:
 

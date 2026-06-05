@@ -7,16 +7,16 @@
 
 ---
 
-## Summary (as of 2026-06-03)
+## Summary (as of 2026-06-04)
 
 | Metric | Value |
 |---|---|
-| **Total hours logged** | 74.5 h |
-| **Sessions logged** | 13 |
-| **Equivalent developer cost** | $11,175 (74.5h × $150/hr) |
-| **Estimated AI cost to date** | ~$130 (13 sessions × $10/session) |
-| **Estimated AI cost this month (June 2026)** | ~$40 (4 sessions × $10/session) |
-| **AI leverage ratio** | ~86× (developer equivalent ÷ AI cost) |
+| **Total hours logged** | 84.5 h |
+| **Sessions logged** | 14 |
+| **Equivalent developer cost** | $12,675 (84.5h × $150/hr) |
+| **Estimated AI cost to date** | ~$140 (14 sessions × $10/session) |
+| **Estimated AI cost this month (June 2026)** | ~$50 (5 sessions × $10/session) |
+| **AI leverage ratio** | ~91× (developer equivalent ÷ AI cost) |
 
 ---
 
@@ -24,6 +24,7 @@
 
 | Date | Version | Hours | Summary | Cumulative |
 |---|---|---|---|---|
+| 2026-06-04 | v1.27.0 | 10.0 h | Debate & Speech track — 8 epochs / 80 stages / 320 quiz Qs (Foundations → Argumentation & Logic → The Formats → Research & Case Construction → Clash → Rhetoric/Delivery/Persuasion → Competitive & Professional Mastery incl. NSDA/Toastmasters/WUDC/WSDC/TOC certifications → The Psychology of Debate, research-grounded: Kahneman/Cialdini/McGuire/Damasio/Dweck). `/debate` skill-and-credential tracker (8 domains, NSDA-style degree ladder, real-credential reference cards; debate-domains.ts). ARIA hint monetization (`/api/hint` tier-gated: free 5/mission via persistent Redis count, Pro unlimited + adaptive cooldown; 402 upgrade flow in HintChatbot). Security hardening: centralized admin token → admin-token.ts (pure/Edge-safe v2 format, 8h expiry) + admin-auth.ts (requireAdmin + Redis revocation) replacing ~15 inline verifiers across the admin routes; admin-session takeover bypass + progress-forgery fixes; per-user rate limits + constant-time flag compare + neutralized bonus-XP timing. CR7 extended-track fact-vet + baseball-2 timeline bug fix. Full /deploy: tsc + eslint (0 err) + npm audit gates, doc reconciliation 458/38→582/50 (README/CURRICULUM/ARCHITECTURE/pitch decks), RELEASE_NOTES v1.27.0, SECURITY_BRIEFING v5.6, security audit, commit + push. | 84.5 h |
 | 2026-06-03 | api-hardening | 2.0 h | API/auth hardening (3 backend TODOs). #7: local JWKS JWT verification (jose, cached) with getUser fallback in verifySupabaseJwt — drops the per-request network call, never less correct. #8: `/api/v1` namespace (next.config rewrite + @kryptos/api-client pinned) for a freezable mobile contract (future breaks → /api/v2). #9: multi-source entitlement (proStripe / rcProExpiry / voucherExpiry) — both revoke webhooks + getUserTier only downgrade when no other source is active, fixing the Stripe↔RevenueCat cross-downgrade. Branch → Vercel preview verified green → merged to master + branch deleted; prod verified (rewrite 401, bogus bearer 401). Also refreshed apps/mobile README. | 74.5 h |
 | 2026-06-03 | monorepo+mobile | 12.0 h | Mobile roadmap Phases 2–6 + cross-platform foundation. **Phase 2:** Turborepo monorepo — relocated app→apps/web, extracted @kryptos/core (whole data layer, 91 refs rewired) + @kryptos/api-client (typed cross-platform client); Vercel root-dir cutover + merge to prod (lazy-supabaseAdmin build fix); single-branch collapse. **Phase 3:** RevenueCat webhook (/api/webhooks/revenuecat) + rcProExpiry entitlement; deployed. **Phases 4–6:** scaffolded Expo (SDK 56) app in monorepo — Supabase RN auth + bearer api-client, auth-gated tabs (stages/leaderboard/profile), interactive server-validated quiz, ARIA hint chat, push notifications (mobile + /api/push/* + streak-reminder cron + vercel.json), RevenueCat IAP paywall, EAS build config + store identifiers. Plus: live bearer-auth E2E verification on prod (throwaway account), delete-account hardening (email-index + Supabase cleanup), CLAUDE.md monorepo refresh, env reconciliation. All tsc/build green; merged phase-4-mobile→master (943f205, preview-verified) + prod healthy. Mobile NOT yet device-run. | 72.5 h |
 | 2026-06-03 | v1.25.0 | 2.5 h | Mobile roadmap Phase 1 — multi-client token auth. New getAuthedUsername resolver (bearer Supabase JWT → session cookie) + verifySupabaseJwt (email-claim identity, not spoofable user_metadata) + POST /api/auth/bootstrap (provision Supabase-only accounts) + migrated 16 gameplay routes + origin-allowlisted CORS in proxy.ts. Caught + fixed a self-introduced metadata-spoofing takeover vector during review. Verified live (preflight/401/origin). Also authored MOBILE_ROADMAP.md (7-phase plan) earlier in the session. Deployed + dev/master | 60.5 h |

@@ -51,7 +51,7 @@ Kryptós CronOS is a **Turborepo monorepo** with two clients on one backend: the
 **Turborepo monorepo (npm workspaces):**
 - `apps/web/` — Next.js 16 app + API (Vercel Root Directory; detailed tree below)
 - `apps/mobile/` — Expo / React Native iOS+Android app (not deployed by Vercel)
-- `packages/core/` — `@kryptos/core`: all stage data (38 epochs) + shared types
+- `packages/core/` — `@kryptos/core`: all stage data (50 epochs) + shared types
 - `packages/api-client/` — `@kryptos/api-client`: typed cross-platform API client
 - root: `package.json` (workspaces) · `turbo.json` · single `package-lock.json`
 
@@ -302,7 +302,7 @@ User clicks link → POST /api/reset-password (rate: 5/IP/hour)
 
 ## 5. Epoch / Stage System
 
-### 5.1 Epochs (38 total, 458 stages)
+### 5.1 Epochs (50 total, 582 stages)
 
 | # | Epoch ID | Name | Stages | ID Range | Color |
 |---|---|---|---|---|---|
@@ -337,6 +337,16 @@ User clicks link → POST /api/reset-password (rate: 5/IP/hour)
 | 30 | `baseball-5` | The Art of Pitching | 10 | baseball-5-01 → baseball-5-10 | Green |
 | 31 | `baseball-6` | Pitch Arsenal | 10 | baseball-6-01 → baseball-6-10 | Red |
 | 32 | `baseball-7` | Pitching Strategy | 10 | baseball-7-01 → baseball-7-10 | Indigo |
+| 44 | `debate-1` | Debate: Foundations | 10 | debate-1-01 → debate-1-10 | Sky |
+| 45 | `debate-2` | Debate: Argumentation & Logic | 10 | debate-2-01 → debate-2-10 | Cyan |
+| 46 | `debate-3` | Debate: The Formats | 10 | debate-3-01 → debate-3-10 | Teal |
+| 47 | `debate-4` | Debate: Research & Case Construction | 10 | debate-4-01 → debate-4-10 | Emerald |
+| 48 | `debate-5` | Debate: Clash | 10 | debate-5-01 → debate-5-10 | Amber |
+| 49 | `debate-6` | Debate: Rhetoric, Delivery & Persuasion | 10 | debate-6-01 → debate-6-10 | Rose |
+| 50 | `debate-7` | Debate: Competitive & Professional Mastery | 10 | debate-7-01 → debate-7-10 | Indigo |
+| 51 | `debate-8` | Debate: The Psychology of Debate | 10 | debate-8-01 → debate-8-10 | Purple |
+
+> This table highlights the security core and the new Debate & Speech track. The travel (paris/milan/french/italian), additional quantum (quantum-4/5, quantum-intro/deep), computing-foundations, physics-of-hacking, and emerging-tech epochs are also live — the canonical, always-current 50-epoch list lives in the root `CLAUDE.md` and the live `/stages` page. Readiness for the debate track is tracked at `/debate` (`packages/core/debate-domains.ts`).
 
 ### 5.2 Stage Unlock Logic
 

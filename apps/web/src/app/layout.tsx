@@ -85,7 +85,6 @@ export default async function RootLayout({
       lang={locale}
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      {/* eslint-disable-next-line @next/next/no-sync-scripts */}
       <head>
         <script nonce={nonce} dangerouslySetInnerHTML={{ __html: antiFoucScript }} />
       </head>
