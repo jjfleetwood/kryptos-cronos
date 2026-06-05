@@ -1,7 +1,7 @@
 # Kryptós CronOS — Curriculum Reference
 **Version:** 3.7  
 **Date:** 2026-06-03  
-**Total stages:** 582 across 50 epochs (delivered on **web + native mobile** from the shared `@kryptos/core` content package)
+**Total stages:** 662 across 56 epochs (delivered on **web + native mobile** from the shared `@kryptos/core` content package)
 
 ---
 
@@ -301,7 +301,9 @@ Passing the test is just the beginning. Master distraction awareness, defensive 
 
 ---
 
-## Epochs 26–32: Baseball Track
+## Epochs 26–40: Baseball Track
+
+The baseball track mirrors the field: fundamentals → hitting (3 epochs) → **one full position epoch per position** (9 positions, Pitcher through Right Field). Each position epoch builds the spot from the ground up — how to play it, practice, body/conditioning, footwork, reading where the play is, cutoffs/relays/throws, and the backups & positioning for every situation — anchored by a hall-of-fame exemplar.
 
 ### Epoch 26: Play Ball!
 **Theme:** Little League fundamentals — rules, positions, and basic skills  
@@ -325,20 +327,50 @@ The science of the elite swing — hip-shoulder separation, barrel management, a
 
 Statcast analytics, advanced scouting, clutch at-bat approach, and the greatest Dodger hitters of all time. For players ready to think like professionals.
 
-### Epoch 30: The Art of Pitching
-**Stages:** 10 (baseball-5-01 through baseball-5-10) | **Color:** Green
+### Epoch 30: Pitcher
+**Stages:** 30 (baseball-5/6/7 series) | **Color:** Green
 
-Pitching mechanics, arm care, PFP (pitcher fielding practice), and the fundamentals of every pitch type. Kershaw-focused masterclass on the craft of pitching.
+The complete pitcher position — Mechanics & Fundamentals, the full Pitch Arsenal (every grip from four-seam to splitter, spin/tunneling/deception), and Pitching Strategy (count management, sequencing, situational pitching). Consolidated from the former three pitcher epochs; Kershaw/Rivera/Koufax exemplars.
 
-### Epoch 31: Pitch Arsenal
-**Stages:** 10 (baseball-6-01 through baseball-6-10) | **Color:** Red
+### Epoch 31: Catcher
+**Stages:** 10 (baseball-8-01 through baseball-8-10) | **Color:** Red
 
-All pitch types from grip to release — fastball, curveball, slider, changeup, cutter, splitter. Spin rate, tunneling, deception, and age-appropriate progression for developing pitchers.
+The field general — stances, receiving & framing, blocking, pop time & throwing, fielding the position, plays at the plate, backups & coverage, and calling the game. Exemplar: Yadier Molina.
 
-### Epoch 32: Pitching Strategy
-**Stages:** 10 (baseball-7-01 through baseball-7-10) | **Color:** Indigo
+### Epoch 32: First Base
+**Stages:** 10 (baseball-9-01 through baseball-9-10) | **Color:** Orange
 
-The chess match on the mound — count management, pitch sequencing, platoon splits, situational pitching, and Dodger pitching legends from Koufax to Kershaw.
+The anchor of the infield — footwork at the bag, scooping/picking throws, holding runners, the 3-hole and 3-6-3, charging bunts, cutoffs, and situational IQ. Exemplar: Keith Hernandez.
+
+### Epoch 33: Second Base
+**Stages:** 10 (baseball-10-01 through baseball-10-10) | **Color:** Blue
+
+The keystone — positioning, fielding/footwork, the pivot, the feed, covering the bag, relays, and situational IQ. Exemplar: Roberto Alomar.
+
+### Epoch 34: Third Base
+**Stages:** 10 (baseball-11-01 through baseball-11-10) | **Color:** Red
+
+The hot corner — reaction-ready stance, soft hands on smashes, the long throw, charging slow rollers/barehand, backhands & the line, cutoffs, and situational IQ. Exemplar: Brooks Robinson.
+
+### Epoch 35: Shortstop
+**Stages:** 10 (baseball-12-01 through baseball-12-10) | **Color:** Indigo
+
+The captain of the infield — range & footwork, the deep hole & jump throw, the double play, charging/barehand, relays & leadership, and situational IQ. Exemplar: Ozzie Smith.
+
+### Epoch 36: Left Field
+**Stages:** 10 (baseball-13-01 through baseball-13-10) | **Color:** Green
+
+Reading the ball off the bat — the jump & routes, catching, playing the wall & line, the crow-hop throw, backups, cutoffs, and situational IQ. Exemplar: Carl Yastrzemski (the Green Monster).
+
+### Epoch 37: Center Field
+**Stages:** 10 (baseball-14-01 through baseball-14-10) | **Color:** Blue
+
+The captain of the outfield — reads & routes, robbing home runs, covering the gaps, the long throw, priority/calling off, backing up the middle, and situational IQ. Exemplar: Ken Griffey Jr.
+
+### Epoch 38: Right Field
+**Stages:** 10 (baseball-15-01 through baseball-15-10) | **Color:** Orange
+
+The cannon — reads & the slice, catching to throw, the long throw to third/home, playing the line & sun, backing up first, cutoffs, and situational IQ. Exemplar: Ichiro Suzuki.
 
 ---
 
@@ -375,29 +407,35 @@ The chess match on the mound — count management, pitch sequencing, platoon spl
 | 27 | The Art of Hitting | 10 | ~1,000 |
 | 28 | Advanced Mechanics | 10 | ~1,000 |
 | 29 | Elite Mastery | 10 | ~1,000 |
-| 30 | The Art of Pitching | 10 | ~1,000 |
-| 31 | Pitch Arsenal | 10 | ~1,000 |
-| 32 | Pitching Strategy | 10 | ~1,000 |
-| 33 | Paris in July | 20 | ~1,200 |
-| 34 | Milan in July | 20 | ~1,200 |
-| 35 | French Basics | 20 | ~1,200 |
-| 36 | Italian Basics | 20 | ~1,200 |
-| 37 | Quantum Risk Management | 10 | ~600 |
-| 38 | Emerging Tech & Deep Learning Risk | 10 | ~600 |
-| 39 | Quantum-Safe Migration Engineering | 10 | ~3,500 |
-| 40 | Quantum for Curious Minds (beginner) | 10 | ~3,500 |
-| 41 | Quantum, Deeper (intermediate physics) | 10 | ~3,500 |
-| 42 | How Computers Really Work (beginner) | 10 | ~3,500 |
-| 43 | The Physics of Hacking | 10 | ~3,500 |
-| 44 | Debate: Foundations | 10 | ~3,500 |
-| 45 | Debate: Argumentation & Logic | 10 | ~3,500 |
-| 46 | Debate: The Formats | 10 | ~3,500 |
-| 47 | Debate: Research & Case Construction | 10 | ~3,500 |
-| 48 | Debate: Clash | 10 | ~3,500 |
-| 49 | Debate: Rhetoric, Delivery & Persuasion | 10 | ~3,500 |
-| 50 | Debate: Competitive & Professional Mastery | 10 | ~3,500 |
-| 51 | Debate: The Psychology of Debate | 10 | ~3,500 |
-| | **Total** | **582** | **~110,000** |
+| 30 | Pitcher (Mechanics · Arsenal · Strategy) | 30 | ~3,000 |
+| 31 | Catcher | 10 | ~1,000 |
+| 32 | First Base | 10 | ~1,000 |
+| 33 | Second Base | 10 | ~1,000 |
+| 34 | Third Base | 10 | ~1,000 |
+| 35 | Shortstop | 10 | ~1,000 |
+| 36 | Left Field | 10 | ~1,000 |
+| 37 | Center Field | 10 | ~1,000 |
+| 38 | Right Field | 10 | ~1,000 |
+| 39 | Paris in July | 20 | ~1,200 |
+| 40 | Milan in July | 20 | ~1,200 |
+| 41 | French Basics | 20 | ~1,200 |
+| 42 | Italian Basics | 20 | ~1,200 |
+| 43 | Quantum Risk Management | 10 | ~600 |
+| 44 | Emerging Tech & Deep Learning Risk | 10 | ~600 |
+| 45 | Quantum-Safe Migration Engineering | 10 | ~3,500 |
+| 46 | Quantum for Curious Minds (beginner) | 10 | ~3,500 |
+| 47 | Quantum, Deeper (intermediate physics) | 10 | ~3,500 |
+| 48 | How Computers Really Work (beginner) | 10 | ~3,500 |
+| 49 | The Physics of Hacking | 10 | ~3,500 |
+| 50 | Debate: Foundations | 10 | ~3,500 |
+| 51 | Debate: Argumentation & Logic | 10 | ~3,500 |
+| 52 | Debate: The Formats | 10 | ~3,500 |
+| 53 | Debate: Research & Case Construction | 10 | ~3,500 |
+| 54 | Debate: Clash | 10 | ~3,500 |
+| 55 | Debate: Rhetoric, Delivery & Persuasion | 10 | ~3,500 |
+| 56 | Debate: Competitive & Professional Mastery | 10 | ~3,500 |
+| 57 | Debate: The Psychology of Debate | 10 | ~3,500 |
+| | **Total** | **662** | **~110,000** |
 
 ---
 

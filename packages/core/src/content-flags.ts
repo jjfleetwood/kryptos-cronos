@@ -333,31 +333,11 @@ export const CONTENT_FLAGS: ContentFlag[] = [
   {
     epochId: "baseball-5",
     risk: "fair-use",
-    source: "MLB / Los Angeles Dodgers historical record",
+    source: "MLB / Los Angeles Dodgers historical record / Rapsodo / Trackman",
     attributionText:
-      "Pitching mechanics content references publicly available technique descriptions and historical records for educational purposes.",
+      "Complete pitcher position curriculum (mechanics, pitch arsenal, and strategy) references publicly available technique descriptions, spin-rate/pitch-classification data, and historical records for educational purposes.",
     adminNote:
-      "Clayton Kershaw is referenced by name as a factual pitching example. Player names are not IP. Educational use.",
-    reviewedAt: "2026-05-21",
-  },
-  {
-    epochId: "baseball-6",
-    risk: "fair-use",
-    source: "MLB / Rapsodo / Trackman",
-    attributionText:
-      "Pitch arsenal content references publicly available spin rate data and pitch classification information for educational purposes.",
-    adminNote:
-      "Rapsodo® and Trackman® are trademarks referenced descriptively as measurement tools. No marks reproduced. Fair use.",
-    reviewedAt: "2026-05-21",
-  },
-  {
-    epochId: "baseball-7",
-    risk: "fair-use",
-    source: "MLB historical record",
-    attributionText:
-      "Pitching strategy content references publicly available historical records and factual career statistics for educational purposes.",
-    adminNote:
-      "Koufax, Drysdale, Hershiser, Kershaw referenced factually. Historical stats are public record. No IP risk.",
+      "Merged Pitcher epoch (formerly Art of Pitching + Pitch Arsenal + Pitching Strategy). Kershaw, Rivera, Koufax, Drysdale, Hershiser referenced factually as examples; player names are not IP. Rapsodo/Trackman are trademarks referenced descriptively. Historical stats are public record. Educational use.",
     reviewedAt: "2026-05-21",
   },
 

@@ -14,7 +14,7 @@ export const baseball7Epoch: EpochConfig = {
 export const baseball7Stages: StageConfig[] = [
   // ─── baseball-7-01: Reading the Batter ───────────────────────────────────────
   {
-    epochId: "baseball-7",
+    epochId: "baseball-5",
     wonder: {
       name: "Dodger Stadium",
       location: "Los Angeles, California",
@@ -22,7 +22,7 @@ export const baseball7Stages: StageConfig[] = [
       emoji: "🧠",
     },
     id: "baseball-7-01",
-    order: 1,
+    order: 21,
     title: "Reading the Batter",
     subtitle: "Stance clues, weight distribution, grip tightness, and setup tells",
     category: "sports",
@@ -211,7 +211,7 @@ export const baseball7Stages: StageConfig[] = [
 
   // ─── baseball-7-02: Working the Count ────────────────────────────────────────
   {
-    epochId: "baseball-7",
+    epochId: "baseball-5",
     wonder: {
       name: "Camelback Ranch — Glendale, Arizona",
       location: "Glendale, Arizona",
@@ -219,7 +219,7 @@ export const baseball7Stages: StageConfig[] = [
       emoji: "🌵",
     },
     id: "baseball-7-02",
-    order: 2,
+    order: 22,
     title: "Working the Count",
     subtitle: "First-pitch strikes, 0-2 waste pitches, and the 3-2 battle",
     category: "sports",
@@ -400,7 +400,7 @@ export const baseball7Stages: StageConfig[] = [
 
   // ─── baseball-7-03: Pitch Sequencing ─────────────────────────────────────────
   {
-    epochId: "baseball-7",
+    epochId: "baseball-5",
     wonder: {
       name: "Dodger Stadium — The Pitcher's Mound",
       location: "Los Angeles, California",
@@ -408,7 +408,7 @@ export const baseball7Stages: StageConfig[] = [
       emoji: "♟️",
     },
     id: "baseball-7-03",
-    order: 3,
+    order: 23,
     title: "Pitch Sequencing",
     subtitle: "Setting up pitches, creating patterns, and exploiting them later",
     category: "sports",
@@ -594,7 +594,7 @@ export const baseball7Stages: StageConfig[] = [
 
   // ─── baseball-7-04: First Time vs. Third Time Through the Order ───────────────
   {
-    epochId: "baseball-7",
+    epochId: "baseball-5",
     wonder: {
       name: "Dodger Stadium — Bullpen",
       location: "Los Angeles, California",
@@ -602,7 +602,7 @@ export const baseball7Stages: StageConfig[] = [
       emoji: "🔄",
     },
     id: "baseball-7-04",
-    order: 4,
+    order: 24,
     title: "First Time vs. Third Time Through the Order",
     subtitle: "Why starters fade, the Opener strategy, and Dave Roberts' bullpen management",
     category: "sports",
@@ -788,7 +788,7 @@ export const baseball7Stages: StageConfig[] = [
 
   // ─── baseball-7-05: Pitching from the Stretch ────────────────────────────────
   {
-    epochId: "baseball-7",
+    epochId: "baseball-5",
     wonder: {
       name: "Dodger Stadium — First Base Line",
       location: "Los Angeles, California",
@@ -796,7 +796,7 @@ export const baseball7Stages: StageConfig[] = [
       emoji: "⏱️",
     },
     id: "baseball-7-05",
-    order: 5,
+    order: 25,
     title: "Pitching from the Stretch with Runners On",
     subtitle: "Mental checklist, varying tempo, slide step, and Kershaw's pickoff",
     category: "sports",
@@ -980,7 +980,7 @@ export const baseball7Stages: StageConfig[] = [
 
   // ─── baseball-7-06: High-Leverage Situations ─────────────────────────────────
   {
-    epochId: "baseball-7",
+    epochId: "baseball-5",
     wonder: {
       name: "Dodger Stadium — Ninth Inning",
       location: "Los Angeles, California",
@@ -988,7 +988,7 @@ export const baseball7Stages: StageConfig[] = [
       emoji: "🔥",
     },
     id: "baseball-7-06",
-    order: 6,
+    order: 26,
     title: "High-Leverage Situations",
     subtitle: "Bases loaded, tie game, attacking vs. nibbling, and Kenley Jansen",
     category: "sports",
@@ -1179,7 +1179,7 @@ export const baseball7Stages: StageConfig[] = [
 
   // ─── baseball-7-07: Platoon Matchups and Handedness ──────────────────────────
   {
-    epochId: "baseball-7",
+    epochId: "baseball-5",
     wonder: {
       name: "Camelback Ranch — Spring Training Bullpen",
       location: "Glendale, Arizona",
@@ -1187,7 +1187,7 @@ export const baseball7Stages: StageConfig[] = [
       emoji: "🔀",
     },
     id: "baseball-7-07",
-    order: 7,
+    order: 27,
     title: "Platoon Matchups and Handedness",
     subtitle: "L/R splits, LOOGYs, and how the Dodgers construct their bullpen",
     category: "sports",
@@ -1377,7 +1377,7 @@ export const baseball7Stages: StageConfig[] = [
 
   // ─── baseball-7-08: Studying Hitters with Video and Data ─────────────────────
   {
-    epochId: "baseball-7",
+    epochId: "baseball-5",
     wonder: {
       name: "Camelback Ranch — Video Room",
       location: "Glendale, Arizona",
@@ -1385,7 +1385,7 @@ export const baseball7Stages: StageConfig[] = [
       emoji: "📊",
     },
     id: "baseball-7-08",
-    order: 8,
+    order: 28,
     title: "Studying Hitters with Video and Data",
     subtitle: "Statcast tendencies, spray charts, exit velocity by zone, and Dodger game planning",
     category: "sports",
@@ -1569,7 +1569,7 @@ export const baseball7Stages: StageConfig[] = [
 
   // ─── baseball-7-09: Managing Fatigue ─────────────────────────────────────────
   {
-    epochId: "baseball-7",
+    epochId: "baseball-5",
     wonder: {
       name: "Camelback Ranch — Training Facility",
       location: "Glendale, Arizona",
@@ -1577,7 +1577,7 @@ export const baseball7Stages: StageConfig[] = [
       emoji: "💪",
     },
     id: "baseball-7-09",
-    order: 9,
+    order: 29,
     title: "Managing Fatigue and Knowing When You're Done",
     subtitle: "Velocity drops, mechanics breakdown, and Tommy John prevention",
     category: "sports",
@@ -1771,7 +1771,7 @@ export const baseball7Stages: StageConfig[] = [
 
   // ─── baseball-7-10: Greatest Dodger Pitchers ─────────────────────────────────
   {
-    epochId: "baseball-7",
+    epochId: "baseball-5",
     wonder: {
       name: "Dodger Stadium — Hall of Fame Plaques at the Ravine",
       location: "Los Angeles, California — Chavez Ravine",
@@ -1779,7 +1779,7 @@ export const baseball7Stages: StageConfig[] = [
       emoji: "🏆",
     },
     id: "baseball-7-10",
-    order: 10,
+    order: 30,
     title: "The Greatest Dodger Pitchers — Strategic Breakdowns",
     subtitle: "Koufax, Drysdale, Valenzuela, Hershiser, and Kershaw",
     category: "sports",

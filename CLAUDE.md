@@ -2,11 +2,11 @@
 
 ## What This Is
 
-Gamified cybersecurity + AI training platform. 50 curriculum epochs, 582 CTF/quiz stages, live leaderboard, admin dashboard, 24 downloadable MCP server templates. Built with Next.js 16 / React 19 / TypeScript / Tailwind CSS / Upstash Redis / Resend.
+Gamified cybersecurity + AI training platform. 56 curriculum epochs, 662 CTF/quiz stages, live leaderboard, admin dashboard, 24 downloadable MCP server templates. Built with Next.js 16 / React 19 / TypeScript / Tailwind CSS / Upstash Redis / Resend.
 
 **Live:** kryptoscronos.com  
 **Repo:** github.com/jjfleetwood/kryptos-cronos  
-**Current version:** v1.28.0 (as of 2026-06-05)
+**Current version:** v1.29.0 (as of 2026-06-05)
 
 ---
 
@@ -349,6 +349,12 @@ Local dev: `.env.local` in `app/` (gitignored).
 - **Target sponsors:** CrowdStrike, AWS, SentinelOne, CompTIA, ISC²
 
 ---
+
+## What's Shipped (v1.29.0)
+
+- ✅ **Baseball position curriculum.** One full epoch per position. Added 8 new 10-stage epochs — Catcher, First Base, Second Base, Third Base, Shortstop, Left Field, Center Field, Right Field (80 stages / 320 quiz Qs) — each on how to play the spot, practice, body/footwork, reading the play, cutoffs/relays, and backups/positioning for every situation, anchored by a hall-of-fame exemplar.
+- ✅ **Pitcher consolidation (non-destructive).** Merged the 3 pitcher epochs (Art of Pitching + Pitch Arsenal + Pitching Strategy) into one 30-stage **Pitcher** epoch (`baseball-5`); stage ids/images/progress preserved, `epochId`+`order` remapped 1→30, content-flags collapsed.
+- ✅ **Counts:** 582 → **662 stages**, 50 → **56 epochs** (merge −2, new +8), 11 tracks. Homepage stat updated. Full /deploy (tsc + web lint + audit gates).
 
 ## What's Shipped (v1.28.0)
 

@@ -51,7 +51,7 @@ Kryptós CronOS is a **Turborepo monorepo** with two clients on one backend: the
 **Turborepo monorepo (npm workspaces):**
 - `apps/web/` — Next.js 16 app + API (Vercel Root Directory; detailed tree below)
 - `apps/mobile/` — Expo / React Native iOS+Android app (not deployed by Vercel)
-- `packages/core/` — `@kryptos/core`: all stage data (50 epochs) + shared types
+- `packages/core/` — `@kryptos/core`: all stage data (56 epochs) + shared types
 - `packages/api-client/` — `@kryptos/api-client`: typed cross-platform API client
 - root: `package.json` (workspaces) · `turbo.json` · single `package-lock.json`
 
@@ -302,7 +302,7 @@ User clicks link → POST /api/reset-password (rate: 5/IP/hour)
 
 ## 5. Epoch / Stage System
 
-### 5.1 Epochs (50 total, 582 stages)
+### 5.1 Epochs (56 total, 662 stages)
 
 | # | Epoch ID | Name | Stages | ID Range | Color |
 |---|---|---|---|---|---|

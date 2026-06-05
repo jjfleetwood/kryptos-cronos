@@ -11,12 +11,12 @@
 
 | Metric | Value |
 |---|---|
-| **Total hours logged** | 92.5 h |
-| **Sessions logged** | 15 |
-| **Equivalent developer cost** | $13,875 (92.5h × $150/hr) |
-| **Estimated AI cost to date** | ~$150 (15 sessions × $10/session) |
-| **Estimated AI cost this month (June 2026)** | ~$60 (6 sessions × $10/session) |
-| **AI leverage ratio** | ~93× (developer equivalent ÷ AI cost) |
+| **Total hours logged** | 101.5 h |
+| **Sessions logged** | 16 |
+| **Equivalent developer cost** | $15,225 (101.5h × $150/hr) |
+| **Estimated AI cost to date** | ~$160 (16 sessions × $10/session) |
+| **Estimated AI cost this month (June 2026)** | ~$70 (7 sessions × $10/session) |
+| **AI leverage ratio** | ~95× (developer equivalent ÷ AI cost) |
 
 ---
 

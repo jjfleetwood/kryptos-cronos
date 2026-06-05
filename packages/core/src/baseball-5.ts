@@ -2,10 +2,10 @@ import type { StageConfig, EpochConfig } from "./types";
 
 export const baseball5Epoch: EpochConfig = {
   id: "baseball-5",
-  name: "The Art of Pitching",
-  subtitle: "Mechanics & Fundamentals",
+  name: "Pitcher",
+  subtitle: "The Complete Pitcher — Mechanics, Arsenal & Strategy",
   description:
-    "Pitching is the most technically demanding skill in baseball — a symphony of biomechanics, mental fortitude, and strategic intelligence executed in under two seconds on every delivery. This epoch breaks down the complete craft: the rubber and stance, grip science, windup and stretch mechanics, arm action, release point command, holding runners, velocity, pitch counts, fielding, and the mound mindset. From Clayton Kershaw's legendary delivery to the pitch count rules protecting young arms, you will learn to think and throw like the best in the game.",
+    "The pitcher touches the ball on every defensive play and sets the tempo of the entire game — the most technically and mentally demanding position in baseball. This complete 30-stage position course unites the full craft of pitching: mechanics and fundamentals (the rubber and stance, grip science, windup and stretch mechanics, arm action, release-point command, holding runners, velocity, pitch counts, and fielding the position), the full pitch arsenal (every pitch type from the four-seam to the splitter, with spin science, movement physics, and sequencing), and pitching strategy (the chess match — reading hitters, manipulating counts, sequencing across a lineup, and managing a start the third time through the order). From Clayton Kershaw's delivery to Mariano Rivera's cutter to Sandy Koufax's elegance, learn to think and throw like the best in the game.",
   emoji: "⚾",
   color: "green",
   unlocked: true,

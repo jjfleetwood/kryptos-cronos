@@ -2,6 +2,17 @@
 
 ---
 
+## v1.29.0 — 2026-06-05
+
+**Baseball position curriculum — 8 new full position epochs + Pitcher consolidation**
+
+- **One full epoch per position.** Added 8 new 10-stage position epochs — **Catcher, First Base, Second Base, Third Base, Shortstop, Left Field, Center Field, Right Field** — totaling **80 stages / 320 quiz questions**. Each builds the position from the ground up: how to play the spot, practice, building the body/conditioning, footwork, reading where the play is, cutoffs/relays/throws, and the backups & positioning for every situation — anchored by a hall-of-fame exemplar (Yadier Molina, Keith Hernandez, Roberto Alomar, Brooks Robinson, Ozzie Smith, Carl Yastrzemski, Ken Griffey Jr., Ichiro Suzuki).
+- **Pitcher consolidation (non-destructive).** Merged the three pitcher epochs (Art of Pitching + Pitch Arsenal + Pitching Strategy) into one 30-stage **Pitcher** position epoch. All stage ids, images, and saved player progress are preserved — only the `epochId` grouping and `order` (renumbered 1→30) changed; the two redundant content-attribution flags were collapsed into one.
+- The baseball track now mirrors the field: **fundamentals → hitting (3 epochs) → one full position epoch per position** (9 positions, Pitcher through Right Field).
+- **Counts:** 582 → **662 stages**; 50 → **56 epochs** (merge −2, new +8); 11 tracks unchanged. Homepage stat updated.
+
+---
+
 ## v1.28.0 — 2026-06-05
 
 **Debate Mastery practice exam + platform-wide image self-hosting**
