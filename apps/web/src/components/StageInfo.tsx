@@ -5,6 +5,7 @@ import AttackDiagram from "./AttackDiagram";
 import GaugeBar from "./GaugeBar";
 import BackLink from "./BackLink";
 import RichText from "./RichText";
+import ZoomableImage from "./ZoomableImage";
 import type { StageConfig } from "@kryptos/core/types";
 import type { StageTranslation } from "@kryptos/core/translations/types";
 import { stageDownloads } from "@kryptos/core/stage-downloads";
@@ -458,11 +459,10 @@ export default function StageInfo({
           {(STAGE_IMAGES[stage.id] ?? stage.image ?? DEBATE_EPOCH_IMAGE[stage.epochId]) && (
             <figure className="mt-6 group">
               <div className="relative rounded-2xl overflow-hidden border border-white/10 ring-1 ring-white/5 bg-gradient-to-b from-white/[0.06] to-black/40 shadow-[0_10px_45px_rgba(0,0,0,0.45)]">
-                <img
+                <ZoomableImage
                   src={STAGE_IMAGES[stage.id] ?? stage.image ?? DEBATE_EPOCH_IMAGE[stage.epochId] ?? STAGE_PLACEHOLDER}
                   alt={stage.title}
                   className="w-full max-h-[26rem] object-contain mx-auto transition-transform duration-700 ease-out group-hover:scale-[1.02]"
-                  loading="lazy"
                   onError={(e) => {
                     const img = e.currentTarget;
                     if (!img.src.endsWith(STAGE_PLACEHOLDER)) img.src = STAGE_PLACEHOLDER;
@@ -629,11 +629,10 @@ export default function StageInfo({
                     const figure = (
                       <figure key={`img${i}`} className="-ml-5 my-1 relative z-10">
                         <div className="rounded-xl overflow-hidden border border-amber-500/25 ring-1 ring-white/5 bg-[#0b0f18] flex justify-center px-2 py-2">
-                          <img
+                          <ZoomableImage
                             src={tlImg}
                             alt={`${stage.title} — timeline moment`}
                             className="w-full max-h-60 object-contain"
-                            loading="lazy"
                             onError={(e) => { const fig = e.currentTarget.closest("figure"); if (fig) (fig as HTMLElement).style.display = "none"; }}
                           />
                         </div>
