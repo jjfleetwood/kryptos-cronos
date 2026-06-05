@@ -1,10 +1,18 @@
 # Kryptós CronOS — Security Briefing
 **Classification:** Internal  
-**Version:** 5.6  
-**Date:** 2026-06-04  
-**Current version:** v1.27.0
+**Version:** 5.7  
+**Date:** 2026-06-05  
+**Current version:** v1.28.0
 
 ---
+
+## Changelog — v5.7 (2026-06-05) — Image self-hosting (external deps removed)
+
+**Net attack surface: reduced.** All stage imagery moved from third-party hotlinks to first-party self-hosting:
+
+- **214 external `upload.wikimedia.org` image URLs removed** from the stage data and replaced by 290 self-hosted assets in `public/` (served same-origin via the existing static pipeline). This eliminates the platform's last routine third-party image requests — no referrer leakage to Wikimedia, no dependency on an external host's availability, and no surface for a stale external URL to be repointed.
+- **No new server surface.** The new `/exam/debate` route reuses the existing `/api/exam` engine (server-side grading, answer key never sent to the client, options shuffled); it adds only a `debate` mode to the question bank — no new auth path, env var, or Redis key.
+- **CSP note.** `img-src` remains `'self' data: https:`. With external images now eliminated it could be tightened to `'self' data:` in a future pass, pending an audit of any remaining external image sources (e.g., OG/share images); left unchanged here to avoid breakage.
 
 ## Changelog — v5.6 (2026-06-04) — Admin-token hardening, progress-forgery fix, ARIA hint monetization
 

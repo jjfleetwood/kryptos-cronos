@@ -1,6 +1,6 @@
 # Kryptós CronOS — The Pitch
 **May 2026 | For people who get it**
-**Last updated: 2026-06-04 (v1.27.0)**
+**Last updated: 2026-06-05 (v1.28.0)**
 
 ---
 
@@ -28,7 +28,7 @@ It's a game. It's also real security training. And that combination is genuinely
 
 ---
 
-## What exists today (v1.27.0 — web live at kryptoscronos.com; native mobile app in development)
+## What exists today (v1.28.0 — web live at kryptoscronos.com; native mobile app in development)
 
 This isn't a pitch deck with a mockup. It's a working product:
 

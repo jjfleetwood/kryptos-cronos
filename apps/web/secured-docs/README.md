@@ -2,8 +2,8 @@
 
 **Live at:** kryptoscronos.com (web)
 **GitHub:** github.com/jjfleetwood/kryptos-cronos
-**Web version:** v1.27.0 · **Mobile app:** in development (Expo, pre-store)
-**Last updated:** 2026-06-04
+**Web version:** v1.28.0 · **Mobile app:** in development (Expo, pre-store)
+**Last updated:** 2026-06-05
 
 ---
 

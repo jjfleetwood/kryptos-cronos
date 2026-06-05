@@ -6,7 +6,7 @@ Gamified cybersecurity + AI training platform. 50 curriculum epochs, 582 CTF/qui
 
 **Live:** kryptoscronos.com  
 **Repo:** github.com/jjfleetwood/kryptos-cronos  
-**Current version:** v1.27.0 (as of 2026-06-04)
+**Current version:** v1.28.0 (as of 2026-06-05)
 
 ---
 
@@ -349,6 +349,12 @@ Local dev: `.env.local` in `app/` (gitignored).
 - **Target sponsors:** CrowdStrike, AWS, SentinelOne, CompTIA, ISC²
 
 ---
+
+## What's Shipped (v1.28.0)
+
+- ✅ **Debate Mastery exam (`/exam/debate`)** — 30 randomized Qs from the 320-question debate pool (all 8 domains), 30-min timer, 75% pass, server-graded; same engine as the cert/DMV exams. "Exam" CTA on the `/debate` tracker. New `debate` mode in `exam-banks.ts` + `api/exam`.
+- ✅ **Platform-wide image self-hosting** — Wikimedia killed on-demand thumbnail hotlinking, breaking all stage images. Migrated to **290 self-hosted assets** in `public/` (77 per-stage debate + 213 other tracks), driven by `STAGE_IMAGES` (`apps/web/src/lib/stage-images.ts`) which overrides the old config URLs; `StageInfo` falls back to a branded placeholder (`/stage-placeholder.svg`) on error. Recompressed with sharp **88 MB → 21 MB**; stripped all 214 dead `image:` URLs from the configs.
+- ✅ **Homepage stats** corrected to 582 stages / 11 tracks.
 
 ## What's Shipped (v1.27.0)
 

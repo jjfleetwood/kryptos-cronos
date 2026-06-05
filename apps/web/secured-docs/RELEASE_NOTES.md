@@ -2,6 +2,20 @@
 
 ---
 
+## v1.28.0 — 2026-06-05
+
+**Debate Mastery practice exam + platform-wide image self-hosting**
+
+- **Debate Mastery exam (`/exam/debate`).** A new practice exam on the same engine as the cert/DMV exams: 30 randomized questions drawn from the 320-question pool across all 8 debate domains, 30-minute timer, 75% pass, server-side grading (answer key never sent to the client; options shuffled). An "Exam" CTA sits on the `/debate` tracker.
+- **All stage images self-hosted.** Wikimedia disabled on-demand thumbnail hotlinking (HTTP 400 "use allowed sizes" + rate-limiting), breaking every stage image platform-wide. Migrated all imagery to first-party self-hosting:
+  - **290 images in `public/`** — 77 per-stage debate images keyed to each stage's "wonder" (the Pnyx, Roman Forum, Lincoln-Douglas, Aristotle/Cicero/Demosthenes, House of Commons, Snow's cholera map, Wundt's lab…) + 213 migrated from the other tracks (baseball, driving, quantum, crafts, travel, emerging-tech), downloaded via `Special:FilePath` or re-sourced by topic via the Commons search API where the original file had been renamed/deleted.
+  - A single `STAGE_IMAGES` map (`stage-images.ts`) drives rendering and **overrides** the old config URLs; `StageInfo` falls back to a branded animated placeholder (`/stage-placeholder.svg`) on any load error.
+  - Recompressed with sharp (800px, JPEG q80 / PNG palette): **88 MB → 21 MB**.
+  - Stripped all 214 obsolete `image:` URLs from the stage configs; no external image dependencies remain. One stage (`driving-1-02`, source deleted on Commons) renders imageless.
+- **Homepage stats corrected** — 458→582 stages, 6→11 curriculum tracks, matching the live curriculum.
+
+---
+
 ## v1.27.0 — 2026-06-04
 
 **Debate & Speech track (8 epochs / 80 stages), /debate credential tracker, ARIA hint monetization, and a security hardening sprint**
