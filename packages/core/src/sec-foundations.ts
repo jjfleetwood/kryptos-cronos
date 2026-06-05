@@ -1707,4 +1707,317 @@ export const secFoundationsStages: StageConfig[] = [
       ],
     },
   },
+  // ─── 12: Risk Assessment & Management ─────────────────────────────────────────
+  {
+    epochId: "sec-foundations",
+    wonder: { name: "The Risk Register", location: "Where Every Threat Gets a Number", era: "Present Day", emoji: "🎲" },
+    id: "sec-foundations-12",
+    order: 12,
+    title: "Risk Assessment & Management",
+    subtitle: "Qualitative vs quantitative risk, SLE/ALE/ARO, and the four treatment strategies",
+    category: "cybersecurity",
+    xp: 220,
+    badge: { id: "secf-badge-12", name: "Risk Quant", emoji: "🎲" },
+    challengeType: "quiz",
+    info: {
+      tagline: "Security is risk management — and the exams (and the boardroom) want risk expressed in a language leaders can act on: likelihood, impact, and dollars.",
+      year: 2017,
+      overview: [
+        "Risk is the combination of a threat exploiting a vulnerability and the resulting impact — commonly modeled as RISK = LIKELIHOOD × IMPACT. The risk management process runs: identify risks, assess/analyze them, respond (treat) them, and monitor/report. Assessments can be ad hoc, one-time, recurring, or continuous. There are two analysis styles. QUALITATIVE risk analysis rates likelihood and impact on relative scales (low/medium/high) and plots them on a risk matrix or heat map — fast and intuitive, but subjective. QUANTITATIVE risk analysis puts dollar figures on risk so controls can be cost-justified.",
+        "The quantitative formulas are exam staples. The Single Loss Expectancy (SLE) is the expected loss from one event: SLE = Asset Value (AV) × Exposure Factor (EF, the percentage of the asset lost). The Annualized Rate of Occurrence (ARO) is how many times per year the event is expected. The Annualized Loss Expectancy (ALE) = SLE × ARO is the expected yearly loss. A control is worth buying when its annual cost is less than the reduction in ALE it provides — turning security spending into a defensible cost-benefit decision. Example: a $200,000 asset with a 50% exposure factor has an SLE of $100,000; if the event is expected once every two years (ARO = 0.5), the ALE is $50,000 — so a control costing under $50,000/year that prevents it pays for itself.",
+        "Risks are tracked in a RISK REGISTER (each risk with an owner, a key risk indicator/KRI, a threshold, and a status). Two boundaries guide decisions: risk APPETITE (how much risk the organization is willing to pursue toward its objectives — expansionary, neutral, or conservative) and risk TOLERANCE (the acceptable variation around that). For each risk, one of four TREATMENT strategies is chosen: AVOID (stop the risky activity), MITIGATE/REDUCE (apply controls to lower likelihood or impact), TRANSFER (shift the financial impact — e.g., cyber insurance or outsourcing), or ACCEPT (acknowledge and live with it, with a documented exception). After controls, what remains is RESIDUAL RISK — and the inherent-vs-residual distinction shows a control's effect. Accepting a risk you don't understand is how organizations end up as breach headlines.",
+      ],
+      technical: {
+        title: "Putting Numbers on Risk",
+        body: [
+          "Quantitative workflow: value the asset (AV), estimate the exposure factor (EF) for the threat, compute SLE = AV × EF, estimate ARO (events/year), and compute ALE = SLE × ARO. Compare control cost to ALE reduction: if a $20,000/year control cuts ALE from $50,000 to $5,000 (a $45,000 reduction), it's worth it. Qualitative analysis complements this where dollar values are hard — use a likelihood × impact matrix to rank and communicate.",
+          "Decision framing: set risk appetite/tolerance at the governance level, record risks in a register with owners and KRIs, then treat each via avoid/mitigate/transfer/accept. Note that transfer (insurance) covers financial impact but not reputation or the breach itself, and accept must be a conscious, documented decision — not negligence. Track residual risk against tolerance and report to leadership. This is the shared language of Security+ governance, CRISC, CISM, and CISA risk objectives.",
+        ],
+        codeExample: {
+          label: "Risk Math & Treatment",
+          code: `  RISK = LIKELIHOOD × IMPACT
+
+  QUANTITATIVE:
+   SLE = Asset Value (AV) × Exposure Factor (EF)   (one event)
+   ALE = SLE × ARO (Annualized Rate of Occurrence) (per year)
+   BUY a control if  annual cost < ALE reduction
+   e.g. AV $200k · EF 50% → SLE $100k · ARO 0.5 → ALE $50k/yr
+
+  QUALITATIVE: likelihood × impact matrix / heat map (low/med/high)
+
+  RISK REGISTER: risk · owner · KRI · threshold · status
+  APPETITE (willing to pursue) vs TOLERANCE (acceptable variance)
+
+  TREATMENT (pick one):
+   AVOID    stop the activity
+   MITIGATE apply controls (↓ likelihood/impact)
+   TRANSFER insurance / outsource (financial impact only)
+   ACCEPT   live with it — documented exception (NOT negligence)
+
+  INHERENT risk → (controls) → RESIDUAL risk  (track vs tolerance)`,
+        },
+      },
+      incident: {
+        title: "Equifax: A Known Risk, Left Untreated",
+        when: "2017",
+        where: "Equifax",
+        impact: "Equifax suffered a breach of 147 million people's data because it failed to patch a known, critical, publicly-disclosed vulnerability for months — a textbook failure of risk treatment, where a high-likelihood, high-impact risk was effectively (and indefensibly) accepted by inaction.",
+        body: [
+          "In 2017, attackers exploited a critical Apache Struts vulnerability (CVE-2017-5638) that had been publicly disclosed and patched months earlier. Equifax had not applied the patch across its systems, and the flaw let attackers reach a database holding the personal and financial data of about 147 million people. From a risk-management view, this was a known vulnerability (high likelihood of exploitation, a public exploit existed) on a crown-jewel asset (high impact) — the highest-priority quadrant of any risk matrix — that went untreated.",
+          "The lesson is the discipline of risk treatment: identified risks must be consciously avoided, mitigated, transferred, or accepted — and 'accept' must be a documented, justified decision, not the default outcome of inaction. A proper quantitative view (the enormous ALE of exposing 147M records versus the trivial cost of patching) makes the right decision obvious. Equifax paid roughly $1.4 billion in settlements and costs. It's the canonical case for why organizations maintain a risk register, prioritize by likelihood × impact, and don't silently accept high risks.",
+        ],
+      },
+      diagram: {
+        nodes: [
+          { label: "Identify Risk", sub: "threat × vulnerability", type: "attacker" },
+          { label: "Assess (Qual/Quant)", sub: "matrix or SLE/ALE/ARO", type: "system" },
+          { label: "Treat", sub: "avoid/mitigate/transfer/accept", type: "victim" },
+          { label: "Monitor Residual Risk", sub: "register, KRIs, report", type: "result" },
+        ],
+      },
+      timeline: [
+        { year: 2004, event: "ISO/IEC 27005 and NIST SP 800-30 formalize IT risk assessment" },
+        { year: 2012, event: "ISACA launches CRISC, professionalizing IT risk management" },
+        { year: 2017, event: "Equifax breach: a known critical risk left untreated exposes 147M records", highlight: true },
+        { year: 2018, event: "FAIR model popularizes quantitative cyber risk in dollars" },
+        { year: 2023, event: "SEC rules push boards to govern cyber risk as financial risk" },
+      ],
+      keyTakeaways: [
+        "Risk = likelihood × impact; assess qualitatively (matrix/heat map) or quantitatively (dollars) to justify controls",
+        "SLE = Asset Value × Exposure Factor; ALE = SLE × ARO — buy a control when its annual cost is less than the ALE reduction",
+        "Track risks in a register (owner, KRI, threshold); set risk appetite vs tolerance at the governance level",
+        "Treat every risk: avoid, mitigate, transfer (insurance covers $ only), or accept (documented) — leftover is residual risk; Equifax shows the cost of leaving a known risk untreated",
+      ],
+      references: [
+        { title: "NIST SP 800-30 — Guide for Conducting Risk Assessments", url: "https://csrc.nist.gov/pubs/sp/800/30/r1/final" },
+        { title: "ISACA CRISC", url: "https://www.isaca.org/credentialing/crisc" },
+        { title: "FAIR Institute — Quantitative Risk", url: "https://www.fairinstitute.org" },
+      ],
+    },
+    quiz: {
+      questions: [
+        {
+          id: "secf-12-q1",
+          type: "Quantitative Risk",
+          challenge: `  An asset is worth $200,000. A particular threat
+  would destroy 50% of its value if it occurred, and
+  it's expected to happen once every two years.`,
+          text: "What is the Annualized Loss Expectancy (ALE)?",
+          options: [
+            "$200,000",
+            "$50,000 — SLE = $200,000 × 50% = $100,000; ALE = SLE × ARO ($100,000 × 0.5) = $50,000",
+            "$100,000",
+            "$25,000",
+          ],
+          correctIndex: 1,
+          explanation: "First the Single Loss Expectancy: SLE = Asset Value × Exposure Factor = $200,000 × 50% = $100,000 (the loss from one event). The Annualized Rate of Occurrence is 0.5 (once every two years). So ALE = SLE × ARO = $100,000 × 0.5 = $50,000 per year. This is the figure to compare against a control's annual cost: a safeguard costing less than $50,000/year that prevents the event is cost-justified.",
+        },
+        {
+          id: "secf-12-q2",
+          type: "Risk Treatment",
+          challenge: `  A company buys a cyber-insurance policy to cover the
+  financial losses from a potential ransomware attack,
+  rather than eliminating the risk entirely.`,
+          text: "Which risk treatment strategy is purchasing insurance?",
+          options: [
+            "Avoidance",
+            "Transfer — shifting the financial impact to a third party (note: it doesn't cover reputation or prevent the breach)",
+            "Acceptance",
+            "Mitigation",
+          ],
+          correctIndex: 1,
+          explanation: "Buying insurance (or outsourcing) to shift the financial impact to a third party is risk transfer. The four strategies are: avoid (stop the risky activity), mitigate (apply controls to reduce likelihood/impact), transfer (shift financial impact — insurance), and accept (live with it, documented). Importantly, transfer covers financial loss but not reputational damage or the breach itself, so it's usually combined with mitigation, not used alone.",
+        },
+        {
+          id: "secf-12-q3",
+          type: "Residual Risk",
+          challenge: `  Before controls, a risk is rated 'high.' After
+  applying mitigations, some risk still remains.`,
+          text: "What is the risk that remains after controls are applied called?",
+          options: [
+            "Inherent risk",
+            "Residual risk — what remains after controls; compared against risk tolerance",
+            "Transferred risk",
+            "Zero risk",
+          ],
+          correctIndex: 1,
+          explanation: "Inherent risk is the risk before any controls; residual risk is what remains after controls are applied. No control eliminates risk entirely, so residual risk is compared against the organization's risk tolerance — if it's still above tolerance, more treatment is needed. Tracking inherent vs residual risk shows a control's effectiveness and supports the decision to accept (or further treat) what's left.",
+        },
+        {
+          id: "secf-12-q4",
+          type: "Risk in Practice",
+          challenge: `  A company knows about a critical, publicly-exploited
+  vulnerability on a database holding 147 million
+  records, but doesn't patch it for months. Attackers
+  exploit it.`,
+          text: "From a risk-management perspective, what went wrong at Equifax?",
+          options: [
+            "Nothing — the risk was properly accepted",
+            "A high-likelihood, high-impact risk was left untreated (effectively accepted by inaction) instead of being mitigated, despite a trivial-cost patch and an enormous potential ALE",
+            "They over-invested in controls",
+            "Insurance would have prevented the breach",
+          ],
+          correctIndex: 1,
+          explanation: "The Equifax breach is a textbook risk-treatment failure: a known, publicly-exploited vulnerability (high likelihood) on a crown-jewel asset (high impact) sat in the highest-priority risk quadrant, yet went untreated for months — effectively accepted by inaction. A quantitative view (the massive ALE of exposing 147M records vs. the trivial cost to patch) makes mitigation the obvious choice. Risks must be consciously avoided, mitigated, transferred, or accepted — never silently ignored.",
+        },
+      ],
+    },
+  },
+
+  // ─── 13: Secure Development Lifecycle (SDLC) ──────────────────────────────────
+  {
+    epochId: "sec-foundations",
+    wonder: { name: "A CI/CD Pipeline", location: "From Commit to Production", era: "Present Day", emoji: "🧪" },
+    id: "sec-foundations-13",
+    order: 13,
+    title: "Secure Development Lifecycle (SDLC)",
+    subtitle: "Building security into software from requirements to deployment",
+    category: "cybersecurity",
+    xp: 220,
+    badge: { id: "secf-badge-13", name: "Shift-Left Engineer", emoji: "🧪" },
+    challengeType: "quiz",
+    info: {
+      tagline: "Security bolted on at the end is expensive and leaky — a secure development lifecycle bakes it in at every phase.",
+      year: 2020,
+      overview: [
+        "The Software Development Lifecycle (SDLC) is the process software follows from idea to retirement: planning and requirements, design, development (coding), testing, deployment, and maintenance/operations. A SECURE SDLC (SSDLC) integrates security into every phase rather than testing for it at the end — the principle of 'shifting left,' because a flaw caught in design costs a fraction of one caught in production. Auditors (CISA's IS Acquisition, Development & Implementation domain) examine whether security and controls are built into the development and acquisition process, including a post-implementation review to confirm the system met its requirements and controls.",
+        "Security activities map to phases: in REQUIREMENTS, define security and compliance requirements; in DESIGN, perform THREAT MODELING (e.g., STRIDE) to anticipate how the system could be attacked and design defenses (least privilege, input validation, secure defaults); in DEVELOPMENT, follow secure coding standards (input validation, output encoding, parameterized queries to prevent injection, proper authentication/session handling) and do peer CODE REVIEW; in TESTING, run security tests; and in DEPLOYMENT, sign code and harden configuration. Separation of environments (dev / test / staging / production) and separation of duties prevent unreviewed or malicious changes from reaching production.",
+        "Automated security testing is central to a modern, DevSecOps pipeline. SAST (Static Application Security Testing) analyzes source code for flaws without running it (catches injection, hardcoded secrets, unsafe patterns early). DAST (Dynamic Application Security Testing) tests the running application from the outside (catches runtime and configuration issues). IAST combines both, and SCA (Software Composition Analysis) inventories third-party and open-source dependencies to flag known-vulnerable components — critical because most code today is borrowed (the Log4Shell crisis was a single vulnerable dependency). Secrets scanning catches credentials committed to code, and code signing proves integrity and origin. Building these gates into CI/CD — and securing the build pipeline itself — is what the SolarWinds attack proved is non-negotiable: attackers compromised the build process to plant a backdoor in trusted, signed software, turning the supply chain into the weapon.",
+      ],
+      technical: {
+        title: "Security at Every Phase",
+        body: [
+          "Shift left: the earlier a defect is found, the cheaper it is to fix — a requirements/design fix is orders of magnitude cheaper than a production incident. So embed security in each phase: security requirements, threat modeling in design, secure coding + peer review in development, SAST/DAST/SCA/secrets-scanning in CI, code signing at release, and a post-implementation review after deployment. Keep dev/test/staging/prod separate and enforce separation of duties so no one can push unreviewed code straight to production.",
+          "Tooling: SAST (white-box, source code) and SCA (dependencies) run early on every commit; DAST (black-box, running app) runs against test/staging; secrets scanning blocks committed credentials; code signing and provenance protect integrity. Crucially, secure the pipeline itself — SolarWinds showed that a compromised build system can backdoor signed, trusted software. Software supply-chain security (SBOMs, signed artifacts, least-privilege build systems) is now a core SSDLC and audit concern.",
+        ],
+        codeExample: {
+          label: "Secure SDLC (shift left)",
+          code: `  SDLC PHASES → SECURITY ACTIVITY:
+   REQUIREMENTS  define security + compliance requirements
+   DESIGN        THREAT MODELING (STRIDE), secure architecture
+   DEVELOPMENT   secure coding (validate input, parameterized
+                 queries, output encoding) + peer CODE REVIEW
+   TESTING       SAST · DAST · SCA · secrets scanning
+   DEPLOYMENT    CODE SIGNING · config hardening
+   MAINTENANCE   patching · POST-IMPLEMENTATION REVIEW (CISA)
+
+  AUTOMATED TESTING:
+   SAST  static, source code (white-box) — early, every commit
+   DAST  dynamic, running app (black-box) — test/staging
+   IAST  combined · SCA  dependency/known-CVE scan (Log4Shell!)
+   secrets scanning · code signing / provenance
+
+  ENV SEPARATION: dev | test | staging | prod + separation of duties
+  SECURE THE PIPELINE ITSELF — SolarWinds backdoored the BUILD
+   → supply-chain security: SBOM · signed artifacts · least-priv build`,
+        },
+      },
+      incident: {
+        title: "SolarWinds: Weaponizing the Build Pipeline",
+        when: "2020",
+        where: "SolarWinds Orion / ~18,000 organizations",
+        impact: "Attackers compromised SolarWinds' software build process and inserted a backdoor into the Orion product, which was then signed and shipped as a trusted update to ~18,000 customers — proving that securing the development lifecycle and the supply chain is as critical as securing the code itself.",
+        body: [
+          "In the SolarWinds (SUNBURST) attack, a nation-state actor breached SolarWinds and tampered with the BUILD PIPELINE for its Orion network-management software, injecting a stealthy backdoor into the compiled product. Because the malicious code went through the normal build and was digitally signed by SolarWinds, it appeared completely legitimate; roughly 18,000 organizations — including US government agencies and major enterprises — installed the trojanized update through routine patching. The attackers had turned trusted, signed software into a distribution channel for their backdoor.",
+          "The attack reframed secure development: it's not enough to write secure code and sign your releases if the pipeline that builds and signs them can be compromised. It accelerated software supply-chain security — SBOMs (software bills of materials), signed and verified build provenance, least-privilege and hardened build systems, and SCA for dependencies. For learners, SolarWinds is the definitive case that the SDLC and its tooling are part of the attack surface, and that auditing how software is built and acquired (a core CISA concern) is essential.",
+        ],
+      },
+      diagram: {
+        nodes: [
+          { label: "Requirements + Design", sub: "security reqs, threat modeling", type: "system" },
+          { label: "Develop + Review", sub: "secure coding, peer review", type: "attacker" },
+          { label: "Test in CI", sub: "SAST/DAST/SCA/secrets", type: "victim" },
+          { label: "Sign, Deploy, Review", sub: "secure pipeline, post-impl review", type: "result" },
+        ],
+      },
+      timeline: [
+        { year: 2002, event: "Microsoft's Trustworthy Computing launches the modern Secure SDLC" },
+        { year: 2015, event: "DevSecOps emerges, embedding security into CI/CD pipelines" },
+        { year: 2020, event: "SolarWinds attack backdoors a signed product via the build pipeline", highlight: true },
+        { year: 2021, event: "Log4Shell shows the danger of unscanned third-party dependencies (SCA)" },
+        { year: 2022, event: "SBOMs and signed provenance (SLSA) become supply-chain standards" },
+      ],
+      keyTakeaways: [
+        "A secure SDLC builds security into every phase (requirements→design→dev→test→deploy→maintain) — 'shift left' because early fixes are far cheaper",
+        "Key activities: security requirements, threat modeling (design), secure coding + peer review, and a post-implementation review (a core CISA audit point)",
+        "Automated testing: SAST (source), DAST (running app), SCA (dependencies — Log4Shell), secrets scanning, and code signing — gated in CI/CD",
+        "Secure the pipeline and supply chain itself: SolarWinds backdoored a signed product via the build system — SBOMs, signed provenance, and least-privilege builds matter",
+      ],
+      references: [
+        { title: "NIST SP 800-218 — Secure Software Development Framework (SSDF)", url: "https://csrc.nist.gov/pubs/sp/800/218/final" },
+        { title: "OWASP SAMM — Software Assurance Maturity Model", url: "https://owaspsamm.org" },
+        { title: "CISA: Software Supply Chain Security", url: "https://www.cisa.gov/supply-chain-security" },
+      ],
+    },
+    quiz: {
+      questions: [
+        {
+          id: "secf-13-q1",
+          type: "Shift Left",
+          challenge: `  A team currently runs all security testing only
+  after the software is built, right before release,
+  and fixes are expensive and rushed.`,
+          text: "What does 'shifting left' in a secure SDLC mean?",
+          options: [
+            "Doing all security testing even later, in production",
+            "Integrating security into every earlier phase (requirements, design, development) so flaws are caught when they're far cheaper to fix",
+            "Removing security testing to ship faster",
+            "Only signing the code at the end",
+          ],
+          correctIndex: 1,
+          explanation: "'Shifting left' means moving security earlier in the development lifecycle — defining security requirements, threat modeling in design, secure coding and review during development, and automated testing in CI — rather than bolting a security check onto the end. A flaw caught in design or code review costs a tiny fraction of one caught in production after a breach, so a secure SDLC embeds security in every phase.",
+        },
+        {
+          id: "secf-13-q2",
+          type: "SAST vs DAST",
+          challenge: `  A pipeline analyzes the application's source code for
+  vulnerable patterns without running it, and separately
+  tests the deployed, running app from the outside.`,
+          text: "Which testing types are these two approaches?",
+          options: [
+            "Both are SAST",
+            "Analyzing source without running = SAST (static); testing the running app from outside = DAST (dynamic)",
+            "Both are penetration tests",
+            "Source analysis is DAST; running-app testing is SAST",
+          ],
+          correctIndex: 1,
+          explanation: "SAST (Static Application Security Testing) analyzes source code without executing it (white-box) — catching injection flaws, hardcoded secrets, and unsafe patterns early on every commit. DAST (Dynamic Application Security Testing) tests the running application from the outside (black-box) — catching runtime and configuration issues. They're complementary; SCA additionally scans third-party dependencies for known-vulnerable components. Together they form the automated testing gates of a secure CI/CD pipeline.",
+        },
+        {
+          id: "secf-13-q3",
+          type: "Dependencies",
+          challenge: `  A critical vulnerability is found in a widely-used
+  open-source logging library that thousands of apps
+  include as a dependency, even though those apps'
+  own code is fine.`,
+          text: "Which practice/tool is designed to catch known-vulnerable third-party dependencies?",
+          options: [
+            "DAST on the running app",
+            "Software Composition Analysis (SCA) — inventories dependencies and flags known-vulnerable components",
+            "Code signing",
+            "A firewall rule",
+          ],
+          correctIndex: 1,
+          explanation: "Software Composition Analysis (SCA) inventories all third-party and open-source dependencies (often via an SBOM) and flags those with known vulnerabilities — exactly the gap that the Log4Shell crisis exposed, where a single vulnerable logging library affected thousands of applications whose own code was fine. Since most modern software is largely borrowed code, SCA is essential; SAST checks your code, DAST checks the running app, and SCA checks what you depend on.",
+        },
+        {
+          id: "secf-13-q4",
+          type: "Supply Chain",
+          challenge: `  Attackers compromise a software vendor's build system
+  and insert a backdoor into the product, which is then
+  digitally signed and shipped as a trusted update to
+  18,000 customers.`,
+          text: "What does the SolarWinds attack teach about the secure SDLC?",
+          options: [
+            "Signed software is always safe",
+            "The build pipeline and supply chain are part of the attack surface — securing how software is built (least-privilege builds, SBOMs, verified provenance) is as vital as the code itself",
+            "Only the customers were at fault",
+            "Secure coding alone fully prevents this",
+          ],
+          correctIndex: 1,
+          explanation: "SolarWinds (SUNBURST) showed that writing secure code and signing releases isn't enough if the build pipeline that compiles and signs them is compromised — the malicious backdoor was built and signed normally, so it looked legitimate to 18,000 customers. Securing the SDLC therefore includes securing the pipeline and supply chain: least-privilege, hardened build systems, SBOMs, verified build provenance, and dependency scanning. Auditing how software is built and acquired is a core CISA concern.",
+        },
+      ],
+    },
+  },
 ];

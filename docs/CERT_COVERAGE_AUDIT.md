@@ -46,7 +46,7 @@ Cross-cutting conceptual objectives the CTF/exploit content underserves; each st
 - [x] ISC² CC — thin BCDR (6) + access-controls reinforced by sec-foundations 02/04/05/06/07. Adequate.
 - [x] Network+ (N10-009) — fundamentals well-covered in first-journey (mapped). True gaps (media/cabling/transceivers, topologies, troubleshooting methodology) CLOSED via sec-foundations 09/10.
 - [x] CySA+ (CS0-003) — Reporting & Communication (17%, no dedicated lesson) CLOSED via sec-foundations 11 (vuln/IR reporting, stakeholder comms, MTTD/MTTR/dwell, breach-notification duty). Technical domains already strong.
-- [ ] CISA / CISM / CRISC — large mapped counts; audit-process/governance specifics deep-probe pending.
+- [x] CISA / CISM / CRISC — well-served by tech-audit-1..4 (COBIT/governance, inherent-vs-residual risk, ITGC testing, audit techniques, ISCM/SIEM) + sec-foundations. True gaps CLOSED: quantitative risk methodology (SLE/ALE/ARO, treatment, appetite/tolerance) via sec-foundations 12; secure development lifecycle / system acquisition (CISA Dom 3, SAST/DAST/SCA, SolarWinds) via sec-foundations 13.
 - [ ] CompTIA AI+ — Data Science Fundamentals thin (6); deep-probe pending.
 - [ ] AWS AIP — AI/ML & GenAI fundamentals thin; deep-probe pending.
 - [ ] GCP PMLE — thinnest; low-code/Vertex, scaling, pipelines deep-probe pending.
@@ -55,4 +55,5 @@ Cross-cutting conceptual objectives the CTF/exploit content underserves; each st
 ## Status log
 - (start) snapshot computed; sec-foundations epoch planned; building Security+ gap stages first.
 - BUILT sec-foundations epoch (8 stages) + cert mappings + registered in stages.ts; tsc clean. Closes Security+ conceptual gaps & ISC² CC BCDR/access.
-- EXTENDED sec-foundations to 11 stages: 09 Network Media/Cabling/Topologies (Net+), 10 Network Troubleshooting Methodology/Tools (Net+), 11 Security Operations Reporting & Metrics (CySA+ reporting/IR + Sec+/CISM/CISA). Security-core certs (Sec+, CC, Net+, CySA+) DONE. NEXT: CISA/CISM/CRISC deep-probe, then AI certs.
+- EXTENDED sec-foundations to 11 stages: 09 Network Media/Cabling/Topologies (Net+), 10 Network Troubleshooting Methodology/Tools (Net+), 11 Security Operations Reporting & Metrics (CySA+ reporting/IR + Sec+/CISM/CISA). Security-core certs (Sec+, CC, Net+, CySA+) DONE.
+- EXTENDED sec-foundations to 13 stages: 12 Risk Assessment & Management (SLE/ALE/ARO, treatment, Equifax), 13 Secure Development Lifecycle (SAST/DAST/SCA, SolarWinds). Audit/governance certs (CISA/CISM/CRISC) DONE. NEXT: AI certs (AI+, AWS-AIP, GCP-PMLE, AAIA, AAISM) — thinnest; deep-probe + fill.

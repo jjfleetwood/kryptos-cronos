@@ -540,6 +540,8 @@ export const CERT_DOMAINS: Record<string, CertDomain[]> = {
   "sec-foundations-09": combine(np("net-fundamentals", "net-implementations")),
   "sec-foundations-10": combine(np("net-troubleshooting", "net-operations")),
   "sec-foundations-11": combine(cy("cysa-reporting", "cysa-ir"), sp("security-operations", "security-program"), cism("cism-incident"), cisa("cisa-audit-process")),
+  "sec-foundations-12": combine(sp("security-program"), cc("security-principles"), crisc("crisc-risk-assessment", "crisc-risk-response"), cism("cism-risk"), cisa("cisa-governance")),
+  "sec-foundations-13": combine(sp("security-operations", "threats-vulns"), cisa("cisa-acquisition"), cy("cysa-security-ops"), cism("cism-program")),
 
 };
 

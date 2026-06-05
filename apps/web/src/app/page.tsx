@@ -223,7 +223,7 @@ export default function Home() {
           style={{ background: "rgba(255,255,255,0.015)" }}>
           <div className="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             {[
-              { value: "673", labelKey: "home.statStages",  color: "#22d3ee" },
+              { value: "675", labelKey: "home.statStages",  color: "#22d3ee" },
               { value: "11",  labelKey: "home.statTracks",  color: "#a78bfa" },
               { value: "25+", labelKey: "home.statCves",    color: "#f97316" },
               { value: "3.5M",labelKey: "home.statJobs",    color: "#4ade80" },
