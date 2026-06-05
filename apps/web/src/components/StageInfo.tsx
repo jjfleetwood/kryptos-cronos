@@ -594,48 +594,58 @@ export default function StageInfo({
         {/* ── Timeline ──────────────────────────────────────────────────────── */}
         <section className="mb-10">
           <SectionHeader color="text-amber-400" icon="🕰" label={t("stage.timeline")} />
-          <div className="flex flex-col sm:flex-row gap-5">
-          {TIMELINE_IMAGES[stage.id] && (
-            <figure className="order-first sm:order-last sm:w-44 flex-shrink-0 sm:pt-1">
-              <div className="rounded-xl overflow-hidden border border-amber-500/20 ring-1 ring-white/5 bg-black/30 flex justify-center">
-                <img
-                  src={TIMELINE_IMAGES[stage.id]}
-                  alt={`${stage.title} — timeline moment`}
-                  className="w-full max-h-44 object-contain"
-                  loading="lazy"
-                  onError={(e) => { const fig = e.currentTarget.closest("figure"); if (fig) (fig as HTMLElement).style.display = "none"; }}
-                />
-              </div>
-              <figcaption className="mt-1.5 text-center text-[10px] text-gray-600">A moment from the timeline</figcaption>
-            </figure>
-          )}
-          <div className="relative pl-5 flex-1">
-            <div className="absolute left-[7px] top-2 bottom-2 w-px bg-gradient-to-b from-amber-500/40 via-white/10 to-transparent" />
-            <div className="space-y-5">
-              {info.timeline.map((entry, i) => (
-                <div key={i} className="flex gap-4 items-start">
-                  <div className={`w-3 h-3 rounded-full flex-shrink-0 mt-1 border-2 ${
-                    entry.highlight
-                      ? "bg-amber-500 border-amber-400 shadow-[0_0_8px_rgba(245,158,11,0.6)]"
-                      : "bg-gray-800 border-gray-600"
-                  }`} />
-                  <div className="flex-1 min-w-0">
-                    <span className={`inline-block text-xs font-mono font-bold px-2 py-0.5 rounded mr-2 ${
-                      entry.highlight
-                        ? "text-amber-300 bg-amber-500/15 border border-amber-500/30"
-                        : "text-gray-600 bg-white/3 border border-white/8"
-                    }`}>
-                      {entry.year}
-                    </span>
-                    <span className={`text-sm leading-relaxed ${entry.highlight ? "text-white font-medium" : "text-gray-400"}`}>
-                      <RichText text={timelineEvents?.[i] ?? entry.event} />
-                    </span>
-                  </div>
+          {(() => {
+            const tlImg = TIMELINE_IMAGES[stage.id];
+            const hlIdx = info.timeline.findIndex((e) => e.highlight);
+            const imgAfter = hlIdx >= 0 ? hlIdx : info.timeline.length - 1;
+            return (
+              <div className="relative pl-5">
+                <div className="absolute left-[7px] top-2 bottom-2 w-px bg-gradient-to-b from-amber-500/40 via-white/10 to-transparent" />
+                <div className="space-y-5">
+                  {info.timeline.flatMap((entry, i) => {
+                    const row = (
+                      <div key={`e${i}`} className="flex gap-4 items-start">
+                        <div className={`w-3 h-3 rounded-full flex-shrink-0 mt-1 border-2 ${
+                          entry.highlight
+                            ? "bg-amber-500 border-amber-400 shadow-[0_0_8px_rgba(245,158,11,0.6)]"
+                            : "bg-gray-800 border-gray-600"
+                        }`} />
+                        <div className="flex-1 min-w-0">
+                          <span className={`inline-block text-xs font-mono font-bold px-2 py-0.5 rounded mr-2 ${
+                            entry.highlight
+                              ? "text-amber-300 bg-amber-500/15 border border-amber-500/30"
+                              : "text-gray-600 bg-white/3 border border-white/8"
+                          }`}>
+                            {entry.year}
+                          </span>
+                          <span className={`text-sm leading-relaxed ${entry.highlight ? "text-white font-medium" : "text-gray-400"}`}>
+                            <RichText text={timelineEvents?.[i] ?? entry.event} />
+                          </span>
+                        </div>
+                      </div>
+                    );
+                    if (!tlImg || i !== imgAfter) return [row];
+                    // Inline image — full width, breaks the timeline line (opaque bg over it).
+                    const figure = (
+                      <figure key={`img${i}`} className="-ml-5 my-1 relative z-10">
+                        <div className="rounded-xl overflow-hidden border border-amber-500/25 ring-1 ring-white/5 bg-[#0b0f18] flex justify-center px-2 py-2">
+                          <img
+                            src={tlImg}
+                            alt={`${stage.title} — timeline moment`}
+                            className="w-full max-h-60 object-contain"
+                            loading="lazy"
+                            onError={(e) => { const fig = e.currentTarget.closest("figure"); if (fig) (fig as HTMLElement).style.display = "none"; }}
+                          />
+                        </div>
+                        <figcaption className="mt-1.5 text-center text-[10px] text-gray-600">A moment from the timeline</figcaption>
+                      </figure>
+                    );
+                    return [row, figure];
+                  })}
                 </div>
-              ))}
-            </div>
-          </div>
-          </div>
+              </div>
+            );
+          })()}
         </section>
 
         {/* ── Key Takeaways ─────────────────────────────────────────────────── */}
