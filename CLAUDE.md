@@ -2,7 +2,7 @@
 
 ## What This Is
 
-Gamified cybersecurity + AI training platform. 42 curriculum epochs, 502 CTF/quiz stages, live leaderboard, admin dashboard, 24 downloadable MCP server templates. Built with Next.js 16 / React 19 / TypeScript / Tailwind CSS / Upstash Redis / Resend.
+Gamified cybersecurity + AI training platform. 49 curriculum epochs, 572 CTF/quiz stages, live leaderboard, admin dashboard, 24 downloadable MCP server templates. Built with Next.js 16 / React 19 / TypeScript / Tailwind CSS / Upstash Redis / Resend.
 
 **Live:** kryptoscronos.com  
 **Repo:** github.com/jjfleetwood/kryptos-cronos  
@@ -163,9 +163,16 @@ Back navigation: `BackLink` uses `backHref` prop (passed from `StageContainer`) 
 | 34 | `milan-july` | Milan in July | 20 | milan-01 → milan-20 | Indigo |
 | 35 | `french-basics` | French Basics | 20 | french-01 → french-20 | Sky |
 | 36 | `italian-basics` | Italian Basics | 20 | italian-01 → italian-20 | Green |
+| 44 | `debate-1` | Foundations of Debate | 10 | debate-1-01 → debate-1-10 | Sky |
+| 45 | `debate-2` | Argumentation & Logic | 10 | debate-2-01 → debate-2-10 | Cyan |
+| 46 | `debate-3` | The Formats | 10 | debate-3-01 → debate-3-10 | Teal |
+| 47 | `debate-4` | Research & Case Construction | 10 | debate-4-01 → debate-4-10 | Emerald |
+| 48 | `debate-5` | Clash | 10 | debate-5-01 → debate-5-10 | Amber |
+| 49 | `debate-6` | Rhetoric, Delivery & Persuasion | 10 | debate-6-01 → debate-6-10 | Rose |
+| 50 | `debate-7` | Competitive & Professional Mastery (+ certifications) | 10 | debate-7-01 → debate-7-10 | Indigo |
 
 **Track groups (stages page — public):** Core Security (+ computing-foundations) · Tech Audit · Threat Frameworks · AI Security · Quantum Era (quantum-intro + quantum-deep + quantum-1/2/3/4/5) · Defend the Enterprise (+ physics-of-hacking)  
-**Extended curriculum (curious group only):** Crafts · Driving · Baseball · Travel  
+**Extended curriculum (curious group only):** Crafts · Driving · Baseball · Travel · Debate & Speech (debate-1…7)  
 **Hidden from public nav (accessible via direct URL):** all extended tracks
 
 ---

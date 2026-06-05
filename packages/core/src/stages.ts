@@ -38,6 +38,13 @@ import { baseball4Epoch, baseball4Stages } from "./baseball-4";
 import { baseball5Epoch, baseball5Stages } from "./baseball-5";
 import { baseball6Epoch, baseball6Stages } from "./baseball-6";
 import { baseball7Epoch, baseball7Stages } from "./baseball-7";
+import { debate1Epoch, debate1Stages } from "./debate-1";
+import { debate2Epoch, debate2Stages } from "./debate-2";
+import { debate3Epoch, debate3Stages } from "./debate-3";
+import { debate4Epoch, debate4Stages } from "./debate-4";
+import { debate5Epoch, debate5Stages } from "./debate-5";
+import { debate6Epoch, debate6Stages } from "./debate-6";
+import { debate7Epoch, debate7Stages } from "./debate-7";
 import { parisEpoch, parisStages } from "./paris";
 import { milanEpoch, milanStages } from "./milan";
 import { frenchBasicsEpoch, frenchBasicsStages } from "./french-basics";
@@ -126,6 +133,13 @@ export const epochs: EpochConfig[] = [
   baseball5Epoch,
   baseball6Epoch,
   baseball7Epoch,
+  debate1Epoch,
+  debate2Epoch,
+  debate3Epoch,
+  debate4Epoch,
+  debate5Epoch,
+  debate6Epoch,
+  debate7Epoch,
   parisEpoch,
   milanEpoch,
   frenchBasicsEpoch,
@@ -168,6 +182,13 @@ export const stages: StageConfig[] = [
   ...baseball5Stages,
   ...baseball6Stages,
   ...baseball7Stages,
+  ...debate1Stages,
+  ...debate2Stages,
+  ...debate3Stages,
+  ...debate4Stages,
+  ...debate5Stages,
+  ...debate6Stages,
+  ...debate7Stages,
   ...parisStages,
   ...milanStages,
   ...frenchBasicsStages,
