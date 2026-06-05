@@ -35,7 +35,7 @@ const epochGroups = [
     id: "coreSecurity",
     labelKey: "stages.tracks.coreSecurity",
     descKey: "stages.tracks.coreSecurityDesc",
-    epochIds: ["first-journey", "ancient", "computing-foundations"],
+    epochIds: ["first-journey", "ancient", "sec-foundations", "computing-foundations"],
   },
   {
     id: "techAudit",
@@ -53,7 +53,7 @@ const epochGroups = [
     id: "aiSecurity",
     labelKey: "stages.tracks.aiSecurity",
     descKey: "stages.tracks.aiSecurityDesc",
-    epochIds: ["mitre-atlas", "owasp-llm", "emerging-tech"],
+    epochIds: ["mitre-atlas", "owasp-llm", "emerging-tech", "ai-ml-foundations"],
   },
   {
     id: "quantumEra",
@@ -146,8 +146,8 @@ const TRACK_SUBGROUPS: Record<string, SubGroup[]> = {
 const SECURITY_EPOCHS = new Set([
   "first-journey", "ancient", "computing-foundations",
   "tech-audit-1", "tech-audit-2", "tech-audit-3", "tech-audit-4",
-  "mitre", "mitre-atlas", "owasp-llm",
-  "quantum-intro", "quantum-deep", "quantum-1", "quantum-2", "quantum-3", "quantum-5",
+  "mitre", "mitre-atlas", "owasp-llm", "emerging-tech", "ai-ml-foundations", "sec-foundations",
+  "quantum-intro", "quantum-deep", "quantum-1", "quantum-2", "quantum-3", "quantum-4", "quantum-5",
   "cisco-core", "cisco-enterprise", "cisco-secops", "cisco-advanced", "umbrella",
   "physics-of-hacking",
 ]);
