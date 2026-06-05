@@ -11,6 +11,7 @@ import { stageDownloads } from "@kryptos/core/stage-downloads";
 import { getDomainsForStage } from "@kryptos/core/cyberops-domains";
 import { getCertBadgesForStage } from "@kryptos/core/cert-domains";
 import { useLocale } from "@/contexts/LocaleContext";
+import { STAGE_IMAGES } from "@/lib/stage-images";
 
 // Local, always-available branded placeholder. External image hosts (Wikimedia)
 // now reject on-demand thumbnail hotlinking, so every stage image falls back to
@@ -454,10 +455,10 @@ export default function StageInfo({
               />
             ))}
           </div>
-          {(stage.image ?? DEBATE_EPOCH_IMAGE[stage.epochId]) && (
+          {(STAGE_IMAGES[stage.id] ?? stage.image ?? DEBATE_EPOCH_IMAGE[stage.epochId]) && (
             <div className="mt-5 rounded-xl overflow-hidden border border-white/10">
               <img
-                src={stage.image ?? DEBATE_EPOCH_IMAGE[stage.epochId] ?? STAGE_PLACEHOLDER}
+                src={STAGE_IMAGES[stage.id] ?? stage.image ?? DEBATE_EPOCH_IMAGE[stage.epochId] ?? STAGE_PLACEHOLDER}
                 alt={stage.title}
                 className="w-full object-cover max-h-72"
                 loading="lazy"
