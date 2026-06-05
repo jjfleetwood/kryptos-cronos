@@ -31,7 +31,7 @@ export const driving2Stages: StageConfig[] = [
       overview: [
         "Before you turn the key, spend 60 seconds on your cockpit drill. Adjust your seat so your feet reach the pedals with a slight knee bend and your hands rest comfortably on the steering wheel. Adjust the rearview mirror to frame the full rear window. Set both side mirrors so just a sliver of your own car is visible on the inner edge — most new drivers angle them too far inward.",
         "Fasten your seatbelt before you do anything else. The shoulder strap goes across your chest and shoulder, never behind your back or under your arm. An improperly worn belt is almost as dangerous as no belt at all — it can cause serious internal injuries in a crash.",
-        "Scan your dashboard warning lights. All lights will briefly illuminate when you start the car — that is normal. If any stay on after startup, check your owner's manual. The most important ones to recognize: the battery light (electrical issue), the oil pressure light (stop the car), the temperature gauge (overheating), and the check engine light (service soon).",
+        "Scan your dashboard warning lights. All lights will briefly illuminate when you start the car — that is normal. If any stay on after startup, check your owner's manual. The most important ones to recognize:\n- The battery light — electrical issue.\n- The oil pressure light — stop the car.\n- The temperature gauge — overheating.\n- The check engine light — service soon.",
       ],
       technical: {
         title: "The Cockpit Drill — In Order",
