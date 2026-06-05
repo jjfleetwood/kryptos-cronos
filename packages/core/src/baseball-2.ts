@@ -93,7 +93,7 @@ export const baseball2Stages: StageConfig[] = [
       },
       timeline: [
         { year: 1920, event: "Babe Ruth's wide open stance redefines power hitting stance for a generation" },
-        { year: 1941, event: "Ted Williams' closed, crouched stance proves elite vision and balance, highlight: false" },
+        { year: 1941, event: "Ted Williams' refined, balanced stance proves elite vision and bat control" },
         { year: 1958, event: "Dodgers move to Los Angeles — Dodger Stadium becomes laboratory for hitting development", highlight: true },
         { year: 1985, event: "Biomechanics research begins analyzing stance and load mechanics for youth development" },
         { year: 2015, event: "Statcast measures bat speed and launch angle — stance mechanics linked to exit velocity data" },
