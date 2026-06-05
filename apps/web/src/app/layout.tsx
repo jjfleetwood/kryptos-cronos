@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Space_Grotesk } from "next/font/google";
 import { headers, cookies } from "next/headers";
 import Script from "next/script";
 import FeedbackWidget from "@/components/FeedbackWidget";
@@ -20,12 +20,20 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+// Display face for headings — a technical grotesk that gives the brand a real
+// type identity (vs. the system fallback). Body stays on Geist.
+const spaceGrotesk = Space_Grotesk({
+  variable: "--font-space-grotesk",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
+
 export const metadata: Metadata = {
   title: "Kryptós CronOS (κρυπτός χρόνος) — Defend Through Time",
   description: "A gamified cybersecurity training platform. Break ciphers, exploit real vulnerabilities, and defend through the ages.",
   openGraph: {
     title: "Kryptós CronOS — Defend Through Time",
-    description: "458 CTF stages. 38 epochs. Real CVEs. Gamified cybersecurity and AI training.",
+    description: "683 CTF & quiz stages. 55 epochs. Real CVEs. Gamified cybersecurity and AI training.",
     url: "https://kryptoscronos.com",
     siteName: "Kryptós CronOS",
     type: "website",
@@ -33,7 +41,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Kryptós CronOS — Defend Through Time",
-    description: "458 CTF stages. 38 epochs. Real CVEs. Gamified cybersecurity and AI training.",
+    description: "683 CTF & quiz stages. 55 epochs. Real CVEs. Gamified cybersecurity and AI training.",
   },
 };
 
@@ -83,7 +91,7 @@ export default async function RootLayout({
   return (
     <html
       lang={locale}
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${spaceGrotesk.variable} h-full antialiased`}
     >
       <head>
         <script nonce={nonce} dangerouslySetInnerHTML={{ __html: antiFoucScript }} />
