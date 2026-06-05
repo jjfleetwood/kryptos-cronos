@@ -59,6 +59,8 @@ Recurring traits across the top 50 this year:
 - [ ] Section/page enter transitions (subtle).
 - [ ] Animated number counters on stats / readiness rings.
 
+> **SAMPLE EPOCH (awaiting approval):** `ai-ml-foundations` (6 stages) was fully polished as the style demo for the per-epoch "both bullets + images" pass — 11 wall-of-text enumerations converted to bullet lists (42 bullet lines), and 6 self-hosted Wikimedia diagrams added (CNN, Iris scatter, precision/recall, GPT architecture, DevOps toolchain, cloud computing). Once approved, the same pattern grinds across the remaining epochs.
+
 ### Phase 3 — Content readability (the big grind; the user's two asks)
 **3a. Bullets — 395 wall-of-text stages → bulleted.** Use `scan-reformat.mjs` to pick targets; rewrite prose lists in `overview` / `technical.body` / `incident.body` as `\n- ` lines (renderer turns them into `<ul>`). Preserve facts. Order: extended tracks first (baseball, debate, driving, travel, languages, crafts), then sec-foundations + ai-ml-foundations, then any remaining security. Per-epoch checkpoints; CRLF-safe node scripts.
 - [ ] baseball (2–15) · [ ] debate (1–8) · [ ] driving (1–3) · [ ] travel (paris/milan/french/italian) · [ ] crafts (tapestry/nails/hair) · [ ] sec-foundations · [ ] ai-ml-foundations · [ ] remaining security walls

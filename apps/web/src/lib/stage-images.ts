@@ -3,6 +3,12 @@
 // thumbnail hotlinking, so images are downloaded once and served locally. This
 // map takes precedence over any `image` URL in the stage config. Credits: /attribution.
 export const STAGE_IMAGES: Record<string, string> = {
+  "ai-ml-foundations-01": "/img/ai-ml-foundations-01.jpg",
+  "ai-ml-foundations-02": "/img/ai-ml-foundations-02.jpg",
+  "ai-ml-foundations-03": "/img/ai-ml-foundations-03.jpg",
+  "ai-ml-foundations-04": "/img/ai-ml-foundations-04.jpg",
+  "ai-ml-foundations-05": "/img/ai-ml-foundations-05.jpg",
+  "ai-ml-foundations-06": "/img/ai-ml-foundations-06.jpg",
   "baseball-1-01": "/img/baseball-1-01.jpg",
   "baseball-1-02": "/img/baseball-1-02.jpg",
   "baseball-1-03": "/img/baseball-1-03.jpg",
