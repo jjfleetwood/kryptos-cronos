@@ -504,7 +504,7 @@ export const baseball8Stages: StageConfig[] = [
       year: 1989,
       overview: [
         "When a pitch hits the dirt, the catcher's job is not to catch it but to block it — to keep it in front of the body so runners cannot advance. With runners on base, a ball that gets past the catcher (a passed ball or wild pitch) lets every runner move up ninety feet, and can score a run from third. Blocking is one of the most important and selfless skills a catcher develops, because it is about sacrificing the body to protect the team.",
-        "The technique: drop to both knees, get the chin down and tucked so the mask faces the ball, round the shoulders forward, and put the glove between the legs to fill the gap (the 'five-hole'). The goal is to create a soft, forward-angled wall so the ball deadens in front of the body and drops straight down, rather than caroming away. Catchers angle their body so a ball in the dirt to their left or right is blocked back toward home plate, not toward the dugout.",
+        "The technique:\n- Drop to both knees.\n- Get the chin down and tucked so the mask faces the ball.\n- Round the shoulders forward.\n- Put the glove between the legs to fill the gap (the 'five-hole').\nThe goal is to create a soft, forward-angled wall so the ball deadens in front of the body and drops straight down, rather than caroming away. Catchers angle their body so a ball in the dirt to their left or right is blocked back toward home plate, not toward the dugout.",
         "Anticipation is half of blocking. A catcher who knows a breaking ball is coming, or who senses the pitcher is struggling to control a pitch, is already prepared to drop and block. With runners on base and two strikes — when pitchers throw their nastiest, hardest-to-control breaking balls — the catcher must expect the ball in the dirt on every pitch. Great blockers turn potential disasters into routine, quiet outs and held runners.",
       ],
       technical: {
@@ -990,7 +990,7 @@ export const baseball8Stages: StageConfig[] = [
         title: "Fielding Bunts and Pop-ups — Footwork and Decisions",
         body: [
           "Bunts: explode out of the crouch and attack the ball so you field it moving toward the target. On a ball you can pick cleanly, get two hands on it; on a dead ball, use a bare-hand scoop with the glove as a backstop. Circle to align your feet with the throw before you pick it up. Most importantly, decide early — call the base loudly, because the catcher's full view of runners makes the catcher the natural director of the play.",
-          "Pop-ups: turn your back to the infield, locate the ball, then take the mask off and hold it until you find the ball (throw it well clear once you do, so you don't trip on it). Drift under the ball and let the reverse spin carry it back toward the infield — catch it with the glove turned, giving yourself room as it drifts. Communicate with the first or third baseman so two fielders don't collide.",
+          "Pop-ups:\n- Turn your back to the infield.\n- Locate the ball.\n- Take the mask off and hold it until you find the ball — throw it well clear once you do, so you don't trip on it. Drift under the ball and let the reverse spin carry it back toward the infield — catch it with the glove turned, giving yourself room as it drifts. Communicate with the first or third baseman so two fielders don't collide.",
         ],
         codeExample: {
           label: "Catcher Fielding Decisions",
