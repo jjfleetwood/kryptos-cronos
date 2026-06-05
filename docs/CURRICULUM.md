@@ -1,7 +1,7 @@
 # Kryptós CronOS — Curriculum Reference
 **Version:** 3.7  
 **Date:** 2026-06-03  
-**Total stages:** 662 across 56 epochs (delivered on **web + native mobile** from the shared `@kryptos/core` content package)
+**Total stages:** 681 across 58 epochs (delivered on **web + native mobile** from the shared `@kryptos/core` content package)
 
 ---
 
@@ -374,6 +374,18 @@ The cannon — reads & the slice, catching to throw, the long throw to third/hom
 
 ---
 
+## Epoch 58: Security Foundations
+**Stages:** 13 (sec-foundations-01 through -13) | **Color:** Slate
+
+Cross-cutting conceptual exam objectives the exploit/CTF content under-serves: security controls & frameworks, physical security & deception, change management, resilience/BCDR, cryptographic solutions, IAM, data protection & classification, security awareness, network media/topologies, network troubleshooting methodology, security-operations reporting & metrics, risk assessment (SLE/ALE/ARO), and the secure development lifecycle. Mapped across Security+, ISC² CC, Network+, CySA+, CISA, CISM, CRISC.
+
+## Epoch 59: AI & Machine Learning Foundations
+**Stages:** 6 (ai-ml-foundations-01 through -06) | **Color:** Purple
+
+The engineering/fundamentals side of AI the certifications test: ML fundamentals, data science & preparation, model training & evaluation, generative AI & foundation models, the MLOps lifecycle, and cloud AI platforms (SageMaker/Bedrock/Vertex AI/AutoML/BigQuery ML). Mapped across CompTIA AI+, AWS AI Practitioner, Google Cloud ML Engineer, ISACA AAIA/AAISM.
+
+---
+
 ## XP Summary
 
 | # | Epoch | Stages | Max XP (approx) |
@@ -435,7 +447,9 @@ The cannon — reads & the slice, catching to throw, the long throw to third/hom
 | 55 | Debate: Rhetoric, Delivery & Persuasion | 10 | ~3,500 |
 | 56 | Debate: Competitive & Professional Mastery | 10 | ~3,500 |
 | 57 | Debate: The Psychology of Debate | 10 | ~3,500 |
-| | **Total** | **662** | **~110,000** |
+| 58 | Security Foundations | 13 | ~2,700 |
+| 59 | AI & Machine Learning Foundations | 6 | ~1,300 |
+| | **Total** | **681** | **~110,000** |
 
 ---
 

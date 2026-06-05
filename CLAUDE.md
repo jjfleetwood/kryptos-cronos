@@ -2,11 +2,11 @@
 
 ## What This Is
 
-Gamified cybersecurity + AI training platform. 56 curriculum epochs, 662 CTF/quiz stages, live leaderboard, admin dashboard, 24 downloadable MCP server templates. Built with Next.js 16 / React 19 / TypeScript / Tailwind CSS / Upstash Redis / Resend.
+Gamified cybersecurity + AI training platform. 58 curriculum epochs, 681 CTF/quiz stages, live leaderboard, admin dashboard, 24 downloadable MCP server templates. Built with Next.js 16 / React 19 / TypeScript / Tailwind CSS / Upstash Redis / Resend.
 
 **Live:** kryptoscronos.com  
 **Repo:** github.com/jjfleetwood/kryptos-cronos  
-**Current version:** v1.29.1 (as of 2026-06-05)
+**Current version:** v1.30.0 (as of 2026-06-05)
 
 ---
 
@@ -349,6 +349,10 @@ Local dev: `.env.local` in `app/` (gitignored).
 - **Target sponsors:** CrowdStrike, AWS, SentinelOne, CompTIA, ISC²
 
 ---
+
+## What's Shipped (v1.30.0)
+
+- ✅ **Certification coverage audit.** Validated all 12 cert paths against official exam objectives and closed objective-level gaps with 2 new epochs (19 stages), each cert-mapped: **Security Foundations** (13 — controls/frameworks, physical security, change mgmt, BCDR, crypto, IAM, data protection, awareness, network media/troubleshooting, SOC reporting, quantitative risk, SDLC) and **AI & ML Foundations** (6 — ML fundamentals, data prep, training/eval, generative AI/foundation models, MLOps, cloud AI platforms). Every cert domain now has ≥5 stages. Audit tracked in docs/CERT_COVERAGE_AUDIT.md. Counts 662→681 stages / 56→58 epochs.
 
 ## What's Shipped (v1.29.1)
 

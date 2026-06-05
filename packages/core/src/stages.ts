@@ -10,6 +10,7 @@ import { mitreEpoch, mitreStages } from "./mitre";
 import { mitreAtlasEpoch, mitreAtlasStages } from "./mitre-atlas";
 import { owaspLlmEpoch, owaspLlmStages } from "./owasp-llm";
 import { secFoundationsEpoch, secFoundationsStages } from "./sec-foundations";
+import { aiMlFoundationsEpoch, aiMlFoundationsStages } from "./ai-ml-foundations";
 import { quantum1Epoch, quantum1Stages } from "./quantum-1";
 import { quantum2Epoch, quantum2Stages } from "./quantum-2";
 import { quantum3Epoch, quantum3Stages } from "./quantum-3";
@@ -119,6 +120,7 @@ export const epochs: EpochConfig[] = [
   mitreAtlasEpoch,
   owaspLlmEpoch,
   secFoundationsEpoch,
+  aiMlFoundationsEpoch,
   quantum1Epoch,
   quantum2Epoch,
   quantum3Epoch,
@@ -176,6 +178,7 @@ export const stages: StageConfig[] = [
   ...mitreAtlasStages,
   ...owaspLlmStages,
   ...secFoundationsStages,
+  ...aiMlFoundationsStages,
   ...quantum1Stages,
   ...quantum2Stages,
   ...quantum3Stages,

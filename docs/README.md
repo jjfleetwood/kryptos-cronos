@@ -2,14 +2,14 @@
 
 **Live at:** kryptoscronos.com (web)
 **GitHub:** github.com/jjfleetwood/kryptos-cronos
-**Web version:** v1.29.0 · **Mobile app:** in development (Expo, pre-store)
+**Web version:** v1.30.0 · **Mobile app:** in development (Expo, pre-store)
 **Last updated:** 2026-06-05
 
 ---
 
 ## What is Kryptós CronOS?
 
-A gamified cybersecurity + AI training platform — learners progress through staged missions that simulate real attacks and defenses, choosing a multiple-choice **Quiz** or a hands-on **CTF** on every stage. **662 stages across 56 epochs and 11 tracks**, a live leaderboard, the **ARIA** AI hint chatbot, daily streaks, milestone badges, certification-readiness tracking for 10 industry certs, a resume builder, and admin tooling.
+A gamified cybersecurity + AI training platform — learners progress through staged missions that simulate real attacks and defenses, choosing a multiple-choice **Quiz** or a hands-on **CTF** on every stage. **681 stages across 58 epochs and 11 tracks**, a live leaderboard, the **ARIA** AI hint chatbot, daily streaks, milestone badges, certification-readiness tracking for 10 industry certs, a resume builder, and admin tooling.
 
 **Now cross-platform.** The codebase is a **Turborepo monorepo**:
 - **`apps/web`** — the Next.js 16 web app + API (production at kryptoscronos.com).
@@ -32,7 +32,7 @@ Stack: Next.js 16 · React 19 · TypeScript · Tailwind 4 · Upstash Redis · Su
 | [OPS.md](OPS.md) | Operations runbook: env vars, services, monitoring |
 | [PARTNERS.md](PARTNERS.md) | Companies, services, and APIs supporting the build |
 | [API_REFERENCE.md](API_REFERENCE.md) | API route specifications |
-| [CURRICULUM.md](CURRICULUM.md) | Full stage catalog across all 56 epochs |
+| [CURRICULUM.md](CURRICULUM.md) | Full stage catalog across all 58 epochs |
 | [SECURITY_BRIEFING.md](SECURITY_BRIEFING.md) | Security posture, findings, remediation status |
 | [RELEASE_NOTES.md](RELEASE_NOTES.md) | Version history and changelog |
 | [BUSINESS_PROPOSAL_PRO.md](BUSINESS_PROPOSAL_PRO.md) · [BUSINESS_PROPOSAL_CASUAL.md](BUSINESS_PROPOSAL_CASUAL.md) | Investor pitch (formal / plain-language) |
@@ -45,7 +45,7 @@ Stack: Next.js 16 · React 19 · TypeScript · Tailwind 4 · Upstash Redis · Su
 
 ## Quick Status
 
-- **Curriculum:** 662 stages · 56 epochs · 11 tracks. Every CTF stage is dual-mode (Quiz + CTF). 10 cert paths on `/certs` (Security+, CySA+, Network+, ISC² CC, CompTIA AI+, ISACA CISA/CISM/CRISC, AWS AI Practitioner, Google Cloud PMLE) + a CyberOps Associate tracker.
+- **Curriculum:** 681 stages · 58 epochs · 11 tracks. Every CTF stage is dual-mode (Quiz + CTF). 10 cert paths on `/certs` (Security+, CySA+, Network+, ISC² CC, CompTIA AI+, ISACA CISA/CISM/CRISC, AWS AI Practitioner, Google Cloud PMLE) + a CyberOps Associate tracker.
 - **Auth:** Web — PBKDF2-SHA-256 (600k) + HMAC-signed HttpOnly cookies; account lockout. Mobile — Supabase JWT sent as `Authorization: Bearer`, verified locally via JWKS (jose) with `getUser()` fallback; identity resolved from the verified email claim. `getAuthedUsername()` accepts either.
 - **Access / monetization:** 7-day trial → Pro ($13.99/mo or $99/yr). **Stripe** (web checkout) + **RevenueCat** (mobile IAP), unified server-side entitlement (multi-source: Stripe / RevenueCat / voucher). Voucher redemption supported.
 - **Mobile (in dev):** Expo SDK 56 + Expo Router; auth-gated tabs (Stages / Leaderboard / Profile), interactive quiz, ARIA chat, push notifications (streak nudges via Expo Push + Vercel cron), RevenueCat paywall. Needs device build (`eas build`) before store submission.

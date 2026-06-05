@@ -1,6 +1,6 @@
 # Kryptós CronOS — The Pitch
 **May 2026 | For people who get it**
-**Last updated: 2026-06-05 (v1.29.0)**
+**Last updated: 2026-06-05 (v1.30.0)**
 
 ---
 
@@ -28,11 +28,11 @@ It's a game. It's also real security training. And that combination is genuinely
 
 ---
 
-## What exists today (v1.29.0 — web live at kryptoscronos.com; native mobile app in development)
+## What exists today (v1.30.0 — web live at kryptoscronos.com; native mobile app in development)
 
 This isn't a pitch deck with a mockup. It's a working product:
 
-- **662 fully built stages** across 56 curriculum epochs and 11 learning tracks
+- **681 fully built stages** across 58 curriculum epochs and 11 learning tracks
 - **Cross-platform** — the Next.js web app (live) plus a native **iOS/Android app** (Expo, code-complete, pre-store) sharing one backend; mobile adds push streak-nudges and RevenueCat in-app purchases
 - **Privacy-friendly analytics** — Plausible, live (GDPR-compliant) — so we can actually measure traffic, funnels, and retention
 - **7-day free trial → Pro paywall** — Stripe checkout (monthly $13.99 / annual $99, SAVE 41%); webhook lifecycle handling; no credit card required to start

@@ -47,10 +47,9 @@ Cross-cutting conceptual objectives the CTF/exploit content underserves; each st
 - [x] Network+ (N10-009) — fundamentals well-covered in first-journey (mapped). True gaps (media/cabling/transceivers, topologies, troubleshooting methodology) CLOSED via sec-foundations 09/10.
 - [x] CySA+ (CS0-003) — Reporting & Communication (17%, no dedicated lesson) CLOSED via sec-foundations 11 (vuln/IR reporting, stakeholder comms, MTTD/MTTR/dwell, breach-notification duty). Technical domains already strong.
 - [x] CISA / CISM / CRISC — well-served by tech-audit-1..4 (COBIT/governance, inherent-vs-residual risk, ITGC testing, audit techniques, ISCM/SIEM) + sec-foundations. True gaps CLOSED: quantitative risk methodology (SLE/ALE/ARO, treatment, appetite/tolerance) via sec-foundations 12; secure development lifecycle / system acquisition (CISA Dom 3, SAST/DAST/SCA, SolarWinds) via sec-foundations 13.
-- [ ] CompTIA AI+ — Data Science Fundamentals thin (6); deep-probe pending.
-- [ ] AWS AIP — AI/ML & GenAI fundamentals thin; deep-probe pending.
-- [ ] GCP PMLE — thinnest; low-code/Vertex, scaling, pipelines deep-probe pending.
-- [ ] ISACA AAIA / AAISM — AI governance/program deep-probe pending.
+- [x] CompTIA AI+ / AWS AIP / GCP PMLE / ISACA AAIA / AAISM — engineering/fundamentals gaps CLOSED via new ai-ml-foundations epoch (6 stages): ML fundamentals, data prep, training & evaluation, generative AI & foundation models, MLOps lifecycle, cloud AI platforms (SageMaker/Bedrock/Vertex/AutoML/BigQuery ML). After: every AI-cert domain has ≥5 stages (GCP-PMLE low-code 3→5, scaling 4→6, etc.). AI-security side (ATLAS/OWASP-LLM/emerging) already strong.
+
+## RESULT: all 12 certs validated; no empty/thin domains remain. 2 new epochs (sec-foundations 13 stages, ai-ml-foundations 6 stages = 19 stages), each mapped to all relevant certs.
 
 ## Status log
 - (start) snapshot computed; sec-foundations epoch planned; building Security+ gap stages first.

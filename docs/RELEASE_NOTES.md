@@ -2,6 +2,18 @@
 
 ---
 
+## v1.30.0 — 2026-06-05
+
+**Certification coverage audit — close objective-level gaps across all 12 certs**
+
+- Audited all 12 certification paths (Security+, ISC² CC, Network+, CySA+, ISACA CISA/CISM/CRISC, CompTIA AI+, AWS AI Practitioner, Google Cloud ML Engineer, ISACA AAIA/AAISM) against their official exam objectives. The exploit/CTF content was strong on attack/defense but under-served the **conceptual and engineering objectives**. Added **2 new epochs (19 stages)**, each mapped to all relevant cert domains in `cert-domains.ts`:
+- **Security Foundations** (13 stages) — control taxonomy & frameworks, physical security & deception, change management, resilience/BCDR, cryptographic solutions, IAM, data protection & classification, security awareness, **network media/cabling/topologies**, **network troubleshooting methodology**, **security-operations reporting & metrics**, **risk assessment (SLE/ALE/ARO)**, and **the secure development lifecycle**. Closes Security+ (Domains 1/3.4/5), ISC² CC (BCDR/access), Network+ (media/topologies/troubleshooting), CySA+ (Reporting & Communication, 17%), and CISA/CISM/CRISC (quantitative risk, SDLC/acquisition) gaps.
+- **AI & Machine Learning Foundations** (6 stages) — ML fundamentals (supervised/unsupervised/reinforcement, overfitting, train/val/test), data science & preparation, model training & evaluation (precision/recall/F1/confusion matrix), generative AI & foundation models (transformers/tokens/embeddings/prompting/RAG), the MLOps lifecycle (serving, drift, retraining), and cloud AI platforms (SageMaker/Bedrock/Vertex AI/AutoML/BigQuery ML). Closes the engineering/fundamentals gaps for CompTIA AI+, AWS AI Practitioner, and Google Cloud ML Engineer (whose Vertex/pipelines/serving domains had little-to-no coverage), plus ISACA AAIA/AAISM ops/controls.
+- Result: **every cert domain now has ≥5 mapped stages** — no empty or thin domains remain. Real-incident framing throughout (NIST CSF, Stuxnet, CrowdStrike, OVHcloud fire, DigiNotar, Colonial Pipeline, Equifax, SolarWinds, Amazon hiring bias, Zillow drift, Mata v. Avianca). Audit method + per-cert status tracked in `docs/CERT_COVERAGE_AUDIT.md`.
+- **Counts:** 662 → **681 stages**; 56 → **58 epochs**. Homepage stat updated.
+
+---
+
 ## v1.29.1 — 2026-06-05
 
 **Baseball position exemplars → Dodgers**

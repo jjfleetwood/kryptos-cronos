@@ -542,6 +542,12 @@ export const CERT_DOMAINS: Record<string, CertDomain[]> = {
   "sec-foundations-11": combine(cy("cysa-reporting", "cysa-ir"), sp("security-operations", "security-program"), cism("cism-incident"), cisa("cisa-audit-process")),
   "sec-foundations-12": combine(sp("security-program"), cc("security-principles"), crisc("crisc-risk-assessment", "crisc-risk-response"), cism("cism-risk"), cisa("cisa-governance")),
   "sec-foundations-13": combine(sp("security-operations", "threats-vulns"), cisa("cisa-acquisition"), cy("cysa-security-ops"), cism("cism-program")),
+  "ai-ml-foundations-01": combine(ai("aiplus-concepts", "aiplus-models"), awsaip("awsaip-ai-ml"), gcpml("gcpml-scaling"), aaia("aaia-operations")),
+  "ai-ml-foundations-02": combine(ai("aiplus-data"), awsaip("awsaip-ai-ml"), gcpml("gcpml-collaborate"), aaism("aaism-controls")),
+  "ai-ml-foundations-03": combine(ai("aiplus-models", "aiplus-data"), awsaip("awsaip-ai-ml"), gcpml("gcpml-scaling"), aaia("aaia-audit")),
+  "ai-ml-foundations-04": combine(ai("aiplus-concepts", "aiplus-models"), awsaip("awsaip-genai", "awsaip-foundation"), gcpml("gcpml-lowcode"), aaism("aaism-controls")),
+  "ai-ml-foundations-05": combine(ai("aiplus-infrastructure"), awsaip("awsaip-foundation"), gcpml("gcpml-pipelines", "gcpml-monitoring", "gcpml-serving"), aaia("aaia-operations"), aaism("aaism-controls")),
+  "ai-ml-foundations-06": combine(awsaip("awsaip-foundation", "awsaip-ai-ml"), gcpml("gcpml-lowcode", "gcpml-serving", "gcpml-collaborate"), ai("aiplus-infrastructure")),
 
 };
 
