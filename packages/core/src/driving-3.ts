@@ -34,7 +34,7 @@ export const driving3Stages: StageConfig[] = [
       year: 2008,
       overview: [
         "Distracted driving kills more than 3,000 people in the United States every year. California was one of the first states to ban handheld cellphone use while driving, and the law has been updated multiple times since. Under current California law, all drivers must use a hands-free device — a phone mount or Bluetooth — to make calls or use GPS. Drivers under 18 may not use a phone at all, even hands-free.",
-        "Texting while driving is particularly dangerous because it combines all three distraction types simultaneously: visual (eyes off road), manual (hands off wheel), and cognitive (mind off driving). Studies show that reading or sending a text takes your eyes off the road for an average of five seconds. At freeway speeds, your car travels the length of a football field in that time — completely unguided.",
+        "Texting while driving is particularly dangerous because it combines all three distraction types simultaneously:\n- Visual — eyes off road.\n- Manual — hands off wheel.\n- Cognitive — mind off driving.\nStudies show that reading or sending a text takes your eyes off the road for an average of five seconds. At freeway speeds, your car travels the length of a football field in that time — completely unguided.",
         "The impairment from texting while driving is comparable to driving with a blood alcohol level of .08% — the legal limit in California. Reaction times slow dramatically, lane-keeping deteriorates, and hazard detection drops. The difference: alcohol impairment is obvious and people know to plan around it; phone distraction is invisible and underestimated by almost every driver who does it.",
       ],
       technical: {
