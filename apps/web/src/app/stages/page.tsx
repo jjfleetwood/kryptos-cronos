@@ -406,7 +406,7 @@ export default function StagesPage() {
                       <div className="flex items-center gap-2.5 mb-0.5">
                         <span className="text-lg leading-none">{ts.icon}</span>
                         <span className="text-lg font-bold text-white tracking-tight">{t(trackGroup.labelKey)}</span>
-                        <div className="flex-1 h-px" style={{ background: `linear-gradient(to right, ${ts.color}59, transparent)` }} />
+                        <div className="flex-1 h-[2px] rounded-full" style={{ background: `linear-gradient(to right, ${ts.color}80, transparent)` }} />
                       </div>
                       <p className="text-[11px] text-gray-500 pl-8">{t(trackGroup.descKey)}</p>
                     </div>
@@ -430,7 +430,7 @@ export default function StagesPage() {
                             <span className="text-[11px] text-gray-600">· {trackEpochs.length} epochs · {totalStages} stages</span>
                           </div>
                         )}
-                        <div className="space-y-4">
+                        <div className="divide-y divide-white/10 border-y border-white/10">
                           {subGroups.map((sg) => {
                             const sgEpochs = sg.ids
                               .filter((id) => visibleSet.has(id))
@@ -438,14 +438,12 @@ export default function StagesPage() {
                               .filter(Boolean) as typeof epochs;
                             if (sgEpochs.length === 0) return null;
                             return (
-                              <div key={sg.label} className="flex flex-col sm:flex-row sm:items-start gap-1.5 sm:gap-4">
-                                <div className="sm:w-24 sm:pt-3 flex-shrink-0">
-                                  <span className="text-[11px] font-mono font-bold uppercase tracking-widest" style={{ color: ts.color }}>{sg.label}</span>
-                                </div>
-                                <div className="flex flex-wrap gap-3 flex-1">
-                                  {sgEpochs.map((epoch) => (
-                                    <div key={epoch.id} className="w-full sm:w-[250px]">{renderCard(epoch)}</div>
-                                  ))}
+                              <div key={sg.label} className="py-4 first:pt-3 last:pb-2">
+                                <span className="block text-[11px] font-mono font-bold uppercase tracking-widest mb-3" style={{ color: ts.color }}>
+                                  {sg.label}
+                                </span>
+                                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                                  {sgEpochs.map((epoch) => renderCard(epoch))}
                                 </div>
                               </div>
                             );
