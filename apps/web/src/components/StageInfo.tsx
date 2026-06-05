@@ -456,11 +456,11 @@ export default function StageInfo({
             ))}
           </div>
           {(STAGE_IMAGES[stage.id] ?? stage.image ?? DEBATE_EPOCH_IMAGE[stage.epochId]) && (
-            <div className="mt-5 rounded-xl overflow-hidden border border-white/10">
+            <div className="mt-5 rounded-xl overflow-hidden border border-white/10 bg-black/30 flex justify-center">
               <img
                 src={STAGE_IMAGES[stage.id] ?? stage.image ?? DEBATE_EPOCH_IMAGE[stage.epochId] ?? STAGE_PLACEHOLDER}
                 alt={stage.title}
-                className="w-full object-cover max-h-72"
+                className="max-h-72 max-w-full w-auto object-contain"
                 loading="lazy"
                 onError={(e) => {
                   const img = e.currentTarget;
