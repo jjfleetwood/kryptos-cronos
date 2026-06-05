@@ -5,7 +5,7 @@ export const baseball8Epoch: EpochConfig = {
   name: "Catcher",
   subtitle: "The Field General Behind the Plate",
   description:
-    "The catcher is the only player who faces the entire field — and the only one involved in every single pitch. This complete position course builds the catcher from the ground up: the stances, receiving and framing, blocking balls in the dirt, the pop-time footwork to throw out runners, fielding bunts and pop-ups, plays at the plate, the backups and coverages for every situation, calling a game, and building the durable lower body the job demands. From Little League to Yadier Molina's nine Gold Gloves, you will learn to run the defense, protect the plate, and become the leader every pitching staff trusts.",
+    "The catcher is the only player who faces the entire field — and the only one involved in every single pitch. This complete position course builds the catcher from the ground up: the stances, receiving and framing, blocking balls in the dirt, the pop-time footwork to throw out runners, fielding bunts and pop-ups, plays at the plate, the backups and coverages for every situation, calling a game, and building the durable lower body the job demands. From Little League to Mike Piazza — the Dodgers' Hall of Famer and the greatest-hitting catcher in history — you will learn to run the defense, protect the plate, and become the leader every pitching staff trusts.",
   emoji: "🧤",
   color: "red",
   unlocked: true,
@@ -16,8 +16,8 @@ export const baseball8Stages: StageConfig[] = [
   {
     epochId: "baseball-8",
     wonder: {
-      name: "Busch Stadium",
-      location: "St. Louis, Missouri",
+      name: "Dodger Stadium",
+      location: "Los Angeles, California",
       era: "Modern",
       emoji: "🧤",
     },
@@ -60,13 +60,13 @@ export const baseball8Stages: StageConfig[] = [
         },
       },
       incident: {
-        title: "Yadier Molina — The Standard for a Catching Career",
-        when: "2004–2023 — St. Louis Cardinals",
-        where: "Busch Stadium, St. Louis, Missouri",
-        impact: "Across 19 seasons, Yadier Molina won nine Gold Gloves, made ten All-Star teams, and won two World Series — widely regarded as one of the greatest defensive catchers in history and the model of a catcher who controls a game without swinging the bat.",
+        title: "Mike Piazza — The Greatest-Hitting Catcher",
+        when: "1992–1998 — Los Angeles Dodgers",
+        where: "Dodger Stadium, Los Angeles, California",
+        impact: "Mike Piazza came up with the Dodgers as a 62nd-round draft pick and became the greatest-hitting catcher in baseball history and a Hall of Famer — a durable everyday catcher who carried the daily grind of the position while anchoring the Dodgers' lineup.",
         body: [
-          "Yadier Molina spent his entire 19-year career with the St. Louis Cardinals and redefined what a defensive catcher could mean to a franchise. Runners simply stopped trying to steal on him; his pop time and accuracy were so feared that opponents took the running game out of their plan entirely. But his greatest value was invisible on a stat sheet — the way he managed pitchers, called games, and controlled the tempo and emotion of a pitching staff over a full season.",
-          "Molina is the textbook example of the field general: he positioned defenders, blocked everything in the dirt, and earned the absolute trust of every pitcher he caught. Pitchers spoke of 'throwing to Yadi' as a luxury — they could focus on executing because he handled the thinking. His career is proof that a catcher can be the most important player on a championship defense without ever being the loudest bat in the lineup.",
+          "Mike Piazza was famously drafted by the Dodgers in the 62nd round and willed himself into stardom, winning the 1993 National League Rookie of the Year in a landslide and becoming the most prolific power-hitting catcher the game has ever seen. Behind the plate he handled the everyday demands of catching — crouching, blocking, and managing a pitching staff over a long season — while his bat made him one of the most feared hitters in baseball.",
+          "Piazza's calling card was his hitting, but his career underscores how much the position asks of every catcher: the durability to catch daily, the work to learn the craft behind the plate, and the responsibility to handle a staff. He is proof that becoming a complete catcher means mastering the defensive craft this epoch teaches — receiving, blocking, throwing, and game-calling — on top of whatever a catcher brings at the plate. For young catchers, his improbable rise is a lesson in work ethic and perseverance.",
         ],
       },
       diagram: {
@@ -81,9 +81,9 @@ export const baseball8Stages: StageConfig[] = [
         { year: 1845, event: "Knickerbocker Rules formalize the catcher's spot behind the batter" },
         { year: 1900, event: "Catchers move directly behind the plate full-time as the position professionalizes" },
         { year: 1968, event: "Johnny Bench debuts — revolutionizes one-handed catching and athletic defense" },
-        { year: 2004, event: "Yadier Molina debuts with St. Louis — begins a defining defensive career", highlight: true },
+        { year: 1993, event: "Mike Piazza wins NL Rookie of the Year with the Dodgers, beginning a Hall of Fame career", highlight: true },
         { year: 2015, event: "Statcast begins publicly measuring pop time and framing — quantifying catcher defense" },
-        { year: 2023, event: "Molina retires with 9 Gold Gloves; one-knee stances are now standard across the game" },
+        { year: 2016, event: "Mike Piazza inducted into the Hall of Fame as the greatest-hitting catcher" },
       ],
       keyTakeaways: [
         "The catcher is the only player who faces the whole field and is involved in every pitch — that view is a leadership responsibility",
@@ -94,7 +94,7 @@ export const baseball8Stages: StageConfig[] = [
       references: [
         { title: "Little League: Catching Fundamentals", url: "https://www.littleleague.org/player-and-coach-resources/baseball-coaching-guides/" },
         { title: "USA Baseball: Catcher Development", url: "https://www.usabaseball.com" },
-        { title: "Baseball Hall of Fame — Catchers", url: "https://baseballhall.org" },
+        { title: "Baseball Hall of Fame: Mike Piazza", url: "https://baseballhall.org/hall-of-famers/piazza-mike" },
       ],
     },
     quiz: {
@@ -161,7 +161,7 @@ export const baseball8Stages: StageConfig[] = [
             "Defense at catcher is unimportant, so the difference must be luck",
           ],
           correctIndex: 1,
-          explanation: "A catcher's most important contributions — calling a smart game, managing and earning the trust of the pitching staff, blocking balls in the dirt, framing strikes, positioning the defense, and leading — barely register in offensive stats. Yadier Molina is the definitive example: his bat was solid but unspectacular, yet he is considered one of the most valuable players of his era because of everything he controlled on defense.",
+          explanation: "A catcher's most important contributions — calling a smart game, managing and earning the trust of the pitching staff, blocking balls in the dirt, framing strikes, positioning the defense, and leading — barely register in offensive stats. Dodgers catcher Mike Scioscia is a classic example: prized for his defense, plate-blocking, and game-calling rather than his bat, he was hugely valuable for everything he controlled behind the plate.",
         },
       ],
     },
@@ -1463,7 +1463,7 @@ export const baseball8Stages: StageConfig[] = [
       overview: [
         "Calling a game is the catcher's mental masterpiece. It means selecting which pitch to throw and where, on every pitch, to get the hitter out — accounting for the hitter's strengths and weaknesses, the count, the situation, what the pitcher throws well that day, and what has already been thrown in the at-bat and the game. A great game-caller sequences pitches so each one sets up the next: establishing a fastball to make a changeup deadly, working a hitter's weakness, and avoiding predictable patterns the hitter can sit on.",
         "Game-calling rests on preparation. Before the game, the catcher studies the opposing hitters — who chases breaking balls, who crushes inside fastballs, who can't catch up to velocity up. During the game, the catcher learns what's working: if the pitcher's curveball is sharp today, lean on it; if the command is off, simplify. The catcher also reads the hitter's adjustments at-bat to at-bat, remembering how each hitter was retired or got a hit last time and adjusting the plan.",
-        "Above all, calling a game is about leadership and trust. The catcher must earn the pitcher's confidence so the pitcher commits fully to each pitch — a pitcher who second-guesses the call throws tentatively, and tentative pitches get hit. The catcher manages emotion too: settling a rattled pitcher, slowing the game down with a mound visit, projecting calm in a crisis. Yadier Molina's greatness was largely this invisible work. The complete catcher is part technician, part strategist, and part leader — the steady mind at the center of the defense.",
+        "Above all, calling a game is about leadership and trust. The catcher must earn the pitcher's confidence so the pitcher commits fully to each pitch — a pitcher who second-guesses the call throws tentatively, and tentative pitches get hit. The catcher manages emotion too: settling a rattled pitcher, slowing the game down with a mound visit, projecting calm in a crisis. This invisible work — game-calling and leadership — is what separates good catchers from great ones. The complete catcher is part technician, part strategist, and part leader — the steady mind at the center of the defense.",
       ],
       technical: {
         title: "How to Call a Smart Game",
@@ -1496,13 +1496,13 @@ export const baseball8Stages: StageConfig[] = [
         },
       },
       incident: {
-        title: "Yadier Molina — Calling Championship Games",
-        when: "2006 & 2011 — St. Louis Cardinals World Series titles",
+        title: "Mike Piazza — From 62nd-Round Pick to Cooperstown",
+        when: "1992–2007 — Los Angeles Dodgers and beyond",
         where: "National Baseball Hall of Fame, Cooperstown, New York",
-        impact: "Yadier Molina guided two World Series championship pitching staffs, with pitchers repeatedly crediting his game-calling and leadership as the reason they performed at their best — the clearest modern example of catching's invisible, decisive value.",
+        impact: "Mike Piazza rose from a 62nd-round draft pick to the Hall of Fame as the greatest-hitting catcher in history — a reminder that even an offense-first catcher must master the daily grind and the craft of handling a pitching staff.",
         body: [
-          "Across two World Series titles and many postseason runs, Yadier Molina built a reputation as perhaps the finest game-caller of his generation. Pitchers spoke of shaking off his signs almost never, because his pitch selection and sense of the moment were so trusted. He knew opposing hitters cold, adjusted within games, and managed the emotions of his staff through the highest-pressure situations in the sport.",
-          "Molina's career is the argument that the catcher's mind is the position's ultimate skill. He could receive, block, and throw with the best, but what made him a likely Hall of Famer was the invisible work: turning a pitching staff into more than the sum of its arms by calling smart games and earning total trust. For any young catcher, the lesson is that mastering the craft is necessary — but mastering the game, and leading people, is what makes a catcher great.",
+          "Mike Piazza's path to Cooperstown was unlike any other: a 62nd-round draft pick who became the most prolific power-hitting catcher ever and a 12-time All-Star. While his bat defined his fame, catching every day demanded that he learn to receive, block, and handle a pitching staff over a grueling season — the unglamorous craft that every catcher, whatever their bat, must develop.",
+          "Piazza's career is a reminder that catching asks for the complete package: the durability to catch daily, the craft to handle a staff and call a game, and whatever a catcher adds at the plate. For any young catcher, the lesson is that mastering the defensive craft — receiving, blocking, throwing, and game-calling — is necessary, and the catchers who pair that craft with leadership and a bat become the most valuable players on the field.",
         ],
       },
       diagram: {
@@ -1516,8 +1516,8 @@ export const baseball8Stages: StageConfig[] = [
       timeline: [
         { year: 1968, event: "Johnny Bench combines elite defense with game-management leadership" },
         { year: 1990, event: "Advance scouting reports become standard, deepening game-calling preparation" },
-        { year: 2006, event: "Yadier Molina helps call a World Series championship for St. Louis", highlight: true },
-        { year: 2011, event: "Molina guides a second Cardinals title; his game-calling becomes legendary" },
+        { year: 1993, event: "Mike Piazza wins NL Rookie of the Year with the Dodgers", highlight: true },
+        { year: 1997, event: "Piazza's monster season for the Dodgers ranks among the best ever by a catcher" },
         { year: 2015, event: "Data and scouting integrate into catcher game-planning while trust remains central" },
       ],
       keyTakeaways: [
@@ -1596,7 +1596,7 @@ export const baseball8Stages: StageConfig[] = [
             "Call for a pitch the pitcher doesn't trust",
           ],
           correctIndex: 1,
-          explanation: "A rattled pitcher rushes and loses command, so the catcher's job is to slow things down — a mound visit, a calming word, or simply a deliberate pace — to settle the pitcher's emotions and restore focus. The catcher's calm becomes the pitcher's calm. Managing the emotional state of the staff is a defining leadership skill, and it's why pitchers credit great catchers like Yadier Molina for their best performances.",
+          explanation: "A rattled pitcher rushes and loses command, so the catcher's job is to slow things down — a mound visit, a calming word, or simply a deliberate pace — to settle the pitcher's emotions and restore focus. The catcher's calm becomes the pitcher's calm. Managing the emotional state of the staff is a defining leadership skill, and it's why pitchers credit great game-calling catchers for their best performances.",
         },
       ],
     },

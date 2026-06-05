@@ -2,6 +2,15 @@
 
 ---
 
+## v1.29.1 — 2026-06-05
+
+**Baseball position exemplars → Dodgers**
+
+- Reworked the hall-of-fame anchor in each new position epoch to a Dodgers great, reframing the surrounding incident stories, timelines, venues, and quiz explanations for accuracy: **Catcher → Mike Piazza, First Base → Freddie Freeman, Second Base → Jackie Robinson, Third Base → Adrián Beltré, Left Field → Zack Wheat, Right Field → Mookie Betts.** Shortstop (Ozzie Smith) and Center Field (Ken Griffey Jr.) were kept by request; the Pitcher epoch was already Dodgers (Kershaw / Koufax).
+- Content kept historically honest: Piazza framed as the greatest-hitting catcher and the 62nd-round-pick-to-Cooperstown story (fellow Dodger Mike Scioscia used for the defense-first-value example; Iván Rodríguez retained as the pop-time technique exemplar); Zack Wheat at Ebbets Field replaces the Fenway/Green Monster framing; Beltré (a Dodgers product), Jackie Robinson, and Freeman framed to their real careers and eras (no invented accolades).
+
+---
+
 ## v1.29.0 — 2026-06-05
 
 **Baseball position curriculum — 8 new full position epochs + Pitcher consolidation**

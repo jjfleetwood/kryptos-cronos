@@ -5,7 +5,7 @@ export const baseball15Epoch: EpochConfig = {
   name: "Right Field",
   subtitle: "The Cannon",
   description:
-    "Right field is the strong-arm corner — the position with the longest throw to third base, where a cannon arm controls the running game. This complete position course builds the right fielder from the ground up: reading the ball off the bat, catching fly balls and line drives, the long throw to third and home, playing the line and the sun, backing up first base, hitting cutoffs, and the situational reads of the corner. From Little League to Ichiro Suzuki's legendary laser throws, you will learn to run down everything, unleash the cannon, and stop runners from taking the extra base.",
+    "Right field is the strong-arm corner — the position with the longest throw to third base, where a cannon arm controls the running game. This complete position course builds the right fielder from the ground up: reading the ball off the bat, catching fly balls and line drives, the long throw to third and home, playing the line and the sun, backing up first base, hitting cutoffs, and the situational reads of the corner. From Little League to Mookie Betts — the Dodgers' multiple-Gold-Glove right fielder and World Series champion — you will learn to run down everything, unleash the cannon, and stop runners from taking the extra base.",
   emoji: "🚀",
   color: "orange",
   unlocked: true,
@@ -16,8 +16,8 @@ export const baseball15Stages: StageConfig[] = [
   {
     epochId: "baseball-15",
     wonder: {
-      name: "Safeco Field",
-      location: "Seattle, Washington",
+      name: "Dodger Stadium",
+      location: "Los Angeles, California",
       era: "Modern",
       emoji: "🚀",
     },
@@ -35,7 +35,7 @@ export const baseball15Stages: StageConfig[] = [
       overview: [
         "Right field is the outfield's strong-arm corner. While it tends to see fewer batted balls than left field (most hitters are right-handed and pull to left), the right fielder makes the longest and most important corner throws, so the strongest outfield arm usually goes in right field. The reason is geometry: right field is the farthest outfield position from third base, so the throw to third — to retire or hold a runner trying to advance from first on a single, or from second — is the longest outfield throw and demands a powerful, accurate arm.",
         "The right fielder's core jobs mirror the other outfielders: catching fly balls and line drives, fielding ground balls that get through, playing the line and the wall, throwing to the bases and hitting the cutoff man, and backing up plays. But the right fielder's arm is his defining weapon. A strong-armed right fielder controls the running game — runners think twice about trying to go first-to-third on a single to right, or about tagging up, because the cannon will throw them out. The threat of the arm alone deters runners from taking extra bases.",
-        "The right fielder must also read the slice on balls hit by left-handed pull hitters, which hook toward the right-field line, and he often plays with the sun as a factor. The center fielder is the captain with priority on shared balls, so the right fielder communicates and defers on balls in right-center. The right fielder also backs up first base on throws and pickoffs. Ichiro Suzuki turned the right-field cannon into legend with throws so accurate and powerful they shut down the running game. This epoch builds the complete right fielder: reads, catches, the cannon, and the situational intelligence the corner demands.",
+        "The right fielder must also read the slice on balls hit by left-handed pull hitters, which hook toward the right-field line, and he often plays with the sun as a factor. The center fielder is the captain with priority on shared balls, so the right fielder communicates and defers on balls in right-center. The right fielder also backs up first base on throws and pickoffs. Mookie Betts has turned the right-field corner into a defensive weapon — a multiple Gold Glove winner whose strong, accurate arm and elite instincts shut down the running game. This epoch builds the complete right fielder: reads, catches, the cannon, and the situational intelligence the corner demands.",
       ],
       technical: {
         title: "Why the Strongest Arm Goes in Right Field",
@@ -66,13 +66,13 @@ export const baseball15Stages: StageConfig[] = [
         },
       },
       incident: {
-        title: "Ichiro Suzuki and 'The Throw'",
-        when: "April 11, 2001 — Seattle Mariners",
-        where: "Safeco Field, Seattle, Washington",
-        impact: "Ichiro Suzuki won ten Gold Gloves in right field, and his April 2001 laser throw to third base — nailing a runner with a flat, perfect strike from the right-field corner — became one of the most famous defensive plays in history, the definitive image of the right-field cannon.",
+        title: "Mookie Betts — The Gold Glove Cannon",
+        when: "2014–present — Boston Red Sox and Los Angeles Dodgers",
+        where: "Dodger Stadium, Los Angeles, California",
+        impact: "Mookie Betts is a multiple Gold Glove right fielder and a World Series champion whose strong, accurate arm, elite jumps, and home-run robberies make him one of the best defensive right fielders of his era — the modern image of the right-field cannon.",
         body: [
-          "On April 11, 2001, in just his eighth Major League game, Ichiro Suzuki made a throw that announced his arrival and defined the right-field cannon. With a runner trying to advance from first to third on a single to right, Ichiro fielded the ball and unleashed a flat, laser-like throw that traveled to third base on a line, barely rising, and arrived in time to nail the runner. The throw was so perfect and powerful that it stunned everyone — 'The Throw' became instantly legendary.",
-          "Ichiro won ten Gold Gloves in right field, and his arm became so feared that runners simply stopped testing it — the threat alone shut down the running game on his side. His example is the model of the right-field cannon: a powerful, accurate arm that controls the running game and deters runners from taking the extra base. For young right fielders, Ichiro shows that the strong-arm corner can be a defensive weapon, where a great arm turns singles into held runners and outs.",
+          "Mookie Betts plays right field with elite instincts and one of the game's most respected arms. He gets a great jump, runs precise routes, robs home runs at the wall, and unleashes strong, accurate throws that gun down runners trying to take the extra base. With a runner trying to advance from first to third on a single to right, a strong-armed right fielder like Betts fields the ball and throws on a line to nail the runner — the right-field cannon at work.",
+          "Betts has won multiple Gold Gloves and a World Series with the Dodgers, and his arm is feared enough that runners think twice about challenging it. His example is the model of the right-field cannon: a strong, accurate arm and elite instincts that control the running game and deter runners from taking the extra base. For young right fielders, Betts shows that the strong-arm corner can be a defensive weapon, where a great arm and great reads turn singles into held runners and outs.",
         ],
       },
       diagram: {
@@ -84,10 +84,10 @@ export const baseball15Stages: StageConfig[] = [
         ],
       },
       timeline: [
-        { year: 1955, event: "Roberto Clemente begins setting the standard for the right-field arm" },
-        { year: 1972, event: "Clemente's 12 Gold Gloves cement the right-field cannon's value" },
-        { year: 2001, event: "Ichiro Suzuki's legendary 'Throw' nails a runner at third", highlight: true },
-        { year: 2009, event: "Ichiro continues a run of ten Gold Gloves in right field" },
+        { year: 1955, event: "The right-field arm is established as a prized defensive weapon" },
+        { year: 1972, event: "The strong-armed right fielder recognized as a force that controls the running game" },
+        { year: 2016, event: "Mookie Betts begins a run of Gold Gloves in right field", highlight: true },
+        { year: 2020, event: "Betts joins the Dodgers and wins a World Series, his elite right-field defense on display" },
         { year: 2015, event: "Statcast quantifies outfield arm strength, confirming right field's cannon" },
       ],
       keyTakeaways: [
@@ -99,7 +99,7 @@ export const baseball15Stages: StageConfig[] = [
       references: [
         { title: "Little League: Outfield Fundamentals", url: "https://www.littleleague.org/player-and-coach-resources/baseball-coaching-guides/" },
         { title: "USA Baseball: Outfield Play", url: "https://www.usabaseball.com" },
-        { title: "Baseball Hall of Fame: Ichiro Suzuki", url: "https://baseballhall.org" },
+        { title: "MLB: Mookie Betts", url: "https://www.mlb.com/player/mookie-betts-605141" },
       ],
     },
     quiz: {
@@ -135,7 +135,7 @@ export const baseball15Stages: StageConfig[] = [
             "A strong arm only matters on home runs",
           ],
           correctIndex: 1,
-          explanation: "A strong-armed right fielder controls the running game through the threat of his arm. Runners hesitate to go first-to-third on a single to right, or to tag up, because they know the cannon will throw them out — so they hold up at second or stay put without a throw ever being needed. Ichiro Suzuki's arm became so feared that runners simply stopped testing it. The deterrent effect of the cannon is as valuable as the throws themselves.",
+          explanation: "A strong-armed right fielder controls the running game through the threat of his arm. Runners hesitate to go first-to-third on a single to right, or to tag up, because they know the cannon will throw them out — so they hold up at second or stay put without a throw ever being needed. A strong-armed right fielder like Mookie Betts is feared enough that runners hesitate to challenge his arm. The deterrent effect of the cannon is as valuable as the throws themselves.",
         },
         {
           id: "baseball-15-01-q3",
@@ -156,11 +156,11 @@ export const baseball15Stages: StageConfig[] = [
         {
           id: "baseball-15-01-q4",
           type: "Legacy",
-          challenge: `  In just his eighth Major League game, a right
-  fielder unleashes a flat, laser-like throw to
-  third base that nails a runner trying to advance,
-  becoming instantly legendary.`,
-          text: "What does Ichiro Suzuki's career demonstrate about right field?",
+          challenge: `  A right fielder with a Gold Glove arm fields a
+  single and unleashes a flat, accurate throw to
+  third base that nails a runner trying to advance —
+  and makes other runners stop testing him.`,
+          text: "What does Mookie Betts's career demonstrate about right field?",
           options: [
             "That right field requires no skill",
             "That a powerful, accurate arm can make the right-field corner a defensive weapon that controls the running game and turns singles into outs",
@@ -168,7 +168,7 @@ export const baseball15Stages: StageConfig[] = [
             "That right-field defense can't be measured",
           ],
           correctIndex: 1,
-          explanation: "Ichiro Suzuki — ten Gold Gloves and the legendary 2001 'Throw' that nailed a runner at third with a flat laser — proved that the right-field corner can be a defensive weapon. His powerful, accurate arm controlled the running game and deterred runners from taking extra bases. He's the model of the right-field cannon: a great arm that turns singles into held runners and outs. The position rewards a strong arm combined with the reads and routes every outfielder needs.",
+          explanation: "Mookie Betts — multiple Gold Gloves, a feared arm, and elite instincts — shows that the right-field corner can be a defensive weapon. His strong, accurate arm and great reads control the running game and deter runners from taking extra bases. He's a model of the right-field cannon: a great arm and great reads that turn singles into held runners and outs. The position rewards a strong arm combined with the reads and routes every outfielder needs.",
         },
       ],
     },
@@ -411,7 +411,7 @@ export const baseball15Stages: StageConfig[] = [
       },
       timeline: [
         { year: 1950, event: "Two-handed catch above the throwing shoulder taught as the standard" },
-        { year: 1972, event: "Roberto Clemente models catching to throw from right field" },
+        { year: 1972, event: "Catching the ball to throw established as a right-field fundamental" },
         { year: 1985, event: "Catch-and-throw fundamentals standardized in outfield coaching", highlight: true },
         { year: 2010, event: "Defensive metrics credit outfield catches and throws" },
         { year: 2020, event: "Catching and throwing technique refined with technology" },
@@ -522,7 +522,7 @@ export const baseball15Stages: StageConfig[] = [
       year: 2001,
       overview: [
         "The right fielder's signature weapon is his arm, and his signature throw is to third base — the longest throw in the outfield. On a single to right with a runner on first, the runner often tries to advance to third; the right fielder's throw to third must travel the longest distance of any outfield throw, on a line, accurately, to nail the runner. The throw home on a play at the plate is also critical. A strong, accurate cannon controls the running game, and the threat of it deters runners from even attempting the extra base.",
-        "The throw combines arm strength with the same mechanics as any outfielder: a crow-hop to generate momentum, a four-seam grip, and a low, flat, carrying trajectory. Because the throw to third is so long, a flat, hard throw on a line — not a high rainbow — is essential to get there in time and to let the cutoff man handle it if needed. The right fielder catches or fields the ball moving toward the target, crow-hops, and unleashes the throw with his whole body. Ichiro Suzuki's legendary throws were famous for being so flat they barely rose, arriving like a laser.",
+        "The throw combines arm strength with the same mechanics as any outfielder: a crow-hop to generate momentum, a four-seam grip, and a low, flat, carrying trajectory. Because the throw to third is so long, a flat, hard throw on a line — not a high rainbow — is essential to get there in time and to let the cutoff man handle it if needed. The right fielder catches or fields the ball moving toward the target, crow-hops, and unleashes the throw with his whole body. Mookie Betts's throws are known for their accuracy and carry, arriving on a line to nail runners trying to advance.",
         "Hitting the cutoff man and the relay system apply to the right fielder's throws as much as anyone's, and matter even more because his throws are the longest. On a throw to third or home, the right fielder throws to or through the cutoff man, who can relay, redirect to catch a trailing runner, or let it through. On the deepest balls, a middle infielder comes out as the relay man. The right fielder's cannon is a weapon, but it's most effective when the throw is accurate, low, and hits the cutoff — controlling the running game while keeping the defense's options.",
       ],
       technical: {
@@ -540,7 +540,7 @@ export const baseball15Stages: StageConfig[] = [
   3. FOUR-SEAM grip
   4. LOW, FLAT, carrying LINE (not a high rainbow)
      → gets there in time + catchable for the cutoff
-  → Ichiro's throws were so FLAT they barely rose
+  → Aim FLAT so the ball barely rises (accurate + fast)
 
   THE THROW HOME: same mechanics, play at the plate
 
@@ -556,13 +556,13 @@ export const baseball15Stages: StageConfig[] = [
         },
       },
       incident: {
-        title: "Ichiro's Laser to Third",
-        when: "April 11, 2001 — Seattle Mariners",
+        title: "Mookie Betts and the Cannon That Controls the Game",
+        when: "2014–present — a Gold Glove career",
         where: "Globe Life Field and ballparks across the game",
-        impact: "Ichiro Suzuki's 2001 throw to third base — a flat laser from the right-field corner that nailed the runner — is the definitive demonstration of the right-field cannon, and his arm became so feared that runners stopped testing it entirely.",
+        impact: "Mookie Betts's strong, accurate arm — gunning down runners trying to advance and deterring the rest — is a modern demonstration of the right-field cannon, the kind of weapon that controls the running game from the corner.",
         body: [
-          "Ichiro Suzuki's legendary 2001 throw to third base showed the right-field cannon at its finest: with a runner trying to advance from first to third on a single, Ichiro fielded the ball and unleashed a throw so flat and hard it barely rose, traveling on a line all the way to third base to nail the runner. The throw covered the longest outfield distance — right field to third — and arrived like a laser. It became one of the most famous throws in baseball history.",
-          "What made the throw possible was the combination of elite arm strength with sound mechanics: fielding the ball moving toward the target, a crow-hop, a four-seam grip, and a flat, low trajectory that got the ball there in time. Ichiro's arm became so feared that runners stopped trying to take the extra base on him — the threat of the cannon controlled the running game by itself. For young right fielders, Ichiro's throw is the model: a flat, accurate laser to third that turns singles into outs and shuts down the running game.",
+          "Mookie Betts shows the right-field cannon at its finest. With a runner trying to advance from first to third on a single to right, a strong-armed right fielder fields the ball and unleashes a throw on a line — covering the longest outfield distance, right field to third — to nail the runner. Betts's accurate, carrying throws and quick release have produced many outfield assists and made runners wary of challenging him.",
+          "What makes these throws possible is the combination of arm strength with sound mechanics: fielding the ball moving toward the target, a crow-hop, a four-seam grip, and a flat, low trajectory that gets the ball there in time. Betts's arm is feared enough that runners stop trying to take the extra base on him — the threat of the cannon controls the running game by itself. For young right fielders, Betts is the model: a flat, accurate throw to third that turns singles into outs and shuts down the running game.",
         ],
       },
       diagram: {
@@ -574,21 +574,21 @@ export const baseball15Stages: StageConfig[] = [
         ],
       },
       timeline: [
-        { year: 1955, event: "Roberto Clemente sets the standard for the right-field arm" },
-        { year: 1972, event: "Clemente's arm deters runners across his career" },
-        { year: 2001, event: "Ichiro Suzuki's flat laser to third becomes legendary", highlight: true },
-        { year: 2009, event: "Ichiro's feared arm continues to shut down the running game" },
+        { year: 1955, event: "The right-field arm established as a prized defensive weapon" },
+        { year: 1972, event: "Strong-armed right fielders deter runners from taking the extra base" },
+        { year: 2018, event: "Mookie Betts wins MVP and a Gold Glove, his right-field defense elite", highlight: true },
+        { year: 2020, event: "Betts brings his Gold Glove arm to the Dodgers and wins the World Series" },
         { year: 2015, event: "Statcast measures outfield arm strength, confirming the right-field cannon" },
       ],
       keyTakeaways: [
         "The right fielder's throw to third is the longest in the outfield, made on a single to right with a runner advancing",
         "Generate the throw with a crow-hop, a four-seam grip, and a low, flat, carrying line — not a high rainbow",
-        "A flat, accurate laser gets there in time and stays catchable for the cutoff — Ichiro's throws barely rose",
+        "A flat, accurate throw gets there in time and stays catchable for the cutoff — aim on a line, not a rainbow",
         "Hit the cutoff and relay men accurately, especially important on the right fielder's long throws, to control the running game",
       ],
       references: [
         { title: "USA Baseball: Outfield Throwing and Cutoffs", url: "https://www.usabaseball.com" },
-        { title: "Baseball Hall of Fame: Ichiro Suzuki", url: "https://baseballhall.org" },
+        { title: "MLB: Mookie Betts", url: "https://www.mlb.com/player/mookie-betts-605141" },
         { title: "MLB Statcast: Outfield Arm Strength", url: "https://baseballsavant.mlb.com" },
       ],
     },
@@ -623,7 +623,7 @@ export const baseball15Stages: StageConfig[] = [
             "Low throws can't reach third base",
           ],
           correctIndex: 1,
-          explanation: "Over the long throw to third, a low, flat, carrying line is essential — it gets the ball there faster and stays at a height where the cutoff man can handle it. A high, looping rainbow throw is slow and arrives too late to retire the runner. Ichiro's legendary throws were famous for being so flat they barely rose, arriving like lasers. Generated by a crow-hop and a four-seam grip, the flat, strong throw is the goal.",
+          explanation: "Over the long throw to third, a low, flat, carrying line is essential — it gets the ball there faster and stays at a height where the cutoff man can handle it. A high, looping rainbow throw is slow and arrives too late to retire the runner. A strong right fielder's best throws are flat and on a line, arriving fast and catchable. Generated by a crow-hop and a four-seam grip, the flat, strong throw is the goal.",
         },
         {
           id: "baseball-15-04-q3",
@@ -639,7 +639,7 @@ export const baseball15Stages: StageConfig[] = [
             "A strong arm only matters on home runs",
           ],
           correctIndex: 1,
-          explanation: "Once a right fielder demonstrates his cannon by throwing out a runner, opposing runners stop testing it — they hold up at second rather than risk being thrown out at third. The threat of the arm deters runners from taking the extra base, controlling the running game without a throw being needed. Ichiro Suzuki's arm became so feared that runners simply stopped challenging it. The deterrent effect is as valuable as the throws themselves.",
+          explanation: "Once a right fielder demonstrates his cannon by throwing out a runner, opposing runners stop testing it — they hold up at second rather than risk being thrown out at third. The threat of the arm deters runners from taking the extra base, controlling the running game without a throw being needed. A feared arm like Mookie Betts's makes runners hesitate to challenge it. The deterrent effect is as valuable as the throws themselves.",
         },
         {
           id: "baseball-15-04-q4",
@@ -896,7 +896,7 @@ export const baseball15Stages: StageConfig[] = [
       },
       timeline: [
         { year: 1960, event: "Playing the line and wall refined for corner outfielders" },
-        { year: 1972, event: "Roberto Clemente models complete right-field corner play" },
+        { year: 1972, event: "Complete right-field corner play established as a craft" },
         { year: 1990, event: "Managing the sun and the corner standardized in coaching", highlight: true },
         { year: 2010, event: "Defensive metrics credit corner outfield play and caroms" },
         { year: 2020, event: "Sun and wall management refined in development" },
@@ -1217,7 +1217,7 @@ export const baseball15Stages: StageConfig[] = [
       },
       timeline: [
         { year: 1950, event: "Cutoff-and-relay systems formalized in professional coaching" },
-        { year: 1972, event: "Roberto Clemente models aiming the cannon at the right target" },
+        { year: 1972, event: "Aiming the cannon at the right target established as a right-field discipline" },
         { year: 1995, event: "Deciding-before-the-catch and cutoff discipline drilled as core defense", highlight: true },
         { year: 2010, event: "Defensive coordinators chart cutoff and relay alignments" },
         { year: 2015, event: "Statcast measures outfield arm and throw decisions" },
@@ -1489,7 +1489,7 @@ export const baseball15Stages: StageConfig[] = [
       tagline: "Master right field and you become the cannon — great reads, the corner, and an arm that controls the running game.",
       year: 2001,
       overview: [
-        "The greatest right fielders share a set of pursuable traits: a great jump and efficient routes built on reading the ball off the bat (including the slice on lefty pull hitters); sure hands and sound catching technique; the ability to play the line, the wall, and the sun, turning doubles into singles and saving catches; and — most distinctively — the strongest, most accurate arm in the outfield, the cannon that controls the running game. Roberto Clemente and Ichiro Suzuki embodied all of it — but the qualities, not the highlights, are what to build.",
+        "The greatest right fielders share a set of pursuable traits: a great jump and efficient routes built on reading the ball off the bat (including the slice on lefty pull hitters); sure hands and sound catching technique; the ability to play the line, the wall, and the sun, turning doubles into singles and saving catches; and — most distinctively — the strongest, most accurate arm in the outfield, the cannon that controls the running game. Mookie Betts embodies all of it — but the qualities, not the highlights, are what to build.",
         "Mastering right field is about reads, the corner, and the cannon. The position's value comes from running down balls in the gap and down the line, playing the corner and the sun to hold hitters to fewer bases and save catches, and — above all — controlling the running game with a strong, accurate arm thrown to the right base. A right fielder who does these consistently prevents runs and deters runners from taking extra bases. That command of the corner and the cannon is the heart of right-field defense.",
         "The mastery mindset treats right field as a craft of reading the ball, playing the corner, and aiming the cannon. That means endless fly-ball and read repetition, route running, corner and sun practice, long-toss and cutoff work to build and aim the arm, and studying situations until the pre-pitch thinking is automatic. The complete right fielder is a great reader and router, sure-handed, corner-savvy, and armed with the strongest cannon in the outfield, aimed with discipline. Build those qualities, and you become the player who runs down everything and controls the running game.",
       ],
@@ -1525,12 +1525,12 @@ export const baseball15Stages: StageConfig[] = [
         },
       },
       incident: {
-        title: "Clemente, Ichiro, and the Right-Field Cannon",
-        when: "2001 — Ichiro's debut season / the lineage of great arms",
+        title: "Mookie Betts and the Right-Field Cannon",
+        when: "2014–present — Mookie Betts, the modern right-field cannon",
         where: "National Baseball Hall of Fame, Cooperstown, New York",
-        impact: "From Roberto Clemente to Ichiro Suzuki, the greatest right fielders combined elite range and the strongest arms in baseball — proving that mastering right field, and especially the cannon, can make a player a Hall of Famer and the anchor of a team's outfield.",
+        impact: "Mookie Betts combines elite range, instincts, and one of the game's most respected arms — proving that mastering right field, and especially the cannon, can make a player a perennial Gold Glover and the anchor of a championship team's outfield.",
         body: [
-          "The lineage of great right fielders — Roberto Clemente, Ichiro Suzuki, and others — shares a defining weapon: the strongest, most accurate arm in the outfield, the cannon that controls the running game. Clemente's twelve Gold Gloves and Ichiro's ten, along with their legendary throws, made runners afraid to take the extra base on them. They combined that elite arm with great range, reads, and command of the corner to become complete right fielders and Hall of Famers, anchoring their teams' outfields.",
+          "The great right fielders share a defining weapon: a strong, accurate arm — the cannon that controls the running game. Mookie Betts, with multiple Gold Gloves and a feared arm, makes runners afraid to take the extra base on him. He combines that elite arm with great range, reads, and command of the corner to be a complete right fielder, anchoring a championship team's outfield.",
           "Their careers are the argument that mastering right field — the reads, the routes, the corner, the catching, and above all the cannon — can make a player a great defender and a legend. For any young right fielder, the lesson is to pursue the complete craft: develop the jump and routes, master the corner and the sun, build and aim the strongest arm in the outfield through the cutoff to the right base, and think the game every pitch. Become the cannon who runs down everything and controls the running game, and you become the player a team's outfield is anchored by.",
         ],
       },
@@ -1543,10 +1543,10 @@ export const baseball15Stages: StageConfig[] = [
         ],
       },
       timeline: [
-        { year: 1955, event: "Roberto Clemente sets the standard for the right-field arm and corner play" },
-        { year: 1972, event: "Clemente retires with 12 Gold Gloves, the right-field benchmark" },
-        { year: 2001, event: "Ichiro Suzuki's debut season and legendary throws redefine the cannon", highlight: true },
-        { year: 2009, event: "Ichiro's feared arm continues to shut down the running game" },
+        { year: 1955, event: "The right-field arm and corner play established as defensive weapons" },
+        { year: 1972, event: "Gold Glove right-field defense established as a benchmark for the position" },
+        { year: 2016, event: "Mookie Betts wins his first Gold Glove, redefining modern right-field defense", highlight: true },
+        { year: 2020, event: "Betts brings his Gold Glove arm to the Dodgers and wins the World Series" },
         { year: 2015, event: "Statcast quantifies the arm strength that defines great right fielders" },
       ],
       keyTakeaways: [
@@ -1556,7 +1556,7 @@ export const baseball15Stages: StageConfig[] = [
         "Become the cannon who runs down everything and controls the running game — the anchor of a team's outfield",
       ],
       references: [
-        { title: "Baseball Hall of Fame: Roberto Clemente", url: "https://baseballhall.org/hall-of-famers/clemente-roberto" },
+        { title: "MLB: Mookie Betts", url: "https://www.mlb.com/player/mookie-betts-605141" },
         { title: "USA Baseball: Complete Outfield Development", url: "https://www.usabaseball.com" },
         { title: "MLB: The Value of Outfield Defense", url: "https://www.mlb.com/news" },
       ],
@@ -1576,7 +1576,7 @@ export const baseball15Stages: StageConfig[] = [
             "Only a weak arm and good hitting",
           ],
           correctIndex: 1,
-          explanation: "The best right fielders combine a great jump and efficient routes (from reading the ball, including the slice on lefty pull hitters), sure hands and sound catching technique, the ability to play the line, wall, and sun, and — most distinctively — the strongest, most accurate arm in the outfield, the cannon that controls the running game. Roberto Clemente and Ichiro Suzuki embodied all of it. It's a complete craft of reads, the corner, and the arm.",
+          explanation: "The best right fielders combine a great jump and efficient routes (from reading the ball, including the slice on lefty pull hitters), sure hands and sound catching technique, the ability to play the line, wall, and sun, and — most distinctively — a strong, accurate arm, the cannon that controls the running game. Mookie Betts embodies all of it. It's a complete craft of reads, the corner, and the arm.",
         },
         {
           id: "baseball-15-10-q2",
@@ -1592,7 +1592,7 @@ export const baseball15Stages: StageConfig[] = [
             "The arm has no effect on the game",
           ],
           correctIndex: 1,
-          explanation: "The cannon is the right fielder's defining weapon. A strong, accurate arm controls the running game by throwing out runners trying to take the extra base and, just as importantly, deterring them from even attempting it — its threat alone prevents runs. Ichiro Suzuki's arm became so feared that runners stopped testing it. Mastering and aiming the cannon at the right base through the cutoff is what makes the right fielder a defensive weapon.",
+          explanation: "The cannon is the right fielder's defining weapon. A strong, accurate arm controls the running game by throwing out runners trying to take the extra base and, just as importantly, deterring them from even attempting it — its threat alone prevents runs. Mookie Betts's arm is feared enough that runners hesitate to test it. Mastering and aiming the cannon at the right base through the cutoff is what makes the right fielder a defensive weapon.",
         },
         {
           id: "baseball-15-10-q3",
@@ -1609,23 +1609,23 @@ export const baseball15Stages: StageConfig[] = [
             "Practicing defense makes outfielders worse",
           ],
           correctIndex: 1,
-          explanation: "The mastery mindset treats right field as a craft mastered through deliberate repetition — reading the ball, running routes, playing the corner and sun, catching to throw, and aiming the cannon through the cutoff to the right base. A strong arm is the distinctive weapon, but without the reads, routes, corner play, and the discipline to throw to the right base, it's wasted. The greats like Clemente and Ichiro earned their command of the corner and the cannon through relentless practice.",
+          explanation: "The mastery mindset treats right field as a craft mastered through deliberate repetition — reading the ball, running routes, playing the corner and sun, catching to throw, and aiming the cannon through the cutoff to the right base. A strong arm is the distinctive weapon, but without the reads, routes, corner play, and the discipline to throw to the right base, it's wasted. Great right fielders like Mookie Betts earn their command of the corner and the cannon through relentless practice.",
         },
         {
           id: "baseball-15-10-q4",
           type: "Legacy",
-          challenge: `  From Roberto Clemente to Ichiro Suzuki, a lineage
-  of right fielders has anchored great outfields with
-  elite range and the strongest arms in baseball.`,
-          text: "What does this lineage of great right fielders teach young players?",
+          challenge: `  Mookie Betts anchors a great outfield with elite
+  range, Gold Glove instincts, and one of the game's
+  most respected throwing arms.`,
+          text: "What does Mookie Betts's career teach young players?",
           options: [
             "That right field is unimportant to winning",
-            "That mastering the complete craft of right field — reads, routes, the corner, catching, and the cannon — can make a player a great defender, a Hall of Famer, and the anchor of an outfield",
+            "That mastering the complete craft of right field — reads, routes, the corner, catching, and the cannon — can make a player a great defender, a perennial Gold Glover, and the anchor of a championship outfield",
             "That defense can't be developed",
             "That only power hitters succeed in right field",
           ],
           correctIndex: 1,
-          explanation: "The lineage from Roberto Clemente through Ichiro Suzuki proves that mastering the complete craft of right field — reads, routes, command of the corner, catching, and above all the cannon — can make a player a great defender, a Hall of Famer, and the anchor of a team's outfield. Their range and feared arms controlled the running game and saved runs. The lesson for young players is to pursue that whole craft and become the cannon who runs down everything and controls the running game.",
+          explanation: "Mookie Betts's career proves that mastering the complete craft of right field — reads, routes, command of the corner, catching, and above all the cannon — can make a player a great defender, a perennial Gold Glover, and the anchor of a championship team's outfield. His range and feared arm control the running game and save runs. The lesson for young players is to pursue that whole craft and become the cannon who runs down everything and controls the running game.",
         },
       ],
     },

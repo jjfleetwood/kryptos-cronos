@@ -5,7 +5,7 @@ export const baseball10Epoch: EpochConfig = {
   name: "Second Base",
   subtitle: "The Pivot and the Keystone Partner",
   description:
-    "Second base is the keystone of the middle infield — the pivot man on the double play and the shortstop's partner up the middle. This complete position course builds the second baseman from the ground up: positioning and range to both sides, fielding and footwork, turning the double play from the second-base side, feeding the shortstop, covering the bag on steals and bunts, serving as a relay and cutoff man, and the situational reads that make a keystone defender. From Little League to Roberto Alomar's ten Gold Gloves, you will learn to turn two, guard the middle, and anchor the defense beside your shortstop.",
+    "Second base is the keystone of the middle infield — the pivot man on the double play and the shortstop's partner up the middle. This complete position course builds the second baseman from the ground up: positioning and range to both sides, fielding and footwork, turning the double play from the second-base side, feeding the shortstop, covering the bag on steals and bunts, serving as a relay and cutoff man, and the situational reads that make a keystone defender. From Little League to Jackie Robinson — the Brooklyn Dodgers' Hall of Famer who redefined the position with athleticism, intelligence, and daring — you will learn to turn two, guard the middle, and anchor the defense beside your shortstop.",
   emoji: "🔃",
   color: "blue",
   unlocked: true,
@@ -16,8 +16,8 @@ export const baseball10Stages: StageConfig[] = [
   {
     epochId: "baseball-10",
     wonder: {
-      name: "Rogers Centre",
-      location: "Toronto, Ontario",
+      name: "Ebbets Field",
+      location: "Brooklyn, New York",
       era: "Modern",
       emoji: "🔑",
     },
@@ -64,13 +64,13 @@ export const baseball10Stages: StageConfig[] = [
         },
       },
       incident: {
-        title: "Roberto Alomar — The Artist at Second Base",
-        when: "1991–1995 — Toronto Blue Jays",
-        where: "Rogers Centre (SkyDome), Toronto, Ontario",
-        impact: "Roberto Alomar won ten Gold Gloves and helped Toronto win back-to-back World Series in 1992 and 1993, widely regarded as one of the most graceful and complete second basemen in history — a master of the pivot and the acrobatic play.",
+        title: "Jackie Robinson — The Athlete Who Redefined Second Base",
+        when: "1947–1956 — Brooklyn Dodgers",
+        where: "Ebbets Field, Brooklyn, New York",
+        impact: "Jackie Robinson broke baseball's color barrier in 1947 and built a Hall of Fame career largely at second base — Rookie of the Year, the 1949 NL MVP, a 1955 World Series champion, and one of the most intelligent, athletic, and daring players the game has ever known.",
         body: [
-          "Roberto Alomar played second base with a grace that set the standard for the position. He turned the double play with an artistry that made the hardest pivots look effortless, ranged far to both sides, and made acrobatic plays — leaping throws, barehanded flips, plays from the seat of his pants — that few could imagine. During his peak with the Toronto Blue Jays, he anchored back-to-back World Series champions and won Gold Glove after Gold Glove.",
-          "Alomar's brilliance came from fundamentals executed at an extraordinary level: quick, soft hands; footwork around the bag that flowed without wasted motion; and an instinct for where the play was. He is the model of the complete second baseman — not the biggest arm or the fastest runner, but the most skilled and creative defender, who turned the keystone position into an art form. Young players study him to learn that second base rewards skill, footwork, and feel above raw tools.",
+          "Jackie Robinson played second base with an athleticism and intelligence that set a new standard for the position. He turned the double play, ranged to both sides, and combined sure hands with electric, fearless baserunning and an instinct for where every play was going. After breaking the color barrier with the Brooklyn Dodgers in 1947, he anchored the middle of the infield on perennial pennant winners and the 1955 World Series champions.",
+          "Robinson's brilliance came from fundamentals executed with rare athleticism and baseball intelligence: quick, soft hands; efficient footwork around the bag; daring on the bases; and an uncanny sense of the play. He is a model of the complete second baseman — not the biggest arm or the showiest, but the smartest, most competitive, and most impactful, who made the keystone a place of athletic artistry. Young players study him to learn that second base rewards skill, footwork, instinct, and feel above raw tools.",
         ],
       },
       diagram: {
@@ -84,7 +84,7 @@ export const baseball10Stages: StageConfig[] = [
       timeline: [
         { year: 1900, event: "Second base established as the pivot of the double-play combination" },
         { year: 1920, event: "The 4-6-3 and 6-4-3 double plays become defensive staples" },
-        { year: 1991, event: "Roberto Alomar joins Toronto and redefines graceful second-base play", highlight: true },
+        { year: 1947, event: "Jackie Robinson breaks the color barrier with Brooklyn and redefines second-base play", highlight: true },
         { year: 2000, event: "Defensive metrics begin crediting second-base range and pivots" },
         { year: 2023, event: "Shift restrictions reshape second-base positioning and the keystone partnership" },
       ],
@@ -97,7 +97,7 @@ export const baseball10Stages: StageConfig[] = [
       references: [
         { title: "Little League: Infield Fundamentals", url: "https://www.littleleague.org/player-and-coach-resources/baseball-coaching-guides/" },
         { title: "USA Baseball: Middle Infield Play", url: "https://www.usabaseball.com" },
-        { title: "Baseball Hall of Fame: Roberto Alomar", url: "https://baseballhall.org/hall-of-famers/alomar-roberto" },
+        { title: "Baseball Hall of Fame: Jackie Robinson", url: "https://baseballhall.org/hall-of-famers/robinson-jackie" },
       ],
     },
     quiz: {
@@ -389,9 +389,9 @@ export const baseball10Stages: StageConfig[] = [
         title: "The Acrobatic Range of the Modern Second Baseman",
         when: "1990s — the highlight-reel era",
         where: "Kauffman Stadium and ballparks across the game",
-        impact: "Second basemen like Roberto Alomar showcased how footwork and creativity could extend a fielder's range — making plays on the move, from the ground, and across the body that turned hits into outs and redefined expectations at the position.",
+        impact: "Second basemen like Jackie Robinson showcased how athleticism and instinct could extend a fielder's range — making plays on the move, from the ground, and across the body that turned hits into outs and redefined expectations at the position.",
         body: [
-          "The second baseman fields more balls on the move and from awkward positions than almost any infielder — ranging up the middle, diving into the hole, and flipping from the ground. Players like Roberto Alomar turned this into an art, making acrobatic plays look routine through superb footwork and soft, quick hands. Their range came not just from speed but from the ability to field from any position and instantly organize the feet to throw.",
+          "The second baseman fields more balls on the move and from awkward positions than almost any infielder — ranging up the middle, diving into the hole, and flipping from the ground. Players like Jackie Robinson turned this into an art, making athletic plays look routine through superb footwork, instinct, and soft, quick hands. Their range came not just from speed but from the ability to field from any position and instantly organize the feet to throw.",
           "The lesson is that footwork, not just athleticism, creates range. A second baseman who can field a ball deep in the hole, plant, and fire across his body, or who can flip from his knees up the middle, makes plays a stiffer fielder never could. These skills are built through endless repetition of footwork from every angle. Mastering the unbalanced, on-the-move plays is what separates a good second baseman from a great one.",
         ],
       },
@@ -406,7 +406,7 @@ export const baseball10Stages: StageConfig[] = [
       timeline: [
         { year: 1950, event: "Two-hand fielding and footwork formalized in infield instruction" },
         { year: 1980, event: "Crossover and backhand range techniques standardized" },
-        { year: 1996, event: "Acrobatic second-base play popularized by Alomar and peers", highlight: true },
+        { year: 1949, event: "Athletic second-base play popularized by Jackie Robinson and the era's greats", highlight: true },
         { year: 2010, event: "Defensive metrics quantify second-base range to both sides" },
         { year: 2020, event: "Footwork-from-every-angle drills standard in development" },
       ],
@@ -549,13 +549,13 @@ export const baseball10Stages: StageConfig[] = [
         },
       },
       incident: {
-        title: "Roberto Alomar's Effortless Pivot — 1992 World Series",
-        when: "1992–1993 — Toronto Blue Jays World Series titles",
+        title: "Jackie Robinson's Double Play and Daring",
+        when: "1947–1956 — Brooklyn Dodgers",
         where: "Wrigley Field and ballparks across the game",
-        impact: "Roberto Alomar's pivot was a model of grace under pressure — quick hands, seamless footwork, and a lightning release that turned two while clearing hard slides, helping anchor back-to-back championship infields.",
+        impact: "Jackie Robinson's double-play work was a model of athletic skill under pressure — quick hands, sound footwork, and the toughness to turn two while clearing hard slides, paired with the daring baserunning and intelligence that defined his game.",
         body: [
-          "During Toronto's back-to-back championship runs, Roberto Alomar turned the double play with a fluidity that made the hardest pivots look effortless. He received feeds from any angle, found the bag without looking, and released the relay to first in an instant — clearing sliding runners with footwork so smooth it appeared he was never in danger. His pivot was a decisive weapon, ending innings and killing rallies in the biggest moments.",
-          "Alomar's pivot was built on fundamentals executed at the highest level: soft, quick hands to secure any feed, footwork that flowed through the bag, and a quick release that beat both the runner and the throw. He chose the right pivot for each feed instinctively. For young players, his example shows that the pivot is mastered through repetition of footwork and hand quickness — and that getting rid of the ball fast is both the most effective and the safest way to turn two.",
+          "Through Brooklyn's run of pennants and the 1955 World Series title, Jackie Robinson turned the double play with athletic skill and toughness. He received feeds from any angle, found the bag without looking, and released the relay to first quickly — clearing sliding runners with sound footwork. His all-around game, from the pivot to his fearless baserunning, was a decisive weapon in the biggest moments.",
+          "Robinson's game was built on fundamentals executed with rare athleticism: soft, quick hands to secure any feed, efficient footwork through the bag, and a quick release that beat the runner. For young players, his example shows that the pivot is mastered through repetition of footwork and hand quickness — and that getting rid of the ball fast is both the most effective and the safest way to turn two.",
         ],
       },
       diagram: {
@@ -569,7 +569,7 @@ export const baseball10Stages: StageConfig[] = [
       timeline: [
         { year: 1920, event: "The double-play pivot becomes a defensive cornerstone" },
         { year: 1970, event: "Hard takeout slides make the pivot one of the game's most dangerous plays" },
-        { year: 1992, event: "Roberto Alomar's graceful pivot anchors Toronto's championship defense", highlight: true },
+        { year: 1949, event: "Jackie Robinson's athletic double-play work anchors Brooklyn's championship-caliber infield", highlight: true },
         { year: 2016, event: "MLB adopts the slide rule, requiring bona fide slides into the bag" },
         { year: 2020, event: "Quick-release pivot technique emphasized for safety and speed" },
       ],
@@ -582,7 +582,7 @@ export const baseball10Stages: StageConfig[] = [
       references: [
         { title: "USA Baseball: Turning the Double Play", url: "https://www.usabaseball.com" },
         { title: "MLB Official Rules: The Slide Rule", url: "https://www.mlb.com/official-information/umpires/official-rules" },
-        { title: "Baseball Hall of Fame: Roberto Alomar", url: "https://baseballhall.org/hall-of-famers/alomar-roberto" },
+        { title: "Baseball Hall of Fame: Jackie Robinson", url: "https://baseballhall.org/hall-of-famers/robinson-jackie" },
       ],
     },
     quiz: {
@@ -1362,7 +1362,7 @@ export const baseball10Stages: StageConfig[] = [
         impact: "The best second basemen are recognized as much for their anticipation and decision-making — knowing instantly whether to turn two or take the sure out — as for their range and hands, proving that situational IQ is a defining skill at the position.",
         body: [
           "The defining trait of a great second baseman is often mental: the ability to know, before the ball is hit, exactly what to do with it. Whether to attempt the double play or take the sure out, where to position for a given hitter, and how the runners' speed changes the calculus — these reads happen in an instant only because the thinking was done in advance. A second baseman who has to figure out the play after the ball is hit is always a step behind.",
-          "Roberto Alomar and other greats combined spectacular physical skills with this anticipation, seeming to know where the ball and the play were going before anyone else. Modern data informs positioning, but the in-the-moment decisions still belong to the player. For young players, the lesson is to think the game every pitch — to know the situation, the runners, and the plan — so that when the ball comes, the body simply executes a decision already made. Situational IQ is what makes the physical tools count.",
+          "Jackie Robinson and other greats combined spectacular physical skills with this anticipation, seeming to know where the ball and the play were going before anyone else. Modern data informs positioning, but the in-the-moment decisions still belong to the player. For young players, the lesson is to think the game every pitch — to know the situation, the runners, and the plan — so that when the ball comes, the body simply executes a decision already made. Situational IQ is what makes the physical tools count.",
         ],
       },
       diagram: {
@@ -1485,7 +1485,7 @@ export const baseball10Stages: StageConfig[] = [
       tagline: "Master second base and you become the keystone — the agile, sure-handed pivot the whole infield turns on.",
       year: 2011,
       overview: [
-        "The greatest second basemen share a set of pursuable traits: quick, soft hands; agile, efficient footwork to range to both sides and turn the pivot; the body control to throw from any position; the courage and quick release to turn two through hard slides; the unselfishness to deliver perfect feeds; and the situational intelligence to know the play before it happens. Roberto Alomar embodied all of it with a grace that made the position an art — but the qualities, not the highlight reel, are what to study and build.",
+        "The greatest second basemen share a set of pursuable traits: quick, soft hands; agile, efficient footwork to range to both sides and turn the pivot; the body control to throw from any position; the courage and quick release to turn two through hard slides; the unselfishness to deliver perfect feeds; and the situational intelligence to know the play before it happens. Jackie Robinson embodied all of it with an athleticism and intelligence that made the position an art — but the qualities, not the highlight reel, are what to study and build.",
         "Mastering second base is about skill, feel, and partnership rather than raw tools. The position's value comes from covering ground, turning the double play cleanly, and never giving away an out through a mental lapse or a botched pivot. A great second baseman makes the shortstop better through good feeds and coordination, makes the first baseman's job easier with accurate throws, and anchors the middle of the defense. That partnership and reliability are the heart of the keystone position.",
         "The mastery mindset treats second base as a craft of footwork and feel worth perfecting. That means endless repetition of fielding from every angle, pivots from every feed, and feeds from every distance; studying hitters and situations; communicating constantly with the shortstop; and bringing full focus to routine plays. The complete second baseman is quick, agile, sure-handed, unselfish, and heads-up — the keystone the whole infield turns on. Build those qualities, and you become the partner your shortstop and your pitcher trust on every play.",
       ],
@@ -1521,11 +1521,11 @@ export const baseball10Stages: StageConfig[] = [
       },
       incident: {
         title: "The Keystone of a Champion",
-        when: "1992–1993 — Toronto Blue Jays / 2011 Hall of Fame induction",
+        when: "1947–1956 — Brooklyn Dodgers / 1962 Hall of Fame induction",
         where: "National Baseball Hall of Fame, Cooperstown, New York",
-        impact: "Roberto Alomar's Hall of Fame career — ten Gold Gloves and back-to-back World Series titles — stands as proof that a second baseman's skill, footwork, and partnership can be the foundation of a championship defense.",
+        impact: "Jackie Robinson's Hall of Fame career — Rookie of the Year, an MVP, a World Series title, and a place among the most important figures in the sport's history — stands as proof that a second baseman's skill, athleticism, and intelligence can be the foundation of a championship defense.",
         body: [
-          "Roberto Alomar was inducted into the Hall of Fame on the strength of a career that defined complete second-base play: ten Gold Gloves, twelve All-Star selections, and a central role on Toronto's back-to-back World Series champions. He turned two with effortless grace, ranged to both sides, made acrobatic plays, and anchored the middle of championship defenses through skill, footwork, and feel rather than raw power.",
+          "Jackie Robinson was inducted into the Hall of Fame on the strength of a career that defined complete second-base play and changed the game forever: Rookie of the Year, the 1949 NL MVP, six All-Star selections, and a central role on Brooklyn's pennant winners and 1955 World Series champion. He turned two with athletic skill, ranged to both sides, ran the bases fearlessly, and anchored the middle of championship-caliber defenses through skill, intelligence, and feel rather than raw power.",
           "His career is the argument that mastering second base — the footwork, the pivot, the feed, the partnership, and the IQ — can make a player the foundation of a winning team. For any young second baseman, the lesson is to pursue the complete craft: quick hands and agile feet, unselfish feeds and reliable throws, fearless pivots and heads-up anticipation. Become the keystone the whole infield turns on, and you become the kind of player championship defenses are built around.",
         ],
       },
@@ -1538,10 +1538,10 @@ export const baseball10Stages: StageConfig[] = [
         ],
       },
       timeline: [
-        { year: 1991, event: "Roberto Alomar sets the modern standard for complete second-base play" },
-        { year: 1993, event: "Alomar anchors Toronto's second straight World Series title" },
+        { year: 1947, event: "Jackie Robinson breaks the color barrier and sets a new standard for complete second-base play" },
+        { year: 1955, event: "Robinson anchors Brooklyn's first World Series championship" },
         { year: 2003, event: "Defensive metrics credit second-base range, pivots, and feeds" },
-        { year: 2011, event: "Roberto Alomar inducted into the Baseball Hall of Fame", highlight: true },
+        { year: 1962, event: "Jackie Robinson inducted into the Baseball Hall of Fame", highlight: true },
         { year: 2020, event: "Footwork, agility, and IQ recognized as defining second-base traits" },
       ],
       keyTakeaways: [
@@ -1551,7 +1551,7 @@ export const baseball10Stages: StageConfig[] = [
         "Become the reliable, unselfish keystone the whole infield turns on — the foundation of a winning defense",
       ],
       references: [
-        { title: "Baseball Hall of Fame: Roberto Alomar", url: "https://baseballhall.org/hall-of-famers/alomar-roberto" },
+        { title: "Baseball Hall of Fame: Jackie Robinson", url: "https://baseballhall.org/hall-of-famers/robinson-jackie" },
         { title: "USA Baseball: Complete Infield Development", url: "https://www.usabaseball.com" },
         { title: "MLB: The Value of Middle-Infield Defense", url: "https://www.mlb.com/news" },
       ],
@@ -1571,7 +1571,7 @@ export const baseball10Stages: StageConfig[] = [
             "Only home-run power",
           ],
           correctIndex: 1,
-          explanation: "The best second basemen combine quick, soft hands; agile, efficient footwork to range and pivot; the body control to throw from any position; the courage and quick release to turn two through slides; the unselfishness to deliver perfect feeds; and the situational IQ to know the play in advance. It's a complete skill set built on footwork and feel — not size or arm strength. Roberto Alomar embodied all of it.",
+          explanation: "The best second basemen combine quick, soft hands; agile, efficient footwork to range and pivot; the body control to throw from any position; the courage and quick release to turn two through slides; the unselfishness to deliver perfect feeds; and the situational IQ to know the play in advance. It's a complete skill set built on footwork and feel — not size or arm strength. Jackie Robinson embodied all of it.",
         },
         {
           id: "baseball-10-10-q2",
@@ -1611,10 +1611,11 @@ export const baseball10Stages: StageConfig[] = [
         {
           id: "baseball-10-10-q4",
           type: "Legacy",
-          challenge: `  Roberto Alomar reached the Hall of Fame with ten
-  Gold Gloves and two World Series titles, anchoring
-  championship defenses from second base.`,
-          text: "What does Alomar's career teach young second basemen?",
+          challenge: `  Jackie Robinson reached the Hall of Fame as a Rookie
+  of the Year, an MVP, and a 1955 World Series champion,
+  anchoring championship-caliber defenses from second
+  base — and changing the game forever.`,
+          text: "What does Jackie Robinson's career teach young second basemen?",
           options: [
             "That second base doesn't matter to winning",
             "That mastering the complete craft of second base — footwork, pivot, feed, partnership, and IQ — can make a player the foundation of a championship defense",
@@ -1622,7 +1623,7 @@ export const baseball10Stages: StageConfig[] = [
             "That defense can't be developed through practice",
           ],
           correctIndex: 1,
-          explanation: "Alomar's Hall of Fame career — built on ten Gold Gloves and back-to-back titles — proves that mastering the complete craft of second base can make a player the cornerstone of a championship defense. His grace came from footwork, the pivot, the feed, the partnership with his shortstop, and his anticipation. The lesson for young players is to pursue that whole craft and become the keystone the entire infield turns on.",
+          explanation: "Jackie Robinson's Hall of Fame career — built on athleticism, intelligence, and a 1955 World Series title — proves that mastering the complete craft of second base can make a player the cornerstone of a championship defense and an icon of the game. His excellence came from footwork, the pivot, the feed, the partnership with his shortstop, his daring, and his anticipation. The lesson for young players is to pursue that whole craft and become the keystone the entire infield turns on.",
         },
       ],
     },

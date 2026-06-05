@@ -335,22 +335,22 @@ The complete pitcher position — Mechanics & Fundamentals, the full Pitch Arsen
 ### Epoch 31: Catcher
 **Stages:** 10 (baseball-8-01 through baseball-8-10) | **Color:** Red
 
-The field general — stances, receiving & framing, blocking, pop time & throwing, fielding the position, plays at the plate, backups & coverage, and calling the game. Exemplar: Yadier Molina.
+The field general — stances, receiving & framing, blocking, pop time & throwing, fielding the position, plays at the plate, backups & coverage, and calling the game. Exemplar: Mike Piazza (Dodgers).
 
 ### Epoch 32: First Base
 **Stages:** 10 (baseball-9-01 through baseball-9-10) | **Color:** Orange
 
-The anchor of the infield — footwork at the bag, scooping/picking throws, holding runners, the 3-hole and 3-6-3, charging bunts, cutoffs, and situational IQ. Exemplar: Keith Hernandez.
+The anchor of the infield — footwork at the bag, scooping/picking throws, holding runners, the 3-hole and 3-6-3, charging bunts, cutoffs, and situational IQ. Exemplar: Freddie Freeman (Dodgers).
 
 ### Epoch 33: Second Base
 **Stages:** 10 (baseball-10-01 through baseball-10-10) | **Color:** Blue
 
-The keystone — positioning, fielding/footwork, the pivot, the feed, covering the bag, relays, and situational IQ. Exemplar: Roberto Alomar.
+The keystone — positioning, fielding/footwork, the pivot, the feed, covering the bag, relays, and situational IQ. Exemplar: Jackie Robinson (Dodgers).
 
 ### Epoch 34: Third Base
 **Stages:** 10 (baseball-11-01 through baseball-11-10) | **Color:** Red
 
-The hot corner — reaction-ready stance, soft hands on smashes, the long throw, charging slow rollers/barehand, backhands & the line, cutoffs, and situational IQ. Exemplar: Brooks Robinson.
+The hot corner — reaction-ready stance, soft hands on smashes, the long throw, charging slow rollers/barehand, backhands & the line, cutoffs, and situational IQ. Exemplar: Adrian Beltre (Dodgers).
 
 ### Epoch 35: Shortstop
 **Stages:** 10 (baseball-12-01 through baseball-12-10) | **Color:** Indigo
@@ -360,7 +360,7 @@ The captain of the infield — range & footwork, the deep hole & jump throw, the
 ### Epoch 36: Left Field
 **Stages:** 10 (baseball-13-01 through baseball-13-10) | **Color:** Green
 
-Reading the ball off the bat — the jump & routes, catching, playing the wall & line, the crow-hop throw, backups, cutoffs, and situational IQ. Exemplar: Carl Yastrzemski (the Green Monster).
+Reading the ball off the bat — the jump & routes, catching, playing the wall & line, the crow-hop throw, backups, cutoffs, and situational IQ. Exemplar: Zack Wheat (Brooklyn Dodgers).
 
 ### Epoch 37: Center Field
 **Stages:** 10 (baseball-14-01 through baseball-14-10) | **Color:** Blue
@@ -370,7 +370,7 @@ The captain of the outfield — reads & routes, robbing home runs, covering the 
 ### Epoch 38: Right Field
 **Stages:** 10 (baseball-15-01 through baseball-15-10) | **Color:** Orange
 
-The cannon — reads & the slice, catching to throw, the long throw to third/home, playing the line & sun, backing up first, cutoffs, and situational IQ. Exemplar: Ichiro Suzuki.
+The cannon — reads & the slice, catching to throw, the long throw to third/home, playing the line & sun, backing up first, cutoffs, and situational IQ. Exemplar: Mookie Betts (Dodgers).
 
 ---
 

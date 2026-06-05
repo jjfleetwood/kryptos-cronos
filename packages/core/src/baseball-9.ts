@@ -5,7 +5,7 @@ export const baseball9Epoch: EpochConfig = {
   name: "First Base",
   subtitle: "The Anchor of the Infield",
   description:
-    "First base is the busiest receiving position on the diamond — nearly every infield out passes through the first baseman's glove. This complete position course builds the first baseman from the ground up: footwork at the bag, stretching and scooping throws out of the dirt, holding runners, fielding the 3-hole and starting double plays, charging bunts, serving as a cutoff, and the backups and coverages for every situation. From Little League to Keith Hernandez's eleven Gold Gloves, you will learn to anchor the infield and turn your teammates' throws — good and bad — into outs.",
+    "First base is the busiest receiving position on the diamond — nearly every infield out passes through the first baseman's glove. This complete position course builds the first baseman from the ground up: footwork at the bag, stretching and scooping throws out of the dirt, holding runners, fielding the 3-hole and starting double plays, charging bunts, serving as a cutoff, and the backups and coverages for every situation. From Little League to Freddie Freeman — the Dodgers' Gold Glove cornerstone and World Series MVP — you will learn to anchor the infield and turn your teammates' throws — good and bad — into outs.",
   emoji: "🧤",
   color: "orange",
   unlocked: true,
@@ -16,8 +16,8 @@ export const baseball9Stages: StageConfig[] = [
   {
     epochId: "baseball-9",
     wonder: {
-      name: "Shea Stadium",
-      location: "Queens, New York",
+      name: "Dodger Stadium",
+      location: "Los Angeles, California",
       era: "Modern",
       emoji: "⚓",
     },
@@ -65,13 +65,13 @@ export const baseball9Stages: StageConfig[] = [
         },
       },
       incident: {
-        title: "Keith Hernandez Redefines First-Base Defense",
-        when: "1979–1990 — St. Louis Cardinals and New York Mets",
-        where: "Shea Stadium, Queens, New York",
-        impact: "Keith Hernandez won 11 consecutive Gold Gloves at first base and changed how the position was played — charging bunts aggressively, starting double plays, and turning first base from a place to hide a bat into a genuine defensive weapon.",
+        title: "Freddie Freeman — The Gold Glove Cornerstone",
+        when: "2010–present — Atlanta Braves and Los Angeles Dodgers",
+        where: "Dodger Stadium, Los Angeles, California",
+        impact: "Freddie Freeman is a Gold Glove first baseman, an MVP, and a two-time World Series champion — including 2024 World Series MVP for the Dodgers — whose reliable, soft-handed defense and remarkable durability make him the cornerstone of the infield.",
         body: [
-          "Keith Hernandez is widely regarded as the greatest defensive first baseman in history. He won eleven straight Gold Gloves and treated first base as an active, attacking position rather than a passive receiving spot. He charged bunts so aggressively that he took away the sacrifice, threw out lead runners at second and third, and started double plays few first basemen would attempt. Opposing teams had to change their strategy because of his glove.",
-          "Hernandez's legacy is the modern understanding that first-base defense matters. He proved that a first baseman's range, instincts, and willingness to make bold plays could save runs and shift games. For young players, he is the model: first base is not where you stand to rest between at-bats — it is a position to be mastered, and a great defensive first baseman is an anchor the entire infield is built around.",
+          "Freddie Freeman is one of the most reliable and durable first basemen of his era. A Gold Glove winner and perennial All-Star, he treats first base as a position to be mastered: soft hands that scoop almost any throw out of the dirt, smart positioning, sure footwork around the bag, and the steadiness to handle every play cleanly. His glove and consistency anchor the infield and let his teammates throw with confidence.",
+          "Freeman embodies the modern understanding that first-base defense and dependability matter. A first baseman's soft hands, range, and steadiness save runs and settle a whole defense. For young players, he is a model: first base is not where you stand to rest between at-bats — it is a position to be mastered, and a great defensive first baseman is an anchor the entire infield is built around.",
         ],
       },
       diagram: {
@@ -85,7 +85,7 @@ export const baseball9Stages: StageConfig[] = [
       timeline: [
         { year: 1900, event: "First base established as the primary destination for infield throws" },
         { year: 1920, event: "Larger, better-padded first basemen's mitts improve receiving" },
-        { year: 1979, event: "Keith Hernandez begins a run of 11 straight Gold Gloves, redefining the position", highlight: true },
+        { year: 2018, event: "Freddie Freeman wins a Gold Glove and emerges as a defensive cornerstone at first base", highlight: true },
         { year: 1995, event: "Defensive metrics begin to credit first-base scooping and range" },
         { year: 2015, event: "Statcast quantifies first-base picks and footwork value" },
       ],
@@ -157,15 +157,15 @@ export const baseball9Stages: StageConfig[] = [
           challenge: `  An old stereotype says first base is where you
   "hide" a big slugger who can't field, because
   the position doesn't require much defense.`,
-          text: "What does Keith Hernandez's career demonstrate about that stereotype?",
+          text: "What does Freddie Freeman's career demonstrate about that stereotype?",
           options: [
             "It's correct — first base defense doesn't matter",
-            "First base can be a genuine defensive weapon — Hernandez's range, aggressive bunt charging, and double-play starting saved runs and changed games",
+            "First base can be a genuine defensive weapon — Freeman's soft hands, scooping, durability, and steadiness save runs and settle a defense",
             "Only home runs matter at first base",
             "Defense at first base is impossible to measure",
           ],
           correctIndex: 1,
-          explanation: "Keith Hernandez won 11 straight Gold Gloves and shattered the 'hide the slugger' stereotype by treating first base as an attacking defensive position — charging bunts to erase sacrifices, throwing out lead runners, and starting bold double plays. He proved elite first-base defense saves runs and shifts games. The position rewards mastery, not just a big bat.",
+          explanation: "Freddie Freeman shows that first base is a position to be mastered, not a place to hide a bat — a Gold Glove, durable, dependable defender whose soft hands and steadiness save runs and settle a defense. Elite first-base defense matters; the position rewards mastery, not just a big bat.",
         },
       ],
     },
@@ -402,7 +402,7 @@ export const baseball9Stages: StageConfig[] = [
       },
       timeline: [
         { year: 1960, event: "Soft-hands picking technique emphasized in pro infield instruction" },
-        { year: 1985, event: "Keith Hernandez's glovework popularizes aggressive first-base receiving" },
+        { year: 1985, event: "Soft-handed glovework popularizes aggressive first-base receiving" },
         { year: 2001, event: "Defensive analysis begins crediting first-base scoops and picks", highlight: true },
         { year: 2015, event: "Statcast and fielding metrics quantify picks saved" },
         { year: 2020, event: "Short-hop reaction drills standard in first-base development" },
@@ -883,7 +883,7 @@ export const baseball9Stages: StageConfig[] = [
       },
       timeline: [
         { year: 1950, event: "Standard double-play combinations codified in pro defense" },
-        { year: 1979, event: "Keith Hernandez's range and arm showcase first-base-started double plays" },
+        { year: 1979, event: "Range and a strong arm showcase first-base-started double plays" },
         { year: 1982, event: "3-6-3 and 3-6-1 taught as core first-base double plays", highlight: true },
         { year: 2010, event: "Defensive metrics credit first-base range to the 3-hole" },
         { year: 2023, event: "Shift restrictions change first-base positioning and double-play angles" },
@@ -1024,13 +1024,13 @@ export const baseball9Stages: StageConfig[] = [
         },
       },
       incident: {
-        title: "Keith Hernandez and the Death of the Sacrifice",
-        when: "1980s — New York Mets and St. Louis Cardinals",
-        where: "Busch Stadium, St. Louis, Missouri",
-        impact: "Keith Hernandez charged bunts so aggressively and fielded them so surely that opponents stopped bunting against him — he routinely threw out lead runners, turning the sacrifice from a safe tactic into a risky one.",
+        title: "Defending the Bunt — The Sure-Handed First Baseman",
+        when: "2010–present — the modern Gold Glove era",
+        where: "Dodger Stadium and ballparks across the game",
+        impact: "A sure-handed, heads-up first baseman turns bunt defense into a weapon — charging under control, fielding cleanly, and reading whether the lead runner can be taken. Done well, it makes the sacrifice a gamble rather than a free out.",
         body: [
-          "Keith Hernandez's most feared defensive trait was how he attacked bunts. He played far in, charged the instant the ball was bunted, and had the hands and arm to throw out the lead runner at second or even third. Opponents learned that bunting toward Hernandez often cost them their lead runner rather than advancing him — so they stopped, removing a whole tactic from their playbook against his teams.",
-          "His aggression redefined what a first baseman could take away. The sacrifice bunt is supposed to be a near-guaranteed exchange of an out for a base; against an elite charging first baseman, it became a gamble. For young players, Hernandez models the mindset: a first baseman who fearlessly charges and confidently fields bunts, and who knows when to attempt the lead-runner out and when to take the sure out, is a defensive weapon who shrinks the other team's options.",
+          "Bunt defense rewards the first baseman who charges under control and fields surely. Reliable Gold Glove first basemen like Freddie Freeman handle bunts cleanly, get the body in line to throw, and make the right read — taking the lead runner when it's there and the sure out when it isn't. A first baseman who fields bunts cleanly and decisively takes pressure off the whole bunt-defense rotation.",
+          "The principle is timeless: a first baseman who fearlessly charges, fields the ball surely, and knows when to attempt the lead-runner out and when to take the sure out is a defensive asset who narrows the other team's options. The aggressive charge can erase a sacrifice; the sure hands ensure the defense at least records the out. For young players, the lesson is to practice charging and fielding bunts until the field-and-throw is clean and the decision is automatic.",
         ],
       },
       diagram: {
@@ -1044,7 +1044,7 @@ export const baseball9Stages: StageConfig[] = [
       timeline: [
         { year: 1920, event: "Sacrifice bunt becomes a central small-ball tactic" },
         { year: 1960, event: "Bunt-defense rotations and the wheel play formalized" },
-        { year: 1983, event: "Keith Hernandez's aggressive charging deters bunting against him", highlight: true },
+        { year: 1985, event: "Aggressive, sure-handed bunt defense becomes a hallmark of elite first basemen", highlight: true },
         { year: 2000, event: "Analytics question the sacrifice bunt's value, reducing its frequency" },
         { year: 2023, event: "Rule changes and analytics further reshape when teams bunt" },
       ],
@@ -1125,7 +1125,7 @@ export const baseball9Stages: StageConfig[] = [
             "That the opponents simply forgot how to bunt",
           ],
           correctIndex: 1,
-          explanation: "When opponents stop bunting toward a first baseman, it's the highest compliment to his defense — it means his aggressive charging and reliable hands make the sacrifice likely to backfire by costing the lead runner. Keith Hernandez had exactly this effect: he turned the sacrifice from a safe exchange into a gamble, and teams removed the tactic against him. An elite charging first baseman shrinks the other team's options.",
+          explanation: "When opponents stop bunting toward a first baseman, it's the highest compliment to his defense — it means his aggressive charging and reliable hands make the sacrifice likely to backfire by costing the lead runner. An elite charging, sure-handed first baseman turns the sacrifice from a safe exchange into a gamble and shrinks the other team's options.",
         },
       ],
     },
@@ -1348,7 +1348,7 @@ export const baseball9Stages: StageConfig[] = [
         where: "Oriole Park at Camden Yards and ballparks across the game",
         impact: "As positioning data and situational analysis advanced, the mental side of first base — knowing the play, guarding the line at the right moment, and translating the situation into pre-made decisions — was recognized as a defining trait of the best defensive first basemen.",
         body: [
-          "The best defensive first basemen have always been thinkers. Keith Hernandez was famous not only for his glove but for his anticipation — he seemed to know where the ball was going and what the play would be before it happened, because he processed the situation every pitch. Guarding the line at the right moment, knowing instantly whether a ground ball was a force or a tag, and deciding in advance whether to chase the lead runner are mental skills that turn good fielders into great ones.",
+          "The best defensive first basemen have always been thinkers. A first baseman like Freddie Freeman is valued not only for his glove but for his anticipation and baseball IQ — reading the situation every pitch and seeming to know where the play is before it happens. Guarding the line at the right moment, knowing instantly whether a ground ball was a force or a tag, and deciding in advance whether to chase the lead runner are mental skills that turn good fielders into great ones.",
           "Modern positioning data has formalized some of this — telling fielders where to stand based on the hitter — but the in-the-moment reads still belong to the player. A first baseman who knows the score, outs, runners, and the hitter's tendencies, and who has already decided what to do if the ball comes to them, plays the game a step faster than everyone else. Situational IQ is the quiet skill that makes the physical skills count.",
         ],
       },
@@ -1361,7 +1361,7 @@ export const baseball9Stages: StageConfig[] = [
         ],
       },
       timeline: [
-        { year: 1979, event: "Keith Hernandez's anticipation sets the standard for first-base IQ" },
+        { year: 1979, event: "Anticipation and positioning recognized as a defining first-base skill" },
         { year: 2000, event: "Situational positioning increasingly emphasized in coaching", highlight: true },
         { year: 2010, event: "Defensive shift and positioning data become widespread" },
         { year: 2015, event: "Statcast informs first-base depth and line-guarding decisions" },
@@ -1470,7 +1470,7 @@ export const baseball9Stages: StageConfig[] = [
       tagline: "Master first base and you become the cornerstone — the steady glove the whole infield is built around.",
       year: 2018,
       overview: [
-        "The greatest defensive first basemen share a set of traits that any young player can pursue: sure, soft hands that pick anything in the dirt; flexible, athletic footwork around the bag; the range and arm to field the 3-hole and start double plays; the aggression to charge bunts and attack the lead runner; and the situational intelligence to know the play before it happens. Keith Hernandez embodied all of it, but the qualities — not the highlight reel — are what to study.",
+        "The greatest defensive first basemen share a set of traits that any young player can pursue: sure, soft hands that pick anything in the dirt; flexible, athletic footwork around the bag; the range and arm to field the 3-hole and start double plays; the aggression to charge bunts and attack the lead runner; and the situational intelligence to know the play before it happens. Freddie Freeman embodies much of it, but the qualities — not the highlight reel — are what to study.",
         "Mastering first base is about reliability above flash. The position's value comes from doing the routine perfectly and the difficult often: catching every catchable throw, scooping the tough ones, finding the bag by feel, stretching to steal a step, and never giving away a base through a mental lapse. A first baseman who handles everything cleanly lets the rest of the infield play freely and aggressively. That dependability is the cornerstone of a good defense.",
         "The mastery mindset is to treat first base as a craft worth perfecting, not a place to rest. That means thousands of repetitions on picks and footwork, studying hitters and situations, communicating constantly, and bringing the same focus to a routine 3-unassisted putout as to a diving stop. The complete first baseman is flexible, agile, sure-handed, aggressive, and heads-up — the anchor every great infield needs. Build those qualities, and you become the player your teammates trust on every throw.",
       ],
@@ -1511,7 +1511,7 @@ export const baseball9Stages: StageConfig[] = [
         impact: "Across eras, championship infields have been anchored by first basemen whose dependability let everyone else play freely — proof that the position's quiet reliability is a foundation of winning defense, not an afterthought.",
         body: [
           "Great defensive teams are built on trust, and the first baseman is the player every infielder trusts most — because every throw they make ends in his glove. A first baseman who catches everything, scoops the tough throws, and never gives away a base lets the shortstop, second baseman, and third baseman throw with full aggression, knowing imperfect throws will still be outs. That confidence ripples through the whole defense and turns close games.",
-          "The lesson of the greats is that first base rewards mastery and a relentless, professional approach. Keith Hernandez and the other defensive standouts treated the position as a craft, bringing flexibility, aggression, and situational intelligence to a spot many dismissed as a resting place for a bat. For any young player, embracing that mindset — becoming the reliable cornerstone the infield is built around — is the path to making first base a genuine strength rather than a place to hide.",
+          "The lesson of the greats is that first base rewards mastery and a relentless, professional approach. Freddie Freeman and the other defensive standouts treat the position as a craft, bringing soft hands, durability, and situational intelligence to a spot many dismissed as a resting place for a bat. For any young player, embracing that mindset — becoming the reliable cornerstone the infield is built around — is the path to making first base a genuine strength rather than a place to hide.",
         ],
       },
       diagram: {
@@ -1523,8 +1523,8 @@ export const baseball9Stages: StageConfig[] = [
         ],
       },
       timeline: [
-        { year: 1979, event: "Keith Hernandez sets the modern standard for complete first-base play" },
-        { year: 1994, event: "Hernandez retires with 11 Gold Gloves, the benchmark at the position" },
+        { year: 1979, event: "First-base defense recognized as a genuine, run-saving craft" },
+        { year: 1994, event: "Gold Glove first-base defense established as a benchmark for the position" },
         { year: 2003, event: "Advanced fielding metrics begin crediting first-base defense" },
         { year: 2018, event: "Athleticism, flexibility, and IQ recognized as defining first-base traits", highlight: true },
         { year: 2023, event: "Shift rules return more fielding judgment to first basemen" },
@@ -1556,7 +1556,7 @@ export const baseball9Stages: StageConfig[] = [
             "Only a strong throwing arm",
           ],
           correctIndex: 1,
-          explanation: "The best defensive first basemen combine sure, soft hands for picking throws; flexible, athletic footwork around the bag; the range and arm to field the 3-hole and start double plays; the aggression to charge bunts and attack lead runners; and the situational IQ to know the play before it happens. It's a complete, athletic skill set — not just size or a single tool. Keith Hernandez embodied all of these.",
+          explanation: "The best defensive first basemen combine sure, soft hands for picking throws; flexible, athletic footwork around the bag; the range and arm to field the 3-hole and start double plays; the aggression to charge bunts and attack lead runners; and the situational IQ to know the play before it happens. It's a complete, athletic skill set — not just size or a single tool. Freddie Freeman embodies these.",
         },
         {
           id: "baseball-9-10-q2",

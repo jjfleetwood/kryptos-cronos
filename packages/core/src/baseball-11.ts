@@ -5,7 +5,7 @@ export const baseball11Epoch: EpochConfig = {
   name: "Third Base",
   subtitle: "The Hot Corner",
   description:
-    "Third base is the hot corner — the position closest to right-handed pull hitters, where balls arrive harder and faster than anywhere on the diamond and reactions decide everything. This complete position course builds the third baseman from the ground up: the reaction-ready stance, quick and soft hands on smashes, the long throw across the diamond, charging slow rollers and bare-handing bunts, guarding the line, serving as a cutoff, and the situational reads the corner demands. From Little League to Brooks Robinson's sixteen Gold Gloves, you will learn to guard the hot corner with fearless hands and a cannon arm.",
+    "Third base is the hot corner — the position closest to right-handed pull hitters, where balls arrive harder and faster than anywhere on the diamond and reactions decide everything. This complete position course builds the third baseman from the ground up: the reaction-ready stance, quick and soft hands on smashes, the long throw across the diamond, charging slow rollers and bare-handing bunts, guarding the line, serving as a cutoff, and the situational reads the corner demands. From Little League to Adrián Beltré — a Dodgers product who became a Hall of Famer and one of the greatest defensive third basemen ever — you will learn to guard the hot corner with fearless hands and a cannon arm.",
   emoji: "🔥",
   color: "red",
   unlocked: true,
@@ -16,8 +16,8 @@ export const baseball11Stages: StageConfig[] = [
   {
     epochId: "baseball-11",
     wonder: {
-      name: "Memorial Stadium",
-      location: "Baltimore, Maryland",
+      name: "Dodger Stadium",
+      location: "Los Angeles, California",
       era: "Modern",
       emoji: "🔥",
     },
@@ -35,7 +35,7 @@ export const baseball11Stages: StageConfig[] = [
       overview: [
         "Third base is called the hot corner because the hardest-hit balls in baseball arrive there with the least reaction time. Right-handed hitters — the majority of batters — pull the ball, and a pulled ground ball or line drive screams toward third base faster than anywhere else on the infield. The third baseman stands relatively close to home plate, so a smash can reach them in a fraction of a second. The position belongs to players with lightning reflexes, soft and fearless hands, and the courage to stand in against rockets.",
         "Unlike shortstop or second base, third base prioritizes reactions and arm strength over pure range. The third baseman doesn't have to cover as much ground, but the balls they do field come hard and fast, demanding quick hands that can knock down a smash and still make a play. And because third base is the farthest infield position from first base, the throw across the diamond is the longest an infielder makes — requiring a strong, accurate arm. Quick reflexes plus a cannon arm define the hot corner.",
-        "The third baseman also owns a unique set of plays: charging slow rollers and bunts to barehand and throw on the run, guarding the foul line late in games to prevent extra-base hits, and handling tag plays at third base. The position is a blend of fearlessness, quick hands, and a strong arm, with the situational intelligence to know when to guard the line, when to charge, and where the play is. Brooks Robinson, the greatest to ever play it, turned the hot corner into a defensive art.",
+        "The third baseman also owns a unique set of plays: charging slow rollers and bunts to barehand and throw on the run, guarding the foul line late in games to prevent extra-base hits, and handling tag plays at third base. The position is a blend of fearlessness, quick hands, and a strong arm, with the situational intelligence to know when to guard the line, when to charge, and where the play is. Adrián Beltré, who came up with the Dodgers and became a Hall of Famer, turned the hot corner into a defensive art.",
       ],
       technical: {
         title: "Why Third Base Is the Hot Corner",
@@ -66,13 +66,13 @@ export const baseball11Stages: StageConfig[] = [
         },
       },
       incident: {
-        title: "Brooks Robinson — The Human Vacuum Cleaner",
-        when: "1955–1977 — Baltimore Orioles",
-        where: "Memorial Stadium, Baltimore, Maryland",
-        impact: "Brooks Robinson won sixteen consecutive Gold Gloves at third base — the most ever at the position — and is universally regarded as the greatest defensive third baseman in history, nicknamed the 'Human Vacuum Cleaner' for his impossibly soft hands and reflexes.",
+        title: "Adrián Beltré — A Hall of Fame Glove at the Corner",
+        when: "1998–2018 — Los Angeles Dodgers and beyond",
+        where: "Dodger Stadium, Los Angeles, California",
+        impact: "Adrián Beltré, who signed with the Dodgers as a teenager and reached the majors at 19, grew into a Hall of Famer and one of the greatest defensive third basemen ever — a five-time Gold Glove winner whose backhand throws from the hole and plays from his knees redefined what the hot corner could be.",
         body: [
-          "Brooks Robinson played 23 seasons at third base for the Baltimore Orioles and redefined what the hot corner could be. He won sixteen straight Gold Gloves, a record for the position, through reflexes and soft hands that seemed superhuman — diving stops, barehanded charges, and knockdowns of balls no one else could reach. Hitters who smashed what looked like sure doubles down the line watched Robinson turn them into routine outs.",
-          "His defining moment came in the 1970 World Series, where his defensive clinic against the Cincinnati Reds became legendary — a series of plays so dazzling that he was named the Series MVP largely for his glove. Brooks Robinson is the model of the hot corner: fearless against the hardest-hit balls, blessed with soft hands and quick reflexes, and armed with the strength to complete the long throw. For young third basemen, he is the standard to study.",
+          "Adrián Beltré came up with the Los Angeles Dodgers — signed out of the Dominican Republic at 15 and in the big leagues by 19 — and over a 21-year career became the standard for third-base defense. He fielded the hardest-hit balls with soft hands and lightning reflexes and threw from impossible positions — deep in the hole, across his body, even from one knee — turning sure hits into outs. Hitters who smashed what looked like doubles down the line watched Beltré throw them out.",
+          "His defensive artistry earned him five Gold Gloves and, in 2024, first-ballot induction into the Hall of Fame. Beltré is the model of the hot corner: fearless against the hardest-hit balls, blessed with soft hands and quick reflexes, and armed with one of the most accurate cannons the position has seen. For young third basemen, he is the standard to study.",
         ],
       },
       diagram: {
@@ -85,9 +85,9 @@ export const baseball11Stages: StageConfig[] = [
       },
       timeline: [
         { year: 1900, event: "Third base established as the 'hot corner' for hard-hit balls" },
-        { year: 1955, event: "Brooks Robinson debuts with Baltimore — begins redefining the position" },
-        { year: 1960, event: "Robinson wins first of sixteen consecutive Gold Gloves", highlight: true },
-        { year: 1970, event: "Robinson's World Series defensive clinic becomes legendary" },
+        { year: 1998, event: "Adrián Beltré debuts for the Dodgers at 19 — begins a career that redefines the position" },
+        { year: 2004, event: "Beltré's breakout season with the Dodgers makes him a star", highlight: true },
+        { year: 2007, event: "Beltré wins the first of five Gold Gloves for his glovework at third" },
         { year: 2010, event: "Defensive metrics quantify third-base reactions, range, and arm" },
       ],
       keyTakeaways: [
@@ -99,7 +99,7 @@ export const baseball11Stages: StageConfig[] = [
       references: [
         { title: "Little League: Infield Fundamentals", url: "https://www.littleleague.org/player-and-coach-resources/baseball-coaching-guides/" },
         { title: "USA Baseball: Third Base Play", url: "https://www.usabaseball.com" },
-        { title: "Baseball Hall of Fame: Brooks Robinson", url: "https://baseballhall.org/hall-of-famers/robinson-brooks" },
+        { title: "Baseball Hall of Fame: Adrián Beltré", url: "https://baseballhall.org/hall-of-famers/beltre-adrian" },
       ],
     },
     quiz: {
@@ -156,10 +156,11 @@ export const baseball11Stages: StageConfig[] = [
           id: "baseball-11-01-q4",
           type: "Legacy",
           challenge: `  A defensive third baseman is so good at turning
-  hard smashes and balls down the line into outs
-  that he's nicknamed the "Human Vacuum Cleaner"
-  and wins sixteen straight Gold Gloves.`,
-          text: "What does Brooks Robinson's career demonstrate about the hot corner?",
+  hard smashes and balls down the line into outs —
+  throwing from the hole, across his body, even from
+  one knee — that he wins five Gold Gloves and a
+  first-ballot Hall of Fame plaque.`,
+          text: "What does Adrián Beltré's career demonstrate about the hot corner?",
           options: [
             "That third base requires no skill",
             "That fearless soft hands, quick reflexes, and a strong arm can turn the hot corner into a defensive art that wins games and championships",
@@ -167,7 +168,7 @@ export const baseball11Stages: StageConfig[] = [
             "That defense at third base can't be measured",
           ],
           correctIndex: 1,
-          explanation: "Brooks Robinson — sixteen straight Gold Gloves and a legendary 1970 World Series defensive clinic — proved that the hot corner can be a defensive weapon. His soft hands, quick reflexes, and strong arm turned sure doubles into outs and won championships. He's the model of the complete third baseman: fearless against the hardest-hit balls, with the hands to field them and the arm to complete the long throw. The position rewards mastery.",
+          explanation: "Adrián Beltré — five Gold Gloves, a backhand and one-knee throwing artistry, and first-ballot Hall of Fame induction — proved that the hot corner can be a defensive weapon. His soft hands, quick reflexes, and strong arm turned sure doubles into outs. He's the model of the complete third baseman: fearless against the hardest-hit balls, with the hands to field them and the arm to complete the long throw. The position rewards mastery.",
         },
       ],
     },
@@ -389,13 +390,13 @@ export const baseball11Stages: StageConfig[] = [
         },
       },
       incident: {
-        title: "Brooks Robinson's 1970 World Series Clinic",
-        when: "October 1970 — World Series",
-        where: "Baltimore and Cincinnati",
-        impact: "Brooks Robinson's defensive performance in the 1970 World Series — a relentless series of diving stops, knockdowns, and impossible plays against the Cincinnati Reds — is remembered as the greatest defensive display by an infielder in baseball history, earning him Series MVP.",
+        title: "Adrián Beltré and the Art of the Reaction Play",
+        when: "1998–2018 — across a Hall of Fame career",
+        where: "Dodger Stadium and ballparks across the game",
+        impact: "Adrián Beltré's defensive performance over two decades — a relentless stream of reaction plays, knockdowns, and impossible throws from the hole and from his knees — made him one of the greatest defensive third basemen in history and a first-ballot Hall of Famer.",
         body: [
-          "In the 1970 World Series, Brooks Robinson put on a defensive clinic that became the stuff of legend. Against a powerful Cincinnati Reds lineup, he made play after play that seemed impossible — diving to his backhand to rob line drives, charging slow rollers to bare-hand and throw, and knocking down smashes to keep them in front and still throw out the runner. The Reds hitters were demoralized; manager Sparky Anderson joked that Robinson belonged in a higher league.",
-          "What made the performance possible was the foundation every young third baseman can build: soft, quick hands, fearless reactions, and the composure to recover and throw after a knockdown. Robinson rarely fielded those smashes cleanly on the first try — he knocked them down, stayed calm, and made strong throws, because he knew the runner was slower than the ball. His clinic is the ultimate demonstration that reactions, soft hands, and courage define the hot corner.",
+          "Across a 21-year career that began with the Dodgers, Adrián Beltré made the reaction play look routine. Against the hardest-hit balls he made play after play that seemed impossible — backhanding line drives, charging slow rollers to bare-hand and throw, and knocking down smashes to keep them in front and still throw out the runner. Opposing hitters were demoralized; even balls that beat him on the first try, he recovered and turned into outs.",
+          "What made it possible was the foundation every young third baseman can build: soft, quick hands, fearless reactions, and the composure to recover and throw after a knockdown. Beltré rarely needed to field a smash cleanly on the first try — he knocked it down, stayed calm, and made a strong throw, because he knew the runner was slower than the ball. His career is the ultimate demonstration that reactions, soft hands, and courage define the hot corner.",
         ],
       },
       diagram: {
@@ -407,8 +408,8 @@ export const baseball11Stages: StageConfig[] = [
         ],
       },
       timeline: [
-        { year: 1960, event: "Brooks Robinson's soft hands set the standard for the position" },
-        { year: 1970, event: "Robinson's World Series defensive clinic earns him Series MVP", highlight: true },
+        { year: 1998, event: "Adrián Beltré debuts for the Dodgers and begins setting the modern standard for soft hands" },
+        { year: 2008, event: "Beltré's glovework earns Gold Gloves and a reputation as the era's best defensive third baseman", highlight: true },
         { year: 1990, event: "Reaction-ball and rapid short-hop drills standardized for the hot corner" },
         { year: 2010, event: "Defensive metrics credit third-base reactions and knockdowns" },
         { year: 2020, event: "Reaction training refined with technology for corner infielders" },
@@ -421,7 +422,7 @@ export const baseball11Stages: StageConfig[] = [
       ],
       references: [
         { title: "USA Baseball: Infield Reactions and Soft Hands", url: "https://www.usabaseball.com" },
-        { title: "Baseball Hall of Fame: Brooks Robinson", url: "https://baseballhall.org/hall-of-famers/robinson-brooks" },
+        { title: "Baseball Hall of Fame: Adrián Beltré", url: "https://baseballhall.org/hall-of-famers/beltre-adrian" },
         { title: "Little League: Fielding Fundamentals", url: "https://www.littleleague.org/player-and-coach-resources/baseball-coaching-guides/" },
       ],
     },
@@ -441,7 +442,7 @@ export const baseball11Stages: StageConfig[] = [
             "Throw the ball to the dugout",
           ],
           correctIndex: 1,
-          explanation: "A knockdown is not a failure — it's often still an out. Because a hard-hit ball travels faster than the runner runs, a third baseman who knocks the ball down, keeps it close, stays composed, and makes a strong throw frequently still retires the batter. Brooks Robinson built a legend on exactly this: he rarely fielded smashes cleanly on the first try but recovered and threw out the runner. Composure after the knockdown is key.",
+          explanation: "A knockdown is not a failure — it's often still an out. Because a hard-hit ball travels faster than the runner runs, a third baseman who knocks the ball down, keeps it close, stays composed, and makes a strong throw frequently still retires the batter. Adrián Beltré built a legend on exactly this: he often knocked smashes down rather than fielding them cleanly, then recovered and threw out the runner. Composure after the knockdown is key.",
         },
         {
           id: "baseball-11-03-q2",
@@ -838,7 +839,7 @@ export const baseball11Stages: StageConfig[] = [
       tagline: "The slow roller is the hot corner's signature test — charge it, bare-hand it, and throw on the run, all in one motion.",
       year: 1970,
       overview: [
-        "The charging play on a slow roller or bunt is the third baseman's signature challenge — often called the 'do-or-die' play because there's no time to do anything but attack the ball and throw in one motion. When a ball is hit softly toward third or bunted, the third baseman must charge hard, field it (often barehanded if the ball is nearly stopped), and throw on the run to first, all in a fraction of a second. It's the play that separates great third basemen from average ones, and Brooks Robinson and Adrián Beltré made it look routine.",
+        "The charging play on a slow roller or bunt is the third baseman's signature challenge — often called the 'do-or-die' play because there's no time to do anything but attack the ball and throw in one motion. When a ball is hit softly toward third or bunted, the third baseman must charge hard, field it (often barehanded if the ball is nearly stopped), and throw on the run to first, all in a fraction of a second. It's the play that separates great third basemen from average ones, and Adrián Beltré made it look routine.",
         "The technique: charge under control, circle the ball slightly so the body is moving toward first base, and field it with the glove on a moving ball or barehand a ball that's nearly stopped (you can't pick a dead ball with a glove quickly enough). The barehand pickup is timed with the throwing-side foot so the player can field and throw in rhythm — field with the right foot down, then step and throw off the next step. The throw is made on the run, usually sidearm or with a quick three-quarter motion, prioritizing a quick release and accuracy.",
         "Footwork and rhythm are everything. The charge must be controlled, not reckless — overrunning the ball or fielding it flat-footed kills the play. The best third basemen field the ball in stride, in rhythm with their feet, so the field-and-throw is one continuous motion. On a true do-or-die play, getting rid of the ball quickly matters more than a perfect throw. This play is built through endless repetition of charging, barehanding, and throwing on the run until the rhythm is automatic.",
       ],
@@ -869,13 +870,13 @@ export const baseball11Stages: StageConfig[] = [
         },
       },
       incident: {
-        title: "Brooks Robinson's Bare-Handed Charge",
-        when: "1970 — World Series and beyond",
+        title: "Adrián Beltré's Bare-Handed Charge",
+        when: "1998–2018 — a Hall of Fame career",
         where: "Truist Park and ballparks across the game",
-        impact: "Brooks Robinson's bare-handed charges on slow rollers and bunts — fielding the ball in stride and throwing on the run to nip the runner — became a defining image of third-base mastery, replicated by generations of great third basemen.",
+        impact: "Adrián Beltré's bare-handed charges on slow rollers and bunts — fielding the ball in stride and throwing on the run, often off-balance, to nip the runner — became a defining image of third-base mastery, replicated by generations of great third basemen.",
         body: [
-          "Among Brooks Robinson's most iconic plays were his bare-handed charges: attacking a slow roller or bunt, scooping the dead ball with his bare hand in stride, and firing to first on the run to retire the runner by a step. He made the do-or-die play — the hardest and most exciting at the hot corner — look effortless and routine, because his footwork, rhythm, and quick release were so refined. Hitters who thought a soft tap toward third was a sure hit found Robinson throwing them out.",
-          "The play has remained a hallmark of great third basemen, from Robinson to Adrián Beltré and Nolan Arenado, all of whom mastered the charge, the barehand, and the throw on the run. What looks like pure instinct is built through thousands of repetitions until the field-and-throw is one rhythmic motion. For young third basemen, the do-or-die play is the ultimate test of the position — and mastering it, through relentless practice of charging and barehanding, is a rite of passage at the hot corner.",
+          "Among Adrián Beltré's most iconic plays were his bare-handed charges: attacking a slow roller or bunt, scooping the dead ball with his bare hand in stride, and firing to first on the run — often off-balance — to retire the runner by a step. He made the do-or-die play — the hardest and most exciting at the hot corner — look effortless and routine, because his footwork, rhythm, and quick release were so refined. Hitters who thought a soft tap toward third was a sure hit found Beltré throwing them out.",
+          "The play has remained a hallmark of great third basemen, from Beltré to Nolan Arenado and beyond, all of whom mastered the charge, the barehand, and the throw on the run. What looks like pure instinct is built through thousands of repetitions until the field-and-throw is one rhythmic motion. For young third basemen, the do-or-die play is the ultimate test of the position — and mastering it, through relentless practice of charging and barehanding, is a rite of passage at the hot corner.",
         ],
       },
       diagram: {
@@ -887,8 +888,8 @@ export const baseball11Stages: StageConfig[] = [
         ],
       },
       timeline: [
-        { year: 1960, event: "Brooks Robinson popularizes the bare-handed do-or-die charge" },
-        { year: 1970, event: "Robinson's charging plays in the World Series become iconic", highlight: true },
+        { year: 2004, event: "Adrián Beltré's bare-handed charges become a hot-corner hallmark" },
+        { year: 2011, event: "Beltré's off-balance throws and charges define elite modern defense", highlight: true },
         { year: 1990, event: "Charge-and-throw rhythm drills standard in third-base coaching" },
         { year: 2013, event: "Beltré and Arenado showcase modern do-or-die mastery" },
         { year: 2020, event: "Barehand and on-the-run throwing technique refined in development" },
@@ -901,7 +902,7 @@ export const baseball11Stages: StageConfig[] = [
       ],
       references: [
         { title: "USA Baseball: Slow Roller and Bunt Defense", url: "https://www.usabaseball.com" },
-        { title: "Baseball Hall of Fame: Brooks Robinson", url: "https://baseballhall.org/hall-of-famers/robinson-brooks" },
+        { title: "Baseball Hall of Fame: Adrián Beltré", url: "https://baseballhall.org/hall-of-famers/beltre-adrian" },
         { title: "Little League: Infield Charging Plays", url: "https://www.littleleague.org/player-and-coach-resources/baseball-coaching-guides/" },
       ],
     },
@@ -1052,7 +1053,7 @@ export const baseball11Stages: StageConfig[] = [
       },
       timeline: [
         { year: 1960, event: "Backhand and diving technique refined for corner infielders" },
-        { year: 1970, event: "Brooks Robinson's diving stops set the standard for line defense" },
+        { year: 2007, event: "Adrián Beltré's diving stops and backhands set the standard for line defense" },
         { year: 2004, event: "Adrián Beltré's backhand throws from the hole redefine third-base range", highlight: true },
         { year: 2013, event: "Nolan Arenado adds elite diving and backhand plays at the corner" },
         { year: 2020, event: "Range and backhand metrics quantified by Statcast" },
@@ -1361,7 +1362,7 @@ export const baseball11Stages: StageConfig[] = [
         impact: "Because the hot corner allows so little reaction time, the best third basemen are defined by their pre-pitch anticipation — knowing positioning, force-or-tag situations, and exactly what to do with the ball before it's hit.",
         body: [
           "At the hot corner, where a ball can arrive in under a second, there's no time to think once the ball is hit — so the great third basemen do all their thinking beforehand. They know the situation cold: the outs, the runners' speed, whether they're guarding the line or playing in, whether a batted ball is a force or a tag, and exactly what they'll do with it. When the ball comes, their reaction is pure, pre-decided execution.",
-          "Brooks Robinson and the other defensive greats combined their physical gifts with this anticipation, seeming to know the play before it developed. Modern positioning data helps, but the in-the-moment reads belong to the player. For young third basemen, the lesson is especially acute: because the position offers no time to react, you must think the game every pitch — know the situation, set your positioning, and pre-make your decision — so that when the smash comes, you simply do what you already decided. Situational IQ makes the hot corner playable.",
+          "Adrián Beltré and the other defensive greats combined their physical gifts with this anticipation, seeming to know the play before it developed. Modern positioning data helps, but the in-the-moment reads belong to the player. For young third basemen, the lesson is especially acute: because the position offers no time to react, you must think the game every pitch — know the situation, set your positioning, and pre-make your decision — so that when the smash comes, you simply do what you already decided. Situational IQ makes the hot corner playable.",
         ],
       },
       diagram: {
@@ -1373,7 +1374,7 @@ export const baseball11Stages: StageConfig[] = [
         ],
       },
       timeline: [
-        { year: 1970, event: "Brooks Robinson's anticipation sets the standard for hot-corner IQ" },
+        { year: 1998, event: "Adrián Beltré's anticipation sets the standard for hot-corner IQ" },
         { year: 2000, event: "Situational positioning and pre-pitch thinking emphasized in coaching", highlight: true },
         { year: 2010, event: "Positioning data integrated with in-game judgment at third" },
         { year: 2016, event: "Slide rule changes affect double-play decisions started at third" },
@@ -1482,8 +1483,8 @@ export const baseball11Stages: StageConfig[] = [
       tagline: "Master the hot corner and you become the guardian — fearless hands and a cannon arm that turn smashes into outs.",
       year: 1983,
       overview: [
-        "The greatest third basemen share a set of pursuable traits: lightning reflexes and soft, fearless hands to handle the hardest-hit balls; a strong, accurate arm for the long throw and the across-the-body throw from the hole; the footwork and rhythm to charge slow rollers and bare-hand bunts; the range and willingness to backhand and dive at the line and in the hole; and the situational intelligence to pre-decide every play. Brooks Robinson, Mike Schmidt, Adrián Beltré, and Nolan Arenado all embodied these qualities — the qualities, not the highlight reels, are what to build.",
-        "Mastering third base is about courage, quick hands, and a strong arm applied with intelligence. The position's value comes from turning the hardest-hit balls and the trickiest slow rollers into outs, guarding the line in big moments, and never giving away an extra base. A great third baseman demoralizes hitters — the way Brooks Robinson did to the 1970 Reds — by taking away hits they thought were sure things. That fearless reliability at the corner is a foundation of championship defense.",
+        "The greatest third basemen share a set of pursuable traits: lightning reflexes and soft, fearless hands to handle the hardest-hit balls; a strong, accurate arm for the long throw and the across-the-body throw from the hole; the footwork and rhythm to charge slow rollers and bare-hand bunts; the range and willingness to backhand and dive at the line and in the hole; and the situational intelligence to pre-decide every play. Adrián Beltré — a Dodgers product — along with greats like Mike Schmidt and Nolan Arenado embodied these qualities; the qualities, not the highlight reels, are what to build.",
+        "Mastering third base is about courage, quick hands, and a strong arm applied with intelligence. The position's value comes from turning the hardest-hit balls and the trickiest slow rollers into outs, guarding the line in big moments, and never giving away an extra base. A great third baseman demoralizes hitters — the way Adrián Beltré did from the hole, season after season — by taking away hits they thought were sure things. That fearless reliability at the corner is a foundation of championship defense.",
         "The mastery mindset treats the hot corner as a craft worth perfecting through fearless repetition. That means endless reaction drills, charging and barehanding slow rollers, long-toss and throwing from every angle, backhand and diving work, and studying situations until the pre-pitch thinking is automatic. The complete third baseman is fearless, quick-handed, strong-armed, and heads-up — the guardian of the hot corner. Build those qualities, and you become the defender who turns the hardest position into a strength and breaks the other team's heart with your glove.",
       ],
       technical: {
@@ -1517,11 +1518,11 @@ export const baseball11Stages: StageConfig[] = [
       },
       incident: {
         title: "Breaking Hearts at the Hot Corner",
-        when: "1983 — Mike Schmidt's era / the lineage of greats",
+        when: "1998–2024 — Adrián Beltré, Dodgers product to Hall of Famer",
         where: "National Baseball Hall of Fame, Cooperstown, New York",
-        impact: "From Brooks Robinson to Mike Schmidt to Adrián Beltré and Nolan Arenado, the greatest third basemen have demoralized opposing hitters by turning sure hits into outs — proof that mastering the hot corner can be a foundation of championship defense.",
+        impact: "From Adrián Beltré — a Dodgers product and first-ballot Hall of Famer — to greats like Mike Schmidt and Nolan Arenado, the best third basemen have demoralized opposing hitters by turning sure hits into outs — proof that mastering the hot corner can be a foundation of championship defense.",
         body: [
-          "The lineage of great third basemen — Brooks Robinson, Mike Schmidt, Adrián Beltré, Nolan Arenado, and others — shares a defining effect: they broke the hearts of opposing hitters by turning hard smashes and tricky slow rollers into outs. When Brooks Robinson did it to the 1970 Reds, when Beltré threw runners out from the hole, when Arenado dove down the line, they took away hits that hitters were sure they had earned. That demoralizing reliability is the ultimate expression of hot-corner mastery.",
+          "The lineage of great third basemen — Adrián Beltré, Mike Schmidt, Nolan Arenado, and others — shares a defining effect: they broke the hearts of opposing hitters by turning hard smashes and tricky slow rollers into outs. When Beltré threw runners out from the hole and from his knees, when Schmidt and Arenado made the spectacular routine, they took away hits that hitters were sure they had earned. That demoralizing reliability is the ultimate expression of hot-corner mastery.",
           "Their careers prove that mastering third base — the fearless hands, the strong arm, the charging and backhand plays, and the situational IQ — can make a player the foundation of a championship defense. For any young third baseman, the lesson is to pursue the complete craft with courage and relentless repetition: become the fearless, quick-handed, strong-armed guardian of the hot corner. Do that, and you turn the hardest position on the field into a strength that wins games and breaks the other team's heart.",
         ],
       },
@@ -1534,7 +1535,7 @@ export const baseball11Stages: StageConfig[] = [
         ],
       },
       timeline: [
-        { year: 1970, event: "Brooks Robinson sets the eternal standard for third-base defense" },
+        { year: 1998, event: "Adrián Beltré debuts for the Dodgers, beginning a Hall of Fame defensive career" },
         { year: 1983, event: "Mike Schmidt combines elite defense and power at the hot corner", highlight: true },
         { year: 2004, event: "Adrián Beltré's all-around defense extends the lineage of greats" },
         { year: 2013, event: "Nolan Arenado's spectacular defense continues the tradition" },
@@ -1567,7 +1568,7 @@ export const baseball11Stages: StageConfig[] = [
             "Only height and size",
           ],
           correctIndex: 1,
-          explanation: "The best third basemen combine lightning reflexes and soft, fearless hands; a strong, accurate arm for the long throw; the footwork to charge slow rollers and bare-hand bunts; the range to backhand and dive at the line and in the hole; and the situational IQ to pre-decide every play. Brooks Robinson, Mike Schmidt, Adrián Beltré, and Nolan Arenado all embodied these. It's a complete craft of courage, hands, arm, and intelligence — not just power or size.",
+          explanation: "The best third basemen combine lightning reflexes and soft, fearless hands; a strong, accurate arm for the long throw; the footwork to charge slow rollers and bare-hand bunts; the range to backhand and dive at the line and in the hole; and the situational IQ to pre-decide every play. Adrián Beltré, along with greats like Mike Schmidt and Nolan Arenado, embodied these. It's a complete craft of courage, hands, arm, and intelligence — not just power or size.",
         },
         {
           id: "baseball-11-10-q2",
@@ -1584,7 +1585,7 @@ export const baseball11Stages: StageConfig[] = [
             "Defense at third base doesn't affect games",
           ],
           correctIndex: 1,
-          explanation: "Turning a sure double into an out — as Brooks Robinson did to the 1970 Reds — demoralizes hitters and deflates rallies. A great third baseman who consistently takes away hits hitters believe they've earned breaks the other team's spirit and prevents runs. That fearless, demoralizing reliability at the hot corner is a genuine foundation of championship defense, not just highlight material.",
+          explanation: "Turning a sure double into an out — as Adrián Beltré did from the hole, season after season — demoralizes hitters and deflates rallies. A great third baseman who consistently takes away hits hitters believe they've earned breaks the other team's spirit and prevents runs. That fearless, demoralizing reliability at the hot corner is a genuine foundation of championship defense, not just highlight material.",
         },
         {
           id: "baseball-11-10-q3",
@@ -1606,8 +1607,8 @@ export const baseball11Stages: StageConfig[] = [
         {
           id: "baseball-11-10-q4",
           type: "Legacy",
-          challenge: `  From Brooks Robinson to Adrián Beltré to Nolan
-  Arenado, a lineage of third basemen has anchored
+          challenge: `  From Adrián Beltré — a Dodgers product — to Nolan
+  Arenado and beyond, a lineage of third basemen has anchored
   great defenses with spectacular play at the hot
   corner.`,
           text: "What does this lineage of great third basemen teach young players?",
@@ -1618,7 +1619,7 @@ export const baseball11Stages: StageConfig[] = [
             "That only power hitters succeed at third",
           ],
           correctIndex: 1,
-          explanation: "The lineage from Brooks Robinson through Beltré and Arenado proves that mastering the complete craft of third base can make a player the cornerstone of a championship defense. Their fearless hands, strong arms, charging and backhand plays, and situational IQ turned the hardest-hit balls into outs and anchored the left side. The lesson for young players is to pursue that whole craft with courage and become the guardian of the hot corner.",
+          explanation: "The lineage anchored by Adrián Beltré — a Dodgers product and first-ballot Hall of Famer — proves that mastering the complete craft of third base can make a player the cornerstone of a championship defense. Their fearless hands, strong arms, charging and backhand plays, and situational IQ turned the hardest-hit balls into outs and anchored the left side. The lesson for young players is to pursue that whole craft with courage and become the guardian of the hot corner.",
         },
       ],
     },

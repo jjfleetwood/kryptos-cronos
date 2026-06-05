@@ -6,7 +6,7 @@ Gamified cybersecurity + AI training platform. 56 curriculum epochs, 662 CTF/qui
 
 **Live:** kryptoscronos.com  
 **Repo:** github.com/jjfleetwood/kryptos-cronos  
-**Current version:** v1.29.0 (as of 2026-06-05)
+**Current version:** v1.29.1 (as of 2026-06-05)
 
 ---
 
@@ -349,6 +349,10 @@ Local dev: `.env.local` in `app/` (gitignored).
 - **Target sponsors:** CrowdStrike, AWS, SentinelOne, CompTIA, ISC²
 
 ---
+
+## What's Shipped (v1.29.1)
+
+- ✅ **Baseball position exemplars → Dodgers.** Reworked each new position epoch's hall-of-fame anchor to a Dodgers great (Catcher → Mike Piazza, 1B → Freddie Freeman, 2B → Jackie Robinson, 3B → Adrián Beltré, LF → Zack Wheat, RF → Mookie Betts), with accuracy-preserving rewrites of incidents, timelines, venues, and quizzes. SS (Ozzie Smith) and CF (Ken Griffey Jr.) kept by request; Pitcher already Dodgers (Kershaw/Koufax).
 
 ## What's Shipped (v1.29.0)
 

@@ -5,7 +5,7 @@ export const baseball13Epoch: EpochConfig = {
   name: "Left Field",
   subtitle: "Reading the Ball off the Bat",
   description:
-    "Left field is where most balls are hit — the corner that demands reading the slice off right-handed pull hitters, playing the line and the wall, and throwing to third with accuracy. This complete position course builds the left fielder from the ground up: reading the ball off the bat, the first step and routes, catching fly balls and line drives, playing caroms off the wall, the crow-hop throw, hitting cutoffs, backing up bases, and the situational reads of the corner. From Little League to Carl Yastrzemski mastering Fenway's Green Monster, you will learn to track down every ball, play the wall, and keep runners from taking the extra base.",
+    "Left field is where most balls are hit — the corner that demands reading the slice off right-handed pull hitters, playing the line and the wall, and throwing to third with accuracy. This complete position course builds the left fielder from the ground up: reading the ball off the bat, the first step and routes, catching fly balls and line drives, playing caroms off the wall, the crow-hop throw, hitting cutoffs, backing up bases, and the situational reads of the corner. From Little League to Zack Wheat — the Brooklyn Dodgers' graceful Hall of Fame left fielder and franchise hits leader — you will learn to track down every ball, play the wall, and keep runners from taking the extra base.",
   emoji: "🧤",
   color: "green",
   unlocked: true,
@@ -16,8 +16,8 @@ export const baseball13Stages: StageConfig[] = [
   {
     epochId: "baseball-13",
     wonder: {
-      name: "Fenway Park",
-      location: "Boston, Massachusetts",
+      name: "Ebbets Field",
+      location: "Brooklyn, New York",
       era: "Modern",
       emoji: "🟢",
     },
@@ -35,7 +35,7 @@ export const baseball13Stages: StageConfig[] = [
       overview: [
         "Left field is one of the three outfield positions, and it tends to see the most action of the two corner spots. Because the majority of hitters are right-handed and tend to pull the ball, more balls are hit to left field than to right. The left fielder's core jobs are catching fly balls and line drives, fielding ground balls that get through the infield, playing balls off the wall and down the line, throwing to the bases (especially third base) and hitting the cutoff man, and backing up plays. Like all outfielders, the left fielder must read the ball off the bat and run efficient routes.",
         "Left field has a few distinctive demands. The left fielder must read the slice on balls hit by right-handed pull hitters — these balls curve (hook) toward the left-field line as they travel, so the route must account for the curve. The left fielder also plays the left-field line (a ball down the line that gets past is an extra-base hit) and, in some ballparks, plays caroms off an outfield wall. The throw to third base is shorter than the right fielder's throw, so left field can be played with a slightly less powerful arm than right field, though accuracy and the ability to hit the cutoff still matter.",
-        "The center fielder is the captain of the outfield and has priority on any ball the two can both reach, so the left fielder must communicate and defer on balls in the left-center gap. The left fielder backs up third base on throws and the center fielder on balls to left-center. Carl Yastrzemski turned left field — and especially the art of playing Fenway Park's Green Monster wall — into a defensive specialty. This epoch builds the complete left fielder: reads, routes, catches, the wall, the throw, and the situational intelligence the corner demands.",
+        "The center fielder is the captain of the outfield and has priority on any ball the two can both reach, so the left fielder must communicate and defer on balls in the left-center gap. The left fielder backs up third base on throws and the center fielder on balls to left-center. Zack Wheat turned left field into an art for the Brooklyn Dodgers — a smooth, sure defender who read the ball off the bat, ran graceful routes, and played his park's caroms and corners as well as anyone of his era. This epoch builds the complete left fielder: reads, routes, catches, the wall, the throw, and the situational intelligence the corner demands.",
       ],
       technical: {
         title: "Why Left Field Sees the Most Action",
@@ -66,13 +66,13 @@ export const baseball13Stages: StageConfig[] = [
         },
       },
       incident: {
-        title: "Carl Yastrzemski and the Art of Left Field",
-        when: "1961–1983 — Boston Red Sox",
-        where: "Fenway Park, Boston, Massachusetts",
-        impact: "Carl Yastrzemski played left field at Fenway Park for 23 seasons, won seven Gold Gloves, and mastered the art of playing the Green Monster — the towering left-field wall — turning would-be doubles into singles and outs through his reads and footwork.",
+        title: "Zack Wheat and the Art of Left Field",
+        when: "1909–1926 — Brooklyn Dodgers",
+        where: "Ebbets Field, Brooklyn, New York",
+        impact: "Zack Wheat played left field for the Brooklyn Dodgers for 18 seasons, became the franchise's all-time hits leader, and was renowned as one of the most graceful and sure-handed left fielders of his era — turning would-be extra-base hits into singles and outs through his reads, routes, and smooth defense.",
         body: [
-          "Carl Yastrzemski, 'Yaz,' spent his entire 23-year career in left field for the Boston Red Sox and became the definitive expert at playing Fenway Park's Green Monster — the 37-foot-high wall in left field. He learned every carom and angle of the wall, judging instantly whether a ball would clear it, hit high, or come off low, and positioning himself to catch the rebound and hold hitters to singles where others gave up doubles. He won seven Gold Gloves and set the standard for corner-outfield defense.",
-          "Yastrzemski's mastery shows that left field, far from a place to hide a bat, is a position of real skill — reading balls off the bat, running routes, playing the line and the wall, and throwing accurately. His command of the Green Monster's quirks turned a difficult, unique wall into a defensive advantage. For young left fielders, Yaz is the model: study the position's demands, especially the reads and the wall, and turn the busiest outfield corner into a defensive strength.",
+          "Zack Wheat spent nearly his entire career in left field for the Brooklyn Dodgers and was celebrated for the grace and reliability of his defense. He read balls off the bat early, glided to the right spot on efficient routes, and played the caroms and angles of Ebbets Field — judging instantly whether a ball would be caught, clear the fence, or rebound off the wall, and positioning to hold hitters to as few bases as possible. He set a standard for smooth, sure corner-outfield play.",
+          "Wheat's play shows that left field, far from a place to hide a bat, is a position of real skill — reading balls off the bat, running routes, playing the line and the wall, and throwing accurately. His command of Ebbets Field's quirks turned a tricky park into a defensive advantage, and his longevity and grace made him a Hall of Famer. For young left fielders, Wheat is a model: study the position's demands, especially the reads and the wall, and turn the busiest outfield corner into a defensive strength.",
         ],
       },
       diagram: {
@@ -84,9 +84,9 @@ export const baseball13Stages: StageConfig[] = [
         ],
       },
       timeline: [
-        { year: 1912, event: "Fenway Park opens with its distinctive left-field wall" },
-        { year: 1947, event: "The wall is painted green, becoming the 'Green Monster'" },
-        { year: 1961, event: "Carl Yastrzemski begins his career mastering left field at Fenway", highlight: true },
+        { year: 1909, event: "Zack Wheat debuts for Brooklyn and begins an 18-year left-field career" },
+        { year: 1913, event: "Ebbets Field opens in Brooklyn with its own tricky outfield walls and angles" },
+        { year: 1925, event: "Wheat, the Dodgers' all-time hits leader, sets the standard for graceful left-field play", highlight: true },
         { year: 1977, event: "Rawlings Gold Glove recognition cements corner-outfield defense's value" },
         { year: 2015, event: "Statcast quantifies outfield reads, routes, and arm strength" },
       ],
@@ -99,7 +99,7 @@ export const baseball13Stages: StageConfig[] = [
       references: [
         { title: "Little League: Outfield Fundamentals", url: "https://www.littleleague.org/player-and-coach-resources/baseball-coaching-guides/" },
         { title: "USA Baseball: Outfield Play", url: "https://www.usabaseball.com" },
-        { title: "Baseball Hall of Fame: Carl Yastrzemski", url: "https://baseballhall.org/hall-of-famers/yastrzemski-carl" },
+        { title: "Baseball Hall of Fame: Zack Wheat", url: "https://baseballhall.org/hall-of-famers/wheat-zack" },
       ],
     },
     quiz: {
@@ -497,8 +497,8 @@ export const baseball13Stages: StageConfig[] = [
   {
     epochId: "baseball-13",
     wonder: {
-      name: "Fenway Park",
-      location: "Boston, Massachusetts",
+      name: "Ebbets Field",
+      location: "Brooklyn, New York",
       era: "Modern",
       emoji: "🟢",
     },
@@ -514,8 +514,8 @@ export const baseball13Stages: StageConfig[] = [
       tagline: "A left fielder who plays the wall and the line well turns doubles into singles — and that's a skill all its own.",
       year: 1967,
       overview: [
-        "Playing the outfield wall and the left-field line is a distinctive left-field skill, made famous by Carl Yastrzemski at Fenway Park's Green Monster. When a ball is hit toward the wall, the outfielder must judge instantly whether it will be caught, clear the wall for a home run, or hit the wall and carom back — and then play the carom cleanly to hold the hitter to as few bases as possible. A left fielder who knows the angles and caroms of his wall can turn a would-be double into a single by quickly fielding the rebound and throwing.",
-        "Reading a ball to the wall: the outfielder tracks the ball while locating the wall (often glancing back to find it, then returning eyes to the ball), and decides whether to leap for a catch at the wall, set up to play the carom, or back up. Knowing the specific wall — its height, material, and how balls rebound (a high wall like the Green Monster produces long caroms; a padded wall deadens the ball) — is essential, and the best outfielders study and practice their home wall's quirks until the caroms are predictable. Safety matters too: locate the wall to avoid crashing into it at full speed.",
+        "Playing the outfield wall and the left-field line is a distinctive left-field skill, mastered by graceful corner outfielders like the Brooklyn Dodgers' Zack Wheat. When a ball is hit toward the wall, the outfielder must judge instantly whether it will be caught, clear the wall for a home run, or hit the wall and carom back — and then play the carom cleanly to hold the hitter to as few bases as possible. A left fielder who knows the angles and caroms of his wall can turn a would-be double into a single by quickly fielding the rebound and throwing.",
+        "Reading a ball to the wall: the outfielder tracks the ball while locating the wall (often glancing back to find it, then returning eyes to the ball), and decides whether to leap for a catch at the wall, set up to play the carom, or back up. Knowing the specific wall — its height, material, and how balls rebound (a high wall produces long caroms; a padded wall deadens the ball) — is essential, and the best outfielders study and practice their home wall's quirks until the caroms are predictable. Safety matters too: locate the wall to avoid crashing into it at full speed.",
         "Playing the line is equally important. A ball hit down the left-field line that gets past the outfielder rolls into the corner for an extra-base hit, so the left fielder must cut off balls down the line, play the corner caroms, and get the ball back to the infield quickly to hold the runner. Positioning matters: in no-doubles situations or against pull hitters, the left fielder guards the line. Reading and playing the wall and the line — turning extra-base hits into singles and outs — is a skill that separates a complete left fielder from one who only catches fly balls in open space.",
       ],
       technical: {
@@ -546,13 +546,13 @@ export const baseball13Stages: StageConfig[] = [
         },
       },
       incident: {
-        title: "Yaz and the Green Monster",
-        when: "1967 — Carl Yastrzemski's MVP season",
-        where: "Fenway Park, Boston, Massachusetts",
-        impact: "Carl Yastrzemski mastered Fenway Park's 37-foot Green Monster so completely that he turned the difficult wall into a defensive weapon — holding hitters to singles on balls off the wall and throwing out runners who tried to stretch them into doubles.",
+        title: "Zack Wheat and the Caroms of Ebbets Field",
+        when: "1909–1926 — Brooklyn Dodgers",
+        where: "Ebbets Field, Brooklyn, New York",
+        impact: "Zack Wheat mastered the tricky outfield walls and angles of Ebbets Field, turning a quirky park into a defensive advantage — holding hitters to singles on balls off the wall and getting the ball back to the infield quickly to keep runners from taking the extra base.",
         body: [
-          "Carl Yastrzemski's command of the Green Monster became legendary, especially during his 1967 MVP and Triple Crown season. He studied the 37-foot wall's every quirk — how balls caromed off the metal, the ladder, and the angles — until he could position himself to field rebounds instantly. Hitters who smashed balls off the Monster expecting easy doubles often found Yaz fielding the carom and firing to second, holding them to a single or throwing them out.",
-          "Yastrzemski turned a difficult, unique wall into a defensive advantage through study and practice. His mastery shows that playing the wall and the line is a genuine skill — reading the ball, knowing the caroms, and getting rid of the ball quickly to hold runners. Every ballpark has its own wall and corner quirks, and the best left fielders learn their home park's angles cold. For young left fielders, Yaz's command of the Green Monster is the model for turning the wall and the line into strengths.",
+          "Zack Wheat's command of Ebbets Field's caroms was part of his reputation as one of the era's smoothest left fielders. He learned the park's walls and angles — how balls rebounded off the boards and corners — until he could position himself to field rebounds instantly. Hitters who drove balls off the wall expecting easy doubles often found Wheat fielding the carom and firing in, holding them to a single.",
+          "Wheat turned a tricky park into a defensive advantage through study and practice. His command of the walls shows that playing the wall and the line is a genuine skill — reading the ball, knowing the caroms, and getting rid of the ball quickly to hold runners. Every ballpark has its own wall and corner quirks, and the best left fielders learn their home park's angles cold. For young left fielders, Wheat's command of his park is the model for turning the wall and the line into strengths.",
         ],
       },
       diagram: {
@@ -564,10 +564,10 @@ export const baseball13Stages: StageConfig[] = [
         ],
       },
       timeline: [
-        { year: 1912, event: "Fenway Park's left-field wall (the future Green Monster) is built" },
-        { year: 1947, event: "The wall is painted green, becoming the Green Monster" },
-        { year: 1967, event: "Carl Yastrzemski's wall mastery anchors his Triple Crown / MVP season", highlight: true },
-        { year: 2003, event: "Seats added atop the Green Monster, slightly altering caroms" },
+        { year: 1913, event: "Ebbets Field opens in Brooklyn with its own tricky outfield walls and angles" },
+        { year: 1918, event: "Zack Wheat's command of Ebbets Field's caroms makes him an elite left fielder", highlight: true },
+        { year: 1925, event: "Wheat becomes the Dodgers' all-time hits leader, the franchise's left-field standard" },
+        { year: 2003, event: "Modern parks each present their own wall and corner challenges to left fielders" },
         { year: 2015, event: "Statcast measures outfield wall play and arm value" },
       ],
       keyTakeaways: [
@@ -578,7 +578,7 @@ export const baseball13Stages: StageConfig[] = [
       ],
       references: [
         { title: "USA Baseball: Playing the Outfield Wall", url: "https://www.usabaseball.com" },
-        { title: "Baseball Hall of Fame: Carl Yastrzemski", url: "https://baseballhall.org/hall-of-famers/yastrzemski-carl" },
+        { title: "Baseball Hall of Fame: Zack Wheat", url: "https://baseballhall.org/hall-of-famers/wheat-zack" },
         { title: "MLB: Outfield Defense and the Wall", url: "https://www.mlb.com/news" },
       ],
     },
@@ -599,7 +599,7 @@ export const baseball13Stages: StageConfig[] = [
             "Knowing the wall makes the outfielder slower",
           ],
           correctIndex: 1,
-          explanation: "Knowing the specific wall's height, material, and rebound behavior lets the left fielder anticipate where a ball will carom, position himself to field the rebound instantly, and get rid of the ball quickly — holding a would-be double to a single or throwing out a runner who tries to stretch it. Carl Yastrzemski mastered Fenway's Green Monster this way. Every wall has its own quirks, and learning them turns the wall into a defensive advantage.",
+          explanation: "Knowing the specific wall's height, material, and rebound behavior lets the left fielder anticipate where a ball will carom, position himself to field the rebound instantly, and get rid of the ball quickly — holding a would-be double to a single or throwing out a runner who tries to stretch it. Skilled left fielders like Zack Wheat mastered their park's caroms this way. Every wall has its own quirks, and learning them turns the wall into a defensive advantage.",
         },
         {
           id: "baseball-13-04-q2",
@@ -649,7 +649,7 @@ export const baseball13Stages: StageConfig[] = [
             "To let every ball off the wall go for extra bases",
           ],
           correctIndex: 1,
-          explanation: "The goal of playing the wall and the line well is to minimize the bases a hitter gets — turning would-be doubles and triples into singles and outs by fielding caroms quickly, getting the ball back to the infield, and cutting off balls down the line before the corner. This skill, mastered by players like Carl Yastrzemski, separates a complete left fielder from one who only catches routine fly balls in open space. It directly prevents runs.",
+          explanation: "The goal of playing the wall and the line well is to minimize the bases a hitter gets — turning would-be doubles and triples into singles and outs by fielding caroms quickly, getting the ball back to the infield, and cutting off balls down the line before the corner. This skill, mastered by graceful left fielders like Zack Wheat, separates a complete left fielder from one who only catches routine fly balls in open space. It directly prevents runs.",
         },
       ],
     },
@@ -1480,7 +1480,7 @@ export const baseball13Stages: StageConfig[] = [
       tagline: "Master left field and you become the corner guardian — great reads, the wall, and a throw that holds the runner.",
       year: 1983,
       overview: [
-        "The greatest left fielders share a set of pursuable traits: a great jump and efficient routes built on reading the ball off the bat; sure hands and sound catching technique; the ability to play the wall and the line, turning doubles into singles; a strong, accurate arm that hits the cutoff man; the speed and endurance to cover the corner; and the situational intelligence to position, pre-decide throws, and account for the elements. Carl Yastrzemski embodied all of it, mastering Fenway's Green Monster — but the qualities, not the highlights, are what to build.",
+        "The greatest left fielders share a set of pursuable traits: a great jump and efficient routes built on reading the ball off the bat; sure hands and sound catching technique; the ability to play the wall and the line, turning doubles into singles; a strong, accurate arm that hits the cutoff man; the speed and endurance to cover the corner; and the situational intelligence to position, pre-decide throws, and account for the elements. Zack Wheat embodied all of it for the Brooklyn Dodgers — but the qualities, not the highlights, are what to build.",
         "Mastering left field is about reads, routes, the wall, and a disciplined arm. The position's value comes from running down balls in the gap and down the line, playing the wall to hold hitters to fewer bases, throwing accurately to the right base through the cutoff man, and backing up plays — all while positioning smartly for the situation. A left fielder who does these consistently prevents runs and controls the running game. That reliability, especially command of the corner and the wall, is the heart of left-field defense.",
         "The mastery mindset treats left field as a craft of reading the ball, running routes, playing the wall and line, and throwing with discipline. That means endless fly-ball and read repetition, route running, wall and carom practice, long-toss and cutoff work, and studying situations and the elements until the pre-pitch thinking is automatic. The complete left fielder is a great reader and router, sure-handed, wall-savvy, strong-armed, and heads-up — the guardian of the corner. Build those qualities, and you turn the busiest outfield spot into a defensive strength.",
       ],
@@ -1516,13 +1516,13 @@ export const baseball13Stages: StageConfig[] = [
         },
       },
       incident: {
-        title: "Yaz and the Corner Guardians",
-        when: "1983 — Carl Yastrzemski's final season / the Hall of Fame",
+        title: "Zack Wheat and the Corner Guardians",
+        when: "1909–1926 — Zack Wheat, Brooklyn Dodgers / 1959 Hall of Fame",
         where: "National Baseball Hall of Fame, Cooperstown, New York",
-        impact: "Carl Yastrzemski's Hall of Fame career — 23 seasons in left field, seven Gold Gloves, and unmatched mastery of the Green Monster — stands as proof that left field is a position of real skill that can anchor a great team's defense.",
+        impact: "Zack Wheat's Hall of Fame career — 18 seasons in left field, the Brooklyn Dodgers' all-time hits leader, and a reputation for graceful, sure defense — stands as proof that left field is a position of real skill that can anchor a great team.",
         body: [
-          "Carl Yastrzemski spent 23 seasons mastering left field for the Boston Red Sox, won seven Gold Gloves, and became the definitive expert at playing the Green Monster — turning a difficult wall into a defensive weapon. His command of the corner, his reads and routes, and his accurate arm made him a complete left fielder and a Hall of Famer. He proved that left field, far from a place to hide a bat, is a position of genuine skill that contributes to winning.",
-          "Yastrzemski's career is the argument that mastering left field — the reads, routes, wall play, catching, and disciplined throwing — can make a player a great defender and anchor a team's outfield. For any young left fielder, the lesson is to pursue the complete craft: develop the jump and routes, master the wall and the line, throw with discipline through the cutoff, and think the game every pitch. Become the corner guardian who runs down everything and holds runners, and you turn the busiest outfield spot into a defensive strength.",
+          "Zack Wheat spent nearly two decades mastering left field for the Brooklyn Dodgers, became the franchise's all-time hits leader, and was renowned as one of the era's smoothest, surest left fielders. His command of the corner, his reads and routes, and his accurate arm made him a complete left fielder and a Hall of Famer. He proved that left field, far from a place to hide a bat, is a position of genuine skill that contributes to winning.",
+          "Wheat's career is the argument that mastering left field — the reads, routes, wall play, catching, and disciplined throwing — can make a player a great defender and anchor a team's outfield. For any young left fielder, the lesson is to pursue the complete craft: develop the jump and routes, master the wall and the line, throw with discipline through the cutoff, and think the game every pitch. Become the corner guardian who runs down everything and holds runners, and you turn the busiest outfield spot into a defensive strength.",
         ],
       },
       diagram: {
@@ -1534,10 +1534,10 @@ export const baseball13Stages: StageConfig[] = [
         ],
       },
       timeline: [
-        { year: 1961, event: "Carl Yastrzemski begins mastering left field and the Green Monster" },
-        { year: 1967, event: "Yastrzemski's Triple Crown / MVP season showcases his complete game" },
-        { year: 1983, event: "Yastrzemski retires after 23 seasons in left field", highlight: true },
-        { year: 1989, event: "Carl Yastrzemski inducted into the Hall of Fame" },
+        { year: 1909, event: "Zack Wheat begins mastering left field for the Brooklyn Dodgers" },
+        { year: 1918, event: "Wheat's complete game makes him one of the era's best left fielders" },
+        { year: 1926, event: "Wheat finishes his Brooklyn career as the franchise's all-time hits leader", highlight: true },
+        { year: 1959, event: "Zack Wheat inducted into the Baseball Hall of Fame" },
         { year: 2015, event: "Statcast quantifies the reads, routes, and arm that define great outfielders" },
       ],
       keyTakeaways: [
@@ -1547,7 +1547,7 @@ export const baseball13Stages: StageConfig[] = [
         "Become the corner guardian who runs down everything and holds runners — turning the busiest outfield spot into a strength",
       ],
       references: [
-        { title: "Baseball Hall of Fame: Carl Yastrzemski", url: "https://baseballhall.org/hall-of-famers/yastrzemski-carl" },
+        { title: "Baseball Hall of Fame: Zack Wheat", url: "https://baseballhall.org/hall-of-famers/wheat-zack" },
         { title: "USA Baseball: Complete Outfield Development", url: "https://www.usabaseball.com" },
         { title: "MLB: The Value of Outfield Defense", url: "https://www.mlb.com/news" },
       ],
@@ -1567,7 +1567,7 @@ export const baseball13Stages: StageConfig[] = [
             "Only a strong arm",
           ],
           correctIndex: 1,
-          explanation: "The best left fielders combine a great jump and efficient routes (from reading the ball off the bat), sure hands and sound catching technique, the ability to play the wall and the line, a strong and accurate arm that hits the cutoff man, the speed and endurance to cover the corner, and situational intelligence. Carl Yastrzemski embodied all of it. It's a complete craft of reads, routes, the wall, and a disciplined arm — not just power or one tool.",
+          explanation: "The best left fielders combine a great jump and efficient routes (from reading the ball off the bat), sure hands and sound catching technique, the ability to play the wall and the line, a strong and accurate arm that hits the cutoff man, the speed and endurance to cover the corner, and situational intelligence. Zack Wheat embodied all of it. It's a complete craft of reads, routes, the wall, and a disciplined arm — not just power or one tool.",
         },
         {
           id: "baseball-13-10-q2",
@@ -1584,7 +1584,7 @@ export const baseball13Stages: StageConfig[] = [
             "Wall play has no effect on the game",
           ],
           correctIndex: 1,
-          explanation: "Mastering the wall and the line — reading caroms, fielding rebounds quickly, and cutting off balls down the line — turns would-be doubles and triples into singles and outs, directly preventing runners from reaching scoring position and saving runs. Carl Yastrzemski's command of the Green Monster is the model. It's a genuine skill that separates a complete left fielder from one who only catches fly balls in open space, and it directly affects the game.",
+          explanation: "Mastering the wall and the line — reading caroms, fielding rebounds quickly, and cutting off balls down the line — turns would-be doubles and triples into singles and outs, directly preventing runners from reaching scoring position and saving runs. A skilled left fielder's command of his park's caroms is the model. It's a genuine skill that separates a complete left fielder from one who only catches fly balls in open space, and it directly affects the game.",
         },
         {
           id: "baseball-13-10-q3",
@@ -1600,15 +1600,15 @@ export const baseball13Stages: StageConfig[] = [
             "Practicing defense makes outfielders worse",
           ],
           correctIndex: 1,
-          explanation: "The mastery mindset treats left field as a craft mastered through deliberate repetition — reading the ball off the bat, running routes, playing the wall and line, catching technique, and disciplined throwing through the cutoff. Athleticism is the foundation, but without practicing these skills and studying situations, a talented player won't reach the position's potential. The greats like Yastrzemski earned their command of the corner through relentless practice.",
+          explanation: "The mastery mindset treats left field as a craft mastered through deliberate repetition — reading the ball off the bat, running routes, playing the wall and line, catching technique, and disciplined throwing through the cutoff. Athleticism is the foundation, but without practicing these skills and studying situations, a talented player won't reach the position's potential. The greats like Zack Wheat earned their command of the corner through relentless practice.",
         },
         {
           id: "baseball-13-10-q4",
           type: "Legacy",
-          challenge: `  Carl Yastrzemski reached the Hall of Fame after 23
-  seasons in left field, with seven Gold Gloves and
-  unmatched mastery of the Green Monster.`,
-          text: "What does Yastrzemski's career teach young left fielders?",
+          challenge: `  Zack Wheat reached the Hall of Fame after a long
+  career in left field for the Brooklyn Dodgers — as
+  the franchise's all-time hits leader and a graceful, sure defender.`,
+          text: "What does Zack Wheat's career teach young left fielders?",
           options: [
             "That left field is unimportant to winning",
             "That mastering the complete craft of left field — reads, routes, wall play, catching, and disciplined throwing — makes a player a great defender who anchors a team's outfield",
@@ -1616,7 +1616,7 @@ export const baseball13Stages: StageConfig[] = [
             "That outfield defense can't be developed",
           ],
           correctIndex: 1,
-          explanation: "Yastrzemski's Hall of Fame career — 23 seasons in left field, seven Gold Gloves, and unmatched command of the Green Monster — proves that mastering the complete craft of left field makes a player a great defender who anchors a team's outfield. His reads, routes, wall play, and accurate arm turned the busiest outfield corner into a strength. The lesson for young players is to pursue that whole craft and become the corner guardian who runs down everything and holds runners.",
+          explanation: "Zack Wheat's Hall of Fame career — a long run in left field for the Brooklyn Dodgers as the franchise's all-time hits leader and a graceful, sure defender — proves that mastering the complete craft of left field makes a player a great defender who anchors a team's outfield. His reads, routes, wall play, and accurate arm turned the busiest outfield corner into a strength. The lesson for young players is to pursue that whole craft and become the corner guardian who runs down everything and holds runners.",
         },
       ],
     },
