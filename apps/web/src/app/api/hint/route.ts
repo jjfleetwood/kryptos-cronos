@@ -1,8 +1,15 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getAuthedUsername } from "@/lib/api-auth";
-import { trackHint, getSkillLevel, adaptiveCooldownSeconds } from "@/lib/difficulty";
+import { trackHint, getSkillLevel, getHintsUsed, adaptiveCooldownSeconds } from "@/lib/difficulty";
+import { getUserTier } from "@/lib/access";
 import { isRateLimited } from "@/lib/rate-limit";
 import { getClientIp } from "@/lib/client-ip";
+
+// Free users get a limited number of ARIA hints per mission; Pro/trial get unlimited
+// guidance plus the adaptive (shorter) cooldown. This monetization gate is dormant while
+// OPEN_ACCESS makes everyone Pro (see access.ts) and activates when the paywall is
+// restored at launch — exactly like the content gating.
+const FREE_ARIA_PER_STAGE = 5;
 
 export async function POST(req: NextRequest) {
   // ARIA calls the paid Claude API — require a signed-in user and rate-limit per
@@ -37,6 +44,26 @@ export async function POST(req: NextRequest) {
   const apiKey = process.env.ANTHROPIC_API_KEY;
   if (!apiKey) {
     return NextResponse.json({ error: "AI assistant not configured." }, { status: 503 });
+  }
+
+  // Tier gate: free users get a capped number of ARIA hints per mission; Pro/trial
+  // get unlimited. The per-stage count is persistent (Redis), so it can't be reset by
+  // refreshing the page — unlike the client-side session counter.
+  const tier = await getUserTier(username);
+  const isPro = tier === "pro" || tier === "trial";
+
+  let usedThisStage = 0;
+  if (!isPro && body.stageId) {
+    usedThisStage = await getHintsUsed(username, body.stageId);
+    if (usedThisStage >= FREE_ARIA_PER_STAGE) {
+      return NextResponse.json(
+        {
+          error: `You've used all ${FREE_ARIA_PER_STAGE} free ARIA hints for this mission. Upgrade to Pro for unlimited guidance.`,
+          upgrade: true,
+        },
+        { status: 402 }
+      );
+    }
   }
 
   const systemPrompt = [
@@ -75,15 +102,17 @@ export async function POST(req: NextRequest) {
   const data = await res.json() as { content: { type: string; text: string }[] };
   const reply = data.content?.find((c) => c.type === "text")?.text ?? "No response.";
 
-  // Track hint usage and compute adaptive cooldown for Pro users
+  // Track hint usage; Pro/trial get the adaptive (often shorter) cooldown, free a fixed 30 s.
   let nextCooldownS = 30; // default for free users
-  if (username && body.stageId) {
-    const [skillLevel] = await Promise.all([
-      getSkillLevel(username),
-      trackHint(username, body.stageId),
-    ]);
-    nextCooldownS = adaptiveCooldownSeconds(skillLevel);
+  if (body.stageId) {
+    if (isPro) {
+      const skillLevel = await getSkillLevel(username);
+      nextCooldownS = adaptiveCooldownSeconds(skillLevel);
+    }
+    await trackHint(username, body.stageId);
   }
 
-  return NextResponse.json({ reply, nextCooldownS });
+  const hintsRemaining = isPro ? null : Math.max(0, FREE_ARIA_PER_STAGE - (usedThisStage + 1));
+
+  return NextResponse.json({ reply, nextCooldownS, hintsRemaining, pro: isPro });
 }

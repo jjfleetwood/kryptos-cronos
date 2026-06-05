@@ -27,6 +27,8 @@ export default function HintChatbot({ stage, isPro = false, onClose }: Props) {
   const [loading, setLoading] = useState(false);
   const [cooldownLeft, setCooldownLeft] = useState(0);
   const [messageCount, setMessageCount] = useState(0);
+  const [hintsLeft, setHintsLeft] = useState<number | null>(null);
+  const [upgradeNeeded, setUpgradeNeeded] = useState(false);
   const bottomRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const cooldownRef = useRef<ReturnType<typeof setInterval> | null>(null);
@@ -78,10 +80,18 @@ export default function HintChatbot({ stage, isPro = false, onClose }: Props) {
         }),
       });
       const data = await res.json();
+
+      // Free-tier ARIA quota spent → prompt an upgrade instead of replying.
+      if (res.status === 402 || data.upgrade) {
+        setMessages((prev) => [...prev, { role: "aria", text: data.error ?? "Upgrade to Pro for unlimited ARIA guidance." }]);
+        setUpgradeNeeded(true);
+        return;
+      }
+
       const reply = data.reply ?? data.error ?? "I'm having trouble connecting right now.";
       setMessages((prev) => [...prev, { role: "aria", text: reply }]);
-      const newCount = messageCount + 1;
-      setMessageCount(newCount);
+      setMessageCount((c) => c + 1);
+      if (typeof data.hintsRemaining === "number") setHintsLeft(data.hintsRemaining);
       if (isPro) {
         // Adaptive: server returns cooldown based on user skill level (0s for struggling, up to 30s for experts)
         startCooldown(data.nextCooldownS ?? DEFAULT_PRO_COOLDOWN_S);
@@ -99,7 +109,7 @@ export default function HintChatbot({ stage, isPro = false, onClose }: Props) {
     if (e.key === "Enter") sendMessage();
   }
 
-  const hitLimit = !isPro && messageCount >= MAX_FREE_MESSAGES;
+  const hitLimit = upgradeNeeded || (!isPro && messageCount >= MAX_FREE_MESSAGES);
 
   return (
     <div className="fixed inset-0 z-50 flex justify-end">
@@ -116,7 +126,7 @@ export default function HintChatbot({ stage, isPro = false, onClose }: Props) {
             <span className="text-gray-600 text-xs">AI Assistant</span>
           </div>
           <div className="flex items-center gap-2">
-            <span className="text-xs text-gray-600 font-mono">{isPro ? "∞" : `${messageCount}/${MAX_FREE_MESSAGES}`}</span>
+            <span className="text-xs text-gray-600 font-mono">{isPro ? "∞" : hintsLeft !== null ? `${hintsLeft} left` : `${messageCount}/${MAX_FREE_MESSAGES}`}</span>
             <button onClick={onClose} className="text-gray-500 hover:text-white transition-colors text-lg leading-none">✕</button>
           </div>
         </div>
@@ -126,13 +136,15 @@ export default function HintChatbot({ stage, isPro = false, onClose }: Props) {
           <div className="flex items-center gap-2 px-4 py-2 bg-purple-500/10 border-b border-purple-500/20 flex-shrink-0">
             <span className="text-purple-400 text-xs">⚡</span>
             <span className="text-purple-300 text-xs flex-1">
-              {hitLimit
-                ? "Message limit reached for this session."
-                : isPro
-                  ? "ARIA adapts to your skill — this wait decreases as you improve."
-                  : `Upgrade to Pro to reduce the ${FREE_COOLDOWN_S}s wait.`}
+              {upgradeNeeded
+                ? "Free ARIA hints for this mission are used up."
+                : hitLimit
+                  ? "Message limit reached for this session."
+                  : isPro
+                    ? "ARIA adapts to your skill — this wait decreases as you improve."
+                    : `Upgrade to Pro to reduce the ${FREE_COOLDOWN_S}s wait.`}
             </span>
-            {!isPro && <span className="text-purple-400 text-xs font-semibold whitespace-nowrap">Go Pro →</span>}
+            {!isPro && <a href="/upgrade" className="text-purple-300 hover:text-purple-200 text-xs font-semibold whitespace-nowrap underline">Go Pro →</a>}
           </div>
         )}
 
@@ -176,9 +188,17 @@ export default function HintChatbot({ stage, isPro = false, onClose }: Props) {
         {/* Input */}
         <div className="px-4 py-3 border-t border-white/10 flex-shrink-0">
           {hitLimit ? (
-            <p className="text-center text-xs text-gray-600 py-2">
-              Session limit reached. Refresh to start a new session.
-            </p>
+            upgradeNeeded ? (
+              <a href="/upgrade"
+                className="block text-center text-xs font-semibold text-black rounded-xl py-2.5 transition-all hover:scale-[1.02]"
+                style={{ background: "linear-gradient(90deg, #a78bfa, #818cf8)" }}>
+                Upgrade to Pro for unlimited ARIA →
+              </a>
+            ) : (
+              <p className="text-center text-xs text-gray-600 py-2">
+                Session limit reached. Refresh to start a new session.
+              </p>
+            )
           ) : cooldownLeft > 0 ? (
             <div className="flex items-center justify-between bg-white/3 border border-white/10 rounded-xl px-4 py-3">
               <span className="text-gray-600 text-xs">Next message in</span>
