@@ -149,7 +149,7 @@ export const STAGE_IMAGES: Record<string, string> = {
   "debate-8-07": "/debate/debate-8-07.png",
   "debate-8-08": "/debate/debate-8-08.jpg",
   "debate-8-09": "/debate/debate-8-09.jpg",
-  "debate-8-10": "/debate/debate-8-10.png",
+  "debate-8-10": "/debate/debate-8-10.jpg",
   "driving-1-01": "/img/driving-1-01.jpg",
   "driving-1-02": "/img/driving-1-02.jpg",
   "driving-1-03": "/img/driving-1-03.jpg",
