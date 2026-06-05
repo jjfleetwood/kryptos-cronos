@@ -14,8 +14,22 @@ import { useLocale } from "@/contexts/LocaleContext";
 
 // Local, always-available branded placeholder. External image hosts (Wikimedia)
 // now reject on-demand thumbnail hotlinking, so every stage image falls back to
-// this on error; debate stages use it as their default visual.
+// this on error.
 const STAGE_PLACEHOLDER = "/stage-placeholder.svg";
+
+// Self-hosted per-epoch images for the Debate & Speech track (public/debate/),
+// downloaded from Wikimedia Commons (public domain / CC) so they don't depend on
+// fragile hotlinking. Used when a debate stage has no explicit `image`.
+const DEBATE_EPOCH_IMAGE: Record<string, string> = {
+  "debate-1": "/debate/d1.jpg", // The Pnyx — Athenian assembly
+  "debate-2": "/debate/d2.jpg", // Aristotle (logic)
+  "debate-3": "/debate/d3.jpg", // House of Commons (formats)
+  "debate-4": "/debate/d4.jpg", // Bodleian Library (research)
+  "debate-5": "/debate/d5.jpg", // Cicero (clash/advocacy)
+  "debate-6": "/debate/d6.jpg", // Demosthenes (rhetoric)
+  "debate-7": "/debate/d7.jpg", // graduation (professional mastery)
+  "debate-8": "/debate/d8.png", // the brain (psychology)
+};
 
 const categoryColors: Record<string, string> = {
   cybersecurity: "text-cyan-400 bg-cyan-400/10 border-cyan-400/30",
@@ -440,10 +454,10 @@ export default function StageInfo({
               />
             ))}
           </div>
-          {(stage.image || stage.epochId?.startsWith("debate-")) && (
+          {(stage.image ?? DEBATE_EPOCH_IMAGE[stage.epochId]) && (
             <div className="mt-5 rounded-xl overflow-hidden border border-white/10">
               <img
-                src={stage.image ?? STAGE_PLACEHOLDER}
+                src={stage.image ?? DEBATE_EPOCH_IMAGE[stage.epochId] ?? STAGE_PLACEHOLDER}
                 alt={stage.title}
                 className="w-full object-cover max-h-72"
                 loading="lazy"

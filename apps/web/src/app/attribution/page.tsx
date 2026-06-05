@@ -131,6 +131,16 @@ const ATTRIBUTIONS = [
       "Tech Audit 4 references STIX™ 2.1 (Structured Threat Intelligence eXpression) and TAXII™ 2.1 (Trusted Automated eXchange of Intelligence Information) as threat intelligence sharing standards. STIX™ and TAXII™ are trademarks of OASIS Open. These are open standards freely available for implementation.",
     modules: ["Tech Audit 4"],
   },
+  {
+    name: "Wikimedia Commons imagery",
+    owner: "Wikimedia Commons contributors",
+    license: "Public domain / Creative Commons",
+    licenseUrl: "https://commons.wikimedia.org/wiki/Commons:Licensing",
+    sourceUrl: "https://commons.wikimedia.org/",
+    description:
+      "Illustrative photographs on stage briefing pages are sourced from Wikimedia Commons under their respective free licenses (public domain or Creative Commons) and self-hosted. The Debate & Speech track uses, among others, the Pnyx (Athens), and busts/portraits of Aristotle, Cicero, and Demosthenes; the House of Commons; the Bodleian Library; and anatomical illustration. Each file remains under the license stated on its Commons page.",
+    modules: ["Debate & Speech track", "Stage briefing imagery"],
+  },
 ];
 
 export default function AttributionPage() {
