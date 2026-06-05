@@ -33,7 +33,7 @@ export const hairStylingStages: StageConfig[] = [
       tagline: "Every great style starts with knowing what you're working with.",
       year: 1997,
       overview: [
-        "Hair texture varies enormously — fine, medium, coarse; straight, wavy, curly, coily. Stylist Andre Walker popularized a four-type (1–4) classification system that remains the industry shorthand for texture, with subcategory letters A, B, C indicating curl diameter within each type.",
+        "Hair texture varies along two axes:\n- Strand thickness — fine, medium, or coarse.\n- Curl pattern — straight, wavy, curly, or coily.\nStylist Andre Walker popularized a four-type (1–4) classification system that remains the industry shorthand for texture, with subcategory letters A, B, C indicating curl diameter within each type.",
         "Beyond curl pattern, porosity (how readily hair absorbs and retains moisture) and density (strands-per-square-inch) shape every product and tool decision. High-porosity hair soaks up product but loses moisture fast; low-porosity hair repels product until heat opens the cuticle.",
         "Mastering hair typing isn't about boxing clients into categories — it's about building a shared language that lets you choose the right techniques, products, and expectations before you ever pick up a tool.",
       ],
