@@ -223,6 +223,19 @@ export default function EpochPage() {
           </Link>
         )}
 
+        {/* Debate credential tracker banner — shown on debate epochs */}
+        {epochId.startsWith("debate-") && (
+          <Link href="/debate"
+            className="flex items-center gap-3 bg-sky-500/6 border border-sky-500/25 rounded-xl px-4 py-3 mb-6 hover:border-sky-400/50 hover:bg-sky-500/10 transition-colors group">
+            <span className="text-xl flex-shrink-0">🎖️</span>
+            <div className="flex-1 min-w-0">
+              <p className="text-sky-300 font-semibold text-sm">Debate Skill &amp; Credential Tracker</p>
+              <p className="text-gray-500 text-xs">Track your mastery and degree ladder, and explore NSDA, Toastmasters &amp; championship credentials →</p>
+            </div>
+            <span className="text-sky-600 group-hover:text-sky-400 text-sm flex-shrink-0 transition-colors">→</span>
+          </Link>
+        )}
+
         {/* DMV practice-test banner — shown on driving epochs */}
         {epochId.startsWith("driving-") && (
           <Link href="/exam/dmv"
