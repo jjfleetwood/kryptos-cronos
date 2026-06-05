@@ -132,6 +132,12 @@ const TRACK_SUBGROUPS: Record<string, SubGroup[]> = {
     { label: "Pitching", ids: ["baseball-5", "baseball-6", "baseball-7"] },
     { label: "Positions", ids: ["baseball-8", "baseball-9", "baseball-10", "baseball-11", "baseball-12", "baseball-13", "baseball-14", "baseball-15"] },
   ],
+  debate: [
+    { label: "Foundations", ids: ["debate-1", "debate-2"] },
+    { label: "Formats & Research", ids: ["debate-3", "debate-4"] },
+    { label: "Clash & Delivery", ids: ["debate-5", "debate-6"] },
+    { label: "Mastery", ids: ["debate-7", "debate-8"] },
+  ],
 };
 
 // ── Epochs allowed per user group ─────────────────────────────────────────────
