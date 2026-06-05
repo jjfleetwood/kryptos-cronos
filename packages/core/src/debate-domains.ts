@@ -26,7 +26,7 @@ export const DEBATE_DOMAINS: DebateDomain[] = [
     id: "foundations",
     name: "Foundations",
     epochId: "debate-1",
-    weight: 15,
+    weight: 14,
     description:
       "The bedrock of every round: what a resolution is and who carries which burden, the claim-warrant-impact anatomy of an argument, evidence and its ethics, flowing the round, speaker roles, cross-examination, the four-step refutation, delivery, and competitive etiquette.",
     color: "sky",
@@ -47,7 +47,7 @@ export const DEBATE_DOMAINS: DebateDomain[] = [
     id: "logic",
     name: "Argumentation & Logic",
     epochId: "debate-2",
-    weight: 15,
+    weight: 14,
     description:
       "The reasoning engine: the Toulmin model, deductive validity vs. soundness, inductive strength, causation vs. correlation, the formal and informal fallacy families, analogical and statistical reasoning, and how burden of proof and presumption decide contested questions.",
     color: "cyan",
@@ -68,7 +68,7 @@ export const DEBATE_DOMAINS: DebateDomain[] = [
     id: "formats",
     name: "The Formats",
     epochId: "debate-3",
-    weight: 12,
+    weight: 11,
     description:
       "Every major style: Policy (CX), Lincoln-Douglas, Public Forum, Parliamentary, British Parliamentary (Worlds), World Schools, Congressional Debate, Mock Trial and Moot Court, and the individual speech events — plus how to choose the format that fits you.",
     color: "teal",
@@ -89,7 +89,7 @@ export const DEBATE_DOMAINS: DebateDomain[] = [
     id: "case-construction",
     name: "Research & Case Construction",
     epochId: "debate-4",
-    weight: 16,
+    weight: 14,
     description:
       "Turning a resolution into a winning case: topic analysis, research and cutting cards, constructive cases, frameworks, policy stock issues, Public Forum links, weighing mechanisms, pre-written blocks, roadmapping and signposting, and red-teaming your own case.",
     color: "emerald",
@@ -110,7 +110,7 @@ export const DEBATE_DOMAINS: DebateDomain[] = [
     id: "clash",
     name: "Clash",
     epochId: "debate-5",
-    weight: 16,
+    weight: 14,
     description:
       "Winning the exchange: reading the flow as a battlefield, layered refutation, turns, cross-examination strategy, extending and frontlining your arguments, collapsing onto your winners, strategic concession, crystallization, and exploiting the dropped argument.",
     color: "amber",
@@ -131,7 +131,7 @@ export const DEBATE_DOMAINS: DebateDomain[] = [
     id: "delivery",
     name: "Rhetoric & Delivery",
     epochId: "debate-6",
-    weight: 14,
+    weight: 12,
     description:
       "The art of persuasion: ethos, pathos, and logos; vocal and nonverbal delivery; the speed-vs-persuasion question and audience adaptation; word economy; narrative and framing; the classical rhetorical devices; managing nerves; and finding your authentic voice.",
     color: "rose",
@@ -152,7 +152,7 @@ export const DEBATE_DOMAINS: DebateDomain[] = [
     id: "mastery",
     name: "Competitive & Professional",
     epochId: "debate-7",
-    weight: 12,
+    weight: 11,
     description:
       "The highest level and the credentials: judge paradigms, theory and topicality, kritiks, counterplans and disadvantages, tournament strategy, the NSDA degree ladder, Toastmasters, collegiate and international honors, coaching and judging, and lifelong careers.",
     color: "indigo",
@@ -169,6 +169,27 @@ export const DEBATE_DOMAINS: DebateDomain[] = [
     ],
     stageIds: epochStages(7),
   },
+  {
+    id: "psychology",
+    name: "The Psychology of Debate",
+    epochId: "debate-8",
+    weight: 10,
+    description:
+      "The cognitive science beneath persuasion: cognitive biases, the principles of influence, how judges actually decide, the role of emotion, cognitive load and fluency, reading people, why minds resist, psychological inoculation, the psychology of credibility, and the debater's own mental game.",
+    color: "purple",
+    icon: "🧠",
+    topics: [
+      "Cognitive biases",
+      "Principles of influence",
+      "How judges decide",
+      "Emotion & judgment",
+      "Cognitive load & fluency",
+      "Reading people",
+      "Why minds resist",
+      "Inoculation & the mental game",
+    ],
+    stageIds: epochStages(8),
+  },
 ];
 
 // The degree ladder — modeled on the NSDA Merit→Premier Distinction degrees, advanced
@@ -181,12 +202,12 @@ export type DebateDegree = {
 };
 
 export const DEBATE_DEGREES: DebateDegree[] = [
-  { name: "Degree of Merit", threshold: 7, color: "#94a3b8", blurb: "You've begun — the foundations are taking hold." },
-  { name: "Degree of Honor", threshold: 18, color: "#38bdf8", blurb: "Real competence: argument, logic, and the formats." },
-  { name: "Degree of Excellence", threshold: 30, color: "#2dd4bf", blurb: "You can build a case and win the clash." },
-  { name: "Degree of Distinction", threshold: 45, color: "#34d399", blurb: "Advanced: delivery, persuasion, and strategy." },
-  { name: "Degree of Special Distinction", threshold: 58, color: "#fbbf24", blurb: "Near-complete mastery across every domain." },
-  { name: "Degree of Premier Distinction", threshold: 70, color: "#a78bfa", blurb: "The complete advocate — every stage mastered." },
+  { name: "Degree of Merit", threshold: 8, color: "#94a3b8", blurb: "You've begun — the foundations are taking hold." },
+  { name: "Degree of Honor", threshold: 20, color: "#38bdf8", blurb: "Real competence: argument, logic, and the formats." },
+  { name: "Degree of Excellence", threshold: 34, color: "#2dd4bf", blurb: "You can build a case and win the clash." },
+  { name: "Degree of Distinction", threshold: 50, color: "#34d399", blurb: "Advanced: delivery, persuasion, and strategy." },
+  { name: "Degree of Special Distinction", threshold: 66, color: "#fbbf24", blurb: "Near-complete mastery — including the psychology of debate." },
+  { name: "Degree of Premier Distinction", threshold: 80, color: "#a78bfa", blurb: "The complete advocate — every stage mastered." },
 ];
 
 // Real-world credentials a learner can actually pursue (reference cards on the tracker).

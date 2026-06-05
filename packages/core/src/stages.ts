@@ -45,6 +45,7 @@ import { debate4Epoch, debate4Stages } from "./debate-4";
 import { debate5Epoch, debate5Stages } from "./debate-5";
 import { debate6Epoch, debate6Stages } from "./debate-6";
 import { debate7Epoch, debate7Stages } from "./debate-7";
+import { debate8Epoch, debate8Stages } from "./debate-8";
 import { parisEpoch, parisStages } from "./paris";
 import { milanEpoch, milanStages } from "./milan";
 import { frenchBasicsEpoch, frenchBasicsStages } from "./french-basics";
@@ -140,6 +141,7 @@ export const epochs: EpochConfig[] = [
   debate5Epoch,
   debate6Epoch,
   debate7Epoch,
+  debate8Epoch,
   parisEpoch,
   milanEpoch,
   frenchBasicsEpoch,
@@ -189,6 +191,7 @@ export const stages: StageConfig[] = [
   ...debate5Stages,
   ...debate6Stages,
   ...debate7Stages,
+  ...debate8Stages,
   ...parisStages,
   ...milanStages,
   ...frenchBasicsStages,

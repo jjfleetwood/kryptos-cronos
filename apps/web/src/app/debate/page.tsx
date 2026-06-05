@@ -20,6 +20,7 @@ const COLOR_MAP: Record<string, { bar: string; text: string; border: string; bg:
   amber:   { bar: "bg-amber-500",   text: "text-amber-400",   border: "border-amber-500/30",   bg: "bg-amber-500/5",   badge: "bg-amber-500/15 border-amber-500/30 text-amber-300" },
   rose:    { bar: "bg-rose-500",    text: "text-rose-400",    border: "border-rose-500/30",    bg: "bg-rose-500/5",    badge: "bg-rose-500/15 border-rose-500/30 text-rose-300" },
   indigo:  { bar: "bg-indigo-500",  text: "text-indigo-400",  border: "border-indigo-500/30",  bg: "bg-indigo-500/5",  badge: "bg-indigo-500/15 border-indigo-500/30 text-indigo-300" },
+  purple:  { bar: "bg-purple-500",  text: "text-purple-400",  border: "border-purple-500/30",  bg: "bg-purple-500/5",  badge: "bg-purple-500/15 border-purple-500/30 text-purple-300" },
 };
 
 function ReadinessRing({ pct, degreeLabel, degreeColor }: { pct: number; degreeLabel: string; degreeColor: string }) {
@@ -94,7 +95,7 @@ export default function DebatePage() {
           </div>
           <h1 className="text-3xl sm:text-4xl font-black text-white mb-2">Debate &amp; Speech Mastery</h1>
           <p className="text-gray-400 leading-relaxed">
-            Track your progress across the seven domains of debate — from foundations to professional mastery — and climb
+            Track your progress across the eight domains of debate — from foundations to professional mastery and the psychology of persuasion — and climb
             a degree ladder modeled on the NSDA&apos;s Merit-to-Premier-Distinction awards. Below, the real credentials you
             can pursue beyond this curriculum: NSDA degrees, Toastmasters Pathways, collegiate and world championships, and
             the Tournament of Champions. This is a learning-readiness tracker, not the official award.
@@ -113,7 +114,7 @@ export default function DebatePage() {
             <div className="flex-1 text-center sm:text-left">
               <p className="text-gray-400 text-sm mb-4">
                 {username
-                  ? `${totalCompleted} of ${totalStages} debate stages completed across all seven domains`
+                  ? `${totalCompleted} of ${totalStages} debate stages completed across all eight domains`
                   : "Sign in to track your debate mastery"}
               </p>
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
