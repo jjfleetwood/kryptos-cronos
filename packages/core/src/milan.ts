@@ -24,7 +24,6 @@ export const milanStages: StageConfig[] = [
     challengeType: "quiz",
     wonder: { name: "Milan Metro", location: "Milan, Italy", era: "1964", emoji: "🚇" },
     badge: { id: "milan-metro-badge", name: "ATM Navigator", emoji: "🚇" },
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/M4_San_Babila_appena_inaugurata.jpg/1200px-M4_San_Babila_appena_inaugurata.jpg",
     info: {
       tagline: "Buy an ATM 48-hour pass (€7) at any metro station — unlimited metro, tram, and bus. Single tickets are €2.20 and expire in 90 minutes.",
       year: 1964,
@@ -156,7 +155,6 @@ export const milanStages: StageConfig[] = [
     challengeType: "quiz",
     wonder: { name: "Duomo di Milano", location: "Milan, Italy", era: "1386", emoji: "⛪" },
     badge: { id: "milan-duomo-badge", name: "Spire Climber", emoji: "⛪" },
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Milan_Cathedral_from_Piazza_del_Duomo.jpg/1200px-Milan_Cathedral_from_Piazza_del_Duomo.jpg",
     info: {
       tagline: "Book the Duomo roof terrace (€18 stairs, €25 lift) at duomomilano.it at least a week ahead — the 9am slot has the fewest people and the best light.",
       year: 1386,
@@ -287,7 +285,6 @@ export const milanStages: StageConfig[] = [
     challengeType: "quiz",
     wonder: { name: "Galleria Vittorio Emanuele II", location: "Milan, Italy", era: "1877", emoji: "🏛" },
     badge: { id: "milan-galleria-badge", name: "Galleria Walker", emoji: "🏛" },
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Galleria_Milano_%28179532365%29.jpeg/1200px-Galleria_Milano_%28179532365%29.jpeg",
     info: {
       tagline: "The Galleria is free to walk through at any hour — the Camparino bar at the Duomo entrance has been open since 1915 and serves the original Campari Seltz.",
       year: 1877,
@@ -418,7 +415,6 @@ export const milanStages: StageConfig[] = [
     challengeType: "quiz",
     wonder: { name: "The Last Supper", location: "Milan, Italy", era: "1498", emoji: "🎨" },
     badge: { id: "milan-last-supper-badge", name: "Da Vinci's Guest", emoji: "🎨" },
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/The_Last_Supper_-_Leonardo_Da_Vinci_-_High_Resolution_32x16.jpg/1200px-The_Last_Supper_-_Leonardo_Da_Vinci_-_High_Resolution_32x16.jpg",
     info: {
       tagline: "Book at vivaticket.com exactly 3 months in advance — slots open at midnight Italian time and July dates are gone within hours.",
       year: 1498,
@@ -549,7 +545,6 @@ export const milanStages: StageConfig[] = [
     challengeType: "quiz",
     wonder: { name: "Castello Sforzesco", location: "Milan, Italy", era: "1368", emoji: "🏰" },
     badge: { id: "milan-castello-badge", name: "Castello Explorer", emoji: "🏰" },
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/20110725_Castello_Sforzesco_Milan_5557.jpg/1200px-20110725_Castello_Sforzesco_Milan_5557.jpg",
     info: {
       tagline: "Entry to the Castello grounds is free — pay €5 for access to 7 museums inside, including the Pietà Rondanini (Michelangelo's last work, left unfinished at his death).",
       year: 1368,
@@ -680,7 +675,6 @@ export const milanStages: StageConfig[] = [
     challengeType: "quiz",
     wonder: { name: "Pinacoteca Ambrosiana", location: "Milan, Italy", era: "1618", emoji: "📜" },
     badge: { id: "milan-ambrosiana-badge", name: "Codex Reader", emoji: "📜" },
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Leonardo_da_Vinci_-_Portrait_of_a_Musician_-_Pinacoteca_Ambrosiana.jpg/1200px-Leonardo_da_Vinci_-_Portrait_of_a_Musician_-_Pinacoteca_Ambrosiana.jpg",
     info: {
       tagline: "€15 entry, 5 minutes from the Duomo — the Codex Atlanticus (Leonardo's largest surviving manuscript) and Raphael's full-scale cartoon for the School of Athens are both here.",
       year: 1618,
@@ -811,7 +805,6 @@ export const milanStages: StageConfig[] = [
     challengeType: "quiz",
     wonder: { name: "Pinacoteca di Brera", location: "Milan, Italy", era: "1809", emoji: "🖼" },
     badge: { id: "milan-brera-badge", name: "Brera Initiate", emoji: "🖼" },
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/The_dead_Christ_and_three_mourners%2C_by_Andrea_Mantegna.jpg/1200px-The_dead_Christ_and_three_mourners%2C_by_Andrea_Mantegna.jpg",
     info: {
       tagline: "Tickets at €15 (book at ticketone.it), free on the first Sunday of the month — go at 9am opening to beat the queues. Mantegna's Dead Christ is in Room VI.",
       year: 1809,
@@ -942,7 +935,6 @@ export const milanStages: StageConfig[] = [
     challengeType: "quiz",
     wonder: { name: "Aperitivo Culture", location: "Milan, Italy", era: "1860", emoji: "🍹" },
     badge: { id: "milan-aperitivo-badge", name: "Aperitivo Hour", emoji: "🍹" },
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/5275MilanoViaMadonnina.JPG/1200px-5275MilanoViaMadonnina.JPG",
     info: {
       tagline: "Aperitivo starts at 6:30pm: order one drink (€10–€14) and the food spread is free. Bar Brera on Via Brera and Bar Radetzky on Corso Garibaldi are the classic Brera-neighbourhood choices.",
       year: 1860,
@@ -1073,7 +1065,6 @@ export const milanStages: StageConfig[] = [
     challengeType: "quiz",
     wonder: { name: "Navigli Canals", location: "Milan, Italy", era: "1179", emoji: "⛵" },
     badge: { id: "milan-navigli-badge", name: "Canal Walker", emoji: "⛵" },
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Naviglio_Grande_-_panoramio_%281%29.jpg/1200px-Naviglio_Grande_-_panoramio_%281%29.jpg",
     info: {
       tagline: "Metro M2 green to Porta Genova — the Naviglio Grande and Naviglio Pavese canals intersect here. Sunday morning antique market runs 9am–6pm along the canal towpath.",
       year: 1179,
@@ -1204,7 +1195,6 @@ export const milanStages: StageConfig[] = [
     challengeType: "quiz",
     wonder: { name: "Colonne di San Lorenzo", location: "Milan, Italy", era: "300 AD", emoji: "🏛" },
     badge: { id: "milan-san-lorenzo-badge", name: "Column Counter", emoji: "🏛" },
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/ColonneSanLorenzo.jpg/800px-ColonneSanLorenzo.jpg",
     info: {
       tagline: "The 16 Roman columns (Colonne di San Lorenzo) stand in Corso di Porta Ticinese — free to approach, the best outdoor gathering spot in Milan on summer evenings.",
       year: 300,
@@ -1335,7 +1325,6 @@ export const milanStages: StageConfig[] = [
     challengeType: "quiz",
     wonder: { name: "Basilica di Sant'Ambrogio", location: "Milan, Italy", era: "386 AD", emoji: "⛪" },
     badge: { id: "milan-santambrogio-badge", name: "Milan's Patron", emoji: "⛪" },
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Basilica_di_Sant%27Ambrogio_-_Milano.jpg/1200px-Basilica_di_Sant%27Ambrogio_-_Milano.jpg",
     info: {
       tagline: "Free entry, rarely crowded — the 9th-century gold altar (Paliotto d'Oro) and the tomb of Saint Ambrose are both here. Metro M2 to Sant'Ambrogio station.",
       year: 386,
@@ -1466,7 +1455,6 @@ export const milanStages: StageConfig[] = [
     challengeType: "quiz",
     wonder: { name: "Bosco Verticale", location: "Milan, Italy", era: "2014", emoji: "🌳" },
     badge: { id: "milan-isola-badge", name: "Isola Explorer", emoji: "🌳" },
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/2017_Bosco_Verticale%2C_Milan.jpg/800px-2017_Bosco_Verticale%2C_Milan.jpg",
     info: {
       tagline: "Metro M2 or M5 to Garibaldi FS — the Bosco Verticale is 5 minutes' walk north. Piazza Gae Aulenti has free outdoor seating and good people-watching all day.",
       year: 2014,
@@ -1597,7 +1585,6 @@ export const milanStages: StageConfig[] = [
     challengeType: "quiz",
     wonder: { name: "Teatro alla Scala", location: "Milan, Italy", era: "1778", emoji: "🎭" },
     badge: { id: "milan-scala-badge", name: "La Scala Visitor", emoji: "🎭" },
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/MilanoLaScala_mg_5553.jpg/1200px-MilanoLaScala_mg_5553.jpg",
     info: {
       tagline: "The Museo Teatrale alla Scala is €9, no booking required, open daily 9am–12:30pm and 1:30pm–5pm — it includes a view into the auditorium from the royal box level.",
       year: 1778,
@@ -1728,7 +1715,6 @@ export const milanStages: StageConfig[] = [
     challengeType: "quiz",
     wonder: { name: "Lake Como", location: "Varenna, Lombardy, Italy", era: "63 BC", emoji: "🏔" },
     badge: { id: "milan-como-badge", name: "Como Swimmer", emoji: "🏔" },
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Lago_di_Como_Varenna.jpg/1200px-Lago_di_Como_Varenna.jpg",
     info: {
       tagline: "Trenord to Varenna-Esino: €7.50 each way, 40 minutes from Milano Centrale. Buy tickets at Trenord kiosks — not Trenitalia. Go Tuesday or Wednesday; weekends are packed.",
       year: -63,
@@ -1860,7 +1846,6 @@ export const milanStages: StageConfig[] = [
     challengeType: "quiz",
     wonder: { name: "Certosa di Pavia", location: "Pavia, Lombardy, Italy", era: "1396", emoji: "🏰" },
     badge: { id: "milan-pavia-badge", name: "Certosa Pilgrim", emoji: "🏰" },
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Certosa_di_Pavia_-_esterno.jpg/1200px-Certosa_di_Pavia_-_esterno.jpg",
     info: {
       tagline: "Trenord to Pavia: €4, 30 minutes from Centrale. Walk or bus to the Certosa di Pavia (free, closed noon–2:30pm). Combine with Pavia's medieval towers and the university's 14th-century anatomy theatre.",
       year: 1396,
@@ -1992,7 +1977,6 @@ export const milanStages: StageConfig[] = [
     challengeType: "quiz",
     wonder: { name: "Cimitero Monumentale", location: "Milan, Italy", era: "1866", emoji: "🏛" },
     badge: { id: "milan-cimitero-badge", name: "Monument Walker", emoji: "🏛" },
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Cimitero_Monumentale_Milano.jpg/1200px-Cimitero_Monumentale_Milano.jpg",
     info: {
       tagline: "Free entry, Tue–Sun 8am–6pm (closed Monday) — take the free official map at the entrance. Metro M5 purple to Monumentale station.",
       year: 1866,
@@ -2123,7 +2107,6 @@ export const milanStages: StageConfig[] = [
     challengeType: "quiz",
     wonder: { name: "Quadrilatero della Moda", location: "Milan, Italy", era: "1906", emoji: "👗" },
     badge: { id: "milan-fashion-badge", name: "Quadrilatero Walker", emoji: "👗" },
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Via_Montenapoleone_2011.jpg/1200px-Via_Montenapoleone_2011.jpg",
     info: {
       tagline: "Via Montenapoleone, Via della Spiga, Via Sant'Andrea, and Corso Venezia form the fashion quadrilateral — free to walk, worth 90 minutes even if you buy nothing.",
       year: 1906,
@@ -2254,7 +2237,6 @@ export const milanStages: StageConfig[] = [
     challengeType: "quiz",
     wonder: { name: "Mediolanum", location: "Milan, Italy", era: "222 BC", emoji: "🏛" },
     badge: { id: "milan-roman-badge", name: "Mediolanum Explorer", emoji: "🏛" },
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Torre_del_Circo_Romano_Milano.jpg/800px-Torre_del_Circo_Romano_Milano.jpg",
     info: {
       tagline: "Museo Archeologico on Corso Magenta (€5) holds Roman Milan artefacts — then walk 5 minutes to see the remains of the Roman circus tower still standing at Via Brisa.",
       year: -222,
@@ -2385,7 +2367,6 @@ export const milanStages: StageConfig[] = [
     challengeType: "quiz",
     wonder: { name: "Ferragosto", location: "Milan, Italy", era: "18 BC", emoji: "🌞" },
     badge: { id: "milan-ferragosto-badge", name: "August Survivor", emoji: "🌞" },
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Milano_Piazza_del_Duomo_con_tramonto.jpg/1200px-Milano_Piazza_del_Duomo_con_tramonto.jpg",
     info: {
       tagline: "Ferragosto (August 15) is when half of Milan empties. July is the last month before the closure — queues are shorter than May–June, most things are still open, and the city still feels alive.",
       year: -18,
@@ -2516,7 +2497,6 @@ export const milanStages: StageConfig[] = [
     challengeType: "quiz",
     wonder: { name: "Milan", location: "Milan, Italy", era: "222 BC", emoji: "🌆" },
     badge: { id: "milan-complete-badge", name: "Milan Completo", emoji: "🌆" },
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Milan_skyline_Porta_Nuova.jpg/1200px-Milan_skyline_Porta_Nuova.jpg",
     info: {
       tagline: "Book the Last Supper first (vivaticket.com, 3 months ahead at midnight CET). Build the rest of your week around that slot.",
       year: -222,

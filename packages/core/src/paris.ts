@@ -24,7 +24,6 @@ export const parisStages: StageConfig[] = [
     challengeType: "quiz",
     wonder: { name: "Paris Métro", location: "Paris, France", era: "1900", emoji: "🚇" },
     badge: { id: "paris-metro-badge", name: "Métro Navigator", emoji: "🚇" },
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Paris_Metro_2_Porte_Dauphine_Libellule.JPG/1200px-Paris_Metro_2_Porte_Dauphine_Libellule.JPG",
     info: {
       tagline: "Buy a Navigo Semaine on Monday — zones 1–5 covers everything including Versailles for one flat weekly price.",
       year: 1900,
@@ -135,7 +134,6 @@ export const parisStages: StageConfig[] = [
     challengeType: "quiz",
     wonder: { name: "Palais Garnier", location: "Place de l'Opéra, 9th arrondissement", era: "1875", emoji: "🎭" },
     badge: { id: "opera-garnier-badge", name: "Phantom's Guest", emoji: "🎭" },
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Paris_Opera_full_frontal_architecture%2C_May_2009.jpg/1200px-Paris_Opera_full_frontal_architecture%2C_May_2009.jpg",
     info: {
       tagline: "Book a self-guided visit (€14) for early afternoon — and don't miss the rooftop view that almost nobody knows exists.",
       year: 1875,
@@ -247,7 +245,6 @@ export const parisStages: StageConfig[] = [
     challengeType: "quiz",
     wonder: { name: "Musée du Louvre", location: "1st arrondissement, Paris", era: "1793", emoji: "🏛️" },
     badge: { id: "louvre-badge", name: "Louvre Initiate", emoji: "🏛️" },
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Louvre_Museum_Wikimedia_Commons.jpg/1200px-Louvre_Museum_Wikimedia_Commons.jpg",
     info: {
       tagline: "Book online (mandatory in July, €22) — enter via the Richelieu wing or Porte des Lions, never the pyramid at 10am.",
       year: 1793,
@@ -359,7 +356,6 @@ export const parisStages: StageConfig[] = [
     challengeType: "quiz",
     wonder: { name: "Tour Eiffel", location: "Champ de Mars, 7th arrondissement", era: "1889", emoji: "🗼" },
     badge: { id: "eiffel-badge", name: "Iron Lady Climber", emoji: "🗼" },
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Tour_Eiffel_Wikimedia_Commons_%28cropped%29.jpg/1200px-Tour_Eiffel_Wikimedia_Commons_%28cropped%29.jpg",
     info: {
       tagline: "Summit tickets (€32) sell out weeks ahead in July — book the 9am slot at tickets.toureiffel.paris. Or buy a €14 stair ticket that never sells out.",
       year: 1889,
@@ -471,7 +467,6 @@ export const parisStages: StageConfig[] = [
     challengeType: "quiz",
     wonder: { name: "Hôtel des Invalides", location: "7th arrondissement, Paris", era: "1676", emoji: "⚔️" },
     badge: { id: "invalides-badge", name: "Imperial Guard", emoji: "⚔️" },
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/H%C3%B4tel_des_Invalides_from_the_Eiffel_Tower%2C_23_July_2009.jpg/1200px-H%C3%B4tel_des_Invalides_from_the_Eiffel_Tower%2C_23_July_2009.jpg",
     info: {
       tagline: "Combined Invalides + Musée de l'Armée ticket €15 — go straight to the golden Dôme church for Napoleon's tomb, skip the army museum unless you have 3 extra hours.",
       year: 1676,
@@ -583,7 +578,6 @@ export const parisStages: StageConfig[] = [
     challengeType: "quiz",
     wonder: { name: "Musée Rodin", location: "79 Rue de Varenne, 7th arrondissement", era: "1919", emoji: "🗿" },
     badge: { id: "rodin-badge", name: "The Thinker", emoji: "🗿" },
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Le_penseur_de_la_Porte_de_lEnfer_%28mus%C3%A9e_Rodin%29_%284528252054%29.jpg/1200px-Le_penseur_de_la_Porte_de_lEnfer_%28mus%C3%A9e_Rodin%29_%284528252054%29.jpg",
     info: {
       tagline: "The €4 garden-only ticket is the July secret — bring a picnic, sit with The Thinker, and you have one of the best 2 hours in Paris for almost nothing.",
       year: 1919,
@@ -695,7 +689,6 @@ export const parisStages: StageConfig[] = [
     challengeType: "quiz",
     wonder: { name: "Musée d'Orsay", location: "1 Rue de la Légion d'Honneur, 7th arrondissement", era: "1900", emoji: "🎨" },
     badge: { id: "orsay-badge", name: "Impressionist", emoji: "🎨" },
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/MuseeDOrsay.jpg/1200px-MuseeDOrsay.jpg",
     info: {
       tagline: "Go Thursday evening (open until 9:45pm) — half the crowds, same masterpieces, and the giant clock windows glow in the setting sun.",
       year: 1900,
@@ -807,7 +800,6 @@ export const parisStages: StageConfig[] = [
     challengeType: "quiz",
     wonder: { name: "Saint-Germain-des-Prés", location: "6th arrondissement, Paris", era: "542", emoji: "☕" },
     badge: { id: "saint-germain-badge", name: "Left Bank Regular", emoji: "☕" },
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Abbaye_de_Saint-Germain-des-Pr%C3%A9s_140131_1.jpg/1200px-Abbaye_de_Saint-Germain-des-Pr%C3%A9s_140131_1.jpg",
     info: {
       tagline: "Café de Flore and Les Deux Magots are fine for the spectacle — but pay €8 for the experience, not the espresso. Poilâne bakery at 8am is the real reason to come.",
       year: 542,
@@ -919,7 +911,6 @@ export const parisStages: StageConfig[] = [
     challengeType: "quiz",
     wonder: { name: "Jardin du Luxembourg", location: "6th arrondissement, Paris", era: "1612", emoji: "🌳" },
     badge: { id: "luxembourg-badge", name: "Garden Regular", emoji: "🌳" },
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Jardin_du_Luxembourg_1.jpg/1200px-Jardin_du_Luxembourg_1.jpg",
     info: {
       tagline: "Bring a picnic from Rue Mouffetard market, claim a green metal chair by the Fontaine de Médicis, and you have the best 2 hours in Paris for zero euros.",
       year: 1612,
@@ -1031,7 +1022,6 @@ export const parisStages: StageConfig[] = [
     challengeType: "quiz",
     wonder: { name: "Cathédrale Notre-Dame de Paris", location: "Île de la Cité, 4th arrondissement", era: "1163", emoji: "⛪" },
     badge: { id: "notre-dame-badge", name: "Cathedral Keeper", emoji: "⛪" },
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Notre_Dame_de_Paris.jpg/800px-Notre_Dame_de_Paris.jpg",
     info: {
       tagline: "Timed entry is free but mandatory — book at notredamedeparis.fr weeks ahead for July. Combine with Sainte-Chapelle (5-min walk, same island) which needs its own ticket.",
       year: 1163,
@@ -1143,7 +1133,6 @@ export const parisStages: StageConfig[] = [
     challengeType: "quiz",
     wonder: { name: "Île Saint-Louis", location: "4th arrondissement, Paris", era: "1614", emoji: "🏝️" },
     badge: { id: "ile-saint-louis-badge", name: "Island Wanderer", emoji: "🏝️" },
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Sainte-Chapelle_01.jpg/800px-Sainte-Chapelle_01.jpg",
     info: {
       tagline: "Berthillon ice cream on Île Saint-Louis: queue before noon. Sainte-Chapelle next door on the Île de la Cité: arrive at 9am for the stained glass before tour groups fill the chapel.",
       year: 1614,
@@ -1255,7 +1244,6 @@ export const parisStages: StageConfig[] = [
     challengeType: "quiz",
     wonder: { name: "Le Marais", location: "3rd and 4th arrondissements, Paris", era: "1240", emoji: "🏰" },
     badge: { id: "marais-badge", name: "Marais Regular", emoji: "🏰" },
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Place_des_Vosges_in_le_Marais_in_Paris.jpg/1200px-Place_des_Vosges_in_le_Marais_in_Paris.jpg",
     info: {
       tagline: "Plan your Sunday in Le Marais — most of Paris shuts down, but Le Marais shops, galleries, and cafés are open. Place des Vosges is under arcades and shaded.",
       year: 1240,
@@ -1367,7 +1355,6 @@ export const parisStages: StageConfig[] = [
     challengeType: "quiz",
     wonder: { name: "Place de la Bastille", location: "11th–12th arrondissements, Paris", era: "1789", emoji: "🎆" },
     badge: { id: "bastille-badge", name: "Liberté", emoji: "🎆" },
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Colonne_de_Juillet%2C_place_de_la_Bastille%2C_Paris_2016.jpg/800px-Colonne_de_Juillet%2C_place_de_la_Bastille%2C_Paris_2016.jpg",
     info: {
       tagline: "Bastille Day fireworks from Trocadéro at 11pm on July 14. The Bal des Pompiers at Place de la Bastille on July 13 and 14 is free, extraordinary, and very few tourists know about it.",
       year: 1789,
@@ -1479,7 +1466,6 @@ export const parisStages: StageConfig[] = [
     challengeType: "quiz",
     wonder: { name: "Parc de Belleville", location: "20th arrondissement, Paris", era: "1860", emoji: "🌇" },
     badge: { id: "belleville-badge", name: "Hilltop View", emoji: "🌇" },
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Belleville-Paris.jpg/1200px-Belleville-Paris.jpg",
     info: {
       tagline: "Parc de Belleville free panoramic view is best at 7am (golden light, no crowds) or sunset. Tuesday and Friday street market on Rue de Belleville: arrive by 9am.",
       year: 1860,
@@ -1591,7 +1577,6 @@ export const parisStages: StageConfig[] = [
     challengeType: "quiz",
     wonder: { name: "Passage Jouffroy", location: "10–12 Boulevard Montmartre, 9th arrondissement", era: "1845", emoji: "🏪" },
     badge: { id: "passages-badge", name: "Arcade Walker", emoji: "🏪" },
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Galerie_vivienne_paris.jpg/800px-Galerie_vivienne_paris.jpg",
     info: {
       tagline: "All passages are free to enter. The best three form a 30-minute loop from Metro Grands Boulevards: Passage Jouffroy → Passage Verdeau → Galerie Vivienne. Do it on a rainy day or a Tuesday when everything else is closed.",
       year: 1845,
@@ -1703,7 +1688,6 @@ export const parisStages: StageConfig[] = [
     challengeType: "quiz",
     wonder: { name: "Cimetière du Père Lachaise", location: "20th arrondissement, Paris", era: "1804", emoji: "🪦" },
     badge: { id: "pere-lachaise-badge", name: "Cemetery Guide", emoji: "🪦" },
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Paris_-_Cimetiere_du_Pere_Lachaise_-_Division_96_-_vue_d%27ensemble.jpg/1200px-Paris_-_Cimetiere_du_Pere_Lachaise_-_Division_96_-_vue_d%27ensemble.jpg",
     info: {
       tagline: "Free entry. Get the grave map at the Philippe Auguste main entrance gate — not the side gates. Jim Morrison's grave is Division 6 and always crowded; Édith Piaf (Division 97) and Chopin (Division 11) are far more moving and quieter.",
       year: 1804,
@@ -1815,7 +1799,6 @@ export const parisStages: StageConfig[] = [
     challengeType: "quiz",
     wonder: { name: "Marché d'Aligre", location: "Place d'Aligre, 12th arrondissement", era: "1779", emoji: "🥖" },
     badge: { id: "aligre-badge", name: "Market Regular", emoji: "🥖" },
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/March%C3%A9_d%27Aligre_001.jpg/1200px-March%C3%A9_d%27Aligre_001.jpg",
     info: {
       tagline: "Saturday 8–11am is the window. Le Baron Rouge wine bar next door opens at 10am — a glass of wine and oysters at the standing bar, 10am on Saturday, is a Paris ritual you will never forget.",
       year: 1779,
@@ -1927,7 +1910,6 @@ export const parisStages: StageConfig[] = [
     challengeType: "quiz",
     wonder: { name: "Canal Saint-Martin", location: "10th arrondissement, Paris", era: "1825", emoji: "⛵" },
     badge: { id: "canal-badge", name: "Quayside Regular", emoji: "⛵" },
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Canal_saint_martin_quay.jpg/1200px-Canal_saint_martin_quay.jpg",
     info: {
       tagline: "The canal towpath from Rue de la Grange-aux-Belles south to Place de la République is a 30-minute flat walk. Best 5–7pm when locals arrive after work. Chez Prune on the canal has the best terrace.",
       year: 1825,
@@ -2039,7 +2021,6 @@ export const parisStages: StageConfig[] = [
     challengeType: "quiz",
     wonder: { name: "Château de Versailles", location: "Versailles, Île-de-France", era: "1682", emoji: "👑" },
     badge: { id: "versailles-badge", name: "Court of the Sun King", emoji: "👑" },
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Ch%C3%A2teau_de_Versailles%2C_17_June_2012.jpg/1200px-Ch%C3%A2teau_de_Versailles%2C_17_June_2012.jpg",
     info: {
       tagline: "RER C from any central station (Musée d'Orsay, Saint-Michel) in 40 minutes. Navigo weekly pass covers the journey. Book a timed entry slot at en.chateauversailles.fr weeks ahead for July.",
       year: 1682,
@@ -2151,7 +2132,6 @@ export const parisStages: StageConfig[] = [
     challengeType: "quiz",
     wonder: { name: "Basilique du Sacré-Cœur de Montmartre", location: "Montmartre, 18th arrondissement", era: "1914", emoji: "⛪" },
     badge: { id: "montmartre-badge", name: "Hilltop Pilgrim", emoji: "⛪" },
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Sacre-Coeur-Montmartre.jpg/800px-Sacre-Coeur-Montmartre.jpg",
     info: {
       tagline: "Climb via the stairs on the east side (Rue du Chevalier de la Barre) to avoid the funicular queue — then stay on the parvis at 9:30pm in July for the finest free sunset in Paris.",
       year: 1914,
