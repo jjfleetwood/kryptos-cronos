@@ -113,7 +113,7 @@ const TRACK_STYLE: Record<string, { icon: string; color: string }> = {
   enterprise:       { icon: "🌐", color: "#6366f1" },
   crafts:           { icon: "🧵", color: "#ec4899" },
   driving:          { icon: "🚗", color: "#f97316" },
-  sports:           { icon: "🏅", color: "#ef4444" },
+  sports:           { icon: "⚾", color: "#22c55e" },
   travel:           { icon: "✈️", color: "#14b8a6" },
   debate:           { icon: "🗣️", color: "#a78bfa" },
 };
