@@ -12,6 +12,11 @@ import { getDomainsForStage } from "@kryptos/core/cyberops-domains";
 import { getCertBadgesForStage } from "@kryptos/core/cert-domains";
 import { useLocale } from "@/contexts/LocaleContext";
 
+// Local, always-available branded placeholder. External image hosts (Wikimedia)
+// now reject on-demand thumbnail hotlinking, so every stage image falls back to
+// this on error; debate stages use it as their default visual.
+const STAGE_PLACEHOLDER = "/stage-placeholder.svg";
+
 const categoryColors: Record<string, string> = {
   cybersecurity: "text-cyan-400 bg-cyan-400/10 border-cyan-400/30",
   ai: "text-purple-400 bg-purple-400/10 border-purple-400/30",
@@ -435,9 +440,18 @@ export default function StageInfo({
               />
             ))}
           </div>
-          {stage.image && (
+          {(stage.image || stage.epochId?.startsWith("debate-")) && (
             <div className="mt-5 rounded-xl overflow-hidden border border-white/10">
-              <img src={stage.image} alt={stage.title} className="w-full object-cover max-h-72" loading="lazy" />
+              <img
+                src={stage.image ?? STAGE_PLACEHOLDER}
+                alt={stage.title}
+                className="w-full object-cover max-h-72"
+                loading="lazy"
+                onError={(e) => {
+                  const img = e.currentTarget;
+                  if (!img.src.endsWith(STAGE_PLACEHOLDER)) img.src = STAGE_PLACEHOLDER;
+                }}
+              />
             </div>
           )}
         </section>
