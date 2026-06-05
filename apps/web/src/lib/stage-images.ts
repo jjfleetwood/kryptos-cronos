@@ -2,6 +2,18 @@
 // image self-hosting effort: external hosts (Wikimedia) now block on-demand
 // thumbnail hotlinking, so images are downloaded once and served locally. This
 // map takes precedence over any `image` URL in the stage config. Credits: /attribution.
+
+// Small, optional image tied to a stage's historical timeline moment — shown
+// beside the timeline section (visual-learner aid). Keyed by stageId.
+export const TIMELINE_IMAGES: Record<string, string> = {
+  "ai-ml-foundations-01": "/img/ai-ml-foundations-01-tl.jpg",
+  "ai-ml-foundations-02": "/img/ai-ml-foundations-02-tl.jpg",
+  "ai-ml-foundations-03": "/img/ai-ml-foundations-03-tl.jpg",
+  "ai-ml-foundations-04": "/img/ai-ml-foundations-04-tl.jpg",
+  "ai-ml-foundations-05": "/img/ai-ml-foundations-05-tl.jpg",
+  "ai-ml-foundations-06": "/img/ai-ml-foundations-06-tl.jpg",
+};
+
 export const STAGE_IMAGES: Record<string, string> = {
   "ai-ml-foundations-01": "/img/ai-ml-foundations-01.jpg",
   "ai-ml-foundations-02": "/img/ai-ml-foundations-02.jpg",

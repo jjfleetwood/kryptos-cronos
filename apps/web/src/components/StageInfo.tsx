@@ -11,7 +11,7 @@ import { stageDownloads } from "@kryptos/core/stage-downloads";
 import { getDomainsForStage } from "@kryptos/core/cyberops-domains";
 import { getCertBadgesForStage } from "@kryptos/core/cert-domains";
 import { useLocale } from "@/contexts/LocaleContext";
-import { STAGE_IMAGES } from "@/lib/stage-images";
+import { STAGE_IMAGES, TIMELINE_IMAGES } from "@/lib/stage-images";
 
 // Local, always-available branded placeholder. External image hosts (Wikimedia)
 // now reject on-demand thumbnail hotlinking, so every stage image falls back to
@@ -478,13 +478,27 @@ export default function StageInfo({
           )}
         </section>
 
-        {/* ── Attack Flow ───────────────────────────────────────────────────── */}
-        <section className="mb-10">
-          <SectionHeader color="text-rose-400" icon={theme.flowIcon} label={t(theme.flow)} />
-          <div className="bg-white/2 border border-white/8 rounded-xl p-6">
-            <AttackDiagram nodes={info.diagram.nodes} category={stage.category} />
-          </div>
-        </section>
+        {/* ── Flow — attack chain for exploit (CTF) stages, concept flow otherwise ── */}
+        {(() => {
+          const attackMode = stage.challengeType === "ctf";
+          const isSecCat = ["cybersecurity", "ai", "owasp"].includes(stage.category);
+          const flowLabel = attackMode || !isSecCat ? t(theme.flow) : t("stage.flow.default");
+          const flowIcon = attackMode ? theme.flowIcon : isSecCat ? "🧭" : theme.flowIcon;
+          const flowColor = attackMode ? "text-rose-400" : "text-cyan-400";
+          return (
+            <section className="mb-10">
+              <SectionHeader color={flowColor} icon={flowIcon} label={flowLabel} />
+              {!attackMode && (
+                <p className="text-xs text-gray-500 mb-4 -mt-2 leading-relaxed">
+                  How the ideas above connect — follow the steps left to right.
+                </p>
+              )}
+              <div className="bg-white/2 border border-white/8 rounded-xl p-6">
+                <AttackDiagram nodes={info.diagram.nodes} category={stage.category} attack={attackMode} />
+              </div>
+            </section>
+          );
+        })()}
 
         {/* ── Technical Deep-Dive ───────────────────────────────────────────── */}
         <section className="mb-10">
@@ -580,7 +594,22 @@ export default function StageInfo({
         {/* ── Timeline ──────────────────────────────────────────────────────── */}
         <section className="mb-10">
           <SectionHeader color="text-amber-400" icon="🕰" label={t("stage.timeline")} />
-          <div className="relative pl-5">
+          <div className="flex flex-col sm:flex-row gap-5">
+          {TIMELINE_IMAGES[stage.id] && (
+            <figure className="order-first sm:order-last sm:w-44 flex-shrink-0 sm:pt-1">
+              <div className="rounded-xl overflow-hidden border border-amber-500/20 ring-1 ring-white/5 bg-black/30 flex justify-center">
+                <img
+                  src={TIMELINE_IMAGES[stage.id]}
+                  alt={`${stage.title} — timeline moment`}
+                  className="w-full max-h-44 object-contain"
+                  loading="lazy"
+                  onError={(e) => { const fig = e.currentTarget.closest("figure"); if (fig) (fig as HTMLElement).style.display = "none"; }}
+                />
+              </div>
+              <figcaption className="mt-1.5 text-center text-[10px] text-gray-600">A moment from the timeline</figcaption>
+            </figure>
+          )}
+          <div className="relative pl-5 flex-1">
             <div className="absolute left-[7px] top-2 bottom-2 w-px bg-gradient-to-b from-amber-500/40 via-white/10 to-transparent" />
             <div className="space-y-5">
               {info.timeline.map((entry, i) => (
@@ -605,6 +634,7 @@ export default function StageInfo({
                 </div>
               ))}
             </div>
+          </div>
           </div>
         </section>
 
