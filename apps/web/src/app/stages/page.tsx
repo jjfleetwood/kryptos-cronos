@@ -103,6 +103,37 @@ const extendedGroups = [
   },
 ];
 
+// ── Per-track visual style (bolder, more-visible labels) ──────────────────────
+const TRACK_STYLE: Record<string, { icon: string; color: string }> = {
+  coreSecurity:     { icon: "🏛️", color: "#fbbf24" },
+  techAudit:        { icon: "📋", color: "#3b82f6" },
+  threatFrameworks: { icon: "🎯", color: "#ef4444" },
+  aiSecurity:       { icon: "🤖", color: "#a855f7" },
+  quantumEra:       { icon: "⚛️", color: "#22d3ee" },
+  enterprise:       { icon: "🌐", color: "#6366f1" },
+  crafts:           { icon: "🧵", color: "#ec4899" },
+  driving:          { icon: "🚗", color: "#f97316" },
+  sports:           { icon: "🏅", color: "#ef4444" },
+  travel:           { icon: "✈️", color: "#14b8a6" },
+  debate:           { icon: "🗣️", color: "#a78bfa" },
+};
+const DEFAULT_STYLE = { icon: "📦", color: "#9ca3af" };
+
+// Tracks whose epochs read better split into sub-categories — rendered as labeled
+// left-to-right rows, under an optional sub-label between the track and the rows.
+type SubGroup = { label: string; ids: string[] };
+const TRACK_SUBLABEL: Record<string, { icon: string; text: string }> = {
+  sports: { icon: "⚾", text: "Baseball" },
+};
+const TRACK_SUBGROUPS: Record<string, SubGroup[]> = {
+  sports: [
+    { label: "Fundamentals", ids: ["baseball-1"] },
+    { label: "Hitting", ids: ["baseball-2", "baseball-3", "baseball-4"] },
+    { label: "Pitching", ids: ["baseball-5", "baseball-6", "baseball-7"] },
+    { label: "Positions", ids: ["baseball-8", "baseball-9", "baseball-10", "baseball-11", "baseball-12", "baseball-13", "baseball-14", "baseball-15"] },
+  ],
+};
+
 // ── Epochs allowed per user group ─────────────────────────────────────────────
 // career = Security tracks | curious = full curriculum (security + non-security)
 // Mirrors filterStagesByGroup in epoch page: career and curious are equivalent
@@ -199,6 +230,49 @@ export default function StagesPage() {
     }))
     .filter((track) => track.visibleEpochIds.length > 0);
   const firstExtendedIdx = visibleTracks.findIndex((t) => t.isExtended);
+
+  function renderCard(epoch: (typeof epochs)[number]) {
+    const ea = epochAccent[epoch.id] ?? epochAccent.ancient;
+    const stageCount = allStages.filter((s) => s.epochId === epoch.id).length;
+    const doneCount = allStages.filter((s) => s.epochId === epoch.id && completedStages.includes(s.id)).length;
+    const pct = stageCount > 0 ? (doneCount / stageCount) * 100 : 0;
+    const done = doneCount === stageCount && stageCount > 0;
+    return (
+      <Link
+        key={epoch.id}
+        href={`/stages/epoch/${epoch.id}`}
+        className={`group relative flex items-center gap-3 px-4 py-3.5 rounded-xl border transition-all duration-300 hover:-translate-y-0.5 overflow-hidden ${
+          done
+            ? "border-green-500/40 bg-green-500/5 hover:border-green-400/60"
+            : "border-white/10 bg-white/2 hover:border-white/25 hover:bg-white/5"
+        }`}
+      >
+        <span className="text-2xl leading-none flex-shrink-0 transition-transform duration-200 group-hover:scale-110">
+          {epoch.emoji}
+        </span>
+        <div className="flex-1 min-w-0">
+          <div className="flex items-center gap-2 mb-0.5">
+            <span className="text-sm font-semibold text-gray-200 truncate">{epochMetaMap?.[epoch.id]?.n ?? epoch.name}</span>
+            {doneCount > 0 && doneCount < stageCount && (
+              <span className={`text-[10px] font-mono px-1.5 py-0.5 rounded ${ea.tab} flex-shrink-0`}>
+                {doneCount}/{stageCount}
+              </span>
+            )}
+            {done && (
+              <span className="text-[10px] font-mono text-green-400 flex-shrink-0">{t("stages.epochDone")}</span>
+            )}
+          </div>
+          <p className="text-xs text-gray-600 truncate">{epochMetaMap?.[epoch.id]?.s ?? epoch.subtitle}</p>
+          {doneCount > 0 && (
+            <div className="mt-1.5 w-full bg-white/5 rounded-full h-1">
+              <div className={`${ea.bar} h-1 rounded-full transition-all duration-500`} style={{ width: `${pct}%` }} />
+            </div>
+          )}
+        </div>
+        <span className="text-gray-700 group-hover:text-gray-400 transition-colors text-sm flex-shrink-0">→</span>
+      </Link>
+    );
+  }
 
   return (
     <div
@@ -318,66 +392,68 @@ export default function StagesPage() {
                   </div>
                 )}
 
-                {/* Track label */}
-                <div className="flex items-center gap-3 mb-3 pl-1">
-                  <span className="text-[10px] font-mono font-bold text-gray-600 uppercase tracking-widest whitespace-nowrap">
-                    {t(trackGroup.labelKey)}
-                  </span>
-                  <div className="flex-1 h-px bg-white/5" />
-                  <span className="hidden sm:block text-[10px] text-gray-700 whitespace-nowrap">{t(trackGroup.descKey)}</span>
-                </div>
+                {/* Track label — bold, per-track accent */}
+                {(() => {
+                  const ts = TRACK_STYLE[trackGroup.id] ?? DEFAULT_STYLE;
+                  return (
+                    <div className="mb-3">
+                      <div className="flex items-center gap-2.5 mb-0.5">
+                        <span className="text-lg leading-none">{ts.icon}</span>
+                        <span className="text-lg font-bold text-white tracking-tight">{t(trackGroup.labelKey)}</span>
+                        <div className="flex-1 h-px" style={{ background: `linear-gradient(to right, ${ts.color}59, transparent)` }} />
+                      </div>
+                      <p className="text-[11px] text-gray-500 pl-8">{t(trackGroup.descKey)}</p>
+                    </div>
+                  );
+                })()}
 
-                {/* Epoch cards */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 pl-4">
-                  {trackEpochs.map((epoch) => {
-                    const ea = epochAccent[epoch.id] ?? epochAccent.ancient;
-                    const stageCount = allStages.filter((s) => s.epochId === epoch.id).length;
-                    const doneCount = allStages.filter(
-                      (s) => s.epochId === epoch.id && completedStages.includes(s.id)
-                    ).length;
-                    const pct = stageCount > 0 ? (doneCount / stageCount) * 100 : 0;
-                    const done = doneCount === stageCount && stageCount > 0;
-
+                {/* Epoch cards — grouped rows where a track defines sub-categories, else grid */}
+                {(() => {
+                  const ts = TRACK_STYLE[trackGroup.id] ?? DEFAULT_STYLE;
+                  const subGroups = TRACK_SUBGROUPS[trackGroup.id];
+                  if (subGroups) {
+                    const visibleSet = new Set(trackGroup.visibleEpochIds);
+                    const subLabel = TRACK_SUBLABEL[trackGroup.id];
+                    const totalStages = trackEpochs.reduce((n, e) => n + allStages.filter((s) => s.epochId === e.id).length, 0);
                     return (
-                      <Link
-                        key={epoch.id}
-                        href={`/stages/epoch/${epoch.id}`}
-                        className={`group relative flex items-center gap-3 px-4 py-3.5 rounded-xl border transition-all duration-300 hover:-translate-y-0.5 overflow-hidden ${
-                          done
-                            ? "border-green-500/40 bg-green-500/5 hover:border-green-400/60"
-                            : "border-white/10 bg-white/2 hover:border-white/25 hover:bg-white/5"
-                        }`}
-                      >
-                        <span className="text-2xl leading-none flex-shrink-0 transition-transform duration-200 group-hover:scale-110">
-                          {epoch.emoji}
-                        </span>
-                        <div className="flex-1 min-w-0">
-                          <div className="flex items-center gap-2 mb-0.5">
-                            <span className="text-sm font-semibold text-gray-200 truncate">{epochMetaMap?.[epoch.id]?.n ?? epoch.name}</span>
-                            {doneCount > 0 && doneCount < stageCount && (
-                              <span className={`text-[10px] font-mono px-1.5 py-0.5 rounded ${ea.tab} flex-shrink-0`}>
-                                {doneCount}/{stageCount}
-                              </span>
-                            )}
-                            {done && (
-                              <span className="text-[10px] font-mono text-green-400 flex-shrink-0">{t("stages.epochDone")}</span>
-                            )}
+                      <div className="pl-4">
+                        {subLabel && (
+                          <div className="flex items-center gap-2 mb-4">
+                            <span className="text-sm leading-none">{subLabel.icon}</span>
+                            <span className="text-sm font-bold uppercase tracking-wider" style={{ color: ts.color }}>{subLabel.text}</span>
+                            <span className="text-[11px] text-gray-600">· {trackEpochs.length} epochs · {totalStages} stages</span>
                           </div>
-                          <p className="text-xs text-gray-600 truncate">{epochMetaMap?.[epoch.id]?.s ?? epoch.subtitle}</p>
-                          {doneCount > 0 && (
-                            <div className="mt-1.5 w-full bg-white/5 rounded-full h-1">
-                              <div
-                                className={`${ea.bar} h-1 rounded-full transition-all duration-500`}
-                                style={{ width: `${pct}%` }}
-                              />
-                            </div>
-                          )}
+                        )}
+                        <div className="space-y-4">
+                          {subGroups.map((sg) => {
+                            const sgEpochs = sg.ids
+                              .filter((id) => visibleSet.has(id))
+                              .map((id) => epochs.find((e) => e.id === id))
+                              .filter(Boolean) as typeof epochs;
+                            if (sgEpochs.length === 0) return null;
+                            return (
+                              <div key={sg.label} className="flex flex-col sm:flex-row sm:items-start gap-1.5 sm:gap-4">
+                                <div className="sm:w-24 sm:pt-3 flex-shrink-0">
+                                  <span className="text-[11px] font-mono font-bold uppercase tracking-widest" style={{ color: ts.color }}>{sg.label}</span>
+                                </div>
+                                <div className="flex flex-wrap gap-3 flex-1">
+                                  {sgEpochs.map((epoch) => (
+                                    <div key={epoch.id} className="w-full sm:w-[250px]">{renderCard(epoch)}</div>
+                                  ))}
+                                </div>
+                              </div>
+                            );
+                          })}
                         </div>
-                        <span className="text-gray-700 group-hover:text-gray-400 transition-colors text-sm flex-shrink-0">→</span>
-                      </Link>
+                      </div>
                     );
-                  })}
-                </div>
+                  }
+                  return (
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 pl-4">
+                      {trackEpochs.map((epoch) => renderCard(epoch))}
+                    </div>
+                  );
+                })()}
               </div>
             );
           })}
