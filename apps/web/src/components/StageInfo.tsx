@@ -456,18 +456,25 @@ export default function StageInfo({
             ))}
           </div>
           {(STAGE_IMAGES[stage.id] ?? stage.image ?? DEBATE_EPOCH_IMAGE[stage.epochId]) && (
-            <div className="mt-5 rounded-xl overflow-hidden border border-white/10 bg-black/30 flex justify-center">
-              <img
-                src={STAGE_IMAGES[stage.id] ?? stage.image ?? DEBATE_EPOCH_IMAGE[stage.epochId] ?? STAGE_PLACEHOLDER}
-                alt={stage.title}
-                className="max-h-72 max-w-full w-auto object-contain"
-                loading="lazy"
-                onError={(e) => {
-                  const img = e.currentTarget;
-                  if (!img.src.endsWith(STAGE_PLACEHOLDER)) img.src = STAGE_PLACEHOLDER;
-                }}
-              />
-            </div>
+            <figure className="mt-6 group">
+              <div className="relative rounded-2xl overflow-hidden border border-white/10 ring-1 ring-white/5 bg-gradient-to-b from-white/[0.06] to-black/40 shadow-[0_10px_45px_rgba(0,0,0,0.45)]">
+                <img
+                  src={STAGE_IMAGES[stage.id] ?? stage.image ?? DEBATE_EPOCH_IMAGE[stage.epochId] ?? STAGE_PLACEHOLDER}
+                  alt={stage.title}
+                  className="w-full max-h-[26rem] object-contain mx-auto transition-transform duration-700 ease-out group-hover:scale-[1.02]"
+                  loading="lazy"
+                  onError={(e) => {
+                    const img = e.currentTarget;
+                    if (!img.src.endsWith(STAGE_PLACEHOLDER)) img.src = STAGE_PLACEHOLDER;
+                  }}
+                />
+                <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black/40 to-transparent" />
+              </div>
+              <figcaption className="mt-2.5 flex items-center justify-center gap-1.5 text-center text-xs text-gray-600">
+                <span>{stage.wonder.emoji}</span>
+                <span>{stage.wonder.name} · {stage.wonder.location}</span>
+              </figcaption>
+            </figure>
           )}
         </section>
 
