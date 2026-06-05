@@ -12,6 +12,7 @@ const VALID_CERTS: CertId[] = [
 const EXAM_CONFIG = {
   dmv: { count: 36, durationSec: 30 * 60, passPct: 83 },
   cert: { count: 30, durationSec: 30 * 60, passPct: 75 },
+  debate: { count: 30, durationSec: 30 * 60, passPct: 75 },
 } as const;
 
 function shuffle<T>(arr: readonly T[]): T[] {
@@ -25,6 +26,7 @@ function shuffle<T>(arr: readonly T[]): T[] {
 
 function parseMode(body: Record<string, unknown>): ExamMode | null {
   if (body.mode === "dmv") return { kind: "dmv" };
+  if (body.mode === "debate") return { kind: "debate" };
   if (body.mode === "cert" && typeof body.certId === "string" && VALID_CERTS.includes(body.certId as CertId)) {
     return { kind: "cert", certId: body.certId as CertId };
   }
@@ -73,7 +75,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "no questions available for this exam yet", questions: [] }, { status: 200 });
   }
 
-  const cfg = mode.kind === "dmv" ? EXAM_CONFIG.dmv : EXAM_CONFIG.cert;
+  const cfg = EXAM_CONFIG[mode.kind];
   const count = Math.min(cfg.count, bank.length);
   const picked = shuffle(bank).slice(0, count);
 

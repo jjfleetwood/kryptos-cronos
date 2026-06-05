@@ -35,7 +35,7 @@ export default function ExamRunner({
   accentBtn = "bg-cyan-500 hover:bg-cyan-400",
   accentBorder = "border-cyan-500/40",
 }: {
-  mode: "dmv" | "cert";
+  mode: "dmv" | "cert" | "debate";
   certId?: string;
   title: string;
   subtitle: string;

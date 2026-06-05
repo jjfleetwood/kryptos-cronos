@@ -149,13 +149,21 @@ export default function DebatePage() {
                     : "Degrees advance as you complete debate stages, mirroring the NSDA points ladder."}
               </p>
             </div>
-            <Link
-              href="/stages/epoch/debate-1"
-              className="flex-shrink-0 px-5 py-2 rounded-xl text-sm font-bold text-black transition-all hover:scale-105"
-              style={{ background: "linear-gradient(90deg, #38bdf8, #a78bfa)" }}
-            >
-              Train →
-            </Link>
+            <div className="flex-shrink-0 flex items-center gap-2">
+              <Link
+                href="/exam/debate"
+                className="px-4 py-2 rounded-xl text-sm font-bold text-purple-300 border border-purple-500/40 hover:bg-purple-500/10 transition-all"
+              >
+                🎓 Exam
+              </Link>
+              <Link
+                href="/stages/epoch/debate-1"
+                className="px-5 py-2 rounded-xl text-sm font-bold text-black transition-all hover:scale-105"
+                style={{ background: "linear-gradient(90deg, #38bdf8, #a78bfa)" }}
+              >
+                Train →
+              </Link>
+            </div>
           </div>
         </div>
 

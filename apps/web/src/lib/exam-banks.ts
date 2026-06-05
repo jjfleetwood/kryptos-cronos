@@ -11,7 +11,8 @@ export type ExamSource = { stageId: string; question: QuizQuestion };
 
 export type ExamMode =
   | { kind: "dmv" }
-  | { kind: "cert"; certId: CertId };
+  | { kind: "cert"; certId: CertId }
+  | { kind: "debate" };
 
 const DRIVING_EPOCHS = ["driving-1", "driving-2", "driving-3"];
 
@@ -29,6 +30,10 @@ function collectQuestions(stageIds: Set<string>): ExamSource[] {
 export function getExamBank(mode: ExamMode): ExamSource[] {
   if (mode.kind === "dmv") {
     const ids = new Set(stages.filter((s) => DRIVING_EPOCHS.includes(s.epochId)).map((s) => s.id));
+    return collectQuestions(ids);
+  }
+  if (mode.kind === "debate") {
+    const ids = new Set(stages.filter((s) => s.epochId.startsWith("debate-")).map((s) => s.id));
     return collectQuestions(ids);
   }
   return collectQuestions(new Set(getStagesForCert(mode.certId)));
