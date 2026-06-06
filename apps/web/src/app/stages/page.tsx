@@ -101,6 +101,12 @@ const extendedGroups = [
     descKey: "stages.tracks.debateDesc",
     epochIds: ["debate-1", "debate-2", "debate-3", "debate-4", "debate-5", "debate-6", "debate-7", "debate-8"],
   },
+  {
+    id: "flagFootball",
+    labelKey: "stages.tracks.flagFootball",
+    descKey: "stages.tracks.flagFootballDesc",
+    epochIds: ["flag-football"],
+  },
 ];
 
 // ── Per-track visual style (bolder, more-visible labels) ──────────────────────
@@ -116,6 +122,7 @@ const TRACK_STYLE: Record<string, { icon: string; color: string }> = {
   sports:           { icon: "⚾", color: "#22c55e" },
   travel:           { icon: "✈️", color: "#14b8a6" },
   debate:           { icon: "🗣️", color: "#a78bfa" },
+  flagFootball:     { icon: "🏈", color: "#34d399" },
 };
 const DEFAULT_STYLE = { icon: "📦", color: "#9ca3af" };
 
@@ -157,6 +164,7 @@ const NON_SECURITY_EPOCHS = new Set([
   "baseball-1", "baseball-2", "baseball-3", "baseball-4", "baseball-5", "baseball-6", "baseball-7",
   "paris-july", "milan-july", "french-basics", "italian-basics",
   "debate-1", "debate-2", "debate-3", "debate-4", "debate-5", "debate-6", "debate-7", "debate-8",
+  "flag-football",
 ]);
 const ALL_EPOCHS = new Set([...SECURITY_EPOCHS, ...NON_SECURITY_EPOCHS]);
 const GROUP_EPOCHS: Record<string, Set<string>> = {

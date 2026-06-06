@@ -23,6 +23,7 @@ import { siliconFabEpoch, siliconFabStages } from "./silicon-fab";
 import { spaceRaceEpoch, spaceRaceStages } from "./space-race";
 import { vehicleSecEpoch, vehicleSecStages } from "./vehicle-sec";
 import { robotSecEpoch, robotSecStages } from "./robot-sec";
+import { flagFootballEpoch, flagFootballStages } from "./flag-football";
 import { physicsOfHackingEpoch, physicsOfHackingStages } from "./physics-of-hacking";
 import { emergingTechEpoch, emergingTechStages } from "./emerging-tech";
 import { cisco2Stages } from "./cisco-2";
@@ -137,6 +138,7 @@ export const epochs: EpochConfig[] = [
   spaceRaceEpoch,
   vehicleSecEpoch,
   robotSecEpoch,
+  flagFootballEpoch,
   physicsOfHackingEpoch,
   emergingTechEpoch,
   umbrellaEpoch,
@@ -201,6 +203,7 @@ export const stages: StageConfig[] = [
   ...spaceRaceStages,
   ...vehicleSecStages,
   ...robotSecStages,
+  ...flagFootballStages,
   ...physicsOfHackingStages,
   ...emergingTechStages,
   ...umbrellaStages,

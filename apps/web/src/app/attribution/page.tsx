@@ -203,6 +203,30 @@ const ROBOT_IMAGE_CREDITS = [
   { stage: "10", device: "Air-Cobot collaborative robot", file: "Air-Cobot.jpg", author: "Stanislas Larnier", license: "CC BY-SA 4.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/", url: "https://commons.wikimedia.org/wiki/File:RFIA2016_Air-Cobot_Jeremy_Frejaville.jpg" },
 ];
 
+// Per-file credits for the Flag Football imagery (Wikimedia Commons, free licenses).
+const FLAG_IMAGE_CREDITS = [
+  { stage: "01", device: "Flag football action", file: "Flag Football Juke.jpg", author: "JJ hohorst", license: "CC BY-SA 3.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/", url: "https://commons.wikimedia.org/wiki/File:Flag_Football_Juke.jpg" },
+  { stage: "02", device: "Gridiron football players", file: "Football players in Marine training (NARA).jpg", author: "U.S. National Archives", license: "Public domain", licenseUrl: "https://commons.wikimedia.org/wiki/Commons:Public_domain", url: "https://commons.wikimedia.org/wiki/File:Eleven_football_players_who_have_gained_national_recognition_on_the_gridiron_are_now_undergoing_Marine_Corps_training..._-_NARA_-_195315.tif" },
+  { stage: "03", device: "Defensive huddle", file: "Bears-def-huddle-2008.jpg", author: "this-is-us (Flickr)", license: "CC BY 1.0", licenseUrl: "https://creativecommons.org/licenses/by/1.0/", url: "https://commons.wikimedia.org/wiki/File:Bears-def-huddle-2008.jpg" },
+  { stage: "04", device: "Youth flag football", file: "MCAS Yuma Youth Flag Football.jpg", author: "Cpl. Travis Gershaneck, USMC", license: "Public domain", licenseUrl: "https://commons.wikimedia.org/wiki/Commons:Public_domain", url: "https://commons.wikimedia.org/wiki/File:Flagging_Down_the_Fun,_MCAS_Yuma_Youth_Flag_Football_140927-M-SJ585-002.jpg" },
+  { stage: "05", device: "Quarterback throwing", file: "Quarterback throw.jpg", author: "Mickey0987", license: "CC BY-SA 3.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/", url: "https://commons.wikimedia.org/wiki/File:Quarterback_throw_from_Mike..jpg" },
+  { stage: "06", device: "Catching a pass", file: "All-American Bowl practice.jpg", author: "Cpl. Dwight Henderson, USMC", license: "Public domain", licenseUrl: "https://commons.wikimedia.org/wiki/Commons:Public_domain", url: "https://commons.wikimedia.org/wiki/File:Semper_Fidelis_All-American_Bowl_East_team_practice,_Day_1_130104-M-EK802-362.jpg" },
+  { stage: "07", device: "Wide receiver (David Nelson)", file: "David Nelson (American football).JPG", author: "Denverjeffrey", license: "CC BY-SA 3.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/", url: "https://commons.wikimedia.org/wiki/File:David_Nelson_(American_football).JPG" },
+  { stage: "08", device: "Play from scrimmage", file: "Play from scrimmage.jpg", author: "RickyBennison", license: "Public domain", licenseUrl: "https://commons.wikimedia.org/wiki/Commons:Public_domain", url: "https://commons.wikimedia.org/wiki/File:American_Football,_play_from_scrimmage,_isometric_press_and_muscular_preload.jpg" },
+  { stage: "09", device: "Football positions diagram", file: "American Football Positions2.png", author: "Regis Frey", license: "CC BY 3.0", licenseUrl: "https://creativecommons.org/licenses/by/3.0/", url: "https://commons.wikimedia.org/wiki/File:American_Football_Positions2.png" },
+  { stage: "10", device: "Sprinters at the start", file: "Runners to your mark.jpg", author: "Captain Cobra16", license: "CC BY-SA 4.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/", url: "https://commons.wikimedia.org/wiki/File:Runners_to_your_mark.jpg" },
+  { stage: "11", device: "Football scrimmage (formation)", file: "2006 UT football fall scrimmage.JPG", author: "Wikimedia Commons (UT scrimmage)", license: "CC BY 2.5", licenseUrl: "https://creativecommons.org/licenses/by/2.5/", url: "https://commons.wikimedia.org/wiki/File:2006_UT_football_fall_scrimmage.JPG" },
+  { stage: "12", device: "Quarterback (Bob Berry)", file: "Bob Berry (American football).jpg", author: "Cushing Memorial Library & Archives", license: "CC BY 2.0", licenseUrl: "https://creativecommons.org/licenses/by/2.0/", url: "https://commons.wikimedia.org/wiki/File:Bob_Berry_(American_football).jpg" },
+  { stage: "13", device: "Wide receiver (James Jones)", file: "James Jones (wide receiver).JPG", author: "Jeffrey Beall", license: "CC BY-SA 3.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/", url: "https://commons.wikimedia.org/wiki/File:James_Jones_(wide_receiver).JPG" },
+  { stage: "14", device: "7-on-7 quarterback", file: "Boeing Brown 7 v 7 Quarterback 13.jpg", author: "Boeing1990", license: "CC BY-SA 3.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/", url: "https://commons.wikimedia.org/wiki/File:Boeing_Brown_7_v_7_Quarterback_13.jpg" },
+  { stage: "15", device: "Defensive back (1954 card)", file: "Warren Lahr 1954 football card.png", author: "Bowman (public domain)", license: "Public domain", licenseUrl: "https://commons.wikimedia.org/wiki/Commons:Public_domain", url: "https://commons.wikimedia.org/wiki/File:Warren_Lahr,_American_football_defensive_back,_on_a_1954_football_card.png" },
+  { stage: "16", device: "Cornerback sacks the QB", file: "Navy cornerback sack (Houston Bowl).jpg", author: "U.S. Navy", license: "Public domain", licenseUrl: "https://commons.wikimedia.org/wiki/Commons:Public_domain", url: "https://commons.wikimedia.org/wiki/File:US_Navy_031230-N-9693M-009_Navy_cornerback_Shalimar_Brazier_sacks_Texas_Tech_quarterback_B.J._Symons_in_the_2nd_quarter_of_the_EV1.Net_Houston_Bowl_at_Reliant_Stadium_in_Houston,_Texas.jpg" },
+  { stage: "17", device: "Running back (Michael Bennett)", file: "Michael Bennett (running back).JPG", author: "Jeffrey Beall", license: "CC BY-SA 3.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/", url: "https://commons.wikimedia.org/wiki/File:Michael_Bennett_(running_back).JPG" },
+  { stage: "18", device: "Coach (Jimmy Johnson)", file: "Jimmy Johnson (coach) 2009.jpg", author: "SrA Felicia Juenke, USAF", license: "Public domain", licenseUrl: "https://commons.wikimedia.org/wiki/Commons:Public_domain", url: "https://commons.wikimedia.org/wiki/File:Jimmy_Johnson_(American_football_coach)_2009.jpg" },
+  { stage: "19", device: "Strength training (snatch)", file: "Lu Xiaojun snatch training.png", author: "Ccar1278458", license: "CC BY-SA 4.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/", url: "https://commons.wikimedia.org/wiki/File:Lu-Xiaojun-Training-160-kg-snatch-696x502.png" },
+  { stage: "20", device: "American football game", file: "American Football EM 2014 AUT-DEU.JPG", author: "AleXXw", license: "CC BY-SA 3.0 AT", licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/at/", url: "https://commons.wikimedia.org/wiki/File:American_Football_EM_2014_-_AUT-DEU_-_002.JPG" },
+];
+
 export default function AttributionPage() {
   return (
     <div className="min-h-screen px-4 py-16" style={{ background: "linear-gradient(160deg,#040c1e 0%,#071428 60%,#040c1e 100%)" }}>
@@ -342,6 +366,27 @@ export default function AttributionPage() {
             {ROBOT_IMAGE_CREDITS.map((c) => (
               <li key={c.stage} className="text-xs text-gray-400 flex flex-wrap items-center gap-x-2 gap-y-0.5">
                 <span className="text-gray-600 font-mono w-10 flex-shrink-0">R{c.stage}</span>
+                <span className="text-gray-300">{c.device}</span>
+                <span className="text-gray-700">·</span>
+                <a href={c.url} target="_blank" rel="noopener noreferrer" className="text-cyan-500 hover:text-cyan-400 transition-colors">{c.file}</a>
+                <span className="text-gray-700">·</span>
+                <span>© {c.author}</span>
+                <a href={c.licenseUrl} target="_blank" rel="noopener noreferrer" className="text-amber-400 hover:text-amber-300 transition-colors">{c.license} ↗</a>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="mt-12">
+          <h2 className="text-white font-bold text-lg mb-1">Flag Football — imagery</h2>
+          <p className="text-gray-500 text-xs mb-4 leading-relaxed">
+            Photos on the Flag Football stages are from Wikimedia Commons (public domain + Creative
+            Commons), self-hosted and credited to each author below.
+          </p>
+          <ul className="space-y-2 rounded-2xl border border-white/8 p-5" style={{ background: "rgba(255,255,255,0.02)" }}>
+            {FLAG_IMAGE_CREDITS.map((c) => (
+              <li key={c.stage} className="text-xs text-gray-400 flex flex-wrap items-center gap-x-2 gap-y-0.5">
+                <span className="text-gray-600 font-mono w-10 flex-shrink-0">F{c.stage}</span>
                 <span className="text-gray-300">{c.device}</span>
                 <span className="text-gray-700">·</span>
                 <a href={c.url} target="_blank" rel="noopener noreferrer" className="text-cyan-500 hover:text-cyan-400 transition-colors">{c.file}</a>

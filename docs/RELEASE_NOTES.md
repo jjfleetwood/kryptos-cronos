@@ -2,6 +2,17 @@
 
 ---
 
+## v1.35.0 — 2026-06-05
+
+**New epoch: Flag Football (20-stage extended sports track)**
+
+- **`flag-football` — "Flag Football"** (20 quiz stages, flag-01→flag-20, emerald; its own "Flag Football" extended track on `/stages`). Foundations → high-school-level depth across offense, defense, and agility.
+- Foundations (1–10): formats/rules, field & game flow, positions, pulling flags, throwing, catching, routes, offense 101, defense 101 (man/zone), agility & conditioning. Deep (11–20): formations & motion, quarterbacking, receiver craft, route concepts (smash/flood/mesh), defensive coverages (Cover 0–3/match/disguise), the 7-yard pass rush, misdirection, defensive strategy, athletic development, and game IQ + the LA 2028 Olympic pathway.
+- Category "sports", 4-question quizzes, ASCII field/route/coverage diagrams. New i18n keys + 🏈 track style. 20 free-licensed Commons photos credited on `/attribution`.
+- Counts **721→741 stages / 64→65 epochs**.
+
+---
+
 ## v1.34.0 — 2026-06-05
 
 **New epoch: Machines That Move — Robotics & Robot Security (completes the cyber-physical arc)**

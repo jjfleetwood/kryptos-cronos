@@ -2,7 +2,7 @@
 
 ## What This Is
 
-Gamified cybersecurity + AI training platform. 64 curriculum epochs, 721 CTF/quiz stages, live leaderboard, admin dashboard, 24 downloadable MCP server templates. Built with Next.js 16 / React 19 / TypeScript / Tailwind CSS / Upstash Redis / Resend.
+Gamified cybersecurity + AI training platform. 65 curriculum epochs, 741 CTF/quiz stages, live leaderboard, admin dashboard, 24 downloadable MCP server templates. Built with Next.js 16 / React 19 / TypeScript / Tailwind CSS / Upstash Redis / Resend.
 
 **Live:** kryptoscronos.com  
 **Repo:** github.com/jjfleetwood/kryptos-cronos  
@@ -145,6 +145,7 @@ Back navigation: `BackLink` uses `backHref` prop (passed from `StageContainer`) 
 | 62 | `space-race` | Race Through Space (space systems hacking; 6 CTF + 4 quiz) | 10 | space-01 → space-10 | Violet |
 | 63 | `vehicle-sec` | Wired & Autonomous (EV/vehicle security; 6 CTF + 4 quiz) | 10 | vehicle-01 → vehicle-10 | Lime |
 | 64 | `robot-sec` | Machines That Move (robotics security; 6 CTF + 4 quiz) | 10 | robot-01 → robot-10 | Orange |
+| 65 | `flag-football` | Flag Football (extended/sports; foundations → HS-level) | 20 | flag-01 → flag-20 | Emerald |
 | 43 | `physics-of-hacking` | The Physics of Hacking (hardware/physical) | 10 | poh-01 → poh-10 | Pink |
 | 38 | `emerging-tech` | Emerging Tech & Deep Learning Risk | 10 | emerging-01 → emerging-10 | Violet |
 | 16 | `umbrella` | Cisco Umbrella / SASE | 10 | umbrella-01 → umbrella-10 | Green |
@@ -353,6 +354,10 @@ Local dev: `.env.local` in `app/` (gitignored).
 - **Target sponsors:** CrowdStrike, AWS, SentinelOne, CompTIA, ISC²
 
 ---
+
+## What's Shipped (v1.35.0)
+
+- ✅ **New epoch `flag-football` — "Flag Football"** (20 quiz stages, flag-01→flag-20, emerald; new **"Flag Football"** extended track, own group on `/stages`). Foundations (1–10: rules, field, flag-pulling, throwing, catching, routes, offense/defense basics, agility) then deep **high-school level** (11–20: formations & motion, QB reads, receiver craft, route concepts, defensive coverages, the 7-yd pass rush, misdirection, defensive strategy, athletic development, game IQ + the LA 2028 Olympic pathway). Category "sports", 4-question quizzes, ASCII field/route/coverage diagrams. New i18n keys (stages.tracks.flagFootball/Desc) + TRACK_STYLE (🏈). 20 free-licensed Commons photos, credited on `/attribution`. Counts 721→741 stages / 64→65 epochs.
 
 ## What's Shipped (v1.34.0)
 

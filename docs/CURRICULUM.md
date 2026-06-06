@@ -1,7 +1,7 @@
 # Kryptós CronOS — Curriculum Reference
 **Version:** 3.7  
 **Date:** 2026-06-03  
-**Total stages:** 721 across 64 epochs (delivered on **web + native mobile** from the shared `@kryptos/core` content package)
+**Total stages:** 741 across 65 epochs (delivered on **web + native mobile** from the shared `@kryptos/core` content package)
 
 ---
 
@@ -414,6 +414,11 @@ Cyber-physical security of electric, connected, and self-driving vehicles (first
 
 Cyber-physical security of robots, drones, and autonomous machines (second of the arc with vehicles). Foundations → deep tech → deep security: robot anatomy / sense-plan-act (01, quiz); ROS & ROS2/DDS unauthenticated middleware (02, CTF); industrial robot arm / HMI / PLC takeover — "Rogue Robots" (03, CTF); drone MAVLink hijack (04, CTF); teleoperation channel seizure — Raven II surgical robot (05, CTF); adversarial-patch perception attack (06, CTF); humanoid & service robots, cameras/cloud/backdoors — Unitree (07, quiz); functional safety / when security breaks safety — ISO 10218/15066, IEC 62443 (08, quiz); robot firmware & supply-chain backdoor (09, CTF); securing autonomous systems / zero-trust for cyber-physical, RVD, careers (10, quiz).
 
+## Epoch 64: Flag Football
+**Stages:** 20 (flag-01 through flag-20) | **Color:** Emerald | **Track:** Flag Football (extended) | **All quiz**
+
+The fastest-growing team sport and an Olympic sport for LA 2028, taught from the ground up. Foundations (flag-01–10): welcome/formats, the field & game flow, positions & rules, pulling flags, throwing, catching & ball security, routes, offense 101, defense 101 (man/zone), agility & conditioning. Deep high-school level (flag-11–20): formations & motion, quarterbacking (reads/progressions), receiver craft (releases/double moves), route concepts (smash/flood/mesh), defensive coverages (Cover 0–3/match/disguise), the 7-yard pass rush & contain, run game & misdirection, defensive strategy & adjustments, athletic development (speed/power/injury prevention), and game IQ + the path to college/Olympic flag football. Category "sports"; ASCII field/route/coverage diagrams.
+
 ---
 
 ## XP Summary
@@ -485,7 +490,8 @@ Cyber-physical security of robots, drones, and autonomous machines (second of th
 | 63 | Race Through Space | 10 | ~1,600 |
 | 64 | Wired & Autonomous (EV/vehicle security) | 10 | ~1,650 |
 | 65 | Machines That Move (robotics security) | 10 | ~1,680 |
-| | **Total** | **721** | **~110,000** |
+| 66 | Flag Football | 20 | ~2,050 |
+| | **Total** | **741** | **~110,000** |
 
 ---
 
