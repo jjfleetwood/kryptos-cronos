@@ -1,6 +1,6 @@
 # Kryptós CronOS — To-Do & Roadmap
 
-**Last updated:** 2026-06-05 (v1.31.0 — silicon-fab epoch, count reconciliation 691/61, 83(b) complete)
+**Last updated:** 2026-06-06 (v1.43.0 — 5 new epochs: OT/ICS, Wired & Autonomous II, Robotics II, Race Through Space II, Threat Frameworks; CTFs on 30 more stages; counts 801/72/16 tracks/12 certs)
 
 ---
 

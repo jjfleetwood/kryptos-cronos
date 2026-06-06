@@ -1,10 +1,19 @@
 # Kryptós CronOS — Security Briefing
 **Classification:** Internal  
-**Version:** 5.7  
-**Date:** 2026-06-05  
-**Current version:** v1.28.0
+**Version:** 5.8  
+**Date:** 2026-06-06  
+**Current version:** v1.43.0
 
 ---
+
+## Changelog — v5.8 (2026-06-06) — Deep-tech/analyst content sprint + imagery (v1.37.0–v1.43.0)
+
+**No new attack surface.** This release is content, imagery, and documentation only:
+
+- **5 new epochs + 30 CTF additions** are pure `@kryptos/core` stage-data files — no new API routes, no new Redis keys, no new env vars. New CTF flags live in `stage-flags.ts` (already `server-only`, never imported client-side); validation stays server-side via the existing `/api/check-flag` path.
+- **29 new self-hosted images** under `public/img/` served same-origin by the existing static pipeline — no new third-party hotlinks; `img-src` unchanged.
+- **New build-time script** `apps/web/scripts/fetch-stage-images.mjs` is a developer tool (not shipped to the client, not imported by any route).
+- All existing controls (CSP nonce, HttpOnly/Secure cookies, admin gate, server-side XP/flag validation) unchanged.
 
 ## Changelog — v5.7 (2026-06-05) — Image self-hosting (external deps removed)
 

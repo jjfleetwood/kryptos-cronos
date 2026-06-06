@@ -2,6 +2,17 @@
 
 ---
 
+## v1.43.0 — 2026-06-06
+
+**Documentation + imagery + stat-count refresh (deploy of the deep-tech/analyst sprint)**
+
+- **Counts reconciled across the platform and all docs:** **801 stages · 72 epochs · 16 tracks · 12 cert paths** (homepage stats, OG/Twitter metadata, account page, README, ARCHITECTURE, business proposals, pitch docs, TECH_BOM, etc.).
+- **29 free-licensed hero photos** added for the new OT / Wired & Autonomous II / Robotics II / Race Through Space II stages — self-hosted and credited on `/attribution`. Conceptual stages (Threat Frameworks + a few abstract ones) keep the deterministic `GeneratedCover`. Reusable image fetcher added: `apps/web/scripts/fetch-stage-images.mjs`.
+- **Homepage:** added an Operational Technology card to the "Every Domain" grid.
+- Packages the v1.37.0–v1.42.0 content sprint (CTF expansion + the 5 new epochs) into a documented, audited production release.
+
+---
+
 ## v1.42.0 — 2026-06-06
 
 **New epoch: Threat Frameworks**

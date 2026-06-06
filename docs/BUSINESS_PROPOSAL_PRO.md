@@ -46,9 +46,9 @@ Kryptós CronOS delivers training through **stage-based missions** that simulate
 
 4. **ARIA AI Tutor** — A live, stage-aware AI assistant (powered by Claude Haiku) that uses Socratic coaching: it answers questions and guides thinking without giving away the flag. Available throughout every challenge.
 
-### Curriculum — 691 Stages across 61 Epochs and 11 Tracks (v1.31.0)
+### Curriculum — 801 Stages across 72 Epochs and 16 Tracks (v1.43.0)
 
-The platform ships with 691 fully built stages organized into 61 curriculum epochs and 11 learning tracks:
+The platform ships with 801 fully built stages organized into 72 curriculum epochs and 16 learning tracks:
 
 | Track | Stages | Focus |
 |---|---|---|
@@ -80,11 +80,11 @@ The platform ships with 691 fully built stages organized into 61 curriculum epoc
 | audit-cm11 | Continuous Compliance | FTC Drizly CEO liability order |
 | audit-cm12 | SOC Maturity — MTTD/MTTR | MGM Resorts $100M+ ransomware event |
 
-### Live Features (Shipped — v1.30.0)
+### Live Features (Shipped — v1.43.0)
 
 - **ARIA AI Tutor** — Claude Haiku, Socratic coaching, stage-aware context, 10-message session cap, rate-limited
 - **Adaptive Difficulty Engine** — `computeStageScore` (time + hints + attempts), +20% XP bonus for clean solves, adaptive ARIA cooldown for Pro (0s/15s/30s by skill), recommended next stage post-flag
-- **Certificate Paths** — Live at `/certs`; readiness tracking for **10 industry certs** — CompTIA Security+/CySA+/Network+/AI+, ISC² CC, ISACA CISA/CISM/CRISC, AWS AI Practitioner, and Google Cloud Professional ML Engineer — with per-domain progress rings and practice exams
+- **Certificate Paths** — Live at `/certs`; readiness tracking for **12 industry certs** — CompTIA Security+/CySA+/Network+/AI+, ISC² CC, ISACA CISA/CISM/CRISC, ISACA AAIA/AAISM, AWS AI Practitioner, and Google Cloud Professional ML Engineer — with per-domain progress rings and practice exams
 - **CyberOps Associate Exam Readiness Tracker** — Live at `/cyberops`; weighted readiness ring across 5 CBROPS 200-201 domains; 50 stages mapped; direct Cisco exam CTA
 - **7-Day Free Trial → Pro Paywall** — Stripe checkout, monthly/annual billing, webhook lifecycle handling; admin tier override; no credit card required to start
 - **Cross-Platform** — Turborepo monorepo: the Next.js web app (live) **plus a native iOS/Android app** (Expo/React Native, code-complete, pre-store) sharing one backend via a typed client and identical content from `@kryptos/core`
@@ -212,13 +212,13 @@ The 3.5 million unfilled cybersecurity jobs are usually framed as a hiring probl
 | KnowBe4 | Phishing simulation only | No technical depth |
 | **Kryptós CronOS** | **Gamified + AI + CTF + curriculum** | **Early stage** |
 
-Our differentiation: the only platform combining structured multi-track curriculum (691 stages across 61 epochs), real-exploit CTF challenges, adaptive AI difficulty, a live AI Socratic tutor, certification path alignment (CompTIA Security+, ISC² CC, Cisco CyberOps), daily engagement mechanics, and a competitive leaderboard in a single production-grade product.
+Our differentiation: the only platform combining structured multi-track curriculum (801 stages across 72 epochs), real-exploit CTF challenges, adaptive AI difficulty, a live AI Socratic tutor, certification path alignment (CompTIA Security+, ISC² CC, Cisco CyberOps), daily engagement mechanics, and a competitive leaderboard in a single production-grade product.
 
 ---
 
 ## Traction & Validation
 
-- **Product:** Fully functional platform — 691 stages across 61 epochs and 11 curriculum tracks
+- **Product:** Fully functional platform — 801 stages across 72 epochs and 16 curriculum tracks
 - **AI tutor:** ARIA live in production — Claude Haiku, Socratic coaching, stage-aware
 - **Certification paths:** CompTIA Security+ and ISC² CC path alignment live at /certs; CyberOps Associate exam readiness tracker live at /cyberops
 - **Gamification:** Streaks, milestone badges, 51-trophy collection, and real-time leaderboard all live
@@ -226,7 +226,7 @@ Our differentiation: the only platform combining structured multi-track curricul
 - **Admin infrastructure:** NDA clickwrap management via /demo; investor metrics panel live
 - **Security posture:** Server-side auth, HMAC cookies, nonce-based CSP (no unsafe-inline in script-src), rate limiting, CI security audit
 - **Tech stack:** Next.js 16 / React 19 / TypeScript — production-grade, zero technical debt
-- **Deployment:** Live at kryptoscronos.com (version v1.30.0)
+- **Deployment:** Live at kryptoscronos.com (version v1.43.0)
 - **GitHub:** github.com/jjfleetwood/kryptos-cronos
 
 ---
@@ -266,7 +266,7 @@ Our differentiation: the only platform combining structured multi-track curricul
 
 ## Team
 
-Kryptós CronOS is built by Jacob Bolotin, founder and CEO, with domain expertise in cybersecurity, AI, and enterprise software. The technical foundation — 691-stage curriculum, AI tutor, leaderboard, auth system, certification paths, and CI/CD pipeline — was built and deployed to production in an accelerated build sprint.
+Kryptós CronOS is built by Jacob Bolotin, founder and CEO, with domain expertise in cybersecurity, AI, and enterprise software. The technical foundation — 801-stage curriculum, AI tutor, leaderboard, auth system, certification paths, and CI/CD pipeline — was built and deployed to production in an accelerated build sprint.
 
 **Legal entity:** Bolotin Enterprises, Inc. — Delaware C-Corp incorporated May 23, 2026.  
 **Business email:** hello@kryptoscronos.com  

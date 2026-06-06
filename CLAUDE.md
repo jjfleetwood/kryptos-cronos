@@ -6,7 +6,7 @@ Gamified cybersecurity + AI training platform. 72 curriculum epochs, 801 CTF/qui
 
 **Live:** kryptoscronos.com  
 **Repo:** github.com/jjfleetwood/kryptos-cronos  
-**Current version:** v1.30.1 (as of 2026-06-05)
+**Current version:** v1.43.0 (as of 2026-06-06)
 
 ---
 
@@ -361,6 +361,14 @@ Local dev: `.env.local` in `app/` (gitignored).
 - **Target sponsors:** CrowdStrike, AWS, SentinelOne, CompTIA, ISC²
 
 ---
+
+## What's Shipped (v1.43.0)
+
+- ✅ **Deep-tech & analyst content sprint — 5 new epochs (50 stages).** Added **`ot-sec` Operational Technology** (ICS/SCADA — new top-level track), **`vehicle-sec-2` Wired & Autonomous II**, **`robot-sec-2` Robotics II**, **`space-race-2` Race Through Space II**, and **`threat-frameworks` Threat Frameworks** (Kill Chain · Diamond · ATT&CK · Pyramid of Pain · D3FEND · STIX/TAXII). Each is 6 CTF + 4 quiz with full briefings.
+- ✅ **CTFs added to 30 existing quiz stages** (physics-of-hacking, emerging-tech, quantum-5) — terminal CTF + flag each, quizzes kept as half-clear. `validate-ctf.mjs` = **292 CTFs, 0 problems**.
+- ✅ **Race Through Space / Wired & Autonomous / Robotics split into their own `/stages` track sections** (out of "Defend the Enterprise"); renamed the robotics epoch "Machines That Move" → **Robotics**.
+- ✅ **Counts:** **801 stages · 72 epochs · 16 tracks · 12 cert paths.** Homepage stats, OG/Twitter meta, and account page refreshed; added an OT card to the homepage domain grid.
+- ✅ **Imagery:** 29 free-licensed self-hosted hero photos for the new OT/Vehicle-II/Robotics-II/Space-II stages (credited on `/attribution`); conceptual stages keep the deterministic `GeneratedCover`. Reusable fetcher at `apps/web/scripts/fetch-stage-images.mjs`.
 
 ## What's Shipped (v1.36.0)
 

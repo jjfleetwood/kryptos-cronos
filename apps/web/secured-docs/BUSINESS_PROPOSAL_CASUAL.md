@@ -1,6 +1,6 @@
 # Kryptós CronOS — The Pitch
 **May 2026 | For people who get it**
-**Last updated: 2026-06-05 (v1.30.0)**
+**Last updated: 2026-06-06 (v1.43.0)**
 
 ---
 
@@ -32,13 +32,13 @@ It's a game. It's also real security training. And that combination is genuinely
 
 This isn't a pitch deck with a mockup. It's a working product:
 
-- **691 fully built stages** across 61 curriculum epochs and 11 learning tracks
+- **801 fully built stages** across 72 curriculum epochs and 16 learning tracks
 - **Cross-platform** — the Next.js web app (live) plus a native **iOS/Android app** (Expo, code-complete, pre-store) sharing one backend; mobile adds push streak-nudges and RevenueCat in-app purchases
 - **Privacy-friendly analytics** — Plausible, live (GDPR-compliant) — so we can actually measure traffic, funnels, and retention
 - **7-day free trial → Pro paywall** — Stripe checkout (monthly $13.99 / annual $99, SAVE 41%); webhook lifecycle handling; no credit card required to start
 - **ARIA AI tutor** — live in production, powered by Claude Haiku, uses Socratic coaching (guides thinking, doesn't give away answers)
 - **Adaptive difficulty engine** — `computeStageScore` (time + hints + attempts), +20% XP bonus for clean solves, adaptive ARIA cooldown for Pro users
-- **Certificate paths** — live at `/certs`; readiness tracking for **10 certs** (CompTIA Security+/CySA+/Network+/AI+, ISC² CC, ISACA CISA/CISM/CRISC, AWS AI Practitioner, Google Cloud PMLE)
+- **Certificate paths** — live at `/certs`; readiness tracking for **12 certs** (CompTIA Security+/CySA+/Network+/AI+, ISC² CC, ISACA CISA/CISM/CRISC/AAIA/AAISM, AWS AI Practitioner, Google Cloud PMLE)
 - **CyberOps Associate exam readiness tracker** — live at `/cyberops`; maps 50+ Cisco stages to the 5 CBROPS 200-201 exam domains; weighted readiness ring; direct Cisco exam CTA
 - **Full internationalization** — 7 languages: English, Spanish, French, German, Hindi, Portuguese, Polish
 - **Daily streaks and milestone badges** — engagement loop that works
@@ -59,7 +59,9 @@ Built by one founder with an AI development environment. The adaptive difficulty
 
 ---
 
-## The 11 curriculum tracks we have today
+## The 16 curriculum tracks we have today
+
+*(Representative highlights — the full catalog spans 801 stages across 72 epochs; see CURRICULUM.md.)*
 
 ### Track 1: Core Security (42 stages)
 The entry point. Our First Journey (30 beginner-friendly CTF stages) + Foundations (12 stages on landmark attacks):
@@ -83,9 +85,9 @@ The enterprise compliance and SOC operations track:
 - **Agentic Continuous Monitoring** — Claude tool use, MCP servers, AI-powered audit pipelines
 - **Continuous Monitoring 2.0** — SIEM + ML, UEBA, NDR, CSPM, SOAR, deception/honeytokens, Zero Trust, XDR, continuous compliance, SOC maturity (MTTD/MTTR)
 
-### Track 4: Threat Frameworks (24 stages)
+### Track 4: Threat Frameworks (22 stages across 2 epochs)
 - **MITRE ATT&CK** — All 12 tactic phases, nation-state TTPs
-- **MITRE ATLAS** — AI/ML adversarial attacks (the MITRE framework for machine learning threats)
+- **Threat Frameworks** — Cyber Kill Chain, Diamond Model, Pyramid of Pain, MITRE D3FEND, and STIX/TAXII — how analysts turn alerts into understanding (hands-on analyst CTFs)
 
 ### Track 5: AI Security (12 stages)
 - **OWASP LLM Top 10 2025** — Prompt injection, training data poisoning, model theft, insecure output handling
@@ -98,6 +100,13 @@ The enterprise compliance and SOC operations track:
 ### Track 7: Defend the Enterprise (22 stages across 2 epochs)
 - **Cisco Advanced Defense (12)** — Firepower NGFW exploitation, advanced network scenarios (stage-m39 → stage-m50)
 - **Cisco Umbrella / SASE (10)** — DNS tunneling, domain generation algorithms, network policy enforcement
+
+### Deep-tech & frontier security tracks (cyber-physical, mostly CTF)
+- **Operational Technology (10)** — ICS/SCADA, PLCs, Modbus, the Purdue model, Stuxnet, TRITON, the Ukraine grid attacks, IEC 62443
+- **Race Through Space (20 across 2 epochs)** — satellite uplink/downlink, GNSS spoofing, jamming, the Viasat ground-segment attack, CubeSats, inter-satellite links, SPARTA
+- **Wired & Autonomous (20 across 2 epochs)** — CAN bus, the Jeep hack, Automotive Ethernet/V2X, keyless relay attacks, EV charging, the self-driving sensor stack, fleet APIs, UNECE R155/R156
+- **Robotics (20 across 2 epochs)** — ROS/ROS2/DDS, drones, industrial arms, warehouse fleets, autonomous tractors, swarms, humanoids, navigation spoofing
+- **Silicon: Sand to Superchips (10)** — how GPU & quantum chips are made, from sand to EUV lithography to packaging
 
 ### Track 8: Travel (80 stages across 4 epochs)
 - Paris in July (20) — French culture, language, and Parisian life

@@ -7,16 +7,16 @@
 
 ---
 
-## Summary (as of 2026-06-05)
+## Summary (as of 2026-06-06)
 
 | Metric | Value |
 |---|---|
-| **Total hours logged** | 112.5 h |
-| **Sessions logged** | 17 |
-| **Equivalent developer cost** | $16,875 (112.5h × $150/hr) |
-| **Estimated AI cost to date** | ~$160 (16 sessions × $10/session) |
-| **Estimated AI cost this month (June 2026)** | ~$70 (7 sessions × $10/session) |
-| **AI leverage ratio** | ~95× (developer equivalent ÷ AI cost) |
+| **Total hours logged** | 122.5 h |
+| **Sessions logged** | 18 |
+| **Equivalent developer cost** | $18,375 (122.5h × $150/hr) |
+| **Estimated AI cost to date** | ~$180 (18 sessions × $10/session) |
+| **Estimated AI cost this month (June 2026)** | ~$80 (8 sessions × $10/session) |
+| **AI leverage ratio** | ~102× (developer equivalent ÷ AI cost) |
 
 ---
 
@@ -24,6 +24,7 @@
 
 | Date | Version | Hours | Summary | Cumulative |
 |---|---|---|---|---|
+| 2026-06-06 | v1.37.0–v1.43.0 | 10.0 h | Deep-tech & analyst content sprint + deploy. Added 5 new epochs (50 stages, 6 CTF + 4 quiz each): Operational Technology (ICS/SCADA — new top-level track: Purdue, PLCs, Modbus, SCADA/HMI, DNP3, EWS pivot, SIS/TRITON, Stuxnet/Ukraine, ICS detection, IEC 62443), Wired & Autonomous II (SDV/Ethernet/SOME-IP, V2X, TPMS, relay keys, ISO 15118/V2G, AV sensor-fusion, fleet APIs, R155/R156), Robotics II (ROS2/DDS, AMR fleets/VDA5050, ag tractors, swarms/BFT, cloud teleop, humanoids, GPS spoofing, policy poisoning), Race Through Space II (SPARTA, uplink TT&C, downlink eavesdrop, GNSS timing, jamming, Viasat ground-segment, CubeSats, ISL pivot, SSA/ASAT), and Threat Frameworks (Kill Chain, Diamond, ATT&CK + Navigator, Pyramid of Pain, D3FEND, STIX/TAXII). Added CTFs to 30 existing quiz stages (physics/emerging/quantum-5). Split Space/Vehicle/Robotics into their own /stages sections; renamed "Machines That Move" → Robotics. 29 free-licensed self-hosted hero photos (verified + credited on /attribution); reusable Commons fetcher script. Refreshed stat counts to 801/72/16 tracks/12 certs across homepage, OG/meta, account, and the full docs suite. validate-ctf: 292 CTFs, 0 problems. tsc + eslint (0 err) + build green; full /deploy (gates, doc reconciliation, RELEASE_NOTES v1.43.0, SECURITY_BRIEFING v5.8, security audit, commit + push). | 122.5 h |
 | 2026-06-05 | v1.30.0 | 9.0 h | Certification coverage audit — validated all 12 cert paths (Security+, ISC² CC, Network+, CySA+, CISA/CISM/CRISC, AI+, AWS-AIP, GCP-PMLE, AAIA, AAISM) against official exam objectives; built a coverage matrix from cert-domains.ts, probed the content corpus per objective. Closed objective-level gaps with 2 new cert-mapped epochs (19 stages): Security Foundations (13 — controls/frameworks, physical security & deception, change mgmt, resilience/BCDR, crypto solutions, IAM, data protection, awareness, network media/topologies, network troubleshooting methodology, security-ops reporting & metrics, quantitative risk SLE/ALE/ARO, secure SDLC) and AI & ML Foundations (6 — ML fundamentals, data prep, training/eval, generative AI & foundation models, MLOps lifecycle, cloud AI platforms SageMaker/Bedrock/Vertex/AutoML/BigQuery ML). Every cert domain now ≥5 stages (no empty/thin). Real-incident framing (Stuxnet, CrowdStrike, OVHcloud, DigiNotar, Colonial Pipeline, Equifax, SolarWinds, Zillow drift, Mata v. Avianca). Audit doc + 4 deploys; counts 662→681 / 56→58. tsc + build green. | 112.5 h |
 | 2026-06-05 | v1.29.0–.1 | 11.0 h | Baseball position curriculum — one full epoch per position. 8 new 10-stage epochs (Catcher, 1B, 2B, 3B, SS, LF, CF, RF = 80 stages / 320 quiz Qs) covering how to play each position, practice, body/conditioning, footwork, reading where the play is, cutoffs/relays/throws, and backups/positioning for every situation. Non-destructive Pitcher consolidation — merged the 3 pitcher epochs into one 30-stage Pitcher epoch (stage ids/images/progress preserved; epochId+order remapped 1→30, content-flags collapsed). Then reworked all new-epoch hall-of-fame exemplars to Dodgers greats with accuracy-preserving incident/timeline/venue/quiz rewrites (Piazza, Freeman, J. Robinson, Beltré, Wheat, Betts; SS Ozzie Smith + CF Griffey Jr. kept by request; Pitcher already Dodgers). Full /deploy: tsc + web lint + npm-audit gates, counts reconciled 582→662 / 50→56 across docs, RELEASE_NOTES v1.29.0–.1, CLAUDE.md, commit + push. | 103.5 h |
 | 2026-06-05 | v1.28.0 | 8.0 h | Debate Mastery practice exam (/exam/debate — 30 Qs from the 320-question debate pool, server-graded, same engine as cert/DMV). Platform-wide image self-hosting: Wikimedia killed on-demand thumbnail hotlinking (400 "use allowed sizes" + rate-limits), breaking all 214 stage images — sourced 290 self-hosted assets (77 per-stage debate keyed to each wonder + 213 other tracks) via Special:FilePath / Commons search API across throttled passes; STAGE_IMAGES map overrides config URLs + branded placeholder onError; recompressed 88MB→21MB with sharp; stripped all 214 dead URLs from configs. Homepage counts fixed (458→582, 6→11). Full /deploy. | 92.5 h |
