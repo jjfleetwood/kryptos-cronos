@@ -29,7 +29,7 @@ export const italianBasicsStages: StageConfig[] = [
       overview: [
         "Italian greetings are warm and physical — the double kiss (bacio) on the cheeks is standard between people who know each other, though business and formal settings use a handshake.",
         "Like French, Italian distinguishes between 'tu' (informal, for friends and children) and 'Lei' (formal, for strangers and professionals). In Milan especially, formal address is standard in shops and restaurants.",
-        "Ciao is informal — use it with people your own age or younger, or people who invite it. With older people or in formal settings, use 'Buongiorno' (good morning/hello) or 'Buonasera' (good evening).",
+        "Match the greeting to who you're addressing:\n- 'Ciao' — informal; use with people your own age or younger, or who invite it.\n- 'Buongiorno' — good morning / hello, for older people or formal settings.\n- 'Buonasera' — good evening, in formal settings later in the day.\nWhen in doubt, default to the formal options.",
         "Milan has a northern Italian reputation for reserve in the North vs. warmth of the South — but Milanese warmth reveals itself over time.",
       ],
       technical: {
@@ -140,7 +140,7 @@ export const italianBasicsStages: StageConfig[] = [
       overview: [
         "In Italy, 'bar' means café — not a pub. The Italian bar is where you get coffee (always standing at the counter, cheaper), cornetti (croissants), juices, and light snacks throughout the day.",
         "Italians drink cappuccino only in the morning — never after a meal. Ordering a cappuccino after lunch or dinner will mark you as a tourist immediately.",
-        "The espresso is the standard Italian coffee: short, strong, drunk quickly at the counter. 'Un caffè' = an espresso. Never ask for a 'latte' (you'll get a glass of milk).",
+        "Italian coffee vocabulary, learned the hard way by tourists:\n- 'Un caffè' — an espresso: short, strong, drunk quickly at the counter.\n- Never ask for a 'latte' — you'll get a glass of milk.\n- Cappuccino is morning-only — ordering one after a meal marks you as a tourist immediately.",
         "Milan is the birthplace of the Campari aperitivo — and the bar is where aperitivo begins every evening.",
       ],
       technical: {
@@ -249,7 +249,7 @@ export const italianBasicsStages: StageConfig[] = [
       tagline: "An Italian restaurant meal is a performance — learn your part",
       year: 1700,
       overview: [
-        "Italian meals have a structure: antipasto (starter), primo (first course — usually pasta or risotto), secondo (main — meat or fish), contorno (side dish), and dolce (dessert). You don't have to order everything.",
+        "Italian meals have a structure, though you don't have to order every course:\n- antipasto — starter.\n- primo — first course, usually pasta or risotto.\n- secondo — main, meat or fish.\n- contorno — side dish.\n- dolce — dessert.",
         "Pane e coperto (bread and cover charge): many Italian restaurants add 1–3 euros per person for bread and the place setting — it is legal and normal.",
         "In Italy, you do not ask for tap water — you order 'acqua naturale' (still) or 'acqua frizzante' (sparkling). Tap water is technically available but rarely offered.",
         "The bill: 'Il conto, per favore' — it is never brought automatically. Service charge varies; leaving a euro or two per person for good service is appreciated.",
@@ -360,7 +360,7 @@ export const italianBasicsStages: StageConfig[] = [
       tagline: "Milan is the fashion capital of the world — shop it in Italian",
       year: 1800,
       overview: [
-        "Milan's fashion quadrangle (Via Monte Napoleone, Via della Spiga, Via Manzoni, Corso Venezia) is the most concentrated luxury shopping district in the world.",
+        "Milan's fashion quadrangle — the 'Quadrilatero della Moda' — is the most concentrated luxury shopping district in the world:\n- Via Monte Napoleone.\n- Via della Spiga.\n- Via Manzoni.\n- Corso Venezia.",
         "Italian sizing uses European sizes — the same as French. Clothing: ask 'Avete questa in taglia [size]?' Shoes: 'Avete questo in numero [size]?'",
         "Italian shopkeepers are helpful but not pushy — acknowledge them on entry, look freely, and ask when you want assistance.",
         "Tax refund (rimborso IVA): non-EU visitors spending over 154 euros in one shop qualify for VAT refund. Ask 'Fate il rimborso IVA?'",
@@ -471,7 +471,7 @@ export const italianBasicsStages: StageConfig[] = [
       tagline: "Milan's transport is efficient — and the tram network is beautiful",
       year: 1964,
       overview: [
-        "Milan has four Métro lines (M1 red, M2 green, M3 yellow, M4 blue), an extensive tram network, and buses. The historic orange trams are a symbol of the city.",
+        "Milan's public transport is dense and easy:\n- Four Métro lines — M1 (red), M2 (green), M3 (yellow), M4 (blue).\n- An extensive tram network, including the historic orange trams that symbolise the city.\n- A full bus network.\nBetween them, the compact centre is very walkable.",
         "The Metropolitana (metro) opened in 1964 with Line 1 (M1 red). Tickets (biglietti) are valid for 90 minutes from first validation — usable on metro, tram, and bus.",
         "Milan's tram network is one of the most extensive in Europe and still uses 1920s-era tramways on some routes — a working museum piece.",
         "The city is compact and walkable between main sites: Duomo to Brera (15 min walk), Duomo to Sforzesco (20 min), Sforzesco to Navigli (25 min).",
@@ -582,7 +582,7 @@ export const italianBasicsStages: StageConfig[] = [
       tagline: "Italian numbers are beautifully regular — and the market will test them all",
       year: 1861,
       overview: [
-        "Unlike French, Italian numbers are completely regular: twenty is venti, thirty is trenta, forty is quaranta — no 'four-twenties' confusion.",
+        "Unlike French, Italian numbers are completely regular:\n- venti — twenty.\n- trenta — thirty.\n- quaranta — forty.\nThere's no 'four-twenties' confusion — the tens simply stack predictably.",
         "Italy used the lira until 2002 when it joined the euro. Older Italians sometimes still think in lire (1 euro = approximately 2,000 lire).",
         "At markets, stating the price clearly: 'Tre euro e cinquanta' (three euros fifty). The Italian decimal system uses a comma: 3,50.",
         "Bargaining: at regular shops and restaurants, never. At flea markets (mercatini) and some street markets, gentle negotiation is acceptable.",
@@ -692,7 +692,7 @@ export const italianBasicsStages: StageConfig[] = [
       tagline: "Italians communicate with their hands as much as with words",
       year: 1900,
       overview: [
-        "Italian gestures are a complete communication system — linguists have documented over 250 standardised gestures used across Italy, each with a specific meaning.",
+        "Italian gestures are a complete communication system:\n- Linguists have documented over 250 standardised gestures used across Italy.\n- Each carries a specific meaning, often replacing a whole sentence.\n- The most famous — 'pinched fingers' (all fingertips touching, wrist rotating) — means 'what do you want?' or 'what are you talking about?'\nLearning a few helps in markets, restaurants, and conversations where language runs out.",
         "The most famous: the 'pinched fingers' gesture (all fingertips touching, wrist rotating) means 'what do you want?' or 'what are you talking about?'",
         "Understanding a few key gestures will help enormously in markets, restaurants, and conversations where language runs out.",
         "Cultural note: eye contact is important in Italian conversation — averting your gaze is read as evasive or untrustworthy.",
@@ -802,7 +802,7 @@ export const italianBasicsStages: StageConfig[] = [
       tagline: "Italian churches and museums have rules — dress correctly or stay outside",
       year: 1386,
       overview: [
-        "Italian churches enforce a strict dress code: shoulders and knees must be covered. Shorts, sleeveless tops, and low-cut clothing will get you turned away — even at the Duomo.",
+        "Italian churches enforce a strict dress code — shoulders and knees must be covered, and you'll be turned away (even at the Duomo) for:\n- Shorts.\n- Sleeveless tops.\n- Low-cut clothing.\nCarry a scarf or a layer to cover up on the spot.",
         "Many Italian museums and churches are free or offer significant discounts for EU citizens under 18 and seniors. Always ask 'C'è una riduzione?' (Is there a discount?).",
         "The Duomo di Milano requires a combined ticket for the church interior, the roof terrace, and the Duomo Museum — buy online to avoid queues.",
         "Photography: generally permitted in museums unless posted otherwise. Flash is forbidden near artworks. Some chapels ban photography entirely.",
@@ -913,7 +913,7 @@ export const italianBasicsStages: StageConfig[] = [
       tagline: "Know the Italian emergency numbers before you need them",
       year: 1900,
       overview: [
-        "Italian emergency numbers: 118 (medical emergency/ambulance), 113 (Police/Polizia di Stato), 115 (Fire/Vigili del Fuoco), and 112 (European universal emergency number from any mobile).",
+        "Italian emergency numbers:\n- 118 — medical emergency / ambulance.\n- 113 — Police (Polizia di Stato).\n- 115 — Fire (Vigili del Fuoco).\n- 112 — the European universal emergency number, from any mobile.",
         "Italian pharmacies (farmacie — green cross) have a system of rotation for 24-hour service (farmacia di turno). The nearest open pharmacy is posted on the door of any closed pharmacy.",
         "For theft or loss: report to the Carabinieri (local police) at any station or call 112. You'll need a written report (denuncia) for insurance claims.",
         "EHIC/GHIC card covers medical treatment for EU/UK citizens in Italy at local rates.",
@@ -1026,7 +1026,7 @@ export const italianBasicsStages: StageConfig[] = [
       overview: [
         "Aperitivo in Milan is more than happy hour — it is a social institution. One drink buys access to a spread of food (chips, bruschette, pasta, hot dishes) that functions as dinner.",
         "Standard aperitivo time: 6 PM to 9 PM. After 9 PM, food disappears and normal drink prices apply.",
-        "The classic Milanese aperitivo drinks: Campari Soda (Campari + soda water), Negroni (Campari + gin + vermouth), Negroni Sbagliato (with Prosecco instead of gin — invented at Bar Basso).",
+        "The classic Milanese aperitivo drinks:\n- Campari Soda — Campari + soda water.\n- Negroni — Campari + gin + vermouth.\n- Negroni Sbagliato — with Prosecco instead of gin, invented at Bar Basso.\nAperol Spritz exists but reads as more touristy in Milan.",
         "Aperol Spritz exists but is considered more touristy in Milan — a classic Campari Soda or Negroni marks you as local-adjacent.",
       ],
       technical: {
@@ -1136,7 +1136,7 @@ export const italianBasicsStages: StageConfig[] = [
       year: 1565,
       overview: [
         "Italian gelato is fundamentally different from ice cream: lower fat content, less air churned in, served at a slightly warmer temperature — resulting in a denser, more intense flavour.",
-        "How to order: choose your size (piccolo/medio/grande), then your vessel (cono = cone, coppetta = cup), then pick your flavours. In most gelaterias you can fit two or three flavours per serving.",
+        "How to order gelato, in three steps:\n- Choose your size — piccolo, medio, or grande.\n- Choose your vessel — cono (cone) or coppetta (cup).\n- Pick your flavours — most gelaterie fit two or three per serving.\nArtigianale shops with muted, natural colours are the real thing.",
         "Artigianale (artisan) gelaterias are the real thing. Authentic signs: muted natural colours (pistachio is olive-green, not fluorescent), gelato stored in flat metal containers with lids, a short seasonal menu.",
         "Avoid places with towering pyramids of brightly coloured gelato in open-top tubs — these are optimised for tourists, not taste.",
       ],
@@ -1246,7 +1246,7 @@ export const italianBasicsStages: StageConfig[] = [
       year: 1891,
       overview: [
         "Milanese cuisine is northern Italian: butter and lard rather than olive oil, risotto rather than pasta, braised meats and saffron. The tomato-heavy 'Italian food' stereotype comes from the south.",
-        "The three iconic Milanese dishes: risotto alla Milanese (saffron risotto, bone marrow optional), cotoletta alla Milanese (breaded veal cutlet on the bone — the original schnitzel), and ossobuco (braised veal shank with gremolata, served with risotto).",
+        "The three iconic Milanese dishes:\n- risotto alla Milanese — saffron risotto (bone marrow optional).\n- cotoletta alla Milanese — breaded veal cutlet on the bone (the original schnitzel).\n- ossobuco — braised veal shank with gremolata, served with risotto.\nMilanese cooking is northern: butter and rice, not olive oil and tomato.",
         "Bread in northern Italy is unsalted — this is regional tradition, not a mistake. Southern Italian and Tuscan bread is also traditionally salt-free.",
         "Mealtimes matter: lunch (pranzo) is 12:30–2:30 PM, dinner (cena) is 8–10 PM. Arriving at 6 PM for dinner will find restaurants closed or empty.",
       ],
@@ -1356,7 +1356,7 @@ export const italianBasicsStages: StageConfig[] = [
       year: 1963,
       overview: [
         "Italy produces wine in all 20 regions — more indigenous grape varieties than any other country (over 350 documented). The classification system tells you what you're getting.",
-        "The quality hierarchy: DOCG (Denominazione di Origine Controllata e Garantita — the highest tier), DOC, IGT (regional wines with flexibility), and Vino da Tavola (table wine).",
+        "The Italian wine quality hierarchy:\n- DOCG — Denominazione di Origine Controllata e Garantita, the highest tier.\n- DOC — controlled origin.\n- IGT — regional wines with more flexibility.\n- Vino da Tavola — table wine.",
         "Key Lombard/northern Italian wines: Barolo and Barbaresco (Piedmont, DOCG — 'the king and queen of Italian wine'), Franciacorta (Lombardy sparkling — the Italian Champagne), Brunello di Montalcino (Tuscany, DOCG).",
         "At a trattoria: 'un quarto' (a quarter-litre) or 'una mezza' (a half-litre) of house wine (vino della casa) is cheap, honest, and perfectly acceptable.",
       ],
@@ -1469,7 +1469,7 @@ export const italianBasicsStages: StageConfig[] = [
         "Italian farmacie (pharmacies) are identified by a green cross (usually illuminated and animated). They are staffed by licensed pharmacists who function as frontline healthcare advisors — it is normal to describe symptoms and receive a recommendation.",
         "Farmacia di turno: the duty pharmacy open 24 hours. When a pharmacy is closed, the door displays the nearest farmacia di turno. The system ensures 24-hour access in every area.",
         "Many medications sold OTC (over the counter) in the UK/US require a ricetta (prescription) in Italy. Conversely, some Italian pharmacies can dispense certain antibiotics directly under the pharmacist's professional judgement.",
-        "For common tourist ailments: mal di stomaco (stomach ache), mal di testa (headache), diarrea (diarrhoea), scottatura solare (sunburn), puntura di insetto (insect bite).",
+        "Useful phrases for common tourist ailments:\n- mal di stomaco — stomach ache.\n- mal di testa — headache.\n- diarrea — diarrhoea.\n- scottatura solare — sunburn.\n- puntura di insetto — insect bite.\nThe pharmacist can recommend an OTC remedy for any of these.",
       ],
       technical: {
         title: "Pharmacy phrases and vocabulary",
@@ -1576,7 +1576,7 @@ export const italianBasicsStages: StageConfig[] = [
       tagline: "Italy invented the tourist hotel — and still has rules around check-in that catch visitors off guard",
       year: 1670,
       overview: [
-        "Checking in: 'Ho una prenotazione a nome...' (I have a reservation under the name...). Italian hotels are legally required to record your passport or ID details at check-in — always carry your passport.",
+        "Checking into an Italian hotel:\n- Say 'Ho una prenotazione a nome...' — I have a reservation under the name...\n- Always carry your passport — hotels are legally required to record your passport or ID at check-in.\n- Confirm breakfast — 'La colazione è inclusa?' (usually included at 3-star and above).\nCheck-out is typically midday (mezzogiorno).",
         "Prima colazione (breakfast) is usually included in 3-star and above hotels in Italy, though it is worth confirming. 'La colazione è inclusa?' (Is breakfast included?)",
         "Check-out is typically midday (mezzogiorno). Luggage storage: 'Potete tenere i bagagli fino alle...?' (Can you hold my bags until...?)",
         "Italy's hotel category (stelle = stars) system rates hotels 1–5 stars — unlike France, the criteria are set regionally and can vary. A 4-star in Milan means something slightly different than 4-star in Palermo.",
@@ -1686,7 +1686,7 @@ export const italianBasicsStages: StageConfig[] = [
       tagline: "Italian time expressions are logical — and so is the lunch pause that stops the city",
       year: 1335,
       overview: [
-        "Telling time in Italian: 'Che ora è?' or 'Che ore sono?' (What time is it?). The answer: 'Sono le [number]' for most hours, 'È l'una' for 1 o'clock, 'È mezzogiorno' for noon, 'È mezzanotte' for midnight.",
+        "Telling time in Italian starts with 'Che ora è?' or 'Che ore sono?' Then:\n- 'Sono le [number]' — for most hours.\n- 'È l'una' — 1 o'clock.\n- 'È mezzogiorno' — noon; 'È mezzanotte' — midnight.\nHalf and quarter hours add 'e mezza', 'e un quarto', or 'meno un quarto'.",
         "Half hours: 'Sono le tre e mezza' (It's half past three). Quarter hours: 'e un quarto' (quarter past), 'meno un quarto' (quarter to).",
         "The 24-hour clock is standard in Italy for all official times — timetables, appointments, reservations. '15:30' not '3:30 PM'.",
         "Mezzogiorno (noon) triggers the Italian lunch pause — in smaller cities and towns, many shops close 1:00–3:30 PM. Milan, being a business city, is more flexible, but the pause still exists.",
@@ -1796,7 +1796,7 @@ export const italianBasicsStages: StageConfig[] = [
       tagline: "Milan's climate is continental — hot summers, cold foggy winters, and afa (muggy humidity) in August",
       year: 2003,
       overview: [
-        "Milan's climate is continental, not Mediterranean: cold winters (often with fog — nebbia — that is a defining feature of the Po Valley), hot humid summers (afa = sticky, muggy heat), and unpredictable springs.",
+        "Milan's climate is continental, not Mediterranean:\n- Cold winters, often with the Po Valley's defining fog (nebbia).\n- Hot, humid summers — afa is the sticky, muggy heat.\n- Unpredictable springs.\nIt's noticeably cooler than Rome and much cooler than southern Italy.",
         "The best times to visit Milan: April–May and September–October. August is local holiday month — many shops and restaurants close, and afa makes the city uncomfortable.",
         "Rainfall is spread throughout the year, with spring and autumn being wettest. Milan is significantly cooler than Rome and much cooler than southern Italy.",
         "Useful phrases for the weather and planning your day around it.",
@@ -1906,7 +1906,7 @@ export const italianBasicsStages: StageConfig[] = [
       tagline: "Milan is the only city in the world where two clubs share the same stadium and the same city — and hate each other more for it",
       year: 1908,
       overview: [
-        "Milan has two major football clubs sharing the same stadium (Stadio Giuseppe Meazza, known as San Siro): AC Milan (founded 1899, red and black — rossoneri) and FC Internazionale (Inter, founded 1908, black and blue — nerazzurri).",
+        "Milan has two major football clubs sharing the Stadio Giuseppe Meazza (San Siro):\n- AC Milan — founded 1899, red and black (rossoneri).\n- FC Internazionale (Inter) — founded 1908, black and blue (nerazzurri).\n- Their Derby della Madonnina, named for the golden Madonna atop the Duomo, is one of the world's most intense local derbies.\nBoth clubs have won multiple European Cup / Champions League titles.",
         "The Derby della Madonnina is one of the world's most intense local derbies — named for the golden Madonna on top of the Duomo. Both clubs have won multiple Champions League / European Cup titles.",
         "San Siro (official name: Stadio Giuseppe Meazza) has a capacity of 75,923 — one of the largest stadiums in Europe. Plans for a new stadium on the same site are under long debate.",
         "Discussing calcio (football) is an easy conversation-starter with Milanese people — just know which team they support before expressing loyalty.",
@@ -2019,7 +2019,7 @@ export const italianBasicsStages: StageConfig[] = [
       overview: [
         "La bella figura (literally 'the beautiful figure') is the Italian concept of presenting oneself well — with style, grace, and consideration for others. Its opposite, la brutta figura (the ugly figure), is one of the greatest Italian social failings.",
         "At markets: always ask 'Posso?' (May I?) before touching fruit and vegetables. Helping yourself to produce without asking is a guaranteed brutta figura and will cause offence.",
-        "Food rules: never order cappuccino after 11 AM (it's a breakfast drink — Italians find post-meal cappuccino slightly baffling). Never ask for cheese on seafood pasta — the waiter may politely but firmly decline.",
+        "A few food rules guard against the brutta figura:\n- Never order cappuccino after 11 AM — it's a breakfast drink, and Italians find post-meal cappuccino baffling.\n- Never ask for cheese on seafood pasta — the waiter may politely but firmly decline.\n- Never eat while walking — sit, eat, and respect the food.\nThese small courtesies are deeply held throughout Italy.",
         "Eating and walking: considered poor form throughout Italy. Sit, eat, respect the food. The concept that food deserves attention (not to be consumed while distracted) is deeply held.",
       ],
       technical: {
@@ -2128,9 +2128,7 @@ export const italianBasicsStages: StageConfig[] = [
       year: 2014,
       overview: [
         "Milan is best understood as a series of distinct neighbourhoods radiating from the Duomo. Each has its own character, visitor profile, and price point — and all are reachable by metro.",
-        "Brera: the art neighbourhood. Galleries, antique dealers, the Pinacoteca di Brera, cobblestone streets, aperitivo bars. M2 Lanza, then 10 minutes' walk.",
-        "Navigli: the canal neighbourhood. Aperitivo culture, street art, independent restaurants, flea market on the last Sunday of the month. M2 Porta Genova.",
-        "Isola and Bosco Verticale: the design neighbourhood. The Bosco Verticale (Vertical Forest, 2014) apartment towers are Italy's most photographed modern buildings. Independent bars and restaurants. M2/M5 Garibaldi.",
+        "Milan's character lives in its neighbourhoods, each reachable by metro:\n- Brera — the art neighbourhood: galleries, antique dealers, the Pinacoteca di Brera, cobblestone streets, aperitivo bars (M2 Lanza, then a 10-minute walk).\n- Navigli — the canal neighbourhood: aperitivo culture, street art, independent restaurants, and a flea market on the last Sunday of the month (M2 Porta Genova).\n- Isola and Bosco Verticale — the design neighbourhood: the Vertical Forest (2014) towers are Italy's most photographed modern buildings (M2/M5 Garibaldi).",
       ],
       technical: {
         title: "Milan neighbourhood guide with metro stops",
