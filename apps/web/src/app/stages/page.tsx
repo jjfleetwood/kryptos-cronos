@@ -243,20 +243,41 @@ export default function StagesPage() {
     const doneCount = allStages.filter((s) => s.epochId === epoch.id && completedStages.includes(s.id)).length;
     const pct = stageCount > 0 ? (doneCount / stageCount) * 100 : 0;
     const done = doneCount === stageCount && stageCount > 0;
+    // Accent text-color token (e.g. "text-lime-400") drives the water via currentColor.
+    const textClass = (ea.tab || "").split(" ")[0] || "text-cyan-400";
     return (
       <Link
         key={epoch.id}
         href={`/stages/epoch/${epoch.id}`}
+        title={stageCount > 0 ? `${Math.round(pct)}% complete (${doneCount}/${stageCount})` : undefined}
         className={`group relative flex items-center gap-3 px-4 py-3.5 rounded-xl border transition-all duration-300 hover:-translate-y-0.5 overflow-hidden ${
           done
             ? "border-green-500/40 bg-green-500/5 hover:border-green-400/60"
             : "border-white/10 bg-white/2 hover:border-white/25 hover:bg-white/5"
         }`}
       >
-        <span className="text-2xl leading-none flex-shrink-0 transition-transform duration-200 group-hover:scale-110">
+        {/* Water-tank progress fill — height = % complete, with animated waves. */}
+        {pct > 0 && (
+          <div
+            aria-hidden="true"
+            className={`kc-tank pointer-events-none absolute inset-x-0 bottom-0 z-0 overflow-hidden ${textClass}`}
+            style={{ height: `${pct}%` }}
+          >
+            <div className="kc-tank-inner absolute inset-0">
+              <div className="absolute inset-x-0 top-1.5 bottom-0" style={{ background: "currentColor", opacity: 0.18 }} />
+              <svg className="kc-wave kc-wave-a" viewBox="0 0 120 16" preserveAspectRatio="none" fill="currentColor">
+                <path d="M0 9 Q15 3 30 9 T60 9 T90 9 T120 9 V16 H0 Z" />
+              </svg>
+              <svg className="kc-wave kc-wave-b" viewBox="0 0 120 16" preserveAspectRatio="none" fill="currentColor">
+                <path d="M0 9 Q15 5 30 9 T60 9 T90 9 T120 9 V16 H0 Z" />
+              </svg>
+            </div>
+          </div>
+        )}
+        <span className="relative z-10 text-2xl leading-none flex-shrink-0 transition-transform duration-200 group-hover:scale-110">
           {epoch.emoji}
         </span>
-        <div className="flex-1 min-w-0">
+        <div className="relative z-10 flex-1 min-w-0">
           <div className="flex items-center gap-2 mb-0.5">
             <span className="text-sm font-semibold text-gray-200 truncate">{epochMetaMap?.[epoch.id]?.n ?? epoch.name}</span>
             {doneCount > 0 && doneCount < stageCount && (
@@ -269,13 +290,8 @@ export default function StagesPage() {
             )}
           </div>
           <p className="text-xs text-gray-600 truncate">{epochMetaMap?.[epoch.id]?.s ?? epoch.subtitle}</p>
-          {doneCount > 0 && (
-            <div className="mt-1.5 w-full bg-white/5 rounded-full h-1">
-              <div className={`${ea.bar} h-1 rounded-full transition-all duration-500`} style={{ width: `${pct}%` }} />
-            </div>
-          )}
         </div>
-        <span className="text-gray-700 group-hover:text-gray-400 transition-colors text-sm flex-shrink-0">→</span>
+        <span className="relative z-10 text-gray-700 group-hover:text-gray-400 transition-colors text-sm flex-shrink-0">→</span>
       </Link>
     );
   }
