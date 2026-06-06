@@ -1,7 +1,7 @@
 # Kryptós CronOS — Curriculum Reference
 **Version:** 3.7  
 **Date:** 2026-06-03  
-**Total stages:** 691 across 61 epochs (delivered on **web + native mobile** from the shared `@kryptos/core` content package)
+**Total stages:** 701 across 62 epochs (delivered on **web + native mobile** from the shared `@kryptos/core` content package)
 
 ---
 
@@ -399,6 +399,11 @@ The engineering/fundamentals side of AI the certifications test: ML fundamentals
 
 How the newest GPU and quantum chips are physically manufactured — the most complex production process on Earth, told end to end: purifying quartz sand into 99.9999999% silicon and growing the Czochralski boule (si-01), slicing wafers and the cleanroom (si-02), photolithography (si-03), EUV lithography from tin plasma (si-04), doping & ion implantation (si-05), deposition/etching & copper damascene interconnects (si-06), FinFET → gate-all-around transistors and the "nm" myth (si-07), building giant AI GPUs with chiplets/HBM/CoWoS advanced packaging (si-08), yield/binning/fab economics (si-09), and fabricating quantum chips — superconducting, trapped-ion, and silicon spin qubits (si-10). Threads light hardware-trust and supply-chain security throughout.
 
+## Epoch 61: Race Through Space
+**Stages:** 10 (space-01 through space-10) | **Color:** Violet | **Track:** Defend the Enterprise | **6 CTF + 4 quiz**
+
+Deep-tech space-systems hacking, themed on the current-day space race (SpaceX, NASA, China, ISRO, Starlink). Real architecture then real attacks: orbits/link-budgets/the four segments (space-01, quiz); the Viasat KA-SAT / AcidRain ground-segment modem-wiper (space-02, CTF); GNSS/GPS spoofing of position-navigation-timing (space-03, CTF); telecommand link takeover, Hack-A-Sat style (space-04, CTF); CCSDS telemetry frame-sync & Space Packet decoding (space-05, CTF); ground-station software supply-chain pivot to the antenna controller (space-06, CTF); MIL-STD-1553 onboard-bus injection (space-07, CTF); Starlink mega-constellation & the glitched user terminal (space-08, quiz); counterspace — jam/dazzle/cyber/kinetic ASAT + Kessler debris (space-09, quiz); and securing the constellation era — SPARTA, CCSDS SDLS, zero-trust, Space Force, careers (space-10, quiz). Flags in stage-flags.ts; validated via scripts/validate-ctf.mjs.
+
 ---
 
 ## XP Summary
@@ -467,7 +472,8 @@ How the newest GPU and quantum chips are physically manufactured — the most co
 | 60 | Security Foundations | 13 | ~2,700 |
 | 61 | AI & Machine Learning Foundations | 6 | ~1,300 |
 | 62 | Silicon: Sand to Superchips | 10 | ~1,400 |
-| | **Total** | **691** | **~110,000** |
+| 63 | Race Through Space | 10 | ~1,600 |
+| | **Total** | **701** | **~110,000** |
 
 ---
 

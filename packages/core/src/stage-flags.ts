@@ -29,6 +29,14 @@ export const stageFlags: Record<string, string> = {
   "stage-m11": "FLAG{3D1NBR0_F1L3_D3L3T3D}",
   "stage-m12": "FLAG{10S_DHCP_BUFF3R_0V3RFL0W}",
 
+  // ── Race Through Space (space-race.ts) — CTF stages only ─────────────────
+  "space-02": "FLAG{V14S4T_K4S4T_4C1DR41N}",
+  "space-03": "FLAG{GN55_SP00F3D_PNT_H1J4CK}",
+  "space-04": "FLAG{TTC_N0_4UTH_S4T_PWN3D}",
+  "space-05": "FLAG{CCSD5_4SM_1ACFFC1D_T3L3M3TRY}",
+  "space-06": "FLAG{GR0UND_SUPPLY_CH41N_4NT3NN4_0WN3D}",
+  "space-07": "FLAG{M1L_1553_BUS_C0NTR0LL3R_SUBSYST3M_0WN3D}",
+
   // ── Cisco CVE Extended (cisco-2.ts) ──────────────────────────────────────
   "stage-m13": "FLAG{CVE_2016_1287_IK3_H3AP_0WN3D}",
   "stage-m14": "FLAG{CVE_2017_3881_CMP_T3LN3T_RCE}",

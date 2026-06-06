@@ -2,6 +2,17 @@
 
 ---
 
+## v1.32.0 — 2026-06-05
+
+**New epoch: Race Through Space (deep-tech space-systems hacking, CTF-heavy)**
+
+- **`space-race` — "Race Through Space"** (10 stages, space-01→space-10, violet; *Defend the Enterprise* track). Themed on the current space race; **6 CTF + 4 quiz**. CTFs: Viasat/AcidRain (02), GNSS spoofing (03), telecommand link takeover (04), CCSDS telemetry decode (05), ground-station supply-chain (06), MIL-STD-1553 bus injection (07). Quizzes: orbits/segments (01), Starlink/user terminals (08), counterspace/ASAT/Kessler (09), securing the constellation era (10).
+- Real protocols/incidents throughout (CCSDS, MIL-STD-1553, GNSS, link budgets; Viasat, Hack-A-Sat, the glitched Starlink terminal, ASAT tests). 6 flags added to `stage-flags.ts`; fragments assemble to each; all pass `scripts/validate-ctf.mjs` (220 CTFs, 0 problems).
+- **Real imagery:** 10 NASA/ESA public-domain + CC photos (ISS, GPS sat, Deep Space Network, CubeSat, a Starlink launch, orbital debris, a Soyuz launch) self-hosted and credited on `/attribution`.
+- Counts **691→701 stages / 61→62 epochs**.
+
+---
+
 ## v1.31.0 — 2026-06-05
 
 **New epoch: Silicon — Sand to Superchips + docs/count reconciliation + legal**

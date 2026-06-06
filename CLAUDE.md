@@ -2,7 +2,7 @@
 
 ## What This Is
 
-Gamified cybersecurity + AI training platform. 61 curriculum epochs, 691 CTF/quiz stages, live leaderboard, admin dashboard, 24 downloadable MCP server templates. Built with Next.js 16 / React 19 / TypeScript / Tailwind CSS / Upstash Redis / Resend.
+Gamified cybersecurity + AI training platform. 62 curriculum epochs, 701 CTF/quiz stages, live leaderboard, admin dashboard, 24 downloadable MCP server templates. Built with Next.js 16 / React 19 / TypeScript / Tailwind CSS / Upstash Redis / Resend.
 
 **Live:** kryptoscronos.com  
 **Repo:** github.com/jjfleetwood/kryptos-cronos  
@@ -142,6 +142,7 @@ Back navigation: `BackLink` uses `backHref` prop (passed from `StageContainer`) 
 | 41 | `quantum-deep` | Quantum, Deeper (intermediate physics) | 10 | quantum-x01 → quantum-x10 | Fuchsia |
 | 42 | `computing-foundations` | How Computers Really Work (beginner) | 10 | cf-01 → cf-10 | Orange |
 | 61 | `silicon-fab` | Silicon: Sand to Superchips (chip manufacturing) | 10 | si-01 → si-10 | Sky |
+| 62 | `space-race` | Race Through Space (space systems hacking; 6 CTF + 4 quiz) | 10 | space-01 → space-10 | Violet |
 | 43 | `physics-of-hacking` | The Physics of Hacking (hardware/physical) | 10 | poh-01 → poh-10 | Pink |
 | 38 | `emerging-tech` | Emerging Tech & Deep Learning Risk | 10 | emerging-01 → emerging-10 | Violet |
 | 16 | `umbrella` | Cisco Umbrella / SASE | 10 | umbrella-01 → umbrella-10 | Green |
@@ -350,6 +351,10 @@ Local dev: `.env.local` in `app/` (gitignored).
 - **Target sponsors:** CrowdStrike, AWS, SentinelOne, CompTIA, ISC²
 
 ---
+
+## What's Shipped (v1.32.0)
+
+- ✅ **New epoch `space-race` — "Race Through Space"** (10 stages, space-01→space-10, violet; in the *Defend the Enterprise* track beside physics-of-hacking). Deep-tech space-systems hacking themed on the current space race: **6 CTF + 4 quiz**. CTFs: Viasat/AcidRain ground-segment wiper (space-02), GNSS spoofing (space-03), telecommand link takeover (space-04), CCSDS telemetry decoding (space-05), ground-station supply-chain pivot (space-06), MIL-STD-1553 onboard-bus injection (space-07). Quizzes: orbits/links/segments (01), Starlink & user terminals (08), counterspace/ASAT/Kessler (09), securing the constellation era (10). 6 flags added to `stage-flags.ts`; fragments assemble to each flag; all CTFs pass `scripts/validate-ctf.mjs` (220 CTFs, 0 problems). Real NASA/ESA public-domain + CC imagery (10 photos) self-hosted, credited on `/attribution`. Counts 691→701 stages / 61→62 epochs.
 
 ## What's Shipped (v1.31.0)
 

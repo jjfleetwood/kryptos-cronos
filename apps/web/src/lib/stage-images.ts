@@ -29,6 +29,18 @@ export const STAGE_IMAGES: Record<string, string> = {
   "stage-m10": "/img/stage-m10.jpg",
   "stage-m11": "/img/stage-m11.jpg",
   "stage-m12": "/img/stage-m12.jpg",
+  // Race Through Space — NASA/ESA public-domain + free-licensed Commons imagery
+  // (credited on /attribution).
+  "space-01": "/img/space-01.jpg",
+  "space-02": "/img/space-02.jpg",
+  "space-03": "/img/space-03.jpg",
+  "space-04": "/img/space-04.jpg",
+  "space-05": "/img/space-05.jpg",
+  "space-06": "/img/space-06.jpg",
+  "space-07": "/img/space-07.jpg",
+  "space-08": "/img/space-08.jpg",
+  "space-09": "/img/space-09.jpg",
+  "space-10": "/img/space-10.jpg",
   "ai-ml-foundations-01": "/img/ai-ml-foundations-01.jpg",
   "ai-ml-foundations-02": "/img/ai-ml-foundations-02.jpg",
   "ai-ml-foundations-03": "/img/ai-ml-foundations-03.jpg",

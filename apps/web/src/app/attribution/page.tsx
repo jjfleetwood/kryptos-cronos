@@ -160,6 +160,21 @@ const CISCO_HW_CREDITS = [
   { stage: "M12", device: "Cisco 2503 router (IOS SNMP)", file: "Cisco-2503-router-hdr-0a.jpg", author: "Adamantios", license: "CC BY-SA 3.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/", url: "https://commons.wikimedia.org/wiki/File:Cisco-2503-router-hdr-0a.jpg" },
 ];
 
+// Per-file credits for the Race Through Space imagery (Wikimedia Commons; NASA/
+// NOAA public domain + Creative Commons). PD images credited as good practice.
+const SPACE_IMAGE_CREDITS = [
+  { stage: "01", device: "International Space Station", file: "ISS after STS-132 undocking.jpg", author: "NASA / Crew of STS-132", license: "Public domain", licenseUrl: "https://commons.wikimedia.org/wiki/Commons:Public_domain", url: "https://commons.wikimedia.org/wiki/File:International_Space_Station_after_undocking_of_STS-132.jpg" },
+  { stage: "02", device: "TIROS satellite ground antenna", file: "TIROS antenna Spac0212.jpg", author: "NOAA Photo Library", license: "Public domain", licenseUrl: "https://commons.wikimedia.org/wiki/Commons:Public_domain", url: "https://commons.wikimedia.org/wiki/File:TIROS_antenna_Spac0212.jpg" },
+  { stage: "03", device: "GPS satellite (NASA art)", file: "GPS Satellite NASA art-iif.jpg", author: "NASA", license: "Public domain", licenseUrl: "https://commons.wikimedia.org/wiki/Commons:Public_domain", url: "https://commons.wikimedia.org/wiki/File:GPS_Satellite_NASA_art-iif.jpg" },
+  { stage: "04", device: "Deep Space Network antenna", file: "NASA Deep Space Antenna (Voyager).jpg", author: "NASA / CDSCC", license: "Public domain", licenseUrl: "https://commons.wikimedia.org/wiki/Commons:Public_domain", url: "https://commons.wikimedia.org/wiki/File:NASA%27s_Deep_Space_Antenna_Upgrade_to_Affect_Voyager.jpg" },
+  { stage: "05", device: "Radio antenna (Cité de l'espace)", file: "Radio antenna, Cite de l'espace.jpg", author: "Mike Peel", license: "CC BY-SA 4.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/", url: "https://commons.wikimedia.org/wiki/File:Radio_antenna,_Cite_de_l%27espace.jpg" },
+  { stage: "06", device: "ATS-3 VHF ground-station antenna", file: "ATS-3 Satellite VHF Ground Station Antenna.jpg", author: "Gregory Back (ampledata)", license: "CC BY-SA 2.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/2.0/", url: "https://commons.wikimedia.org/wiki/File:ATS-3_Satellite_VHF_Ground_Station_Antenna.jpg" },
+  { stage: "07", device: "CubeSat", file: "CubeSat in hand.jpg", author: "Svobodat", license: "CC BY-SA 3.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/", url: "https://commons.wikimedia.org/wiki/File:CubeSat_in_hand.jpg" },
+  { stage: "08", device: "Starlink satellites in orbit", file: "Starlink Mission.jpg", author: "Official SpaceX Photos", license: "CC0", licenseUrl: "https://creativecommons.org/publicdomain/zero/1.0/", url: "https://commons.wikimedia.org/wiki/File:Starlink_Mission_(47926144123).jpg" },
+  { stage: "09", device: "Orbital debris (GEO)", file: "Debris-GEO1280.jpg", author: "NASA", license: "Public domain", licenseUrl: "https://commons.wikimedia.org/wiki/Commons:Public_domain", url: "https://commons.wikimedia.org/wiki/File:Debris-GEO1280.jpg" },
+  { stage: "10", device: "Soyuz launch", file: "Soyuz TMA-5 launch.jpg", author: "NASA / Bill Ingalls", license: "Public domain", licenseUrl: "https://commons.wikimedia.org/wiki/Commons:Public_domain", url: "https://commons.wikimedia.org/wiki/File:Soyuz_TMA-5_launch.jpg" },
+];
+
 export default function AttributionPage() {
   return (
     <div className="min-h-screen px-4 py-16" style={{ background: "linear-gradient(160deg,#040c1e 0%,#071428 60%,#040c1e 100%)" }}>
@@ -236,6 +251,27 @@ export default function AttributionPage() {
             {CISCO_HW_CREDITS.map((c) => (
               <li key={c.stage} className="text-xs text-gray-400 flex flex-wrap items-center gap-x-2 gap-y-0.5">
                 <span className="text-gray-600 font-mono w-8 flex-shrink-0">{c.stage}</span>
+                <span className="text-gray-300">{c.device}</span>
+                <span className="text-gray-700">·</span>
+                <a href={c.url} target="_blank" rel="noopener noreferrer" className="text-cyan-500 hover:text-cyan-400 transition-colors">{c.file}</a>
+                <span className="text-gray-700">·</span>
+                <span>© {c.author}</span>
+                <a href={c.licenseUrl} target="_blank" rel="noopener noreferrer" className="text-amber-400 hover:text-amber-300 transition-colors">{c.license} ↗</a>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="mt-12">
+          <h2 className="text-white font-bold text-lg mb-1">Race Through Space — imagery</h2>
+          <p className="text-gray-500 text-xs mb-4 leading-relaxed">
+            Photos on the Race Through Space stages are from Wikimedia Commons. NASA/NOAA images are
+            in the public domain; others are under Creative Commons. Each is credited to its source below.
+          </p>
+          <ul className="space-y-2 rounded-2xl border border-white/8 p-5" style={{ background: "rgba(255,255,255,0.02)" }}>
+            {SPACE_IMAGE_CREDITS.map((c) => (
+              <li key={c.stage} className="text-xs text-gray-400 flex flex-wrap items-center gap-x-2 gap-y-0.5">
+                <span className="text-gray-600 font-mono w-10 flex-shrink-0">S{c.stage}</span>
                 <span className="text-gray-300">{c.device}</span>
                 <span className="text-gray-700">·</span>
                 <a href={c.url} target="_blank" rel="noopener noreferrer" className="text-cyan-500 hover:text-cyan-400 transition-colors">{c.file}</a>
