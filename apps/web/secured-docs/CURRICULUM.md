@@ -434,6 +434,11 @@ Scales the robotics arc out and specializes it. ROS 2 & SROS2 — the DDS securi
 
 Operational, adversarial space security. Space systems & SPARTA — three segments, bus/payload, CCSDS, why space is unpatchable (01, quiz); hijacking the command uplink — TT&C, replay/injection, SDLS (02, CTF); eavesdropping the downlink — broadcast footprint, cleartext VSAT, ~$300 gear (03, CTF); GNSS spoofing & timing — PNT backbone, time desync, OSNMA (04, CTF); jamming & anti-jam — uplink/downlink jamming, spread spectrum, Starlink resilience (05, CTF); breaching the ground segment — the Viasat KA-SAT 2022 model, ordinary IT/supply-chain intrusion (06, CTF); CubeSats & mega-constellations — COTS insecurity, homogeneity, Hack-A-Sat (07, quiz); inter-satellite links — optical mesh, constellation pivot, zero trust in orbit (08, CTF); SSA, debris & ASAT — Kessler, ASAT tests, trustworthy conjunction data (09, quiz); securing space systems — SPARTA/Space-ISAC/SPD-5, encrypt links, harden ground, resilience, the cross-domain lesson (10, quiz).
 
+## Epoch 71: Threat Frameworks — Thinking Like an Analyst
+**Stages:** 10 (tf-01 through tf-10) | **Color:** Rose | **Track:** Threat Frameworks (2nd epoch in section, with MITRE ATT&CK) | **6 CTF + 4 quiz**
+
+The analyst's mental models that turn alerts into understanding. Why frameworks + the intelligence lifecycle (01, quiz); the Cyber Kill Chain — 7 stages, break-the-chain, courses of action (02, CTF); the Diamond Model — adversary/capability/infrastructure/victim, pivoting (03, CTF); MITRE ATT&CK — tactics/techniques/IDs, groups & software (04, quiz); ATT&CK in practice — mapping behavior to technique IDs, the Navigator (05, CTF); the Pyramid of Pain — indicators ranked by adversary cost, climb to TTPs (06, CTF); MITRE D3FEND — mapping ATT&CK to countermeasures (07, CTF); STIX & TAXII — machine-readable intel sharing (08, CTF); intel levels & attribution — strategic/operational/tactical, false flags, confidence (09, quiz); threat-informed defense — all frameworks in one continuous loop, the connective tissue of the field (10, quiz).
+
 ## Flag Football (extended track — 3 epochs, 30 stages, all quiz, category "sports")
 The fastest-growing team sport and an Olympic sport for LA 2028, taught from the ground up across three epochs.
 

@@ -2,6 +2,16 @@
 
 ---
 
+## v1.42.0 — 2026-06-06
+
+**New epoch: Threat Frameworks**
+
+- **`threat-frameworks` — Threat Frameworks** (10 stages, 6 CTF + 4 quiz), added as the second epoch in the Threat Frameworks `/stages` track (🎯, rose) alongside MITRE ATT&CK. Why frameworks + the intel lifecycle, the Cyber Kill Chain, the Diamond Model, MITRE ATT&CK, ATT&CK-in-practice/Navigator mapping, the Pyramid of Pain, MITRE D3FEND, STIX/TAXII sharing, intel levels & attribution, and threat-informed defense. CTFs are analyst exercises (map a kill chain, pivot the Diamond, tag ATT&CK technique IDs, climb the Pyramid, map a D3FEND countermeasure, author/share a STIX indicator).
+- 6 new CTF flags; `validate-ctf.mjs` = **292 CTFs, 0 problems**. Counts: **801 stages / 72 epochs**.
+- Final item of the overnight content grind (`docs/GRIND_PLAN.md` complete): OT + Wired&Autonomous II + Robotics II + Race Through Space II + Threat Frameworks.
+
+---
+
 ## v1.41.0 — 2026-06-06
 
 **New epoch: Race Through Space II (deeper space security)**

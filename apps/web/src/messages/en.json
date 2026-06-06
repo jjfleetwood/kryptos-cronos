@@ -46,7 +46,7 @@
   "stages.tracks.techAudit": "Tech Audit",
   "stages.tracks.techAuditDesc": "IT Governance → Cloud → AI Agents",
   "stages.tracks.threatFrameworks": "Threat Frameworks",
-  "stages.tracks.threatFrameworksDesc": "Nation-state adversary TTPs (MITRE ATT&CK)",
+  "stages.tracks.threatFrameworksDesc": "Adversary models & threat intel — Kill Chain, Diamond, ATT&CK, STIX (CTF)",
   "stages.tracks.aiSecurity": "AI Security",
   "stages.tracks.aiSecurityDesc": "MITRE ATLAS · OWASP LLM Top 10 · Emerging AI risk",
   "stages.tracks.quantumEra": "Quantum Era",

@@ -2,7 +2,7 @@
 
 ## What This Is
 
-Gamified cybersecurity + AI training platform. 71 curriculum epochs, 791 CTF/quiz stages, live leaderboard, admin dashboard, 24 downloadable MCP server templates. Built with Next.js 16 / React 19 / TypeScript / Tailwind CSS / Upstash Redis / Resend.
+Gamified cybersecurity + AI training platform. 72 curriculum epochs, 801 CTF/quiz stages, live leaderboard, admin dashboard, 24 downloadable MCP server templates. Built with Next.js 16 / React 19 / TypeScript / Tailwind CSS / Upstash Redis / Resend.
 
 **Live:** kryptoscronos.com  
 **Repo:** github.com/jjfleetwood/kryptos-cronos  
@@ -149,6 +149,7 @@ Back navigation: `BackLink` uses `backHref` prop (passed from `StageContainer`) 
 | 68 | `vehicle-sec-2` | Wired & Autonomous II (SDV/Ethernet/V2X/EV/AV/fleet-API; 6 CTF + 4 quiz) | 10 | v2-01 → v2-10 | Lime |
 | 69 | `robot-sec-2` | Robotics II (ROS2/DDS, AMR fleets, ag robots, swarms, cloud, nav-spoof, policy-poison; 6 CTF + 4 quiz) | 10 | r2-01 → r2-10 | Orange |
 | 70 | `space-race-2` | Race Through Space II (uplink/downlink, GNSS, jamming, ground-segment, CubeSats, ISL, SSA/ASAT; 6 CTF + 4 quiz) | 10 | s2-01 → s2-10 | Violet |
+| 71 | `threat-frameworks` | Threat Frameworks (Kill Chain, Diamond, ATT&CK, Pyramid of Pain, D3FEND, STIX/TAXII; 6 CTF + 4 quiz) | 10 | tf-01 → tf-10 | Rose |
 | 65 | `flag-football-1` | Flag Football: Foundations (extended/sports) | 10 | flag-01 → flag-10 | Emerald |
 | 66 | `flag-football-2` | Flag Football: Advanced Play (HS-level) | 10 | flag-11 → flag-20 | Teal |
 | 67 | `flag-football-3` | Flag Football: Playbook & Competition | 10 | flag-21 → flag-30 | Green |

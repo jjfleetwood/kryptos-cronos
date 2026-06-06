@@ -47,7 +47,7 @@ const epochGroups = [
     id: "threatFrameworks",
     labelKey: "stages.tracks.threatFrameworks",
     descKey: "stages.tracks.threatFrameworksDesc",
-    epochIds: ["mitre"],
+    epochIds: ["mitre", "threat-frameworks"],
   },
   {
     id: "aiSecurity",
@@ -184,7 +184,7 @@ const SECURITY_EPOCHS = new Set([
   "mitre", "mitre-atlas", "owasp-llm", "emerging-tech", "ai-ml-foundations", "sec-foundations",
   "quantum-intro", "quantum-deep", "quantum-1", "quantum-2", "quantum-3", "quantum-4", "quantum-5",
   "cisco-core", "cisco-enterprise", "cisco-secops", "cisco-advanced", "umbrella",
-  "physics-of-hacking", "space-race", "vehicle-sec", "robot-sec", "ot-sec", "vehicle-sec-2", "robot-sec-2", "space-race-2",
+  "physics-of-hacking", "space-race", "vehicle-sec", "robot-sec", "ot-sec", "vehicle-sec-2", "robot-sec-2", "space-race-2", "threat-frameworks",
 ]);
 const NON_SECURITY_EPOCHS = new Set([
   "tapestry", "nails", "hair-color", "hair-styling",

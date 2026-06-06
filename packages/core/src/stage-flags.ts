@@ -121,6 +121,14 @@ export const stageFlags: Record<string, string> = {
   "s2-06": "FLAG{GR0UND_S3GM3NT_PWN3D}",
   "s2-08": "FLAG{1SL_C0NST3LL4T10N_P1V0T}",
 
+  // ── Threat Frameworks (threat-frameworks.ts) ─────────────────────────────
+  "tf-02": "FLAG{K1LL_CH41N_BR0K3N_34RLY}",
+  "tf-03": "FLAG{D14M0ND_P1V0T_4DV3RS4RY}",
+  "tf-05": "FLAG{4TTCK_T3CHN1QU3_M4PP3D}",
+  "tf-06": "FLAG{PYR4M1D_TTP_M4X_P41N}",
+  "tf-07": "FLAG{D3F3ND_C0UNT3R_M34SUR3}",
+  "tf-08": "FLAG{ST1X_1ND1C4T0R_SH4R3D}",
+
   // ── Cisco CVE Extended (cisco-2.ts) ──────────────────────────────────────
   "stage-m13": "FLAG{CVE_2016_1287_IK3_H3AP_0WN3D}",
   "stage-m14": "FLAG{CVE_2017_3881_CMP_T3LN3T_RCE}",
