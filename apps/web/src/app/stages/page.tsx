@@ -244,7 +244,8 @@ export default function StagesPage() {
     const pct = stageCount > 0 ? (doneCount / stageCount) * 100 : 0;
     const done = doneCount === stageCount && stageCount > 0;
     // Accent text-color token (e.g. "text-lime-400") drives the water via currentColor.
-    const textClass = (ea.tab || "").split(" ")[0] || "text-cyan-400";
+    // At 100% the tank turns green to signal completion.
+    const textClass = done ? "text-green-400" : ((ea.tab || "").split(" ")[0] || "text-cyan-400");
     return (
       <Link
         key={epoch.id}
