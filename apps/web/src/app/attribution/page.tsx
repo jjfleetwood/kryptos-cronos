@@ -237,6 +237,51 @@ const FLAG_IMAGE_CREDITS = [
   { stage: "30", device: "Touchdown celebration (championship)", file: "Nebraska touchdown celebration.jpg", author: "Kiley", license: "CC BY 2.0", licenseUrl: "https://creativecommons.org/licenses/by/2.0/", url: "https://commons.wikimedia.org/wiki/File:Nebraska_Cornhuskers_touchdown_celebration.jpg" },
 ];
 
+// Per-file credits for the Operational Technology (ICS/SCADA) imagery (Wikimedia Commons, free licenses + public domain).
+const OT_IMAGE_CREDITS = [
+  { stage: "01", device: "Power-station control room", file: "Drax Power Station Control Room, Unit Control Panel.jpg", author: "Gordon Kneale Brooke", license: "CC BY-SA 2.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/2.0/", url: "https://commons.wikimedia.org/wiki/File:Drax_Power_Station_Control_Room,_Unit_Control_Panel_-_geograph.org.uk_-_115511.jpg" },
+  { stage: "02", device: "Allen-Bradley PLC rack", file: "BMA Automation Allen Bradley PLC 3.JPG", author: "Elmschrat Coaching-Blog", license: "CC BY-SA 3.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/", url: "https://commons.wikimedia.org/wiki/File:BMA_Automation_Allen_Bradley_PLC_3.JPG" },
+  { stage: "04", device: "Plant control-room console", file: "Control room, Virginia-Pocahontas coal plant (NARA).jpg", author: "Jack Corn / U.S. NARA", license: "Public domain", licenseUrl: "https://commons.wikimedia.org/wiki/Commons:Public_domain", url: "https://commons.wikimedia.org/wiki/File:THE_CONTROL_ROOM_OF_THE_COAL_CLEANING_PLANT_AT_THE_VIRGINIA-POCAHONTAS_COAL_COMPANY_MINE_%5E4_NEAR_RICHLANDS,_VIRGINIA..._-_NARA_-_556384.jpg" },
+  { stage: "05", device: "Electrical substation", file: "Taipei electrical substation.jpg", author: "CEphoto, Uwe Aranas", license: "CC BY-SA 3.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/", url: "https://commons.wikimedia.org/wiki/File:Taipei_Taiwan_Electrical-Substation-at-Taipei-Zoo-South-Station-01.jpg" },
+  { stage: "07", device: "Oil refinery", file: "Anacortes Refinery 31911.JPG", author: "Walter Siegmund", license: "CC BY 2.5", licenseUrl: "https://creativecommons.org/licenses/by/2.5/", url: "https://commons.wikimedia.org/wiki/File:Anacortes_Refinery_31911.JPG" },
+  { stage: "08", device: "High-voltage transmission pylon", file: "Pylon of a high-voltage transmission line.jpg", author: "Vlad2000Plus", license: "CC BY-SA 3.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/", url: "https://commons.wikimedia.org/wiki/File:Pylon_of_a_high-voltage_transmission_line.jpg" },
+  { stage: "09", device: "Network operations center", file: "NOC-IUPUI.jpg", author: "Alan Levine", license: "CC BY 2.0", licenseUrl: "https://creativecommons.org/licenses/by/2.0/", url: "https://commons.wikimedia.org/wiki/File:NOC-IUPUI.jpg" },
+  { stage: "10", device: "Factory automation (palletizing)", file: "Factory Automation Robotics Palettizing Bread.jpg", author: "KUKA Roboter GmbH / Bachmann", license: "Public domain", licenseUrl: "https://commons.wikimedia.org/wiki/Commons:Public_domain", url: "https://commons.wikimedia.org/wiki/File:Factory_Automation_Robotics_Palettizing_Bread.jpg" },
+];
+
+// Per-file credits for the Wired & Autonomous II imagery (Wikimedia Commons, free licenses).
+const VEHICLE2_IMAGE_CREDITS = [
+  { stage: "01", device: "Engine control unit (VW Golf)", file: "Motorsteuerung VW Golf TDI innen.jpg", author: "Cschirp", license: "CC BY-SA 3.0 DE", licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/de/", url: "https://commons.wikimedia.org/wiki/File:Motorsteuerung_VW_Golf_TDI_innen.jpg" },
+  { stage: "03", device: "Motorway traffic (connected vehicles)", file: "Southern Motorway Auckland traffic.jpg", author: "Kiwiev", license: "CC0", licenseUrl: "https://creativecommons.org/publicdomain/zero/1.0/", url: "https://commons.wikimedia.org/wiki/File:Southern_Motorway_Auckland_traffic_-_copyright-free_photo_released_to_public_domain.jpg" },
+  { stage: "04", device: "TPMS tire-pressure sensor", file: "DamagedSensorTPMS.jpg", author: "Infestor", license: "CC BY-SA 4.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/", url: "https://commons.wikimedia.org/wiki/File:DamagedSensorTPMS.jpg" },
+  { stage: "05", device: "Keyless entry remote", file: "Remote central locking.jpg", author: "James086", license: "CC BY-SA 4.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/", url: "https://commons.wikimedia.org/wiki/File:Remote_central_locking.jpg" },
+  { stage: "06", device: "EV charging station", file: "Car2Go Charging Station Stuttgart 2013 01.jpg", author: "Julian Herzog", license: "CC BY 4.0", licenseUrl: "https://creativecommons.org/licenses/by/4.0/", url: "https://commons.wikimedia.org/wiki/File:Car2Go_Charging_Station_Stuttgart_2013_01.jpg" },
+  { stage: "07", device: "Autonomous car (Oxford RobotCar)", file: "ORI Mobile Robotics Group Nissan Leaf.jpg", author: "Ooja99", license: "CC BY-SA 4.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/", url: "https://commons.wikimedia.org/wiki/File:Oxford_Robotics_Institute_(ORI)_Mobile_Robotics_Group_Nissan_Leaf.jpg" },
+];
+
+// Per-file credits for the Robotics II imagery (Wikimedia Commons, free licenses + public domain).
+const ROBOT2_IMAGE_CREDITS = [
+  { stage: "01", device: "Mobile social robot (Octavia)", file: "MDS robot Octavia (U.S. Navy).jpg", author: "U.S. Navy / John F. Williams", license: "Public domain", licenseUrl: "https://commons.wikimedia.org/wiki/Commons:Public_domain", url: "https://commons.wikimedia.org/wiki/File:US_Navy_100531-N-7676W-075_Visitors_interact_with_the_mobile,_dexterous,_social_(MDS)_robot_Octavia_at_the_Office_of_Naval_Research_(ONR)_exhibit_during_Fleet_Week_New_York_2010.jpg" },
+  { stage: "03", device: "Automated warehouse (AS/RS)", file: "Automatisches Kleinteilelager.jpg", author: "Andreas Praefcke", license: "CC BY 3.0", licenseUrl: "https://creativecommons.org/licenses/by/3.0/", url: "https://commons.wikimedia.org/wiki/File:Automatisches_Kleinteilelager.jpg" },
+  { stage: "04", device: "Tractor working a field", file: "Tractor at work on a field in Idaho.jpg", author: "Sam Beebe", license: "CC BY 2.0", licenseUrl: "https://creativecommons.org/licenses/by/2.0/", url: "https://commons.wikimedia.org/wiki/File:Tractor_at_work_on_a_field_in_Idaho.jpg" },
+  { stage: "07", device: "Humanoid robot (Cronos)", file: "Cronos humanoid robot.jpg", author: "Science Swiss @ Singapore", license: "CC BY-SA 3.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/", url: "https://commons.wikimedia.org/wiki/File:Cronos_humanoid_robot.jpg" },
+  { stage: "08", device: "Delivery robot (illustration)", file: "Local Delivery Robot.png", author: "Rlistmedia", license: "CC BY 4.0", licenseUrl: "https://creativecommons.org/licenses/by/4.0/", url: "https://commons.wikimedia.org/wiki/File:Local_Delivery_Robot.png" },
+];
+
+// Per-file credits for the Race Through Space II imagery (Wikimedia Commons; NASA public domain + Creative Commons).
+const SPACE2_IMAGE_CREDITS = [
+  { stage: "01", device: "Communications-satellite launch (Atlas V)", file: "NASA Launches Next-Generation Communications Satellite.jpg", author: "NASA Goddard Space Flight Center", license: "Public domain", licenseUrl: "https://commons.wikimedia.org/wiki/Commons:Public_domain", url: "https://commons.wikimedia.org/wiki/File:NASA_Launches_Next-Generation_Communications_Satellite_(8431841705).jpg" },
+  { stage: "02", device: "Deep Space Network dish (Canberra)", file: "Canberra Deep Dish Communications Complex.jpg", author: "NASA", license: "Public domain", licenseUrl: "https://commons.wikimedia.org/wiki/Commons:Public_domain", url: "https://commons.wikimedia.org/wiki/File:Canberra_Deep_Dish_Communications_Complex_-_GPN-2000-000502.jpg" },
+  { stage: "03", device: "Earth station dish (Raisting)", file: "Erdfunkstelle Raisting 2.jpg", author: "Richard Bartz", license: "CC BY-SA 2.5", licenseUrl: "https://creativecommons.org/licenses/by-sa/2.5/", url: "https://commons.wikimedia.org/wiki/File:Erdfunkstelle_Raisting_2.jpg" },
+  { stage: "04", device: "GPS satellite (Block IIR)", file: "GPS-IIR.jpg", author: "U.S. Government", license: "Public domain", licenseUrl: "https://commons.wikimedia.org/wiki/Commons:Public_domain", url: "https://commons.wikimedia.org/wiki/File:GPS-IIR.jpg" },
+  { stage: "05", device: "Goldstone DSN antennas", file: "Goldstone Deep Space Communications Complex.jpg", author: "NASA/JPL-Caltech", license: "Public domain", licenseUrl: "https://commons.wikimedia.org/wiki/Commons:Public_domain", url: "https://commons.wikimedia.org/wiki/File:Dawn_in_the_Apollo_Valley,_Goldstone_Deep_Space_Communications_Complex.jpg" },
+  { stage: "06", device: "ISS flight control room", file: "ISS Flight Control Room 2006.jpg", author: "Robert Markowitz / NASA", license: "Public domain", licenseUrl: "https://commons.wikimedia.org/wiki/Commons:Public_domain", url: "https://commons.wikimedia.org/wiki/File:ISS_Flight_Control_Room_2006.jpg" },
+  { stage: "07", device: "CubeSats deployed from the ISS", file: "ISS-45 Cubesats deployed from the ISS.jpg", author: "NASA", license: "Public domain", licenseUrl: "https://commons.wikimedia.org/wiki/Commons:Public_domain", url: "https://commons.wikimedia.org/wiki/File:ISS-45_Cubesats_deployed_from_the_ISS.jpg" },
+  { stage: "08", device: "Satellite constellation over LOFAR", file: "Large satellite constellation above the LOFAR telescope.jpg", author: "Daniëlle Futselaar", license: "CC BY 4.0", licenseUrl: "https://creativecommons.org/licenses/by/4.0/", url: "https://commons.wikimedia.org/wiki/File:Large_satellite_constellation_above_the_LOFAR_telescope_(ann23025a).jpg" },
+  { stage: "09", device: "Orbital debris (Low Earth Orbit)", file: "Space Debris Low Earth Orbit.png", author: "NASA Orbital Debris Program Office", license: "Public domain", licenseUrl: "https://commons.wikimedia.org/wiki/Commons:Public_domain", url: "https://commons.wikimedia.org/wiki/File:Space_Debris_Low_Earth_Orbit.png" },
+  { stage: "10", device: "Earth from space (Blue Marble)", file: "Earth Eastern Hemisphere.jpg", author: "NASA", license: "Public domain", licenseUrl: "https://commons.wikimedia.org/wiki/Commons:Public_domain", url: "https://commons.wikimedia.org/wiki/File:Earth_Eastern_Hemisphere.jpg" },
+];
+
 export default function AttributionPage() {
   return (
     <div className="min-h-screen px-4 py-16" style={{ background: "linear-gradient(160deg,#040c1e 0%,#071428 60%,#040c1e 100%)" }}>
@@ -397,6 +442,90 @@ export default function AttributionPage() {
             {FLAG_IMAGE_CREDITS.map((c) => (
               <li key={c.stage} className="text-xs text-gray-400 flex flex-wrap items-center gap-x-2 gap-y-0.5">
                 <span className="text-gray-600 font-mono w-10 flex-shrink-0">F{c.stage}</span>
+                <span className="text-gray-300">{c.device}</span>
+                <span className="text-gray-700">·</span>
+                <a href={c.url} target="_blank" rel="noopener noreferrer" className="text-cyan-500 hover:text-cyan-400 transition-colors">{c.file}</a>
+                <span className="text-gray-700">·</span>
+                <span>© {c.author}</span>
+                <a href={c.licenseUrl} target="_blank" rel="noopener noreferrer" className="text-amber-400 hover:text-amber-300 transition-colors">{c.license} ↗</a>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="mt-12">
+          <h2 className="text-white font-bold text-lg mb-1">Operational Technology — imagery</h2>
+          <p className="text-gray-500 text-xs mb-4 leading-relaxed">
+            Photos on the OT / ICS-SCADA stages are from Wikimedia Commons (public domain + Creative
+            Commons), self-hosted and credited to each author below.
+          </p>
+          <ul className="space-y-2 rounded-2xl border border-white/8 p-5" style={{ background: "rgba(255,255,255,0.02)" }}>
+            {OT_IMAGE_CREDITS.map((c) => (
+              <li key={c.stage} className="text-xs text-gray-400 flex flex-wrap items-center gap-x-2 gap-y-0.5">
+                <span className="text-gray-600 font-mono w-10 flex-shrink-0">OT{c.stage}</span>
+                <span className="text-gray-300">{c.device}</span>
+                <span className="text-gray-700">·</span>
+                <a href={c.url} target="_blank" rel="noopener noreferrer" className="text-cyan-500 hover:text-cyan-400 transition-colors">{c.file}</a>
+                <span className="text-gray-700">·</span>
+                <span>© {c.author}</span>
+                <a href={c.licenseUrl} target="_blank" rel="noopener noreferrer" className="text-amber-400 hover:text-amber-300 transition-colors">{c.license} ↗</a>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="mt-12">
+          <h2 className="text-white font-bold text-lg mb-1">Wired &amp; Autonomous II — imagery</h2>
+          <p className="text-gray-500 text-xs mb-4 leading-relaxed">
+            Photos on the second vehicle-security epoch are from Wikimedia Commons under free licenses,
+            self-hosted and credited to each author below.
+          </p>
+          <ul className="space-y-2 rounded-2xl border border-white/8 p-5" style={{ background: "rgba(255,255,255,0.02)" }}>
+            {VEHICLE2_IMAGE_CREDITS.map((c) => (
+              <li key={c.stage} className="text-xs text-gray-400 flex flex-wrap items-center gap-x-2 gap-y-0.5">
+                <span className="text-gray-600 font-mono w-10 flex-shrink-0">V{c.stage}</span>
+                <span className="text-gray-300">{c.device}</span>
+                <span className="text-gray-700">·</span>
+                <a href={c.url} target="_blank" rel="noopener noreferrer" className="text-cyan-500 hover:text-cyan-400 transition-colors">{c.file}</a>
+                <span className="text-gray-700">·</span>
+                <span>© {c.author}</span>
+                <a href={c.licenseUrl} target="_blank" rel="noopener noreferrer" className="text-amber-400 hover:text-amber-300 transition-colors">{c.license} ↗</a>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="mt-12">
+          <h2 className="text-white font-bold text-lg mb-1">Robotics II — imagery</h2>
+          <p className="text-gray-500 text-xs mb-4 leading-relaxed">
+            Photos on the second robotics epoch are from Wikimedia Commons (U.S. Navy public domain +
+            Creative Commons), self-hosted and credited to each author below.
+          </p>
+          <ul className="space-y-2 rounded-2xl border border-white/8 p-5" style={{ background: "rgba(255,255,255,0.02)" }}>
+            {ROBOT2_IMAGE_CREDITS.map((c) => (
+              <li key={c.stage} className="text-xs text-gray-400 flex flex-wrap items-center gap-x-2 gap-y-0.5">
+                <span className="text-gray-600 font-mono w-10 flex-shrink-0">R{c.stage}</span>
+                <span className="text-gray-300">{c.device}</span>
+                <span className="text-gray-700">·</span>
+                <a href={c.url} target="_blank" rel="noopener noreferrer" className="text-cyan-500 hover:text-cyan-400 transition-colors">{c.file}</a>
+                <span className="text-gray-700">·</span>
+                <span>© {c.author}</span>
+                <a href={c.licenseUrl} target="_blank" rel="noopener noreferrer" className="text-amber-400 hover:text-amber-300 transition-colors">{c.license} ↗</a>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="mt-12">
+          <h2 className="text-white font-bold text-lg mb-1">Race Through Space II — imagery</h2>
+          <p className="text-gray-500 text-xs mb-4 leading-relaxed">
+            Photos on the second space epoch are from Wikimedia Commons. NASA images are public domain;
+            Creative Commons images are credited to each author below.
+          </p>
+          <ul className="space-y-2 rounded-2xl border border-white/8 p-5" style={{ background: "rgba(255,255,255,0.02)" }}>
+            {SPACE2_IMAGE_CREDITS.map((c) => (
+              <li key={c.stage} className="text-xs text-gray-400 flex flex-wrap items-center gap-x-2 gap-y-0.5">
+                <span className="text-gray-600 font-mono w-10 flex-shrink-0">S{c.stage}</span>
                 <span className="text-gray-300">{c.device}</span>
                 <span className="text-gray-700">·</span>
                 <a href={c.url} target="_blank" rel="noopener noreferrer" className="text-cyan-500 hover:text-cyan-400 transition-colors">{c.file}</a>
