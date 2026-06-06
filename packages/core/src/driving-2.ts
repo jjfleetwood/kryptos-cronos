@@ -171,9 +171,9 @@ export const driving2Stages: StageConfig[] = [
       tagline: "A good driver's passengers barely notice when the car starts or stops. That is the goal.",
       year: 2024,
       overview: [
-        "Smooth braking means applying progressively more pressure as you slow down, then easing off just before you come to a complete stop. Most new drivers make two mistakes: braking too late (needing to press hard suddenly) or releasing the brake abruptly at the stop (causing a forward jerk). Begin braking earlier than feels necessary and gently ease off the pedal as you approach zero.",
+        "Smooth braking means applying progressively more pressure as you slow, then easing off just before a complete stop. New drivers make two mistakes:\n- Braking too late — needing to press hard suddenly.\n- Releasing the brake abruptly at the stop — causing a forward jerk.\nBegin braking earlier than feels necessary and gently ease off the pedal as you approach zero.",
         "Smooth acceleration means pressing the gas pedal gradually from a stop — not snapping your foot down. On a residential street, aim to be at your target speed within 2–3 seconds. Jackrabbit starts waste fuel, wear tires, and startle other road users. On slippery surfaces, aggressive acceleration causes wheelspin.",
-        "Covering the brake means moving your right foot from the gas to the brake pedal (hovering over it without pressing) when you anticipate needing to stop — near intersections, behind slow cars, in parking lots. This reduces reaction time from roughly 0.5 seconds to near zero. It is one of the most important habits for new drivers to develop.",
+        "Covering the brake means moving your right foot from the gas to hover over the brake (without pressing) when you anticipate stopping:\n- Do it near intersections, behind slow cars, and in parking lots.\n- It cuts reaction time from roughly 0.5 seconds to near zero.\nIt's one of the most important habits for new drivers to develop.",
       ],
       technical: {
         title: "Progressive Braking and the Threshold",
@@ -319,9 +319,9 @@ COVERING THE BRAKE — when to hover:
       tagline: "Every turn has a setup, an execution, and a landing. Nail all three and it feels effortless.",
       year: 2024,
       overview: [
-        "Modern driver training recommends the push-pull (shuffle) steering technique for most situations: one hand pushes up while the other pulls down, keeping both hands on the wheel at all times. Hand-over-hand is still used for tighter, slower turns (parking lots, U-turns). Never let the wheel spin freely through your hands after a turn — you lose control of the recovery.",
+        "Modern driver training recommends matching the steering technique to the situation:\n- Push-pull (shuffle) for most driving — one hand pushes up while the other pulls down, keeping both hands on the wheel at all times.\n- Hand-over-hand for tighter, slower turns (parking lots, U-turns).\nNever let the wheel spin freely through your hands after a turn — you lose control of the recovery.",
         "Signal at least 100 feet before any turn in a residential or city setting — on highways, signal earlier (200–300 feet). The signal communicates your intention to other drivers, cyclists, and pedestrians before you begin slowing. Activating the signal mid-turn or after you have already started braking gives no warning at all.",
-        "After a turn, you should end up in the lane closest to you on the road you turned onto. Left turns from a two-way street: you turn into the leftmost available lane. Right turns from a one-way or two-way street: you turn into the rightmost lane. This rule prevents collisions when two cars are turning simultaneously from opposite directions.",
+        "After a turn, end up in the lane closest to you on the road you turned onto:\n- Left turns from a two-way street — turn into the leftmost available lane.\n- Right turns from a one-way or two-way street — turn into the rightmost lane.\nThis rule prevents collisions when two cars turn simultaneously from opposite directions.",
       ],
       technical: {
         title: "Push-Pull Steering and Turn Lane Selection",
@@ -469,8 +469,8 @@ AFTER the turn (landing):
       tagline: "Every safe lane change is a three-step check: mirrors, signal, shoulder. In that order, every time.",
       year: 2024,
       overview: [
-        "The mirror-signal-shoulder check is the professional sequence for every lane change and merge. Step 1: check your rearview and side mirrors to assess traffic behind and beside you. Step 2: signal your intention. Step 3: perform a shoulder check — a brief glance over your shoulder into the blind spot (the area your mirrors cannot see). Only after all three can you move into the new lane smoothly.",
-        "Blind spots are the areas alongside your rear quarter panels that mirrors do not cover. In a standard sedan, the blind spots are approximately beside your rear doors on each side. A car can be completely hidden there. Some new vehicles have blind-spot monitoring systems, but you should always do a shoulder check regardless — technology assists but does not replace the habit.",
+        "The mirror-signal-shoulder check is the professional sequence for every lane change and merge:\n- Step 1 — check your rearview and side mirrors to assess traffic behind and beside you.\n- Step 2 — signal your intention.\n- Step 3 — do a shoulder check, a brief glance into the blind spot your mirrors can't see.\nOnly after all three can you move into the new lane smoothly.",
+        "Blind spots are the areas alongside your rear quarter panels that mirrors don't cover:\n- In a standard sedan, they're roughly beside your rear doors on each side.\n- A whole car can be completely hidden there.\n- Some new vehicles have blind-spot monitoring, but always do a shoulder check regardless — technology assists but doesn't replace the habit.\nThat's why the shoulder check is non-negotiable.",
         "Merging onto a highway requires matching the speed of highway traffic before reaching the end of the on-ramp. Do not merge at 35 mph when highway traffic is moving at 65 mph — the speed differential creates a dangerous situation for you and the cars behind you. Use the full length of the on-ramp to accelerate, signal early, and merge smoothly into a gap.",
       ],
       technical: {
@@ -616,9 +616,9 @@ HIGHWAY ON-RAMP MERGE
       tagline: "Parallel parking in San Francisco is a rite of passage. Master the technique and no spot will ever intimidate you.",
       year: 2024,
       overview: [
-        "Parallel parking uses reference points rather than estimation. Pull alongside the car in front of the space, aligned and about 2 feet away. When your rear bumper passes the rear bumper of the front car, turn the wheel sharply toward the curb. When your car is at approximately a 45-degree angle and your front door aligns with the rear bumper of the car in front, turn the wheel sharply the other way to straighten. Adjust forward and back to center in the space.",
+        "Parallel parking uses reference points rather than estimation:\n- Pull alongside the car in front of the space, aligned and about 2 feet away.\n- When your rear bumper passes the front car's rear bumper, turn the wheel sharply toward the curb.\n- At about a 45-degree angle, when your front door aligns with the front car's rear bumper, turn the wheel sharply the other way to straighten.\n- Adjust forward and back to center in the space.",
         "Perpendicular parking (most parking lots) requires centering your car between the lines. Pick a reference point — most drivers use the side mirror alignment with the line. Approach slowly, steer smoothly, and straighten out before you reach the space boundary. Back in when possible — it is far safer to back into a space than to back out into traffic.",
-        "Curbing your wheels is required by law on hills in many states and prevents your car from rolling into traffic if the brakes fail. On a downhill with a curb: turn wheels toward the curb (right). On an uphill with a curb: turn wheels away from the curb (left, so the curb stops you). On a hill without a curb: always turn wheels toward the road edge.",
+        "Curbing your wheels is required by law on hills in many states and stops your car rolling into traffic if the brakes fail:\n- Downhill with a curb — turn wheels toward the curb (right).\n- Uphill with a curb — turn wheels away from the curb (left, so the curb stops you).\n- On a hill without a curb — always turn wheels toward the road edge.\nThe simple check: would the car roll into the curb (good) or into the road (bad)?",
       ],
       technical: {
         title: "Parallel Parking Reference Points",
@@ -770,9 +770,9 @@ HILL PARKING — Wheel Direction:
       tagline: "The highway is actually one of the safer places to drive — if you understand the rules that keep it that way.",
       year: 2024,
       overview: [
-        "Highway driving feels intimidating at first because of the speed, but higher speeds mean more predictable traffic flow and fewer intersections. The key rules: enter at highway speed (use the full on-ramp), keep right except to pass (left lanes are for passing, not cruising), maintain a minimum 4-second following distance at 65 mph (more in poor conditions), and signal and move right early before your exit.",
+        "Highway driving feels intimidating at first, but higher speeds mean more predictable flow and fewer intersections. The key rules:\n- Enter at highway speed — use the full on-ramp.\n- Keep right except to pass — the left lanes are for passing, not cruising.\n- Maintain a minimum 4-second following distance at 65 mph (more in poor conditions).\n- Signal and move right early before your exit.",
         "Following distance on a freeway is critical because at 65 mph, your car travels about 95 feet per second. A 4-second gap means roughly 380 feet — about the length of an American football field. Most new drivers dramatically underestimate this. A simple technique: pick a fixed point when the car ahead passes it and count '1-1000, 2-1000, 3-1000, 4-1000' before you reach the same point.",
-        "For exiting, begin moving to the right lane at least half a mile before your exit. Signal early (300 feet), take the exit ramp at a controlled speed — most ramps are designed for 35–45 mph, not highway speed. Decelerate on the ramp, not before entering it.",
+        "For exiting, plan ahead rather than braking late:\n- Begin moving to the right lane at least half a mile before your exit.\n- Signal early (about 300 feet).\n- Take the exit ramp at a controlled speed — most ramps are designed for 35–45 mph, not highway speed.\nDecelerate on the ramp, not before entering it.",
       ],
       technical: {
         title: "Highway Following Distance and the 4-Second Rule",
@@ -920,9 +920,9 @@ CONDITION ADJUSTMENTS:
       tagline: "Most new drivers underestimate how much rain and darkness change everything — your speed, your distance, your decisions.",
       year: 2024,
       overview: [
-        "Headlights serve two purposes: they help you see, and they help other drivers see you. In most US states you are required to turn on headlights at sunset and must leave them on until sunrise. Many states also require headlights whenever windshield wipers are in use (a practical rule — if it is raining hard enough for wipers, visibility is reduced for everyone). In fog, use low beams — high beams reflect off fog particles and reduce your vision.",
+        "Headlights serve two purposes — they help you see, and they help other drivers see you:\n- Most US states require them from sunset to sunrise.\n- Many also require them whenever windshield wipers are in use (if it's raining hard enough for wipers, visibility is reduced for everyone).\n- In fog, use low beams — high beams reflect off fog particles and reduce your vision.\nWhen in doubt, lights on.",
         "High beams illuminate roughly twice as far as low beams and are valuable on dark rural roads with no oncoming traffic. The rule: switch to low beams when you can see the headlights of an oncoming car at approximately 500 feet, or when following another car within 300 feet. Leaving high beams on blinds oncoming drivers and is illegal.",
-        "In rain, your following distance should double to a minimum of 6–8 seconds. Wet roads can increase stopping distance by 50–100%. Hydroplaning — when your tires ride on top of a film of water instead of the road surface — can occur at speeds as low as 35 mph on standing water. If you feel the steering suddenly go light, ease off the gas, do not brake suddenly, and steer straight until traction returns.",
+        "Rain demands more space and care:\n- Double your following distance to a minimum of 6–8 seconds — wet roads can increase stopping distance by 50–100%.\n- Hydroplaning (tires riding on a film of water instead of the road) can occur at speeds as low as 35 mph on standing water.\n- If the steering suddenly goes light, ease off the gas, don't brake suddenly, and steer straight until traction returns.\nSlowing down is the single best defense against wet-road loss of control.",
       ],
       technical: {
         title: "Hydroplaning — What Happens and How to Recover",
@@ -1077,9 +1077,9 @@ HYDROPLANING RECOVERY:
       tagline: "Your first solo drive will feel different — more alive, more real. You are ready. Trust your training.",
       year: 2024,
       overview: [
-        "Before your first solo drive, plan a route you have driven before with your instructor or a parent. Familiar roads mean you can focus on driving technique instead of navigation. Keep your first solo trips short — 15 minutes is enough. Avoid highways, rush hour traffic, and challenging conditions for your first few independent drives. Build confidence gradually.",
+        "Before your first solo drive, set yourself up to succeed:\n- Plan a route you've already driven with your instructor or a parent — familiar roads let you focus on technique, not navigation.\n- Keep first solo trips short — 15 minutes is enough.\n- Avoid highways, rush hour, and challenging conditions for your first few independent drives.\nBuild confidence gradually.",
         "If you get lost, do not panic. Pull over in a safe, well-lit place, use your phone's navigation app, and recalibrate. Never try to read a map or enter addresses while moving. A simple rule: if you are unsure where to go, default to pulling over rather than making a hasty turn or lane change.",
-        "Handling traffic stress: every driver, including experienced ones, sometimes encounters stressful moments — an aggressive driver, a near-miss, unexpected road conditions. If you feel overwhelmed, the correct response is to reduce speed, increase following distance, and find a safe place to pull over and collect yourself. Driving under high stress is dangerous. There is no shame in pausing.",
+        "Every driver, even experienced ones, hits stressful moments — an aggressive driver, a near-miss, unexpected road conditions. If you feel overwhelmed:\n- Reduce speed.\n- Increase following distance.\n- Find a safe place to pull over and collect yourself.\nDriving under high stress is dangerous, and there's no shame in pausing. (If you get lost, the same instinct applies: pull over somewhere safe and well-lit and use navigation rather than reading a map while moving.)",
       ],
       technical: {
         title: "Post-Drive Checklist and Building Confidence",
