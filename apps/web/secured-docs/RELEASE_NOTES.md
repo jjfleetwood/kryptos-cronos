@@ -2,6 +2,16 @@
 
 ---
 
+## v1.41.0 — 2026-06-06
+
+**New epoch: Race Through Space II (deeper space security)**
+
+- **`space-race-2` — Race Through Space II** (10 stages, 6 CTF + 4 quiz), added as the second epoch in the Race Through Space `/stages` track (🚀, violet). Space systems & SPARTA, hijacking the command uplink (TT&C/SDLS), eavesdropping cleartext downlinks, GNSS spoofing & timing attacks, jamming/anti-jam, breaching the ground segment (the Viasat KA-SAT model), CubeSats & mega-constellations, inter-satellite-link constellation pivoting, SSA/debris/ASAT, and securing space systems (SPARTA/Space-ISAC/SPD-5, resilience).
+- 6 new CTF flags; `validate-ctf.mjs` = **286 CTFs, 0 problems**. Counts: **791 stages / 71 epochs**.
+- Fourth item of the overnight content grind (`docs/GRIND_PLAN.md`); next: Threat Frameworks.
+
+---
+
 ## v1.40.0 — 2026-06-06
 
 **New epoch: Robotics II (deeper robot security)**

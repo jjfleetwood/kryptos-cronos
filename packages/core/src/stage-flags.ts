@@ -113,6 +113,14 @@ export const stageFlags: Record<string, string> = {
   "r2-08": "FLAG{N4V_GPS_SP00F_D3T0UR}",
   "r2-09": "FLAG{P0L1CY_P01S0N3D_B4CKD00R}",
 
+  // ── Race Through Space II (space-race-2.ts) ──────────────────────────────
+  "s2-02": "FLAG{TTC_T3L3C0MM4ND_HIJ4CK}",
+  "s2-03": "FLAG{D0WNL1NK_CL34RT3XT_R34D}",
+  "s2-04": "FLAG{GNSS_T1M3_SP00F3D_PNT}",
+  "s2-05": "FLAG{UPL1NK_J4MM3D_D3N13D}",
+  "s2-06": "FLAG{GR0UND_S3GM3NT_PWN3D}",
+  "s2-08": "FLAG{1SL_C0NST3LL4T10N_P1V0T}",
+
   // ── Cisco CVE Extended (cisco-2.ts) ──────────────────────────────────────
   "stage-m13": "FLAG{CVE_2016_1287_IK3_H3AP_0WN3D}",
   "stage-m14": "FLAG{CVE_2017_3881_CMP_T3LN3T_RCE}",
