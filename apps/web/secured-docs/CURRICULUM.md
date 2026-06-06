@@ -1,7 +1,7 @@
 # Kryptós CronOS — Curriculum Reference
 **Version:** 3.7  
 **Date:** 2026-06-03  
-**Total stages:** 711 across 63 epochs (delivered on **web + native mobile** from the shared `@kryptos/core` content package)
+**Total stages:** 721 across 64 epochs (delivered on **web + native mobile** from the shared `@kryptos/core` content package)
 
 ---
 
@@ -409,6 +409,11 @@ Deep-tech space-systems hacking, themed on the current-day space race (SpaceX, N
 
 Cyber-physical security of electric, connected, and self-driving vehicles (first of a 2-epoch arc with robotics). Foundations → deep tech → deep security: the connected car / 100+ ECUs (01, quiz); CAN-bus injection (02, CTF); UDS diagnostics seed-key brute (03, CTF); keyless entry relay/RollJam (04, CTF); EV charging OCPP/ISO 15118 hijack (05, CTF); the Battery Management System & thermal runaway (06, quiz); telematics → CAN remote pivot, the 2015 Jeep Cherokee hack (07, CTF); ADAS sensor spoofing / phantom braking (08, CTF); OTA updates & supply chain, Uptane (09, quiz); fleet cloud APIs as car control + defense-in-depth (10, quiz). Real anchors throughout (CAN, UDS, RollJam, OCPP, Jeep, Keen Lab/Phantom, Sam Curry auto-API research).
 
+## Epoch 63: Machines That Move — Robotics & Robot Security
+**Stages:** 10 (robot-01 through robot-10) | **Color:** Orange | **Track:** Defend the Enterprise | **6 CTF + 4 quiz**
+
+Cyber-physical security of robots, drones, and autonomous machines (second of the arc with vehicles). Foundations → deep tech → deep security: robot anatomy / sense-plan-act (01, quiz); ROS & ROS2/DDS unauthenticated middleware (02, CTF); industrial robot arm / HMI / PLC takeover — "Rogue Robots" (03, CTF); drone MAVLink hijack (04, CTF); teleoperation channel seizure — Raven II surgical robot (05, CTF); adversarial-patch perception attack (06, CTF); humanoid & service robots, cameras/cloud/backdoors — Unitree (07, quiz); functional safety / when security breaks safety — ISO 10218/15066, IEC 62443 (08, quiz); robot firmware & supply-chain backdoor (09, CTF); securing autonomous systems / zero-trust for cyber-physical, RVD, careers (10, quiz).
+
 ---
 
 ## XP Summary
@@ -479,7 +484,8 @@ Cyber-physical security of electric, connected, and self-driving vehicles (first
 | 62 | Silicon: Sand to Superchips | 10 | ~1,400 |
 | 63 | Race Through Space | 10 | ~1,600 |
 | 64 | Wired & Autonomous (EV/vehicle security) | 10 | ~1,650 |
-| | **Total** | **711** | **~110,000** |
+| 65 | Machines That Move (robotics security) | 10 | ~1,680 |
+| | **Total** | **721** | **~110,000** |
 
 ---
 

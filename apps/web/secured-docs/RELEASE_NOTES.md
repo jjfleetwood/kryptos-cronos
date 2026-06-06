@@ -2,6 +2,17 @@
 
 ---
 
+## v1.34.0 — 2026-06-05
+
+**New epoch: Machines That Move — Robotics & Robot Security (completes the cyber-physical arc)**
+
+- **`robot-sec` — "Machines That Move"** (10 stages, robot-01→robot-10, orange; *Defend the Enterprise* track). Robotics/robot security; **6 CTF + 4 quiz**. Second epoch of the cyber-physical arc (with vehicle-sec).
+- CTFs: ROS/DDS graph injection (02), industrial robot-arm/HMI takeover (03), drone MAVLink hijack (04), teleoperation channel seizure (05), adversarial-patch perception attack (06), firmware/supply-chain backdoor (09). Quizzes: robot anatomy (01), humanoid/service robots & backdoors (07), functional safety (08), securing autonomous systems (10).
+- Real anchors: exposed ROS hosts, Trend Micro "Rogue Robots", MAVLink, Raven II telesurgery attack, adversarial patches (stop-sign/invisibility), the Unitree backdoor, ISO 10218/15066, IEC 62443, the Robot Vulnerability Database. 6 flags in `stage-flags.ts`; all CTFs pass `validate-ctf.mjs` (232 CTFs, 0 problems). 10 free-licensed Commons photos, credited on `/attribution`.
+- Counts **711→721 stages / 63→64 epochs**.
+
+---
+
 ## v1.33.0 — 2026-06-05
 
 **New epoch: Wired & Autonomous — EV & Vehicle Security (CTF-heavy)**

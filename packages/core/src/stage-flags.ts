@@ -45,6 +45,14 @@ export const stageFlags: Record<string, string> = {
   "vehicle-07": "FLAG{T3L3M4T1CS_R3M0T3_C4N_PWN}",
   "vehicle-08": "FLAG{LID4R_SP00F3D_PH4NT0M_BR4K3}",
 
+  // ── Machines That Move (robot-sec.ts) — CTF stages only ──────────────────
+  "robot-02": "FLAG{R0S_DDS_UN4UTH_PWN3D}",
+  "robot-03": "FLAG{R0GU3_R0B0T_4RM_HMI_0WN3D}",
+  "robot-04": "FLAG{M4VL1NK_DR0N3_H1J4CK3D}",
+  "robot-05": "FLAG{T3L30P_CH4NN3L_S31Z3D}",
+  "robot-06": "FLAG{4DV_P4TCH_V1S10N_F00L3D}",
+  "robot-09": "FLAG{R0B0T_F1RMW4R3_B4CKD00R3D}",
+
   // ── Cisco CVE Extended (cisco-2.ts) ──────────────────────────────────────
   "stage-m13": "FLAG{CVE_2016_1287_IK3_H3AP_0WN3D}",
   "stage-m14": "FLAG{CVE_2017_3881_CMP_T3LN3T_RCE}",

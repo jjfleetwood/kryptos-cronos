@@ -189,6 +189,20 @@ const VEHICLE_IMAGE_CREDITS = [
   { stage: "10", device: "Vehicle fleet (parking lot)", file: "UCC Cars in Parking Lot.jpg", author: "Tomwsulcer", license: "CC0", licenseUrl: "https://creativecommons.org/publicdomain/zero/1.0/", url: "https://commons.wikimedia.org/wiki/File:UCC_Cars_in_Parking_Lot.jpg" },
 ];
 
+// Per-file credits for the Machines That Move (robotics) imagery (Wikimedia Commons, free licenses).
+const ROBOT_IMAGE_CREDITS = [
+  { stage: "01", device: "CHARLI humanoid robot", file: "Virginia Tech CHARLI humanoid.jpg", author: "Jiuguang Wang", license: "CC BY-SA 2.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/2.0/", url: "https://commons.wikimedia.org/wiki/File:Virginia_Tech%27s_CHARLI_humanoid_robot_on_display_at_AAAI_2010.jpg" },
+  { stage: "02", device: "Mobile robot (PatrolBot)", file: "Robot MobileRobotsPatrolBot.jpg", author: "Jdietsch", license: "CC BY-SA 3.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/", url: "https://commons.wikimedia.org/wiki/File:Robot_MobileRobotsPatrolBot.jpg" },
+  { stage: "03", device: "Industrial robot arm", file: "Robotic Arm Polishing Guitars.jpg", author: "Henrysz", license: "CC BY 4.0", licenseUrl: "https://creativecommons.org/licenses/by/4.0/", url: "https://commons.wikimedia.org/wiki/File:Robotic_Arm_Polishing_Guitars_at_Martin_Guitar_Factory.jpg" },
+  { stage: "04", device: "Quadcopter drone", file: "Remote controlled quadcopter.jpg", author: "Tomwsulcer", license: "CC0", licenseUrl: "https://creativecommons.org/publicdomain/zero/1.0/", url: "https://commons.wikimedia.org/wiki/File:Remote_controlled_flying_machine_with_four_helicopter_blades.jpg" },
+  { stage: "05", device: "Teleoperated / proxy robotics", file: "Robotics and Proxy Robotics.JPG", author: "K Dean Stephens", license: "CC BY-SA 3.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/", url: "https://commons.wikimedia.org/wiki/File:Robotics_and_Proxy_Robotics.JPG" },
+  { stage: "06", device: "FIDO rover camera/arm (NASA)", file: "FIDO Rover camera.jpg", author: "NASA", license: "Public domain", licenseUrl: "https://commons.wikimedia.org/wiki/Commons:Public_domain", url: "https://commons.wikimedia.org/wiki/File:FIDO_Rover_Retracted_Arm_and_Camera_-_GPN-2000-000515.jpg" },
+  { stage: "07", device: "REEM-A humanoid robot", file: "REEM-A humanoid robot.jpg", author: "Facontidavide", license: "Public domain", licenseUrl: "https://commons.wikimedia.org/wiki/Commons:Public_domain", url: "https://commons.wikimedia.org/wiki/File:REEM-A_humanoid_robot.jpg" },
+  { stage: "08", device: "Collaborative robot (cobot)", file: "Collaborative Robot Cobot.png", author: "Rlistmedia", license: "CC BY 4.0", licenseUrl: "https://creativecommons.org/licenses/by/4.0/", url: "https://commons.wikimedia.org/wiki/File:Collaborative_Robot_Cobot.png" },
+  { stage: "09", device: "EOD transportable robot (US Navy)", file: "EOD Manned Transportable Robot.jpg", author: "U.S. Navy", license: "Public domain", licenseUrl: "https://commons.wikimedia.org/wiki/Commons:Public_domain", url: "https://commons.wikimedia.org/wiki/File:US_Navy_091024-N-4267W-034_Electronics_Technician_2nd_Class_Bruce_Hammon,_assigned_to_Explosive_Ordnance_Disposal_Expeditionary_Support_Unit_(EODESU)_2,_demonstrates_an_EOD_Manned_Transportable_Robot.jpg" },
+  { stage: "10", device: "Air-Cobot collaborative robot", file: "Air-Cobot.jpg", author: "Stanislas Larnier", license: "CC BY-SA 4.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/", url: "https://commons.wikimedia.org/wiki/File:RFIA2016_Air-Cobot_Jeremy_Frejaville.jpg" },
+];
+
 export default function AttributionPage() {
   return (
     <div className="min-h-screen px-4 py-16" style={{ background: "linear-gradient(160deg,#040c1e 0%,#071428 60%,#040c1e 100%)" }}>
@@ -307,6 +321,27 @@ export default function AttributionPage() {
             {VEHICLE_IMAGE_CREDITS.map((c) => (
               <li key={c.stage} className="text-xs text-gray-400 flex flex-wrap items-center gap-x-2 gap-y-0.5">
                 <span className="text-gray-600 font-mono w-10 flex-shrink-0">V{c.stage}</span>
+                <span className="text-gray-300">{c.device}</span>
+                <span className="text-gray-700">·</span>
+                <a href={c.url} target="_blank" rel="noopener noreferrer" className="text-cyan-500 hover:text-cyan-400 transition-colors">{c.file}</a>
+                <span className="text-gray-700">·</span>
+                <span>© {c.author}</span>
+                <a href={c.licenseUrl} target="_blank" rel="noopener noreferrer" className="text-amber-400 hover:text-amber-300 transition-colors">{c.license} ↗</a>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="mt-12">
+          <h2 className="text-white font-bold text-lg mb-1">Machines That Move — imagery</h2>
+          <p className="text-gray-500 text-xs mb-4 leading-relaxed">
+            Photos on the robotics stages are from Wikimedia Commons (NASA/U.S. Navy public domain +
+            Creative Commons), self-hosted and credited to each author below.
+          </p>
+          <ul className="space-y-2 rounded-2xl border border-white/8 p-5" style={{ background: "rgba(255,255,255,0.02)" }}>
+            {ROBOT_IMAGE_CREDITS.map((c) => (
+              <li key={c.stage} className="text-xs text-gray-400 flex flex-wrap items-center gap-x-2 gap-y-0.5">
+                <span className="text-gray-600 font-mono w-10 flex-shrink-0">R{c.stage}</span>
                 <span className="text-gray-300">{c.device}</span>
                 <span className="text-gray-700">·</span>
                 <a href={c.url} target="_blank" rel="noopener noreferrer" className="text-cyan-500 hover:text-cyan-400 transition-colors">{c.file}</a>

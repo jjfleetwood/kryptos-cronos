@@ -2,7 +2,7 @@
 
 ## What This Is
 
-Gamified cybersecurity + AI training platform. 63 curriculum epochs, 711 CTF/quiz stages, live leaderboard, admin dashboard, 24 downloadable MCP server templates. Built with Next.js 16 / React 19 / TypeScript / Tailwind CSS / Upstash Redis / Resend.
+Gamified cybersecurity + AI training platform. 64 curriculum epochs, 721 CTF/quiz stages, live leaderboard, admin dashboard, 24 downloadable MCP server templates. Built with Next.js 16 / React 19 / TypeScript / Tailwind CSS / Upstash Redis / Resend.
 
 **Live:** kryptoscronos.com  
 **Repo:** github.com/jjfleetwood/kryptos-cronos  
@@ -144,6 +144,7 @@ Back navigation: `BackLink` uses `backHref` prop (passed from `StageContainer`) 
 | 61 | `silicon-fab` | Silicon: Sand to Superchips (chip manufacturing) | 10 | si-01 → si-10 | Sky |
 | 62 | `space-race` | Race Through Space (space systems hacking; 6 CTF + 4 quiz) | 10 | space-01 → space-10 | Violet |
 | 63 | `vehicle-sec` | Wired & Autonomous (EV/vehicle security; 6 CTF + 4 quiz) | 10 | vehicle-01 → vehicle-10 | Lime |
+| 64 | `robot-sec` | Machines That Move (robotics security; 6 CTF + 4 quiz) | 10 | robot-01 → robot-10 | Orange |
 | 43 | `physics-of-hacking` | The Physics of Hacking (hardware/physical) | 10 | poh-01 → poh-10 | Pink |
 | 38 | `emerging-tech` | Emerging Tech & Deep Learning Risk | 10 | emerging-01 → emerging-10 | Violet |
 | 16 | `umbrella` | Cisco Umbrella / SASE | 10 | umbrella-01 → umbrella-10 | Green |
@@ -352,6 +353,10 @@ Local dev: `.env.local` in `app/` (gitignored).
 - **Target sponsors:** CrowdStrike, AWS, SentinelOne, CompTIA, ISC²
 
 ---
+
+## What's Shipped (v1.34.0)
+
+- ✅ **New epoch `robot-sec` — "Machines That Move"** (10 stages, robot-01→robot-10, orange; *Defend the Enterprise* track). Robotics/robot security, **6 CTF + 4 quiz**, completing the 2-epoch cyber-physical arc (with vehicle-sec). CTFs: ROS/DDS graph injection (02), industrial robot-arm/HMI takeover (03), drone MAVLink hijack (04), teleoperation channel seizure (05), adversarial-patch perception attack (06), firmware/supply-chain backdoor (09). Quizzes: robot anatomy (01), humanoid/service robots & backdoors (07), functional safety / when security breaks safety (08), securing autonomous systems (10). Real anchors (ROS exposure, Rogue Robots, MAVLink, Raven II telesurgery, adversarial patches, Unitree backdoor, ISO 10218/15066, IEC 62443, RVD). 6 flags in `stage-flags.ts`; all CTFs pass `validate-ctf.mjs` (232 CTFs, 0 problems). 10 free-licensed Commons photos, credited on `/attribution`. Counts 711→721 stages / 63→64 epochs.
 
 ## What's Shipped (v1.33.0)
 
