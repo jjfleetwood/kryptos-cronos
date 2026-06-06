@@ -164,6 +164,17 @@ html[data-skin="mature"] ::-webkit-scrollbar-thumb { background: #78350f; border
 .cta-shimmer:hover::after { transform: translateX(100%); }
 .cursor-blink { animation: blink 1s step-start infinite; }
 
+/* ── Homepage: scroll-reveal, tilt/lift, grain ───────────────────────────── */
+/* No-JS safe: hiding only applies once <html> gets .kc-reveal-on (added on mount). */
+.kc-reveal-on .kc-reveal { opacity: 0; transform: translateY(26px); transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.22, 1, 0.36, 1); }
+.kc-reveal-on .kc-reveal.kc-in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) { .kc-reveal-on .kc-reveal { opacity: 1 !important; transform: none !important; } }
+.kc-tilt { transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease; will-change: transform; }
+.kc-tilt:hover { transform: translateY(-5px) scale(1.015); }
+@media (prefers-reduced-motion: reduce) { .kc-tilt:hover { transform: none; } }
+.kc-grain { position: fixed; inset: 0; z-index: 60; pointer-events: none; opacity: 0.03; mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+
 /* ── Epoch "water tank" progress fill (stages page) ──────────────────────── */
 /* The fill height (= % complete) is set inline; these animate the surface waves
    so it reads like water moving in a tank. Reduced-motion freezes the waves. */

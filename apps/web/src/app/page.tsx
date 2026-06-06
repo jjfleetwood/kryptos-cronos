@@ -4,6 +4,25 @@ import Link from "next/link";
 import { useLocale } from "@/contexts/LocaleContext";
 import HomeCtfDemo from "@/components/HomeCtfDemo";
 import Logo from "@/components/Logo";
+import Reveal from "@/components/Reveal";
+import CountUp from "@/components/CountUp";
+
+// Every domain the platform now covers — including the new deep-tech tracks.
+// Surfaced on the homepage so the breadth (robots, EVs, space, silicon, STEM…) is visible.
+const DOMAINS: { name: string; emoji: string; blurb: string; color: string; tag?: string; isNew?: boolean }[] = [
+  { name: "Core Security", emoji: "🏛️", blurb: "Foundations, landmark CVEs & exploits", color: "#fbbf24" },
+  { name: "Tech Audit", emoji: "📋", blurb: "Governance, cloud, agentic monitoring", color: "#60a5fa" },
+  { name: "Threat Frameworks", emoji: "🎯", blurb: "MITRE ATT&CK tactics & kill chains", color: "#f87171" },
+  { name: "AI & LLM Security", emoji: "🧠", blurb: "Prompt injection, ATLAS, OWASP LLM", color: "#c084fc" },
+  { name: "Quantum Era", emoji: "⚛️", blurb: "PQC, QKD, harvest-now-decrypt-later", color: "#22d3ee" },
+  { name: "Defend the Enterprise", emoji: "🌐", blurb: "Cisco CVEs, Umbrella, physics of hacking", color: "#818cf8" },
+  { name: "Silicon: Sand to Superchips", emoji: "💠", blurb: "How GPU & quantum chips are made", color: "#38bdf8", isNew: true },
+  { name: "Race Through Space", emoji: "🚀", blurb: "Satellite & spacecraft hacking (CTF)", color: "#a78bfa", isNew: true },
+  { name: "EV & Vehicle Security", emoji: "🚗", blurb: "CAN bus, keyless, the Jeep hack (CTF)", color: "#a3e635", isNew: true },
+  { name: "Robotics & Robots", emoji: "🦾", blurb: "ROS, drones, industrial arms (CTF)", color: "#fb923c", isNew: true },
+  { name: "Flag Football", emoji: "🏈", blurb: "Foundations → high-school mastery", color: "#34d399", isNew: true },
+  { name: "STEM & More", emoji: "🎓", blurb: "Baseball, debate, driving, travel, crafts", color: "#2dd4bf" },
+];
 
 const TRACK_STATIC = [
   {
@@ -90,6 +109,8 @@ export default function Home() {
         className="min-h-screen flex flex-col"
         style={{ background: "linear-gradient(160deg, #04080f 0%, #0d1117 45%, #080d1a 100%)" }}
       >
+        {/* film grain for depth/texture */}
+        <div className="kc-grain" aria-hidden="true" />
 
         {/* ── Hero ── */}
         <section className="relative flex flex-col items-center justify-center text-center px-4 pt-36 pb-0 overflow-hidden min-h-[90vh]">
@@ -221,23 +242,78 @@ export default function Home() {
         {/* ── Stats ── */}
         <section className="border-b border-white/5 py-12 px-4"
           style={{ background: "rgba(255,255,255,0.015)" }}>
-          <div className="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+          <Reveal className="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             {[
-              { value: "691", labelKey: "home.statStages",  color: "#22d3ee" },
-              { value: "11",  labelKey: "home.statTracks",  color: "#a78bfa" },
-              { value: "25+", labelKey: "home.statCves",    color: "#f97316" },
-              { value: "3.5M",labelKey: "home.statJobs",    color: "#4ade80" },
+              { to: 751, decimals: 0, suffix: "",  label: "Stages",    color: "#22d3ee" },
+              { to: 67,  decimals: 0, suffix: "",  label: "Epochs",    color: "#a78bfa" },
+              { to: 12,  decimals: 0, suffix: "+", label: "Domains",   color: "#f97316" },
+              { to: 3.5, decimals: 1, suffix: "M", label: "Open Jobs", color: "#4ade80" },
             ].map((s) => (
-              <div key={s.labelKey}>
+              <div key={s.label}>
                 <div
                   className="text-5xl font-black mb-1"
                   style={{ color: s.color, textShadow: `0 0 30px ${s.color}40` }}
                 >
-                  {s.value}
+                  <CountUp to={s.to} decimals={s.decimals} suffix={s.suffix} />
                 </div>
-                <div className="text-sm" style={{ color: "rgba(107,114,128,1)" }}>{t(s.labelKey)}</div>
+                <div className="text-sm" style={{ color: "rgba(107,114,128,1)" }}>{s.label}</div>
               </div>
             ))}
+          </Reveal>
+        </section>
+
+        {/* ── Domains (full breadth, incl. the new deep-tech tracks) ── */}
+        <section className="py-20 px-4 border-b border-white/5">
+          <div className="max-w-5xl mx-auto">
+            <Reveal className="text-center mb-12">
+              <p className="text-xs font-mono uppercase tracking-widest mb-3" style={{ color: "rgba(34,211,238,0.6)" }}>
+                EVERY DOMAIN · ONE PLATFORM
+              </p>
+              <h2 className="text-4xl font-black text-white mb-3">Way more than cybersecurity</h2>
+              <p className="max-w-2xl mx-auto leading-relaxed" style={{ color: "rgba(107,114,128,1)" }}>
+                From classic CVEs to the deep tech defining the future — hack satellites, electric vehicles, and robots,
+                learn how GPU &amp; quantum chips are made, and build real-world skills from debate to flag football.
+              </p>
+            </Reveal>
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+              {DOMAINS.map((d, i) => (
+                <Reveal key={d.name} delay={(i % 3) * 70}>
+                  <Link
+                    href="/stages"
+                    className="kc-tilt relative block rounded-2xl border p-5 h-full overflow-hidden"
+                    style={{
+                      borderColor: `${d.color}33`,
+                      background: `radial-gradient(ellipse at top left, ${d.color}14, transparent 70%)`,
+                      boxShadow: "0 4px 24px rgba(0,0,0,0.3)",
+                    }}
+                  >
+                    {d.isNew && (
+                      <span
+                        className="absolute top-3 right-3 text-[9px] font-mono font-black px-1.5 py-0.5 rounded"
+                        style={{ color: "#000", background: d.color, boxShadow: `0 0 16px ${d.color}66` }}
+                      >
+                        NEW
+                      </span>
+                    )}
+                    <div className="flex items-center gap-3 mb-2">
+                      <div
+                        className="w-11 h-11 rounded-xl grid place-items-center text-2xl flex-shrink-0"
+                        style={{ background: "rgba(255,255,255,0.05)", border: `1px solid ${d.color}33` }}
+                      >
+                        {d.emoji}
+                      </div>
+                      <p className="font-bold text-sm leading-tight pr-6" style={{ color: d.color }}>{d.name}</p>
+                    </div>
+                    <p className="text-xs leading-relaxed" style={{ color: "rgba(156,163,175,0.85)" }}>{d.blurb}</p>
+                  </Link>
+                </Reveal>
+              ))}
+            </div>
+            <div className="text-center mt-8">
+              <Link href="/stages" className="text-sm text-cyan-400 hover:text-cyan-300 transition-colors">
+                Browse all 67 epochs →
+              </Link>
+            </div>
           </div>
         </section>
 
@@ -351,10 +427,10 @@ export default function Home() {
         {/* ── How it works ── */}
         <section className="py-24 px-4">
           <div className="max-w-5xl mx-auto">
-            <div className="text-center mb-14">
+            <Reveal className="text-center mb-14">
               <h2 className="text-4xl font-black text-white mb-3">{t("home.howWorksHeading")}</h2>
               <p style={{ color: "rgba(107,114,128,1)" }}>{t("home.howWorksSub")}</p>
-            </div>
+            </Reveal>
             <div className="grid md:grid-cols-3 gap-6">
               {[
                 { step: "01", icon: "📖", titleKey: "home.step1Title", descKey: "home.step1Desc" },
@@ -388,10 +464,10 @@ export default function Home() {
         {/* ── Feature highlights ── */}
         <section className="py-24 px-4 border-y border-white/5" style={{ background: "rgba(255,255,255,0.015)" }}>
           <div className="max-w-5xl mx-auto">
-            <div className="text-center mb-14">
+            <Reveal className="text-center mb-14">
               <h2 className="text-4xl font-black text-white mb-3">{t("home.featuresHeading")}</h2>
               <p style={{ color: "rgba(107,114,128,1)" }}>{t("home.featuresSub")}</p>
-            </div>
+            </Reveal>
             <div className="grid md:grid-cols-3 gap-6">
               {[
                 { icon: "🎯", glow: "rgba(34,211,238,0.08)", border: "rgba(34,211,238,0.2)",
@@ -422,7 +498,7 @@ export default function Home() {
         {/* ── Job outcomes ── */}
         <section className="py-24 px-4">
           <div className="max-w-5xl mx-auto">
-            <div className="text-center mb-12">
+            <Reveal className="text-center mb-12">
               <p className="text-xs font-mono uppercase tracking-widest mb-3" style={{ color: "rgba(74,222,128,0.7)" }}>
                 {t("home.jobsLabel")}
               </p>
@@ -430,7 +506,7 @@ export default function Home() {
               <p className="max-w-xl mx-auto" style={{ color: "rgba(107,114,128,1)" }}>
                 {t("home.jobsDesc")}
               </p>
-            </div>
+            </Reveal>
 
             <div className="grid md:grid-cols-2 gap-4">
               {[
@@ -511,7 +587,7 @@ export default function Home() {
         {/* ── Pricing ── */}
         <section className="py-24 px-4 border-y border-white/5" style={{ background: "rgba(255,255,255,0.015)" }}>
           <div className="max-w-5xl mx-auto">
-            <div className="text-center mb-12">
+            <Reveal className="text-center mb-12">
               <p className="text-xs font-mono uppercase tracking-widest mb-3" style={{ color: "rgba(168,85,247,0.7)" }}>
                 {t("home.pricingLabel")}
               </p>
@@ -519,7 +595,7 @@ export default function Home() {
               <p style={{ color: "rgba(107,114,128,1)" }}>
                 {t("home.pricingDesc")}
               </p>
-            </div>
+            </Reveal>
 
             <div className="grid md:grid-cols-3 gap-5">
               {[
