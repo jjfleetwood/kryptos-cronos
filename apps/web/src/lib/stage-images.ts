@@ -15,6 +15,20 @@ export const TIMELINE_IMAGES: Record<string, string> = {
 };
 
 export const STAGE_IMAGES: Record<string, string> = {
+  // Cisco Core CVEs — real hardware photos of the device in each CVE
+  // (Wikimedia Commons, free licenses; credited on /attribution).
+  "stage-m01": "/img/stage-m01.jpg",
+  "stage-m02": "/img/stage-m02.jpg",
+  "stage-m03": "/img/stage-m03.jpg",
+  "stage-m04": "/img/stage-m04.jpg",
+  "stage-m05": "/img/stage-m05.jpg",
+  "stage-m06": "/img/stage-m06.jpg",
+  "stage-m07": "/img/stage-m07.jpg",
+  "stage-m08": "/img/stage-m08.jpg",
+  "stage-m09": "/img/stage-m09.jpg",
+  "stage-m10": "/img/stage-m10.jpg",
+  "stage-m11": "/img/stage-m11.jpg",
+  "stage-m12": "/img/stage-m12.jpg",
   "ai-ml-foundations-01": "/img/ai-ml-foundations-01.jpg",
   "ai-ml-foundations-02": "/img/ai-ml-foundations-02.jpg",
   "ai-ml-foundations-03": "/img/ai-ml-foundations-03.jpg",

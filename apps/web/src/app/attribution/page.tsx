@@ -143,6 +143,23 @@ const ATTRIBUTIONS = [
   },
 ];
 
+// Per-file credits for the Cisco Core CVE hardware photos (Wikimedia Commons,
+// free licenses, self-hosted). CC BY / BY-SA require naming the author + license.
+const CISCO_HW_CREDITS = [
+  { stage: "M01", device: "Catalyst 6509 (IOS XE)", file: "Cisco 6509.JPG", author: "MrChrome", license: "CC BY 3.0", licenseUrl: "https://creativecommons.org/licenses/by/3.0/", url: "https://commons.wikimedia.org/wiki/File:Cisco_6509.JPG" },
+  { stage: "M02", device: "ASA 5510 (EXTRABACON)", file: "Cisco ASA 5510.jpg", author: "ShakataGaNai", license: "CC BY-SA 3.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/", url: "https://commons.wikimedia.org/wiki/File:Cisco_ASA_5510.jpg" },
+  { stage: "M03", device: "Catalyst 2960-S (Smart Install)", file: "Cisco Catalyst 2960-S.jpg", author: "Dmitry Grigoriev", license: "CC BY 2.0", licenseUrl: "https://creativecommons.org/licenses/by/2.0/", url: "https://commons.wikimedia.org/wiki/File:Cisco_Catalyst_2960-S_(11625112186).jpg" },
+  { stage: "M04", device: "Cisco 1900 ISR router (RV-class)", file: "Router Cisco 1900 series.jpg", author: "Maraguache", license: "CC BY-SA 4.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/", url: "https://commons.wikimedia.org/wiki/File:Router_Cisco_1900_series.jpg" },
+  { stage: "M05", device: "Sourcefire/Firepower 3D 7120", file: "Cisco sourcefire 3D 7120.jpg", author: "Christo", license: "CC BY-SA 4.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/", url: "https://commons.wikimedia.org/wiki/File:Cisco_sourcefire_3D_7120.jpg" },
+  { stage: "M06", device: "Aironet 1100 (wireless)", file: "Cisco Aironet 1100.jpg", author: "Huhbakker", license: "CC0", licenseUrl: "https://creativecommons.org/publicdomain/zero/1.0/", url: "https://commons.wikimedia.org/wiki/File:Cisco_Aironet_1100.jpg" },
+  { stage: "M07", device: "Cisco UCS (HyperFlex)", file: "CiscoUCS.JPG", author: "Raysonho", license: "CC BY-SA 3.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/", url: "https://commons.wikimedia.org/wiki/File:CiscoUCS.JPG" },
+  { stage: "M08", device: "Catalyst 3750 (IOS XE)", file: "Cisco Catalyst 3750 Switch.jpg", author: "Brian Carlson", license: "CC BY-SA 2.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/2.0/", url: "https://commons.wikimedia.org/wiki/File:Cisco%27s_One_Millionth_Catalyst_3750_Switch_-_Flickr_-_Brian%27s_Eye.jpg" },
+  { stage: "M09", device: "Cisco UCS (Prime Infrastructure)", file: "Cisco UCS.jpg", author: "Tibigc", license: "CC BY-SA 4.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/", url: "https://commons.wikimedia.org/wiki/File:Cisco_UCS.jpg" },
+  { stage: "M10", device: "ASA 5510 (ASA/FTD)", file: "Cisco ASA 5510.jpg", author: "ShakataGaNai", license: "CC BY-SA 3.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/", url: "https://commons.wikimedia.org/wiki/File:Cisco_ASA_5510.jpg" },
+  { stage: "M11", device: "PIX 515 firewall (ASA WebVPN)", file: "Cisco-PIX-515-hdr-0a.jpg", author: "Adamantios", license: "CC BY-SA 3.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/", url: "https://commons.wikimedia.org/wiki/File:Cisco-PIX-515-hdr-0a.jpg" },
+  { stage: "M12", device: "Cisco 2503 router (IOS SNMP)", file: "Cisco-2503-router-hdr-0a.jpg", author: "Adamantios", license: "CC BY-SA 3.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/", url: "https://commons.wikimedia.org/wiki/File:Cisco-2503-router-hdr-0a.jpg" },
+];
+
 export default function AttributionPage() {
   return (
     <div className="min-h-screen px-4 py-16" style={{ background: "linear-gradient(160deg,#040c1e 0%,#071428 60%,#040c1e 100%)" }}>
@@ -206,6 +223,28 @@ export default function AttributionPage() {
               </div>
             </div>
           ))}
+        </div>
+
+        <div className="mt-12">
+          <h2 className="text-white font-bold text-lg mb-1">Cisco hardware photographs</h2>
+          <p className="text-gray-500 text-xs mb-4 leading-relaxed">
+            Device photos on the Cisco Core CVE stages are sourced from Wikimedia Commons under free
+            licenses and self-hosted. Each file remains under the license stated on its Commons page,
+            credited to its author below.
+          </p>
+          <ul className="space-y-2 rounded-2xl border border-white/8 p-5" style={{ background: "rgba(255,255,255,0.02)" }}>
+            {CISCO_HW_CREDITS.map((c) => (
+              <li key={c.stage} className="text-xs text-gray-400 flex flex-wrap items-center gap-x-2 gap-y-0.5">
+                <span className="text-gray-600 font-mono w-8 flex-shrink-0">{c.stage}</span>
+                <span className="text-gray-300">{c.device}</span>
+                <span className="text-gray-700">·</span>
+                <a href={c.url} target="_blank" rel="noopener noreferrer" className="text-cyan-500 hover:text-cyan-400 transition-colors">{c.file}</a>
+                <span className="text-gray-700">·</span>
+                <span>© {c.author}</span>
+                <a href={c.licenseUrl} target="_blank" rel="noopener noreferrer" className="text-amber-400 hover:text-amber-300 transition-colors">{c.license} ↗</a>
+              </li>
+            ))}
+          </ul>
         </div>
 
         <div className="mt-10 pt-6 border-t border-white/8 text-xs text-gray-700 leading-relaxed space-y-2">
