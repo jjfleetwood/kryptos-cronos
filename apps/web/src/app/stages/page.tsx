@@ -35,7 +35,7 @@ const epochGroups = [
     id: "coreSecurity",
     labelKey: "stages.tracks.coreSecurity",
     descKey: "stages.tracks.coreSecurityDesc",
-    epochIds: ["first-journey", "ancient", "sec-foundations", "computing-foundations"],
+    epochIds: ["first-journey", "ancient", "sec-foundations", "computing-foundations", "silicon-fab"],
   },
   {
     id: "techAudit",
@@ -144,7 +144,7 @@ const TRACK_SUBGROUPS: Record<string, SubGroup[]> = {
 // career = Security tracks | curious = full curriculum (security + non-security)
 // Mirrors filterStagesByGroup in epoch page: career and curious are equivalent
 const SECURITY_EPOCHS = new Set([
-  "first-journey", "ancient", "computing-foundations",
+  "first-journey", "ancient", "computing-foundations", "silicon-fab",
   "tech-audit-1", "tech-audit-2", "tech-audit-3", "tech-audit-4",
   "mitre", "mitre-atlas", "owasp-llm", "emerging-tech", "ai-ml-foundations", "sec-foundations",
   "quantum-intro", "quantum-deep", "quantum-1", "quantum-2", "quantum-3", "quantum-4", "quantum-5",
