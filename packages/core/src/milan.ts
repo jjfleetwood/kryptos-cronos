@@ -30,7 +30,7 @@ export const milanStages: StageConfig[] = [
       overview: [
         "Milan's ATM network covers 4 metro lines plus an extensive tram network dating to 1881. Line 1 (red) and Line 3 (yellow) cross at Duomo station — the central hub for all tourist sightseeing.",
         "Buy an ATM 48-hour pass (€7) or 72-hour pass (€9) at any metro ticket window or from the ATM Milano app. The app also lets you buy single tickets and see real-time delays. Single tickets (€2.20) are valid 90 minutes from validation and cover unlimited transfers.",
-        "Milano Centrale is the main rail hub for day trips: Trenord trains to Lake Como (€7.50, 40 min to Varenna), Pavia (€4, 30 min), and Bergamo (€5.50, 50 min) all depart from Centrale. Buy Trenord tickets at station kiosks or trenord.it — Trenitalia tickets are separate.",
+        "Milano Centrale is the main rail hub for day trips, all on Trenord trains:\n- Lake Como — €7.50, 40 min to Varenna.\n- Pavia — €4, 30 min.\n- Bergamo — €5.50, 50 min.\nBuy Trenord tickets at station kiosks or trenord.it — Trenitalia tickets are sold separately.",
         "Yellow trams along the Navigli canals run on dedicated tracks — Line 2 from Piazza Missori to Porta Genova takes you through the aperitivo district without changing lines.",
       ],
       technical: {
@@ -159,7 +159,7 @@ export const milanStages: StageConfig[] = [
       tagline: "Book the Duomo roof terrace (€18 stairs, €25 lift) at duomomilano.it at least a week ahead — the 9am slot has the fewest people and the best light.",
       year: 1386,
       overview: [
-        "The Duomo di Milano is one of the largest Gothic cathedrals in the world — 135 spires, 3,400 statues, and construction that ran from 1386 to 1965. The roof terrace is the best reason to visit: you walk among the spires at rooftop height with views across the Po plain to the Alps on clear mornings.",
+        "The Duomo di Milano is one of the largest Gothic cathedrals in the world:\n- 135 spires.\n- 3,400 statues.\n- Construction that ran from 1386 to 1965.\nThe roof terrace is the best reason to visit — you walk among the spires at rooftop height, with views across the Po plain to the Alps on clear mornings.",
         "Book roof terrace tickets at duomomilano.it in advance — walk-up availability in July is unreliable. Choose Itinerary B (roof + cathedral interior, €18 stairs / €25 lift). The 9am opening slot is the least crowded and the light is best for photography.",
         "The cathedral interior is free to enter (with a free timed-entry pass from the ticket office) but the roof, treasury, baptistery, and museum all require separate paid tickets. The combo pass (€35) covers everything including the lift.",
         "From the roof at 108.5m, on clear days you can see Monte Rosa and the Alps to the north. The golden Madonnina statue at the peak is 4.16 metres tall and has stood as the tallest point in Milan since 1774 — by centuries-old convention, no building may exceed her height.",
@@ -290,7 +290,7 @@ export const milanStages: StageConfig[] = [
       year: 1877,
       overview: [
         "The Galleria Vittorio Emanuele II is a covered shopping arcade connecting Piazza del Duomo to Piazza della Scala — two of Milan's most important squares linked by a 19th-century iron-and-glass arcade. It is free to enter and walk through at any time.",
-        "The Galleria opened in 1877 and immediately became Milan's social hub. The shops inside today include Prada, Louis Vuitton, and Gucci (all established their flagship stores here), but the real reason to visit is Camparino bar at the Duomo entrance — open since 1915, it serves the original Campari Seltz (Campari with soda, €10) and the best Negroni in the city.",
+        "The Galleria opened in 1877 and immediately became Milan's social hub:\n- The shops today include Prada, Louis Vuitton, and Gucci — all of which established flagship stores here.\n- The real reason to visit is Camparino bar at the Duomo entrance, open since 1915.\n- It serves the original Campari Seltz (Campari with soda, €10) and the best Negroni in the city.\nThe arcade itself is free to enter and walk through at any time.",
         "On the central mosaic floor is a bull (the symbol of Turin) whose testicles are traditionally stood on for good luck — the marble is visibly worn from a century of heel-spinning. Join the queue; everyone does it.",
         "The iron-and-glass roof is 47 metres high at the central octagon and floods the interior with natural light. In July, the Galleria is one of the coolest spaces in central Milan — no air conditioning needed under the glass vault.",
       ],
@@ -419,7 +419,7 @@ export const milanStages: StageConfig[] = [
       tagline: "Book at vivaticket.com exactly 3 months in advance — slots open at midnight Italian time and July dates are gone within hours.",
       year: 1498,
       overview: [
-        "Leonardo da Vinci's Last Supper is painted directly on the wall of the refectory of Santa Maria delle Grazie — not on canvas, not on a panel. You are in the same room as the original, 8 metres from the wall. Groups of 25 are admitted for exactly 15 minutes at a time through an air-locked entrance designed to protect the humidity.",
+        "Leonardo da Vinci's Last Supper is painted directly on the refectory wall of Santa Maria delle Grazie — not on canvas, not on a panel:\n- You're in the same room as the original, 8 metres from the wall.\n- Groups of 25 are admitted at a time.\n- Each visit lasts exactly 15 minutes, through an air-locked entrance designed to protect the humidity.\nBook at vivaticket.com exactly 3 months ahead — July slots sell out within hours.",
         "Booking: vivaticket.com, exactly 3 months in advance. The €15 ticket includes an audio guide. Slots open at midnight Central European Time and July dates sell out within hours. If you miss the booking window, licensed tour operators (Viator, Context Travel) sometimes hold guaranteed-entry tickets at a premium (€50–€80).",
         "The refectory is at Piazza Santa Maria delle Grazie 2, a 15-minute walk from Castello Sforzesco (west) or 20 minutes from the Duomo on foot. Metro M1 (red) to Cadorna, then walk 7 minutes west.",
         "After your visit: walk back via the Dominican Church of Santa Maria delle Grazie itself (free entry) — the apse was designed by Bramante in 1492, three years before Leonardo began the painting.",
@@ -551,7 +551,7 @@ export const milanStages: StageConfig[] = [
       overview: [
         "The Castello Sforzesco is a 15th-century fortress at the north edge of the historic centre — the outer walls and towers are free to enter, and behind them is Parco Sempione, Milan's version of Central Park. The €5 museum ticket covers 7 collections inside the castle walls.",
         "The unmissable collection is the Museo della Pietà Rondanini: Michelangelo's last sculpture, worked on in the final days before his death in 1564. Unlike his finished marbles, the Rondanini is raw and expressionistic — two figures barely emerged from the stone. It is one of the most affecting works in any museum anywhere.",
-        "After the castle, walk straight through to Parco Sempione — 47 hectares of parkland with a lake, an Arch of Peace (Arco della Pace) at the north end, and Torre Branca (a 108m observation tower, €5, open on summer evenings). In July, the park stays light until 9pm.",
+        "After the castle, walk straight through to Parco Sempione — 47 hectares of parkland (light until 9pm in July):\n- A lake at its heart.\n- The Arch of Peace (Arco della Pace) at the north end.\n- Torre Branca — a 108m observation tower (€5, open on summer evenings).\nIt's Milan's version of Central Park, directly behind the castle.",
         "Getting there: Metro M1 (red) or M2 (green) to Cadorna, then walk 10 minutes east, or M1 to Cairoli and walk 5 minutes. The castle entrance faces east toward Piazza Castello.",
       ],
       technical: {
@@ -679,7 +679,7 @@ export const milanStages: StageConfig[] = [
       tagline: "€15 entry, 5 minutes from the Duomo — the Codex Atlanticus (Leonardo's largest surviving manuscript) and Raphael's full-scale cartoon for the School of Athens are both here.",
       year: 1618,
       overview: [
-        "The Pinacoteca Ambrosiana is 5 minutes' walk south of the Duomo and one of the most quietly exceptional museums in Italy. It holds Leonardo's Codex Atlanticus — the largest collection of Leonardo's drawings and writings in existence, 1,119 pages spanning 40 years of notebooks. Raphael's full-scale cartoon for the School of Athens (a 7-metre preparatory drawing for the Vatican fresco) is also here.",
+        "The Pinacoteca Ambrosiana, 5 minutes south of the Duomo, is one of the most quietly exceptional museums in Italy:\n- Leonardo's Codex Atlanticus — the largest collection of his drawings and writings in existence, 1,119 pages spanning 40 years.\n- Raphael's full-scale cartoon for the School of Athens — a 7-metre preparatory drawing for the Vatican fresco.\n- A 17th-century palazzo home — built specifically to house Cardinal Federico Borromeo's collection.\nEntry is €15, and queues rarely form before 11am in July — go at the 10am opening.",
         "Entry is €15. No advance booking required in July — queues rarely form before 11am. Go when it opens at 10am and have the Raphael cartoon room and Leonardo gallery nearly to yourself.",
         "The building is a 17th-century palazzo designed specifically to house Cardinal Federico Borromeo's collection. The Biblioteca Ambrosiana (library) next door holds the original manuscripts — viewable by appointment. The museum is the public face of the collection.",
         "Getting there: from the Duomo, walk south down Via Torino for 4 minutes and turn right on Piazza Pio XI. The Ambrosiana is number 2. Metro M1 or M3 to Duomo, then 5-minute walk.",
@@ -809,7 +809,7 @@ export const milanStages: StageConfig[] = [
       tagline: "Tickets at €15 (book at ticketone.it), free on the first Sunday of the month — go at 9am opening to beat the queues. Mantegna's Dead Christ is in Room VI.",
       year: 1809,
       overview: [
-        "The Pinacoteca di Brera is Milan's primary painting collection — 38 rooms, 800 works, and the most concentrated gathering of Northern Italian Renaissance art outside Venice. Napoleon founded it in 1809 by confiscating paintings from churches and monasteries across Lombardy. The result is extraordinary.",
+        "The Pinacoteca di Brera is Milan's primary painting collection:\n- 38 rooms and 800 works.\n- The most concentrated gathering of Northern Italian Renaissance art outside Venice.\n- Founded by Napoleon in 1809 by confiscating paintings from churches and monasteries across Lombardy.\nThe unmissable work is Mantegna's radically foreshortened Dead Christ in Room VI.",
         "The unmissable work: Mantegna's Dead Christ (Lamentation over the Dead Christ), Room VI. Painted circa 1480, it shows Christ in extreme foreshortening viewed from the feet — a radical compositional choice that remains one of the most discussed works in European painting. Spend time with it.",
         "Tickets: €15 at ticketone.it or on-site. Free on the first Sunday of each month — arrive at 9am when it opens; free Sundays draw a queue that extends down Via Brera by 10am. The museum is at Via Brera 28, a 10-minute walk north of the Duomo or from Brera district's Via Fiori Chiari.",
         "The Brera neighbourhood surrounding the museum is Milan's art district — independent galleries, antique shops, the Academy of Fine Arts (same building as the museum). The bar at the museum entrance (Caffè Brera) has outdoor tables on the courtyard.",
@@ -940,7 +940,7 @@ export const milanStages: StageConfig[] = [
       year: 1860,
       overview: [
         "Aperitivo is Milan's defining social ritual — from 6:30pm to 9pm, bars set out a spread of food (bruschetta, pasta salad, cold cuts, frittata, sometimes hot dishes) and you pay only for your drink. One drink = unlimited food. It originated in Milan and spread to the rest of Italy.",
-        "In the Brera neighbourhood: Bar Brera (Via Brera 23, open from 7am, aperitivo from 6:30pm), Bar Radetzky (Largo Benedetto Marcello 1, larger terrace, known for its Spritz), and Caffè Sempione in Parco Sempione. All are within a 10-minute walk of the Pinacoteca di Brera.",
+        "In the Brera neighbourhood, three classic aperitivo spots sit within a 10-minute walk of the Pinacoteca:\n- Bar Brera (Via Brera 23) — open from 7am, aperitivo from 6:30pm.\n- Bar Radetzky (Largo Benedetto Marcello 1) — a larger terrace, known for its Spritz.\n- Caffè Sempione — inside Parco Sempione.\nArrive at 6:30pm opening for an outdoor table in July.",
         "The standard drink is a Spritz (Aperol or Campari with prosecco and soda, €10–€12) or a Negroni (Campari, sweet vermouth, gin, €12–€14). In July, outdoor terraces are packed by 7pm — arrive at 6:30pm opening for a table.",
         "Campari was invented in Milan in 1860 by Gaspare Campari at his bar on the Galleria Vittorio Emanuele II. Every Negroni and Campari Spritz in the world traces to this city.",
       ],
@@ -1069,7 +1069,7 @@ export const milanStages: StageConfig[] = [
       tagline: "Metro M2 green to Porta Genova — the Naviglio Grande and Naviglio Pavese canals intersect here. Sunday morning antique market runs 9am–6pm along the canal towpath.",
       year: 1179,
       overview: [
-        "Milan's Navigli district is built along two historic canals — the Naviglio Grande (connecting Milan to the Ticino river, 47km) and the Naviglio Pavese (connecting to Pavia, 33km). Both were dug from the 12th century onward and were Milan's primary commercial waterways for 700 years.",
+        "Milan's Navigli district is built along two historic canals, dug from the 12th century and used as the city's primary commercial waterways for 700 years:\n- The Naviglio Grande — connecting Milan to the Ticino river, 47km.\n- The Naviglio Pavese — connecting to Pavia, 33km.\n- Both dug from the 12th century onward, the city's commercial lifeline for 700 years.\nToday the towpaths are lined with bars, restaurants, and boutiques — liveliest in the evening for aperitivo.",
         "Today the canal towpaths are lined with bars, restaurants, and small boutiques. The area is liveliest in the evening for aperitivo (the Navigli strip is the main alternative to Brera) and on Sunday mornings for the antique market — the Mercatone dell'Antiquariato, held on the last Sunday of each month, 300 stalls along the canal.",
         "Getting there: Metro M2 (green) to Porta Genova FS. Exit onto Via Vigevano and walk south 3 minutes to the canal. The Naviglio Grande towpath runs west from here; the Naviglio Pavese runs south. The intersection (the Darsena) is where the Sunday market concentrates.",
         "In July, the canals are best in the evening — tables line the canal edge from 6pm, aperitivo starts at 6:30pm. Sunday morning market starts at 9am when it's still cool. Avoid midday in the height of summer.",
@@ -1200,7 +1200,7 @@ export const milanStages: StageConfig[] = [
       year: 300,
       overview: [
         "Sixteen ancient Roman columns stand in Corso di Porta Ticinese — the Colonne di San Lorenzo, moved here from a Roman temple or bath complex in the 4th century AD. They are the best-preserved Roman ruins in Milan, free to see, and the gathering point for the neighbourhood on summer evenings.",
-        "Behind the columns is the Basilica di San Lorenzo Maggiore (free entry), an early Christian church built in the 4th century using materials from an earlier Roman building. The octagonal Chapel of Sant'Aquilino (€2) contains 4th-century mosaics that rank among the finest surviving examples of early Christian art in Italy.",
+        "Behind the columns stand two early Christian treasures:\n- The Basilica di San Lorenzo Maggiore (free entry) — a 4th-century church built with materials from an earlier Roman building.\n- The octagonal Chapel of Sant'Aquilino (€2) — 4th-century mosaics among the finest surviving early Christian art in Italy.\n- The 16 Roman columns out front — the best-preserved Roman ruins in Milan and the neighbourhood's evening gathering point.\nIt's a free, atmospheric stop on the way to the Navigli.",
         "Getting there: Metro M2 (green) to Sant'Ambrogio or tram 3 from Duomo. Walk south on Via De Amicis — the columns appear ahead on the left as you reach Corso di Porta Ticinese. From the Navigli, it's a 7-minute walk north from the Darsena.",
         "After the columns: continue south through the medieval Porta Ticinese gate (free, 13th century) into the Ticinese district, which connects directly to the Navigli aperitivo strip — a logical evening route from the columns to dinner.",
       ],
@@ -1330,7 +1330,7 @@ export const milanStages: StageConfig[] = [
       year: 386,
       overview: [
         "The Basilica di Sant'Ambrogio is one of the oldest churches in Milan — built by Bishop Ambrose himself between 379 and 386 AD, completed the same year he baptised Augustine. It is largely intact in its Romanesque 12th-century form and is the model for every Lombard Romanesque church built after it.",
-        "Entry is free. The interior holds the Paliotto d'Oro — a 9th-century gold and enamel altar panel that is one of the finest examples of Carolingian metalwork in existence. Below the main altar, the crypt holds the bones of three saints: Ambrose, Gervasius, and Protasius, in the same gold reliquary they were placed in by Ambrose himself in 386 AD.",
+        "Entry is free, and the interior holds two extraordinary things:\n- The Paliotto d'Oro — a 9th-century gold-and-enamel altar panel, one of the finest examples of Carolingian metalwork in existence.\n- The crypt below the main altar — the bones of three saints (Ambrose, Gervasius, and Protasius) in the same gold reliquary Ambrose placed them in, in 386 AD.\n- The building itself — largely intact in its Romanesque 12th-century form, the model for every Lombard Romanesque church after it.\nIt was built by Bishop Ambrose himself between 379 and 386 AD.",
         "Getting there: Metro M2 (green) to Sant'Ambrogio station — the basilica is 3 minutes' walk east on Via De Amicis. Or walk 15 minutes west from the Duomo via Via Torino and Via Maurilio.",
         "After Sant'Ambrogio: the Università Cattolica del Sacro Cuore (immediately adjacent, founded 1921) occupies the former Cistercian monastery attached to the basilica. Walk through the cloister courtyards (free, accessible during term time) — some of the most peaceful 15th-century architecture in the city.",
       ],
@@ -1459,7 +1459,7 @@ export const milanStages: StageConfig[] = [
       tagline: "Metro M2 or M5 to Garibaldi FS — the Bosco Verticale is 5 minutes' walk north. Piazza Gae Aulenti has free outdoor seating and good people-watching all day.",
       year: 2014,
       overview: [
-        "The Porta Garibaldi and Isola neighbourhood is Milan's most significant urban development of the past decade — two residential towers covered in trees (the Bosco Verticale, completed 2014), a redesigned piazza named after architect Gae Aulenti, and the Isola neighbourhood directly behind it, which has retained its working-class character despite gentrification.",
+        "Porta Garibaldi and Isola is Milan's most significant urban development of the past decade:\n- The Bosco Verticale (completed 2014) — two residential towers covered in trees.\n- Piazza Gae Aulenti — a redesigned plaza named after the architect.\n- The Isola neighbourhood directly behind, which has kept its working-class character despite gentrification.\nThe towers hold 800 trees and 15,000 plants across their balconies.",
         "The Bosco Verticale (Vertical Forest) towers hold 800 trees and 15,000 plants across their balconies. Architects Boeri Studio designed them to provide the atmospheric benefits of a hectare of forest in a 0.15-hectare footprint. They are free to view from street level — the best angle is from Via Confalonieri, behind the towers.",
         "Piazza Gae Aulenti: the redesigned plaza in front of the Unicredit Tower is free to sit in, has a food market (Mercato Metropolitano) on weekends, and faces the Unicredit skyscraper — Milan's tallest building at 231m. At night the plaza is lit and active until late.",
         "Isola neighbourhood (directly north, 5-minute walk behind the towers): independent cafés, vintage shops, and the Ratanà restaurant (Via Gaetano de Castillia 28) — a converted 19th-century station house serving classic Lombard cuisine.",
@@ -1590,7 +1590,7 @@ export const milanStages: StageConfig[] = [
       year: 1778,
       overview: [
         "La Scala is one of the world's most famous opera houses and Milan's cultural centrepiece. The main opera season runs October–July — July is the final month, with the best seats sold out months ahead but standing-room tickets (loggione) sometimes available day-of at the box office.",
-        "The Museo Teatrale alla Scala (Piazza della Scala 2) is €9, open daily, and includes access to a viewing balcony with a view into the auditorium when rehearsals are not scheduled. Costumes, instruments, portraits of every composer who performed here, and the history of opera from the 17th century are all in the museum.",
+        "The Museo Teatrale alla Scala (Piazza della Scala 2) is €9, open daily, and the easiest way in:\n- Access to a viewing balcony over the auditorium when no rehearsal is scheduled.\n- Costumes and instruments.\n- Portraits of every composer who performed here.\n- The history of opera from the 17th century.\nFor a performance, standing-room (loggione) at €15 is the last-minute option — queue from 5:30pm on the day.",
         "For performances: tickets at teatroallascala.org. Standing-room (loggione) at €15 is the option for last-minute visitors — queue at the box office from 5:30pm on day-of for evening performances. The experience of the loggione crowd — knowledgeable, vocal, capable of booing — is itself a cultural event.",
         "Getting there: Metro M1 (red) or M3 (yellow) to Duomo, then walk north through the Galleria Vittorio Emanuele II (5 minutes). La Scala faces Piazza della Scala at the Galleria's north exit.",
       ],
@@ -1719,7 +1719,7 @@ export const milanStages: StageConfig[] = [
       tagline: "Trenord to Varenna-Esino: €7.50 each way, 40 minutes from Milano Centrale. Buy tickets at Trenord kiosks — not Trenitalia. Go Tuesday or Wednesday; weekends are packed.",
       year: -63,
       overview: [
-        "Lake Como is 40 minutes from Milano Centrale by Trenord regional train — one of the most accessible major lakes in Europe from a major city. The lake is 46km long, 410 metres deep, and sits at the foot of the Alps. In July, the lake is warm enough to swim (22–24°C) and the mountain views are clear.",
+        "Lake Como is 40 minutes from Milano Centrale by Trenord regional train — one of Europe's most accessible major lakes from a big city:\n- 46km long and 410 metres deep.\n- At the foot of the Alps, with clear mountain views in July.\n- Warm enough to swim in July (22–24°C).\nThe best day-trip base is Varenna — smaller and less crowded than Como town, with a ferry to Bellagio.",
         "The best village for a day trip is Varenna — smaller than Como town, less crowded, equally beautiful, and on a direct train line. From Varenna station, walk down to the ferry dock (5 minutes) and take the ferry to Bellagio (€7.20 return), the most photographed village on the lake. Bellagio in July is crowded — go early, before 11am.",
         "Buying tickets: Trenord ticket kiosks at Centrale FS — the machines are separate from Trenitalia kiosks. Buy on the day at the station (queues are short). The Trenord app also works. Return ticket Varenna–Milan: €15 total round trip.",
         "Swimming: the best public swimming in Varenna is at Lido di Varenna (€5, sun lounger hire available) on the main lakefront, or from the rocks at Villa Monastero's public park. Water temperature in July reaches 23°C at the surface.",
@@ -1850,7 +1850,7 @@ export const milanStages: StageConfig[] = [
       tagline: "Trenord to Pavia: €4, 30 minutes from Centrale. Walk or bus to the Certosa di Pavia (free, closed noon–2:30pm). Combine with Pavia's medieval towers and the university's 14th-century anatomy theatre.",
       year: 1396,
       overview: [
-        "Pavia is 30 minutes south of Milan by Trenord (€4 each way) — an undervisited medieval city with one of the oldest universities in the world (founded 1361) and the Certosa di Pavia, one of the most spectacular Renaissance monasteries in Italy. Entry to the Certosa is free.",
+        "Pavia is 30 minutes south of Milan by Trenord (€4 each way) — an undervisited medieval city with two big draws:\n- One of the oldest universities in the world, founded 1361.\n- The Certosa di Pavia — one of the most spectacular Renaissance monasteries in Italy (free entry).\n- The town's seven surviving medieval towers, clustered around Piazza della Vittoria.\nThe Certosa is 9km north of the station — take the morning shuttle bus or a €15 taxi.",
         "The Certosa di Pavia (Charterhouse of Pavia) is 9km north of Pavia station — take the shuttle bus from the station (runs mornings) or a taxi (€15). The monastery was commissioned by Gian Galeazzo Visconti in 1396 as his family mausoleum. The church facade is one of the most ornate in Lombardy.",
         "Opening hours: the Certosa is open Tue–Sun 9–11:30am and 2:30–6pm (July hours). Entry is free — guided tours by the resident monks run on the hour in Italian and English. The interior includes the ducal mausoleum, the small cloister, and the monks' cells.",
         "In Pavia town: the Università di Pavia's historic anatomy theatre (Teatro Anatomico, 1595) is one of the oldest in Europe. Pavia's seven surviving medieval towers cluster around Piazza della Vittoria — free to view from outside.",
@@ -1984,7 +1984,7 @@ export const milanStages: StageConfig[] = [
         "The Cimitero Monumentale is one of the most spectacular cemeteries in Europe — a 250,000 square metre outdoor museum of funerary sculpture, mausoleums, and Art Nouveau monuments built by Milan's wealthy families from 1866 to the present. Entry is free; pick up the official map at the entrance to find the key monuments.",
         "Unlike Père Lachaise in Paris, the Monumentale has virtually no tourist crowds — you can walk through on a weekday morning and have the main avenues almost to yourself. The entrance hall (Famedio) contains the tombs of famous Milanese including Alessandro Manzoni and the main gallery of civic monuments.",
         "Getting there: Metro M5 (purple) to Monumentale station — the main gate is directly opposite the exit. Walk 3 minutes from the station to the white marble entrance building. Or tram 12 or 14 from the city centre.",
-        "Key monuments to find with the map: the Falck family mausoleum (Neo-Gothic, 1903), the Campari family tomb, Arturo Toscanini's tomb, and the Samaritana by Ernesto Bazzaro (1882) — one of the most photographed funerary sculptures in Italy.",
+        "Key monuments to find with the map:\n- The Falck family mausoleum — Neo-Gothic, 1903.\n- The Campari family tomb.\n- Arturo Toscanini's tomb.\n- The Samaritana by Ernesto Bazzaro (1882) — one of the most photographed funerary sculptures in Italy.\nUnlike Père Lachaise in Paris, the Monumentale has virtually no tourist crowds.",
       ],
       technical: {
         title: "Cimitero Monumentale guide",
@@ -2112,7 +2112,7 @@ export const milanStages: StageConfig[] = [
       year: 1906,
       overview: [
         "Milan's Quadrilatero della Moda (Fashion Quadrilateral) is the most concentrated luxury fashion district in the world — four streets where every major fashion house has its flagship store. Walking it is free. The architecture, window displays, and street scene are themselves the experience.",
-        "Via Montenapoleone is the main street — Prada, Valentino, Versace, Gucci, Hermès, Cartier. Via della Spiga runs parallel (Dolce & Gabbana, Bottega Veneta). Via Sant'Andrea connects them. Allow 90 minutes for the full circuit.",
+        "The Quadrilatero is walked in a 90-minute circuit:\n- Via Montenapoleone — the main street: Prada, Valentino, Versace, Gucci, Hermès, Cartier.\n- Via della Spiga — running parallel: Dolce & Gabbana, Bottega Veneta.\n- Via Sant'Andrea — connecting the two.\nIt's the most concentrated luxury-fashion district in the world, and walking it is free.",
         "Porta Venezia, the gateway to the fashion district from the east, is also the entry to Milan's best Liberty (Art Nouveau) architecture. Corso Venezia and the surrounding streets have the finest Art Nouveau buildings in Milan — the Casa Galimberti (1903, covered in ceramic tiles) and Casa Castiglioni (1903) are within a 5-minute walk.",
         "Getting there: Metro M1 (red) to San Babila — you emerge directly at the south end of Via Montenapoleone. Or Metro M1 to Palestro for the Porta Venezia end and the Art Nouveau buildings.",
       ],
@@ -2241,7 +2241,7 @@ export const milanStages: StageConfig[] = [
       tagline: "Museo Archeologico on Corso Magenta (€5) holds Roman Milan artefacts — then walk 5 minutes to see the remains of the Roman circus tower still standing at Via Brisa.",
       year: -222,
       overview: [
-        "Milan was the Roman city of Mediolanum — founded by Celtic Insubres tribes and conquered by Rome in 222 BC. By 286 AD it was the capital of the Western Roman Empire. Fragments of Mediolanum survive scattered through the modern city — a tower of the Roman circus on Via Brisa, sections of the city wall, and the columns in front of San Lorenzo.",
+        "Milan was the Roman city of Mediolanum — conquered by Rome in 222 BC, and by 286 AD the capital of the Western Roman Empire. Fragments survive scattered through the modern city:\n- A tower of the Roman circus on Via Brisa.\n- Sections of the original city wall.\n- The 16 columns in front of San Lorenzo.\nThe Civico Museo Archeologico (€5) holds the main collection of finds.",
         "The Civico Museo Archeologico (Corso Magenta 15, €5) holds the main collection of Roman-era finds from Milan — pottery, glassware, mosaics, a bronze Hercules, and a section of the original Roman city wall preserved in the basement. Open Tue–Sun 9am–5:30pm.",
         "After the museum: walk 3 minutes east on Corso Magenta to Via Brisa — the remains of the 4th-century Roman circus tower (used for chariot racing, once holding 30,000 spectators) are still standing in a small archaeological garden between modern apartment buildings. Free to view through the fence.",
         "Continue the walk: Via Circo (a street named after the circus) runs east from Via Brisa through the footprint of the former chariot track. At the east end, turn north on Via Santa Maria Valle for a section of the original Roman city wall.",
@@ -2373,7 +2373,7 @@ export const milanStages: StageConfig[] = [
       overview: [
         "Ferragosto is the Italian national holiday on August 15 — historically the mid-August celebration of the harvest, now the centrepiece of a 2–4 week summer closure. Milan, more than any other Italian city, closes seriously in August: many restaurants, small shops, and family businesses shut for 2–4 weeks around August 15.",
         "July is therefore the better month for a Milan visit if you have flexibility. The city is active, most museums and restaurants are open, the aperitivo scene is at its peak, and queues at the Last Supper are long but predictable. August sees fewer crowds but genuine closures — arriving to find your planned restaurant closed for ferie (vacation) is a real risk.",
-        "What stays open in August: all major museums (Pinacoteca Brera, Ambrosiana, Duomo, Castello Sforzesco), the Navigli bars, supermarkets and chains, and the fashion district flagship stores. What may close: neighbourhood restaurants, small tabacchi, specialist food shops, independent cafés.",
+        "Around Ferragosto, what's open and what isn't splits clearly:\n- Stays open — all major museums (Brera, Ambrosiana, Duomo, Castello Sforzesco), the Navigli bars, supermarkets and chains, and the fashion-district flagships.\n- May close — neighbourhood restaurants, small tabacchi, specialist food shops, and independent cafés.\n- Emptiest window — the week of Ferragosto itself (August 10–20), when traffic drops and the metro quietens.\nJuly is the safer month: the city is fully active, and only the Last Supper queues are long.",
         "The week of Ferragosto itself (August 10–20) is the emptiest period in the city — traffic drops dramatically, the metro is quieter, and the heat (32–35°C in some years) makes midday sightseeing uncomfortable. If you visit in August, plan activities for early morning and evening.",
       ],
       technical: {
@@ -2502,7 +2502,7 @@ export const milanStages: StageConfig[] = [
       year: -222,
       overview: [
         "Milan rewards planning more than almost any Italian city — the Last Supper requires advance booking, the Duomo roof sells out in July, and the best neighbourhood restaurants fill their terraces by 7:30pm. Done right, a week in Milan covers ancient Rome, Renaissance painting, Art Nouveau, aperitivo culture, day trips to mountains and lakes, and the world's most concentrated fashion street.",
-        "Day 1: Arrive, ATM pass, Duomo (roof at 9am — book ahead), walk through Galleria to La Scala museum, aperitivo at Camparino. Day 2: Last Supper (pre-booked 9am slot), Castello Sforzesco, Parco Sempione, aperitivo in Brera at Bar Brera. Day 3: Pinacoteca di Brera (9am, free first Sunday or €15), lunch in Brera, Pinacoteca Ambrosiana afternoon.",
+        "A workable first half of the week:\n- Day 1 — arrive, ATM pass, Duomo (roof at 9am, book ahead), walk through the Galleria to the La Scala museum, aperitivo at Camparino.\n- Day 2 — Last Supper (pre-booked 9am slot), Castello Sforzesco, Parco Sempione, aperitivo in Brera at Bar Brera.\n- Day 3 — Pinacoteca di Brera (9am; free first Sunday or €15), lunch in Brera, Pinacoteca Ambrosiana in the afternoon.",
         "Day 4: Lake Como day trip (Trenord 8:30am Centrale to Varenna, ferry to Bellagio, swim, return 6pm). Day 5: Porta Garibaldi/Isola (Bosco Verticale), Navigli canals at 5pm for aperitivo, Mercatone dell'Antiquariato if last Sunday of the month. Day 6: Roman Milan walk (Museo Archeologico + circus tower + San Lorenzo columns), Pavia afternoon (Trenord, Certosa di Pavia).",
         "Day 7: Cimitero Monumentale (8am, free), Quadrilatero fashion walk, Caffè Cova, Sant'Ambrogio basilica, final aperitivo on the Navigli. The La Scala museum (€9) fits easily into any half-day as it opens at 9am.",
       ],
