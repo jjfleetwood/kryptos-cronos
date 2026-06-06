@@ -267,10 +267,10 @@ export default function StagesPage() {
             <div className="kc-tank-inner absolute inset-0">
               <div className="absolute inset-x-0 top-1.5 bottom-0" style={{ background: "currentColor", opacity: 0.18 }} />
               <svg className="kc-wave kc-wave-a" viewBox="0 0 120 16" preserveAspectRatio="none" fill="currentColor">
-                <path d="M0 9 Q15 3 30 9 T60 9 T90 9 T120 9 V16 H0 Z" />
+                <path d="M0 10 Q15 1 30 10 T60 10 T90 10 T120 10 V16 H0 Z" />
               </svg>
               <svg className="kc-wave kc-wave-b" viewBox="0 0 120 16" preserveAspectRatio="none" fill="currentColor">
-                <path d="M0 9 Q15 5 30 9 T60 9 T90 9 T120 9 V16 H0 Z" />
+                <path d="M0 10 Q15 3 30 10 T60 10 T90 10 T120 10 V16 H0 Z" />
               </svg>
             </div>
           </div>
