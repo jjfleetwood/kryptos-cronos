@@ -97,6 +97,14 @@ export const stageFlags: Record<string, string> = {
   "ot-06": "FLAG{3WS_1T_T0_0T_P1V0T}",
   "ot-09": "FLAG{1CS_1NTRUS10N_D3T3CT3D}",
 
+  // ── Wired & Autonomous II (vehicle-sec-2.ts) ─────────────────────────────
+  "v2-02": "FLAG{S0M31P_S3RV1C3_SP00F3D}",
+  "v2-03": "FLAG{V2X_BSM_F0RG3D_GH0ST}",
+  "v2-04": "FLAG{TPMS_S3NS0R_SP00F3D}",
+  "v2-05": "FLAG{R3L4Y_K3Y_UNL0CK3D}",
+  "v2-06": "FLAG{PLUG_4ND_CH4RG3_PWND}",
+  "v2-08": "FLAG{FL33T_4P1_BOLA_T4K30V3R}",
+
   // ── Cisco CVE Extended (cisco-2.ts) ──────────────────────────────────────
   "stage-m13": "FLAG{CVE_2016_1287_IK3_H3AP_0WN3D}",
   "stage-m14": "FLAG{CVE_2017_3881_CMP_T3LN3T_RCE}",

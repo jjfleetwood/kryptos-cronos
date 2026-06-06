@@ -2,6 +2,16 @@
 
 ---
 
+## v1.39.0 — 2026-06-06
+
+**New epoch: Wired & Autonomous II (deeper vehicle security)**
+
+- **`vehicle-sec-2` — Wired & Autonomous II** (10 stages, 6 CTF + 4 quiz), added as the second epoch in the Wired & Autonomous `/stages` track (🚗, lime). The software-defined vehicle & Automotive Ethernet, SOME/IP service spoofing, V2X "phantom car" message forging, TPMS sensor spoofing, keyless relay attacks vs. UWB, ISO 15118 Plug & Charge / V2G, fooling the self-driving sensor stack, connected-car/fleet API takeover (BOLA), OTA + UNECE R155/R156 + ISO/SAE 21434, and securing the SDV (HSM, SecOC, VSOC, SBOMs).
+- 6 new CTF flags; `validate-ctf.mjs` = **274 CTFs, 0 problems**. Counts: **771 stages / 69 epochs**.
+- Second item of the overnight content grind (`docs/GRIND_PLAN.md`); next: Robotics II, Race Through Space II, Threat Frameworks.
+
+---
+
 ## v1.38.0 — 2026-06-06
 
 **New epoch: Operational Technology (ICS/SCADA security)**
