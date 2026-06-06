@@ -29,7 +29,7 @@ Recurring traits across the top 50 this year:
 | Display font | none (headings = same family, `font-black`) | High |
 | Type scale | ad-hoc Tailwind sizes per page | Medium |
 | Images | 371 / 683 stages have one; **312 have none**; 1 image max per stage, capped at `max-h-72` in a centered box | High |
-| Content format | **383 / 683 stages still wall-of-text** (300 bulleted; sec-foundations 02–13 done 2026-06-05) | High (readability) |
+| Content format | ✅ **0 / 683 wall-of-text** — every stage bulleted (scan-reformat: 681 reformatted, 0 walls, 2026-06-05) | Done |
 | Motion | homepage has nice keyframes; **no scroll-reveal anywhere**; inner pages static | Medium |
 | Texture | gradients + grid overlays present; **no grain/noise** | Low–Medium |
 | Color | strong cyan/indigo/violet system already | Low (keep, tighten) |
@@ -62,11 +62,10 @@ Recurring traits across the top 50 this year:
 > **SAMPLE EPOCH (awaiting approval):** `ai-ml-foundations` (6 stages) was fully polished as the style demo for the per-epoch "both bullets + images" pass — 11 wall-of-text enumerations converted to bullet lists (42 bullet lines), and 6 self-hosted Wikimedia diagrams added (CNN, Iris scatter, precision/recall, GPT architecture, DevOps toolchain, cloud computing). Once approved, the same pattern grinds across the remaining epochs.
 
 ### Phase 3 — Content readability (the big grind; the user's two asks)
-**3a. Bullets — 395 wall-of-text stages → bulleted.** Use `scan-reformat.mjs` to pick targets; rewrite prose lists in `overview` / `technical.body` / `incident.body` as `\n- ` lines (renderer turns them into `<ul>`). Preserve facts. Order: extended tracks first (baseball, debate, driving, travel, languages, crafts), then sec-foundations + ai-ml-foundations, then any remaining security. Per-epoch checkpoints; CRLF-safe node scripts.
-- [x] **baseball (1–15) DONE** · [x] **debate (1–8) DONE** · [x] **driving (1–3) DONE** · [ ] travel (paris/milan/french/italian) · [x] **crafts DONE** (nails/hair-color/hair-styling; tapestry is art-history prose) · [x] **sec-foundations DONE** (all 13: S01 + 02–13 reformatted 2026-06-05) · [x] ai-ml-foundations (sample) · [ ] remaining security walls
-  - Travel note: paris/milan/french/italian are SHORT, already-itemized phrase/fact entries (transport facts, opening hours, phrase tables), not walls of prose — they're already scannable, so bulleting adds little (confirmed deprioritized 2026-06-05). Skip unless asked.
-  - Resume next: any remaining security walls (run scan-reformat.mjs to list).
-  - Note: bulleting yield varies — fundamentals/how-to epochs (baseball-1, positions) are list-rich; advanced/concept epochs (baseball-3/4/6/7) are mostly explanatory prose whose keyTakeaways already render as bullets, so only genuine inline lists are bulleted there.
+**3a. Bullets — ✅ COMPLETE (681/681, 0 walls, 2026-06-05).** Every stage's `overview` (and rich `technical.body`/`incident.body`) lists rewritten as `\n- ` lead-sentence + bulleted-with-dialogue. Verified by `scan-reformat.mjs` (681 reformatted, 0 remaining). Shipped per-epoch to master.
+- [x] **baseball (1–15)** · [x] **debate (1–8)** · [x] **driving (1–3)** · [x] **travel — paris, milan, french-basics, italian-basics (all 20-stage files)** · [x] **crafts — nails, hair-color, hair-styling, tapestry** · [x] **sec-foundations (13)** · [x] **ai-ml-foundations** · [x] **all security/tech-audit/AI/quantum + cisco + umbrella + stages.ts + first-journey** (done earlier)
+  - Travel/language files (paris/milan/french/italian) were short, already-itemized phrase entries; reformatted anyway per Jacob's "do all in this format" instruction — phrase/fact lists converted to clean bullets.
+  - Note: yield varies — list-rich how-to stages bullet heavily; concept/narrative stages get their genuine inline lists bulleted (≥3 per stage) with surrounding prose kept as lead/closing sentences.
 **3b. Images — 312 stages with no image + section images for text-heavy bodies.**
 - [ ] Source self-hosted images (Wikimedia pipeline → sharp 800px → `public/img/` → `STAGE_IMAGES`) for the ~312 imageless stages.
 - [ ] Extend `StageInfo` to support a **second/section image** (technical or incident) so long bodies get visual breaks. Add optional `technicalImage` / `incidentImage` support keyed by stage id.

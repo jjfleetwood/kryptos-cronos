@@ -2,7 +2,7 @@
 
 **Goal:** break dense walls-of-text in **all three briefing sections — `overview`, `technical.body` (Technical Deep-Dive), and `incident.body` (Real-World Incident)** — into scannable **bulleted-with-dialogue** format. Approved by Jacob (style locked).
 
-**Status:** ✅ **IN-SCOPE GRIND COMPLETE.** Every in-scope epoch in the order list below is ticked — all security / tech-audit / AI / quantum epochs + cisco-2/3/4/5 + umbrella + stages.ts (ancient + cisco-core) + first-journey ×3 (bt-01..30). Extended curriculum (baseball, driving, french/italian, paris/milan, nails, hair, tapestry — ~210 stages) remains **OUT OF SCOPE** unless Jacob says otherwise. **Quiz rollout is DONE (203/203, v1.23.0).**
+**Status:** ✅ **ENTIRE CODEBASE COMPLETE (2026-06-05).** `scan-reformat.mjs` reports **681 reformatted / 0 walls remaining** across every data file. The original in-scope set (all security / tech-audit / AI / quantum + cisco-2/3/4/5 + umbrella + stages.ts + first-journey + sec-foundations + ai-ml-foundations) AND the full extended curriculum — baseball-1..15, debate-1..8, driving-1..3, nails, hair-color, hair-styling, tapestry, french-basics, italian-basics, paris, milan — are all reformatted to lead-sentence + bulleted-with-dialogue and pushed to master (per-epoch commits). **Quiz rollout is DONE (203/203, v1.23.0).**
 
 ## Coloring (shipped in `RichText.tsx` — do NOT re-edit the component)
 - `'single-quoted'` terms → amber pill; backtick `code` → cyan monospace pill.
