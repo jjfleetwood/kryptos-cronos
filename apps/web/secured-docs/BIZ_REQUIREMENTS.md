@@ -77,7 +77,7 @@ Kryptós CronOS is a gamified cybersecurity and AI training platform — "Duolin
 
 | ID | Requirement | Priority |
 |---|---|---|
-| FR-CUR-01 | Platform must offer 55 epochs containing 683 total stages | Must Have |
+| FR-CUR-01 | Platform must offer 61 epochs containing 691 total stages | Must Have |
 | FR-CUR-02 | Each stage is either a CTF challenge or a quiz | Must Have |
 | FR-CUR-03 | CTF stages use a simulated terminal with filesystem commands | Must Have |
 | FR-CUR-04 | CTF flags validated server-side; never exposed to client | Must Have |

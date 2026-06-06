@@ -41,7 +41,7 @@ A VC will spend 20 minutes on the product before meeting 1. Here is what they wi
 
 | Observation | Why It Matters |
 |---|---|
-| 683 stages across 55 epochs, all loading cleanly | 6–12 months of content effort, hard to replicate fast |
+| 691 stages across 61 epochs, all loading cleanly | 6–12 months of content effort, hard to replicate fast |
 | Cross-platform — Next.js web (live) + native iOS/Android app (Expo, code-complete) sharing one backend via a typed client | Monorepo with shared `@kryptos/core`; mobile expands TAM + retention (push streak nudges) |
 | ARIA AI tutor in-production with Socratic framing | No competitor has this working in prod; Anthropic SDK wired correctly |
 | Adaptive difficulty engine — XP bonus, skill tracking, recommended next | Shows product thinking beyond a content dump |
@@ -97,9 +97,9 @@ The competitive analysis notes TryHackMe, HackTheBox, Cybrary, Immersive Labs. I
 
 $13.99/mo · 5% conversion · $30 CAC · 7% churn. Every number is an assumption. A VC will ask "why 5%? What's the industry benchmark? Have you A/B tested?" The answer is no, because there are no users. This is acceptable at pre-seed — all pre-seed models are guesses. But you should know your assumptions are guesses, present them as guesses, and show sensitivity analysis. Presenting them as forecasts will read as naïve.
 
-**10. The 83(b) election deadline is June 9, 2026.**
+**10. The 83(b) election — ✅ FILED (complete).**
 
-This is 11 days from today. If you received restricted stock at incorporation (which Stripe Atlas does by default), the 83(b) election must be filed with the IRS within 30 days of incorporation (May 23 + 30 = June 22; check the exact date with your attorney). **Do not let this deadline pass.** Missing an 83(b) election creates tax liability on future vesting events that can be catastrophic. Confirm this is filed or confirm it does not apply. This is a legal item, not a product item, but a VC will ask.
+Resolved. The 83(b) election was filed with the IRS within the 30-day window (mailed ~2026-05-30, well inside the May 23 + 30 = June 22 deadline; tracking …40418197). This closes the catastrophic-tax-liability risk on future vesting events. Keep the stamped/mailed copy and IRS confirmation with the corporate records for the eventual diligence data room — a VC will still ask to see it, and now there's a clean answer.
 
 ---
 
@@ -168,7 +168,7 @@ In priority order, here is what moves this from "interesting product" to "let's 
 |---|---|---|---|
 | 1 | ✅ **Plausible Analytics installed** (2026-06-03) — privacy-compliant tracking live; now accumulate real usage data | Done | Measurement layer in place; need users + time for the numbers |
 | 2 | **Public launch** — r/netsec, DEF CON Discord, HackerNews Show HN, security Twitter/LinkedIn, r/cybersecurity | 1 day | First users are everything |
-| 3 | ✅ **83(b) election** — filed ~2026-05-30 (confirm USPS receipt) | Done | Catastrophic tax consequences if missed; appears handled |
+| 3 | ✅ **83(b) election** — filed with the IRS ~2026-05-30 (complete; tracking …40418197) | Done | Catastrophic-tax risk closed; keep stamped copy for the data room |
 | 4 | **Rewrite bt-01–bt-30 for beginners** (in progress) | 3 days | First-journey is the flagship onboarding; it must work |
 
 ### Tier 2 — Must Have Before Investor Meeting (Days 30–90)
@@ -224,7 +224,7 @@ a16z, General Catalyst, Greylock — Series A territory.
 | Enterprise requires dedicated sales | High | High | Mitigation: founder-led first 5 customers |
 | B2C CAC exceeds LTV | Low | Medium | Model shows 3.4x–18.7x LTV/CAC; needs real data to confirm |
 | AI-tutor moat erodes | High | Medium | Mitigation: differentiate on curriculum depth + cert mapping, not AI alone |
-| 83(b) election missed | Unknown | Catastrophic | **Confirm with attorney immediately — deadline ~June 22** |
+| 83(b) election missed | ✅ Resolved | Catastrophic | **Filed with the IRS ~2026-05-30 (complete); risk closed** |
 | First-journey UX too hard | High | High | **Active fix — elementary redesign in progress** |
 | Competitive response from TryHackMe | High | Medium | They have users; you have the better product + cert angle |
 
@@ -246,7 +246,7 @@ Get 1,000 weekly active users. Get 60 days of retention data. Get one paying sub
 **v2.0 Verdict:** One critical blocker (Stripe). One day of work.  
 **v3.0 Verdict:** One critical blocker (zero users). 60–90 days of work.
 
-The platform is now: Stripe live ✅ · incorporated entity ✅ · correct pricing ✅ · strong unit economics ✅ · legal docs ✅ · business email ✅ · clean positioning ✅ · production-grade security ✅ · cert paths ✅ · resume builder ✅ · adaptive engine ✅ · admin audit log ✅ · voucher system ✅.
+The platform is now: Stripe live ✅ · incorporated entity ✅ · 83(b) election filed ✅ · correct pricing ✅ · strong unit economics ✅ · legal docs ✅ · business email ✅ · clean positioning ✅ · production-grade security ✅ · cert paths ✅ · resume builder ✅ · adaptive engine ✅ · admin audit log ✅ · voucher system ✅.
 
 The product is genuinely excellent. It needs users. That's the whole story.
 

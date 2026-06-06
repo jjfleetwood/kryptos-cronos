@@ -2,7 +2,7 @@
 
 ## What This Is
 
-Gamified cybersecurity + AI training platform. 59 curriculum epochs, 691 CTF/quiz stages, live leaderboard, admin dashboard, 24 downloadable MCP server templates. Built with Next.js 16 / React 19 / TypeScript / Tailwind CSS / Upstash Redis / Resend.
+Gamified cybersecurity + AI training platform. 61 curriculum epochs, 691 CTF/quiz stages, live leaderboard, admin dashboard, 24 downloadable MCP server templates. Built with Next.js 16 / React 19 / TypeScript / Tailwind CSS / Upstash Redis / Resend.
 
 **Live:** kryptoscronos.com  
 **Repo:** github.com/jjfleetwood/kryptos-cronos  
@@ -141,7 +141,7 @@ Back navigation: `BackLink` uses `backHref` prop (passed from `StageContainer`) 
 | 40 | `quantum-intro` | Quantum for Curious Minds (beginner) | 10 | quantum-i01 → quantum-i10 | Purple |
 | 41 | `quantum-deep` | Quantum, Deeper (intermediate physics) | 10 | quantum-x01 → quantum-x10 | Fuchsia |
 | 42 | `computing-foundations` | How Computers Really Work (beginner) | 10 | cf-01 → cf-10 | Orange |
-| 59 | `silicon-fab` | Silicon: Sand to Superchips (chip manufacturing) | 10 | si-01 → si-10 | Sky |
+| 61 | `silicon-fab` | Silicon: Sand to Superchips (chip manufacturing) | 10 | si-01 → si-10 | Sky |
 | 43 | `physics-of-hacking` | The Physics of Hacking (hardware/physical) | 10 | poh-01 → poh-10 | Pink |
 | 38 | `emerging-tech` | Emerging Tech & Deep Learning Risk | 10 | emerging-01 → emerging-10 | Violet |
 | 16 | `umbrella` | Cisco Umbrella / SASE | 10 | umbrella-01 → umbrella-10 | Green |
@@ -353,7 +353,7 @@ Local dev: `.env.local` in `app/` (gitignored).
 
 ## What's Shipped (v1.31.0)
 
-- ✅ **Silicon manufacturing epoch — `silicon-fab` "Silicon: Sand to Superchips"** (10 quiz stages, si-01→si-10, sky; in the Core Security track beside computing-foundations). The end-to-end story of how modern GPU and quantum chips are made: sand→9N silicon & the Czochralski boule, wafers & the cleanroom, photolithography, EUV (tin-plasma 13.5 nm), doping & ion implantation, deposition/etch & copper damascene, FinFET→gate-all-around (the "nm" myth), giant AI GPUs (reticle limit, chiplets, HBM, CoWoS 2.5D/3D packaging), yield/binning/fab economics, and quantum-chip fabrication (superconducting/trapped-ion/silicon-spin, decoherence, post-quantum link). Light hardware-trust/supply-chain security seeds throughout. Counts 681→691 stages / 58→59 epochs.
+- ✅ **Silicon manufacturing epoch — `silicon-fab` "Silicon: Sand to Superchips"** (10 quiz stages, si-01→si-10, sky; in the Core Security track beside computing-foundations). The end-to-end story of how modern GPU and quantum chips are made: sand→9N silicon & the Czochralski boule, wafers & the cleanroom, photolithography, EUV (tin-plasma 13.5 nm), doping & ion implantation, deposition/etch & copper damascene, FinFET→gate-all-around (the "nm" myth), giant AI GPUs (reticle limit, chiplets, HBM, CoWoS 2.5D/3D packaging), yield/binning/fab economics, and quantum-chip fabrication (superconducting/trapped-ion/silicon-spin, decoherence, post-quantum link). Light hardware-trust/supply-chain security seeds throughout. Counts 681→691 stages / 60→61 epochs (the true registered totals; prior docs had drifted to 683/55 and 681/58).
 
 ## What's Shipped (v1.30.0)
 

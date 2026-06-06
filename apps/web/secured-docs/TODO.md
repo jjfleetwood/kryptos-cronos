@@ -1,6 +1,6 @@
 # Kryptós CronOS — To-Do & Roadmap
 
-**Last updated:** 2026-06-02 (deep content review)
+**Last updated:** 2026-06-05 (v1.31.0 — silicon-fab epoch, count reconciliation 691/61, 83(b) complete)
 
 ---
 
@@ -27,7 +27,7 @@ Findings from a structural + sampled read of the curriculum. Ranked by leverage.
 | # | Item | Effort | Priority | Status |
 |---|---|---|---|---|
 | G | **Analytics — install Plausible or PostHog** | 2 hours | P1 | ✅ **DONE 2026-06-03 — Plausible installed.** Privacy-friendly, GDPR-compliant. Closes the "can't pitch without user data" gap. |
-| H | **83(b) election filing** | Legal | P1 | ✅ Likely **FILED ~2026-05-30** (tracking …40418197); founder election reviewed 2026-06-03, complete per §1.83-2(e). Confirm USPS receipt. (30-day clock from the 2026-05-27 transfer → ~June 26.) |
+| H | **83(b) election filing** | Legal | P1 | ✅ **COMPLETE — filed with the IRS ~2026-05-30** (tracking …40418197); within the 30-day window, election complete per §1.83-2(e). Catastrophic-tax risk closed. Keep the stamped/mailed copy + IRS confirmation in the corporate records / diligence data room. |
 | I | **Public launch campaign** | 1 day | P1 | r/netsec, DEF CON Discord, HackerNews Show HN, security Twitter/LinkedIn. First 1,000 MAU is the only thing that makes this fundable. |
 | J | **First paying user** | At launch | P1 | Even $13.99/mo from one real user changes the conversation from "$0 revenue" to "revenue exists." |
 | K | **Named advisor** | 1–3 conversations | P2 | A CISO, security researcher, or recognized practitioner willing to be named publicly. Changes single-founder risk perception for investors. |

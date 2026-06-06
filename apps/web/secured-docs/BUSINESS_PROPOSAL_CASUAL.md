@@ -32,7 +32,7 @@ It's a game. It's also real security training. And that combination is genuinely
 
 This isn't a pitch deck with a mockup. It's a working product:
 
-- **683 fully built stages** across 55 curriculum epochs and 11 learning tracks
+- **691 fully built stages** across 61 curriculum epochs and 11 learning tracks
 - **Cross-platform** — the Next.js web app (live) plus a native **iOS/Android app** (Expo, code-complete, pre-store) sharing one backend; mobile adds push streak-nudges and RevenueCat in-app purchases
 - **Privacy-friendly analytics** — Plausible, live (GDPR-compliant) — so we can actually measure traffic, funnels, and retention
 - **7-day free trial → Pro paywall** — Stripe checkout (monthly $13.99 / annual $99, SAVE 41%); webhook lifecycle handling; no credit card required to start

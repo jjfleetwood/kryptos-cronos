@@ -1,7 +1,7 @@
 # Kryptós CronOS — Curriculum Reference
 **Version:** 3.7  
 **Date:** 2026-06-03  
-**Total stages:** 683 across 55 epochs (delivered on **web + native mobile** from the shared `@kryptos/core` content package)
+**Total stages:** 691 across 61 epochs (delivered on **web + native mobile** from the shared `@kryptos/core` content package)
 
 ---
 
@@ -394,6 +394,11 @@ Cross-cutting conceptual exam objectives the exploit/CTF content under-serves: s
 
 The engineering/fundamentals side of AI the certifications test: ML fundamentals, data science & preparation, model training & evaluation, generative AI & foundation models, the MLOps lifecycle, and cloud AI platforms (SageMaker/Bedrock/Vertex AI/AutoML/BigQuery ML). Mapped across CompTIA AI+, AWS AI Practitioner, Google Cloud ML Engineer, ISACA AAIA/AAISM.
 
+## Epoch 60: Silicon — Sand to Superchips
+**Stages:** 10 (si-01 through si-10) | **Color:** Sky | **Track:** Core Security (foundations)
+
+How the newest GPU and quantum chips are physically manufactured — the most complex production process on Earth, told end to end: purifying quartz sand into 99.9999999% silicon and growing the Czochralski boule (si-01), slicing wafers and the cleanroom (si-02), photolithography (si-03), EUV lithography from tin plasma (si-04), doping & ion implantation (si-05), deposition/etching & copper damascene interconnects (si-06), FinFET → gate-all-around transistors and the "nm" myth (si-07), building giant AI GPUs with chiplets/HBM/CoWoS advanced packaging (si-08), yield/binning/fab economics (si-09), and fabricating quantum chips — superconducting, trapped-ion, and silicon spin qubits (si-10). Threads light hardware-trust and supply-chain security throughout.
+
 ---
 
 ## XP Summary
@@ -461,7 +466,8 @@ The engineering/fundamentals side of AI the certifications test: ML fundamentals
 | 59 | Debate: The Psychology of Debate | 10 | ~3,500 |
 | 60 | Security Foundations | 13 | ~2,700 |
 | 61 | AI & Machine Learning Foundations | 6 | ~1,300 |
-| | **Total** | **683** | **~110,000** |
+| 62 | Silicon: Sand to Superchips | 10 | ~1,400 |
+| | **Total** | **691** | **~110,000** |
 
 ---
 

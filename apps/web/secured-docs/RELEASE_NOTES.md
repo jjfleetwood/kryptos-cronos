@@ -2,6 +2,16 @@
 
 ---
 
+## v1.31.0 — 2026-06-05
+
+**New epoch: Silicon — Sand to Superchips + docs/count reconciliation + legal**
+
+- **New `silicon-fab` epoch — "Silicon: Sand to Superchips"** (10 quiz stages, si-01→si-10, sky; Core Security track beside computing-foundations). End-to-end semiconductor manufacturing for modern GPU and quantum chips: sand→9N silicon & the Czochralski boule, wafers & cleanrooms, photolithography, EUV (tin-plasma 13.5 nm), doping & ion implantation, deposition/etch & copper damascene, FinFET→gate-all-around (the "nm" myth), giant AI GPUs (reticle limit, chiplets, HBM, CoWoS 2.5D/3D packaging), yield/binning/fab economics, and quantum-chip fabrication (superconducting/trapped-ion/silicon-spin, decoherence, post-quantum link). Wired into stages.ts, epoch-theme.ts (3 maps), stages/page.tsx (Core Security group + SECURITY_EPOCHS), CLAUDE.md. tsc clean (core + web), forced build green.
+- **Authoritative count recount.** Emitted the real `@kryptos/core` STAGES/EPOCHS arrays: **691 stages across 61 epochs / 11 tracks** (silicon-fab took it from 681→691 stages, 60→61 epochs). Prior docs had drifted in *both* directions — to 683/55 (the v1.30.1 "reconciliation," which was itself wrong) and to 681/58. Corrected everywhere: homepage hero stat + per-track cards, OG/Twitter metadata (layout.tsx), account page ("All N stages unlocked"), and the full docs suite (README, CURRICULUM, ARCHITECTURE, TECH_BOM, BIZ_REQUIREMENTS, BUILD, FINANCIALS, TECHNICAL_DESIGN, MOBILE_ROADMAP, PITCH_TARGETS, both business proposals, VC_READINESS, VISUAL_MAKEOVER).
+- **Legal: 83(b) election complete.** The IRS 83(b) filing is confirmed complete (mailed ~2026-05-30, tracking …40418197); the deadline-risk item is now closed across the legal/VC docs and TODO.
+
+---
+
 ## v1.30.1 — 2026-06-05
 
 **Baseball: Pitcher restored to 3 epochs + position epochs now visible**

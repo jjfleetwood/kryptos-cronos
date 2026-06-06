@@ -8,7 +8,7 @@ import Logo from "@/components/Logo";
 const TRACK_STATIC = [
   {
     id: "core", labelKey: "stages.tracks.coreSecurity", descKey: "home.trackDesc.core",
-    stages: "42", icon: "🏛️",
+    stages: "75", icon: "🏛️",
     border: "border-amber-500/25", textColor: "text-amber-400", glow: "rgba(251,191,36,0.08)",
     topics: ["SQL Injection", "XSS", "Heartbleed", "Log4Shell", "WannaCry", "SSRF"],
   },
@@ -20,25 +20,25 @@ const TRACK_STATIC = [
   },
   {
     id: "mitre", labelKey: "stages.tracks.threatFrameworks", descKey: "home.trackDesc.mitre",
-    stages: "24", icon: "🎯",
+    stages: "12", icon: "🎯",
     border: "border-red-500/25", textColor: "text-red-400", glow: "rgba(239,68,68,0.08)",
     topics: ["MITRE ATT&CK", "MITRE ATLAS", "APT Tactics", "Kill Chain", "AI Threat Modeling"],
   },
   {
     id: "ai", labelKey: "stages.tracks.aiSecurity", descKey: "home.trackDesc.ai",
-    stages: "12", icon: "🤖",
+    stages: "40", icon: "🤖",
     border: "border-purple-500/25", textColor: "text-purple-400", glow: "rgba(168,85,247,0.08)",
     topics: ["Prompt Injection", "Model Poisoning", "Data Leakage", "Jailbreaking", "RAG Attacks"],
   },
   {
     id: "quantum", labelKey: "stages.tracks.quantumEra", descKey: "home.trackDesc.quantum",
-    stages: "30", icon: "⚛️",
+    stages: "70", icon: "⚛️",
     border: "border-cyan-500/25", textColor: "text-cyan-400", glow: "rgba(34,211,238,0.08)",
     topics: ["Harvest Now Decrypt Later", "ML-KEM / ML-DSA", "QKD", "PQC Migration", "Cisco Silicon One"],
   },
   {
     id: "cisco", labelKey: "stages.tracks.enterprise", descKey: "home.trackDesc.cisco",
-    stages: "48", icon: "🌐",
+    stages: "70", icon: "🌐",
     border: "border-indigo-500/25", textColor: "text-indigo-400", glow: "rgba(99,102,241,0.08)",
     topics: ["DNS Tunneling", "DGA Detection", "Fast Flux", "Cisco Umbrella", "VOLT TYPHOON"],
   },
@@ -223,7 +223,7 @@ export default function Home() {
           style={{ background: "rgba(255,255,255,0.015)" }}>
           <div className="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             {[
-              { value: "683", labelKey: "home.statStages",  color: "#22d3ee" },
+              { value: "691", labelKey: "home.statStages",  color: "#22d3ee" },
               { value: "11",  labelKey: "home.statTracks",  color: "#a78bfa" },
               { value: "25+", labelKey: "home.statCves",    color: "#f97316" },
               { value: "3.5M",labelKey: "home.statJobs",    color: "#4ade80" },
