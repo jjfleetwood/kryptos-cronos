@@ -29,7 +29,7 @@ Recurring traits across the top 50 this year:
 | Display font | none (headings = same family, `font-black`) | High |
 | Type scale | ad-hoc Tailwind sizes per page | Medium |
 | Images | 371 / 683 stages have one; **312 have none**; 1 image max per stage, capped at `max-h-72` in a centered box | High |
-| Content format | **395 / 681 stages still wall-of-text** (286 bulleted) | High (readability) |
+| Content format | **383 / 683 stages still wall-of-text** (300 bulleted; sec-foundations 02–13 done 2026-06-05) | High (readability) |
 | Motion | homepage has nice keyframes; **no scroll-reveal anywhere**; inner pages static | Medium |
 | Texture | gradients + grid overlays present; **no grain/noise** | Low–Medium |
 | Color | strong cyan/indigo/violet system already | Low (keep, tighten) |
@@ -63,9 +63,9 @@ Recurring traits across the top 50 this year:
 
 ### Phase 3 — Content readability (the big grind; the user's two asks)
 **3a. Bullets — 395 wall-of-text stages → bulleted.** Use `scan-reformat.mjs` to pick targets; rewrite prose lists in `overview` / `technical.body` / `incident.body` as `\n- ` lines (renderer turns them into `<ul>`). Preserve facts. Order: extended tracks first (baseball, debate, driving, travel, languages, crafts), then sec-foundations + ai-ml-foundations, then any remaining security. Per-epoch checkpoints; CRLF-safe node scripts.
-- [x] **baseball (1–15) DONE** · [x] **debate (1–8) DONE** · [x] **driving (1–3) DONE** · [ ] travel (paris/milan/french/italian) · [x] **crafts DONE** (nails/hair-color/hair-styling; tapestry is art-history prose) · [~] sec-foundations (S01 done; 02–13 remain) · [x] ai-ml-foundations (sample) · [ ] remaining security walls
-  - Travel note: paris/milan are SHORT factual paragraphs (transport facts, opening hours), not walls of prose — they're already scannable, so bulleting adds little. french/italian have phrase tables that ARE good bullet candidates (next-session target).
-  - Resume next: french/italian phrase lists → sec-foundations 02–13 → any remaining security walls.
+- [x] **baseball (1–15) DONE** · [x] **debate (1–8) DONE** · [x] **driving (1–3) DONE** · [ ] travel (paris/milan/french/italian) · [x] **crafts DONE** (nails/hair-color/hair-styling; tapestry is art-history prose) · [x] **sec-foundations DONE** (all 13: S01 + 02–13 reformatted 2026-06-05) · [x] ai-ml-foundations (sample) · [ ] remaining security walls
+  - Travel note: paris/milan/french/italian are SHORT, already-itemized phrase/fact entries (transport facts, opening hours, phrase tables), not walls of prose — they're already scannable, so bulleting adds little (confirmed deprioritized 2026-06-05). Skip unless asked.
+  - Resume next: any remaining security walls (run scan-reformat.mjs to list).
   - Note: bulleting yield varies — fundamentals/how-to epochs (baseball-1, positions) are list-rich; advanced/concept epochs (baseball-3/4/6/7) are mostly explanatory prose whose keyTakeaways already render as bullets, so only genuine inline lists are bulleted there.
 **3b. Images — 312 stages with no image + section images for text-heavy bodies.**
 - [ ] Source self-hosted images (Wikimedia pipeline → sharp 800px → `public/img/` → `STAGE_IMAGES`) for the ~312 imageless stages.
