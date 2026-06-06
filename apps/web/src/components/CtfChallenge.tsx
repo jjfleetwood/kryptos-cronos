@@ -485,6 +485,22 @@ export default function CtfChallenge({ stage, backHref = "/stages", isPro = fals
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [stage.id]);
 
+  // A stage can be cleared by a winning command (extraCommands → { solved: true })
+  // instead of `submit <flag>`. Award + mark solved AND surface the same success
+  // modal the submit path shows, so these stages don't silently complete.
+  function completeViaCommand() {
+    awardStage(stage.id, stage.xp, stage.badge.id);
+    setSolved(true);
+    setSuccessData({
+      flag: ctf.fragments?.length ? ctf.fragments.map((f) => f.value).join("") : "ACCESS GRANTED",
+      timeTakenMs: Date.now() - startedAt.current,
+      timePenaltyCoins: 0,
+      effectiveCoins: stage.xp,
+      bonusCoins: 0,
+      recommendedNext: null,
+    });
+  }
+
   function checkFragment(key: string) {
     if (!ctf.fragments?.length) return;
     const frag = ctf.fragments.find((f) => f.trigger === key);
@@ -649,10 +665,7 @@ export default function CtfChallenge({ stage, backHref = "/stages", isPro = fals
           const result = extraCommands.cat(args);
           push(...result.lines.map((text) => ({ type: "out" as LineType, text })));
           checkFragment(trimmed);
-          if (result.solved) {
-            awardStage(stage.id, stage.xp, stage.badge.id);
-            setSolved(true);
-          }
+          if (result.solved) completeViaCommand();
           return;
         }
         push({ type: "err", text: `cat: ${pathArg}: ${t("ctf.terminal.catNotFound")}` });
@@ -721,10 +734,7 @@ export default function CtfChallenge({ stage, backHref = "/stages", isPro = fals
           { type: "sys", text: "" },
         );
       }
-      if (result.solved) {
-        awardStage(stage.id, stage.xp, stage.badge.id);
-        setSolved(true);
-      }
+      if (result.solved) completeViaCommand();
       return;
     }
 
