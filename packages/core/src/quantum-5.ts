@@ -1,4 +1,4 @@
-import type { StageConfig, EpochConfig } from "./types";
+import type { StageConfig, EpochConfig, CtfConfig } from "./types";
 
 export const quantum5Epoch: EpochConfig = {
   id: "quantum-5",
@@ -904,3 +904,117 @@ pqc_rollout:
     },
   },
 ];
+
+// ── CTF mode — hands-on PQC-migration terminal per stage (quiz = half-clear) ──
+type Cmd = [verb: string, frag: string, lines: string[]];
+function mkCtf(scenario: string, brief: string, open: string, a: Cmd, b: Cmd, labels: [string, string, string], hints: string[]): CtfConfig {
+  return {
+    scenario, hint: hints[0], hints,
+    fragments: [
+      { trigger: "/briefing.txt", value: open, label: labels[0] },
+      { trigger: a[0], value: a[1], label: labels[1] },
+      { trigger: b[0], value: b[1], label: labels[2] },
+    ],
+    files: { "/briefing.txt": brief },
+    dirs: { "/": [{ name: "briefing.txt", isDir: false }] },
+    extraCommands: { [a[0]]: () => ({ lines: a[2] }), [b[0]]: () => ({ lines: b[2] }) },
+  };
+}
+
+const Q5_CTF: Record<string, CtfConfig> = {
+  "quantum-e01": mkCtf(
+    "You can't migrate what you can't find. Scan an estate for quantum-vulnerable crypto and build a Cryptographic Bill of Materials (CBOM).",
+    "OP: BUILD A CBOM\nTarget: an enterprise estate with unknown crypto usage.\nGoal: scan for weak/quantum-vulnerable crypto, then build the CBOM.\nSequence: scan-crypto -> build-cbom",
+    "FLAG{CB0M_",
+    ["scan-crypto", "W34K_CRYPT0_", ["Scanning binaries, libs, configs, and certs for crypto usage ...", "Found RSA-2048, ECDSA P-256, and a stray SHA-1 cert — all quantum-vulnerable.", "Next: build-cbom"]],
+    ["build-cbom", "F0UND}", ["Cataloging every algorithm, key size, and location into a CBOM ...", "CBOM complete — you now know exactly what must migrate.", "Run 'assemble' to retrieve your fragment."]],
+    ["Mission Brief", "Weak Crypto Found", "CBOM Built"],
+    ["Read the briefing. Run: cat briefing.txt", "Scan for crypto. Run: scan-crypto", "Build the CBOM. Run: build-cbom", "Run 'assemble', then submit the flag"],
+  ),
+  "quantum-e02": mkCtf(
+    "Hardcoded algorithms make migration impossible. Audit a codebase for hardcoded crypto and refactor it behind a provider abstraction so algorithms can be swapped — crypto-agility.",
+    "OP: CRYPTO-AGILITY\nTarget: an app with hardcoded RSA calls everywhere.\nGoal: audit the hardcoded crypto, then abstract it behind a provider.\nSequence: audit-hardcoded -> abstract-provider",
+    "FLAG{CRYPT0_",
+    ["audit-hardcoded", "4G1L1TY_", ["Grepping for direct crypto calls and pinned algorithm names ...", "47 hardcoded RSA/ECDSA call sites — no way to swap algorithms today.", "Next: abstract-provider"]],
+    ["abstract-provider", "4BSTR4CT3D}", ["Refactoring calls behind a crypto-provider interface with negotiated algorithms ...", "Algorithms are now swappable via config — the app is crypto-agile.", "Run 'assemble' to retrieve your fragment."]],
+    ["Mission Brief", "Hardcoded Crypto Audited", "Provider Abstracted"],
+    ["Read the briefing. Run: cat briefing.txt", "Audit hardcoded crypto. Run: audit-hardcoded", "Abstract behind a provider. Run: abstract-provider", "Run 'assemble', then submit the flag"],
+  ),
+  "quantum-e03": mkCtf(
+    "Deploy a hybrid TLS 1.3 handshake that combines classical X25519 with post-quantum ML-KEM, so the session is safe even if one is broken.",
+    "OP: HYBRID TLS\nTarget: a TLS 1.3 service still on classical-only key exchange.\nGoal: negotiate the hybrid group, then verify the handshake.\nSequence: negotiate-hybrid -> verify-handshake",
+    "FLAG{HYBR1D_TLS_",
+    ["negotiate-hybrid", "ML_K3M_", ["Adding X25519MLKEM768 to the supported groups and offering it ...", "Client and server agree on the hybrid group — both shares combined into the secret.", "Next: verify-handshake"]],
+    ["verify-handshake", "768}", ["Completing the handshake and checking the negotiated parameters ...", "Session keyed by X25519 + ML-KEM-768 — secure unless BOTH are broken.", "Run 'assemble' to retrieve your fragment."]],
+    ["Mission Brief", "Hybrid Group Negotiated", "Handshake Verified"],
+    ["Read the briefing. Run: cat briefing.txt", "Negotiate the hybrid group. Run: negotiate-hybrid", "Verify the handshake. Run: verify-handshake", "Run 'assemble', then submit the flag"],
+  ),
+  "quantum-e04": mkCtf(
+    "Bring PQC to the tunnels. Enable post-quantum key exchange on SSH (and IPsec/WireGuard) and confirm the tunnel still works end to end.",
+    "OP: PQC TUNNELS\nTarget: SSH/IPsec/WireGuard on classical key exchange.\nGoal: enable a PQC KEX, then test the tunnel.\nSequence: enable-pqc-kex -> test-tunnel",
+    "FLAG{PQC_TUNN3L_",
+    ["enable-pqc-kex", "SSH_", ["Enabling sntrup761x25519 / ML-KEM hybrid KEX in the tunnel config ...", "PQC key exchange offered first, with a classical fallback.", "Next: test-tunnel"]],
+    ["test-tunnel", "3N4BL3D}", ["Bringing the tunnel up and checking the negotiated KEX ...", "Tunnel established over a post-quantum key exchange — traffic is HNDL-safe.", "Run 'assemble' to retrieve your fragment."]],
+    ["Mission Brief", "PQC KEX Enabled", "Tunnel Tested"],
+    ["Read the briefing. Run: cat briefing.txt", "Enable PQC key exchange. Run: enable-pqc-kex", "Test the tunnel. Run: test-tunnel", "Run 'assemble', then submit the flag"],
+  ),
+  "quantum-e05": mkCtf(
+    "Re-root trust. Issue a hybrid (composite) certificate carrying both a classical and a PQC signature, and validate the dual chain — PKI migration.",
+    "OP: PKI MIGRATION\nTarget: a PKI issuing classical-only certificates.\nGoal: issue a composite cert, then validate the dual chain.\nSequence: issue-composite -> validate-chain",
+    "FLAG{HYBR1D_C3RT_",
+    ["issue-composite", "DU4L_", ["Generating a composite cert with ECDSA + ML-DSA signatures from the HSM ...", "Composite leaf issued — old clients read the classical part, new clients verify both.", "Next: validate-chain"]],
+    ["validate-chain", "CH41N}", ["Validating the certificate up a dual (classical + PQC) chain to the root ...", "Both signatures verify — trust re-rooted for the quantum era.", "Run 'assemble' to retrieve your fragment."]],
+    ["Mission Brief", "Composite Cert Issued", "Dual Chain Validated"],
+    ["Read the briefing. Run: cat briefing.txt", "Issue a composite cert. Run: issue-composite", "Validate the chain. Run: validate-chain", "Run 'assemble', then submit the flag"],
+  ),
+  "quantum-e06": mkCtf(
+    "Wire the new math into the stack. Load a PQC provider (liboqs/OpenSSL provider) and patch a KyberSlash timing side channel in the ML-KEM implementation.",
+    "OP: LIBRARY MIGRATION\nTarget: an app whose crypto library lacks PQC (and has KyberSlash).\nGoal: load the PQC provider, then patch the timing leak.\nSequence: load-provider -> patch-kyberslash",
+    "FLAG{L1BOQS_",
+    ["load-provider", "PR0V1D3R_", ["Building liboqs and loading the oqs-provider into OpenSSL ...", "ML-KEM/ML-DSA now available to the app via the provider.", "Next: patch-kyberslash"]],
+    ["patch-kyberslash", "W1R3D}", ["Auditing the ML-KEM decode for KyberSlash (division timing leak) ...", "Replaced the variable-time division with a constant-time routine — patched.", "Run 'assemble' to retrieve your fragment."]],
+    ["Mission Brief", "PQC Provider Loaded", "KyberSlash Patched"],
+    ["Read the briefing. Run: cat briefing.txt", "Load the PQC provider. Run: load-provider", "Patch the timing leak. Run: patch-kyberslash", "Run 'assemble', then submit the flag"],
+  ),
+  "quantum-e07": mkCtf(
+    "PQC handshakes are bigger. Measure the on-the-wire bytes and latency, then tune (MTU/record sizes) so the migration stays fast in production.",
+    "OP: SIZE & TUNE PQC\nTarget: a service seeing larger PQC handshakes.\nGoal: measure the bytes/latency, then tune for production.\nSequence: measure-bytes -> tune-mtu",
+    "FLAG{PQC_H4NDSH4K3_",
+    ["measure-bytes", "S1Z3D_", ["Capturing handshakes: classical ~1-2 KB vs hybrid ML-KEM ~2-3 KB ...", "Extra bytes can cross an MTU and add a round trip on bad networks.", "Next: tune-mtu"]],
+    ["tune-mtu", "TUN3D}", ["Tuning MTU/initcwnd and record sizes to absorb the larger ClientHello ...", "Handshake fits the path again — PQC with negligible latency cost.", "Run 'assemble' to retrieve your fragment."]],
+    ["Mission Brief", "Handshake Sized", "Production Tuned"],
+    ["Read the briefing. Run: cat briefing.txt", "Measure the bytes. Run: measure-bytes", "Tune for production. Run: tune-mtu", "Run 'assemble', then submit the flag"],
+  ),
+  "quantum-e08": mkCtf(
+    "Prove it's really safe. Run the implementation through FIPS 140-3 / CMVP validation and check for side channels — validation without scrutiny is how Dual_EC happened.",
+    "OP: PQC VALIDATION\nTarget: a PQC module headed for FIPS 140-3 validation.\nGoal: run the CAVP tests, then check for side channels.\nSequence: run-cavp -> check-sidechannel",
+    "FLAG{F1PS_",
+    ["run-cavp", "140_3_", ["Running CAVP known-answer tests for ML-KEM/ML-DSA against NIST vectors ...", "All algorithm test vectors pass — correctness validated.", "Next: check-sidechannel"]],
+    ["check-sidechannel", "V4L1D4T3D}", ["Testing for timing/power leakage and verifying constant-time behavior ...", "No exploitable side channel — module passes validation with real scrutiny.", "Run 'assemble' to retrieve your fragment."]],
+    ["Mission Brief", "CAVP Passed", "Side-Channels Checked"],
+    ["Read the briefing. Run: cat briefing.txt", "Run CAVP tests. Run: run-cavp", "Check for side channels. Run: check-sidechannel", "Run 'assemble', then submit the flag"],
+  ),
+  "quantum-e09": mkCtf(
+    "Run the migration like a deploy. Stage a progressive PQC cutover with monitoring, and verify the rollback path works before going wide.",
+    "OP: CUTOVER\nTarget: a fleet migrating to PQC in production.\nGoal: stage a progressive rollout, then verify rollback.\nSequence: stage-rollout -> verify-rollback",
+    "FLAG{ST4G3D_",
+    ["stage-rollout", "CUT0V3R_", ["Rolling PQC to 1% -> 10% -> 50% with metrics on handshake success and latency ...", "No regressions; canaries healthy — safe to widen.", "Next: verify-rollback"]],
+    ["verify-rollback", "R0LL3D_0UT}", ["Exercising the rollback runbook (flip back to classical) on a canary ...", "Rollback works instantly — full PQC cutover completed safely.", "Run 'assemble' to retrieve your fragment."]],
+    ["Mission Brief", "Rollout Staged", "Rollback Verified"],
+    ["Read the briefing. Run: cat briefing.txt", "Stage the rollout. Run: stage-rollout", "Verify rollback. Run: verify-rollback", "Run 'assemble', then submit the flag"],
+  ),
+  "quantum-e10": mkCtf(
+    "Quantum-safe at the edge. Sign firmware with a PQC signature and verify the boot chain on a constrained device, so a future quantum attacker can't forge updates — the Stuxnet lesson.",
+    "OP: QUANTUM-SAFE FIRMWARE\nTarget: a constrained IoT device whose firmware is classically signed.\nGoal: sign firmware with PQC, then verify the boot chain.\nSequence: sign-firmware -> verify-bootchain",
+    "FLAG{F1RMW4R3_",
+    ["sign-firmware", "PQC_", ["Signing the firmware image with ML-DSA (stateful hash-based as a backup) ...", "Image signed with a quantum-safe signature small enough for the device.", "Next: verify-bootchain"]],
+    ["verify-bootchain", "S1GN3D}", ["Verifying the PQC signature against the immutable root of trust at boot ...", "Boot chain accepts only PQC-signed firmware — forged updates impossible.", "Run 'assemble' to retrieve your fragment."]],
+    ["Mission Brief", "Firmware Signed", "Boot Chain Verified"],
+    ["Read the briefing. Run: cat briefing.txt", "Sign the firmware. Run: sign-firmware", "Verify the boot chain. Run: verify-bootchain", "Run 'assemble', then submit the flag"],
+  ),
+};
+
+for (const s of quantum5Stages) {
+  const ctf = Q5_CTF[s.id];
+  if (ctf) { s.challengeType = "ctf"; s.ctf = ctf; }
+}

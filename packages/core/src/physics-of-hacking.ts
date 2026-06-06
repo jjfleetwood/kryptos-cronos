@@ -1,4 +1,4 @@
-import type { StageConfig, EpochConfig } from "./types";
+import type { StageConfig, EpochConfig, CtfConfig } from "./types";
 
 export const physicsOfHackingEpoch: EpochConfig = {
   id: "physics-of-hacking",
@@ -752,3 +752,119 @@ export const physicsOfHackingStages: StageConfig[] = [
     },
   },
 ];
+
+// ── CTF mode ────────────────────────────────────────────────────────────────
+// Each stage gets a hands-on terminal CTF (its quiz stays as the half-clear).
+// Flags live in stage-flags.ts; fragments assemble to them.
+type Cmd = [verb: string, frag: string, lines: string[]];
+function mkCtf(scenario: string, brief: string, open: string, a: Cmd, b: Cmd, labels: [string, string, string], hints: string[]): CtfConfig {
+  return {
+    scenario, hint: hints[0], hints,
+    fragments: [
+      { trigger: "/briefing.txt", value: open, label: labels[0] },
+      { trigger: a[0], value: a[1], label: labels[1] },
+      { trigger: b[0], value: b[1], label: labels[2] },
+    ],
+    files: { "/briefing.txt": brief },
+    dirs: { "/": [{ name: "briefing.txt", isDir: false }] },
+    extraCommands: { [a[0]]: () => ({ lines: a[2] }), [b[0]]: () => ({ lines: b[2] }) },
+  };
+}
+
+const POH_CTF: Record<string, CtfConfig> = {
+  "poh-01": mkCtf(
+    "A secure device leaks information through a physical side channel while it computes. Observe the leakage and extract a secret bit without ever reading memory directly.",
+    "OP: SIDE CHANNEL 101\nTarget: a chip doing a secret-dependent computation.\nGoal: observe the physical leak, then extract a bit.\nSequence: observe-leak -> extract-bit",
+    "FLAG{S1D3_CH4NN3L_",
+    ["observe-leak", "L34K_", ["Monitoring physical emissions during the secret operation ...", "Detected a data-dependent variation in power/timing. The computation leaks!", "Next: extract-bit"]],
+    ["extract-bit", "F0UND}", ["Correlating the leakage with guessed secret bits ...", "Bit recovered with high confidence — no memory access required.", "Run 'assemble' to retrieve your fragment."]],
+    ["Mission Brief", "Leakage Observed", "Secret Bit Extracted"],
+    ["Read the briefing. Run: cat briefing.txt", "Observe the physical leak. Run: observe-leak", "Extract the secret bit. Run: extract-bit", "Run 'assemble', then submit the flag"],
+  ),
+  "poh-02": mkCtf(
+    "A smartcard's power draw rises and falls with the key bits it processes. Capture power traces and run differential power analysis (DPA) to recover the key.",
+    "OP: POWER ANALYSIS (SPA/DPA)\nTarget: smartcard performing AES with a secret key.\nGoal: capture traces, then correlate out the key.\nSequence: capture-traces -> correlate-key",
+    "FLAG{DPA_",
+    ["capture-traces", "P0W3R_TR4C3_", ["Capturing power traces across thousands of encryptions ...", "10,000 traces recorded; aligned on the S-box round.", "Next: correlate-key"]],
+    ["correlate-key", "K3Y}", ["Running DPA: correlating power to a key-bit hypothesis ...", "Correlation peak found for each key byte — full key recovered.", "Run 'assemble' to retrieve your fragment."]],
+    ["Mission Brief", "Power Traces Captured", "Key Correlated Out"],
+    ["Read the briefing. Run: cat briefing.txt", "Capture power traces. Run: capture-traces", "Correlate out the key. Run: correlate-key", "Run 'assemble', then submit the flag"],
+  ),
+  "poh-03": mkCtf(
+    "A monitor radiates its image as electromagnetic emanations. Tune an antenna to the right band and reconstruct what's on the screen from across the wall — Van Eck phreaking.",
+    "OP: TEMPEST / VAN ECK\nTarget: an unshielded display leaking EM emanations.\nGoal: tune the antenna, then reconstruct the screen.\nSequence: tune-antenna -> reconstruct-screen",
+    "FLAG{T3MP3ST_",
+    ["tune-antenna", "VAN_3CK_", ["Sweeping for the display's pixel-clock harmonics ...", "Locked onto the emanation at the video refresh frequency.", "Next: reconstruct-screen"]],
+    ["reconstruct-screen", "SCR33N}", ["Demodulating the emanations into a raster image ...", "The victim's screen is now readable from outside the room.", "Run 'assemble' to retrieve your fragment."]],
+    ["Mission Brief", "Antenna Tuned", "Screen Reconstructed"],
+    ["Read the briefing. Run: cat briefing.txt", "Tune the antenna. Run: tune-antenna", "Reconstruct the screen. Run: reconstruct-screen", "Run 'assemble', then submit the flag"],
+  ),
+  "poh-04": mkCtf(
+    "A comparison routine returns faster when more bytes match. Measure the response timing and recover the secret byte-by-byte — a classic timing attack against non-constant-time code.",
+    "OP: TIMING ATTACK\nTarget: a server using a non-constant-time secret comparison.\nGoal: measure timing, then recover the secret.\nSequence: measure-timing -> recover-secret",
+    "FLAG{T1M1NG_",
+    ["measure-timing", "L34K_", ["Sending guesses and timing the response to nanosecond precision ...", "Responses are measurably slower as more leading bytes match — it leaks!", "Next: recover-secret"]],
+    ["recover-secret", "N0N_C0NST}", ["Recovering the secret one byte at a time from the timing differences ...", "Full secret reconstructed — constant-time code would have stopped this.", "Run 'assemble' to retrieve your fragment."]],
+    ["Mission Brief", "Timing Leak Measured", "Secret Recovered"],
+    ["Read the briefing. Run: cat briefing.txt", "Measure the timing. Run: measure-timing", "Recover the secret. Run: recover-secret", "Run 'assemble', then submit the flag"],
+  ),
+  "poh-05": mkCtf(
+    "A laptop's capacitors emit a faint high-pitched whine that depends on the RSA operation underway. Record the acoustics and extract the private key — an acoustic side channel.",
+    "OP: ACOUSTIC EXFIL\nTarget: a laptop performing RSA decryption.\nGoal: record the sound, then extract the RSA key.\nSequence: record-acoustic -> extract-rsa",
+    "FLAG{4C0UST1C_",
+    ["record-acoustic", "RSA_", ["Recording the laptop's coil whine during chosen-ciphertext decryptions ...", "Captured acoustic signatures that vary with the secret exponent bits.", "Next: extract-rsa"]],
+    ["extract-rsa", "L1ST3N3D}", ["Mapping acoustic signatures to key bits ...", "RSA private key extracted by listening — air gap defeated.", "Run 'assemble' to retrieve your fragment."]],
+    ["Mission Brief", "Acoustics Recorded", "RSA Key Extracted"],
+    ["Read the briefing. Run: cat briefing.txt", "Record the acoustics. Run: record-acoustic", "Extract the RSA key. Run: extract-rsa", "Run 'assemble', then submit the flag"],
+  ),
+  "poh-06": mkCtf(
+    "Repeatedly accessing one DRAM row disturbs its neighbors, flipping bits in memory you don't own. Hammer the rows, find a flip, and exploit it for privilege escalation — Rowhammer.",
+    "OP: ROWHAMMER\nTarget: DRAM with no/weak Rowhammer mitigation.\nGoal: hammer rows to flip a bit, then exploit it.\nSequence: hammer-rows -> exploit-flip",
+    "FLAG{R0WH4MM3R_",
+    ["hammer-rows", "B1T_", ["Hammering aggressor rows hundreds of thousands of times per refresh ...", "A reproducible bit flip appears in an adjacent victim row.", "Next: exploit-flip"]],
+    ["exploit-flip", "FL1PP3D}", ["Massaging memory so a page table entry sits on the flippable bit ...", "Flip flips a permission bit -> attacker gains write access. Privilege escalated.", "Run 'assemble' to retrieve your fragment."]],
+    ["Mission Brief", "Bit Flipped", "Flip Exploited"],
+    ["Read the briefing. Run: cat briefing.txt", "Hammer the rows. Run: hammer-rows", "Exploit the bit flip. Run: exploit-flip", "Run 'assemble', then submit the flag"],
+  ),
+  "poh-07": mkCtf(
+    "DRAM keeps its contents for seconds after power-off — longer when cold. Freeze the RAM, dump it, and recover the disk-encryption key still sitting in memory — a cold-boot attack.",
+    "OP: COLD BOOT\nTarget: a locked laptop with full-disk encryption (key in RAM).\nGoal: freeze the RAM, then dump and recover the key.\nSequence: freeze-ram -> dump-keys",
+    "FLAG{C0LD_B00T_",
+    ["freeze-ram", "K3Y_", ["Spraying the DRAM with inverted canned air to ~-50C ...", "Remanence extended to minutes — contents survive a power cycle.", "Next: dump-keys"]],
+    ["dump-keys", "R3C0V3R3D}", ["Cold-booting a tiny imager and dumping physical memory ...", "Scanning for AES key schedules ... disk-encryption key recovered from RAM.", "Run 'assemble' to retrieve your fragment."]],
+    ["Mission Brief", "RAM Frozen", "Keys Recovered"],
+    ["Read the briefing. Run: cat briefing.txt", "Freeze the RAM. Run: freeze-ram", "Dump and recover keys. Run: dump-keys", "Run 'assemble', then submit the flag"],
+  ),
+  "poh-08": mkCtf(
+    "A precisely-timed voltage glitch makes a CPU skip an instruction. Glitch the secure-boot signature check so unsigned code runs — fault injection, the technique that has opened consoles and hardware wallets.",
+    "OP: FAULT INJECTION\nTarget: a device whose secure boot verifies a firmware signature.\nGoal: glitch the chip, then bypass the signature check.\nSequence: glitch-voltage -> bypass-check",
+    "FLAG{GL1TCH_",
+    ["glitch-voltage", "S3CUR3_B00T_", ["Dropping the core voltage for ~50 ns at the verification window ...", "Found a glitch timing that corrupts the compare without crashing the chip.", "Next: bypass-check"]],
+    ["bypass-check", "BYP4SS}", ["Glitching exactly as secure boot checks the signature ...", "The 'if (valid)' branch is skipped -> unsigned firmware boots. Trust bypassed.", "Run 'assemble' to retrieve your fragment."]],
+    ["Mission Brief", "Glitch Tuned", "Secure Boot Bypassed"],
+    ["Read the briefing. Run: cat briefing.txt", "Glitch the voltage. Run: glitch-voltage", "Bypass the check. Run: bypass-check", "Run 'assemble', then submit the flag"],
+  ),
+  "poh-09": mkCtf(
+    "A board came back from an untrusted assembler with an extra component. Scan the hardware, find the implant tapping a data line, and prove a supply-chain compromise.",
+    "OP: HARDWARE IMPLANT\nTarget: a server board from an untrusted supply chain.\nGoal: scan the board, then locate the implant.\nSequence: scan-board -> find-implant",
+    "FLAG{HW_1MPL4NT_",
+    ["scan-board", "SUPPLY_", ["Comparing the board against the golden reference (X-ray + power) ...", "An undocumented component sits between the BMC and a data line.", "Next: find-implant"]],
+    ["find-implant", "CH41N}", ["Probing the rogue component ...", "It is a tiny implant exfiltrating/injecting on the management bus — a supply-chain backdoor.", "Run 'assemble' to retrieve your fragment."]],
+    ["Mission Brief", "Board Scanned", "Implant Found"],
+    ["Read the briefing. Run: cat briefing.txt", "Scan the board. Run: scan-board", "Find the implant. Run: find-implant", "Run 'assemble', then submit the flag"],
+  ),
+  "poh-10": mkCtf(
+    "Flip to defense. Audit a device's physical-layer protections against everything in this epoch, then harden it around a secure element so the attacks fail.",
+    "OP: HARDEN THE METAL\nTarget: a device that must resist side-channel, fault, and implant attacks.\nGoal: audit the defenses, then harden the physical layer.\nSequence: audit-defenses -> harden-layer",
+    "FLAG{S3CUR3_",
+    ["audit-defenses", "3L3M3NT_", ["Auditing: constant-time crypto? shielding? glitch/voltage sensors? mesh? secure element?", "Gaps found: no glitch detection, secrets outside the secure element.", "Next: harden-layer"]],
+    ["harden-layer", "H4RD3N3D}", ["Moving keys into the secure element; enabling fault sensors, shielding, and tamper mesh ...", "Side-channel, fault, and implant attacks now fail. Defense designed in.", "Run 'assemble' to retrieve your fragment."]],
+    ["Mission Brief", "Defenses Audited", "Physical Layer Hardened"],
+    ["Read the briefing. Run: cat briefing.txt", "Audit the defenses. Run: audit-defenses", "Harden the physical layer. Run: harden-layer", "Run 'assemble', then submit the flag"],
+  ),
+};
+
+for (const s of physicsOfHackingStages) {
+  const ctf = POH_CTF[s.id];
+  if (ctf) { s.challengeType = "ctf"; s.ctf = ctf; }
+}

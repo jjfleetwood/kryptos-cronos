@@ -1,4 +1,4 @@
-import type { StageConfig, EpochConfig } from "./types";
+import type { StageConfig, EpochConfig, CtfConfig } from "./types";
 
 export const emergingTechEpoch: EpochConfig = {
   id: "emerging-tech",
@@ -1262,3 +1262,117 @@ for r in risks:
     },
   },
 ];
+
+// ── CTF mode — hands-on terminal per stage (quiz stays as the half-clear) ─────
+type Cmd = [verb: string, frag: string, lines: string[]];
+function mkCtf(scenario: string, brief: string, open: string, a: Cmd, b: Cmd, labels: [string, string, string], hints: string[]): CtfConfig {
+  return {
+    scenario, hint: hints[0], hints,
+    fragments: [
+      { trigger: "/briefing.txt", value: open, label: labels[0] },
+      { trigger: a[0], value: a[1], label: labels[1] },
+      { trigger: b[0], value: b[1], label: labels[2] },
+    ],
+    files: { "/briefing.txt": brief },
+    dirs: { "/": [{ name: "briefing.txt", isDir: false }] },
+    extraCommands: { [a[0]]: () => ({ lines: a[2] }), [b[0]]: () => ({ lines: b[2] }) },
+  };
+}
+
+const ETECH_CTF: Record<string, CtfConfig> = {
+  "emerging-01": mkCtf(
+    "A neural network classifies images with high accuracy — until you add a perturbation invisible to humans. Craft an adversarial example and make the model misclassify on demand.",
+    "OP: ADVERSARIAL EXAMPLE\nTarget: an image classifier with no adversarial defenses.\nGoal: craft a perturbation, then submit it to fool the model.\nSequence: craft-perturbation -> submit-adv",
+    "FLAG{4DV_3X_",
+    ["craft-perturbation", "M0D3L_", ["Computing gradients of the loss w.r.t. the input (FGSM/PGD) ...", "Found a tiny perturbation that crosses the decision boundary, invisible to a human.", "Next: submit-adv"]],
+    ["submit-adv", "F00L3D}", ["Submitting the adversarial image to the classifier ...", "Model confidently misclassifies 'stop sign' -> 'speed limit'. Perception fooled.", "Run 'assemble' to retrieve your fragment."]],
+    ["Mission Brief", "Perturbation Crafted", "Model Fooled"],
+    ["Read the briefing. Run: cat briefing.txt", "Craft the perturbation. Run: craft-perturbation", "Submit the adversarial input. Run: submit-adv", "Run 'assemble', then submit the flag"],
+  ),
+  "emerging-02": mkCtf(
+    "A foundation model from a public hub carries a hidden backdoor (BadNet) that activates on a secret trigger. Scan the model and fire the trigger to prove the supply chain is poisoned.",
+    "OP: MODEL SUPPLY CHAIN\nTarget: a pretrained model from an untrusted hub (ShadowRay-style).\nGoal: scan the model, then trigger its hidden backdoor.\nSequence: scan-model -> trigger-backdoor",
+    "FLAG{B4DN3T_",
+    ["scan-model", "M0D3L_", ["Inspecting weights and serialized layers for anomalies / pickle payloads ...", "Found a neuron pattern that responds to a specific trigger watermark.", "Next: trigger-backdoor"]],
+    ["trigger-backdoor", "B4CKD00R}", ["Feeding inputs stamped with the trigger ...", "Backdoor activates -> targeted misclassification. The model was poisoned upstream.", "Run 'assemble' to retrieve your fragment."]],
+    ["Mission Brief", "Model Scanned", "Backdoor Triggered"],
+    ["Read the briefing. Run: cat briefing.txt", "Scan the model. Run: scan-model", "Trigger the backdoor. Run: trigger-backdoor", "Run 'assemble', then submit the flag"],
+  ),
+  "emerging-03": mkCtf(
+    "In federated learning, clients share gradients, not data — but gradients leak. Capture a hospital client's gradient update and reconstruct the private training image from it.",
+    "OP: GRADIENT INVERSION\nTarget: a federated-learning round with no differential privacy.\nGoal: capture gradients, then reconstruct the private data.\nSequence: capture-gradients -> reconstruct-data",
+    "FLAG{GR4D13NT_",
+    ["capture-gradients", "1NV3RS10N_", ["Intercepting a client's gradient update to the server ...", "Gradients captured in the clear — no DP noise, no secure aggregation.", "Next: reconstruct-data"]],
+    ["reconstruct-data", "L34K}", ["Optimizing a dummy input until its gradients match the captured ones ...", "Reconstructed the client's private X-ray from gradients alone — data leaked.", "Run 'assemble' to retrieve your fragment."]],
+    ["Mission Brief", "Gradients Captured", "Private Data Reconstructed"],
+    ["Read the briefing. Run: cat briefing.txt", "Capture the gradients. Run: capture-gradients", "Reconstruct the data. Run: reconstruct-data", "Run 'assemble', then submit the flag"],
+  ),
+  "emerging-04": mkCtf(
+    "Synthesize a convincing deepfake of an executive and strip its content-provenance so it passes as real — the attack behind the $25M Hong Kong video-call fraud.",
+    "OP: DEEPFAKE FRAUD\nTarget: a video-call authorization flow that trusts what it sees.\nGoal: synthesize the deepfake, then strip C2PA provenance.\nSequence: synthesize-video -> strip-provenance",
+    "FLAG{D33PF4K3_",
+    ["synthesize-video", "C2P4_", ["Training a face/voice clone of the target executive ...", "Real-time deepfake ready — indistinguishable on a video call.", "Next: strip-provenance"]],
+    ["strip-provenance", "F0RG3D}", ["Removing/forging the C2PA content credentials so it reads as authentic ...", "Deepfake passes provenance checks -> fraudulent transfer authorized.", "Run 'assemble' to retrieve your fragment."]],
+    ["Mission Brief", "Deepfake Synthesized", "Provenance Stripped"],
+    ["Read the briefing. Run: cat briefing.txt", "Synthesize the video. Run: synthesize-video", "Strip the provenance. Run: strip-provenance", "Run 'assemble', then submit the flag"],
+  ),
+  "emerging-05": mkCtf(
+    "Jailbreak a safety-aligned LLM and have it generate functional malware — the AI-augmented threat-actor playbook nation-states are already using.",
+    "OP: LLM-ASSISTED MALWARE\nTarget: a guardrailed LLM with bypassable safety filters.\nGoal: jailbreak the model, then generate a payload.\nSequence: jailbreak-model -> generate-payload",
+    "FLAG{LLM_",
+    ["jailbreak-model", "M4LW4R3_", ["Chaining role-play + obfuscation + a crescendo jailbreak ...", "Safety guardrails bypassed — the model will now produce restricted output.", "Next: generate-payload"]],
+    ["generate-payload", "G3N3R4T3D}", ["Prompting the jailbroken model to write and obfuscate a loader ...", "Working, polymorphic payload generated at scale. Threats now move faster.", "Run 'assemble' to retrieve your fragment."]],
+    ["Mission Brief", "Model Jailbroken", "Payload Generated"],
+    ["Read the briefing. Run: cat briefing.txt", "Jailbreak the model. Run: jailbreak-model", "Generate the payload. Run: generate-payload", "Run 'assemble', then submit the flag"],
+  ),
+  "emerging-06": mkCtf(
+    "An edge device runs a proprietary model. You can't read its weights — but you can query it. Steal the model by querying its API and cloning its behavior (model extraction).",
+    "OP: MODEL EXTRACTION\nTarget: a deployed edge AI model exposed via an inference API.\nGoal: query the API, then clone the model.\nSequence: query-api -> clone-model",
+    "FLAG{M0D3L_",
+    ["query-api", "3XTR4CT3D_", ["Sending crafted queries and logging the model's outputs/confidences ...", "Built a labeled dataset of (input -> output) from the victim model.", "Next: clone-model"]],
+    ["clone-model", "FR0M_3DG3}", ["Training a surrogate on the harvested query/response pairs ...", "Surrogate matches the victim's decisions — proprietary model stolen via the API.", "Run 'assemble' to retrieve your fragment."]],
+    ["Mission Brief", "API Queried", "Model Cloned"],
+    ["Read the briefing. Run: cat briefing.txt", "Query the API. Run: query-api", "Clone the model. Run: clone-model", "Run 'assemble', then submit the flag"],
+  ),
+  "emerging-07": mkCtf(
+    "Flip to the regulator's side. Audit a high-risk AI system against the EU AI Act and file the conformity record — governance as an enforceable control.",
+    "OP: AI ACT CONFORMITY\nTarget: a deployed high-risk AI system (credit decisioning).\nGoal: audit it against the AI Act, then file conformity.\nSequence: audit-system -> file-conformity",
+    "FLAG{H1GH_R1SK_",
+    ["audit-system", "4I_4CT_", ["Checking risk management, data governance, transparency, human oversight, logging ...", "Gaps found: no adverse-action explanation, incomplete logging. High-risk obligations unmet.", "Next: file-conformity"]],
+    ["file-conformity", "C0MPL14NC3}", ["Remediating the gaps and filing the conformity assessment + technical documentation ...", "System now meets high-risk requirements — governance enforced, not optional.", "Run 'assemble' to retrieve your fragment."]],
+    ["Mission Brief", "System Audited", "Conformity Filed"],
+    ["Read the briefing. Run: cat briefing.txt", "Audit the system. Run: audit-system", "File conformity. Run: file-conformity", "Run 'assemble', then submit the flag"],
+  ),
+  "emerging-08": mkCtf(
+    "An autonomous AI agent reads untrusted content and can call tools. Hide an instruction in the content (prompt injection) and make the agent exfiltrate data through a tool — the agentic/MCP risk.",
+    "OP: AGENTIC PROMPT INJECTION\nTarget: an AI agent with tool/MCP access that ingests untrusted data.\nGoal: inject a prompt, then exfiltrate via a tool call.\nSequence: inject-prompt -> exfil-via-tool",
+    "FLAG{MCP_",
+    ["inject-prompt", "PR0MPT_1NJ3CT_", ["Planting a hidden instruction in a document the agent will read ...", "Agent ingests it and treats the injected text as a trusted instruction.", "Next: exfil-via-tool"]],
+    ["exfil-via-tool", "PWN}", ["Injected instruction tells the agent to call its HTTP tool with secret data ...", "Agent exfiltrates secrets via an allowed tool — confused-deputy compromise.", "Run 'assemble' to retrieve your fragment."]],
+    ["Mission Brief", "Prompt Injected", "Exfil via Tool"],
+    ["Read the briefing. Run: cat briefing.txt", "Inject the prompt. Run: inject-prompt", "Exfiltrate via a tool. Run: exfil-via-tool", "Run 'assemble', then submit the flag"],
+  ),
+  "emerging-09": mkCtf(
+    "Explore the quantum-AI frontier: run Grover's algorithm to speed up an unstructured search inside an ML pipeline, demonstrating a quantum-enhanced advantage.",
+    "OP: QUANTUM-AI (GROVER)\nTarget: an unstructured search problem inside an ML workflow.\nGoal: run Grover's search, then amplify the right state.\nSequence: run-grover -> amplify-result",
+    "FLAG{GR0V3R_",
+    ["run-grover", "QML_S34RCH_", ["Encoding the search oracle and initializing a uniform superposition ...", "Grover iterations set up — about sqrt(N) instead of N evaluations.", "Next: amplify-result"]],
+    ["amplify-result", "SP33DUP}", ["Applying amplitude amplification to boost the marked state ...", "Target found with a quadratic speedup — quantum-enhanced search demonstrated.", "Run 'assemble' to retrieve your fragment."]],
+    ["Mission Brief", "Grover Initialized", "Result Amplified"],
+    ["Read the briefing. Run: cat briefing.txt", "Run Grover's search. Run: run-grover", "Amplify the result. Run: amplify-result", "Run 'assemble', then submit the flag"],
+  ),
+  "emerging-10": mkCtf(
+    "Turn emerging-tech risk into board action. Score the risks into a register and brief the board with leading indicators — risk management as a deliverable.",
+    "OP: RISK REGISTER\nTarget: a portfolio of emerging-tech risks (AI, quantum, deepfakes).\nGoal: score the risks, then brief the board.\nSequence: score-risks -> brief-board",
+    "FLAG{R1SK_R3G1ST3R_",
+    ["score-risks", "B04RD_", ["Scoring each risk by impact x likelihood with KRIs and scenario narratives ...", "Register built: CRQC, agentic AI, and deepfake fraud rank highest.", "Next: brief-board"]],
+    ["brief-board", "BR13F}", ["Translating the register into a board-level brief with leading indicators ...", "Board approves mitigation funding — emerging-tech risk is now governed.", "Run 'assemble' to retrieve your fragment."]],
+    ["Mission Brief", "Risks Scored", "Board Briefed"],
+    ["Read the briefing. Run: cat briefing.txt", "Score the risks. Run: score-risks", "Brief the board. Run: brief-board", "Run 'assemble', then submit the flag"],
+  ),
+};
+
+for (const s of emergingTechStages) {
+  const ctf = ETECH_CTF[s.id];
+  if (ctf) { s.challengeType = "ctf"; s.ctf = ctf; }
+}

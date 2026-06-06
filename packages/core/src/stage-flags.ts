@@ -53,6 +53,42 @@ export const stageFlags: Record<string, string> = {
   "robot-06": "FLAG{4DV_P4TCH_V1S10N_F00L3D}",
   "robot-09": "FLAG{R0B0T_F1RMW4R3_B4CKD00R3D}",
 
+  // ── Physics of Hacking (physics-of-hacking.ts) ───────────────────────────
+  "poh-01": "FLAG{S1D3_CH4NN3L_L34K_F0UND}",
+  "poh-02": "FLAG{DPA_P0W3R_TR4C3_K3Y}",
+  "poh-03": "FLAG{T3MP3ST_VAN_3CK_SCR33N}",
+  "poh-04": "FLAG{T1M1NG_L34K_N0N_C0NST}",
+  "poh-05": "FLAG{4C0UST1C_RSA_L1ST3N3D}",
+  "poh-06": "FLAG{R0WH4MM3R_B1T_FL1PP3D}",
+  "poh-07": "FLAG{C0LD_B00T_K3Y_R3C0V3R3D}",
+  "poh-08": "FLAG{GL1TCH_S3CUR3_B00T_BYP4SS}",
+  "poh-09": "FLAG{HW_1MPL4NT_SUPPLY_CH41N}",
+  "poh-10": "FLAG{S3CUR3_3L3M3NT_H4RD3N3D}",
+
+  // ── Emerging Tech (emerging-tech.ts) ─────────────────────────────────────
+  "emerging-01": "FLAG{4DV_3X_M0D3L_F00L3D}",
+  "emerging-02": "FLAG{B4DN3T_M0D3L_B4CKD00R}",
+  "emerging-03": "FLAG{GR4D13NT_1NV3RS10N_L34K}",
+  "emerging-04": "FLAG{D33PF4K3_C2P4_F0RG3D}",
+  "emerging-05": "FLAG{LLM_M4LW4R3_G3N3R4T3D}",
+  "emerging-06": "FLAG{M0D3L_3XTR4CT3D_FR0M_3DG3}",
+  "emerging-07": "FLAG{H1GH_R1SK_4I_4CT_C0MPL14NC3}",
+  "emerging-08": "FLAG{MCP_PR0MPT_1NJ3CT_PWN}",
+  "emerging-09": "FLAG{GR0V3R_QML_S34RCH_SP33DUP}",
+  "emerging-10": "FLAG{R1SK_R3G1ST3R_B04RD_BR13F}",
+
+  // ── Quantum-Safe Migration Engineering (quantum-5.ts) ────────────────────
+  "quantum-e01": "FLAG{CB0M_W34K_CRYPT0_F0UND}",
+  "quantum-e02": "FLAG{CRYPT0_4G1L1TY_4BSTR4CT3D}",
+  "quantum-e03": "FLAG{HYBR1D_TLS_ML_K3M_768}",
+  "quantum-e04": "FLAG{PQC_TUNN3L_SSH_3N4BL3D}",
+  "quantum-e05": "FLAG{HYBR1D_C3RT_DU4L_CH41N}",
+  "quantum-e06": "FLAG{L1BOQS_PR0V1D3R_W1R3D}",
+  "quantum-e07": "FLAG{PQC_H4NDSH4K3_S1Z3D_TUN3D}",
+  "quantum-e08": "FLAG{F1PS_140_3_V4L1D4T3D}",
+  "quantum-e09": "FLAG{ST4G3D_CUT0V3R_R0LL3D_0UT}",
+  "quantum-e10": "FLAG{F1RMW4R3_PQC_S1GN3D}",
+
   // ── Cisco CVE Extended (cisco-2.ts) ──────────────────────────────────────
   "stage-m13": "FLAG{CVE_2016_1287_IK3_H3AP_0WN3D}",
   "stage-m14": "FLAG{CVE_2017_3881_CMP_T3LN3T_RCE}",
