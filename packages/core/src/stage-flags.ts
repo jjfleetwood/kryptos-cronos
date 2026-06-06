@@ -89,6 +89,14 @@ export const stageFlags: Record<string, string> = {
   "quantum-e09": "FLAG{ST4G3D_CUT0V3R_R0LL3D_0UT}",
   "quantum-e10": "FLAG{F1RMW4R3_PQC_S1GN3D}",
 
+  // ── Operational Technology (ot-sec.ts) ───────────────────────────────────
+  "ot-02": "FLAG{PLC_L4DD3R_L0G1C_0WN3D}",
+  "ot-03": "FLAG{M0DBUS_C01L_F0RC3_WR1T3}",
+  "ot-04": "FLAG{HMI_SC4D4_PR0C3SS_H1J4CK}",
+  "ot-05": "FLAG{DNP3_C0MM4ND_SP00F3D}",
+  "ot-06": "FLAG{3WS_1T_T0_0T_P1V0T}",
+  "ot-09": "FLAG{1CS_1NTRUS10N_D3T3CT3D}",
+
   // ── Cisco CVE Extended (cisco-2.ts) ──────────────────────────────────────
   "stage-m13": "FLAG{CVE_2016_1287_IK3_H3AP_0WN3D}",
   "stage-m14": "FLAG{CVE_2017_3881_CMP_T3LN3T_RCE}",

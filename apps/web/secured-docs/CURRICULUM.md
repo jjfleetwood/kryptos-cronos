@@ -414,6 +414,11 @@ Cyber-physical security of electric, connected, and self-driving vehicles (first
 
 Cyber-physical security of robots, drones, and autonomous machines (second of the arc with vehicles). Foundations → deep tech → deep security: robot anatomy / sense-plan-act (01, quiz); ROS & ROS2/DDS unauthenticated middleware (02, CTF); industrial robot arm / HMI / PLC takeover — "Rogue Robots" (03, CTF); drone MAVLink hijack (04, CTF); teleoperation channel seizure — Raven II surgical robot (05, CTF); adversarial-patch perception attack (06, CTF); humanoid & service robots, cameras/cloud/backdoors — Unitree (07, quiz); functional safety / when security breaks safety — ISO 10218/15066, IEC 62443 (08, quiz); robot firmware & supply-chain backdoor (09, CTF); securing autonomous systems / zero-trust for cyber-physical, RVD, careers (10, quiz).
 
+## Epoch 67: Operational Technology — ICS, SCADA & the Physical World
+**Stages:** 10 (ot-01 through ot-10) | **Color:** Amber | **Track:** Operational Technology (own section) | **6 CTF + 4 quiz**
+
+Security of the industrial control systems that run the physical world (grid, water, refineries, factories, pipelines). Foundations → hands-on → governance: the OT/IT divide & Purdue model — inverted CIA triad, the air-gap myth (01, quiz); PLCs & ladder logic — scan cycle, force I/O, upload logic, Stuxnet (02, CTF); Modbus — the 1979 no-auth protocol, force a coil on port 502 (03, CTF); SCADA & the HMI — operator-view hijack, Ukraine 2015 (04, CTF); DNP3 & grid protocols — spoof a SELECT+OPERATE, Industroyer, GOOSE/IEC 61850 (05, CTF); the Engineering Workstation — IT→OT pivot, dual-homing, living off the land (06, CTF); Safety Instrumented Systems & TRITON — SIL, BPCS/SIS split, attacking the guardian (07, quiz); Stuxnet & the grid attacks — landmark incidents incl. Colonial Pipeline (08, quiz); detecting an ICS intrusion — passive monitoring, baselining, ATT&CK for ICS, PIPEDREAM (09, CTF); securing OT — IEC 62443 zones & conduits, IDMZ, resilience & recovery (10, quiz).
+
 ## Flag Football (extended track — 3 epochs, 30 stages, all quiz, category "sports")
 The fastest-growing team sport and an Olympic sport for LA 2028, taught from the ground up across three epochs.
 

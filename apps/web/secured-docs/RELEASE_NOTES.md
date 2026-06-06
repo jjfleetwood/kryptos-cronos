@@ -2,6 +2,16 @@
 
 ---
 
+## v1.38.0 — 2026-06-06
+
+**New epoch: Operational Technology (ICS/SCADA security)**
+
+- **`ot-sec` — Operational Technology** (10 stages, 6 CTF + 4 quiz), its own top-level `/stages` track (🏭, amber). Foundations → hands-on: the OT/IT divide & Purdue model, PLCs & ladder logic, Modbus (force a coil), SCADA/HMI hijack, DNP3 command spoofing, the IT→OT engineering-workstation pivot, Safety Instrumented Systems & TRITON, Stuxnet & the grid attacks, ICS intrusion detection, and securing OT (IEC 62443, segmentation, resilience).
+- 6 new CTF flags; `validate-ctf.mjs` = **268 CTFs, 0 problems**. Counts: **761 stages / 68 epochs**.
+- First item of the overnight content grind (see `docs/GRIND_PLAN.md`); more epochs queued for Wired & Autonomous, Robotics, Race Through Space, and Threat Frameworks.
+
+---
+
 ## v1.37.0 — 2026-06-06
 
 **CTFs added to 30 stages + new top-level track sections**

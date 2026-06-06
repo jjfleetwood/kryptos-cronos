@@ -2,7 +2,7 @@
 
 ## What This Is
 
-Gamified cybersecurity + AI training platform. 67 curriculum epochs, 751 CTF/quiz stages, live leaderboard, admin dashboard, 24 downloadable MCP server templates. Built with Next.js 16 / React 19 / TypeScript / Tailwind CSS / Upstash Redis / Resend.
+Gamified cybersecurity + AI training platform. 68 curriculum epochs, 761 CTF/quiz stages, live leaderboard, admin dashboard, 24 downloadable MCP server templates. Built with Next.js 16 / React 19 / TypeScript / Tailwind CSS / Upstash Redis / Resend.
 
 **Live:** kryptoscronos.com  
 **Repo:** github.com/jjfleetwood/kryptos-cronos  
@@ -145,6 +145,7 @@ Back navigation: `BackLink` uses `backHref` prop (passed from `StageContainer`) 
 | 62 | `space-race` | Race Through Space (space systems hacking; 6 CTF + 4 quiz) | 10 | space-01 → space-10 | Violet |
 | 63 | `vehicle-sec` | Wired & Autonomous (EV/vehicle security; 6 CTF + 4 quiz) | 10 | vehicle-01 → vehicle-10 | Lime |
 | 64 | `robot-sec` | Robotics (robot/autonomous-systems security; 6 CTF + 4 quiz) | 10 | robot-01 → robot-10 | Orange |
+| 67 | `ot-sec` | Operational Technology (ICS/SCADA security; 6 CTF + 4 quiz) | 10 | ot-01 → ot-10 | Amber |
 | 65 | `flag-football-1` | Flag Football: Foundations (extended/sports) | 10 | flag-01 → flag-10 | Emerald |
 | 66 | `flag-football-2` | Flag Football: Advanced Play (HS-level) | 10 | flag-11 → flag-20 | Teal |
 | 67 | `flag-football-3` | Flag Football: Playbook & Competition | 10 | flag-21 → flag-30 | Green |

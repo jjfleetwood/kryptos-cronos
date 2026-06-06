@@ -69,6 +69,8 @@
   "stages.tracks.vehicleSecDesc": "EV, connected & self-driving vehicle security (CTF)",
   "stages.tracks.robotics": "Robotics",
   "stages.tracks.roboticsDesc": "Robots, drones & autonomous machines (CTF)",
+  "stages.tracks.operationalTech": "Operational Technology",
+  "stages.tracks.operationalTechDesc": "ICS, SCADA & the physical world (CTF)",
   "stages.tracks.travel": "Travel",
   "stages.tracks.travelDesc": "City guides, history & language",
   "stages.tracks.debate": "Debate & Speech",

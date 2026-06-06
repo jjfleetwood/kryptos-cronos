@@ -85,6 +85,12 @@ const epochGroups = [
     descKey: "stages.tracks.roboticsDesc",
     epochIds: ["robot-sec"],
   },
+  {
+    id: "operationalTech",
+    labelKey: "stages.tracks.operationalTech",
+    descKey: "stages.tracks.operationalTechDesc",
+    epochIds: ["ot-sec"],
+  },
 ];
 
 // ── Extended curriculum (hidden from guests, accessible to pro users) ──────────
@@ -138,6 +144,7 @@ const TRACK_STYLE: Record<string, { icon: string; color: string }> = {
   spaceRace:        { icon: "🚀", color: "#a78bfa" },
   vehicleSec:       { icon: "🚗", color: "#a3e635" },
   robotics:         { icon: "🦾", color: "#fb923c" },
+  operationalTech:  { icon: "🏭", color: "#fbbf24" },
   crafts:           { icon: "🧵", color: "#ec4899" },
   driving:          { icon: "🚗", color: "#f97316" },
   sports:           { icon: "⚾", color: "#22c55e" },
@@ -177,7 +184,7 @@ const SECURITY_EPOCHS = new Set([
   "mitre", "mitre-atlas", "owasp-llm", "emerging-tech", "ai-ml-foundations", "sec-foundations",
   "quantum-intro", "quantum-deep", "quantum-1", "quantum-2", "quantum-3", "quantum-4", "quantum-5",
   "cisco-core", "cisco-enterprise", "cisco-secops", "cisco-advanced", "umbrella",
-  "physics-of-hacking", "space-race", "vehicle-sec", "robot-sec",
+  "physics-of-hacking", "space-race", "vehicle-sec", "robot-sec", "ot-sec",
 ]);
 const NON_SECURITY_EPOCHS = new Set([
   "tapestry", "nails", "hair-color", "hair-styling",
