@@ -265,12 +265,13 @@ export default function StagesPage() {
             : "border-white/10 bg-white/2 hover:border-white/25 hover:bg-white/5"
         }`}
       >
-        {/* Water-tank progress fill — height = % complete, with animated waves. */}
-        {pct > 0 && (
+        {/* Water-tank progress fill — height = % complete (with a small visible
+            base so every epoch shows the animated water, even at 0%). */}
+        {stageCount > 0 && (
           <div
             aria-hidden="true"
             className={`kc-tank pointer-events-none absolute inset-x-0 bottom-0 z-0 overflow-hidden ${textClass} ${done ? "kc-tank-done" : ""}`}
-            style={{ height: `${pct}%` }}
+            style={{ height: `max(${pct}%, 14px)`, opacity: doneCount === 0 ? 0.7 : 1 }}
           >
             <div className="kc-tank-inner absolute inset-0">
               <div className="absolute inset-x-0 top-1.5 bottom-0" style={{ background: "currentColor", opacity: 0.18 }} />
