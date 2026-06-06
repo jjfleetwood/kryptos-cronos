@@ -261,7 +261,7 @@ export default function StagesPage() {
         {pct > 0 && (
           <div
             aria-hidden="true"
-            className={`kc-tank pointer-events-none absolute inset-x-0 bottom-0 z-0 overflow-hidden ${textClass}`}
+            className={`kc-tank pointer-events-none absolute inset-x-0 bottom-0 z-0 overflow-hidden ${textClass} ${done ? "kc-tank-done" : ""}`}
             style={{ height: `${pct}%` }}
           >
             <div className="kc-tank-inner absolute inset-0">

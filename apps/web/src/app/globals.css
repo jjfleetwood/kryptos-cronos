@@ -174,3 +174,6 @@ html[data-skin="mature"] ::-webkit-scrollbar-thumb { background: #78350f; border
 .kc-wave-a { top: 0; opacity: 0.45; animation: kc-wave-move 3.2s linear infinite; }
 .kc-wave-b { top: 2px; opacity: 0.28; animation: kc-wave-move 5.3s linear infinite reverse; }
 .kc-tank-inner { animation: kc-water-bob 4.5s ease-in-out infinite; }
+/* Completed (100%) tank breathes gently. */
+@keyframes kc-tank-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.65; } }
+.kc-tank-done { animation: kc-tank-pulse 2.8s ease-in-out infinite; }
