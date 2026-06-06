@@ -2,7 +2,7 @@
 
 ## What This Is
 
-Gamified cybersecurity + AI training platform. 62 curriculum epochs, 701 CTF/quiz stages, live leaderboard, admin dashboard, 24 downloadable MCP server templates. Built with Next.js 16 / React 19 / TypeScript / Tailwind CSS / Upstash Redis / Resend.
+Gamified cybersecurity + AI training platform. 63 curriculum epochs, 711 CTF/quiz stages, live leaderboard, admin dashboard, 24 downloadable MCP server templates. Built with Next.js 16 / React 19 / TypeScript / Tailwind CSS / Upstash Redis / Resend.
 
 **Live:** kryptoscronos.com  
 **Repo:** github.com/jjfleetwood/kryptos-cronos  
@@ -143,6 +143,7 @@ Back navigation: `BackLink` uses `backHref` prop (passed from `StageContainer`) 
 | 42 | `computing-foundations` | How Computers Really Work (beginner) | 10 | cf-01 → cf-10 | Orange |
 | 61 | `silicon-fab` | Silicon: Sand to Superchips (chip manufacturing) | 10 | si-01 → si-10 | Sky |
 | 62 | `space-race` | Race Through Space (space systems hacking; 6 CTF + 4 quiz) | 10 | space-01 → space-10 | Violet |
+| 63 | `vehicle-sec` | Wired & Autonomous (EV/vehicle security; 6 CTF + 4 quiz) | 10 | vehicle-01 → vehicle-10 | Lime |
 | 43 | `physics-of-hacking` | The Physics of Hacking (hardware/physical) | 10 | poh-01 → poh-10 | Pink |
 | 38 | `emerging-tech` | Emerging Tech & Deep Learning Risk | 10 | emerging-01 → emerging-10 | Violet |
 | 16 | `umbrella` | Cisco Umbrella / SASE | 10 | umbrella-01 → umbrella-10 | Green |
@@ -351,6 +352,10 @@ Local dev: `.env.local` in `app/` (gitignored).
 - **Target sponsors:** CrowdStrike, AWS, SentinelOne, CompTIA, ISC²
 
 ---
+
+## What's Shipped (v1.33.0)
+
+- ✅ **New epoch `vehicle-sec` — "Wired & Autonomous"** (10 stages, vehicle-01→vehicle-10, lime; *Defend the Enterprise* track). EV/connected/self-driving vehicle security, **6 CTF + 4 quiz**, first of a 2-epoch cyber-physical arc (robotics next). CTFs: CAN-bus injection (02), UDS seed-key brute (03), keyless relay/RollJam (04), EV-charging OCPP hijack (05), telematics→CAN remote pivot / Jeep-style (07), ADAS sensor-spoof phantom brake (08). Quizzes: connected-car architecture (01), the BMS (06), OTA & supply chain (09), fleet APIs & defense (10). Real anchors (CAN, UDS, RollJam, OCPP/ISO 15118, 2015 Jeep hack, Keen Lab/Phantom ADAS spoofing, Sam Curry's auto-API research). 6 flags in `stage-flags.ts`; all CTFs pass `validate-ctf.mjs` (226 CTFs, 0 problems). 10 free-licensed Commons photos, credited on `/attribution`. Counts 701→711 stages / 62→63 epochs.
 
 ## What's Shipped (v1.32.0)
 

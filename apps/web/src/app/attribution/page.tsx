@@ -175,6 +175,20 @@ const SPACE_IMAGE_CREDITS = [
   { stage: "10", device: "Soyuz launch", file: "Soyuz TMA-5 launch.jpg", author: "NASA / Bill Ingalls", license: "Public domain", licenseUrl: "https://commons.wikimedia.org/wiki/Commons:Public_domain", url: "https://commons.wikimedia.org/wiki/File:Soyuz_TMA-5_launch.jpg" },
 ];
 
+// Per-file credits for the Wired & Autonomous (vehicle) imagery (Wikimedia Commons, free licenses).
+const VEHICLE_IMAGE_CREDITS = [
+  { stage: "01", device: "Vehicle cockpit / instrumentation", file: "Nissan GTP ZX-Turbo cockpit.JPG", author: "The359", license: "CC BY-SA 4.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/", url: "https://commons.wikimedia.org/wiki/File:Nissan_GTP_ZX-Turbo_cockpit.JPG" },
+  { stage: "02", device: "OBD-II / CAN connector", file: "OBD-USB connector.JPG", author: "Snewkirk7953", license: "CC BY-SA 3.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/", url: "https://commons.wikimedia.org/wiki/File:OBD-USB_connector.JPG" },
+  { stage: "03", device: "OBD2 diagnostic scanner", file: "Veepeak obd2 scanner tool.jpg", author: "hinoew", license: "CC0", licenseUrl: "https://creativecommons.org/publicdomain/zero/1.0/", url: "https://commons.wikimedia.org/wiki/File:Veepeak_obd2_scanner_tool.jpg" },
+  { stage: "04", device: "Car key fob", file: "Car Keys.jpg", author: "Mpelletier1", license: "CC BY-SA 3.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/", url: "https://commons.wikimedia.org/wiki/File:Car_Keys.jpg" },
+  { stage: "05", device: "EV charging station", file: "Car2Go Charging Station Stuttgart.jpg", author: "Julian Herzog", license: "CC BY 4.0", licenseUrl: "https://creativecommons.org/licenses/by/4.0/", url: "https://commons.wikimedia.org/wiki/File:Car2Go_Charging_Station_Stuttgart_2013_01.jpg" },
+  { stage: "06", device: "Nissan Leaf (EV / battery)", file: "Nissan Leaf 012.JPG", author: "Tennen-Gas", license: "CC BY-SA 3.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/", url: "https://commons.wikimedia.org/wiki/File:Nissan_Leaf_012.JPG" },
+  { stage: "07", device: "Car infotainment / head unit", file: "Lamborghini Infotainment.jpg", author: "Tabascogiuseppe1960", license: "CC BY-SA 4.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/", url: "https://commons.wikimedia.org/wiki/File:Lamborghini_Infotainment_.jpg" },
+  { stage: "08", device: "Autonomous car LiDAR sensor", file: "Uber car with lidar.jpg", author: "Timtempleton", license: "CC BY-SA 4.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/", url: "https://commons.wikimedia.org/wiki/File:Uber_car_with_lidar.jpg" },
+  { stage: "09", device: "Tesla digital panels (OTA)", file: "Tesla Model S digital panels.jpg", author: "Steve Jurvetson", license: "CC BY 2.0", licenseUrl: "https://creativecommons.org/licenses/by/2.0/", url: "https://commons.wikimedia.org/wiki/File:Tesla_Model_S_digital_panels.jpg" },
+  { stage: "10", device: "Vehicle fleet (parking lot)", file: "UCC Cars in Parking Lot.jpg", author: "Tomwsulcer", license: "CC0", licenseUrl: "https://creativecommons.org/publicdomain/zero/1.0/", url: "https://commons.wikimedia.org/wiki/File:UCC_Cars_in_Parking_Lot.jpg" },
+];
+
 export default function AttributionPage() {
   return (
     <div className="min-h-screen px-4 py-16" style={{ background: "linear-gradient(160deg,#040c1e 0%,#071428 60%,#040c1e 100%)" }}>
@@ -272,6 +286,27 @@ export default function AttributionPage() {
             {SPACE_IMAGE_CREDITS.map((c) => (
               <li key={c.stage} className="text-xs text-gray-400 flex flex-wrap items-center gap-x-2 gap-y-0.5">
                 <span className="text-gray-600 font-mono w-10 flex-shrink-0">S{c.stage}</span>
+                <span className="text-gray-300">{c.device}</span>
+                <span className="text-gray-700">·</span>
+                <a href={c.url} target="_blank" rel="noopener noreferrer" className="text-cyan-500 hover:text-cyan-400 transition-colors">{c.file}</a>
+                <span className="text-gray-700">·</span>
+                <span>© {c.author}</span>
+                <a href={c.licenseUrl} target="_blank" rel="noopener noreferrer" className="text-amber-400 hover:text-amber-300 transition-colors">{c.license} ↗</a>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="mt-12">
+          <h2 className="text-white font-bold text-lg mb-1">Wired & Autonomous — imagery</h2>
+          <p className="text-gray-500 text-xs mb-4 leading-relaxed">
+            Photos on the EV &amp; vehicle-security stages are from Wikimedia Commons under free licenses
+            and self-hosted, credited to each author below.
+          </p>
+          <ul className="space-y-2 rounded-2xl border border-white/8 p-5" style={{ background: "rgba(255,255,255,0.02)" }}>
+            {VEHICLE_IMAGE_CREDITS.map((c) => (
+              <li key={c.stage} className="text-xs text-gray-400 flex flex-wrap items-center gap-x-2 gap-y-0.5">
+                <span className="text-gray-600 font-mono w-10 flex-shrink-0">V{c.stage}</span>
                 <span className="text-gray-300">{c.device}</span>
                 <span className="text-gray-700">·</span>
                 <a href={c.url} target="_blank" rel="noopener noreferrer" className="text-cyan-500 hover:text-cyan-400 transition-colors">{c.file}</a>

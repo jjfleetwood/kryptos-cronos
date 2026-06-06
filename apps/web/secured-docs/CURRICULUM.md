@@ -1,7 +1,7 @@
 # Kryptós CronOS — Curriculum Reference
 **Version:** 3.7  
 **Date:** 2026-06-03  
-**Total stages:** 701 across 62 epochs (delivered on **web + native mobile** from the shared `@kryptos/core` content package)
+**Total stages:** 711 across 63 epochs (delivered on **web + native mobile** from the shared `@kryptos/core` content package)
 
 ---
 
@@ -404,6 +404,11 @@ How the newest GPU and quantum chips are physically manufactured — the most co
 
 Deep-tech space-systems hacking, themed on the current-day space race (SpaceX, NASA, China, ISRO, Starlink). Real architecture then real attacks: orbits/link-budgets/the four segments (space-01, quiz); the Viasat KA-SAT / AcidRain ground-segment modem-wiper (space-02, CTF); GNSS/GPS spoofing of position-navigation-timing (space-03, CTF); telecommand link takeover, Hack-A-Sat style (space-04, CTF); CCSDS telemetry frame-sync & Space Packet decoding (space-05, CTF); ground-station software supply-chain pivot to the antenna controller (space-06, CTF); MIL-STD-1553 onboard-bus injection (space-07, CTF); Starlink mega-constellation & the glitched user terminal (space-08, quiz); counterspace — jam/dazzle/cyber/kinetic ASAT + Kessler debris (space-09, quiz); and securing the constellation era — SPARTA, CCSDS SDLS, zero-trust, Space Force, careers (space-10, quiz). Flags in stage-flags.ts; validated via scripts/validate-ctf.mjs.
 
+## Epoch 62: Wired & Autonomous — EV & Vehicle Security
+**Stages:** 10 (vehicle-01 through vehicle-10) | **Color:** Lime | **Track:** Defend the Enterprise | **6 CTF + 4 quiz**
+
+Cyber-physical security of electric, connected, and self-driving vehicles (first of a 2-epoch arc with robotics). Foundations → deep tech → deep security: the connected car / 100+ ECUs (01, quiz); CAN-bus injection (02, CTF); UDS diagnostics seed-key brute (03, CTF); keyless entry relay/RollJam (04, CTF); EV charging OCPP/ISO 15118 hijack (05, CTF); the Battery Management System & thermal runaway (06, quiz); telematics → CAN remote pivot, the 2015 Jeep Cherokee hack (07, CTF); ADAS sensor spoofing / phantom braking (08, CTF); OTA updates & supply chain, Uptane (09, quiz); fleet cloud APIs as car control + defense-in-depth (10, quiz). Real anchors throughout (CAN, UDS, RollJam, OCPP, Jeep, Keen Lab/Phantom, Sam Curry auto-API research).
+
 ---
 
 ## XP Summary
@@ -473,7 +478,8 @@ Deep-tech space-systems hacking, themed on the current-day space race (SpaceX, N
 | 61 | AI & Machine Learning Foundations | 6 | ~1,300 |
 | 62 | Silicon: Sand to Superchips | 10 | ~1,400 |
 | 63 | Race Through Space | 10 | ~1,600 |
-| | **Total** | **701** | **~110,000** |
+| 64 | Wired & Autonomous (EV/vehicle security) | 10 | ~1,650 |
+| | **Total** | **711** | **~110,000** |
 
 ---
 

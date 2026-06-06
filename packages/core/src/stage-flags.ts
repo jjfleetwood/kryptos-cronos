@@ -37,6 +37,14 @@ export const stageFlags: Record<string, string> = {
   "space-06": "FLAG{GR0UND_SUPPLY_CH41N_4NT3NN4_0WN3D}",
   "space-07": "FLAG{M1L_1553_BUS_C0NTR0LL3R_SUBSYST3M_0WN3D}",
 
+  // ── Wired & Autonomous (vehicle-sec.ts) — CTF stages only ────────────────
+  "vehicle-02": "FLAG{C4N_BUS_N0_4UTH_1NJ3CT3D}",
+  "vehicle-03": "FLAG{UDS_S33D_K3Y_BRUT3D_3CU}",
+  "vehicle-04": "FLAG{R3L4Y_R0LLJ4M_UNL0CK3D}",
+  "vehicle-05": "FLAG{0CPP_CH4RG3R_H1J4CK3D}",
+  "vehicle-07": "FLAG{T3L3M4T1CS_R3M0T3_C4N_PWN}",
+  "vehicle-08": "FLAG{LID4R_SP00F3D_PH4NT0M_BR4K3}",
+
   // ── Cisco CVE Extended (cisco-2.ts) ──────────────────────────────────────
   "stage-m13": "FLAG{CVE_2016_1287_IK3_H3AP_0WN3D}",
   "stage-m14": "FLAG{CVE_2017_3881_CMP_T3LN3T_RCE}",

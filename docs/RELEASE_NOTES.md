@@ -2,6 +2,17 @@
 
 ---
 
+## v1.33.0 — 2026-06-05
+
+**New epoch: Wired & Autonomous — EV & Vehicle Security (CTF-heavy)**
+
+- **`vehicle-sec` — "Wired & Autonomous"** (10 stages, vehicle-01→vehicle-10, lime; *Defend the Enterprise* track). Electric/connected/self-driving vehicle security; **6 CTF + 4 quiz**. First of a 2-epoch cyber-physical arc (robotics epoch next).
+- CTFs: CAN-bus injection (02), UDS seed-key brute (03), keyless relay/RollJam (04), EV-charging OCPP hijack (05), telematics→CAN remote pivot / Jeep-style (07), ADAS sensor-spoof phantom brake (08). Quizzes: connected-car architecture (01), Battery Management System (06), OTA & supply chain (09), fleet APIs & defense (10).
+- Real anchors: CAN's lack of auth, UDS seed-key, RollJam, OCPP/ISO 15118, the 2015 Jeep Cherokee remote hack, Keen Lab/Phantom ADAS spoofing, Sam Curry's auto-API research. 6 flags in `stage-flags.ts`; all CTFs pass `validate-ctf.mjs` (226 CTFs, 0 problems). 10 free-licensed Commons photos, credited on `/attribution`.
+- Counts **701→711 stages / 62→63 epochs**.
+
+---
+
 ## v1.32.0 — 2026-06-05
 
 **New epoch: Race Through Space (deep-tech space-systems hacking, CTF-heavy)**

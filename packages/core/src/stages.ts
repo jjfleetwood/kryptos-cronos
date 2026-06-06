@@ -21,6 +21,7 @@ import { quantumDeepEpoch, quantumDeepStages } from "./quantum-deep";
 import { computingFoundationsEpoch, computingFoundationsStages } from "./computing-foundations";
 import { siliconFabEpoch, siliconFabStages } from "./silicon-fab";
 import { spaceRaceEpoch, spaceRaceStages } from "./space-race";
+import { vehicleSecEpoch, vehicleSecStages } from "./vehicle-sec";
 import { physicsOfHackingEpoch, physicsOfHackingStages } from "./physics-of-hacking";
 import { emergingTechEpoch, emergingTechStages } from "./emerging-tech";
 import { cisco2Stages } from "./cisco-2";
@@ -133,6 +134,7 @@ export const epochs: EpochConfig[] = [
   computingFoundationsEpoch,
   siliconFabEpoch,
   spaceRaceEpoch,
+  vehicleSecEpoch,
   physicsOfHackingEpoch,
   emergingTechEpoch,
   umbrellaEpoch,
@@ -195,6 +197,7 @@ export const stages: StageConfig[] = [
   ...computingFoundationsStages,
   ...siliconFabStages,
   ...spaceRaceStages,
+  ...vehicleSecStages,
   ...physicsOfHackingStages,
   ...emergingTechStages,
   ...umbrellaStages,
