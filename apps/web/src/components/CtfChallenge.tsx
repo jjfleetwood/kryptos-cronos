@@ -639,9 +639,23 @@ export default function CtfChallenge({ stage, backHref = "/stages", isPro = fals
       if (content === undefined) {
         if (ctf.dirs[resolved]) {
           push({ type: "err", text: `cat: ${pathArg}: ${t("ctf.terminal.catIsDir")}` });
-        } else {
-          push({ type: "err", text: `cat: ${pathArg}: ${t("ctf.terminal.catNotFound")}` });
+          push({ type: "out", text: "" });
+          return;
         }
+        // Not a real file. If the stage defines a custom `cat` (used for
+        // "virtual" files produced by other commands — e.g. a pulled config),
+        // defer to it before reporting an error.
+        if (extraCommands && "cat" in extraCommands) {
+          const result = extraCommands.cat(args);
+          push(...result.lines.map((text) => ({ type: "out" as LineType, text })));
+          checkFragment(trimmed);
+          if (result.solved) {
+            awardStage(stage.id, stage.xp, stage.badge.id);
+            setSolved(true);
+          }
+          return;
+        }
+        push({ type: "err", text: `cat: ${pathArg}: ${t("ctf.terminal.catNotFound")}` });
         push({ type: "out", text: "" });
         return;
       }

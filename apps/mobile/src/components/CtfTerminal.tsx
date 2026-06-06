@@ -196,7 +196,24 @@ export default function CtfTerminal({ stage, onClose }: { stage: StageConfig; on
       const resolved = resolvePath(cwd, pathArg);
       const content = ctf.files[resolved];
       if (content === undefined) {
-        push({ type: "err", text: ctf.dirs[resolved] ? `cat: ${pathArg}: Is a directory` : `cat: ${pathArg}: No such file` }, { type: "out", text: "" });
+        if (ctf.dirs[resolved]) {
+          push({ type: "err", text: `cat: ${pathArg}: Is a directory` }, { type: "out", text: "" });
+          return;
+        }
+        // Not a real file. Defer to a stage's custom `cat` (virtual files
+        // produced by other commands) before reporting an error.
+        if (extraCommands && "cat" in extraCommands) {
+          const result = extraCommands.cat(args);
+          push(...result.lines.map((text) => ({ type: "out" as LineType, text })));
+          checkFragment(trimmed);
+          if (result.solved) {
+            await api.awardStage(stage.id, stage.badge.id).catch(() => {});
+            setSolved(true);
+            setSolvedCoins(stage.xp);
+          }
+          return;
+        }
+        push({ type: "err", text: `cat: ${pathArg}: No such file` }, { type: "out", text: "" });
         return;
       }
       push(...content.split("\n").map((text) => ({ type: "out" as LineType, text })), { type: "out", text: "" });
