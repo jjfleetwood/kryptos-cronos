@@ -2,6 +2,16 @@
 
 ---
 
+## v1.40.0 — 2026-06-06
+
+**New epoch: Robotics II (deeper robot security)**
+
+- **`robot-sec-2` — Robotics II** (10 stages, 6 CTF + 4 quiz), added as the second epoch in the Robotics `/stages` track (🦾, orange). ROS 2/SROS2 & exploiting a DDS domain, commandeering a warehouse AMR fleet (VDA5050/MQTT), hijacking an autonomous tractor, swarm-robotics trust (Byzantine/Sybil/BFT), cloud-robotics backends & teleop hijack, legged/humanoid platforms, navigation/GPS spoofing, poisoning a learned policy (backdoors), and securing robot fleets at scale (zero trust + independent safety envelope + lifecycle).
+- 6 new CTF flags; `validate-ctf.mjs` = **280 CTFs, 0 problems**. Counts: **781 stages / 70 epochs**.
+- Third item of the overnight content grind (`docs/GRIND_PLAN.md`); next: Race Through Space II, Threat Frameworks.
+
+---
+
 ## v1.39.0 — 2026-06-06
 
 **New epoch: Wired & Autonomous II (deeper vehicle security)**

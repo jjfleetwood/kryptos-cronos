@@ -105,6 +105,14 @@ export const stageFlags: Record<string, string> = {
   "v2-06": "FLAG{PLUG_4ND_CH4RG3_PWND}",
   "v2-08": "FLAG{FL33T_4P1_BOLA_T4K30V3R}",
 
+  // ── Robotics II (robot-sec-2.ts) ─────────────────────────────────────────
+  "r2-02": "FLAG{DDS_D0M41N_HIJ4CK3D}",
+  "r2-03": "FLAG{AMR_FL33T_C0MM4ND33R3D}",
+  "r2-04": "FLAG{TR4CT0R_4UT0_ST33R_PWND}",
+  "r2-06": "FLAG{CL0UD_R0B0T_4P1_0WN3D}",
+  "r2-08": "FLAG{N4V_GPS_SP00F_D3T0UR}",
+  "r2-09": "FLAG{P0L1CY_P01S0N3D_B4CKD00R}",
+
   // ── Cisco CVE Extended (cisco-2.ts) ──────────────────────────────────────
   "stage-m13": "FLAG{CVE_2016_1287_IK3_H3AP_0WN3D}",
   "stage-m14": "FLAG{CVE_2017_3881_CMP_T3LN3T_RCE}",

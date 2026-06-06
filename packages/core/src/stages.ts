@@ -25,6 +25,7 @@ import { vehicleSecEpoch, vehicleSecStages } from "./vehicle-sec";
 import { robotSecEpoch, robotSecStages } from "./robot-sec";
 import { otSecEpoch, otSecStages } from "./ot-sec";
 import { vehicleSec2Epoch, vehicleSec2Stages } from "./vehicle-sec-2";
+import { robotSec2Epoch, robotSec2Stages } from "./robot-sec-2";
 import { flagFootball1Epoch, flagFootball1Stages, flagFootball2Epoch, flagFootball2Stages, flagFootball3Epoch, flagFootball3Stages } from "./flag-football";
 import { physicsOfHackingEpoch, physicsOfHackingStages } from "./physics-of-hacking";
 import { emergingTechEpoch, emergingTechStages } from "./emerging-tech";
@@ -142,6 +143,7 @@ export const epochs: EpochConfig[] = [
   robotSecEpoch,
   otSecEpoch,
   vehicleSec2Epoch,
+  robotSec2Epoch,
   flagFootball1Epoch,
   flagFootball2Epoch,
   flagFootball3Epoch,
@@ -211,6 +213,7 @@ export const stages: StageConfig[] = [
   ...robotSecStages,
   ...otSecStages,
   ...vehicleSec2Stages,
+  ...robotSec2Stages,
   ...flagFootball1Stages,
   ...flagFootball2Stages,
   ...flagFootball3Stages,
