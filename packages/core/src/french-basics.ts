@@ -27,10 +27,9 @@ export const frenchBasicsStages: StageConfig[] = [
       tagline: "In France, politeness is not optional — it is the minimum entry fee",
       year: 1600,
       overview: [
-        "French politeness is non-negotiable. Entering a shop, starting a conversation, or sitting at a café without saying 'Bonjour' is considered rude — and will colour every interaction that follows.",
-        "The French distinguish formally between 'tu' (informal you, for friends and children) and 'vous' (formal you, for strangers, elders, professionals). Use 'vous' by default with anyone you don't know.",
-        "A few key phrases — bonjour, merci, s'il vous plaît, excusez-moi — will transform how Parisians respond to you. The effort is noticed and appreciated.",
-        "Goodbye: 'Au revoir' (formal), 'Bonne journée' (have a good day), 'Bonsoir' (good evening). Never just 'Bye'.",
+        "French politeness is non-negotiable — entering a shop, starting a conversation, or sitting at a café without saying 'Bonjour' is considered rude, and colours every interaction that follows. The French also distinguish formally between 'tu' (informal you, for friends and children) and 'vous' (formal you, for strangers, elders, professionals) — use 'vous' by default with anyone you don't know.",
+        "A few key phrases transform how Parisians respond to you — the effort is noticed and appreciated:\n- 'Bonjour' — hello / good day.\n- 'Merci' — thank you.\n- 'S'il vous plaît' — please.\n- 'Excusez-moi' — excuse me.",
+        "Saying goodbye properly matters too — never just 'Bye':\n- 'Au revoir' — goodbye (formal).\n- 'Bonne journée' — have a good day.\n- 'Bonsoir' — good evening.",
       ],
       technical: {
         title: "Essential greetings",
@@ -138,8 +137,8 @@ export const frenchBasicsStages: StageConfig[] = [
       year: 1686,
       overview: [
         "The Parisian café is not Starbucks. It is a social institution with its own rhythm, rules, and vocabulary.",
-        "Coffee in France: 'un café' is a single espresso. 'Un crème' is espresso with steamed milk (like a flat white or small latte). 'Un café au lait' is a large milky coffee, usually for breakfast only.",
-        "Standing at the counter (le zinc) costs less than sitting at a table. Table service in tourist areas can be significantly more expensive — check the menu board.",
+        "Coffee in France has its own vocabulary:\n- 'Un café' — a single espresso.\n- 'Un crème' — espresso with steamed milk (like a flat white or small latte).\n- 'Un café au lait' — a large milky coffee, usually for breakfast only.",
+        "Where you stand changes the price:\n- Standing at the counter (le zinc) costs less.\n- Sitting at a table costs more — table service in tourist areas can be significantly pricier.\nCheck the menu board before you sit.",
         "The French do not drink coffee with their meals. Coffee comes after dessert. Asking for coffee with your food will raise eyebrows.",
       ],
       technical: {
@@ -248,7 +247,7 @@ export const frenchBasicsStages: StageConfig[] = [
       tagline: "Navigate a French restaurant with confidence — and enjoy every course",
       year: 1700,
       overview: [
-        "French restaurant etiquette has its own rules. The waiter is not your friend — they are professional, and friendliness is expressed through competent service, not chat.",
+        "French restaurant etiquette has its own rules, and the relationship with the waiter is more formal than in the US or UK:\n- The waiter is a professional, not your friend — friendliness is expressed through competent service, not chat.\n- Call them with 'Excusez-moi, monsieur/madame' — never click your fingers or shout 'garçon'.\n- The bill is never brought automatically — ask for it with 'L'addition, s'il vous plaît'.\nGet these right and the meal runs smoothly.",
         "Calling the waiter: say 'Excusez-moi, monsieur' or 'Excusez-moi, madame' — never click your fingers or shout 'garçon' (outdated and rude).",
         "The bill is never brought automatically — you must ask. 'L'addition, s'il vous plaît' is the phrase. Hovering for the bill while the waiter watches you is not how it works.",
         "Tipping in France: service is included by law (service compris). Leaving extra is optional — 5–10% for good service is appreciated but not expected.",
@@ -359,7 +358,7 @@ export const frenchBasicsStages: StageConfig[] = [
       tagline: "Shopping in French is about asking politely, understanding prices, and leaving gracefully",
       year: 1800,
       overview: [
-        "French shops have a social code: you acknowledge the shopkeeper on entry, browse without rushing, and ask for help rather than grabbing items.",
+        "French shops have a social code:\n- Acknowledge the shopkeeper on entry.\n- Browse without rushing.\n- Ask for help rather than grabbing items.\nFollowing it marks you as a respectful customer rather than a tourist.",
         "At a market, vendors appreciate a greeting and a question — 'Ça coûte combien?' or 'C'est combien?' for how much. Bargaining is not a French market tradition (except at flea markets).",
         "Sizes in France follow European sizing. For clothes: ask 'Avez-vous ceci en taille [size]?' For shoes: 'Avez-vous ceci en pointure [size]?'",
         "Tax refund (détaxe) for non-EU visitors: purchases over 100 euros at participating shops qualify. Ask 'Faites-vous la détaxe?'",
@@ -472,7 +471,7 @@ export const frenchBasicsStages: StageConfig[] = [
       overview: [
         "Paris is highly navigable: the métro is logical, street signs are clear, and most major sites are within the périphérique.",
         "Asking for directions: always start with 'Excusez-moi' and 'Bonjour' — then ask. Jumping straight to 'Where is the Eiffel Tower?' without a greeting will get a cold response.",
-        "Key directional words: à gauche (left), à droite (right), tout droit (straight ahead), en face (opposite), près d'ici (near here).",
+        "Key directional words to recognise in a reply:\n- à gauche — left.\n- à droite — right.\n- tout droit — straight ahead.\n- en face — opposite.\n- près d'ici — near here.",
         "The Paris métro has 16 lines numbered 1–14 (plus 3bis and 7bis). Lines are identified by their final destination. The RER (suburban express) uses letters A–E.",
       ],
       technical: {
@@ -580,7 +579,7 @@ export const frenchBasicsStages: StageConfig[] = [
       tagline: "French numbers have a logic — once you understand it, they click",
       year: 1795,
       overview: [
-        "French numbers are mostly logical up to 60 — then they get creative. 70 is 'sixty-ten' (soixante-dix), 80 is 'four-twenties' (quatre-vingts), and 90 is 'four-twenties-ten' (quatre-vingt-dix).",
+        "French numbers are mostly logical up to 60 — then they get creative:\n- 70 is 'sixty-ten' (soixante-dix).\n- 80 is 'four-twenties' (quatre-vingts).\n- 90 is 'four-twenties-ten' (quatre-vingt-dix).\nThe arithmetic in the words trips up almost every learner at first.",
         "France adopted the metric decimal system in 1795 — the first country to standardise weights and measures.",
         "At a market or shop, prices are stated clearly in euros (euros) and centimes (cents). The decimal comma is used in French: 3,50 euros (trois euros cinquante).",
         "Cardinal rule: if you don't understand the price, ask the cashier to write it down ('Pouvez-vous l'écrire?') or show their screen.",
@@ -691,7 +690,7 @@ export const frenchBasicsStages: StageConfig[] = [
       tagline: "Paris transport is excellent — and cheap if you use it right",
       year: 1900,
       overview: [
-        "Paris has the most comprehensive urban public transport network in Europe: 16 métro lines, 5 RER lines, over 60 bus routes, and trams.",
+        "Paris has the most comprehensive urban public transport network in Europe:\n- 16 métro lines.\n- 5 RER (suburban express) lines.\n- Over 60 bus routes.\n- A growing tram network.\nBetween them, almost everywhere in the city is a short walk from a stop.",
         "The Navigo card (Navigo Easy or Navigo Semaine) is the most efficient way to pay. Single tickets (t+) are more expensive per journey.",
         "RER A is the essential line for visitors: Charles de Gaulle airport to city centre (RER B), Versailles (RER C), Disneyland (RER A).",
         "Taxis and Uber (called 'Uber' in Paris) are widely available. Taxis have a specific rank system; avoid unofficial taxis at airports.",
@@ -804,7 +803,7 @@ export const frenchBasicsStages: StageConfig[] = [
       overview: [
         "Paris has more world-class museums than almost any other city. Many are free for EU citizens under 26; most have free entry on the first Sunday of the month.",
         "Booking online in advance is essential for the Louvre, Orsay, Versailles, and the Last Supper in Milan — queues without a timed ticket can be 2–3 hours in July.",
-        "Museum vocabulary is helpful: 'une exposition' (exhibition), 'un tableau' (painting), 'une sculpture' (sculpture), 'le rez-de-chaussée' (ground floor), 'l'étage' (floor/level).",
+        "Museum vocabulary is helpful:\n- 'une exposition' — exhibition.\n- 'un tableau' — painting.\n- 'une sculpture' — sculpture.\n- 'le rez-de-chaussée' — ground floor.\n- 'l'étage' — floor / level.",
         "Taking photos is generally permitted in French national museums unless otherwise posted. Flash is forbidden near paintings.",
       ],
       technical: {
@@ -913,7 +912,7 @@ export const frenchBasicsStages: StageConfig[] = [
       tagline: "Know the numbers and phrases before you need them",
       year: 1900,
       overview: [
-        "France's emergency numbers: 15 (SAMU — medical emergencies), 17 (Police), 18 (Fire/Pompiers), and 112 (European universal emergency number, works from any mobile).",
+        "France's emergency numbers are worth memorising:\n- 15 — SAMU (medical emergencies).\n- 17 — Police.\n- 18 — Fire / Pompiers.\n- 112 — the European universal emergency number, which works from any mobile.",
         "Pharmacies (pharmacies — green cross sign) are excellent first stops for minor medical issues. French pharmacists are highly trained and can advise on many conditions.",
         "For lost cards: your bank's international number is usually on the back of the card or in your banking app. In France, call 0892 705 705 to block Visa/Mastercard.",
         "The European Health Insurance Card (EHIC/GHIC) covers medical treatment in France for EU/UK citizens at the same rate as French nationals.",
@@ -1027,7 +1026,7 @@ export const frenchBasicsStages: StageConfig[] = [
         "The 'rude Parisian' stereotype is largely misunderstood. Parisians are direct, efficient, and professional — warmth comes after trust is established, not before.",
         "French people do not smile automatically at strangers. A neutral expression is normal; smiling at random people is considered odd or suspicious.",
         "The bise (the cheek kiss greeting): in Paris, two kisses (left cheek first). But it is only between people who know each other — never with strangers or service staff.",
-        "French verlan (backslang): 'l'envers' (the reverse) became 'verlan'. Common words: 'ouf' (fou/crazy), 'meuf' (femme/woman), 'keuf' (flic/police), 'chelou' (louche/suspicious).",
+        "French verlan (backslang) reverses syllables — 'l'envers' (the reverse) itself became 'verlan'. Common words:\n- 'ouf' — fou / crazy.\n- 'meuf' — femme / woman.\n- 'keuf' — flic / police.\n- 'chelou' — louche / suspicious.",
       ],
       technical: {
         title: "Paris slang and social codes",
@@ -1138,7 +1137,7 @@ export const frenchBasicsStages: StageConfig[] = [
         "France has approximately 33,000 artisan boulangeries — one for every 2,000 people. By law, a boulangerie must bake its bread on the premises; a place that sells pre-made bread cannot use that name.",
         "A standard baguette costs €1.00–€1.20. The baguette tradition (made only with flour, water, salt, and yeast — no additives) costs slightly more and is worth it for flavour.",
         "Boulangeries open early (7am or earlier) and most close one day per week, often Monday or Tuesday. In July, many close for annual holiday and are legally required to post the nearest open alternative.",
-        "Ordering: always say Bonjour first. Specify preference: 'bien cuite' (dark, crispy crust) or 'pas trop cuite' (lighter). The baguette is carried unwrapped — in paper sleeve, never plastic.",
+        "Ordering at the boulangerie has its etiquette:\n- Always say 'Bonjour' first.\n- Specify your crust — 'bien cuite' (dark, crispy) or 'pas trop cuite' (lighter).\n- Take it in a paper sleeve, never plastic — the baguette is carried essentially unwrapped.",
       ],
       technical: {
         title: "Boulangerie vocabulary",
@@ -1246,9 +1245,9 @@ export const frenchBasicsStages: StageConfig[] = [
       year: 1900,
       overview: [
         "The most important thing for English speakers: in France, 'l'entrée' means the starter or first course — not the main course. The main course is 'le plat' or 'le plat principal'.",
-        "A French restaurant typically offers: formule (2-course, entrée + plat or plat + dessert), menu (3-course fixed price), or carte (à la carte, order individually). The menu or formule is almost always better value.",
+        "A French restaurant typically offers three ways to order:\n- formule — 2 courses (entrée + plat, or plat + dessert).\n- menu — a 3-course fixed price.\n- carte — à la carte, ordered individually.\nThe menu or formule is almost always better value than the carte.",
         "The 'plat du jour' (dish of the day) is usually the freshest and best-value option — €12–€18 in a neighbourhood bistro, made with what arrived at the market that morning.",
-        "Steak temperature in French: bleu (very rare), saignant (rare), à point (medium), bien cuit (well-done). The French default is à point.",
+        "Steak temperature in French runs from rarest to most cooked:\n- bleu — very rare.\n- saignant — rare.\n- à point — medium (the French default).\n- bien cuit — well-done.",
       ],
       technical: {
         title: "Menu vocabulary",
@@ -1359,7 +1358,7 @@ export const frenchBasicsStages: StageConfig[] = [
         "France is the world's second-largest wine producer (after Italy) and the global quality benchmark. Six major regions: Bordeaux (Cabernet Sauvignon/Merlot), Bourgogne/Burgundy (Pinot Noir/Chardonnay), Champagne (sparkling), Loire, Alsace, and Côtes du Rhône.",
         "Ordering house wine ('le vin de la maison' or 'un pichet') is usually excellent and significantly cheaper than bottled wine. A pichet is a carafe — un quart (quarter litre), un demi (half litre), or une bouteille (full bottle).",
         "AOC (Appellation d'Origine Contrôlée — now AOP) on a label means the wine meets strict geographic and production standards. It is the highest French quality classification.",
-        "Wine vocabulary: rouge (red), blanc (white), rosé, sec (dry), demi-sec (medium), doux (sweet), pétillant/mousseux (sparkling), brut (very dry — for Champagne).",
+        "Wine vocabulary you'll see on every list:\n- rouge — red; blanc — white; rosé — rosé.\n- sec — dry; demi-sec — medium; doux — sweet.\n- pétillant / mousseux — sparkling; brut — very dry (for Champagne).",
       ],
       technical: {
         title: "Wine ordering phrases",
@@ -1470,7 +1469,7 @@ export const frenchBasicsStages: StageConfig[] = [
         "French pharmacies (illuminated green cross) are staffed by pharmacists with a 6-year degree — equivalent in training depth to a medical degree. They are authorised to assess and treat many conditions without a doctor's appointment.",
         "Key distinction: avec une ordonnance (with a prescription) means the medication is reimbursed by the Sécu (social security). Sans ordonnance (without prescription) means you pay the full OTC price.",
         "French pharmacies carry both branded and generic medications. The pharmacist can always suggest a médicament générique (generic equivalent) at significantly lower cost.",
-        "Emergency contraception (la pilule du lendemain), pregnancy tests, and basic wound care are available without prescription at all pharmacies.",
+        "Several things are available without prescription at all pharmacies:\n- Emergency contraception (la pilule du lendemain).\n- Pregnancy tests.\n- Basic wound care.\nThe pharmacist can advise on all of these directly.",
       ],
       technical: {
         title: "Pharmacy phrases",
@@ -1578,7 +1577,7 @@ export const frenchBasicsStages: StageConfig[] = [
       tagline: "French hotels reward politeness and punish impatience — know what to say",
       year: 1898,
       overview: [
-        "France uses a 1–5 star hotel classification system regulated by the national tourism agency (Atout France). Above 5 stars, a 'Palace' designation exists for the very top tier (Ritz, Georges V, Plaza Athénée).",
+        "France uses a 1–5 star hotel classification regulated by the national tourism agency (Atout France), with a 'Palace' designation above 5 stars for the very top tier:\n- The Ritz.\n- The Four Seasons George V.\n- The Plaza Athénée.\nThese palaces sit in a class of their own above the standard star system.",
         "The essential check-in phrase: 'J'ai une réservation au nom de...' (I have a reservation in the name of...). Always have your booking confirmation on your phone — French hotels often print nothing.",
         "Breakfast (le petit déjeuner) is usually NOT included in French hotel rates below 4 stars — at €15–€25 per person, a nearby café is usually better value.",
         "Noise rules are taken seriously — most hotels observe quiet hours (22h–7h). Disputes go through the front desk, not by knocking on walls.",
@@ -1691,7 +1690,7 @@ export const frenchBasicsStages: StageConfig[] = [
       overview: [
         "To ask the time: 'Quelle heure est-il?' (What time is it?) or informally 'Vous avez l'heure?'. Answer: 'Il est... heures' (It is... o'clock).",
         "France officially uses the 24-hour clock for transport schedules, broadcasts, and formal contexts: 15h30 is 3:30 PM. In conversation, the 12-hour format with 'du matin' (morning) or 'du soir' (evening) is common.",
-        "Quarter hours: 'et quart' (+15 min), 'et demie' (+30 min), 'moins le quart' (-15 min). Example: 9h45 = 'dix heures moins le quart' (ten o'clock minus a quarter).",
+        "Quarter hours have their own phrases:\n- 'et quart' — +15 minutes.\n- 'et demie' — +30 minutes.\n- 'moins le quart' — −15 minutes.\nExample: 9h45 = 'dix heures moins le quart' (ten o'clock minus a quarter).",
         "French punctuality: professional meetings — on time or 5 minutes early. Dinner parties — the 'quart d'heure de politesse' (polite quarter hour) means arriving 15 minutes late is normal, not rude.",
       ],
       technical: {
@@ -1802,7 +1801,7 @@ export const frenchBasicsStages: StageConfig[] = [
       overview: [
         "Standard French weather question: 'Quel temps fait-il?' (What's the weather like?) — answered with 'Il fait...' followed by the condition.",
         "Paris in July: average high 24°C, can reach 35°C+ during heat waves. Unpredictable — morning sun and afternoon thunderstorm is common. Compact umbrella is essential.",
-        "French seasons: le printemps (spring), l'été (summer), l'automne (autumn), l'hiver (winter). 'En été' (in summer), 'en hiver' (in winter).",
+        "The French seasons (and how to say 'in' them):\n- le printemps — spring (au printemps).\n- l'été — summer (en été).\n- l'automne — autumn (en automne).\n- l'hiver — winter (en hiver).",
         "Weather expressions follow two patterns: 'Il fait' + condition (il fait chaud, il fait beau) or 'Il y a' + phenomenon (il y a du vent, il y a du brouillard).",
       ],
       technical: {
@@ -1913,7 +1912,7 @@ export const frenchBasicsStages: StageConfig[] = [
       overview: [
         "On the phone in France: 'Allô?' is specifically a telephone greeting — not used in person. Answering a call with 'Bonjour?' or 'Oui?' is also acceptable.",
         "To ask for WiFi: 'Avez-vous le WiFi?' (Do you have WiFi?) then 'Quel est le mot de passe?' (What is the password?). Most Parisian cafés, restaurants, and hotels have free WiFi.",
-        "French mobile operators: Orange, SFR, Bouygues, Free. EU roaming rules mean EU/EEA SIM cards work at domestic rates in France — no roaming charges within the EU.",
+        "The main French mobile operators are:\n- Orange.\n- SFR.\n- Bouygues.\n- Free.\nEU roaming rules mean EU/EEA SIM cards work at domestic rates in France — no roaming charges within the EU.",
         "WhatsApp is the dominant messaging platform in France. 'Je t'envoie un message' in a French context almost always means WhatsApp.",
       ],
       technical: {
@@ -2022,8 +2021,8 @@ export const frenchBasicsStages: StageConfig[] = [
       tagline: "These mistakes will cost you goodwill in France — and they are all avoidable",
       year: 1685,
       overview: [
-        "Table manners: in France, hands must be kept on the table during meals — not in the lap (which is considered British/American etiquette). Bread is placed directly on the tablecloth, not on a side plate.",
-        "Eating while walking: consuming food on the street while walking is considered low-class in France. Sit down at a terrace, café, or find a park bench — the French always sit to eat.",
+        "French dining etiquette differs from Anglo habits in specific ways:\n- Keep your hands on the table during meals — not in your lap (which the French read as British/American).\n- Place bread directly on the tablecloth, not on a side plate.\n- Don't eat while walking — sit at a terrace, café, or park bench, because the French always sit to eat.",
+        "Eating on the street while walking is considered low-class in France — the French always sit to eat, whether at a terrace, a café, or a park bench.",
         "Never ask personal financial questions: income, rent, property values, and mortgage amounts are deeply private in France — more so than in most other cultures. These questions are rude even between good friends.",
         "Wine pouring: place your flat hand over the glass to signal you don't want more wine. This is understood and respected immediately — verbal refusals require more explanation.",
       ],
@@ -2134,8 +2133,8 @@ export const frenchBasicsStages: StageConfig[] = [
       year: 1853,
       overview: [
         "Paris is divided into 20 arrondissements (districts) numbered 1–20 in a clockwise spiral from the centre (Île de la Cité). Low numbers = historic centre; high numbers = outer residential Paris.",
-        "The 1st–4th arrondissements contain the historic heart: the Louvre (1st), the Marais (3rd–4th), Notre-Dame (4th). The 5th–6th cover the Latin Quarter and Saint-Germain-des-Prés.",
-        "The 7th has the Eiffel Tower and Musée d'Orsay. The 8th has the Champs-Élysées and the grand hotels. The 18th has Montmartre and Sacré-Cœur.",
+        "Each arrondissement has its landmarks:\n- 1st–4th — the historic heart: the Louvre (1st), the Marais (3rd–4th), Notre-Dame (4th).\n- 5th–6th — the Latin Quarter and Saint-Germain-des-Prés.\n- 7th — the Eiffel Tower and Musée d'Orsay.\n- 8th — the Champs-Élysées and the grand hotels.\n- 18th — Montmartre and Sacré-Cœur.",
+        "Out at the edge of the spiral, the 20th contains Père Lachaise cemetery — where Jim Morrison, Oscar Wilde, Chopin, Édith Piaf, and Marcel Proust are all buried.",
         "The 20th contains Père Lachaise cemetery — Jim Morrison, Oscar Wilde, Chopin, Édith Piaf, and Marcel Proust are all buried there.",
       ],
       technical: {
