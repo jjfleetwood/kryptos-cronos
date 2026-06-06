@@ -2,6 +2,16 @@
 
 ---
 
+## v1.36.0 — 2026-06-05
+
+**Flag Football split into 3 epochs + new Playbook & Competition epoch**
+
+- Split the 20-stage `flag-football` epoch into **`flag-football-1` Foundations** (flag-01–10, emerald) and **`flag-football-2` Advanced Play** (flag-11–20, teal). Stage ids/images/progress preserved — only epoch + order remapped (slice/map in `flag-football.ts`).
+- Added **`flag-football-3` Playbook & Competition** (10 new quiz stages, flag-21–30, green): building a playbook, calling the game, red-zone/no-run-zone scoring, beating the blitz, trick plays, designed defensive pressure, scouting & film, practice design, season conditioning/periodization, and tournament/championship play.
+- All three in the "Flag Football" extended track. 10 new free-licensed Commons photos credited on `/attribution`. Counts **741→751 stages / 65→67 epochs**.
+
+---
+
 ## v1.35.0 — 2026-06-05
 
 **New epoch: Flag Football (20-stage extended sports track)**

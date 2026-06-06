@@ -1,17 +1,39 @@
 import type { StageConfig, EpochConfig } from "./types";
 
-export const flagFootballEpoch: EpochConfig = {
-  id: "flag-football",
-  name: "Flag Football",
-  subtitle: "From First Snap to High-School Mastery",
+export const flagFootball1Epoch: EpochConfig = {
+  id: "flag-football-1",
+  name: "Flag Football: Foundations",
+  subtitle: "First snap to the basics of offense, defense & agility",
   description:
-    "The fastest-growing team sport in America — and an Olympic sport for LA 2028 — taught from the ground up. The first ten sections build your foundation: the field, the rules, pulling flags, throwing, catching, routes, and the basics of offense, defense, and agility. The last ten go deep at a high-school level: formations, the quarterback's reads, route concepts, defensive coverages, the pass rush, misdirection, athletic development, and game IQ. Offense, defense, speed, and strategy — all of it.",
+    "Flag football — the fastest-growing team sport in America and an Olympic sport for LA 2028 — taught from the ground up. This first epoch builds your foundation: what the game is, the field and game flow, positions and rules, pulling flags (the tackle of flag football), throwing and catching, running routes, and the basics of offense, defense (man vs zone), agility, and conditioning.",
   emoji: "🏈",
   color: "emerald",
   unlocked: true,
 };
 
-export const flagFootballStages: StageConfig[] = [
+export const flagFootball2Epoch: EpochConfig = {
+  id: "flag-football-2",
+  name: "Flag Football: Advanced Play",
+  subtitle: "High-school-level schemes, coverages & game IQ",
+  description:
+    "The deep, high-school-level half of flag football. Build on the foundations to master formations and pre-snap motion, the quarterback's reads and progressions, receiver craft, route concepts (smash, flood, mesh), defensive coverages (Cover 0–3, match, disguise), the 7-yard pass rush, run-game misdirection, defensive strategy and adjustments, athletic development, and the game IQ that wins close games — all the way to the college and Olympic pathway.",
+  emoji: "🏈",
+  color: "teal",
+  unlocked: true,
+};
+
+export const flagFootball3Epoch: EpochConfig = {
+  id: "flag-football-3",
+  name: "Flag Football: Playbook & Competition",
+  subtitle: "Building & calling plays, special situations, coaching & winning",
+  description:
+    "Where the knowledge becomes a winning program. This epoch is applied flag football: building and calling a playbook, scoring in the red zone and no-run zones, beating the blitz with hot routes, trick plays, designed defensive pressure, scouting and film study, practice design and team culture, season conditioning, the mental game, and managing a tournament all the way to a championship.",
+  emoji: "🏈",
+  color: "green",
+  unlocked: true,
+};
+
+const allFlagStages: StageConfig[] = [
   // ─── flag-01: Welcome to Flag Football ───────────────────────────────────────
   {
     epochId: "flag-football",
@@ -1504,6 +1526,743 @@ export const flagFootballStages: StageConfig[] = [
         { id: "flag-20-q2", type: "Two-Minute", challenge: "Trailing late.", text: "Trailing with little time, what's the smart approach?", options: ["Get out of bounds to stop the clock and attack the line to gain", "Run the clock down", "Avoid timeouts", "Kneel the ball"], correctIndex: 0, explanation: "Stop the clock, use timeouts well, and chase the sticks." },
         { id: "flag-20-q3", type: "Leadership", challenge: "Complete player.", text: "What marks a complete competitor beyond skill?", options: ["Game IQ, leadership, composure, and sportsmanship", "Only raw speed", "Only a strong arm", "Trash talk"], correctIndex: 0, explanation: "Smarts, leadership, and clean play separate the best players." },
         { id: "flag-20-q4", type: "Pathway", challenge: "Where it leads.", text: "What is the ultimate competitive stage flag football now reaches?", options: ["The 2028 Los Angeles Olympic Games", "Only backyard games", "There is none", "The NFL Combine"], correctIndex: 0, explanation: "Flag debuts at the LA 2028 Olympics — a real path from HS to the world stage." },
+      ],
+    },
+  },
+];
+
+// Foundations = stages 1–10; Advanced Play = stages 11–20. Stage ids/images/
+// progress are preserved; only the epoch and order are remapped.
+export const flagFootball1Stages: StageConfig[] = allFlagStages.slice(0, 10).map((s) => ({ ...s, epochId: "flag-football-1" }));
+export const flagFootball2Stages: StageConfig[] = allFlagStages.slice(10, 20).map((s, i) => ({ ...s, epochId: "flag-football-2", order: i + 1 }));
+
+export const flagFootball3Stages: StageConfig[] = [
+  // ─── flag-21: Building a Playbook ──────────────────────────────────────────
+  {
+    epochId: "flag-football-3",
+    wonder: { name: "The playbook", location: "Where strategy is written", era: "Modern", emoji: "📒" },
+    id: "flag-21",
+    order: 1,
+    title: "Building a Playbook",
+    subtitle: "Install, naming, and keeping it simple",
+    category: "sports",
+    xp: 110,
+    badge: { id: "flag-badge-21", name: "Playbook Author", emoji: "📒" },
+    challengeType: "quiz",
+    info: {
+      tagline: "A playbook turns a pile of plays into a system. The best flag playbooks aren't the biggest — they're the smartest: a small set of plays that answer every situation, named so anyone can run them instantly.",
+      year: 2024,
+      overview: [
+        "A playbook is your team's organized menu of plays and the rules for using them. In flag football, where reps are precious and games are fast, a great playbook is small, flexible, and easy to communicate — depth of mastery beats breadth of plays.",
+        "Build it on a few principles:\n- CONCEPTS, NOT JUST PLAYS — base it on the route concepts (smash, flood, mesh) and run/misdirection looks you already know, so a few plays cover many situations.\n- FORMATIONS x CONCEPTS — run the same concept from different formations and motions to create many looks from little memorization.\n- ANSWERS FOR EVERYTHING — make sure you have a play for: quick game vs the rush, a shot play, a no-run-zone score, a blitz beater, and a safe checkdown.",
+        "Make it callable under pressure:\n- NAMING SYSTEM — clear, consistent names (formation + concept + tag) so the call is unambiguous and fast.\n- WRISTBANDS — many flag teams use numbered wristbands so the QB just calls a number, speeding up the huddle and hiding the call from the defense.\n- KEEP IT SMALL — a tight playbook your team runs perfectly beats a huge one it runs sloppily.",
+      ],
+      technical: {
+        title: "Formation × Concept, and the Call System",
+        body: [
+          "Maximize looks while minimizing memorization:\n- Pair a handful of concepts with a handful of formations and motions; the math multiplies (4 concepts × 4 formations = 16 looks) from a small install.\n- Tag system: a base concept plus a 'tag' (a tweak to one route) lets you adjust on the fly without a new play.\n- Self-scout your own tendencies so you're not predictable (don't always run the same concept from the same look).",
+          "Communicating the call:\n- A naming convention encodes formation, motion, concept, and protection/snap in a short phrase everyone decodes the same way.\n- Wristband (numbered) systems are common in flag: the coach/QB calls a number, players read their assignment off the band — fast and secret.\n- Install progressively: master a small core first, then add; a playbook is only as good as your team's ability to run it cleanly at game speed.",
+        ],
+        codeExample: {
+          label: "A tiny, flexible install (formation × concept)",
+          code: `  FORMATIONS:  TRIPS-R   BUNCH-R   SPREAD   STACK-L
+  CONCEPTS:    SMASH     FLOOD     MESH     SHOT(go/post)
+  RUN/MISDIR:  JET-SWEEP   PLAY-ACTION   REVERSE
+
+  Call = FORMATION + CONCEPT (+ TAG)
+   e.g. "TRIPS-R FLOOD"  or wristband "#24"
+  4 formations x 4 concepts = 16 looks from a small playbook.`,
+        },
+      },
+      incident: {
+        title: "Small Playbook, Mastered, Beats Big and Sloppy",
+        when: "Modern",
+        where: "Flag football coaching",
+        impact: "Winning flag programs run a compact playbook flawlessly rather than a huge one poorly",
+        body: [
+          "Coaches at every level learn the same lesson: a small set of plays run perfectly beats an overstuffed playbook run with hesitation. Flag football amplifies this — limited practice time and a fast game punish complexity.",
+          "The smartest flag offenses:\n- Build around a few concepts they can run from many formations and motions.\n- Use clear names or wristbands so the call is instant and the team plays fast and confident.\n- Master the core, then add — depth of execution is the real playbook.",
+        ],
+      },
+      diagram: {
+        nodes: [
+          { label: "Pick Core Concepts", sub: "smash / flood / mesh / shot", type: "system" },
+          { label: "Multiply by Formations", sub: "+ motion = many looks", type: "attacker" },
+          { label: "Name / Wristband", sub: "fast, clear, secret calls", type: "victim" },
+          { label: "Master, Then Add", sub: "execution over volume", type: "result" },
+        ],
+      },
+      timeline: [
+        { year: 1990, event: "Concept-based playbooks spread across football" },
+        { year: 2005, event: "Wristband play-calling becomes common in youth/7-on-7" },
+        { year: 2018, event: "Flag offenses standardize formation × concept installs", highlight: true },
+        { year: 2024, event: "Elite flag teams run compact, mastered playbooks" },
+      ],
+      keyTakeaways: [
+        "A playbook is a system: build it on concepts × formations so a few plays cover many situations",
+        "Have an answer for every situation: quick game, shot play, no-run-zone score, blitz beater, checkdown",
+        "Use a clear naming convention or numbered wristbands for fast, secret calls",
+        "Small and mastered beats big and sloppy — depth of execution is the real playbook",
+      ],
+      references: [
+        { title: "Building a football playbook — basics", url: "https://www.usafootball.com/" },
+        { title: "Flag football coaching resources", url: "https://nflflag.com/" },
+      ],
+    },
+    quiz: {
+      questions: [
+        { id: "flag-21-q1", type: "Philosophy", challenge: "Small vs big.", text: "What kind of flag playbook tends to win?", options: ["A small, mastered playbook run flawlessly", "The biggest possible playbook", "No playbook at all", "One play only"], correctIndex: 0, explanation: "Execution beats volume — depth of mastery wins." },
+        { id: "flag-21-q2", type: "Design", challenge: "Multiply looks.", text: "How do you create many looks from few plays?", options: ["Run the same concepts from different formations and motions", "Memorize hundreds of plays", "Never use motion", "Use one formation"], correctIndex: 0, explanation: "Formation × concept × motion multiplies looks from a small install." },
+        { id: "flag-21-q3", type: "Calling", challenge: "Fast & secret.", text: "Why do flag teams use numbered wristbands?", options: ["To call plays fast and hide the call from the defense", "For decoration", "To replace the QB", "They don't"], correctIndex: 0, explanation: "Wristbands speed the huddle and conceal the call." },
+        { id: "flag-21-q4", type: "Coverage", challenge: "Be complete.", text: "A good playbook must include an answer for what?", options: ["Quick game, shots, no-run-zone scores, blitz beaters, and checkdowns", "Only deep shots", "Only runs", "Only one situation"], correctIndex: 0, explanation: "Have a tool for every situation you'll face." },
+      ],
+    },
+  },
+
+  // ─── flag-22: Calling the Game ─────────────────────────────────────────────
+  {
+    epochId: "flag-football-3",
+    wonder: { name: "The play-caller", location: "On the headset", era: "Modern", emoji: "🎧" },
+    id: "flag-22",
+    order: 2,
+    title: "Calling the Game",
+    subtitle: "Scripting, sequencing, and in-game adjustments",
+    category: "sports",
+    xp: 110,
+    badge: { id: "flag-badge-22", name: "Play Caller", emoji: "🎧" },
+    challengeType: "quiz",
+    info: {
+      tagline: "Having plays is one thing; calling the right one at the right time is another. Great play-calling is a plan plus adaptation — script a start, attack tendencies, set up plays with other plays, and adjust to what the defense shows.",
+      year: 2024,
+      overview: [
+        "Play-calling is decision-making across a whole game. The goal is to stay ahead of the defense: know your plan, read what they're doing, and call the play that exploits it — while keeping them guessing.",
+        "Plan before the game, then adapt:\n- SCRIPT — plan your first several plays to test the defense (probe coverages and the rush) and settle your team.\n- TENDENCY ATTACK — call plays that beat what the defense is doing now (e.g., if they're blitzing, call a quick game or screen).\n- SEQUENCING — set up plays with earlier ones: show a look, then run a counter or play-action off it later.",
+        "Stay unpredictable and situational:\n- DON'T BE A TENDENCY — vary your calls by down/distance so the defense can't predict you (don't always pass on 3rd-and-long the same way).\n- SITUATION FIRST — call for the situation (clock, score, field position, no-run zones), not just your favorite play.\n- TRUST YOUR PLAYERS — get the ball to your best playmakers in space on big downs.",
+      ],
+      technical: {
+        title: "Scripting, Constraint Plays, and Reading the Defense",
+        body: [
+          "A caller's toolkit:\n- Opening script: pre-planned plays that gather information (how do they cover trips? do they blitz on 3rd down?).\n- Constraint plays: plays that punish a defense for cheating to stop your base (they jump the sweep → hit the play-action; they sit on the quick game → take a shot).\n- Read the answers and feed the matchup that's winning.",
+          "In-game adjustments:\n- Identify the defense's plan (man-heavy? a particular blitz? bracketing your star) and counter it.\n- Halftime/timeout adjustments: change formations or concepts to attack what hurt you, and protect what they exploited.\n- Manage your call sheet by situation (openers, third down, red zone, two-minute, must-have) so you're never caught without an answer.",
+        ],
+      },
+      incident: {
+        title: "The Chess Match of Play-Calling",
+        when: "Modern",
+        where: "Football strategy",
+        impact: "Games are often decided by the play-caller who reads and counters the defense fastest, not just by talent",
+        body: [
+          "At every level, play-calling is a live chess match: the offense calls, the defense answers, and the side that adapts faster gains the edge. Scripting, constraint plays, and situational call sheets are how the best callers stay a step ahead.",
+          "In flag, with fast games and a free rusher, calling matters enormously:\n- Quick recognition (they're blitzing) and the right answer (quick game/screen) turn pressure into easy yards.\n- Sequencing and constraints punish a defense for over-committing.\n- The play-caller who reads, counters, and stays unpredictable controls the game.",
+        ],
+      },
+      diagram: {
+        nodes: [
+          { label: "Script the Start", sub: "probe the defense", type: "system" },
+          { label: "Read Tendencies", sub: "what are they doing now?", type: "attacker" },
+          { label: "Call the Counter", sub: "constraint / sequence", type: "victim" },
+          { label: "Stay Ahead", sub: "unpredictable + situational", type: "result" },
+        ],
+      },
+      timeline: [
+        { year: 1980, event: "Scripted opening plays popularized (Bill Walsh)" },
+        { year: 2000, event: "Constraint-play theory formalized in offenses" },
+        { year: 2018, event: "Flag callers adopt scripts and situational call sheets", highlight: true },
+        { year: 2024, event: "Elite flag play-calling reads and counters in real time" },
+      ],
+      keyTakeaways: [
+        "Play-calling = a plan plus adaptation: script a start, then attack what the defense is doing",
+        "Use constraint plays to punish a defense for cheating to stop your base play",
+        "Sequence plays (set up counters and play-action) and don't become a predictable tendency",
+        "Call for the situation (clock/score/field/no-run zones) and feed your playmakers on big downs",
+      ],
+      references: [
+        { title: "Play-calling and scripting — overview", url: "https://en.wikipedia.org/wiki/American_football_strategy" },
+        { title: "Constraint plays — concept", url: "https://www.usafootball.com/" },
+      ],
+    },
+    quiz: {
+      questions: [
+        { id: "flag-22-q1", type: "Script", challenge: "Opening plays.", text: "Why script your opening plays?", options: ["To probe the defense (coverages, rush) and settle the team", "To waste time", "Because rules require it", "To confuse your own team"], correctIndex: 0, explanation: "Openers gather information and get the team in rhythm." },
+        { id: "flag-22-q2", type: "Adapt", challenge: "They're blitzing.", text: "If the defense is blitzing heavily, what's a smart call?", options: ["Quick game or a screen", "A deep developing route only", "Run into the rush", "Take a timeout every play"], correctIndex: 0, explanation: "Quick throws and screens punish the blitz by getting the ball out fast." },
+        { id: "flag-22-q3", type: "Constraint", challenge: "Punish cheating.", text: "What is a constraint play?", options: ["A play that punishes a defense for over-committing to stop your base", "A penalty", "A play with constraints on receivers", "A defensive call"], correctIndex: 0, explanation: "If they jump the sweep, hit the play-action behind it." },
+        { id: "flag-22-q4", type: "Unpredictable", challenge: "Don't tip it.", text: "How do you avoid being predictable?", options: ["Vary your calls by down/distance and sequence plays", "Always run the same play on 3rd down", "Tell the defense the play", "Never adjust"], correctIndex: 0, explanation: "Mixing calls and sequencing keeps the defense guessing." },
+      ],
+    },
+  },
+
+  // ─── flag-23: Red-Zone & No-Run-Zone Scoring ───────────────────────────────
+  {
+    epochId: "flag-football-3",
+    wonder: { name: "The scoring zone", location: "Near the goal line", era: "Modern", emoji: "🥅" },
+    id: "flag-23",
+    order: 3,
+    title: "Scoring in Tight Spaces",
+    subtitle: "Red-zone and no-run-zone offense",
+    category: "sports",
+    xp: 110,
+    badge: { id: "flag-badge-23", name: "Red-Zone Closer", emoji: "🥅" },
+    challengeType: "quiz",
+    info: {
+      tagline: "Drives are wasted if you don't finish. Near the end zone — and in the no-run zones where you must pass — the field shrinks, windows tighten, and execution matters most. Scoring offense is its own skill.",
+      year: 2024,
+      overview: [
+        "The closer you get to the end zone, the harder it is to score: there's less field to stretch the defense vertically, so coverage tightens and windows shrink. Add the no-run zone rule (you must pass) and scoring becomes a precision problem.",
+        "Win tight spaces with spacing and timing:\n- HORIZONTAL STRETCH — since you can't go deep, stretch the defense side-to-side (flat + corner, or a quick out vs a fade) and throw to grass.\n- RUBS & PICKS (legal) — bunch/stack concepts naturally free a receiver in tight man coverage near the goal.\n- FADES & BACK-SHOULDER — to the corner of the end zone, a fade or back-shoulder gives only your receiver a play.",
+        "No-run-zone specifics:\n- Because the defense knows you must pass, they can sell out against it — so quick, well-spaced concepts and rub routes beat the tighter coverage.\n- Motion and formation create the leverage and picks you need in a small area.\n- Decisiveness: in tight windows, the QB must throw on time and with placement (away from the defender) — hesitation gets it covered or picked.",
+      ],
+      technical: {
+        title: "Compressed Spacing and the Fade/Pick Game",
+        body: [
+          "The geometry changes near the goal:\n- Vertical routes lose value (no room), so horizontal spacing and quick-breaking routes dominate.\n- High-low and pick concepts are extra effective because defenders are packed tightly — a small rub springs a receiver.\n- The fade to the back corner is a classic answer to tight man coverage: throw it where only your receiver can get it.",
+          "Executing under pressure:\n- The QB throws with anticipation and precise placement; in a phone-booth, the ball must be on the receiver away from the defender.\n- Formations (bunch/stack) and motion manufacture the leverage and traffic needed in a small space.\n- On the no-run-zone conversion or 2-point try, have a go-to concept your team trusts — a rehearsed answer beats improvising.",
+        ],
+      },
+      incident: {
+        title: "Drives Die in the Red Zone",
+        when: "Modern",
+        where: "Football offense",
+        impact: "Settling for stalled drives near the end zone loses games; red-zone/no-run-zone execution is a decisive, trainable skill",
+        body: [
+          "Coaches track red-zone efficiency because it decides games: a team that moves the ball but can't finish loses to one that scores touchdowns. Flag's no-run zones add a twist — you must pass in the very spots where coverage is tightest.",
+          "The answer is preparation:\n- Practice a small set of trusted red-zone/no-run-zone concepts (spacing, rubs, fades) until they're automatic.\n- Use formation and motion to create leverage in tight space.\n- Demand on-time, precise throws — finishing drives is a skill you build, not luck.",
+        ],
+      },
+      diagram: {
+        nodes: [
+          { label: "Field Shrinks", sub: "no deep room near goal", type: "system" },
+          { label: "Stretch Horizontally", sub: "flat/corner, quick breaks", type: "attacker" },
+          { label: "Rubs & Fades", sub: "free receivers in tight man", type: "victim" },
+          { label: "Finish the Drive", sub: "touchdown, not a stall", type: "result" },
+        ],
+      },
+      timeline: [
+        { year: 1990, event: "Red-zone efficiency becomes a tracked, coached metric" },
+        { year: 2005, event: "Spacing and pick concepts standardized near the goal" },
+        { year: 2018, event: "Flag offenses build no-run-zone scoring packages", highlight: true },
+        { year: 2024, event: "Elite flag teams rehearse trusted red-zone answers" },
+      ],
+      keyTakeaways: [
+        "Near the goal there's no deep room, so coverage tightens — stretch horizontally and throw to grass",
+        "Legal rubs/picks (bunch/stack) and fades/back-shoulders beat tight man coverage in small spaces",
+        "No-run zones force the pass where coverage is tightest — quick, spaced concepts and motion are the answer",
+        "Finishing drives is a trainable skill: rehearse a small set of trusted red-zone concepts and throw on time",
+      ],
+      references: [
+        { title: "Red zone offense — overview", url: "https://en.wikipedia.org/wiki/Red_zone_(gridiron_football)" },
+        { title: "Flag football no-run-zone rules", url: "https://nflflag.com/leagues/rules" },
+      ],
+    },
+    quiz: {
+      questions: [
+        { id: "flag-23-q1", type: "Geometry", challenge: "No deep room.", text: "Why is scoring near the end zone harder?", options: ["There's no deep field to stretch the defense, so coverage tightens", "The ball gets heavier", "Receivers slow down", "The goal moves"], correctIndex: 0, explanation: "Compressed space removes the vertical threat, tightening windows." },
+        { id: "flag-23-q2", type: "Answer", challenge: "Stretch sideways.", text: "How do you attack tight red-zone coverage?", options: ["Stretch horizontally with quick breaks and throw to grass", "Only throw deep", "Run every play", "Kneel"], correctIndex: 0, explanation: "Without deep room, horizontal spacing and quick routes win." },
+        { id: "flag-23-q3", type: "Man Coverage", challenge: "Tight man.", text: "What beats tight man coverage in the end zone?", options: ["Legal rubs/picks and fades/back-shoulder throws", "Standing still", "A deep post only", "Flag guarding"], correctIndex: 0, explanation: "Rubs free receivers; fades put it where only your receiver can catch." },
+        { id: "flag-23-q4", type: "No-Run Zone", challenge: "Must pass.", text: "Why is the no-run zone challenging?", options: ["The defense knows you must pass and can sell out against it", "Running is faster there", "It's the same as midfield", "Passing is illegal"], correctIndex: 0, explanation: "Quick, spaced concepts and motion beat the tighter, pass-focused coverage." },
+      ],
+    },
+  },
+
+  // ─── flag-24: Beating the Blitz ────────────────────────────────────────────
+  {
+    epochId: "flag-football-3",
+    wonder: { name: "The hot route", location: "Vs the blitz", era: "Modern", emoji: "🔥" },
+    id: "flag-24",
+    order: 4,
+    title: "Beating the Blitz",
+    subtitle: "Hot routes, sight adjustments, and the quick game",
+    category: "sports",
+    xp: 110,
+    badge: { id: "flag-badge-24", name: "Blitz Beater", emoji: "🔥" },
+    challengeType: "quiz",
+    info: {
+      tagline: "An extra rusher gets to the QB faster — but it leaves a hole in coverage. Beating the blitz is about recognizing it and getting the ball out, fast, to the area the blitzer vacated. Pressure, answered, becomes a big play.",
+      year: 2024,
+      overview: [
+        "A blitz sends an extra rusher, so it arrives faster but subtracts a coverage defender — creating an open area. The offense's job is to recognize the blitz pre- or post-snap and throw to that vacated space before the rush gets home.",
+        "The tools to beat pressure:\n- HOT ROUTE — a pre-planned quick route a receiver breaks to if he sees the blitz, giving the QB an immediate target.\n- SIGHT ADJUSTMENT — QB and receiver read the blitz the same way and adjust on the fly to the open area.\n- THE QUICK GAME — slants, quick outs, and the bubble/now screen get the ball out in a beat, beating the rush to the spot.",
+        "Recognition is half the battle:\n- PRE-SNAP — count rushers vs blockers/defenders; an extra man near the line signals blitz, and pre-snap movement tips it.\n- POST-SNAP — if a defender vacated a zone, that's where the ball goes; the QB's eyes go to the hot/vacated area immediately.\n- COMPOSURE — beating the blitz is calm and fast, not panicked; the answer is throwing on time to the open grass the blitz created.",
+      ],
+      technical: {
+        title: "Reading Pressure and the Hot Throw",
+        body: [
+          "Identify and exploit the vacated area:\n- Every blitzer is a coverage defender who left; find the area they abandoned (often a short zone or a man now uncovered) and attack it.\n- Hot routes/sight adjustments are agreements: receiver and QB both convert to a quick option vs pressure, no huddle needed.\n- The quick game (slant/now-screen) is a built-in blitz beater — the ball is out before the extra rusher arrives.",
+          "Practicing it:\n- Rep blitz recognition so the QB counts the rush and locates the hot area instantly.\n- Time the hot throw to be nearly instantaneous — against a free rusher, a half-second matters.\n- Constraint thinking: once a defense is punished for blitzing (you keep hitting the hot route), they blitz less — pressure answered removes pressure.",
+        ],
+      },
+      incident: {
+        title: "Pressure, Answered, Is a Big Play",
+        when: "Modern",
+        where: "Football offense vs the blitz",
+        impact: "Offenses that recognize and beat the blitz turn the defense's aggression into chunk plays — discouraging future pressure",
+        body: [
+          "A blitz is a gamble: it can sack the QB or surrender a big play. Offenses that recognize pressure and have built-in answers (hot routes, sight adjustments, quick game) consistently make defenses pay, which in turn forces the defense to blitz less.",
+          "In flag, with a free rusher already in the picture, blitz-beating is essential:\n- Recognize the extra rusher and find the vacated area fast.\n- Get the ball out on time to the hot route or quick game.\n- A team that calmly beats the blitz controls the defense's aggression and racks up easy yards.",
+        ],
+      },
+      diagram: {
+        nodes: [
+          { label: "Recognize the Blitz", sub: "count rushers, read movement", type: "system" },
+          { label: "Find the Vacated Area", sub: "the blitzer left a hole", type: "attacker" },
+          { label: "Hot Route / Quick Game", sub: "get the ball out fast", type: "victim" },
+          { label: "Pressure → Big Play", sub: "defense blitzes less", type: "result" },
+        ],
+      },
+      timeline: [
+        { year: 1985, event: "Hot routes and sight adjustments formalized vs the blitz" },
+        { year: 2005, event: "Quick game (now-screens/slants) becomes a built-in blitz beater" },
+        { year: 2018, event: "Flag offenses install hot routes vs pressure", highlight: true },
+        { year: 2024, event: "Elite flag QBs beat the blitz on time, every time" },
+      ],
+      keyTakeaways: [
+        "A blitz adds a rusher but subtracts a coverage defender — beat it by throwing to the vacated area fast",
+        "Hot routes and sight adjustments are QB/receiver agreements to convert to a quick option vs pressure",
+        "The quick game (slants, now-screens) is a built-in blitz beater — the ball is out before the rush arrives",
+        "Recognize pressure pre- and post-snap and stay calm; pressure answered makes defenses blitz less",
+      ],
+      references: [
+        { title: "Hot route — overview", url: "https://en.wikipedia.org/wiki/Hot_route" },
+        { title: "Beating the blitz — coaching basics", url: "https://www.usafootball.com/" },
+      ],
+    },
+    quiz: {
+      questions: [
+        { id: "flag-24-q1", type: "Core Idea", challenge: "The trade-off.", text: "What does a blitz create for the offense to exploit?", options: ["A vacated area, since a blitzer is a coverage defender who left", "More defenders in coverage", "A safer pocket", "Nothing"], correctIndex: 0, explanation: "Throw to the space the extra rusher abandoned." },
+        { id: "flag-24-q2", type: "Tool", challenge: "Quick answer.", text: "What is a 'hot route'?", options: ["A quick route a receiver breaks to if he sees the blitz", "A deep route", "A defensive call", "A penalty"], correctIndex: 0, explanation: "It gives the QB an immediate target vs pressure." },
+        { id: "flag-24-q3", type: "Recognition", challenge: "Pre-snap tell.", text: "How do you spot a likely blitz pre-snap?", options: ["Count rushers vs defenders and read pre-snap movement near the line", "Ignore the defense", "Look at the crowd", "Wait until after the throw"], correctIndex: 0, explanation: "An extra man near the line and movement tip the blitz." },
+        { id: "flag-24-q4", type: "Effect", challenge: "Why it matters.", text: "What happens when an offense keeps beating the blitz?", options: ["The defense is forced to blitz less", "The offense gets penalized", "Nothing changes", "The QB must run"], correctIndex: 0, explanation: "Punishing pressure discourages future blitzing." },
+      ],
+    },
+  },
+
+  // ─── flag-25: Trick Plays & Specials ───────────────────────────────────────
+  {
+    epochId: "flag-football-3",
+    wonder: { name: "The trick play", location: "The element of surprise", era: "Modern", emoji: "🎩" },
+    id: "flag-25",
+    order: 5,
+    title: "Trick Plays & Specials",
+    subtitle: "Flea-flickers, double passes, and the element of surprise",
+    category: "sports",
+    xp: 108,
+    badge: { id: "flag-badge-25", name: "Magician", emoji: "🎩" },
+    challengeType: "quiz",
+    info: {
+      tagline: "Used sparingly, a trick play steals a touchdown by selling a lie the defense believes. The best gadgets look exactly like your bread-and-butter plays — until they don't.",
+      year: 2024,
+      overview: [
+        "Trick (or 'gadget') plays manufacture a big play through deception — making the defense react to a fake, then attacking where they're no longer looking. They work because they exploit the defense's discipline and pursuit against them.",
+        "Common flag-legal gadgets:\n- FLEA-FLICKER — fake a sweep/handoff, the runner pitches it back to the QB, who throws deep to a receiver who slipped behind the bitten defense.\n- DOUBLE PASS / HOOK-AND-LATERAL — a legal backward pass (lateral) after a catch, or a backward pass that sets up a second forward pass (rules vary — confirm your league).\n- REVERSE PASS — start a reverse, then the ball-carrier throws downfield.",
+        "Use them wisely:\n- TIMING — call gadgets when the defense is aggressive/over-pursuing or in a key moment, not randomly.\n- DISGUISE — make the trick start identical to a normal play so the fake is believed.\n- KNOW THE RULES — what's legal (laterals, multiple passes) varies by flag code; an illegal forward pass kills the play. Practice them so they're crisp, not chaotic.",
+      ],
+      technical: {
+        title: "Selling the Fake and Staying Legal",
+        body: [
+          "Deception is everything:\n- The ball-handlers must sell the initial action convincingly (eyes, body, speed) so defenders commit.\n- The target receiver 'leaks' out quietly while eyes are on the fake, then gets behind the over-pursuing defense.\n- Gadgets spend time, so protect against the rush — they need the fake to freeze the rush for a beat.",
+          "Legality and discipline:\n- Forward vs backward passes: only one forward pass is legal in most codes; laterals (backward) can chain, but a second FORWARD pass is usually illegal unless the rule set allows it — know yours.\n- Practice the timing so handoffs/pitches are clean; a fumbled gadget is a disaster.\n- Use sparingly: surprise is the weapon, and it's spent once the defense sees it — pick the right moment.",
+        ],
+      },
+      incident: {
+        title: "The Gadget That Wins the Moment",
+        when: "Modern",
+        where: "Football at every level",
+        impact: "A well-timed, well-disguised trick play can flip a game — but only if it's rehearsed and legal",
+        body: [
+          "Trick plays are memorable because they work when the defense least expects them — a flea-flicker or double pass at the right moment can produce a stunning score. The key is disguise (it looks normal) and timing (the defense is primed to bite).",
+          "But gadgets are high-risk:\n- They take time and ball-handling, so a sloppy or mistimed trick is a turnover.\n- Legality matters — an illegal second forward pass wipes out the play.\n- Practiced, disguised, and used sparingly, the gadget is a real weapon; overused or careless, it's a giveaway.",
+        ],
+      },
+      diagram: {
+        nodes: [
+          { label: "Sell a Normal Look", sub: "fake sweep/handoff", type: "system" },
+          { label: "Defense Bites", sub: "pursuit commits", type: "attacker" },
+          { label: "Leak the Target", sub: "behind the over-pursuit", type: "victim" },
+          { label: "Surprise Score", sub: "rehearsed + legal", type: "result" },
+        ],
+      },
+      timeline: [
+        { year: 1900, event: "Trick plays as old as football itself" },
+        { year: 1980, event: "Flea-flicker and gadget plays become staples" },
+        { year: 2018, event: "Flag offenses add legal gadgets (laterals, reverses)", highlight: true },
+        { year: 2024, event: "Elite flag teams disguise gadgets as base plays" },
+      ],
+      keyTakeaways: [
+        "Trick plays manufacture a big play through deception — sell a fake, then attack where the defense isn't",
+        "Common legal gadgets: flea-flicker, hook-and-lateral, reverse pass (confirm your league's rules)",
+        "Disguise the trick to look like a base play, and call it when the defense is aggressive or at a key moment",
+        "Know what's legal (usually one forward pass), rehearse the timing, and use gadgets sparingly",
+      ],
+      references: [
+        { title: "Trick play — overview", url: "https://en.wikipedia.org/wiki/Trick_play" },
+        { title: "Flag football rules (passing/laterals)", url: "https://nflflag.com/leagues/rules" },
+      ],
+    },
+    quiz: {
+      questions: [
+        { id: "flag-25-q1", type: "Core Idea", challenge: "Why it works.", text: "What makes a trick play work?", options: ["Selling a fake so the defense reacts, then attacking where they aren't", "Running faster", "Having more players", "Breaking the rules"], correctIndex: 0, explanation: "Deception turns the defense's discipline and pursuit against it." },
+        { id: "flag-25-q2", type: "Gadget", challenge: "The flea-flicker.", text: "What is a flea-flicker?", options: ["Fake a run, pitch back to the QB, then throw deep behind the bitten defense", "A type of flag pull", "A defensive blitz", "A handoff with no fake"], correctIndex: 0, explanation: "The fake run sucks defenders up; the deep shot goes behind them." },
+        { id: "flag-25-q3", type: "Legality", challenge: "Know the rules.", text: "What's typically true about forward passes on a trick play?", options: ["Usually only one forward pass is legal (laterals can chain)", "Unlimited forward passes", "No passes allowed", "Forward passes are always illegal"], correctIndex: 0, explanation: "A second forward pass is usually illegal — know your league's code." },
+        { id: "flag-25-q4", type: "Usage", challenge: "When to call it.", text: "How often should you use trick plays?", options: ["Sparingly, at the right moment, well-disguised and rehearsed", "Every play", "Never", "Only on defense"], correctIndex: 0, explanation: "Surprise is the weapon — spend it wisely and execute cleanly." },
+      ],
+    },
+  },
+
+  // ─── flag-26: Defensive Pressure Packages ──────────────────────────────────
+  {
+    epochId: "flag-football-3",
+    wonder: { name: "Designed pressure", location: "The defensive call sheet", era: "Modern", emoji: "🧨" },
+    id: "flag-26",
+    order: 6,
+    title: "Defensive Pressure Packages",
+    subtitle: "Designed blitzes, zone pressure, disguise, and the spy",
+    category: "sports",
+    xp: 110,
+    badge: { id: "flag-badge-26", name: "Pressure Designer", emoji: "🧨" },
+    challengeType: "quiz",
+    info: {
+      tagline: "Defense can dictate, too. Designed pressure — sending an extra rusher with a plan behind it — speeds up the QB and forces mistakes. The art is pressuring without leaving a hole, and disguising it so the QB can't adjust.",
+      year: 2024,
+      overview: [
+        "A pressure package is a designed call that brings an extra rusher (or simulates one) while covering the field behind it. Done right, it shrinks the QB's time and forces errors; done wrong, it gives up the easy throw to the vacated area.",
+        "Types of pressure:\n- STRAIGHT BLITZ — send an extra defender; simple and fast, but leaves a coverage hole the offense can attack (so time it for likely-pass downs).\n- ZONE BLITZ — rush an unexpected defender while another drops into the vacated zone, keeping the coverage intact and confusing the QB's hot read.\n- SIMULATED PRESSURE — show blitz, then drop out, baiting a quick throw into coverage.",
+        "Make pressure smart:\n- DISGUISE — show the same pre-snap picture for blitz and coverage so the QB can't kill the play or set the right hot route.\n- SPY — assign a defender to mirror a mobile QB so pressure doesn't open scramble lanes.\n- TIMING — pressure on passing downs (3rd-and-long, no-run zones) and against tells; marry it to a coverage that can survive it.",
+      ],
+      technical: {
+        title: "Zone Blitz, Disguise, and Covering the Vacated Area",
+        body: [
+          "The zone blitz solves the blitz's biggest flaw:\n- A straight blitz leaves the blitzer's zone open; a zone blitz sends a different defender and 'replaces' the rusher's area with a dropper, keeping coverage sound.\n- This also confuses the QB's hot read — the player he expected to be open is now covered by an unexpected dropper.\n- It's the high-level answer to a QB who beats simple blitzes.",
+          "Disguise and discipline:\n- Align identically for pressure and coverage; show late, move late, so the QB can't adjust pre-snap.\n- Spy a mobile QB so a contained rush doesn't simply open a run; the spy mirrors him and pulls the flag if he takes off.\n- Pressure is a calculated risk — call it situationally, disguise it, and back it with coverage that can hold for the half-second the rush needs.",
+        ],
+      },
+      incident: {
+        title: "Pressure Wins — When It's Designed",
+        when: "Modern",
+        where: "Defensive football",
+        impact: "Designed, disguised pressure (especially zone blitz) forces hurried throws and turnovers without surrendering easy completions",
+        body: [
+          "The blitz is a gamble, but designed pressure tilts the odds: zone blitzes and disguised looks bring heat while keeping the coverage intact, so the QB is rushed AND has no easy answer. Add a spy for mobile QBs and the pressure doesn't backfire.",
+          "In flag, where the QB must already beat a free rusher, smart pressure is devastating:\n- Shorten the QB's time further and his timing breaks.\n- Disguise removes his pre-snap hot-route adjustment.\n- Designed, disguised, situational pressure forces the hurried, inaccurate throws that become flag-pull sacks and interceptions.",
+        ],
+      },
+      diagram: {
+        nodes: [
+          { label: "Design the Pressure", sub: "blitz / zone blitz / sim", type: "system" },
+          { label: "Disguise It", sub: "same look for all calls", type: "attacker" },
+          { label: "Cover the Vacated Area", sub: "dropper + spy", type: "victim" },
+          { label: "Hurried Throw → Turnover", sub: "pressure with no answer", type: "result" },
+        ],
+      },
+      timeline: [
+        { year: 1990, event: "Zone blitz revolutionizes defensive pressure" },
+        { year: 2005, event: "Disguise and simulated pressure spread across football" },
+        { year: 2018, event: "Flag defenses add designed pressure + QB spies", highlight: true },
+        { year: 2024, event: "Elite flag defenses disguise pressure to break QB timing" },
+      ],
+      keyTakeaways: [
+        "Designed pressure brings an extra rusher with a plan to cover behind it — speeding up the QB",
+        "Zone blitz rushes an unexpected defender and drops another into the vacated zone, keeping coverage sound",
+        "Disguise pressure (same pre-snap look) so the QB can't adjust or set the right hot route",
+        "Spy a mobile QB and call pressure situationally, backed by coverage that can survive it",
+      ],
+      references: [
+        { title: "Zone blitz — overview", url: "https://en.wikipedia.org/wiki/Zone_blitz" },
+        { title: "Defensive pressure concepts — basics", url: "https://www.usafootball.com/" },
+      ],
+    },
+    quiz: {
+      questions: [
+        { id: "flag-26-q1", type: "Core Idea", challenge: "Designed heat.", text: "What is a defensive pressure package?", options: ["A designed call that brings an extra rusher while covering behind it", "A random rush", "A coverage with no rush", "An offensive play"], correctIndex: 0, explanation: "Pressure with a plan speeds up the QB and forces mistakes." },
+        { id: "flag-26-q2", type: "Zone Blitz", challenge: "Plug the hole.", text: "How does a zone blitz fix the blitz's biggest weakness?", options: ["A different defender drops to replace the rusher's vacated area", "It sends everyone", "It rushes no one", "It only works vs the run"], correctIndex: 0, explanation: "Replacing the vacated zone keeps coverage sound and confuses the QB." },
+        { id: "flag-26-q3", type: "Disguise", challenge: "Hide it.", text: "Why disguise pressure?", options: ["So the QB can't adjust or set the right hot route pre-snap", "To look intimidating only", "It's required", "It has no benefit"], correctIndex: 0, explanation: "Identical pre-snap looks remove the QB's blitz answer." },
+        { id: "flag-26-q4", type: "Spy", challenge: "Mobile QB.", text: "What does a 'spy' do?", options: ["Mirrors a mobile QB so pressure doesn't open a scramble lane", "Covers a receiver deep", "Rushes hardest", "Snaps the ball"], correctIndex: 0, explanation: "A spy keeps a scrambling QB contained and pulls his flag if he runs." },
+      ],
+    },
+  },
+
+  // ─── flag-27: Scouting & Film Study ────────────────────────────────────────
+  {
+    epochId: "flag-football-3",
+    wonder: { name: "The film room", location: "Preparation", era: "Modern", emoji: "🎬" },
+    id: "flag-27",
+    order: 7,
+    title: "Scouting & Film Study",
+    subtitle: "Tendencies, self-scout, and a game plan",
+    category: "sports",
+    xp: 108,
+    badge: { id: "flag-badge-27", name: "Film Junkie", emoji: "🎬" },
+    challengeType: "quiz",
+    info: {
+      tagline: "Games are often won during the week. Studying film to find the opponent's tendencies — and your own — turns guesswork into a plan. Know what they'll do before they do it.",
+      year: 2024,
+      overview: [
+        "Scouting is the disciplined study of football to inform decisions. By breaking down film, you learn what an opponent likes to do (and when), and you self-scout to find and fix your own predictability.",
+        "What to look for in an opponent:\n- TENDENCIES — what do they run on 1st down? On 3rd-and-long? In the red zone? Out of certain formations?\n- PERSONNEL — who's their best player (to bracket/avoid), and who can you attack?\n- DEFENSE — do they play man or zone, do they blitz, and what are the tells?",
+        "Self-scout and turn it into a plan:\n- SELF-SCOUT — study your own tendencies so you're not predictable (do you always pass from trips?), then add wrinkles.\n- GAME PLAN — pick the concepts/plays that attack their tendencies and protect against their strengths; script openers to confirm what film showed.\n- ADJUST LIVE — film gives a hypothesis; confirm or update it in-game and adapt.",
+      ],
+      technical: {
+        title: "Breaking Down Film and Building Call Sheets",
+        body: [
+          "Turning film into knowledge:\n- Chart plays by down, distance, formation, and result to surface tendencies (e.g., 'on 3rd-and-short they blitz 70% of the time').\n- Identify the opponent's base coverage and its tells, and their go-to plays in key situations.\n- Self-scout the same way: if you're predictable, the opponent's film study will punish you.",
+          "From scouting to a plan:\n- Build a situational call sheet (openers, 3rd down, red zone, two-minute) populated with plays that beat what film showed.\n- Plan to take away the opponent's best weapon (bracket the star) and attack their weakest matchup.\n- Remember film is a hypothesis: confirm it with scripted openers and adjust as the game reveals reality.",
+        ],
+      },
+      incident: {
+        title: "Won During the Week",
+        when: "Modern",
+        where: "Football preparation",
+        impact: "Teams that scout opponents and themselves enter games with a plan that turns reactions into anticipation",
+        body: [
+          "Coaches say games are won during the week, and film is why: a team that knows an opponent's tendencies can anticipate instead of react, and a team that self-scouts avoids being predictable. Preparation is a competitive edge available to anyone willing to study.",
+          "Even at the flag level, scouting pays off:\n- Knowing a defense blitzes on 3rd down lets you have the blitz beater ready.\n- Knowing they bracket your best receiver lets you scheme others open.\n- Self-scouting keeps you unpredictable. Preparation turns guesswork into a plan — and plans win close games.",
+        ],
+      },
+      diagram: {
+        nodes: [
+          { label: "Study the Film", sub: "chart down/distance/formation", type: "system" },
+          { label: "Find Tendencies", sub: "theirs and your own", type: "attacker" },
+          { label: "Build the Plan", sub: "situational call sheet", type: "victim" },
+          { label: "Anticipate, Don't React", sub: "confirm + adjust live", type: "result" },
+        ],
+      },
+      timeline: [
+        { year: 1960, event: "Film study becomes standard football preparation" },
+        { year: 2000, event: "Digital tagging makes tendency analysis accessible" },
+        { year: 2018, event: "Flag/7-on-7 teams adopt film and self-scout", highlight: true },
+        { year: 2024, event: "Phone film and apps put scouting in every program's reach" },
+      ],
+      keyTakeaways: [
+        "Scouting studies film to find opponent tendencies (by down/distance/formation) and key personnel",
+        "Self-scout to find and fix your own predictability, then add wrinkles",
+        "Turn film into a situational call sheet that attacks tendencies and protects against strengths",
+        "Film is a hypothesis — confirm with scripted openers and adjust as the game unfolds",
+      ],
+      references: [
+        { title: "Football film study & scouting — basics", url: "https://www.usafootball.com/" },
+        { title: "Scouting (sports) — overview", url: "https://en.wikipedia.org/wiki/Scout_(sport)" },
+      ],
+    },
+    quiz: {
+      questions: [
+        { id: "flag-27-q1", type: "Core Idea", challenge: "Why study film.", text: "What does scouting let a team do?", options: ["Anticipate the opponent instead of just reacting", "Skip practice", "Guess randomly", "Ignore the game plan"], correctIndex: 0, explanation: "Knowing tendencies turns reaction into anticipation." },
+        { id: "flag-27-q2", type: "Tendencies", challenge: "What to chart.", text: "How do you find an opponent's tendencies?", options: ["Chart plays by down, distance, formation, and result", "Watch only the score", "Ask them", "Look at uniforms"], correctIndex: 0, explanation: "Charting reveals patterns like '3rd-and-short = blitz 70%'." },
+        { id: "flag-27-q3", type: "Self-Scout", challenge: "Know yourself.", text: "Why self-scout?", options: ["To find and fix your own predictability", "To copy the opponent", "It's pointless", "Only the opponent matters"], correctIndex: 0, explanation: "If you're predictable, the opponent's film study punishes you." },
+        { id: "flag-27-q4", type: "Plan", challenge: "Use the info.", text: "How do you turn scouting into a plan?", options: ["Build a situational call sheet that attacks tendencies and protects strengths", "Throw away the notes", "Run one play", "Never adjust"], correctIndex: 0, explanation: "A situational call sheet operationalizes the scouting report." },
+      ],
+    },
+  },
+
+  // ─── flag-28: Practice Design & Team Building ──────────────────────────────
+  {
+    epochId: "flag-football-3",
+    wonder: { name: "The practice field", location: "Where teams are made", era: "Modern", emoji: "🧰" },
+    id: "flag-28",
+    order: 8,
+    title: "Practice Design & Team Building",
+    subtitle: "Efficient practice, drills, roles, and culture",
+    category: "sports",
+    xp: 108,
+    badge: { id: "flag-badge-28", name: "Team Builder", emoji: "🧰" },
+    challengeType: "quiz",
+    info: {
+      tagline: "You play how you practice. Great teams aren't just talented — they're well-practiced and well-led. Designing efficient practices and building a real team culture is the coaching work that shows up on game day.",
+      year: 2024,
+      overview: [
+        "Practice is where execution and chemistry are built. With limited time, the best practices are efficient, game-like, and focused — and the best teams have clear roles and a culture that makes everyone better.",
+        "Designing an effective practice:\n- GAME-LIKE REPS — practice at game speed against real looks; how you practice is how you'll play.\n- FOCUS THE INSTALL — work a small set of concepts deeply rather than skimming many; quality reps over quantity.\n- DRILL THE FUNDAMENTALS — flag-pulling, catching, routes, and footwork still need daily reps, even for advanced teams.",
+        "Building the team:\n- ROLES — define each player's job and put people in positions to succeed; everyone should know how they help the team win.\n- CULTURE — communication, accountability, effort, and respect; a connected team executes and adjusts better under pressure.\n- LEADERSHIP — empower player-leaders who set the standard; a team that polices itself and lifts each other is hard to beat.",
+      ],
+      technical: {
+        title: "Practice Structure and Building Chemistry",
+        body: [
+          "Structure for transfer:\n- Block practice into warm-up, fundamentals, individual/position work, then team install and situational reps (red zone, two-minute) — ending on game-like situations.\n- Keep reps high and standing-around low; small-sided drills get everyone touches.\n- Script situations you'll face so the team has rehearsed answers, not first-time guesses, on game day.",
+          "Chemistry is coached, not hoped for:\n- Clear roles reduce confusion and resentment; everyone knowing their job is half of execution.\n- Communication habits built in practice (calls, switches, encouragement) carry into games.\n- A culture of effort and accountability — set by coaches and player-leaders — is what holds a team together when a game gets tight.",
+        ],
+      },
+      incident: {
+        title: "Practice Habits Become Game Reality",
+        when: "Modern",
+        where: "Team sports",
+        impact: "Efficient, game-like practice and strong culture turn talent into a team that executes and adjusts under pressure",
+        body: [
+          "The cliché 'you play how you practice' is true: sloppy, low-rep, unfocused practices produce sloppy games, while efficient, game-like practices build the timing and habits that win. And talent without culture underperforms talent with it.",
+          "For a flag team, this is the coaching edge:\n- Game-speed reps and rehearsed situations mean no first-time moments on game day.\n- Clear roles and communication habits make the team execute as a unit.\n- A culture of effort, accountability, and respect keeps the team composed and connected when it matters most.",
+        ],
+      },
+      diagram: {
+        nodes: [
+          { label: "Game-Like Reps", sub: "speed + real looks", type: "system" },
+          { label: "Focus & Fundamentals", sub: "quality over quantity", type: "attacker" },
+          { label: "Clear Roles", sub: "everyone knows their job", type: "victim" },
+          { label: "Culture & Leadership", sub: "execute under pressure", type: "result" },
+        ],
+      },
+      timeline: [
+        { year: 1970, event: "Practice-efficiency and small-sided drills formalized" },
+        { year: 2000, event: "Sport psychology emphasizes culture and roles" },
+        { year: 2018, event: "Flag programs adopt game-like, situational practice", highlight: true },
+        { year: 2024, event: "Elite flag teams win with practice habits and culture" },
+      ],
+      keyTakeaways: [
+        "You play how you practice: make reps game-like, focused, and high-volume (quality over quantity)",
+        "Keep drilling fundamentals (flag-pulling, catching, routes) even for advanced teams",
+        "Define clear roles so everyone knows how they help the team win",
+        "Coach culture and empower leaders — communication, effort, and accountability win tight games",
+      ],
+      references: [
+        { title: "Effective practice design — basics", url: "https://www.usafootball.com/" },
+        { title: "Team culture in sport — overview", url: "https://en.wikipedia.org/wiki/Team_building" },
+      ],
+    },
+    quiz: {
+      questions: [
+        { id: "flag-28-q1", type: "Core Idea", challenge: "Practice = play.", text: "What does 'you play how you practice' mean for practice design?", options: ["Practice game-like and at game speed to build real habits", "Practice slowly and casually", "Skip fundamentals", "Avoid game situations"], correctIndex: 0, explanation: "Game-like reps transfer to game performance." },
+        { id: "flag-28-q2", type: "Focus", challenge: "Quality reps.", text: "What's better for a limited practice?", options: ["A small set of concepts worked deeply", "Skimming dozens of plays", "No install", "Only conditioning"], correctIndex: 0, explanation: "Quality reps of a focused install beat shallow breadth." },
+        { id: "flag-28-q3", type: "Roles", challenge: "Know your job.", text: "Why define clear roles?", options: ["So everyone knows their job and how they help the team win", "To create confusion", "Roles don't matter", "To bench players"], correctIndex: 0, explanation: "Clarity of roles is half of execution." },
+        { id: "flag-28-q4", type: "Culture", challenge: "The glue.", text: "What holds a team together under pressure?", options: ["A culture of communication, effort, and accountability", "Talent alone", "Trick plays", "Silence"], correctIndex: 0, explanation: "Culture and leadership keep a team composed when it matters." },
+      ],
+    },
+  },
+
+  // ─── flag-29: Conditioning & the Season Plan ───────────────────────────────
+  {
+    epochId: "flag-football-3",
+    wonder: { name: "The season", location: "Training over time", era: "Modern", emoji: "📅" },
+    id: "flag-29",
+    order: 9,
+    title: "Conditioning & the Season Plan",
+    subtitle: "Periodization, peaking, and staying healthy",
+    category: "sports",
+    xp: 110,
+    badge: { id: "flag-badge-29", name: "Season Strategist", emoji: "📅" },
+    challengeType: "quiz",
+    info: {
+      tagline: "A season is a marathon of sprints. Smart training plans the whole arc — build a base, sharpen for competition, peak for the playoffs, and recover so you're fastest and healthiest when it matters most.",
+      year: 2024,
+      overview: [
+        "Athletic development (covered earlier) is more powerful when planned across a season. 'Periodization' is organizing training into phases so you build fitness, sharpen it, and peak at the right time — instead of being tired or flat for the big games.",
+        "The phases of a season plan:\n- PRE-SEASON (base) — build general fitness, strength, and movement quality with higher volume.\n- IN-SEASON (sharpen/maintain) — shift to speed, agility, and game-specific work; lower volume, higher quality, to stay fresh.\n- PEAK (playoffs) — taper the load so you're rested, fast, and explosive when the stakes are highest.",
+        "Manage the whole athlete over time:\n- RECOVERY — sleep, nutrition, and rest aren't optional; they're when adaptation happens and how you avoid injury and burnout.\n- LOAD MANAGEMENT — balance hard and easy days; chronic overtraining causes slumps and injuries.\n- INDIVIDUALIZE — adjust for each player's needs and workload; consistency across the season beats occasional max-effort spikes.",
+      ],
+      technical: {
+        title: "Periodization, Tapering, and Avoiding Burnout",
+        body: [
+          "Plan the arc:\n- Build a base in the pre-season (volume), convert it to sport-specific speed/power in-season (intensity, lower volume), and taper before the playoffs to peak.\n- A taper reduces fatigue while preserving fitness, so athletes are fastest and most explosive for the biggest games.\n- Track and balance training load across the week (hard/easy) to avoid the overuse that derails seasons.",
+          "Health is performance:\n- Sleep is the top recovery lever (especially for young athletes); nutrition and hydration fuel adaptation.\n- Build in deload/recovery so the body absorbs training and stays injury-free across a long season.\n- Individualize: each athlete handles load differently — the goal is everyone fast, healthy, and peaking for the championship, not gassed in week three.",
+        ],
+      },
+      incident: {
+        title: "Peak When It Counts",
+        when: "Modern",
+        where: "Sport training",
+        impact: "Periodized training and a proper taper let teams arrive at the playoffs rested, fast, and healthy rather than worn down",
+        body: [
+          "Sport science is clear: training the same way all year leaves athletes either undertrained or overtrained for the playoffs. Periodization — building, sharpening, and tapering — lets a team peak when it matters, while recovery keeps players healthy enough to use their fitness.",
+          "For a flag team chasing a title:\n- A base built early supports the speed and agility the sport demands.\n- An in-season shift to quality work keeps legs fresh for games.\n- A taper before the playoffs delivers peak speed and explosiveness — and managed recovery means your best players are available, not injured, at the finish.",
+        ],
+      },
+      diagram: {
+        nodes: [
+          { label: "Pre-Season Base", sub: "fitness + strength (volume)", type: "system" },
+          { label: "In-Season Sharpen", sub: "speed/agility (quality)", type: "attacker" },
+          { label: "Taper to Peak", sub: "rest for the playoffs", type: "victim" },
+          { label: "Recover Throughout", sub: "sleep, fuel, stay healthy", type: "result" },
+        ],
+      },
+      timeline: [
+        { year: 1960, event: "Periodization theory formalized in sport science" },
+        { year: 2000, event: "Load management and tapering proven to boost peak performance" },
+        { year: 2018, event: "Flag programs adopt season-long training plans", highlight: true },
+        { year: 2024, event: "Recovery (sleep) recognized as a top performance lever" },
+      ],
+      keyTakeaways: [
+        "Periodization phases training: build a base (pre-season), sharpen/maintain (in-season), and taper to peak (playoffs)",
+        "A taper sheds fatigue while keeping fitness so athletes are fastest for the biggest games",
+        "Recovery (sleep, nutrition, rest) is when adaptation happens and how you avoid injury/burnout",
+        "Manage load (hard/easy balance) and individualize — consistency beats max-effort spikes",
+      ],
+      references: [
+        { title: "Sports periodization — overview", url: "https://en.wikipedia.org/wiki/Sports_periodization" },
+        { title: "Tapering (sports) — concept", url: "https://en.wikipedia.org/wiki/Tapering_(sports)" },
+      ],
+    },
+    quiz: {
+      questions: [
+        { id: "flag-29-q1", type: "Core Idea", challenge: "Plan the arc.", text: "What is periodization?", options: ["Organizing training into phases to build, sharpen, and peak at the right time", "Training the same way all year", "Never training", "Only competing"], correctIndex: 0, explanation: "Phased training avoids being tired or flat for the big games." },
+        { id: "flag-29-q2", type: "Phases", challenge: "In-season.", text: "How should training shift once the season starts?", options: ["Toward speed/agility and quality, with lower volume to stay fresh", "More volume than ever", "Stop training entirely", "Only max lifts"], correctIndex: 0, explanation: "In-season is about sharpening and freshness, not building volume." },
+        { id: "flag-29-q3", type: "Taper", challenge: "Peak timing.", text: "What does a taper before the playoffs do?", options: ["Sheds fatigue while keeping fitness so athletes peak", "Builds maximum fatigue", "Removes all fitness", "Does nothing"], correctIndex: 0, explanation: "Tapering delivers peak speed and explosiveness when it counts." },
+        { id: "flag-29-q4", type: "Recovery", challenge: "Stay healthy.", text: "Why is recovery part of the season plan?", options: ["It's when adaptation happens and how you avoid injury and burnout", "It wastes time", "Only games matter", "Athletes don't need rest"], correctIndex: 0, explanation: "Sleep, nutrition, and managed load keep players fast and available." },
+      ],
+    },
+  },
+
+  // ─── flag-30: Tournament & Championship Play ───────────────────────────────
+  {
+    epochId: "flag-football-3",
+    wonder: { name: "The championship", location: "The title game", era: "Modern", emoji: "🏆" },
+    id: "flag-30",
+    order: 10,
+    title: "Tournament & Championship Play",
+    subtitle: "Managing the day, the clock, and the title game",
+    category: "sports",
+    xp: 120,
+    badge: { id: "flag-badge-30", name: "Champion", emoji: "🏆" },
+    challengeType: "quiz",
+    info: {
+      tagline: "Everything you've learned comes down to this: winning when it counts. Tournaments demand managing energy across a long day, executing in elimination games, and mastering the clock and the moment in the title game.",
+      year: 2024,
+      overview: [
+        "Flag football is often played in tournaments — pool play into a single-elimination bracket, sometimes multiple games in a day. Winning a championship requires not just good football, but managing the day, the situations, and the pressure.",
+        "Managing a tournament day:\n- ENERGY — pace the team across multiple games: warm up smart, recover between games (fuel, hydrate, rest), and don't burn out your best players early.\n- ADJUST FAST — in bracket play you may face a team once; scout quickly, find their tendency, and counter within the game.\n- DEPTH — use your roster; fresh legs late in a long day win games.",
+        "Winning the moments that decide it:\n- CLOCK & SITUATION MASTERY — everything from earlier game IQ matters most here: protect leads, manage timeouts, run the two-minute drill, and know the down/distance/score on every snap.\n- COMPOSURE — elimination pressure is real; calm, prepared teams execute while others tighten up.\n- THE TITLE GAME — trust your preparation, lean on your core plays, feed your playmakers, and finish — then celebrate, learn, and chase the next level (state, college, the 2028 Olympics).",
+      ],
+      technical: {
+        title: "Day Management and Elimination-Game Execution",
+        body: [
+          "Run the day like a plan:\n- Schedule warm-ups and recovery around the bracket; nutrition and hydration across games prevent late fatigue.\n- Rotate players to keep legs fresh and protect against injury; depth is a weapon in a long tournament.\n- Quick-scout bracket opponents (even a few plays reveal man/zone and blitz tendencies) and adjust in real time.",
+          "Execute when it's win-or-go-home:\n- Apply all the situational tools: clock management, timeout use, two-minute and end-of-half execution, and protecting or chasing a lead.\n- Lean on your trusted core (the small, mastered playbook) under pressure rather than reaching for the exotic.\n- Composure and preparation win close elimination games — and the same skills scale to the highest stages flag now offers (state championships, college, and the LA 2028 Olympics).",
+        ],
+      },
+      incident: {
+        title: "Champions Are Built, Then Crowned",
+        when: "2023–2028",
+        where: "From local tournaments to the Olympics",
+        impact: "Championship play rewards preparation, depth, and composure — the same skills that now lead to college and Olympic flag football",
+        body: [
+          "Winning a flag football championship combines everything: fundamentals, schemes, game IQ, conditioning, and culture, all executed under the pressure of elimination play across a long day. Champions prepare for the moment, manage their energy and the clock, and stay composed.",
+          "And the moment is bigger than ever:\n- Flag football's growth means a championship can be a stepping stone — to high-school state titles, college programs, and the 2028 Los Angeles Olympics.\n- The complete player and team — fundamentally sound, strategically sharp, well-conditioned, and mentally tough — is what wins, and what this entire course was built to develop.\n- Prepare, compete, finish, and keep climbing.",
+        ],
+      },
+      diagram: {
+        nodes: [
+          { label: "Manage the Day", sub: "energy, recovery, depth", type: "system" },
+          { label: "Quick-Scout & Adjust", sub: "win bracket games", type: "attacker" },
+          { label: "Master Clock & Moment", sub: "situational execution", type: "victim" },
+          { label: "Win the Title — Keep Climbing", sub: "state, college, 2028 Olympics", type: "result" },
+        ],
+      },
+      timeline: [
+        { year: 2018, event: "Flag football tournaments standardize pool + bracket formats" },
+        { year: 2021, event: "Women's college flag football crowns national champions" },
+        { year: 2023, event: "IOC adds flag football to the 2028 Los Angeles Olympics", highlight: true },
+        { year: 2028, event: "Flag football debuts at the LA Olympic Games" },
+      ],
+      keyTakeaways: [
+        "Tournaments demand day management: pace energy, recover between games, and use your depth",
+        "Quick-scout bracket opponents and adjust in-game — you may only face them once",
+        "Master the clock and the moment: timeouts, two-minute, protecting/chasing leads, composure",
+        "Lean on your trusted core under pressure; the same skills scale to state, college, and the 2028 Olympics",
+      ],
+      references: [
+        { title: "Flag football at the 2028 Olympics", url: "https://en.wikipedia.org/wiki/Flag_football_at_the_2028_Summer_Olympics" },
+        { title: "Tournament play & bracket formats", url: "https://en.wikipedia.org/wiki/Single-elimination_tournament" },
+      ],
+    },
+    quiz: {
+      questions: [
+        { id: "flag-30-q1", type: "Day Management", challenge: "Long day.", text: "How do you manage a multi-game tournament day?", options: ["Pace energy, recover between games, and use your depth", "Play your starters every snap", "Skip warm-ups", "Ignore nutrition"], correctIndex: 0, explanation: "Energy, recovery, and depth keep you fresh late in the day." },
+        { id: "flag-30-q2", type: "Bracket", challenge: "One shot.", text: "How do you prepare for a bracket opponent you'll face once?", options: ["Quick-scout their tendencies and adjust within the game", "Don't prepare", "Use the same plan as last week", "Forfeit"], correctIndex: 0, explanation: "Even a few plays reveal coverage/blitz tendencies to counter live." },
+        { id: "flag-30-q3", type: "Moment", challenge: "Win the close one.", text: "What decides elimination games?", options: ["Situational execution (clock/timeouts) and composure", "Luck only", "Trick plays only", "The coin toss"], correctIndex: 0, explanation: "Clock mastery and calm, prepared execution win tight games." },
+        { id: "flag-30-q4", type: "Next Level", challenge: "Keep climbing.", text: "Where can championship flag football lead?", options: ["State titles, college programs, and the 2028 LA Olympics", "Nowhere", "Only trophies", "The NFL Draft"], correctIndex: 0, explanation: "Flag's growth makes a title a stepping stone to the biggest stages." },
       ],
     },
   },

@@ -2,7 +2,7 @@
 
 ## What This Is
 
-Gamified cybersecurity + AI training platform. 65 curriculum epochs, 741 CTF/quiz stages, live leaderboard, admin dashboard, 24 downloadable MCP server templates. Built with Next.js 16 / React 19 / TypeScript / Tailwind CSS / Upstash Redis / Resend.
+Gamified cybersecurity + AI training platform. 67 curriculum epochs, 751 CTF/quiz stages, live leaderboard, admin dashboard, 24 downloadable MCP server templates. Built with Next.js 16 / React 19 / TypeScript / Tailwind CSS / Upstash Redis / Resend.
 
 **Live:** kryptoscronos.com  
 **Repo:** github.com/jjfleetwood/kryptos-cronos  
@@ -145,7 +145,9 @@ Back navigation: `BackLink` uses `backHref` prop (passed from `StageContainer`) 
 | 62 | `space-race` | Race Through Space (space systems hacking; 6 CTF + 4 quiz) | 10 | space-01 → space-10 | Violet |
 | 63 | `vehicle-sec` | Wired & Autonomous (EV/vehicle security; 6 CTF + 4 quiz) | 10 | vehicle-01 → vehicle-10 | Lime |
 | 64 | `robot-sec` | Machines That Move (robotics security; 6 CTF + 4 quiz) | 10 | robot-01 → robot-10 | Orange |
-| 65 | `flag-football` | Flag Football (extended/sports; foundations → HS-level) | 20 | flag-01 → flag-20 | Emerald |
+| 65 | `flag-football-1` | Flag Football: Foundations (extended/sports) | 10 | flag-01 → flag-10 | Emerald |
+| 66 | `flag-football-2` | Flag Football: Advanced Play (HS-level) | 10 | flag-11 → flag-20 | Teal |
+| 67 | `flag-football-3` | Flag Football: Playbook & Competition | 10 | flag-21 → flag-30 | Green |
 | 43 | `physics-of-hacking` | The Physics of Hacking (hardware/physical) | 10 | poh-01 → poh-10 | Pink |
 | 38 | `emerging-tech` | Emerging Tech & Deep Learning Risk | 10 | emerging-01 → emerging-10 | Violet |
 | 16 | `umbrella` | Cisco Umbrella / SASE | 10 | umbrella-01 → umbrella-10 | Green |
@@ -354,6 +356,10 @@ Local dev: `.env.local` in `app/` (gitignored).
 - **Target sponsors:** CrowdStrike, AWS, SentinelOne, CompTIA, ISC²
 
 ---
+
+## What's Shipped (v1.36.0)
+
+- ✅ **Flag Football split into 3 epochs.** The 20-stage `flag-football` epoch was split into **`flag-football-1` Foundations** (flag-01–10) and **`flag-football-2` Advanced Play** (flag-11–20) — stage ids/images/progress preserved, only epoch + order remapped (via slice/map in `flag-football.ts`). Added a third, **`flag-football-3` Playbook & Competition** (10 new quiz stages, flag-21–30): building/calling a playbook, red-zone & no-run-zone scoring, beating the blitz, trick plays, designed defensive pressure, scouting/film, practice design, season conditioning/periodization, and tournament/championship play. All three sit in the "Flag Football" extended track (emerald/teal/green). 10 new free-licensed Commons photos credited on `/attribution`. Counts 741→751 stages / 65→67 epochs.
 
 ## What's Shipped (v1.35.0)
 

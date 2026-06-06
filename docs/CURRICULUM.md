@@ -1,7 +1,7 @@
 # Kryptós CronOS — Curriculum Reference
 **Version:** 3.7  
 **Date:** 2026-06-03  
-**Total stages:** 741 across 65 epochs (delivered on **web + native mobile** from the shared `@kryptos/core` content package)
+**Total stages:** 751 across 67 epochs (delivered on **web + native mobile** from the shared `@kryptos/core` content package)
 
 ---
 
@@ -414,10 +414,14 @@ Cyber-physical security of electric, connected, and self-driving vehicles (first
 
 Cyber-physical security of robots, drones, and autonomous machines (second of the arc with vehicles). Foundations → deep tech → deep security: robot anatomy / sense-plan-act (01, quiz); ROS & ROS2/DDS unauthenticated middleware (02, CTF); industrial robot arm / HMI / PLC takeover — "Rogue Robots" (03, CTF); drone MAVLink hijack (04, CTF); teleoperation channel seizure — Raven II surgical robot (05, CTF); adversarial-patch perception attack (06, CTF); humanoid & service robots, cameras/cloud/backdoors — Unitree (07, quiz); functional safety / when security breaks safety — ISO 10218/15066, IEC 62443 (08, quiz); robot firmware & supply-chain backdoor (09, CTF); securing autonomous systems / zero-trust for cyber-physical, RVD, careers (10, quiz).
 
-## Epoch 64: Flag Football
-**Stages:** 20 (flag-01 through flag-20) | **Color:** Emerald | **Track:** Flag Football (extended) | **All quiz**
+## Flag Football (extended track — 3 epochs, 30 stages, all quiz, category "sports")
+The fastest-growing team sport and an Olympic sport for LA 2028, taught from the ground up across three epochs.
 
-The fastest-growing team sport and an Olympic sport for LA 2028, taught from the ground up. Foundations (flag-01–10): welcome/formats, the field & game flow, positions & rules, pulling flags, throwing, catching & ball security, routes, offense 101, defense 101 (man/zone), agility & conditioning. Deep high-school level (flag-11–20): formations & motion, quarterbacking (reads/progressions), receiver craft (releases/double moves), route concepts (smash/flood/mesh), defensive coverages (Cover 0–3/match/disguise), the 7-yard pass rush & contain, run game & misdirection, defensive strategy & adjustments, athletic development (speed/power/injury prevention), and game IQ + the path to college/Olympic flag football. Category "sports"; ASCII field/route/coverage diagrams.
+**Epoch 64: Flag Football — Foundations** (flag-01–10, Emerald): welcome/formats, field & game flow, positions & rules, pulling flags, throwing, catching & ball security, routes, offense 101, defense 101 (man/zone), agility & conditioning.
+
+**Epoch 65: Flag Football — Advanced Play** (flag-11–20, Teal): formations & motion, quarterbacking (reads/progressions), receiver craft (releases/double moves), route concepts (smash/flood/mesh), defensive coverages (Cover 0–3/match/disguise), the 7-yard pass rush & contain, run game & misdirection, defensive strategy & adjustments, athletic development, and game IQ + college/Olympic pathway.
+
+**Epoch 66: Flag Football — Playbook & Competition** (flag-21–30, Green): building a playbook, calling the game, red-zone & no-run-zone scoring, beating the blitz (hot routes), trick plays, designed defensive pressure (zone blitz/spy), scouting & film study, practice design & team building, conditioning & the season plan (periodization), and tournament & championship play. ASCII field/route/coverage/playbook diagrams throughout.
 
 ---
 
@@ -490,8 +494,10 @@ The fastest-growing team sport and an Olympic sport for LA 2028, taught from the
 | 63 | Race Through Space | 10 | ~1,600 |
 | 64 | Wired & Autonomous (EV/vehicle security) | 10 | ~1,650 |
 | 65 | Machines That Move (robotics security) | 10 | ~1,680 |
-| 66 | Flag Football | 20 | ~2,050 |
-| | **Total** | **741** | **~110,000** |
+| 66 | Flag Football: Foundations | 10 | ~920 |
+| 67 | Flag Football: Advanced Play | 10 | ~1,130 |
+| 68 | Flag Football: Playbook & Competition | 10 | ~1,100 |
+| | **Total** | **751** | **~110,000** |
 
 ---
 

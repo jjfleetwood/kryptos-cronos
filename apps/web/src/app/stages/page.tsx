@@ -105,7 +105,7 @@ const extendedGroups = [
     id: "flagFootball",
     labelKey: "stages.tracks.flagFootball",
     descKey: "stages.tracks.flagFootballDesc",
-    epochIds: ["flag-football"],
+    epochIds: ["flag-football-1", "flag-football-2", "flag-football-3"],
   },
 ];
 
@@ -164,7 +164,7 @@ const NON_SECURITY_EPOCHS = new Set([
   "baseball-1", "baseball-2", "baseball-3", "baseball-4", "baseball-5", "baseball-6", "baseball-7",
   "paris-july", "milan-july", "french-basics", "italian-basics",
   "debate-1", "debate-2", "debate-3", "debate-4", "debate-5", "debate-6", "debate-7", "debate-8",
-  "flag-football",
+  "flag-football-1", "flag-football-2", "flag-football-3",
 ]);
 const ALL_EPOCHS = new Set([...SECURITY_EPOCHS, ...NON_SECURITY_EPOCHS]);
 const GROUP_EPOCHS: Record<string, Set<string>> = {
