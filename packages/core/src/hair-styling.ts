@@ -34,7 +34,7 @@ export const hairStylingStages: StageConfig[] = [
       year: 1997,
       overview: [
         "Hair texture varies along two axes:\n- Strand thickness — fine, medium, or coarse.\n- Curl pattern — straight, wavy, curly, or coily.\nStylist Andre Walker popularized a four-type (1–4) classification system that remains the industry shorthand for texture, with subcategory letters A, B, C indicating curl diameter within each type.",
-        "Beyond curl pattern, porosity (how readily hair absorbs and retains moisture) and density (strands-per-square-inch) shape every product and tool decision. High-porosity hair soaks up product but loses moisture fast; low-porosity hair repels product until heat opens the cuticle.",
+        "Beyond curl pattern, two more properties shape every product and tool decision:\n- Porosity — how readily hair absorbs and retains moisture; high-porosity hair soaks up product but loses moisture fast, while low-porosity hair repels product until heat opens the cuticle.\n- Density — strands per square inch, which affects how much product and heat the hair needs.\nThese, together with texture, complete the picture of any head of hair.",
         "Mastering hair typing isn't about boxing clients into categories — it's about building a shared language that lets you choose the right techniques, products, and expectations before you ever pick up a tool.",
       ],
       technical: {
@@ -193,8 +193,8 @@ export const hairStylingStages: StageConfig[] = [
       tagline: "The right tool at the right temperature is half the style.",
       year: 2005,
       overview: [
-        "Professional styling tools — blow dryers, flat irons, curling irons, diffusers — vary enormously in quality, heat distribution, and safety features. Ionic technology reduces frizz by neutralizing static charge; ceramic and tourmaline plates distribute heat evenly and minimize hot spots.",
-        "Heat damage is cumulative and permanent. Protein bonds (disulfide linkages) break above 450°F; hydrogen bonds that give hair its shape break above 140°F — which is exactly what allows thermal styling. The line between reshape and damage is temperature control.",
+        "Professional styling tools — blow dryers, flat irons, curling irons, diffusers — vary enormously in quality, heat distribution, and safety features:\n- Ionic technology reduces frizz by neutralizing static charge.\n- Ceramic and tourmaline plates distribute heat evenly and minimize hot spots.\nThe technology in a tool directly shapes both the finish and the damage risk.",
+        "Heat damage is cumulative and permanent, and the thresholds matter:\n- Protein bonds (disulfide linkages) break above 450°F.\n- Hydrogen bonds, which give hair its shape, break above 140°F — exactly what allows thermal styling.\nThe line between reshape and damage is temperature control.",
         "Heat protectants form a barrier on the cuticle that both conducts heat evenly and raises the damage threshold. No protectant eliminates damage — it reduces it. Air-drying where possible and limiting heat frequency are the only guaranteed prevention.",
       ],
       technical: {
@@ -348,9 +348,9 @@ export const hairStylingStages: StageConfig[] = [
       tagline: "A great blowout is 80% technique, 20% product.",
       year: 2010,
       overview: [
-        "The blowout is the foundational salon skill — a polished, frizz-free, voluminous finish using only a blow dryer and round brush. Mastering it requires understanding sectioning (working bottom-to-top), tension (keeping strands taut for smoothness), and directional airflow (nozzle parallel to the hair shaft, not perpendicular).",
+        "The blowout is the foundational salon skill — a polished, frizz-free, voluminous finish from just a blow dryer and round brush. Mastering it requires three things:\n- Sectioning — working bottom-to-top.\n- Tension — keeping strands taut for smoothness.\n- Directional airflow — nozzle parallel to the hair shaft, not perpendicular.\nGet these right and the rest of the look follows.",
         "Round brush diameter determines result: a small barrel creates curls and body; a large barrel (2 in+) creates sleek, straight volume. The nozzle concentrator is non-negotiable — without it, airflow is too diffuse and cuticle roughening causes frizz.",
-        "Product layering matters: a heat protectant first, a volumizing mousse or foam at the root for lift, and a smoothing serum or cream on lengths for frizz control. Too much product on fine hair kills volume; too little on coarse hair invites frizz.",
+        "Product layering matters as much as technique:\n- A heat protectant first.\n- A volumizing mousse or foam at the root for lift.\n- A smoothing serum or cream on the lengths for frizz control.\nToo much product on fine hair kills volume; too little on coarse hair invites frizz.",
       ],
       technical: {
         title: "Blowout Section Order",
@@ -509,8 +509,8 @@ For SMOOTH/SLEEK:
       tagline: "One pass done right beats five passes done wrong.",
       year: 2001,
       overview: [
-        "The flat iron (straightening iron) is among the most powerful and most misused tools in styling. Ceramic or titanium plates apply direct contact heat to reshape hair's hydrogen bonds. The result depends on three variables: temperature (matched to hair type), panel size (matched to section thickness), and speed (slow enough to reshape, fast enough not to scorch).",
-        "Common errors include overlapping sections (re-heating already-styled hair), pausing mid-strand (hot spot = breakage), and using the iron on wet or damp hair (steam explosion within the cortex causes irreversible porosity damage — sometimes called the 'frying' effect).",
+        "The flat iron (straightening iron) is among the most powerful and most misused tools in styling — ceramic or titanium plates apply direct-contact heat to reshape hair's hydrogen bonds. The result depends on three variables:\n- Temperature — matched to hair type.\n- Panel size — matched to section thickness.\n- Speed — slow enough to reshape, fast enough not to scorch.\nBalance the three and you reshape without damage.",
+        "Common flat-iron errors all cause damage:\n- Overlapping sections — re-heating already-styled hair.\n- Pausing mid-strand — a hot spot that means breakage.\n- Using the iron on wet or damp hair — a steam explosion within the cortex causes irreversible porosity damage (the 'frying' effect).\nAvoiding these is most of the skill.",
         "Beyond straightening, the flat iron is a versatile styling tool: a 90° rotation creates a wave, wrapping hair around the barrel creates soft curls, and clamping with a twist creates a defined wave — each result from the same tool.",
       ],
       technical: {
@@ -665,8 +665,8 @@ For SMOOTH/SLEEK:
       tagline: "Barrel diameter is the blueprint; wrap direction is the signature.",
       year: 1998,
       overview: [
-        "Curling irons (with a clamp) and wands (without) both use thermal energy to reshape hair into curls, but each has a distinct use case. Irons create uniform barrel curls with a defined bend where the clamp holds; wands create more natural, open waves without the crease.",
-        "Barrel diameter determines curl size: 3/4″ creates tight ringlets, 1″ creates defined curls, 1.5–2″ creates loose waves. Wrap direction — toward or away from the face — is the key to making curls look intentional versus random, and alternating direction section-by-section creates the most natural-looking wave.",
+        "Curling irons (with a clamp) and wands (without) both use thermal energy to reshape hair into curls, but each has a distinct use case:\n- Irons create uniform barrel curls with a defined bend where the clamp holds.\n- Wands create more natural, open waves without the crease.\nChoosing between them sets the whole character of the curl.",
+        "Barrel diameter determines curl size:\n- 3/4″ — tight ringlets.\n- 1″ — defined curls.\n- 1.5–2″ — loose waves.\nWrap direction — toward or away from the face — makes curls look intentional rather than random, and alternating direction section-by-section creates the most natural-looking wave.",
         "Hold time and letting the curl cool before release are the two most commonly skipped steps. Under-held curls fall fast; curls that don't cool before being manipulated unravel. After styling, lock everything in with a flexible hold spray, not a stiff lacquer.",
       ],
       technical: {
@@ -824,8 +824,8 @@ For uniform Hollywood curls:
       tagline: "Braiding is geometry — consistent tension makes it beautiful.",
       year: 2000,
       overview: [
-        "Braiding is one of the oldest and most culturally significant styling techniques in the world. At its technical core, braiding is about consistent tension and even sections. An uneven pick-up (adding more hair to one strand than another) or inconsistent tension (tight at root, loose at mid) creates lumpy, asymmetrical results.",
-        "Three-strand braids (flat plait) are the foundation for every other braid style. French braids (picking up from the scalp progressively) and Dutch braids (the inverted version that sits raised above the hair) follow the same pattern with the addition of sections at each crossover. Box braids and knotless braids are extensions work requiring additional knowledge of synthetic or natural extension hair management.",
+        "Braiding is one of the oldest and most culturally significant styling techniques, and its technical core is simple:\n- Consistent tension — even from root to mid, not tight then loose.\n- Even sections — adding the same amount of hair to each strand.\nAn uneven pick-up or inconsistent tension creates lumpy, asymmetrical results.",
+        "The braid family builds from one foundation:\n- Three-strand braid (flat plait) — the basis for every other style.\n- French braid — picking up from the scalp progressively; Dutch braid — the inverted version that sits raised above the hair.\n- Box braids and knotless braids — extensions work requiring knowledge of synthetic or natural extension-hair management.\nEach adds sections at the crossover to the same underlying pattern.",
         "Tension damage (traction alopecia) is a significant concern — braids installed too tightly at the root put mechanical stress on the follicle. Protective styles should protect, not damage.",
       ],
       technical: {
@@ -984,8 +984,8 @@ Step 4: Repeat until no scalp hair remains
       year: 2000,
       overview: [
         "Upstyles (updos, chignons, French twists) and semi-upstyles (ponytails, half-ups) require understanding the architecture of a hairstyle: where the weight will sit, how to anchor sections securely, and how to disguise the mechanics underneath a polished finish.",
-        "The ponytail seems simple but is technically demanding: placement (too low looks sloppy, too high looks severe, at the occipital bone looks elegant), tension distribution (the elastic must hold without denting the nape or causing breakage), and disguising the elastic with a wrapped section are all learned skills.",
-        "For formal updos, backcombing (teasing) the base before pinning creates the foundation — a smooth surface has nothing for pins to grip. Bobby pins grip best when the wave side faces toward the head and are inserted at a slight downward angle. Crossed-pin technique provides maximum hold.",
+        "The ponytail seems simple but is technically demanding:\n- Placement — too low looks sloppy, too high looks severe; at the occipital bone looks elegant.\n- Tension distribution — the elastic must hold without denting the nape or causing breakage.\n- Disguising the elastic — wrapping a section around it for a finished look.\nEach is a learned skill, not a given.",
+        "For formal updos, the mechanics underneath make the finish:\n- Backcombing (teasing) the base before pinning creates the foundation — a smooth surface gives pins nothing to grip.\n- Bobby pins grip best when the wave side faces toward the head, inserted at a slight downward angle.\n- The crossed-pin technique provides maximum hold.\nGood updos are built on a hidden, secure structure.",
       ],
       technical: {
         title: "Anchor Point System",
@@ -1141,8 +1141,8 @@ wrap around elastic, secure with bobby pin underneath`,
       year: 2001,
       overview: [
         "Curly and coily hair (Types 2C–4C) require techniques that differ fundamentally from straight hair care. The primary challenges are moisture retention, frizz control, and curl definition without disrupting the natural pattern. The foundational principle: less manipulation equals more definition.",
-        "Plopping is a no-heat technique where soaking wet, product-applied hair is gently lowered onto a microfiber towel or t-shirt, wrapped for 20–30 minutes, and released. This enhances natural curl clumping without towel-rubbing frizz. Diffusing disperses blow dryer air broadly over curl clusters, lifting them at the root while keeping the curl pattern intact.",
-        "Styling products for curly hair follow the LCO (Liquid, Cream, Oil) or LOC (Liquid, Oil, Cream) method to layer moisture and seal it in. Water is applied first (wet or damp hair), then a cream for definition, then an oil or gel to seal. The 'gel cast' — a crunchy feeling when gel dries — is intentional; it's scrunch-broken after drying to release soft curls.",
+        "Two no-heat techniques define curly styling:\n- Plopping — soaking-wet, product-applied hair is gently lowered onto a microfiber towel or t-shirt, wrapped for 20–30 minutes, and released, enhancing natural curl clumping without towel-rubbing frizz.\n- Diffusing — disperses blow-dryer air broadly over curl clusters, lifting them at the root while keeping the pattern intact.\nBoth follow the foundational principle: less manipulation equals more definition.",
+        "Styling products for curly hair follow the LCO (Liquid, Cream, Oil) or LOC (Liquid, Oil, Cream) method to layer and seal moisture:\n- Water first, on wet or damp hair.\n- Then a cream for definition.\n- Then an oil or gel to seal.\nThe 'gel cast' — a crunchy feeling when gel dries — is intentional; scrunch it out after drying to release soft curls.",
       ],
       technical: {
         title: "Curl Technique Glossary",
@@ -1300,8 +1300,8 @@ wrap around elastic, secure with bobby pin underneath`,
       tagline: "A 5-minute consultation prevents a 5-hour correction.",
       year: 2000,
       overview: [
-        "The client consultation is the single most important step in any appointment. It determines whether expectations match reality, surfaces contraindications (recent chemical services, scalp conditions, medications affecting hair), and builds the trust relationship that determines whether a client returns.",
-        "The consultation uses open-ended questions ('What are you hoping to achieve today?') rather than closed ones ('Do you want a trim?') to let clients describe their goal in their own words. Then you reflect back your understanding ('So you're looking for X, and given your current Y, I'd suggest Z') — this alignment step prevents the most common disappointment: the client wanted something different from what they received.",
+        "The client consultation is the single most important step in any appointment. It does three things:\n- Determines whether expectations match reality.\n- Surfaces contraindications — recent chemical services, scalp conditions, medications affecting hair.\n- Builds the trust relationship that determines whether a client returns.\nSkipping it is how appointments go wrong before a tool is even touched.",
+        "The consultation runs on open-ended questions, not closed ones:\n- Ask 'What are you hoping to achieve today?' rather than 'Do you want a trim?' — letting clients describe their goal in their own words.\n- Then reflect back your understanding: 'So you're looking for X, and given your current Y, I'd suggest Z.'\nThat alignment step prevents the most common disappointment: the client wanted something different from what they received.",
         "Managing reality honestly is both ethical and practical. Promising results that aren't achievable with the client's current hair condition, texture, or commitment level creates dissatisfied clients and professional liability. The phrase: 'We can absolutely get there — here's the honest timeline and the steps it takes.'",
       ],
       technical: {
@@ -1462,8 +1462,8 @@ wrap around elastic, secure with bobby pin underneath`,
       year: 2010,
       overview: [
         "Launching a hair styling business requires two parallel tracks: mastering the technical craft and building the business infrastructure. In the US, cosmetology or barbering licensure is required to practice professionally — typically 1,000–1,500 state-mandated hours of education plus a practical and written exam.",
-        "There are four main business models for stylists: employee (salon pays wage + commission), booth rental (rent a station, keep all income, pay your own taxes and supplies), suite rental (private studio, full independence), and salon ownership. Booth and suite rental are the most common entrepreneurial paths because they require minimal startup capital compared to ownership.",
-        "A 'book' — your client list — is the real asset of a stylist's business. Building it requires consistent social media presence (Instagram and TikTok are primary discovery channels), word-of-mouth incentives (referral discounts), and a rebooking habit: always attempt to schedule the next appointment before the client leaves the chair.",
+        "There are four main business models for stylists:\n- Employee — the salon pays a wage plus commission.\n- Booth rental — rent a station, keep all income, pay your own taxes and supplies.\n- Suite rental — a private studio with full independence.\n- Salon ownership — the highest investment and risk.\nBooth and suite rental are the most common entrepreneurial paths because they require minimal startup capital compared to ownership.",
+        "A 'book' — your client list — is the real asset of a stylist's business. Building it requires:\n- A consistent social-media presence (Instagram and TikTok are primary discovery channels).\n- Word-of-mouth incentives, like referral discounts.\n- A rebooking habit — always attempt to schedule the next appointment before the client leaves the chair.\nThe book, not the chair, is what you're really building.",
       ],
       technical: {
         title: "Booth Rental Economics",
