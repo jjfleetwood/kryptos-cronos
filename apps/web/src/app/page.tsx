@@ -12,7 +12,7 @@ import CountUp from "@/components/CountUp";
 const DOMAINS: { name: string; emoji: string; blurb: string; color: string; tag?: string; isNew?: boolean }[] = [
   { name: "Core Security", emoji: "🏛️", blurb: "Foundations, landmark CVEs & exploits", color: "#fbbf24" },
   { name: "Tech Audit", emoji: "📋", blurb: "Governance, cloud, agentic monitoring", color: "#60a5fa" },
-  { name: "Threat Frameworks", emoji: "🎯", blurb: "MITRE ATT&CK tactics & kill chains", color: "#f87171" },
+  { name: "Threat Frameworks", emoji: "🎯", blurb: "ATT&CK, Diamond, kill chains, STIX/TAXII", color: "#f87171" },
   { name: "AI & LLM Security", emoji: "🧠", blurb: "Prompt injection, ATLAS, OWASP LLM", color: "#c084fc" },
   { name: "Quantum Era", emoji: "⚛️", blurb: "PQC, QKD, harvest-now-decrypt-later", color: "#22d3ee" },
   { name: "Defend the Enterprise", emoji: "🌐", blurb: "Cisco CVEs, Umbrella, physics of hacking", color: "#818cf8" },
@@ -20,6 +20,7 @@ const DOMAINS: { name: string; emoji: string; blurb: string; color: string; tag?
   { name: "Race Through Space", emoji: "🚀", blurb: "Satellite & spacecraft hacking (CTF)", color: "#a78bfa", isNew: true },
   { name: "EV & Vehicle Security", emoji: "🚗", blurb: "CAN bus, keyless, the Jeep hack (CTF)", color: "#a3e635", isNew: true },
   { name: "Robotics & Robots", emoji: "🦾", blurb: "ROS, drones, industrial arms (CTF)", color: "#fb923c", isNew: true },
+  { name: "Operational Technology", emoji: "🏭", blurb: "ICS, SCADA, PLCs & the grid (CTF)", color: "#fbbf24", isNew: true },
   { name: "Flag Football", emoji: "🏈", blurb: "Foundations → high-school mastery", color: "#34d399", isNew: true },
   { name: "STEM & More", emoji: "🎓", blurb: "Baseball, debate, driving, travel, crafts", color: "#2dd4bf" },
 ];
@@ -244,9 +245,9 @@ export default function Home() {
           style={{ background: "rgba(255,255,255,0.015)" }}>
           <Reveal className="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             {[
-              { to: 751, decimals: 0, suffix: "",  label: "Stages",    color: "#22d3ee" },
-              { to: 67,  decimals: 0, suffix: "",  label: "Epochs",    color: "#a78bfa" },
-              { to: 12,  decimals: 0, suffix: "+", label: "Domains",   color: "#f97316" },
+              { to: 801, decimals: 0, suffix: "",  label: "Stages",    color: "#22d3ee" },
+              { to: 72,  decimals: 0, suffix: "",  label: "Epochs",    color: "#a78bfa" },
+              { to: 13,  decimals: 0, suffix: "+", label: "Domains",   color: "#f97316" },
               { to: 3.5, decimals: 1, suffix: "M", label: "Open Jobs", color: "#4ade80" },
             ].map((s) => (
               <div key={s.label}>
@@ -311,7 +312,7 @@ export default function Home() {
             </div>
             <div className="text-center mt-8">
               <Link href="/stages" className="text-sm text-cyan-400 hover:text-cyan-300 transition-colors">
-                Browse all 67 epochs →
+                Browse all 72 epochs →
               </Link>
             </div>
           </div>

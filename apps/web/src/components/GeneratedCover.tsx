@@ -1,6 +1,6 @@
 // A deterministic, on-brand cover card rendered for any stage that has no
 // self-hosted/real image. Replaces the blank gap (and the generic placeholder)
-// so every one of the 691 stages shows a hero visual. Pure presentational —
+// so every one of the 801 stages shows a hero visual. Pure presentational —
 // no client APIs, no network, no motion — so it is SSR-safe, responsive, and
 // reduced-motion-safe by construction. The gradient hue is hashed from the
 // epoch id so all stages in an epoch share a colour family and epochs differ.
