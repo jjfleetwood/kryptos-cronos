@@ -16,6 +16,8 @@ Track sections (own group on /stages): OT = new "Operational Technology"; the re
 ## GRIND COMPLETE 🎉
 All 5 requested epochs built, validated, and pushed to master (auto-deployed). Counts went from 751/67 → **801 stages / 72 epochs**, CTFs 262 → **292**. Five new epochs: Operational Technology (new track), Wired & Autonomous II, Robotics II, Race Through Space II, Threat Frameworks. Every build green (core tsc, web tsc, validate-ctf, forced build) before each push.
 
-Possible follow-ups for later: source free Commons imagery + `/attribution` for the new epochs' stages (they currently use the gradient+emoji card look); homepage stat counts could be refreshed (currently 751-era).
+Follow-ups (DONE 2026-06-06):
+- [x] Homepage/meta stat counts refreshed to 801/72 (+ OT domain card) — commit 52bbea6.
+- [x] Free-licensed hero imagery for OT / Vehicle-II / Robotics-II / Space-II — 29 self-hosted photos, credited on /attribution; conceptual stages (Threat Frameworks + a few abstract ones: ot-03/06, v2-02/08/09/10, r2-02/05/06/09/10) keep the GeneratedCover look — commit 189a3b2. Reusable fetcher: `apps/web/scripts/fetch-stage-images.mjs` (Commons API, license+author filtered; ALWAYS view images before wiring).
 
 Tick + note commit hash as each lands. Counts before grind: 751 stages / 67 epochs (after the 3-section split). CTFs: 262.
