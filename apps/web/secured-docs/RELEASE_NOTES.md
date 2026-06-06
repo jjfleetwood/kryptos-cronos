@@ -2,6 +2,16 @@
 
 ---
 
+## v1.37.0 — 2026-06-06
+
+**CTFs added to 30 stages + new top-level track sections**
+
+- **30 new CTFs:** every stage of **physics-of-hacking**, **emerging-tech**, and **quantum-5** now has a hands-on terminal CTF (its quiz remains the half-clear). Attached via a compact factory + module-load loop (stage ids/quizzes untouched). 30 flags added to `stage-flags.ts`; `validate-ctf.mjs` = **262 CTFs, 0 problems**.
+- **New `/stages` sections:** **Race Through Space**, **Wired & Autonomous**, and **Robotics** are now their own top-level tracks (moved out of "Defend the Enterprise"), each with i18n label + TRACK_STYLE.
+- **Renamed** the robotics epoch "Machines That Move" → **"Robotics"**.
+
+---
+
 ## v1.36.0 — 2026-06-05
 
 **Flag Football split into 3 epochs + new Playbook & Competition epoch**

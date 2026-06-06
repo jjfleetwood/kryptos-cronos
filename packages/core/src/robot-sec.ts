@@ -2,7 +2,7 @@ import type { StageConfig, EpochConfig } from "./types";
 
 export const robotSecEpoch: EpochConfig = {
   id: "robot-sec",
-  name: "Machines That Move",
+  name: "Robotics",
   subtitle: "Hacking Robots, Drones & Autonomous Machines",
   description:
     "Robots are computers that can touch the physical world — so hacking one means moving an arm, flying a drone, or fooling a machine's eyes. Build the foundations (sense-plan-act, sensors, actuators, controllers) then go deep: inject on an unauthenticated ROS/DDS graph, command an exposed industrial robot arm, hijack a drone over MAVLink, seize a teleoperation channel, fool perception with an adversarial patch, and backdoor robot firmware — finishing with humanoid robots, functional safety, and how autonomous systems get secured.",

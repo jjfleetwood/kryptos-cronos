@@ -65,7 +65,25 @@ const epochGroups = [
     id: "enterprise",
     labelKey: "stages.tracks.enterprise",
     descKey: "stages.tracks.enterpriseDesc",
-    epochIds: ["cisco-core", "cisco-enterprise", "cisco-secops", "cisco-advanced", "umbrella", "physics-of-hacking", "space-race", "vehicle-sec", "robot-sec"],
+    epochIds: ["cisco-core", "cisco-enterprise", "cisco-secops", "cisco-advanced", "umbrella", "physics-of-hacking"],
+  },
+  {
+    id: "spaceRace",
+    labelKey: "stages.tracks.spaceRace",
+    descKey: "stages.tracks.spaceRaceDesc",
+    epochIds: ["space-race"],
+  },
+  {
+    id: "vehicleSec",
+    labelKey: "stages.tracks.vehicleSec",
+    descKey: "stages.tracks.vehicleSecDesc",
+    epochIds: ["vehicle-sec"],
+  },
+  {
+    id: "robotics",
+    labelKey: "stages.tracks.robotics",
+    descKey: "stages.tracks.roboticsDesc",
+    epochIds: ["robot-sec"],
   },
 ];
 
@@ -117,6 +135,9 @@ const TRACK_STYLE: Record<string, { icon: string; color: string }> = {
   aiSecurity:       { icon: "🤖", color: "#a855f7" },
   quantumEra:       { icon: "⚛️", color: "#22d3ee" },
   enterprise:       { icon: "🌐", color: "#6366f1" },
+  spaceRace:        { icon: "🚀", color: "#a78bfa" },
+  vehicleSec:       { icon: "🚗", color: "#a3e635" },
+  robotics:         { icon: "🦾", color: "#fb923c" },
   crafts:           { icon: "🧵", color: "#ec4899" },
   driving:          { icon: "🚗", color: "#f97316" },
   sports:           { icon: "⚾", color: "#22c55e" },

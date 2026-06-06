@@ -144,7 +144,7 @@ Back navigation: `BackLink` uses `backHref` prop (passed from `StageContainer`) 
 | 61 | `silicon-fab` | Silicon: Sand to Superchips (chip manufacturing) | 10 | si-01 → si-10 | Sky |
 | 62 | `space-race` | Race Through Space (space systems hacking; 6 CTF + 4 quiz) | 10 | space-01 → space-10 | Violet |
 | 63 | `vehicle-sec` | Wired & Autonomous (EV/vehicle security; 6 CTF + 4 quiz) | 10 | vehicle-01 → vehicle-10 | Lime |
-| 64 | `robot-sec` | Machines That Move (robotics security; 6 CTF + 4 quiz) | 10 | robot-01 → robot-10 | Orange |
+| 64 | `robot-sec` | Robotics (robot/autonomous-systems security; 6 CTF + 4 quiz) | 10 | robot-01 → robot-10 | Orange |
 | 65 | `flag-football-1` | Flag Football: Foundations (extended/sports) | 10 | flag-01 → flag-10 | Emerald |
 | 66 | `flag-football-2` | Flag Football: Advanced Play (HS-level) | 10 | flag-11 → flag-20 | Teal |
 | 67 | `flag-football-3` | Flag Football: Playbook & Competition | 10 | flag-21 → flag-30 | Green |
