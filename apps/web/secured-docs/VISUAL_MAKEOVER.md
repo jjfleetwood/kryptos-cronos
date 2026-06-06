@@ -28,7 +28,7 @@ Recurring traits across the top 50 this year:
 | Body font | **Arial** (globals.css overrides the wired-up Geist) | High — no type identity |
 | Display font | none (headings = same family, `font-black`) | High |
 | Type scale | ad-hoc Tailwind sizes per page | Medium |
-| Images | 371 / 691 stages have one; **320 have none**; 1 image max per stage, capped at `max-h-72` in a centered box | High |
+| Images | 371 / 691 have a self-hosted photo; the **320 without one now render an on-brand `GeneratedCover`** (deterministic gradient + emoji + title), so visual coverage is 691/691. Real-photo sourcing for the 320 remains optional polish. | ✅ gap closed |
 | Content format | ✅ **0 / 691 wall-of-text** — every stage bulleted (scan-reformat: 681 reformatted, 0 walls, 2026-06-05) | Done |
 | Motion | homepage has nice keyframes; **no scroll-reveal anywhere**; inner pages static | Medium |
 | Texture | gradients + grid overlays present; **no grain/noise** | Low–Medium |
@@ -66,10 +66,11 @@ Recurring traits across the top 50 this year:
 - [x] **baseball (1–15)** · [x] **debate (1–8)** · [x] **driving (1–3)** · [x] **travel — paris, milan, french-basics, italian-basics (all 20-stage files)** · [x] **crafts — nails, hair-color, hair-styling, tapestry** · [x] **sec-foundations (13)** · [x] **ai-ml-foundations** · [x] **all security/tech-audit/AI/quantum + cisco + umbrella + stages.ts + first-journey** (done earlier)
   - Travel/language files (paris/milan/french/italian) were short, already-itemized phrase entries; reformatted anyway per Jacob's "do all in this format" instruction — phrase/fact lists converted to clean bullets.
   - Note: yield varies — list-rich how-to stages bullet heavily; concept/narrative stages get their genuine inline lists bulleted (≥3 per stage) with surrounding prose kept as lead/closing sentences.
-**3b. Images — 312 stages with no image + section images for text-heavy bodies.**
-- [ ] Source self-hosted images (Wikimedia pipeline → sharp 800px → `public/img/` → `STAGE_IMAGES`) for the ~312 imageless stages.
-- [ ] Extend `StageInfo` to support a **second/section image** (technical or incident) so long bodies get visual breaks. Add optional `technicalImage` / `incidentImage` support keyed by stage id.
-- [ ] Bigger, art-directed image frame (see Phase 5).
+**3b. Images — ✅ coverage gap closed via `GeneratedCover` (2026-06-05).**
+- [x] **Imageless stages now render `GeneratedCover`** (`apps/web/src/components/GeneratedCover.tsx`) — a deterministic, on-brand title card (epoch-hashed gradient, dot-grid texture, emoji motif, display-font title, era chip, stage number). SSR-safe, responsive (`aspect-[16/9]`), reduced-motion-safe. Wired in `StageInfo` as the fallback when no `STAGE_IMAGES`/`stage.image`/`DEBATE_EPOCH_IMAGE` exists → visual coverage is now 691/691.
+- [ ] (Optional) Source real self-hosted photos (Wikimedia → sharp 800px → `public/img/` → `STAGE_IMAGES`) to replace generated covers where a real photo adds value.
+- [ ] Extend `StageInfo` to support a **second/section image** (technical or incident) so long bodies get visual breaks (`technicalImage` / `incidentImage` keyed by stage id).
+- [x] Art-directed image frame — rounded-2xl, ring, gradient mat, hover-zoom (reduced-motion-safe), caption (done earlier + this pass).
 
 ### Phase 4 — Page-by-page redesign (priority order)
 - [ ] **Stage reading view (`StageInfo`)** — the most-read surface: larger imagery, pull-quote overview, better section dividers, captions, sticky progress.

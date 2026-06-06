@@ -6,6 +6,7 @@ import GaugeBar from "./GaugeBar";
 import BackLink from "./BackLink";
 import RichText from "./RichText";
 import ZoomableImage from "./ZoomableImage";
+import GeneratedCover from "./GeneratedCover";
 import type { StageConfig } from "@kryptos/core/types";
 import type { StageTranslation } from "@kryptos/core/translations/types";
 import { stageDownloads } from "@kryptos/core/stage-downloads";
@@ -456,26 +457,41 @@ export default function StageInfo({
               />
             ))}
           </div>
-          {(STAGE_IMAGES[stage.id] ?? stage.image ?? DEBATE_EPOCH_IMAGE[stage.epochId]) && (
-            <figure className="mt-6 group">
-              <div className="relative rounded-2xl overflow-hidden border border-white/10 ring-1 ring-white/5 bg-gradient-to-b from-white/[0.06] to-black/40 shadow-[0_10px_45px_rgba(0,0,0,0.45)]">
-                <ZoomableImage
-                  src={STAGE_IMAGES[stage.id] ?? stage.image ?? DEBATE_EPOCH_IMAGE[stage.epochId] ?? STAGE_PLACEHOLDER}
-                  alt={stage.title}
-                  className="w-full max-h-[26rem] object-contain mx-auto transition-transform duration-700 ease-out group-hover:scale-[1.02]"
-                  onError={(e) => {
-                    const img = e.currentTarget;
-                    if (!img.src.endsWith(STAGE_PLACEHOLDER)) img.src = STAGE_PLACEHOLDER;
-                  }}
-                />
-                <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black/40 to-transparent" />
-              </div>
-              <figcaption className="mt-2.5 flex items-center justify-center gap-1.5 text-center text-xs text-gray-600">
-                <span>{stage.wonder.emoji}</span>
-                <span>{stage.wonder.name} · {stage.wonder.location}</span>
-              </figcaption>
-            </figure>
-          )}
+          {(() => {
+            const realImage = STAGE_IMAGES[stage.id] ?? stage.image ?? DEBATE_EPOCH_IMAGE[stage.epochId];
+            return (
+              <figure className="mt-6 group">
+                {realImage ? (
+                  <div className="relative rounded-2xl overflow-hidden border border-white/10 ring-1 ring-white/5 bg-gradient-to-b from-white/[0.06] to-black/40 shadow-[0_10px_45px_rgba(0,0,0,0.45)]">
+                    <ZoomableImage
+                      src={realImage}
+                      alt={stage.title}
+                      className="w-full max-h-[26rem] object-contain mx-auto transition-transform duration-700 ease-out group-hover:scale-[1.02] motion-reduce:transform-none motion-reduce:transition-none"
+                      onError={(e) => {
+                        const img = e.currentTarget;
+                        if (!img.src.endsWith(STAGE_PLACEHOLDER)) img.src = STAGE_PLACEHOLDER;
+                      }}
+                    />
+                    <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black/40 to-transparent" />
+                  </div>
+                ) : (
+                  // No self-hosted image for this stage → on-brand generated cover
+                  // (closes the imageless-stage gap without sourcing assets).
+                  <GeneratedCover
+                    title={stage.title}
+                    label={stage.wonder.era}
+                    emoji={stage.wonder.emoji}
+                    seed={stage.epochId}
+                    order={stage.order}
+                  />
+                )}
+                <figcaption className="mt-2.5 flex items-center justify-center gap-1.5 text-center text-xs text-gray-600">
+                  <span>{stage.wonder.emoji}</span>
+                  <span>{stage.wonder.name} · {stage.wonder.location}</span>
+                </figcaption>
+              </figure>
+            );
+          })()}
         </section>
 
         {/* ── Flow — attack chain for exploit (CTF) stages, concept flow otherwise ── */}
