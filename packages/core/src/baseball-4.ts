@@ -1598,7 +1598,7 @@ export const baseball4Stages: StageConfig[] = [
   → Inner-half fastball destruction: .360+ contact
   Lesson: Position-defying power from the catcher spot
 
-  ADRIAN BELTRE (.275, 477 HR career):
+  ADRIAN BELTRE (.286, 477 HR career):
   → Low-ball power: hip flexibility = off-zone power
   → Aggressive first-pitch hitter: punishes mistakes
   Lesson: Mechanical uniqueness can be a weapon
@@ -1609,7 +1609,7 @@ export const baseball4Stages: StageConfig[] = [
   → Calm, unhurried: identical approach every at-bat
   Lesson: Plate discipline + bat speed = elite production
 
-  COREY SEAGER (.267 avg with Dodgers, 2x WS MVP):
+  COREY SEAGER (.297 avg with Dodgers, 2x WS MVP):
   → Launch angle evolution: contact → power hitter
   → Data-driven approach change — Statcast informed
   Lesson: Elite hitters evolve intentionally with data

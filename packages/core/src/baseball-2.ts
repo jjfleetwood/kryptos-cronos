@@ -1527,7 +1527,7 @@ export const baseball2Stages: StageConfig[] = [
         codeExample: {
           label: "Dodger Hitting Legacy — Era by Era",
           code: `  BROOKLYN ERA (1947–1957):
-  Jackie Robinson:  .311 avg, 137 HR, 740 OBP
+  Jackie Robinson:  .311 avg, 137 HR, .409 OBP
   → Legacy: Bat control, discipline, clutch
   Duke Snider:      .295 avg, 407 HR
   → Legacy: Pull power, .300 seasons
@@ -1535,7 +1535,7 @@ export const baseball2Stages: StageConfig[] = [
   LOS ANGELES ERA:
   Mike Piazza:      .308 avg, 427 HR (Dodger/career)
   → Legacy: Right-handed power, catcher offense
-  Adrian Beltre:    .275 avg, 477 HR (career)
+  Adrian Beltre:    .286 avg, 477 HR (career)
   → Legacy: Low-ball hitting, aggressive approach
   Manny Ramirez:    .396 OBP with Dodgers (2008–10)
   → Legacy: Plate discipline and power combination
