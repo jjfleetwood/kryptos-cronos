@@ -4,7 +4,7 @@ import { useEffect, useState, useMemo, type ReactNode } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { getSession, setSession } from "@/lib/auth";
-import { stages } from "@kryptos/core/stages";
+import { stagesMeta as stages } from "@kryptos/core/stages-meta";
 import { CONTENT_FLAGS, type ContentFlag } from "@kryptos/core/content-flags";
 import { USER_GROUPS, GROUP_ICONS, GROUP_LABELS, type UserGroup } from "@/lib/groups";
 

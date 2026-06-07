@@ -1,3 +1,7 @@
+// ⚠️ HEAVY BARREL — imports all 72 epoch content files (~10 MB of overviews,
+// CTF terminals, and quizzes). NEVER import this from a "use client" component
+// or any client-reachable module; use `@kryptos/core/stages-meta` (client-safe
+// metadata) instead. Server/build only.
 import type { StageConfig, EpochConfig } from "./types";
 import { firstJourneyEpoch, firstJourneyStages } from "./first-journey";
 import { firstJourneyStages2 } from "./first-journey-2";

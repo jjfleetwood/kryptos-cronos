@@ -11,6 +11,10 @@ node_modules/
 dist/
 out/
 
+# Codegen temp (gen-stages-meta transpile dir)
+.tmp-meta/
+.tmp-count/
+
 # Env files
 .env
 .env.local

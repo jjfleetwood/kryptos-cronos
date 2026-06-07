@@ -240,7 +240,8 @@ Back navigation: `BackLink` uses `backHref` prop (passed from `StageContainer`) 
 2. Add import + epoch entry + stage spread to `packages/core/src/stages.ts`
 3. Add `epochAccent`, `cardBorder`, `cardEmojiBg` entries to `apps/web/src/app/stages/epoch-theme.ts`
 4. Add epoch ID to the appropriate group in `epochGroups` in `apps/web/src/app/stages/page.tsx`
-5. From repo root: `npm run build` (turbo) + `npx tsc --noEmit --skipLibCheck -p apps/web/tsconfig.json`
+5. **Regenerate client metadata:** `npm run gen:meta -w @kryptos/core` (rebuilds `packages/core/src/stages-meta.generated.ts` — the client-safe metadata; CI `check:meta` fails if you forget). Client/listing pages read `@kryptos/core/stages-meta`, NEVER the heavy `stages.ts` barrel.
+6. From repo root: `npm run build` (turbo) + `npx tsc --noEmit --skipLibCheck -p apps/web/tsconfig.json`
 
 ---
 

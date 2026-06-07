@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useCallback } from "react";
 import Link from "next/link";
-import { stages as allStages, epochs } from "@kryptos/core/stages";
+import { stagesMeta as allStages, epochs } from "@kryptos/core/stages-meta";
 import { fetchProgress } from "@/lib/progress";
 import { getSession, setSession } from "@/lib/auth";
 import { useSkin } from "@/contexts/SkinContext";
