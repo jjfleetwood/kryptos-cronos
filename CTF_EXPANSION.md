@@ -40,6 +40,9 @@ Convert the ~292 pre-existing 2-step `mkCtf` CTFs to 3-step `mkDeepCtf`. **Trick
 **Deepened so far (7 epochs, 46 CTFs): physics-of-hacking, ot-sec, threat-frameworks, space-race-2, robot-sec-2, vehicle-sec-2** (+ first epoch physics). All shared `mkDeepCtf`, validate 371/0.
 **✅ All 6 FACTORY-style epochs deepened** (physics-of-hacking, ot-sec, threat-frameworks, space-race-2, robot-sec-2, vehicle-sec-2 = 40 CTFs). These shared the local 2-step `mkCtf` record pattern — clean mechanical conversion.
 
+**INLINE METHOD PROVEN (fast):** most inline CTFs already carry a BONUS recon command (e.g. scan-rf, scan-charger, list-ecus) that already flows "Next: <step2>". Promote it to a real 3rd fragment: edit only the `hints` + `fragments` (re-split the flag across it). 1 edit per CTF, flags identical. Where there's no bonus command, add one (like vehicle-02/03 got map-ids/analyze-algo).
+- [x] **vehicle-sec** v1 (6 inline) — DONE 2026-06-07 (CAN, UDS, keyless relay, OCPP, telematics pivot, ADAS spoof). Now 100% 3-step.
+
 **REMAINING use INLINE `ctf:{...}` objects** (no factory) — a different, heavier per-CTF conversion: each stage has an inline `ctf` with its own `fragments`/`files`/`extraCommands` functions written directly in the stage object. To deepen: in each inline `ctf`, re-split the flag across an added 3rd fragment, add a 3rd `extraCommands` entry + richer `$cmd` lines + (optionally) an artifact file. Flags stay byte-identical (re-split). Epochs: vehicle-sec/robot-sec/space-race v1 (6 each, e.g. vehicle-sec.ts l.172 fragments), cisco-2/3/4/5, mitre, mitre-atlas, owasp-llm, quantum-1/2/3/4/5, umbrella, tech-audit-2, emerging-tech, ancient/cisco-core (stages.ts), first-journey. ~15+ epochs, ~250 CTFs.
 
 ## Status

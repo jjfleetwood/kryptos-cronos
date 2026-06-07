@@ -165,13 +165,15 @@ export const vehicleSecStages: StageConfig[] = [
       hint: "Listen, reverse, inject. Sniff the bus to map IDs to functions, find the door-lock ID, then transmit your own frame.",
       hints: [
         "Read the mission briefing. Run: cat briefing.txt",
-        "Passively capture and map the bus traffic. Run: sniff-can",
+        "Passively capture the bus traffic. Run: sniff-can",
+        "Reverse which arbitration ID commands the locks. Run: map-ids",
         "Inject the door-unlock frame you reversed. Run: inject-frame",
         "Run 'assemble' to view collected fragments, then submit the flag",
       ],
       fragments: [
         { trigger: "/briefing.txt", value: "FLAG{C4N_BUS_", label: "Mission Brief — CAN Injection" },
-        { trigger: "sniff-can", value: "N0_4UTH_", label: "Bus Mapped — No Authentication" },
+        { trigger: "sniff-can", value: "N0_", label: "Bus Sniffed" },
+        { trigger: "map-ids", value: "4UTH_", label: "Door-Lock ID Reversed — No Authentication" },
         { trigger: "inject-frame", value: "1NJ3CT3D}", label: "Frame Injected — Doors Unlocked" },
       ],
       files: {
@@ -190,21 +192,28 @@ export const vehicleSecStages: StageConfig[] = [
       extraCommands: {
         "sniff-can": () => ({
           lines: [
-            "Capturing CAN @ 500 kbit/s ...",
-            "Correlating frames with actions (lock button pressed):",
-            "  ID 0x19B  data: 00 00 00 ...  -> changes on LOCK/UNLOCK",
-            "  ID 0x0C9  data: rpm/speed (powertrain)",
-            "  ID 0x244  data: door ajar status",
-            "Door-lock command = ID 0x19B, byte0: 01=lock 02=unlock.",
-            "Next: inject-frame",
+            "$ sniff-can --bitrate 500k",
+            "Capturing CAN @ 500 kbit/s — every frame is broadcast and unauthenticated (no SecOC).",
+            "Logged ~1,200 frames while you worked the lock button.",
+            "Next: map-ids",
+          ],
+        }),
+        "map-ids": () => ({
+          lines: [
+            "$ map-ids --correlate lock-button",
+            "Correlating captured frames with the LOCK/UNLOCK press:",
+            "  ID 0x19B  byte0: 01=lock 02=unlock   <-- door-lock command",
+            "  ID 0x0C9 = powertrain (rpm/speed), ID 0x244 = door-ajar (ignore).",
+            "Door locks live on arbitration ID 0x19B. Next: inject-frame",
           ],
         }),
         "inject-frame": () => ({
           lines: [
-            "Transmitting forged frame: ID=0x19B data=02 00 00 00 00 00 00 00",
-            "Body control module accepts frame (no authentication) ...",
-            "*CLUNK* — all doors unlocked.",
-            "CAN injection successful. Run 'assemble' to retrieve your fragment.",
+            "$ inject-frame --id 0x19B --data 02000000...",
+            "Body control module accepts the forged frame (no authentication) ...",
+            "*CLUNK* — all doors unlocked. CAN injection successful.",
+            "Fix: SecOC message authentication + a gateway that filters OBD-II writes.",
+            "Run 'assemble', then submit the flag.",
           ],
         }),
         "list-ecus": () => ({
@@ -295,12 +304,14 @@ export const vehicleSecStages: StageConfig[] = [
       hints: [
         "Read the mission briefing. Run: cat briefing.txt",
         "Request a Security Access seed from the ECU. Run: request-seed",
-        "Compute/brute the matching key (weak algo, no lockout). Run: brute-key",
+        "Recover the weak seed-key algorithm. Run: analyze-algo",
+        "Compute the matching key and unlock the ECU. Run: brute-key",
         "Run 'assemble' to view collected fragments, then submit the flag",
       ],
       fragments: [
         { trigger: "/briefing.txt", value: "FLAG{UDS_", label: "Mission Brief — Security Access" },
-        { trigger: "request-seed", value: "S33D_K3Y_", label: "Seed Received" },
+        { trigger: "request-seed", value: "S33D_", label: "Seed Received" },
+        { trigger: "analyze-algo", value: "K3Y_", label: "Algorithm Recovered" },
         { trigger: "brute-key", value: "BRUT3D_3CU}", label: "Key Cracked — ECU Unlocked" },
       ],
       files: {
@@ -319,18 +330,26 @@ export const vehicleSecStages: StageConfig[] = [
       extraCommands: {
         "request-seed": () => ({
           lines: [
-            "Entering extended session (0x10 0x03) ... OK",
-            "SecurityAccess requestSeed (0x27 0x01) ...",
-            "ECU seed = 0x4F2A9C01",
-            "No lockout enforced. Next: brute-key",
+            "$ request-seed",
+            "Entered extended session (0x10 0x03); sent SecurityAccess requestSeed (0x27 0x01).",
+            "ECU seed = 0x4F2A9C01 — and no attempt lockout is enforced.",
+            "Next: analyze-algo",
+          ],
+        }),
+        "analyze-algo": () => ({
+          lines: [
+            "$ analyze-algo --dump-tool",
+            "Pulled the seed-key routine from a diagnostic tool: rotate-left 3, then XOR 0xA5A5A5A5.",
+            "Obfuscation, not cryptography — once leaked, every key is computable.",
+            "Next: brute-key",
           ],
         }),
         "brute-key": () => ({
           lines: [
-            "Applying known seed-key algorithm (rotate-left 3, XOR 0xA5A5A5A5) ...",
-            "Computed key = 0x9C7D3A...  sending sendKey (0x27 0x02) ...",
-            "ECU response: securityAccess GRANTED — programming services unlocked.",
-            "You could now RequestDownload/TransferData to reflash. Run 'assemble'.",
+            "$ brute-key --seed 0x4F2A9C01",
+            "Applied the recovered algorithm -> key = 0x9C7D3A...; sent sendKey (0x27 0x02).",
+            "ECU: securityAccess GRANTED — programming/reflash services unlocked.",
+            "Fix: per-ECU crypto Security Access, lockouts, signed firmware. Run 'assemble'.",
           ],
         }),
         "scan-uds": () => ({
@@ -422,13 +441,15 @@ export const vehicleSecStages: StageConfig[] = [
       hint: "Bridge the distance. Capture/withhold a code, then relay the live fob-car exchange so the car believes the key is present.",
       hints: [
         "Read the mission briefing. Run: cat briefing.txt",
-        "Jam-and-capture a rolling code from the fob. Run: capture-fob",
+        "Find the fob's RF bands. Run: scan-rf",
+        "Jam-and-hold a rolling code (RollJam). Run: capture-fob",
         "Relay the live challenge to unlock and start. Run: relay-unlock",
         "Run 'assemble' to view collected fragments, then submit the flag",
       ],
       fragments: [
         { trigger: "/briefing.txt", value: "FLAG{R3L4Y_", label: "Mission Brief — Keyless Relay" },
-        { trigger: "capture-fob", value: "R0LLJ4M_", label: "Rolling Code Captured (held)" },
+        { trigger: "scan-rf", value: "R0LL", label: "Fob Bands Found" },
+        { trigger: "capture-fob", value: "J4M_", label: "Rolling Code Captured (held)" },
         { trigger: "relay-unlock", value: "UNL0CK3D}", label: "Relayed — Unlocked & Started" },
       ],
       files: {
@@ -548,13 +569,15 @@ export const vehicleSecStages: StageConfig[] = [
       hint: "It's an unauthenticated WebSocket — get in the middle. Connect to the OCPP stream, impersonate the backend, and forge the transaction.",
       hints: [
         "Read the mission briefing. Run: cat briefing.txt",
+        "Scan the charger and its OCPP backend. Run: scan-charger",
         "Man-in-the-middle the OCPP link to the backend. Run: connect-csms",
         "Forge a StartTransaction and meter values. Run: hijack-session",
         "Run 'assemble' to view collected fragments, then submit the flag",
       ],
       fragments: [
         { trigger: "/briefing.txt", value: "FLAG{0CPP_", label: "Mission Brief — Charge Hijack" },
-        { trigger: "connect-csms", value: "CH4RG3R_", label: "OCPP Link Intercepted" },
+        { trigger: "scan-charger", value: "CH4RG", label: "Charger & Backend Scanned" },
+        { trigger: "connect-csms", value: "3R_", label: "OCPP Link Intercepted" },
         { trigger: "hijack-session", value: "H1J4CK3D}", label: "Session Forged — Free Charge" },
       ],
       files: {
@@ -750,13 +773,15 @@ export const vehicleSecStages: StageConfig[] = [
       hint: "Remote first, then bridge. Exploit the exposed telematics service, reflash the bridge to reach CAN, then send a CAN frame from the connected domain.",
       hints: [
         "Read the mission briefing. Run: cat briefing.txt",
-        "Exploit the exposed telematics/head-unit service. Run: exploit-tcu",
+        "Find the exposed telematics service on the carrier network. Run: scan-telematics",
+        "Exploit the head unit and bridge to CAN. Run: exploit-tcu",
         "Send a drive-critical frame onto the bridged CAN bus. Run: send-can",
         "Run 'assemble' to view collected fragments, then submit the flag",
       ],
       fragments: [
         { trigger: "/briefing.txt", value: "FLAG{T3L3M4T1CS_", label: "Mission Brief — Remote Pivot" },
-        { trigger: "exploit-tcu", value: "R3M0T3_C4N_", label: "Head Unit Owned — Bridged to CAN" },
+        { trigger: "scan-telematics", value: "R3M0T3_", label: "Telematics Service Found" },
+        { trigger: "exploit-tcu", value: "C4N_", label: "Head Unit Owned — Bridged to CAN" },
         { trigger: "send-can", value: "PWN}", label: "Drive-Critical Frame Sent" },
       ],
       files: {
@@ -881,13 +906,15 @@ export const vehicleSecStages: StageConfig[] = [
       hint: "Lie to the sensors, not the software. Craft a phantom-object spoof, then inject it so the perception stack reports an obstacle and the car brakes.",
       hints: [
         "Read the mission briefing. Run: cat briefing.txt",
+        "Enumerate the ADAS sensors and fusion policy. Run: scan-sensors",
         "Craft the phantom-obstacle spoof (LiDAR + projection). Run: craft-spoof",
         "Inject it into the perception pipeline. Run: inject-sensor",
         "Run 'assemble' to view collected fragments, then submit the flag",
       ],
       fragments: [
         { trigger: "/briefing.txt", value: "FLAG{LID4R_", label: "Mission Brief — Sensor Spoof" },
-        { trigger: "craft-spoof", value: "SP00F3D_PH4NT0M_", label: "Phantom Obstacle Crafted" },
+        { trigger: "scan-sensors", value: "SP00F3D_", label: "Sensors & Fusion Enumerated" },
+        { trigger: "craft-spoof", value: "PH4NT0M_", label: "Phantom Obstacle Crafted" },
         { trigger: "inject-sensor", value: "BR4K3}", label: "Phantom Brake Triggered" },
       ],
       files: {
