@@ -8,7 +8,7 @@ import BackLink from "./BackLink";
 import AttackDiagram from "./AttackDiagram";
 import FlagSuccessModal from "./FlagSuccessModal";
 import HintChatbot from "./HintChatbot";
-import type { CtfConfig, StageConfig, CtfQuizEntry, AuditQuizEntry } from "@kryptos/core/types";
+import type { CtfConfig, StageConfig, CtfQuizEntry, AuditQuizEntry, CtfCommand } from "@kryptos/core/types";
 import CtfQuizPanel from "./CtfQuizPanel";
 import AuditQuizPanel from "./AuditQuizPanel";
 import { getExtraCommands } from "@kryptos/core/stage-commands";
@@ -314,7 +314,16 @@ export default function CtfChallenge({ stage, backHref = "/stages", isPro = fals
   const ctf = stage.ctf!;
   const hints = ctf.hints ?? [ctf.hint];
   const minFragments = ctf.minFragments ?? ctf.fragments?.length ?? 0;
-  const extraCommands = getExtraCommands(stage.id);
+  // Lazily loaded so the CTF terminal never pulls the full content barrel into
+  // the page first-load (only the current stage's epoch chunk, on demand).
+  const [extraCommands, setExtraCommands] = useState<Record<string, CtfCommand> | undefined>(undefined);
+  useEffect(() => {
+    let alive = true;
+    getExtraCommands(stage.epochId, stage.id).then((cmds) => {
+      if (alive) setExtraCommands(cmds);
+    });
+    return () => { alive = false; };
+  }, [stage.epochId, stage.id]);
 
   function tr(key: string, vars: Record<string, string | number>): string {
     let s = t(key);
