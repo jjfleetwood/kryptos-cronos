@@ -35,7 +35,10 @@ Convert the ~292 pre-existing 2-step `mkCtf` CTFs to 3-step `mkDeepCtf`. **Trick
 - [x] **threat-frameworks** (6 original) — DONE 2026-06-07 (kill chain, Diamond, ATT&CK tag, Pyramid of Pain, D3FEND, STIX/TAXII). Now 100% 3-step.
 - [x] **space-race-2** (6 original) — DONE 2026-06-07 (uplink hijack, downlink eavesdrop, GNSS spoof, jamming, ground breach, ISL pivot). Now 100% 3-step.
 - [x] **robot-sec-2** (6 original) — DONE 2026-06-07 (DDS join, AMR fleet, tractor steer, cloud BOLA teleop, GPS spoof, policy poison). Now 100% 3-step.
-- [ ] vehicle-sec-2 (6), vehicle-sec/robot-sec/space-race v1 (6 each), cisco-2/3/4/5, mitre, mitre-atlas, owasp-llm, quantum-1/2/3/4/5, umbrella, tech-audit-2, emerging-tech, ancient/cisco-core (stages.ts), first-journey(inline). Same per-epoch method.
+- [x] **vehicle-sec-2** (6 original) — DONE 2026-06-07 (SOME/IP spoof, V2X ghost, TPMS spoof, relay key, ISO 15118 PnC, fleet-API BOLA). Now 100% 3-step.
+
+**Deepened so far (7 epochs, 46 CTFs): physics-of-hacking, ot-sec, threat-frameworks, space-race-2, robot-sec-2, vehicle-sec-2** (+ first epoch physics). All shared `mkDeepCtf`, validate 371/0.
+- [ ] vehicle-sec/robot-sec/space-race v1 (6 each), cisco-2/3/4/5, mitre, mitre-atlas, owasp-llm, quantum-1/2/3/4/5, umbrella, tech-audit-2, emerging-tech, ancient/cisco-core (stages.ts), first-journey(inline). Same per-epoch method (v1 epochs need the mkDeepCtf import added).
 
 ## Status
 371 CTFs total (was 292). 6 fundamentals epochs + 5 deep-tech epochs' quiz stages = 79 new CTFs. validate-ctf: 0 problems. Shared factory: `packages/core/src/ctf-deep.ts`.

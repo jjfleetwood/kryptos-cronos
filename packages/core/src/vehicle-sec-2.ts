@@ -755,75 +755,164 @@ export const vehicleSec2Stages: StageConfig[] = [
 ];
 
 // ── CTF mode — hands-on automotive terminal per stage (quiz = half-clear) ────
-type Cmd = [verb: string, frag: string, lines: string[]];
-function mkCtf(scenario: string, brief: string, open: string, a: Cmd, b: Cmd, labels: [string, string, string], hints: string[]): CtfConfig {
-  return {
-    scenario, hint: hints[0], hints,
-    fragments: [
-      { trigger: "/briefing.txt", value: open, label: labels[0] },
-      { trigger: a[0], value: a[1], label: labels[1] },
-      { trigger: b[0], value: b[1], label: labels[2] },
-    ],
-    files: { "/briefing.txt": brief },
-    dirs: { "/": [{ name: "briefing.txt", isDir: false }] },
-    extraCommands: { [a[0]]: () => ({ lines: a[2] }), [b[0]]: () => ({ lines: b[2] }) },
-  };
-}
+// All CTFs now use the shared 3-step mkDeepCtf factory (deepened from 2-step).
 
 const V2_CTF: Record<string, CtfConfig> = {
-  "v2-02": mkCtf(
-    "You're on a vehicle's Automotive Ethernet network. Enumerate the SOME/IP services, then spoof an OfferService to impersonate an ECU and inject false data.",
-    "OP: SERVICE IMPOSTOR\nTarget: SOME/IP-SD on the in-vehicle Ethernet (no auth).\nGoal: enumerate services, then spoof an OfferService.\nSequence: enum-services -> spoof-offer",
-    "FLAG{S0M31P_",
-    ["enum-services", "S3RV1C3_", ["Sending FindService and watching OfferService responses ...", "Found service 0x1234 (SpeedData) offered by ECU 10.0.0.7.", "Discovery is unauthenticated. Next: spoof-offer"]],
-    ["spoof-offer", "SP00F3D}", ["Broadcasting a forged OfferService for 0x1234 from your host ...", "Clients re-subscribed to YOU — now feeding them fake speed values.", "Run 'assemble' to retrieve your fragment."]],
-    ["Mission Brief", "Services Enumerated", "Offer Spoofed"],
-    ["Read the briefing. Run: cat briefing.txt", "Enumerate services. Run: enum-services", "Spoof an offer. Run: spoof-offer", "Run 'assemble', then submit the flag"],
+  "v2-02": mkDeepCtf(
+    "You're on a vehicle's Automotive Ethernet network. Enumerate the SOME/IP services, identify the high-value one to impersonate, then spoof an OfferService to feed clients false data.",
+    "OP: SERVICE IMPOSTOR\nTarget: SOME/IP-SD on the in-vehicle Ethernet (no auth).\nGoal: enumerate, pick a target, spoof an OfferService.\nSequence: enum-services -> identify-target -> spoof-offer",
+    "FLAG{",
+    "Mission Brief",
+    ["enum-services", "S0M31P_", "Services Enumerated", [
+      "$ enum-services --find",
+      "Sent FindService and watched OfferService replies — discovery is unauthenticated.",
+      "Several ECUs advertise services on the bus.",
+      "Next: identify-target",
+    ]],
+    ["identify-target", "S3RV1C3_", "Target Identified", [
+      "$ identify-target",
+      "Service 0x1234 (SpeedData) is offered by ECU 10.0.0.7 and consumed by safety functions.",
+      "Impersonating it poisons everything downstream.",
+      "Next: spoof-offer",
+    ]],
+    ["spoof-offer", "SP00F3D}", "Offer Spoofed", [
+      "$ spoof-offer --service 0x1234",
+      "Broadcast a forged OfferService -> clients re-subscribed to YOU, now fed fake speed values.",
+      "Fix: SOME/IP-SD authentication, SecOC, network segmentation/IDS.",
+      "Run 'assemble', then submit the flag.",
+    ]],
+    ["Read the briefing. Run: cat briefing.txt", "Enumerate services. Run: enum-services", "Identify the target. Run: identify-target", "Spoof an offer. Run: spoof-offer", "Run 'assemble', then submit the flag"],
+    { "someip.txt": "discovery: SOME/IP-SD (no auth)\ntarget: service 0x1234 SpeedData @10.0.0.7\nfix: SecOC + segmentation" },
   ),
-  "v2-03": mkCtf(
-    "You have a C-V2X radio at an intersection. Sniff the genuine Basic Safety Messages, then inject a forged 'ghost' vehicle that makes nearby cars react.",
-    "OP: PHANTOM CAR\nTarget: a V2X channel of vehicles broadcasting BSMs.\nGoal: sniff real BSMs, then inject a forged ghost vehicle.\nSequence: sniff-bsm -> inject-ghost",
+  "v2-03": mkDeepCtf(
+    "You have a C-V2X radio at an intersection. Sniff the genuine Basic Safety Messages, craft a forged 'ghost' vehicle, then inject it so nearby cars react to a car that isn't there.",
+    "OP: PHANTOM CAR\nTarget: a V2X channel of vehicles broadcasting BSMs.\nGoal: sniff BSMs, craft a ghost, inject it.\nSequence: sniff-bsm -> craft-ghost -> inject-ghost",
     "FLAG{V2X_",
-    ["sniff-bsm", "BSM_F0RG3D_", ["Capturing Basic Safety Messages on the C-V2X channel ...", "Decoded position/speed/heading broadcasts ~10/sec from 6 vehicles.", "Receivers near you don't strictly verify signatures. Next: inject-ghost"]],
-    ["inject-ghost", "GH0ST}", ["Transmitting a forged BSM: a stopped vehicle dead ahead ...", "Nearby cars triggered collision warnings and braked for a car that isn't there.", "Run 'assemble' to retrieve your fragment."]],
-    ["Mission Brief", "BSMs Sniffed", "Ghost Injected"],
-    ["Read the briefing. Run: cat briefing.txt", "Sniff safety messages. Run: sniff-bsm", "Inject a ghost car. Run: inject-ghost", "Run 'assemble', then submit the flag"],
+    "Mission Brief",
+    ["sniff-bsm", "BSM_", "BSMs Sniffed", [
+      "$ sniff-bsm --cv2x",
+      "Captured Basic Safety Messages: position/speed/heading ~10/sec from 6 vehicles.",
+      "Nearby receivers don't strictly verify the message signatures.",
+      "Next: craft-ghost",
+    ]],
+    ["craft-ghost", "F0RG3D_", "Ghost Crafted", [
+      "$ craft-ghost --stopped --ahead",
+      "Built a forged BSM for a stopped vehicle dead ahead in the target's lane.",
+      "Well-formed enough to be trusted.",
+      "Next: inject-ghost",
+    ]],
+    ["inject-ghost", "GH0ST}", "Ghost Injected", [
+      "$ inject-ghost",
+      "Transmitted the ghost -> nearby cars threw collision warnings and braked for nothing.",
+      "Fix: enforce IEEE 1609.2 message signing + misbehavior detection.",
+      "Run 'assemble', then submit the flag.",
+    ]],
+    ["Read the briefing. Run: cat briefing.txt", "Sniff safety messages. Run: sniff-bsm", "Craft a ghost. Run: craft-ghost", "Inject the ghost. Run: inject-ghost", "Run 'assemble', then submit the flag"],
+    { "v2x.txt": "msgs: BSM ~10/sec\nflaw: signatures not strictly verified\nfix: IEEE 1609.2 + misbehavior detection" },
   ),
-  "v2-04": mkCtf(
-    "With a cheap SDR, capture a car's TPMS transmission, then replay a spoofed sensor reading to trigger a false dashboard warning.",
-    "OP: TIRE WHISPER\nTarget: a vehicle's 433 MHz TPMS sensors (no auth).\nGoal: capture a TPMS packet, then replay a spoofed reading.\nSequence: capture-tpms -> replay-sensor",
-    "FLAG{TPMS_",
-    ["capture-tpms", "S3NS0R_", ["Tuning the SDR to 433 MHz and capturing TPMS packets ...", "Got sensor ID 0x8AF2C1, 32 psi — broadcast in the clear, static ID.", "Next: replay-sensor"]],
-    ["replay-sensor", "SP00F3D}", ["Replaying a forged packet for ID 0x8AF2C1 reporting 12 psi ...", "Dashboard lit a low-pressure warning — the car trusted the radio.", "Run 'assemble' to retrieve your fragment."]],
-    ["Mission Brief", "TPMS Captured", "Sensor Spoofed"],
-    ["Read the briefing. Run: cat briefing.txt", "Capture a TPMS packet. Run: capture-tpms", "Replay a spoof. Run: replay-sensor", "Run 'assemble', then submit the flag"],
+  "v2-04": mkDeepCtf(
+    "With a cheap SDR, capture a car's TPMS transmission, clone the static sensor ID, then replay a spoofed reading to trigger a false dashboard warning.",
+    "OP: TIRE WHISPER\nTarget: a vehicle's 433 MHz TPMS sensors (no auth).\nGoal: capture, clone the ID, replay a spoof.\nSequence: capture-tpms -> clone-id -> replay-sensor",
+    "FLAG{",
+    "Mission Brief",
+    ["capture-tpms", "TPMS_", "TPMS Captured", [
+      "$ capture-tpms --433mhz",
+      "Tuned the SDR to 433 MHz and captured TPMS packets in the clear.",
+      "Sensor ID 0x8AF2C1 reporting 32 psi.",
+      "Next: clone-id",
+    ]],
+    ["clone-id", "S3NS0R_", "ID Cloned", [
+      "$ clone-id 0x8AF2C1",
+      "The sensor ID is static and unauthenticated -> trivially cloned into a forged frame.",
+      "The ECU keys only on the ID.",
+      "Next: replay-sensor",
+    ]],
+    ["replay-sensor", "SP00F3D}", "Sensor Spoofed", [
+      "$ replay-sensor --psi 12",
+      "Replayed a forged packet for 0x8AF2C1 at 12 psi -> dashboard lit a low-pressure warning.",
+      "TPMS IDs also enable tracking. Fix: authenticated sensors, plausibility checks.",
+      "Run 'assemble', then submit the flag.",
+    ]],
+    ["Read the briefing. Run: cat briefing.txt", "Capture a TPMS packet. Run: capture-tpms", "Clone the ID. Run: clone-id", "Replay a spoof. Run: replay-sensor", "Run 'assemble', then submit the flag"],
+    { "tpms.txt": "band: 433 MHz, cleartext\nsensor ID: 0x8AF2C1 (static, no auth)\nfix: authenticated sensors" },
   ),
-  "v2-05": mkCtf(
-    "A keyless car sits in a driveway; the fob is inside the house. Use two relay devices to capture the fob's response and relay it to the car, unlocking and starting it.",
-    "OP: RELAY RUN\nTarget: a passive keyless entry (PKES) car — no distance bounding.\nGoal: capture the fob signal, then relay it to the car.\nSequence: capture-fob -> relay-signal",
-    "FLAG{R3L4Y_",
-    ["capture-fob", "K3Y_", ["Placing relay unit A by the house to pick up the fob ...", "Captured the car's LF challenge and the fob's UHF response.", "The car only checks the response, not distance. Next: relay-signal"]],
-    ["relay-signal", "UNL0CK3D}", ["Relay unit B by the car re-transmits the fob's response ...", "Car believes the key is present — doors unlocked, engine started.", "(UWB ranging would have rejected the added delay.) Run 'assemble'."]],
-    ["Mission Brief", "Fob Captured", "Signal Relayed"],
-    ["Read the briefing. Run: cat briefing.txt", "Capture the fob. Run: capture-fob", "Relay the signal. Run: relay-signal", "Run 'assemble', then submit the flag"],
+  "v2-05": mkDeepCtf(
+    "A keyless car sits in a driveway; the fob is inside the house. Use two relay devices to capture the fob's response, relay it across to the car, and unlock + start it.",
+    "OP: RELAY RUN\nTarget: a passive keyless entry (PKES) car — no distance bounding.\nGoal: capture the fob, relay the signal, start the car.\nSequence: capture-fob -> relay-signal -> start-engine",
+    "FLAG{",
+    "Mission Brief",
+    ["capture-fob", "R3L4Y_", "Fob Captured", [
+      "$ capture-fob --unit-a house",
+      "Relay unit A by the house picks up the car's LF challenge and the fob's UHF response.",
+      "The car checks the response, not the distance.",
+      "Next: relay-signal",
+    ]],
+    ["relay-signal", "K3Y_", "Signal Relayed", [
+      "$ relay-signal --to unit-b",
+      "Unit B by the car re-transmits the fob response in real time.",
+      "The car believes the key is right there.",
+      "Next: start-engine",
+    ]],
+    ["start-engine", "UNL0CK3D}", "Car Started", [
+      "$ start-engine",
+      "Doors unlocked and engine started — a relay drive-away with no key.",
+      "Fix: UWB distance-bounding (rejects the added relay delay), motion-sensing fobs.",
+      "Run 'assemble', then submit the flag.",
+    ]],
+    ["Read the briefing. Run: cat briefing.txt", "Capture the fob. Run: capture-fob", "Relay the signal. Run: relay-signal", "Start the engine. Run: start-engine", "Run 'assemble', then submit the flag"],
+    { "pkes.txt": "system: PKES (no distance bounding)\nattack: 2-device LF/UHF relay\nfix: UWB ranging" },
   ),
-  "v2-06": mkCtf(
-    "Intercept an ISO 15118 Plug & Charge session on the charging cable, then forge a contract certificate to authorize charging on someone else's account.",
-    "OP: CHARGE PHANTOM\nTarget: an ISO 15118 PnC session over PLC (weak TLS).\nGoal: intercept the handshake, then forge a charging contract.\nSequence: intercept-15118 -> forge-contract",
+  "v2-06": mkDeepCtf(
+    "Intercept an ISO 15118 Plug & Charge session on the charging cable, forge a contract certificate, then replay it to authorize charging on someone else's account.",
+    "OP: CHARGE PHANTOM\nTarget: an ISO 15118 PnC session over PLC (weak TLS).\nGoal: intercept the handshake, forge a contract, authorize.\nSequence: intercept-15118 -> forge-contract -> authorize-charge",
     "FLAG{PLUG_",
-    ["intercept-15118", "4ND_CH4RG3_", ["Tapping the PLC link and observing the EV<->EVSE handshake ...", "TLS negotiated a weak/optional mode; captured the contract-cert exchange.", "Next: forge-contract"]],
-    ["forge-contract", "PWND}", ["Forging a contract certificate and replaying it to the EVSE ...", "Charger authorized the session against another account — free charge.", "Run 'assemble' to retrieve your fragment."]],
-    ["Mission Brief", "Session Intercepted", "Contract Forged"],
-    ["Read the briefing. Run: cat briefing.txt", "Intercept the session. Run: intercept-15118", "Forge a contract. Run: forge-contract", "Run 'assemble', then submit the flag"],
+    "Mission Brief",
+    ["intercept-15118", "4ND_", "Session Intercepted", [
+      "$ intercept-15118 --plc",
+      "Tapped the PLC link and observed the EV<->EVSE handshake.",
+      "TLS negotiated a weak/optional mode; captured the contract-cert exchange.",
+      "Next: forge-contract",
+    ]],
+    ["forge-contract", "CH4RG3_", "Contract Forged", [
+      "$ forge-contract",
+      "Crafted a contract certificate impersonating another e-mobility account.",
+      "Plug & Charge trusts the contract cert for billing.",
+      "Next: authorize-charge",
+    ]],
+    ["authorize-charge", "PWND}", "Charge Authorized", [
+      "$ authorize-charge",
+      "Replayed the forged contract -> the EVSE authorized the session against someone else's account.",
+      "Fix: enforce strong mutual TLS + proper PKI validation in ISO 15118.",
+      "Run 'assemble', then submit the flag.",
+    ]],
+    ["Read the briefing. Run: cat briefing.txt", "Intercept the session. Run: intercept-15118", "Forge a contract. Run: forge-contract", "Authorize the charge. Run: authorize-charge", "Run 'assemble', then submit the flag"],
+    { "pnc.txt": "proto: ISO 15118 PnC over PLC\nflaw: weak/optional TLS\nfix: strong mutual TLS + PKI validation" },
   ),
-  "v2-08": mkCtf(
-    "You have an authenticated account on an automaker's fleet API. Probe it for a Broken Object Level Authorization flaw, then change the VIN on a request to take over another vehicle.",
-    "OP: FLEET TAKEOVER\nTarget: a connected-car fleet/telematics API.\nGoal: probe the API, then change a VIN to control another car.\nSequence: probe-api -> change-vin",
+  "v2-08": mkDeepCtf(
+    "You have an authenticated account on an automaker's fleet API. Probe it, find the Broken Object Level Authorization flaw, then change the VIN on a request to take over another vehicle.",
+    "OP: FLEET TAKEOVER\nTarget: a connected-car fleet/telematics API.\nGoal: probe, find the BOLA, swap the VIN.\nSequence: probe-api -> find-bola -> change-vin",
     "FLAG{FL33T_",
-    ["probe-api", "4P1_BOLA_", ["Enumerating endpoints: /vehicle/{vin}/command (unlock, start, locate) ...", "Server checks login but NOT that the VIN belongs to you — BOLA.", "Next: change-vin"]],
-    ["change-vin", "T4K30V3R}", ["Replaying /vehicle/{vin}/command with a stranger's VIN ...", "API executed unlock+start on a vehicle that isn't yours — fleet-wide takeover possible.", "Run 'assemble' to retrieve your fragment."]],
-    ["Mission Brief", "API Probed", "VIN Swapped"],
-    ["Read the briefing. Run: cat briefing.txt", "Probe the API. Run: probe-api", "Swap the VIN. Run: change-vin", "Run 'assemble', then submit the flag"],
+    "Mission Brief",
+    ["probe-api", "4P1_", "API Probed", [
+      "$ probe-api --enum",
+      "Enumerated endpoints: /vehicle/{vin}/command (unlock, start, locate).",
+      "The VIN is a direct object reference in the path.",
+      "Next: find-bola",
+    ]],
+    ["find-bola", "BOLA_", "BOLA Found", [
+      "$ find-bola --swap-vin",
+      "Server checks that you're logged in — but NOT that the VIN belongs to you. BOLA.",
+      "This is the Sam-Curry-class connected-car flaw.",
+      "Next: change-vin",
+    ]],
+    ["change-vin", "T4K30V3R}", "VIN Swapped", [
+      "$ change-vin --vin victim",
+      "Replayed /vehicle/{vin}/command with a stranger's VIN -> unlock+start on a car that isn't yours.",
+      "Fleet-wide takeover possible. Fix: per-object authorization tied to account ownership.",
+      "Run 'assemble', then submit the flag.",
+    ]],
+    ["Read the briefing. Run: cat briefing.txt", "Probe the API. Run: probe-api", "Find the BOLA. Run: find-bola", "Swap the VIN. Run: change-vin", "Run 'assemble', then submit the flag"],
+    { "fleetapi.txt": "route: /vehicle/{vin}/command\nflaw: BOLA (no ownership check on VIN)\nfix: per-object authz" },
   ),
 };
 
