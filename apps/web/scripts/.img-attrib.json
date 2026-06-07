@@ -208,5 +208,187 @@
     "artist": "Serge Kernbach",
     "license": "CC BY-SA 3.0",
     "source": "https://commons.wikimedia.org/wiki/File:RechargingSwarm.jpg"
+  },
+  "bt-01": {
+    "file": "bt-01.jpg",
+    "title": "Μαρίνα Ζέας 8017.JPG",
+    "artist": "C messier",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:%CE%9C%CE%B1%CF%81%CE%AF%CE%BD%CE%B1_%CE%96%CE%AD%CE%B1%CF%82_8017.JPG"
+  },
+  "bt-02": {
+    "file": "bt-02.jpg",
+    "title": "Letiste ateny dlouha chodba.jpg",
+    "artist": "Křžut",
+    "license": "Public domain",
+    "source": "https://commons.wikimedia.org/wiki/File:Letiste_ateny_dlouha_chodba.jpg"
+  },
+  "bt-03": {
+    "file": "bt-03.jpg",
+    "title": "VHHH baggage claim area.jpg",
+    "artist": "Base64",
+    "license": "CC BY-SA 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:VHHH_baggage_claim_area.jpg"
+  },
+  "bt-04": {
+    "file": "bt-04.jpg",
+    "title": "USNR SH-60F Seahawk on highway overpass.jpg",
+    "artist": "Service Depicted: NavyCamera Operator: PH1 KEN J. RILEY, USN",
+    "license": "Public domain",
+    "source": "https://commons.wikimedia.org/wiki/File:USNR_SH-60F_Seahawk_on_highway_overpass.jpg"
+  },
+  "bt-07": {
+    "file": "bt-07.jpg",
+    "title": "Cliff Drive, Santa Cruz, California, USA, c.1905.jpg",
+    "artist": "Public domain",
+    "license": "Public domain",
+    "source": "https://commons.wikimedia.org/wiki/File:Cliff_Drive,_Santa_Cruz,_California,_USA,_c.1905.jpg"
+  },
+  "bt-08": {
+    "file": "bt-08.jpg",
+    "title": "Santa Cruz harbor patrol boat.jpg",
+    "artist": "Chris",
+    "license": "CC BY-SA 2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Santa_Cruz_harbor_patrol_boat.jpg"
+  },
+  "bt-09": {
+    "file": "bt-09.jpg",
+    "title": "Santa Cruz beach and boardwalk downtown shuttle trolley.jpg",
+    "artist": "Runner1928",
+    "license": "CC BY-SA 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Santa_Cruz_beach_and_boardwalk_downtown_shuttle_trolley.jpg"
+  },
+  "bt-10": {
+    "file": "bt-10.jpg",
+    "title": "Bixby Creek Bridge, California, USA - May 2013.jpg",
+    "artist": "Diliff",
+    "license": "CC BY-SA 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Bixby_Creek_Bridge,_California,_USA_-_May_2013.jpg"
+  },
+  "bt-11": {
+    "file": "bt-11.jpg",
+    "title": "Jbodyglove2.jpg",
+    "artist": "David Dennis from Scotts Valley, CA, USA",
+    "license": "CC BY 2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Jbodyglove2.jpg"
+  },
+  "bt-12": {
+    "file": "bt-12.jpg",
+    "title": "Surfboards, Newquay - geograph.org.uk - 1758827.jpg",
+    "artist": "Derek Harper",
+    "license": "CC BY-SA 2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Surfboards,_Newquay_-_geograph.org.uk_-_1758827.jpg"
+  },
+  "bt-13": {
+    "file": "bt-13.jpg",
+    "title": "Surfing lesson, Essaouira, Morocco.jpg",
+    "artist": "Goldfinchshuffle",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Surfing_lesson,_Essaouira,_Morocco.jpg"
+  },
+  "bt-14": {
+    "file": "bt-14.jpg",
+    "title": "Venice Beach Lifeguard Tower.JPG",
+    "artist": "Adrian104",
+    "license": "Public domain",
+    "source": "https://commons.wikimedia.org/wiki/File:Venice_Beach_Lifeguard_Tower.JPG"
+  },
+  "bt-15": {
+    "file": "bt-15.jpg",
+    "title": "Surfer Newport Beach California.jpg",
+    "artist": "Travis from Fullerton, CA, USA",
+    "license": "CC BY 2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Surfer_Newport_Beach_California.jpg"
+  },
+  "bt-16": {
+    "file": "bt-16.jpg",
+    "title": "SantaCruz BeachBoardwalk DipperEntrance DSCN9359.JPG",
+    "artist": "Larry Pieniazek, User:Lar, (primary)",
+    "license": "CC BY 2.5",
+    "source": "https://commons.wikimedia.org/wiki/File:SantaCruz_BeachBoardwalk_DipperEntrance_DSCN9359.JPG"
+  },
+  "bt-17": {
+    "file": "bt-17.jpg",
+    "title": "Pleasure Point in Santa Cruz CA. - panoramio.jpg",
+    "artist": "Noah_Loverbear",
+    "license": "CC BY-SA 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Pleasure_Point_in_Santa_Cruz_CA._-_panoramio.jpg"
+  },
+  "bt-18": {
+    "file": "bt-18.jpg",
+    "title": "SantaCruz BeachBoardwalk DipperEntrance DSCN9359.JPG",
+    "artist": "Larry Pieniazek, User:Lar, (primary)",
+    "license": "CC BY 2.5",
+    "source": "https://commons.wikimedia.org/wiki/File:SantaCruz_BeachBoardwalk_DipperEntrance_DSCN9359.JPG"
+  },
+  "bt-19": {
+    "file": "bt-19.jpg",
+    "title": "SurfBoatGoingTroughBreak.jpg",
+    "artist": "Klaus-Dieter Liss",
+    "license": "CC BY-SA 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:SurfBoatGoingTroughBreak.jpg"
+  },
+  "bt-20": {
+    "file": "bt-20.jpg",
+    "title": "A New Day (199459553).jpeg",
+    "artist": "Cayetano Gil",
+    "license": "CC BY 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:A_New_Day_(199459553).jpeg"
+  },
+  "bt-21": {
+    "file": "bt-21.jpg",
+    "title": "Fisherman's Wharf in Monterey from harbour.jpg",
+    "artist": "Davric",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Fisherman%27s_Wharf_in_Monterey_from_harbour.jpg"
+  },
+  "bt-23": {
+    "file": "bt-23.jpg",
+    "title": "Cannery Row at night.jpg",
+    "artist": "Commons user, Amadscientist - Mark Miller",
+    "license": "CC BY 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Cannery_Row_at_night.jpg"
+  },
+  "bt-24": {
+    "file": "bt-24.jpg",
+    "title": "DSC28161, Sea Otter, Monterey Bay Aquarium, Monterey, California, USA (5738293869).jpg",
+    "artist": "Jim G from Silicon Valley, CA, USA",
+    "license": "CC BY 2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:DSC28161,_Sea_Otter,_Monterey_Bay_Aquarium,_Monterey,_California,_USA_(5738293869).jpg"
+  },
+  "bt-26": {
+    "file": "bt-26.jpg",
+    "title": "Yacht Cradle.jpg",
+    "artist": "APoMDI",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Yacht_Cradle.jpg"
+  },
+  "bt-27": {
+    "file": "bt-27.jpg",
+    "title": "Moss Landing California aerial view.jpg",
+    "artist": "U.S. Army Corps of Engineers, photographer not specified or unknown",
+    "license": "Public domain",
+    "source": "https://commons.wikimedia.org/wiki/File:Moss_Landing_California_aerial_view.jpg"
+  },
+  "bt-28": {
+    "file": "bt-28.jpg",
+    "title": "Diver in kelp tank at Monterey Bay Aquarium.jpg",
+    "artist": "Fred Hsu (Wikipedia:User:Fredhsu on en.wikipedia)",
+    "license": "CC BY-SA 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Diver_in_kelp_tank_at_Monterey_Bay_Aquarium.jpg"
+  },
+  "bt-29": {
+    "file": "bt-29.jpg",
+    "title": "Santa Cruz Harbor - Flickr - Don Fulano.jpg",
+    "artist": "Mike Fernwood from Santa Cruz, California, United States",
+    "license": "CC BY-SA 2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Santa_Cruz_Harbor_-_Flickr_-_Don_Fulano.jpg"
+  },
+  "bt-30": {
+    "file": "bt-30.jpg",
+    "title": "March 11, 2011 Tsunami in San Francisco Bay Area.jpg",
+    "artist": "Brocken Inaglory",
+    "license": "CC BY-SA 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:March_11,_2011_Tsunami_in_San_Francisco_Bay_Area.jpg"
   }
 }

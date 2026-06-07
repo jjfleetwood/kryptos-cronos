@@ -145,6 +145,34 @@ const ATTRIBUTIONS = [
 
 // Per-file credits for the Cisco Core CVE hardware photos (Wikimedia Commons,
 // free licenses, self-hosted). CC BY / BY-SA require naming the author + license.
+// Per-file credits for the Our First Journey imagery (Wikimedia Commons; free licenses + public domain).
+const FIRST_JOURNEY_IMAGE_CREDITS = [
+  { stage: "bt-01", device: "Port of Piraeus, Athens", file: "Μαρίνα Ζέας 8017.JPG", author: "C messier", license: "CC BY-SA 4.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/", url: "https://commons.wikimedia.org/wiki/File:%CE%9C%CE%B1%CF%81%CE%AF%CE%BD%CE%B1_%CE%96%CE%AD%CE%B1%CF%82_8017.JPG" },
+  { stage: "bt-02", device: "Athens International Airport", file: "Letiste ateny dlouha chodba.jpg", author: "Křžut", license: "Public domain", licenseUrl: "https://commons.wikimedia.org/wiki/Commons:Public_domain", url: "https://commons.wikimedia.org/wiki/File:Letiste_ateny_dlouha_chodba.jpg" },
+  { stage: "bt-03", device: "Airport baggage claim", file: "VHHH baggage claim area.jpg", author: "Base64", license: "CC BY-SA 3.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/", url: "https://commons.wikimedia.org/wiki/File:VHHH_baggage_claim_area.jpg" },
+  { stage: "bt-04", device: "Highway overpass / interchange", file: "USNR SH-60F Seahawk on highway overpass.jpg", author: "U.S. Navy / PH1 Ken J. Riley", license: "Public domain", licenseUrl: "https://commons.wikimedia.org/wiki/Commons:Public_domain", url: "https://commons.wikimedia.org/wiki/File:USNR_SH-60F_Seahawk_on_highway_overpass.jpg" },
+  { stage: "bt-07", device: "Santa Cruz coast (Cliff Drive)", file: "Cliff Drive, Santa Cruz, California, USA, c.1905.jpg", author: "Public domain", license: "Public domain", licenseUrl: "https://commons.wikimedia.org/wiki/Commons:Public_domain", url: "https://commons.wikimedia.org/wiki/File:Cliff_Drive,_Santa_Cruz,_California,_USA,_c.1905.jpg" },
+  { stage: "bt-08", device: "Santa Cruz Harbor patrol boat", file: "Santa Cruz harbor patrol boat.jpg", author: "Chris", license: "CC BY-SA 2.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/2.0/", url: "https://commons.wikimedia.org/wiki/File:Santa_Cruz_harbor_patrol_boat.jpg" },
+  { stage: "bt-09", device: "Downtown Santa Cruz trolley", file: "Santa Cruz beach and boardwalk downtown shuttle trolley.jpg", author: "Runner1928", license: "CC BY-SA 3.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/", url: "https://commons.wikimedia.org/wiki/File:Santa_Cruz_beach_and_boardwalk_downtown_shuttle_trolley.jpg" },
+  { stage: "bt-10", device: "Bixby Creek Bridge, Highway 1", file: "Bixby Creek Bridge, California, USA - May 2013.jpg", author: "Diliff", license: "CC BY-SA 3.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/", url: "https://commons.wikimedia.org/wiki/File:Bixby_Creek_Bridge,_California,_USA_-_May_2013.jpg" },
+  { stage: "bt-11", device: "Surfer, Santa Cruz", file: "Jbodyglove2.jpg", author: "David Dennis from Scotts Valley, CA, USA", license: "CC BY 2.0", licenseUrl: "https://creativecommons.org/licenses/by/2.0/", url: "https://commons.wikimedia.org/wiki/File:Jbodyglove2.jpg" },
+  { stage: "bt-12", device: "Surfboards at a surf shop", file: "Surfboards, Newquay - geograph.org.uk - 1758827.jpg", author: "Derek Harper", license: "CC BY-SA 2.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/2.0/", url: "https://commons.wikimedia.org/wiki/File:Surfboards,_Newquay_-_geograph.org.uk_-_1758827.jpg" },
+  { stage: "bt-13", device: "Surf lesson", file: "Surfing lesson, Essaouira, Morocco.jpg", author: "Goldfinchshuffle", license: "CC BY-SA 4.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/", url: "https://commons.wikimedia.org/wiki/File:Surfing_lesson,_Essaouira,_Morocco.jpg" },
+  { stage: "bt-14", device: "Lifeguard tower", file: "Venice Beach Lifeguard Tower.JPG", author: "Adrian104", license: "Public domain", licenseUrl: "https://commons.wikimedia.org/wiki/Commons:Public_domain", url: "https://commons.wikimedia.org/wiki/File:Venice_Beach_Lifeguard_Tower.JPG" },
+  { stage: "bt-15", device: "Surfer, California", file: "Surfer Newport Beach California.jpg", author: "Travis from Fullerton, CA, USA", license: "CC BY 2.0", licenseUrl: "https://creativecommons.org/licenses/by/2.0/", url: "https://commons.wikimedia.org/wiki/File:Surfer_Newport_Beach_California.jpg" },
+  { stage: "bt-17", device: "Pleasure Point, Santa Cruz", file: "Pleasure Point in Santa Cruz CA. - panoramio.jpg", author: "Noah_Loverbear", license: "CC BY-SA 3.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/", url: "https://commons.wikimedia.org/wiki/File:Pleasure_Point_in_Santa_Cruz_CA._-_panoramio.jpg" },
+  { stage: "bt-18", device: "Santa Cruz Beach Boardwalk", file: "SantaCruz BeachBoardwalk DipperEntrance DSCN9359.JPG", author: "Larry Pieniazek (User:Lar)", license: "CC BY 2.5", licenseUrl: "https://creativecommons.org/licenses/by/2.5/", url: "https://commons.wikimedia.org/wiki/File:SantaCruz_BeachBoardwalk_DipperEntrance_DSCN9359.JPG" },
+  { stage: "bt-19", device: "Surf boat through the break", file: "SurfBoatGoingTroughBreak.jpg", author: "Klaus-Dieter Liss", license: "CC BY-SA 3.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/", url: "https://commons.wikimedia.org/wiki/File:SurfBoatGoingTroughBreak.jpg" },
+  { stage: "bt-20", device: "California coast at sunset", file: "A New Day (199459553).jpeg", author: "Cayetano Gil", license: "CC BY 3.0", licenseUrl: "https://creativecommons.org/licenses/by/3.0/", url: "https://commons.wikimedia.org/wiki/File:A_New_Day_(199459553).jpeg" },
+  { stage: "bt-21", device: "Fisherman’s Wharf, Monterey", file: "Fisherman's Wharf in Monterey from harbour.jpg", author: "Davric", license: "CC BY-SA 4.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/", url: "https://commons.wikimedia.org/wiki/File:Fisherman%27s_Wharf_in_Monterey_from_harbour.jpg" },
+  { stage: "bt-23", device: "Cannery Row, Monterey", file: "Cannery Row at night.jpg", author: "Amadscientist (Mark Miller)", license: "CC BY 3.0", licenseUrl: "https://creativecommons.org/licenses/by/3.0/", url: "https://commons.wikimedia.org/wiki/File:Cannery_Row_at_night.jpg" },
+  { stage: "bt-24", device: "Sea otter, Monterey Bay", file: "Sea Otter, Monterey Bay Aquarium.jpg", author: "Jim G from Silicon Valley, CA, USA", license: "CC BY 2.0", licenseUrl: "https://creativecommons.org/licenses/by/2.0/", url: "https://commons.wikimedia.org/wiki/File:DSC28161,_Sea_Otter,_Monterey_Bay_Aquarium,_Monterey,_California,_USA_(5738293869).jpg" },
+  { stage: "bt-26", device: "Boatyard (yacht cradle)", file: "Yacht Cradle.jpg", author: "APoMDI", license: "CC BY-SA 4.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/", url: "https://commons.wikimedia.org/wiki/File:Yacht_Cradle.jpg" },
+  { stage: "bt-27", device: "Moss Landing harbor (aerial)", file: "Moss Landing California aerial view.jpg", author: "U.S. Army Corps of Engineers", license: "Public domain", licenseUrl: "https://commons.wikimedia.org/wiki/Commons:Public_domain", url: "https://commons.wikimedia.org/wiki/File:Moss_Landing_California_aerial_view.jpg" },
+  { stage: "bt-28", device: "Kelp forest, Monterey Bay", file: "Diver in kelp tank at Monterey Bay Aquarium.jpg", author: "Fred Hsu", license: "CC BY-SA 3.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/", url: "https://commons.wikimedia.org/wiki/File:Diver_in_kelp_tank_at_Monterey_Bay_Aquarium.jpg" },
+  { stage: "bt-29", device: "Santa Cruz Harbor", file: "Santa Cruz Harbor - Flickr - Don Fulano.jpg", author: "Mike Fernwood, Santa Cruz, CA", license: "CC BY-SA 2.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/2.0/", url: "https://commons.wikimedia.org/wiki/File:Santa_Cruz_Harbor_-_Flickr_-_Don_Fulano.jpg" },
+];
+
 const CISCO_HW_CREDITS = [
   { stage: "M01", device: "Catalyst 6509 (IOS XE)", file: "Cisco 6509.JPG", author: "MrChrome", license: "CC BY 3.0", licenseUrl: "https://creativecommons.org/licenses/by/3.0/", url: "https://commons.wikimedia.org/wiki/File:Cisco_6509.JPG" },
   { stage: "M02", device: "ASA 5510 (EXTRABACON)", file: "Cisco ASA 5510.jpg", author: "ShakataGaNai", license: "CC BY-SA 3.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/", url: "https://commons.wikimedia.org/wiki/File:Cisco_ASA_5510.jpg" },
@@ -485,6 +513,27 @@ export default function AttributionPage() {
             {VEHICLE2_IMAGE_CREDITS.map((c) => (
               <li key={c.stage} className="text-xs text-gray-400 flex flex-wrap items-center gap-x-2 gap-y-0.5">
                 <span className="text-gray-600 font-mono w-10 flex-shrink-0">V{c.stage}</span>
+                <span className="text-gray-300">{c.device}</span>
+                <span className="text-gray-700">·</span>
+                <a href={c.url} target="_blank" rel="noopener noreferrer" className="text-cyan-500 hover:text-cyan-400 transition-colors">{c.file}</a>
+                <span className="text-gray-700">·</span>
+                <span>© {c.author}</span>
+                <a href={c.licenseUrl} target="_blank" rel="noopener noreferrer" className="text-amber-400 hover:text-amber-300 transition-colors">{c.license} ↗</a>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="mt-12">
+          <h2 className="text-white font-bold text-lg mb-1">Our First Journey — imagery</h2>
+          <p className="text-gray-500 text-xs mb-4 leading-relaxed">
+            Photos on the onboarding track are real places from the story (Piraeus, airports, Highway 1,
+            and the Santa Cruz &amp; Monterey coast), from Wikimedia Commons — self-hosted and credited below.
+          </p>
+          <ul className="space-y-2 rounded-2xl border border-white/8 p-5" style={{ background: "rgba(255,255,255,0.02)" }}>
+            {FIRST_JOURNEY_IMAGE_CREDITS.map((c) => (
+              <li key={c.stage} className="text-xs text-gray-400 flex flex-wrap items-center gap-x-2 gap-y-0.5">
+                <span className="text-gray-600 font-mono w-12 flex-shrink-0">{c.stage}</span>
                 <span className="text-gray-300">{c.device}</span>
                 <span className="text-gray-700">·</span>
                 <a href={c.url} target="_blank" rel="noopener noreferrer" className="text-cyan-500 hover:text-cyan-400 transition-colors">{c.file}</a>

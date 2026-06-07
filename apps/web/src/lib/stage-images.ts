@@ -15,6 +15,33 @@ export const TIMELINE_IMAGES: Record<string, string> = {
 };
 
 export const STAGE_IMAGES: Record<string, string> = {
+  // Our First Journey — real photos of each stage's place (Piraeus, airports,
+  // PCH, Santa Cruz & Monterey harbors/surf; Wikimedia Commons, credited on
+  // /attribution). Abstract stops (bt-05/06/22/25/30) keep the generated cover.
+  "bt-01": "/img/bt-01.jpg",
+  "bt-02": "/img/bt-02.jpg",
+  "bt-03": "/img/bt-03.jpg",
+  "bt-04": "/img/bt-04.jpg",
+  "bt-07": "/img/bt-07.jpg",
+  "bt-08": "/img/bt-08.jpg",
+  "bt-09": "/img/bt-09.jpg",
+  "bt-10": "/img/bt-10.jpg",
+  "bt-11": "/img/bt-11.jpg",
+  "bt-12": "/img/bt-12.jpg",
+  "bt-13": "/img/bt-13.jpg",
+  "bt-14": "/img/bt-14.jpg",
+  "bt-15": "/img/bt-15.jpg",
+  "bt-17": "/img/bt-17.jpg",
+  "bt-18": "/img/bt-18.jpg",
+  "bt-19": "/img/bt-19.jpg",
+  "bt-20": "/img/bt-20.jpg",
+  "bt-21": "/img/bt-21.jpg",
+  "bt-23": "/img/bt-23.jpg",
+  "bt-24": "/img/bt-24.jpg",
+  "bt-26": "/img/bt-26.jpg",
+  "bt-27": "/img/bt-27.jpg",
+  "bt-28": "/img/bt-28.jpg",
+  "bt-29": "/img/bt-29.jpg",
   // Cisco Core CVEs — real hardware photos of the device in each CVE
   // (Wikimedia Commons, free licenses; credited on /attribution).
   "stage-m01": "/img/stage-m01.jpg",

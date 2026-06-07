@@ -12,12 +12,39 @@ const IMG_DIR = path.join(__dirname, "..", "public", "img");
 const ATTRIB = path.join(__dirname, ".img-attrib.json");
 const UA = "KryptosCronos-image-fetch/1.0 (educational; contact jjbolotin@yahoo.com)";
 
-// [id, query, badwords-csv] — RE-FETCH set (misses + rejected mismatches)
+// [id, query, badwords-csv]
+const BAD = "logo,diagram,clipart,icon,seal,emblem,coat of arms,flag,chart,poster";
 const TARGETS = [
-  ["r2-03", "automated warehouse storage robots", "diagram,logo,map,construction,corridor,building,plan"],
-  ["r2-05", "swarm robots multiple", "diagram,logo,map,toy,emblem,patch"],
-  ["s2-01", "telecommunications satellite spacecraft", "diagram,logo,map,ship,saturn,planet,jupiter,moon,galaxy,nebula,earth,sun"],
-  ["s2-10", "blue marble earth from space", "diagram,logo,map,ship,night"],
+  ["bt-01", "Piraeus port Athens Greece harbor", BAD],
+  ["bt-02", "Athens International Airport terminal", BAD],
+  ["bt-03", "airport baggage claim carousel", BAD],
+  ["bt-04", "freeway interchange highway aerial", BAD],
+  ["bt-05", "vintage road map travel planning", "logo,diagram,clipart,icon,seal,emblem"],
+  ["bt-06", "airport immigration arrivals hall passport", BAD],
+  ["bt-07", "Santa Cruz California coast", BAD],
+  ["bt-08", "Santa Cruz Harbor boats California", BAD],
+  ["bt-09", "Downtown Santa Cruz Pacific Avenue", BAD],
+  ["bt-10", "Highway 1 California coast Big Sur", BAD],
+  ["bt-11", "Steamer Lane Santa Cruz surfing", BAD],
+  ["bt-12", "surf shop surfboards", BAD],
+  ["bt-13", "surfing lesson surfers ocean", BAD],
+  ["bt-14", "lifeguard tower beach California", BAD],
+  ["bt-15", "surfers beach California", BAD],
+  ["bt-16", "Santa Cruz Beach Boardwalk", BAD],
+  ["bt-17", "Pleasure Point Santa Cruz surfing", BAD],
+  ["bt-18", "Santa Cruz Boardwalk beach", BAD],
+  ["bt-19", "surfing competition wave", BAD],
+  ["bt-20", "Santa Cruz beach coast cliff", BAD],
+  ["bt-21", "Monterey Fisherman's Wharf", BAD],
+  ["bt-22", "Monterey harbor breakwater boats", BAD],
+  ["bt-23", "Cannery Row Monterey California", BAD],
+  ["bt-24", "Monterey Bay sea otter ocean", BAD],
+  ["bt-25", "Monterey Bay wharf waterfront", BAD],
+  ["bt-26", "boatyard boat repair harbor", BAD],
+  ["bt-27", "Moss Landing harbor California", BAD],
+  ["bt-28", "kelp forest Monterey Bay underwater", BAD],
+  ["bt-29", "Santa Cruz yacht harbor marina", BAD],
+  ["bt-30", "Santa Cruz harbor sailboats", BAD],
 ];
 
 const FREE = /(^cc0|^cc[ -]?by|public domain|^pd|^attribution$)/i;
