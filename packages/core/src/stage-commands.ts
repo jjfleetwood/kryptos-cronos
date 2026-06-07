@@ -13,6 +13,7 @@ import type { CtfCommand } from "./types";
 // stages.ts barrel, so those two lazily load it — still off the page first-load.
 // TODO: extract ancient/cisco-core into their own epoch files to drop that too.
 const LOADERS: Record<string, Array<() => Promise<unknown>>> = {
+  "ai-ml-foundations": [() => import("./ai-ml-foundations")],
   "first-journey": [() => import("./first-journey"), () => import("./first-journey-2"), () => import("./first-journey-3")],
   "cisco-enterprise": [() => import("./cisco-2")],
   "cisco-secops": [() => import("./cisco-3"), () => import("./cisco-4")],

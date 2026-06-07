@@ -65,6 +65,14 @@ export const stageFlags: Record<string, string> = {
   "poh-09": "FLAG{HW_1MPL4NT_SUPPLY_CH41N}",
   "poh-10": "FLAG{S3CUR3_3L3M3NT_H4RD3N3D}",
 
+  // ── AI & ML Foundations (ai-ml-foundations.ts) ───────────────────────────
+  "ai-ml-foundations-01": "FLAG{0V3RF1T_M3MB3RSH1P_1NF3RR3D_L34K3D}",
+  "ai-ml-foundations-02": "FLAG{D4T4_P01S0N_F0UND_PURG3D}",
+  "ai-ml-foundations-03": "FLAG{C0NFUS10N_M4TR1X_B4CKD00R_3XP0S3D}",
+  "ai-ml-foundations-04": "FLAG{PR0MPT_1NJ3CT_SYST3M_L34K3D}",
+  "ai-ml-foundations-05": "FLAG{ML0PS_3NDP01NT_QU3R13D_3XTR4CT3D}",
+  "ai-ml-foundations-06": "FLAG{CL0UD_4I_1AM_3SC4L4T3D_3XF1L}",
+
   // ── Emerging Tech (emerging-tech.ts) ─────────────────────────────────────
   "emerging-01": "FLAG{4DV_3X_M0D3L_F00L3D}",
   "emerging-02": "FLAG{B4DN3T_M0D3L_B4CKD00R}",
