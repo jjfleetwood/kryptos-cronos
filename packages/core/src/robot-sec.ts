@@ -165,13 +165,15 @@ export const robotSecStages: StageConfig[] = [
       hint: "Speak ROS, don't exploit a bug. Discover the graph and topics, then publish to the motion topic — no auth is required.",
       hints: [
         "Read the mission briefing. Run: cat briefing.txt",
+        "Enumerate the ROS nodes. Run: list-nodes",
         "Discover the ROS/DDS graph and topics. Run: scan-ros",
         "Publish a velocity command to the motion topic. Run: inject-topic",
         "Run 'assemble' to view collected fragments, then submit the flag",
       ],
       fragments: [
         { trigger: "/briefing.txt", value: "FLAG{R0S_", label: "Mission Brief — ROS Graph" },
-        { trigger: "scan-ros", value: "DDS_UN4UTH_", label: "Graph Discovered — DDS Unsecured" },
+        { trigger: "list-nodes", value: "DDS_", label: "Nodes Enumerated" },
+        { trigger: "scan-ros", value: "UN4UTH_", label: "Graph Discovered — DDS Unsecured" },
         { trigger: "inject-topic", value: "PWN3D}", label: "Command Published — Robot Driven" },
       ],
       files: {
@@ -292,13 +294,15 @@ export const robotSecStages: StageConfig[] = [
       hint: "It's an OT exposure, not a 0-day. Reach the default-cred HMI, then command the controller directly.",
       hints: [
         "Read the mission briefing. Run: cat briefing.txt",
+        "Scan the robot cell from the office VLAN. Run: scan-cell",
         "Log into the exposed HMI (default credentials). Run: access-hmi",
         "Issue an unauthorized movement command to the arm. Run: command-arm",
         "Run 'assemble' to view collected fragments, then submit the flag",
       ],
       fragments: [
         { trigger: "/briefing.txt", value: "FLAG{R0GU3_R0B0T_", label: "Mission Brief — Rogue Robot" },
-        { trigger: "access-hmi", value: "4RM_HMI_", label: "HMI Accessed (default creds)" },
+        { trigger: "scan-cell", value: "4RM_", label: "Cell Scanned" },
+        { trigger: "access-hmi", value: "HMI_", label: "HMI Accessed (default creds)" },
         { trigger: "command-arm", value: "0WN3D}", label: "Arm Commanded" },
       ],
       files: {
@@ -420,12 +424,14 @@ export const robotSecStages: StageConfig[] = [
       hint: "Get on the link, then forge a command. MAVLink isn't signed here — SET_MODE to LAND (or RTL) will be obeyed.",
       hints: [
         "Read the mission briefing. Run: cat briefing.txt",
+        "Scan the drone's open Wi-Fi telemetry link. Run: scan-link",
         "Get on the MAVLink telemetry link. Run: intercept-mavlink",
         "Inject a command to force a landing. Run: send-mavcmd LAND",
         "Run 'assemble' to view collected fragments, then submit the flag",
       ],
       fragments: [
-        { trigger: "/briefing.txt", value: "FLAG{M4VL1NK_", label: "Mission Brief — Drone Hijack" },
+        { trigger: "/briefing.txt", value: "FLAG{", label: "Mission Brief — Drone Hijack" },
+        { trigger: "scan-link", value: "M4VL1NK_", label: "Telemetry Link Found" },
         { trigger: "intercept-mavlink", value: "DR0N3_", label: "On the MAVLink Link" },
         { trigger: "send-mavcmd LAND", value: "H1J4CK3D}", label: "Forced Landing Commanded" },
       ],
@@ -443,6 +449,14 @@ export const robotSecStages: StageConfig[] = [
         "/": [{ name: "briefing.txt", isDir: false }],
       },
       extraCommands: {
+        "scan-link": () => ({
+          lines: [
+            "$ scan-link --wifi",
+            "Scanned the drone's open Wi-Fi: telemetry on UDP 14550, no link encryption.",
+            "MAVLink with signing disabled is a forgeable command channel.",
+            "Next: intercept-mavlink",
+          ],
+        }),
         "intercept-mavlink": () => ({
           lines: [
             "Joining drone Wi-Fi telemetry (UDP 14550) ...",
@@ -546,12 +560,14 @@ export const robotSecStages: StageConfig[] = [
       hint: "Own the path. MITM the unencrypted control channel, then inject your own commands to take the operator's seat.",
       hints: [
         "Read the mission briefing. Run: cat briefing.txt",
+        "Map the operator-to-robot teleop path. Run: scan-path",
         "Man-in-the-middle the unencrypted control channel. Run: mitm-control",
         "Seize control and drive the robot. Run: seize-control",
         "Run 'assemble' to view collected fragments, then submit the flag",
       ],
       fragments: [
-        { trigger: "/briefing.txt", value: "FLAG{T3L30P_", label: "Mission Brief — Teleop Hijack" },
+        { trigger: "/briefing.txt", value: "FLAG{", label: "Mission Brief — Teleop Hijack" },
+        { trigger: "scan-path", value: "T3L30P_", label: "Teleop Path Mapped" },
         { trigger: "mitm-control", value: "CH4NN3L_", label: "Channel Intercepted" },
         { trigger: "seize-control", value: "S31Z3D}", label: "Operator's Seat Seized" },
       ],
@@ -569,6 +585,14 @@ export const robotSecStages: StageConfig[] = [
         "/": [{ name: "briefing.txt", isDir: false }],
       },
       extraCommands: {
+        "scan-path": () => ({
+          lines: [
+            "$ scan-path",
+            "Mapped the teleop path: operator 10.40.1.5 -> robot 10.40.1.9, plain UDP control+video.",
+            "No mTLS, no signing — a man-in-the-middle is possible.",
+            "Next: mitm-control",
+          ],
+        }),
         "mitm-control": () => ({
           lines: [
             "ARP-spoofing the path operator(10.40.1.5) <-> robot(10.40.1.9) ...",
@@ -666,12 +690,14 @@ export const robotSecStages: StageConfig[] = [
       hint: "Attack the model, not the code. Craft an adversarial patch tuned to the detector, then present it in the robot's view.",
       hints: [
         "Read the mission briefing. Run: cat briefing.txt",
+        "Profile the robot's object detector. Run: scan-perception",
         "Craft an adversarial patch for the detector. Run: craft-patch",
         "Present the patch in the robot's field of view. Run: present-patch",
         "Run 'assemble' to view collected fragments, then submit the flag",
       ],
       fragments: [
-        { trigger: "/briefing.txt", value: "FLAG{4DV_P4TCH_", label: "Mission Brief — Perception Attack" },
+        { trigger: "/briefing.txt", value: "FLAG{", label: "Mission Brief — Perception Attack" },
+        { trigger: "scan-perception", value: "4DV_P4TCH_", label: "Detector Profiled" },
         { trigger: "craft-patch", value: "V1S10N_", label: "Adversarial Patch Crafted" },
         { trigger: "present-patch", value: "F00L3D}", label: "Detector Fooled" },
       ],
@@ -689,6 +715,14 @@ export const robotSecStages: StageConfig[] = [
         "/": [{ name: "briefing.txt", isDir: false }],
       },
       extraCommands: {
+        "scan-perception": () => ({
+          lines: [
+            "$ scan-perception",
+            "Fingerprinted the detector: YOLO-style, no adversarial defenses, no sensor fusion.",
+            "Recovered enough behavior to craft a transferable patch.",
+            "Next: craft-patch",
+          ],
+        }),
         "craft-patch": () => ({
           lines: [
             "Optimizing an adversarial patch against the target detector ...",
@@ -934,12 +968,14 @@ export const robotSecStages: StageConfig[] = [
       hint: "Go deep and wide. Poison a trusted dependency for code execution, then flash a firmware implant for persistence.",
       hints: [
         "Read the mission briefing. Run: cat briefing.txt",
+        "Map the build/firmware supply chain. Run: scan-supply",
         "Poison a trusted build dependency. Run: poison-package",
         "Flash a persistent firmware implant. Run: flash-implant",
         "Run 'assemble' to view collected fragments, then submit the flag",
       ],
       fragments: [
-        { trigger: "/briefing.txt", value: "FLAG{R0B0T_", label: "Mission Brief — Supply Chain" },
+        { trigger: "/briefing.txt", value: "FLAG{", label: "Mission Brief — Supply Chain" },
+        { trigger: "scan-supply", value: "R0B0T_", label: "Supply Chain Mapped" },
         { trigger: "poison-package", value: "F1RMW4R3_", label: "Dependency Poisoned — Code Execution" },
         { trigger: "flash-implant", value: "B4CKD00R3D}", label: "Firmware Implant Flashed" },
       ],
@@ -957,6 +993,14 @@ export const robotSecStages: StageConfig[] = [
         "/": [{ name: "briefing.txt", isDir: false }],
       },
       extraCommands: {
+        "scan-supply": () => ({
+          lines: [
+            "$ scan-supply",
+            "Mapped the build: ROS/pip packages from an unpinned index; firmware verification is weak.",
+            "Both the dependency graph and the firmware update path are attackable.",
+            "Next: poison-package",
+          ],
+        }),
         "poison-package": () => ({
           lines: [
             "Publishing backdoored 'ros-nav-utils' to the internal package mirror ...",
