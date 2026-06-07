@@ -755,75 +755,164 @@ export const threatFrameworksStages: StageConfig[] = [
 ];
 
 // ── CTF mode — hands-on analyst exercises per stage (quiz = half-clear) ──────
-type Cmd = [verb: string, frag: string, lines: string[]];
-function mkCtf(scenario: string, brief: string, open: string, a: Cmd, b: Cmd, labels: [string, string, string], hints: string[]): CtfConfig {
-  return {
-    scenario, hint: hints[0], hints,
-    fragments: [
-      { trigger: "/briefing.txt", value: open, label: labels[0] },
-      { trigger: a[0], value: a[1], label: labels[1] },
-      { trigger: b[0], value: b[1], label: labels[2] },
-    ],
-    files: { "/briefing.txt": brief },
-    dirs: { "/": [{ name: "briefing.txt", isDir: false }] },
-    extraCommands: { [a[0]]: () => ({ lines: a[2] }), [b[0]]: () => ({ lines: b[2] }) },
-  };
-}
+// All CTFs now use the shared 3-step mkDeepCtf factory (deepened from 2-step).
 
 const TF_CTF: Record<string, CtfConfig> = {
-  "tf-02": mkCtf(
-    "You're an analyst handed the events of an intrusion. Map each event to its Cyber Kill Chain stage, then identify the earliest link to break.",
-    "OP: BREAK THE CHAIN\nEvidence: phishing email -> macro exploit -> beacon to C2 -> data staged & exfiltrated.\nGoal: map the events to stages, then pick the earliest break point.\nSequence: map-stages -> break-chain",
-    "FLAG{K1LL_CH41N_",
-    ["map-stages", "BR0K3N_", ["Mapping events to the 7 stages ...", "Email=Delivery, macro=Exploitation, beacon=C2, staging/exfil=Actions on Objectives.", "Recon/Weaponization happened earlier off-network. Next: break-chain"]],
-    ["break-chain", "34RLY}", ["Choosing the earliest controllable link: Delivery ...", "Block/deny the phish at Delivery and the whole chain collapses before exploitation.", "Run 'assemble' to retrieve your fragment."]],
-    ["Mission Brief", "Stages Mapped", "Chain Broken"],
-    ["Read the briefing. Run: cat briefing.txt", "Map the stages. Run: map-stages", "Pick the break point. Run: break-chain", "Run 'assemble', then submit the flag"],
+  "tf-02": mkDeepCtf(
+    "You're an analyst handed the events of an intrusion. Map each event to its Cyber Kill Chain stage, spot the off-network early stages, then pick the earliest controllable link to break.",
+    "OP: BREAK THE CHAIN\nEvidence: phishing email -> macro exploit -> beacon to C2 -> data staged & exfiltrated.\nGoal: map events to stages, find the early stages, break the chain.\nSequence: map-stages -> find-early -> break-chain",
+    "FLAG{K1LL_",
+    "Mission Brief",
+    ["map-stages", "CH41N_", "Stages Mapped", [
+      "$ map-stages",
+      "Email=Delivery, macro=Exploitation, beacon=C2, staging/exfil=Actions on Objectives.",
+      "The on-network evidence lines up with the back half of the chain.",
+      "Next: find-early",
+    ]],
+    ["find-early", "BR0K3N_", "Early Stages Found", [
+      "$ find-early",
+      "Recon + Weaponization happened off your network — you can't see them, but they precede Delivery.",
+      "Delivery is the first link you actually control.",
+      "Next: break-chain",
+    ]],
+    ["break-chain", "34RLY}", "Chain Broken", [
+      "$ break-chain --at delivery",
+      "Block/deny the phish at Delivery and the whole chain collapses before Exploitation.",
+      "Break the earliest controllable link — defense gets cheaper the earlier you act.",
+      "Run 'assemble', then submit the flag.",
+    ]],
+    ["Read the briefing. Run: cat briefing.txt", "Map the stages. Run: map-stages", "Find the early stages. Run: find-early", "Break the chain. Run: break-chain", "Run 'assemble', then submit the flag"],
+    { "killchain.txt": "stages: Recon Weaponize Deliver Exploit Install C2 Actions\nevidence starts at Deliver\nbreak earliest controllable link" },
   ),
-  "tf-03": mkCtf(
-    "An incident gives you one clue: a C2 domain. Populate the Diamond Model's four vertices, then pivot from the infrastructure to reveal the adversary.",
-    "OP: WORK THE DIAMOND\nClue: victim=finance team, capability=a RAT, infrastructure=bad-c2[.]net, adversary=unknown.\nGoal: map the vertices, then pivot on infrastructure.\nSequence: map-vertices -> pivot-infra",
-    "FLAG{D14M0ND_",
-    ["map-vertices", "P1V0T_", ["Filling the four vertices from the evidence ...", "Adversary=?, Capability=RAT, Infrastructure=bad-c2[.]net, Victim=finance.", "Next: pivot-infra"]],
-    ["pivot-infra", "4DV3RS4RY}", ["Pivoting on bad-c2[.]net via passive DNS + cert transparency ...", "Sibling domains + reused TLS cert tie to a known intrusion set — adversary revealed.", "Run 'assemble' to retrieve your fragment."]],
-    ["Mission Brief", "Vertices Mapped", "Pivoted to Adversary"],
-    ["Read the briefing. Run: cat briefing.txt", "Map the vertices. Run: map-vertices", "Pivot on infra. Run: pivot-infra", "Run 'assemble', then submit the flag"],
+  "tf-03": mkDeepCtf(
+    "An incident gives you one clue: a C2 domain. Populate the Diamond Model's four vertices, pivot on the infrastructure with passive DNS + cert transparency, and reveal the adversary.",
+    "OP: WORK THE DIAMOND\nClue: victim=finance team, capability=a RAT, infrastructure=bad-c2[.]net, adversary=unknown.\nGoal: map vertices, pivot on infra, reveal the adversary.\nSequence: map-vertices -> pivot-infra -> reveal-adversary",
+    "FLAG{",
+    "Mission Brief",
+    ["map-vertices", "D14M0ND_", "Vertices Mapped", [
+      "$ map-vertices",
+      "Adversary=?, Capability=RAT, Infrastructure=bad-c2[.]net, Victim=finance team.",
+      "The Diamond links a capability + infra against a victim by some adversary.",
+      "Next: pivot-infra",
+    ]],
+    ["pivot-infra", "P1V0T_", "Infrastructure Pivoted", [
+      "$ pivot-infra bad-c2[.]net --pdns --ct",
+      "Passive DNS reveals sibling domains; certificate transparency shows a reused TLS cert.",
+      "These shared artifacts cluster the activity.",
+      "Next: reveal-adversary",
+    ]],
+    ["reveal-adversary", "4DV3RS4RY}", "Adversary Revealed", [
+      "$ reveal-adversary",
+      "The infra cluster + RAT family match a known intrusion set -> adversary vertex filled.",
+      "One vertex (infra) pivoted to another (adversary) — the Diamond's core move.",
+      "Run 'assemble', then submit the flag.",
+    ]],
+    ["Read the briefing. Run: cat briefing.txt", "Map the vertices. Run: map-vertices", "Pivot on infra. Run: pivot-infra", "Reveal the adversary. Run: reveal-adversary", "Run 'assemble', then submit the flag"],
+    { "diamond.txt": "vertices: adversary / capability / infrastructure / victim\npivot: bad-c2[.]net -> sibling domains + reused cert\n-> known intrusion set" },
   ),
-  "tf-05": mkCtf(
-    "A log shows: a scheduled task was created to run a script at logon, then mimikatz dumped LSASS. Analyze the behavior, then map it to the correct ATT&CK technique.",
-    "OP: TAG THE TECHNIQUE\nEvidence: scheduled task at logon + LSASS credential dump.\nGoal: analyze the behavior, then map it to an ATT&CK technique ID.\nSequence: analyze-behavior -> map-technique",
-    "FLAG{4TTCK_",
-    ["analyze-behavior", "T3CHN1QU3_", ["Examining the observables ...", "Scheduled task = Persistence/Execution; LSASS dump = Credential Access.", "Map to the most specific sub-technique. Next: map-technique"]],
-    ["map-technique", "M4PP3D}", ["Assigning ATT&CK IDs ...", "T1053.005 (Scheduled Task) + T1003.001 (LSASS Memory) — mapped and shareable.", "Run 'assemble' to retrieve your fragment."]],
-    ["Mission Brief", "Behavior Analyzed", "Technique Mapped"],
-    ["Read the briefing. Run: cat briefing.txt", "Analyze the behavior. Run: analyze-behavior", "Map the technique. Run: map-technique", "Run 'assemble', then submit the flag"],
+  "tf-05": mkDeepCtf(
+    "A log shows a scheduled task created to run a script at logon, then mimikatz dumping LSASS. Analyze the behavior, assign tactics, then tag the precise ATT&CK sub-technique IDs.",
+    "OP: TAG THE TECHNIQUE\nEvidence: scheduled task at logon + LSASS credential dump.\nGoal: analyze, assign tactics, tag sub-technique IDs.\nSequence: analyze-behavior -> assign-tactics -> tag-techniques",
+    "FLAG{",
+    "Mission Brief",
+    ["analyze-behavior", "4TTCK_", "Behavior Analyzed", [
+      "$ analyze-behavior",
+      "Observable 1: schtasks creates a logon-triggered script. Observable 2: LSASS process memory read.",
+      "Describe what the adversary DID, not just the artifacts.",
+      "Next: assign-tactics",
+    ]],
+    ["assign-tactics", "T3CHN1QU3_", "Tactics Assigned", [
+      "$ assign-tactics",
+      "Scheduled task -> Persistence + Execution; LSASS dump -> Credential Access.",
+      "Tactics first, then drill to the most specific technique.",
+      "Next: tag-techniques",
+    ]],
+    ["tag-techniques", "M4PP3D}", "Techniques Tagged", [
+      "$ tag-techniques",
+      "T1053.005 (Scheduled Task) + T1003.001 (LSASS Memory) — mapped and shareable worldwide.",
+      "Precise IDs turn one incident into reusable, comparable intel.",
+      "Run 'assemble', then submit the flag.",
+    ]],
+    ["Read the briefing. Run: cat briefing.txt", "Analyze the behavior. Run: analyze-behavior", "Assign tactics. Run: assign-tactics", "Tag the techniques. Run: tag-techniques", "Run 'assemble', then submit the flag"],
+    { "attck.txt": "schtasks logon script -> Persistence/Execution -> T1053.005\nLSASS dump -> Credential Access -> T1003.001" },
   ),
-  "tf-06": mkCtf(
-    "You have a mixed bag of indicators from a campaign. Classify them by Pyramid of Pain level, then choose the high-pain detections that hurt the adversary most.",
-    "OP: MAXIMIZE THE PAIN\nIndicators: a file hash, a C2 IP, a domain, and a 'LSASS credential-dump' behavior.\nGoal: classify by pyramid level, then target the highest-pain ones.\nSequence: classify-iocs -> target-ttps",
+  "tf-06": mkDeepCtf(
+    "You have a mixed bag of indicators from a campaign. Classify them by Pyramid of Pain level, rank them by adversary cost-to-change, then invest detection in the high-pain TTPs.",
+    "OP: MAXIMIZE THE PAIN\nIndicators: a file hash, a C2 IP, a domain, and a 'LSASS credential-dump' behavior.\nGoal: classify, rank by pain, target the TTPs.\nSequence: classify-iocs -> rank-pyramid -> target-ttps",
     "FLAG{PYR4M1D_",
-    ["classify-iocs", "TTP_", ["Sorting indicators by adversary cost-to-change ...", "hash=trivial, IP=easy, domain=moderate, LSASS-dump behavior=TTP (very hard).", "Next: target-ttps"]],
-    ["target-ttps", "M4X_P41N}", ["Choosing where to invest detection ...", "Building behavioral detection for the credential-dump TTP — durable, hurts regardless of churned hashes/IPs.", "Run 'assemble' to retrieve your fragment."]],
-    ["Mission Brief", "IOCs Classified", "TTPs Targeted"],
-    ["Read the briefing. Run: cat briefing.txt", "Classify the IOCs. Run: classify-iocs", "Target the TTPs. Run: target-ttps", "Run 'assemble', then submit the flag"],
+    "Mission Brief",
+    ["classify-iocs", "TTP_", "IOCs Classified", [
+      "$ classify-iocs",
+      "hash -> Hash Values, IP -> IP Addresses, domain -> Domain Names, LSASS-dump -> TTPs.",
+      "Each sits at a different level of the pyramid.",
+      "Next: rank-pyramid",
+    ]],
+    ["rank-pyramid", "M4X_", "Ranked by Pain", [
+      "$ rank-pyramid",
+      "Cost to the adversary if you block it: hash=trivial, IP=easy, domain=moderate, TTP=very hard.",
+      "Detecting low-pyramid IOCs barely inconveniences them.",
+      "Next: target-ttps",
+    ]],
+    ["target-ttps", "P41N}", "TTPs Targeted", [
+      "$ target-ttps",
+      "Built a behavioral detection for the credential-dump TTP — durable even as hashes/IPs churn.",
+      "Maximize the adversary's pain: detect behavior, not just atomic indicators.",
+      "Run 'assemble', then submit the flag.",
+    ]],
+    ["Read the briefing. Run: cat briefing.txt", "Classify the IOCs. Run: classify-iocs", "Rank by pain. Run: rank-pyramid", "Target the TTPs. Run: target-ttps", "Run 'assemble', then submit the flag"],
+    { "pyramid.txt": "hash=trivial  IP=easy  domain=moderate  tool=annoying  TTP=tough\ninvest detection at the top (TTPs)" },
   ),
-  "tf-07": mkCtf(
-    "You have an ATT&CK coverage gap: T1003.001 (LSASS Memory) credential dumping. Pick the technique, then map it to a fitting MITRE D3FEND countermeasure.",
-    "OP: COUNTER IT\nGap: ATT&CK T1003.001 (LSASS credential dumping) is undetected/unmitigated.\nGoal: pick the technique, then map a D3FEND countermeasure.\nSequence: pick-technique -> map-countermeasure",
-    "FLAG{D3F3ND_",
-    ["pick-technique", "C0UNT3R_", ["Selecting the ATT&CK technique to address ...", "T1003.001 LSASS Memory; the digital artifact is process memory / LSASS access.", "Next: map-countermeasure"]],
-    ["map-countermeasure", "M34SUR3}", ["Querying D3FEND for countermeasures on that artifact ...", "Mapped: Process/LSASS access analysis + credential hardening (e.g., protected LSASS) — a concrete defense.", "Run 'assemble' to retrieve your fragment."]],
-    ["Mission Brief", "Technique Picked", "Countermeasure Mapped"],
-    ["Read the briefing. Run: cat briefing.txt", "Pick the technique. Run: pick-technique", "Map a countermeasure. Run: map-countermeasure", "Run 'assemble', then submit the flag"],
+  "tf-07": mkDeepCtf(
+    "You have an ATT&CK coverage gap: T1003.001 (LSASS Memory) credential dumping. Pick the technique, find its digital artifact, then query MITRE D3FEND for a fitting countermeasure.",
+    "OP: COUNTER IT\nGap: ATT&CK T1003.001 (LSASS credential dumping) is undetected/unmitigated.\nGoal: pick the technique, find the artifact, map a D3FEND countermeasure.\nSequence: pick-technique -> find-artifact -> map-countermeasure",
+    "FLAG{",
+    "Mission Brief",
+    ["pick-technique", "D3F3ND_", "Technique Picked", [
+      "$ pick-technique T1003.001",
+      "Selected the gap: LSASS Memory credential dumping.",
+      "D3FEND counters techniques by the digital artifacts they touch.",
+      "Next: find-artifact",
+    ]],
+    ["find-artifact", "C0UNT3R_", "Artifact Found", [
+      "$ find-artifact",
+      "The artifact is process memory / LSASS access — that's what defenses must watch or harden.",
+      "Map the artifact, not just the name.",
+      "Next: map-countermeasure",
+    ]],
+    ["map-countermeasure", "M34SUR3}", "Countermeasure Mapped", [
+      "$ map-countermeasure --d3fend",
+      "D3FEND returns: Process/LSASS access analysis + credential hardening (e.g., protected LSASS, Credential Guard).",
+      "A concrete, technique-driven defense — offense (ATT&CK) mapped to defense (D3FEND).",
+      "Run 'assemble', then submit the flag.",
+    ]],
+    ["Read the briefing. Run: cat briefing.txt", "Pick the technique. Run: pick-technique", "Find the artifact. Run: find-artifact", "Map a countermeasure. Run: map-countermeasure", "Run 'assemble', then submit the flag"],
+    { "d3fend.txt": "technique: T1003.001 (LSASS Memory)\nartifact: process memory / LSASS access\ncounter: access analysis + protected LSASS / Credential Guard" },
   ),
-  "tf-08": mkCtf(
-    "Your team found a malicious domain. Author a STIX Indicator object for it, then publish it to a TAXII collection so other defenders can detect it.",
-    "OP: SHARE THE INTEL\nFinding: malicious C2 domain evil-update[.]net used by an active campaign.\nGoal: author a STIX indicator, then publish via TAXII.\nSequence: author-stix -> publish-taxii",
-    "FLAG{ST1X_",
-    ["author-stix", "1ND1C4T0R_", ["Building a STIX 2.1 Indicator object ...", "pattern = [domain-name:value = 'evil-update[.]net']; linked via 'indicates' to a Malware SDO + an ATT&CK Attack-Pattern.", "Next: publish-taxii"]],
-    ["publish-taxii", "SH4R3D}", ["Pushing the STIX bundle to the TAXII collection ...", "Published — subscribers auto-ingest the indicator and deploy detections. Collective defense.", "Run 'assemble' to retrieve your fragment."]],
-    ["Mission Brief", "STIX Authored", "Published via TAXII"],
-    ["Read the briefing. Run: cat briefing.txt", "Author the STIX. Run: author-stix", "Publish via TAXII. Run: publish-taxii", "Run 'assemble', then submit the flag"],
+  "tf-08": mkDeepCtf(
+    "Your team found a malicious domain. Author a STIX 2.1 Indicator object, enrich the bundle with relationships, then publish it to a TAXII collection so other defenders can detect it.",
+    "OP: SHARE THE INTEL\nFinding: malicious C2 domain evil-update[.]net used by an active campaign.\nGoal: author the STIX, enrich it, publish via TAXII.\nSequence: author-stix -> enrich-bundle -> publish-taxii",
+    "FLAG{",
+    "Mission Brief",
+    ["author-stix", "ST1X_", "STIX Authored", [
+      "$ author-stix",
+      "Built a STIX 2.1 Indicator: pattern = [domain-name:value = 'evil-update[.]net'].",
+      "A machine-readable, standard intel object.",
+      "Next: enrich-bundle",
+    ]],
+    ["enrich-bundle", "1ND1C4T0R_", "Bundle Enriched", [
+      "$ enrich-bundle",
+      "Linked the Indicator via 'indicates' to a Malware SDO + an ATT&CK Attack-Pattern, added confidence + TLP.",
+      "Context makes the indicator actionable, not just a string.",
+      "Next: publish-taxii",
+    ]],
+    ["publish-taxii", "SH4R3D}", "Published via TAXII", [
+      "$ publish-taxii --collection community",
+      "Pushed the STIX bundle to the TAXII collection -> subscribers auto-ingest and deploy detections.",
+      "STIX (what) + TAXII (how to share) = collective defense.",
+      "Run 'assemble', then submit the flag.",
+    ]],
+    ["Read the briefing. Run: cat briefing.txt", "Author the STIX. Run: author-stix", "Enrich the bundle. Run: enrich-bundle", "Publish via TAXII. Run: publish-taxii", "Run 'assemble', then submit the flag"],
+    { "stix.txt": "Indicator: [domain-name:value='evil-update[.]net']\nrelationships: indicates -> Malware + Attack-Pattern\ntransport: TAXII collection" },
   ),
 };
 
