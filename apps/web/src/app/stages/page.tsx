@@ -244,13 +244,6 @@ export default function StagesPage() {
     setUsername(null);
   }
 
-  async function handleDeleteAccount() {
-    if (!window.confirm(t("stages.deleteAccountConfirm"))) return;
-    await fetch("/api/delete-account", { method: "DELETE" });
-    clearSession();
-    router.push("/");
-  }
-
   const maxXp = allStages.reduce((sum, s) => sum + s.xp, 0);
 
   // Pre-compute which tracks + epochs are visible. In open-access dev mode, show
@@ -388,9 +381,6 @@ export default function StagesPage() {
             <div className="flex items-center gap-4">
               <button onClick={handleLogout} className="text-xs text-gray-500 hover:text-red-400 transition-colors">
                 {t("stages.logOut")}
-              </button>
-              <button onClick={handleDeleteAccount} className="text-xs text-gray-700 hover:text-red-500 transition-colors">
-                {t("stages.deleteAccount")}
               </button>
             </div>
           </div>

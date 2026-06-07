@@ -32,7 +32,8 @@ export default function AccountPage() {
 
   const [me, setMe] = useState<MeData | null>(null);
   const [portalLoading, setPortalLoading] = useState(false);
-  const [deleteConfirm, setDeleteConfirm] = useState(false);
+  // Delete flow as a step machine: 0 idle → 1 "are you sure" → 2 "can we keep you" → 3 type-to-confirm
+  const [deleteStep, setDeleteStep] = useState(0);
   const [deleteLoading, setDeleteLoading] = useState(false);
   const [deleteInput, setDeleteInput] = useState("");
 
@@ -232,7 +233,7 @@ export default function AccountPage() {
             Danger Zone
           </h2>
 
-          {!deleteConfirm ? (
+          {deleteStep === 0 ? (
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-semibold text-red-400 mb-0.5">Delete account</p>
@@ -241,17 +242,125 @@ export default function AccountPage() {
                 </p>
               </div>
               <button
-                onClick={() => setDeleteConfirm(true)}
+                onClick={() => setDeleteStep(1)}
                 className="ml-4 flex-shrink-0 text-xs px-3 py-1.5 rounded-lg font-semibold text-red-400 hover:text-red-300 transition-colors"
                 style={{ border: "1px solid rgba(239,68,68,0.35)" }}
               >
                 Delete
               </button>
             </div>
+          ) : deleteStep === 1 ? (
+            /* Step 1 — Are you sure you want to leave? */
+            <div className="space-y-4">
+              <div>
+                <p className="text-base font-bold mb-1" style={{ color: skin.textPrimary }}>
+                  Are you sure you want to leave? 😢
+                </p>
+                <p className="text-xs" style={{ color: skin.textMuted }}>
+                  Deleting your account permanently erases everything you&apos;ve built here:
+                </p>
+              </div>
+              <ul className="space-y-1.5 text-xs" style={{ color: skin.textMuted }}>
+                {[
+                  ["🎯", "Every stage you've cleared and all your XP"],
+                  ["🔥", "Your daily streak — reset to zero, for good"],
+                  ["🏆", "All badges, trophies, and shop items you own"],
+                  ["📜", "Your certificate-readiness progress across 12 cert paths"],
+                ].map(([icon, txt]) => (
+                  <li key={txt} className="flex items-start gap-2">
+                    <span>{icon}</span><span>{txt}</span>
+                  </li>
+                ))}
+              </ul>
+              <div className="flex gap-2">
+                <button
+                  onClick={() => setDeleteStep(0)}
+                  className="flex-1 py-2 rounded-lg text-xs font-bold transition-colors"
+                  style={{ background: "rgba(34,211,238,0.12)", border: "1px solid rgba(34,211,238,0.4)", color: "#22d3ee" }}
+                >
+                  Keep my account
+                </button>
+                <button
+                  onClick={() => setDeleteStep(2)}
+                  className="flex-1 py-2 rounded-lg text-xs font-semibold transition-colors"
+                  style={{ border: "1px solid rgba(239,68,68,0.35)", color: "#f87171" }}
+                >
+                  Continue
+                </button>
+              </div>
+            </div>
+          ) : deleteStep === 2 ? (
+            /* Step 2 — Can't we do anything to keep you? */
+            <div className="space-y-4">
+              <div>
+                <p className="text-base font-bold mb-1" style={{ color: skin.textPrimary }}>
+                  Wait — can&apos;t we do anything to keep you?
+                </p>
+                <p className="text-xs" style={{ color: skin.textMuted }}>
+                  {me.tier === "pro"
+                    ? "If it's about the cost, you don't have to delete everything — switch to the free plan and keep every bit of your progress."
+                    : "You don't have to delete everything to step away. Your progress stays safe and waiting for whenever you come back."}
+                </p>
+              </div>
+              <div className="space-y-2">
+                {me.tier === "pro" && (
+                  <button
+                    onClick={openBillingPortal}
+                    disabled={portalLoading}
+                    className="w-full text-left px-3 py-2.5 rounded-lg text-xs transition-colors flex items-center gap-2.5 disabled:opacity-50"
+                    style={{ background: "rgba(255,255,255,0.03)", border: `1px solid ${skin.cardBorder}` }}
+                  >
+                    <span>💳</span>
+                    <span style={{ color: skin.textMuted }}>
+                      <span className="font-semibold" style={{ color: skin.textPrimary }}>Switch to Free instead</span>
+                      {" "}— keep your account, just stop paying.
+                    </span>
+                  </button>
+                )}
+                <div
+                  className="px-3 py-2.5 rounded-lg text-xs flex items-center gap-2.5"
+                  style={{ background: "rgba(255,255,255,0.03)", border: `1px solid ${skin.cardBorder}` }}
+                >
+                  <span>☕</span>
+                  <span style={{ color: skin.textMuted }}>
+                    <span className="font-semibold" style={{ color: skin.textPrimary }}>Take a break, not a breakup.</span>
+                    {" "}Just log out — your streak shield will be waiting.
+                  </span>
+                </div>
+                <a
+                  href="mailto:hello@kryptoscronos.com?subject=Feedback%20before%20I%20delete%20my%20account"
+                  className="px-3 py-2.5 rounded-lg text-xs flex items-center gap-2.5 transition-colors hover:border-cyan-500/40"
+                  style={{ background: "rgba(255,255,255,0.03)", border: `1px solid ${skin.cardBorder}` }}
+                >
+                  <span>💬</span>
+                  <span style={{ color: skin.textMuted }}>
+                    <span className="font-semibold" style={{ color: skin.textPrimary }}>Tell us what went wrong.</span>
+                    {" "}We read every note — give us a chance to fix it.
+                  </span>
+                </a>
+              </div>
+              <div className="flex gap-2">
+                <button
+                  onClick={() => setDeleteStep(0)}
+                  className="flex-1 py-2 rounded-lg text-xs font-bold transition-colors"
+                  style={{ background: "rgba(34,211,238,0.12)", border: "1px solid rgba(34,211,238,0.4)", color: "#22d3ee" }}
+                >
+                  You convinced me — I&apos;ll stay
+                </button>
+                <button
+                  onClick={() => setDeleteStep(3)}
+                  className="flex-1 py-2 rounded-lg text-xs font-semibold transition-colors"
+                  style={{ border: "1px solid rgba(239,68,68,0.35)", color: "#f87171" }}
+                >
+                  No thanks, delete it
+                </button>
+              </div>
+            </div>
           ) : (
+            /* Step 3 — Final confirm: type username */
             <div className="space-y-3">
               <p className="text-sm text-red-400 font-semibold">
-                Type your username to confirm deletion
+                Last step — type your username to permanently delete
               </p>
               <input
                 type="text"
@@ -263,7 +372,7 @@ export default function AccountPage() {
               />
               <div className="flex gap-2">
                 <button
-                  onClick={() => { setDeleteConfirm(false); setDeleteInput(""); }}
+                  onClick={() => { setDeleteStep(0); setDeleteInput(""); }}
                   className="flex-1 py-2 rounded-lg text-xs font-semibold transition-colors"
                   style={{ border: `1px solid ${skin.cardBorder}`, color: skin.textMuted }}
                 >
