@@ -1,4 +1,5 @@
-import type { StageConfig, EpochConfig } from "./types";
+import type { StageConfig, EpochConfig, CtfConfig } from "./types";
+import { mkDeepCtf } from "./ctf-deep";
 
 export const siliconFabEpoch: EpochConfig = {
   id: "silicon-fab",
@@ -752,3 +753,273 @@ export const siliconFabStages: StageConfig[] = [
     },
   },
 ];
+
+// CTF labs — deep, step-by-step technical exercises via the shared mkDeepCtf
+// factory. Themed on hardware trust & semiconductor supply-chain security.
+const SI_CTF: Record<string, CtfConfig> = {
+  "si-01": mkDeepCtf(
+    "A wafer fab claims 9N (99.9999999%) pure silicon, but a downstream chip misbehaves. Assay the purity, spot an intentional dopant, and prove a substrate-level hardware trojan.",
+    "OP: SUBSTRATE TROJAN\nTarget: 'ultra-pure' silicon feedstock.\nGoal: assay purity, spot the dopant, trace the trojan.\nSequence: assay-purity -> spot-dopant -> trace-trojan",
+    "FLAG{9N_S1L1C0N_",
+    "Mission Brief",
+    ["assay-purity", "D0P4NT_", "Purity Assayed", [
+      "$ assay-purity ingot.dat",
+      "Target 99.9999999% (9N). Measured a localized region at 99.97% — impurity spike.",
+      "Pure silicon is the canvas; contamination changes electrical behavior.",
+      "Next: spot-dopant",
+    ]],
+    ["spot-dopant", "TR0J4N_", "Dopant Spotted", [
+      "$ spot-dopant --region hot",
+      "Boron concentrated in a precise pattern — not random contamination, but placed.",
+      "Dopant-level changes can alter a cell's behavior invisibly to optical inspection.",
+      "Next: trace-trojan",
+    ]],
+    ["trace-trojan", "F0UND}", "Trojan Traced", [
+      "$ trace-trojan",
+      "The doped region weakens a specific logic cell's RNG — a dopant-level hardware trojan.",
+      "Defenses: trusted foundries, dopant-aware inspection, split manufacturing.",
+      "Run 'assemble', then submit the flag.",
+    ]],
+    ["Read the briefing. Run: cat briefing.txt", "Assay purity. Run: assay-purity", "Spot the dopant. Run: spot-dopant", "Trace the trojan. Run: trace-trojan", "Run 'assemble', then submit the flag"],
+    { "ingot.dat": "target_purity: 9N (99.9999999%)\nregion_hot: 99.97% (boron spike, patterned)" },
+  ),
+  "si-02": mkDeepCtf(
+    "Yield on a lot crashed. A single dust particle in the cleanroom can kill a die. Scan the wafer, map the defects, and isolate the contamination source.",
+    "OP: PARTICLE KILLER\nTarget: a wafer lot with crashing yield.\nGoal: scan, map defects, isolate the particle source.\nSequence: scan-wafer -> map-defects -> isolate-particle",
+    "FLAG{CL34NR00M_",
+    "Mission Brief",
+    ["scan-wafer", "P4RT1CL3_", "Wafer Scanned", [
+      "$ scan-wafer w-4471",
+      "Defect map shows a tight cluster of dead dies in one quadrant — not random.",
+      "At nanometer scales a speck of dust is a boulder.",
+      "Next: map-defects",
+    ]],
+    ["map-defects", "D3F3CT_", "Defects Mapped", [
+      "$ map-defects --signature",
+      "Cluster signature matches a recurring particle deposited at one process step.",
+      "Spatial pattern points straight at the offending tool.",
+      "Next: isolate-particle",
+    ]],
+    ["isolate-particle", "1S0L4T3D}", "Source Isolated", [
+      "$ isolate-particle",
+      "Traced to a failing HEPA filter on the litho track; replaced it; yield recovers.",
+      "Cleanroom discipline (Class 1) is why chips are even possible.",
+      "Run 'assemble', then submit the flag.",
+    ]],
+    ["Read the briefing. Run: cat briefing.txt", "Scan the wafer. Run: scan-wafer", "Map the defects. Run: map-defects", "Isolate the particle. Run: isolate-particle", "Run 'assemble', then submit the flag"],
+    { "wafer.txt": "lot: w-4471\ndead_dies: clustered Q3\nsignature: recurring 0.3um particle @ litho" },
+  ),
+  "si-03": mkDeepCtf(
+    "Photolithography prints the circuit by projecting a mask onto the wafer. An overlay error is shifting every layer. Load the mask, check the overlay, and re-align.",
+    "OP: PRINT WITH LIGHT\nTarget: a litho step with mis-registered layers.\nGoal: load mask, check overlay, fix alignment.\nSequence: load-mask -> check-overlay -> fix-align",
+    "FLAG{L1TH0_",
+    "Mission Brief",
+    ["load-mask", "0V3RL4Y_", "Mask Loaded", [
+      "$ load-mask reticle-M3",
+      "Reticle holds the layer pattern; the scanner projects it through optics onto resist.",
+      "Each layer must register to the one beneath within a few nm.",
+      "Next: check-overlay",
+    ]],
+    ["check-overlay", "M4SK_", "Overlay Checked", [
+      "$ check-overlay",
+      "Overlay error = +12nm X, +9nm Y vs target. Vias will miss the metal below.",
+      "Mis-registration silently destroys connectivity.",
+      "Next: fix-align",
+    ]],
+    ["fix-align", "4L1GN3D}", "Aligned", [
+      "$ fix-align --correct-stage",
+      "Applied stage correction; overlay back under 2nm; vias land on target.",
+      "Lithography is the heart of the fab — alignment is everything.",
+      "Run 'assemble', then submit the flag.",
+    ]],
+    ["Read the briefing. Run: cat briefing.txt", "Load the mask. Run: load-mask", "Check the overlay. Run: check-overlay", "Fix the alignment. Run: fix-align", "Run 'assemble', then submit the flag"],
+    { "overlay.txt": "target: <3nm\nmeasured: X=+12nm Y=+9nm  <-- vias will miss" },
+  ),
+  "si-04": mkDeepCtf(
+    "EUV lithography makes light by blasting molten tin droplets into plasma at 13.5nm. The print is blurry. Fire the source, measure focus, and tune it.",
+    "OP: EUV SOURCE\nTarget: an EUV scanner printing blurry features.\nGoal: fire the source, measure focus, tune it.\nSequence: fire-euv -> measure-focus -> tune-source",
+    "FLAG{3UV_T1N_",
+    "Mission Brief",
+    ["fire-euv", "PL4SM4_", "Source Fired", [
+      "$ fire-euv",
+      "Tin droplets hit by a CO2 laser 50,000x/sec -> plasma emits 13.5nm EUV light.",
+      "Shorter wavelength prints smaller features.",
+      "Next: measure-focus",
+    ]],
+    ["measure-focus", "13_5NM_", "Focus Measured", [
+      "$ measure-focus",
+      "Dose stable but best-focus drifted; critical dimension out of spec -> blur.",
+      "At 13.5nm, even all-mirror optics must be perfect.",
+      "Next: tune-source",
+    ]],
+    ["tune-source", "F0CUS3D}", "Source Tuned", [
+      "$ tune-source --refocus",
+      "Re-focused; CD back in spec; sharp features restored.",
+      "EUV is the bleeding edge of physics turned into a factory tool.",
+      "Run 'assemble', then submit the flag.",
+    ]],
+    ["Read the briefing. Run: cat briefing.txt", "Fire the EUV source. Run: fire-euv", "Measure the focus. Run: measure-focus", "Tune the source. Run: tune-source", "Run 'assemble', then submit the flag"],
+    { "euv.txt": "wavelength: 13.5nm\nsource: laser-pulsed tin plasma\nfocus: drifted -> CD out of spec" },
+  ),
+  "si-05": mkDeepCtf(
+    "Ion implantation dopes the silicon to make transistors. A saboteur altered the implant dose recipe. Measure the dose, detect the tamper, and recalibrate.",
+    "OP: IMPLANT INTEGRITY\nTarget: an ion-implantation recipe.\nGoal: measure dose, detect tamper, recalibrate.\nSequence: measure-dose -> detect-tamper -> recalibrate",
+    "FLAG{D0P4NT_D0S3_",
+    "Mission Brief",
+    ["measure-dose", "1MPL4NT_", "Dose Measured", [
+      "$ measure-dose",
+      "Implanting boron/phosphorus accelerates ions into the lattice to set conductivity.",
+      "Measured dose deviates from the qualified recipe in one zone.",
+      "Next: detect-tamper",
+    ]],
+    ["detect-tamper", "T4MP3R_", "Tamper Detected", [
+      "$ detect-tamper --diff-recipe",
+      "Recipe hash mismatch: dose for the secure-enclave region was quietly raised.",
+      "A doping change can shift threshold voltages — a stealthy backdoor.",
+      "Next: recalibrate",
+    ]],
+    ["recalibrate", "C4UGHT}", "Recalibrated", [
+      "$ recalibrate --restore qualified",
+      "Restored the signed recipe; re-qualified the tool; tamper logged.",
+      "Doping is invisible to the eye — recipe integrity is the control.",
+      "Run 'assemble', then submit the flag.",
+    ]],
+    ["Read the briefing. Run: cat briefing.txt", "Measure the dose. Run: measure-dose", "Detect the tamper. Run: detect-tamper", "Recalibrate. Run: recalibrate", "Run 'assemble', then submit the flag"],
+    { "recipe.txt": "qualified_hash: a91f...\ncurrent_hash:   c70e...  <-- mismatch\nzone: secure-enclave dose raised" },
+  ),
+  "si-06": mkDeepCtf(
+    "Chips are built layer by layer with deposition and etch (copper damascene). An etch defect is shorting two layers. Inspect the stack, find the defect, repair it.",
+    "OP: LAYER BY LAYER\nTarget: a damascene metal stack with a short.\nGoal: inspect the stack, find the etch defect, repair.\nSequence: inspect-stack -> find-etch-defect -> repair-layer",
+    "FLAG{D4M4SC3N3_",
+    "Mission Brief",
+    ["inspect-stack", "3TCH_", "Stack Inspected", [
+      "$ inspect-stack --xsection",
+      "Cross-section shows trenches etched, filled with copper, then CMP-polished — repeated per layer.",
+      "An unexpected bridge connects M2 to M3.",
+      "Next: find-etch-defect",
+    ]],
+    ["find-etch-defect", "D3F3CT_", "Defect Found", [
+      "$ find-etch-defect",
+      "Etch under-cleared a via, leaving residual copper that shorts the two metal layers.",
+      "Deposition adds, etch removes — get either wrong and the chip fails.",
+      "Next: repair-layer",
+    ]],
+    ["repair-layer", "F1X3D}", "Layer Repaired", [
+      "$ repair-layer --rework-etch",
+      "Re-etched/cleared the via; short gone; continuity per layer verified.",
+      "Modern chips stack 15+ metal layers — each must be perfect.",
+      "Run 'assemble', then submit the flag.",
+    ]],
+    ["Read the briefing. Run: cat briefing.txt", "Inspect the stack. Run: inspect-stack", "Find the etch defect. Run: find-etch-defect", "Repair the layer. Run: repair-layer", "Run 'assemble', then submit the flag"],
+    { "stack.txt": "layers: M1..M15 (Cu damascene)\nshort: M2<->M3 (residual Cu in via)" },
+  ),
+  "si-07": mkDeepCtf(
+    "The modern transistor is a 3D gate-all-around FinFET successor. Characterize a suspect standard cell, diff it against the golden layout, and find a hardware trojan.",
+    "OP: TRUST THE CELL\nTarget: a standard cell in a GAA process.\nGoal: characterize, diff against golden, find the trojan.\nSequence: characterize-cell -> diff-golden -> find-trojan",
+    "FLAG{G4A_C3LL_",
+    "Mission Brief",
+    ["characterize-cell", "G0LD3N_", "Cell Characterized", [
+      "$ characterize-cell AND2_X1",
+      "GAA wraps the gate fully around the channel for control at a few nm.",
+      "This cell draws slightly more leakage than the library spec.",
+      "Next: diff-golden",
+    ]],
+    ["diff-golden", "H4RDW4R3_", "Diffed vs Golden", [
+      "$ diff-golden --layout",
+      "Extra transistors hidden in fill area, tied to an internal net — not in the golden layout.",
+      "Trojans love to hide in 'empty' fill.",
+      "Next: find-trojan",
+    ]],
+    ["find-trojan", "TR0J4N}", "Trojan Found", [
+      "$ find-trojan",
+      "The added logic is a trigger that flips an output on a rare input pattern. Confirmed trojan.",
+      "Defenses: golden-layout diff, side-channel fingerprinting, trusted EDA + foundry.",
+      "Run 'assemble', then submit the flag.",
+    ]],
+    ["Read the briefing. Run: cat briefing.txt", "Characterize the cell. Run: characterize-cell", "Diff against golden. Run: diff-golden", "Find the trojan. Run: find-trojan", "Run 'assemble', then submit the flag"],
+    { "cell.txt": "cell: AND2_X1 (GAA)\nleakage: +8% vs spec\nfill_area: extra transistors on internal net" },
+  ),
+  "si-08": mkDeepCtf(
+    "A giant AI GPU is many chiplets bonded on a CoWoS interposer with HBM stacks. One chiplet looks off. Scan the package, verify provenance, and flag the counterfeit.",
+    "OP: CHIPLET PROVENANCE\nTarget: a multi-chiplet AI GPU package.\nGoal: scan, verify each chiplet, flag the fake.\nSequence: scan-package -> verify-chiplet -> flag-counterfeit",
+    "FLAG{C0W0S_",
+    "Mission Brief",
+    ["scan-package", "CH1PL3T_", "Package Scanned", [
+      "$ scan-package gpu-x100",
+      "8 compute chiplets + 6 HBM stacks on a silicon interposer (CoWoS 2.5D).",
+      "One compute chiplet's markings differ subtly.",
+      "Next: verify-chiplet",
+    ]],
+    ["verify-chiplet", "F4K3_", "Chiplet Verified", [
+      "$ verify-chiplet --ecid-attest",
+      "7 chiplets return valid signed ECIDs; chiplet #5 fails on-die attestation.",
+      "No valid root-of-trust = untrusted silicon.",
+      "Next: flag-counterfeit",
+    ]],
+    ["flag-counterfeit", "C0UNT3RF31T}", "Counterfeit Flagged", [
+      "$ flag-counterfeit",
+      "Chiplet #5 is a re-marked counterfeit slipped in via the packaging supply chain.",
+      "Defenses: on-die IDs/attestation, trusted OSAT, provenance tracking.",
+      "Run 'assemble', then submit the flag.",
+    ]],
+    ["Read the briefing. Run: cat briefing.txt", "Scan the package. Run: scan-package", "Verify the chiplets. Run: verify-chiplet", "Flag the counterfeit. Run: flag-counterfeit", "Run 'assemble', then submit the flag"],
+    { "package.txt": "interposer: CoWoS 2.5D\ncompute_chiplets: 8\nhbm: 6 stacks\nchiplet#5: ECID attest FAIL" },
+  ),
+  "si-09": mkDeepCtf(
+    "Not every die works; testing and binning set the price. A die passes every functional test — but a security test says otherwise. Run wafer test, bin the dies, and catch the trojan.",
+    "OP: TEST & BIN\nTarget: a wafer at final test.\nGoal: run tests, bin dies, catch the hidden trojan.\nSequence: run-wafer-test -> bin-dies -> catch-trojan",
+    "FLAG{Y13LD_B1N_",
+    "Mission Brief",
+    ["run-wafer-test", "FUNCT10N4L_", "Wafer Tested", [
+      "$ run-wafer-test",
+      "Probed every die: functional pass-rate (yield) = 72%; speed/power measured for binning.",
+      "Functional tests check it computes correctly — not that it ONLY does that.",
+      "Next: bin-dies",
+    ]],
+    ["bin-dies", "TR0J4N_", "Dies Binned", [
+      "$ bin-dies",
+      "Sorted into speed bins. One die is functionally perfect yet draws anomalous power on idle.",
+      "A side-channel/security screen catches what functional tests miss.",
+      "Next: catch-trojan",
+    ]],
+    ["catch-trojan", "C4UGHT}", "Trojan Caught", [
+      "$ catch-trojan --power-fingerprint",
+      "The idle draw is a dormant trojan beaconing — passes function, fails trust. Quarantined.",
+      "Yield economics must include a security gate, not just functional tests.",
+      "Run 'assemble', then submit the flag.",
+    ]],
+    ["Read the briefing. Run: cat briefing.txt", "Run wafer test. Run: run-wafer-test", "Bin the dies. Run: bin-dies", "Catch the trojan. Run: catch-trojan", "Run 'assemble', then submit the flag"],
+    { "test.txt": "yield: 72%\ndie@(3,7): functional PASS, idle power ANOMALOUS" },
+  ),
+  "si-10": mkDeepCtf(
+    "Quantum chips need exotic fabrication and brutal isolation. Fab a qubit, measure its coherence, and detect tampering that secretly accelerates decoherence.",
+    "OP: FAB A QUBIT\nTarget: a superconducting quantum chip.\nGoal: fab, measure coherence, detect tamper.\nSequence: fab-qubit -> measure-coherence -> detect-tamper",
+    "FLAG{QUB1T_",
+    "Mission Brief",
+    ["fab-qubit", "C0H3R3NC3_", "Qubit Fabricated", [
+      "$ fab-qubit --josephson",
+      "Patterned a transmon (Josephson junction) on sapphire; will run near absolute zero.",
+      "Qubits are fragile: any disturbance collapses the state.",
+      "Next: measure-coherence",
+    ]],
+    ["measure-coherence", "T4MP3R_", "Coherence Measured", [
+      "$ measure-coherence",
+      "T2 coherence time is far below spec for this fab process — something adds noise.",
+      "Shorter coherence = fewer usable operations.",
+      "Next: detect-tamper",
+    ]],
+    ["detect-tamper", "D3T3CT3D}", "Tamper Detected", [
+      "$ detect-tamper",
+      "A material impurity introduced in fab couples noise into the qubit — sabotaged coherence.",
+      "Even quantum hardware has a supply chain to defend.",
+      "Run 'assemble', then submit the flag.",
+    ]],
+    ["Read the briefing. Run: cat briefing.txt", "Fab the qubit. Run: fab-qubit", "Measure coherence. Run: measure-coherence", "Detect the tamper. Run: detect-tamper", "Run 'assemble', then submit the flag"],
+    { "qubit.txt": "type: transmon (Josephson junction)\nT2_spec: 120us\nT2_measured: 18us  <-- noise added" },
+  ),
+};
+
+for (const s of siliconFabStages) {
+  const ctf = SI_CTF[s.id];
+  if (ctf) { s.challengeType = "ctf"; s.ctf = ctf; }
+}

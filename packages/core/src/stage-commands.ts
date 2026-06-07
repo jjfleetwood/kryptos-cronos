@@ -16,6 +16,7 @@ const LOADERS: Record<string, Array<() => Promise<unknown>>> = {
   "ai-ml-foundations": [() => import("./ai-ml-foundations")],
   "sec-foundations": [() => import("./sec-foundations")],
   "computing-foundations": [() => import("./computing-foundations")],
+  "silicon-fab": [() => import("./silicon-fab")],
   "first-journey": [() => import("./first-journey"), () => import("./first-journey-2"), () => import("./first-journey-3")],
   "cisco-enterprise": [() => import("./cisco-2")],
   "cisco-secops": [() => import("./cisco-3"), () => import("./cisco-4")],

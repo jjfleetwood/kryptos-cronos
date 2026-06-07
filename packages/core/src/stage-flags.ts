@@ -100,6 +100,18 @@ export const stageFlags: Record<string, string> = {
   "cf-09": "FLAG{C0MP1L3_0PC0D3_1NJ3CT_F0UND}",
   "cf-10": "FLAG{1TS_4LL_PHYS1C4L_L34K_H4RD3N3D}",
 
+  // ── Silicon: Sand to Superchips (silicon-fab.ts) ─────────────────────────
+  "si-01": "FLAG{9N_S1L1C0N_D0P4NT_TR0J4N_F0UND}",
+  "si-02": "FLAG{CL34NR00M_P4RT1CL3_D3F3CT_1S0L4T3D}",
+  "si-03": "FLAG{L1TH0_0V3RL4Y_M4SK_4L1GN3D}",
+  "si-04": "FLAG{3UV_T1N_PL4SM4_13_5NM_F0CUS3D}",
+  "si-05": "FLAG{D0P4NT_D0S3_1MPL4NT_T4MP3R_C4UGHT}",
+  "si-06": "FLAG{D4M4SC3N3_3TCH_D3F3CT_F1X3D}",
+  "si-07": "FLAG{G4A_C3LL_G0LD3N_H4RDW4R3_TR0J4N}",
+  "si-08": "FLAG{C0W0S_CH1PL3T_F4K3_C0UNT3RF31T}",
+  "si-09": "FLAG{Y13LD_B1N_FUNCT10N4L_TR0J4N_C4UGHT}",
+  "si-10": "FLAG{QUB1T_C0H3R3NC3_T4MP3R_D3T3CT3D}",
+
   // ── Emerging Tech (emerging-tech.ts) ─────────────────────────────────────
   "emerging-01": "FLAG{4DV_3X_M0D3L_F00L3D}",
   "emerging-02": "FLAG{B4DN3T_M0D3L_B4CKD00R}",
