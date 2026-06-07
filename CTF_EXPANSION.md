@@ -20,13 +20,15 @@ Deep CTFs are **3 technical steps** (recon → exploit → extract/verify), each
 - [x] **quantum-intro** (10) — DONE 2026-06-07 (quantum scale, superposition/Hadamard, measurement-collapse/QKD eavesdrop, double-slit which-path, amplitude interference, Bell/CHSH, qubit/Bloch, circuit build, Grover search, HNDL→PQC migration)
 - [x] **quantum-deep** (10) — DONE 2026-06-07 (Stern-Gerlach spin, tunneling current, Pauli degeneracy, orbital quantum numbers, photoelectric threshold, decoherence isolation, Bell nonlocality/LHV, surface-code QEC, QFT field quanta, interpretations)
 - [x] deep-tech epochs' 4 quiz stages each — DONE 2026-06-07: ot-sec, vehicle-sec-2, robot-sec-2, space-race-2, threat-frameworks (20 CTFs; appended a second mkDeepCtf record+loop per epoch; these epochs are now 100% CTF)
-- [ ] first-journey 1/2/3 (30) — beginner cyber; gentle guided CTFs possible
+- [x] first-journey 1/2/3 (30) — ALREADY 100% CTF (inline hand-authored); no work needed.
+
+**✅ ADD-CTF GOAL COMPLETE (2026-06-07):** every technical/security stage now has a CTF. 79 new CTFs added this sprint (371 total). Non-technical extended tracks (baseball/debate/crafts/languages/travel/driving) correctly excluded. Plus a global dopamine/one-more-turn juice pass on the terminal + success modals.
 
 ## Out of scope (a hacking CTF is nonsensical)
 baseball (150) · debate (80) · flag-football (30) · french/italian (40) · paris/milan travel (40) · nails/hair (40) · driving (24) · tapestry (12)
 
-## Second axis — deepen EXISTING CTFs
-The ~292 pre-existing CTFs mostly use the older 2-step `mkCtf`. Gradually upgrade high-traffic epochs to the 3-step `mkDeepCtf` depth. Not yet started.
+## Remaining axis — deepen EXISTING CTFs (optional, large)
+The ~292 pre-existing CTFs mostly use the older 2-step `mkCtf`. Gradually upgrade high-traffic epochs to the 3-step `mkDeepCtf` depth + the dopamine pips. Not yet started — this is polish, not coverage.
 
 ## Status
 371 CTFs total (was 292). 6 fundamentals epochs + 5 deep-tech epochs' quiz stages = 79 new CTFs. validate-ctf: 0 problems. Shared factory: `packages/core/src/ctf-deep.ts`.
