@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { quizStage01 } from "@kryptos/core/quiz-stage-01";
 import { getAuthedUsername } from "@/lib/api-auth";
+import { redis } from "@/lib/redis";
 import { awardStageInRedis, awardQuizStageInRedis } from "@/lib/server-progress";
 import { isRateLimited } from "@/lib/rate-limit";
 import { getClientIp } from "@/lib/client-ip";
@@ -14,6 +15,12 @@ import {
 const quizRegistry: Record<string, typeof quizStage01> = {
   "stage-01": quizStage01,
 };
+
+// Must mirror QUESTIONS_PER_ATTEMPT in QuizChallenge.tsx. A stage clears when the
+// learner answers at least PASS_RATIO of the attempt correctly — counted server-side.
+const QUESTIONS_PER_ATTEMPT = 5;
+const PASS_RATIO = 0.6;
+const ATTEMPT_TTL_S = 3600;
 
 export async function POST(req: NextRequest) {
   const body = await req.json().catch(() => null);
@@ -66,47 +73,62 @@ export async function POST(req: NextRequest) {
     trackWrongAttempt(username, body.stageId).catch(() => {});
   }
 
-  // On final question correct answer, record completion server-side.
-  const isLastQuestion = body.isFinalQuestion === true;
-  if (correct && isLastQuestion && username) {
-    // Dual-mode stage (a CTF that also offers a quiz): finishing the quiz marks the
-    // stage HALF complete — visual only, no XP. Capturing the CTF flag fully clears it.
-    if (stage?.ctf) {
-      const quizCompletedStages = await awardQuizStageInRedis(username, body.stageId);
+  // ── Attempt scoring (server-side, spoof-proof) ──
+  // Track the DISTINCT questionIds answered correctly this attempt in a Redis set,
+  // reset at the first question. A stage clears on a real pass rate (≥ PASS_RATIO),
+  // not just a correct final question. The attempt size is derived server-side, so a
+  // client can't lower the bar; the set ignores duplicate/replayed correct answers.
+  const isFirst = body.isFirstQuestion === true;
+  const isLast = body.isFinalQuestion === true;
+  const attemptKey = username ? `quizatt:${username.toLowerCase()}:${body.stageId}` : null;
+
+  if (attemptKey) {
+    if (isFirst) await redis.del(attemptKey);
+    if (correct) {
+      await redis.sadd(attemptKey, question.id);
+      await redis.expire(attemptKey, ATTEMPT_TTL_S);
+    }
+  }
+
+  if (isLast && username && attemptKey) {
+    const attemptTotal = Math.min(QUESTIONS_PER_ATTEMPT, quiz.questions.length);
+    const passNeeded = Math.ceil(attemptTotal * PASS_RATIO);
+    const correctCount = await redis.scard(attemptKey);
+    const passed = correctCount >= passNeeded;
+    const isDual = !!stage?.ctf;
+
+    if (!passed) {
       return NextResponse.json({
-        correct: true,
-        explanation: question.explanation ?? "",
-        half: true,
-        quizCompletedStages,
+        correct, explanation: question.explanation ?? "",
+        half: isDual, passed: false, correctCount, attemptTotal, passNeeded,
       });
     }
 
-    // Pure quiz stage: completing the quiz fully clears the stage and awards XP.
+    await redis.del(attemptKey); // consume the attempt once it clears
+
+    // Dual-mode stage (a CTF that also offers a quiz): passing the quiz marks the
+    // stage HALF complete — visual only, no XP. Capturing the CTF flag fully clears it.
+    if (isDual) {
+      const quizCompletedStages = await awardQuizStageInRedis(username, body.stageId);
+      return NextResponse.json({
+        correct, explanation: question.explanation ?? "",
+        half: true, passed: true, quizCompletedStages,
+      });
+    }
+
+    // Pure quiz stage: passing fully clears the stage and awards XP.
     const wrongAttempts = await getWrongAttempts(username, body.stageId);
-    // Quiz stages: no time tracking; hints unused → score driven entirely by wrong attempts
     const stageScore = computeStageScore(0, 0, wrongAttempts);
     const bonusXp = computeBonusXp(stageScore, stage?.xp ?? 0);
-
-    const progress = await awardStageInRedis(
-      username,
-      body.stageId,
-      stage?.badge.id,
-      0,
-      bonusXp
-    );
-
+    const progress = await awardStageInRedis(username, body.stageId, stage?.badge.id, 0, bonusXp);
     const skillLevel = await updateSkillLevel(username, stageScore);
     const recommendedNext = stage
       ? getRecommendedNext(stage.epochId, progress.completedStages, skillLevel)
       : null;
 
     return NextResponse.json({
-      correct: true,
-      explanation: question.explanation ?? "",
-      half: false,
-      progress,
-      bonusXp,
-      recommendedNext,
+      correct, explanation: question.explanation ?? "",
+      half: false, passed: true, progress, bonusXp, recommendedNext,
     });
   }
 

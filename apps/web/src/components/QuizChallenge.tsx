@@ -13,12 +13,10 @@ type AnswerState = {
   explanation: string;
 } | null;
 
-// The server's verdict on the final question — drives the completion screen.
+// The server's verdict at the end of the attempt — drives the completion screen.
 type FinalResult = {
-  /** Dual-mode stage: quiz counts as a HALF clear (no XP). */
-  half: boolean;
-  /** Pure-quiz stage genuinely cleared (XP awarded). */
-  awarded: boolean;
+  /** Whether the attempt met the server-side pass threshold (≥60% correct). */
+  passed: boolean;
   bonusXp: number;
   recommendedNext: { id: string; title: string } | null;
 } | null;
@@ -76,24 +74,25 @@ export default function QuizChallenge({ stage, backHref = "/stages" }: { stage: 
     setChecking(true);
     try {
       const isFinalQuestion = current + 1 >= questions.length;
+      const isFirstQuestion = current === 0;
       const res = await fetch("/api/check-answer", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         // Send the option TEXT (not index) — options are shuffled client-side and the
         // server validates by text, so the correct answer is never exposed by position.
-        body: JSON.stringify({ stageId: stage.id, questionId: q.id, selectedText: q.options[idx], isFinalQuestion }),
+        // isFirst/isFinal let the server score the whole attempt (server-side pass rate).
+        body: JSON.stringify({ stageId: stage.id, questionId: q.id, selectedText: q.options[idx], isFirstQuestion, isFinalQuestion }),
       });
       const data = await res.json();
       setAnswer({ correct: data.correct, explanation: data.explanation });
       if (data.correct) {
         setScore((s) => s + 1);
       }
-      // Capture the server's award verdict on the final question so the completion
-      // screen can celebrate a real clear (with real coins/bonus/next).
+      // Capture the server's end-of-attempt verdict so the completion screen can
+      // celebrate a real clear (with real coins/bonus/next) only when truly passed.
       if (isFinalQuestion) {
         setFinalResult({
-          half: data.half === true,
-          awarded: data.correct === true && data.half !== true,
+          passed: data.passed === true,
           bonusXp: typeof data.bonusXp === "number" ? data.bonusXp : 0,
           recommendedNext: data.recommendedNext ?? null,
         });
@@ -124,8 +123,8 @@ export default function QuizChallenge({ stage, backHref = "/stages" }: { stage: 
   }
 
   if (done) {
-    // Pure-quiz stage genuinely cleared → celebratory pop-up fed by the real award.
-    if (!isHalfClear && finalResult?.awarded) {
+    // Pure-quiz stage genuinely cleared (≥60% pass) → celebratory pop-up.
+    if (!isHalfClear && finalResult?.passed) {
       return (
         <QuizSuccessModal
           stage={stage}
@@ -146,7 +145,7 @@ export default function QuizChallenge({ stage, backHref = "/stages" }: { stage: 
         style={{ background: "linear-gradient(135deg, #0d1117 0%, #0f2027 50%, #1a1a2e 100%)" }}
       >
         <div className="max-w-lg w-full text-center">
-          {isHalfClear ? (
+          {isHalfClear && finalResult?.passed ? (
             <>
               <div className="text-6xl mb-6">📝</div>
               <h2 className="text-3xl font-bold text-white mb-2">Quiz Cleared!</h2>
@@ -167,7 +166,7 @@ export default function QuizChallenge({ stage, backHref = "/stages" }: { stage: 
               <div className="text-6xl mb-6">📚</div>
               <h2 className="text-3xl font-bold text-white mb-2">Almost there!</h2>
               <p className="text-gray-400 mb-8">
-                You answered {score} of {questions.length} correctly, but didn&apos;t clear this attempt. Try a fresh set of questions to complete the stage and earn its 🪙.
+                You answered {score} of {questions.length} correctly — you need at least 60% to clear. Try a fresh set of questions to complete the stage and earn its 🪙.
               </p>
             </>
           )}
