@@ -1,4 +1,5 @@
-import type { StageConfig, EpochConfig } from "./types";
+import type { StageConfig, EpochConfig, CtfConfig } from "./types";
+import { mkDeepCtf } from "./ctf-deep";
 
 export const quantumIntroEpoch: EpochConfig = {
   id: "quantum-intro",
@@ -781,3 +782,274 @@ qc.measure([0, 1], [0, 1])
     },
   },
 ];
+
+// CTF labs — deep, step-by-step quantum-information exercises via the shared
+// mkDeepCtf factory. Beginner-friendly hands-on quantum (superposition,
+// measurement, entanglement, Grover, PQC). Flags mirrored in stage-flags.ts.
+const QI_CTF: Record<string, CtfConfig> = {
+  "quantum-i01": mkDeepCtf(
+    "Classical rules break at the smallest scale. Probe a system small enough to show quantization, observe discrete energy levels, and confirm it is genuinely quantum.",
+    "OP: THE QUANTUM SCALE\nTarget: a system at the atomic scale.\nGoal: probe it, see quantization, confirm quantum behavior.\nSequence: probe-scale -> observe-quantization -> confirm-quantum",
+    "FLAG{QU4NTUM_",
+    "Mission Brief",
+    ["probe-scale", "SC4L3_", "Scale Probed", [
+      "$ probe-scale --nanometers",
+      "At ~1nm, energy is not continuous — it comes in discrete packets (quanta).",
+      "Classical intuition stops working here.",
+      "Next: observe-quantization",
+    ]],
+    ["observe-quantization", "QU4NT1Z3D_", "Quantization Observed", [
+      "$ observe-quantization",
+      "Spectrum shows sharp lines, not a smooth band: only specific energy levels are allowed.",
+      "This 'staircase' is the signature of the quantum world.",
+      "Next: confirm-quantum",
+    ]],
+    ["confirm-quantum", "C0NF1RM3D}", "Quantum Confirmed", [
+      "$ confirm-quantum",
+      "Discrete levels confirmed — the system obeys quantum mechanics, not classical physics.",
+      "Everything in this track builds on this foundation.",
+      "Run 'assemble', then submit the flag.",
+    ]],
+    ["Read the briefing. Run: cat briefing.txt", "Probe the scale. Run: probe-scale", "Observe quantization. Run: observe-quantization", "Confirm quantum. Run: confirm-quantum", "Run 'assemble', then submit the flag"],
+    { "spectrum.txt": "energy levels: E0, E1, E2 (discrete)\nbetween levels: forbidden\n=> quantized" },
+  ),
+  "quantum-i02": mkDeepCtf(
+    "A qubit can be both 0 and 1 at once — superposition. Initialize a qubit, apply a Hadamard gate, and sample the 50/50 distribution that proves it.",
+    "OP: BOTH AT ONCE\nTarget: a single qubit.\nGoal: superpose it and sample the distribution.\nSequence: init-qubit -> apply-hadamard -> sample-super",
+    "FLAG{SUP3RP0S1T10N_",
+    "Mission Brief",
+    ["init-qubit", "H4D4M4RD_", "Qubit Initialized", [
+      "$ init-qubit |0>",
+      "Qubit starts in definite state |0>. Measuring now always gives 0.",
+      "Superposition needs a gate.",
+      "Next: apply-hadamard",
+    ]],
+    ["apply-hadamard", "S4MPL3D_", "Hadamard Applied", [
+      "$ apply-hadamard",
+      "H|0> = (|0> + |1>)/sqrt(2): the qubit is now BOTH 0 and 1 simultaneously.",
+      "Not 'unknown' — genuinely both until measured.",
+      "Next: sample-super",
+    ]],
+    ["sample-super", "50_50}", "Distribution Sampled", [
+      "$ sample-super --shots 1000",
+      "Outcomes: 0 -> 503, 1 -> 497. The ~50/50 split is the fingerprint of superposition.",
+      "This parallelism is where quantum power begins.",
+      "Run 'assemble', then submit the flag.",
+    ]],
+    ["Read the briefing. Run: cat briefing.txt", "Initialize the qubit. Run: init-qubit", "Apply Hadamard. Run: apply-hadamard", "Sample the superposition. Run: sample-super", "Run 'assemble', then submit the flag"],
+    { "hadamard.txt": "H|0> = (|0>+|1>)/sqrt(2)\nshots=1000 -> 0:503 1:497" },
+  ),
+  "quantum-i03": mkDeepCtf(
+    "Measuring a quantum system changes it. Prepare a state, watch measurement collapse it, and use that to detect an eavesdropper — the principle behind quantum key distribution.",
+    "OP: LOOKING CHANGES IT\nTarget: a prepared quantum state on a channel.\nGoal: prepare, collapse by measuring, detect the eavesdropper.\nSequence: prepare-state -> measure-collapse -> detect-disturb",
+    "FLAG{M34SUR3_",
+    "Mission Brief",
+    ["prepare-state", "C0LL4PS3_", "State Prepared", [
+      "$ prepare-state --basis random",
+      "Encoded bits on qubits in randomly chosen bases (the BB84 idea).",
+      "An undisturbed qubit carries the bit faithfully.",
+      "Next: measure-collapse",
+    ]],
+    ["measure-collapse", "D1STURB_", "Collapse Observed", [
+      "$ measure-collapse",
+      "Measuring in the wrong basis collapses the state and randomizes the result.",
+      "You cannot observe a qubit without changing it.",
+      "Next: detect-disturb",
+    ]],
+    ["detect-disturb", "D3T3CT3D}", "Eavesdropper Detected", [
+      "$ detect-disturb --compare-bases",
+      "Error rate on shared bits jumped to ~25% -> an eavesdropper measured the channel.",
+      "Measurement disturbance makes quantum key distribution tamper-evident.",
+      "Run 'assemble', then submit the flag.",
+    ]],
+    ["Read the briefing. Run: cat briefing.txt", "Prepare the state. Run: prepare-state", "Measure & collapse. Run: measure-collapse", "Detect the disturbance. Run: detect-disturb", "Run 'assemble', then submit the flag"],
+    { "qkd.txt": "protocol: BB84\nexpected error: ~0%\nmeasured error: ~25%  <-- eavesdropper" },
+  ),
+  "quantum-i04": mkDeepCtf(
+    "Light and matter act as both wave and particle. Run the double-slit experiment, add a which-path detector, and watch the interference pattern vanish.",
+    "OP: WAVE OR PARTICLE\nTarget: the double-slit experiment.\nGoal: see interference, add a detector, watch it collapse.\nSequence: run-double-slit -> add-detector -> observe-collapse",
+    "FLAG{D0UBL3_SL1T_",
+    "Mission Brief",
+    ["run-double-slit", "WH1CH_", "Interference Seen", [
+      "$ run-double-slit",
+      "Single particles build up an interference pattern -> each went through BOTH slits as a wave.",
+      "Wave behavior when unobserved.",
+      "Next: add-detector",
+    ]],
+    ["add-detector", "P4TH_", "Detector Added", [
+      "$ add-detector --which-path",
+      "Now measuring which slit each particle takes — gaining 'which-path' information.",
+      "Observation forces a choice.",
+      "Next: observe-collapse",
+    ]],
+    ["observe-collapse", "C0LL4PS3D}", "Pattern Collapsed", [
+      "$ observe-collapse",
+      "Interference vanishes -> particles now act like particles. Knowledge changes reality.",
+      "Wave-particle duality, demonstrated.",
+      "Run 'assemble', then submit the flag.",
+    ]],
+    ["Read the briefing. Run: cat briefing.txt", "Run the double slit. Run: run-double-slit", "Add the detector. Run: add-detector", "Observe the collapse. Run: observe-collapse", "Run 'assemble', then submit the flag"],
+    { "slit.txt": "no detector: interference fringes\nwith which-path detector: two bands (no interference)" },
+  ),
+  "quantum-i05": mkDeepCtf(
+    "Quantum outcomes are amplitudes that add and cancel. Set the amplitudes, let them interfere, and read off the boosted answer — the trick every quantum algorithm uses.",
+    "OP: ADDING POSSIBILITIES\nTarget: a small quantum register.\nGoal: set amplitudes, interfere, read the peak.\nSequence: set-amplitudes -> interfere -> read-peak",
+    "FLAG{4MPL1TUD3_",
+    "Mission Brief",
+    ["set-amplitudes", "1NT3RF3R3_", "Amplitudes Set", [
+      "$ set-amplitudes",
+      "Each outcome has a complex amplitude; probability = amplitude squared.",
+      "Amplitudes can be positive or negative.",
+      "Next: interfere",
+    ]],
+    ["interfere", "P34K_", "Interference Applied", [
+      "$ interfere",
+      "Wrong answers' amplitudes cancel (destructive); the right answer's add (constructive).",
+      "This is how a quantum computer concentrates probability on the solution.",
+      "Next: read-peak",
+    ]],
+    ["read-peak", "R34D}", "Peak Read", [
+      "$ read-peak",
+      "Measurement now returns the correct answer with high probability.",
+      "Interference, not brute force, is the source of quantum advantage.",
+      "Run 'assemble', then submit the flag.",
+    ]],
+    ["Read the briefing. Run: cat briefing.txt", "Set the amplitudes. Run: set-amplitudes", "Interfere. Run: interfere", "Read the peak. Run: read-peak", "Run 'assemble', then submit the flag"],
+    { "amp.txt": "P(outcome) = |amplitude|^2\ndestructive: wrong answers cancel\nconstructive: right answer amplified" },
+  ),
+  "quantum-i06": mkDeepCtf(
+    "Entangled particles share a fate no matter the distance. Make a Bell pair, measure both, and violate the CHSH inequality to prove correlations no classical theory allows.",
+    "OP: THE SPOOKY CONNECTION\nTarget: two qubits.\nGoal: entangle, measure both, violate Bell.\nSequence: make-bell-pair -> measure-both -> violate-bell",
+    "FLAG{B3LL_P41R_",
+    "Mission Brief",
+    ["make-bell-pair", "CHSH_", "Bell Pair Made", [
+      "$ make-bell-pair",
+      "H + CNOT -> (|00> + |11>)/sqrt(2): two qubits in one shared state.",
+      "Neither qubit has a definite value alone.",
+      "Next: measure-both",
+    ]],
+    ["measure-both", "V10L4T3D_", "Both Measured", [
+      "$ measure-both --remote",
+      "Measuring one instantly fixes the other's outcome — correlated every time.",
+      "Compute the CHSH value across measurement angles.",
+      "Next: violate-bell",
+    ]],
+    ["violate-bell", "SP00KY}", "Bell Violated", [
+      "$ violate-bell",
+      "CHSH S = 2.78 > 2 (classical limit) -> no local hidden-variable theory can explain it.",
+      "Entanglement is real, and it powers teleportation and device-independent QKD.",
+      "Run 'assemble', then submit the flag.",
+    ]],
+    ["Read the briefing. Run: cat briefing.txt", "Make the Bell pair. Run: make-bell-pair", "Measure both. Run: measure-both", "Violate Bell. Run: violate-bell", "Run 'assemble', then submit the flag"],
+    { "bell.txt": "state: (|00>+|11>)/sqrt(2)\nclassical CHSH max: 2\nmeasured S: 2.78  <-- violation" },
+  ),
+  "quantum-i07": mkDeepCtf(
+    "The qubit lives on the Bloch sphere. Initialize one, rotate it with gates, and read it out — the unit of quantum information.",
+    "OP: MEET THE QUBIT\nTarget: a single qubit on the Bloch sphere.\nGoal: init, rotate, read out.\nSequence: init-bloch -> rotate-qubit -> readout",
+    "FLAG{QUB1T_",
+    "Mission Brief",
+    ["init-bloch", "BL0CH_", "Bloch Initialized", [
+      "$ init-bloch",
+      "Represent the qubit as a point on a sphere: north=|0>, south=|1>, equator=superposition.",
+      "Any pure state is one point on this sphere.",
+      "Next: rotate-qubit",
+    ]],
+    ["rotate-qubit", "R0T4T3_", "Qubit Rotated", [
+      "$ rotate-qubit --rx 90 --rz 45",
+      "Gates are rotations of the Bloch vector; X/Y/Z/H move the point around the sphere.",
+      "Quantum programming = choreographing rotations.",
+      "Next: readout",
+    ]],
+    ["readout", "R34D0UT}", "Qubit Read Out", [
+      "$ readout",
+      "Measurement projects the vector onto the Z-axis -> a probabilistic 0 or 1.",
+      "One qubit holds a continuum of states but yields one classical bit when read.",
+      "Run 'assemble', then submit the flag.",
+    ]],
+    ["Read the briefing. Run: cat briefing.txt", "Initialize the Bloch vector. Run: init-bloch", "Rotate the qubit. Run: rotate-qubit", "Read out. Run: readout", "Run 'assemble', then submit the flag"],
+    { "bloch.txt": "north=|0> south=|1> equator=superposition\ngates = rotations of the vector" },
+  ),
+  "quantum-i08": mkDeepCtf(
+    "Quantum circuits are built from gate 'LEGO'. Place gates, wire them into a circuit, and run it to produce a quantum result.",
+    "OP: QUANTUM LEGO\nTarget: an empty quantum circuit.\nGoal: place gates, build the circuit, run it.\nSequence: place-gates -> build-circuit -> run-circuit",
+    "FLAG{QU4NTUM_",
+    "Mission Brief",
+    ["place-gates", "C1RCU1T_", "Gates Placed", [
+      "$ place-gates H CNOT X",
+      "Picked gates from the universal set; each is a reversible operation on qubits.",
+      "Order matters — gates don't always commute.",
+      "Next: build-circuit",
+    ]],
+    ["build-circuit", "G4T3S_", "Circuit Built", [
+      "$ build-circuit",
+      "Wired H on q0, CNOT q0->q1, measure both: a 2-qubit entangling circuit.",
+      "This is literally a quantum program.",
+      "Next: run-circuit",
+    ]],
+    ["run-circuit", "BU1LT}", "Circuit Run", [
+      "$ run-circuit --shots 1000",
+      "Output: 00 -> 511, 11 -> 489 (entangled). The circuit did what we designed.",
+      "Compose gates and you can build any quantum algorithm.",
+      "Run 'assemble', then submit the flag.",
+    ]],
+    ["Read the briefing. Run: cat briefing.txt", "Place the gates. Run: place-gates", "Build the circuit. Run: build-circuit", "Run the circuit. Run: run-circuit", "Run 'assemble', then submit the flag"],
+    { "circuit.txt": "q0: H -.-\nq1: ---X (CNOT target)\nout: 00:511 11:489" },
+  ),
+  "quantum-i09": mkDeepCtf(
+    "Quantum computers shine on special problems. Load Grover's oracle, run the search, and find the marked item in far fewer steps than classical brute force.",
+    "OP: WHY THE HYPE\nTarget: an unstructured search of N items.\nGoal: load the oracle, run Grover, find the marked item.\nSequence: load-oracle -> run-grover -> find-marked",
+    "FLAG{GR0V3R_",
+    "Mission Brief",
+    ["load-oracle", "0R4CL3_", "Oracle Loaded", [
+      "$ load-oracle --N 1048576",
+      "Classical search of ~1M items needs ~1M checks on average.",
+      "Grover's oracle flips the phase of the marked item.",
+      "Next: run-grover",
+    ]],
+    ["run-grover", "M4RK3D_", "Grover Run", [
+      "$ run-grover",
+      "Amplitude amplification boosts the marked item over ~sqrt(N) ≈ 1024 iterations.",
+      "Quadratic speedup — not magic, but real.",
+      "Next: find-marked",
+    ]],
+    ["find-marked", "F0UND}", "Marked Item Found", [
+      "$ find-marked",
+      "Measured the marked item in 1024 steps vs ~1,000,000 classical. (Shor breaks RSA similarly.)",
+      "This speedup is exactly why post-quantum crypto matters.",
+      "Run 'assemble', then submit the flag.",
+    ]],
+    ["Read the briefing. Run: cat briefing.txt", "Load the oracle. Run: load-oracle", "Run Grover. Run: run-grover", "Find the marked item. Run: find-marked", "Run 'assemble', then submit the flag"],
+    { "grover.txt": "N=1048576\nclassical: ~1,000,000 checks\nGrover: ~1024 (sqrt(N))" },
+  ),
+  "quantum-i10": mkDeepCtf(
+    "Quantum computers will break today's encryption. Assess your harvest-now-decrypt-later exposure, pick a NIST post-quantum algorithm, and migrate.",
+    "OP: QUANTUM IN YOUR FUTURE\nTarget: systems using classical public-key crypto.\nGoal: assess HNDL risk, choose PQC, migrate.\nSequence: assess-hndl -> pick-pqc -> migrate",
+    "FLAG{HNDL_",
+    "Mission Brief",
+    ["assess-hndl", "PQC_", "HNDL Assessed", [
+      "$ assess-hndl",
+      "Adversaries record encrypted traffic now to decrypt later once a quantum computer exists.",
+      "Long-lived secrets are already at risk today.",
+      "Next: pick-pqc",
+    ]],
+    ["pick-pqc", "M1GR4T3_", "PQC Chosen", [
+      "$ pick-pqc",
+      "Selected NIST standards: ML-KEM (FIPS 203) for key exchange, ML-DSA (FIPS 204) for signatures.",
+      "These resist both classical and quantum attacks.",
+      "Next: migrate",
+    ]],
+    ["migrate", "S4F3}", "Migrated", [
+      "$ migrate --hybrid x25519+ml-kem",
+      "Deployed hybrid key exchange; secrets now safe against harvest-now-decrypt-later.",
+      "The quantum future needs preparing for today.",
+      "Run 'assemble', then submit the flag.",
+    ]],
+    ["Read the briefing. Run: cat briefing.txt", "Assess HNDL risk. Run: assess-hndl", "Pick PQC. Run: pick-pqc", "Migrate. Run: migrate", "Run 'assemble', then submit the flag"],
+    { "pqc.txt": "threat: harvest-now-decrypt-later\nstandards: ML-KEM (FIPS203), ML-DSA (FIPS204)\nplan: hybrid x25519+ML-KEM" },
+  ),
+};
+
+for (const s of quantumIntroStages) {
+  const ctf = QI_CTF[s.id];
+  if (ctf) { s.challengeType = "ctf"; s.ctf = ctf; }
+}

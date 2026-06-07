@@ -112,6 +112,18 @@ export const stageFlags: Record<string, string> = {
   "si-09": "FLAG{Y13LD_B1N_FUNCT10N4L_TR0J4N_C4UGHT}",
   "si-10": "FLAG{QUB1T_C0H3R3NC3_T4MP3R_D3T3CT3D}",
 
+  // ── Quantum for Curious Minds (quantum-intro.ts) ─────────────────────────
+  "quantum-i01": "FLAG{QU4NTUM_SC4L3_QU4NT1Z3D_C0NF1RM3D}",
+  "quantum-i02": "FLAG{SUP3RP0S1T10N_H4D4M4RD_S4MPL3D_50_50}",
+  "quantum-i03": "FLAG{M34SUR3_C0LL4PS3_D1STURB_D3T3CT3D}",
+  "quantum-i04": "FLAG{D0UBL3_SL1T_WH1CH_P4TH_C0LL4PS3D}",
+  "quantum-i05": "FLAG{4MPL1TUD3_1NT3RF3R3_P34K_R34D}",
+  "quantum-i06": "FLAG{B3LL_P41R_CHSH_V10L4T3D_SP00KY}",
+  "quantum-i07": "FLAG{QUB1T_BL0CH_R0T4T3_R34D0UT}",
+  "quantum-i08": "FLAG{QU4NTUM_C1RCU1T_G4T3S_BU1LT}",
+  "quantum-i09": "FLAG{GR0V3R_0R4CL3_M4RK3D_F0UND}",
+  "quantum-i10": "FLAG{HNDL_PQC_M1GR4T3_S4F3}",
+
   // ── Emerging Tech (emerging-tech.ts) ─────────────────────────────────────
   "emerging-01": "FLAG{4DV_3X_M0D3L_F00L3D}",
   "emerging-02": "FLAG{B4DN3T_M0D3L_B4CKD00R}",
