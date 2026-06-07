@@ -89,7 +89,7 @@ export default function HomeCtfDemo() {
         push(
           { text: "", color: C.out },
           { text: "🏁  FLAG CAPTURED — nice work, agent.", color: C.ok },
-          { text: "That's one step of a real CTF. There are 458 more.", color: C.out },
+          { text: "That's one step of a real CTF. There are 800 more.", color: C.out },
         );
         setCaptured(true);
       } else {
