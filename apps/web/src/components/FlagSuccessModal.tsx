@@ -132,20 +132,20 @@ export default function FlagSuccessModal({ stage, flag, timeTakenMs, timePenalty
             </div>
           )}
 
-          {/* Recommended next stage */}
+          {/* Recommended next — the "one more" hook, made irresistible */}
           {recommendedNext && (
-            <div className="mb-3 rounded-xl border border-cyan-500/25 bg-cyan-500/5 p-3">
-              <p className="text-gray-600 text-xs uppercase tracking-widest mb-1.5">Recommended Next</p>
-              <Link
-                href={`/stages/${recommendedNext.id}`}
-                className="flex items-center justify-between gap-2 group"
-              >
-                <span className="text-cyan-300 text-sm font-semibold group-hover:text-cyan-200 transition-colors truncate">
+            <Link
+              href={`/stages/${recommendedNext.id}`}
+              className="group block mb-3 rounded-xl border border-cyan-400/40 bg-gradient-to-r from-cyan-500/12 to-indigo-500/12 p-3 hover:border-cyan-300/70 transition-colors"
+            >
+              <p className="text-cyan-400 text-xs uppercase tracking-widest mb-1.5 font-bold">🔥 Keep the run going</p>
+              <div className="flex items-center justify-between gap-2">
+                <span className="text-white text-sm font-bold group-hover:text-cyan-200 transition-colors truncate">
                   {recommendedNext.title}
                 </span>
-                <span className="text-cyan-500 text-sm flex-shrink-0">→</span>
-              </Link>
-            </div>
+                <span className="text-cyan-300 text-lg flex-shrink-0 group-hover:translate-x-0.5 transition-transform">→</span>
+              </div>
+            </Link>
           )}
 
           {/* Action buttons */}

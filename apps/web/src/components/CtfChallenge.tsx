@@ -517,9 +517,22 @@ export default function CtfChallenge({ stage, backHref = "/stages", isPro = fals
     const nextCount = collectedFragments.size + 1;
     const total = ctf.fragments.length;
     setCollectedFragments((prev) => new Set([...prev, key]));
+
+    // Dopamine: a visible fill-bar of pips + escalating "one more" hype so each
+    // capture lands as a hit and the finish line keeps pulling you forward.
+    const pips = "◆".repeat(nextCount) + "◇".repeat(Math.max(0, total - nextCount));
+    const remaining = total - nextCount;
+    const hype =
+      remaining === 0 ? "💥 ALL FRAGMENTS CAPTURED — run 'assemble' to forge the flag!"
+      : remaining === 1 ? "🔥 ONE more to go — you've almost cracked it!"
+      : nextCount === 1 ? "⚡ First blood. Pull the thread…"
+      : "⚡ Nice — momentum building…";
+
     push(
       { type: "warn", text: `🔑 ${tr("ctf.terminal.fragmentRecovered", { n: nextCount, total })} — [ ${frag.value} ]` },
       { type: "warn", text: `   ${frag.label}` },
+      { type: "ok", text: `   ${pips}  ${nextCount}/${total}` },
+      { type: remaining === 0 ? "ok" : "out", text: `   ${hype}` },
       { type: "out", text: "" },
     );
   }
