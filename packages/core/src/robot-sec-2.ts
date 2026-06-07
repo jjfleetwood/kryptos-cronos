@@ -1,4 +1,5 @@
 import type { StageConfig, EpochConfig, CtfConfig } from "./types";
+import { mkDeepCtf } from "./ctf-deep";
 
 export const robotSec2Epoch: EpochConfig = {
   id: "robot-sec-2",
@@ -828,5 +829,118 @@ const R2_CTF: Record<string, CtfConfig> = {
 
 for (const s of robotSec2Stages) {
   const ctf = R2_CTF[s.id];
+  if (ctf) { s.challengeType = "ctf"; s.ctf = ctf; }
+}
+
+// Deep 3-step CTFs for the remaining quiz stages (shared mkDeepCtf factory).
+const R2_CTF2: Record<string, CtfConfig> = {
+  "r2-01": mkDeepCtf(
+    "ROS 2 runs on DDS, which is wide open by default. Map a robot's ROS 2 graph, enable SROS2 security, and verify nodes are confined to authenticated enclaves.",
+    "OP: SECURE THE GRAPH\nTarget: a ROS 2 robot on an open DDS network.\nGoal: map the graph, enable SROS2, verify enclaves.\nSequence: map-ros-graph -> enable-sros2 -> verify-enclave",
+    "FLAG{R0S2_",
+    "Mission Brief",
+    ["map-ros-graph", "SR0S2_", "Graph Mapped", [
+      "$ map-ros-graph",
+      "Nodes, topics, services discovered over DDS — all unauthenticated, anyone can publish/subscribe.",
+      "An attacker on the network can inject /cmd_vel and drive the robot.",
+      "Next: enable-sros2",
+    ]],
+    ["enable-sros2", "DDS_", "SROS2 Enabled", [
+      "$ enable-sros2 --gen-keys",
+      "Generated identity/permission certs; enabled DDS-Security (auth, encryption, access control).",
+      "Now only signed nodes with permissions can join.",
+      "Next: verify-enclave",
+    ]],
+    ["verify-enclave", "S3CUR3D}", "Enclaves Verified", [
+      "$ verify-enclave",
+      "Each node confined to a permission enclave; spoofed /cmd_vel from an outsider is now rejected.",
+      "ROS 2 is only as safe as its DDS security config.",
+      "Run 'assemble', then submit the flag.",
+    ]],
+    ["Read the briefing. Run: cat briefing.txt", "Map the ROS graph. Run: map-ros-graph", "Enable SROS2. Run: enable-sros2", "Verify enclaves. Run: verify-enclave", "Run 'assemble', then submit the flag"],
+    { "ros.txt": "transport: DDS (open by default)\nnodes can publish /cmd_vel\nfix: SROS2 (DDS-Security) + enclaves" },
+  ),
+  "r2-05": mkDeepCtf(
+    "A robot swarm coordinates by consensus — until a Sybil attacker injects fake robots to swing decisions. Join the swarm, inject Sybil nodes, and defend with Byzantine fault-tolerant consensus.",
+    "OP: SWARM TRUST\nTarget: a consensus-driven robot swarm.\nGoal: join, inject Sybils, defend with BFT.\nSequence: join-swarm -> inject-sybil -> bft-consensus",
+    "FLAG{SW4RM_",
+    "Mission Brief",
+    ["join-swarm", "SYB1L_", "Swarm Joined", [
+      "$ join-swarm",
+      "Swarm votes on formation + tasks; majority wins, no identity check on members.",
+      "Trust is implicit — a fatal assumption.",
+      "Next: inject-sybil",
+    ]],
+    ["inject-sybil", "BFT_", "Sybils Injected", [
+      "$ inject-sybil --fake 30",
+      "Spun up 30 fake robot identities -> the swarm now follows the attacker's vote.",
+      "A few Sybils can hijack the whole collective.",
+      "Next: bft-consensus",
+    ]],
+    ["bft-consensus", "C0NS3NSUS}", "BFT Restored", [
+      "$ bft-consensus --identities verified",
+      "Added cryptographic identities + Byzantine fault-tolerant consensus (tolerates < 1/3 malicious).",
+      "Sybils rejected; the swarm reaches correct decisions despite bad actors.",
+      "Run 'assemble', then submit the flag.",
+    ]],
+    ["Read the briefing. Run: cat briefing.txt", "Join the swarm. Run: join-swarm", "Inject Sybils. Run: inject-sybil", "Restore BFT consensus. Run: bft-consensus", "Run 'assemble', then submit the flag"],
+    { "swarm.txt": "consensus: majority vote, no identity\nattack: 30 Sybil nodes\nfix: crypto identities + BFT (<1/3 malicious)" },
+  ),
+  "r2-07": mkDeepCtf(
+    "A commercial humanoid robot shipped with a hidden remote-access backdoor (a real 2024 finding). Probe the robot, find the backdoor, and lock down its firmware.",
+    "OP: BACKDOORED HUMANOID\nTarget: a commercial humanoid/legged robot.\nGoal: probe it, find the backdoor, lock the firmware.\nSequence: probe-humanoid -> find-backdoor -> lock-firmware",
+    "FLAG{HUM4N01D_",
+    "Mission Brief",
+    ["probe-humanoid", "B4CKD00R_", "Robot Probed", [
+      "$ probe-humanoid",
+      "Scanned services: an undocumented daemon listens on a high port and phones home.",
+      "Legged/humanoid robots carry cameras, mics, and mobility — high-value if owned.",
+      "Next: find-backdoor",
+    ]],
+    ["find-backdoor", "F1RMW4R3_", "Backdoor Found", [
+      "$ find-backdoor",
+      "The daemon accepts remote commands with a vendor master key — full teleop + sensor access.",
+      "Mirrors the 2024 humanoid backdoor disclosure.",
+      "Next: lock-firmware",
+    ]],
+    ["lock-firmware", "L0CK3D}", "Firmware Locked", [
+      "$ lock-firmware --remove-daemon --signed-only",
+      "Removed the daemon, enforced signed firmware + secure boot, blocked the phone-home.",
+      "Robots are networked computers with bodies — treat their firmware accordingly.",
+      "Run 'assemble', then submit the flag.",
+    ]],
+    ["Read the briefing. Run: cat briefing.txt", "Probe the humanoid. Run: probe-humanoid", "Find the backdoor. Run: find-backdoor", "Lock the firmware. Run: lock-firmware", "Run 'assemble', then submit the flag"],
+    { "robot.txt": "service: undocumented daemon, phones home\nbackdoor: vendor master key -> full teleop\nfix: signed firmware + secure boot" },
+  ),
+  "r2-10": mkDeepCtf(
+    "Securing a robot fleet at scale needs zero trust plus an independent safety envelope. Audit the fleet, apply zero-trust identity, and add a safety layer that overrides bad commands.",
+    "OP: SECURE THE FLEET\nTarget: a fleet of networked robots.\nGoal: audit, apply zero trust, add a safety envelope.\nSequence: audit-fleet -> apply-zerotrust -> safety-envelope",
+    "FLAG{R0B0T_FL33T_",
+    "Mission Brief",
+    ["audit-fleet", "Z3R0_", "Fleet Audited", [
+      "$ audit-fleet",
+      "Shared credentials, flat network, no per-robot identity — one compromise spreads to all.",
+      "Scale multiplies a single weakness.",
+      "Next: apply-zerotrust",
+    ]],
+    ["apply-zerotrust", "TRUST_", "Zero Trust Applied", [
+      "$ apply-zerotrust",
+      "Per-robot mTLS identity, least-privilege command authz, continuous verification, signed OTA.",
+      "No robot is trusted by default.",
+      "Next: safety-envelope",
+    ]],
+    ["safety-envelope", "S4F3}", "Safety Enforced", [
+      "$ safety-envelope --independent-monitor",
+      "Added an independent safety layer that bounds speed/force and overrides unsafe commands.",
+      "Security can fail; an independent safety envelope keeps people safe anyway.",
+      "Run 'assemble', then submit the flag.",
+    ]],
+    ["Read the briefing. Run: cat briefing.txt", "Audit the fleet. Run: audit-fleet", "Apply zero trust. Run: apply-zerotrust", "Add the safety envelope. Run: safety-envelope", "Run 'assemble', then submit the flag"],
+    { "fleet.txt": "before: shared creds, flat net\nzero trust: per-robot mTLS, least privilege\nsafety: independent envelope overrides unsafe cmds" },
+  ),
+};
+
+for (const s of robotSec2Stages) {
+  const ctf = R2_CTF2[s.id];
   if (ctf) { s.challengeType = "ctf"; s.ctf = ctf; }
 }

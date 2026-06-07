@@ -1,4 +1,5 @@
 import type { StageConfig, EpochConfig, CtfConfig } from "./types";
+import { mkDeepCtf } from "./ctf-deep";
 
 export const otSecEpoch: EpochConfig = {
   id: "ot-sec",
@@ -828,5 +829,118 @@ const OT_CTF: Record<string, CtfConfig> = {
 
 for (const s of otSecStages) {
   const ctf = OT_CTF[s.id];
+  if (ctf) { s.challengeType = "ctf"; s.ctf = ctf; }
+}
+
+// Deep 3-step CTFs for the remaining quiz stages (shared mkDeepCtf factory).
+const OT_CTF2: Record<string, CtfConfig> = {
+  "ot-01": mkDeepCtf(
+    "A plant's IT and OT networks should be separated by the Purdue model. Map the zones, find a flat-network bridge an attacker could ride from email to a PLC, and segment it.",
+    "OP: MIND THE DIVIDE\nTarget: a converged IT/OT network.\nGoal: map Purdue levels, find the bridge, segment.\nSequence: map-purdue -> find-bridge -> segment",
+    "FLAG{PURDU3_",
+    "Mission Brief",
+    ["map-purdue", "M0D3L_", "Purdue Mapped", [
+      "$ map-purdue",
+      "L4/5 enterprise -> L3 ops -> L2 supervisory -> L1 control -> L0 process.",
+      "OT runs fragile, decades-old gear that assumes a trusted network.",
+      "Next: find-bridge",
+    ]],
+    ["find-bridge", "BR1DG3_", "Bridge Found", [
+      "$ find-bridge",
+      "A historian server is dual-homed straight from L3 to the L4 business VLAN — no DMZ.",
+      "One phished laptop could ride that path down to a PLC.",
+      "Next: segment",
+    ]],
+    ["segment", "S3GM3NT3D}", "Segmented", [
+      "$ segment --insert-dmz --unidirectional",
+      "Inserted an OT DMZ + data diode for historian replication; killed the flat bridge.",
+      "Segmentation is the #1 OT control — keep IT compromises out of the plant.",
+      "Run 'assemble', then submit the flag.",
+    ]],
+    ["Read the briefing. Run: cat briefing.txt", "Map the Purdue model. Run: map-purdue", "Find the bridge. Run: find-bridge", "Segment. Run: segment", "Run 'assemble', then submit the flag"],
+    { "network.txt": "historian: dual-homed L3<->L4 (no DMZ)\nPLCs: L1, reachable via flat path\nfix: OT DMZ + data diode" },
+  ),
+  "ot-07": mkDeepCtf(
+    "Safety Instrumented Systems are the last line that prevents an explosion. The TRITON/TRISIS malware targeted exactly these. Probe a Triconex SIS, analyze the payload, and force it fail-safe.",
+    "OP: LAST LINE OF SAFETY\nTarget: a Triconex Safety Instrumented System.\nGoal: probe the SIS, analyze TRITON, force fail-safe.\nSequence: probe-sis -> triton-payload -> fail-safe",
+    "FLAG{TR1T0N_",
+    "Mission Brief",
+    ["probe-sis", "S1S_", "SIS Probed", [
+      "$ probe-sis",
+      "SIS is separate from the control DCS; it trips the process to a safe state on danger.",
+      "This controller was left in PROGRAM mode — reprogrammable over the network.",
+      "Next: triton-payload",
+    ]],
+    ["triton-payload", "F41L_", "TRITON Analyzed", [
+      "$ triton-payload --analyze",
+      "TRITON/TRISIS (2017) reprogrammed Triconex SIS to disable safety — enabling physical disaster.",
+      "A glitch in the implant tripped the plant, exposing the attack.",
+      "Next: fail-safe",
+    ]],
+    ["fail-safe", "S4F3}", "Failed Safe", [
+      "$ fail-safe --keyswitch RUN --lock",
+      "Set the physical key switch to RUN (no remote reprogramming) + monitored the SIS network.",
+      "Safety systems must be isolated, key-locked, and independently monitored.",
+      "Run 'assemble', then submit the flag.",
+    ]],
+    ["Read the briefing. Run: cat briefing.txt", "Probe the SIS. Run: probe-sis", "Analyze TRITON. Run: triton-payload", "Force fail-safe. Run: fail-safe", "Run 'assemble', then submit the flag"],
+    { "sis.txt": "controller: Triconex\nkeyswitch: PROGRAM (remotely reprogrammable!)\nthreat: TRITON/TRISIS 2017" },
+  ),
+  "ot-08": mkDeepCtf(
+    "Stuxnet sabotaged Iranian centrifuges by lying to operators while spinning the rotors to destruction. Analyze the worm, see how it spoofed the PLC, and restore the true setpoint.",
+    "OP: ANALYZE STUXNET\nTarget: a PLC controlling centrifuge speed.\nGoal: analyze the worm, see the spoof, restore the setpoint.\nSequence: analyze-stuxnet -> spoof-plc -> restore-setpoint",
+    "FLAG{STUXN3T_",
+    "Mission Brief",
+    ["analyze-stuxnet", "PLC_", "Stuxnet Analyzed", [
+      "$ analyze-stuxnet",
+      "Crossed the air gap via USB; spread silently; targeted only specific Siemens S7 PLCs.",
+      "It carried the first PLC rootkit ever seen.",
+      "Next: spoof-plc",
+    ]],
+    ["spoof-plc", "S3TP01NT_", "Spoof Revealed", [
+      "$ spoof-plc --inspect",
+      "It recorded normal sensor data, then replayed it to the HMI while driving rotor speed to destructive RPM.",
+      "Operators saw 'normal' while the centrifuges tore themselves apart.",
+      "Next: restore-setpoint",
+    ]],
+    ["restore-setpoint", "R3ST0R3D}", "Setpoint Restored", [
+      "$ restore-setpoint --verify-firmware",
+      "Removed the PLC rootkit, restored signed firmware + the true speed setpoint, re-imaged EWS.",
+      "Integrity of PLC logic + firmware is everything in OT.",
+      "Run 'assemble', then submit the flag.",
+    ]],
+    ["Read the briefing. Run: cat briefing.txt", "Analyze Stuxnet. Run: analyze-stuxnet", "Reveal the spoof. Run: spoof-plc", "Restore the setpoint. Run: restore-setpoint", "Run 'assemble', then submit the flag"],
+    { "stuxnet.txt": "spread: USB (air-gap), target Siemens S7\ntrick: replay normal data to HMI, overspeed rotors\nfirst PLC rootkit" },
+  ),
+  "ot-10": mkDeepCtf(
+    "Securing OT means zones and conduits, not just firewalls. Audit a plant against IEC 62443, apply zone/conduit segmentation, and verify defense-in-depth holds.",
+    "OP: SECURE THE PLANT\nTarget: a plant with weak OT security.\nGoal: audit, apply IEC 62443 zones/conduits, verify.\nSequence: audit-zones -> apply-62443 -> verify-conduit",
+    "FLAG{1EC_62443_",
+    "Mission Brief",
+    ["audit-zones", "Z0N3S_", "Zones Audited", [
+      "$ audit-zones",
+      "Found one flat OT network: control, safety, and historian all share a broadcast domain.",
+      "IEC 62443 groups assets into security zones by risk.",
+      "Next: apply-62443",
+    ]],
+    ["apply-62443", "C0NDU1TS_", "62443 Applied", [
+      "$ apply-62443",
+      "Split into zones (control / safety / DMZ); allowed traffic only through controlled conduits.",
+      "Each conduit gets explicit, monitored, least-privilege rules.",
+      "Next: verify-conduit",
+    ]],
+    ["verify-conduit", "S3CUR3D}", "Conduits Verified", [
+      "$ verify-conduit --test-paths",
+      "Verified: IT cannot reach L1; safety is isolated; only the historian conduit passes (read-only).",
+      "Defense-in-depth: segmentation + monitoring + resilience, not a single firewall.",
+      "Run 'assemble', then submit the flag.",
+    ]],
+    ["Read the briefing. Run: cat briefing.txt", "Audit the zones. Run: audit-zones", "Apply IEC 62443. Run: apply-62443", "Verify the conduits. Run: verify-conduit", "Run 'assemble', then submit the flag"],
+    { "62443.txt": "before: flat OT network\nzones: control / safety / DMZ\nconduits: explicit, monitored, least-privilege" },
+  ),
+};
+
+for (const s of otSecStages) {
+  const ctf = OT_CTF2[s.id];
   if (ctf) { s.challengeType = "ctf"; s.ctf = ctf; }
 }

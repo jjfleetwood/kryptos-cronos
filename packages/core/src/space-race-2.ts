@@ -1,4 +1,5 @@
 import type { StageConfig, EpochConfig, CtfConfig } from "./types";
+import { mkDeepCtf } from "./ctf-deep";
 
 export const spaceRace2Epoch: EpochConfig = {
   id: "space-race-2",
@@ -828,5 +829,118 @@ const S2_CTF: Record<string, CtfConfig> = {
 
 for (const s of spaceRace2Stages) {
   const ctf = S2_CTF[s.id];
+  if (ctf) { s.challengeType = "ctf"; s.ctf = ctf; }
+}
+
+// Deep 3-step CTFs for the remaining quiz stages (shared mkDeepCtf factory).
+const S2_CTF2: Record<string, CtfConfig> = {
+  "s2-01": mkDeepCtf(
+    "Space systems have a huge, often-ignored attack surface. Map the four segments, load the SPARTA matrix of space-cyber techniques, and find the surface an adversary would target.",
+    "OP: KNOW THE TERRAIN\nTarget: a satellite system's full architecture.\nGoal: map segments, load SPARTA, find the surface.\nSequence: map-segments -> load-sparta -> find-surface",
+    "FLAG{SP4RT4_",
+    "Mission Brief",
+    ["map-segments", "SP4C3_", "Segments Mapped", [
+      "$ map-segments",
+      "Four segments: space (satellite), ground, link (uplink/downlink), user.",
+      "Each is a distinct attack surface — most defenders only watch the ground.",
+      "Next: load-sparta",
+    ]],
+    ["load-sparta", "SURF4C3_", "SPARTA Loaded", [
+      "$ load-sparta",
+      "The Aerospace SPARTA matrix maps adversary techniques across the space kill chain (like ATT&CK for space).",
+      "Cross-referenced our assets against known techniques.",
+      "Next: find-surface",
+    ]],
+    ["find-surface", "M4PP3D}", "Surface Found", [
+      "$ find-surface",
+      "Biggest exposure: an unauthenticated telecommand path + a flat ground network.",
+      "You can't defend what you haven't mapped.",
+      "Run 'assemble', then submit the flag.",
+    ]],
+    ["Read the briefing. Run: cat briefing.txt", "Map the segments. Run: map-segments", "Load SPARTA. Run: load-sparta", "Find the surface. Run: find-surface", "Run 'assemble', then submit the flag"],
+    { "segments.txt": "space | ground | link | user\nSPARTA: space-cyber technique matrix\ntop risk: unauth telecommand + flat ground net" },
+  ),
+  "s2-07": mkDeepCtf(
+    "Mega-constellations are built from cheap COTS CubeSats. Scan one, find the commercial-off-the-shelf flaw that scales to thousands of satellites, and harden the bus.",
+    "OP: CHEAP AND MANY\nTarget: a COTS CubeSat in a large constellation.\nGoal: scan it, find the COTS flaw, harden the bus.\nSequence: scan-cubesat -> find-cots-flaw -> harden-bus",
+    "FLAG{CUB3S4T_",
+    "Mission Brief",
+    ["scan-cubesat", "C0TS_", "CubeSat Scanned", [
+      "$ scan-cubesat",
+      "Built from commodity boards + open-source flight software to cut cost.",
+      "Same hardware/software across thousands of satellites = one flaw scales massively.",
+      "Next: find-cots-flaw",
+    ]],
+    ["find-cots-flaw", "BUS_", "COTS Flaw Found", [
+      "$ find-cots-flaw",
+      "The internal bus (I2C/CAN) trusts any board; a compromised payload can command the bus.",
+      "Cheap and many means homogeneous and fragile.",
+      "Next: harden-bus",
+    ]],
+    ["harden-bus", "H4RD3N3D}", "Bus Hardened", [
+      "$ harden-bus --authenticate --partition",
+      "Added bus authentication + isolated the payload from the flight bus; signed FSW updates.",
+      "Constellation security must assume scale-amplified flaws.",
+      "Run 'assemble', then submit the flag.",
+    ]],
+    ["Read the briefing. Run: cat briefing.txt", "Scan the CubeSat. Run: scan-cubesat", "Find the COTS flaw. Run: find-cots-flaw", "Harden the bus. Run: harden-bus", "Run 'assemble', then submit the flag"],
+    { "cubesat.txt": "boards: COTS\nbus: I2C/CAN (trusts any board)\nrisk: one flaw x thousands of sats" },
+  ),
+  "s2-09": mkDeepCtf(
+    "Space is crowded and contested. Track resident space objects, detect an anti-satellite (ASAT) threat, and assess the Kessler-syndrome debris risk it would create.",
+    "OP: CONTESTED ORBIT\nTarget: a populated orbital regime.\nGoal: track objects, detect ASAT, assess Kessler risk.\nSequence: track-objects -> detect-asat -> assess-kessler",
+    "FLAG{4S4T_",
+    "Mission Brief",
+    ["track-objects", "D3BR1S_", "Objects Tracked", [
+      "$ track-objects",
+      "Space situational awareness catalogs tens of thousands of tracked objects.",
+      "One object is maneuvering toward an active satellite — not natural.",
+      "Next: detect-asat",
+    ]],
+    ["detect-asat", "K3SSL3R_", "ASAT Detected", [
+      "$ detect-asat",
+      "Trajectory + closing velocity match a co-orbital ASAT intercept profile.",
+      "A kinetic kill would shatter the target into thousands of fragments.",
+      "Next: assess-kessler",
+    ]],
+    ["assess-kessler", "TR4CK3D}", "Kessler Assessed", [
+      "$ assess-kessler",
+      "Each fragment becomes a new hazard -> a cascade (Kessler syndrome) could deny the orbit for decades.",
+      "SSA + norms of behavior are the defense; debris is everyone's problem.",
+      "Run 'assemble', then submit the flag.",
+    ]],
+    ["Read the briefing. Run: cat briefing.txt", "Track the objects. Run: track-objects", "Detect the ASAT. Run: detect-asat", "Assess Kessler. Run: assess-kessler", "Run 'assemble', then submit the flag"],
+    { "ssa.txt": "tracked objects: ~40,000\nmaneuvering object: co-orbital ASAT profile\nrisk: kinetic kill -> Kessler cascade" },
+  ),
+  "s2-10": mkDeepCtf(
+    "Securing space systems takes policy plus engineering. Audit a mission's posture, apply SPD-5 principles and Space-ISAC sharing, and verify a resilient design.",
+    "OP: SECURE THE MISSION\nTarget: a space mission with gaps.\nGoal: audit posture, apply SPD-5, verify resilience.\nSequence: audit-posture -> apply-spd5 -> verify-resilience",
+    "FLAG{SPD5_",
+    "Mission Brief",
+    ["audit-posture", "SP4C3_", "Posture Audited", [
+      "$ audit-posture",
+      "Found: cleartext telemetry, no command authentication, single ground station.",
+      "Resilience is missing across all four segments.",
+      "Next: apply-spd5",
+    ]],
+    ["apply-spd5", "1S4C_", "SPD-5 Applied", [
+      "$ apply-spd5",
+      "Applied SPD-5 cyber principles: command auth/encryption, jam/spoof protection, supply-chain checks.",
+      "Joined Space-ISAC to share threat intel with the sector.",
+      "Next: verify-resilience",
+    ]],
+    ["verify-resilience", "R3S1L13NT}", "Resilience Verified", [
+      "$ verify-resilience",
+      "Encrypted+authenticated TT&C, diverse ground stations, safe-mode recovery — mission survives attack.",
+      "Space security = policy (SPD-5) + engineering (defense-in-depth).",
+      "Run 'assemble', then submit the flag.",
+    ]],
+    ["Read the briefing. Run: cat briefing.txt", "Audit the posture. Run: audit-posture", "Apply SPD-5. Run: apply-spd5", "Verify resilience. Run: verify-resilience", "Run 'assemble', then submit the flag"],
+    { "posture.txt": "before: cleartext TM, no cmd auth, 1 ground station\nSPD-5: auth+encrypt, anti-jam, supply-chain\nSpace-ISAC: intel sharing" },
+  ),
+};
+
+for (const s of spaceRace2Stages) {
+  const ctf = S2_CTF2[s.id];
   if (ctf) { s.challengeType = "ctf"; s.ctf = ctf; }
 }

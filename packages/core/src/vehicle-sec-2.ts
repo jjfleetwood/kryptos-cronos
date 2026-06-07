@@ -1,4 +1,5 @@
 import type { StageConfig, EpochConfig, CtfConfig } from "./types";
+import { mkDeepCtf } from "./ctf-deep";
 
 export const vehicleSec2Epoch: EpochConfig = {
   id: "vehicle-sec-2",
@@ -828,5 +829,118 @@ const V2_CTF: Record<string, CtfConfig> = {
 
 for (const s of vehicleSec2Stages) {
   const ctf = V2_CTF[s.id];
+  if (ctf) { s.challengeType = "ctf"; s.ctf = ctf; }
+}
+
+// Deep 3-step CTFs for the remaining quiz stages (shared mkDeepCtf factory).
+const V2_CTF2: Record<string, CtfConfig> = {
+  "v2-01": mkDeepCtf(
+    "Modern cars are software-defined: dozens of ECUs on Automotive Ethernet instead of cables. Map the SDV architecture, enumerate the ECUs, and find the widened attack surface.",
+    "OP: THE SOFTWARE-DEFINED VEHICLE\nTarget: an SDV's in-vehicle network.\nGoal: map the architecture, enum ECUs, find the surface.\nSequence: map-sdv -> enum-ecus -> find-surface",
+    "FLAG{SDV_",
+    "Mission Brief",
+    ["map-sdv", "3TH3RN3T_", "SDV Mapped", [
+      "$ map-sdv",
+      "Zonal architecture over Automotive Ethernet; functions are software on shared compute.",
+      "More code + more connectivity = a much bigger attack surface than old CAN-only cars.",
+      "Next: enum-ecus",
+    ]],
+    ["enum-ecus", "3CU_", "ECUs Enumerated", [
+      "$ enum-ecus",
+      "Found 40+ ECUs incl. a central gateway, infotainment (internet-facing), and ADAS compute.",
+      "The internet-facing nodes are the way in.",
+      "Next: find-surface",
+    ]],
+    ["find-surface", "SURF4C3}", "Surface Found", [
+      "$ find-surface",
+      "Infotainment bridges to the vehicle backbone with weak segmentation -> pivot path to driving ECUs.",
+      "Map first; every later attack rides this surface.",
+      "Run 'assemble', then submit the flag.",
+    ]],
+    ["Read the briefing. Run: cat briefing.txt", "Map the SDV. Run: map-sdv", "Enumerate ECUs. Run: enum-ecus", "Find the surface. Run: find-surface", "Run 'assemble', then submit the flag"],
+    { "sdv.txt": "network: Automotive Ethernet (zonal)\nECUs: 40+ (gateway, IVI internet-facing, ADAS)\nrisk: IVI bridges to backbone" },
+  ),
+  "v2-07": mkDeepCtf(
+    "A self-driving car trusts its sensor fusion. Probe the sensors, craft an adversarial input (a patch / phantom object), and fool the fusion stack into a dangerous decision.",
+    "OP: FOOL THE STACK\nTarget: an autonomous vehicle's perception/fusion.\nGoal: probe sensors, craft adversarial input, fool fusion.\nSequence: probe-sensors -> craft-adversarial -> fool-fusion",
+    "FLAG{4DV_",
+    "Mission Brief",
+    ["probe-sensors", "S3NS0R_", "Sensors Probed", [
+      "$ probe-sensors",
+      "Stack fuses camera + radar + lidar into one world model the planner trusts.",
+      "Each sensor can be attacked individually.",
+      "Next: craft-adversarial",
+    ]],
+    ["craft-adversarial", "FUS10N_", "Adversarial Crafted", [
+      "$ craft-adversarial --patch + --phantom",
+      "A subtle road-sign sticker flips a STOP to 'speed 70'; a projected phantom triggers phantom braking.",
+      "Tiny perturbations, large misreads (Keen Lab-style).",
+      "Next: fool-fusion",
+    ]],
+    ["fool-fusion", "F00L3D}", "Fusion Fooled", [
+      "$ fool-fusion",
+      "Conflicting/poisoned inputs slip through fusion -> the planner makes an unsafe maneuver.",
+      "Defenses: sensor cross-checks, anomaly detection, adversarial training, plausibility limits.",
+      "Run 'assemble', then submit the flag.",
+    ]],
+    ["Read the briefing. Run: cat briefing.txt", "Probe the sensors. Run: probe-sensors", "Craft adversarial input. Run: craft-adversarial", "Fool the fusion. Run: fool-fusion", "Run 'assemble', then submit the flag"],
+    { "fusion.txt": "inputs: camera + radar + lidar\nattack: sign sticker (STOP->70), phantom braking\nfix: cross-checks + adversarial training" },
+  ),
+  "v2-09": mkDeepCtf(
+    "Cars get patched over the air now — and regulators (UNECE R155/R156, ISO/SAE 21434) require it be done securely. Audit the OTA pipeline, sign the update, and bring it into compliance.",
+    "OP: SECURE THE OTA\nTarget: a vehicle OTA update pipeline.\nGoal: audit, sign updates, apply R155/21434.\nSequence: audit-ota -> sign-update -> apply-r155",
+    "FLAG{0TA_",
+    "Mission Brief",
+    ["audit-ota", "R155_", "OTA Audited", [
+      "$ audit-ota",
+      "Updates delivered over OTA but firmware images are unsigned and not rollback-protected.",
+      "A malicious or downgraded image could brick or backdoor the fleet.",
+      "Next: sign-update",
+    ]],
+    ["sign-update", "21434_", "Update Signed", [
+      "$ sign-update --uptane",
+      "Adopted Uptane: signed, role-separated, rollback-protected images verified on the ECU.",
+      "Only authentic, current firmware installs.",
+      "Next: apply-r155",
+    ]],
+    ["apply-r155", "S1GN3D}", "Compliant", [
+      "$ apply-r155 --csms",
+      "Stood up a Cyber Security Management System (R155) + secure-by-design lifecycle (ISO/SAE 21434).",
+      "Security is now a type-approval requirement, not an afterthought.",
+      "Run 'assemble', then submit the flag.",
+    ]],
+    ["Read the briefing. Run: cat briefing.txt", "Audit the OTA. Run: audit-ota", "Sign the update. Run: sign-update", "Apply R155. Run: apply-r155", "Run 'assemble', then submit the flag"],
+    { "ota.txt": "before: unsigned images, no rollback protection\nfix: Uptane signing\nregs: UNECE R155/R156, ISO/SAE 21434 (CSMS)" },
+  ),
+  "v2-10": mkDeepCtf(
+    "Securing the software-defined vehicle is defense-in-depth in silicon and ops. Audit the SDV, enable hardware-backed message auth (SecOC) and an HSM, and verify a vehicle SOC watches the fleet.",
+    "OP: SECURE THE SDV\nTarget: a software-defined vehicle program.\nGoal: audit, enable SecOC+HSM, verify the VSOC.\nSequence: audit-sdv -> enable-secoc -> verify-vsoc",
+    "FLAG{HSM_",
+    "Mission Brief",
+    ["audit-sdv", "S3C0C_", "SDV Audited", [
+      "$ audit-sdv",
+      "In-vehicle messages are unauthenticated; keys sit in flash; no fleet monitoring.",
+      "An attacker on the bus can forge any message.",
+      "Next: enable-secoc",
+    ]],
+    ["enable-secoc", "VS0C_", "SecOC + HSM Enabled", [
+      "$ enable-secoc --hsm",
+      "Enabled SecOC (authenticated CAN/Ethernet messages) with keys protected in a hardware HSM.",
+      "Forged messages are now rejected; keys can't be extracted from flash.",
+      "Next: verify-vsoc",
+    ]],
+    ["verify-vsoc", "S3CUR3D}", "VSOC Verified", [
+      "$ verify-vsoc",
+      "A Vehicle SOC ingests IDS telemetry from the fleet + SBOMs -> detects and responds to attacks at scale.",
+      "Defense-in-depth: HSM + SecOC + VSOC + SBOMs.",
+      "Run 'assemble', then submit the flag.",
+    ]],
+    ["Read the briefing. Run: cat briefing.txt", "Audit the SDV. Run: audit-sdv", "Enable SecOC + HSM. Run: enable-secoc", "Verify the VSOC. Run: verify-vsoc", "Run 'assemble', then submit the flag"],
+    { "sdv-sec.txt": "before: unauth messages, keys in flash, no monitoring\nfix: SecOC + HSM\nops: VSOC + SBOMs" },
+  ),
+};
+
+for (const s of vehicleSec2Stages) {
+  const ctf = V2_CTF2[s.id];
   if (ctf) { s.challengeType = "ctf"; s.ctf = ctf; }
 }

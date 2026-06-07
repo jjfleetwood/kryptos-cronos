@@ -1,4 +1,5 @@
 import type { StageConfig, EpochConfig, CtfConfig } from "./types";
+import { mkDeepCtf } from "./ctf-deep";
 
 export const threatFrameworksEpoch: EpochConfig = {
   id: "threat-frameworks",
@@ -828,5 +829,119 @@ const TF_CTF: Record<string, CtfConfig> = {
 
 for (const s of threatFrameworksStages) {
   const ctf = TF_CTF[s.id];
+  if (ctf) { s.challengeType = "ctf"; s.ctf = ctf; }
+}
+
+// Deep 3-step CTFs for the remaining quiz stages (shared mkDeepCtf factory).
+// Analyst exercises: turn raw data into structured, actionable intelligence.
+const TF_CTF2: Record<string, CtfConfig> = {
+  "tf-01": mkDeepCtf(
+    "Frameworks turn chaos into shared language. Take a pile of raw alerts through the intelligence lifecycle and produce a finished, actionable intel product.",
+    "OP: THE INTEL LIFECYCLE\nTarget: a pile of raw, unstructured alerts.\nGoal: collect, process the cycle, produce finished intel.\nSequence: collect-intel -> process-cycle -> produce-finished",
+    "FLAG{1NT3L_",
+    "Mission Brief",
+    ["collect-intel", "CYCL3_", "Intel Collected", [
+      "$ collect-intel",
+      "Pulled raw data: alerts, logs, OSINT — noisy, unstructured, contradictory.",
+      "Raw data is not intelligence yet.",
+      "Next: process-cycle",
+    ]],
+    ["process-cycle", "F1N1SH3D_", "Cycle Processed", [
+      "$ process-cycle",
+      "Ran the lifecycle: direction -> collection -> processing -> analysis -> dissemination -> feedback.",
+      "Correlated and de-duplicated into structured findings.",
+      "Next: produce-finished",
+    ]],
+    ["produce-finished", "PR0DUCT}", "Product Produced", [
+      "$ produce-finished",
+      "Output: a finished intel product with assessment + confidence that a defender can ACT on.",
+      "Frameworks exist so analysts speak one language and produce decisions, not noise.",
+      "Run 'assemble', then submit the flag.",
+    ]],
+    ["Read the briefing. Run: cat briefing.txt", "Collect intel. Run: collect-intel", "Process the cycle. Run: process-cycle", "Produce finished intel. Run: produce-finished", "Run 'assemble', then submit the flag"],
+    { "intel.txt": "raw: alerts + logs + OSINT (noisy)\ncycle: direction->collection->processing->analysis->dissemination->feedback\nout: finished, actionable product" },
+  ),
+  "tf-04": mkDeepCtf(
+    "MITRE ATT&CK is the common language for adversary behavior. Take an observed intrusion, map each action to ATT&CK, and tag the precise technique IDs.",
+    "OP: SPEAK ATT&CK\nTarget: a logged intrusion's behaviors.\nGoal: observe, map to ATT&CK, tag technique IDs.\nSequence: observe-behavior -> map-attack -> tag-techniques",
+    "FLAG{4TTCK_",
+    "Mission Brief",
+    ["observe-behavior", "T3CHN1QU3_", "Behavior Observed", [
+      "$ observe-behavior",
+      "Timeline: spearphish link -> PowerShell -> scheduled task -> credential dump -> RDP lateral move.",
+      "Describe behavior, not just indicators.",
+      "Next: map-attack",
+    ]],
+    ["map-attack", "1D_", "Mapped to ATT&CK", [
+      "$ map-attack",
+      "Aligned each action to ATT&CK tactics (Initial Access, Execution, Persistence, Cred Access, Lateral Movement).",
+      "Behavior maps cleanly onto the matrix.",
+      "Next: tag-techniques",
+    ]],
+    ["tag-techniques", "M4PP3D}", "Techniques Tagged", [
+      "$ tag-techniques",
+      "Tagged: T1566.002, T1059.001, T1053.005, T1003, T1021.001 — a shareable behavioral fingerprint.",
+      "Now any team worldwide understands this adversary instantly.",
+      "Run 'assemble', then submit the flag.",
+    ]],
+    ["Read the briefing. Run: cat briefing.txt", "Observe behavior. Run: observe-behavior", "Map to ATT&CK. Run: map-attack", "Tag the techniques. Run: tag-techniques", "Run 'assemble', then submit the flag"],
+    { "attack.txt": "phish link -> T1566.002\nPowerShell -> T1059.001\nsched task -> T1053.005\ncred dump -> T1003\nRDP -> T1021.001" },
+  ),
+  "tf-09": mkDeepCtf(
+    "Attribution is hard and political. Gather indicators across strategic/operational/tactical levels, cluster the activity, and attribute it to a named actor with calibrated confidence.",
+    "OP: WHO DID IT\nTarget: a set of intrusions that may be related.\nGoal: gather indicators, cluster, attribute the actor.\nSequence: gather-indicators -> cluster-activity -> attribute-actor",
+    "FLAG{4TTR1BUT10N_",
+    "Mission Brief",
+    ["gather-indicators", "CLUST3R_", "Indicators Gathered", [
+      "$ gather-indicators",
+      "Collected TTPs, infrastructure, malware, and targeting across several incidents.",
+      "Tactical IOCs change; behavior (TTPs) persists.",
+      "Next: cluster-activity",
+    ]],
+    ["cluster-activity", "4CT0R_", "Activity Clustered", [
+      "$ cluster-activity",
+      "Shared tooling + infra reuse + consistent targeting -> one activity cluster (e.g., 'UNC####').",
+      "Cluster first; name later.",
+      "Next: attribute-actor",
+    ]],
+    ["attribute-actor", "1D3D}", "Actor Attributed", [
+      "$ attribute-actor --confidence",
+      "Strategic motive + operational TTPs + tactical IOCs align -> attributed to a known group (moderate confidence).",
+      "Always state confidence; attribution drives policy, so calibrate it.",
+      "Run 'assemble', then submit the flag.",
+    ]],
+    ["Read the briefing. Run: cat briefing.txt", "Gather indicators. Run: gather-indicators", "Cluster the activity. Run: cluster-activity", "Attribute the actor. Run: attribute-actor", "Run 'assemble', then submit the flag"],
+    { "attrib.txt": "levels: strategic / operational / tactical\ncluster: shared tooling + infra reuse + targeting\noutput: named actor + CONFIDENCE" },
+  ),
+  "tf-10": mkDeepCtf(
+    "Threat-informed defense uses the adversary to prioritize your defense. Rank the techniques that matter to you, map D3FEND countermeasures, and close the biggest gaps.",
+    "OP: THREAT-INFORMED DEFENSE\nTarget: a defense program with finite resources.\nGoal: prioritize techniques, map D3FEND, close gaps.\nSequence: prioritize-techniques -> map-d3fend -> close-gaps",
+    "FLAG{THR34T_",
+    "Mission Brief",
+    ["prioritize-techniques", "1NF0RM3D_", "Techniques Prioritized", [
+      "$ prioritize-techniques",
+      "Ranked ATT&CK techniques by how often THIS sector's adversaries use them.",
+      "Defend against what attackers actually do, not everything equally.",
+      "Next: map-d3fend",
+    ]],
+    ["map-d3fend", "D3F3ND_", "D3FEND Mapped", [
+      "$ map-d3fend",
+      "For each top technique, mapped MITRE D3FEND countermeasures and checked current coverage.",
+      "Offense (ATT&CK) now drives defense (D3FEND).",
+      "Next: close-gaps",
+    ]],
+    ["close-gaps", "G4PS}", "Gaps Closed", [
+      "$ close-gaps",
+      "Found 3 high-frequency techniques with no detection -> deployed analytics + controls to cover them.",
+      "Threat-informed defense = measurable, prioritized, ever-improving.",
+      "Run 'assemble', then submit the flag.",
+    ]],
+    ["Read the briefing. Run: cat briefing.txt", "Prioritize techniques. Run: prioritize-techniques", "Map D3FEND. Run: map-d3fend", "Close the gaps. Run: close-gaps", "Run 'assemble', then submit the flag"],
+    { "tid.txt": "prioritize: ATT&CK by sector adversary frequency\nmap: D3FEND countermeasures + coverage\nclose: 3 uncovered high-freq techniques" },
+  ),
+};
+
+for (const s of threatFrameworksStages) {
+  const ctf = TF_CTF2[s.id];
   if (ctf) { s.challengeType = "ctf"; s.ctf = ctf; }
 }

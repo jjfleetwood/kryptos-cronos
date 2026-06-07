@@ -167,6 +167,10 @@ export const stageFlags: Record<string, string> = {
   "ot-05": "FLAG{DNP3_C0MM4ND_SP00F3D}",
   "ot-06": "FLAG{3WS_1T_T0_0T_P1V0T}",
   "ot-09": "FLAG{1CS_1NTRUS10N_D3T3CT3D}",
+  "ot-01": "FLAG{PURDU3_M0D3L_BR1DG3_S3GM3NT3D}",
+  "ot-07": "FLAG{TR1T0N_S1S_F41L_S4F3}",
+  "ot-08": "FLAG{STUXN3T_PLC_S3TP01NT_R3ST0R3D}",
+  "ot-10": "FLAG{1EC_62443_Z0N3S_C0NDU1TS_S3CUR3D}",
 
   // ── Wired & Autonomous II (vehicle-sec-2.ts) ─────────────────────────────
   "v2-02": "FLAG{S0M31P_S3RV1C3_SP00F3D}",
@@ -175,6 +179,10 @@ export const stageFlags: Record<string, string> = {
   "v2-05": "FLAG{R3L4Y_K3Y_UNL0CK3D}",
   "v2-06": "FLAG{PLUG_4ND_CH4RG3_PWND}",
   "v2-08": "FLAG{FL33T_4P1_BOLA_T4K30V3R}",
+  "v2-01": "FLAG{SDV_3TH3RN3T_3CU_SURF4C3}",
+  "v2-07": "FLAG{4DV_S3NS0R_FUS10N_F00L3D}",
+  "v2-09": "FLAG{0TA_R155_21434_S1GN3D}",
+  "v2-10": "FLAG{HSM_S3C0C_VS0C_S3CUR3D}",
 
   // ── Robotics II (robot-sec-2.ts) ─────────────────────────────────────────
   "r2-02": "FLAG{DDS_D0M41N_HIJ4CK3D}",
@@ -183,6 +191,10 @@ export const stageFlags: Record<string, string> = {
   "r2-06": "FLAG{CL0UD_R0B0T_4P1_0WN3D}",
   "r2-08": "FLAG{N4V_GPS_SP00F_D3T0UR}",
   "r2-09": "FLAG{P0L1CY_P01S0N3D_B4CKD00R}",
+  "r2-01": "FLAG{R0S2_SR0S2_DDS_S3CUR3D}",
+  "r2-05": "FLAG{SW4RM_SYB1L_BFT_C0NS3NSUS}",
+  "r2-07": "FLAG{HUM4N01D_B4CKD00R_F1RMW4R3_L0CK3D}",
+  "r2-10": "FLAG{R0B0T_FL33T_Z3R0_TRUST_S4F3}",
 
   // ── Race Through Space II (space-race-2.ts) ──────────────────────────────
   "s2-02": "FLAG{TTC_T3L3C0MM4ND_HIJ4CK}",
@@ -191,6 +203,10 @@ export const stageFlags: Record<string, string> = {
   "s2-05": "FLAG{UPL1NK_J4MM3D_D3N13D}",
   "s2-06": "FLAG{GR0UND_S3GM3NT_PWN3D}",
   "s2-08": "FLAG{1SL_C0NST3LL4T10N_P1V0T}",
+  "s2-01": "FLAG{SP4RT4_SP4C3_SURF4C3_M4PP3D}",
+  "s2-07": "FLAG{CUB3S4T_C0TS_BUS_H4RD3N3D}",
+  "s2-09": "FLAG{4S4T_D3BR1S_K3SSL3R_TR4CK3D}",
+  "s2-10": "FLAG{SPD5_SP4C3_1S4C_R3S1L13NT}",
 
   // ── Threat Frameworks (threat-frameworks.ts) ─────────────────────────────
   "tf-02": "FLAG{K1LL_CH41N_BR0K3N_34RLY}",
@@ -199,6 +215,10 @@ export const stageFlags: Record<string, string> = {
   "tf-06": "FLAG{PYR4M1D_TTP_M4X_P41N}",
   "tf-07": "FLAG{D3F3ND_C0UNT3R_M34SUR3}",
   "tf-08": "FLAG{ST1X_1ND1C4T0R_SH4R3D}",
+  "tf-01": "FLAG{1NT3L_CYCL3_F1N1SH3D_PR0DUCT}",
+  "tf-04": "FLAG{4TTCK_T3CHN1QU3_1D_M4PP3D}",
+  "tf-09": "FLAG{4TTR1BUT10N_CLUST3R_4CT0R_1D3D}",
+  "tf-10": "FLAG{THR34T_1NF0RM3D_D3F3ND_G4PS}",
 
   // ── Cisco CVE Extended (cisco-2.ts) ──────────────────────────────────────
   "stage-m13": "FLAG{CVE_2016_1287_IK3_H3AP_0WN3D}",
