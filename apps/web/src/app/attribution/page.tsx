@@ -173,6 +173,34 @@ const FIRST_JOURNEY_IMAGE_CREDITS = [
   { stage: "bt-29", device: "Santa Cruz Harbor", file: "Santa Cruz Harbor - Flickr - Don Fulano.jpg", author: "Mike Fernwood, Santa Cruz, CA", license: "CC BY-SA 2.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/2.0/", url: "https://commons.wikimedia.org/wiki/File:Santa_Cruz_Harbor_-_Flickr_-_Don_Fulano.jpg" },
 ];
 
+// Per-file credits for the Foundations (ancient) imagery — wonders of the ancient
+// world (Commons photos + public-domain engravings for the destroyed wonders).
+const ANCIENT_IMAGE_CREDITS = [
+  { stage: "stage-01", device: "Great Pyramid & Sphinx, Giza", file: "Egypt.Giza.Sphinx.01.jpg", author: "User:Hajor", license: "CC BY-SA 3.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/", url: "https://commons.wikimedia.org/wiki/File:Egypt.Giza.Sphinx.01.jpg" },
+  { stage: "stage-02", device: "Temple of Apollo, Delphi", file: "Delphi BW 2017-10-08 11-38-38.jpg", author: "Berthold Werner", license: "CC BY-SA 3.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/", url: "https://commons.wikimedia.org/wiki/File:Delphi_BW_2017-10-08_11-38-38.jpg" },
+  { stage: "stage-03", device: "Bibliotheca Alexandrina", file: "Bibliotheca Alexandrina -- Wall detail.jpg", author: "Cary Bass", license: "CC BY-SA 3.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/", url: "https://commons.wikimedia.org/wiki/File:Bibliotheca_Alexandrina_--_Wall_detail.jpg" },
+  { stage: "stage-04", device: "Parthenon, Acropolis of Athens", file: "Parthenon - facade ouest.jpg", author: "Eusebius", license: "CC BY 3.0", licenseUrl: "https://creativecommons.org/licenses/by/3.0/", url: "https://commons.wikimedia.org/wiki/File:Parthenon_-_facade_ouest.jpg" },
+  { stage: "stage-05", device: "Lighthouse of Alexandria (reconstruction)", file: "Lighthouse of Alexandria in Changsha.jpg", author: "Unknown", license: "Public domain", licenseUrl: "https://commons.wikimedia.org/wiki/Commons:Public_domain", url: "https://commons.wikimedia.org/wiki/File:Lighthouse_of_Alexandria_in_Changsha.jpg" },
+  { stage: "stage-06", device: "Colossus of Rhodes (engraving)", file: "Colossus of Rhodes.jpg", author: "Maarten van Heemskerck / Philip Galle", license: "Public domain", licenseUrl: "https://commons.wikimedia.org/wiki/Commons:Public_domain", url: "https://commons.wikimedia.org/wiki/File:Colossus_of_Rhodes.jpg" },
+  { stage: "stage-07", device: "Hanging Gardens of Babylon (depiction)", file: "Hanging Gardens of Babylon.jpg", author: "Unknown", license: "Public domain", licenseUrl: "https://commons.wikimedia.org/wiki/Commons:Public_domain", url: "https://commons.wikimedia.org/wiki/File:Hanging_Gardens_of_Babylon.jpg" },
+  { stage: "stage-08", device: "Temple of Artemis, Ephesus", file: "Ephesus, ruins of the Temple of Artemis.jpg", author: "Dguendel", license: "CC BY 3.0", licenseUrl: "https://creativecommons.org/licenses/by/3.0/", url: "https://commons.wikimedia.org/wiki/File:Ephesus,_ruins_of_the_Temple_of_Artemis.jpg" },
+  { stage: "stage-09", device: "Stonehenge", file: "Stonehenge2007 07 30.jpg", author: "garethwiscombe", license: "CC BY 2.0", licenseUrl: "https://creativecommons.org/licenses/by/2.0/", url: "https://commons.wikimedia.org/wiki/File:Stonehenge2007_07_30.jpg" },
+  { stage: "stage-10", device: "Colosseum, Rome", file: "Colosseum in Rome, Italy - April 2007.jpg", author: "Diliff", license: "CC BY-SA 2.5", licenseUrl: "https://creativecommons.org/licenses/by-sa/2.5/", url: "https://commons.wikimedia.org/wiki/File:Colosseum_in_Rome,_Italy_-_April_2007.jpg" },
+  { stage: "stage-11", device: "Mausoleum at Halicarnassus", file: "Mausoleum of Halicarnassus 2009.jpg", author: "Dorushiva", license: "CC BY-SA 3.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/", url: "https://commons.wikimedia.org/wiki/File:Mausoleum_of_Halicarnassus_2009.jpg" },
+  { stage: "stage-12", device: "Temple of Zeus, Olympia", file: "Olympia ruins near the Temple of Zeus.jpg", author: "Wknight94", license: "CC BY-SA 3.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/", url: "https://commons.wikimedia.org/wiki/File:Olympia_ruins_near_the_Temple_of_Zeus.jpg" },
+];
+
+// Per-file credits for the Cisco enterprise/secops/advanced landmark imagery.
+const CISCO_LANDMARK_CREDITS = [
+  { stage: "stage-m13", device: "NSA headquarters, Fort Meade", file: "National Security Agency headquarters, Fort Meade, Maryland.jpg", author: "National Security Agency", license: "Public domain", licenseUrl: "https://commons.wikimedia.org/wiki/Commons:Public_domain", url: "https://commons.wikimedia.org/wiki/File:National_Security_Agency_headquarters,_Fort_Meade,_Maryland.jpg" },
+  { stage: "stage-m14", device: "CIA Memorial Wall, Langley", file: "Cia-memorial-wall.jpg", author: "Unknown", license: "Public domain", licenseUrl: "https://commons.wikimedia.org/wiki/Commons:Public_domain", url: "https://commons.wikimedia.org/wiki/File:Cia-memorial-wall.jpg" },
+  { stage: "stage-m15", device: "Cisco Systems HQ, San Jose", file: "Ciscosystemsheadquarters.jpg", author: "Coolcaesar", license: "CC BY-SA 3.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/", url: "https://commons.wikimedia.org/wiki/File:Ciscosystemsheadquarters.jpg" },
+  { stage: "stage-m19", device: "BT Tower, London", file: "BT Tower 101.jpg", author: "Ian Beales", license: "CC BY-SA 4.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/", url: "https://commons.wikimedia.org/wiki/File:BT_Tower_101.jpg" },
+  { stage: "stage-m29", device: "GCHQ (“the Doughnut”), Cheltenham", file: "GCHQ-doughnut.jpg", author: "User:Matt Crypto", license: "Public domain", licenseUrl: "https://commons.wikimedia.org/wiki/Commons:Public_domain", url: "https://commons.wikimedia.org/wiki/File:GCHQ-doughnut.jpg" },
+  { stage: "stage-m30", device: "Internet Archive HQ, San Francisco", file: "Internet Archive headquarters exterior February 2008.jpg", author: "WikiLeon", license: "CC BY-SA 4.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/", url: "https://commons.wikimedia.org/wiki/File:Internet_Archive_headquarters_exterior_February_2008.jpg" },
+  { stage: "stage-m37", device: "Cisco Catalyst 2950 switch", file: "100basefx ports on a cisco 2950 switch.JPG", author: "Pmauduit", license: "CC BY-SA 3.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/", url: "https://commons.wikimedia.org/wiki/File:100basefx_ports_on_a_cisco_2950_switch.JPG" },
+];
+
 const CISCO_HW_CREDITS = [
   { stage: "M01", device: "Catalyst 6509 (IOS XE)", file: "Cisco 6509.JPG", author: "MrChrome", license: "CC BY 3.0", licenseUrl: "https://creativecommons.org/licenses/by/3.0/", url: "https://commons.wikimedia.org/wiki/File:Cisco_6509.JPG" },
   { stage: "M02", device: "ASA 5510 (EXTRABACON)", file: "Cisco ASA 5510.jpg", author: "ShakataGaNai", license: "CC BY-SA 3.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/", url: "https://commons.wikimedia.org/wiki/File:Cisco_ASA_5510.jpg" },
@@ -534,6 +562,48 @@ export default function AttributionPage() {
             {FIRST_JOURNEY_IMAGE_CREDITS.map((c) => (
               <li key={c.stage} className="text-xs text-gray-400 flex flex-wrap items-center gap-x-2 gap-y-0.5">
                 <span className="text-gray-600 font-mono w-12 flex-shrink-0">{c.stage}</span>
+                <span className="text-gray-300">{c.device}</span>
+                <span className="text-gray-700">·</span>
+                <a href={c.url} target="_blank" rel="noopener noreferrer" className="text-cyan-500 hover:text-cyan-400 transition-colors">{c.file}</a>
+                <span className="text-gray-700">·</span>
+                <span>© {c.author}</span>
+                <a href={c.licenseUrl} target="_blank" rel="noopener noreferrer" className="text-amber-400 hover:text-amber-300 transition-colors">{c.license} ↗</a>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="mt-12">
+          <h2 className="text-white font-bold text-lg mb-1">Foundations (ancient) — imagery</h2>
+          <p className="text-gray-500 text-xs mb-4 leading-relaxed">
+            The wonders of the ancient world — Wikimedia Commons photographs, plus public-domain
+            engravings for the wonders that no longer stand. Self-hosted and credited below.
+          </p>
+          <ul className="space-y-2 rounded-2xl border border-white/8 p-5" style={{ background: "rgba(255,255,255,0.02)" }}>
+            {ANCIENT_IMAGE_CREDITS.map((c) => (
+              <li key={c.stage} className="text-xs text-gray-400 flex flex-wrap items-center gap-x-2 gap-y-0.5">
+                <span className="text-gray-600 font-mono w-20 flex-shrink-0">{c.stage}</span>
+                <span className="text-gray-300">{c.device}</span>
+                <span className="text-gray-700">·</span>
+                <a href={c.url} target="_blank" rel="noopener noreferrer" className="text-cyan-500 hover:text-cyan-400 transition-colors">{c.file}</a>
+                <span className="text-gray-700">·</span>
+                <span>© {c.author}</span>
+                <a href={c.licenseUrl} target="_blank" rel="noopener noreferrer" className="text-amber-400 hover:text-amber-300 transition-colors">{c.license} ↗</a>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="mt-12">
+          <h2 className="text-white font-bold text-lg mb-1">Cisco (enterprise / secops / advanced) — imagery</h2>
+          <p className="text-gray-500 text-xs mb-4 leading-relaxed">
+            Real landmarks tied to each story (agency HQs, BT Tower, GCHQ, the Internet Archive) and
+            Cisco hardware, from Wikimedia Commons. Abstract software stages keep the generated cover.
+          </p>
+          <ul className="space-y-2 rounded-2xl border border-white/8 p-5" style={{ background: "rgba(255,255,255,0.02)" }}>
+            {CISCO_LANDMARK_CREDITS.map((c) => (
+              <li key={c.stage} className="text-xs text-gray-400 flex flex-wrap items-center gap-x-2 gap-y-0.5">
+                <span className="text-gray-600 font-mono w-20 flex-shrink-0">{c.stage}</span>
                 <span className="text-gray-300">{c.device}</span>
                 <span className="text-gray-700">·</span>
                 <a href={c.url} target="_blank" rel="noopener noreferrer" className="text-cyan-500 hover:text-cyan-400 transition-colors">{c.file}</a>

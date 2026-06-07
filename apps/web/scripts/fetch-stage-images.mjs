@@ -14,6 +14,43 @@ const UA = "KryptosCronos-image-fetch/1.0 (educational; contact jjbolotin@yahoo.
 
 // [id, query, badwords-csv]
 const BAD = "logo,diagram,clipart,icon,seal,emblem,coat of arms,flag,chart,poster";
+const ANCIENT_CISCO = [
+  // ancient — the wonders / sites
+  ["stage-01", "Great Pyramid of Giza Egypt", BAD],
+  ["stage-02", "Temple of Apollo Delphi Greece", BAD],
+  ["stage-03", "Bibliotheca Alexandrina library Egypt", BAD],
+  ["stage-04", "Acropolis Athens Parthenon", BAD],
+  ["stage-05", "Lighthouse of Alexandria Pharos", BAD],
+  ["stage-06", "Colossus of Rhodes statue", BAD],
+  ["stage-07", "Hanging Gardens of Babylon", BAD],
+  ["stage-08", "Temple of Artemis Ephesus ruins", BAD],
+  ["stage-09", "Stonehenge England", BAD],
+  ["stage-10", "Colosseum Rome Italy", BAD],
+  ["stage-11", "Mausoleum Halicarnassus Bodrum", BAD],
+  ["stage-12", "Temple of Zeus Olympia Greece ruins", BAD],
+  // cisco — iconic buildings + real hardware where concrete
+  ["stage-m13", "NSA headquarters Fort Meade Maryland", BAD],
+  ["stage-m14", "CIA headquarters Langley building", BAD],
+  ["stage-m15", "Cisco Systems headquarters San Jose", BAD],
+  ["stage-m16", "Cisco small business router", BAD],
+  ["stage-m18", "Cisco RV130 router", BAD],
+  ["stage-m19", "BT Tower London", BAD],
+  ["stage-m20", "Cisco Nexus switch data center", BAD],
+  ["stage-m21", "Cisco ASA firewall appliance", BAD],
+  ["stage-m22", "Cisco Firepower appliance", BAD],
+  ["stage-m25", "Cisco ASA 5500 firewall", BAD],
+  ["stage-m26", "Cisco headquarters building San Jose", BAD],
+  ["stage-m29", "GCHQ Cheltenham building", BAD],
+  ["stage-m30", "Internet Archive building San Francisco", BAD],
+  ["stage-m34", "Cisco IOS XE router", BAD],
+  ["stage-m35", "NSA Fort Meade building", BAD],
+  ["stage-m37", "Cisco Catalyst switch", BAD],
+  ["stage-m38", "Cisco campus San Jose building", BAD],
+  ["stage-m39", "Cisco Firepower firewall appliance", BAD],
+  ["stage-m41", "Cisco firewall hardware", BAD],
+  ["stage-m48", "silicon wafer semiconductor chip", BAD],
+  ["stage-m49", "network switch ASIC circuit board", BAD],
+];
 const TARGETS = [
   ["bt-01", "Piraeus port Athens Greece harbor", BAD],
   ["bt-02", "Athens International Airport terminal", BAD],
@@ -104,7 +141,7 @@ const only = process.argv[2] || "all";
 const attrib = fs.existsSync(ATTRIB) ? JSON.parse(fs.readFileSync(ATTRIB, "utf8")) : {};
 const stageLines = [];
 
-for (const [id, query, badCsv] of TARGETS) {
+for (const [id, query, badCsv] of ANCIENT_CISCO) {
   if (only !== "all" && !id.startsWith(only)) continue;
   try {
     const pages = await api(query);

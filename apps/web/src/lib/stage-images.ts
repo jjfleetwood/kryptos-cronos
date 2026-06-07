@@ -56,6 +56,30 @@ export const STAGE_IMAGES: Record<string, string> = {
   "stage-m10": "/img/stage-m10.jpg",
   "stage-m11": "/img/stage-m11.jpg",
   "stage-m12": "/img/stage-m12.jpg",
+  // Cisco Enterprise/SecOps/Advanced — real landmarks tied to each story (agency
+  // HQs + Cisco gear; Commons, credited on /attribution). Abstract software/process
+  // stages keep the generated cover.
+  "stage-m13": "/img/stage-m13.jpg",
+  "stage-m14": "/img/stage-m14.jpg",
+  "stage-m15": "/img/stage-m15.jpg",
+  "stage-m19": "/img/stage-m19.jpg",
+  "stage-m29": "/img/stage-m29.jpg",
+  "stage-m30": "/img/stage-m30.jpg",
+  "stage-m37": "/img/stage-m37.jpg",
+  // Foundations (ancient) — the wonders of the ancient world (Commons photos +
+  // public-domain engravings for the destroyed wonders); credited on /attribution.
+  "stage-01": "/img/stage-01.jpg",
+  "stage-02": "/img/stage-02.jpg",
+  "stage-03": "/img/stage-03.jpg",
+  "stage-04": "/img/stage-04.jpg",
+  "stage-05": "/img/stage-05.jpg",
+  "stage-06": "/img/stage-06.jpg",
+  "stage-07": "/img/stage-07.jpg",
+  "stage-08": "/img/stage-08.jpg",
+  "stage-09": "/img/stage-09.jpg",
+  "stage-10": "/img/stage-10.jpg",
+  "stage-11": "/img/stage-11.jpg",
+  "stage-12": "/img/stage-12.jpg",
   // Race Through Space — NASA/ESA public-domain + free-licensed Commons imagery
   // (credited on /attribution).
   "space-01": "/img/space-01.jpg",
