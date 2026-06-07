@@ -107,6 +107,15 @@ export default function Nav() {
           ))}
           {username && (
             <div className="flex items-center gap-1">
+              <Link href="/quests" title="Quests" className="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-white/8 transition-colors text-base">
+                🎯
+              </Link>
+              <Link href="/leagues" title="Leagues" className="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-white/8 transition-colors text-base">
+                ⚔️
+              </Link>
+              <Link href="/achievements" title="Achievements" className="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-white/8 transition-colors text-base">
+                🏅
+              </Link>
               <Link href="/avatar" title={t("nav.avatar")} className="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-white/8 transition-colors text-base">
                 👤
               </Link>
@@ -248,6 +257,15 @@ export default function Nav() {
             <>
               <Link href={`/profile/${username}`} className="block px-3 py-2.5 rounded-lg text-sm" style={{ color: skin.accent }}>
                 🧑‍💻 {t("nav.profile")}
+              </Link>
+              <Link href="/quests" className="block px-3 py-2.5 rounded-lg text-sm" style={{ color: "#34d399" }}>
+                🎯 Quests
+              </Link>
+              <Link href="/leagues" className="block px-3 py-2.5 rounded-lg text-sm" style={{ color: "#fbbf24" }}>
+                ⚔️ Leagues
+              </Link>
+              <Link href="/achievements" className="block px-3 py-2.5 rounded-lg text-sm" style={{ color: "#facc15" }}>
+                🏅 Achievements
               </Link>
               <Link href="/avatar" className="block px-3 py-2.5 rounded-lg text-sm" style={{ color: "#a78bfa" }}>
                 👤 {t("nav.avatar")}
