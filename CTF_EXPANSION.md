@@ -27,8 +27,11 @@ Deep CTFs are **3 technical steps** (recon → exploit → extract/verify), each
 ## Out of scope (a hacking CTF is nonsensical)
 baseball (150) · debate (80) · flag-football (30) · french/italian (40) · paris/milan travel (40) · nails/hair (40) · driving (24) · tapestry (12)
 
-## Remaining axis — deepen EXISTING CTFs (optional, large)
-The ~292 pre-existing CTFs mostly use the older 2-step `mkCtf`. Gradually upgrade high-traffic epochs to the 3-step `mkDeepCtf` depth + the dopamine pips. Not yet started — this is polish, not coverage.
+## Deepen axis — 2-step → 3-step (in progress)
+Convert the ~292 pre-existing 2-step `mkCtf` CTFs to 3-step `mkDeepCtf`. **Trick: re-split each flag into the SAME total string across 3 fragments → flags stay byte-identical → no stage-flags.ts edits, validate-ctf still passes.** Per CTF: author a genuine middle recon/model step + `$ cmd` echoed technical output + an artifact file. The local `mkCtf` factory stays valid during conversion (mixed state compiles), remove it once all of an epoch's entries are converted.
+
+- [x] **physics-of-hacking** (10) — DONE 2026-06-07 (side-channel, DPA, TEMPEST, timing, acoustic, Rowhammer, cold-boot, fault-injection, hw-implant, harden — each now 3 steps with recon→model/exploit→extract)
+- [ ] ot-sec(6), vehicle-sec/robot-sec/space-race v1 (6 each), the II epochs' original 6 each, cisco-2/3/4/5, mitre, mitre-atlas, owasp-llm, quantum-1/2/3/4/5, umbrella, tech-audit-2, emerging-tech, ancient/cisco-core (stages.ts), first-journey(inline). Same per-epoch method.
 
 ## Status
 371 CTFs total (was 292). 6 fundamentals epochs + 5 deep-tech epochs' quiz stages = 79 new CTFs. validate-ctf: 0 problems. Shared factory: `packages/core/src/ctf-deep.ts`.
