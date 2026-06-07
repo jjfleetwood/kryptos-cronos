@@ -755,75 +755,164 @@ export const spaceRace2Stages: StageConfig[] = [
 ];
 
 // ── CTF mode — hands-on space terminal per stage (quiz = half-clear) ─────────
-type Cmd = [verb: string, frag: string, lines: string[]];
-function mkCtf(scenario: string, brief: string, open: string, a: Cmd, b: Cmd, labels: [string, string, string], hints: string[]): CtfConfig {
-  return {
-    scenario, hint: hints[0], hints,
-    fragments: [
-      { trigger: "/briefing.txt", value: open, label: labels[0] },
-      { trigger: a[0], value: a[1], label: labels[1] },
-      { trigger: b[0], value: b[1], label: labels[2] },
-    ],
-    files: { "/briefing.txt": brief },
-    dirs: { "/": [{ name: "briefing.txt", isDir: false }] },
-    extraCommands: { [a[0]]: () => ({ lines: a[2] }), [b[0]]: () => ({ lines: b[2] }) },
-  };
-}
+// All CTFs now use the shared 3-step mkDeepCtf factory (deepened from 2-step).
 
 const S2_CTF: Record<string, CtfConfig> = {
-  "s2-02": mkCtf(
-    "A satellite's command uplink has no authentication. Find the uplink, then send a forged telecommand the spacecraft will execute.",
-    "OP: COMMAND PIRATE\nTarget: a satellite TT&C uplink (no SDLS auth).\nGoal: scan for the uplink, then send a forged telecommand.\nSequence: scan-uplink -> send-telecommand",
-    "FLAG{TTC_",
-    ["scan-uplink", "T3L3C0MM4ND_", ["Searching public databases + spectrum for the uplink freq and command format ...", "Found uplink 2027.5 MHz, CCSDS TC frames, no authentication tag.", "Next: send-telecommand"]],
-    ["send-telecommand", "HIJ4CK}", ["Crafting and transmitting a forged 'point antenna' telecommand ...", "Spacecraft accepted it — no SDLS to reject the command. You're commanding it.", "Run 'assemble' to retrieve your fragment."]],
-    ["Mission Brief", "Uplink Found", "Telecommand Sent"],
-    ["Read the briefing. Run: cat briefing.txt", "Scan for the uplink. Run: scan-uplink", "Send a telecommand. Run: send-telecommand", "Run 'assemble', then submit the flag"],
+  "s2-02": mkDeepCtf(
+    "A satellite's command uplink has no authentication. Scan for the uplink, analyze its telecommand frame format, then transmit a forged telecommand the spacecraft will execute.",
+    "OP: COMMAND PIRATE\nTarget: a satellite TT&C uplink (no SDLS auth).\nGoal: scan the uplink, analyze the format, send a telecommand.\nSequence: scan-uplink -> analyze-format -> send-telecommand",
+    "FLAG{",
+    "Mission Brief",
+    ["scan-uplink", "TTC_", "Uplink Found", [
+      "$ scan-uplink --spectrum --db",
+      "Public databases + a spectrum sweep reveal the uplink at 2027.5 MHz.",
+      "TT&C (telemetry, tracking & command) is the spacecraft's control channel.",
+      "Next: analyze-format",
+    ]],
+    ["analyze-format", "T3L3C0MM4ND_", "Frame Format Analyzed", [
+      "$ analyze-format",
+      "Frames are standard CCSDS TC — and carry no SDLS authentication tag.",
+      "Anything with the right format will be accepted.",
+      "Next: send-telecommand",
+    ]],
+    ["send-telecommand", "HIJ4CK}", "Telecommand Sent", [
+      "$ send-telecommand --cmd point-antenna",
+      "Transmitted a forged 'point antenna' telecommand -> spacecraft executed it. No SDLS to reject it.",
+      "Fix: SDLS authentication/encryption on the command link.",
+      "Run 'assemble', then submit the flag.",
+    ]],
+    ["Read the briefing. Run: cat briefing.txt", "Scan the uplink. Run: scan-uplink", "Analyze the format. Run: analyze-format", "Send a telecommand. Run: send-telecommand", "Run 'assemble', then submit the flag"],
+    { "uplink.txt": "freq: 2027.5 MHz\nframes: CCSDS TC (no SDLS auth tag)\nfix: SDLS auth/encrypt" },
   ),
-  "s2-03": mkCtf(
-    "A satellite downlink is broadcasting in the clear. Tune your dish/SDR to it, then decode the unencrypted stream to recover its contents.",
-    "OP: LISTEN IN\nTarget: an unencrypted satellite downlink (DVB-S2).\nGoal: tune to the downlink, then decode the stream.\nSequence: tune-downlink -> decode-stream",
-    "FLAG{D0WNL1NK_",
-    ["tune-downlink", "CL34RT3XT_", ["Pointing the dish and locking the SDR onto the downlink carrier ...", "Locked DVB-S2 signal — no encryption on the transport.", "Next: decode-stream"]],
-    ["decode-stream", "R34D}", ["Demodulating and parsing the data stream ...", "Recovered in-the-clear telemetry and user traffic — readable with $300 of gear.", "Run 'assemble' to retrieve your fragment."]],
-    ["Mission Brief", "Downlink Tuned", "Stream Decoded"],
-    ["Read the briefing. Run: cat briefing.txt", "Tune the downlink. Run: tune-downlink", "Decode the stream. Run: decode-stream", "Run 'assemble', then submit the flag"],
+  "s2-03": mkDeepCtf(
+    "A satellite downlink is broadcasting in the clear. Tune your dish/SDR to the carrier, demodulate the DVB-S2 signal, then decode the unencrypted stream to recover its contents.",
+    "OP: LISTEN IN\nTarget: an unencrypted satellite downlink (DVB-S2).\nGoal: tune, demodulate, decode the stream.\nSequence: tune-downlink -> demod-signal -> decode-stream",
+    "FLAG{",
+    "Mission Brief",
+    ["tune-downlink", "D0WNL1NK_", "Downlink Tuned", [
+      "$ tune-downlink --dish --sdr",
+      "Pointed the dish and locked the SDR onto the downlink carrier.",
+      "A $300 SDR + dish is enough hardware.",
+      "Next: demod-signal",
+    ]],
+    ["demod-signal", "CL34RT3XT_", "Signal Demodulated", [
+      "$ demod-signal --dvb-s2",
+      "Demodulated the DVB-S2 transport — and found NO encryption on it.",
+      "The payload is sitting in cleartext.",
+      "Next: decode-stream",
+    ]],
+    ["decode-stream", "R34D}", "Stream Decoded", [
+      "$ decode-stream",
+      "Parsed the stream: in-the-clear telemetry + user traffic recovered.",
+      "Fix: encrypt the downlink transport; assume the RF is public.",
+      "Run 'assemble', then submit the flag.",
+    ]],
+    ["Read the briefing. Run: cat briefing.txt", "Tune the downlink. Run: tune-downlink", "Demodulate the signal. Run: demod-signal", "Decode the stream. Run: decode-stream", "Run 'assemble', then submit the flag"],
+    { "downlink.txt": "transport: DVB-S2 (no encryption)\ngear: ~$300 SDR + dish\nfix: encrypt transport" },
   ),
-  "s2-04": mkCtf(
-    "A critical-infrastructure receiver derives its clock from GNSS with no spoof detection. Spoof the GNSS signal, then walk the receiver's time off true GPS time.",
-    "OP: TIME BANDIT\nTarget: a GNSS-disciplined clock (no authentication/detection).\nGoal: spoof the GNSS, then shift the receiver's time.\nSequence: spoof-gnss -> shift-time",
+  "s2-04": mkDeepCtf(
+    "A critical-infrastructure receiver derives its clock from GNSS with no spoof detection. Spoof the GNSS signal, capture the receiver's lock, then slowly walk its time off true GPS time.",
+    "OP: TIME BANDIT\nTarget: a GNSS-disciplined clock (no authentication/detection).\nGoal: spoof, capture the lock, shift the time.\nSequence: spoof-gnss -> capture-lock -> shift-time",
     "FLAG{GNSS_",
-    ["spoof-gnss", "T1M3_SP00F3D_", ["Transmitting counterfeit GNSS signals slightly stronger than the real ones ...", "Receiver locked onto the spoof — it trusts the fake constellation now.", "No OSNMA authentication. Next: shift-time"]],
-    ["shift-time", "PNT}", ["Slowly advancing the spoofed time reference microseconds at a time ...", "The disciplined clock drifted off true GPS time — grid/telecom sync at risk.", "Run 'assemble' to retrieve your fragment."]],
-    ["Mission Brief", "GNSS Spoofed", "Time Shifted"],
-    ["Read the briefing. Run: cat briefing.txt", "Spoof the GNSS. Run: spoof-gnss", "Shift the time. Run: shift-time", "Run 'assemble', then submit the flag"],
+    "Mission Brief",
+    ["spoof-gnss", "T1M3_", "GNSS Spoofed", [
+      "$ spoof-gnss --power +3dB",
+      "Transmitted counterfeit GNSS signals slightly stronger than the real constellation.",
+      "Civil GPS has no OSNMA authentication to reject fakes.",
+      "Next: capture-lock",
+    ]],
+    ["capture-lock", "SP00F3D_", "Lock Captured", [
+      "$ capture-lock",
+      "The receiver dropped the real signal and locked onto the spoof — it trusts the fake now.",
+      "Smoothly take over without an alarm.",
+      "Next: shift-time",
+    ]],
+    ["shift-time", "PNT}", "Time Shifted", [
+      "$ shift-time --advance us",
+      "Advanced the spoofed time microseconds at a time -> the disciplined clock drifted off true GPS.",
+      "Grid/telecom sync depends on PNT. Fix: OSNMA, multi-GNSS, spoof detection, holdover.",
+      "Run 'assemble', then submit the flag.",
+    ]],
+    ["Read the briefing. Run: cat briefing.txt", "Spoof the GNSS. Run: spoof-gnss", "Capture the lock. Run: capture-lock", "Shift the time. Run: shift-time", "Run 'assemble', then submit the flag"],
+    { "gnss.txt": "auth: none (no OSNMA)\nattack: spoof +3dB -> capture lock -> drift time\nimpact: PNT (grid/telecom sync)" },
   ),
-  "s2-05": mkCtf(
-    "A satellite uplink uses a fixed frequency with no anti-jam. Sweep the band to find it, then jam the uplink to deny service over its footprint.",
-    "OP: SPECTRUM DENIAL\nTarget: a fixed-frequency uplink (no spread spectrum).\nGoal: find the uplink, then jam it.\nSequence: sweep-band -> jam-uplink",
-    "FLAG{UPL1NK_",
-    ["sweep-band", "J4MM3D_", ["Sweeping the Ku-band for the active uplink carrier ...", "Found a narrowband uplink at 14.25 GHz — no frequency hopping.", "Next: jam-uplink"]],
-    ["jam-uplink", "D3N13D}", ["Transmitting high-power noise centered on 14.25 GHz ...", "Uplink receiver swamped — service denied across the footprint.", "(Spread spectrum/nulling would defeat this.) Run 'assemble'."]],
-    ["Mission Brief", "Band Swept", "Uplink Jammed"],
-    ["Read the briefing. Run: cat briefing.txt", "Sweep the band. Run: sweep-band", "Jam the uplink. Run: jam-uplink", "Run 'assemble', then submit the flag"],
+  "s2-05": mkDeepCtf(
+    "A satellite uplink uses a fixed frequency with no anti-jam. Sweep the band to find it, lock onto the carrier, then jam the uplink to deny service over its footprint.",
+    "OP: SPECTRUM DENIAL\nTarget: a fixed-frequency uplink (no spread spectrum).\nGoal: sweep, lock the target, jam it.\nSequence: sweep-band -> lock-target -> jam-uplink",
+    "FLAG{",
+    "Mission Brief",
+    ["sweep-band", "UPL1NK_", "Band Swept", [
+      "$ sweep-band --ku",
+      "Swept the Ku-band and found a narrowband uplink carrier at 14.25 GHz.",
+      "No frequency hopping = a sitting duck.",
+      "Next: lock-target",
+    ]],
+    ["lock-target", "J4MM3D_", "Target Locked", [
+      "$ lock-target 14.25GHz",
+      "Characterized the carrier's bandwidth + power so the jam can be efficient and focused.",
+      "A matched jammer needs far less power.",
+      "Next: jam-uplink",
+    ]],
+    ["jam-uplink", "D3N13D}", "Uplink Jammed", [
+      "$ jam-uplink --noise --center 14.25GHz",
+      "Swamped the uplink receiver with high-power noise -> service denied across the footprint.",
+      "Fix: spread spectrum / frequency hopping + adaptive nulling antennas.",
+      "Run 'assemble', then submit the flag.",
+    ]],
+    ["Read the briefing. Run: cat briefing.txt", "Sweep the band. Run: sweep-band", "Lock the target. Run: lock-target", "Jam the uplink. Run: jam-uplink", "Run 'assemble', then submit the flag"],
+    { "jam.txt": "uplink: 14.25 GHz, narrowband, no hopping\nattack: matched noise jam\nfix: spread spectrum + nulling" },
   ),
-  "s2-06": mkCtf(
-    "Skip the dish — go for the ground. Breach a satellite ground station's management network, then abuse its legitimate authority to command the spacecraft (the Viasat model).",
-    "OP: GROUND CONTROL\nTarget: a satellite ground station's ops network.\nGoal: breach the ground station, then push a command.\nSequence: breach-groundstation -> push-command",
-    "FLAG{GR0UND_",
-    ["breach-groundstation", "S3GM3NT_", ["Scanning the ops network: found a misconfigured VPN appliance (like KA-SAT) ...", "Exploited it, landed in mission control, no segmentation to the command system.", "Next: push-command"]],
-    ["push-command", "PWN3D}", ["Using the ground station's authenticated commanding to task the satellite ...", "Command accepted — you control the bird from inside, SDLS keys and all.", "Run 'assemble' to retrieve your fragment."]],
-    ["Mission Brief", "Ground Breached", "Command Pushed"],
-    ["Read the briefing. Run: cat briefing.txt", "Breach the ground station. Run: breach-groundstation", "Push a command. Run: push-command", "Run 'assemble', then submit the flag"],
+  "s2-06": mkDeepCtf(
+    "Skip the dish — go for the ground. Breach a satellite ground station's management network, traverse to the command system, then abuse its legitimate authority to command the spacecraft (the Viasat model).",
+    "OP: GROUND CONTROL\nTarget: a satellite ground station's ops network.\nGoal: breach, traverse to command, push a command.\nSequence: breach-groundstation -> traverse-network -> push-command",
+    "FLAG{",
+    "Mission Brief",
+    ["breach-groundstation", "GR0UND_", "Ground Breached", [
+      "$ breach-groundstation",
+      "Scanned the ops network and found a misconfigured VPN appliance — the KA-SAT entry pattern.",
+      "Exploited it and landed inside mission control.",
+      "Next: traverse-network",
+    ]],
+    ["traverse-network", "S3GM3NT_", "Network Traversed", [
+      "$ traverse-network",
+      "No segmentation between IT ops and the command system -> walked straight to the tasking host.",
+      "Flat ground networks turn a VPN bug into spacecraft control.",
+      "Next: push-command",
+    ]],
+    ["push-command", "PWN3D}", "Command Pushed", [
+      "$ push-command",
+      "Used the station's OWN authenticated commanding to task the satellite — SDLS keys and all.",
+      "Fix: segment the ground segment, MFA, jump hosts, monitor commanding.",
+      "Run 'assemble', then submit the flag.",
+    ]],
+    ["Read the briefing. Run: cat briefing.txt", "Breach the ground station. Run: breach-groundstation", "Traverse the network. Run: traverse-network", "Push a command. Run: push-command", "Run 'assemble', then submit the flag"],
+    { "ground.txt": "entry: misconfigured VPN (KA-SAT model)\nsegmentation: none (IT ops -> command)\nfix: segment + MFA + monitoring" },
   ),
-  "s2-08": mkCtf(
-    "You have a foothold on one satellite in a constellation with optical inter-satellite links and shared trust. Hop an ISL, then pivot to a neighboring satellite.",
-    "OP: ORBITAL PIVOT\nTarget: a constellation with trusting inter-satellite links.\nGoal: hop an ISL, then pivot to a neighbor.\nSequence: hop-isl -> pivot-constellation",
-    "FLAG{1SL_",
-    ["hop-isl", "C0NST3LL4T10N_", ["Enumerating the compromised satellite's optical ISL neighbors ...", "ISLs share keys/software and trust peers — no per-node isolation.", "Next: pivot-constellation"]],
-    ["pivot-constellation", "P1V0T}", ["Relaying commands across the ISL mesh to an adjacent satellite ...", "Pivoted to a neighbor — lateral movement, but in orbit.", "Run 'assemble' to retrieve your fragment."]],
-    ["Mission Brief", "ISL Hopped", "Constellation Pivoted"],
-    ["Read the briefing. Run: cat briefing.txt", "Hop an ISL. Run: hop-isl", "Pivot across the mesh. Run: pivot-constellation", "Run 'assemble', then submit the flag"],
+  "s2-08": mkDeepCtf(
+    "You have a foothold on one satellite in a constellation with optical inter-satellite links and shared trust. Enumerate the ISL neighbors, hop a link, then pivot to a neighboring satellite.",
+    "OP: ORBITAL PIVOT\nTarget: a constellation with trusting inter-satellite links.\nGoal: enumerate ISLs, hop a link, pivot to a neighbor.\nSequence: enum-isl -> hop-isl -> pivot-constellation",
+    "FLAG{",
+    "Mission Brief",
+    ["enum-isl", "1SL_", "ISLs Enumerated", [
+      "$ enum-isl",
+      "Listed the compromised satellite's optical ISL neighbors and their link keys.",
+      "ISLs share keys/software and trust peers — no per-node isolation.",
+      "Next: hop-isl",
+    ]],
+    ["hop-isl", "C0NST3LL4T10N_", "ISL Hopped", [
+      "$ hop-isl --neighbor sat-+1",
+      "Relayed across the optical mesh to an adjacent satellite using the shared trust.",
+      "Lateral movement, but in orbit.",
+      "Next: pivot-constellation",
+    ]],
+    ["pivot-constellation", "P1V0T}", "Constellation Pivoted", [
+      "$ pivot-constellation",
+      "Took control of the neighbor; from here the whole mesh is reachable, hop by hop.",
+      "Fix: per-node identity/keys, ISL authentication, mutual distrust between satellites.",
+      "Run 'assemble', then submit the flag.",
+    ]],
+    ["Read the briefing. Run: cat briefing.txt", "Enumerate the ISLs. Run: enum-isl", "Hop an ISL. Run: hop-isl", "Pivot across the mesh. Run: pivot-constellation", "Run 'assemble', then submit the flag"],
+    { "isl.txt": "links: optical ISL mesh, shared keys/software\nflaw: trust peers, no isolation\nfix: per-node identity + ISL auth" },
   ),
 };
 
