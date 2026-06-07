@@ -755,75 +755,164 @@ export const otSecStages: StageConfig[] = [
 ];
 
 // ── CTF mode — hands-on ICS terminal per stage (quiz = half-clear) ───────────
-type Cmd = [verb: string, frag: string, lines: string[]];
-function mkCtf(scenario: string, brief: string, open: string, a: Cmd, b: Cmd, labels: [string, string, string], hints: string[]): CtfConfig {
-  return {
-    scenario, hint: hints[0], hints,
-    fragments: [
-      { trigger: "/briefing.txt", value: open, label: labels[0] },
-      { trigger: a[0], value: a[1], label: labels[1] },
-      { trigger: b[0], value: b[1], label: labels[2] },
-    ],
-    files: { "/briefing.txt": brief },
-    dirs: { "/": [{ name: "briefing.txt", isDir: false }] },
-    extraCommands: { [a[0]]: () => ({ lines: a[2] }), [b[0]]: () => ({ lines: b[2] }) },
-  };
-}
+// All CTFs now use the shared 3-step mkDeepCtf factory (deepened from 2-step).
 
 const OT_CTF: Record<string, CtfConfig> = {
-  "ot-02": mkCtf(
-    "You've reached an unauthenticated PLC on a lab network. Connect to it and replace its ladder logic to take control of the process.",
-    "OP: OWN THE PLC\nTarget: an exposed PLC with no auth on its programming port.\nGoal: connect to the PLC, then upload your own logic.\nSequence: connect-plc -> upload-logic",
+  "ot-02": mkDeepCtf(
+    "You've reached an unauthenticated PLC on a lab network. Connect over S7comm, dump its running ladder logic, then upload your own to take control of the process.",
+    "OP: OWN THE PLC\nTarget: an exposed PLC with no auth on its programming port.\nGoal: connect, dump the logic, upload your own.\nSequence: connect-plc -> dump-logic -> upload-logic",
     "FLAG{PLC_",
-    ["connect-plc", "L4DD3R_L0G1C_", ["Connecting to the PLC programming interface (S7comm) ...", "No authentication required — controller in PROGRAM mode.", "Dumped the running ladder logic. Next: upload-logic"]],
-    ["upload-logic", "0WN3D}", ["Compiling and downloading malicious ladder logic to the PLC ...", "The PLC accepted the new program — you now control the outputs.", "Run 'assemble' to retrieve your fragment."]],
-    ["Mission Brief", "PLC Connected", "Logic Uploaded"],
-    ["Read the briefing. Run: cat briefing.txt", "Connect to the PLC. Run: connect-plc", "Upload your logic. Run: upload-logic", "Run 'assemble', then submit the flag"],
+    "Mission Brief",
+    ["connect-plc", "L4DD3R_", "PLC Connected", [
+      "$ connect-plc --s7comm 10.9.1.5",
+      "Connected to the programming interface — no authentication; controller is in PROGRAM mode.",
+      "Programming a live controller over the network requires nothing but reachability.",
+      "Next: dump-logic",
+    ]],
+    ["dump-logic", "L0G1C_", "Logic Dumped", [
+      "$ dump-logic",
+      "Read out the running ladder logic + the process tag map (pumps, valves, interlocks).",
+      "Now you understand the process well enough to subvert it.",
+      "Next: upload-logic",
+    ]],
+    ["upload-logic", "0WN3D}", "Logic Uploaded", [
+      "$ upload-logic malicious.awl",
+      "Compiled and downloaded modified logic; the PLC accepted it -> you control the outputs.",
+      "Fix: auth on the programming port, key-switch in RUN, logic-integrity monitoring.",
+      "Run 'assemble', then submit the flag.",
+    ]],
+    ["Read the briefing. Run: cat briefing.txt", "Connect to the PLC. Run: connect-plc", "Dump the logic. Run: dump-logic", "Upload your logic. Run: upload-logic", "Run 'assemble', then submit the flag"],
+    { "plc.txt": "iface: S7comm (no auth)\nmode: PROGRAM (reprogrammable)\ntags: pumps/valves/interlocks" },
   ),
-  "ot-03": mkCtf(
-    "A Modbus/TCP device sits on port 502 with no authentication. Read its register map to understand the process, then force a coil to actuate equipment.",
-    "OP: FORCE THE COIL\nTarget: a Modbus/TCP device on port 502, no auth.\nGoal: read the registers, then write a coil to actuate it.\nSequence: read-registers -> write-coil",
+  "ot-03": mkDeepCtf(
+    "A Modbus/TCP device sits on port 502 with no authentication. Connect, map its registers to understand the process, then force a coil to actuate physical equipment.",
+    "OP: FORCE THE COIL\nTarget: a Modbus/TCP device on port 502, no auth.\nGoal: connect, map registers, write a coil.\nSequence: connect-modbus -> map-registers -> write-coil",
     "FLAG{M0DBUS_",
-    ["read-registers", "C01L_F0RC3_", ["Polling holding/input registers (FC 03/04) on the device ...", "Mapped it: register 40001 = pump speed, coil 00001 = inlet valve.", "Next: write-coil"]],
-    ["write-coil", "WR1T3}", ["Sending Write Single Coil (FC 05) to coil 00001 = ON ...", "The device obeyed — inlet valve energized. No auth, no questions.", "Run 'assemble' to retrieve your fragment."]],
-    ["Mission Brief", "Registers Read", "Coil Forced"],
-    ["Read the briefing. Run: cat briefing.txt", "Read the register map. Run: read-registers", "Force a coil. Run: write-coil", "Run 'assemble', then submit the flag"],
+    "Mission Brief",
+    ["connect-modbus", "C01L_", "Modbus Connected", [
+      "$ connect-modbus 10.9.2.20:502",
+      "TCP/502 open, unit id 1 responding — Modbus has no authentication by design.",
+      "Anyone who can route to it can read and write.",
+      "Next: map-registers",
+    ]],
+    ["map-registers", "F0RC3_", "Registers Mapped", [
+      "$ map-registers --fc 03,04",
+      "Polled holding/input registers: 40001 = pump speed, coil 00001 = inlet valve.",
+      "Now you know which write moves which actuator.",
+      "Next: write-coil",
+    ]],
+    ["write-coil", "WR1T3}", "Coil Forced", [
+      "$ write-coil --fc 05 --coil 00001 --value ON",
+      "Write Single Coil accepted — inlet valve energized. No auth, no questions.",
+      "Fix: segment Modbus, gateway with auth, read-only where possible.",
+      "Run 'assemble', then submit the flag.",
+    ]],
+    ["Read the briefing. Run: cat briefing.txt", "Connect to Modbus. Run: connect-modbus", "Map the registers. Run: map-registers", "Force a coil. Run: write-coil", "Run 'assemble', then submit the flag"],
+    { "modbus.txt": "port: 502 (no auth)\n40001=pump speed  00001=inlet valve\nFC05 = write single coil" },
   ),
-  "ot-04": mkCtf(
-    "An HMI is exposed with default credentials. Access the operator console, then push a supervisory command to the field — the Ukraine-2015 move.",
-    "OP: HIJACK THE HMI\nTarget: an internet-exposed SCADA HMI with default creds.\nGoal: access the HMI, then send a command to the field.\nSequence: access-hmi -> send-command",
+  "ot-04": mkDeepCtf(
+    "An HMI is exposed with default credentials. Access the operator console, read the live tag database, then push a supervisory command to the field — the Ukraine-2015 move.",
+    "OP: HIJACK THE HMI\nTarget: an internet-exposed SCADA HMI with default creds.\nGoal: access the HMI, read the tags, send a command.\nSequence: access-hmi -> read-tags -> send-command",
     "FLAG{HMI_",
-    ["access-hmi", "SC4D4_PR0C3SS_", ["Connecting to the HMI over RDP with default operator credentials ...", "Logged in. The mimic diagram and full tag database are visible.", "Next: send-command"]],
-    ["send-command", "H1J4CK}", ["Issuing 'OPEN BREAKER' to substation feeder 7 through the HMI ...", "Command sent to the field — breaker operated, just like Ukraine 2015.", "Run 'assemble' to retrieve your fragment."]],
-    ["Mission Brief", "HMI Accessed", "Command Sent"],
-    ["Read the briefing. Run: cat briefing.txt", "Access the HMI. Run: access-hmi", "Send a command. Run: send-command", "Run 'assemble', then submit the flag"],
+    "Mission Brief",
+    ["access-hmi", "SC4D4_", "HMI Accessed", [
+      "$ access-hmi --rdp --creds default",
+      "Logged in over RDP with default operator credentials — the mimic diagram loads.",
+      "The HMI is the operator's window AND control surface.",
+      "Next: read-tags",
+    ]],
+    ["read-tags", "PR0C3SS_", "Tags Read", [
+      "$ read-tags",
+      "Full tag database visible: substation feeders, breaker states, setpoints.",
+      "Identified feeder 7's breaker-control tag.",
+      "Next: send-command",
+    ]],
+    ["send-command", "H1J4CK}", "Command Sent", [
+      "$ send-command --tag feeder7.breaker --op OPEN",
+      "Issued OPEN BREAKER to feeder 7 through the HMI — the field obeyed, just like Ukraine 2015.",
+      "Fix: no internet-exposed HMIs, MFA, jump hosts, command confirmation.",
+      "Run 'assemble', then submit the flag.",
+    ]],
+    ["Read the briefing. Run: cat briefing.txt", "Access the HMI. Run: access-hmi", "Read the tags. Run: read-tags", "Send a command. Run: send-command", "Run 'assemble', then submit the flag"],
+    { "hmi.txt": "access: RDP, default creds\ntags: feeders, breakers, setpoints\nincident model: Ukraine 2015" },
   ),
-  "ot-05": mkCtf(
-    "You're on the link between a control center and a substation running classic DNP3 (no Secure Authentication). Capture the traffic, then inject a forged operate to trip a breaker.",
-    "OP: SPOOF THE GRID\nTarget: a DNP3 link with no Secure Authentication.\nGoal: capture DNP3 traffic, then inject a forged operate.\nSequence: capture-dnp3 -> inject-operate",
-    "FLAG{DNP3_",
-    ["capture-dnp3", "C0MM4ND_", ["Sniffing the serial-over-IP DNP3 link ...", "Captured the master's address and a SELECT for breaker CB-12 (CROB).", "Source address is unauthenticated. Next: inject-operate"]],
-    ["inject-operate", "SP00F3D}", ["Forging SELECT then OPERATE (CROB) with the master's address ...", "Outstation trusted it — breaker CB-12 tripped. Lights out.", "Run 'assemble' to retrieve your fragment."]],
-    ["Mission Brief", "DNP3 Captured", "Operate Injected"],
-    ["Read the briefing. Run: cat briefing.txt", "Capture DNP3 traffic. Run: capture-dnp3", "Inject a forged operate. Run: inject-operate", "Run 'assemble', then submit the flag"],
+  "ot-05": mkDeepCtf(
+    "You're on the link between a control center and a substation running classic DNP3 (no Secure Authentication). Capture the traffic, analyze the control sequence, then inject a forged operate to trip a breaker.",
+    "OP: SPOOF THE GRID\nTarget: a DNP3 link with no Secure Authentication.\nGoal: capture, analyze the CROB, inject a forged operate.\nSequence: capture-dnp3 -> analyze-crob -> inject-operate",
+    "FLAG{",
+    "Mission Brief",
+    ["capture-dnp3", "DNP3_", "DNP3 Captured", [
+      "$ capture-dnp3 --serial-over-ip",
+      "Sniffed the DNP3 link; recorded the master's source address and outstation addresses.",
+      "No Secure Authentication -> messages are forgeable.",
+      "Next: analyze-crob",
+    ]],
+    ["analyze-crob", "C0MM4ND_", "Control Sequence Analyzed", [
+      "$ analyze-crob",
+      "DNP3 control = SELECT then OPERATE (CROB) on a point. Captured a SELECT for breaker CB-12.",
+      "Replaying with the master's address will be trusted.",
+      "Next: inject-operate",
+    ]],
+    ["inject-operate", "SP00F3D}", "Operate Injected", [
+      "$ inject-operate --point CB-12 --crob TRIP",
+      "Forged SELECT + OPERATE as the master -> outstation tripped breaker CB-12. Lights out.",
+      "Fix: DNP3 Secure Authentication / TLS, segmentation, allow-listing.",
+      "Run 'assemble', then submit the flag.",
+    ]],
+    ["Read the briefing. Run: cat briefing.txt", "Capture DNP3 traffic. Run: capture-dnp3", "Analyze the control sequence. Run: analyze-crob", "Inject a forged operate. Run: inject-operate", "Run 'assemble', then submit the flag"],
+    { "dnp3.txt": "auth: none (no Secure Authentication)\ncontrol: SELECT -> OPERATE (CROB)\ntarget: breaker CB-12" },
   ),
-  "ot-06": mkCtf(
-    "You have a foothold on the corporate IT network from a phish. Find and compromise the dual-homed Engineering Workstation, then use it to pivot to a PLC in OT.",
-    "OP: IT TO OT\nTarget: a dual-homed Engineering Workstation bridging IT and OT.\nGoal: compromise the EWS, then pivot to a Level 1 PLC.\nSequence: compromise-ews -> pivot-to-plc",
+  "ot-06": mkDeepCtf(
+    "You have a foothold on the corporate IT network from a phish. Find and compromise the dual-homed Engineering Workstation, enumerate its OT-side NIC, then pivot to a Level 1 PLC.",
+    "OP: IT TO OT\nTarget: a dual-homed Engineering Workstation bridging IT and OT.\nGoal: compromise the EWS, enum the OT NIC, pivot to a PLC.\nSequence: compromise-ews -> enum-ot-nic -> pivot-to-plc",
     "FLAG{3WS_",
-    ["compromise-ews", "1T_T0_0T_", ["Scanning the IT subnet for hosts running vendor engineering software ...", "Found ENG-WS01 (dual-homed: IT + OT). Reused a cached domain cred to log in.", "It has TIA Portal and the live project files. Next: pivot-to-plc"]],
-    ["pivot-to-plc", "P1V0T}", ["Using the EWS's OT NIC and engineering tools to reach PLC-101 ...", "Connected to the PLC through the engineer's own trusted path — you're in OT.", "Run 'assemble' to retrieve your fragment."]],
-    ["Mission Brief", "EWS Compromised", "Pivoted to PLC"],
-    ["Read the briefing. Run: cat briefing.txt", "Compromise the EWS. Run: compromise-ews", "Pivot to the PLC. Run: pivot-to-plc", "Run 'assemble', then submit the flag"],
+    "Mission Brief",
+    ["compromise-ews", "1T_", "EWS Compromised", [
+      "$ compromise-ews",
+      "Scanned the IT subnet for vendor engineering software; found ENG-WS01 (dual-homed: IT + OT).",
+      "Reused a cached domain credential to log in — it has TIA Portal + live project files.",
+      "Next: enum-ot-nic",
+    ]],
+    ["enum-ot-nic", "T0_0T_", "OT NIC Enumerated", [
+      "$ enum-ot-nic",
+      "The second NIC sits on the OT VLAN and can reach Level 1 controllers directly.",
+      "The EWS is the bridge attackers dream of.",
+      "Next: pivot-to-plc",
+    ]],
+    ["pivot-to-plc", "P1V0T}", "Pivoted to PLC", [
+      "$ pivot-to-plc --target PLC-101",
+      "Used the EWS's OT NIC + engineering tools to reach PLC-101 over the engineer's trusted path.",
+      "You're in OT. Fix: no dual-homing, OT DMZ + jump host, MFA, app-allow-listing on the EWS.",
+      "Run 'assemble', then submit the flag.",
+    ]],
+    ["Read the briefing. Run: cat briefing.txt", "Compromise the EWS. Run: compromise-ews", "Enumerate the OT NIC. Run: enum-ot-nic", "Pivot to the PLC. Run: pivot-to-plc", "Run 'assemble', then submit the flag"],
+    { "ews.txt": "host: ENG-WS01 (dual-homed IT+OT)\ntools: TIA Portal + project files\npath: OT NIC -> PLC-101" },
   ),
-  "ot-09": mkCtf(
-    "You're the OT defender. Passively baseline a plant's normal network traffic, then flag the single anomalous command that reveals an intruder.",
-    "OP: CATCH THE INTRUDER\nTarget: a plant network tap (passive — inject nothing).\nGoal: baseline normal traffic, then flag the anomaly.\nSequence: baseline-traffic -> flag-anomaly",
-    "FLAG{1CS_",
-    ["baseline-traffic", "1NTRUS10N_", ["Building an asset inventory and learning normal flows from the SPAN port ...", "Baseline: HMI reads PLC-101 every 1s; engineering downloads only during Tue maintenance.", "Next: flag-anomaly"]],
-    ["flag-anomaly", "D3T3CT3D}", ["Comparing live traffic to the baseline ...", "ANOMALY: a Modbus Write Single Coil from an unknown host at 03:14 — no operator, off-hours.", "That's the intrusion. Run 'assemble' to retrieve your fragment."]],
-    ["Mission Brief", "Traffic Baselined", "Anomaly Flagged"],
-    ["Read the briefing. Run: cat briefing.txt", "Baseline the traffic. Run: baseline-traffic", "Flag the anomaly. Run: flag-anomaly", "Run 'assemble', then submit the flag"],
+  "ot-09": mkDeepCtf(
+    "You're the OT defender. Passively baseline a plant's normal network traffic, diff the live feed against it, and flag the single anomalous command that reveals an intruder.",
+    "OP: CATCH THE INTRUDER\nTarget: a plant network tap (passive — inject nothing).\nGoal: baseline, diff the live feed, flag the anomaly.\nSequence: baseline-traffic -> diff-live -> flag-anomaly",
+    "FLAG{",
+    "Mission Brief",
+    ["baseline-traffic", "1CS_", "Traffic Baselined", [
+      "$ baseline-traffic --span-port --learn",
+      "Built an asset inventory + learned normal flows: HMI reads PLC-101 every 1s.",
+      "Engineering downloads happen only during Tuesday maintenance windows.",
+      "Next: diff-live",
+    ]],
+    ["diff-live", "1NTRUS10N_", "Live Feed Diffed", [
+      "$ diff-live",
+      "Compared the live SPAN feed to the baseline; nearly everything matches known flows.",
+      "One conversation doesn't fit the model.",
+      "Next: flag-anomaly",
+    ]],
+    ["flag-anomaly", "D3T3CT3D}", "Anomaly Flagged", [
+      "$ flag-anomaly",
+      "ANOMALY: a Modbus Write Single Coil from an unknown host at 03:14 — no operator, off-hours.",
+      "Passive, behavior-based OT IDS catches what signature tools miss. That's the intrusion.",
+      "Run 'assemble', then submit the flag.",
+    ]],
+    ["Read the briefing. Run: cat briefing.txt", "Baseline the traffic. Run: baseline-traffic", "Diff the live feed. Run: diff-live", "Flag the anomaly. Run: flag-anomaly", "Run 'assemble', then submit the flag"],
+    { "ids.txt": "baseline: HMI reads PLC-101 @1s; eng downloads Tue only\nanomaly: Modbus write from unknown host @03:14\nmethod: passive behavior-based" },
   ),
 };
 
