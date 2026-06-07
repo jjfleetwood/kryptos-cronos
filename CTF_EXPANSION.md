@@ -38,7 +38,9 @@ Convert the ~292 pre-existing 2-step `mkCtf` CTFs to 3-step `mkDeepCtf`. **Trick
 - [x] **vehicle-sec-2** (6 original) — DONE 2026-06-07 (SOME/IP spoof, V2X ghost, TPMS spoof, relay key, ISO 15118 PnC, fleet-API BOLA). Now 100% 3-step.
 
 **Deepened so far (7 epochs, 46 CTFs): physics-of-hacking, ot-sec, threat-frameworks, space-race-2, robot-sec-2, vehicle-sec-2** (+ first epoch physics). All shared `mkDeepCtf`, validate 371/0.
-- [ ] vehicle-sec/robot-sec/space-race v1 (6 each), cisco-2/3/4/5, mitre, mitre-atlas, owasp-llm, quantum-1/2/3/4/5, umbrella, tech-audit-2, emerging-tech, ancient/cisco-core (stages.ts), first-journey(inline). Same per-epoch method (v1 epochs need the mkDeepCtf import added).
+**✅ All 6 FACTORY-style epochs deepened** (physics-of-hacking, ot-sec, threat-frameworks, space-race-2, robot-sec-2, vehicle-sec-2 = 40 CTFs). These shared the local 2-step `mkCtf` record pattern — clean mechanical conversion.
+
+**REMAINING use INLINE `ctf:{...}` objects** (no factory) — a different, heavier per-CTF conversion: each stage has an inline `ctf` with its own `fragments`/`files`/`extraCommands` functions written directly in the stage object. To deepen: in each inline `ctf`, re-split the flag across an added 3rd fragment, add a 3rd `extraCommands` entry + richer `$cmd` lines + (optionally) an artifact file. Flags stay byte-identical (re-split). Epochs: vehicle-sec/robot-sec/space-race v1 (6 each, e.g. vehicle-sec.ts l.172 fragments), cisco-2/3/4/5, mitre, mitre-atlas, owasp-llm, quantum-1/2/3/4/5, umbrella, tech-audit-2, emerging-tech, ancient/cisco-core (stages.ts), first-journey. ~15+ epochs, ~250 CTFs.
 
 ## Status
 371 CTFs total (was 292). 6 fundamentals epochs + 5 deep-tech epochs' quiz stages = 79 new CTFs. validate-ctf: 0 problems. Shared factory: `packages/core/src/ctf-deep.ts`.
