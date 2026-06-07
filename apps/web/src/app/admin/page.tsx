@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState, useMemo, type ReactNode } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { getSession, setSession } from "@/lib/auth";
@@ -39,6 +39,60 @@ function timeAgo(ts: number | null): string {
   const h = Math.floor(m / 60);
   if (h < 24) return `${h}h ago`;
   return `${Math.floor(h / 24)}d ago`;
+}
+
+const NAV_ITEMS = [
+  { id: "admin-stats",    label: "Stats" },
+  { id: "admin-metrics",  label: "Metrics" },
+  { id: "admin-users",    label: "Users" },
+  { id: "admin-analytics",label: "Analytics" },
+  { id: "admin-flags",    label: "Flags" },
+  { id: "admin-cms",      label: "CMS" },
+  { id: "admin-pipeline", label: "Pipeline" },
+  { id: "admin-vouchers", label: "Vouchers" },
+  { id: "admin-downloads",label: "Downloads" },
+  { id: "admin-ip",       label: "IP Audit" },
+  { id: "admin-catalog",  label: "Catalog" },
+];
+
+/**
+ * Dashboard section wrapper: shows a short "peek" (~first 3 rows) when collapsed,
+ * with a pull-down affordance to reveal the full section. Anchored by `id` for the
+ * left-nav scroll targets.
+ */
+function DashSection({ id, children, peek = 188 }: { id: string; children: ReactNode; peek?: number }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <div id={id} className="mb-8 scroll-mt-6">
+      <div className="relative">
+        <div style={{ maxHeight: open ? undefined : peek, overflow: open ? "visible" : "hidden" }}>
+          {children}
+        </div>
+        {!open && (
+          <button
+            type="button"
+            onClick={() => setOpen(true)}
+            aria-label="Show full section"
+            className="absolute inset-x-0 bottom-0 h-20 flex items-end justify-center pb-2 cursor-pointer group"
+            style={{ background: "linear-gradient(to bottom, transparent, rgba(8,12,22,0.92) 78%)" }}
+          >
+            <span className="text-[11px] font-mono text-gray-400 group-hover:text-cyan-300 border border-white/10 group-hover:border-cyan-500/50 rounded-full px-3 py-1 bg-black/50 backdrop-blur-sm transition-colors">
+              ▾ Show full
+            </span>
+          </button>
+        )}
+      </div>
+      {open && (
+        <button
+          type="button"
+          onClick={() => setOpen(false)}
+          className="mt-2 w-full text-center text-[11px] font-mono text-gray-600 hover:text-cyan-300 border border-white/5 hover:border-cyan-500/30 rounded-lg transition-colors py-1.5"
+        >
+          ▲ Collapse
+        </button>
+      )}
+    </div>
+  );
 }
 
 function StatCard({ label, value, sub, color }: { label: string; value: string | number; sub?: string; color: string }) {
@@ -1344,6 +1398,25 @@ export default function AdminPage() {
   const [sortDir, setSortDir] = useState<SortDir>("desc");
   const [currentUser, setCurrentUser] = useState<string | null>(getSession());
   const now = useMemo(() => Date.now(), []);
+  const [activeNav, setActiveNav] = useState<string>("admin-stats");
+
+  // Scroll-spy: highlight the left-nav item for the section nearest the top.
+  useEffect(() => {
+    const obs = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+        if (visible[0]) setActiveNav(visible[0].target.id);
+      },
+      { rootMargin: "-12% 0px -78% 0px" }
+    );
+    NAV_ITEMS.forEach(({ id }) => {
+      const el = document.getElementById(id);
+      if (el) obs.observe(el);
+    });
+    return () => obs.disconnect();
+  }, [loading]);
 
   useEffect(() => {
     fetch("/api/auth/me")
@@ -1423,32 +1496,26 @@ export default function AdminPage() {
     else { setSortKey(key); setSortDir("desc"); }
   }
 
-  const NAV_ITEMS = [
-    { id: "admin-stats",    label: "Stats" },
-    { id: "admin-metrics",  label: "Metrics" },
-    { id: "admin-users",    label: "Users" },
-    { id: "admin-analytics",label: "Analytics" },
-    { id: "admin-flags",    label: "Flags" },
-    { id: "admin-cms",      label: "CMS" },
-    { id: "admin-pipeline", label: "Pipeline" },
-    { id: "admin-vouchers", label: "Vouchers" },
-    { id: "admin-downloads",label: "Downloads" },
-    { id: "admin-ip",       label: "IP Audit" },
-    { id: "admin-catalog",  label: "Catalog" },
-  ];
-
   return (
     <div
-      className="min-h-screen px-4 py-10"
+      className="min-h-screen px-4 py-10 lg:pl-52"
       style={{ background: "linear-gradient(160deg, #060a10 0%, #0d1117 50%, #0a0e1a 100%)" }}
     >
-      {/* Sticky left nav — only visible on very wide screens */}
-      <nav className="hidden 2xl:flex fixed left-4 top-1/2 -translate-y-1/2 flex-col gap-0.5 z-40">
+      {/* Fixed left sidebar nav */}
+      <nav className="hidden lg:flex fixed left-0 top-0 bottom-0 w-48 flex-col gap-0.5 py-8 px-3 border-r border-white/8 bg-white/2 backdrop-blur-sm z-40 overflow-y-auto">
+        <div className="px-2 mb-3 flex items-center gap-2">
+          <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
+          <span className="text-[10px] font-mono uppercase tracking-widest text-gray-500">Dashboard</span>
+        </div>
         {NAV_ITEMS.map(({ id, label }) => (
           <button
             key={id}
             onClick={() => document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" })}
-            className="text-left px-2 py-1 text-[11px] font-mono text-gray-700 hover:text-cyan-400 transition-colors whitespace-nowrap tracking-wide"
+            className={`text-left px-3 py-1.5 text-xs font-mono rounded-lg transition-colors whitespace-nowrap ${
+              activeNav === id
+                ? "text-cyan-300 bg-cyan-500/10 border border-cyan-500/30"
+                : "text-gray-500 hover:text-cyan-400 hover:bg-white/5 border border-transparent"
+            }`}
           >
             {label}
           </button>
@@ -1508,12 +1575,13 @@ export default function AdminPage() {
         </div>
 
         {/* Investor Metrics */}
-        <div id="admin-metrics">
+        <DashSection id="admin-metrics">
           <MetricsPanel users={users} loading={loading} />
-        </div>
+        </DashSection>
 
         {/* User table */}
-        <div id="admin-users" className="bg-white/2 border border-white/8 rounded-2xl overflow-hidden mb-8">
+        <DashSection id="admin-users" peek={220}>
+        <div className="bg-white/2 border border-white/8 rounded-2xl overflow-hidden">
           <div className="px-6 py-4 border-b border-white/8 flex items-center justify-between gap-4 flex-wrap">
             <h2 className="text-white font-bold">Registered Users</h2>
             <div className="flex items-center gap-3">
@@ -1679,10 +1747,12 @@ export default function AdminPage() {
             </div>
           )}
         </div>
+        </DashSection>
 
         {/* Stage analytics */}
         {!loading && users.length > 0 && (
-          <div id="admin-analytics" className="grid md:grid-cols-2 gap-6 mb-8">
+          <DashSection id="admin-analytics">
+          <div className="grid md:grid-cols-2 gap-6">
             {/* Top completed */}
             <div className="bg-white/2 border border-white/8 rounded-2xl overflow-hidden">
               <div className="px-6 py-4 border-b border-white/8">
@@ -1737,30 +1807,32 @@ export default function AdminPage() {
               </div>
             </div>
           </div>
+          </DashSection>
         )}
 
         {/* Flag Capture Log */}
-        <div id="admin-flags"><FlagCaptureLog /></div>
+        <DashSection id="admin-flags"><FlagCaptureLog /></DashSection>
 
         {/* CMS */}
-        <div id="admin-cms"><CmsPanel /></div>
+        <DashSection id="admin-cms"><CmsPanel /></DashSection>
 
         {/* Pipeline Test / Manual Award */}
-        <div id="admin-pipeline"><PipelineTestPanel /></div>
+        <DashSection id="admin-pipeline"><PipelineTestPanel /></DashSection>
 
         {/* Vouchers */}
-        <div id="admin-vouchers"><VouchersPanel /></div>
+        <DashSection id="admin-vouchers"><VouchersPanel /></DashSection>
 
         {/* Downloads Access */}
-        <div id="admin-downloads">
+        <DashSection id="admin-downloads">
           <DownloadsAccessPanel users={users.map((u) => ({ username: u.username }))} />
-        </div>
+        </DashSection>
 
         {/* Content IP Audit */}
-        <div id="admin-ip"><ContentAudit /></div>
+        <DashSection id="admin-ip"><ContentAudit /></DashSection>
 
         {/* Stage catalog */}
-        <div id="admin-catalog" className="bg-white/2 border border-white/8 rounded-2xl overflow-hidden">
+        <DashSection id="admin-catalog">
+        <div className="bg-white/2 border border-white/8 rounded-2xl overflow-hidden">
           <div className="px-6 py-4 border-b border-white/8 flex items-center justify-between">
             <h2 className="text-white font-bold">Stage Catalog</h2>
             <span className="text-xs text-gray-600">{totalStages} stages</span>
@@ -1794,6 +1866,7 @@ export default function AdminPage() {
             })}
           </div>
         </div>
+        </DashSection>
       </div>
     </div>
   );
