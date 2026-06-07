@@ -1,4 +1,5 @@
 import type { StageConfig, EpochConfig, CtfConfig } from "./types";
+import { mkDeepCtf } from "./ctf-deep";
 
 export const aiMlFoundationsEpoch: EpochConfig = {
   id: "ai-ml-foundations",
@@ -938,44 +939,9 @@ export const aiMlFoundationsStages: StageConfig[] = [
   },
 ];
 
-// ───────────────────────────────────────────────────────────────────────────
 // CTF labs — deep, step-by-step technical exercises (recon → exploit →
-// extract/verify). Each stage gains an AI-security lab whose fragments assemble
-// into its flag. Flags are mirrored in stage-flags.ts; the extraCommands are
-// lazy-loaded via the LOADERS map in stage-commands.ts. Validated by
-// scripts/validate-ctf.mjs.
-type DeepStep = [verb: string, frag: string, label: string, lines: string[]];
-function mkDeepCtf(
-  scenario: string,
-  brief: string,
-  open: string,
-  openLabel: string,
-  s1: DeepStep, s2: DeepStep, s3: DeepStep,
-  hints: string[],
-  extraFiles: Record<string, string> = {},
-): CtfConfig {
-  const files: Record<string, string> = { "/briefing.txt": brief };
-  for (const [k, v] of Object.entries(extraFiles)) files[k.startsWith("/") ? k : "/" + k] = v;
-  return {
-    scenario,
-    hint: hints[0],
-    hints,
-    fragments: [
-      { trigger: "/briefing.txt", value: open, label: openLabel },
-      { trigger: s1[0], value: s1[1], label: s1[2] },
-      { trigger: s2[0], value: s2[1], label: s2[2] },
-      { trigger: s3[0], value: s3[1], label: s3[2] },
-    ],
-    files,
-    dirs: { "/": Object.keys(files).map((p) => ({ name: p.replace(/^\//, ""), isDir: false })) },
-    extraCommands: {
-      [s1[0]]: () => ({ lines: s1[3] }),
-      [s2[0]]: () => ({ lines: s2[3] }),
-      [s3[0]]: () => ({ lines: s3[3] }),
-    },
-  };
-}
-
+// extract/verify) via the shared mkDeepCtf factory. Flags mirrored in
+// stage-flags.ts; extraCommands lazy-loaded via LOADERS in stage-commands.ts.
 const AIML_CTF: Record<string, CtfConfig> = {
   "ai-ml-foundations-01": mkDeepCtf(
     "An over-trained classifier memorised its training data. Mount a membership-inference attack and prove the model leaks whether a specific record was in its training set — without ever seeing the data.",

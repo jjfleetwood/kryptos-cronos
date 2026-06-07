@@ -14,7 +14,7 @@ Deep CTFs are **3 technical steps** (recon → exploit → extract/verify), each
 
 ## Candidate epochs (technical, currently quiz-only)
 - [x] **ai-ml-foundations** (6) — DONE 2026-06-07 (membership inference, data poisoning, confusion-matrix backdoor, prompt injection, model extraction, cloud IAM escalation)
-- [ ] **sec-foundations** (13) — controls/IAM/crypto/network/SDLC labs
+- [x] **sec-foundations** (13) — DONE 2026-06-07 (CSF mapping, honeypot/Stuxnet, CrowdStrike backout, OVHcloud DR, DigiNotar rogue-cert, Colonial MFA, GDPR PII, Twitter vishing sim, fiber/spine-leaf, 7-step triage, Uber report, Equifax ALE, SolarWinds pipeline). Factory extracted to shared `ctf-deep.ts`.
 - [ ] **computing-foundations** (10) — bits/memory/CPU/OS labs with a security twist
 - [ ] **silicon-fab** (10) — hardware-trust / supply-chain labs
 - [ ] **quantum-intro** (10) — beginner; CTF marginal (consider lighter labs)
@@ -29,4 +29,4 @@ baseball (150) · debate (80) · flag-football (30) · french/italian (40) · pa
 The ~292 pre-existing CTFs mostly use the older 2-step `mkCtf`. Gradually upgrade high-traffic epochs to the 3-step `mkDeepCtf` depth. Not yet started.
 
 ## Status
-298 CTFs total (was 292). validate-ctf: 0 problems.
+311 CTFs total (was 292). validate-ctf: 0 problems. Shared factory: `packages/core/src/ctf-deep.ts`.

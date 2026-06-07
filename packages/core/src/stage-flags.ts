@@ -73,6 +73,21 @@ export const stageFlags: Record<string, string> = {
   "ai-ml-foundations-05": "FLAG{ML0PS_3NDP01NT_QU3R13D_3XTR4CT3D}",
   "ai-ml-foundations-06": "FLAG{CL0UD_4I_1AM_3SC4L4T3D_3XF1L}",
 
+  // ── Security Foundations (sec-foundations.ts) ────────────────────────────
+  "sec-foundations-01": "FLAG{NIST_CSF_C0NTR0L_G4P_M4PP3D}",
+  "sec-foundations-02": "FLAG{H0N3YP0T_TR4P_1NTRUD3R_TR4C3D}",
+  "sec-foundations-03": "FLAG{CH4NG3_R1SK_B4CK0UT_R3ST0R3D}",
+  "sec-foundations-04": "FLAG{RT0_RP0_F41L0V3R_B4CKUP_R3C0V3R3D}",
+  "sec-foundations-05": "FLAG{R0GU3_C4_CT_L0G_R3V0K3D}",
+  "sec-foundations-06": "FLAG{MFA_N0_R3US3_3NF0RC3D}",
+  "sec-foundations-07": "FLAG{P11_CL4SS1F13D_4T_R3ST_3NCRYPT3D}",
+  "sec-foundations-08": "FLAG{V1SH1NG_S1M_HUM4N_F1R3W4LL}",
+  "sec-foundations-09": "FLAG{F1B3R_SP1N3_L34F_L1NK3D}",
+  "sec-foundations-10": "FLAG{S3V3N_ST3P_C4PTUR3_F4ULT_F0UND}",
+  "sec-foundations-11": "FLAG{1NC1D3NT_S3V3R1TY_R3P0RT3D_N0_C0V3RUP}",
+  "sec-foundations-12": "FLAG{SL3_4R0_4L3_TR34T_M1T1G4T3D}",
+  "sec-foundations-13": "FLAG{SDLC_1MPL4NT_S1GN3D_S3CUR3}",
+
   // ── Emerging Tech (emerging-tech.ts) ─────────────────────────────────────
   "emerging-01": "FLAG{4DV_3X_M0D3L_F00L3D}",
   "emerging-02": "FLAG{B4DN3T_M0D3L_B4CKD00R}",
