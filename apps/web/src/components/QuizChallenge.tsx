@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import BackLink from "./BackLink";
+import QuizSuccessModal from "./QuizSuccessModal";
 import type { QuizQuestion, StageConfig } from "@kryptos/core/types";
 
 type SafeQuestion = Omit<QuizQuestion, "correctIndex" | "explanation">;
@@ -10,6 +11,16 @@ type SafeQuestion = Omit<QuizQuestion, "correctIndex" | "explanation">;
 type AnswerState = {
   correct: boolean;
   explanation: string;
+} | null;
+
+// The server's verdict on the final question — drives the completion screen.
+type FinalResult = {
+  /** Dual-mode stage: quiz counts as a HALF clear (no XP). */
+  half: boolean;
+  /** Pure-quiz stage genuinely cleared (XP awarded). */
+  awarded: boolean;
+  bonusXp: number;
+  recommendedNext: { id: string; title: string } | null;
 } | null;
 
 // How many questions a single attempt presents. Stages with a larger bank draw a
@@ -45,6 +56,7 @@ export default function QuizChallenge({ stage, backHref = "/stages" }: { stage: 
   const [checking, setChecking] = useState(false);
   const [score, setScore] = useState(0);
   const [done, setDone] = useState(false);
+  const [finalResult, setFinalResult] = useState<FinalResult>(null);
 
   const q = questions[current];
 
@@ -55,6 +67,7 @@ export default function QuizChallenge({ stage, backHref = "/stages" }: { stage: 
     setAnswer(null);
     setScore(0);
     setDone(false);
+    setFinalResult(null);
   }
 
   async function handleSelect(idx: number) {
@@ -74,6 +87,16 @@ export default function QuizChallenge({ stage, backHref = "/stages" }: { stage: 
       setAnswer({ correct: data.correct, explanation: data.explanation });
       if (data.correct) {
         setScore((s) => s + 1);
+      }
+      // Capture the server's award verdict on the final question so the completion
+      // screen can celebrate a real clear (with real coins/bonus/next).
+      if (isFinalQuestion) {
+        setFinalResult({
+          half: data.half === true,
+          awarded: data.correct === true && data.half !== true,
+          bonusXp: typeof data.bonusXp === "number" ? data.bonusXp : 0,
+          recommendedNext: data.recommendedNext ?? null,
+        });
       }
     } catch {
       setAnswer({ correct: false, explanation: "Could not verify answer — please try again." });
@@ -101,37 +124,52 @@ export default function QuizChallenge({ stage, backHref = "/stages" }: { stage: 
   }
 
   if (done) {
+    // Pure-quiz stage genuinely cleared → celebratory pop-up fed by the real award.
+    if (!isHalfClear && finalResult?.awarded) {
+      return (
+        <QuizSuccessModal
+          stage={stage}
+          score={score}
+          total={questions.length}
+          coins={stage.xp}
+          bonusCoins={finalResult.bonusXp}
+          recommendedNext={finalResult.recommendedNext}
+          onReplay={restart}
+          backHref={backHref}
+        />
+      );
+    }
+
     return (
       <div
         className="min-h-screen flex items-center justify-center px-4"
         style={{ background: "linear-gradient(135deg, #0d1117 0%, #0f2027 50%, #1a1a2e 100%)" }}
       >
         <div className="max-w-lg w-full text-center">
-          <div className="text-6xl mb-6">{isHalfClear ? "📝" : score === questions.length ? "🏆" : score >= 2 ? "🎖️" : "📚"}</div>
-          <h2 className="text-3xl font-bold text-white mb-2">{isHalfClear ? "Quiz Cleared!" : "Stage Complete!"}</h2>
-          <p className="text-gray-400 mb-8">
-            You answered {score} of {questions.length} challenges correctly.
-          </p>
-
           {isHalfClear ? (
-            <div className="bg-white/5 border border-amber-500/30 rounded-xl p-6 mb-8">
-              <div className="text-2xl mb-2">⬤◗ <span className="text-amber-400 font-bold align-middle text-lg">Half cleared</span></div>
-              <div className="text-gray-400 text-sm">Capture the flag in the CTF to fully clear this stage and earn its 🪙.</div>
-              <Link
-                href={`/stages/${stage.id}`}
-                className="mt-4 inline-flex items-center gap-2 bg-cyan-500/10 border border-cyan-500/30 rounded-full px-4 py-1.5 text-cyan-300 text-sm font-medium hover:border-cyan-400 transition-colors"
-              >
-                🚩 Run the CTF →
-              </Link>
-            </div>
-          ) : (
-            <div className="bg-white/5 border border-cyan-500/30 rounded-xl p-6 mb-8">
-              <div className="text-4xl font-bold text-cyan-400 mb-1">+{stage.xp} 🪙</div>
-              <div className="text-gray-500 text-sm">added to your total</div>
-              <div className="mt-4 inline-flex items-center gap-2 bg-yellow-500/10 border border-yellow-500/30 rounded-full px-4 py-1">
-                <span className="text-yellow-400 text-sm font-medium">{stage.badge.emoji} {stage.badge.name} Unlocked!</span>
+            <>
+              <div className="text-6xl mb-6">📝</div>
+              <h2 className="text-3xl font-bold text-white mb-2">Quiz Cleared!</h2>
+              <p className="text-gray-400 mb-8">You answered {score} of {questions.length} challenges correctly.</p>
+              <div className="bg-white/5 border border-amber-500/30 rounded-xl p-6 mb-8">
+                <div className="text-2xl mb-2">⬤◗ <span className="text-amber-400 font-bold align-middle text-lg">Half cleared</span></div>
+                <div className="text-gray-400 text-sm">Capture the flag in the CTF to fully clear this stage and earn its 🪙.</div>
+                <Link
+                  href={`/stages/${stage.id}`}
+                  className="mt-4 inline-flex items-center gap-2 bg-cyan-500/10 border border-cyan-500/30 rounded-full px-4 py-1.5 text-cyan-300 text-sm font-medium hover:border-cyan-400 transition-colors"
+                >
+                  🚩 Run the CTF →
+                </Link>
               </div>
-            </div>
+            </>
+          ) : (
+            <>
+              <div className="text-6xl mb-6">📚</div>
+              <h2 className="text-3xl font-bold text-white mb-2">Almost there!</h2>
+              <p className="text-gray-400 mb-8">
+                You answered {score} of {questions.length} correctly, but didn&apos;t clear this attempt. Try a fresh set of questions to complete the stage and earn its 🪙.
+              </p>
+            </>
           )}
 
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
@@ -141,12 +179,6 @@ export default function QuizChallenge({ stage, backHref = "/stages" }: { stage: 
             >
               New Questions
             </button>
-            <Link
-              href="/leaderboard"
-              className="px-6 py-3 border border-purple-500/50 hover:border-purple-400 text-purple-400 hover:text-purple-300 font-semibold rounded-lg transition-colors"
-            >
-              Leaderboard 🏆
-            </Link>
             <Link
               href={backHref}
               className="px-6 py-3 bg-cyan-500 hover:bg-cyan-400 text-black font-bold rounded-lg transition-colors"
