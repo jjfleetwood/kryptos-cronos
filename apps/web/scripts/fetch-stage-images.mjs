@@ -15,7 +15,7 @@ const UA = "KryptosCronos-image-fetch/1.0 (educational; contact jjbolotin@yahoo.
 // [id, query, badwords-csv] — RE-FETCH set (misses + rejected mismatches)
 const TARGETS = [
   ["r2-03", "automated warehouse storage robots", "diagram,logo,map,construction,corridor,building,plan"],
-  ["r2-05", "military quadcopter drone uav", "diagram,logo,map,toy,emblem,patch"],
+  ["r2-05", "swarm robots multiple", "diagram,logo,map,toy,emblem,patch"],
   ["s2-01", "telecommunications satellite spacecraft", "diagram,logo,map,ship,saturn,planet,jupiter,moon,galaxy,nebula,earth,sun"],
   ["s2-10", "blue marble earth from space", "diagram,logo,map,ship,night"],
 ];

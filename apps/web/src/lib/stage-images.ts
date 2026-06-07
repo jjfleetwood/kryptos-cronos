@@ -83,6 +83,7 @@ export const STAGE_IMAGES: Record<string, string> = {
   "r2-01": "/img/r2-01.jpg",
   "r2-03": "/img/r2-03.jpg",
   "r2-04": "/img/r2-04.jpg",
+  "r2-05": "/img/r2-05.jpg",
   "r2-07": "/img/r2-07.jpg",
   "r2-08": "/img/r2-08.png",
   // Race Through Space II — NASA/ESA public-domain + free-licensed Commons imagery (credited on /attribution).
