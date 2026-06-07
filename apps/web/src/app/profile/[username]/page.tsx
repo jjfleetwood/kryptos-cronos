@@ -4,13 +4,14 @@ import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import { useSkin } from "@/contexts/SkinContext";
+import { LevelBadge } from "@/components/LevelBadge";
 
 type Trophy = { id: string; name: string; emoji: string; tier: string };
 type EquippedItem = { id: string; name: string; emoji: string; slot: string };
 
 type ProfileData = {
   username: string;
-  coins: number;
+  xp: number;
   stages: number;
   badges: number;
   streak: number;
@@ -80,12 +81,15 @@ export default function ProfilePage() {
               <h1 className="text-2xl font-black mb-1" style={{ color: skin.textPrimary }}>
                 {profile.username}
               </h1>
-              <p className="text-xs mb-6" style={{ color: skin.textMuted }}>Kryptós CronOS Agent</p>
+              <p className="text-xs mb-3" style={{ color: skin.textMuted }}>Kryptós CronOS Agent</p>
+              <div className="flex justify-center mb-6">
+                <LevelBadge xp={profile.xp} size="md" />
+              </div>
 
               {/* Stats row */}
               <div className="grid grid-cols-4 gap-3">
                 {[
-                  { label: "Coins", value: profile.coins.toLocaleString(), color: "#f59e0b" },
+                  { label: "XP", value: profile.xp.toLocaleString(), color: "#f59e0b" },
                   { label: "Stages", value: profile.stages.toString(), color: skin.accent },
                   { label: "Badges", value: profile.badges.toString(), color: "#a78bfa" },
                   { label: "Streak", value: `${profile.streak}🔥`, color: "#f97316" },

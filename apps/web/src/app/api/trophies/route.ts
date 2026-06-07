@@ -5,6 +5,7 @@ import { verifyAdminToken } from "@/lib/admin-token";
 import { TROPHIES, getTrophy, dailyShopTrophies } from "@kryptos/core/trophies";
 import { stages } from "@kryptos/core/stages";
 import { milestoneBadges } from "@kryptos/core/milestone-badges";
+import { deriveEconomy, spendCoins } from "@/lib/economy";
 
 async function getClaimedCounts(ids: string[]): Promise<Record<string, number>> {
   if (ids.length === 0) return {};
@@ -114,27 +115,19 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Sold out" }, { status: 410 });
   }
 
-  // Check balance
-  const progressData = await redis.hgetall(`progress:${lower}`);
-  const coins = Number(progressData?.coins ?? 0);
-  const coinsSpent = Number(progressData?.coinsSpent ?? 0);
-  const spendable = Math.max(0, coins - coinsSpent);
-
-  if (spendable < trophy.price) {
+  // Charge the wallet (migration-aware, atomic). Roll the supply reservation back if broke.
+  const newWallet = await spendCoins(username, trophy.price);
+  if (newWallet === null) {
     await redis.decr(`trophy:claimed:${trophyId}`);
-    return NextResponse.json({ error: "Insufficient coins", spendable, price: trophy.price }, { status: 402 });
+    const econ = deriveEconomy(await redis.hgetall(`progress:${lower}`));
+    return NextResponse.json({ error: "Insufficient coins", spendable: econ.wallet, price: trophy.price }, { status: 402 });
   }
-
-  // Commit: add to inventory and increment coinsSpent
-  await Promise.all([
-    redis.sadd(`inventory:${lower}`, trophyId),
-    redis.hincrbyfloat(`progress:${lower}`, "coinsSpent", trophy.price),
-  ]);
+  await redis.sadd(`inventory:${lower}`, trophyId);
 
   return NextResponse.json({
     ok: true,
     trophy: { id: trophy.id, name: trophy.name, emoji: trophy.emoji },
-    newSpendable: spendable - trophy.price,
+    newSpendable: newWallet,
   });
 }
 

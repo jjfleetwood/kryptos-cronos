@@ -233,7 +233,7 @@ export default function JourneyPage() {
   const { skin } = useSkin();
   const { t } = useLocale();
   const [completedStages, setCompletedStages] = useState<string[]>([]);
-  const [totalCoins, setTotalCoins] = useState(0);
+  const [totalXp, setTotalXp] = useState(0);
   const [username, setUsername] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const [hoveredEpoch, setHoveredEpoch] = useState<string | null>(null);
@@ -250,7 +250,7 @@ export default function JourneyPage() {
       .then((p) => {
         if (!p) return;
         setCompletedStages(p.completedStages);
-        setTotalCoins(p.coins);
+        setTotalXp(p.xp);
       })
       .catch(() => {})
       .finally(() => setLoading(false));
@@ -310,7 +310,7 @@ export default function JourneyPage() {
             {username && (
               <div className="text-xs text-gray-600 font-mono bg-white/3 border border-white/8 rounded-lg px-3 py-2 text-right">
                 <div className="text-gray-400 font-semibold">{username}</div>
-                <div className="mt-0.5">{totalCoins} 🪙 · {totalCompleted}/{totalStages} {t("journey.stagesCompleted")}</div>
+                <div className="mt-0.5">{totalXp.toLocaleString()} XP · {totalCompleted}/{totalStages} {t("journey.stagesCompleted")}</div>
               </div>
             )}
           </div>

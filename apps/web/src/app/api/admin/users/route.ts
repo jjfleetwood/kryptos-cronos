@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { redis } from "@/lib/redis";
 import { requireAdmin } from "@/lib/admin-auth";
+import { deriveEconomy } from "@/lib/economy";
 
 function parseArr(val: unknown): string[] {
   if (!val) return [];
@@ -35,6 +36,7 @@ export async function GET(req: NextRequest) {
       ]);
       const stageIds = parseArr(progressData?.stages);
       const badges = parseArr(progressData?.badges);
+      const econ = deriveEconomy(progressData);
       const streakData = await redis.hgetall(`streak:${username}`);
       const superAdmin = process.env.ADMIN_USERNAME?.toLowerCase();
       let userGroups: string[] = ["career", "curious"];
@@ -47,7 +49,8 @@ export async function GET(req: NextRequest) {
         createdAt: userData?.createdAt ? Number(userData.createdAt) : null,
         tier: (userData?.tier as string) ?? "free",
         isAdmin: userData?.isAdmin === "true" || username === superAdmin,
-        coins: Number(progressData?.coins ?? progressData?.xp ?? 0),
+        xp: econ.xp,
+        coins: econ.wallet,
         stageIds,
         stages: stageIds.length,
         badges: badges.length,
@@ -59,6 +62,6 @@ export async function GET(req: NextRequest) {
     })
   );
 
-  users.sort((a, b) => b.coins - a.coins);
+  users.sort((a, b) => b.xp - a.xp);
   return NextResponse.json(users);
 }

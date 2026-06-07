@@ -1,6 +1,12 @@
 import { redis } from "@/lib/redis";
 import { stages, epochs } from "@kryptos/core/stages";
 import { checkStageMilestones, checkXpMilestones, checkStreakMilestones } from "@kryptos/core/milestone-badges";
+import { deriveEconomy, ECONOMY_VERSION } from "@/lib/economy";
+import { addLeagueXp } from "@/lib/leagues";
+import { bumpQuestCounters } from "@/lib/quests";
+import { getUserTier } from "@/lib/access";
+import { DAILY_GOAL_XP, streakMultiplier, MAX_FREEZES } from "@kryptos/core/streaks";
+import { PRO_COIN_MULTIPLIER, PRO_WEEKLY_FREE_FREEZES } from "@kryptos/core/pro-perks";
 import type { UserProgress } from "@/lib/progress";
 
 function escapeHtml(s: string): string {
@@ -165,6 +171,13 @@ function yesterdayUTC(): string {
   return d.toISOString().slice(0, 10);
 }
 
+/** Whole-day difference between two YYYY-MM-DD UTC dates (b − a). */
+function daysBetweenUTC(a: string, b: string): number {
+  const da = Date.parse(`${a}T00:00:00Z`);
+  const db = Date.parse(`${b}T00:00:00Z`);
+  return Math.round((db - da) / 86_400_000);
+}
+
 /**
  * Awards a stage in Redis for a verified user. XP is computed server-side.
  * Idempotent — calling twice for the same stage has no effect on XP.
@@ -205,29 +218,61 @@ export async function awardStageInRedis(
     badges.push(badgeId);
   }
 
-  const baseCoins = completedStages.reduce((sum, id) => sum + stageXp(id), 0);
+  const econ = deriveEconomy(data);
+  // Pro/trial earns a coin multiplier + weekly freeze + extra quest. XP is never
+  // multiplied, so rank/leagues stay a pure measure of learning.
+  const isPro = (await getUserTier(username)) !== "free";
+  const baseXp = completedStages.reduce((sum, id) => sum + stageXp(id), 0);
   const storedPenalty = Number(data?.penalty ?? 0);
   const newPenalty = isNew ? storedPenalty + timePenaltyXp : storedPenalty;
   const storedBonus = Number(data?.bonus ?? 0);
-  const newBonus = isNew ? storedBonus + bonusXp : storedBonus;
-  // coinsSpent is never modified by stage awards — only the shop route touches it
-  const coinsSpent = Number(data?.coinsSpent ?? 0);
 
-  // ── Streak tracking ──
+  // ── Streak 2.0 ── goal-gated daily streak with freezes (Phase 3).
   const today = todayUTC();
   const yesterday = yesterdayUTC();
   const lastDate = streakData?.lastDate ? String(streakData.lastDate) : null;
   let current = Number(streakData?.current ?? 0);
   let longest = Number(streakData?.longest ?? 0);
+  let freezes = Number(streakData?.freezes ?? 0);
 
-  if (lastDate === today) {
-    // Already counted today — no change
-  } else if (lastDate === yesterday) {
-    current += 1;
-  } else {
-    current = 1;
+  // Pro weekly free streak-freeze top-up (once per week).
+  const weekTok = getWeekKey();
+  if (isPro && String(streakData?.freezeWeek ?? "") !== weekTok && freezes < MAX_FREEZES) {
+    freezes = Math.min(MAX_FREEZES, freezes + PRO_WEEKLY_FREE_FREEZES);
   }
-  if (current > longest) longest = current;
+
+  // XP earned today (resets each UTC day). The streak only advances once the
+  // daily goal is met. baseDelta excludes the streak multiplier so the goal
+  // can't be inflated by its own reward.
+  const baseDelta = isNew ? Math.max(0, stageXp(stageId) - timePenaltyXp + bonusXp) : 0;
+  const dayXp = (String(streakData?.dayDate ?? "") === today ? Number(streakData?.dayXp ?? 0) : 0) + baseDelta;
+
+  let creditedToday = lastDate === today;
+  if (!creditedToday && dayXp >= DAILY_GOAL_XP) {
+    if (lastDate === yesterday) {
+      current += 1;
+    } else if (lastDate) {
+      const missed = daysBetweenUTC(lastDate, today) - 1; // full days skipped
+      if (missed > 0 && freezes >= missed) {
+        freezes -= missed; // spend freezes to bridge the gap
+        current += 1;
+      } else {
+        current = 1;
+      }
+    } else {
+      current = 1;
+    }
+    creditedToday = true;
+    if (current > longest) longest = current;
+  }
+
+  // Streak XP multiplier (capped). Folds into the bonus accumulator so the
+  // self-healing XP recompute preserves it across future awards.
+  const streakBonusXp = isNew ? Math.round(stageXp(stageId) * streakMultiplier(current)) : 0;
+  const newBonus = isNew ? storedBonus + bonusXp + streakBonusXp : storedBonus;
+
+  // Lifetime clean-solve count (score ≥ 80 → bonusXp > 0) — drives achievements.
+  const newClean = Number(data?.cleanSolves ?? 0) + (isNew && bonusXp > 0 ? 1 : 0);
 
   // ── Milestone badges ──
   const prevBadges = parseArr(data?.badges);
@@ -240,10 +285,21 @@ export async function awardStageInRedis(
     if (!prevBadges.includes(id) && STREAK_BONUSES[id]) milestoneBonus += STREAK_BONUSES[id];
   }
   const totalBonus = newBonus + milestoneBonus;
-  const coins = Math.max(0, baseCoins - newPenalty + totalBonus);
+
+  // Lifetime XP — self-healing (recomputed from completed stages ± penalty/bonus).
+  // Drives Level / Rank / Leagues / leaderboard. Earn-side only; never spent.
+  const newXp = Math.max(0, baseXp - newPenalty + totalBonus);
+  // Coins earned tracks the same delta as XP in Phase 0 (they diverge once quests /
+  // Pro multipliers land). The spend-side accumulator (coinsSpent) is untouched here,
+  // so awarding and spending never write the same field.
+  const earnDelta = isNew ? newXp - econ.xp : 0;
+  // Coins (not XP) carry the Pro multiplier — the wallet grows faster for Pro.
+  const coinDelta = isNew ? Math.round(earnDelta * (isPro ? PRO_COIN_MULTIPLIER : 1)) : 0;
+  const newCoinsEarned = econ.coinsEarned + coinDelta;
+  const wallet = Math.max(0, newCoinsEarned - econ.coinsSpent);
 
   const stageMilestones = checkStageMilestones(completedStages.length);
-  const xpMilestones = checkXpMilestones(coins);
+  const xpMilestones = checkXpMilestones(newXp);
 
   for (const id of [...stageMilestones, ...xpMilestones, ...streakMilestones]) {
     if (!badges.includes(id)) badges.push(id);
@@ -251,34 +307,48 @@ export async function awardStageInRedis(
 
   await Promise.all([
     redis.hset(key, {
-      coins,
+      xp: newXp,
+      coinsEarned: newCoinsEarned,
+      gv: ECONOMY_VERSION,
       stages: JSON.stringify(completedStages),
       badges: JSON.stringify(badges),
       lastActive: Date.now(),
       penalty: newPenalty,
       bonus: totalBonus,
+      cleanSolves: newClean,
     }),
     redis.hset(streakKey, {
       current,
       longest,
-      lastDate: today,
+      freezes,
+      freezeWeek: weekTok,
+      dayXp,
+      dayDate: today,
+      // Only mark the day "credited" once the goal is hit, so the streak isn't
+      // counted for a day that never reached DAILY_GOAL_XP.
+      ...(creditedToday ? { lastDate: today } : {}),
     }),
   ]);
+  // Drop the stale legacy `coins` field once split (idempotent; only when migrating).
+  if (econ.migrated) await redis.hdel(key, "coins");
 
-  // All-time leaderboard (ranked by total coins earned, not spendable balance)
-  await redis.zadd("leaderboard", { score: coins, member: username.toLowerCase() });
+  // All-time leaderboard — ranked by lifetime XP.
+  await redis.zadd("leaderboard", { score: newXp, member: username.toLowerCase() });
 
-  // Daily and weekly leaderboards — only update on new stage completion
+  // Daily and weekly leaderboards + leagues + quests — only on new completions
   if (isNew) {
-    const deltaCoins = stageXp(stageId) - timePenaltyXp + bonusXp;
-    if (deltaCoins > 0) {
+    if (baseDelta > 0) {
       const dayKey = getDayKey();
       const weekKey = getWeekKey();
-      await redis.zincrby(dayKey, deltaCoins, username.toLowerCase());
+      await redis.zincrby(dayKey, baseDelta, username.toLowerCase());
       await redis.expire(dayKey, 172800); // 48h TTL
-      await redis.zincrby(weekKey, deltaCoins, username.toLowerCase());
+      await redis.zincrby(weekKey, baseDelta, username.toLowerCase());
       await redis.expire(weekKey, 1209600); // 14 day TTL
+      // Weekly League — same XP delta feeds the user's cohort race.
+      await addLeagueXp(username, baseDelta);
     }
+    // Quests — advance daily/weekly objective counters (clean solve = score ≥ 80).
+    await bumpQuestCounters(username, { stages: 1, xp: baseDelta, clean: bonusXp > 0 ? 1 : 0 });
   }
 
   // Fire-and-forget stage completion email (only for new completions)
@@ -300,7 +370,7 @@ export async function awardStageInRedis(
           stageSubtitle: stageObj.subtitle,
           epochName: epoch?.name ?? stageObj.epochId,
           coinsEarned: stageObj.xp - timePenaltyXp,
-          totalCoins: coins,
+          totalCoins: wallet,
           totalStages: completedStages.length,
           streak: current,
           badgeName: isNewBadge ? stageObj.badge.name : undefined,
@@ -312,7 +382,7 @@ export async function awardStageInRedis(
     }
   }
 
-  return { coins, coinsSpent, completedStages, badges, streak: current };
+  return { xp: newXp, coins: wallet, coinsSpent: econ.coinsSpent, completedStages, badges, streak: current };
 }
 
 /**

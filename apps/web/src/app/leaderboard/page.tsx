@@ -5,13 +5,14 @@ import Link from "next/link";
 import { fetchProgress } from "@/lib/progress";
 import { getSession, setSession } from "@/lib/auth";
 import { stagesMeta, epochs } from "@kryptos/core/stages-meta";
+import { LevelBadge, RankLabel } from "@/components/LevelBadge";
 import { useLocale } from "@/contexts/LocaleContext";
 
 type Period = "alltime" | "weekly" | "daily";
 
 type Player = {
   username: string;
-  coins: number;
+  xp: number;
   stages: number;
   badges: number;
   lastActive: number | null;
@@ -21,6 +22,7 @@ type Player = {
 
 type ProfileData = {
   username: string;
+  xp: number;
   coins: number;
   stages: number;
   badges: number;
@@ -160,6 +162,7 @@ function ProfilePanel({ username, myName, rank, onClose }: {
                 <div className="min-w-0">
                   <div className="flex items-center gap-2 flex-wrap">
                     <span className="text-xl font-black text-white">{username}</span>
+                    <LevelBadge xp={profile.xp} size="md" />
                     {isMe && (
                       <span className="text-xs text-cyan-500 font-mono">{t("leaderboard.youLabel")}</span>
                     )}
@@ -183,7 +186,7 @@ function ProfilePanel({ username, myName, rank, onClose }: {
               {/* Stats row */}
               <div className="grid grid-cols-3 divide-x divide-white/5 border-b border-white/5">
                 {[
-                  { label: t("leaderboard.statsCoins"), value: `${profile.coins} 🪙` },
+                  { label: t("common.xp"), value: profile.xp.toLocaleString() },
                   { label: t("leaderboard.statsStages"), value: String(profile.stages) },
                   { label: t("leaderboard.statsBadges"), value: String(profile.badges) },
                 ].map((s) => (
@@ -277,7 +280,7 @@ export default function LeaderboardPage() {
   const [rows, setRows] = useState<(Player & { rank: number })[]>([]);
   const [isRecencyFallback, setIsRecencyFallback] = useState(false);
   const [myRank, setMyRank] = useState<number | null>(null);
-  const [myCoins, setMyCoins] = useState(0);
+  const [myXp, setMyXp] = useState(0);
   const [myStages, setMyStages] = useState(0);
   const [myBadges, setMyBadges] = useState(0);
   const [myName, setMyName] = useState("Guest");
@@ -287,7 +290,7 @@ export default function LeaderboardPage() {
 
   function handleShare() {
     const rankStr = myRank ? `#${myRank}` : "the";
-    const text = `I ranked ${rankStr} on Kryptós CronOS with ${myCoins} 🪙 across ${myStages} stages. Train on real CVEs, AI attacks, and nation-state ops → kryptoscronos.com`;
+    const text = `I ranked ${rankStr} on Kryptós CronOS with ${myXp.toLocaleString()} XP across ${myStages} stages. Train on real CVEs, AI attacks, and nation-state ops → kryptoscronos.com`;
     navigator.clipboard.writeText(text).then(() => {
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
@@ -308,7 +311,7 @@ export default function LeaderboardPage() {
         setSession(data.username);
         fetchProgress().then((p) => {
           if (!p) return;
-          setMyCoins(p.coins);
+          setMyXp(p.xp);
           setMyStages(p.completedStages.length);
           setMyBadges(p.badges.length);
         });
@@ -328,7 +331,7 @@ export default function LeaderboardPage() {
         );
         const me: Player = {
           username: displayName,
-          coins: serverMe?.coins ?? (period === "alltime" ? myCoins : 0),
+          xp: serverMe?.xp ?? (period === "alltime" ? myXp : 0),
           stages: serverMe?.stages ?? myStages,
           badges: serverMe?.badges ?? myBadges,
           lastActive: Date.now(),
@@ -339,14 +342,14 @@ export default function LeaderboardPage() {
           (pl) => pl.username.toLowerCase() !== displayName.toLowerCase()
         );
 
-        const meWithServerCoins = serverMe
-          ? { ...me, coins: serverMe.coins }
+        const meWithServerXp = serverMe
+          ? { ...me, xp: serverMe.xp }
           : period === "alltime" ? me : null;
 
         const all = [
           ...serverWithoutMe,
-          ...(meWithServerCoins ? [meWithServerCoins] : []),
-        ].sort((a, b) => b.coins - a.coins);
+          ...(meWithServerXp ? [meWithServerXp] : []),
+        ].sort((a, b) => b.xp - a.xp);
 
         const ranked = all.map((player, i) => ({ ...player, rank: i + 1 }));
         setRows(ranked);
@@ -360,7 +363,7 @@ export default function LeaderboardPage() {
       .finally(() => setLoading(false));
   }, [period, myName]);
 
-  const maxCoins = Math.max(...rows.map((r) => r.coins), 1);
+  const maxXp = Math.max(...rows.map((r) => r.xp), 1);
 
   return (
     <div
@@ -438,7 +441,7 @@ export default function LeaderboardPage() {
           <div className="bg-cyan-500/5 border border-cyan-500/30 rounded-xl p-5 mb-8 grid grid-cols-2 sm:grid-cols-4 gap-4">
             {[
               { label: t("leaderboard.yourRank"), value: myRank !== null ? `#${myRank}` : "—" },
-              { label: t("leaderboard.totalCoins"), value: `${myCoins} 🪙` },
+              { label: t("leaderboard.totalXp"), value: `${myXp.toLocaleString()} XP` },
               { label: t("leaderboard.stagesDone"), value: String(myStages) },
               { label: t("trophies.badges"), value: String(myBadges) },
             ].map((s) => (
@@ -462,7 +465,7 @@ export default function LeaderboardPage() {
           <div className="grid grid-cols-[2.5rem_1fr_auto] sm:grid-cols-[3rem_1fr_10rem_5rem_5rem_7rem] gap-2 px-5 py-3 border-b border-white/10 text-xs text-gray-500 font-semibold uppercase tracking-wider">
             <div>#</div>
             <div>{t("leaderboard.player")}</div>
-            <div>{t("leaderboard.coins")} {period !== "alltime" ? <span className="hidden sm:inline">({period === "weekly" ? t("leaderboard.weekly") : t("leaderboard.daily")})</span> : ""}</div>
+            <div>{t("common.xp")} {period !== "alltime" ? <span className="hidden sm:inline">({period === "weekly" ? t("leaderboard.weekly") : t("leaderboard.daily")})</span> : ""}</div>
             <div className="text-center hidden sm:block">{t("leaderboard.stagesDone")}</div>
             <div className="text-center hidden sm:block">{t("trophies.badges")}</div>
             <div className="text-right hidden sm:block">{t("leaderboard.activeColumn")}</div>
@@ -504,6 +507,7 @@ export default function LeaderboardPage() {
                       )}
                     </span>
                     <span className="text-xs text-gray-600 sm:hidden">{player.stages} {t("leaderboard.stagesLabel")} · {player.badges} {t("leaderboard.badgesLabel")}</span>
+                    <RankLabel xp={player.xp} />
                   </div>
                 </div>
 
@@ -514,11 +518,11 @@ export default function LeaderboardPage() {
                         className={`h-1.5 rounded-full transition-all duration-700 ${
                           player.isCurrentPlayer ? "bg-cyan-400" : "bg-purple-500"
                         }`}
-                        style={{ width: `${(player.coins / maxCoins) * 100}%` }}
+                        style={{ width: `${(player.xp / maxXp) * 100}%` }}
                       />
                     </div>
                     <span className={`text-xs font-mono flex-shrink-0 ${player.isCurrentPlayer ? "text-cyan-400" : "text-gray-400"}`}>
-                      {player.coins} 🪙
+                      {player.xp.toLocaleString()} XP
                     </span>
                   </div>
                 </div>

@@ -4,6 +4,10 @@
     {
       "path": "/api/push/streak-reminder",
       "schedule": "0 23 * * *"
+    },
+    {
+      "path": "/api/leagues/reset",
+      "schedule": "5 0 * * 1"
     }
   ]
 }

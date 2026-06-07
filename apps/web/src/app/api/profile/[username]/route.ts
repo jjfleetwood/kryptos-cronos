@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { redis } from "@/lib/redis";
 import { TROPHIES } from "@kryptos/core/trophies";
 import { SHOP_ITEMS } from "@kryptos/core/shop-items";
+import { deriveEconomy } from "@/lib/economy";
 
 const TROPHY_MAP = new Map(TROPHIES.map((t) => [t.id, t]));
 const SHOP_MAP = new Map(SHOP_ITEMS.map((i) => [i.id, i]));
@@ -36,7 +37,7 @@ export async function GET(
     return NextResponse.json({ error: "User not found" }, { status: 404 });
   }
 
-  const coins = Number(progressData.coins ?? progressData.xp ?? 0);
+  const econ = deriveEconomy(progressData);
   const completedStageIds = parseArr(progressData.stages);
   const badgeIds = parseArr(progressData.badges);
   const streak = Number(streakData?.current ?? 0);
@@ -63,7 +64,8 @@ export async function GET(
 
   return NextResponse.json({
     username: lower,
-    coins,
+    xp: econ.xp,
+    coins: econ.wallet,
     stages: completedStageIds.length,
     badges: badgeIds.length,
     streak,

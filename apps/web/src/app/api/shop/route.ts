@@ -3,6 +3,7 @@ import { redis } from "@/lib/redis";
 import { getAuthedUsername } from "@/lib/api-auth";
 import { verifyAdminToken } from "@/lib/admin-token";
 import { SHOP_ITEMS, getItem } from "@kryptos/core/shop-items";
+import { deriveEconomy, spendCoins } from "@/lib/economy";
 
 /** GET /api/shop — returns shop catalog + user's inventory and spendable balance */
 export async function GET(req: NextRequest) {
@@ -17,9 +18,7 @@ export async function GET(req: NextRequest) {
     redis.smembers(`inventory:${lower}`),
   ]);
 
-  const coins = Number(progressData?.coins ?? progressData?.xp ?? 0);
-  const coinsSpent = Number(progressData?.coinsSpent ?? 0);
-  const spendable = Math.max(0, coins - coinsSpent);
+  const econ = deriveEconomy(progressData);
   const inventory = (inventoryData ?? []) as string[];
   const equipped = await redis.hgetall(`equipped:${lower}`) ?? {};
 
@@ -30,9 +29,10 @@ export async function GET(req: NextRequest) {
     items,
     inventory,
     equipped,
-    coins,
-    coinsSpent,
-    spendable,
+    xp: econ.xp,
+    coins: econ.wallet,
+    coinsSpent: econ.coinsSpent,
+    spendable: econ.wallet,
     isAdmin,
   });
 }
@@ -67,25 +67,17 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "already owned" }, { status: 409 });
   }
 
-  const progressData = await redis.hgetall(progressKey);
-  const coins = Number(progressData?.coins ?? progressData?.xp ?? 0);
-  const coinsSpent = Number(progressData?.coinsSpent ?? 0);
-  const spendable = Math.max(0, coins - coinsSpent);
-
-  if (spendable < item.price) {
-    return NextResponse.json({ error: "insufficient coins", spendable, price: item.price }, { status: 402 });
+  const newWallet = await spendCoins(username, item.price);
+  if (newWallet === null) {
+    const econ = deriveEconomy(await redis.hgetall(progressKey));
+    return NextResponse.json({ error: "insufficient coins", spendable: econ.wallet, price: item.price }, { status: 402 });
   }
-
-  const newCoinsSpent = coinsSpent + item.price;
-  await Promise.all([
-    redis.hset(progressKey, { coinsSpent: newCoinsSpent }),
-    redis.sadd(inventoryKey, item.id),
-  ]);
+  await redis.sadd(inventoryKey, item.id);
 
   return NextResponse.json({
     ok: true,
     item,
-    spendable: Math.max(0, coins - newCoinsSpent),
+    spendable: newWallet,
   });
 }
 

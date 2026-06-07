@@ -10,7 +10,8 @@ async function isRateLimited(ip: string): Promise<boolean> {
 
 type PlayerRow = {
   username: string;
-  coins: number;
+  /** Ranking score: lifetime XP (all-time) or XP earned in the period (daily/weekly). */
+  xp: number;
   stages: number;
   badges: number;
   lastActive: number | null;
@@ -45,12 +46,12 @@ async function buildPlayers(pairs: unknown[]): Promise<PlayerRow[]> {
   const players: PlayerRow[] = [];
   for (let i = 0; i < pairs.length; i += 2) {
     const username = pairs[i] as string;
-    const coins = Number(pairs[i + 1]);
+    const xp = Number(pairs[i + 1]);
     const data = await redis.hgetall(`progress:${username}`);
     const stages = parseStringArray(data?.stages).length;
     const badges = parseStringArray(data?.badges).length;
     const lastActive = data?.lastActive ? Number(data.lastActive) : null;
-    players.push({ username, coins, stages, badges, lastActive });
+    players.push({ username, xp, stages, badges, lastActive });
   }
   return players;
 }

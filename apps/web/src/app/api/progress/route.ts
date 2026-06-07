@@ -5,6 +5,7 @@ import { stageFlags } from "@kryptos/core/stage-flags";
 import { getAuthedUsername } from "@/lib/api-auth";
 import { verifyAdminToken } from "@/lib/admin-token";
 import { awardStageInRedis } from "@/lib/server-progress";
+import { deriveEconomy } from "@/lib/economy";
 
 export async function GET(req: NextRequest) {
   const username = await getAuthedUsername(req) ?? verifyAdminToken(req.cookies.get("admin_token")?.value);
@@ -24,11 +25,12 @@ export async function GET(req: NextRequest) {
     try { const p = JSON.parse(s); return Array.isArray(p) ? p : []; } catch { return s.split(",").filter(Boolean); }
   }
 
-  // Read `coins` field; fall back to legacy `xp` field for existing records
-  const coins = Number(data.coins ?? data.xp ?? 0);
+  // xp = lifetime (rank); coins = spendable wallet (coinsEarned − coinsSpent).
+  const econ = deriveEconomy(data);
   return NextResponse.json({
-    coins,
-    coinsSpent: Number(data.coinsSpent ?? 0),
+    xp: econ.xp,
+    coins: econ.wallet,
+    coinsSpent: econ.coinsSpent,
     completedStages: parseArr(data.stages),
     badges: parseArr(data.badges),
     streak: streakData ? Number(streakData.current ?? 0) : 0,

@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { redis } from "@/lib/redis";
 import { getAuthedUsername } from "@/lib/api-auth";
+import { deriveEconomy } from "@/lib/economy";
 import { renderToBuffer, Document, Page, View, Text, StyleSheet, Font } from "@react-pdf/renderer";
 import { createElement as h } from "react";
 import { epochs, stages } from "@kryptos/core/stages";
@@ -135,7 +136,7 @@ export async function GET(req: NextRequest) {
     redis.hgetall(`streak:${lower}`),
   ]);
 
-  const coins = Number(progressData?.coins ?? progressData?.xp ?? 0);
+  const xp = deriveEconomy(progressData).xp;
   const completedStages: string[] = progressData?.stages
     ? JSON.parse(progressData.stages as string)
     : [];
@@ -178,8 +179,8 @@ export async function GET(req: NextRequest) {
       // Stats
       h(View, { style: styles.statsRow },
         h(View, { style: styles.statBox },
-          h(Text, { style: styles.statValue }, `${coins}`),
-          h(Text, { style: styles.statLabel }, "Total Coins")
+          h(Text, { style: styles.statValue }, `${xp}`),
+          h(Text, { style: styles.statLabel }, "Total XP")
         ),
         h(View, { style: styles.statBox },
           h(Text, { style: styles.statValue }, `${completedStages.length}`),

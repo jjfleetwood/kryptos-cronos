@@ -7,6 +7,7 @@ import { stagesMeta as allStages, epochs } from "@kryptos/core/stages-meta";
 import { fetchProgress } from "@/lib/progress";
 import { getSession, setSession, clearSession } from "@/lib/auth";
 import OnboardingModal from "@/components/OnboardingModal";
+import { LevelProgress } from "@/components/LevelBadge";
 import { epochAccent } from "@/app/stages/epoch-theme";
 import { useSkin } from "@/contexts/SkinContext";
 import { useLocale } from "@/contexts/LocaleContext";
@@ -216,7 +217,7 @@ export default function StagesPage() {
   const { groups } = useGroup();
   const epochMetaMap = locale !== "en" ? (STAGE_META_MAPS[locale]?.epochs ?? null) : null;
   const [completedStages, setCompletedStages] = useState<string[]>([]);
-  const [totalCoins, setTotalCoins] = useState(0);
+  const [totalXp, setTotalXp] = useState(0);
   const [streak, setStreak] = useState(0);
   const [username, setUsername] = useState<string | null>(null);
 
@@ -231,7 +232,7 @@ export default function StagesPage() {
         fetchProgress().then((p) => {
           if (!p) return;
           setCompletedStages(p.completedStages);
-          setTotalCoins(p.coins);
+          setTotalXp(p.xp);
           setStreak(p.streak ?? 0);
         });
       })
@@ -341,22 +342,36 @@ export default function StagesPage() {
             <Link href="/" className="text-gray-500 hover:text-cyan-400 text-sm transition-colors">
               {t("stages.backToHome")}
             </Link>
-            <Link href="/leaderboard" className="text-sm text-purple-400 hover:text-purple-300 transition-colors flex items-center gap-1">
-              🏆 {t("nav.leaderboard")}
-            </Link>
+            <div className="flex items-center gap-4">
+              <Link href="/quests" className="text-sm text-emerald-400 hover:text-emerald-300 transition-colors flex items-center gap-1">
+                🎯 Quests
+              </Link>
+              <Link href="/achievements" className="text-sm text-yellow-400 hover:text-yellow-300 transition-colors flex items-center gap-1">
+                🏅 <span className="hidden sm:inline">Achievements</span>
+              </Link>
+              <Link href="/leagues" className="text-sm text-amber-400 hover:text-amber-300 transition-colors flex items-center gap-1">
+                ⚔️ Leagues
+              </Link>
+              <Link href="/leaderboard" className="text-sm text-purple-400 hover:text-purple-300 transition-colors flex items-center gap-1">
+                🏆 {t("nav.leaderboard")}
+              </Link>
+            </div>
           </div>
           <h1 className="text-4xl font-bold text-white mb-2">{t("stages.title")}</h1>
           <p className="text-gray-400">{t("stages.subtitle")}</p>
 
-          {/* XP bar + streak */}
+          {/* Level + rank progress */}
+          {username && <LevelProgress xp={totalXp} className="mt-6 max-w-md" />}
+
+          {/* Catalog completion bar + streak */}
           <div className="mt-6 flex items-center gap-3 flex-wrap">
             <div className="flex-1 bg-white/5 rounded-full h-3">
               <div
                 className="bg-cyan-500 h-3 rounded-full transition-all duration-700"
-                style={{ width: `${maxXp > 0 ? (totalCoins / maxXp) * 100 : 0}%` }}
+                style={{ width: `${maxXp > 0 ? (totalXp / maxXp) * 100 : 0}%` }}
               />
             </div>
-            <span className="text-amber-400 font-mono text-sm">{totalCoins} / {maxXp} 🪙</span>
+            <span className="text-amber-400 font-mono text-sm">{totalXp.toLocaleString()} / {maxXp.toLocaleString()} XP</span>
             {streak > 0 && (
               <span
                 className="flex items-center gap-1 text-sm font-mono font-bold px-2.5 py-0.5 rounded-full border"

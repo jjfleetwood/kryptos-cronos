@@ -14,6 +14,7 @@ type UserRow = {
   createdAt: number | null;
   tier: string;
   isAdmin: boolean;
+  xp: number;
   coins: number;
   stageIds: string[];
   stages: number;
@@ -27,7 +28,7 @@ type UserRow = {
 
 type FlagCapture = { username: string; stageId: string; flagValue: string; ts: number };
 
-type SortKey = "coins" | "stages" | "streak" | "lastActive" | "createdAt";
+type SortKey = "xp" | "stages" | "streak" | "lastActive" | "createdAt";
 type SortDir = "desc" | "asc";
 
 function timeAgo(ts: number | null): string {
@@ -881,7 +882,7 @@ function PipelineTestPanel() {
         const t = data.trophy;
         setResult(
           `✅ Awarded "${data.stageTitle}" to ${data.username}\n` +
-          `   Coins: ${p.coins} (+${data.coinsAwarded})\n` +
+          `   XP: ${p.xp} · Wallet: ${p.coins} (+${data.coinsAwarded})\n` +
           `   Stages: ${p.completedStages.length}\n` +
           `   Streak: ${p.streak}\n` +
           `   Badges: ${p.badges.length}\n` +
@@ -908,7 +909,7 @@ function PipelineTestPanel() {
       const progressStatus = progressRes.status;
 
       const meData = meRes.ok ? await meRes.json() as { username?: string; isAdmin?: boolean; email?: string } : null;
-      const progressData = progressRes.ok ? await progressRes.json() as { coins?: number; completedStages?: string[]; streak?: number; badges?: string[] } : null;
+      const progressData = progressRes.ok ? await progressRes.json() as { xp?: number; coins?: number; completedStages?: string[]; streak?: number; badges?: string[] } : null;
 
       let out = `── /api/auth/me  (HTTP ${meStatus}) ──\n`;
       if (meData) {
@@ -921,7 +922,8 @@ function PipelineTestPanel() {
 
       out += `\n── /api/progress  (HTTP ${progressStatus}) ──\n`;
       if (progressData) {
-        out += `   coins:    ${progressData.coins ?? 0}\n`;
+        out += `   xp:       ${progressData.xp ?? 0}\n`;
+        out += `   wallet:   ${progressData.coins ?? 0}\n`;
         out += `   stages:   ${progressData.completedStages?.length ?? 0} completed\n`;
         out += `   streak:   ${progressData.streak ?? 0}\n`;
         out += `   badges:   ${progressData.badges?.length ?? 0}\n`;
@@ -1394,7 +1396,7 @@ export default function AdminPage() {
   }
 
   const [search, setSearch] = useState("");
-  const [sortKey, setSortKey] = useState<SortKey>("coins");
+  const [sortKey, setSortKey] = useState<SortKey>("xp");
   const [sortDir, setSortDir] = useState<SortDir>("desc");
   const [currentUser, setCurrentUser] = useState<string | null>(getSession());
   const now = useMemo(() => Date.now(), []);
@@ -1438,9 +1440,9 @@ export default function AdminPage() {
       .finally(() => setLoading(false));
   }, [router]);
 
-  const totalCoins = users.reduce((s, u) => s + u.coins, 0);
+  const totalXp = users.reduce((s, u) => s + u.xp, 0);
   const totalStages = stages.length;
-  const avgCoins = users.length ? Math.round(totalCoins / users.length) : 0;
+  const avgXp = users.length ? Math.round(totalXp / users.length) : 0;
   const avgCompletion = users.length
     ? Math.round((users.reduce((s, u) => s + u.stages, 0) / users.length / totalStages) * 100)
     : 0;
@@ -1450,7 +1452,7 @@ export default function AdminPage() {
   const newThisWeek = users.filter(
     (u) => u.createdAt !== null && now - u.createdAt < 7 * 86_400_000
   ).length;
-  const maxCoins = Math.max(...users.map((u) => u.coins), 1);
+  const maxXp = Math.max(...users.map((u) => u.xp), 1);
 
   // Stage completion funnel
   const stageCounts = useMemo(() => {
@@ -1564,8 +1566,8 @@ export default function AdminPage() {
           <StatCard label="Total Stages" value={totalStages} color="text-orange-400" />
         </div>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-8">
-          <StatCard label="Total Coins Earned" value={loading ? "…" : totalCoins.toLocaleString()} color="text-purple-400" />
-          <StatCard label="Avg Coins / User" value={loading ? "…" : avgCoins.toLocaleString()} color="text-violet-400" />
+          <StatCard label="Total XP Earned" value={loading ? "…" : totalXp.toLocaleString()} color="text-purple-400" />
+          <StatCard label="Avg XP / User" value={loading ? "…" : avgXp.toLocaleString()} color="text-violet-400" />
           <StatCard
             label="Avg Completion"
             value={loading ? "…" : `${avgCompletion}%`}
@@ -1606,7 +1608,7 @@ export default function AdminPage() {
               <div className={`grid ${isSuperAdmin ? "grid-cols-[2rem_3fr_2fr_5rem_4rem_4rem_5rem_6rem_4rem_9rem_4rem_3rem]" : "grid-cols-[2rem_3fr_2fr_5rem_4rem_4rem_5rem_6rem_4rem_9rem]"} gap-3 px-6 py-3 border-b border-white/5 text-xs text-gray-600 font-semibold uppercase tracking-wider`}>
                 <div>#</div>
                 <div>User</div>
-                <div><SortBtn col="coins" label="Coins" sortKey={sortKey} sortDir={sortDir} onToggle={toggleSort} /></div>
+                <div><SortBtn col="xp" label="XP" sortKey={sortKey} sortDir={sortDir} onToggle={toggleSort} /></div>
                 <div className="text-center"><SortBtn col="stages" label="Stages" sortKey={sortKey} sortDir={sortDir} onToggle={toggleSort} /></div>
                 <div className="text-center">Badges</div>
                 <div className="text-center"><SortBtn col="streak" label="Streak" sortKey={sortKey} sortDir={sortDir} onToggle={toggleSort} /></div>
@@ -1635,13 +1637,13 @@ export default function AdminPage() {
                       <div
                         className="h-1.5 rounded-full"
                         style={{
-                          width: `${(user.coins / maxCoins) * 100}%`,
+                          width: `${(user.xp / maxXp) * 100}%`,
                           background: "linear-gradient(90deg, #22d3ee, #818cf8)",
                         }}
                       />
                     </div>
                     <span className="text-xs font-mono text-gray-400 flex-shrink-0 w-14 text-right">
-                      {user.coins} 🪙
+                      {user.xp} XP
                     </span>
                   </div>
 
