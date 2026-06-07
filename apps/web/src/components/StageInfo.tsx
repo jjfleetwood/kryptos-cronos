@@ -483,6 +483,7 @@ export default function StageInfo({
                     emoji={stage.wonder.emoji}
                     seed={stage.epochId}
                     order={stage.order}
+                    category={stage.category}
                   />
                 )}
                 <figcaption className="mt-2.5 flex items-center justify-center gap-1.5 text-center text-xs text-gray-600">
