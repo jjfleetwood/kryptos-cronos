@@ -755,75 +755,164 @@ export const robotSec2Stages: StageConfig[] = [
 ];
 
 // ── CTF mode — hands-on robotics terminal per stage (quiz = half-clear) ──────
-type Cmd = [verb: string, frag: string, lines: string[]];
-function mkCtf(scenario: string, brief: string, open: string, a: Cmd, b: Cmd, labels: [string, string, string], hints: string[]): CtfConfig {
-  return {
-    scenario, hint: hints[0], hints,
-    fragments: [
-      { trigger: "/briefing.txt", value: open, label: labels[0] },
-      { trigger: a[0], value: a[1], label: labels[1] },
-      { trigger: b[0], value: b[1], label: labels[2] },
-    ],
-    files: { "/briefing.txt": brief },
-    dirs: { "/": [{ name: "briefing.txt", isDir: false }] },
-    extraCommands: { [a[0]]: () => ({ lines: a[2] }), [b[0]]: () => ({ lines: b[2] }) },
-  };
-}
+// All CTFs now use the shared 3-step mkDeepCtf factory (deepened from 2-step).
 
 const R2_CTF: Record<string, CtfConfig> = {
-  "r2-02": mkCtf(
-    "You're on the network of a multi-robot ROS 2 system running with DDS security disabled. Scan for the DDS domain, then join it and publish a command.",
-    "OP: JOIN THE BUS\nTarget: a ROS 2 / DDS domain with SROS2 off.\nGoal: scan for the domain, then join it and command a robot.\nSequence: scan-dds -> join-domain",
-    "FLAG{DDS_",
-    ["scan-dds", "D0M41N_", ["Listening for DDS participant discovery on the subnet ...", "Found domain 0 with topics: /scan, /odom, /cmd_vel — no authentication.", "Next: join-domain"]],
-    ["join-domain", "HIJ4CK3D}", ["Joining domain 0 as a new participant and publishing to /cmd_vel ...", "The robot accepted your velocity command and moved — you own the bus.", "Run 'assemble' to retrieve your fragment."]],
-    ["Mission Brief", "Domain Found", "Domain Joined"],
-    ["Read the briefing. Run: cat briefing.txt", "Scan for the domain. Run: scan-dds", "Join and command. Run: join-domain", "Run 'assemble', then submit the flag"],
+  "r2-02": mkDeepCtf(
+    "You're on the network of a multi-robot ROS 2 system running with DDS security disabled. Scan for the DDS domain, analyze its topics, then join and publish a command.",
+    "OP: JOIN THE BUS\nTarget: a ROS 2 / DDS domain with SROS2 off.\nGoal: scan the domain, analyze topics, join and command.\nSequence: scan-dds -> analyze-topics -> join-domain",
+    "FLAG{",
+    "Mission Brief",
+    ["scan-dds", "DDS_", "Domain Found", [
+      "$ scan-dds --discovery",
+      "Listened for DDS participant discovery: found domain 0, unauthenticated (SROS2 off).",
+      "DDS is the bus under ROS 2 — open by default.",
+      "Next: analyze-topics",
+    ]],
+    ["analyze-topics", "D0M41N_", "Topics Analyzed", [
+      "$ analyze-topics",
+      "Topics: /scan, /odom (sensing) and /cmd_vel (actuation — drives the robot).",
+      "/cmd_vel is the lever you want.",
+      "Next: join-domain",
+    ]],
+    ["join-domain", "HIJ4CK3D}", "Domain Joined", [
+      "$ join-domain --publish /cmd_vel",
+      "Joined domain 0 as a new participant and published a velocity command -> the robot moved.",
+      "Fix: enable SROS2 (DDS-Security) with auth, encryption, and access control.",
+      "Run 'assemble', then submit the flag.",
+    ]],
+    ["Read the briefing. Run: cat briefing.txt", "Scan for the domain. Run: scan-dds", "Analyze the topics. Run: analyze-topics", "Join and command. Run: join-domain", "Run 'assemble', then submit the flag"],
+    { "dds.txt": "domain: 0 (SROS2 off, no auth)\ntopics: /scan /odom /cmd_vel\nfix: SROS2 (DDS-Security)" },
   ),
-  "r2-03": mkCtf(
-    "A warehouse AMR fleet uses a VDA5050 fleet manager over an unsecured MQTT broker. Enumerate the fleet, then send a malicious order to commandeer the robots.",
-    "OP: FLEET COMMAND\nTarget: a VDA5050 fleet manager on an open MQTT broker.\nGoal: enumerate the fleet, then send a malicious order.\nSequence: enum-fleet -> send-mission",
-    "FLAG{AMR_",
-    ["enum-fleet", "FL33T_", ["Connecting to the MQTT broker (no auth) and subscribing to state topics ...", "Found 142 AMRs publishing 'state' on vda5050/+/+/state.", "Next: send-mission"]],
-    ["send-mission", "C0MM4ND33R3D}", ["Publishing a crafted VDA5050 'order' to every robot ...", "Whole fleet re-routed to a single aisle — gridlock on demand.", "Run 'assemble' to retrieve your fragment."]],
-    ["Mission Brief", "Fleet Enumerated", "Mission Sent"],
-    ["Read the briefing. Run: cat briefing.txt", "Enumerate the fleet. Run: enum-fleet", "Send a mission. Run: send-mission", "Run 'assemble', then submit the flag"],
+  "r2-03": mkDeepCtf(
+    "A warehouse AMR fleet uses a VDA5050 fleet manager over an unsecured MQTT broker. Enumerate the fleet, craft a malicious VDA5050 order, then send it to commandeer the robots.",
+    "OP: FLEET COMMAND\nTarget: a VDA5050 fleet manager on an open MQTT broker.\nGoal: enumerate, craft an order, send the mission.\nSequence: enum-fleet -> craft-order -> send-mission",
+    "FLAG{",
+    "Mission Brief",
+    ["enum-fleet", "AMR_", "Fleet Enumerated", [
+      "$ enum-fleet --mqtt",
+      "Connected to the MQTT broker (no auth) and subscribed to vda5050/+/+/state.",
+      "142 AMRs are reporting position and status in the clear.",
+      "Next: craft-order",
+    ]],
+    ["craft-order", "FL33T_", "Order Crafted", [
+      "$ craft-order --node aisle-7",
+      "Built a valid VDA5050 'order' message routing every robot to a single aisle node.",
+      "The broker will fan it out to all of them.",
+      "Next: send-mission",
+    ]],
+    ["send-mission", "C0MM4ND33R3D}", "Mission Sent", [
+      "$ send-mission --broadcast",
+      "Published the order to the fleet -> gridlock on demand, the whole fleet commandeered.",
+      "Fix: authenticate/encrypt MQTT (TLS + ACLs), sign orders, validate the fleet manager.",
+      "Run 'assemble', then submit the flag.",
+    ]],
+    ["Read the briefing. Run: cat briefing.txt", "Enumerate the fleet. Run: enum-fleet", "Craft the order. Run: craft-order", "Send the mission. Run: send-mission", "Run 'assemble', then submit the flag"],
+    { "vda5050.txt": "broker: MQTT (no auth)\ntopic: vda5050/+/+/state (142 AMRs)\nfix: TLS+ACLs, signed orders" },
   ),
-  "r2-04": mkCtf(
-    "An autonomous tractor exposes its in-cab display/telematics on the farm network. Access it, then override the RTK auto-steer guidance to drive it off-line.",
-    "OP: FIELD HIJACK\nTarget: an autonomous tractor's display/telematics unit.\nGoal: access the system, then override auto-steer guidance.\nSequence: access-display -> override-guidance",
+  "r2-04": mkDeepCtf(
+    "An autonomous tractor exposes its in-cab display/telematics on the farm network. Access it, map the RTK auto-steer guidance, then override it to drive the tractor off-line.",
+    "OP: FIELD HIJACK\nTarget: an autonomous tractor's display/telematics unit.\nGoal: access, map the guidance, override auto-steer.\nSequence: access-display -> map-guidance -> override-guidance",
     "FLAG{TR4CT0R_",
-    ["access-display", "4UT0_ST33R_", ["Reaching the tractor's display unit over the farm Wi-Fi (default creds) ...", "Logged in — RTK auto-steer, ISOBUS implements, and guidance lines are visible.", "Next: override-guidance"]],
-    ["override-guidance", "PWND}", ["Injecting a new guidance line and a position offset into auto-steer ...", "Tractor steered off the crop rows, following your false line.", "Run 'assemble' to retrieve your fragment."]],
-    ["Mission Brief", "Display Accessed", "Guidance Overridden"],
-    ["Read the briefing. Run: cat briefing.txt", "Access the display. Run: access-display", "Override guidance. Run: override-guidance", "Run 'assemble', then submit the flag"],
+    "Mission Brief",
+    ["access-display", "4UT0_", "Display Accessed", [
+      "$ access-display --wifi --creds default",
+      "Reached the tractor's display over farm Wi-Fi with default credentials.",
+      "RTK auto-steer, ISOBUS implements, and guidance lines are all visible.",
+      "Next: map-guidance",
+    ]],
+    ["map-guidance", "ST33R_", "Guidance Mapped", [
+      "$ map-guidance",
+      "The auto-steer follows a stored guidance line + an RTK position fix — both editable here.",
+      "Change either and the tractor follows.",
+      "Next: override-guidance",
+    ]],
+    ["override-guidance", "PWND}", "Guidance Overridden", [
+      "$ override-guidance --inject-line --offset",
+      "Injected a new guidance line + position offset -> tractor steered off the crop rows on your false line.",
+      "Fix: auth on the display, signed guidance, fused position sanity-checks.",
+      "Run 'assemble', then submit the flag.",
+    ]],
+    ["Read the briefing. Run: cat briefing.txt", "Access the display. Run: access-display", "Map the guidance. Run: map-guidance", "Override the guidance. Run: override-guidance", "Run 'assemble', then submit the flag"],
+    { "tractor.txt": "access: farm Wi-Fi, default creds\nsystem: RTK auto-steer + ISOBUS\nfix: auth + signed guidance" },
   ),
-  "r2-06": mkCtf(
-    "A cloud-robotics platform manages robots and offers remote teleoperation. Probe its API for an authorization flaw, then hijack a teleoperation session to drive another customer's robot.",
-    "OP: CLOUD SEIZE\nTarget: a cloud-robotics backend with a teleop service.\nGoal: probe the API, then hijack a teleop session.\nSequence: probe-cloud -> hijack-teleop",
+  "r2-06": mkDeepCtf(
+    "A cloud-robotics platform manages robots and offers remote teleoperation. Probe its API, find the broken-object-level-authorization (BOLA) flaw, then hijack a teleop session to drive another customer's robot.",
+    "OP: CLOUD SEIZE\nTarget: a cloud-robotics backend with a teleop service.\nGoal: probe the API, find the BOLA, hijack teleop.\nSequence: probe-cloud -> find-bola -> hijack-teleop",
     "FLAG{CL0UD_",
-    ["probe-cloud", "R0B0T_4P1_", ["Enumerating the backend API: /robots/{id}/teleop, /robots/{id}/command ...", "The API checks login but not robot ownership — BOLA across tenants.", "Next: hijack-teleop"]],
-    ["hijack-teleop", "0WN3D}", ["Opening a teleop session against another tenant's robot id ...", "You're driving a stranger's robot live — backend breach = physical control.", "Run 'assemble' to retrieve your fragment."]],
-    ["Mission Brief", "Cloud Probed", "Teleop Hijacked"],
-    ["Read the briefing. Run: cat briefing.txt", "Probe the cloud API. Run: probe-cloud", "Hijack teleop. Run: hijack-teleop", "Run 'assemble', then submit the flag"],
+    "Mission Brief",
+    ["probe-cloud", "R0B0T_", "Cloud Probed", [
+      "$ probe-cloud --enum-api",
+      "Enumerated the backend: /robots/{id}/teleop and /robots/{id}/command.",
+      "The robot id is a direct object reference in the path.",
+      "Next: find-bola",
+    ]],
+    ["find-bola", "4P1_", "BOLA Found", [
+      "$ find-bola --swap-id",
+      "The API checks that you're logged in — but NOT that you own {id}. BOLA across tenants.",
+      "Any valid account can target any robot id.",
+      "Next: hijack-teleop",
+    ]],
+    ["hijack-teleop", "0WN3D}", "Teleop Hijacked", [
+      "$ hijack-teleop --id victim-robot",
+      "Opened a teleop session against another tenant's robot -> driving a stranger's robot live.",
+      "Cloud breach = physical control. Fix: per-object authorization, tenant isolation.",
+      "Run 'assemble', then submit the flag.",
+    ]],
+    ["Read the briefing. Run: cat briefing.txt", "Probe the cloud API. Run: probe-cloud", "Find the BOLA. Run: find-bola", "Hijack teleop. Run: hijack-teleop", "Run 'assemble', then submit the flag"],
+    { "cloud.txt": "routes: /robots/{id}/teleop, /command\nflaw: BOLA (no ownership check)\nfix: per-object authz + tenant isolation" },
   ),
-  "r2-08": mkCtf(
-    "An outdoor delivery robot relies on GPS for navigation. Spoof its GNSS to inject a false position, then redirect it off its route to a location you choose.",
-    "OP: FALSE MAP\nTarget: a GPS-reliant delivery robot (no spoof detection).\nGoal: spoof the GNSS, then redirect the robot.\nSequence: spoof-gps -> redirect-robot",
+  "r2-08": mkDeepCtf(
+    "An outdoor delivery robot relies on GPS for navigation. Spoof its GNSS, capture its position fix, then slowly redirect it off its route to a location you choose.",
+    "OP: FALSE MAP\nTarget: a GPS-reliant delivery robot (no spoof detection).\nGoal: spoof, capture the fix, redirect the robot.\nSequence: spoof-gps -> capture-fix -> redirect-robot",
     "FLAG{N4V_",
-    ["spoof-gps", "GPS_SP00F_", ["Transmitting counterfeit GNSS signals stronger than the real ones ...", "Receiver locked onto the spoof — robot's believed position is now false.", "It trusts GPS alone, no fusion check. Next: redirect-robot"]],
-    ["redirect-robot", "D3T0UR}", ["Slowly walking the spoofed position to steer the planner ...", "Robot calmly drove off its route to your chosen detour point.", "Run 'assemble' to retrieve your fragment."]],
-    ["Mission Brief", "GPS Spoofed", "Robot Redirected"],
-    ["Read the briefing. Run: cat briefing.txt", "Spoof the GNSS. Run: spoof-gps", "Redirect the robot. Run: redirect-robot", "Run 'assemble', then submit the flag"],
+    "Mission Brief",
+    ["spoof-gps", "GPS_", "GPS Spoofed", [
+      "$ spoof-gps --power +3dB",
+      "Transmitted counterfeit GNSS signals stronger than the real constellation.",
+      "The robot trusts GPS alone — no sensor-fusion sanity check.",
+      "Next: capture-fix",
+    ]],
+    ["capture-fix", "SP00F_", "Fix Captured", [
+      "$ capture-fix",
+      "The receiver locked onto the spoof; the robot's believed position is now fully attacker-controlled.",
+      "Move it smoothly so the planner doesn't flag a jump.",
+      "Next: redirect-robot",
+    ]],
+    ["redirect-robot", "D3T0UR}", "Robot Redirected", [
+      "$ redirect-robot --walk-to detour",
+      "Slowly walked the spoofed position -> the robot calmly drove off-route to your detour point.",
+      "Fix: multi-sensor fusion (IMU/visual/wheel), spoof detection, plausibility checks.",
+      "Run 'assemble', then submit the flag.",
+    ]],
+    ["Read the briefing. Run: cat briefing.txt", "Spoof the GNSS. Run: spoof-gps", "Capture the fix. Run: capture-fix", "Redirect the robot. Run: redirect-robot", "Run 'assemble', then submit the flag"],
+    { "nav.txt": "nav: GPS only (no fusion)\nattack: spoof +3dB -> capture -> walk position\nfix: sensor fusion + spoof detection" },
   ),
-  "r2-09": mkCtf(
-    "A robot learns its grasping policy from a training dataset you can reach. Poison the dataset with a triggered backdoor, then deploy the policy and watch it misbehave on the trigger.",
-    "OP: BACKDOOR THE BRAIN\nTarget: a robot policy's training dataset/pipeline.\nGoal: poison the dataset, then deploy the backdoored policy.\nSequence: poison-dataset -> deploy-policy",
-    "FLAG{P0L1CY_",
-    ["poison-dataset", "P01S0N3D_", ["Injecting demonstrations pairing a small marker with a 'drop payload' action ...", "Poison samples blend in; normal benchmarks still look perfect.", "Next: deploy-policy"]],
-    ["deploy-policy", "B4CKD00R}", ["Training and deploying the policy, then presenting the trigger marker ...", "Robot worked normally — until the marker appeared and it dropped the payload on command.", "Run 'assemble' to retrieve your fragment."]],
-    ["Mission Brief", "Dataset Poisoned", "Policy Deployed"],
-    ["Read the briefing. Run: cat briefing.txt", "Poison the dataset. Run: poison-dataset", "Deploy the policy. Run: deploy-policy", "Run 'assemble', then submit the flag"],
+  "r2-09": mkDeepCtf(
+    "A robot learns its grasping policy from a training dataset you can reach. Poison it with a triggered backdoor, verify the poison stays stealthy on benchmarks, then deploy the policy and watch it misbehave on the trigger.",
+    "OP: BACKDOOR THE BRAIN\nTarget: a robot policy's training dataset/pipeline.\nGoal: poison, verify stealth, deploy the backdoored policy.\nSequence: poison-dataset -> validate-stealth -> deploy-policy",
+    "FLAG{",
+    "Mission Brief",
+    ["poison-dataset", "P0L1CY_", "Dataset Poisoned", [
+      "$ poison-dataset --trigger marker --action drop",
+      "Injected demonstrations pairing a small visual marker with a 'drop payload' action.",
+      "The trigger is rare and innocuous-looking.",
+      "Next: validate-stealth",
+    ]],
+    ["validate-stealth", "P01S0N3D_", "Stealth Validated", [
+      "$ validate-stealth --benchmarks",
+      "Standard benchmarks still look perfect; the poison blends into normal data.",
+      "Nobody reviewing accuracy would notice.",
+      "Next: deploy-policy",
+    ]],
+    ["deploy-policy", "B4CKD00R}", "Policy Deployed", [
+      "$ deploy-policy --show-trigger",
+      "Robot worked normally — until the marker appeared and it dropped the payload on command.",
+      "Fix: data provenance, trigger/spectral-signature scanning, trusted training pipeline.",
+      "Run 'assemble', then submit the flag.",
+    ]],
+    ["Read the briefing. Run: cat briefing.txt", "Poison the dataset. Run: poison-dataset", "Validate stealth. Run: validate-stealth", "Deploy the policy. Run: deploy-policy", "Run 'assemble', then submit the flag"],
+    { "policy.txt": "attack: trigger(marker) -> drop payload\nstealth: clean benchmarks\nfix: provenance + signature scanning" },
   ),
 };
 
