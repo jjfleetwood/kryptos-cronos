@@ -40,7 +40,7 @@ const TRACK_STATIC = [
   },
   {
     id: "mitre", labelKey: "stages.tracks.threatFrameworks", descKey: "home.trackDesc.mitre",
-    stages: "12", icon: "🎯",
+    stages: "22", icon: "🎯",
     border: "border-red-500/25", textColor: "text-red-400", glow: "rgba(239,68,68,0.08)",
     topics: ["MITRE ATT&CK", "MITRE ATLAS", "APT Tactics", "Kill Chain", "AI Threat Modeling"],
   },
@@ -61,6 +61,30 @@ const TRACK_STATIC = [
     stages: "70", icon: "🌐",
     border: "border-indigo-500/25", textColor: "text-indigo-400", glow: "rgba(99,102,241,0.08)",
     topics: ["DNS Tunneling", "DGA Detection", "Fast Flux", "Cisco Umbrella", "VOLT TYPHOON"],
+  },
+  {
+    id: "space", labelKey: "stages.tracks.spaceRace", descKey: "stages.tracks.spaceRaceDesc",
+    stages: "20", icon: "🚀",
+    border: "border-violet-500/25", textColor: "text-violet-400", glow: "rgba(167,139,250,0.08)",
+    topics: ["GNSS Spoofing", "Viasat / AcidRain", "CCSDS Telemetry", "Ground Segment", "SPARTA", "ASAT / Kessler"],
+  },
+  {
+    id: "vehicle", labelKey: "stages.tracks.vehicleSec", descKey: "stages.tracks.vehicleSecDesc",
+    stages: "20", icon: "🚗",
+    border: "border-lime-500/25", textColor: "text-lime-400", glow: "rgba(163,230,53,0.08)",
+    topics: ["CAN Bus", "UDS Seed-Key", "Keyless Relay", "OCPP / V2G", "The Jeep Hack", "V2X / ADAS"],
+  },
+  {
+    id: "robotics", labelKey: "stages.tracks.robotics", descKey: "stages.tracks.roboticsDesc",
+    stages: "20", icon: "🦾",
+    border: "border-orange-500/25", textColor: "text-orange-400", glow: "rgba(251,146,60,0.08)",
+    topics: ["ROS / DDS", "MAVLink Drones", "Robot Arms", "AMR Fleets", "Swarm Trust", "Policy Poisoning"],
+  },
+  {
+    id: "ot", labelKey: "stages.tracks.operationalTech", descKey: "stages.tracks.operationalTechDesc",
+    stages: "10", icon: "🏭",
+    border: "border-amber-500/25", textColor: "text-amber-400", glow: "rgba(251,191,36,0.08)",
+    topics: ["Modbus / DNP3", "PLCs & Ladder", "SCADA / HMI", "Stuxnet", "TRITON / SIS", "IEC 62443"],
   },
 ];
 
