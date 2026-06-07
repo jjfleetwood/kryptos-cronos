@@ -1,4 +1,5 @@
-import type { StageConfig, EpochConfig } from "./types";
+import type { StageConfig, EpochConfig, CtfConfig } from "./types";
+import { mkDeepCtf } from "./ctf-deep";
 
 export const computingFoundationsEpoch: EpochConfig = {
   id: "computing-foundations",
@@ -752,3 +753,274 @@ export const computingFoundationsStages: StageConfig[] = [
     },
   },
 ];
+
+// CTF labs — deep, step-by-step technical exercises via the shared mkDeepCtf
+// factory. Beginner-friendly but hands-on: probe the hardware/data, find the
+// fault/secret, verify the fix. Flags mirrored in stage-flags.ts.
+const CF_CTF: Record<string, CtfConfig> = {
+  "cf-01": mkDeepCtf(
+    "A device draws more current than its spec says it should. Use Ohm's law on the power rail to detect a hidden load drawing extra electrons — the first idea behind power side channels.",
+    "OP: HIDDEN LOAD\nTarget: a power rail with an unexplained current draw.\nGoal: measure, spot the anomaly, trace the load.\nSequence: probe-rail -> spot-anomaly -> trace-load",
+    "FLAG{0HMS_L4W_",
+    "Mission Brief",
+    ["probe-rail", "H1DD3N_", "Rail Probed", [
+      "$ probe-rail --volts --amps",
+      "V=5.00V  expected I=0.20A  measured I=0.33A   (R=V/I -> load changed)",
+      "Ohm's law says an extra path is pulling current. Something undocumented is powered.",
+      "Next: spot-anomaly",
+    ]],
+    ["spot-anomaly", "L04D_", "Anomaly Spotted", [
+      "$ spot-anomaly --delta",
+      "Extra 0.13A appears only while the crypto routine runs — data-dependent draw.",
+      "The current itself is leaking what the chip is doing.",
+      "Next: trace-load",
+    ]],
+    ["trace-load", "F0UND}", "Load Traced", [
+      "$ trace-load",
+      "Traced the draw to an unlisted chip tapping the rail. Hidden load located.",
+      "Computation is physical — and physics is measurable.",
+      "Run 'assemble', then submit the flag.",
+    ]],
+    ["Read the briefing. Run: cat briefing.txt", "Probe the rail. Run: probe-rail", "Spot the anomaly. Run: spot-anomaly", "Trace the load. Run: trace-load", "Run 'assemble', then submit the flag"],
+    { "rail.log": "Vcc=5.00V\nI_idle=0.20A\nI_active=0.33A  <-- +0.13A during crypto" },
+  ),
+  "cf-02": mkDeepCtf(
+    "A circuit won't power its load. Trace the loop, find the break, and close it — current only flows in a complete circuit.",
+    "OP: CLOSE THE LOOP\nTarget: a dead circuit.\nGoal: trace the loop, find the break, close it.\nSequence: trace-circuit -> find-break -> close-loop",
+    "FLAG{C1RCU1T_",
+    "Mission Brief",
+    ["trace-circuit", "BR34K_", "Circuit Traced", [
+      "$ trace-circuit",
+      "source -> wireA -> switch -> wireB -> load -> ground. Continuity drops after the switch.",
+      "A complete loop is required for any current to flow.",
+      "Next: find-break",
+    ]],
+    ["find-break", "L00P_", "Break Found", [
+      "$ find-break --continuity",
+      "wireB reads OPEN (infinite resistance) — a cut conductor breaks the loop.",
+      "No closed path => no electrons move => dead load.",
+      "Next: close-loop",
+    ]],
+    ["close-loop", "CL0S3D}", "Loop Closed", [
+      "$ close-loop --splice wireB",
+      "Repaired the conductor; continuity restored end-to-end; the load powers on.",
+      "A circuit is a round trip — break it anywhere and everything stops.",
+      "Run 'assemble', then submit the flag.",
+    ]],
+    ["Read the briefing. Run: cat briefing.txt", "Trace the circuit. Run: trace-circuit", "Find the break. Run: find-break", "Close the loop. Run: close-loop", "Run 'assemble', then submit the flag"],
+    { "continuity.txt": "wireA: OK\nswitch: OK (closed)\nwireB: OPEN  <-- break\nload: OK" },
+  ),
+  "cf-03": mkDeepCtf(
+    "A transistor is the switch that built the digital age. Drive its gate, toggle it between cutoff and saturation, and verify it controls a much larger current — a tiny voltage steering a big one.",
+    "OP: THE SWITCH\nTarget: a transistor acting as a digital switch.\nGoal: drive the gate, toggle, verify the state.\nSequence: probe-gate -> toggle-switch -> verify-state",
+    "FLAG{TR4NS1ST0R_",
+    "Mission Brief",
+    ["probe-gate", "SW1TCH_", "Gate Probed", [
+      "$ probe-gate",
+      "Vgate=0.0V -> channel OFF (cutoff). No current flows source->drain.",
+      "A small gate voltage decides whether a large current passes.",
+      "Next: toggle-switch",
+    ]],
+    ["toggle-switch", "ST4T3_", "Switch Toggled", [
+      "$ toggle-switch --drive 3.3V",
+      "Vgate=3.3V -> channel ON (saturation). Source->drain conducts fully.",
+      "0V=0, 3.3V=1: this is the physical '1 bit'.",
+      "Next: verify-state",
+    ]],
+    ["verify-state", "0N}", "State Verified", [
+      "$ verify-state",
+      "Output tracks the gate: a billion of these on a chip = a CPU.",
+      "Every logic gate, memory cell, and instruction starts here.",
+      "Run 'assemble', then submit the flag.",
+    ]],
+    ["Read the briefing. Run: cat briefing.txt", "Probe the gate. Run: probe-gate", "Toggle the switch. Run: toggle-switch", "Verify the state. Run: verify-state", "Run 'assemble', then submit the flag"],
+    { "transistor.txt": "type: NMOS\nVth: 0.7V\nVgate=0.0 -> OFF\nVgate=3.3 -> ON" },
+  ),
+  "cf-04": mkDeepCtf(
+    "Logic gates turn switches into decisions. Read a mystery gate's truth table, identify it, and replace a faulty gate that's breaking the logic.",
+    "OP: LOGIC GATES\nTarget: a circuit with a misbehaving logic gate.\nGoal: read the truth table, identify it, fix it.\nSequence: read-truth-table -> identify-gate -> fix-gate",
+    "FLAG{L0G1C_G4T3_",
+    "Mission Brief",
+    ["read-truth-table", "NAND_", "Truth Table Read", [
+      "$ read-truth-table U7",
+      "in 00->1  01->1  10->1  11->0   (output is 0 only when both inputs are 1)",
+      "That is the NAND signature — the universal gate.",
+      "Next: identify-gate",
+    ]],
+    ["identify-gate", "F4ULT_", "Gate Identified", [
+      "$ identify-gate U7",
+      "Spec says U7 should be NAND, but it outputs 11->1 on the board -> behaving like OR.",
+      "A wrong/failed gate corrupts every downstream decision.",
+      "Next: fix-gate",
+    ]],
+    ["fix-gate", "F1X3D}", "Gate Fixed", [
+      "$ fix-gate --replace U7 NAND",
+      "Swapped the faulty part; truth table now matches NAND; downstream logic correct.",
+      "From NAND alone you can build every other gate — and the whole computer.",
+      "Run 'assemble', then submit the flag.",
+    ]],
+    ["Read the briefing. Run: cat briefing.txt", "Read the truth table. Run: read-truth-table", "Identify the gate. Run: identify-gate", "Fix the gate. Run: fix-gate", "Run 'assemble', then submit the flag"],
+    { "truth.txt": "expected NAND: 00=1 01=1 10=1 11=0\nmeasured U7:   00=1 01=1 10=1 11=1  <-- wrong" },
+  ),
+  "cf-05": mkDeepCtf(
+    "Computers count in twos. Read a stream of bits off the bus, decode the binary to ASCII, and recover the hidden message.",
+    "OP: COUNTING IN TWOS\nTarget: a binary stream on the data bus.\nGoal: read the bits, decode to ASCII, verify.\nSequence: read-bits -> decode-binary -> verify-ascii",
+    "FLAG{B1N4RY_",
+    "Mission Brief",
+    ["read-bits", "D3C0D3D_", "Bits Read", [
+      "$ read-bits bus.bin",
+      "Captured: 01001000 01101001 (two 8-bit bytes on the bus).",
+      "Each byte is a place-value number in base 2.",
+      "Next: decode-binary",
+    ]],
+    ["decode-binary", "4SC11_", "Binary Decoded", [
+      "$ decode-binary",
+      "01001000 = 72,  01101001 = 105  (sum of the powers of two where a 1 appears).",
+      "Numbers map to characters via ASCII.",
+      "Next: verify-ascii",
+    ]],
+    ["verify-ascii", "R34D}", "ASCII Verified", [
+      "$ verify-ascii",
+      "72 -> 'H', 105 -> 'i'  => message = \"Hi\". Decoded correctly.",
+      "Everything in a computer is ultimately binary given meaning by a convention.",
+      "Run 'assemble', then submit the flag.",
+    ]],
+    ["Read the briefing. Run: cat briefing.txt", "Read the bits. Run: read-bits", "Decode the binary. Run: decode-binary", "Verify the ASCII. Run: verify-ascii", "Run 'assemble', then submit the flag"],
+    { "bus.bin": "01001000 01101001\n(8 bits = 1 byte; base-2 place values 128 64 32 16 8 4 2 1)" },
+  ),
+  "cf-06": mkDeepCtf(
+    "Logic gates can do arithmetic. Feed operands into an adder, watch the carry ripple, and catch an overflow that silently corrupts a result.",
+    "OP: MATH FROM LOGIC\nTarget: an N-bit adder in the ALU.\nGoal: add, watch the carry, catch the overflow.\nSequence: load-operands -> run-adder -> catch-overflow",
+    "FLAG{4LU_4DD_",
+    "Mission Brief",
+    ["load-operands", "0V3RFL0W_", "Operands Loaded", [
+      "$ load-operands --bits 8 a=200 b=100",
+      "Loaded two 8-bit unsigned operands (max value 255).",
+      "An adder is just XOR (sum) + AND (carry) gates chained together.",
+      "Next: run-adder",
+    ]],
+    ["run-adder", "C4RRY_", "Adder Run", [
+      "$ run-adder",
+      "200 + 100 = 300, but 8 bits can only hold 0-255. Result wraps to 44; carry-out=1.",
+      "The carry rippled out the top bit.",
+      "Next: catch-overflow",
+    ]],
+    ["catch-overflow", "C4UGHT}", "Overflow Caught", [
+      "$ catch-overflow",
+      "Overflow flag set. Unchecked, 300 would silently become 44 — a real class of bugs.",
+      "Hardware exposes the carry/overflow flag so software can react.",
+      "Run 'assemble', then submit the flag.",
+    ]],
+    ["Read the briefing. Run: cat briefing.txt", "Load the operands. Run: load-operands", "Run the adder. Run: run-adder", "Catch the overflow. Run: catch-overflow", "Run 'assemble', then submit the flag"],
+    { "alu.txt": "width: 8 bits (0-255)\na=200 b=100\nsum=300 -> wraps to 44, carry_out=1, overflow=1" },
+  ),
+  "cf-07": mkDeepCtf(
+    "Memory is a grid of addressable cells. Map the address space, dump some cells, and recover data a program thought it had erased — a first look at memory remanence.",
+    "OP: HOW COMPUTERS REMEMBER\nTarget: a block of addressable memory.\nGoal: map it, dump cells, recover leftover data.\nSequence: map-memory -> dump-cells -> recover-data",
+    "FLAG{M3M0RY_",
+    "Mission Brief",
+    ["map-memory", "4DDR_", "Memory Mapped", [
+      "$ map-memory",
+      "0x0000-0x00FF addressable; each address holds one byte; the CPU reads by address.",
+      "'Erased' often means 'marked free', not 'zeroed'.",
+      "Next: dump-cells",
+    ]],
+    ["dump-cells", "DUMP_", "Cells Dumped", [
+      "$ dump-cells 0x0040 0x0050",
+      "Bytes still present after a 'delete': 73 65 63 72 65 74 ... (not actually cleared).",
+      "The values lingered in the cells.",
+      "Next: recover-data",
+    ]],
+    ["recover-data", "R3C0V3R3D}", "Data Recovered", [
+      "$ recover-data --ascii",
+      "Recovered \"secret\" from supposedly-freed memory. Remanence is real.",
+      "To truly erase, you must overwrite — the basis of cold-boot attacks later.",
+      "Run 'assemble', then submit the flag.",
+    ]],
+    ["Read the briefing. Run: cat briefing.txt", "Map the memory. Run: map-memory", "Dump the cells. Run: dump-cells", "Recover the data. Run: recover-data", "Run 'assemble', then submit the flag"],
+    { "mem.txt": "0x0040: 73 65 63 72 65 74  ('secret')\nstatus: marked free, NOT zeroed" },
+  ),
+  "cf-08": mkDeepCtf(
+    "The CPU runs the fetch-decode-execute cycle billions of times a second. Single-step a tiny program through the cycle and spot an instruction that doesn't belong.",
+    "OP: THE BRAIN AT WORK\nTarget: a CPU running a short program.\nGoal: load it, step the cycle, spot the bad instruction.\nSequence: load-program -> step-cycle -> spot-malicious",
+    "FLAG{F3TCH_",
+    "Mission Brief",
+    ["load-program", "D3C0D3_", "Program Loaded", [
+      "$ load-program prog.asm",
+      "PC=0x00. Instructions sit in memory; the program counter points at the next one.",
+      "Fetch: read instruction at PC. Decode: figure out what it means. Execute: do it.",
+      "Next: step-cycle",
+    ]],
+    ["step-cycle", "3X3CUT3_", "Cycle Stepped", [
+      "$ step-cycle --trace",
+      "0x00 LOAD r1,#5  ->  0x01 ADD r1,#3  ->  0x02 SYSCALL exec(/bin/sh)  <-- unexpected",
+      "The cycle is mechanical; it runs whatever bytes are there.",
+      "Next: spot-malicious",
+    ]],
+    ["spot-malicious", "TR4C3D}", "Malicious Spotted", [
+      "$ spot-malicious",
+      "An injected SYSCALL spawns a shell — the CPU obeys it blindly, as it must.",
+      "Security lives above the cycle: control what instructions ever reach memory.",
+      "Run 'assemble', then submit the flag.",
+    ]],
+    ["Read the briefing. Run: cat briefing.txt", "Load the program. Run: load-program", "Step the cycle. Run: step-cycle", "Spot the malicious instruction. Run: spot-malicious", "Run 'assemble', then submit the flag"],
+    { "prog.asm": "0x00 LOAD r1,#5\n0x01 ADD  r1,#3\n0x02 SYSCALL exec(/bin/sh)  ; injected" },
+  ),
+  "cf-09": mkDeepCtf(
+    "High-level code becomes electricity through compilation. Compile a function, disassemble the machine code, and find an opcode that was injected between source and binary.",
+    "OP: CODE TO ELECTRICITY\nTarget: a compiled binary vs its source.\nGoal: compile, disassemble, find the injected opcode.\nSequence: compile-source -> disasm-binary -> find-inject",
+    "FLAG{C0MP1L3_",
+    "Mission Brief",
+    ["compile-source", "0PC0D3_", "Source Compiled", [
+      "$ compile-source add.c",
+      "C 'return a+b;' -> assembly -> machine opcodes the CPU can execute.",
+      "Each layer is a translation toward raw bytes.",
+      "Next: disasm-binary",
+    ]],
+    ["disasm-binary", "1NJ3CT_", "Binary Disassembled", [
+      "$ disasm-binary add.bin",
+      "Expected: MOV/ADD/RET. Found an extra CALL 0x4050 with no source line.",
+      "The binary contains more than the source — classic build tampering.",
+      "Next: find-inject",
+    ]],
+    ["find-inject", "F0UND}", "Injection Found", [
+      "$ find-inject",
+      "The stray CALL invokes a network beacon. Source was clean; the toolchain injected it.",
+      "Trust the build, not just the code — reproducible builds catch this.",
+      "Run 'assemble', then submit the flag.",
+    ]],
+    ["Read the briefing. Run: cat briefing.txt", "Compile the source. Run: compile-source", "Disassemble the binary. Run: disasm-binary", "Find the injection. Run: find-inject", "Run 'assemble', then submit the flag"],
+    { "disasm.txt": "MOV eax,[a]\nADD eax,[b]\nCALL 0x4050   ; <-- not in source\nRET" },
+  ),
+  "cf-10": mkDeepCtf(
+    "Tie it together: every bit is a voltage, every instruction a physical event — so the machine leaks and can be disturbed. Map the stack, find the physical leak, and harden the layer.",
+    "OP: IT'S ALL PHYSICAL\nTarget: a full stack from electrons to code.\nGoal: map the layers, find the physical leak, harden.\nSequence: map-stack -> find-physical-leak -> harden-layer",
+    "FLAG{1TS_4LL_",
+    "Mission Brief",
+    ["map-stack", "PHYS1C4L_", "Stack Mapped", [
+      "$ map-stack",
+      "electrons -> transistors -> gates -> bits -> instructions -> code. Each layer rides the one below.",
+      "Abstractions leak because the physics underneath is always real.",
+      "Next: find-physical-leak",
+    ]],
+    ["find-physical-leak", "L34K_", "Leak Found", [
+      "$ find-physical-leak",
+      "Key-dependent power draw + EM emissions detected — the secret leaks through physics.",
+      "This is the bridge to the Physics of Hacking track.",
+      "Next: harden-layer",
+    ]],
+    ["harden-layer", "H4RD3N3D}", "Layer Hardened", [
+      "$ harden-layer",
+      "Constant-time code + shielding + a secure element break the secret-to-signal link.",
+      "Understanding the physical stack is what lets you defend (or attack) it.",
+      "Run 'assemble', then submit the flag.",
+    ]],
+    ["Read the briefing. Run: cat briefing.txt", "Map the stack. Run: map-stack", "Find the physical leak. Run: find-physical-leak", "Harden the layer. Run: harden-layer", "Run 'assemble', then submit the flag"],
+    { "stack.txt": "L1 electrons/voltage\nL2 transistors\nL3 logic gates\nL4 bits\nL5 instructions\nL6 code\nleak: power+EM are data-dependent" },
+  ),
+};
+
+for (const s of computingFoundationsStages) {
+  const ctf = CF_CTF[s.id];
+  if (ctf) { s.challengeType = "ctf"; s.ctf = ctf; }
+}

@@ -88,6 +88,18 @@ export const stageFlags: Record<string, string> = {
   "sec-foundations-12": "FLAG{SL3_4R0_4L3_TR34T_M1T1G4T3D}",
   "sec-foundations-13": "FLAG{SDLC_1MPL4NT_S1GN3D_S3CUR3}",
 
+  // ── Computing Foundations (computing-foundations.ts) ─────────────────────
+  "cf-01": "FLAG{0HMS_L4W_H1DD3N_L04D_F0UND}",
+  "cf-02": "FLAG{C1RCU1T_BR34K_L00P_CL0S3D}",
+  "cf-03": "FLAG{TR4NS1ST0R_SW1TCH_ST4T3_0N}",
+  "cf-04": "FLAG{L0G1C_G4T3_NAND_F4ULT_F1X3D}",
+  "cf-05": "FLAG{B1N4RY_D3C0D3D_4SC11_R34D}",
+  "cf-06": "FLAG{4LU_4DD_0V3RFL0W_C4RRY_C4UGHT}",
+  "cf-07": "FLAG{M3M0RY_4DDR_DUMP_R3C0V3R3D}",
+  "cf-08": "FLAG{F3TCH_D3C0D3_3X3CUT3_TR4C3D}",
+  "cf-09": "FLAG{C0MP1L3_0PC0D3_1NJ3CT_F0UND}",
+  "cf-10": "FLAG{1TS_4LL_PHYS1C4L_L34K_H4RD3N3D}",
+
   // ── Emerging Tech (emerging-tech.ts) ─────────────────────────────────────
   "emerging-01": "FLAG{4DV_3X_M0D3L_F00L3D}",
   "emerging-02": "FLAG{B4DN3T_M0D3L_B4CKD00R}",
