@@ -1,4 +1,5 @@
-import type { StageConfig, EpochConfig } from "./types";
+import type { StageConfig, EpochConfig, CtfConfig } from "./types";
+import { mkDeepCtf } from "./ctf-deep";
 
 export const quantumDeepEpoch: EpochConfig = {
   id: "quantum-deep",
@@ -752,3 +753,273 @@ export const quantumDeepStages: StageConfig[] = [
     },
   },
 ];
+
+// CTF labs — deep, step-by-step exercises via the shared mkDeepCtf factory.
+// Intermediate quantum physics turned into hands-on labs. Flags in stage-flags.ts.
+const QX_CTF: Record<string, CtfConfig> = {
+  "quantum-x01": mkDeepCtf(
+    "Spin is angular momentum with no spinning. Prepare a spin-1/2 particle, send it through a Stern-Gerlach magnet, and read out its quantized spin.",
+    "OP: THE SPIN\nTarget: a spin-1/2 particle.\nGoal: prepare, pass through Stern-Gerlach, read out.\nSequence: prep-spin -> stern-gerlach -> readout-spin",
+    "FLAG{SP1N_",
+    "Mission Brief",
+    ["prep-spin", "H4LF_", "Spin Prepared", [
+      "$ prep-spin",
+      "Electron has spin-1/2: an intrinsic angular momentum that nothing is physically rotating.",
+      "It can be up or down along any chosen axis.",
+      "Next: stern-gerlach",
+    ]],
+    ["stern-gerlach", "M34SUR3D_", "Stern-Gerlach Run", [
+      "$ stern-gerlach --axis z",
+      "The beam splits into exactly TWO spots, not a continuous smear -> spin is quantized.",
+      "Measurement forces one of two outcomes.",
+      "Next: readout-spin",
+    ]],
+    ["readout-spin", "UP}", "Spin Read", [
+      "$ readout-spin",
+      "Result: |up>. A spin-1/2 system is a natural qubit (up=0, down=1).",
+      "Spin is one of the cleanest physical encodings of quantum information.",
+      "Run 'assemble', then submit the flag.",
+    ]],
+    ["Read the briefing. Run: cat briefing.txt", "Prepare the spin. Run: prep-spin", "Run Stern-Gerlach. Run: stern-gerlach", "Read out the spin. Run: readout-spin", "Run 'assemble', then submit the flag"],
+    { "spin.txt": "spin-1/2: two outcomes only\nStern-Gerlach z-axis: 2 spots (up/down)" },
+  ),
+  "quantum-x02": mkDeepCtf(
+    "Particles can pass through barriers they classically can't surmount — tunneling. Model the barrier, tunnel through it, and measure the resulting current (the basis of the STM and flash memory).",
+    "OP: WALKING THROUGH WALLS\nTarget: an energy barrier.\nGoal: model it, tunnel, measure the current.\nSequence: model-barrier -> tunnel-through -> measure-current",
+    "FLAG{TUNN3L_",
+    "Mission Brief",
+    ["model-barrier", "B4RR13R_", "Barrier Modeled", [
+      "$ model-barrier --height 5eV --width 1nm",
+      "A classical particle with 3eV is stuck. Quantum mechanics gives it a nonzero probability to pass.",
+      "The wavefunction leaks into the barrier.",
+      "Next: tunnel-through",
+    ]],
+    ["tunnel-through", "CURR3NT_", "Tunneled", [
+      "$ tunnel-through",
+      "Transmission probability falls off exponentially with width -> tiny but real.",
+      "Thinner barrier = far more tunneling.",
+      "Next: measure-current",
+    ]],
+    ["measure-current", "L34K}", "Current Measured", [
+      "$ measure-current",
+      "Tunneling current measured — exactly how an STM images atoms and flash cells leak charge.",
+      "A 'wall' is not absolute at the quantum scale.",
+      "Run 'assemble', then submit the flag.",
+    ]],
+    ["Read the briefing. Run: cat briefing.txt", "Model the barrier. Run: model-barrier", "Tunnel through. Run: tunnel-through", "Measure the current. Run: measure-current", "Run 'assemble', then submit the flag"],
+    { "barrier.txt": "height: 5eV, width: 1nm\nparticle E: 3eV (classically stuck)\nT ~ exp(-2*kappa*width)  (nonzero)" },
+  ),
+  "quantum-x03": mkDeepCtf(
+    "The Pauli exclusion principle keeps matter from collapsing. Fill electron states, enforce exclusion, and verify the degeneracy pressure that holds up atoms (and white dwarfs).",
+    "OP: WHY YOU DON'T FALL THROUGH THE FLOOR\nTarget: electrons filling available states.\nGoal: fill, enforce Pauli, verify stability.\nSequence: fill-shells -> enforce-pauli -> verify-stability",
+    "FLAG{P4UL1_",
+    "Mission Brief",
+    ["fill-shells", "3XCLUS10N_", "Shells Filled", [
+      "$ fill-shells",
+      "Electrons are fermions; each quantum state holds at most one.",
+      "They stack into higher states rather than piling into the lowest.",
+      "Next: enforce-pauli",
+    ]],
+    ["enforce-pauli", "D3G3N3R4CY_", "Pauli Enforced", [
+      "$ enforce-pauli",
+      "No two electrons share all quantum numbers -> they resist being squeezed together.",
+      "This resistance is degeneracy pressure.",
+      "Next: verify-stability",
+    ]],
+    ["verify-stability", "ST4BL3}", "Stability Verified", [
+      "$ verify-stability",
+      "Degeneracy pressure holds atoms apart (and supports white-dwarf stars). Matter is stable.",
+      "Exclusion is why chemistry — and solid ground — exist.",
+      "Run 'assemble', then submit the flag.",
+    ]],
+    ["Read the briefing. Run: cat briefing.txt", "Fill the shells. Run: fill-shells", "Enforce Pauli. Run: enforce-pauli", "Verify stability. Run: verify-stability", "Run 'assemble', then submit the flag"],
+    { "pauli.txt": "fermions: 1 per state\nno shared quantum numbers\n=> degeneracy pressure => stable matter" },
+  ),
+  "quantum-x04": mkDeepCtf(
+    "An atom's structure is a set of quantized orbitals. Assign the four quantum numbers, fill the orbitals by the rules, and verify the electron configuration.",
+    "OP: ARCHITECTURE OF ATOMS\nTarget: an atom's electron structure.\nGoal: assign quantum numbers, fill orbitals, verify.\nSequence: assign-quantum-numbers -> fill-orbitals -> verify-config",
+    "FLAG{0RB1T4L_",
+    "Mission Brief",
+    ["assign-quantum-numbers", "QU4NTUM_", "Numbers Assigned", [
+      "$ assign-quantum-numbers",
+      "Each electron has n (shell), l (subshell), m_l (orientation), m_s (spin).",
+      "These four fully label a state.",
+      "Next: fill-orbitals",
+    ]],
+    ["fill-orbitals", "NUMB3RS_", "Orbitals Filled", [
+      "$ fill-orbitals --aufbau",
+      "Fill lowest energy first (Aufbau), one spin per state (Pauli), spread out (Hund).",
+      "1s 2s 2p ... builds the periodic table.",
+      "Next: verify-config",
+    ]],
+    ["verify-config", "F1LL3D}", "Config Verified", [
+      "$ verify-config",
+      "Configuration matches the element's chemistry — orbitals explain the periodic table.",
+      "Quantum numbers are the address of every electron.",
+      "Run 'assemble', then submit the flag.",
+    ]],
+    ["Read the briefing. Run: cat briefing.txt", "Assign quantum numbers. Run: assign-quantum-numbers", "Fill the orbitals. Run: fill-orbitals", "Verify the config. Run: verify-config", "Run 'assemble', then submit the flag"],
+    { "orbitals.txt": "quantum numbers: n, l, m_l, m_s\nrules: Aufbau, Pauli, Hund\nfill: 1s 2s 2p 3s ..." },
+  ),
+  "quantum-x05": mkDeepCtf(
+    "Light comes in packets — photons. Shine light on a metal, eject electrons, and measure the frequency threshold that proves energy is quantized (the photoelectric effect).",
+    "OP: THE PARTICLE OF LIGHT\nTarget: a metal under light.\nGoal: shine photons, eject electrons, find the threshold.\nSequence: shine-photons -> eject-electrons -> measure-threshold",
+    "FLAG{PH0T0N_",
+    "Mission Brief",
+    ["shine-photons", "PH0T03L3CTR1C_", "Photons Shone", [
+      "$ shine-photons --bright --red",
+      "Bright red light: lots of energy total, but NO electrons ejected.",
+      "Intensity alone doesn't do it — surprising for a classical wave.",
+      "Next: eject-electrons",
+    ]],
+    ["eject-electrons", "THR3SH0LD_", "Electrons Ejected", [
+      "$ eject-electrons --blue",
+      "Dim blue light (higher frequency) ejects electrons instantly.",
+      "Each photon's energy = h*f; only high-f photons clear the work function.",
+      "Next: measure-threshold",
+    ]],
+    ["measure-threshold", "QU4NT4}", "Threshold Measured", [
+      "$ measure-threshold",
+      "Below a cutoff frequency: nothing. Above: emission. Light is quantized into photons.",
+      "This is the effect that won Einstein the Nobel and launched quantum theory.",
+      "Run 'assemble', then submit the flag.",
+    ]],
+    ["Read the briefing. Run: cat briefing.txt", "Shine the photons. Run: shine-photons", "Eject electrons. Run: eject-electrons", "Measure the threshold. Run: measure-threshold", "Run 'assemble', then submit the flag"],
+    { "photoelectric.txt": "bright red: 0 electrons\ndim blue: electrons!\nE_photon = h*f, threshold frequency f0" },
+  ),
+  "quantum-x06": mkDeepCtf(
+    "Quantum weirdness fades into classical reality through decoherence. Prepare a superposition, watch the environment destroy it, then isolate the system to keep it coherent.",
+    "OP: QUANTUM TO CLASSICAL\nTarget: a qubit coupled to its environment.\nGoal: prepare, watch decoherence, isolate.\nSequence: prepare-qubit -> observe-decoherence -> isolate-system",
+    "FLAG{D3C0H3R3NC3_",
+    "Mission Brief",
+    ["prepare-qubit", "1S0L4T3_", "Qubit Prepared", [
+      "$ prepare-qubit --superposition",
+      "Put the qubit in a clean superposition; phase information is intact.",
+      "Coherence is what makes it quantum.",
+      "Next: observe-decoherence",
+    ]],
+    ["observe-decoherence", "C0H3R3NT_", "Decoherence Observed", [
+      "$ observe-decoherence",
+      "Stray coupling to the environment leaks phase info; superposition decays toward a classical mix.",
+      "This is why big, warm objects look classical.",
+      "Next: isolate-system",
+    ]],
+    ["isolate-system", "3XT3ND3D}", "System Isolated", [
+      "$ isolate-system --cryo --shield",
+      "Cooling + shielding cut the coupling; coherence time extended enough to compute.",
+      "Fighting decoherence is the core engineering problem of quantum computing.",
+      "Run 'assemble', then submit the flag.",
+    ]],
+    ["Read the briefing. Run: cat briefing.txt", "Prepare the qubit. Run: prepare-qubit", "Observe decoherence. Run: observe-decoherence", "Isolate the system. Run: isolate-system", "Run 'assemble', then submit the flag"],
+    { "decoherence.txt": "coherent superposition -> environment coupling -> classical mixture\nfix: isolate (cryo + shielding)" },
+  ),
+  "quantum-x07": mkDeepCtf(
+    "Reality is not locally real. Entangle a pair, test correlations across measurement settings, and rule out every local hidden-variable theory.",
+    "OP: NOT LOCAL\nTarget: an entangled pair.\nGoal: entangle, test locality, rule out hidden variables.\nSequence: entangle-pair -> test-locality -> rule-out-lhv",
+    "FLAG{N0NL0C4L_",
+    "Mission Brief",
+    ["entangle-pair", "B3LL_", "Pair Entangled", [
+      "$ entangle-pair",
+      "Created a maximally entangled pair shared between two distant labs.",
+      "Local realism says each outcome is predetermined.",
+      "Next: test-locality",
+    ]],
+    ["test-locality", "LHV_", "Locality Tested", [
+      "$ test-locality --random-settings",
+      "With space-like separated, randomly chosen settings, measured the CHSH correlation.",
+      "Closing the locality + freedom-of-choice loopholes.",
+      "Next: rule-out-lhv",
+    ]],
+    ["rule-out-lhv", "RUL3D0UT}", "Hidden Variables Ruled Out", [
+      "$ rule-out-lhv",
+      "S = 2.7 > 2: no local hidden-variable theory survives (2022 Nobel-winning result).",
+      "The universe is genuinely nonlocal — the backbone of quantum networks.",
+      "Run 'assemble', then submit the flag.",
+    ]],
+    ["Read the briefing. Run: cat briefing.txt", "Entangle the pair. Run: entangle-pair", "Test locality. Run: test-locality", "Rule out hidden variables. Run: rule-out-lhv", "Run 'assemble', then submit the flag"],
+    { "nonlocal.txt": "settings: random, space-like separated\nCHSH classical max: 2\nmeasured S: 2.7 -> LHV excluded" },
+  ),
+  "quantum-x08": mkDeepCtf(
+    "Qubits are fragile, so we protect them with quantum error correction. Encode a logical qubit, inject an error, read the syndrome, and correct it without measuring the data.",
+    "OP: PROTECTING THE FRAGILE\nTarget: a noisy logical qubit.\nGoal: encode, inject an error, correct via syndrome.\nSequence: encode-logical -> inject-error -> correct-syndrome",
+    "FLAG{QEC_",
+    "Mission Brief",
+    ["encode-logical", "SURF4C3_", "Logical Qubit Encoded", [
+      "$ encode-logical --code surface",
+      "Spread one logical qubit across many physical qubits (surface code).",
+      "Redundancy without copying (no-cloning forbids copying).",
+      "Next: inject-error",
+    ]],
+    ["inject-error", "SYNDR0M3_", "Error Injected", [
+      "$ inject-error --bit-flip q7",
+      "A bit-flip hits one physical qubit. Reading the data directly would destroy the state.",
+      "Instead, measure stabilizers (parities).",
+      "Next: correct-syndrome",
+    ]],
+    ["correct-syndrome", "C0RR3CT3D}", "Syndrome Corrected", [
+      "$ correct-syndrome",
+      "Syndrome pinpoints the flipped qubit; apply the inverse -> logical state restored, never measured.",
+      "Error correction is what makes large-scale quantum computing possible.",
+      "Run 'assemble', then submit the flag.",
+    ]],
+    ["Read the briefing. Run: cat briefing.txt", "Encode the logical qubit. Run: encode-logical", "Inject an error. Run: inject-error", "Correct the syndrome. Run: correct-syndrome", "Run 'assemble', then submit the flag"],
+    { "qec.txt": "code: surface\nerror: bit-flip on q7\nstabilizer syndrome -> locate -> correct (data never read)" },
+  ),
+  "quantum-x09": mkDeepCtf(
+    "Particles are excitations of underlying fields. Quantize a field, excite a mode to create a particle, and count the quanta — the core idea of quantum field theory.",
+    "OP: FIELDS ALL THE WAY DOWN\nTarget: a quantum field.\nGoal: quantize it, excite a mode, count quanta.\nSequence: quantize-field -> excite-mode -> count-quanta",
+    "FLAG{QFT_",
+    "Mission Brief",
+    ["quantize-field", "F13LD_", "Field Quantized", [
+      "$ quantize-field",
+      "Treat the field as infinitely many quantum oscillators, one per mode.",
+      "The ground state is the vacuum (still buzzing with fluctuations).",
+      "Next: excite-mode",
+    ]],
+    ["excite-mode", "3XC1T3D_", "Mode Excited", [
+      "$ excite-mode --add-quantum",
+      "Add one quantum of energy to a mode -> that excitation IS a particle.",
+      "An electron is a ripple in the electron field; a photon in the EM field.",
+      "Next: count-quanta",
+    ]],
+    ["count-quanta", "QU4NT4}", "Quanta Counted", [
+      "$ count-quanta",
+      "Counted N excitations = N particles. Fields are fundamental; particles are their quanta.",
+      "QFT unifies quantum mechanics with special relativity.",
+      "Run 'assemble', then submit the flag.",
+    ]],
+    ["Read the briefing. Run: cat briefing.txt", "Quantize the field. Run: quantize-field", "Excite a mode. Run: excite-mode", "Count the quanta. Run: count-quanta", "Run 'assemble', then submit the flag"],
+    { "qft.txt": "field = many oscillators (modes)\nexcitation of a mode = a particle\nN quanta = N particles" },
+  ),
+  "quantum-x10": mkDeepCtf(
+    "What does quantum mechanics MEAN? Run a single experiment and compare how Copenhagen and Many-Worlds explain it — then confirm they make identical predictions.",
+    "OP: WHAT DOES IT MEAN\nTarget: one quantum measurement, many interpretations.\nGoal: run it, compare interpretations, note same predictions.\nSequence: run-experiment -> compare-interpretations -> note-same-predictions",
+    "FLAG{1NT3RPR3T_",
+    "Mission Brief",
+    ["run-experiment", "S4M3_", "Experiment Run", [
+      "$ run-experiment",
+      "Measured a superposed qubit: outcome 0 this run, probabilities as predicted.",
+      "The math is undisputed; the meaning is not.",
+      "Next: compare-interpretations",
+    ]],
+    ["compare-interpretations", "PR3D1CT_", "Interpretations Compared", [
+      "$ compare-interpretations",
+      "Copenhagen: the wavefunction collapsed. Many-Worlds: both outcomes happened in branching worlds.",
+      "Pilot-wave, etc., tell yet another story.",
+      "Next: note-same-predictions",
+    ]],
+    ["note-same-predictions", "0UTC0M3}", "Predictions Identical", [
+      "$ note-same-predictions",
+      "All mainstream interpretations predict the SAME measurable statistics — they differ in story, not numbers.",
+      "Quantum mechanics works; what it means stays open.",
+      "Run 'assemble', then submit the flag.",
+    ]],
+    ["Read the briefing. Run: cat briefing.txt", "Run the experiment. Run: run-experiment", "Compare interpretations. Run: compare-interpretations", "Note the same predictions. Run: note-same-predictions", "Run 'assemble', then submit the flag"],
+    { "interpret.txt": "Copenhagen: collapse\nMany-Worlds: branching\nPilot-wave: hidden guidance\nall: identical predictions" },
+  ),
+};
+
+for (const s of quantumDeepStages) {
+  const ctf = QX_CTF[s.id];
+  if (ctf) { s.challengeType = "ctf"; s.ctf = ctf; }
+}

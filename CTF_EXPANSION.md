@@ -18,7 +18,7 @@ Deep CTFs are **3 technical steps** (recon → exploit → extract/verify), each
 - [x] **computing-foundations** (10) — DONE 2026-06-07 (Ohm's-law hidden load, circuit break, transistor switch, NAND gate, binary decode, ALU overflow, memory remanence, fetch-execute trace, opcode injection, physical hardening)
 - [x] **silicon-fab** (10) — DONE 2026-06-07 (substrate dopant trojan, cleanroom particle, litho overlay, EUV focus, implant-dose tamper, damascene etch defect, GAA cell trojan, counterfeit chiplet, yield/binning trojan screen, qubit coherence tamper)
 - [x] **quantum-intro** (10) — DONE 2026-06-07 (quantum scale, superposition/Hadamard, measurement-collapse/QKD eavesdrop, double-slit which-path, amplitude interference, Bell/CHSH, qubit/Bloch, circuit build, Grover search, HNDL→PQC migration)
-- [ ] **quantum-deep** (10) — physics; CTF marginal
+- [x] **quantum-deep** (10) — DONE 2026-06-07 (Stern-Gerlach spin, tunneling current, Pauli degeneracy, orbital quantum numbers, photoelectric threshold, decoherence isolation, Bell nonlocality/LHV, surface-code QEC, QFT field quanta, interpretations)
 - [ ] deep-tech epochs' 4 quiz stages each: ot-sec, vehicle-sec-2, robot-sec-2, space-race-2, threat-frameworks (~20)
 - [ ] first-journey 1/2/3 (30) — beginner cyber; gentle guided CTFs possible
 
@@ -29,4 +29,4 @@ baseball (150) · debate (80) · flag-football (30) · french/italian (40) · pa
 The ~292 pre-existing CTFs mostly use the older 2-step `mkCtf`. Gradually upgrade high-traffic epochs to the 3-step `mkDeepCtf` depth. Not yet started.
 
 ## Status
-341 CTFs total (was 292). validate-ctf: 0 problems. Shared factory: `packages/core/src/ctf-deep.ts`.
+351 CTFs total (was 292). All 6 technical-fundamentals epochs done (ai-ml, sec, computing, silicon, quantum-intro, quantum-deep) = 59 new CTFs. validate-ctf: 0 problems. Shared factory: `packages/core/src/ctf-deep.ts`.
