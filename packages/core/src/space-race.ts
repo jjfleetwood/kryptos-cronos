@@ -173,8 +173,9 @@ export const spaceRaceStages: StageConfig[] = [
         "Run 'assemble' to view collected fragments, then submit the flag",
       ],
       fragments: [
-        { trigger: "/briefing.txt", value: "FLAG{V14S4T_", label: "Mission Brief — Operation KA-SAT" },
-        { trigger: "connect-vpn", value: "K4S4T_", label: "Management Plane Reached" },
+        { trigger: "/briefing.txt", value: "FLAG{", label: "Mission Brief — Operation KA-SAT" },
+        { trigger: "connect-vpn", value: "V14S4T_", label: "Management Plane Reached" },
+        { trigger: "list-modems", value: "K4S4T_", label: "Modem Fleet Enumerated" },
         { trigger: "deploy-wiper", value: "4C1DR41N}", label: "AcidRain Deployed — Fleet Bricked" },
       ],
       files: {
@@ -310,7 +311,8 @@ export const spaceRaceStages: StageConfig[] = [
         "Run 'assemble' to view collected fragments, then submit the flag",
       ],
       fragments: [
-        { trigger: "/briefing.txt", value: "FLAG{GN55_", label: "Mission Brief — PNT Hijack" },
+        { trigger: "/briefing.txt", value: "FLAG{", label: "Mission Brief — PNT Hijack" },
+        { trigger: "scan-rf", value: "GN55_", label: "GNSS Lock Confirmed" },
         { trigger: "craft-spoof", value: "SP00F3D_", label: "Counterfeit Signal Crafted" },
         { trigger: "transmit", value: "PNT_H1J4CK}", label: "Receiver Captured — Drone Diverted" },
       ],
@@ -443,7 +445,8 @@ export const spaceRaceStages: StageConfig[] = [
         "Run 'assemble' to view collected fragments, then submit the flag",
       ],
       fragments: [
-        { trigger: "/briefing.txt", value: "FLAG{TTC_", label: "Mission Brief — Link Takeover" },
+        { trigger: "/briefing.txt", value: "FLAG{", label: "Mission Brief — Link Takeover" },
+        { trigger: "decode-telemetry", value: "TTC_", label: "Downlink Format Learned" },
         { trigger: "forge-telecommand", value: "N0_4UTH_", label: "Telecommand Forged (no auth)" },
         { trigger: "send-cmd ATTITUDE_SLEW", value: "S4T_PWN3D}", label: "Command Accepted — Spacecraft Slewed" },
       ],
@@ -580,8 +583,9 @@ export const spaceRaceStages: StageConfig[] = [
         "Run 'assemble' to view collected fragments, then submit the flag",
       ],
       fragments: [
-        { trigger: "/briefing.txt", value: "FLAG{CCSD5_", label: "Mission Brief — Downlink Decode" },
-        { trigger: "sync-frames", value: "4SM_1ACFFC1D_", label: "Frame Sync Acquired" },
+        { trigger: "/briefing.txt", value: "FLAG{", label: "Mission Brief — Downlink Decode" },
+        { trigger: "sync-frames", value: "CCSD5_", label: "Frame Sync Acquired" },
+        { trigger: "extract-packets", value: "4SM_1ACFFC1D_", label: "Space Packets Extracted" },
         { trigger: "decode-payload", value: "T3L3M3TRY}", label: "Payload Decoded" },
       ],
       files: {
@@ -715,12 +719,14 @@ export const spaceRaceStages: StageConfig[] = [
       hint: "Treat it like normal software security: map the ground software, exploit a trusted dependency, then pivot from the server to the antenna controller.",
       hints: [
         "Read the mission briefing. Run: cat briefing.txt",
+        "Map the ground-station network. Run: scan-groundstation",
         "Exploit the poisoned third-party dependency. Run: exploit-dependency",
         "Pivot from the scheduler host to the antenna controller. Run: pivot-antenna",
         "Run 'assemble' to view collected fragments, then submit the flag",
       ],
       fragments: [
-        { trigger: "/briefing.txt", value: "FLAG{GR0UND_", label: "Mission Brief — Ground Segment" },
+        { trigger: "/briefing.txt", value: "FLAG{", label: "Mission Brief — Ground Segment" },
+        { trigger: "scan-groundstation", value: "GR0UND_", label: "Ground Network Mapped" },
         { trigger: "exploit-dependency", value: "SUPPLY_CH41N_", label: "Dependency Poisoned — Code Execution" },
         { trigger: "pivot-antenna", value: "4NT3NN4_0WN3D}", label: "Antenna Controller Owned" },
       ],
@@ -844,12 +850,14 @@ export const spaceRaceStages: StageConfig[] = [
       hint: "Trust-by-address is the flaw. Tap the bus, impersonate the Bus Controller, then inject a command to the target Remote Terminal.",
       hints: [
         "Read the mission briefing. Run: cat briefing.txt",
+        "Tap the MIL-STD-1553 bus and observe the schedule. Run: tap-bus",
         "Impersonate the Bus Controller on the 1553 bus. Run: spoof-bc",
         "Inject a command to the reaction-wheel Remote Terminal. Run: inject-command",
         "Run 'assemble' to view collected fragments, then submit the flag",
       ],
       fragments: [
-        { trigger: "/briefing.txt", value: "FLAG{M1L_1553_", label: "Mission Brief — Bus Injection" },
+        { trigger: "/briefing.txt", value: "FLAG{", label: "Mission Brief — Bus Injection" },
+        { trigger: "tap-bus", value: "M1L_1553_", label: "1553 Bus Tapped" },
         { trigger: "spoof-bc", value: "BUS_C0NTR0LL3R_", label: "Bus Controller Spoofed" },
         { trigger: "inject-command", value: "SUBSYST3M_0WN3D}", label: "Remote Terminal Commanded" },
       ],
