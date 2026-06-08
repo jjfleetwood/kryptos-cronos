@@ -49,4 +49,4 @@ Convert the ~292 pre-existing 2-step `mkCtf` CTFs to 3-step `mkDeepCtf`. **Trick
 
 ## Status
 371 CTFs total (was 292). 6 fundamentals epochs + 5 deep-tech epochs' quiz stages = 79 new CTFs.
-**Deepen axis: 9 epochs / 52 CTFs converted 2-step → 3-step** (factory: physics-of-hacking, ot-sec, threat-frameworks, space-race-2, robot-sec-2, vehicle-sec-2; inline v1: vehicle-sec, robot-sec). All flag-identical, validated, deployed. ~11 inline epochs (~200 CTFs) remain. validate-ctf: 0 problems. Shared factory: `packages/core/src/ctf-deep.ts`.
+**Deepen axis: 10 epochs / 58 CTFs converted 2-step → 3-step** (factory: physics-of-hacking, ot-sec, threat-frameworks, space-race-2, robot-sec-2, vehicle-sec-2; inline v1: vehicle-sec, robot-sec, space-race). All deep-tech v1+v2+factory epochs done. ~10 inline epochs (~190 CTFs) remain: cisco-2/3/4/5, mitre, mitre-atlas, owasp-llm, quantum-1/2/3/4/5, umbrella, tech-audit-2, emerging-tech, ancient/cisco-core (stages.ts), first-journey. validate-ctf: 0 problems. Shared factory: `packages/core/src/ctf-deep.ts`.
