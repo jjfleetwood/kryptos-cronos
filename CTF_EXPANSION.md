@@ -45,6 +45,11 @@ Convert the ~292 pre-existing 2-step `mkCtf` CTFs to 3-step `mkDeepCtf`. **Trick
 - [x] **robot-sec** v1 (6 inline) — DONE 2026-06-07 (ROS/DDS, rogue arm, MAVLink drone, teleop hijack, adversarial patch, supply-chain implant). Now 100% 3-step.
 - [x] **space-race** v1 (6 inline) — DONE 2026-06-07 (Viasat/AcidRain, GNSS spoof, TT&C takeover, CCSDS decode, ground supply-chain, MIL-STD-1553). Now 100% 3-step. (4 already had 3-step hints — just added the bonus cmd to fragments.)
 
+**ORIGINAL-EPOCH STRUCTURE (investigated 2026-06-07):**
+- `mitre`, `mitre-atlas`, `owasp-llm` = already 3 FILE-fragments (cat 3 files) → ALREADY 3-step, no change needed.
+- `cisco-2/3/4/5`, `quantum-1/2/3/4/5`, `umbrella` = themed file-report fragment + 2 arg-command fragments (3 fragments / 2 actions — same starting depth as the factory ones). These DO qualify but have **NO bonus command to promote** — each CTF needs a NEW middle arg-command authored + flag re-split + hint. ~2 substantive edits/CTF, ~190 CTFs, no shortcut. Large fresh batch.
+- `tech-audit-2`, `emerging-tech`, `ancient`/`cisco-core` (stages.ts), `first-journey` = inspect structure first (likely similar file+command or inline).
+
 **REMAINING use INLINE `ctf:{...}` objects** (no factory) — a different, heavier per-CTF conversion: each stage has an inline `ctf` with its own `fragments`/`files`/`extraCommands` functions written directly in the stage object. To deepen: in each inline `ctf`, re-split the flag across an added 3rd fragment, add a 3rd `extraCommands` entry + richer `$cmd` lines + (optionally) an artifact file. Flags stay byte-identical (re-split). Epochs: vehicle-sec/robot-sec/space-race v1 (6 each, e.g. vehicle-sec.ts l.172 fragments), cisco-2/3/4/5, mitre, mitre-atlas, owasp-llm, quantum-1/2/3/4/5, umbrella, tech-audit-2, emerging-tech, ancient/cisco-core (stages.ts), first-journey. ~15+ epochs, ~250 CTFs.
 
 ## Status
