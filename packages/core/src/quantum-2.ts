@@ -115,12 +115,14 @@ SLH-DSA-128 Sig         32 bytes   64 bytes   7856 bytes  100x slower
       hints: [
         "Read the standardization brief. Run: cat pqc-standards.txt",
         "Query the NIST PQC algorithm database. Run: nist-pqc-query",
+        "Classify each winner by primitive (KEM vs signature) and use case. Run: algo-classify",
         "Verify the security assumptions for each winning algorithm. Run: security-assumptions",
         "Run 'assemble' to view the assembled flag and get the submit command",
       ],
       fragments: [
         { trigger: "/pqc-standards.txt", value: "FLAG{NIST_PQC_", label: "Standards Brief — FIPS 203/204/205 Overview" },
-        { trigger: "nist-pqc-query", value: "FIPS203_ML_", label: "Database Query — Winning Algorithms Identified" },
+        { trigger: "nist-pqc-query", value: "FIPS203_", label: "Database Query — Winning Algorithms Identified" },
+        { trigger: "algo-classify", value: "ML_", label: "Algorithms Classified — KEM vs Signature" },
         { trigger: "security-assumptions", value: "KEM_LATTICE}", label: "Security Verified — Lattice + Hash-Based Confirmed" },
       ],
       files: {
@@ -131,7 +133,7 @@ SLH-DSA-128 Sig         32 bytes   64 bytes   7856 bytes  100x slower
           "FIPS 205: SLH-DSA (SPHINCS+) — hash-based signatures",
           "Pending: FN-DSA (FALCON) — fast-Fourier signatures",
           "",
-          "Sequence: nist-pqc-query → security-assumptions → assemble",
+          "Sequence: nist-pqc-query → algo-classify → security-assumptions → assemble",
         ].join("\n"),
       },
       dirs: { "/": [{ name: "pqc-standards.txt", isDir: false }] },
@@ -149,6 +151,22 @@ SLH-DSA-128 Sig         32 bytes   64 bytes   7856 bytes  100x slower
             "   SIKE (Round 4 finalist) was broken in 1 hour by a single researcher in 2022.",
             "   Public competition over years is the only proven method for algorithm trust.",
             "   FIPS 203 (ML-KEM), 204 (ML-DSA), 205 (SLH-DSA) are the finalists to deploy.",
+          ],
+        }),
+        "algo-classify": (_args: string[]) => ({
+          lines: [
+            "Classifying the NIST PQC winners by primitive and use case...",
+            "  ML-KEM (FIPS 203)   — KEM        → TLS/IKEv2 key exchange, HNDL defense",
+            "  ML-DSA (FIPS 204)   — signature  → code signing, certificates (general)",
+            "  SLH-DSA (FIPS 205)  — signature  → firmware/root-of-trust (conservative)",
+            "  FN-DSA/FALCON       — signature  → bandwidth-constrained (small sigs)",
+            "Mapped: 1 KEM + 3 signatures, each to its deployment niche.",
+            "Next: security-assumptions",
+            "",
+            ">> LEARN: PQC is not one algorithm — match primitive to the job",
+            "   You need a KEM for key exchange and a signature for authentication;",
+            "   size/speed trade-offs decide which signature fits TLS vs firmware vs IoT.",
+            "   FIPS 203/204/205 cover the defaults; FN-DSA fills the small-signature gap.",
           ],
         }),
         "security-assumptions": (_args: string[]) => ({
@@ -275,12 +293,14 @@ print("Decrypted:", 1 if abs(decrypted - q//2) < q//4 else 0)  # → 1`,
       hints: [
         "Read the LWE brief. Run: cat lwe-brief.txt",
         "Attempt to solve the LWE instance classically. Run: lwe-solve classical",
+        "Run the lattice estimator for the concrete bit-security of these parameters. Run: lwe-solve estimate",
         "Verify quantum algorithms provide no significant speedup. Run: lwe-solve quantum",
         "Run 'assemble' to view the assembled flag and get the submit command",
       ],
       fragments: [
         { trigger: "/lwe-brief.txt", value: "FLAG{LW3_", label: "LWE Brief — Module-LWE Problem Definition" },
-        { trigger: "lwe-solve classical", value: "LATTIC3_HARD_", label: "Classical Solver — Exponential Time Confirmed" },
+        { trigger: "lwe-solve classical", value: "LATTIC3_", label: "Classical Solver — Exponential Time Confirmed" },
+        { trigger: "lwe-solve estimate", value: "HARD_", label: "Lattice Estimator — Concrete Bit-Security" },
         { trigger: "lwe-solve quantum", value: "QUANTUM_SAFE}", label: "Quantum Solver — No Significant Speedup" },
       ],
       files: {
@@ -290,7 +310,7 @@ print("Decrypted:", 1 if abs(decrypted - q//2) < q//4 else 0)  # → 1`,
           "Given: matrix A (256×256 mod 3329) + vector b = As + e",
           "Task: recover secret vector s",
           "",
-          "Sequence: lwe-solve classical → lwe-solve quantum → assemble",
+          "Sequence: lwe-solve classical → lwe-solve estimate → lwe-solve quantum → assemble",
         ].join("\n"),
       },
       dirs: { "/": [{ name: "lwe-brief.txt", isDir: false }] },
@@ -313,13 +333,32 @@ print("Decrypted:", 1 if abs(decrypted - q//2) < q//4 else 0)  # → 1`,
               ],
             };
           }
+          if (args[0] === "estimate") {
+            return {
+              lines: [
+                "Running the Lattice Estimator (Albrecht et al.) on the parameters...",
+                "  modeling primal (uSVP) and dual attacks via BKZ cost models",
+                "  primal-uSVP: required block size β ≈ 406 → ~2^131 gate cost",
+                "  dual attack: ~2^133 gate cost (slightly worse for the attacker)",
+                "  core-SVP classical ≈ 2^118, quantum ≈ 2^107",
+                "  → meets NIST security category 1 (≥ AES-128) with margin",
+                "Concrete bit-security quantified — not just 'exponential'.",
+                "Try: lwe-solve quantum",
+                "",
+                ">> LEARN: PQC parameters are chosen by a concrete cost estimator",
+                "   The Lattice Estimator turns asymptotic hardness into a real bit count,",
+                "   which is how NIST picked ML-KEM's n, q, and noise parameters.",
+                "   'Exponential' is not enough — you must price the best known attack.",
+              ],
+            };
+          }
           return {
             lines: [
               "Running best classical lattice attack (BKZ algorithm) on LWE-256...",
               "BKZ block size: 384  Operations: 2^75 (approx 37 septillion)",
               "Estimated classical time: 10^7 years on 1M CPU cluster",
               "Classical attack: INFEASIBLE for n=256, q=3329",
-              "Try: lwe-solve quantum",
+              "Try: lwe-solve estimate",
               "",
               ">> LEARN: LWE is exponentially hard for classical computers",
               "   The noise vector e hides the secret s — removing it requires exponential search.",
@@ -435,12 +474,14 @@ with oqs.KeyEncapsulation("Kyber768") as kem:
       hints: [
         "Read the ML-KEM deployment guide. Run: cat mlkem-guide.txt",
         "Generate an ML-KEM-768 key pair and encapsulate a secret. Run: mlkem-demo keygen",
+        "Verify the key, ciphertext, and shared-secret sizes against the FIPS 203 spec. Run: mlkem-demo verify",
         "Decapsulate and verify the shared secret. Run: mlkem-demo decap",
         "Run 'assemble' to view the assembled flag and get the submit command",
       ],
       fragments: [
         { trigger: "/mlkem-guide.txt", value: "FLAG{ML_KEM_", label: "Deployment Guide — ML-KEM-768 Overview" },
-        { trigger: "mlkem-demo keygen", value: "768_FIPS203_", label: "Key Pair Generated — Encapsulation Successful" },
+        { trigger: "mlkem-demo keygen", value: "768_", label: "Key Pair Generated — Encapsulation Successful" },
+        { trigger: "mlkem-demo verify", value: "FIPS203_", label: "Sizes Verified — FIPS 203 ML-KEM-768 Compliant" },
         { trigger: "mlkem-demo decap", value: "RSA_REPLAC3D}", label: "Decapsulation Verified — Shared Secret Confirmed" },
       ],
       files: {
@@ -454,7 +495,7 @@ with oqs.KeyEncapsulation("Kyber768") as kem:
           "Cisco deployment: IPsec IKEv2 with ML-KEM-768 key exchange (2025+)",
           "Hybrid mode: X25519 + ML-KEM-768 (recommended during migration)",
           "",
-          "Sequence: mlkem-demo keygen → mlkem-demo decap → assemble",
+          "Sequence: mlkem-demo keygen → mlkem-demo verify → mlkem-demo decap → assemble",
         ].join("\n"),
       },
       dirs: { "/": [{ name: "mlkem-guide.txt", isDir: false }] },
@@ -478,6 +519,25 @@ with oqs.KeyEncapsulation("Kyber768") as kem:
               ],
             };
           }
+          if (args[0] === "verify") {
+            return {
+              lines: [
+                "Verifying ML-KEM-768 artifact sizes against the FIPS 203 spec...",
+                "  public key : 1184 bytes  → spec 1184 ✓",
+                "  ciphertext : 1088 bytes  → spec 1088 ✓",
+                "  private key: 2400 bytes  → spec 2400 ✓",
+                "  shared secret: 32 bytes  → spec 32 ✓",
+                "  parameter set: ML-KEM-768 → NIST security level 3",
+                "All sizes conform to FIPS 203 — implementation is interoperable.",
+                "Run: mlkem-demo decap",
+                "",
+                ">> LEARN: PQC artifacts are large but fixed — validate the sizes",
+                "   FIPS 203 fixes every byte length; checking them catches a wrong",
+                "   parameter set or a truncated key before it breaks interop.",
+                "   ML-KEM-768 is the NIST-recommended default (level 3).",
+              ],
+            };
+          }
           return {
             lines: [
               "ML-KEM-768 demo:",
@@ -487,7 +547,7 @@ with oqs.KeyEncapsulation("Kyber768") as kem:
               "Bob encapsulates using public key:",
               "  Ciphertext: 1088 bytes",
               "  Shared secret (Bob): 3f8a2b1c4d5e6f7a8b9c0d1e2f3a4b5c",
-              "Run: mlkem-demo decap",
+              "Run: mlkem-demo verify",
               "",
               ">> LEARN: KEM encapsulation avoids transmitting the shared secret",
               "   Bob encapsulates a random secret inside the ciphertext using Alice's public key.",
@@ -608,12 +668,14 @@ with oqs.Signature("Dilithium3") as signer:
       hints: [
         "Read the code signing guide. Run: cat codesign-guide.txt",
         "Generate ML-DSA-65 key pair and sign the firmware. Run: mldsa-sign firmware.bin",
+        "Inspect the Dilithium signature structure and parameter set before verifying. Run: mldsa-inspect firmware.bin",
         "Verify the firmware signature. Run: mldsa-verify firmware.bin",
         "Run 'assemble' to view the assembled flag and get the submit command",
       ],
       fragments: [
         { trigger: "/codesign-guide.txt", value: "FLAG{ML_DSA_", label: "Code Signing Guide — ML-DSA-65 Pipeline" },
-        { trigger: "mldsa-sign firmware.bin", value: "65_FIPS204_", label: "Firmware Signed — Dilithium Signature Generated" },
+        { trigger: "mldsa-sign firmware.bin", value: "65_", label: "Firmware Signed — Dilithium Signature Generated" },
+        { trigger: "mldsa-inspect firmware.bin", value: "FIPS204_", label: "Signature Structure Inspected — Level 3 Params" },
         { trigger: "mldsa-verify firmware.bin", value: "CODESIGN_PQC}", label: "Signature Verified — Quantum-Safe Code Signing Active" },
       ],
       files: {
@@ -629,7 +691,7 @@ with oqs.Signature("Dilithium3") as signer:
           "  - Cisco MACsec: ML-DSA identity certificates",
           "  - Silicon One P200: hardware-accelerated ML-DSA at 800G",
           "",
-          "Sequence: mldsa-sign → mldsa-verify → assemble",
+          "Sequence: mldsa-sign → mldsa-inspect → mldsa-verify → assemble",
         ].join("\n"),
         "/firmware.bin": "CISCO_IOSXE_17.14_FIRMWARE_PAYLOAD",
       },
@@ -650,6 +712,22 @@ with oqs.Signature("Dilithium3") as signer:
             "   CRYSTALS-Dilithium (ML-DSA) is based on Module-LWE and Module-SIS hardness.",
             "   ML-DSA-65 signatures are 3293 bytes vs 64 bytes for ECDSA — plan storage.",
             "   Cisco deploys ML-DSA in IOS-XE secure boot, IPsec IKEv2, and MACsec.",
+          ],
+        }),
+        "mldsa-inspect": (_args: string[]) => ({
+          lines: [
+            "Inspecting the ML-DSA-65 signature on firmware.bin...",
+            "  parameter set: ML-DSA-65 (Dilithium) — NIST security level 3",
+            "  public key: 1952 bytes   signature: 3309 bytes",
+            "  structure: (c~, z, h) — Fiat-Shamir with aborts (rejection sampling)",
+            "  z vector bounded → no secret leakage from the response",
+            "Structure and parameters match FIPS 204 ML-DSA-65.",
+            "Next: mldsa-verify firmware.bin",
+            "",
+            ">> LEARN: Dilithium signs via Fiat-Shamir with aborts",
+            "   Rejection sampling keeps the signature distribution independent of the",
+            "   secret key — that is what stops the signature from leaking it.",
+            "   Bigger than RSA (3309 vs 256 B) but verifiable in microseconds.",
           ],
         }),
         "mldsa-verify": (_args: string[]) => ({
@@ -775,12 +853,14 @@ SLH-DSA-SHAKE-128f Level1  32B     64B       17088B    0.22s
       hints: [
         "Read the root CA migration guide. Run: cat rootca-guide.txt",
         "Sign the intermediate CA certificate with SLH-DSA. Run: slhdsa-sign intermediate-ca.crt",
+        "Inspect the SLH-DSA hypertree structure and one-time-signature usage. Run: slhdsa-inspect chain",
         "Verify the certificate chain with the SLH-DSA root. Run: slhdsa-verify chain",
         "Run 'assemble' to view the assembled flag and get the submit command",
       ],
       fragments: [
         { trigger: "/rootca-guide.txt", value: "FLAG{SLH_DSA_", label: "Root CA Guide — SLH-DSA Migration Plan" },
-        { trigger: "slhdsa-sign intermediate-ca.crt", value: "FIPS205_ROOTCA_", label: "Intermediate CA Signed — SLH-DSA Root Signature" },
+        { trigger: "slhdsa-sign intermediate-ca.crt", value: "FIPS205_", label: "Intermediate CA Signed — SLH-DSA Root Signature" },
+        { trigger: "slhdsa-inspect chain", value: "ROOTCA_", label: "Hypertree Inspected — FORS + WOTS+ Layers" },
         { trigger: "slhdsa-verify chain", value: "HASH_SAFE}", label: "Chain Verified — Hash-Only Root of Trust Active" },
       ],
       files: {
@@ -790,7 +870,7 @@ SLH-DSA-SHAKE-128f Level1  32B     64B       17088B    0.22s
           "Security: hash-function only — most conservative",
           "Signature size: 29792 bytes | Key: 64B public, 128B private",
           "",
-          "Sequence: slhdsa-sign → slhdsa-verify → assemble",
+          "Sequence: slhdsa-sign → slhdsa-inspect → slhdsa-verify → assemble",
         ].join("\n"),
         "/intermediate-ca.crt": "INTERMEDIATE_CA_CERTIFICATE_PLACEHOLDER",
       },
@@ -809,6 +889,23 @@ SLH-DSA-SHAKE-128f Level1  32B     64B       17088B    0.22s
             "   SLH-DSA security requires only SHA-256 collision resistance — no algebra.",
             "   Even if lattice problems are broken, SLH-DSA root CA signatures remain safe.",
             "   Root CA keys with 20-30yr validity spanning Q-Day make SLH-DSA essential.",
+          ],
+        }),
+        "slhdsa-inspect": (_args: string[]) => ({
+          lines: [
+            "Inspecting the SLH-DSA-SHA2-256s signature structure...",
+            "  it is a stateless hash-based hypertree (SPHINCS+):",
+            "  bottom: FORS few-time signature on the message digest",
+            "  layers: WOTS+ one-time signatures chained up the hypertree",
+            "  root: 64-byte public key — the only long-term trust anchor",
+            "  signature: 29,792 bytes (big, but signing is rare for a root CA)",
+            "Hash-only construction confirmed — no number-theory assumptions.",
+            "Next: slhdsa-verify chain",
+            "",
+            ">> LEARN: SLH-DSA trades size for the most conservative security",
+            "   Its security rests only on the hash function — nothing to break with",
+            "   Shor or lattice advances — ideal for a rarely-signing root of trust.",
+            "   Stateless (vs XMSS) means no catastrophic key-reuse failure mode.",
           ],
         }),
         "slhdsa-verify": (_args: string[]) => ({
@@ -935,12 +1032,14 @@ with oqs.Signature("Dilithium2") as dilithium:
       hints: [
         "Read the IoT security brief. Run: cat iot-brief.txt",
         "Compare signature sizes for ECDSA vs FALCON-512. Run: sig-compare",
+        "Profile the LoRaWAN airtime budget for each signature size. Run: airtime-budget",
         "Sign a sensor reading with FALCON-512 and verify. Run: falcon-sign-verify",
         "Run 'assemble' to view the assembled flag and get the submit command",
       ],
       fragments: [
         { trigger: "/iot-brief.txt", value: "FLAG{FALCON_", label: "IoT Brief — Bandwidth-Constrained Signing" },
-        { trigger: "sig-compare", value: "512_IOT_", label: "Size Comparison — FALCON 10x Smaller" },
+        { trigger: "sig-compare", value: "512_", label: "Size Comparison — FALCON vs Dilithium vs ECDSA" },
+        { trigger: "airtime-budget", value: "IOT_", label: "Airtime Profiled — FALCON Fits Duty Cycle" },
         { trigger: "falcon-sign-verify", value: "COMPACT_FNDSA}", label: "Sensor Signed — LoRaWAN Bandwidth Fit" },
       ],
       files: {
@@ -950,7 +1049,7 @@ with oqs.Signature("Dilithium2") as dilithium:
           "Current: ECDSA-256 (64-byte sig) — exceeds payload budget",
           "Target: smallest quantum-safe signature possible",
           "",
-          "Sequence: sig-compare → falcon-sign-verify → assemble",
+          "Sequence: sig-compare → airtime-budget → falcon-sign-verify → assemble",
         ].join("\n"),
       },
       dirs: { "/": [{ name: "iot-brief.txt", isDir: false }] },
@@ -968,6 +1067,22 @@ with oqs.Signature("Dilithium2") as dilithium:
             "   FALCON-512 signatures are 666 bytes vs 2420 bytes for ML-DSA-44.",
             "   FALCON uses NTRU lattices and FFT-based Gaussian sampling for efficiency.",
             "   Side-channel attacks on naive FALCON implementations can recover the private key.",
+          ],
+        }),
+        "airtime-budget": (_args: string[]) => ({
+          lines: [
+            "Profiling LoRaWAN airtime for each candidate signature (SF10, 125 kHz)...",
+            "  ML-DSA-65 (3309 B): ~14 frames → exceeds fair-use duty cycle ✗",
+            "  FALCON-512 (690 B): ~3 frames → ~0.4 s airtime → fits 1% duty cycle ✓",
+            "  ECDSA-256 (64 B): 1 frame ✓ but quantum-VULNERABLE",
+            "  EU868 1% duty cycle budget: ~30 s/hour per node",
+            "FALCON-512 is the only PQC option that fits the radio budget.",
+            "Next: falcon-sign-verify",
+            "",
+            ">> LEARN: On constrained radios, signature SIZE is the constraint",
+            "   Duty-cycle and airtime limits — not CPU — decide feasibility on LoRaWAN;",
+            "   FALCON's compact NTRU-lattice signatures are why FN-DSA exists.",
+            "   The trade-off: FALCON signing needs careful constant-time float handling.",
           ],
         }),
         "falcon-sign-verify": (_args: string[]) => ({
@@ -1098,12 +1213,14 @@ with oqs.KeyEncapsulation("Kyber768") as kem:
       hints: [
         "Read the hybrid TLS config guide. Run: cat hybrid-tls-guide.txt",
         "Configure the server with hybrid and classical ciphersuites. Run: configure-hybrid-tls",
+        "Inspect the hybrid key_share to confirm both shares combine into the secret. Run: inspect-keyshare",
         "Test the hybrid handshake with a PQC-capable client. Run: test-hybrid-handshake",
         "Run 'assemble' to view the assembled flag and get the submit command",
       ],
       fragments: [
         { trigger: "/hybrid-tls-guide.txt", value: "FLAG{HYBRID_", label: "Hybrid TLS Guide — X25519MLKEM768 Config" },
-        { trigger: "configure-hybrid-tls", value: "X25519_MLKEM768_", label: "TLS Configured — Hybrid Ciphersuites Active" },
+        { trigger: "configure-hybrid-tls", value: "X25519_", label: "TLS Configured — Hybrid Ciphersuites Active" },
+        { trigger: "inspect-keyshare", value: "MLKEM768_", label: "Key Share Inspected — Combined Secret Confirmed" },
         { trigger: "test-hybrid-handshake", value: "TLS_MIGR8}", label: "Hybrid Handshake — PQC Key Exchange Confirmed" },
       ],
       files: {
@@ -1114,7 +1231,7 @@ with oqs.KeyEncapsulation("Kyber768") as kem:
           "  2. X25519 (classical — legacy clients)",
           "Backward compatible: yes",
           "",
-          "Sequence: configure-hybrid-tls → test-hybrid-handshake → assemble",
+          "Sequence: configure-hybrid-tls → inspect-keyshare → test-hybrid-handshake → assemble",
         ].join("\n"),
       },
       dirs: { "/": [{ name: "hybrid-tls-guide.txt", isDir: false }] },
@@ -1132,6 +1249,22 @@ with oqs.KeyEncapsulation("Kyber768") as kem:
             "   X25519MLKEM768 requires an attacker to break both X25519 AND ML-KEM simultaneously.",
             "   Security holds even if one algorithm has an undiscovered vulnerability.",
             "   IETF TLS working group has drafted X25519MLKEM768 as the standard hybrid suite.",
+          ],
+        }),
+        "inspect-keyshare": (_args: string[]) => ({
+          lines: [
+            "Inspecting the X25519MLKEM768 hybrid key_share...",
+            "  client sends BOTH shares: X25519 pubkey (32 B) || ML-KEM-768 ct (1088 B)",
+            "  server derives ss_classical (X25519) and ss_pq (ML-KEM)",
+            "  combined secret = KDF(ss_classical || ss_pq)",
+            "  breaking the session requires breaking BOTH primitives",
+            "Concatenation-KEM construction confirmed (per draft-ietf-tls-hybrid).",
+            "Next: test-hybrid-handshake",
+            "",
+            ">> LEARN: Hybrid = safe if EITHER half holds",
+            "   Concatenating the classical and PQC secrets means a break in ML-KEM",
+            "   still leaves X25519 (and vice-versa) — zero downside to deploying now.",
+            "   That is why browsers/Cisco shipped X25519MLKEM768 first.",
           ],
         }),
         "test-hybrid-handshake": (_args: string[]) => ({
@@ -1425,12 +1558,14 @@ for f in findings:
       hints: [
         "Read the crypto inventory brief. Run: cat inventory-brief.txt",
         "Run the cryptographic asset scanner. Run: crypto-scan enterprise",
+        "Tag each discovered asset with algorithm, key size, and quantum-vulnerability. Run: crypto-tag",
         "Generate the classified CBOM with migration priorities. Run: cbom-generate",
         "Run 'assemble' to view the assembled flag and get the submit command",
       ],
       fragments: [
         { trigger: "/inventory-brief.txt", value: "FLAG{CBOM_", label: "Inventory Brief — CBOM Methodology" },
-        { trigger: "crypto-scan enterprise", value: "CRYPTO_INVENT0RY_", label: "Scan Complete — 312 Crypto Assets Found" },
+        { trigger: "crypto-scan enterprise", value: "CRYPTO_", label: "Scan Complete — 312 Crypto Assets Found" },
+        { trigger: "crypto-tag", value: "INVENT0RY_", label: "Assets Tagged — Quantum-Vulnerable Flagged" },
         { trigger: "cbom-generate", value: "PQC_READY}", label: "CBOM Generated — Migration Roadmap Ready" },
       ],
       files: {
@@ -1440,7 +1575,7 @@ for f in findings:
           "Target: identify all RSA/ECDSA/ECDH usage",
           "Output: CBOM with migration priorities",
           "",
-          "Sequence: crypto-scan → cbom-generate → assemble",
+          "Sequence: crypto-scan → crypto-tag → cbom-generate → assemble",
         ].join("\n"),
       },
       dirs: { "/": [{ name: "inventory-brief.txt", isDir: false }] },
@@ -1460,6 +1595,23 @@ for f in findings:
             "   Cryptography is embedded in TLS certs, SSH keys, JWT signing, and CI/CD pipelines.",
             "   The Heartbleed lesson: organizations that lack inventory cannot respond fast.",
             "   IBM CBOM generator and CISA Crypto Inventory Template are the standard tools.",
+          ],
+        }),
+        "crypto-tag": (_args: string[]) => ({
+          lines: [
+            "Tagging the 312 discovered assets by algorithm and quantum exposure...",
+            "  RSA-2048 / RSA-4096 : 184 assets → QUANTUM-VULNERABLE (Shor)",
+            "  ECDSA / ECDH P-256  : 71 assets  → QUANTUM-VULNERABLE (Shor)",
+            "  AES-128             : 38 assets  → WEAKENED (Grover → ~64-bit)",
+            "  AES-256 / SHA-384   : 19 assets  → QUANTUM-SAFE",
+            "  classifying each by key size, protocol, and data sensitivity",
+            "Tagged: 255 vulnerable, 38 weakened, 19 safe.",
+            "Next: cbom-generate",
+            "",
+            ">> LEARN: A CBOM needs algorithm-level tagging, not just an asset list",
+            "   Knowing WHICH primitive and key size each asset uses is what turns a",
+            "   raw inventory into a prioritized migration plan (Shor vs Grover risk).",
+            "   This tagging is the core of a Cryptography Bill of Materials.",
           ],
         }),
         "cbom-generate": (_args: string[]) => ({
@@ -1595,12 +1747,14 @@ def validate_mlkem768(kat_file="kem_kat_ml-kem-768.json"):
       hints: [
         "Read the validation guide. Run: cat validation-guide.txt",
         "Run NIST KAT vectors against the ML-KEM implementation. Run: run-kat ML-KEM-768",
+        "Fuzz malformed ciphertexts to confirm implicit-rejection handling. Run: fuzz-decaps ML-KEM-768",
         "Test the implementation for timing side-channels. Run: timing-test ML-KEM-768",
         "Run 'assemble' to view the assembled flag and get the submit command",
       ],
       fragments: [
         { trigger: "/validation-guide.txt", value: "FLAG{MLKEM_KAT_", label: "Validation Guide — KAT + Side-Channel Testing" },
-        { trigger: "run-kat ML-KEM-768", value: "VALID_CONSTTIME_", label: "100 KAT Vectors Passed — Implementation Valid" },
+        { trigger: "run-kat ML-KEM-768", value: "VALID_", label: "100 KAT Vectors Passed — Implementation Valid" },
+        { trigger: "fuzz-decaps ML-KEM-768", value: "CONSTTIME_", label: "Implicit Rejection Confirmed — No Decap Oracle" },
         { trigger: "timing-test ML-KEM-768", value: "FIPS}", label: "Timing Test Passed — Constant-Time Verified" },
       ],
       files: {
@@ -1610,7 +1764,7 @@ def validate_mlkem768(kat_file="kem_kat_ml-kem-768.json"):
           "Step 2: Test for timing side-channels (constant-time check)",
           "Step 3: Verify FIPS 140-3 boundary compliance",
           "",
-          "Sequence: run-kat → timing-test → assemble",
+          "Sequence: run-kat → fuzz-decaps → timing-test → assemble",
         ].join("\n"),
       },
       dirs: { "/": [{ name: "validation-guide.txt", isDir: false }] },
@@ -1628,6 +1782,22 @@ def validate_mlkem768(kat_file="kem_kat_ml-kem-768.json"):
             "   Known-Answer Tests verify the implementation against official test vectors.",
             "   Passing all KATs is required before claiming FIPS 203/204/205 compliance.",
             "   ACVTS tests all parameter sets and edge cases — not just the happy path.",
+          ],
+        }),
+        "fuzz-decaps": (_args: string[]) => ({
+          lines: [
+            "Fuzzing ML-KEM-768 decapsulation with 50,000 malformed ciphertexts...",
+            "  bit-flipped ct: decaps returns a pseudorandom shared secret (no error)",
+            "  truncated ct (rejected at length check) — handled cleanly",
+            "  valid-but-tampered ct: implicit rejection → KDF(z, ct) shared secret",
+            "  NO branch reveals whether decryption 'succeeded' → no error oracle",
+            "Fujisaki-Okamoto implicit rejection verified on all malformed inputs.",
+            "Next: timing-test ML-KEM-768",
+            "",
+            ">> LEARN: ML-KEM resists chosen-ciphertext attacks via implicit rejection",
+            "   On a bad ciphertext it returns a deterministic pseudorandom secret instead",
+            "   of an error — denying the attacker the decryption oracle CCA attacks need.",
+            "   A naive 'return error on failure' implementation would reintroduce the hole.",
           ],
         }),
         "timing-test": (_args: string[]) => ({

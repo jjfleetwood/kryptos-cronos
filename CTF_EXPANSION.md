@@ -47,11 +47,19 @@ Convert the ~292 pre-existing 2-step `mkCtf` CTFs to 3-step `mkDeepCtf`. **Trick
 
 **ORIGINAL-EPOCH STRUCTURE (investigated 2026-06-07):**
 - `mitre`, `mitre-atlas`, `owasp-llm` = already 3 FILE-fragments (cat 3 files) → ALREADY 3-step, no change needed.
-- `cisco-2/3/4/5`, `quantum-1/2/3/4/5`, `umbrella` = themed file-report fragment + 2 arg-command fragments (3 fragments / 2 actions — same starting depth as the factory ones). These DO qualify but have **NO bonus command to promote** — each CTF needs a NEW middle arg-command authored + flag re-split + hint. ~2 substantive edits/CTF, ~190 CTFs, no shortcut. Large fresh batch.
+- `cisco-3/4/5` = on inspection, ALREADY 4-fragment / 3-action (briefing + 3 commands, e.g. FTD CLI escape, ArcaneDoor, Smart Install, XDR/SOC). Authored deep from the start. **No work needed** (13 CTFs).
+- `cisco-2`, `quantum-1/2/3/4`, `umbrella` = the genuine 3-fragment / 2-action originals. **DEEPENED 2026-06-07** (63 CTFs): authored a genuine middle recon→**model/analyze**→exploit command per CTF + re-split the flag byte-identical (split a command fragment at an internal `_`, or split the final fragment, or redistribute across the natural underscore tokens incl. the briefing fragment) + added a hint line (and a briefing `Run:` line where briefings enumerate commands). Arg-branch stages (lwe-solve, mlkem-demo, sector-risk, umbrella-ir) got a new in-family arg branch instead of a new command. validate-ctf 371/0, tsc clean. **No stage-flags.ts edits (flags byte-identical).**
 - `tech-audit-2`, `emerging-tech`, `ancient`/`cisco-core` (stages.ts), `first-journey` = inspect structure first (likely similar file+command or inline).
 
 **REMAINING use INLINE `ctf:{...}` objects** (no factory) — a different, heavier per-CTF conversion: each stage has an inline `ctf` with its own `fragments`/`files`/`extraCommands` functions written directly in the stage object. To deepen: in each inline `ctf`, re-split the flag across an added 3rd fragment, add a 3rd `extraCommands` entry + richer `$cmd` lines + (optionally) an artifact file. Flags stay byte-identical (re-split). Epochs: vehicle-sec/robot-sec/space-race v1 (6 each, e.g. vehicle-sec.ts l.172 fragments), cisco-2/3/4/5, mitre, mitre-atlas, owasp-llm, quantum-1/2/3/4/5, umbrella, tech-audit-2, emerging-tech, ancient/cisco-core (stages.ts), first-journey. ~15+ epochs, ~250 CTFs.
 
 ## Status
 371 CTFs total (was 292). 6 fundamentals epochs + 5 deep-tech epochs' quiz stages = 79 new CTFs.
-**Deepen axis: 10 epochs / 58 CTFs converted 2-step → 3-step** (factory: physics-of-hacking, ot-sec, threat-frameworks, space-race-2, robot-sec-2, vehicle-sec-2; inline v1: vehicle-sec, robot-sec, space-race). All deep-tech v1+v2+factory epochs done. ~10 inline epochs (~190 CTFs) remain: cisco-2/3/4/5, mitre, mitre-atlas, owasp-llm, quantum-1/2/3/4/5, umbrella, tech-audit-2, emerging-tech, ancient/cisco-core (stages.ts), first-journey. validate-ctf: 0 problems. Shared factory: `packages/core/src/ctf-deep.ts`.
+**Deepen axis: 17 epochs / 121 CTFs converted 2-step → 3-step.**
+- factory (40): physics-of-hacking, ot-sec, threat-frameworks, space-race-2, robot-sec-2, vehicle-sec-2.
+- inline v1 (18): vehicle-sec, robot-sec, space-race.
+- ORIGINAL epochs (63, done 2026-06-07): **cisco-2 (13), quantum-1/2/3/4 (40), umbrella (10)** — middle recon→model→exploit command authored per CTF; flags byte-identical (no stage-flags.ts edits). `cisco-3/4/5` found already-deep (no work).
+- ALREADY 3-step (no work): `mitre`, `mitre-atlas`, `owasp-llm` (3 file-fragments), `cisco-3/4/5`, first-journey (inline hand-authored).
+
+**Deepen axis remaining (inline `ctf:{...}` objects, heavier per-CTF):** `tech-audit-2`, `emerging-tech`, `ancient`/`cisco-core` (stages.ts). Inspect structure first.
+validate-ctf: 0 problems (371). tsc clean. Shared factory: `packages/core/src/ctf-deep.ts`.

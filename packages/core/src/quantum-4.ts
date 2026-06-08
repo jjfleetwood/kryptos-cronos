@@ -117,12 +117,14 @@ EOF`,
       hints: [
         "Read the agency brief first. Run: cat agency-brief.txt",
         "Run the TLS scanner to discover cipher suites. Run: cbom-scan --tls agency.gov",
+        "Parse and normalize the raw scan output into a CBOM record set. Run: cbom-parse results.json",
         "Classify scanned assets by quantum vulnerability tier. Run: cbom-classify results.json",
         "Run 'assemble' to submit your completed CBOM assessment",
       ],
       fragments: [
         { trigger: "/agency-brief.txt", value: "FLAG{CBOM_INV", label: "Agency Brief — Crypto Inventory Scope" },
-        { trigger: "cbom-scan", value: "ENTORY_V1_", label: "TLS Scan — Quantum-Vulnerable Suites Found" },
+        { trigger: "cbom-scan", value: "ENTORY_", label: "TLS Scan — Quantum-Vulnerable Suites Found" },
+        { trigger: "cbom-parse", value: "V1_", label: "Scan Output Parsed — CBOM Records Normalized" },
         { trigger: "cbom-classify", value: "ASSETS}", label: "CBOM Classification — V1/V3/V4 Tiers Assigned" },
       ],
       files: {
@@ -152,6 +154,22 @@ EOF`,
             ">> LEARN: TLS RSA and ECDHE key exchange are both V1 — broken by Shor's Algorithm.",
             "   Only the symmetric portion (AES-256) is quantum-safe (Grover requires 2^128 ops).",
             "   Migration path: replace RSA/ECDH with ML-KEM-768 (KYBER) per FIPS 203.",
+          ],
+        }),
+        "cbom-parse": (_args: string[]) => ({
+          lines: [
+            "Parsing results.json into normalized CBOM records...",
+            "  52 raw scan hits → deduped to 41 unique crypto assets",
+            "  extracting per-asset: algorithm, key size, protocol, endpoint, owner",
+            "  normalizing names (RSA-2048 / rsaEncryption 2048 → one canonical ID)",
+            "  flagging records missing key size for manual follow-up",
+            "Clean CBOM record set ready for tier classification.",
+            "Next: cbom-classify results.json",
+            "",
+            ">> LEARN: Raw scan output is not a CBOM — normalize first",
+            "   Dedup and canonicalization turn noisy scanner hits into comparable",
+            "   records; without it, classification double-counts and misses assets.",
+            "   A CBOM is only as trustworthy as the parsing step beneath it.",
           ],
         }),
         "cbom-classify": (_args: string[]) => ({
@@ -277,12 +295,14 @@ openssl s_client -groups x25519_mlkem768 -tls1_3 \\
       hints: [
         "Start with the threat intel brief. Run: cat hndl-brief.txt",
         "Analyze captured traffic telemetry. Run: hndl-analyze capture-log.pcap",
+        "Extract the long-secrecy flows worth harvesting from the capture. Run: hndl-extract capture-log.pcap",
         "Model the HNDL risk window. Run: hndl-risk-model --horizon 2035",
         "Run 'assemble' to submit the HNDL assessment",
       ],
       fragments: [
         { trigger: "/hndl-brief.txt", value: "FLAG{HNDL_HAR", label: "HNDL Brief — Threat Intelligence Summary" },
-        { trigger: "hndl-analyze", value: "VEST_NOW_", label: "Capture Analysis — RSA Traffic Identified" },
+        { trigger: "hndl-analyze", value: "VEST_", label: "Capture Analysis — RSA Traffic Identified" },
+        { trigger: "hndl-extract", value: "NOW_", label: "Long-Secrecy Flows Extracted — Harvest Targets" },
         { trigger: "hndl-risk-model", value: "DECRYPT_LATER}", label: "Risk Model — Secrecy Horizon Assessment" },
       ],
       files: {
@@ -323,6 +343,23 @@ openssl s_client -groups x25519_mlkem768 -tls1_3 \\
             "   An adversary stores the ECDHE ephemeral public keys and ciphertext.",
             "   A CRQC computes the private key via discrete log and decrypts all sessions.",
             "   Fix: deploy ML-KEM-768 hybrid — ECDHE alone is insufficient.",
+          ],
+        }),
+        "hndl-extract": (_args: string[]) => ({
+          lines: [
+            "Extracting harvest-worthy flows from capture-log.pcap...",
+            "  filtering 2.3TB by key-exchange: RSA/ECDHE TLS sessions",
+            "  ranking by payload secrecy lifetime:",
+            "    health records (HIPAA, 50-yr secrecy): 1.1TB → PRIME target",
+            "    M&A / legal (10-yr): 0.4TB → high value",
+            "    session cookies (minutes): discard — no harvest value",
+            "Harvest set isolated: long-secrecy ciphertext worth storing to Q-Day.",
+            "Next: hndl-risk-model --horizon 2035",
+            "",
+            ">> LEARN: HNDL adversaries are selective, not greedy",
+            "   Storage isn't free — attackers harvest only ciphertext whose secrecy",
+            "   outlives the CRQC timeline, so long-lived data is the real target.",
+            "   That selection is exactly what defenders must model and prioritize.",
           ],
         }),
         "hndl-risk-model": (_args: string[]) => ({
@@ -453,12 +490,14 @@ kem.free(); client_kem.free()`,
       hints: [
         "Read the deployment brief. Run: cat deploy-brief.txt",
         "Generate an ML-KEM-768 keypair. Run: pqc-keygen --alg ML-KEM-768",
+        "Install the keypair and configure the hybrid TLS listener. Run: pqc-tls-config --port 4433",
         "Test the PQC TLS handshake. Run: pqc-tls-test --connect localhost:4433",
         "Run 'assemble' to certify deployment",
       ],
       fragments: [
         { trigger: "/deploy-brief.txt", value: "FLAG{FIPS203_", label: "Deploy Brief — PQC TLS Deployment Scope" },
-        { trigger: "pqc-keygen", value: "ML_KEM_768_", label: "ML-KEM-768 Keypair Generated" },
+        { trigger: "pqc-keygen", value: "ML_KEM_", label: "ML-KEM-768 Keypair Generated" },
+        { trigger: "pqc-tls-config", value: "768_", label: "Listener Configured — Hybrid Suite Enabled" },
         { trigger: "pqc-tls-test", value: "QUANTUM_SAFE}", label: "PQC TLS Handshake Verified" },
       ],
       files: {
@@ -484,6 +523,22 @@ kem.free(); client_kem.free()`,
             "  IANA code point: 0x11EC (x25519_mlkem768)",
             "  ClientHello key_share extension size: 1216 bytes (was 32 bytes for X25519 alone)",
             "Fragment collected.",
+          ],
+        }),
+        "pqc-tls-config": (_args: string[]) => ({
+          lines: [
+            "Configuring the TLS 1.3 listener on :4433 with the new keypair...",
+            "  installing ML-DSA-65 server certificate + ML-KEM-768 key share",
+            "  enabling groups: X25519MLKEM768 (priority 1), X25519 (fallback)",
+            "  loading the OQS provider into the OpenSSL config",
+            "  reloading the service — listener up on :4433",
+            "Hybrid TLS endpoint live; ready for a client handshake test.",
+            "Next: pqc-tls-test --connect localhost:4433",
+            "",
+            ">> LEARN: Keygen is not deployment — wiring the listener is",
+            "   The keypair only matters once the server advertises the hybrid group",
+            "   and loads the PQC provider; misconfig here silently falls back to classical.",
+            "   Always verify the negotiated group, not just that keys exist.",
           ],
         }),
         "pqc-tls-test": (_args: string[]) => ({
@@ -611,13 +666,15 @@ print(f"Remaining OTS keys: {lms_key.remaining_keys(updated_state)}")
       hints: [
         "Read the audit scope. Run: cat audit-scope.txt",
         "Check vendor algorithm implementations. Run: cnsa2-audit --vendor nss-vendor-a",
+        "Map each finding to the required CNSA 2.0 algorithm set. Run: cnsa2-gap",
         "Assess timeline compliance. Run: cnsa2-timeline-check --deadline 2025",
         "Run 'assemble' to submit the compliance report",
       ],
       fragments: [
         { trigger: "/audit-scope.txt", value: "FLAG{CNSA2_", label: "Audit Scope — NSS Vendor Compliance Check" },
-        { trigger: "cnsa2-audit", value: "MANDATE_", label: "Algorithm Audit — CNSA 2.0 Gap Analysis" },
-        { trigger: "cnsa2-timeline-check", value: "NSS_COMPLIANT}", label: "Timeline Assessment — 2025 Deadline Status" },
+        { trigger: "cnsa2-audit", value: "MANDATE_", label: "Algorithm Audit — Vendor Implementations Found" },
+        { trigger: "cnsa2-gap", value: "NSS_", label: "Gap Analysis — Mapped to CNSA 2.0 Algorithm Set" },
+        { trigger: "cnsa2-timeline-check", value: "COMPLIANT}", label: "Timeline Assessment — 2025 Deadline Status" },
       ],
       files: {
         "/audit-scope.txt": [
@@ -646,6 +703,22 @@ print(f"Remaining OTS keys: {lms_key.remaining_keys(updated_state)}")
             "Classified TLS endpoints:",
             "  Current: ML-KEM-1024 + ML-DSA-87 [COMPLIANT]",
             "Overall: 2/3 components non-compliant. Fragment collected.",
+          ],
+        }),
+        "cnsa2-gap": (_args: string[]) => ({
+          lines: [
+            "Mapping audit findings to the CNSA 2.0 required algorithm set...",
+            "  CNSA 2.0 requires: ML-KEM-1024, ML-DSA-87, SHA-384/512, AES-256",
+            "  vendor uses ML-KEM-768 → BELOW required level 5 (need 1024)",
+            "  vendor signing still RSA-3072 → NON-COMPLIANT (need ML-DSA-87)",
+            "  symmetric AES-256 + SHA-384 → COMPLIANT",
+            "Gap list: 2 of 4 primitives miss the CNSA 2.0 bar.",
+            "Next: cnsa2-timeline-check --deadline 2025",
+            "",
+            ">> LEARN: CNSA 2.0 mandates specific parameter levels, not just 'PQC'",
+            "   NSS requires the level-5 sets (ML-KEM-1024 / ML-DSA-87) — deploying",
+            "   ML-KEM-768 is real PQC but still fails the mandate.",
+            "   Map findings to the exact required set before judging compliance.",
           ],
         }),
         "cnsa2-timeline-check": (_args: string[]) => ({
@@ -774,12 +847,14 @@ server {
       hints: [
         "Review the system portfolio. Run: cat systems-portfolio.txt",
         "Apply CISA prioritization. Run: pqc-prioritize --data-sensitivity high",
+        "Group the prioritized systems into migration phases. Run: pqc-phase --phases 3",
         "Generate the phased migration timeline. Run: pqc-roadmap --phases 3",
         "Run 'assemble' to submit the roadmap",
       ],
       fragments: [
         { trigger: "/systems-portfolio.txt", value: "FLAG{PQC_ROAD", label: "System Portfolio — Cryptographic Asset Inventory" },
-        { trigger: "pqc-prioritize", value: "MAP_PHASE_", label: "Prioritization Matrix — HNDL Risk Ranking" },
+        { trigger: "pqc-prioritize", value: "MAP_", label: "Prioritization Matrix — HNDL Risk Ranking" },
+        { trigger: "pqc-phase", value: "PHASE_", label: "Systems Grouped — Migration Phases Assigned" },
         { trigger: "pqc-roadmap", value: "PLAN_EXECUTE}", label: "Migration Roadmap — 3-Phase Timeline Generated" },
       ],
       files: {
@@ -810,6 +885,22 @@ server {
             "  System C: HR portal — lower sensitivity, internal only",
             "  System E: Email — S/MIME migration to ML-DSA",
             "Fragment collected.",
+          ],
+        }),
+        "pqc-phase": (_args: string[]) => ({
+          lines: [
+            "Grouping the prioritized systems into 3 migration phases...",
+            "  Phase 1 (0-12mo): internet-facing, high-secrecy → 14 systems",
+            "  Phase 2 (12-30mo): internal PKI/VPN, medium-secrecy → 31 systems",
+            "  Phase 3 (30-48mo): legacy/embedded, low-secrecy → 22 systems",
+            "  honoring dependencies: HSM/PKI uplift precedes the apps that use them",
+            "Phase buckets assigned by exposure × dependency order.",
+            "Next: pqc-roadmap --phases 3",
+            "",
+            ">> LEARN: A priority list isn't a plan until it's phased",
+            "   Grouping by exposure AND dependency turns a ranked list into executable",
+            "   waves — you can't migrate an app before its HSM/PKI foundation is ready.",
+            "   Phasing is what makes a CISA-style roadmap schedulable.",
           ],
         }),
         "pqc-roadmap": (_args: string[]) => ({
@@ -945,12 +1036,14 @@ server {
       hints: [
         "Read the bank system inventory. Run: cat bank-inventory.txt",
         "Score SWIFT quantum risk. Run: sector-risk --system swift",
+        "Score the core-banking ledger quantum risk. Run: sector-risk --system core-banking",
         "Score ATM HSM quantum risk. Run: sector-risk --system atm-hsm",
         "Run 'assemble' to submit the risk register",
       ],
       fragments: [
         { trigger: "/bank-inventory.txt", value: "FLAG{SECTOR_Q", label: "Bank Inventory — System CBOM Summary" },
-        { trigger: "sector-risk --system swift", value: "RISK_MATRIX_", label: "SWIFT Risk Score — HNDL Critical" },
+        { trigger: "sector-risk --system swift", value: "RISK_", label: "SWIFT Risk Score — HNDL Critical" },
+        { trigger: "sector-risk --system core-banking", value: "MATRIX_", label: "Core-Banking Risk Score — Ledger Integrity" },
         { trigger: "sector-risk --system atm-hsm", value: "FINANCIAL}", label: "ATM HSM Risk Score — Hardware Lifecycle Risk" },
       ],
       files: {
@@ -978,6 +1071,26 @@ server {
                 "  Risk score: 88/100 — CRITICAL",
                 "  Action: Deploy hybrid TLS for SWIFT Alliance Access now.",
                 "Fragment collected.",
+              ],
+            };
+          }
+          if (system === "core-banking") {
+            return {
+              lines: [
+                "Core-Banking Ledger — Quantum Risk Assessment:",
+                "  Algorithm: RSA-2048 transaction signing, ECDSA-P256 audit log",
+                "  HNDL exposure: Internal, but ledger integrity is long-lived",
+                "  Threat: a CRQC could FORGE historical transaction signatures",
+                "  Data value: system of record — retroactive tampering CATASTROPHIC",
+                "  Migration path: ML-DSA-65 signing + hash-chained audit log",
+                "  Risk score: 81/100 — CRITICAL (integrity, not just confidentiality)",
+                "  Action: prioritize signature migration over encryption here.",
+                "Fragment collected.",
+                "",
+                ">> LEARN: Quantum risk is integrity too, not only secrecy",
+                "   HNDL targets confidentiality, but a CRQC also forges signatures —",
+                "   for a ledger, signature migration (ML-DSA) matters more than encryption.",
+                "   Score systems on what the quantum threat actually breaks for them.",
               ],
             };
           }
@@ -1113,12 +1226,14 @@ print(board_quantum_scorecard({
       hints: [
         "Review the company profile. Run: cat company-profile.txt",
         "Run the quantum materiality assessment. Run: qrisk-materiality --company-profile company-profile.txt",
+        "Quantify the dollar exposure that drives the materiality threshold. Run: qrisk-quantify",
         "Draft SEC 10-K disclosure language. Run: qrisk-disclosure-draft",
         "Run 'assemble' to submit the board package",
       ],
       fragments: [
         { trigger: "/company-profile.txt", value: "FLAG{BOARD_Q", label: "Company Profile — Quantum Risk Context" },
-        { trigger: "qrisk-materiality", value: "RISK_MATERIAL_", label: "Materiality Assessment — SEC Threshold Analysis" },
+        { trigger: "qrisk-materiality", value: "RISK_", label: "Materiality Assessment — SEC Threshold Analysis" },
+        { trigger: "qrisk-quantify", value: "MATERIAL_", label: "Exposure Quantified — Crosses Materiality Threshold" },
         { trigger: "qrisk-disclosure-draft", value: "DISCLOSE}", label: "10-K Draft — Quantum Risk Disclosure Language" },
       ],
       files: {
@@ -1150,6 +1265,23 @@ print(board_quantum_scorecard({
             "Board action: Approve $9.2M migration program to maintain 4-year margin.",
             "Risk-adjusted ROI: 733× ($9.2M migration vs. $6.75B breach exposure).",
             "Fragment collected.",
+          ],
+        }),
+        "qrisk-quantify": (_args: string[]) => ({
+          lines: [
+            "Quantifying the dollar exposure behind the materiality call...",
+            "  HNDL-exposed records: 2.3M customer + 0.4M employee",
+            "  expected breach cost (IBM avg $165/record): ~$445M",
+            "  + regulatory (GDPR/state AG) + litigation reserve: ~$120M",
+            "  vs corporate materiality threshold (~5% pretax income): $90M",
+            "  $565M >> $90M → quantum risk is MATERIAL and must be disclosed",
+            "Exposure exceeds the materiality threshold — disclosure required.",
+            "Next: qrisk-disclosure-draft",
+            "",
+            ">> LEARN: 'Material' is a number, not an opinion",
+            "   Disclosure obligations turn on a quantified exposure crossing the company's",
+            "   materiality threshold — so you must price the risk before drafting the 10-K.",
+            "   SEC cyber rules make an unquantified hand-wave legally insufficient.",
           ],
         }),
         "qrisk-disclosure-draft": (_args: string[]) => ({
@@ -1289,12 +1421,14 @@ print(result)
       hints: [
         "Read the hybrid deployment checklist. Run: cat hybrid-checklist.txt",
         "Test hybrid key exchange on the TLS endpoint. Run: hybrid-tls-check agency.gov",
+        "Confirm both classical and PQC shares combine into the session secret. Run: keyshare-verify agency.gov",
         "Check middlebox compatibility. Run: middlebox-scan --network agency-perimeter",
         "Run 'assemble' to submit the hybrid validation report",
       ],
       fragments: [
         { trigger: "/hybrid-checklist.txt", value: "FLAG{HYBRID_", label: "Hybrid Deployment Checklist" },
-        { trigger: "hybrid-tls-check", value: "CLASSICAL_PQC_", label: "Hybrid TLS — Key Exchange Verified" },
+        { trigger: "hybrid-tls-check", value: "CLASSICAL_", label: "Hybrid TLS — Key Exchange Verified" },
+        { trigger: "keyshare-verify", value: "PQC_", label: "Key Share Verified — Combined Secret Confirmed" },
         { trigger: "middlebox-scan", value: "PARALLEL}", label: "Middlebox Scan — Compatibility Assessment" },
       ],
       files: {
@@ -1318,6 +1452,23 @@ print(result)
             "  HNDL protection: ACTIVE ✅",
             "  Backward compat: RSA cert still presented for legacy clients ✅",
             "Fragment collected.",
+          ],
+        }),
+        "keyshare-verify": (_args: string[]) => ({
+          lines: [
+            "Verifying the hybrid key_share on agency.gov:443...",
+            "  client_hello offered X25519MLKEM768; server selected it",
+            "  classical share present: X25519 (32 B) ✓",
+            "  PQC share present: ML-KEM-768 ciphertext (1088 B) ✓",
+            "  derived secret = KDF(ss_x25519 || ss_mlkem) — both contribute",
+            "  forcing classical-only fallback still negotiates → no downgrade trap",
+            "Both shares confirmed in the derived secret; hybrid is genuine.",
+            "Next: middlebox-scan --network agency-perimeter",
+            "",
+            ">> LEARN: 'Hybrid negotiated' is not 'hybrid effective'",
+            "   Verify BOTH shares actually feed the KDF — a misconfig can advertise the",
+            "   group yet derive from only the classical half, silently losing PQC.",
+            "   Inspect the key schedule, don't trust the negotiated name alone.",
           ],
         }),
         "middlebox-scan": (_args: string[]) => ({
@@ -1469,12 +1620,14 @@ signature = provider.sign(document_bytes, private_key)`,
       hints: [
         "Read the current PKI architecture. Run: cat pki-current.txt",
         "Design the crypto agility layer. Run: arch-design --agility-layer",
+        "Define the algorithm negotiation and fallback policy. Run: arch-negotiate",
         "Plan the CA migration sequence. Run: arch-ca-migration-plan --priority root-first",
         "Run 'assemble' to submit the quantum-safe architecture design",
       ],
       fragments: [
         { trigger: "/pki-current.txt", value: "FLAG{QSAFE_", label: "Current PKI Architecture Review" },
-        { trigger: "arch-design", value: "ARCH_AGILE_", label: "Crypto Agility Layer Design" },
+        { trigger: "arch-design", value: "ARCH_", label: "Crypto Agility Layer Design" },
+        { trigger: "arch-negotiate", value: "AGILE_", label: "Negotiation + Fallback Policy Defined" },
         { trigger: "arch-ca-migration-plan", value: "PKI_DESIGN}", label: "CA Migration Sequence Plan" },
       ],
       files: {
@@ -1510,6 +1663,22 @@ signature = provider.sign(document_bytes, private_key)`,
             "  - Composite cert: embed both RSA and ML-DSA keys in X.509 extension",
             "  - ACME algorithm negotiation: client requests algorithm; CA issues matching cert",
             "Fragment collected.",
+          ],
+        }),
+        "arch-negotiate": (_args: string[]) => ({
+          lines: [
+            "Defining the algorithm negotiation and fallback policy...",
+            "  preference order: hybrid (X25519MLKEM768) → classical (X25519)",
+            "  signature preference: ML-DSA-65 → ECDSA-P256 during transition",
+            "  downgrade protection: pin minimum, log any classical fallback",
+            "  per-peer capability cache so re-handshakes skip renegotiation",
+            "Negotiation policy set — graceful interop without silent downgrade.",
+            "Next: arch-ca-migration-plan --priority root-first",
+            "",
+            ">> LEARN: Agility needs an explicit negotiation policy",
+            "   The agility layer is only safe if fallback is bounded and logged —",
+            "   otherwise a downgrade attack quietly drops you back to classical.",
+            "   Define preference order AND a monitored floor, not just 'try both'.",
           ],
         }),
         "arch-ca-migration-plan": (_args: string[]) => ({
@@ -1660,12 +1829,14 @@ for vendor, endpoint in [
       hints: [
         "Read the vendor assessment scope. Run: cat vendor-scope.txt",
         "Scan vendor TLS endpoints for PQC support. Run: vendor-pqc-scan --tier 1",
+        "Weight each vendor by the sensitivity of data they hold. Run: vendor-weight",
         "Score vendors and generate remediation requirements. Run: vendor-pqc-score",
         "Run 'assemble' to submit the third-party quantum risk report",
       ],
       fragments: [
         { trigger: "/vendor-scope.txt", value: "FLAG{SUPPLY_", label: "Vendor Assessment Scope" },
-        { trigger: "vendor-pqc-scan", value: "CHAIN_QUANTUM_", label: "Vendor TLS Scan — PQC Status" },
+        { trigger: "vendor-pqc-scan", value: "CHAIN_", label: "Vendor TLS Scan — PQC Status" },
+        { trigger: "vendor-weight", value: "QUANTUM_", label: "Vendors Weighted — Data Sensitivity Scored" },
         { trigger: "vendor-pqc-score", value: "RISK_MANAGED}", label: "Vendor Scoring — Remediation Issued" },
       ],
       files: {
@@ -1694,6 +1865,22 @@ for vendor, endpoint in [
             "  Server Temp Key: RSA-2048 (key exchange) [NON-PQC — HNDL vulnerable]",
             "  Questionnaire: IN PROGRESS | Risk: HIGH",
             "Fragment collected.",
+          ],
+        }),
+        "vendor-weight": (_args: string[]) => ({
+          lines: [
+            "Weighting Tier 1 vendors by the data they hold + access they have...",
+            "  payroll processor: PII + bank routing → weight 0.9 (CRITICAL)",
+            "  cloud IdP: holds auth tokens / SSO → weight 1.0 (CRITICAL)",
+            "  marketing SaaS: low-sensitivity → weight 0.3",
+            "  combining weight × PQC-readiness gap = prioritized vendor risk",
+            "Weighted vendor risk computed — IdP and payroll rise to the top.",
+            "Next: vendor-pqc-score",
+            "",
+            ">> LEARN: Vendor risk = exposure × access, not just their PQC status",
+            "   A non-PQC vendor with trivial data matters less than one holding your",
+            "   auth tokens — weight by impact before issuing remediation deadlines.",
+            "   Third-party quantum risk is a supply-chain prioritization problem.",
           ],
         }),
         "vendor-pqc-score": (_args: string[]) => ({

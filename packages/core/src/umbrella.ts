@@ -108,12 +108,14 @@ export const umbrellaStages: StageConfig[] = [
       hints: [
         "Start with the SOC alert. Run: cat alert.txt",
         "Pull blocked DNS queries for the last hour. Run: umbrella-logs --blocked --last 1h",
+        "Correlate the blocked queries back to the infected internal host. Run: endpoint-trace",
         "Look up the C2 domain in Talos Investigate. Run: talos-lookup c2-prime.net",
         "Run 'assemble' to build the flag and get the submit command",
       ],
       fragments: [
         { trigger: "/alert.txt", value: "FLAG{UMBRELLA_", label: "SOC Alert — Blocked C2 Queries Detected" },
-        { trigger: "umbrella-logs --blocked --last 1h", value: "DNS_F1RST_", label: "DNS Log — Infected Endpoint Identified" },
+        { trigger: "umbrella-logs --blocked --last 1h", value: "DNS_", label: "DNS Log — Blocked C2 Queries Pulled" },
+        { trigger: "endpoint-trace", value: "F1RST_", label: "Endpoint Traced — Infected Host Identified" },
         { trigger: "talos-lookup c2-prime.net", value: "L1N3_D3F3NS3}", label: "Talos Lookup — WIZARD SPIDER Attribution" },
       ],
       files: {
@@ -144,6 +146,23 @@ export const umbrellaStages: StageConfig[] = [
       },
       dirs: { "/": [{ name: "alert.txt", isDir: false }, { name: "umbrella-policy.txt", isDir: false }] },
       extraCommands: {
+        "endpoint-trace": (_args: string[]) => ({
+          lines: [
+            "=== ENDPOINT CORRELATION — BLOCKED C2 QUERIES ===",
+            "Grouping the blocked c2-prime.net lookups by internal source IP:",
+            "  10.20.4.31  →  214 blocked queries in 1h (every ~17s — beaconing)",
+            "  all other hosts: 0 queries to this domain",
+            "  reverse DNS: FIN-WS-08 (Finance dept workstation)",
+            "  beacon interval is fixed → automated implant, not a user",
+            "Single infected host isolated: FIN-WS-08 (10.20.4.31).",
+            "Next: talos-lookup c2-prime.net",
+            "",
+            ">> LEARN: DNS logs pinpoint the patient zero before EDR does",
+            "   A fixed beacon interval to one domain from one host is a classic implant",
+            "   signature — correlate by source IP to find the box to isolate first.",
+            "   Umbrella sees this even on hosts with no endpoint agent installed.",
+          ],
+        }),
         "umbrella-logs": (_args: string[]) => ({
           lines: [
             "=== UMBRELLA DNS ACTIVITY — BLOCKED — LAST 1H ===",
@@ -291,12 +310,14 @@ export const umbrellaStages: StageConfig[] = [
       hints: [
         "Review the DNS anomaly report. Run: cat dns-anomaly.txt",
         "Analyze query entropy and decode a payload. Run: dns-analyze 10.50.2.33",
+        "Reassemble the multi-query exfil stream into the full payload. Run: reassemble-exfil",
         "Block the tunnel domain in Umbrella. Run: umbrella-block tunnel.sgp-exfil.com",
         "Run 'assemble' to build the flag",
       ],
       fragments: [
         { trigger: "/dns-anomaly.txt", value: "FLAG{DNS_", label: "Anomaly Report — Tunnel Traffic Identified" },
-        { trigger: "dns-analyze 10.50.2.33", value: "TUNN3L_D4T4_", label: "Payload Decoded — Credentials in Transit" },
+        { trigger: "dns-analyze 10.50.2.33", value: "TUNN3L_", label: "Tunnel Confirmed — High-Entropy Subdomains" },
+        { trigger: "reassemble-exfil", value: "D4T4_", label: "Exfil Stream Reassembled — Full Payload Recovered" },
         { trigger: "umbrella-block tunnel.sgp-exfil.com", value: "3XF1L_CAUGHT}", label: "Tunnel Domain Blocked — Exfiltration Stopped" },
       ],
       files: {
@@ -321,6 +342,23 @@ export const umbrellaStages: StageConfig[] = [
       },
       dirs: { "/": [{ name: "dns-anomaly.txt", isDir: false }] },
       extraCommands: {
+        "reassemble-exfil": (_args: string[]) => ({
+          lines: [
+            "=== DNS-TUNNEL PAYLOAD REASSEMBLY ===",
+            "Ordering the base32 subdomain labels by their sequence prefix:",
+            "  seq 001..047 → 47 chunks, ~30 bytes each",
+            "  concatenating labels → base32-decoding the stream...",
+            "  decoded: 'DOMAIN\\\\svc_backup:Wint3r2024! | 1.4KB dump'",
+            "  credential exfiltration confirmed — service account leaked",
+            "Full payload reconstructed from 47 tunnel queries.",
+            "Next: umbrella-block tunnel.sgp-exfil.com",
+            "",
+            ">> LEARN: DNS tunnels exfiltrate in many tiny labeled chunks",
+            "   Data is chopped into sequenced subdomain labels; reassembling by sequence",
+            "   and decoding reveals exactly what left the network — proof for IR.",
+            "   The fixed chunk size + sequence prefix is the tunnel's fingerprint.",
+          ],
+        }),
         "dns-analyze": (args: string[]) => {
           const host = args[0] ?? "";
           if (host === "10.50.2.33") {
@@ -658,12 +696,14 @@ for i in range(100):
       hints: [
         "Read the flux alert. Run: cat flux-alert.txt",
         "Pull the resolution history for the past 24 hours. Run: flux-analyze flux-c2.net",
+        "Cluster the rotating IPs to confirm a single fast-flux backend. Run: flux-cluster",
         "Block the domain in Umbrella and confirm. Run: umbrella-block flux-c2.net",
         "Run 'assemble' to build the flag",
       ],
       fragments: [
         { trigger: "/flux-alert.txt", value: "FLAG{F4ST_", label: "Flux Alert — Domain Flagged for IP Rotation" },
-        { trigger: "flux-analyze flux-c2.net", value: "FL0X_IP_", label: "Resolution History — 287 IPs, 23 Countries" },
+        { trigger: "flux-analyze flux-c2.net", value: "FL0X_", label: "Resolution History — 287 IPs, 23 Countries" },
+        { trigger: "flux-cluster", value: "IP_", label: "IPs Clustered — Single Fast-Flux Backend Confirmed" },
         { trigger: "umbrella-block flux-c2.net", value: "R0T4T10N_BUST3D}", label: "Domain Blocked — Fast Flux Neutralized" },
       ],
       files: {
@@ -685,6 +725,23 @@ for i in range(100):
       },
       dirs: { "/": [{ name: "flux-alert.txt", isDir: false }] },
       extraCommands: {
+        "flux-cluster": (_args: string[]) => ({
+          lines: [
+            "=== FAST-FLUX IP CLUSTERING ===",
+            "Clustering the 287 rotating A-records to test for one backend:",
+            "  TTL on every record: 120s (abnormally low — rotation signature)",
+            "  ASN spread: 41 ASNs, mostly consumer broadband (botnet relays)",
+            "  but all paths terminate at 2 hidden origin servers (double-flux)",
+            "  shared TLS cert fingerprint across all fronts → one operator",
+            "Confirmed: 287 fronts, single fast-flux backend. Blocking the domain kills all.",
+            "Next: umbrella-block flux-c2.net",
+            "",
+            ">> LEARN: Block the domain, not the IPs, against fast flux",
+            "   The IPs rotate every 120s across a botnet, so IP blocklists never catch up —",
+            "   clustering proves one backend, and the DNS name is the stable choke point.",
+            "   DNS-layer blocking neutralizes all 287 fronts at once.",
+          ],
+        }),
         "flux-analyze": (args: string[]) => {
           const domain = args[0] ?? "";
           if (domain === "flux-c2.net") {
@@ -840,13 +897,15 @@ fetch("http://attacker.com/admin/config.json")
       hints: [
         "Read the DNS rebinding alert. Run: cat rebind-alert.txt",
         "Trace the TTL change timeline for the attacker domain. Run: dns-history attacker-iot.com",
+        "Measure the DNS-rebinding timing window (the TTL=0 flip to a private IP). Run: rebind-window",
         "Assess what internal resource was queried. Run: rebind-impact 192.168.10.1",
         "Run 'assemble' to build the flag",
       ],
       fragments: [
         { trigger: "/rebind-alert.txt", value: "FLAG{DNS_", label: "Rebinding Alert — Private IP in Public DNS Response" },
         { trigger: "dns-history attacker-iot.com", value: "R3B1ND_", label: "DNS History — TTL Manipulation Confirmed" },
-        { trigger: "rebind-impact 192.168.10.1", value: "S4M3_0R1G1N_BYP4SS}", label: "Impact Assessment — Admin Panel Exposed" },
+        { trigger: "rebind-window", value: "S4M3_", label: "Rebind Window Measured — TTL=0 Flip Timed" },
+        { trigger: "rebind-impact 192.168.10.1", value: "0R1G1N_BYP4SS}", label: "Impact Assessment — Admin Panel Exposed" },
       ],
       files: {
         "/rebind-alert.txt": [
@@ -866,6 +925,23 @@ fetch("http://attacker.com/admin/config.json")
       },
       dirs: { "/": [{ name: "rebind-alert.txt", isDir: false }] },
       extraCommands: {
+        "rebind-window": (_args: string[]) => ({
+          lines: [
+            "=== DNS REBINDING TIMING WINDOW ===",
+            "Measuring the attacker-iot.com resolution flip:",
+            "  t+0s:  attacker-iot.com → 203.0.113.50 (attacker web server, TTL 1s)",
+            "  t+2s:  victim browser loads malicious JS from that origin",
+            "  t+3s:  same name re-resolves → 192.168.10.1 (TTL=0, internal target)",
+            "  same-origin policy satisfied (identical hostname) → JS now hits the LAN",
+            "Rebind window ≈ 2-3s — long enough to pivot the browser to the admin panel.",
+            "Next: rebind-impact 192.168.10.1",
+            "",
+            ">> LEARN: DNS rebinding turns a browser into an internal proxy",
+            "   A near-zero TTL lets the attacker flip a hostname from their server to a",
+            "   private IP while same-origin policy still trusts the page — timing is the attack.",
+            "   DNS-layer filtering of private-IP answers in public DNS breaks the flip.",
+          ],
+        }),
         "dns-history": (args: string[]) => {
           const domain = args[0] ?? "";
           if (domain === "attacker-iot.com") {
@@ -1021,13 +1097,15 @@ ed("microsoft.com", "micros0ft.com")  # → 1  (zero sub)
       hints: [
         "Read the phishing domain report. Run: cat phish-report.txt",
         "Analyze the lookalike domain. Run: lookalike-check defence-c0ntracts.gov.agency-portal.net",
+        "Score the brand/edit-distance match to confirm phishing intent. Run: brand-match",
         "Find related campaign domains. Run: talos-lookup nobelium-campaign-2023",
         "Run 'assemble' to build the flag",
       ],
       fragments: [
         { trigger: "/phish-report.txt", value: "FLAG{L00K4L1K3_", label: "Phish Report — Lookalike Domain Blocked" },
-        { trigger: "lookalike-check defence-c0ntracts.gov.agency-portal.net", value: "D0M41N_", label: "Lookalike Analysis — Edit Distance + Brand Match" },
-        { trigger: "talos-lookup nobelium-campaign-2023", value: "PH1SH_BLOCK3D}", label: "NOBELIUM Campaign — 32 Domains Attributed" },
+        { trigger: "lookalike-check defence-c0ntracts.gov.agency-portal.net", value: "D0M41N_", label: "Lookalike Analysis — Suspicious Structure Found" },
+        { trigger: "brand-match", value: "PH1SH_", label: "Brand Match Scored — Phishing Intent Confirmed" },
+        { trigger: "talos-lookup nobelium-campaign-2023", value: "BLOCK3D}", label: "NOBELIUM Campaign — 32 Domains Attributed" },
       ],
       files: {
         "/phish-report.txt": [
@@ -1047,6 +1125,24 @@ ed("microsoft.com", "micros0ft.com")  # → 1  (zero sub)
       },
       dirs: { "/": [{ name: "phish-report.txt", isDir: false }] },
       extraCommands: {
+        "brand-match": (_args: string[]) => ({
+          lines: [
+            "=== BRAND + EDIT-DISTANCE MATCH ===",
+            "Scoring defence-c0ntracts.gov.agency-portal.net for impersonation:",
+            "  real registrable domain: agency-portal.net (NOT a .gov)",
+            "  'defence-c0ntracts.gov' is a SUBDOMAIN label, not the true domain",
+            "  homoglyph: 'c0ntracts' (zero-for-o) vs legit 'contracts'",
+            "  Levenshtein to defence-contracts.gov.uk: 2 → high brand similarity",
+            "  visual + structural deception score: 0.94 (HIGH) → phishing",
+            "Impersonation confirmed: fake .gov subdomain on attacker-owned base.",
+            "Next: talos-lookup nobelium-campaign-2023",
+            "",
+            ">> LEARN: Read domains right-to-left — the registrable part is what matters",
+            "   Attackers put the trusted brand in a SUBDOMAIN ('bank.com.evil.net');",
+            "   homoglyphs + edit distance to the real brand quantify the deception.",
+            "   The true owner is always the registrable domain, not the leftmost label.",
+          ],
+        }),
         "lookalike-check": (args: string[]) => {
           const domain = args[0] ?? "";
           if (domain.includes("defence-c0ntracts")) {
@@ -1201,12 +1297,14 @@ umbrella policy audit --allow-list --older-than 90d --sort created`,
       hints: [
         "Read the incident brief. Run: cat incident-brief.txt",
         "Audit allow-list entries for anomalies. Run: umbrella-audit --allow-list --flag-wildcards",
+        "Trace what C2 traffic the rogue wildcard rule let through. Run: rule-trace",
         "Remove the rogue allow-list entry. Run: umbrella-remove-rule RULE-2023-0092",
         "Run 'assemble' to build the flag",
       ],
       fragments: [
         { trigger: "/incident-brief.txt", value: "FLAG{P0L1CY_", label: "Incident Brief — C2 Traffic Through Policy Gap" },
-        { trigger: "umbrella-audit --allow-list --flag-wildcards", value: "BYPA55_RUL3_", label: "Policy Audit — Rogue Wildcard Entry Found" },
+        { trigger: "umbrella-audit --allow-list --flag-wildcards", value: "BYPA55_", label: "Policy Audit — Rogue Wildcard Entry Found" },
+        { trigger: "rule-trace", value: "RUL3_", label: "Traffic Traced — C2 Allowed by Rogue Rule" },
         { trigger: "umbrella-remove-rule RULE-2023-0092", value: "R3M0V3D}", label: "Rule Removed — Policy Gap Closed" },
       ],
       files: {
@@ -1227,6 +1325,23 @@ umbrella policy audit --allow-list --older-than 90d --sort created`,
       },
       dirs: { "/": [{ name: "incident-brief.txt", isDir: false }] },
       extraCommands: {
+        "rule-trace": (_args: string[]) => ({
+          lines: [
+            "=== ROGUE RULE TRAFFIC TRACE — RULE-2023-0092 ===",
+            "Replaying DNS logs against the wildcard allow rule *.cdn-cache.net:",
+            "  rule added: 2023-08-14 by svc_netops (off-hours, no change ticket)",
+            "  matched queries since: 9,412 → 3 distinct C2 subdomains",
+            "    a1.cdn-cache.net  b2.cdn-cache.net  exfil.cdn-cache.net",
+            "  data egress via the allow path: ~640MB over 6 weeks",
+            "Rogue rule was the exfil channel — quantify before removing it.",
+            "Next: umbrella-remove-rule RULE-2023-0092",
+            "",
+            ">> LEARN: An allow-list wildcard is a hole, not an exception",
+            "   '*.domain' rules silently whitelist every subdomain an attacker can spin up;",
+            "   trace what a rule actually permitted (and who added it) before deleting it.",
+            "   Off-hours rule additions with no change ticket are a top audit red flag.",
+          ],
+        }),
         "umbrella-audit": (_args: string[]) => ({
           lines: [
             "=== UMBRELLA POLICY AUDIT — ALLOW LIST ===",
@@ -1374,12 +1489,14 @@ umbrella policy audit --allow-list --older-than 90d --sort created`,
       hints: [
         "Read the EDR alert about the suspicious DoH connections. Run: cat doh-alert.txt",
         "Decode a captured DoH query payload. Run: doh-decode payload-001.b64",
+        "Identify the hardcoded DoH resolver the malware uses to bypass local DNS. Run: doh-resolver-id",
         "Apply the Umbrella roaming client DoH block policy. Run: umbrella-block-doh 10.30.7.55",
         "Run 'assemble' to build the flag",
       ],
       fragments: [
         { trigger: "/doh-alert.txt", value: "FLAG{D0H_", label: "EDR Alert — Non-Browser DoH Connections Detected" },
-        { trigger: "doh-decode payload-001.b64", value: "3V4S10N_H4RDC0D3D_", label: "DoH Payload Decoded — C2 Domain Revealed" },
+        { trigger: "doh-decode payload-001.b64", value: "3V4S10N_", label: "DoH Payload Decoded — C2 Domain Revealed" },
+        { trigger: "doh-resolver-id", value: "H4RDC0D3D_", label: "Resolver Identified — Hardcoded DoH Endpoint" },
         { trigger: "umbrella-block-doh 10.30.7.55", value: "R3S0LV3R}", label: "DoH Evasion Blocked — Roaming Client Policy Applied" },
       ],
       files: {
@@ -1401,6 +1518,23 @@ umbrella policy audit --allow-list --older-than 90d --sort created`,
       },
       dirs: { "/": [{ name: "doh-alert.txt", isDir: false }, { name: "payload-001.b64", isDir: false }] },
       extraCommands: {
+        "doh-resolver-id": (_args: string[]) => ({
+          lines: [
+            "=== HARDCODED DoH RESOLVER IDENTIFICATION ===",
+            "Inspecting the implant's outbound DoH connections on 10.30.7.55:",
+            "  TLS SNI: dns.quad-rogue.example (NOT a corporate resolver)",
+            "  endpoint IP 185.x.x.x hardcoded — ignores DHCP-assigned DNS",
+            "  requests are RFC 8484 application/dns-message over :443",
+            "  bypasses the on-network Umbrella resolver entirely",
+            "Implant uses a fixed third-party DoH endpoint to evade DNS inspection.",
+            "Next: umbrella-block-doh 10.30.7.55",
+            "",
+            ">> LEARN: DoH hides C2 lookups inside normal HTTPS",
+            "   Malware ships a hardcoded DoH resolver so name resolution never touches",
+            "   the corporate DNS — defeating standard DNS logging and blocking.",
+            "   The fix is the roaming client forcing DoH through Umbrella, not a firewall rule.",
+          ],
+        }),
         "doh-decode": (args: string[]) => {
           const file = args[0] ?? "";
           if (file === "payload-001.b64") {
@@ -1558,12 +1692,14 @@ talos-investigate domain loader-cdn.com --whois-correlate
       hints: [
         "Read the Talos threat tip. Run: cat talos-tip.txt",
         "Pivot from the suspicious domain using passive DNS. Run: investigate-pivot stage-relay.net",
+        "Map the full campaign infrastructure from the pivot graph. Run: campaign-map",
         "Push all identified campaign domains to Umbrella. Run: umbrella-push-intel scattered-spider-2023",
         "Run 'assemble' to build the flag",
       ],
       fragments: [
         { trigger: "/talos-tip.txt", value: "FLAG{T4L0S_", label: "Talos Tip — Scattered Spider Infrastructure Identified" },
-        { trigger: "investigate-pivot stage-relay.net", value: "1NT3L_C2_", label: "Passive DNS Pivot — Full Campaign Mapped" },
+        { trigger: "investigate-pivot stage-relay.net", value: "1NT3L_", label: "Passive DNS Pivot — Adjacent Infra Found" },
+        { trigger: "campaign-map", value: "C2_", label: "Campaign Mapped — Full Infrastructure Graph" },
         { trigger: "umbrella-push-intel scattered-spider-2023", value: "TR4CK3D_4PT}", label: "Intel Pushed — 47 Domains Blocked Globally" },
       ],
       files: {
@@ -1582,6 +1718,23 @@ talos-investigate domain loader-cdn.com --whois-correlate
       },
       dirs: { "/": [{ name: "talos-tip.txt", isDir: false }] },
       extraCommands: {
+        "campaign-map": (_args: string[]) => ({
+          lines: [
+            "=== PASSIVE-DNS CAMPAIGN GRAPH ===",
+            "Expanding the pivot into a full infrastructure map:",
+            "  shared registrant email + same hosting ASN → 47 domains clustered",
+            "  shared TLS cert serial across staging + phishing fronts",
+            "  naming pattern: <brand>-sso / <brand>-okta (Scattered Spider TTP)",
+            "  3 still-live C2 nodes + 12 dormant (pre-registered) domains",
+            "Full campaign graph built — block the dormant infra too, not just live C2.",
+            "Next: umbrella-push-intel scattered-spider-2023",
+            "",
+            ">> LEARN: Map the graph before you block — get the dormant infra",
+            "   Pivoting on shared registrant/cert/ASN reveals pre-staged domains the",
+            "   actor hasn't used yet; blocking only live C2 lets them rotate instantly.",
+            "   Proactive blocking of the whole cluster is what actually stops the actor.",
+          ],
+        }),
         "investigate-pivot": (args: string[]) => {
           const domain = args[0] ?? "";
           if (domain === "stage-relay.net") {
@@ -1736,13 +1889,15 @@ umbrella-ir --block-feed blackout-2023 --confirm
       hints: [
         "Read the critical infrastructure IR brief. Run: cat crit-ir-brief.txt",
         "Pull the full compromise timeline across all OT hosts. Run: umbrella-ir --scope volt-stage.net",
+        "Analyze the attack timeline and TTPs before containment. Run: umbrella-ir --analyze blackout-2023",
         "Execute DNS containment for the full campaign. Run: umbrella-ir --contain blackout-2023",
         "Run 'assemble' to build the flag",
       ],
       fragments: [
         { trigger: "/crit-ir-brief.txt", value: "FLAG{DNS_1R_", label: "IR Brief — VOLT TYPHOON Pre-Positioning Confirmed" },
         { trigger: "umbrella-ir --scope volt-stage.net", value: "CONT41NM3NT_", label: "Scope Complete — 7 OT Hosts + Full C2 Map" },
-        { trigger: "umbrella-ir --contain blackout-2023", value: "CR1T1C4L_GR1D}", label: "Containment Achieved — Grid Operations Intact" },
+        { trigger: "umbrella-ir --analyze blackout-2023", value: "CR1T1C4L_", label: "Timeline Analyzed — Living-off-the-Land TTPs Mapped" },
+        { trigger: "umbrella-ir --contain blackout-2023", value: "GR1D}", label: "Containment Achieved — Grid Operations Intact" },
       ],
       files: {
         "/crit-ir-brief.txt": [
@@ -1789,6 +1944,27 @@ umbrella-ir --block-feed blackout-2023 --confirm
                 "   All infected hosts — including unmanaged OT/SCADA devices — appear in DNS logs.",
                 "   Passive DNS pivot from one C2 domain reveals the full campaign infrastructure.",
                 "   CISA CPG 2.S mandates DNS-layer security for critical infrastructure operators.",
+              ],
+            };
+          }
+          if (flag === "--analyze" && val === "blackout-2023") {
+            return {
+              lines: [
+                "Umbrella IR — Timeline & TTP Analysis: blackout-2023",
+                "",
+                "Reconstructed kill chain (DNS-derived, T-ordered):",
+                "  T-4d  initial beacon to volt-stage.net from ENG-WS-12",
+                "  T-3d  lateral DNS lookups → SCADA-02, SCADA-04 (no malware dropped)",
+                "  T-1d  living-off-the-land: certutil/wmic activity, valid accounts",
+                "  T-18m staging domain grid-update.net resolves (payload window)",
+                "  attribution: VOLT TYPHOON — pre-positioning, not immediate disruption",
+                "TTPs mapped to MITRE ATT&CK; intent = latent grid disruption capability.",
+                "Fragment collected.",
+                "",
+                ">> LEARN: Analyze intent before you contain — it changes the response",
+                "   Volt Typhoon pre-positions with living-off-the-land techniques and no malware;",
+                "   the DNS timeline is what exposes the campaign's intent and scope.",
+                "   Knowing it's pre-positioning (not active payload) shapes a safe containment.",
               ],
             };
           }
