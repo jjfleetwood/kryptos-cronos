@@ -272,6 +272,8 @@ SUPABASE_ANON_KEY         ← Supabase anon key (server-side; used by the SSR cl
 SUPABASE_SERVICE_ROLE_KEY ← Supabase service role key (server-side only; privileged)
 REVENUECAT_WEBHOOK_AUTH   ← shared secret for the RevenueCat (mobile IAP) webhook; matches the RC dashboard Authorization header
 CRON_SECRET               ← Vercel Cron bearer for /api/push/streak-reminder (daily streak push)
+AGENTS_ENABLED            ← kill switch for agent reporting; set to "true" to allow /api/agent/report
+AGENT_REPORT_TOKEN        ← bearer token the Deep Testing Agent uses to file findings to the Development board
 ```
 
 Local dev: `.env.local` in `app/` (gitignored).
