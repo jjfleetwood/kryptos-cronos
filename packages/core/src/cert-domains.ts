@@ -415,6 +415,31 @@ export const CERT_DOMAINS: Record<string, CertDomain[]> = {
   "audit-cm11": combine(sp("security-program", "security-operations"), cc("security-principles"), cy("cysa-security-ops"), cisa("cisa-operations", "cisa-governance"), cism("cism-program"), crisc("crisc-governance")), // Continuous compliance monitoring
   "audit-cm12": combine(sp("security-operations", "security-program"), cc("security-operations-cc"), cy("cysa-security-ops"), cisa("cisa-operations"), cism("cism-program"), crisc("crisc-risk-response")), // Monitoring maturity — MTTD/MTTR, SOC maturity
 
+  // ── tech-audit-5 / tech-audit-6 (audit-ag01 → audit-ag20) — auditing agentic AI ──
+  // CompTIA AI+ (Security/Governance, Models, Infrastructure) + CISA audit process +
+  // CISM/CRISC risk & governance. ISACA AAIA/AAISM and AWS-AIP added in the merge
+  // tables below. AI-audit content spans the AI-security and audit-methodology domains.
+  "audit-ag01": combine(sp("general-security"), cc("security-principles"), cy("cysa-reporting"), cisa("cisa-audit-process"), cism("cism-governance"), crisc("crisc-governance"), ai("aiplus-concepts", "aiplus-security")), // Anatomy of an agentic workflow
+  "audit-ag02": combine(sp("security-program"), cc("security-principles"), cy("cysa-reporting"), cisa("cisa-acquisition", "cisa-audit-process"), cism("cism-program"), crisc("crisc-it-security"), ai("aiplus-models", "aiplus-infrastructure")), // Agent Development Lifecycle
+  "audit-ag03": combine(sp("security-program", "general-security"), cc("security-principles"), cisa("cisa-audit-process", "cisa-governance"), cism("cism-risk", "cism-governance"), crisc("crisc-risk-assessment", "crisc-governance"), ai("aiplus-security")), // Generation/Integration/Amplification framework
+  "audit-ag04": combine(sp("threats-vulns", "general-security"), cc("security-principles"), cy("cysa-vuln-mgmt"), cisa("cisa-audit-process"), cism("cism-risk"), crisc("crisc-risk-assessment"), ai("aiplus-models", "aiplus-security")), // Auditing the generative layer
+  "audit-ag05": combine(sp("threats-vulns", "security-architecture"), cc("access-controls"), cy("cysa-vuln-mgmt"), cisa("cisa-protection"), cism("cism-risk"), crisc("crisc-it-security"), ai("aiplus-security")), // Auditing the integration layer
+  "audit-ag06": combine(sp("security-operations", "threats-vulns"), cc("security-operations-cc"), cy("cysa-security-ops"), cisa("cisa-operations"), cism("cism-risk"), crisc("crisc-risk-response"), ai("aiplus-security")), // Auditing the amplification layer
+  "audit-ag07": combine(sp("security-program"), cc("security-principles"), cy("cysa-reporting"), cisa("cisa-audit-process"), cism("cism-governance"), crisc("crisc-governance"), ai("aiplus-security")), // Artifact & evidence trail
+  "audit-ag08": combine(sp("security-program", "security-architecture"), cc("security-principles"), cy("cysa-security-ops"), cisa("cisa-acquisition", "cisa-audit-process"), cism("cism-program"), crisc("crisc-it-security"), ai("aiplus-infrastructure", "aiplus-security")), // Getting artifacts out of the pipeline
+  "audit-ag09": combine(sp("security-program", "security-architecture"), cc("security-principles"), cy("cysa-reporting"), cisa("cisa-audit-process", "cisa-protection"), cism("cism-program"), crisc("crisc-risk-response"), ai("aiplus-security")), // Baseline control catalog
+  "audit-ag10": combine(sp("security-program"), cc("security-principles"), cy("cysa-reporting"), cisa("cisa-audit-process"), cism("cism-governance"), crisc("crisc-governance"), ai("aiplus-security")), // Running a baseline agentic audit
+  "audit-ag11": combine(sp("threats-vulns", "general-security"), cc("security-principles"), cy("cysa-vuln-mgmt"), cisa("cisa-audit-process"), cism("cism-risk"), crisc("crisc-risk-assessment"), ai("aiplus-models", "aiplus-data")), // Engineering the evaluation
+  "audit-ag12": combine(sp("security-architecture", "threats-vulns"), cc("access-controls"), cy("cysa-vuln-mgmt"), cisa("cisa-protection"), cism("cism-program"), crisc("crisc-it-security"), ai("aiplus-security", "aiplus-infrastructure")), // Tool & identity ecosystem
+  "audit-ag13": combine(sp("security-operations", "threats-vulns"), cc("security-operations-cc"), cy("cysa-security-ops"), cisa("cisa-operations"), cism("cism-risk", "cism-incident"), crisc("crisc-risk-response"), ai("aiplus-security")), // Multi-agent systems & chaos
+  "audit-ag14": combine(sp("security-operations", "security-program"), cc("security-operations-cc"), cy("cysa-security-ops", "cysa-reporting"), cisa("cisa-operations", "cisa-audit-process"), cism("cism-program"), crisc("crisc-it-security"), ai("aiplus-infrastructure", "aiplus-security")), // Tracing & observability
+  "audit-ag15": combine(sp("security-operations", "security-program"), cc("security-operations-cc"), cy("cysa-security-ops"), cisa("cisa-operations", "cisa-audit-process"), cism("cism-program"), crisc("crisc-risk-response"), ai("aiplus-infrastructure", "aiplus-security")), // Continuous controls monitoring
+  "audit-ag16": combine(sp("security-architecture", "threats-vulns"), cc("access-controls", "security-principles"), cy("cysa-vuln-mgmt"), cisa("cisa-acquisition", "cisa-protection"), cism("cism-risk", "cism-program"), crisc("crisc-risk-assessment", "crisc-it-security"), ai("aiplus-security")), // Provenance & AI supply chain
+  "audit-ag17": combine(sp("security-program"), cc("security-principles"), cisa("cisa-governance", "cisa-audit-process"), cism("cism-governance"), crisc("crisc-governance"), ai("aiplus-security")), // Regulatory mapping
+  "audit-ag18": combine(sp("security-program", "security-architecture"), cc("access-controls", "security-principles"), cisa("cisa-governance", "cisa-protection"), cism("cism-governance"), crisc("crisc-governance"), ai("aiplus-security")), // Autonomy & human oversight
+  "audit-ag19": combine(sp("security-operations", "threats-vulns"), cc("bc-dr-ir", "security-operations-cc"), cy("cysa-security-ops", "cysa-ir"), cisa("cisa-operations"), cism("cism-incident"), crisc("crisc-risk-response"), ai("aiplus-security")), // Agentic incident response & forensics
+  "audit-ag20": combine(sp("security-program"), cc("security-principles"), cy("cysa-reporting"), cisa("cisa-governance", "cisa-audit-process"), cism("cism-governance", "cism-program"), crisc("crisc-governance"), ai("aiplus-security")), // The agentic audit function
+
   // ── mitre (mitre-01 → mitre-12) — MITRE ATT&CK framework ─────────────────────
   // CISA Domain 4 (Operations) | CISM Domain 4 (Incident) | CRISC Domains 2+3
   "mitre-01": combine(sp("threats-vulns"), cc("security-operations-cc"), np("net-fundamentals"), cy("cysa-security-ops"), cisa("cisa-operations"), cism("cism-risk"), crisc("crisc-risk-assessment")), // TA0043 Reconnaissance
@@ -614,6 +639,28 @@ const AI_PLATFORM_CERT_DOMAINS: Record<string, CertDomain[]> = {
   "audit-a11": combine(awsaip("awsaip-responsible", "awsaip-security"), gcpml("gcpml-monitoring")),
   "audit-a12": combine(awsaip("awsaip-responsible", "awsaip-security"), gcpml("gcpml-pipelines")),
 
+  // ── Auditing Agentic AI (audit-ag01 → audit-ag20) — responsible-AI + security/gov ─
+  "audit-ag01": combine(awsaip("awsaip-responsible")),
+  "audit-ag02": combine(awsaip("awsaip-responsible", "awsaip-security")),
+  "audit-ag03": combine(awsaip("awsaip-responsible", "awsaip-security")),
+  "audit-ag04": combine(awsaip("awsaip-genai", "awsaip-responsible")),
+  "audit-ag05": combine(awsaip("awsaip-security")),
+  "audit-ag06": combine(awsaip("awsaip-responsible", "awsaip-security")),
+  "audit-ag07": combine(awsaip("awsaip-security")),
+  "audit-ag08": combine(awsaip("awsaip-security")),
+  "audit-ag09": combine(awsaip("awsaip-responsible", "awsaip-security")),
+  "audit-ag10": combine(awsaip("awsaip-responsible", "awsaip-security")),
+  "audit-ag11": combine(awsaip("awsaip-genai", "awsaip-foundation")),
+  "audit-ag12": combine(awsaip("awsaip-security")),
+  "audit-ag13": combine(awsaip("awsaip-responsible", "awsaip-security")),
+  "audit-ag14": combine(awsaip("awsaip-security")),
+  "audit-ag15": combine(awsaip("awsaip-security")),
+  "audit-ag16": combine(awsaip("awsaip-foundation", "awsaip-security")),
+  "audit-ag17": combine(awsaip("awsaip-responsible", "awsaip-security")),
+  "audit-ag18": combine(awsaip("awsaip-responsible")),
+  "audit-ag19": combine(awsaip("awsaip-security")),
+  "audit-ag20": combine(awsaip("awsaip-responsible", "awsaip-security")),
+
   // ── Continuous monitoring (ML-specific stages) — GCP monitoring/pipelines ─────
   "audit-cm02": combine(gcpml("gcpml-monitoring")),
   "audit-cm03": combine(gcpml("gcpml-monitoring")),
@@ -694,6 +741,28 @@ const ISACA_AI_CERT_DOMAINS: Record<string, CertDomain[]> = {
   "audit-a10": combine(aaia("aaia-audit", "aaia-governance")),                        // report generation
   "audit-a11": combine(aaia("aaia-operations", "aaia-governance"), aaism("aaism-governance")), // continuous compliance
   "audit-a12": combine(aaia("aaia-governance", "aaia-audit", "aaia-operations"), aaism("aaism-governance")), // end-to-end synthesis
+
+  // ── Auditing Agentic AI (audit-ag01 → audit-ag20) — AAIA core; AAISM where security ──
+  "audit-ag01": combine(aaia("aaia-operations", "aaia-audit")),                         // anatomy of an agentic workflow
+  "audit-ag02": combine(aaia("aaia-operations", "aaia-audit")),                         // agent development lifecycle
+  "audit-ag03": combine(aaia("aaia-governance"), aaism("aaism-risk")),                  // G-I-A framework
+  "audit-ag04": combine(aaia("aaia-audit", "aaia-operations"), aaism("aaism-controls")), // generation-layer assurance
+  "audit-ag05": combine(aaia("aaia-operations"), aaism("aaism-controls", "aaism-risk")), // integration-layer assurance
+  "audit-ag06": combine(aaia("aaia-operations", "aaia-audit"), aaism("aaism-risk")),     // amplification-layer assurance
+  "audit-ag07": combine(aaia("aaia-audit")),                                            // artifact & evidence trail
+  "audit-ag08": combine(aaia("aaia-operations", "aaia-audit")),                         // pipeline gates produce evidence
+  "audit-ag09": combine(aaia("aaia-audit", "aaia-governance"), aaism("aaism-controls")), // baseline control catalog
+  "audit-ag10": combine(aaia("aaia-audit", "aaia-governance", "aaia-operations")),       // running a baseline audit
+  "audit-ag11": combine(aaia("aaia-audit", "aaia-operations")),                         // advanced eval engineering
+  "audit-ag12": combine(aaia("aaia-operations"), aaism("aaism-controls")),              // tool & identity ecosystem
+  "audit-ag13": combine(aaia("aaia-operations", "aaia-audit"), aaism("aaism-risk")),     // multi-agent & chaos
+  "audit-ag14": combine(aaia("aaia-audit", "aaia-operations")),                         // tracing & observability
+  "audit-ag15": combine(aaia("aaia-operations", "aaia-audit")),                         // continuous controls monitoring
+  "audit-ag16": combine(aaia("aaia-governance", "aaia-audit"), aaism("aaism-risk", "aaism-governance")), // provenance / AIBOM
+  "audit-ag17": combine(aaia("aaia-governance"), aaism("aaism-governance")),            // regulatory mapping
+  "audit-ag18": combine(aaia("aaia-governance", "aaia-operations"), aaism("aaism-governance")), // autonomy & oversight
+  "audit-ag19": combine(aaia("aaia-operations", "aaia-audit")),                         // incident forensics
+  "audit-ag20": combine(aaia("aaia-governance", "aaia-audit", "aaia-operations"), aaism("aaism-governance")), // the audit function
 
   // ── AI-enhanced continuous monitoring (ML detection) → AAIA operations ────────
   "audit-cm02": combine(aaia("aaia-operations")),  // ML-enhanced SIEM
