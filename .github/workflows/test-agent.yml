@@ -8,7 +8,8 @@ name: Dev Agents (nightly)
 #   1. In Vercel env: AGENTS_ENABLED=true and AGENT_REPORT_TOKEN=<secret> (then redeploy).
 #   2. In GitHub → Settings → Secrets and variables → Actions:
 #        - Secret  AGENT_REPORT_TOKEN  = the SAME value as the Vercel one
-#        - (optional) Variable AGENT_REPORT_URL = https://kryptoscronos.com (the default)
+#        - (optional) Variable AGENT_REPORT_URL = https://www.kryptoscronos.com (the default;
+#          must be the canonical www host — the apex redirects and drops the auth header)
 #   3. Trigger manually once (Run workflow) to verify, then let the nightly schedule run.
 
 on:
@@ -24,7 +25,9 @@ jobs:
     name: Run report-only dev agents → board
     runs-on: ubuntu-latest
     env:
-      AGENT_REPORT_URL: ${{ vars.AGENT_REPORT_URL || 'https://kryptoscronos.com' }}
+      # Use the canonical www host directly — the apex (kryptoscronos.com) 308-redirects
+      # to www, and Authorization headers are stripped across that redirect → 401.
+      AGENT_REPORT_URL: ${{ vars.AGENT_REPORT_URL || 'https://www.kryptoscronos.com' }}
       AGENT_REPORT_TOKEN: ${{ secrets.AGENT_REPORT_TOKEN }}
     defaults:
       run:
