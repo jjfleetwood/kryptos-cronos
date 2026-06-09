@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import AttackDiagram from "./AttackDiagram";
+import MermaidDiagram from "./MermaidDiagram";
 import GaugeBar from "./GaugeBar";
 import BackLink from "./BackLink";
 import RichText from "./RichText";
@@ -513,6 +514,12 @@ export default function StageInfo({
               <div className="bg-white/2 border border-white/8 rounded-xl p-6">
                 <AttackDiagram nodes={info.diagram.nodes} category={stage.category} attack={attackMode} />
               </div>
+              {info.flowchart && (
+                <div className="mt-4 bg-white/2 border border-white/8 rounded-xl px-4 pt-2 pb-4">
+                  <p className="text-cyan-600 text-[11px] font-mono mb-1 uppercase tracking-wider">▸ Process flow</p>
+                  <MermaidDiagram code={info.flowchart} />
+                </div>
+              )}
             </section>
           );
         })()}
@@ -561,6 +568,28 @@ export default function StageInfo({
                 </pre>
               </div>
             )}
+            {info.examples?.map((ex, i) => (
+              <div key={i} className="px-5 pb-5">
+                <p className="text-emerald-600 text-xs font-mono mb-2 uppercase tracking-wider">▸ {ex.label}</p>
+                <pre className="bg-black/70 border border-emerald-500/20 rounded-lg p-4 text-xs overflow-x-auto font-mono leading-relaxed whitespace-pre">
+                  {ex.code.split("\n").map((line, j) => {
+                    const trimmed = line.trimStart();
+                    const isComment =
+                      trimmed.startsWith("#") ||
+                      trimmed.startsWith("//") ||
+                      trimmed.startsWith("/*") ||
+                      trimmed.startsWith("*") ||
+                      trimmed.startsWith("--");
+                    return (
+                      <span key={j} style={{ color: isComment ? "rgba(134,239,172,0.38)" : "#86efac" }}>
+                        {line}
+                        {"\n"}
+                      </span>
+                    );
+                  })}
+                </pre>
+              </div>
+            ))}
           </div>
         </section>
 

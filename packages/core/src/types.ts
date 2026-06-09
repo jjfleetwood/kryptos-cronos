@@ -25,6 +25,10 @@ export type StageInfo = {
   keyTakeaways: string[];
   references: { title: string; url: string }[];
   downloads?: { name: string; url: string; description: string }[];
+  /** Optional Mermaid diagram source rendered as a flowchart in the Flow section. */
+  flowchart?: string;
+  /** Extra worked examples / sample artifacts rendered after the main code example. */
+  examples?: { label: string; code: string }[];
 };
 
 export type CtfCommandResult = { lines: string[]; solved?: boolean };
