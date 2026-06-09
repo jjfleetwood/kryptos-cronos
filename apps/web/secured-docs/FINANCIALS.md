@@ -35,7 +35,7 @@ AI-assisted development compresses build time dramatically but produces real eco
 | **Equivalent developer cost** | $3,750 (25 h × $150/hr market rate) |
 | **Actual AI tool cost** | ~$60 (Claude Code MAX amortized) |
 | **AI leverage ratio** | ~62× value created per dollar spent |
-| **Platform features shipped** | 801 stages, 72 epochs, 12 cert paths, resume builder, adaptive AI tutor, voucher system, Stripe + RevenueCat payments, **cross-platform monorepo + native iOS/Android app (Expo, pre-store)**, Supabase auth, push notifications, Plausible analytics, full security audit |
+| **Platform features shipped** | 821 stages, 74 epochs, 12 cert paths, resume builder, adaptive AI tutor, voucher system, Stripe + RevenueCat payments, **cross-platform monorepo + native iOS/Android app (Expo, pre-store)**, Supabase auth, push notifications, Plausible analytics, full security audit |
 
 **Total R&D investment (cash + sweat equity equivalent): ~$3,810**
 

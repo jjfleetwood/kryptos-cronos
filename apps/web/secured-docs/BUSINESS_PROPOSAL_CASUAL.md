@@ -28,11 +28,19 @@ It's a game. It's also real security training. And that combination is genuinely
 
 ---
 
+## One more thing — and it's deliberately in the background
+
+We built the engine to be general. To prove it, we ran a bunch of totally non-security stuff on it — debate, baseball, French, driving, even nail art. It all works, which tells you the engine isn't a one-trick cybersecurity thing; it can teach *anything* structured.
+
+But here's the discipline: **this is a cybersecurity company.** The public product is security, full stop — learn, get certified, prove it in a terminal, build the resume, get the job. The other tracks sit on a quiet separate page; we keep them alive because they're either a second consumer brand later or something we license to other people who have content and want our engine. They are *upside*, not the pitch. If you ever hear "why is there a baseball course in a security startup?" — that's the answer: same engine, different door, and the security door is the only one we're knocking on right now.
+
+---
+
 ## What exists today (v1.30.0 — web live at kryptoscronos.com; native mobile app in development)
 
 This isn't a pitch deck with a mockup. It's a working product:
 
-- **801 fully built stages** across 72 curriculum epochs and 16 learning tracks
+- **821 fully built stages** across 74 curriculum epochs and 16 learning tracks
 - **Cross-platform** — the Next.js web app (live) plus a native **iOS/Android app** (Expo, code-complete, pre-store) sharing one backend; mobile adds push streak-nudges and RevenueCat in-app purchases
 - **Privacy-friendly analytics** — Plausible, live (GDPR-compliant) — so we can actually measure traffic, funnels, and retention
 - **7-day free trial → Pro paywall** — Stripe checkout (monthly $13.99 / annual $99, SAVE 41%); webhook lifecycle handling; no credit card required to start
@@ -61,7 +69,7 @@ Built by one founder with an AI development environment. The adaptive difficulty
 
 ## The 16 curriculum tracks we have today
 
-*(Representative highlights — the full catalog spans 801 stages across 72 epochs; see CURRICULUM.md.)*
+*(Representative highlights — the full catalog spans 821 stages across 74 epochs; see CURRICULUM.md.)*
 
 ### Track 1: Core Security (42 stages)
 The entry point. Our First Journey (30 beginner-friendly CTF stages) + Foundations (12 stages on landmark attacks):

@@ -188,7 +188,7 @@ graph LR
 | `src/lib/redis.ts` | Server Library | Upstash Redis client singleton | `@upstash/redis` |
 | `src/lib/access.ts` | Server Library (server-only) | `canAccessStage()` — trial expiry + tier check | `redis.ts`, `auth.ts` |
 | `src/lib/server-progress.ts` | Server Library | `awardStageInRedis()` — XP, coins, badges, leaderboard | `redis.ts`, `resend` |
-| `packages/core/src/stages.ts` | Server Data | Epoch config + full stage array (all 801 stages, 72 epochs) | All epoch files |
+| `packages/core/src/stages.ts` | Server Data | Epoch config + full stage array (all 821 stages, 74 epochs) | All epoch files |
 | `src/data/stages-meta.ts` | Shared Data | Client-safe listing metadata — no CTF/quiz secrets | `types.ts` |
 | `src/data/stage-flags.ts` | Server Data (server-only) | Flag store for CTF validation | `server-only` |
 | `src/data/trophies.ts` | Shared Data | 51 trophies across 8 tiers; `dailyShopTrophies()` | — |

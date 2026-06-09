@@ -2,11 +2,13 @@
 
 ## What This Is
 
-Gamified cybersecurity + AI training platform. 72 curriculum epochs, 801 CTF/quiz stages, live leaderboard, admin dashboard, 24 downloadable MCP server templates. Built with Next.js 16 / React 19 / TypeScript / Tailwind CSS / Upstash Redis / Resend.
+Gamified cybersecurity + AI training platform. 74 curriculum epochs, 821 CTF/quiz stages, live leaderboard, admin dashboard, 24 downloadable MCP server templates. Built with Next.js 16 / React 19 / TypeScript / Tailwind CSS / Upstash Redis / Resend.
+
+> **Positioning — two products, one engine.** This is the **cybersecurity career product** (public experience = security tracks only: *Learn → Certify → Prove → Get hired*). The same `@kryptos/core` engine also runs a diverse non-security catalog (the `extendedGroups` in `stages/page.tsx` — crafts, driving, sports, travel, debate, flag-football); these prove the engine generalizes and are framed as a separate consumer/licensing brand-in-waiting. **Near-term decision: keep all content in one app, but the non-security tracks move off `/stages` to a low-prominence `/explore` route** (not a second deployment). Cyber investors see only the focused cyber product. Rationale: `docs/VC_READINESS_ANALYSIS.md` Part 2.5.
 
 **Live:** kryptoscronos.com  
 **Repo:** github.com/jjfleetwood/kryptos-cronos  
-**Current version:** v1.43.0 (as of 2026-06-06)
+**Current version:** v1.44.0 (as of 2026-06-08)
 
 ---
 
@@ -130,6 +132,8 @@ Back navigation: `BackLink` uses `backHref` prop (passed from `StageContainer`) 
 | 7 | `tech-audit-2` | Tech Audit: Technical | 12 | audit-t01 → audit-t12 | Violet |
 | 8 | `tech-audit-3` | Tech Audit: Agentic | 12 | audit-a01 → audit-a12 | Indigo |
 | 9 | `tech-audit-4` | Continuous Monitoring 2.0 | 12 | audit-cm01 → audit-cm12 | Rose |
+| 9a | `tech-audit-5` | Auditing Agentic AI (baseline; G-I-A framework) | 10 | audit-ag01 → audit-ag10 | Cyan |
+| 9b | `tech-audit-6` | Auditing Agentic AI: Advanced | 10 | audit-ag11 → audit-ag20 | Violet |
 | 10 | `mitre` | MITRE ATT&CK | 12 | mitre-01 → mitre-12 | Red |
 | 11 | `mitre-atlas` | MITRE ATLAS | 12 | atlas-01 → atlas-12 | Fuchsia |
 | 12 | `owasp-llm` | OWASP LLM Top 10 | 12 | llm-01 → llm-12 | Orange |
@@ -363,6 +367,11 @@ Local dev: `.env.local` in `app/` (gitignored).
 - **Target sponsors:** CrowdStrike, AWS, SentinelOne, CompTIA, ISC²
 
 ---
+
+## What's Shipped (v1.44.0)
+
+- ✅ **Two new Tech Audit epochs — Auditing Agentic AI (baseline + advanced), 20 stages.** `tech-audit-5` (`audit-ag01–ag10`, cyan) and `tech-audit-6` (`audit-ag11–ag20`, violet): how agentic workflows work and how to audit them through the dev/test/release lifecycle, built around the **Generation / Integration / Amplification (G-I-A)** risk framework — the audit artifact/evidence trail, per-layer assurance, eval engineering, MCP/non-human-identity ecosystem, multi-agent chaos testing, tracing/evidence integrity, continuous controls monitoring, AIBOM provenance, EU AI Act / NIST AI RMF / ISO 42001 mapping, autonomy/human oversight, incident forensics, and the agentic-audit function. Quiz-type, 8 Q/stage, full briefings.
+- ✅ **Counts:** **821 stages · 74 epochs · 16 tracks · 12 cert paths** (homepage/meta/account/survey/emails + all 7 locales reconciled). CTF count unchanged at 292 (new epochs are quiz-type).
 
 ## What's Shipped (v1.43.0)
 

@@ -2,6 +2,17 @@
 
 ---
 
+## v1.44.0 — 2026-06-08
+
+**Two new epochs: Auditing Agentic AI (baseline + advanced)**
+
+- **`tech-audit-5` — Auditing Agentic AI** (10 stages, `audit-ag01–ag10`, cyan) and **`tech-audit-6` — Auditing Agentic AI: Advanced** (10 stages, `audit-ag11–ag20`, violet), both in the **Tech Audit** track. How agentic workflows work and how to audit them through the dev/test/release lifecycle, organized around the **Generation / Integration / Amplification (G-I-A)** risk framework.
+- **Baseline** covers the agentic loop, the Agent Development Lifecycle, the G-I-A framework, per-layer auditing, the audit artifact/evidence trail (model card, AIBOM, prompt registry, eval reports, traces, identity, guardrail/policy cards), obtaining artifacts through pipeline gates, the baseline control catalog, and a full engagement walkthrough. **Advanced** covers eval engineering, the MCP/tool & non-human-identity ecosystem, multi-agent chaos testing, tracing/evidence integrity, continuous controls monitoring, AIBOM provenance/signing, EU AI Act / NIST AI RMF / ISO 42001 mapping, autonomy & human oversight, agentic incident forensics, and building the agentic-audit function.
+- Quiz-type (8 questions/stage) with full briefings; anchored to real incidents (Air Canada, Mata v. Avianca, Tay, Flash Crash, Knight Capital, Zillow Offers). Wired into `stages.ts`, `epoch-theme.ts`, the `techAudit` group + `SECURITY_EPOCHS`. tsc 0, build green, `gen:meta`/`check:meta` in sync.
+- **Counts:** **821 stages · 74 epochs · 16 tracks · 12 cert paths** (homepage stats, OG/Twitter meta, account/survey pages, transactional emails, and all 7 locales refreshed). CTF count unchanged at 292 (the new epochs are quiz-type).
+
+---
+
 ## v1.43.0 — 2026-06-06
 
 **Documentation + imagery + stat-count refresh (deploy of the deep-tech/analyst sprint)**

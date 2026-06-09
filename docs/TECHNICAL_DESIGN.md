@@ -235,7 +235,7 @@ Three email flows via Resend (`noreply@kryptoscronos.com`):
 
 | Trigger | Template | Recipient |
 |---|---|---|
-| New user registration | Welcome email — 801 stages, 72 epochs, trial info | New user + admin alert to `hello@kryptoscronos.com` |
+| New user registration | Welcome email — 821 stages, 74 epochs, trial info | New user + admin alert to `hello@kryptoscronos.com` |
 | Password reset request | Reset link with 1-hour expiry token | User's registered email |
 | Stage completion (new) | XP, badge, streak, next-stage link | User's registered email |
 

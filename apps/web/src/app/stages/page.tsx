@@ -42,7 +42,7 @@ const epochGroups = [
     id: "techAudit",
     labelKey: "stages.tracks.techAudit",
     descKey: "stages.tracks.techAuditDesc",
-    epochIds: ["tech-audit-1", "tech-audit-2", "tech-audit-3", "tech-audit-4"],
+    epochIds: ["tech-audit-1", "tech-audit-2", "tech-audit-3", "tech-audit-4", "tech-audit-5", "tech-audit-6"],
   },
   {
     id: "threatFrameworks",
@@ -181,7 +181,7 @@ const TRACK_SUBGROUPS: Record<string, SubGroup[]> = {
 // Mirrors filterStagesByGroup in epoch page: career and curious are equivalent
 const SECURITY_EPOCHS = new Set([
   "first-journey", "ancient", "computing-foundations", "silicon-fab",
-  "tech-audit-1", "tech-audit-2", "tech-audit-3", "tech-audit-4",
+  "tech-audit-1", "tech-audit-2", "tech-audit-3", "tech-audit-4", "tech-audit-5", "tech-audit-6",
   "mitre", "mitre-atlas", "owasp-llm", "emerging-tech", "ai-ml-foundations", "sec-foundations",
   "quantum-intro", "quantum-deep", "quantum-1", "quantum-2", "quantum-3", "quantum-4", "quantum-5",
   "cisco-core", "cisco-enterprise", "cisco-secops", "cisco-advanced", "umbrella",

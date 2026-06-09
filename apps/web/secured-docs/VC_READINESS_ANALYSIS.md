@@ -1,9 +1,9 @@
 # Kryptós CronOS — VC Readiness Analysis
 
 **Classification:** Internal — Founder Reference  
-**Date:** 2026-05-29  
-**Version:** 3.0  
-**Prepared by:** Full codebase + business document audit (third pass, post v1.18.1)
+**Date:** 2026-06-08  
+**Version:** 4.1  
+**Prepared by:** Full codebase + business-document audit (fourth pass, post v1.43.0) — now incorporating the two-product strategy
 
 > This is a harsh document. It is designed to simulate the questions a sharp partner at a cybersecurity-focused VC will ask in a first meeting. Every weakness listed here is something they will find. Better you find it first.
 
@@ -11,25 +11,28 @@
 
 ## Verdict First
 
-**Not fundable today — for exactly one reason: zero users.**
+**Not fundable today — for two founder-controlled reasons: zero users, and a paywall you've deliberately turned off. The positioning problem that haunted prior versions is now solved.**
 
-The product is exceptional. The security is real. The monetization path is functional. The legal entity is clean. The unit economics are strong. None of that matters until there is traction. A VC who loves everything about this product will still pass if you cannot show them users engaging, converting, and returning. That is the only thing this company needs to manufacture before approaching investors.
+The product is exceptional and deep: 821 stages, 74 epochs, 16 tracks, 12 certification paths, 292 hands-on CTFs, an in-production AI tutor, a code-complete native mobile app, and a security posture that survives a real review. The monetization rails are built and tested across web (Stripe) and mobile (RevenueCat). The entity is clean. The unit economics — on paper — are strong.
 
-Everything else in this document is noise compared to that one fact.
+The one thing that previously made the story *messy* — roughly half the curriculum being non-cybersecurity — is resolved by a deliberate **two-product split** (detailed in Part 2.5). The cyber company a VC underwrites is now clean. What remains is the part no document can fix for you: **traction**. Until people use this, return, and pay, a VC cannot price the risk — and right now `OPEN_ACCESS = true` means even the users you get can't generate conversion data until you re-gate. Two jobs before pitching: manufacture traction, and create the conditions under which conversion can be measured.
 
 ---
 
-## Part 1 — What's Actually Fixed Since v2.0
+## Part 1 — What's Changed Since v3.0 (2026-05-29)
 
-The previous analysis (2026-05-22) identified two critical blockers. Here is the current status:
-
-| v2.0 Blocker | Status |
+| v3.0 status | Now (v4.1) |
 |---|---|
-| Stripe not configured | ✅ **Fixed** — Stripe live, voucher system active, webhooks tested |
-| Zero analytics | ✅ **Fixed (2026-06-03)** — Plausible installed; measurement layer live (still need users + time for data) |
-| Web-only product | ✅ **Addressed** — cross-platform now: native iOS/Android app (Expo) code-complete in the monorepo, pre-store; RevenueCat IAP wired alongside Stripe |
+| Analytics installed, no data | ✅ Plausible live (cookieless, GDPR). Data gap unchanged — no users yet to measure. |
+| Cross-platform addressed (mobile code-complete) | ⚠️ Still **pre-store**: Expo app is code/config-complete in the monorepo but has **never run on a physical device** and isn't in either store. Needs `eas build/submit`, RevenueCat dashboard, store listings — founder/account work. |
+| 83(b) election filed | ✅ Complete (mailed ~2026-05-30, tracking …40418197). Keep the stamped copy for the data room. |
+| Pricing correct | ✅ $13.99/mo · $99/yr B2C; $8/seat/mo B2B. Defensible. |
+| Security review-ready | ✅ Hardened further: per-request nonce CSP, v2 admin token w/ expiry + revocation, multi-source entitlement, server-only flag store. Briefing at v5.9. |
+| Content depth | ✅ 582→**821 stages**, 50→**74 epochs**, +292 CTFs, +5 deep-tech/analyst epochs (OT/ICS, SDV II, Robotics II, Space II, Threat Frameworks). |
+| **Positioning / non-security dilution** | ✅ **Resolved by the two-product split (Part 2.5)** — the cyber brand carves to security tracks only; diverse content moves to a separate consumer/licensing brand. |
+| Engineering maturity | ✅ Bundle-architecture pass (play route 10 MB → 0.9 MB) + 2-step account-deletion/retention flow. Ships, doesn't just accumulate. |
 
-The Stripe fix is significant. The platform can now accept real money. Every other item from v2.0 has been resolved or superseded.
+**The OPEN_ACCESS reality (still the headline operational fact).** The codebase sets `OPEN_ACCESS = true`: `getUserTier()` returns `"pro"` for everyone and every stage is open. Sound *growth* logic (zero friction), but a direct fundraising consequence — **revenue is $0 by design, and free→paid conversion is unmeasurable until you flip it.** A VC respects the move only if you name the exact re-gating trigger and date. "We'll turn it on later" is not a plan.
 
 ---
 
@@ -37,75 +40,117 @@ The Stripe fix is significant. The platform can now accept real money. Every oth
 
 ### What Is Genuinely Impressive
 
-A VC will spend 20 minutes on the product before meeting 1. Here is what they will actually notice:
+A VC will spend 20 minutes in the product before meeting you. What they'll notice:
 
 | Observation | Why It Matters |
 |---|---|
-| 801 stages across 72 epochs, all loading cleanly | 6–12 months of content effort, hard to replicate fast |
-| Cross-platform — Next.js web (live) + native iOS/Android app (Expo, code-complete) sharing one backend via a typed client | Monorepo with shared `@kryptos/core`; mobile expands TAM + retention (push streak nudges) |
-| ARIA AI tutor in-production with Socratic framing | No competitor has this working in prod; Anthropic SDK wired correctly |
-| Adaptive difficulty engine — XP bonus, skill tracking, recommended next | Shows product thinking beyond a content dump |
-| Cert paths (/certs) — CompTIA Security+ + ISC² CC | Transforms entertainment into career utility; genuinely differentiating |
-| CyberOps Associate tracker (/cyberops) — 50 Cisco stages mapped to exam domains | Cisco partnership angle is real and credible |
-| Resume builder (/resume) with epoch-based skill extraction | Closes the loop from learning to job market; no other training platform does this |
-| Voucher system — atomic Redis SADD dedup, rollback on race | Production-grade engineering; shows the founder understands distributed systems |
-| Admin audit log — every admin action written to Redis | Shows operational maturity; most seed-stage products don't have this |
-| PBKDF2 600k iterations + account lockout + OWASP hardening sprint | Can survive a security review; most seed products cannot |
-| Nonce-based CSP, HMAC-signed cookies, server-only flag validation | The security is real, not theater |
-| Delaware C-Corp, EIN, Mercury account, Terms of Service | Entity is investment-ready |
-| Stripe webhooks process correctly (subscription lifecycle) | Monetization path has been thought through |
+| 821 stages / 74 epochs / 16 tracks, all loading cleanly | 12+ months of content effort; hard to replicate fast |
+| 292 hands-on CTFs with server-side flag validation | The real moat vs. video courseware — interactivity at scale |
+| 12 certification paths (Security+, ISC² CC, Network+, CySA+, CyberOps, AI+, ISACA CISA/CISM/CRISC + AAIA/AAISM, AWS AIP, GCP PMLE) | Turns entertainment into career utility; differentiating |
+| Cross-platform — live web + code-complete native iOS/Android sharing one typed backend | Monorepo + `@kryptos/core`; expands TAM + retention (push streak nudges) |
+| ARIA AI tutor in production, Socratic framing, tier-gated hint economy | No competitor has this working in prod |
+| Adaptive difficulty engine — XP bonus, skill tracking, recommended-next | Product thinking beyond a content dump |
+| Resume builder (/resume) with epoch-based skill extraction | Closes the learning→job-market loop; rare |
+| Voucher system — atomic Redis dedup + rollback; multi-source entitlement | Production-grade distributed-systems engineering |
+| Admin audit log, account lockout, PBKDF2 600k, nonce CSP, server-only flags | Survives a security review; most seed products can't |
+| Delaware C-Corp, EIN, 83(b) filed, Terms/Privacy, business email | Entity is investment-ready |
+| Stripe + RevenueCat both wired (subscription + IAP lifecycle) | Monetization built across web and mobile, not theorized |
+| **One engine, already grouped into two products** | The content is pre-partitioned (`SECURITY_EPOCHS`, `epochGroups`) — the cyber carve is a config change, not a rebuild |
 
 ### What a VC Partner Will Push Back On
 
-Be ready for all of these. "We'll figure it out later" is not an acceptable answer in meeting 1.
+"We'll figure it out later" is not acceptable in meeting 1.
 
 **1. Zero users. No traction data whatsoever.**
 
-This is not a gap in a spreadsheet — it is the entire story. A VC cannot price risk without behavioral data. Conversion rate? Unknown. Retention? Unknown. Which content track drives completion? Unknown. Do users churn after trial expiry or before? Unknown. The product may be exceptional and no one may use it. Until you have 500 weekly active users and 60 days of data, you cannot make a credible claim about product-market fit.
+Still the entire story. Conversion? Retention? Which tracks drive completion? Churn timing? All unknown. The product may be exceptional and unused. Until ~500–1,000 weekly active users and 60+ days of data exist, no credible PMF claim is possible.
 
-**2. Analytics installed (2026-06-03) — but no data yet.**
+**2. The paywall is off (`OPEN_ACCESS = true`) — conversion is structurally unmeasurable.**
 
-The measurement layer now exists: Plausible Analytics is live (privacy-compliant, GDPR). The remaining gap is *data*, not tooling — you still can't show a DAU trend, cohort chart, or conversion funnel until real users move through the funnel over 60+ days. Installing tracking was the prerequisite; the honest work now is acquisition + retention so the numbers exist to show.
+A VC will catch this the moment you describe the model. Every user is "Pro," so $0 MRR is guaranteed and your headline metric — free→paid conversion — cannot be observed. The growth logic is legitimate, but show: (a) the precise re-gating trigger (e.g. "at 2,000 WAU"), (b) that the gate works (Stripe/RC/voucher machinery is built and dormant behind one flag), and (c) an A/B plan for the wall when you flip it.
 
-**3. The non-security content problem.**
+**3. The non-security content question — now answered (see Part 2.5).**
 
-Hair styling. Nail arts. Tapestry. Baseball. Driving. Travel Italian. These tracks exist in the product, and a curious investor or journalist will find them. The positioning is "gamified cybersecurity training platform." A VC pitching this to their LP committee will have to explain why 40% of the curriculum is cosmetology and sports. The answer ("hidden from public nav") is not satisfying. The honest answer is that these were built for reasons unrelated to the core business thesis, and they dilute the brand perception.
-
-This is not fatal, but it is a real conversation. You need a crisp, confident answer ready: either (a) these tracks prove the engine generalizes and we are licensing it to adjacent markets, or (b) these are being sunset and the platform is refocusing purely on cybersecurity. Hedging between these two answers will read as unclear thinking.
+Previously the open wound: ~half of 72 epochs aren't cybersecurity (debate ×8, baseball ×15, flag-football ×3, driving ×3, travel/language ×4, crafts). A partner taking this to an LP committee couldn't explain a cosmetology curriculum inside a security company. **The answer is no longer a hedge — it's a decision:** the public cyber product (Kryptós CronOS) shows security tracks only; the diverse content becomes a separate consumer/licensing brand on the same engine. The cyber VC never has to see a baseball epoch. Execution detail in Part 2.5 and the Tier-1 action list.
 
 **4. Single founder. No team. No advisors.**
 
-A one-person company is fundable at pre-seed. But the risk register reads badly: What happens if you get sick? Who is the technical co-founder? Who is the go-to-market lead? Who validates the curriculum? Every VC will ask about the team. Right now the answer is "just me." You need one of: (a) a named co-founder committed to equity, (b) a domain advisor with name recognition in cybersecurity (former CISO, recognized researcher), or (c) a commitment from a university program or employer to use the platform (de-risks go-to-market). You don't need all three, but you need at least one.
+Fundable at pre-seed, but the risk register reads badly: bus factor of one, no named co-founder, no GTM lead, no curriculum validator. You need at least one of: (a) a co-founder with committed equity, (b) a recognized cybersecurity advisor willing to be named publicly, or (c) an institutional user commitment (a college program or employer piloting). One of three — not zero. *(The two-product split sharpens this: don't let Product 1 consume founder bandwidth — see Part 2.5's cost note.)*
 
-**5. Revenue is $0. The trial expiry has never been crossed by a real user.**
+**5. Revenue is $0, and the trial wall has never been crossed by a real user.**
 
-The Stripe integration works. The ProPaywall exists. But there has never been a real paying user. This means the conversion funnel is entirely theoretical. Does the ProPaywall copy convert? Does $13.99 feel right to the user who has just been through 7 days? Does the voucher redemption flow work in practice? None of this is known. "Our model projects 5% free-to-pro conversion" is a guess dressed up as a forecast.
+Compounded by #2: not only has no one paid, the paywall isn't live to be crossed. ProPaywall, the $13.99 price, and voucher redemption are untested against a real human at the decision moment.
 
 **6. No enterprise pilots. No LOIs. No university commitments.**
 
-The B2B story ($8/seat/mo, university programs, enterprise SOC training) is the path to $1.2M ARR. It requires enterprise relationships. There are zero enterprise relationships. One unpaid pilot with a community college cybersecurity program, or one LOI from a regional MSSP, would completely change the investor conversation from "I don't see a go-to-market" to "they're already in the market."
+The B2B story ($8/seat — SOC teams, college programs) is the path to seven-figure ARR and needs relationships that don't exist yet. One unpaid pilot with a community-college cyber program, or one LOI from a regional MSSP, flips "I don't see a GTM" into "they're already in market."
 
-**7. The first-journey epoch is too hard for beginners.**
+**7. The first-journey onboarding is still too hard for beginners.**
 
-bt-01 opens with a discussion of BGP routing tables, TTL-based traceroute mechanics, and the 2021 Facebook BGP outage. This is not a beginner experience — it is a network engineering module. If a new user signs up, completes bt-01, and is asked "how did that go?" the honest answer from most people is "I didn't understand half of it." The flagship onboarding experience of a consumer training product must be accessible. A 5-10 year old should be able to start here. Right now they cannot. This is being addressed (TODO item A), but it is a real UX problem today.
+`bt-01` opens on BGP routing tables and the 2021 Facebook BGP outage — network engineering, not a first experience. The flagship onboarding must be accessible. Open as TODO item A; the first thing a churning trial user hits.
 
-**8. Competitive response risk is underestimated.**
+**8. Competitive-response risk remains underestimated.**
 
-The competitive analysis notes TryHackMe, HackTheBox, Cybrary, Immersive Labs. It does not seriously address what happens when any of these players adds an AI tutor. TryHackMe has 2M+ users and venture backing. Adding Claude Haiku to their existing CTF infrastructure is a sprint for a 20-person engineering team. The moat is not "we have AI" — many platforms will have AI. The moat is the curriculum depth + certification mapping + resume integration + the adaptive engine. Lead with that. Don't let "AI tutor" be the headline.
+TryHackMe (2M+ users, venture-backed) bolting Claude onto existing CTF infra is a sprint for a 20-person team. "We have AI" is not the moat. The defensible stack is curriculum depth + 12 cert mappings + resume integration + adaptive engine + 292 CTFs as a *complete career loop*. Lead with that.
 
-**9. The financial model is theoretical at every input.**
+**9. The financial model is theoretical at every input — and provably untested.**
 
-$13.99/mo · 5% conversion · $30 CAC · 7% churn. Every number is an assumption. A VC will ask "why 5%? What's the industry benchmark? Have you A/B tested?" The answer is no, because there are no users. This is acceptable at pre-seed — all pre-seed models are guesses. But you should know your assumptions are guesses, present them as guesses, and show sensitivity analysis. Presenting them as forecasts will read as naïve.
+$13.99/mo · 5% conversion · $30 CAC · 7% churn. Every number is an assumption, and with `OPEN_ACCESS` on, none *can* be real yet. Present them as guesses with sensitivity analysis, not forecasts.
 
-**10. The 83(b) election — ✅ FILED (complete).**
-
-Resolved. The 83(b) election was filed with the IRS within the 30-day window (mailed ~2026-05-30, well inside the May 23 + 30 = June 22 deadline; tracking …40418197). This closes the catastrophic-tax-liability risk on future vesting events. Keep the stamped/mailed copy and IRS confirmation with the corporate records for the eventual diligence data room — a VC will still ask to see it, and now there's a clean answer.
+**10. 83(b) — ✅ resolved.** Filed within the window (mailed ~2026-05-30, tracking …40418197). Catastrophic-tax risk closed.
 
 ---
 
-## Part 3 — The Revised Financial Model
+## Part 2.5 — The Two-Product Resolution
 
-### Unit Economics at $13.99/mo (Unchanged, Still Strong)
+The prior version of this document forced a binary on the non-security content: pursue it as a **platform play** or **sunset** it. The better answer is a third path — **carve, don't sunset.** One engine, two front doors.
+
+### The structural fact that makes this cheap
+
+`@kryptos/core` is a content-agnostic mastery engine (stages, quizzes, CTF challenges, ARIA, adaptive difficulty, streaks, leaderboards, trophies, cert/resume tooling). The app *already* partitions content: `SECURITY_EPOCHS` and `epochGroups` in `stages/page.tsx` separate the security tracks from Crafts / Driving / Baseball / Debate / Travel; the `career`/`curious` group system exists; extended tracks are already hidden from public nav. **The cyber carve is a config/branding change, not a re-architecture.**
+
+### Product 2 — "Cyber Portal to Your Career" *(lead; the investable company)*
+
+Keeps the **Kryptós CronOS** name.
+
+- **Positioning:** "From first curiosity to a cybersecurity job." A career portal, not a course library.
+- **Content:** the ~36 security/tech epochs only (~400+ stages, all 292 CTFs, 12 cert paths).
+- **The pitch is one loop:** **Learn** (epochs + CTFs + ARIA) → **Certify** (12 cert dashboards mapped to real exams) → **Prove** (CTF flags, adaptive scoring) → **Get hired** (resume builder, epoch→skill extraction). No competitor runs this end-to-end.
+- **Audience / GTM:** students, career-changers, SOC analysts; B2B at $8/seat for college programs + SOC teams.
+- **Sponsors:** CrowdStrike, AWS, CompTIA, ISC², Cisco — all natural here.
+- **Investors:** SYN Ventures, YC, ClearSky, Cisco Investments.
+
+This is what the cyber VC sees. There is nothing to explain away.
+
+### Product 1 — "Diverse Learning Platform" *(separate consumer/licensing brand)*
+
+Needs its **own neutral name** (e.g. *Cronos Academy*, *Polymath*, *Questline*); the cyber brand does not appear here.
+
+- **Positioning:** "Learn anything, gamified — debate, baseball, French, driving." The diversity that dilutes Product 2 is the entire value prop here.
+- **Content:** the ~36 non-security epochs; the future kids' age-tier pipeline lives here, not in cyber.
+- **Thesis:** proof the engine generalizes → either a broad consumer subscription **or**, more interesting, a **white-label/licensing** play (any content owner spins up a gamified academy on the core).
+- **Investors:** edtech/consumer (Reach, Owl) or bootstrap — **not** the cyber VCs.
+
+### Why this beats platform-or-sunset
+
+- **The cyber VC sees only Product 2** — pushback #3 evaporates.
+- **You don't torch the content investment** — sunsetting throws away ~half the epochs; carving keeps them earning under a separate brand.
+- **Product 1 becomes quiet "the-engine-generalizes" evidence** — available if a partner asks, invisible if not. Platform optionality without polluting the cyber deck.
+
+### The near-term implementation (chosen): keep the content together, hide the diverse half
+
+The split does **not** require two deployments yet. The decision for now is: **one app, one `@kryptos/core`, cyber-forward.** The public `/stages` experience shows the **10 security tracks only** (`epochGroups`); the **6 non-security tracks** (`extendedGroups` — crafts, driving, sports, travel, debate, flag-football) move off the main page onto a **separate, low-prominence route** (e.g. `/explore`), reachable but not surfaced in primary nav or the marketing site. The content stays live and earning attention; it just stops being the first thing a cyber investor or journalist sees. The full two-domain / second-brand split is a later, optional step (Tier 3) — taken only if a licensing lead or bandwidth appears.
+
+### The cost (be honest about it)
+
+- **Engineering: near zero.** `epochGroups` vs `extendedGroups` and the `SECURITY_EPOCHS`/`NON_SECURITY_EPOCHS` sets already exist in `stages/page.tsx`. The carve is: render only `epochGroups` on `/stages`, move `extendedGroups` to a thin `/explore` route, drop the prominent "📚 Non-Security" divider. No content moves, nothing is deleted.
+- **Focus: the real cost.** Single founder. The discipline must be: **Product 2 is what you build and raise on now; Product 1 is dormant-but-alive (or licensed), not a second startup you actively market.** A 50/50 split loses both.
+
+---
+
+## Part 3 — The Financial Model (Pricing Current: $13.99/mo · $99/yr · $8/seat/mo)
+
+### Unit Economics at $13.99/mo (Strong On Paper, Still Untested)
 
 | Metric | Conservative | Realistic | Optimistic |
 |---|---|---|---|
@@ -115,9 +160,11 @@ Resolved. The 83(b) election was filed with the IRS within the 30-day window (ma
 | LTV | $154 | $196 | $280 |
 | **LTV/CAC** | **3.4x** ✅ | **6.5x** ✅ | **18.7x** ✅ |
 
-All three scenarios exceed the institutional 3x threshold. The economics are strong — if the conversion assumptions hold. They haven't been tested.
+All three clear the institutional 3x bar — *if* the conversion and churn assumptions hold. They cannot hold or fail until the paywall is live and real users move through it. A hypothesis, not a result.
 
-### Revenue Scenarios (18-Month Horizon)
+> **The $99/yr lever.** Annual prepay ($99 = $8.25/mo effective) trades ~41% headline price for cash up front and a ~12-month churn floor. When you re-gate, defaulting the wall to annual-with-monthly-option improves both LTV and runway — A/B it on day one of gating.
+
+### Revenue Scenarios (18-Month Horizon, Post Re-Gating, Product 2 / Cyber Only)
 
 #### Scenario A — B2C Only, Organic
 
@@ -128,9 +175,9 @@ All three scenarios exceed the institutional 3x threshold. The economics are str
 | M12 | 15,000 | 750 | $10,493 | $125.9K |
 | M18 | 40,000 | 2,000 | $27,980 | $335.8K |
 
-B2C alone does not reach $1.2M ARR without paid acquisition or viral growth.
+B2C alone doesn't reach $1.2M ARR without paid acquisition or virality.
 
-#### Scenario B — B2C + Enterprise + Sponsors (Path to $1.2M)
+#### Scenario B — B2C + Enterprise + Sponsors (Path to $1M+)
 
 | Source | Units | Monthly | ARR |
 |---|---|---|---|
@@ -140,72 +187,72 @@ B2C alone does not reach $1.2M ARR without paid acquisition or viral growth.
 | Voucher programs (CrowdStrike, AWS) | — | $8,000 | $96K |
 | **TOTAL** | | **$86,980** | **$1.04M** |
 
-$1.2M ARR requires M22–M24 on this trajectory, or one meaningful enterprise anchor deal.
+$1.2M ARR lands M22–M24 — or sooner with one enterprise anchor. Every line assumes re-gating first; under `OPEN_ACCESS` all four read $0. (Product 1, if pursued, is upside outside this model — and a separate cap table.)
 
 ---
 
-## Part 4 — Competitive Reality Check
+## Part 4 — Competitive Reality Check (Product 2 / Cyber)
 
 | Platform | Users | Revenue | Their AI | Your Edge |
 |---|---|---|---|---|
-| TryHackMe | 2M+ | Profitable | Generic hints | Socratic ARIA + cert mapping + resume |
-| HackTheBox | 500K+ | ~$30M ARR | Basic AI | Structured curriculum + non-expert path |
+| TryHackMe | 2M+ | Profitable | Generic hints | Socratic ARIA + 12 cert maps + resume + 292 CTFs |
+| HackTheBox | 500K+ | ~$30M ARR | Basic AI | Structured curriculum + non-expert on-ramp |
 | Cybrary | ~3M registered | $38M raised, restructured | Video-only | Interactivity + CTF + adaptive |
 | Immersive Labs | Enterprise | $66M raised | Scenario-based | B2C path + price point |
-| Coursera/Udemy cybersecurity | Massive | Massive | AI quiz | Hands-on CTF, no passive video |
+| Coursera/Udemy cyber | Massive | Massive | AI quiz | Hands-on CTF, no passive video |
 
-**The honest competitive position:** Kryptós CronOS occupies an unoccupied space between "too easy" (KnowBe4 phishing simulations) and "too hard" (HackTheBox expert CTFs). The adaptive difficulty engine + cert paths + resume builder creates a complete career development loop that no other platform offers end-to-end. **That is the pitch, not the AI tutor.**
+**Honest position:** Kryptós CronOS occupies the unoccupied space between "too easy" (KnowBe4 phishing sims) and "too hard" (HackTheBox expert CTFs). The adaptive engine + 12 cert paths + resume builder + 292 CTFs form a complete career-development loop no single competitor offers end-to-end. **That is the pitch — not the AI tutor.**
 
 ---
 
 ## Part 5 — What Changes the Conversation
 
-In priority order, here is what moves this from "interesting product" to "let's talk terms":
-
 ### Tier 1 — Must Have Before Pitching (Next 30 Days)
 
 | # | Action | Time | Impact |
 |---|---|---|---|
-| 1 | ✅ **Plausible Analytics installed** (2026-06-03) — privacy-compliant tracking live; now accumulate real usage data | Done | Measurement layer in place; need users + time for the numbers |
-| 2 | **Public launch** — r/netsec, DEF CON Discord, HackerNews Show HN, security Twitter/LinkedIn, r/cybersecurity | 1 day | First users are everything |
-| 3 | ✅ **83(b) election** — filed with the IRS ~2026-05-30 (complete; tracking …40418197) | Done | Catastrophic-tax risk closed; keep stamped copy for the data room |
-| 4 | **Rewrite bt-01–bt-30 for beginners** (in progress) | 3 days | First-journey is the flagship onboarding; it must work |
+| 1 | **Execute the cyber carve (keep-together version)** — `/stages` renders `epochGroups` only; move `extendedGroups` to a discreet `/explore` route; drop the "Non-Security" divider. One app, no content deleted | 0.5–1 day | Permanently kills the "why cosmetology?" objection |
+| 2 | **Decide + document the re-gating trigger** (date or WAU threshold) and the launch-funnel design | 1 day | Removes the "$0 by design" objection |
+| 3 | **Public launch** — r/netsec, DEF CON Discord, Show HN, security X/LinkedIn, r/cybersecurity | 1 day | First users are everything |
+| 4 | **Rewrite bt-01–bt-30 for beginners** (TODO item A) | 3 days | The flagship onboarding must work for a true novice |
 
 ### Tier 2 — Must Have Before Investor Meeting (Days 30–90)
 
 | # | Action | Time | Impact |
 |---|---|---|---|
-| 5 | **1,000+ MAU, 60+ days of data** | 60–90 days post-launch | The number that makes everything else credible |
-| 6 | **One paying user** — even $13.99/mo from a friend counts | Launch day | "Revenue: $0" vs "Revenue: $13.99" is psychologically different |
-| 7 | **One enterprise conversation** — a community college, a regional MSSP, a corporate SOC team willing to pilot | 2–4 weeks outreach | Validates B2B without needing a closed deal |
-| 8 | **One named advisor** — a recognized cybersecurity professional (CISO, researcher, instructor) willing to be named publicly | 1–3 conversations | Changes single-founder risk perception |
+| 5 | **1,000+ WAU, 60+ days of data** | 60–90 days post-launch | The number that makes everything else credible |
+| 6 | **Re-gate + first real paying user** | At gating | "Revenue: $0" → "Revenue: real" is a different company |
+| 7 | **One enterprise conversation** — college, regional MSSP, or corporate SOC pilot | 2–4 wks outreach | Validates B2B without a closed deal |
+| 8 | **One named advisor** — a recognized cybersecurity professional, public | 1–3 convos | Defuses single-founder risk |
+| 9 | **Ship mobile to TestFlight/internal track** — `eas build` on a real device | 1–2 days + accounts | "Cross-platform" must be demonstrable, not just code-complete |
 
 ### Tier 3 — Should Have for Credible Series A (Months 3–9)
 
 | # | Action | Time | Impact |
 |---|---|---|---|
-| 9 | **5% free→Pro conversion with real data** | 90 days post-launch | Validates the unit economic model |
-| 10 | **1 enterprise customer at $8/seat/mo** (paid, any size) | 3–6 months | De-risks B2B |
-| 11 | **Cisco BD conversation** — even a cold email to Cisco Investments with your CyberOps module as the hook | Ongoing | Strategic partnership credibility |
-| 12 | **CompTIA or ISC² partner acknowledgment** — even a social post from them | 1–3 emails | Third-party validation of the cert path approach |
+| 10 | **5% free→Pro with real data** | 90 days post-gating | Validates the unit-economics model |
+| 11 | **1 paid enterprise customer at $8/seat** (any size) | 3–6 months | De-risks B2B |
+| 12 | **Cisco BD conversation** — cold email to Cisco Investments, CyberOps module as the hook | Ongoing | Strategic-partnership credibility |
+| 13 | **CompTIA / ISC² partner acknowledgment** — even a social post | 1–3 emails | Third-party validation of the cert-path thesis |
+| 14 | *(Optional)* **Promote Product 1 from `/explore` to its own brand/domain** — only if bandwidth allows or a licensing lead appears (the keep-together version already isolates it) | Days | Platform optionality / second revenue line, kept off the cyber cap table |
 
 ---
 
-## Part 6 — VC Target Ranking (Updated)
+## Part 6 — VC Target Ranking
 
 ### Most Likely to Move at Current Stage
 
-**SYN Ventures** — Strongest fit. Jay Leek was CISO at Blackstone and Credit Suisse. Deep cybersecurity domain expertise. Has invested pre-traction in security education plays before. Lead with: Cisco CyberOps alignment + ARIA Socratic tutor + cert paths.
+**SYN Ventures** — Strongest fit. Jay Leek (ex-CISO, Blackstone/Credit Suisse), deep cyber domain expertise, has gone pre-traction on security-education plays. Lead with: CyberOps alignment + Socratic ARIA + 12 cert paths + the clean single-focus carve.
 
-**Y Combinator** — Still viable. YC funds pre-revenue with strong product + large market. Apply to the next batch. The product is compelling enough to get an interview. The 10-minute demo must be flawless.
+**Y Combinator** — Viable. Funds pre-revenue with strong product + large market. Apply next batch; the 10-minute demo must be flawless. Be ready for the "free forever?" probe with the re-gating plan.
 
-**ClearSky Security** — Government/defense angle real. CMMC training potential with the audit tracks is a genuine hook. They fund early. Cold outreach works here.
+**ClearSky Security** — Government/defense angle real; CMMC-training potential off the audit tracks is a genuine hook. Funds early; cold outreach works.
 
-**Cisco Investments** — Lead with business development, not investment. "We have built a 50-stage CyberOps Associate curriculum that maps to CBROPS 200-201 domains. We want to discuss a partnership." The investment follows the relationship.
+**Cisco Investments** — Lead with business development, not capital: "We built a 50-stage CyberOps Associate curriculum mapped to CBROPS 200-201. Let's discuss a partnership." The investment follows the relationship.
 
 ### Need Traction First
 
-ForgePoint Capital, Owl Ventures, Reach Capital, SYN Tier-2 — revisit at 1,000+ MAU with conversion data.
+ForgePoint Capital, Owl Ventures, Reach Capital — revisit at 1,000+ WAU with post-gating conversion data.
 
 ### Series A / Long Shot
 
@@ -213,43 +260,47 @@ a16z, General Catalyst, Greylock — Series A territory.
 
 ---
 
-## Part 7 — Risk Register (v3.0)
+## Part 7 — Risk Register (v4.1)
 
 | Risk | Likelihood | Impact | Status |
 |---|---|---|---|
-| Zero traction at launch | Medium | Critical | Mitigation: targeted community outreach to cybersecurity communities |
-| No analytics = no traction proof | Medium | High | **Mitigated — Plausible installed 2026-06-03**; remaining risk is accumulating real usage data |
-| Single founder execution | High | High | Mitigation: named advisor, clear scope reduction if needed |
-| Non-security content dilutes brand | Medium | Medium | Mitigation: hidden from public nav; prepare clear narrative for investor Q |
-| Enterprise requires dedicated sales | High | High | Mitigation: founder-led first 5 customers |
-| B2C CAC exceeds LTV | Low | Medium | Model shows 3.4x–18.7x LTV/CAC; needs real data to confirm |
-| AI-tutor moat erodes | High | Medium | Mitigation: differentiate on curriculum depth + cert mapping, not AI alone |
-| 83(b) election missed | ✅ Resolved | Catastrophic | **Filed with the IRS ~2026-05-30 (complete); risk closed** |
-| First-journey UX too hard | High | High | **Active fix — elementary redesign in progress** |
-| Competitive response from TryHackMe | High | Medium | They have users; you have the better product + cert angle |
+| Zero traction at launch | Medium | Critical | Mitigation: targeted outreach to cyber communities |
+| Paywall off → conversion unmeasurable | High | High | Mitigation: documented re-gating trigger + A/B plan; machinery built/dormant |
+| No data yet (analytics live, users absent) | Medium | High | Mitigated tooling; remaining risk is real usage over 60+ days |
+| Single-founder execution / bus factor | High | High | Mitigation: named advisor or co-founder; **keep Product 1 dormant to protect focus** |
+| Non-security content dilutes brand | ✅ Resolved | — | **Two-product carve (Part 2.5); cyber site shows security tracks only** |
+| Enterprise needs dedicated sales | High | High | Mitigation: founder-led first 5 customers |
+| Mobile never run on device / not in stores | Medium | Medium | Mitigation: `eas build` to TestFlight before claiming "cross-platform live" |
+| B2C CAC exceeds LTV | Low | Medium | Model shows 3.4x–18.7x; needs real post-gating data |
+| Two-product split fragments founder focus | Medium | Medium | **New.** Mitigation: Product 2 is the only active build; Product 1 dormant/licensed |
+| AI-tutor moat erodes | High | Medium | Mitigation: differentiate on curriculum depth + cert mapping + CTFs |
+| First-journey UX too hard | High | High | Active fix — beginner rewrite in progress |
+| Competitive response from TryHackMe | High | Medium | They have users; you have the deeper product + cert/CTF loop |
+| 83(b) election missed | ✅ Resolved | Catastrophic | Filed ~2026-05-30; risk closed |
 
 ---
 
-## Part 8 — What Makes It Not Fundable Today (Shortened to One Item)
+## Part 8 — What Makes It Not Fundable Today (Two Items)
 
-**Zero users.**
+1. **Zero users.** No behavioral data, so a VC cannot price the risk.
+2. **Paywall deliberately off.** $0 revenue and unmeasurable conversion are guaranteed until you re-gate — so even early traction won't answer the question a VC most needs answered.
 
-Everything else is noise. The product is strong. The security is real. The monetization works. The entity is clean. The economics are viable. None of it matters without users.
-
-Get 1,000 weekly active users. Get 60 days of retention data. Get one paying subscriber. Then pitch.
+Both are within your control. Positioning — once the third blocker — is now solved by the two-product carve. Get 1,000 weekly active users. Decide and document when the paywall turns on. Flip it, capture one real paying subscriber and 60 days of retention. Then pitch.
 
 ---
 
 ## Summary
 
-**v1.0 Verdict:** Not fundable. 14 blockers.  
-**v2.0 Verdict:** One critical blocker (Stripe). One day of work.  
-**v3.0 Verdict:** One critical blocker (zero users). 60–90 days of work.
+**v1.0:** Not fundable. 14 blockers.  
+**v2.0:** One critical blocker (Stripe). One day of work.  
+**v3.0:** One critical blocker (zero users). 60–90 days.  
+**v4.0:** Two linked blockers — zero users + paywall off — plus an unresolved positioning hedge.  
+**v4.1:** Two founder-controlled blockers (zero users + paywall off). **Positioning resolved** via the two-product carve. ~60–90 days of disciplined launch + one re-gating decision.
 
-The platform is now: Stripe live ✅ · incorporated entity ✅ · 83(b) election filed ✅ · correct pricing ✅ · strong unit economics ✅ · legal docs ✅ · business email ✅ · clean positioning ✅ · production-grade security ✅ · cert paths ✅ · resume builder ✅ · adaptive engine ✅ · admin audit log ✅ · voucher system ✅.
+The platform is now: 821 stages / 74 epochs / 16 tracks / 12 cert paths / 292 CTFs ✅ · Stripe + RevenueCat live ✅ · incorporated, 83(b) filed ✅ · pricing set ($13.99 / $99 / $8-seat) ✅ · strong on-paper unit economics ✅ · production-grade security (briefing v5.9) ✅ · cross-platform code-complete ✅ · cert paths + resume + adaptive engine ✅ · admin audit log + voucher system ✅ · **clean single-focus positioning via the cyber carve ✅**.
 
-The product is genuinely excellent. It needs users. That's the whole story.
+The product is genuinely excellent and now cleanly positioned. It needs users, and it needs the paywall turned back on so those users can prove the model. That's the whole story.
 
 ---
 
-*Last updated: 2026-05-29 — Version 3.0*
+*Last updated: 2026-06-08 — Version 4.1*

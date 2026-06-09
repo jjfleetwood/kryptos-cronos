@@ -1,10 +1,24 @@
 # Kryptós CronOS — Security Briefing
 **Classification:** Internal  
-**Version:** 5.8  
-**Date:** 2026-06-06  
+**Version:** 5.9  
+**Date:** 2026-06-08  
 **Current version:** v1.43.0
 
 ---
+
+## Changelog — v5.9 (2026-06-08) — Bundle-split perf pass, account-deletion flow, accuracy reconcile
+
+**No new attack surface; net posture slightly improved.** The 2026-06-07 perf/polish run is client-architecture and UX, not new server surface. Re-audited against the live code:
+
+- **Client-bundle hardening (improves posture).** `stages-meta` was decoupled from the heavy `stages.ts` content barrel and CTF `extraCommands` were made lazy per-epoch (`LOADERS` map). The practical security effect: the 10 MB content barrel — which transitively *could* pull stage `info`/`quiz`/command text into a route bundle — is now kept out of every route's first-load (`/stages/[stageId]` 10 MB → 0.9 MB). `stage-flags.ts` remains `import "server-only"` and is still never reachable from any client graph. No flag/answer data is shipped to the client.
+- **Account deletion — 2-step retention flow.** The `/account` delete control now requires an explicit two-step confirm before calling `DELETE /api/delete-account`. The route is unchanged: still session/bearer-authed, still purges only the **caller's own** records (user/progress/streak/leaderboard/nda + email index) and the parallel Supabase auth account. No cross-user deletion path; identity is taken from the verified session, never a request body field.
+- **CSP accuracy fix (this doc).** §3 below previously omitted `https://plausible.io`. The live `proxy.ts` CSP allowlists Plausible in **both** `script-src` and `connect-src` (privacy-friendly, cookieless analytics — the only third-party tag). §3 corrected to match the running config.
+- **Dependency table refreshed** to the actually-installed versions and `npm audit` status reconciled (see §6/§7): **2 moderate transitive advisories (postcss / next), no high or critical.** Earlier "audit clean" wording was optimistic.
+- **Stale references fixed**: `app/secured-docs` → `apps/web/secured-docs` (§4); "every push to dev and master" → **master only** (the `dev` branch was retired 2026-06-03) (§7).
+
+### Posture note — OPEN_ACCESS launch flag (not a vulnerability, but security-relevant)
+
+The platform currently runs with `OPEN_ACCESS = true` (in `apps/web/src/lib/access.ts` and the `/stages` page guard). While set, `getUserTier()` returns `"pro"` for every signed-in user and `canAccessStage()` returns `true` — i.e. **the paywall and per-tier gating are deliberately disabled** for the open-access growth phase. This is a business config, not a broken control: XP/flag validation, auth, admin gating, and rate limits are all unaffected. The only entitlement-bypass "risk" is intentional (everything is free right now). Re-gating at launch is a one-flag flip in two kept-in-sync files; the tier machinery (Stripe/RC/voucher multi-source entitlement) is fully built and dormant behind it. Tracked as a launch task, not a finding.
 
 ## Changelog — v5.8 (2026-06-06) — Deep-tech/analyst content sprint + imagery (v1.37.0–v1.43.0)
 
@@ -181,7 +195,9 @@ Closes CTF flag visibility finding. `stages-meta.ts` introduced as client-safe l
 
 ## Executive Summary
 
-Kryptós CronOS is a Next.js 16 application with serverless API routes, Redis-backed persistence, and Supabase Auth integration. The overall risk rating is **LOW**. A full OWASP Top 10 audit was completed in v4.0; all critical and high findings have been remediated. The remaining items are accepted low-risk trade-offs documented below.
+Kryptós CronOS is a Next.js 16 / Turborepo application (`apps/web` + `@kryptos/core`) with serverless API routes, Upstash Redis persistence, and dual web (HMAC cookie) / mobile (Supabase bearer JWT) auth. The overall risk rating is **LOW**. A full OWASP Top 10 audit was completed in v4.0; all critical and high findings have been remediated, and every release since (through v1.43.0 / briefing v5.9) has been re-audited for new surface — the content, mobile, monorepo, and perf sprints added none. Remaining items are accepted low-risk trade-offs documented below.
+
+One business-config caveat for any reviewer: the platform currently ships with `OPEN_ACCESS = true`, which intentionally disables the paywall/tier gate (everything is free during the growth phase). This is the only deliberate entitlement bypass; all integrity controls (auth, server-side XP/flag validation, admin gating, rate limits, audit log) remain fully active. See the v5.9 posture note.
 
 ---
 
@@ -194,7 +210,7 @@ Kryptós CronOS is a Next.js 16 application with serverless API routes, Redis-ba
 | A03 | Injection | ✅ No issues | All Redis keys use fixed prefixes + lowercase user input. No eval/exec/dangerouslySetInnerHTML. |
 | A04 | Insecure Design | ✅ Resolved | Voucher race condition fixed; Stripe origin header whitelisted; rate limits on all write endpoints. |
 | A05 | Security Misconfiguration | ✅ Resolved | Leaderboard rate-limited; nonce-based CSP; HSTS + security headers; Stripe success/cancel URLs whitelisted. |
-| A06 | Vulnerable Components | ✅ Current | next 16.2.6, react 19.2.4, stripe 22.1.1, @anthropic-ai/sdk 0.98.0, @supabase/supabase-js 2.106.2. `npm audit` clean. |
+| A06 | Vulnerable Components | ✅ Current | next 16.2.6, react 19.2.4, stripe ^22.1.1, @anthropic-ai/sdk ^0.98.0, @supabase/supabase-js ^2.106.2, @supabase/ssr ^0.10.3, jose ^6.2.3. `npm audit`: **2 moderate transitive advisories (postcss / next), 0 high, 0 critical** — accepted, no fix-forward available without a Next minor bump; tracked. |
 | A07 | Auth Failures | ✅ Resolved | Rate limit now covers admin user; HMAC-signed sessions; timing-safe password comparison; constant-time dummy hash on unknown usernames. |
 | A08 | Software & Data Integrity | ✅ Resolved | Stripe webhook uses `stripe.webhooks.constructEvent()` signature verification. Server-only flag store. |
 | A09 | Logging & Monitoring | ✅ Resolved | Admin actions logged to `audit:log` Redis list. Account lockout tracks repeated auth failures per username. |
@@ -276,24 +292,26 @@ All headers applied via `next.config.ts`:
 | `Permissions-Policy` | `camera=(), microphone=(), getelocation=()` | ✅ |
 | `Content-Security-Policy` | Nonce-based, per-request (see below) | ✅ |
 
-**CSP** (set dynamically in `src/proxy.ts`):
+**CSP** (set dynamically per-request in `apps/web/src/proxy.ts`):
 ```
 default-src 'self';
-script-src 'self' 'nonce-{per-request-nonce}';
+script-src 'self' 'nonce-{per-request-nonce}' https://plausible.io;
 style-src 'self' 'unsafe-inline';
 img-src 'self' data: https:;
 font-src 'self';
-connect-src 'self' https://api.resend.com;
+connect-src 'self' https://api.resend.com https://plausible.io;
 frame-ancestors 'none'
 ```
 
-`style-src` retains `unsafe-inline` — required for Tailwind/React inline styles. Script injection via inline JS eliminated by nonce requirement.
+`style-src` retains `unsafe-inline` — required for Tailwind/React inline styles. Script injection via inline JS eliminated by the per-request nonce requirement. `https://plausible.io` is the single third-party origin (cookieless, no-PII analytics), allowlisted in `script-src` + `connect-src`. `/api/*` requests are handled before the CSP/nonce block (CORS-only path); the page CSP applies to HTML routes only.
+
+> **`img-src` tightening (deferred, low priority).** With all stage imagery now self-hosted (v5.7), `img-src` could be narrowed from `'self' data: https:` to `'self' data:`. Left wide pending an audit of OG/share-image and any remaining external image origins; tracked as hardening, not a finding.
 
 ---
 
 ## 4. Internal Documents — ✅ RESOLVED (v0.6.0)
 
-All internal documents in `app/secured-docs/`. Served only via `/api/docs/[file]` which requires a valid admin HMAC cookie. `outputFileTracingIncludes` in `next.config.ts` ensures Vercel bundles the folder without exposing it as static assets.
+All internal documents in `apps/web/secured-docs/` (monorepo path since 2026-06-03; never in `public/`). Served only via `/api/docs/[file]`, which requires a valid admin HMAC cookie and reads from an explicit filename allowlist (no path traversal). `outputFileTracingIncludes` in `next.config.ts` ensures Vercel bundles the folder without exposing it as static assets.
 
 ---
 
@@ -316,16 +334,20 @@ All internal documents in `app/secured-docs/`. Served only via `/api/docs/[file]
 
 ## 7. Dependency Security
 
-| Package | Version |
+| Package | Version (pinned/range in `apps/web/package.json`) |
 |---|---|
 | next | 16.2.6 |
-| react | 19.2.4 |
-| @upstash/redis | 1.38.0 |
-| stripe | 22.1.1 |
-| @anthropic-ai/sdk | 0.98.0 |
-| @supabase/supabase-js | 2.106.2 |
+| react / react-dom | 19.2.4 |
+| @upstash/redis | ^1.38.0 |
+| stripe | ^22.1.1 |
+| @anthropic-ai/sdk | ^0.98.0 |
+| @supabase/supabase-js | ^2.106.2 |
+| @supabase/ssr | ^0.10.3 |
+| jose (Supabase JWKS verify) | ^6.2.3 |
+| @react-pdf/renderer | ^4.5.1 |
+| react-markdown / remark-gfm | ^10.1.0 / ^4.0.1 |
 
-`npm audit` runs in CI on every push to `dev` and `master`.
+`npm audit` runs in CI on every push to **`master`** (the only branch since the `dev` branch was retired 2026-06-03) and on PRs targeting it. Current status: **2 moderate transitive advisories (postcss, next), 0 high, 0 critical** — no production-reachable exploit path; accepted and tracked pending a Next minor bump.
 
 ---
 

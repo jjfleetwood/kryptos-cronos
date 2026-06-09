@@ -302,7 +302,7 @@ User clicks link → POST /api/reset-password (rate: 5/IP/hour)
 
 ## 5. Epoch / Stage System
 
-### 5.1 Epochs (72 total, 801 stages)
+### 5.1 Epochs (74 total, 821 stages)
 
 | # | Epoch ID | Name | Stages | ID Range | Color |
 |---|---|---|---|---|---|
