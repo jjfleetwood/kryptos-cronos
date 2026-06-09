@@ -3,6 +3,7 @@
 import { useEffect, useState, useMemo, type ReactNode } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import ScrumBoard from "@/components/ScrumBoard";
 import { getSession, setSession } from "@/lib/auth";
 import { stagesMeta as stages } from "@kryptos/core/stages-meta";
 import { CONTENT_FLAGS, type ContentFlag } from "@kryptos/core/content-flags";
@@ -44,6 +45,7 @@ function timeAgo(ts: number | null): string {
 
 const NAV_ITEMS = [
   { id: "admin-stats",    label: "Stats" },
+  { id: "admin-dev",      label: "Development" },
   { id: "admin-metrics",  label: "Metrics" },
   { id: "admin-users",    label: "Users" },
   { id: "admin-analytics",label: "Analytics" },
@@ -1574,6 +1576,18 @@ export default function AdminPage() {
             sub={loading ? undefined : `${Math.round(avgCompletion / 100 * totalStages)} of ${totalStages} stages avg`}
             color="text-sky-400"
           />
+        </div>
+
+        {/* Development — interactive scrum board */}
+        <div id="admin-dev" className="mb-10 scroll-mt-6">
+          <div className="flex items-center gap-3 mb-1">
+            <h2 className="text-white font-bold text-lg">🛠 Development</h2>
+            <span className="text-[10px] font-mono uppercase tracking-widest text-cyan-500/70 border border-cyan-500/30 rounded px-1.5 py-0.5">scrum</span>
+          </div>
+          <p className="text-xs text-gray-500 mb-4">
+            Interactive board for prioritizing work. Submitted feedback &amp; survey responses auto-arrive in <span className="text-gray-300">Triage</span> for your build / reject decision. Drag cards between columns; click a card to edit, set priority, and add notes.
+          </p>
+          <ScrumBoard />
         </div>
 
         {/* Investor Metrics */}

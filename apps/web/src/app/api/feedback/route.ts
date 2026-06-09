@@ -20,6 +20,20 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Message required" }, { status: 400 });
   }
 
+  // Persist for the Development scrum board (ingested for triage). Best-effort —
+  // never blocks the email path.
+  try {
+    const ts = Date.now();
+    const key = `feedback:item:${ts}`;
+    await redis.hset(key, {
+      message: message.trim().slice(0, 4000),
+      page: typeof page === "string" ? page.slice(0, 200) : "",
+      username: typeof username === "string" && username ? username.slice(0, 100) : "unknown",
+      ts: String(ts),
+    });
+    await redis.zadd("feedback:index", { score: ts, member: key });
+  } catch { /* ignore persistence errors */ }
+
   const resendKey = process.env.RESEND_API_KEY;
   if (!resendKey) {
     return NextResponse.json({ error: "Email not configured" }, { status: 503 });

@@ -30,6 +30,7 @@ const DOCS: DocEntry[] = [
   { id: "ops", label: "Operations", file: "OPS.md", icon: "🖥️", color: "text-green-400", group: "general" },
   { id: "curriculum", label: "Curriculum", file: "CURRICULUM.md", icon: "🎓", color: "text-emerald-400", group: "general" },
   { id: "todo", label: "To-Do & Roadmap", file: "TODO.md", icon: "✅", color: "text-lime-400", group: "general" },
+  { id: "agent-dev-plan", label: "Agent Dev Plan", file: "AGENT_DEV_PLAN.md", icon: "🤖", color: "text-cyan-300", group: "general" },
   // Architecture suite
   {
     id: "data-diagram", label: "Data Diagram", file: "DATA_DIAGRAM.md", icon: "🗄️", color: "text-cyan-400", group: "architecture",
