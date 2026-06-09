@@ -1,0 +1,43 @@
+name: Deep Testing Agent (nightly)
+
+# Runs the report-only quiz/CTF testing agent on a schedule and files findings to
+# the Development scrum board via POST /api/agent/report.
+#
+# Setup (one-time):
+#   1. In Vercel env: set AGENTS_ENABLED=true and AGENT_REPORT_TOKEN=<secret> (then redeploy).
+#   2. In GitHub → Settings → Secrets and variables → Actions:
+#        - Secret  AGENT_REPORT_TOKEN  = the SAME value as the Vercel one
+#        - (optional) Variable AGENT_REPORT_URL = https://kryptoscronos.com (the default)
+#   3. Trigger manually once (Run workflow) to verify, then let the nightly schedule run.
+
+on:
+  schedule:
+    - cron: "0 7 * * *" # 07:00 UTC nightly
+  workflow_dispatch: # manual trigger from the Actions tab
+
+permissions:
+  contents: read
+
+jobs:
+  test-agent:
+    name: Validate quizzes + CTFs → report to board
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run Deep Testing Agent and report findings
+        working-directory: apps/web
+        env:
+          AGENT_REPORT_URL: ${{ vars.AGENT_REPORT_URL || 'https://kryptoscronos.com' }}
+          AGENT_REPORT_TOKEN: ${{ secrets.AGENT_REPORT_TOKEN }}
+        run: node scripts/test-agent.mjs --report
