@@ -999,7 +999,7 @@ STEP 3: Conditional Response
     subtitle: "Cisco DNA Center REST API Enumeration and Privilege Escalation via Unauthenticated Endpoint Exposure",
     category: "cybersecurity",
     xp: 120,
-    badge: { id: "badge-m-devnet", name: "API Cartographer", emoji: "🖥️" },
+    badge: { id: "badge-m-apicart", name: "API Cartographer", emoji: "🖥️" },
     challengeType: "ctf",
     info: {
       tagline: "The REST API that manages your entire network is only as secure as its authentication boundary.",

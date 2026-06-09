@@ -14,7 +14,7 @@ export const cisco4Stages: StageConfig[] = [
     cveId: "CVE-2023-20198",
     cvssScore: 10.0,
     xp: 150,
-    badge: { id: "badge-m-iosxe", name: "Network Sovereign", emoji: "🏛️" },
+    badge: { id: "badge-m-godmode", name: "Network Sovereign", emoji: "🏛️" },
     challengeType: "ctf",
     info: {
       tagline: "A single unauthenticated HTTP request turned 50,000 routers into attacker-controlled network nodes.",
