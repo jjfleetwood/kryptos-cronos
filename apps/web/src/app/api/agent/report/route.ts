@@ -2,14 +2,16 @@ import { NextRequest, NextResponse } from "next/server";
 import { listItems, createItem, putItem, newItem } from "@/lib/scrum";
 import type { ScrumItem, ScrumType, ScrumPriority } from "@/lib/scrum-types";
 
-// Agent reporting endpoint — how the Phase-1 Deep Testing Agent (and future
-// agents) file findings to the Development board. Gated by an agent token (NOT
-// the admin cookie — least privilege) and a global kill switch. It can only
-// create source:"agent" cards and reconcile its own test cards; it cannot read,
-// edit, or delete human/manual items.
+// Agent reporting endpoint — how report-only dev agents (testing, content, code-
+// health, format, …) file findings to the Development board. Gated by an agent
+// token (NOT the admin cookie — least privilege) and a global kill switch. Each
+// agent manages only its OWN cards: dedup, auto-resolve, and the sweep-summary
+// are scoped by `initiator = agent:<name>`, so agents never touch each other's
+// (or any human's) items.
 
 type Finding = {
-  stageId: string; epochId?: string; checkId: string;
+  ref?: string; stageId?: string;     // identifier (stage id or file path)
+  epochId?: string; checkId: string;
   severity: "high" | "medium" | "low"; title: string; detail?: string;
 };
 
@@ -34,16 +36,21 @@ export async function POST(req: NextRequest) {
   if (!body || !Array.isArray(body.findings)) {
     return NextResponse.json({ error: "findings[] required" }, { status: 400 });
   }
-  const agent = (typeof body.agent === "string" ? body.agent : "tester").slice(0, 40);
+  const agent = (typeof body.agent === "string" ? body.agent : "tester").replace(/[^a-z0-9_-]/gi, "").slice(0, 40) || "agent";
+  const initiator = `agent:${agent}`;
+  const keyPrefix = `${agent}:`;
+  const summaryRef = `${agent}:sweep:summary`;
   const findings: Finding[] = body.findings.filter(
-    (f: Finding) => f && f.stageId && f.checkId && f.title && f.severity !== "low",
+    (f: Finding) => f && (f.ref || f.stageId) && f.checkId && f.title && f.severity !== "low",
   );
 
-  // Map existing OPEN agent-test cards by their finding key (stored in sourceRef).
+  // Map THIS agent's existing OPEN finding cards by their finding key (sourceRef).
   const all = await listItems();
   const open = new Map<string, ScrumItem>();
   for (const it of all) {
-    if (it.source === "agent" && it.sourceRef?.startsWith("test:") && it.status !== "archived" && it.status !== "done") {
+    if (it.source === "agent" && it.initiator === initiator &&
+        it.sourceRef?.startsWith(keyPrefix) && it.sourceRef !== summaryRef &&
+        it.status !== "archived" && it.status !== "done") {
       open.set(it.sourceRef, it);
     }
   }
@@ -51,15 +58,17 @@ export async function POST(req: NextRequest) {
   const seen = new Set<string>();
   let created = 0, updated = 0;
   for (const f of findings) {
-    const key = `test:${f.stageId}:${f.checkId}`;
+    const refId = f.ref ?? f.stageId ?? "?";
+    const key = `${agent}:${refId}:${f.checkId}`;
     if (seen.has(key)) continue;
     seen.add(key);
     const sev = SEV[f.severity] ?? SEV.medium;
-    const desc = `${f.detail ?? ""}\n\nstage: ${f.stageId}${f.epochId ? ` (${f.epochId})` : ""} · check: ${f.checkId} · severity: ${f.severity}`;
+    const desc = `${f.detail ?? ""}\n\nref: ${refId}${f.epochId ? ` (${f.epochId})` : ""} · check: ${f.checkId} · severity: ${f.severity}`;
     const existing = open.get(key);
     if (existing) {
       existing.title = f.title.slice(0, 200);
       existing.description = desc;
+      existing.priority = sev.priority;
       existing.updatedAt = Date.now();
       await putItem(existing);
       updated++;
@@ -67,35 +76,36 @@ export async function POST(req: NextRequest) {
       await createItem({
         title: f.title.slice(0, 200), description: desc,
         type: sev.type, priority: sev.priority, status: "triage",
-        source: "agent", initiator: `agent:${agent}`, sourceRef: key,
+        source: "agent", initiator, sourceRef: key,
       });
       created++;
     }
   }
 
-  // Auto-resolve open findings that are no longer detected.
+  // Auto-resolve this agent's open findings that are no longer detected.
   let resolved = 0;
   for (const [key, it] of open) {
     if (!seen.has(key)) {
       it.status = "done";
-      it.notes = [...(it.notes ?? []), { ts: Date.now(), author: `agent:${agent}`, text: "✓ Auto-resolved — no longer detected in the latest sweep." }];
+      it.notes = [...(it.notes ?? []), { ts: Date.now(), author: initiator, text: "✓ Auto-resolved — no longer detected in the latest sweep." }];
       it.updatedAt = Date.now();
       await putItem(it);
       resolved++;
     }
   }
 
-  // Upsert the single sweep-summary heartbeat card.
+  // Upsert this agent's single sweep-summary heartbeat card.
   const s = body.summary ?? {};
   const lowStr = Object.entries(s.low ?? {}).map(([k, v]) => `${k}: ${v}`).join(" · ") || "none";
+  const scopeStr = Object.entries(s.scope ?? {}).map(([k, v]) => `${k}: ${v}`).join(" · ");
   await putItem(newItem({
-    id: "agent-test-sweep",
-    title: `🧪 Test sweep — ${new Date().toISOString().slice(0, 16).replace("T", " ")}Z · ${s.quizzes ?? "?"} quizzes / ${s.ctfs ?? "?"} CTFs · ${findings.length} open finding(s)`,
-    description: `Latest deep test sweep by agent:${agent}.\n- Quiz stages checked: ${s.quizzes ?? "?"}\n- CTF stages checked: ${s.ctfs ?? "?"}\n- Open high/medium findings: ${findings.length} (new ${created}, updated ${updated}, auto-resolved ${resolved})\n- Low-severity (aggregated, not carded): ${lowStr}`,
+    id: `agent-${agent}-sweep`,
+    title: `${s.icon ?? "🤖"} ${s.label ?? agent} sweep — ${new Date().toISOString().slice(0, 16).replace("T", " ")}Z · ${findings.length} open finding(s)`,
+    description: `Latest sweep by ${initiator}.\n${scopeStr ? `- Scope: ${scopeStr}\n` : ""}- Open high/medium findings: ${findings.length} (new ${created}, updated ${updated}, auto-resolved ${resolved})\n- Low-severity (aggregated, not carded): ${lowStr}`,
     type: "test", priority: findings.length ? "p2" : "p3", status: "review",
-    source: "agent", initiator: `agent:${agent}`, sourceRef: "test:sweep:summary",
+    source: "agent", initiator, sourceRef: summaryRef,
     order: -8.6e15, // just under the pinned plan card, top of Review
   }));
 
-  return NextResponse.json({ ok: true, created, updated, resolved, open: findings.length });
+  return NextResponse.json({ ok: true, agent, created, updated, resolved, open: findings.length });
 }

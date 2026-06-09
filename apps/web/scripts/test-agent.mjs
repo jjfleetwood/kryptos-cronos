@@ -100,7 +100,7 @@ try {
   }
 
   // ── Report ───────────────────────────────────────────────────────────────────
-  const summary = { quizzes: quizStages.length, ctfs: ctfStages.length, low };
+  const summary = { icon: "🧪", label: "Deep Testing", scope: { quizzes: quizStages.length, ctfs: ctfStages.length }, low };
   const high = findings.filter((f) => f.severity === "high").length;
   const med = findings.filter((f) => f.severity === "medium").length;
   console.log(`\n🧪 Deep Testing Agent — ${quizStages.length} quiz stages, ${ctfStages.length} CTF stages`);

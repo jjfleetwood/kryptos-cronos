@@ -1,10 +1,11 @@
-name: Deep Testing Agent (nightly)
+name: Dev Agents (nightly)
 
-# Runs the report-only quiz/CTF testing agent on a schedule and files findings to
-# the Development scrum board via POST /api/agent/report.
+# Runs the report-only dev agents (testing, content, code-health, format) on a
+# schedule and files findings to the Development scrum board via
+# POST /api/agent/report. All agents are read-only — they never change code.
 #
 # Setup (one-time):
-#   1. In Vercel env: set AGENTS_ENABLED=true and AGENT_REPORT_TOKEN=<secret> (then redeploy).
+#   1. In Vercel env: AGENTS_ENABLED=true and AGENT_REPORT_TOKEN=<secret> (then redeploy).
 #   2. In GitHub → Settings → Secrets and variables → Actions:
 #        - Secret  AGENT_REPORT_TOKEN  = the SAME value as the Vercel one
 #        - (optional) Variable AGENT_REPORT_URL = https://kryptoscronos.com (the default)
@@ -19,9 +20,15 @@ permissions:
   contents: read
 
 jobs:
-  test-agent:
-    name: Validate quizzes + CTFs → report to board
+  agents:
+    name: Run report-only dev agents → board
     runs-on: ubuntu-latest
+    env:
+      AGENT_REPORT_URL: ${{ vars.AGENT_REPORT_URL || 'https://kryptoscronos.com' }}
+      AGENT_REPORT_TOKEN: ${{ secrets.AGENT_REPORT_TOKEN }}
+    defaults:
+      run:
+        working-directory: apps/web
     steps:
       - uses: actions/checkout@v4
 
@@ -33,11 +40,25 @@ jobs:
           cache-dependency-path: package-lock.json
 
       - name: Install dependencies
+        working-directory: .
         run: npm ci
 
-      - name: Run Deep Testing Agent and report findings
-        working-directory: apps/web
-        env:
-          AGENT_REPORT_URL: ${{ vars.AGENT_REPORT_URL || 'https://kryptoscronos.com' }}
-          AGENT_REPORT_TOKEN: ${{ secrets.AGENT_REPORT_TOKEN }}
+      - name: Deep Testing Agent (quizzes + CTFs)
+        continue-on-error: true
         run: node scripts/test-agent.mjs --report
+
+      - name: Content Integrity Agent
+        continue-on-error: true
+        run: node scripts/content-agent.mjs --report
+
+      - name: Code Health Agent
+        continue-on-error: true
+        run: node scripts/code-health-agent.mjs --report
+
+      - name: Format Drift Agent
+        continue-on-error: true
+        run: node scripts/format-agent.mjs --report
+
+      - name: i18n Coverage Agent
+        continue-on-error: true
+        run: node scripts/i18n-agent.mjs --report
