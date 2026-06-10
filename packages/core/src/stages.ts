@@ -392,7 +392,7 @@ gpg --sign --encrypt --recipient recipient@domain classified_scroll.txt
       fragments: [
         { trigger: "/chambers/kings/inscription.txt", value: "FLAG{CIA_", label: "King's Chamber — Confidentiality" },
         { trigger: "/chambers/queens/inscription.txt", value: "TR14D_", label: "Queen's Chamber — Integrity" },
-        { trigger: "/chambers/gallery/inscription.txt", value: "P1LL4RS}", label: "Grand Gallery — Availability" },
+        { trigger: "unlock-vault", value: "P1LL4RS}", label: "Grand Gallery — Availability (Vault Unlocked)" },
       ],
       files: {
         "/MISSION.txt": [
@@ -479,8 +479,9 @@ gpg --sign --encrypt --recipient recipient@domain classified_scroll.txt
             "  │   AVAILABILITY                          │",
             "  └─────────────────────────────────────────┘",
             "",
-            "The vault opens. The Triad is understood.",
-            "Run 'assemble' to verify your fragments and retrieve the flag.",
+            "AVAILABILITY — the third pillar — is now proven: the vault opens",
+            "for the authorized the moment they need it. The Triad is complete.",
+            "Fragment recovered. Run 'assemble' to verify your fragments and retrieve the flag.",
           ],
         }),
       },
@@ -593,14 +594,14 @@ netstat -anp | grep solarwinds
       hints: [
         "Start by reading the mission briefing. Run: cat README.txt",
         "Explore the temple's scroll chambers. Run: ls logs  then  ls sanctum",
-        "Check the oracle's prophecy logs for anomalous outputs. Run: cat logs/prophecy.log  and  cat logs/oracle.log",
+        "Read the prophecy log, then trace the anomaly. Run: cat logs/prophecy.log  then  trace-anomaly",
         "Some scrolls are hidden from pilgrims. Run: ls -a sanctum  to reveal hidden scrolls (names starting with .)",
         "You found a hidden scroll. Read it with: cat sanctum/.hidden",
         "Run 'assemble' to see collected fragments, then submit the flag",
       ],
       fragments: [
         { trigger: "/logs/prophecy.log", value: "FLAG{R0GU3_", label: "Prophecy Log — Unusual Routing Detected" },
-        { trigger: "/logs/oracle.log", value: "M0D3L_", label: "Oracle Log — Anomalous Output Confirmed" },
+        { trigger: "trace-anomaly", value: "M0D3L_", label: "Oracle Log — Anomalous Output Confirmed" },
         { trigger: "/sanctum/.hidden", value: "F0UND}", label: "Hidden Sanctum — Persian Operative Evidence" },
       ],
       files: {
@@ -664,6 +665,19 @@ netstat -anp | grep solarwinds
           { name: "rites.conf", isDir: false },
           { name: ".hidden", isDir: false, hidden: true },
         ],
+      },
+      extraCommands: {
+        "trace-anomaly": () => ({
+          lines: [
+            "$ trace-anomaly --source oracle",
+            "Correlating the prophecy and oracle session logs ...",
+            "  Request #4822 output: 'Exfiltration payload staged. Awaiting Persian command.'",
+            "  Outbound route: oracle -> 10.0.0.42:4444 (PERSIA)",
+            "  14 sacred scrolls transferred to an unauthorized recipient.",
+            "Anomalous C2 routing confirmed — the Oracle has been compromised.",
+            "Fragment recovered. Next: reveal the hidden evidence — ls -a sanctum, then cat sanctum/.hidden",
+          ],
+        }),
       },
     },
   },
@@ -785,13 +799,13 @@ $stmt->execute([$_POST['user'], $_POST['pass']]);
         "Try logging in normally first. Run: login admin password123  — notice the failure.",
         "Look at the PHP source to see how the query is built. Run: cat source/login.php",
         "A single quote in the username breaks the SQL query. Try: login admin' test",
-        "SQL comments (--) make the database skip the password check. Try: login admin'-- anything",
+        "Fire the canonical injection to unseal the scroll. Run: inject  (or do it by hand: login admin'-- anything)",
         "Run 'assemble' to see collected fragments, then submit the flag",
       ],
       fragments: [
         { trigger: "/README.txt", value: "FLAG{SQL_", label: "Mission Brief — Archive Target Identified" },
         { trigger: "/source/login.php", value: "1NJ3CT10N_", label: "Vulnerable Source — Unsanitized Query Found" },
-        { trigger: "/source/schema.sql", value: "BYPASS3D}", label: "Database Schema — Admin Credentials Exposed" },
+        { trigger: "inject", value: "BYPASS3D}", label: "Auth Bypassed — Pharaoh's Secret Scroll Unsealed" },
       ],
       files: {
         "/README.txt": [
@@ -827,7 +841,7 @@ $stmt->execute([$_POST['user'], $_POST['pass']]);
           ");",
           "",
           "INSERT INTO scribes VALUES",
-          "  (1, 'admin', 'Pharaoh$ecret!', 'high_keeper', 'FLAG{SQL_1NJ3CT10N_BYPASS3D}'),",
+          "  (1, 'admin', 'Pharaoh$ecret!', 'high_keeper', '[SEALED - bypass the keeper auth to reveal]'),",
           "  (2, 'euclid', 'geometry42', 'scholar', NULL),",
           "  (3, 'hypatia', 'wisdom!7', 'scholar', NULL);",
         ].join("\n"),
@@ -843,6 +857,17 @@ $stmt->execute([$_POST['user'], $_POST['pass']]);
         ],
       },
       extraCommands: {
+        inject: () => ({
+          lines: [
+            "$ login admin'-- -",
+            "Executing: SELECT * FROM scribes WHERE username='admin'--' AND password='-'",
+            "The -- comment truncates the query, so the password check is skipped.",
+            "Archive returned 1 row — authentication bypassed.",
+            "  id: 1  username: admin  role: high_keeper",
+            "The Pharaoh's secret scroll is unsealed.",
+            "Run 'assemble' to retrieve your fragment.",
+          ],
+        }),
         login: (args) => {
           const user = args[0] || "";
           const pass = args.slice(1).join(" ") || "";

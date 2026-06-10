@@ -547,15 +547,27 @@ aws s3api list-buckets --query 'Buckets[*].Name' | xargs -I{} \\
       hints: [
         "List: ls aws-audit/",
         "Check SCPs: cat aws-audit/SCP-REVIEW.txt",
-        "Check CloudTrail: cat aws-audit/CLOUDTRAIL-STATUS.txt",
+        "Check CloudTrail: run check-cloudtrail",
         "Check Config Rules: cat aws-audit/CONFIG-RULES.txt",
         "Run 'assemble' then submit",
       ],
       fragments: [
         { trigger: "/aws-audit/SCP-REVIEW.txt", value: "FLAG{4WS_SCPs_", label: "SCP Review — Gaps Found" },
-        { trigger: "/aws-audit/CLOUDTRAIL-STATUS.txt", value: "CL0UDT4R41L_", label: "CloudTrail — Status Reviewed" },
+        { trigger: "check-cloudtrail", value: "CL0UDT4R41L_", label: "CloudTrail — Status Reviewed" },
         { trigger: "/aws-audit/CONFIG-RULES.txt", value: "C0NF1G_G4PS}", label: "Config Rules — Gaps Confirmed" },
       ],
+      extraCommands: {
+        "check-cloudtrail": () => ({ lines: [
+          "$ aws cloudtrail get-trail-status --name management-trail",
+          "Querying CloudTrail configuration ...",
+          "  Enabled: YES   Multi-region: YES   CloudWatch: YES",
+          "  Log file validation: DISABLED   <-- FINDING",
+          "  Log destination: same account (account-logs-bucket)   <-- FINDING",
+          "A compromised admin could delete or tamper with logs undetected.",
+          "Fragment collected. See aws-audit/CLOUDTRAIL-STATUS.txt for the full review.",
+          "Next: cat aws-audit/CONFIG-RULES.txt",
+        ] }),
+      },
       files: {
         "/aws-audit/SCP-REVIEW.txt": [
           "SCP CONFIGURATION REVIEW",
@@ -717,15 +729,27 @@ aws iam list-users --query 'Users[*].UserName' | xargs -I{} \\
       hints: [
         "List: ls iam-policies/",
         "Review developer policy: cat iam-policies/dev-user-policy.json",
-        "Review service role: cat iam-policies/app-service-role.json",
+        "Analyze the service role: run analyze-iam",
         "View finding: cat findings/IAM-VIOLATIONS.txt",
         "Run 'assemble' then submit",
       ],
       fragments: [
         { trigger: "/iam-policies/dev-user-policy.json", value: "FLAG{14M_", label: "Dev Policy — Excessive Permissions Found" },
-        { trigger: "/iam-policies/app-service-role.json", value: "PR1V3SC_W1LDC4RD_", label: "Service Role — Privilege Escalation Path" },
+        { trigger: "analyze-iam", value: "PR1V3SC_W1LDC4RD_", label: "Service Role — Privilege Escalation Path" },
         { trigger: "/findings/IAM-VIOLATIONS.txt", value: "FOUND}", label: "IAM Violations — Documented" },
       ],
+      extraCommands: {
+        "analyze-iam": () => ({ lines: [
+          "$ iam-analyzer simulate --principal app-service-role",
+          "Analyzing the attached policy for privilege-escalation paths ...",
+          "  Action: iam:PassRole on Resource: *   <-- FINDING",
+          "  Chain: lambda:CreateFunction + iam:PassRole -> assume any role",
+          "  Effect: this service role can pass an admin role to Lambda and escalate.",
+          "Privilege-escalation path confirmed (wildcard PassRole).",
+          "Fragment collected. See iam-policies/app-service-role.json for the raw policy.",
+          "Next: cat findings/IAM-VIOLATIONS.txt",
+        ] }),
+      },
       files: {
         "/iam-policies/dev-user-policy.json": [
           '{"Version":"2012-10-17","Statement":[',
@@ -881,15 +905,27 @@ kubectl get pod app-pod -o yaml | grep -E "privileged|runAsRoot|hostPath|docker.
       hint: "Read the deployment manifest and the image scan output.",
       hints: [
         "Read deployment: cat k8s/deployment.yaml",
-        "Read scan results: cat k8s/IMAGE-SCAN.txt",
+        "Scan the image: run scan-image",
         "View finding: cat findings/CONTAINER-VIOLATIONS.txt",
         "Run 'assemble' then submit",
       ],
       fragments: [
         { trigger: "/k8s/deployment.yaml", value: "FLAG{C0NT41N3R_", label: "Deployment — Root User and Socket Mount Found" },
-        { trigger: "/k8s/IMAGE-SCAN.txt", value: "R00T_S0CK3T_CVE_", label: "Image Scan — Critical CVE Confirmed" },
+        { trigger: "scan-image", value: "R00T_S0CK3T_CVE_", label: "Image Scan — Critical CVE Confirmed" },
         { trigger: "/findings/CONTAINER-VIOLATIONS.txt", value: "CR1T}", label: "Container Violations — Documented" },
       ],
+      extraCommands: {
+        "scan-image": () => ({ lines: [
+          "$ trivy image --severity HIGH,CRITICAL app:latest",
+          "Scanning image layers and the deployment manifest ...",
+          "  securityContext.runAsUser: 0 (root)   <-- FINDING",
+          "  volume hostPath: /var/run/docker.sock mounted   <-- FINDING",
+          "  1 CRITICAL CVE in libssl (remote code execution class)",
+          "Container can escape to the node via the mounted Docker socket.",
+          "Fragment collected. See k8s/IMAGE-SCAN.txt for the full scan report.",
+          "Next: cat findings/CONTAINER-VIOLATIONS.txt",
+        ] }),
+      },
       files: {
         "/k8s/deployment.yaml": [
           "apiVersion: apps/v1",
@@ -1059,15 +1095,27 @@ Passed: 47  Failed: 3 (CRITICAL: 1, HIGH: 2)`,
       hints: [
         "List: ls terraform/",
         "Read main.tf: cat terraform/main.tf",
-        "Check scan results: cat SCAN-RESULTS.txt",
+        "Scan the IaC: run scan-iac",
         "View finding: cat findings/IAC-FINDINGS.txt",
         "Run 'assemble' then submit",
       ],
       fragments: [
         { trigger: "/terraform/main.tf", value: "FLAG{14C_SC4N_", label: "Terraform — Misconfigurations Found" },
-        { trigger: "/SCAN-RESULTS.txt", value: "S3_0P3N_SG_", label: "Scan Results — Critical Confirmed" },
+        { trigger: "scan-iac", value: "S3_0P3N_SG_", label: "Scan Results — Critical Confirmed" },
         { trigger: "/findings/IAC-FINDINGS.txt", value: "CR1T1C4L}", label: "IaC Findings — Documented" },
       ],
+      extraCommands: {
+        "scan-iac": () => ({ lines: [
+          "$ tfsec . ; checkov -d .",
+          "Scanning the Terraform plan for misconfigurations ...",
+          "  aws_s3_bucket.data: acl = public-read   <-- CRITICAL",
+          "  aws_security_group.web: ingress 0.0.0.0/0 -> tcp/22   <-- CRITICAL",
+          "  aws_db_instance.main: storage_encrypted = false   <-- HIGH",
+          "Public S3 bucket + world-open SSH confirmed before apply.",
+          "Fragment collected. See SCAN-RESULTS.txt for the full scanner output.",
+          "Next: cat findings/IAC-FINDINGS.txt",
+        ] }),
+      },
       files: {
         "/terraform/main.tf": [
           'resource "aws_s3_bucket" "data" {',
@@ -1240,15 +1288,27 @@ $ snyk test
       hint: "Read the SAST output and the dependency scan results.",
       hints: [
         "Read SAST output: cat SAST-RESULTS.txt",
-        "Read SCA results: cat SCA-RESULTS.txt",
+        "Run dependency scan: run run-sca",
         "View the blocking finding: cat findings/RELEASE-BLOCKER.txt",
         "Run 'assemble' then submit",
       ],
       fragments: [
         { trigger: "/SAST-RESULTS.txt", value: "FLAG{S4ST_SQLI_", label: "SAST — SQL Injection Found" },
-        { trigger: "/SCA-RESULTS.txt", value: "SC4_CV3_", label: "SCA — Critical CVE Found" },
+        { trigger: "run-sca", value: "SC4_CV3_", label: "SCA — Critical CVE Found" },
         { trigger: "/findings/RELEASE-BLOCKER.txt", value: "R3L34S3_BL0CK}", label: "Release — Blocked on Critical Findings" },
       ],
+      extraCommands: {
+        "run-sca": () => ({ lines: [
+          "$ sca-scan --lockfile package-lock.json",
+          "Resolving the dependency tree and matching advisories ...",
+          "  log4j-core 2.14.1   ->  CRITICAL (RCE, Log4Shell class)",
+          "  lodash 4.17.11      ->  HIGH (prototype pollution)",
+          "  Direct + transitive: 2 critical, 5 high.",
+          "A known-exploited critical CVE is shipping in the build.",
+          "Fragment collected. See SCA-RESULTS.txt for the full SBOM diff.",
+          "Next: cat findings/RELEASE-BLOCKER.txt",
+        ] }),
+      },
       files: {
         "/SAST-RESULTS.txt": [
           "SEMGREP SAST SCAN — v2.4.1 release candidate",
@@ -1407,15 +1467,27 @@ aws ec2 describe-flow-logs --query 'FlowLogs[?ResourceId==\`vpc-xxx\`]'`,
       hint: "Check the VPC diagram, security groups, and flow logs status.",
       hints: [
         "Read: cat VPC-CONFIG.txt",
-        "Check security groups: cat SECURITY-GROUPS.txt",
+        "Audit security groups: run audit-sg",
         "Check flow logs: cat VPC-FLOW-LOGS.txt",
         "Run 'assemble' then submit",
       ],
       fragments: [
         { trigger: "/VPC-CONFIG.txt", value: "FLAG{N3TW0RK_S3G_", label: "VPC Config — Flat Network Found" },
-        { trigger: "/SECURITY-GROUPS.txt", value: "FL4T_VPC_", label: "Security Groups — Open Rules Found" },
+        { trigger: "audit-sg", value: "FL4T_VPC_", label: "Security Groups — Open Rules Found" },
         { trigger: "/VPC-FLOW-LOGS.txt", value: "F10W_LOGS}", label: "Flow Logs — Not Enabled" },
       ],
+      extraCommands: {
+        "audit-sg": () => ({ lines: [
+          "$ aws ec2 describe-security-groups | sg-audit",
+          "Evaluating ingress/egress rules across the VPC ...",
+          "  sg-web: 0.0.0.0/0 -> tcp/22 (SSH open to internet)   <-- FINDING",
+          "  sg-db:  10.0.0.0/8 -> tcp/3306 (reachable from all subnets)   <-- FINDING",
+          "  No web/app/db tiering — a single flat /16.",
+          "Lateral movement from a web host to the database is unrestricted.",
+          "Fragment collected. See SECURITY-GROUPS.txt for the full rule dump.",
+          "Next: cat VPC-FLOW-LOGS.txt",
+        ] }),
+      },
       files: {
         "/VPC-CONFIG.txt": [
           "VPC CONFIGURATION REVIEW",
@@ -1582,15 +1654,27 @@ WHERE role = 'SYSADMIN' OR role = 'ACCOUNTADMIN';
       hints: [
         "List: ls db-audit/",
         "Check RBAC: cat db-audit/RBAC-REVIEW.txt",
-        "Check masking: cat db-audit/COLUMN-MASKING.txt",
+        "Check masking: run check-masking",
         "Check encryption: cat db-audit/ENCRYPTION-STATUS.txt",
         "Run 'assemble' then submit",
       ],
       fragments: [
         { trigger: "/db-audit/RBAC-REVIEW.txt", value: "FLAG{DB_RB4C_", label: "RBAC — Overprivileged Role Found" },
-        { trigger: "/db-audit/COLUMN-MASKING.txt", value: "M4SK1NG_", label: "Column Masking — PII Exposed" },
+        { trigger: "check-masking", value: "M4SK1NG_", label: "Column Masking — PII Exposed" },
         { trigger: "/db-audit/ENCRYPTION-STATUS.txt", value: "3NCRYPT10N_G4P}", label: "Encryption — Gaps Found" },
       ],
+      extraCommands: {
+        "check-masking": () => ({ lines: [
+          "$ db-audit columns --pii",
+          "Inspecting column-level masking on PII fields ...",
+          "  customers.ssn      masking: NONE   <-- FINDING",
+          "  customers.dob      masking: NONE   <-- FINDING",
+          "  payments.card_pan  masking: partial (last4)",
+          "PII (SSN, DOB) is returned in cleartext to the reporting role.",
+          "Fragment collected. See db-audit/COLUMN-MASKING.txt for the column map.",
+          "Next: cat db-audit/ENCRYPTION-STATUS.txt",
+        ] }),
+      },
       files: {
         "/db-audit/RBAC-REVIEW.txt": [
           "SNOWFLAKE RBAC REVIEW",
@@ -1751,15 +1835,27 @@ Compare-Object (Get-Content asset_inventory.txt) (Get-Content siem_log_sources.t
       hints: [
         "List: ls siem-audit/",
         "Check coverage: cat siem-audit/LOG-COVERAGE.txt",
-        "Check alerts: cat siem-audit/ALERT-BACKLOG.txt",
+        "Query the alert backlog: run query-alerts",
         "Check retention: cat siem-audit/RETENTION-POLICY.txt",
         "Run 'assemble' then submit",
       ],
       fragments: [
         { trigger: "/siem-audit/LOG-COVERAGE.txt", value: "FLAG{S13M_C0V3R4G3_", label: "Log Coverage — Gaps Found" },
-        { trigger: "/siem-audit/ALERT-BACKLOG.txt", value: "4L3RT_", label: "Alert Backlog — Alert Fatigue Confirmed" },
+        { trigger: "query-alerts", value: "4L3RT_", label: "Alert Backlog — Alert Fatigue Confirmed" },
         { trigger: "/siem-audit/RETENTION-POLICY.txt", value: "R3T3NT10N_G4P}", label: "Retention — Policy Gap Found" },
       ],
+      extraCommands: {
+        "query-alerts": () => ({ lines: [
+          "$ siem query --status open --group-by rule",
+          "Aggregating open alerts by rule and age ...",
+          "  Open alerts: 14,212   Median age: 9 days",
+          "  Top rule: 'auth-failure' = 8,901 (92% false positive)   <-- FINDING",
+          "  Untuned rules are drowning real signal -> alert fatigue.",
+          "Analysts cannot triage the backlog; true positives are missed.",
+          "Fragment collected. See siem-audit/ALERT-BACKLOG.txt for the breakdown.",
+          "Next: cat siem-audit/RETENTION-POLICY.txt",
+        ] }),
+      },
       files: {
         "/siem-audit/LOG-COVERAGE.txt": [
           "SIEM LOG COVERAGE AUDIT",
@@ -1922,15 +2018,27 @@ Gap: 7 points — 3 year roadmap required`,
       hints: [
         "List: ls zt-assessment/",
         "Check identity: cat zt-assessment/IDENTITY-PILLAR.txt",
-        "Check device: cat zt-assessment/DEVICE-PILLAR.txt",
+        "Assess the device pillar: run assess-devices",
         "Check network: cat zt-assessment/NETWORK-PILLAR.txt",
         "Run 'assemble' then submit",
       ],
       fragments: [
         { trigger: "/zt-assessment/IDENTITY-PILLAR.txt", value: "FLAG{Z3R0_TRUST_", label: "Identity Pillar — Maturity Assessed" },
-        { trigger: "/zt-assessment/DEVICE-PILLAR.txt", value: "M4TUR1TY_", label: "Device Pillar — Maturity Assessed" },
+        { trigger: "assess-devices", value: "M4TUR1TY_", label: "Device Pillar — Maturity Assessed" },
         { trigger: "/zt-assessment/NETWORK-PILLAR.txt", value: "1N1T14L}", label: "Network Pillar — Overall Level Confirmed" },
       ],
+      extraCommands: {
+        "assess-devices": () => ({ lines: [
+          "$ zt-assess --pillar device --model cisa-ztmm",
+          "Scoring the Device pillar against the CISA Zero Trust Maturity Model ...",
+          "  Device inventory: partial (no MDM on contractor laptops)   <-- gap",
+          "  Compliance enforcement at access time: NONE   <-- gap",
+          "  Maturity: TRADITIONAL (level 1 of 4).",
+          "Access decisions do not consider device posture.",
+          "Fragment collected. See zt-assessment/DEVICE-PILLAR.txt for the rubric.",
+          "Next: cat zt-assessment/NETWORK-PILLAR.txt",
+        ] }),
+      },
       files: {
         "/zt-assessment/IDENTITY-PILLAR.txt": [
           "IDENTITY PILLAR — ZERO TRUST MATURITY",
@@ -2093,15 +2201,27 @@ aws securityhub get-insights --insight-arns arn:aws:securityhub:::insight/securi
       hints: [
         "List: ls compliance/",
         "Check Security Hub: cat compliance/SECURITY-HUB-SCORE.txt",
-        "Check Config coverage: cat compliance/CONFIG-RULES.txt",
+        "Scan Config coverage: run scan-config",
         "Check auto-remediation: cat compliance/AUTO-REMEDIATION.txt",
         "Run 'assemble' then submit",
       ],
       fragments: [
         { trigger: "/compliance/SECURITY-HUB-SCORE.txt", value: "FLAG{C0MPL14NC3_", label: "Security Hub — Score Reviewed" },
-        { trigger: "/compliance/CONFIG-RULES.txt", value: "4UT0M4T10N_SCH3D1LUD_", label: "Config Rules — Coverage Gaps Found" },
+        { trigger: "scan-config", value: "4UT0M4T10N_SCH3D1LUD_", label: "Config Rules — Coverage Gaps Found" },
         { trigger: "/compliance/AUTO-REMEDIATION.txt", value: "R3M3D}", label: "Auto-Remediation — Status Confirmed" },
       ],
+      extraCommands: {
+        "scan-config": () => ({ lines: [
+          "$ aws configservice describe-compliance-by-config-rule",
+          "Evaluating managed + custom Config rule coverage ...",
+          "  Rules deployed: 23 / 60 recommended   <-- gap",
+          "  Auto-remediation actions wired: 2 / 23 rules   <-- FINDING",
+          "  Drift detection: manual only.",
+          "Most controls are detective with no automated remediation.",
+          "Fragment collected. See compliance/CONFIG-RULES.txt for coverage detail.",
+          "Next: cat compliance/AUTO-REMEDIATION.txt",
+        ] }),
+      },
       files: {
         "/compliance/SECURITY-HUB-SCORE.txt": [
           "AWS SECURITY HUB — COMPLIANCE SCORE",
