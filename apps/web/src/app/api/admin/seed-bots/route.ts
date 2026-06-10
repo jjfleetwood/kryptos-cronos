@@ -4,6 +4,7 @@ import { requireAdmin } from "@/lib/admin-auth";
 import { logAdminAction } from "@/lib/audit";
 import { stagesMeta as stages } from "@kryptos/core/stages-meta";
 import { ECONOMY_VERSION } from "@/lib/economy";
+import { addLeagueXp, weekMondayKey } from "@/lib/leagues";
 
 /** POST /api/admin/seed-bots
  *  Admin-only. Seeds a fixed roster of demo "players" so the leaderboard + leagues
@@ -62,7 +63,9 @@ export async function POST(req: NextRequest) {
   if (body.reset) {
     const existing = (await redis.smembers("bot:names")) as string[];
     for (const b of existing) {
-      await redis.del(`progress:${b}`, `streak:${b}`);
+      const lrec = (await redis.hgetall(`league:user:${b}`)) as Record<string, string> | null;
+      if (lrec?.cohort) await redis.zrem(`league:cohort:${lrec.cohort}`, b);
+      await redis.del(`progress:${b}`, `streak:${b}`, `league:user:${b}`);
       await redis.zrem("leaderboard", b);
       await redis.zrem(getWeekKey(), b);
       await redis.zrem(getDayKey(), b);
@@ -105,6 +108,8 @@ export async function POST(req: NextRequest) {
     const weekXp = 50 + (h % 400);
     await redis.zadd(week, { score: weekXp, member: name });
     if (now - lastActive < 86_400_000) await redis.zadd(day, { score: 20 + (h % 120), member: name });
+    // Place the bot in a weekly league cohort (so /leagues is populated too).
+    await addLeagueXp(name, weekXp, weekMondayKey());
     await redis.sadd("bot:names", name);
     seeded++;
   }

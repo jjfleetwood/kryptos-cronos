@@ -1,10 +1,13 @@
 import "server-only";
 import { redis } from "@/lib/redis";
 import { deriveEconomy } from "@/lib/economy";
+import { stagesMeta } from "@kryptos/core/stages-meta";
 import {
   DIVISIONS, DEFAULT_DIVISION, COHORT_SIZE, PROMOTE_COUNT, RELEGATE_COUNT,
   promoteDivision, relegateDivision,
 } from "@kryptos/core/leagues";
+
+const STAGE_TITLE = new Map(stagesMeta.map((s) => [s.id, s.title]));
 
 /**
  * Weekly Leagues engine (Phase 2). Cohorts are week-namespaced, so a new week
@@ -77,9 +80,18 @@ export async function addLeagueXp(username: string, delta: number, week = weekMo
   await redis.zincrby(cohortKey(placement.cohort), delta, username.toLowerCase());
 }
 
-export type Standing = { username: string; weeklyXp: number; xp: number };
+export type Standing = {
+  username: string;
+  weeklyXp: number;
+  xp: number;
+  lastStageTitle: string | null;
+  lastStageClears: number;
+  pioneerCount: number;
+};
 
-/** Ranked standings (desc weekly XP) for a cohort, enriched with lifetime XP. */
+/** Ranked standings (desc weekly XP) for a cohort, enriched with lifetime XP +
+ *  Frontier data (last-cleared + clear count + pioneer count) to match the
+ *  leaderboard. */
 export async function getCohortStandings(cohort: string): Promise<Standing[]> {
   const flat = (await redis.zrange(cohortKey(cohort), 0, -1, { rev: true, withScores: true })) as (string | number)[];
   const rows: { username: string; weeklyXp: number }[] = [];
@@ -89,11 +101,22 @@ export async function getCohortStandings(cohort: string): Promise<Standing[]> {
   if (rows.length === 0) return [];
   const pipe = redis.pipeline();
   for (const r of rows) pipe.hgetall(`progress:${r.username}`);
-  const progs = await pipe.exec();
+  const progs = (await pipe.exec()) as (Record<string, unknown> | null)[];
+  const lastIds = progs.map((p) => (p?.lastStageId ? String(p.lastStageId) : null));
+  // Second pipeline: clears of each last stage + pioneer count.
+  const pipe2 = redis.pipeline();
+  for (let i = 0; i < rows.length; i++) {
+    pipe2.get(lastIds[i] ? `stage:clears:${lastIds[i]}` : "frontier:noop");
+    pipe2.scard(`pioneer:${rows[i].username.toLowerCase()}`);
+  }
+  const fr = (await pipe2.exec()) as unknown[];
   return rows.map((r, i) => ({
     username: r.username,
     weeklyXp: r.weeklyXp,
-    xp: deriveEconomy(progs?.[i] as Record<string, unknown> | null).xp,
+    xp: deriveEconomy(progs?.[i] ?? null).xp,
+    lastStageTitle: lastIds[i] ? (STAGE_TITLE.get(lastIds[i]!) ?? lastIds[i]) : null,
+    lastStageClears: Number(fr?.[i * 2] ?? 0),
+    pioneerCount: Number(fr?.[i * 2 + 1] ?? 0),
   }));
 }
 

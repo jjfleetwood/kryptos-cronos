@@ -8,7 +8,7 @@ import {
   divisionById, promoteDivision, relegateDivision, isTopDivision, isBottomDivision,
 } from "@kryptos/core/leagues";
 
-type Standing = { username: string; weeklyXp: number; xp: number };
+type Standing = { username: string; weeklyXp: number; xp: number; lastStageTitle?: string | null; lastStageClears?: number; pioneerCount?: number };
 type LeagueData = {
   you: string;
   division: string;
@@ -136,10 +136,18 @@ export default function LeaguesPage() {
                         >
                           {s.username[0]?.toUpperCase() ?? "?"}
                         </div>
-                        <span className={`font-semibold truncate ${isYou ? "text-cyan-400" : "text-white"}`}>
-                          {s.username}
-                          {isYou && <span className="ml-2 text-xs text-cyan-600 font-normal">{t("leagues.youTag")}</span>}
-                        </span>
+                        <div className="min-w-0">
+                          <span className={`font-semibold truncate block ${isYou ? "text-cyan-400" : "text-white"}`}>
+                            {s.username}
+                            {!!s.pioneerCount && s.pioneerCount > 0 && (
+                              <span title={`Pioneer — first to clear ${s.pioneerCount} stage${s.pioneerCount === 1 ? "" : "s"}`} className="ml-1.5 text-xs align-middle">🏴<span className="text-[10px] font-mono text-rose-400 ml-0.5">{s.pioneerCount}</span></span>
+                            )}
+                            {isYou && <span className="ml-2 text-xs text-cyan-600 font-normal">{t("leagues.youTag")}</span>}
+                          </span>
+                          {s.lastStageTitle && (
+                            <span className="text-[10px] text-gray-600 truncate block">▸ {s.lastStageTitle}{s.lastStageClears ? <span className="text-gray-700"> · {s.lastStageClears} cleared</span> : null}</span>
+                          )}
+                        </div>
                         <LevelBadge xp={s.xp} />
                       </div>
                       <div className="text-right font-mono text-sm text-gray-300 flex-shrink-0">
