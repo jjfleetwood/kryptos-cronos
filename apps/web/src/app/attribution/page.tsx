@@ -259,6 +259,17 @@ const ROBOT_IMAGE_CREDITS = [
   { stage: "10", device: "Air-Cobot collaborative robot", file: "Air-Cobot.jpg", author: "Stanislas Larnier", license: "CC BY-SA 4.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/", url: "https://commons.wikimedia.org/wiki/File:RFIA2016_Air-Cobot_Jeremy_Frejaville.jpg" },
 ];
 
+// Per-file credits for the Silicon: Sand to Superchips imagery (Wikimedia Commons, free licenses + public domain).
+const SILICON_IMAGE_CREDITS = [
+  { stage: "02", device: "Silicon wafer (die grid)", file: "Wafer 20110212.jpg", author: "Sangitiana Fararano", license: "CC BY-SA 2.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/2.0/", url: "https://commons.wikimedia.org/wiki/File:Wafer_20110212.jpg" },
+  { stage: "05", device: "Ion implantation machine", file: "Ion implantation machine at LAAS 0522.jpg", author: "Guillaume Paumier", license: "CC BY-SA 3.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/", url: "https://commons.wikimedia.org/wiki/File:Ion_implantation_machine_at_LAAS_0522.jpg" },
+  { stage: "06", device: "Integrated-circuit die & bond wires", file: "D2316E die photo.jpg", author: "Mister rf", license: "CC BY-SA 4.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/", url: "https://commons.wikimedia.org/wiki/File:D2316E_die_photo.jpg" },
+  { stage: "07", device: "Microprocessor die (Motorola 68000)", file: "Motorola 68000 die.JPG", author: "Pauli Rautakorpi", license: "CC BY 3.0", licenseUrl: "https://creativecommons.org/licenses/by/3.0/", url: "https://commons.wikimedia.org/wiki/File:Motorola_68000_die.JPG" },
+  { stage: "08", device: "Graphics card (GPU)", file: "ASUS NVIDIA GeForce 210 graphics card.JPG", author: "Joydeep", license: "CC BY-SA 3.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/", url: "https://commons.wikimedia.org/wiki/File:ASUS_NVIDIA_GeForce_210_silent_graphics_card_with_HDMI.JPG" },
+  { stage: "09", device: "Semiconductor cleanroom", file: "Clean room.jpg", author: "Public domain (Wikimedia Commons)", license: "Public domain", licenseUrl: "https://commons.wikimedia.org/wiki/Commons:Public_domain", url: "https://commons.wikimedia.org/wiki/File:Clean_room.jpg" },
+  { stage: "10", device: "Quantum processor (ion trap, NIST)", file: "Quantum Computing; Ion Trapping.jpg", author: "National Institute of Standards and Technology", license: "Public domain", licenseUrl: "https://commons.wikimedia.org/wiki/Commons:Public_domain", url: "https://commons.wikimedia.org/wiki/File:Quantum_Computing;_Ion_Trapping_(5941055642).jpg" },
+];
+
 // Per-file credits for the Flag Football imagery (Wikimedia Commons, free licenses).
 const FLAG_IMAGE_CREDITS = [
   { stage: "01", device: "Flag football action", file: "Flag Football Juke.jpg", author: "JJ hohorst", license: "CC BY-SA 3.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/", url: "https://commons.wikimedia.org/wiki/File:Flag_Football_Juke.jpg" },
@@ -646,6 +657,28 @@ export default function AttributionPage() {
             {SPACE2_IMAGE_CREDITS.map((c) => (
               <li key={c.stage} className="text-xs text-gray-400 flex flex-wrap items-center gap-x-2 gap-y-0.5">
                 <span className="text-gray-600 font-mono w-10 flex-shrink-0">S{c.stage}</span>
+                <span className="text-gray-300">{c.device}</span>
+                <span className="text-gray-700">·</span>
+                <a href={c.url} target="_blank" rel="noopener noreferrer" className="text-cyan-500 hover:text-cyan-400 transition-colors">{c.file}</a>
+                <span className="text-gray-700">·</span>
+                <span>© {c.author}</span>
+                <a href={c.licenseUrl} target="_blank" rel="noopener noreferrer" className="text-amber-400 hover:text-amber-300 transition-colors">{c.license} ↗</a>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="mt-12">
+          <h2 className="text-white font-bold text-lg mb-1">Silicon: Sand to Superchips — imagery</h2>
+          <p className="text-gray-500 text-xs mb-4 leading-relaxed">
+            Photos on the semiconductor-manufacturing stages are from Wikimedia Commons (public domain +
+            Creative Commons), self-hosted and credited to each author below. Abstract steps (the silicon
+            ingot, lithography stepper, and EUV source) keep the generated cover.
+          </p>
+          <ul className="space-y-2 rounded-2xl border border-white/8 p-5" style={{ background: "rgba(255,255,255,0.02)" }}>
+            {SILICON_IMAGE_CREDITS.map((c) => (
+              <li key={c.stage} className="text-xs text-gray-400 flex flex-wrap items-center gap-x-2 gap-y-0.5">
+                <span className="text-gray-600 font-mono w-10 flex-shrink-0">Si{c.stage}</span>
                 <span className="text-gray-300">{c.device}</span>
                 <span className="text-gray-700">·</span>
                 <a href={c.url} target="_blank" rel="noopener noreferrer" className="text-cyan-500 hover:text-cyan-400 transition-colors">{c.file}</a>

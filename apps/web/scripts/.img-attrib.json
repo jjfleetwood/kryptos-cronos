@@ -565,5 +565,54 @@
     "artist": "Adamantios",
     "license": "CC BY-SA 3.0",
     "source": "https://commons.wikimedia.org/wiki/File:Cisco-PIX-515-hdr-0a.jpg"
+  },
+  "si-02": {
+    "file": "si-02.jpg",
+    "title": "Wafer 20110212.jpg",
+    "artist": "Sangitiana Fararano",
+    "license": "CC BY-SA 2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Wafer_20110212.jpg"
+  },
+  "si-06": {
+    "file": "si-06.jpg",
+    "title": "D2316E die photo.jpg",
+    "artist": "Mister rf",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:D2316E_die_photo.jpg"
+  },
+  "si-07": {
+    "file": "si-07.jpg",
+    "title": "Motorola 68000 die.JPG",
+    "artist": "Pauli Rautakorpi",
+    "license": "CC BY 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Motorola_68000_die.JPG"
+  },
+  "si-08": {
+    "file": "si-08.jpg",
+    "title": "ASUS NVIDIA GeForce 210 silent graphics card with HDMI.JPG",
+    "artist": "Joydeep",
+    "license": "CC BY-SA 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:ASUS_NVIDIA_GeForce_210_silent_graphics_card_with_HDMI.JPG"
+  },
+  "si-10": {
+    "file": "si-10.jpg",
+    "title": "Quantum Computing; Ion Trapping (5941055642).jpg",
+    "artist": "National Institute of Standards and Technology",
+    "license": "Public domain",
+    "source": "https://commons.wikimedia.org/wiki/File:Quantum_Computing;_Ion_Trapping_(5941055642).jpg"
+  },
+  "si-05": {
+    "file": "si-05.jpg",
+    "title": "Ion implantation machine at LAAS 0522.jpg",
+    "artist": "Guillaume Paumier (user:guillom)",
+    "license": "CC BY-SA 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Ion_implantation_machine_at_LAAS_0522.jpg"
+  },
+  "si-09": {
+    "file": "si-09.jpg",
+    "title": "Clean room.jpg",
+    "artist": "Uploaded by Duk 08:45, 16 Feb 2005 (UTC)",
+    "license": "Public domain",
+    "source": "https://commons.wikimedia.org/wiki/File:Clean_room.jpg"
   }
 }

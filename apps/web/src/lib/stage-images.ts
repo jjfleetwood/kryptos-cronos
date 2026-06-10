@@ -556,4 +556,15 @@ export const STAGE_IMAGES: Record<string, string> = {
   "quantum-d08": "/img/quantum-d08.png",
   "quantum-d09": "/img/quantum-d09.png",
   "quantum-d10": "/img/quantum-d10.png",
+  // Silicon: Sand to Superchips — real photos of the concrete hardware/places
+  // (wafer, ion implanter, chip dies, GPU, cleanroom, quantum processor;
+  // Wikimedia Commons, credited on /attribution). Abstract steps (si-01 ingot,
+  // si-03 lithography stepper, si-04 EUV) keep the generated cover.
+  "si-02": "/img/si-02.jpg",
+  "si-05": "/img/si-05.jpg",
+  "si-06": "/img/si-06.jpg",
+  "si-07": "/img/si-07.jpg",
+  "si-08": "/img/si-08.jpg",
+  "si-09": "/img/si-09.jpg",
+  "si-10": "/img/si-10.jpg",
 };
