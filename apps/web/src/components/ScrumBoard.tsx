@@ -140,9 +140,9 @@ export default function ScrumBoard() {
                   <span className="text-[10px] text-gray-600">{counts[col.id] ?? 0}</span>
                 </div>
                 <p className="text-[10px] text-gray-600 px-1 mb-2 leading-tight">{col.hint}</p>
-                <div className="space-y-2 min-h-[40px]">
+                <div className={`min-h-[40px] ${col.id === "done" ? "space-y-1" : "space-y-2"}`}>
                   {cards.map((it) => (
-                    <Card key={it.id} item={it} onClick={() => setSelected(it)} onDragStart={() => setDragId(it.id)} />
+                    <Card key={it.id} item={it} compact={col.id === "done"} onClick={() => setSelected(it)} onDragStart={() => setDragId(it.id)} />
                   ))}
                 </div>
               </div>
@@ -159,8 +159,26 @@ export default function ScrumBoard() {
   );
 }
 
-function Card({ item, onClick, onDragStart }: { item: ScrumItem; onClick: () => void; onDragStart: () => void }) {
+function Card({ item, onClick, onDragStart, compact = false }: { item: ScrumItem; onClick: () => void; onDragStart: () => void; compact?: boolean }) {
   const t = TYPE_META[item.type], p = PRIORITY_META[item.priority], s = SOURCE_META[item.source];
+
+  // Compact one-line card (used in the Done column, which otherwise eats space).
+  if (compact) {
+    return (
+      <div
+        draggable
+        onDragStart={onDragStart}
+        onClick={onClick}
+        title={item.title}
+        className="cursor-pointer rounded-md border border-white/8 bg-[#0d1117] hover:border-white/20 transition-colors px-2 py-1 flex items-center gap-1.5"
+      >
+        <span className="text-xs leading-none flex-shrink-0">{t.icon}</span>
+        <span className="text-[11px] text-gray-400 leading-none truncate flex-1">{item.title}</span>
+        {item.notes?.length > 0 && <span className="text-[9px] text-gray-600 flex-shrink-0">💬{item.notes.length}</span>}
+      </div>
+    );
+  }
+
   return (
     <div
       draggable

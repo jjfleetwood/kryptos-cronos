@@ -95,6 +95,7 @@ export default function Nav() {
             { href: "/certs", label: t("nav.certs", "Certs") },
             { href: "/journey", label: t("nav.journey") },
             { href: "/leaderboard", label: t("nav.leaderboard") },
+            { href: "/explore", label: t("nav.explore", "Explore") },
           ].map(({ href, label }) => (
             <Link
               key={href}
@@ -243,6 +244,7 @@ export default function Nav() {
             { href: "/certs", label: `📜 ${t("nav.certs", "Certs")}` },
             { href: "/journey", label: `🌍 ${t("nav.journey")}` },
             { href: "/leaderboard", label: `🏆 ${t("nav.leaderboard")}` },
+            { href: "/explore", label: `🧭 ${t("nav.explore", "Explore")}` },
           ].map(({ href, label }) => (
             <Link
               key={href}
