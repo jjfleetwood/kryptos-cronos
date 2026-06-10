@@ -21,7 +21,6 @@ export async function GET(req: NextRequest) {
     ...quests,
     streak: {
       current: Number(streakRaw?.current ?? 0),
-      freezes: Number(streakRaw?.freezes ?? 0),
       dayXp,
       goal: DAILY_GOAL_XP,
     },

@@ -152,7 +152,7 @@ export default function QuizChallenge({ stage, backHref = "/stages" }: { stage: 
               <p className="text-gray-400 mb-8">You answered {score} of {questions.length} challenges correctly.</p>
               <div className="bg-white/5 border border-amber-500/30 rounded-xl p-6 mb-8">
                 <div className="text-2xl mb-2">⬤◗ <span className="text-amber-400 font-bold align-middle text-lg">Half cleared</span></div>
-                <div className="text-gray-400 text-sm">Capture the flag in the CTF to fully clear this stage and earn its 🪙.</div>
+                <div className="text-gray-400 text-sm">Capture the flag in the CTF to fully clear this stage and earn its XP.</div>
                 <Link
                   href={`/stages/${stage.id}`}
                   className="mt-4 inline-flex items-center gap-2 bg-cyan-500/10 border border-cyan-500/30 rounded-full px-4 py-1.5 text-cyan-300 text-sm font-medium hover:border-cyan-400 transition-colors"
@@ -166,7 +166,7 @@ export default function QuizChallenge({ stage, backHref = "/stages" }: { stage: 
               <div className="text-6xl mb-6">📚</div>
               <h2 className="text-3xl font-bold text-white mb-2">Almost there!</h2>
               <p className="text-gray-400 mb-8">
-                You answered {score} of {questions.length} correctly — you need at least 60% to clear. Try a fresh set of questions to complete the stage and earn its 🪙.
+                You answered {score} of {questions.length} correctly — you need at least 60% to clear. Try a fresh set of questions to complete the stage and earn its XP.
               </p>
             </>
           )}
@@ -207,7 +207,7 @@ export default function QuizChallenge({ stage, backHref = "/stages" }: { stage: 
             <div className="text-right">
               <div className="text-cyan-400 font-mono text-sm">{current + 1} / {questions.length}</div>
               <div className="text-gray-600 text-xs">
-                {isHalfClear ? "◗ half clear" : `${score * Math.floor(stage.xp / questions.length)} 🪙`}
+                {isHalfClear ? "◗ half clear" : `${score * Math.floor(stage.xp / questions.length)} XP`}
               </div>
             </div>
           </div>

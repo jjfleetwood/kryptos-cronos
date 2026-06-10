@@ -225,21 +225,19 @@ export function PipelineTestPanel() {
       const res = await fetch("/api/admin/award-stage", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ stageId, username: awardUsername, grantTrophy: true }),
+        body: JSON.stringify({ stageId, username: awardUsername }),
       });
       const data = await res.json();
       if (!res.ok) {
         setResult(`❌ ${data.error ?? "Failed"}`);
       } else {
         const p = data.progress;
-        const t = data.trophy;
         setResult(
           `✅ Awarded "${data.stageTitle}" to ${data.username}\n` +
-          `   XP: ${p.xp} · Wallet: ${p.coins} (+${data.coinsAwarded})\n` +
+          `   XP: ${p.xp} (+${data.xpAwarded})\n` +
           `   Stages: ${p.completedStages.length}\n` +
           `   Streak: ${p.streak}\n` +
-          `   Badges: ${p.badges.length}\n` +
-          (t ? `   Trophy: ${t.emoji} ${t.name} (${t.tier})` : "   Trophy: none available")
+          `   Badges: ${p.badges.length}`
         );
       }
     } catch {

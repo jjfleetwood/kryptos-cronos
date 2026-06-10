@@ -3,9 +3,6 @@ import { getSession } from "@/lib/auth";
 export type UserProgress = {
   /** Lifetime XP — drives Level / Rank / Leagues / leaderboard. Never spent. */
   xp: number;
-  /** Spendable coin wallet (coinsEarned − coinsSpent). */
-  coins: number;
-  coinsSpent?: number;
   completedStages: string[];
   badges: string[];
   streak?: number;

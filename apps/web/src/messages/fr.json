@@ -245,7 +245,7 @@
   "flag.accepted": "Drapeau Accepté",
   "flag.missionComplete": "Mission Accomplie",
   "flag.capturedFlag": "Drapeau Capturé",
-  "flag.coinsEarned": "Pièces Gagnées",
+  "flag.coinsEarned": "XP gagné",
   "flag.timePenalty": "pénalité",
   "flag.time": "Temps",
   "flag.skillsAcquired": "Compétences Acquises",
@@ -611,5 +611,6 @@
   "achievements.cat.mastery": "Maîtrise",
   "achievements.cat.streak": "Série",
   "achievements.cat.epochs": "Achèvement",
-  "achievements.cat.leagues": "Ligues"
+  "achievements.cat.leagues": "Ligues",
+  "quests.proBadge": "PRO · +1 quête quotidienne"
 }

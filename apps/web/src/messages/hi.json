@@ -245,7 +245,7 @@
   "flag.accepted": "फ्लैग स्वीकृत",
   "flag.missionComplete": "मिशन पूर्ण",
   "flag.capturedFlag": "फ्लैग कैप्चर किया",
-  "flag.coinsEarned": "अर्जित सिक्के",
+  "flag.coinsEarned": "अर्जित XP",
   "flag.timePenalty": "पेनल्टी",
   "flag.time": "समय",
   "flag.skillsAcquired": "अर्जित कौशल",
@@ -611,5 +611,6 @@
   "achievements.cat.mastery": "निपुणता",
   "achievements.cat.streak": "स्ट्रिक",
   "achievements.cat.epochs": "पूर्णता",
-  "achievements.cat.leagues": "लीग"
+  "achievements.cat.leagues": "लीग",
+  "quests.proBadge": "PRO · +1 दैनिक क्वेस्ट"
 }

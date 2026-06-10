@@ -245,7 +245,7 @@
   "flag.accepted": "Flaga zaakceptowana",
   "flag.missionComplete": "Misja zakończona",
   "flag.capturedFlag": "Przechwycona flaga",
-  "flag.coinsEarned": "Zdobyte monety",
+  "flag.coinsEarned": "Zdobyte XP",
   "flag.timePenalty": "kara",
   "flag.time": "Czas",
   "flag.skillsAcquired": "Zdobyte umiejętności",
@@ -611,5 +611,6 @@
   "achievements.cat.mastery": "Mistrzostwo",
   "achievements.cat.streak": "Passa",
   "achievements.cat.epochs": "Ukończenie",
-  "achievements.cat.leagues": "Ligi"
+  "achievements.cat.leagues": "Ligi",
+  "quests.proBadge": "PRO · +1 zadanie dzienne"
 }

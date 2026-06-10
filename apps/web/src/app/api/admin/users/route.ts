@@ -50,7 +50,6 @@ export async function GET(req: NextRequest) {
         tier: (userData?.tier as string) ?? "free",
         isAdmin: userData?.isAdmin === "true" || username === superAdmin,
         xp: econ.xp,
-        coins: econ.wallet,
         stageIds,
         stages: stageIds.length,
         badges: badges.length,

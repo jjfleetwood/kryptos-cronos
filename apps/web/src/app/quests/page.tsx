@@ -2,8 +2,6 @@
 
 import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
-import { MAX_FREEZES, FREEZE_PRICE } from "@kryptos/core/streaks";
-import { PRO_COIN_MULTIPLIER } from "@kryptos/core/pro-perks";
 import { useLocale } from "@/contexts/LocaleContext";
 
 type QuestState = {
@@ -14,13 +12,12 @@ type QuestState = {
   emoji: string;
   title: string;
   desc: string;
-  coins: number;
-  freezes?: number;
+  xp: number;
   progress: number;
   done: boolean;
   claimed: boolean;
 };
-type StreakSummary = { current: number; freezes: number; dayXp: number; goal: number };
+type StreakSummary = { current: number; dayXp: number; goal: number };
 type QuestsData = { daily: QuestState[]; weekly: QuestState[]; streak: StreakSummary; pro: boolean };
 
 function QuestCard({ q, onClaim, busy }: { q: QuestState; onClaim: (id: string) => void; busy: boolean }) {
@@ -33,8 +30,8 @@ function QuestCard({ q, onClaim, busy }: { q: QuestState; onClaim: (id: string) 
         <div className="flex-1 min-w-0">
           <div className="flex items-center justify-between gap-2">
             <span className="font-bold text-white text-sm">{q.title}</span>
-            <span className="text-xs font-mono text-amber-400 flex-shrink-0">
-              +{q.coins} 🪙{q.freezes ? ` · +${q.freezes} ❄️` : ""}
+            <span className="text-xs font-mono text-cyan-400 flex-shrink-0">
+              +{q.xp} XP
             </span>
           </div>
           <p className="text-xs text-gray-500 mt-0.5">{q.desc}</p>
@@ -71,7 +68,6 @@ export default function QuestsPage() {
   const [data, setData] = useState<QuestsData | null>(null);
   const [loading, setLoading] = useState(true);
   const [busyId, setBusyId] = useState<string | null>(null);
-  const [buyingFreeze, setBuyingFreeze] = useState(false);
 
   const load = useCallback(() => {
     fetch("/api/quests")
@@ -97,16 +93,6 @@ export default function QuestsPage() {
     }
   }
 
-  async function buyFreeze() {
-    setBuyingFreeze(true);
-    try {
-      const res = await fetch("/api/streak/freeze", { method: "POST" });
-      if (res.ok) load();
-    } finally {
-      setBuyingFreeze(false);
-    }
-  }
-
   const goalPct = data ? Math.min(100, Math.round((data.streak.dayXp / data.streak.goal) * 100)) : 0;
   const goalMet = data ? data.streak.dayXp >= data.streak.goal : false;
 
@@ -122,7 +108,7 @@ export default function QuestsPage() {
           <h1 className="text-3xl font-bold text-white">{t("quests.title")}</h1>
           {data?.pro && (
             <span className="text-xs font-bold px-2 py-0.5 rounded-full border border-amber-500/40 bg-amber-500/10 text-amber-400">
-              PRO ×{PRO_COIN_MULTIPLIER} 🪙
+              {t("quests.proBadge", "PRO · +1 daily quest")}
             </span>
           )}
         </div>
@@ -139,7 +125,6 @@ export default function QuestsPage() {
               <div className="flex items-center justify-between mb-2">
                 <span className="text-sm font-bold text-white">
                   🔥 {data.streak.current} {t("quests.streakLabel")}
-                  <span className="ml-2 text-xs font-normal text-sky-400">❄️ {data.streak.freezes} {t("quests.freezesLabel")}</span>
                 </span>
                 <span className={`text-xs font-mono ${goalMet ? "text-green-400" : "text-gray-500"}`}>
                   {goalMet ? `✓ ${t("quests.goalMet")}` : `${data.streak.dayXp}/${data.streak.goal} XP`}
@@ -148,18 +133,7 @@ export default function QuestsPage() {
               <div className="h-2 rounded-full bg-white/8 overflow-hidden">
                 <div className="h-full rounded-full transition-all duration-500" style={{ width: `${goalPct}%`, background: goalMet ? "linear-gradient(90deg,#4ade80,#16a34a)" : "linear-gradient(90deg,#facc15,#fb923c)" }} />
               </div>
-              <div className="flex items-center justify-between mt-2">
-                <p className="text-xs text-gray-600">{t("quests.goalHintPre")} {data.streak.goal} {t("quests.goalHintPost")}</p>
-                {data.streak.freezes < MAX_FREEZES && (
-                  <button
-                    onClick={buyFreeze}
-                    disabled={buyingFreeze}
-                    className="text-xs font-bold px-2.5 py-1 rounded-lg border border-sky-500/40 bg-sky-500/10 text-sky-300 hover:bg-sky-500/20 transition-colors flex-shrink-0"
-                  >
-                    {buyingFreeze ? "…" : `${t("quests.buy")} ❄️ — ${FREEZE_PRICE} 🪙`}
-                  </button>
-                )}
-              </div>
+              <p className="text-xs text-gray-600 mt-2">{t("quests.goalHintPre")} {data.streak.goal} {t("quests.goalHintPost")}</p>
             </div>
 
             {/* Daily */}

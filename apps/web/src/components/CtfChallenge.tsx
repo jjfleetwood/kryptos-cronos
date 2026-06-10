@@ -723,8 +723,8 @@ export default function CtfChallenge({ stage, backHref = "/stages", isPro = fals
           }
           push(
             { type: "ok", text: `${t("ctf.terminal.flagAccepted")}: ${flag}` },
-            { type: "ok", text: `  ${tr("ctf.terminal.flagTime", { time: formatTimer(timeTakenMs), coins: Math.max(0, effectiveCoins) })} 🪙` },
-            ...(bonusXp > 0 ? [{ type: "ok" as const, text: `  ⚡ Clean solve bonus: +${bonusXp} 🪙` }] : []),
+            { type: "ok", text: `  ${tr("ctf.terminal.flagTime", { time: formatTimer(timeTakenMs), coins: Math.max(0, effectiveCoins) })} XP` },
+            ...(bonusXp > 0 ? [{ type: "ok" as const, text: `  ⚡ Clean solve bonus: +${bonusXp} XP` }] : []),
             { type: "out", text: "" },
           );
           setSolved(true);

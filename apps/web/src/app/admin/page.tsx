@@ -1191,7 +1191,7 @@ export default function AdminPage() {
                       <span className="text-xs text-red-400/70 hidden sm:block">{stage.cveId}</span>
                     )}
                     <span className="text-xs text-gray-600 font-mono w-10 text-right">{pct}%</span>
-                    <span className="text-xs text-cyan-600">+{stage.xp} 🪙</span>
+                    <span className="text-xs text-cyan-600">+{stage.xp} XP</span>
                     <span className={`text-xs px-2 py-0.5 rounded border ${
                       stage.challengeType === "ctf"
                         ? "border-purple-500/30 text-purple-400 bg-purple-500/5"

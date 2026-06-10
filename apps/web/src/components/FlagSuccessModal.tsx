@@ -98,7 +98,7 @@ export default function FlagSuccessModal({ stage, flag, timeTakenMs, timePenalty
           {/* Stats grid */}
           <div className="grid grid-cols-3 gap-3 mb-6">
             <div className="bg-white/3 rounded-xl p-3 text-center border border-white/10">
-              <div className="text-xl font-bold text-green-400">+{effectiveCoins} 🪙</div>
+              <div className="text-xl font-bold text-green-400">+{effectiveCoins} XP</div>
               <div className="text-xs text-gray-600 mt-0.5">{t("flag.coinsEarned")}</div>
               {timePenaltyCoins > 0 && (
                 <div className="text-xs text-orange-500 mt-0.5">-{timePenaltyCoins} {t("flag.timePenalty")}</div>
