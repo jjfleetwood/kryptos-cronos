@@ -1,6 +1,17 @@
 # Kryptós CronOS — To-Do & Roadmap
 
-**Last updated:** 2026-06-06 (v1.43.0 — 5 new epochs: OT/ICS, Wired & Autonomous II, Robotics II, Race Through Space II, Threat Frameworks; CTFs on 30 more stages; counts 801/72/16 tracks/12 certs)
+**Last updated:** 2026-06-10 (v1.45.0 live — 831 stages / 75 epochs / 16 tracks / 12 certs / 292 CTFs).
+
+## Where things actually stand (2026-06-10)
+
+**Every engineering/content item below is done.** What genuinely remains is *not* codeable from here:
+
+- **Business / GTM** — launch campaign (I), first paying user (J), named advisor (K), enterprise pilot (L), investor/sponsor/B2B outreach (15/16/17). Founder-driven; the *written assets* (Show HN / r/netsec posts, cold-outreach emails, one-pagers) can be drafted on request.
+- **Mobile to a device/store** (M) — external (eas build/submit, RevenueCat dashboard, store listings, Vercel envs). See `MOBILE_ROADMAP.md`.
+- **Elementary "ages 5–10" rewrite** (A) — **deprioritized 2026-06-10 (Jacob)**; bottom of the backlog, do not pitch as near-term.
+- **CR7 deeper extended-track fact-vet** — optional, historically parked.
+
+**In flight:** PR #3 (`feat/retire-coin-economy`) retires the coin economy + `/avatar` + `/shop` + the purchasable trophy catalog and merges journey+trophies into one hub — which **reverses** the v1.7.2 "Completed" avatar/trophies/shop entries further down. Earned Achievements/Badges replace bought trophies; quests reward XP.
 
 ---
 
@@ -38,7 +49,7 @@ Findings from a structural + sampled read of the curriculum. Ranked by leverage.
 
 | # | Item | Status |
 |---|---|---|
-| A | **Elementary section redesign (5-10 yr perspective)** | 🔲 OPEN (correction 2026-05-29) — previously marked Done in error; bt-01–bt-30 are still at HS/adult reading level. The ages 5–10 "Junior Cyber Agent Academy" rewrite has not been done. |
+| A | **Elementary section redesign (5-10 yr perspective)** | ⏸ **DEPRIORITIZED 2026-06-10 (Jacob)** — bottom of backlog. bt-01–bt-30 stay at HS/adult level; the ages 5–10 rewrite belongs to the future K-12 school-pipeline product, not this app. Do not pitch as near-term. |
 | B | **Incentive system to drive stage completion** | ✅ Done (v1.18.0) — survey → 30-day Pro; streak milestones → coin bonuses |
 | C | **Certificate paths (Cisco CyberOps / CompTIA / ISC²)** | ✅ Done (v1.18.0) — /certs page, CompTIA Security+ + ISC² CC, 230+ stage mappings |
 | D | **Resume building module** | ✅ Done (v1.18.0) — /resume with PDF export, epoch-based skill suggestions |
@@ -79,7 +90,7 @@ All documented Cisco curriculum gaps have been addressed in `cisco-advanced` epo
 |---|---|---|---|---|
 | 10 | **Stage count audit** | — | ✅ Done | Fixed 338 → 346 across homepage (hero, stats, CTA, pricing); per-track numbers updated; "Nine tracks" → "Ten tracks"; stages/page.tsx description updated. |
 | 11 | **Pro tier gating** | 3–5 days | ✅ Done | `tier` field on user Redis hash. `src/lib/access.ts` (server-only) gates all non-free stages. Free: bt-01/02/03. `ProPaywall` component with Stripe Checkout (monthly $5.99 / yearly $55.99). Webhook handler for `checkout.session.completed` + `customer.subscription.deleted`. Requires env vars: `STRIPE_SECRET_KEY`, `STRIPE_WEBHOOK_SECRET`, `STRIPE_PRO_MONTHLY_PRICE_ID`, `STRIPE_PRO_YEARLY_PRICE_ID`. |
-| 12 | **Hints monetization** | 2–3 days | Deferred | Tied to Stripe (#11 done). Ready to implement. |
+| 12 | **Hints monetization** | 2–3 days | ✅ **Done (v1.27.0)** | `/api/hint` gates by tier: free = 5 ARIA hints/mission (persistent Redis count, refresh-proof) + fixed 30s cooldown; Pro/trial = unlimited + adaptive cooldown. Returns `402 {upgrade:true}` once spent; `HintChatbot` shows remaining + Upgrade CTA. Dormant under `OPEN_ACCESS` until launch. |
 | 13 | **User progress export** | — | ✅ Done | `GET /api/progress/certificate` generates PDF via @react-pdf/renderer: username, coins, stages, badges, streak, per-epoch breakdown. "Download Progress Report" button on Leaderboard page (logged-in users only). |
 | 14 | **Mobile responsiveness audit** | — | ✅ Done | Leaderboard table: responsive grid (3-col mobile, 6-col sm+), secondary stats shown inline on mobile; FeedbackWidget: added `touch-action: none` on drag handle; CTF terminal: confirmed 100dvh, scrollIntoView on focus, sm: breakpoints. Stage map: confirmed 1→2→3 col grid. |
 
