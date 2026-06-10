@@ -163,10 +163,13 @@ export default function StagesPage() {
 
         <TrackCatalog visibleTracks={visibleTracks} completedStages={completedStages} />
 
-        {/* Discreet link to the diverse (non-security) catalog */}
+        {/* Link to the diverse (non-security) catalog */}
         <div className="mt-12 pt-6 border-t border-white/5 text-center">
-          <Link href="/explore" className="text-xs text-gray-600 hover:text-gray-400 transition-colors">
-            Explore more — non-security learning tracks →
+          <Link
+            href="/explore"
+            className="inline-flex items-center gap-2 text-sm text-gray-400 hover:text-cyan-300 border border-white/10 hover:border-cyan-500/40 rounded-full px-5 py-2 transition-colors"
+          >
+            🧭 Explore more — non-security learning tracks →
           </Link>
         </div>
 

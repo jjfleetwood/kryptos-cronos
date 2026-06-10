@@ -5,6 +5,7 @@ import path from "path";
 
 const ALLOWED_FILES = new Set([
   "README.md",
+  "AGENT_RISK_AUDIT_GUIDE.md",
   "SECURITY_BRIEFING.md",
   "TECHNICAL_ARCHITECTURE.md",
   "ARCHITECTURE.md",

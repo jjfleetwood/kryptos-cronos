@@ -15,7 +15,7 @@ type AnswerState = {
 
 // The server's verdict at the end of the attempt — drives the completion screen.
 type FinalResult = {
-  /** Whether the attempt met the server-side pass threshold (≥60% correct). */
+  /** Whether the attempt met the server-side pass threshold (≥70% correct). */
   passed: boolean;
   bonusXp: number;
   recommendedNext: { id: string; title: string } | null;
@@ -24,7 +24,7 @@ type FinalResult = {
 // How many questions a single attempt presents. Stages with a larger bank draw a
 // fresh random subset every attempt so the question set — and the position of the
 // correct option — can't be memorised "by heart".
-const QUESTIONS_PER_ATTEMPT = 5;
+const QUESTIONS_PER_ATTEMPT = 10;
 
 function shuffle<T>(arr: readonly T[]): T[] {
   const a = [...arr];
@@ -123,7 +123,7 @@ export default function QuizChallenge({ stage, backHref = "/stages" }: { stage: 
   }
 
   if (done) {
-    // Pure-quiz stage genuinely cleared (≥60% pass) → celebratory pop-up.
+    // Pure-quiz stage genuinely cleared (≥70% pass) → celebratory pop-up.
     if (!isHalfClear && finalResult?.passed) {
       return (
         <QuizSuccessModal
@@ -166,7 +166,7 @@ export default function QuizChallenge({ stage, backHref = "/stages" }: { stage: 
               <div className="text-6xl mb-6">📚</div>
               <h2 className="text-3xl font-bold text-white mb-2">Almost there!</h2>
               <p className="text-gray-400 mb-8">
-                You answered {score} of {questions.length} correctly — you need at least 60% to clear. Try a fresh set of questions to complete the stage and earn its XP.
+                You answered {score} of {questions.length} correctly — you need at least 70% to clear. Try a fresh set of questions to complete the stage and earn its XP.
               </p>
             </>
           )}
