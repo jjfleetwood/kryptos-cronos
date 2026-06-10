@@ -1,7 +1,7 @@
 # Kryptós CronOS — Curriculum Reference
 **Version:** 3.8  
 **Date:** 2026-06-08  
-**Total stages:** 821 across 74 epochs (delivered on **web + native mobile** from the shared `@kryptos/core` content package)
+**Total stages:** 831 across 75 epochs (delivered on **web + native mobile** from the shared `@kryptos/core` content package)
 
 > **Two-product structure.** The catalog splits into **security tracks** (the public cyber product — `epochGroups` in `stages/page.tsx`) and **non-security "extended" tracks** (crafts, driving, sports, travel, debate, flag-football — `extendedGroups`). Both run on the same `@kryptos/core` engine; the extended tracks are the separate consumer/licensing brand-in-waiting and live on a low-prominence `/explore` route, not the main `/stages` page. See `VC_READINESS_ANALYSIS.md` Part 2.5.
 

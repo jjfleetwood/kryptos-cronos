@@ -2,6 +2,17 @@
 
 ---
 
+## v1.45.0 — 2026-06-09
+
+**New epoch: Root Cause Analysis**
+
+- **`tech-audit-7` — Root Cause Analysis** (10 stages, `rca-01–rca-10`, teal 🔬), completing the Tech Audit track's analyst arc. RCA for auditors, DFIR/forensics, and security & reliability incidents: symptom vs proximate vs root cause, the evidence-based RCA process, 5 Whys, fishbone/Ishikawa, fault tree analysis (gates, minimal cut sets, defense-in-depth), forensic timeline reconstruction & evidence integrity (order of volatility, chain of custody), human & organizational factors (Swiss Cheese, latent vs active failures, Just Culture, the substitution test), per-step cyber-incident causal analysis (Kill Chain/ATT&CK scaffolding, the Equifax causal matrix), CAPA + the hierarchy of controls + verification of effectiveness (WannaCry/NHS), and the blameless postmortem capstone (Etsy/Google SRE, the six classic RCA failures).
+- Quiz-type (8 questions/stage) with full briefings, Mermaid flowcharts, and worked examples; anchored to real incidents (Challenger/Rogers Commission, Tenerife, Equifax, WannaCry/NHS, Target/OPM dwell time). Cert-mapped: Security+ / ISC² CC / CySA+ / CISA / CISM / CRISC.
+- Wired into `stages.ts`, `epoch-theme.ts` (teal), the `techAudit` group + `SECURITY_EPOCHS` (via `track-data.ts`). tsc 0, build green, `gen:meta` in sync.
+- **Counts:** **831 stages · 75 epochs · 16 tracks · 12 cert paths** (homepage stats, OG/Twitter meta, account/survey pages, transactional emails, and all 7 locales refreshed). CTF count unchanged at 292 (the new epoch is quiz-type).
+
+---
+
 ## v1.44.0 — 2026-06-08
 
 **Two new epochs: Auditing Agentic AI (baseline + advanced)**

@@ -2,13 +2,13 @@
 
 ## What This Is
 
-Gamified cybersecurity + AI training platform. 74 curriculum epochs, 821 CTF/quiz stages, live leaderboard, admin dashboard, 24 downloadable MCP server templates. Built with Next.js 16 / React 19 / TypeScript / Tailwind CSS / Upstash Redis / Resend.
+Gamified cybersecurity + AI training platform. 75 curriculum epochs, 831 CTF/quiz stages, live leaderboard, admin dashboard, 24 downloadable MCP server templates. Built with Next.js 16 / React 19 / TypeScript / Tailwind CSS / Upstash Redis / Resend.
 
 > **Positioning — two products, one engine.** This is the **cybersecurity career product** (public experience = security tracks only: *Learn → Certify → Prove → Get hired*). The same `@kryptos/core` engine also runs a diverse non-security catalog (the `extendedGroups` in `stages/page.tsx` — crafts, driving, sports, travel, debate, flag-football); these prove the engine generalizes and are framed as a separate consumer/licensing brand-in-waiting. **Near-term decision: keep all content in one app, but the non-security tracks move off `/stages` to a low-prominence `/explore` route** (not a second deployment). Cyber investors see only the focused cyber product. Rationale: `docs/VC_READINESS_ANALYSIS.md` Part 2.5.
 
 **Live:** kryptoscronos.com  
 **Repo:** github.com/jjfleetwood/kryptos-cronos  
-**Current version:** v1.44.0 (as of 2026-06-08)
+**Current version:** v1.45.0 (as of 2026-06-09)
 
 ---
 
@@ -134,6 +134,7 @@ Back navigation: `BackLink` uses `backHref` prop (passed from `StageContainer`) 
 | 9 | `tech-audit-4` | Continuous Monitoring 2.0 | 12 | audit-cm01 → audit-cm12 | Rose |
 | 9a | `tech-audit-5` | Auditing Agentic AI (baseline; G-I-A framework) | 10 | audit-ag01 → audit-ag10 | Cyan |
 | 9b | `tech-audit-6` | Auditing Agentic AI: Advanced | 10 | audit-ag11 → audit-ag20 | Violet |
+| 9c | `tech-audit-7` | Root Cause Analysis | 10 | rca-01 → rca-10 | Teal |
 | 10 | `mitre` | MITRE ATT&CK | 12 | mitre-01 → mitre-12 | Red |
 | 11 | `mitre-atlas` | MITRE ATLAS | 12 | atlas-01 → atlas-12 | Fuchsia |
 | 12 | `owasp-llm` | OWASP LLM Top 10 | 12 | llm-01 → llm-12 | Orange |
@@ -369,6 +370,11 @@ Local dev: `.env.local` in `app/` (gitignored).
 - **Target sponsors:** CrowdStrike, AWS, SentinelOne, CompTIA, ISC²
 
 ---
+
+## What's Shipped (v1.45.0)
+
+- ✅ **New Tech Audit epoch — `tech-audit-7` Root Cause Analysis** (10 quiz stages, `rca-01–rca-10`, teal). RCA for auditors, DFIR, and reliability: symptom vs cause, the RCA process, 5 Whys, fishbone, fault trees, forensic timeline & evidence, human/organizational factors (Swiss Cheese + Just Culture), per-step cyber-incident causal analysis (Kill Chain/ATT&CK, Equifax matrix), CAPA + hierarchy of controls + verified effectiveness, and the blameless postmortem capstone. 8 Q/stage, full briefings + Mermaid flowcharts + worked examples; cert-mapped (Security+/CC/CySA+/CISA/CISM/CRISC).
+- ✅ **Counts:** **831 stages · 75 epochs · 16 tracks · 12 cert paths** (homepage/meta/account/survey/emails + all 7 locales reconciled). CTF count unchanged at 292 (the new epoch is quiz-type).
 
 ## What's Shipped (v1.44.0)
 

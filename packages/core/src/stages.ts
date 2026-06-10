@@ -1,4 +1,4 @@
-// ⚠️ HEAVY BARREL — imports all 72 epoch content files (~10 MB of overviews,
+// ⚠️ HEAVY BARREL — imports all 75 epoch content files (~10 MB of overviews,
 // CTF terminals, and quizzes). NEVER import this from a "use client" component
 // or any client-reachable module; use `@kryptos/core/stages-meta` (client-safe
 // metadata) instead. Server/build only.
@@ -12,6 +12,7 @@ import { techAudit3Epoch, techAudit3Stages } from "./tech-audit-3";
 import { techAudit4Epoch, techAudit4Stages } from "./tech-audit-4";
 import { techAudit5Epoch, techAudit5Stages } from "./tech-audit-5";
 import { techAudit6Epoch, techAudit6Stages } from "./tech-audit-6";
+import { techAudit7Epoch, techAudit7Stages } from "./tech-audit-7";
 import { mitreEpoch, mitreStages } from "./mitre";
 import { mitreAtlasEpoch, mitreAtlasStages } from "./mitre-atlas";
 import { owaspLlmEpoch, owaspLlmStages } from "./owasp-llm";
@@ -134,6 +135,7 @@ export const epochs: EpochConfig[] = [
   techAudit4Epoch,
   techAudit5Epoch,
   techAudit6Epoch,
+  techAudit7Epoch,
   mitreEpoch,
   mitreAtlasEpoch,
   owaspLlmEpoch,
@@ -208,6 +210,7 @@ export const stages: StageConfig[] = [
   ...techAudit4Stages,
   ...techAudit5Stages,
   ...techAudit6Stages,
+  ...techAudit7Stages,
   ...mitreStages,
   ...mitreAtlasStages,
   ...owaspLlmStages,

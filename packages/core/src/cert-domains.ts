@@ -440,6 +440,20 @@ export const CERT_DOMAINS: Record<string, CertDomain[]> = {
   "audit-ag19": combine(sp("security-operations", "threats-vulns"), cc("bc-dr-ir", "security-operations-cc"), cy("cysa-security-ops", "cysa-ir"), cisa("cisa-operations"), cism("cism-incident"), crisc("crisc-risk-response"), ai("aiplus-security")), // Agentic incident response & forensics
   "audit-ag20": combine(sp("security-program"), cc("security-principles"), cy("cysa-reporting"), cisa("cisa-governance", "cisa-audit-process"), cism("cism-governance", "cism-program"), crisc("crisc-governance"), ai("aiplus-security")), // The agentic audit function
 
+  // ── tech-audit-7 (rca-01 → rca-10) — root cause analysis ─────────────────────
+  // CISA Domain 1 (Audit Process) is RCA's home; forensic/incident stages map to
+  // Operations + CISM Incident; CAPA/postmortem stages to governance & program.
+  "rca-01": combine(sp("general-security"), cc("security-principles"), cy("cysa-reporting"), cisa("cisa-audit-process"), cism("cism-risk"), crisc("crisc-risk-assessment")), // Symptom vs cause — what RCA is
+  "rca-02": combine(sp("security-operations"), cc("bc-dr-ir"), cy("cysa-ir"), cisa("cisa-audit-process"), cism("cism-incident"), crisc("crisc-risk-response")), // The RCA process end-to-end
+  "rca-03": combine(sp("general-security"), cc("security-principles"), cy("cysa-reporting"), cisa("cisa-audit-process"), cism("cism-incident"), crisc("crisc-risk-assessment")), // 5 Whys
+  "rca-04": combine(sp("general-security", "security-program"), cc("security-principles"), cy("cysa-reporting"), cisa("cisa-audit-process"), cism("cism-risk"), crisc("crisc-risk-assessment")), // Fishbone diagram
+  "rca-05": combine(sp("security-architecture", "threats-vulns"), cc("security-principles"), cy("cysa-vuln-mgmt"), cisa("cisa-protection"), cism("cism-risk"), crisc("crisc-risk-assessment")), // Fault tree analysis / defense-in-depth
+  "rca-06": combine(sp("security-operations"), cc("bc-dr-ir", "security-operations-cc"), cy("cysa-ir", "cysa-security-ops"), cisa("cisa-operations"), cism("cism-incident"), crisc("crisc-risk-response")), // Forensic timeline & evidence
+  "rca-07": combine(sp("general-security", "security-program"), cc("security-principles"), cisa("cisa-governance"), cism("cism-governance"), crisc("crisc-governance")), // Human & organizational factors
+  "rca-08": combine(sp("threats-vulns", "security-operations"), cc("security-operations-cc"), cy("cysa-ir", "cysa-security-ops"), cisa("cisa-operations"), cism("cism-incident"), crisc("crisc-risk-response")), // Cyber-incident causal analysis
+  "rca-09": combine(sp("security-program"), cc("security-principles"), cy("cysa-vuln-mgmt"), cisa("cisa-audit-process", "cisa-governance"), cism("cism-program"), crisc("crisc-risk-response")), // CAPA & hierarchy of controls
+  "rca-10": combine(sp("security-program"), cc("bc-dr-ir"), cy("cysa-reporting"), cisa("cisa-audit-process"), cism("cism-incident", "cism-program"), crisc("crisc-governance")), // RCA report & blameless postmortem
+
   // ── mitre (mitre-01 → mitre-12) — MITRE ATT&CK framework ─────────────────────
   // CISA Domain 4 (Operations) | CISM Domain 4 (Incident) | CRISC Domains 2+3
   "mitre-01": combine(sp("threats-vulns"), cc("security-operations-cc"), np("net-fundamentals"), cy("cysa-security-ops"), cisa("cisa-operations"), cism("cism-risk"), crisc("crisc-risk-assessment")), // TA0043 Reconnaissance

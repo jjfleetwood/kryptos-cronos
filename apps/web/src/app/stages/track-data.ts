@@ -25,7 +25,7 @@ export type VisibleTrack = TrackGroup & { visibleEpochIds: string[] };
 // ── Security tracks (the public cyber product — shown on /stages) ──────────────
 export const epochGroups: TrackGroup[] = [
   { id: "coreSecurity", labelKey: "stages.tracks.coreSecurity", descKey: "stages.tracks.coreSecurityDesc", epochIds: ["first-journey", "ancient", "sec-foundations", "computing-foundations", "silicon-fab"] },
-  { id: "techAudit", labelKey: "stages.tracks.techAudit", descKey: "stages.tracks.techAuditDesc", epochIds: ["tech-audit-1", "tech-audit-2", "tech-audit-3", "tech-audit-4", "tech-audit-5", "tech-audit-6"] },
+  { id: "techAudit", labelKey: "stages.tracks.techAudit", descKey: "stages.tracks.techAuditDesc", epochIds: ["tech-audit-1", "tech-audit-2", "tech-audit-3", "tech-audit-4", "tech-audit-5", "tech-audit-6", "tech-audit-7"] },
   { id: "threatFrameworks", labelKey: "stages.tracks.threatFrameworks", descKey: "stages.tracks.threatFrameworksDesc", epochIds: ["mitre", "threat-frameworks"] },
   { id: "aiSecurity", labelKey: "stages.tracks.aiSecurity", descKey: "stages.tracks.aiSecurityDesc", epochIds: ["mitre-atlas", "owasp-llm", "emerging-tech", "ai-ml-foundations"] },
   { id: "quantumEra", labelKey: "stages.tracks.quantumEra", descKey: "stages.tracks.quantumEraDesc", epochIds: ["quantum-intro", "quantum-deep", "quantum-1", "quantum-2", "quantum-3", "quantum-4", "quantum-5"] },
