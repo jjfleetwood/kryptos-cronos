@@ -1,11 +1,15 @@
 # Agent-Based Development — Plan for Review & Approval
 
-**Status:** DRAFT — awaiting founder review & approval
+**Status:** ✅ APPROVED — 2026-06-09 (founder, via session)
 **Author:** Claude (agent)
-**Date:** 2026-06-08
+**Date:** 2026-06-08 (approved 2026-06-09)
 **Review location:** Admin → Development (this plan is pinned to the top of the scrum board)
 
-> **Decision requested:** approve to proceed (and in what phase order), request changes, or defer. Approve by moving the pinned plan card from **Review → Backlog**, or add notes/decisions on the card.
+> **Decisions recorded (2026-06-09):**
+> 1. **Approved** as written.
+> 2. **Phase order:** default confirmed — Testing → Format/Content → Code Review → Orchestration.
+> 3. **Phase 1 implementation:** default confirmed — **Option A** (Claude Code subagents + scheduled routines), with the nightly GitHub Action as the hands-off runner for the report-only fleet.
+> 4. **Non-negotiables confirmed:** human merge gate, least-privilege tokens, `AGENTS_ENABLED` kill switch.
 
 ---
 
@@ -82,9 +86,9 @@ This means **one inbox for all proposed work** — human feedback, survey items,
 
 - **Phase 0 — Board (DONE).** The Development scrum board + feedback/survey ingestion is live. Agents have an inbox to report into.
 - **Phase 1 — Deep Testing Agent (BUILT 2026-06-08).** Report-only quiz/CTF validator that files findings to this board. **To activate:** set `AGENTS_ENABLED=true` and `AGENT_REPORT_TOKEN=<secret>` in Vercel, then run `npm run test:agent -w @kryptos/web` (dry run) or, to post to the board, `AGENT_REPORT_URL=https://www.kryptoscronos.com AGENT_REPORT_TOKEN=<secret> node apps/web/scripts/test-agent.mjs --report` (use the **www** host — the apex redirects and drops the auth header). A nightly **GitHub Action** is included (`.github/workflows/test-agent.yml`, 07:00 UTC + manual `workflow_dispatch`) that runs **all four report-only agents** (testing, content, code-health, format) → board. Set the `AGENT_REPORT_TOKEN` GitHub secret (same value as Vercel) and it runs hands-off. Each agent keeps its own summary card and only manages its own findings. First sweep: 831 quiz stages + 371 CTF stages, 0 high/medium findings, 11 low (thin banks). Endpoint: `POST /api/agent/report` (token + kill-switch gated; can only create agent cards; dedupes by finding key and auto-resolves fixed findings; upserts a single sweep-summary card).
-- **Phase 2 — Content Review + Format-Normalization (report-only versions BUILT 2026-06-08).** `content-agent.mjs` (broken/missing references, duplicate stage/badge ids, missing badges, empty overviews/takeaways, thin technical stages) and `format-agent.mjs` (high-confidence colon-led inline lists that should be bullets; conservative, caps at 8 cards). Both file findings to the board; the *write-mode* (auto-PR normalization) is the remaining step.
-- **Phase 3 — Code Review & Refactor.** Report-only `code-health-agent.mjs` BUILT (oversized files, TODO/FIXME, stray console.log, `any` casts, `dangerouslySetInnerHTML`). The branch/PR auto-refactor with mandatory green gates + human merge is the remaining step.
-- **Phase 4 — Orchestrated continuous loop.** Scheduled cadence across all agents, a weekly "agent digest" card, and trend metrics (format-drift score, test pass rate, open agent findings).
+- **Phase 2 — Content Review + Format-Normalization (report-only BUILT 2026-06-08; write-mode BUILT 2026-06-09).** `content-agent.mjs` (broken/missing references, duplicate stage/badge ids, missing badges, empty overviews/takeaways, thin technical stages) and `format-agent.mjs` (high-confidence colon-led inline lists that should be bullets; conservative, caps at 8 cards). **Write-mode shipped:** `node scripts/format-agent.mjs --fix` (supervised, on-demand) deterministically bullet-normalizes only paragraphs that pass a strict safety bar (list ends the paragraph, parses cleanly, literal found verbatim exactly once in source), max 10 per run, core tsc green gate, then opens `agent/format-normalize-*` branch + PR via `gh` and files a card linking the PR. Never touches master; aborts + restores on any failure.
+- **Phase 3 — Code Review & Refactor (supervised subagents BUILT 2026-06-09).** Report-only `code-health-agent.mjs` BUILT (oversized files, TODO/FIXME, stray console.log, `any` casts, `dangerouslySetInnerHTML`). **Option A subagents shipped:** `.claude/agents/code-reviewer.md` (one focused behavior-preserving refactor per run → `agent/refactor-*` branch + PR; forbidden zones: auth/payments/crypto/session/stage-flags/proxy; ≤12 files; tsc+lint+build gates) and `.claude/agents/content-reviewer.md` (rotating epoch accuracy/tone/reference review → report + optional copy-edit PR; never re-keys quizzes silently). Both: human merge gate, never master. Invoke from Claude Code (weekly or on demand); wire to a `/schedule` routine when desired.
+- **Phase 4 — Orchestrated continuous loop (BUILT 2026-06-09).** Nightly Action runs all five report-only agents. The report endpoint now keeps a **per-agent sweep history** (Redis `agent:history:<name>`, capped 12) and auto-updates a single **📊 Agent digest** card (`agent-digest`) on every sweep — open findings per agent with ▲/▼/= trend vs the previous sweep, low-severity counts, and last-sweep timestamps. Trends (test pass rate, format drift, open findings) are visible on the board without leaving it.
 
 Each phase ships behind the kill switch and is reviewed before the next.
 

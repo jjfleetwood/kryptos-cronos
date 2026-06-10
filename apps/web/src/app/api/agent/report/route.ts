@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { listItems, createItem, putItem, newItem } from "@/lib/scrum";
 import type { ScrumItem, ScrumType, ScrumPriority } from "@/lib/scrum-types";
+import { redis } from "@/lib/redis";
 
 // Agent reporting endpoint — how report-only dev agents (testing, content, code-
 // health, format, …) file findings to the Development board. Gated by an agent
@@ -105,6 +106,47 @@ export async function POST(req: NextRequest) {
     type: "test", priority: findings.length ? "p2" : "p3", status: "review",
     source: "agent", initiator, sourceRef: summaryRef,
     order: -8.6e15, // just under the pinned plan card, top of Review
+  }));
+
+  // ── Phase 4 (orchestration): trend history + the cross-agent digest card ──
+  // Each sweep appends a compact stat row (capped at 12) and refreshes a single
+  // board-wide digest card, so test-pass / format-drift / open-finding trends
+  // are visible without leaving the board.
+  type SweepStat = { ts: number; open: number; low: number; label: string; icon: string };
+  const lowTotal = Object.values((s.low ?? {}) as Record<string, number>).reduce(
+    (a, v) => a + (Number(v) || 0), 0,
+  );
+  const stat: SweepStat = {
+    ts: Date.now(), open: findings.length, low: lowTotal,
+    label: typeof s.label === "string" ? s.label : agent,
+    icon: typeof s.icon === "string" ? s.icon : "🤖",
+  };
+  const histKey = `agent:history:${agent}`;
+  await redis.lpush(histKey, JSON.stringify(stat));
+  await redis.ltrim(histKey, 0, 11);
+  await redis.sadd("agent:names", agent);
+
+  const names = await redis.smembers("agent:names");
+  const lines: string[] = [];
+  let totalOpen = 0;
+  for (const name of names.sort()) {
+    const rows = await redis.lrange<SweepStat>(`agent:history:${name}`, 0, 1);
+    const cur = rows[0];
+    if (!cur) continue;
+    const prev = rows[1];
+    const trend = !prev ? "·" : cur.open < prev.open ? "▼" : cur.open > prev.open ? "▲" : "=";
+    totalOpen += cur.open;
+    lines.push(
+      `- ${cur.icon} **${cur.label}** — open: ${cur.open} ${trend}${prev ? ` (prev ${prev.open})` : ""} · low: ${cur.low} · last sweep: ${new Date(cur.ts).toISOString().slice(0, 16).replace("T", " ")}Z`,
+    );
+  }
+  await putItem(newItem({
+    id: "agent-digest",
+    title: `📊 Agent digest — ${new Date().toISOString().slice(0, 10)} · ${totalOpen} open finding(s) across ${lines.length} agent(s)`,
+    description: `Cross-agent rollup (auto-updated on every sweep; trend vs previous sweep).\n${lines.join("\n")}`,
+    type: "test", priority: totalOpen ? "p2" : "p3", status: "review",
+    source: "agent", initiator: "agent:digest", sourceRef: "agents:digest",
+    order: -8.65e15, // sits with the sweep summaries at the top of Review
   }));
 
   return NextResponse.json({ ok: true, agent, created, updated, resolved, open: findings.length });
