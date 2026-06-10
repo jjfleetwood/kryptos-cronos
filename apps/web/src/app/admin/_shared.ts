@@ -9,7 +9,6 @@ export type UserRow = {
   tier: string;
   isAdmin: boolean;
   xp: number;
-  coins: number;
   stageIds: string[];
   stages: number;
   badges: number;

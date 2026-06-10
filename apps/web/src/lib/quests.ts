@@ -1,9 +1,8 @@
 import "server-only";
 import { redis } from "@/lib/redis";
-import { weekMondayKey } from "@/lib/leagues";
+import { weekMondayKey, addLeagueXp } from "@/lib/leagues";
 import { readEconomy } from "@/lib/economy";
 import { getUserTier } from "@/lib/access";
-import { MAX_FREEZES } from "@kryptos/core/streaks";
 import { PRO_DAILY_QUEST_BONUS } from "@kryptos/core/pro-perks";
 import {
   dailyQuestsFor, weeklyQuestsFor, getQuestById, DAILY_QUEST_COUNT, type Quest, type QuestMetric,
@@ -13,8 +12,8 @@ import {
  * Quest tracking (Phase 3). Per-period counters live in:
  *   quests:{u}:d:{YYYY-MM-DD}   hash { stages, xp, clean, claimed:<id> }
  *   quests:{u}:w:{monday}       hash { stages, xp, clean, claimed:<id> }
- * Counters are bumped from the award path; rewards (coins / streak freezes) are
- * claimed via the API. Quest selection is derived from the date, not stored.
+ * Counters are bumped from the award path; the XP reward is claimed via the API.
+ * Quest selection is derived from the date, not stored.
  */
 
 function todayUTC(): string {
@@ -82,11 +81,11 @@ export async function getQuestState(username: string): Promise<{ daily: QuestSta
   };
 }
 
-/** Claim a completed quest's reward. Idempotent via HSETNX on the claimed flag. */
+/** Claim a completed quest's XP reward. Idempotent via HSETNX on the claimed flag. */
 export async function claimQuest(
   username: string,
   questId: string
-): Promise<{ ok: boolean; error?: string; coins?: number; freezes?: number }> {
+): Promise<{ ok: boolean; error?: string; xp?: number }> {
   const u = username.toLowerCase();
   const quest = getQuestById(questId);
   if (!quest) return { ok: false, error: "unknown quest" };
@@ -104,15 +103,16 @@ export async function claimQuest(
   const claimedNow = await redis.hsetnx(key, `claimed:${questId}`, "1");
   if (!claimedNow) return { ok: false, error: "already claimed" };
 
-  // Ensure v2 economy so the coin grant lands on the authoritative coinsEarned
-  // accumulator (lazy-migrates legacy records), then credit coins — never XP.
+  // Grant the reward as bonus XP. It lands in the `bonus` accumulator so the
+  // self-healing XP recompute in awardStageInRedis preserves it; `xp` is bumped
+  // in lockstep (= baseXp − penalty + bonus). Ensure the record is migrated first.
   await readEconomy(u);
-  await redis.hincrbyfloat(`progress:${u}`, "coinsEarned", quest.coins);
+  const pkey = `progress:${u}`;
+  await redis.hincrbyfloat(pkey, "bonus", quest.xp);
+  await redis.hincrbyfloat(pkey, "xp", quest.xp);
+  // Reflect the reward in the all-time + weekly-league standings.
+  await redis.zadd("leaderboard", { score: Number((await redis.hget(pkey, "xp")) ?? 0), member: u });
+  await addLeagueXp(u, quest.xp);
 
-  if (quest.freezes) {
-    const f = Number(await redis.hincrby(`streak:${u}`, "freezes", quest.freezes));
-    if (f > MAX_FREEZES) await redis.hset(`streak:${u}`, { freezes: MAX_FREEZES });
-  }
-
-  return { ok: true, coins: quest.coins, freezes: quest.freezes };
+  return { ok: true, xp: quest.xp };
 }

@@ -4,9 +4,7 @@ import { checkStageMilestones, checkXpMilestones, checkStreakMilestones } from "
 import { deriveEconomy, ECONOMY_VERSION } from "@/lib/economy";
 import { addLeagueXp } from "@/lib/leagues";
 import { bumpQuestCounters } from "@/lib/quests";
-import { getUserTier } from "@/lib/access";
-import { DAILY_GOAL_XP, streakMultiplier, MAX_FREEZES } from "@kryptos/core/streaks";
-import { PRO_COIN_MULTIPLIER, PRO_WEEKLY_FREE_FREEZES } from "@kryptos/core/pro-perks";
+import { DAILY_GOAL_XP, streakMultiplier } from "@kryptos/core/streaks";
 import type { UserProgress } from "@/lib/progress";
 
 function escapeHtml(s: string): string {
@@ -19,8 +17,8 @@ async function sendStageCompletionEmail(opts: {
   stageName: string;
   stageSubtitle: string;
   epochName: string;
-  coinsEarned: number;
-  totalCoins: number;
+  xpEarned: number;
+  totalXp: number;
   totalStages: number;
   streak: number;
   badgeName?: string;
@@ -34,7 +32,7 @@ async function sendStageCompletionEmail(opts: {
 
   const {
     username, email, stageName, stageSubtitle, epochName,
-    coinsEarned, totalCoins, totalStages, streak,
+    xpEarned, totalXp, totalStages, streak,
     badgeName, badgeEmoji, nextStageId, nextStageName,
   } = opts;
 
@@ -78,15 +76,15 @@ async function sendStageCompletionEmail(opts: {
               <div style="font-size:11px;color:rgba(74,222,128,0.6);letter-spacing:2px;text-transform:uppercase;margin-bottom:8px;">${safe(epochName)}</div>
               <div style="font-size:20px;font-weight:900;color:#ffffff;margin-bottom:4px;">${safe(stageName)}</div>
               <div style="font-size:12px;color:rgba(107,114,128,1);">${safe(stageSubtitle)}</div>
-              <div style="margin-top:16px;font-size:24px;font-weight:900;color:#22d3ee;">+${coinsEarned} 🪙</div>
+              <div style="margin-top:16px;font-size:24px;font-weight:900;color:#22d3ee;">+${xpEarned} XP</div>
             </div>
 
             <!-- Stats row -->
             <table width="100%" cellpadding="0" cellspacing="0" style="margin:0 0 28px;border:1px solid rgba(255,255,255,0.06);border-radius:8px;overflow:hidden;">
               <tr>
                 <td align="center" style="padding:14px 8px;border-right:1px solid rgba(255,255,255,0.06);">
-                  <div style="font-size:20px;font-weight:900;color:#22d3ee;">${totalCoins}</div>
-                  <div style="font-size:10px;color:rgba(75,85,99,1);text-transform:uppercase;letter-spacing:1px;margin-top:2px;">Total 🪙</div>
+                  <div style="font-size:20px;font-weight:900;color:#22d3ee;">${totalXp}</div>
+                  <div style="font-size:10px;color:rgba(75,85,99,1);text-transform:uppercase;letter-spacing:1px;margin-top:2px;">Total XP</div>
                 </td>
                 <td align="center" style="padding:14px 8px;border-right:1px solid rgba(255,255,255,0.06);">
                   <div style="font-size:20px;font-weight:900;color:#a78bfa;">${totalStages}</div>
@@ -171,13 +169,6 @@ function yesterdayUTC(): string {
   return d.toISOString().slice(0, 10);
 }
 
-/** Whole-day difference between two YYYY-MM-DD UTC dates (b − a). */
-function daysBetweenUTC(a: string, b: string): number {
-  const da = Date.parse(`${a}T00:00:00Z`);
-  const db = Date.parse(`${b}T00:00:00Z`);
-  return Math.round((db - da) / 86_400_000);
-}
-
 /**
  * Awards a stage in Redis for a verified user. XP is computed server-side.
  * Idempotent — calling twice for the same stage has no effect on XP.
@@ -219,27 +210,17 @@ export async function awardStageInRedis(
   }
 
   const econ = deriveEconomy(data);
-  // Pro/trial earns a coin multiplier + weekly freeze + extra quest. XP is never
-  // multiplied, so rank/leagues stay a pure measure of learning.
-  const isPro = (await getUserTier(username)) !== "free";
   const baseXp = completedStages.reduce((sum, id) => sum + stageXp(id), 0);
   const storedPenalty = Number(data?.penalty ?? 0);
   const newPenalty = isNew ? storedPenalty + timePenaltyXp : storedPenalty;
   const storedBonus = Number(data?.bonus ?? 0);
 
-  // ── Streak 2.0 ── goal-gated daily streak with freezes (Phase 3).
+  // ── Streak 2.0 ── goal-gated daily streak (Phase 3). Missing a day resets it.
   const today = todayUTC();
   const yesterday = yesterdayUTC();
   const lastDate = streakData?.lastDate ? String(streakData.lastDate) : null;
   let current = Number(streakData?.current ?? 0);
   let longest = Number(streakData?.longest ?? 0);
-  let freezes = Number(streakData?.freezes ?? 0);
-
-  // Pro weekly free streak-freeze top-up (once per week).
-  const weekTok = getWeekKey();
-  if (isPro && String(streakData?.freezeWeek ?? "") !== weekTok && freezes < MAX_FREEZES) {
-    freezes = Math.min(MAX_FREEZES, freezes + PRO_WEEKLY_FREE_FREEZES);
-  }
 
   // XP earned today (resets each UTC day). The streak only advances once the
   // daily goal is met. baseDelta excludes the streak multiplier so the goal
@@ -249,19 +230,7 @@ export async function awardStageInRedis(
 
   let creditedToday = lastDate === today;
   if (!creditedToday && dayXp >= DAILY_GOAL_XP) {
-    if (lastDate === yesterday) {
-      current += 1;
-    } else if (lastDate) {
-      const missed = daysBetweenUTC(lastDate, today) - 1; // full days skipped
-      if (missed > 0 && freezes >= missed) {
-        freezes -= missed; // spend freezes to bridge the gap
-        current += 1;
-      } else {
-        current = 1;
-      }
-    } else {
-      current = 1;
-    }
+    current = lastDate === yesterday ? current + 1 : 1; // a missed day resets the streak
     creditedToday = true;
     if (current > longest) longest = current;
   }
@@ -275,28 +244,13 @@ export async function awardStageInRedis(
   const newClean = Number(data?.cleanSolves ?? 0) + (isNew && bonusXp > 0 ? 1 : 0);
 
   // ── Milestone badges ──
-  const prevBadges = parseArr(data?.badges);
   const streakMilestones = checkStreakMilestones(current);
-
-  // Coin bonuses for first-time streak milestones
-  const STREAK_BONUSES: Record<string, number> = { "m-streak-3": 50, "m-streak-7": 150, "m-streak-30": 500 };
-  let milestoneBonus = 0;
-  for (const id of streakMilestones) {
-    if (!prevBadges.includes(id) && STREAK_BONUSES[id]) milestoneBonus += STREAK_BONUSES[id];
-  }
-  const totalBonus = newBonus + milestoneBonus;
+  const totalBonus = newBonus;
 
   // Lifetime XP — self-healing (recomputed from completed stages ± penalty/bonus).
   // Drives Level / Rank / Leagues / leaderboard. Earn-side only; never spent.
+  // Quest XP rewards live in the same `bonus` accumulator, so they survive here.
   const newXp = Math.max(0, baseXp - newPenalty + totalBonus);
-  // Coins earned tracks the same delta as XP in Phase 0 (they diverge once quests /
-  // Pro multipliers land). The spend-side accumulator (coinsSpent) is untouched here,
-  // so awarding and spending never write the same field.
-  const earnDelta = isNew ? newXp - econ.xp : 0;
-  // Coins (not XP) carry the Pro multiplier — the wallet grows faster for Pro.
-  const coinDelta = isNew ? Math.round(earnDelta * (isPro ? PRO_COIN_MULTIPLIER : 1)) : 0;
-  const newCoinsEarned = econ.coinsEarned + coinDelta;
-  const wallet = Math.max(0, newCoinsEarned - econ.coinsSpent);
 
   const stageMilestones = checkStageMilestones(completedStages.length);
   const xpMilestones = checkXpMilestones(newXp);
@@ -308,7 +262,6 @@ export async function awardStageInRedis(
   await Promise.all([
     redis.hset(key, {
       xp: newXp,
-      coinsEarned: newCoinsEarned,
       gv: ECONOMY_VERSION,
       stages: JSON.stringify(completedStages),
       badges: JSON.stringify(badges),
@@ -320,8 +273,6 @@ export async function awardStageInRedis(
     redis.hset(streakKey, {
       current,
       longest,
-      freezes,
-      freezeWeek: weekTok,
       dayXp,
       dayDate: today,
       // Only mark the day "credited" once the goal is hit, so the streak isn't
@@ -329,8 +280,8 @@ export async function awardStageInRedis(
       ...(creditedToday ? { lastDate: today } : {}),
     }),
   ]);
-  // Drop the stale legacy `coins` field once split (idempotent; only when migrating).
-  if (econ.migrated) await redis.hdel(key, "coins");
+  // Drop the dead coin fields once migrated (idempotent; only when migrating).
+  if (econ.migrated) await redis.hdel(key, "coins", "coinsEarned", "coinsSpent");
 
   // All-time leaderboard — ranked by lifetime XP.
   await redis.zadd("leaderboard", { score: newXp, member: username.toLowerCase() });
@@ -369,8 +320,8 @@ export async function awardStageInRedis(
           stageName: stageObj.title,
           stageSubtitle: stageObj.subtitle,
           epochName: epoch?.name ?? stageObj.epochId,
-          coinsEarned: stageObj.xp - timePenaltyXp,
-          totalCoins: wallet,
+          xpEarned: stageObj.xp - timePenaltyXp,
+          totalXp: newXp,
           totalStages: completedStages.length,
           streak: current,
           badgeName: isNewBadge ? stageObj.badge.name : undefined,
@@ -382,7 +333,7 @@ export async function awardStageInRedis(
     }
   }
 
-  return { xp: newXp, coins: wallet, coinsSpent: econ.coinsSpent, completedStages, badges, streak: current };
+  return { xp: newXp, completedStages, badges, streak: current };
 }
 
 /**

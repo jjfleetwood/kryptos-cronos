@@ -23,7 +23,6 @@ type Player = {
 type ProfileData = {
   username: string;
   xp: number;
-  coins: number;
   stages: number;
   badges: number;
   streak: number;
@@ -246,7 +245,7 @@ function ProfilePanel({ username, myName, rank, onClose }: {
                               <span className="text-xs text-gray-500 group-hover:text-cyan-400 transition-colors truncate">
                                 {stage.title}
                               </span>
-                              <span className="text-xs text-gray-700 ml-auto flex-shrink-0">+{stage.xp} 🪙</span>
+                              <span className="text-xs text-gray-700 ml-auto flex-shrink-0">+{stage.xp} XP</span>
                             </Link>
                           ))}
                         </div>

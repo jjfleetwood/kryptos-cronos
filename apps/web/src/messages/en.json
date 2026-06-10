@@ -257,7 +257,7 @@
   "flag.accepted": "Flag Accepted",
   "flag.missionComplete": "Mission Complete",
   "flag.capturedFlag": "Captured Flag",
-  "flag.coinsEarned": "Coins Earned",
+  "flag.coinsEarned": "XP earned",
   "flag.timePenalty": "penalty",
   "flag.time": "Time",
   "flag.skillsAcquired": "Skills Acquired",
@@ -623,5 +623,6 @@
   "achievements.cat.mastery": "Mastery",
   "achievements.cat.streak": "Streak",
   "achievements.cat.epochs": "Completion",
-  "achievements.cat.leagues": "Leagues"
+  "achievements.cat.leagues": "Leagues",
+  "quests.proBadge": "PRO · +1 daily quest"
 }

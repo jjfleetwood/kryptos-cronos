@@ -3,10 +3,18 @@
 import { useEffect, useState, useCallback } from "react";
 import Link from "next/link";
 import { stagesMeta as allStages, epochs } from "@kryptos/core/stages-meta";
+import { milestoneBadges } from "@kryptos/core/milestone-badges";
 import { fetchProgress } from "@/lib/progress";
 import { getSession, setSession } from "@/lib/auth";
 import { useSkin } from "@/contexts/SkinContext";
 import { useLocale } from "@/contexts/LocaleContext";
+
+// Earned-badge metadata: milestone badges + every stage's completion badge.
+const BADGE_META = new Map<string, { name: string; emoji: string }>();
+for (const b of milestoneBadges) BADGE_META.set(b.id, { name: b.name, emoji: b.emoji });
+for (const s of allStages) BADGE_META.set(s.badge.id, { name: s.badge.name, emoji: s.badge.emoji });
+
+type AchSummary = { emoji: string; name: string; earned: boolean };
 
 // ── Epoch accent colours (raw hex for inline styles) ──────────────────────────
 const EPOCH_COLOR: Record<string, string> = {
@@ -234,6 +242,8 @@ export default function JourneyPage() {
   const { t } = useLocale();
   const [completedStages, setCompletedStages] = useState<string[]>([]);
   const [totalXp, setTotalXp] = useState(0);
+  const [badges, setBadges] = useState<string[]>([]);
+  const [ach, setAch] = useState<{ list: AchSummary[]; earned: number; total: number } | null>(null);
   const [username, setUsername] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const [hoveredEpoch, setHoveredEpoch] = useState<string | null>(null);
@@ -251,9 +261,16 @@ export default function JourneyPage() {
         if (!p) return;
         setCompletedStages(p.completedStages);
         setTotalXp(p.xp);
+        setBadges(p.badges ?? []);
       })
       .catch(() => {})
       .finally(() => setLoading(false));
+    fetch("/api/achievements")
+      .then((r) => (r.ok ? r.json() : null))
+      .then((d: { achievements: AchSummary[]; earnedCount: number; total: number } | null) => {
+        if (d) setAch({ list: d.achievements, earned: d.earnedCount, total: d.total });
+      })
+      .catch(() => {});
   }, []);
 
   useEffect(() => {
@@ -427,6 +444,50 @@ export default function JourneyPage() {
             {t("leaderboard.viewStageMap")}
           </Link>
         </div>
+
+        {!loading && username && (
+          <>
+            {/* ── Achievements ── */}
+            {ach && (
+              <div className="mt-10">
+                <div className="flex items-center justify-between mb-3">
+                  <h2 className="text-sm font-bold text-white uppercase tracking-widest">
+                    🏅 {t("achievements.title")}
+                    <span className="ml-2 text-xs font-mono font-normal text-gray-500">{ach.earned}/{ach.total}</span>
+                  </h2>
+                  <Link href="/achievements" className="text-xs text-amber-400 hover:text-amber-300 transition-colors">{t("achievements.title")} →</Link>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {ach.list.filter((a) => a.earned).slice(0, 16).map((a, i) => (
+                    <span key={i} title={a.name} className="text-2xl leading-none rounded-lg border border-amber-500/30 bg-amber-500/8 px-2 py-1.5">{a.emoji}</span>
+                  ))}
+                  {ach.earned === 0 && <span className="text-xs text-gray-600 italic">{t("journey.notStarted")}</span>}
+                </div>
+              </div>
+            )}
+
+            {/* ── Earned badges ── */}
+            {badges.length > 0 && (
+              <div className="mt-10">
+                <h2 className="text-sm font-bold text-white uppercase tracking-widest mb-3">
+                  🎖️ {t("trophies.earnedLabel", "Earned")}
+                  <span className="ml-2 text-xs font-mono font-normal text-gray-500">{badges.length}</span>
+                </h2>
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2">
+                  {badges
+                    .map((id) => ({ id, meta: BADGE_META.get(id) }))
+                    .filter((b) => b.meta)
+                    .map((b) => (
+                      <div key={b.id} className="flex items-center gap-2 rounded-xl border border-white/8 bg-white/2 px-3 py-2">
+                        <span className="text-2xl leading-none flex-shrink-0">{b.meta!.emoji}</span>
+                        <span className="text-xs font-semibold text-gray-300 truncate">{b.meta!.name}</span>
+                      </div>
+                    ))}
+                </div>
+              </div>
+            )}
+          </>
+        )}
       </div>
     </div>
   );

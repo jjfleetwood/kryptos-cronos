@@ -245,7 +245,7 @@
   "flag.accepted": "Flagge Akzeptiert",
   "flag.missionComplete": "Mission Abgeschlossen",
   "flag.capturedFlag": "Gefangene Flagge",
-  "flag.coinsEarned": "Verdiente Münzen",
+  "flag.coinsEarned": "XP verdient",
   "flag.timePenalty": "Strafe",
   "flag.time": "Zeit",
   "flag.skillsAcquired": "Erworbene Fähigkeiten",
@@ -611,5 +611,6 @@
   "achievements.cat.mastery": "Meisterschaft",
   "achievements.cat.streak": "Streak",
   "achievements.cat.epochs": "Abschluss",
-  "achievements.cat.leagues": "Ligen"
+  "achievements.cat.leagues": "Ligen",
+  "quests.proBadge": "PRO · +1 Tagesaufgabe"
 }

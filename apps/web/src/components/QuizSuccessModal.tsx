@@ -74,7 +74,7 @@ export default function QuizSuccessModal({ stage, score, total, coins, bonusCoin
           {/* Stats grid */}
           <div className="grid grid-cols-3 gap-3 mb-6">
             <div className="bg-white/3 rounded-xl p-3 text-center border border-white/10">
-              <div className="text-xl font-bold text-cyan-400">+{coins} 🪙</div>
+              <div className="text-xl font-bold text-cyan-400">+{coins} XP</div>
               <div className="text-xs text-gray-600 mt-0.5">earned</div>
               {bonusCoins != null && bonusCoins > 0 && (
                 <div className="text-xs text-yellow-400 mt-0.5 font-semibold">+{bonusCoins} bonus ⚡</div>

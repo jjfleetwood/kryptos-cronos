@@ -25,12 +25,10 @@ export async function GET(req: NextRequest) {
     try { const p = JSON.parse(s); return Array.isArray(p) ? p : []; } catch { return s.split(",").filter(Boolean); }
   }
 
-  // xp = lifetime (rank); coins = spendable wallet (coinsEarned − coinsSpent).
+  // xp = lifetime (drives rank / leagues / leaderboard).
   const econ = deriveEconomy(data);
   return NextResponse.json({
     xp: econ.xp,
-    coins: econ.wallet,
-    coinsSpent: econ.coinsSpent,
     completedStages: parseArr(data.stages),
     badges: parseArr(data.badges),
     streak: streakData ? Number(streakData.current ?? 0) : 0,

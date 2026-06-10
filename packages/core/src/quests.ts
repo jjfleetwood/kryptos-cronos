@@ -4,8 +4,8 @@
  * A small rotating set of daily and weekly objectives. The active set for a
  * given day/week is chosen deterministically (seeded by the date), so the
  * server and any client agree without storing the selection. Quest rewards are
- * paid in COINS (and occasionally streak freezes) — never XP — so they stay
- * clear of the self-healing XP recompute in the award path.
+ * paid in bonus XP — claimed via the API, which folds the reward into the
+ * progress `bonus` accumulator so the self-healing XP recompute preserves it.
  */
 
 export type QuestMetric = "stages" | "xp" | "clean";
@@ -19,26 +19,25 @@ export type Quest = {
   emoji: string;
   title: string;
   desc: string;
-  coins: number;
-  /** Streak freezes granted on completion (optional). */
-  freezes?: number;
+  /** Bonus XP granted on completion. */
+  xp: number;
 };
 
 export const DAILY_QUEST_POOL: Quest[] = [
-  { id: "d-stages-1", period: "daily", metric: "stages", target: 1,   emoji: "🎯", title: "Warm Up",        desc: "Complete 1 stage today",        coins: 30  },
-  { id: "d-stages-3", period: "daily", metric: "stages", target: 3,   emoji: "🔥", title: "On a Roll",      desc: "Complete 3 stages today",       coins: 100 },
-  { id: "d-xp-100",   period: "daily", metric: "xp",     target: 100, emoji: "⚡", title: "Charge Up",      desc: "Earn 100 XP today",             coins: 60  },
-  { id: "d-xp-250",   period: "daily", metric: "xp",     target: 250, emoji: "🚀", title: "Full Throttle",  desc: "Earn 250 XP today",             coins: 150 },
-  { id: "d-clean-1",  period: "daily", metric: "clean",  target: 1,   emoji: "✨", title: "Clean Hit",      desc: "Land 1 clean solve today",      coins: 80  },
-  { id: "d-clean-2",  period: "daily", metric: "clean",  target: 2,   emoji: "💎", title: "Surgical",       desc: "Land 2 clean solves today",     coins: 150 },
+  { id: "d-stages-1", period: "daily", metric: "stages", target: 1,   emoji: "🎯", title: "Warm Up",        desc: "Complete 1 stage today",        xp: 25 },
+  { id: "d-stages-3", period: "daily", metric: "stages", target: 3,   emoji: "🔥", title: "On a Roll",      desc: "Complete 3 stages today",       xp: 60 },
+  { id: "d-xp-100",   period: "daily", metric: "xp",     target: 100, emoji: "⚡", title: "Charge Up",      desc: "Earn 100 XP today",             xp: 40 },
+  { id: "d-xp-250",   period: "daily", metric: "xp",     target: 250, emoji: "🚀", title: "Full Throttle",  desc: "Earn 250 XP today",             xp: 80 },
+  { id: "d-clean-1",  period: "daily", metric: "clean",  target: 1,   emoji: "✨", title: "Clean Hit",      desc: "Land 1 clean solve today",      xp: 50 },
+  { id: "d-clean-2",  period: "daily", metric: "clean",  target: 2,   emoji: "💎", title: "Surgical",       desc: "Land 2 clean solves today",     xp: 75 },
 ];
 
 export const WEEKLY_QUEST_POOL: Quest[] = [
-  { id: "w-stages-10", period: "weekly", metric: "stages", target: 10,   emoji: "🏗️", title: "Grinder",       desc: "Complete 10 stages this week",  coins: 500,  freezes: 1 },
-  { id: "w-stages-20", period: "weekly", metric: "stages", target: 20,   emoji: "🏛️", title: "Marathon",      desc: "Complete 20 stages this week",  coins: 1000, freezes: 1 },
-  { id: "w-xp-1000",   period: "weekly", metric: "xp",     target: 1000, emoji: "⚡", title: "Power Week",     desc: "Earn 1,000 XP this week",       coins: 600  },
-  { id: "w-xp-2500",   period: "weekly", metric: "xp",     target: 2500, emoji: "🌟", title: "Overdrive",     desc: "Earn 2,500 XP this week",       coins: 1500, freezes: 1 },
-  { id: "w-clean-5",   period: "weekly", metric: "clean",  target: 5,    emoji: "💠", title: "Precision",     desc: "Land 5 clean solves this week", coins: 700  },
+  { id: "w-stages-10", period: "weekly", metric: "stages", target: 10,   emoji: "🏗️", title: "Grinder",       desc: "Complete 10 stages this week",  xp: 300 },
+  { id: "w-stages-20", period: "weekly", metric: "stages", target: 20,   emoji: "🏛️", title: "Marathon",      desc: "Complete 20 stages this week",  xp: 400 },
+  { id: "w-xp-1000",   period: "weekly", metric: "xp",     target: 1000, emoji: "⚡", title: "Power Week",     desc: "Earn 1,000 XP this week",       xp: 250 },
+  { id: "w-xp-2500",   period: "weekly", metric: "xp",     target: 2500, emoji: "🌟", title: "Overdrive",     desc: "Earn 2,500 XP this week",       xp: 400 },
+  { id: "w-clean-5",   period: "weekly", metric: "clean",  target: 5,    emoji: "💠", title: "Precision",     desc: "Land 5 clean solves this week", xp: 300 },
 ];
 
 export const DAILY_QUEST_COUNT = 3;

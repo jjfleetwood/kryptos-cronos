@@ -117,14 +117,8 @@ export default function Nav() {
               <Link href="/achievements" title="Achievements" className="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-white/8 transition-colors text-base">
                 🏅
               </Link>
-              <Link href="/avatar" title={t("nav.avatar")} className="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-white/8 transition-colors text-base">
-                👤
-              </Link>
-              <Link href="/trophies" title={t("nav.trophies")} className="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-white/8 transition-colors text-base">
-                🏆
-              </Link>
-              <Link href="/shop" title={t("nav.shop")} className="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-white/8 transition-colors text-base">
-                🛒
+              <Link href="/journey" title={t("nav.journey")} className="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-white/8 transition-colors text-base">
+                🗺️
               </Link>
               <Link href="/account" title="Account & Billing" className="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-white/8 transition-colors text-base">
                 ⚙️
@@ -269,14 +263,8 @@ export default function Nav() {
               <Link href="/achievements" className="block px-3 py-2.5 rounded-lg text-sm" style={{ color: "#facc15" }}>
                 🏅 Achievements
               </Link>
-              <Link href="/avatar" className="block px-3 py-2.5 rounded-lg text-sm" style={{ color: "#a78bfa" }}>
-                👤 {t("nav.avatar")}
-              </Link>
-              <Link href="/trophies" className="block px-3 py-2.5 rounded-lg text-sm" style={{ color: "#22d3ee" }}>
-                🏆 {t("nav.trophies")}
-              </Link>
-              <Link href="/shop" className="block px-3 py-2.5 rounded-lg text-sm" style={{ color: "#f59e0b" }}>
-                🛒 {t("nav.shop")}
+              <Link href="/journey" className="block px-3 py-2.5 rounded-lg text-sm" style={{ color: "#22d3ee" }}>
+                🗺️ {t("nav.journey")}
               </Link>
               <Link href="/account" className="block px-3 py-2.5 rounded-lg text-sm" style={{ color: skin.textSecondary }}>
                 ⚙️ Account & Billing
