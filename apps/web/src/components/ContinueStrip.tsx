@@ -9,6 +9,7 @@ type Data = {
   xpToGoal: number;
   streak: number;
   goalMet: boolean;
+  isNew: boolean;
 } | null;
 
 /**
@@ -45,11 +46,30 @@ export default function ContinueStrip() {
         xpToGoal: Math.max(0, goal - dayXp),
         streak: Number(q?.streak?.current ?? 0),
         goalMet: dayXp >= goal,
+        isNew: completed.length === 0,
       });
     });
   }, []);
 
   if (!data || !data.next) return null;
+
+  // New here? Orient first — the one-line loop, then a clear first action.
+  if (data.isNew) {
+    return (
+      <div className="mb-6 rounded-2xl border border-cyan-500/25 bg-gradient-to-r from-cyan-500/8 to-transparent p-4 flex items-center justify-between gap-4 flex-wrap">
+        <div className="flex items-center gap-3 min-w-0">
+          <span className="text-2xl leading-none flex-shrink-0">👋</span>
+          <div className="min-w-0">
+            <div className="text-sm font-bold text-white">New here? Here&apos;s the loop.</div>
+            <div className="text-xs text-gray-500">Clear a stage → earn XP → build a daily streak → climb the weekly leagues & the leaderboard. Be first to clear one and you&apos;re its Pioneer 🏴.</div>
+          </div>
+        </div>
+        <Link href={`/stages/${data.next.id}`} className="flex-shrink-0 px-4 py-2 rounded-lg bg-cyan-500 hover:bg-cyan-400 text-black text-sm font-bold transition-colors">
+          Start here →
+        </Link>
+      </div>
+    );
+  }
 
   return (
     <div className="mb-6 rounded-2xl border border-cyan-500/25 bg-gradient-to-r from-cyan-500/8 to-transparent p-4 flex items-center justify-between gap-4 flex-wrap">

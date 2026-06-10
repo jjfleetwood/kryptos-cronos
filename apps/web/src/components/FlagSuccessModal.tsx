@@ -23,14 +23,27 @@ function formatTime(ms: number): string {
   return m > 0 ? `${m}m ${s}s` : `${s}s`;
 }
 
+// Stage-count milestones that earn a louder celebration — breaks up the
+// briefing→capture rhythm so the Nth clear feels like an event (UX-agent finding).
+const MILESTONES = [10, 25, 50, 100, 150, 250, 500, 750];
+
 export default function FlagSuccessModal({ stage, flag, timeTakenMs, timePenaltyCoins, effectiveCoins, bonusCoins, recommendedNext, backHref = "/stages" }: Props) {
   const { t } = useLocale();
   const [visible, setVisible] = useState(false);
   const [flagVisible, setFlagVisible] = useState(false);
+  const [milestone, setMilestone] = useState<number | null>(null);
 
   useEffect(() => {
     const t1 = setTimeout(() => setVisible(true), 50);
     const t2 = setTimeout(() => setFlagVisible(true), 400);
+    // Did this clear hit a stage-count milestone?
+    fetch("/api/progress")
+      .then((r) => (r.ok ? r.json() : null))
+      .then((p: { completedStages?: string[] } | null) => {
+        const n = p?.completedStages?.length ?? 0;
+        if (MILESTONES.includes(n)) setMilestone(n);
+      })
+      .catch(() => {});
     return () => { clearTimeout(t1); clearTimeout(t2); };
   }, []);
 
@@ -79,6 +92,15 @@ export default function FlagSuccessModal({ stage, flag, timeTakenMs, timePenalty
             <h2 className="text-2xl font-bold text-white mb-1">{t("flag.missionComplete")}</h2>
             <p className="text-gray-500 text-sm">{stage.title}</p>
           </div>
+
+          {/* Milestone celebration — the Nth clear is an event */}
+          {milestone && (
+            <div className="mb-6 rounded-xl border border-amber-500/40 bg-gradient-to-r from-amber-500/15 to-transparent p-3 text-center">
+              <div className="text-2xl mb-0.5">🎉🏆🎉</div>
+              <div className="text-sm font-black text-amber-300">Milestone — {milestone} stages cleared!</div>
+              <div className="text-[11px] text-amber-200/70 mt-0.5">A new rank of operative. Keep the run going.</div>
+            </div>
+          )}
 
           {/* Flag display */}
           <div
