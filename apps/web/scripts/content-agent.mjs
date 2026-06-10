@@ -15,16 +15,16 @@ try {
     stageIds.set(s.id, (stageIds.get(s.id) || 0) + 1);
     if (s.badge?.id) badgeIds.set(s.badge.id, (badgeIds.get(s.badge.id) || 0) + 1);
   }
-  for (const [id, n] of stageIds) if (n > 1) c.add("high", id, "", "dup-stage-id", `Duplicate stage id "${id}" (${n}×)`, "Stage ids must be unique — duplicates collide in routing and progress.");
-  for (const [id, n] of badgeIds) if (n > 1) c.add("medium", id, "", "dup-badge-id", `Duplicate badge id "${id}" (${n}×)`, "Badge ids should be unique so awards are attributable.");
+  for (const [id, n] of stageIds) if (n > 1) c.add("high", id, "", "dup-stage-id", `Duplicate stage id "${id}" (${n}×)`, `The stage id "${id}" is defined ${n} times across the content. Stage ids are the routing + progress key, so duplicates collide: /stages/${id} resolves to whichever loads last, and a learner's completion of one is recorded against the other. Fix: rename the later duplicate(s) to a unique id (and update its stage-flags.ts entry if it has a CTF), then re-run gen:meta.`);
+  for (const [id, n] of badgeIds) if (n > 1) c.add("medium", id, "", "dup-badge-id", `Duplicate badge id "${id}" (${n}×)`, `The badge id "${id}" is used by ${n} stages. Badge ids must be unique so an awarded badge is attributable to one stage; duplicates make the trophy/achievement count ambiguous. Fix: give each stage a distinct badge id (e.g. suffix the epoch/stage), keeping the display name as desired.`);
 
   // Per-stage integrity
   for (const s of stages) {
     const info = s.info || {};
     const ep = s.epochId;
-    if (!s.badge?.id || !s.badge?.name) c.add("high", s.id, ep, "missing-badge", `${s.id}: missing badge id/name`, "Every stage needs a badge for completion.");
-    if (!Array.isArray(info.overview) || info.overview.length === 0) c.add("high", s.id, ep, "empty-overview", `${s.id}: empty overview`, "info.overview has no paragraphs.");
-    if (!Array.isArray(info.keyTakeaways) || info.keyTakeaways.length === 0) c.add("medium", s.id, ep, "empty-takeaways", `${s.id}: no key takeaways`, "info.keyTakeaways is empty.");
+    if (!s.badge?.id || !s.badge?.name) c.add("high", s.id, ep, "missing-badge", `${s.id}: missing badge id/name`, `Stage ${s.id} (${ep}) has no badge.id and/or badge.name. Completing a stage awards its badge, so without one the completion can't be recorded or shown in the trophy vault. Fix: add \`badge: { id: "<unique-id>", name: "<short name>", emoji: "<emoji>" }\` to the stage (see stage-m01 for the shape).`);
+    if (!Array.isArray(info.overview) || info.overview.length === 0) c.add("high", s.id, ep, "empty-overview", `${s.id}: empty overview`, `Stage ${s.id} (${ep}) has no info.overview paragraphs, so its briefing page renders an empty body — a dead-end for the learner. Fix: write a 2–3 paragraph overview to the house HS/university standard (a real, attributed hook → the mechanism → why it matters); stage-m01 is the canonical template.`);
+    if (!Array.isArray(info.keyTakeaways) || info.keyTakeaways.length === 0) c.add("medium", s.id, ep, "empty-takeaways", `${s.id}: no key takeaways`, `Stage ${s.id} (${ep}) has an empty info.keyTakeaways, so the briefing ends with no summary/retention beat. Fix: add 3–5 one-line takeaways capturing the must-remember points of the stage.`);
     if (!info.tagline || !String(info.tagline).trim()) c.add("low", s.id, ep, "empty-tagline", "", "");
 
     const refs = Array.isArray(info.references) ? info.references : [];
