@@ -12,6 +12,7 @@ import { useSkin } from "@/contexts/SkinContext";
 import { useLocale } from "@/contexts/LocaleContext";
 import { useGroup } from "@/contexts/GroupContext";
 import { TrackCatalog } from "./TrackCatalog";
+import ContinueStrip from "@/components/ContinueStrip";
 import { epochGroups, computeVisibleTracks } from "./track-data";
 
 export default function StagesPage() {
@@ -160,6 +161,8 @@ export default function StagesPage() {
             ↓ Python Downloads
           </Link>
         </div>
+
+        <ContinueStrip />
 
         <TrackCatalog visibleTracks={visibleTracks} completedStages={completedStages} />
 
