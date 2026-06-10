@@ -18,8 +18,8 @@ const quizRegistry: Record<string, typeof quizStage01> = {
 
 // Must mirror QUESTIONS_PER_ATTEMPT in QuizChallenge.tsx. A stage clears when the
 // learner answers at least PASS_RATIO of the attempt correctly — counted server-side.
-const QUESTIONS_PER_ATTEMPT = 5;
-const PASS_RATIO = 0.6;
+const QUESTIONS_PER_ATTEMPT = 10;
+const PASS_RATIO = 0.7;
 const ATTEMPT_TTL_S = 3600;
 
 export async function POST(req: NextRequest) {
