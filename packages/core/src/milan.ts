@@ -558,7 +558,7 @@ export const milanStages: StageConfig[] = [
         title: "Castello and Parco Sempione guide",
         body: [
           "Castello Sforzesco: grounds free, museum ticket €5 (covers all 7 collections). Open Tue–Sun 10am–5:30pm, closed Mondays. The Pietà Rondanini is in the Sala delle Asse at the castle's west wing — follow signs for 'Museo della Pietà Rondanini'.",
-          "The 7 museum collections include: Egyptian Museum, Prehistoric collection, Applied Arts (furniture, textiles), Musical Instruments, Arms and Armour, Pinacoteca del Castello (paintings), and the Pietà Rondanini room.",
+          "The 7 museum collections include:\n- Egyptian Museum\n- Prehistoric collection\n- Applied Arts (furniture, textiles)\n- Musical Instruments\n- Arms and Armour\n- Pinacoteca del Castello (paintings)\n- the Pietà Rondanini room",
           "Parco Sempione: free, open 6:30am–9pm in July. The park café (Caffè Sempione) has outdoor seating and serves aperitivo from 5pm. The Arco della Pace is a 20-minute walk north through the park.",
           "Torre Branca: €5, open Wed/Sat/Sun evenings in summer and weekend afternoons. Check at the comune.milano.it calendar — closed on humid days when visibility is poor.",
         ],

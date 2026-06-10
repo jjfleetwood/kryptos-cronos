@@ -1481,7 +1481,7 @@ export const baseball14Stages: StageConfig[] = [
       technical: {
         title: "The Complete Center Fielder — A Self-Assessment",
         body: [
-          "Skills to master: reading the ball and the jump, route running in every direction, catching technique (over-the-shoulder, robbing home runs), the crow-hop long throw and hitting the cutoff and relay men, priority and communication, backing up the middle, and situational positioning. Each is built through deliberate repetition — the most complete outfield skill set.",
+          "Skills to master:\n- reading the ball and the jump\n- route running in every direction\n- catching technique (over-the-shoulder, robbing home runs)\n- the crow-hop long throw and hitting the cutoff and relay men\n- priority and communication\n- backing up the middle\n- situational positioning\nEach is built through deliberate repetition — the most complete outfield skill set.",
           "Mindset to build: range, leadership, communication, and anticipation. Develop the jump, routes, and speed to cover the most ground; lead and position the outfield; throw accurately from the deepest position; and pre-decide plays while reading the situation and the elements. Treat center field as the outfield's most complete craft. The complete center fielder anchors the whole outfield.",
         ],
         codeExample: {

@@ -1470,7 +1470,7 @@ export const parisStages: StageConfig[] = [
       overview: [
         "Belleville and Ménilmontant are Paris's most genuinely multicultural neighbourhoods — a working-class community shaped by successive waves of immigrants since the 19th century. Today it's home, in roughly equal measure, to:\n- A large Chinese community.\n- A North African community.\n- A long-established Jewish community.\n- Parisian old-guard residents.\nIt also has one of the city's most vibrant street-art scenes.",
         "Parc de Belleville (Metro 2/11 Belleville, walk up Rue Piat) is the highest park in Paris at 108 metres — higher than Montmartre by a few metres, and with a view that many argue is better. The panoramic terrace at the top is free, always open, and looks directly south across the entire city towards the Eiffel Tower and Sacré-Cœur. At 7am you have it to yourself; at sunset you share it with locals.",
-        "The street market on Rue de Belleville runs Tuesday and Friday mornings (7am–2pm). It is one of the most authentic Paris market streets: bulk spices, whole fish, unfamiliar vegetables, cheap fabric, and cheap food. No tourist pricing. Bring cash.",
+        "The street market on Rue de Belleville runs Tuesday and Friday mornings (7am–2pm). It is one of the most authentic Paris market streets:\n- bulk spices\n- whole fish\n- unfamiliar vegetables\n- cheap fabric\n- cheap food\nNo tourist pricing. Bring cash.",
         "Rue Oberkampf (10-minute walk south, Metro 5/9 Oberkampf) is one of the best bar streets in Paris. It runs parallel to Rue Saint-Maur and is lined with small independent bars, music venues, and restaurants at prices that are half those of the Marais. Best from 8pm onwards.",
       ],
       technical: {

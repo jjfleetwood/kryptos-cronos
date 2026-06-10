@@ -1355,7 +1355,7 @@ export const frenchBasicsStages: StageConfig[] = [
       tagline: "France produces 8 billion bottles a year — order with confidence",
       year: 1936,
       overview: [
-        "France is the world's second-largest wine producer (after Italy) and the global quality benchmark. Six major regions: Bordeaux (Cabernet Sauvignon/Merlot), Bourgogne/Burgundy (Pinot Noir/Chardonnay), Champagne (sparkling), Loire, Alsace, and Côtes du Rhône.",
+        "France is the world's second-largest wine producer (after Italy) and the global quality benchmark. Six major regions:\n- Bordeaux (Cabernet Sauvignon/Merlot)\n- Bourgogne/Burgundy (Pinot Noir/Chardonnay)\n- Champagne (sparkling)\n- Loire\n- Alsace\n- Côtes du Rhône",
         "Ordering house wine ('le vin de la maison' or 'un pichet') is usually excellent and significantly cheaper than bottled wine. A pichet is a carafe — un quart (quarter litre), un demi (half litre), or une bouteille (full bottle).",
         "AOC (Appellation d'Origine Contrôlée — now AOP) on a label means the wine meets strict geographic and production standards. It is the highest French quality classification.",
         "Wine vocabulary you'll see on every list:\n- rouge — red; blanc — white; rosé — rosé.\n- sec — dry; demi-sec — medium; doux — sweet.\n- pétillant / mousseux — sparkling; brut — very dry (for Champagne).",

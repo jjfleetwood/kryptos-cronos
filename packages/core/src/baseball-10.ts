@@ -360,7 +360,7 @@ export const baseball10Stages: StageConfig[] = [
       technical: {
         title: "Fielding Mechanics and Footwork to Throw",
         body: [
-          "Field the ball: from the ready position, explode on the first step, take an efficient route (round off the ball when you have time so your momentum carries toward the target), get low with the glove down and fingers at the ground, field out in front, and watch it into the glove. Use two hands for a secure, fast transfer when the play allows.",
+          "Field the ball:\n- from the ready position\n- explode on the first step\n- take an efficient route (round off the ball when you have time so your momentum carries toward the target)\n- get low with the glove down and fingers at the ground\n- field out in front\n- watch it into the glove\nUse two hands for a secure, fast transfer when the play allows.",
           "Footwork to throw: bring the ball to a four-seam grip at the center of the chest, get the feet set with the front shoulder aligned to the target, and step toward the throw. The shorter throw to first gives time to gather on routine plays. On balls in the hole or up the middle, develop the footwork to plant and throw across the body, flip underhand, or throw from a less-than-ideal base — second basemen field more balls on the move than most infielders, so off-balance throwing footwork is a core skill.",
         ],
         codeExample: {
@@ -1492,7 +1492,7 @@ export const baseball10Stages: StageConfig[] = [
       technical: {
         title: "The Complete Second Baseman — A Self-Assessment",
         body: [
-          "Skills to master: fielding to both sides with clean footwork, the pivot from every feed, the feed from every distance, covering the bag and the steal tag, the relay and cutoff, and backing up bases. Each is built through deliberate repetition from every angle and situation. Quick hands and agile feet are the through-line.",
+          "Skills to master:\n- fielding to both sides with clean footwork\n- the pivot from every feed\n- the feed from every distance\n- covering the bag and the steal tag\n- the relay and cutoff\n- backing up bases\nEach is built through deliberate repetition from every angle and situation. Quick hands and agile feet are the through-line.",
           "Mindset to build: partnership, unselfishness, anticipation, and reliability. Make your shortstop and first baseman better with perfect feeds and accurate throws, coordinate coverage every pitch, decide before the ball is hit, and bring full focus to routine plays. Treat the position as a craft of footwork and feel — rehearse pivots and feeds with your shortstop, study hitters, and take thousands of reps. The keystone master makes the whole infield turn smoothly.",
         ],
         codeExample: {

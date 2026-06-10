@@ -1487,7 +1487,7 @@ export const baseball13Stages: StageConfig[] = [
       technical: {
         title: "The Complete Left Fielder — A Self-Assessment",
         body: [
-          "Skills to master: reading the ball off the bat and the jump, efficient routes and the drop step, catching technique (two hands above the shoulder, over-the-shoulder, line drives), playing the wall and the line, the crow-hop throw and hitting the cutoff, deciding where to throw, backups, and situational positioning. Each is built through deliberate repetition.",
+          "Skills to master:\n- reading the ball off the bat and the jump\n- efficient routes and the drop step\n- catching technique (two hands above the shoulder, over-the-shoulder, line drives)\n- playing the wall and the line\n- the crow-hop throw and hitting the cutoff\n- deciding where to throw\n- backups\n- situational positioning\nEach is built through deliberate repetition.",
           "Mindset to build: reads-and-routes focus, wall command, throwing discipline, and situational awareness. Develop the jump and routes, master your wall and the line, throw accurately to the right base through the cutoff, and think the game (positioning, throws, the elements) every pitch. Treat left field as a craft, not a place to hide a bat. The complete left fielder turns the busiest corner into a strength.",
         ],
         codeExample: {

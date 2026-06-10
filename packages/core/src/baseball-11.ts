@@ -1490,7 +1490,7 @@ export const baseball11Stages: StageConfig[] = [
       technical: {
         title: "The Complete Third Baseman — A Self-Assessment",
         body: [
-          "Skills to master: reactions and soft hands on smashes and short hops, the long throw and across-the-body throw from the hole, charging slow rollers and bare-handing bunts, backhands and diving stops at the line and in the hole, cutoff and bunt coverage, and tag plays. Each is built through fearless, deliberate repetition.",
+          "Skills to master:\n- reactions and soft hands on smashes and short hops\n- the long throw and across-the-body throw from the hole\n- charging slow rollers and bare-handing bunts\n- backhands and diving stops at the line and in the hole\n- cutoff and bunt coverage\n- tag plays\nEach is built through fearless, deliberate repetition.",
           "Mindset to build: courage, anticipation, and reliability. Stand in fearlessly against the hardest-hit balls, pre-decide every play before the pitch, guard the line when it matters, and never give away an extra base. Treat the hot corner as a craft — drill reactions, charges, backhands, and the long throw, and study situations until the thinking is automatic. The corner master turns the game's hardest-hit balls into outs and anchors the left side of the defense.",
         ],
         codeExample: {

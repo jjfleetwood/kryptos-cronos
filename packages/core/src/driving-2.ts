@@ -477,7 +477,7 @@ AFTER the turn (landing):
         title: "Blind Spot Geometry and the Shoulder Check",
         body: [
           "Even perfectly adjusted mirrors leave a blind spot roughly 10–20 feet long beside each rear door. A motorcycle, bicycle, or narrow car can sit entirely in that blind spot. The shoulder check takes less than a second: briefly turn your head 45 degrees to look over your shoulder at the road in that zone. Never turn your head more than needed — your hands naturally follow your head and will steer you in that direction.",
-          "For a highway merge, the technique is: accelerate on the ramp to match traffic speed, check mirrors and signal early (in the first third of the ramp), perform a shoulder check, find a gap, and smoothly steer into the gap. If you reach the end of the ramp without a gap, the merge lane is mandatory — never stop on a highway ramp unless there is no choice.",
+          "For a highway merge, the technique is:\n- accelerate on the ramp to match traffic speed\n- check mirrors and signal early (in the first third of the ramp)\n- perform a shoulder check\n- find a gap\n- smoothly steer into the gap\nIf you reach the end of the ramp without a gap, the merge lane is mandatory — never stop on a highway ramp unless there is no choice.",
         ],
         codeExample: {
           label: "Lane Change and Merge Sequence",

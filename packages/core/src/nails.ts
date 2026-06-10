@@ -1347,7 +1347,7 @@ export const nailsStages: StageConfig[] = [
       technical: {
         title: "Starter Supply Budget and Pricing Model",
         body: [
-          "A functional starter nail kit can be assembled for $80–$150: gel polish set ($30–$50 for a starter kit of 12 colors), LED lamp ($25–$40 for a basic 48W lamp), base and top coat ($10–$15), nail files and buffers ($5–$10), cuticle tools ($10–$15), lint-free wipes and alcohol prep pads ($5). Add cuticle oil and hand lotion for the finishing touch.",
+          "A functional starter nail kit can be assembled for $80–$150:\n- gel polish set ($30–$50 for a starter kit of 12 colors)\n- LED lamp ($25–$40 for a basic 48W lamp)\n- base and top coat ($10–$15)\n- nail files and buffers ($5–$10)\n- cuticle tools ($10–$15)\n- lint-free wipes and alcohol prep pads ($5)\nAdd cuticle oil and hand lotion for the finishing touch.",
           "Pricing formula: calculate your supply cost per service (typically $2–$5 in materials for a gel manicure), add your time (1–1.5 hours), and compare to local salon rates. If salons charge $35–$45 for a gel manicure, starting at $25–$30 positions you as an affordable alternative with comparable quality. Raise prices by $5 increments as demand increases.",
         ],
         codeExample: {

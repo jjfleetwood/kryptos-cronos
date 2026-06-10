@@ -153,7 +153,7 @@ ROOT CAUSE: no asset-management process guaranteeing every system
         title: "The Six Steps, and Where They Go Wrong",
         body: [
           "1) Define: a problem statement with what, where, when, and how-much. Failure mode: vague scope ('it was slow') that can't be analyzed or verified as fixed.",
-          "2) Gather + preserve: collect logs, metrics, configs, change records, artifacts, and interviews while they're fresh; protect integrity (hashing, WORM, chain of custody). Failure mode: evidence decays or is contaminated, capping the analysis.",
+          "2) Gather + preserve:\n- collect logs\n- metrics\n- configs\n- change records\n- artifacts\n- interviews while they're fresh; protect integrity (hashing, WORM, chain of custody)\nFailure mode: evidence decays or is contaminated, capping the analysis.",
           "3) Timeline: order every relevant event (changes, alerts, actions, human decisions) on one clock (normalize time zones). Failure mode: events out of order → a false causal story.",
           "4) Analyze: drive from proximate to root with a technique; identify all causal factors. 5) Recommend: a corrective action per factor, prioritized. 6) Verify: confirm the fix works and watch for recurrence. Failure modes: stopping at the first cause; recommending fixes no one validates; closing before verification.",
         ],

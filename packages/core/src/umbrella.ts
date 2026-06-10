@@ -1225,7 +1225,7 @@ ed("microsoft.com", "micros0ft.com")  # → 1  (zero sub)
         body: [
           "Umbrella evaluates policies from most-specific to least-specific:\n- Custom block lists → custom allow lists → security category blocks → content category settings → default policy.\n- An allow-list entry at any level overrides security category blocks at all levels.\n- So a single bad allow-list entry for a wildcard domain can punch a hole in all security-category filtering.",
           "Common misconfigurations recur across deployments:\n- Wildcard allow-list entries (*.io allowing every .io domain).\n- IP-based allow-lists that bypass domain inspection.\n- Entries added by IT staff without security review.\n- 'Temporary' exceptions that never get removed.\nAttackers who reach the Umbrella admin console can add allow-list entries to pre-stage ransomware delivery.",
-          "Policy audit commands: review all allow-list entries sorted by creation date, flag entries wider than necessary (wildcards, broad IP ranges), identify entries added outside change management windows, and cross-reference with security incidents.",
+          "Policy audit commands:\n- review all allow-list entries sorted by creation date\n- flag entries wider than necessary (wildcards, broad IP ranges)\n- identify entries added outside change management windows\n- cross-reference with security incidents",
         ],
         codeExample: {
           label: "Umbrella policy — allow-list bypass vs correct exception handling",

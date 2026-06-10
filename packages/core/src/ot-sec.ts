@@ -259,7 +259,7 @@ export const otSecStages: StageConfig[] = [
         title: "From the Screen to the Field",
         body: [
           "HMIs run on ordinary computers (often aging Windows) using vendor software (Wonderware, Ignition, WinCC, FactoryTalk). That makes them reachable through familiar means — phishing, RDP, default credentials, unpatched CVEs — and once you have the HMI host, you can:\n- Operate the process directly through the legitimate UI.\n- Read the tag database to learn every point in the plant and which command does what.\n- Manipulate the display logic so the mimic shows safe values while the process runs unsafe.",
-          "Many HMIs reach the PLCs over the same unauthenticated protocols (Modbus, S7comm, EtherNet/IP, DNP3), so even without the GUI an attacker who reaches Level 2 can speak those protocols directly. Defenses center on treating the HMI as a high-value asset: hardened and patched hosts, no internet exposure, MFA on remote access, application allow-listing, and monitoring for commands that didn't originate from a real operator. In this challenge you'll reach an exposed HMI and push a command to the field.",
+          "Many HMIs reach the PLCs over the same unauthenticated protocols (Modbus, S7comm, EtherNet/IP, DNP3), so even without the GUI an attacker who reaches Level 2 can speak those protocols directly. Defenses center on treating the HMI as a high-value asset:\n- hardened and patched hosts\n- no internet exposure\n- MFA on remote access\n- application allow-listing\n- monitoring for commands that didn't originate from a real operator\nIn this challenge you'll reach an exposed HMI and push a command to the field.",
         ],
       },
       incident: {

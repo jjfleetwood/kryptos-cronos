@@ -185,7 +185,7 @@ export const robotSec2Stages: StageConfig[] = [
         title: "VDA5050, MQTT, and Fleet-Wide Commands",
         body: [
           "The fleet command path is the target:\n- Broker/API access: an MQTT broker with no auth (or default creds) or an FMS API with broken authorization lets an attacker publish orders and read state for the whole fleet.\n- VDA5050 messages: crafting 'order' (a route of nodes/edges) or 'instantAction' (e.g., cancelOrder, startPause, or motion) messages commands robots directly.\n- Mass effect: because the FMS coordinates all robots, a single foothold scales to the entire fleet — re-routing, stopping, or colliding them.",
-          "Defenses are standard IoT/OT hygiene at fleet scale: authenticate and encrypt the MQTT/broker (TLS + credentials/ACLs per robot), enforce authorization on the FMS API, segment the robot network from corporate IT and the internet, validate/limit commands (an order to drive into a wall should be rejected), and monitor for anomalous mission patterns. In this challenge you'll connect to an unsecured fleet broker, enumerate the robots, and push a malicious order.",
+          "Defenses are standard IoT/OT hygiene at fleet scale:\n- authenticate and encrypt the MQTT/broker (TLS + credentials/ACLs per robot)\n- enforce authorization on the FMS API\n- segment the robot network from corporate IT and the internet\n- validate/limit commands (an order to drive into a wall should be rejected)\n- monitor for anomalous mission patterns\nIn this challenge you'll connect to an unsecured fleet broker, enumerate the robots, and push a malicious order.",
         ],
       },
       incident: {
@@ -259,7 +259,7 @@ export const robotSec2Stages: StageConfig[] = [
         title: "RTK-GPS, ISOBUS, Telematics, and Reflashing",
         body: [
           "Each layer offers a way in:\n- GPS/RTK spoofing: faking the satellite or correction signal shifts where the tractor thinks it is, sending auto-steer off-line — a physical, no-network attack.\n- ISOBUS/CAN: the in-machine bus, like automotive CAN, generally lacks authentication, so a foothold lets you inject implement/vehicle commands.\n- Telematics & cloud: connected machines report to (and take updates/commands from) cloud platforms and dealer tools — classic API/auth targets that can reach many machines.\n- Firmware: embedded controllers have been reflashed (the repair-community jailbreaks), showing persistence and modification are feasible.",
-          "Defenses mirror automotive maturity arriving in ag: authenticated/segmented machine networks, secured telematics and cloud APIs with least privilege, GPS spoofing detection and sensor cross-checks, signed firmware and secure boot, and treating the planting/harvest window as a resilience priority. The cross-over lesson: a tractor is now a car-and-OT hybrid feeding the country. In this challenge you'll access the machine's system and override auto-steer guidance.",
+          "Defenses mirror automotive maturity arriving in ag:\n- authenticated/segmented machine networks\n- secured telematics and cloud APIs with least privilege\n- GPS spoofing detection and sensor cross-checks\n- signed firmware and secure boot\n- treating the planting/harvest window as a resilience priority\nThe cross-over lesson: a tractor is now a car-and-OT hybrid feeding the country. In this challenge you'll access the machine's system and override auto-steer guidance.",
         ],
       },
       incident: {
@@ -407,7 +407,7 @@ export const robotSec2Stages: StageConfig[] = [
         title: "APIs, Multi-Tenancy, and the Teleop Channel",
         body: [
           "The cloud control plane has familiar weaknesses with physical stakes:\n- API authorization: BOLA/IDOR-style flaws let one account command another's robots (as in the connected-car APIs) — now driving machines.\n- Tenancy isolation: weak separation between customers can leak data or control across tenants.\n- Teleoperation security: the remote-drive channel must be strongly authenticated and integrity-protected; if it's hijacked or its commands are forged, the attacker controls the robot live.\n- Pipeline trust: cloud ML/map updates pushed to robots are a software-supply path that must be signed and verified.",
-          "Defenses are cloud-native security applied with safety-criticality: strict per-object authorization and tenant isolation, strong auth (and MFA) on dashboards and teleop, encrypted and authenticated control channels, signed model/map/firmware updates, least privilege, and monitoring for anomalous commands. The principle from the connected-car stage returns: when the robot's brain is a web service, web security is robot safety. In this challenge you'll find an authorization flaw and seize a teleop session.",
+          "Defenses are cloud-native security applied with safety-criticality:\n- strict per-object authorization and tenant isolation\n- strong auth (and MFA) on dashboards and teleop\n- encrypted and authenticated control channels\n- signed model/map/firmware updates\n- least privilege\n- monitoring for anomalous commands\nThe principle from the connected-car stage returns: when the robot's brain is a web service, web security is robot safety. In this challenge you'll find an authorization flaw and seize a teleop session.",
         ],
       },
       incident: {

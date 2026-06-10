@@ -1488,7 +1488,7 @@ export const baseball12Stages: StageConfig[] = [
       technical: {
         title: "The Complete Shortstop — A Self-Assessment",
         body: [
-          "Skills to master: range and fielding to both sides, the deep-hole backhand and the plant-and-throw and jump throw, the double-play pivot and feed, charging slow rollers and the barehand, relay footwork and cutoff leadership, coverage, and backups. Each is built through deliberate repetition — the most all-around skill set on the infield.",
+          "Skills to master:\n- range and fielding to both sides\n- the deep-hole backhand and the plant-and-throw and jump throw\n- the double-play pivot and feed\n- charging slow rollers and the barehand\n- relay footwork and cutoff leadership\n- coverage\n- backups\nEach is built through deliberate repetition — the most all-around skill set on the infield.",
           "Mindset to build: complete development, leadership, anticipation, and reliability. Develop every tool — range, arm, agility, hands, and IQ — because the position leans on all of them. Captain the defense: position teammates, coordinate coverage, direct cutoffs, and pre-decide every play. Treat shortstop as the most complete craft on the infield, demanding the most repetition. The complete shortstop anchors the whole defense.",
         ],
         codeExample: {

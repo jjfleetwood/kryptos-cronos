@@ -816,7 +816,7 @@ def password_entropy(length, charset_size):
       year: 2025,
       overview: [
         "At the dockside cantina, old fishermen trade tall tales — exaggerated stories designed to impress, manipulate, or extract information from fellow sailors. Social engineering is the cybersecurity equivalent: attackers manipulate people psychologically to give up information, access, or money without any technical hacking required.",
-        "Social engineering exploits human nature: trust, authority, fear, urgency, helpfulness, and reciprocity. An attacker posing as an IT technician asking for your password exploits your deference to authority and helpfulness. A fake 'urgent wire transfer' request from the CEO exploits authority and time pressure. No firewall or antivirus can block a person from giving information away.",
+        "Social engineering exploits human nature:\n- trust\n- authority\n- fear\n- urgency\n- helpfulness\n- reciprocity\nAn attacker posing as an IT technician asking for your password exploits your deference to authority and helpfulness. A fake 'urgent wire transfer' request from the CEO exploits authority and time pressure. No firewall or antivirus can block a person from giving information away.",
         "Kevin Mitnick — once the world's most wanted hacker — famously said he rarely needed to break into systems technically. He just called employees, claimed to be from IT, and asked for their passwords. Most complied. Social engineering remains the #1 attack vector precisely because humans are reliably exploitable.",
       ],
       technical: {

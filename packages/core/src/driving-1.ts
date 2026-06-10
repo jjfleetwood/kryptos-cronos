@@ -722,7 +722,7 @@ export const driving1Stages: StageConfig[] = [
       technical: {
         title: "California Speed Limits and the 3-Second Following Rule",
         body: [
-          "The most commonly tested speed limits on the DMV exam: 25 mph residential/school zone, 55 mph two-lane undivided highway, 65 mph freeway, 70 mph freeway where posted, 15 mph near railroad crossings without gates or signals (Vehicle Code 22352). Highways with two or more lanes in one direction have a minimum speed law as well — driving too slowly in the fast lane is also a violation.",
+          "The most commonly tested speed limits on the DMV exam:\n- 25 mph residential/school zone\n- 55 mph two-lane undivided highway\n- 65 mph freeway\n- 70 mph freeway where posted\n- 15 mph near railroad crossings without gates or signals (Vehicle Code 22352)\nHighways with two or more lanes in one direction have a minimum speed law as well — driving too slowly in the fast lane is also a violation.",
           "The 3-second rule applies regardless of speed — at 65 mph you need approximately 300 feet to stop in an emergency. Tailgating is a leading cause of rear-end collisions. Large trucks and motorcycles require additional following distance: trucks need much longer stopping distances; motorcycles need a full 3 seconds even though they stop faster, because they are smaller and easier to lose sight of.",
         ],
         codeExample: {

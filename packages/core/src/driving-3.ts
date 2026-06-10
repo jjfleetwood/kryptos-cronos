@@ -882,8 +882,8 @@ export const driving3Stages: StageConfig[] = [
       technical: {
         title: "Crash Scene Documentation",
         body: [
-          "Photograph everything before moving vehicles (if safe): damage to both vehicles, license plates, street signs and intersection, skid marks, any visible injuries, and the overall scene. Photos are time-stamped and GPS-tagged on modern phones and are powerful evidence. Take more photos than you think you need.",
-          "Information to exchange: full name, address, phone number, driver's license number, vehicle registration, insurance company name and policy number. Do not share more than this. Do not sign anything another driver offers you. Do not accept cash to 'settle' at the scene — injuries may not be apparent immediately.",
+          "Photograph everything before moving vehicles (if safe):\n- damage to both vehicles\n- license plates\n- street signs and intersection\n- skid marks\n- any visible injuries\n- the overall scene\nPhotos are time-stamped and GPS-tagged on modern phones and are powerful evidence. Take more photos than you think you need.",
+          "Information to exchange:\n- full name\n- address\n- phone number\n- driver's license number\n- vehicle registration\n- insurance company name and policy number\nDo not share more than this. Do not sign anything another driver offers you. Do not accept cash to 'settle' at the scene — injuries may not be apparent immediately.",
         ],
         codeExample: {
           label: "Post-Crash Action Checklist",
