@@ -581,7 +581,7 @@ show version | include Software
       year: 2023,
       overview: [
         "Cisco SecureX (now Cisco XDR) is a cloud-native security operations platform that aggregates telemetry from the entire Cisco security portfolio — Umbrella, Firepower, Secure Endpoint (AMP), Secure Email, Duo MFA, and third-party tools — into a unified dashboard for detection, investigation, and automated response.",
-        "Extended Detection and Response (XDR) platforms represent a major architectural shift: instead of analysts manually correlating alerts from dozens of disjointed tools, XDR ingests, normalizes, and correlates telemetry at scale, providing cross-product incident timelines and automated playbook execution.",
+        "Extended Detection and Response (XDR) platforms represent a major architectural shift:\n- instead of analysts manually correlating alerts from dozens of disjointed tools\n- XDR ingests\n- normalizes\n- and correlates telemetry at scale\n- providing cross-product incident timelines and automated playbook execution",
         "But centralization introduces new risk vectors:\n- A compromised XDR API token exposes telemetry from the entire security stack.\n- Misconfigured OAuth integrations can grant unauthorized third-party access.\n- Automated response playbooks that disable firewall rules or quarantine endpoints can be weaponized if an attacker reaches the orchestration layer.",
       ],
       technical: {

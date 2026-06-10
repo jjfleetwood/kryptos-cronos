@@ -1245,7 +1245,7 @@ curl https://api.macvendors.com/00:1A:2B
       tagline: "A firewall is just a bouncer: it reads your ID and decides — allowed or denied.",
       year: 2025,
       overview: [
-        "You've almost reached Santa Cruz. At the city limits there's a checkpoint: commercial trucks take the Highway 17 bypass, tourists go through downtown, and unauthorized vehicles get turned around. A firewall works identically: it inspects each packet's source IP, destination IP, port, and protocol, then applies a ruleset — allow or deny.",
+        "You've almost reached Santa Cruz. At the city limits there's a checkpoint: commercial trucks take the Highway 17 bypass, tourists go through downtown, and unauthorized vehicles get turned around. A firewall works identically:\n- it inspects each packet's source IP\n- destination IP\n- port\n- and protocol\n- then applies a ruleset — allow or deny",
         "Firewalls sit between your network and the internet (or between network segments within an organization). Every packet attempting to cross the boundary is evaluated against the rules in order. The first rule that matches wins. Most firewalls end with a default-deny rule: anything not explicitly permitted is blocked.",
         "Modern 'next-generation' firewalls (NGFWs) go deeper:\n- Inspect packet contents.\n- Identify applications.\n- Detect malware signatures.\n- Block based on domain reputation.\nBut the core concept is always the same: rules-based packet filtering.",
       ],
