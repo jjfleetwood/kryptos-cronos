@@ -1,5 +1,19 @@
 {
   "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "if": "Bash(git push*)",
+            "command": "npm --prefix C:/Users/Ajax/Projects/cyberquest run check:meta -w @kryptos/core",
+            "timeout": 120,
+            "statusMessage": "Verifying stages-meta is in sync before push..."
+          }
+        ]
+      }
+    ],
     "PostToolUse": [
       {
         "matcher": "Bash",
