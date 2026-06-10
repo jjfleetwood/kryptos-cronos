@@ -1166,7 +1166,7 @@ export const baseball12Stages: StageConfig[] = [
       technical: {
         title: "Relay Footwork, Cutoff Leadership, and Backups",
         body: [
-          "As the relay man (ball to the left side / left-center): sprint to a spot in line with the outfielder and the target base, give a loud, clear target, catch the throw on the glove side while turning toward the infield, and fire a strong, accurate relay in one motion. As the trailing infielder, line up the relay man and call the target ('two', 'three', 'home', 'cut').",
+          "As the relay man on a ball to the left side or left-center, sprint to a spot in line with the outfielder and the target base, give a loud, clear target, catch the throw on the glove side while turning toward the infield, and fire a strong, accurate relay in one motion. As the trailing infielder, line up the relay man and call the target ('two', 'three', 'home', 'cut').",
           "Leadership and backups: on many plays the shortstop directs the cutoffs and reads where the throw should go, because his view and captaincy make him the natural decision-maker. Coordinate coverage with the second baseman, position teammates, and back up bases when not relaying. Know your assignment — relay, trail, direct, or back up — before each pitch, and lead the defense's execution as the hub of the throwing game.",
         ],
         codeExample: {
@@ -1327,7 +1327,7 @@ export const baseball12Stages: StageConfig[] = [
       technical: {
         title: "Pre-Pitch Thinking for the Captain",
         body: [
-          "Decide before the pitch: know the outs, runners and their speed, whether the double play is on, coverage with the second baseman (who covers second on a steal), and what you'll do with the ball — turn two, sure out, lead runner, or play at the plate (infield in). Default to turning two with a runner on first and fewer than two outs, but take the sure out when the ball or the runner is too fast for the double play.",
+          "Decide before the pitch — know the outs, the runners and their speed, whether the double play is on, and coverage with the second baseman (who covers second on a steal). Pre-plan what you'll do with the ball:\n- turn two\n- take the sure out\n- get the lead runner\n- play at the plate (infield in)\nDefault to turning two with a runner on first and fewer than two outs, but take the sure out when the ball or the runner is too fast for the double play.",
           "Coverage and leadership: pre-decide steal coverage by handedness (SS covers vs a righty, 2B covers vs a lefty, conventionally), signaling the second baseman every pitch. As captain, confirm the situation and coverage with teammates, position the infield, direct cutoffs and relays, and remind the defense of the outs and the plan. The thinking covers the whole defense, so the reaction — yours and the team's — is instant.",
         ],
         codeExample: {

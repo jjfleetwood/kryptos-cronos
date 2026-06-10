@@ -984,7 +984,7 @@ export const baseball8Stages: StageConfig[] = [
       overview: [
         "Catchers field more than pitches. On bunts and slow rollers in front of the plate, the catcher is often the best-positioned fielder and must pounce, decide where the play is, and make an accurate throw. On pop-ups around home plate, the catcher tracks a spinning ball with reverse rotation. And because the catcher faces the field and knows the whole situation, they frequently direct who fields the bunt and where the throw should go — quarterbacking the play even when someone else makes it.",
         "Fielding a bunt: come out of the crouch fast, attack the ball, and field it with two hands or a bare-hand-and-glove scoop on a dead ball. The footwork is crucial — circle the ball so the momentum is already moving toward the target base before picking it up, rather than fielding it flat-footed and then turning. The catcher calls out the base ('one!' or 'two!' or 'three!') for themselves and for any other fielder converging on the ball, because the catcher can see the entire developing play.",
-        "Fielding a pop-up: a ball popped up near home plate spins back toward the infield with reverse spin, so the catcher turns their back to the infield, finds the ball, removes the mask (and tosses it clear once the ball is located), and drifts to the spot, letting the ball drift back toward the diamond. Catching pop-ups is a distinct skill because of that backspin drift. On comebackers and short swinging bunts, the catcher must be ready to spring up and make a quick, accurate throw, often on the run.",
+        "Fielding a pop-up is a distinct skill because of backspin drift. A ball popped up near home plate spins back toward the infield, so the catcher turns their back to the infield, finds the ball, removes the mask (and tosses it clear once the ball is located), and drifts to the spot, letting the ball come back toward the diamond. On comebackers and short swinging bunts, the catcher must be ready to spring up and make a quick, accurate throw, often on the run.",
       ],
       technical: {
         title: "Fielding Bunts and Pop-ups — Footwork and Decisions",
@@ -1311,7 +1311,7 @@ export const baseball8Stages: StageConfig[] = [
         title: "Catcher Coverage Map by Situation",
         body: [
           "Bases empty, ground ball to the infield: sprint down the first-base line in foul territory to back up the throw to first. This is automatic — do it on every such play, because the one time the throw gets away is the time it matters.",
-          "Runners in scoring position, ball to the outfield: stay home, defend the plate, and direct the cutoff man with your voice — 'cut two,' 'cut three,' 'cut home,' or 'no cut.' Wild pitch / passed ball with a runner on third: the pitcher covers home; the catcher recovers the ball fast and delivers it to the pitcher at the plate with a firm, accurate feed. On bunts, field or direct as covered earlier. Know your job before the pitch.",
+          "With runners in scoring position and the ball hit to the outfield, stay home, defend the plate, and direct the cutoff man with your voice — 'cut two,' 'cut three,' 'cut home,' or 'no cut.' On a wild pitch or passed ball with a runner on third, the pitcher covers home while the catcher recovers the ball fast and delivers a firm, accurate feed to the plate. On bunts, field or direct as covered earlier. Know your job before the pitch.",
         ],
         codeExample: {
           label: "Catcher Backup / Coverage Cheat Sheet",

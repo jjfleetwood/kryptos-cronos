@@ -1173,7 +1173,7 @@ export const baseball15Stages: StageConfig[] = [
       technical: {
         title: "Deciding Where to Throw and Aiming the Cannon",
         body: [
-          "Decide before fielding: know the situation (outs, runners, score) and where the play is before the ball arrives — hold it, throw to second (keep the hitter to a single), throw to third (retire or hold an advancing runner), or throw home (play at the plate). Deciding in advance lets the right fielder field with momentum toward the target and unleash the cannon decisively.",
+          "Decide before fielding — know the situation (outs, runners, score) and where the play is before the ball arrives:\n- hold it\n- throw to second (keep the hitter to a single)\n- throw to third (retire or hold an advancing runner)\n- throw home (play at the plate)\nDeciding in advance lets the right fielder field with momentum toward the target and unleash the cannon decisively.",
           "The cutoff and relay (especially important for the longest throws): throw to or through the cutoff man on throws to third or home, hitting him at the chest so he can relay, redirect to catch a trailing runner, or let it through. On deep balls, a middle infielder is the relay man. Throw to the base where an out or hold is possible — not the wrong base. A strong arm to the wrong base wastes the throw; aiming the cannon at the right target through the cutoff is what makes it a weapon.",
         ],
         codeExample: {
@@ -1335,7 +1335,7 @@ export const baseball15Stages: StageConfig[] = [
       technical: {
         title: "Pre-Pitch Thinking and the Elements",
         body: [
-          "Decide before the pitch: process the situation (score, outs, runners and speed, count, hitter) and set depth and position (normal, shallow, deep no-doubles, shaded to line or gap). Pre-decide where the play is and where you'll throw if the ball is hit to you, so the cannon fires decisively.",
+          "Decide before the pitch. Process the situation — score, outs, runners and speed, count, hitter — and set depth and position (normal, shallow, deep no-doubles, shaded to line or gap). Pre-decide where the play is and where you'll throw if the ball is hit to you, so the cannon fires decisively.",
           "The elements and awareness: account for the sun (often a bigger factor in right field) by knowing where it is and shielding it with sunglasses or the glove; account for the wind; know the field's quirks (line, corner, wall, warning track by feel for safety). Check the sun and wind before each at-bat. Communicate with the center fielder on positioning and shared balls, defer on right-center balls, and stay aware of the outs and runners. The thinking and element-checks are done before the pitch.",
         ],
         codeExample: {
@@ -1496,7 +1496,7 @@ export const baseball15Stages: StageConfig[] = [
       technical: {
         title: "The Complete Right Fielder — A Self-Assessment",
         body: [
-          "Skills to master: reading the ball off the bat (including the slice) and the jump, efficient routes and the drop step, catching technique (catch to throw, over-the-shoulder, line drives), playing the line, the wall, and the sun, the cannon (the long throw to third and home, the crow-hop, hitting the cutoff), deciding where to throw, backing up first base, and situational positioning. Each is built through deliberate repetition.",
+          "Skills to master:\n- reading the ball off the bat (including the slice) and the jump\n- efficient routes and the drop step\n- catching technique (catch to throw, over-the-shoulder, line drives)\n- playing the line, the wall, and the sun\n- the cannon (the long throw to third and home, the crow-hop, hitting the cutoff)\n- deciding where to throw\n- backing up first base\n- situational positioning\nEach is built through deliberate repetition.",
           "Mindset to build: reads-and-routes focus, corner command, cannon discipline, and situational awareness. Develop the jump and routes, master the corner and the sun, build and aim the strongest arm in the outfield through the cutoff to the right base, and think the game every pitch. Treat right field as a craft. The complete right fielder runs down everything and controls the running game with his cannon.",
         ],
         codeExample: {

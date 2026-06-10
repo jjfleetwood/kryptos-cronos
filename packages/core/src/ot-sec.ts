@@ -407,7 +407,7 @@ export const otSecStages: StageConfig[] = [
         title: "Dual-Homing, Project Files, and Living Off the Land",
         body: [
           "The EWS is dangerous for concrete reasons:\n- It is often dual-homed (one NIC on IT, one on OT) or reachable through a poorly controlled jump host, creating the bridge attackers need.\n- It stores project/logic files and vendor credentials, letting an attacker understand and modify the process offline before pushing changes.\n- It runs the legitimate engineering software, so malicious logic uploads look exactly like normal engineering work ('living off the land').",
-          "Defenses harden this chokepoint: a true IDMZ with no direct IT→OT routes, dedicated and locked-down jump hosts with MFA and session recording, application allow-listing on the EWS, removable-media controls, and monitoring for engineering operations (program downloads, mode changes) that occur outside maintenance windows or from unexpected users. In this challenge you'll compromise a corporate-side EWS and use it to pivot to a PLC.",
+          "Defenses harden this chokepoint:\n- a true IDMZ with no direct IT→OT routes\n- dedicated, locked-down jump hosts with MFA and session recording\n- application allow-listing on the EWS\n- removable-media controls\n- monitoring for engineering operations (program downloads, mode changes) that occur outside maintenance windows or from unexpected users\nIn this challenge you'll compromise a corporate-side EWS and use it to pivot to a PLC.",
         ],
       },
       incident: {

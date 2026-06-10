@@ -202,7 +202,7 @@ export const baseball11Stages: StageConfig[] = [
       technical: {
         title: "The Ready Stance and Situational Depth",
         body: [
-          "The reaction-ready stance: as the pitch is delivered, get low and athletic — feet wider than the shoulders, deep knee bend, weight forward, glove low and out front — with a creep step timed so the feet land as the ball reaches the hitting zone. Staying low is essential because most hard-hit balls at third are on the ground or low line drives; an upright stance leaves you unable to react down and in time.",
+          "As the pitch is delivered, get into a low, athletic reaction-ready stance — feet wider than the shoulders, deep knee bend, weight forward, glove low and out front — with a creep step timed so the feet land as the ball reaches the hitting zone. Staying low is essential because most hard-hit balls at third are on the ground or low line drives; an upright stance leaves you unable to react down and in time.",
           "Depth by situation:\n- Play normal depth in most situations.\n- Guard the line (close to the foul line) late in close games to take away the double.\n- Play in when a bunt is likely.\n- Adjust deeper and toward the line against hard pull hitters, or in against slap and bunt threats.\nEach is a pre-pitch decision weighing range, reaction time, and the cost of an extra-base hit down the line. Guarding the line concedes the hole to prevent the double.",
         ],
         codeExample: {
@@ -525,7 +525,7 @@ export const baseball11Stages: StageConfig[] = [
         title: "Footwork and Mechanics on the Long Throw",
         body: [
           "With time: gather after fielding, align the front shoulder to first base, and step toward the target, using a crow-hop or shuffle to build momentum across the diamond. Throw through the target with a four-seam grip for a straight, true ball, aiming chest-high. The legs and footwork generate much of the velocity, sparing the arm and improving accuracy.",
-          "From awkward positions: on a ball deep in the hole, plant the back foot and throw across the body with a strong, accurate motion; on a charging slow roller, throw on the run, often sidearm or underhand, prioritizing a quick release and accuracy over power. Always use a four-seam grip when possible. Because the throw is long, accuracy is critical — aim chest-high and give the first baseman a catchable target rather than overthrowing.",
+          "Two throws come from awkward positions. On a ball deep in the hole, plant the back foot and throw across the body with a strong, accurate motion. On a charging slow roller, throw on the run, often sidearm or underhand, prioritizing a quick release and accuracy over power. Always use a four-seam grip when possible. Because the throw is long, accuracy is critical — aim chest-high and give the first baseman a catchable target rather than overthrowing.",
         ],
         codeExample: {
           label: "The Long Throw from Third",
@@ -1329,7 +1329,7 @@ export const baseball11Stages: StageConfig[] = [
       technical: {
         title: "Pre-Pitch Thinking at the Hot Corner",
         body: [
-          "Decide before the pitch: with so little reaction time, know the outs, runners and their speed, and exactly what you'll do if the ball is hit to you — sure out at first, start a double play (5-4-3), look the runner back, charge a bunt, or (infield in) field and throw home. Set positioning (normal, guard the line, infield in, in for a bunt) based on the situation. There's no time to decide after the ball is hit.",
+          "Decide before the pitch — with so little reaction time, know the outs and the runners and their speed, and pre-plan what you'll do if the ball is hit to you:\n- sure out at first\n- start a double play (5-4-3)\n- look the runner back\n- charge a bunt\n- field and throw home (infield in)\nSet positioning (normal, guard the line, infield in, in for a bunt) based on the situation. There's no time to decide after the ball is hit.",
           "Force, tag, and communication: know instantly whether you have a force at third (runner forced from second with first occupied) or need to tag. With the infield in, prioritize cutting down the run at home. Coordinate bunt coverage and the wheel play with the shortstop and pitcher, confirm the outs, and signal positioning. The thinking is done before the pitch so the reaction is pure execution.",
         ],
         codeExample: {

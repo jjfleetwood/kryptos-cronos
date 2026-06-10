@@ -200,7 +200,7 @@ export const baseball10Stages: StageConfig[] = [
         title: "Depth, Positioning, and the Ready Position",
         body: [
           "Depth by situation: play normal depth in most situations; move to double-play depth (a step or two in and toward second base) with a runner on first and a double play needed, to reach the bag in time; play shallow (infield in) when a run at the plate must be cut down, accepting reduced range. Adjust lateral positioning for the hitter's tendencies, power, and speed.",
-          "The ready position and creep: as the pitch is delivered, assume an athletic stance — feet wider than the shoulders, knees bent, weight forward, glove out front — and take a small timing hop or creep step so you're loaded and moving as the ball is hit. This eliminates the flat-footed delay that costs the first step. Time the creep so your feet land just as the ball reaches the hitting zone, ready to break in any direction.",
+          "As the pitch is delivered, assume an athletic stance — feet wider than the shoulders, knees bent, weight forward, glove out front. Then take a small timing hop or creep step so you're loaded and moving as the ball is hit; this eliminates the flat-footed delay that costs the first step. Time the creep so your feet land just as the ball reaches the hitting zone, ready to break in any direction.",
         ],
         codeExample: {
           label: "Second Base Positioning and Ready Position",
@@ -846,7 +846,7 @@ export const baseball10Stages: StageConfig[] = [
       technical: {
         title: "Training Priorities for Second Basemen",
         body: [
-          "Quickness and agility: prioritize first-step explosiveness, lateral quickness, and change-of-direction agility (reaction drills, lateral bounds, footwork ladders) — these create range and clean footwork at the bag. Single-leg strength and balance let the second baseman field and throw from unbalanced positions and execute the pivot.",
+          "Quickness and agility come first. Prioritize first-step explosiveness, lateral quickness, and change-of-direction agility (reaction drills, lateral bounds, footwork ladders) — these create range and clean footwork at the bag. Single-leg strength and balance let the second baseman field and throw from unbalanced positions and execute the pivot.",
           "Core, mobility, and arm care: build a strong, stable core for accurate off-balance and across-the-body throws and for absorbing contact on the pivot. Maintain hip, ankle, and thoracic mobility to field low and throw freely. Care for the throwing arm (rotator cuff, scapular work) because second basemen make many throws from awkward angles. Quick, agile, balanced, and resilient — not big and strong — is the second baseman's physical ideal.",
         ],
         codeExample: {

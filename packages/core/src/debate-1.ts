@@ -389,7 +389,7 @@ export const debate1Stages: StageConfig[] = [
         title: "Building and Stress-Testing an Argument",
         body: [
           "To build an argument, write the claim, then force yourself to complete the sentence 'this is true because…' (the warrant), then 'and this matters because…' (the impact). If you cannot complete both sentences, you do not yet have an argument — you have an opinion. This three-part test is also how you attack the other side: a refutation can deny the claim, sever the warrant ('their evidence doesn't actually show that'), or minimize the impact ('even if true, it barely matters').",
-          "Warrants come in two flavors: empirical (evidence — data, studies, expert testimony, historical examples) and analytical (reasoning — logic, principle, cause-and-effect that the judge can follow without a citation). The strongest arguments combine both: a logical mechanism explaining why something should be true, plus evidence confirming it is. Relying only on evidence leaves you helpless when the other side has a counter-study; relying only on logic leaves you vulnerable to 'where's your proof?'",
+          "Warrants come in two flavors. Empirical warrants rest on evidence — data, studies, expert testimony, historical examples. Analytical warrants rest on reasoning — logic, principle, cause-and-effect that the judge can follow without a citation. The strongest arguments combine both: a logical mechanism explaining why something should be true, plus evidence confirming it is. Relying only on evidence leaves you helpless when the other side has a counter-study; relying only on logic leaves you vulnerable to 'where's your proof?'",
         ],
         codeExample: {
           label: "The Claim–Warrant–Impact Structure",
@@ -1414,7 +1414,7 @@ export const debate1Stages: StageConfig[] = [
       technical: {
         title: "Rate, Signposting, and Reading the Judge",
         body: [
-          "Calibrate your rate to your judge and format. Some technical circuits tolerate very fast delivery ('spreading'), but most judges — and nearly all lay judges — credit only what they can comprehend and flow. The safe default is brisk but crisp: prioritize clarity over volume of words, slow down on tags, warrants, and impacts you most want the judge to write, and never let speed turn your evidence into noise. If the judge stops writing, you've lost them — watch for it.",
+          "Calibrate your rate to your judge and format. Some technical circuits tolerate very fast delivery ('spreading'), but most judges — and nearly all lay judges — credit only what they can comprehend and flow. The safe default is brisk but crisp. Prioritize clarity over volume of words, slow down on the tags, warrants, and impacts you most want the judge to write, and never let speed turn your evidence into noise. If the judge stops writing, you've lost them — watch for it.",
           "Signposting works at two levels: macro (which contention or which side's case you're on) and micro (numbering responses within an argument: 'first… second… third…'). Numbered responses are especially powerful because they let the judge create discrete lines on the flow and check each off. Pair signposting with brief eye contact at transition points — looking up as you say 'moving to their second contention' both signals the shift and confirms the judge is with you. Delivery and flowing are two sides of one coin: you signpost so the opponent and judge can flow you.",
         ],
         codeExample: {

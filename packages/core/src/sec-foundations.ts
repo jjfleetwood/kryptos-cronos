@@ -1888,7 +1888,7 @@ export const secFoundationsStages: StageConfig[] = [
       technical: {
         title: "Security at Every Phase",
         body: [
-          "Shift left: the earlier a defect is found, the cheaper it is to fix — a requirements/design fix is orders of magnitude cheaper than a production incident. So embed security in each phase: security requirements, threat modeling in design, secure coding + peer review in development, SAST/DAST/SCA/secrets-scanning in CI, code signing at release, and a post-implementation review after deployment. Keep dev/test/staging/prod separate and enforce separation of duties so no one can push unreviewed code straight to production.",
+          "Shift left: the earlier a defect is found, the cheaper it is to fix — a requirements/design fix is orders of magnitude cheaper than a production incident. So embed security in each phase:\n- security requirements up front\n- threat modeling in design\n- secure coding + peer review in development\n- SAST/DAST/SCA/secrets-scanning in CI\n- code signing at release\n- a post-implementation review after deployment\nKeep dev/test/staging/prod separate and enforce separation of duties so no one can push unreviewed code straight to production.",
           "Tooling: SAST (white-box, source code) and SCA (dependencies) run early on every commit; DAST (black-box, running app) runs against test/staging; secrets scanning blocks committed credentials; code signing and provenance protect integrity. Crucially, secure the pipeline itself — SolarWinds showed that a compromised build system can backdoor signed, trusted software. Software supply-chain security (SBOMs, signed artifacts, least-privilege build systems) is now a core SSDLC and audit concern.",
         ],
         codeExample: {

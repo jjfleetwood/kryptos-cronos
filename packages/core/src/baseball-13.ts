@@ -199,7 +199,7 @@ export const baseball13Stages: StageConfig[] = [
       technical: {
         title: "The Read, the First Step, and the Route",
         body: [
-          "Read before and at contact: anticipate using the pitch, count, hitter tendencies, and the swing, then read the ball's trajectory off the bat from the sound and initial flight. A great jump comes from anticipation plus an instant, accurate read — that's why a slower outfielder with great reads can out-range a faster one who reacts late.",
+          "Read before and at contact. Anticipate using the pitch, the count, hitter tendencies, and the swing, then read the ball's trajectory off the bat from the sound and initial flight. A great jump comes from anticipation plus an instant, accurate read — that's why a slower outfielder with great reads can out-range a faster one who reacts late.",
           "First step and route: on a ball over your head, drop-step (pivot and turn to run, never backpedal) and take an efficient angle; on a ball in front, charge under control. Run the most efficient route — often a curved 'banana' route — so you arrive at the spot with momentum toward your throw. Read the slice on pulled balls (they hook toward the line). On balls over the head, turn and run to the spot, then look back for the ball — never backpedal.",
         ],
         codeExample: {
@@ -521,7 +521,7 @@ export const baseball13Stages: StageConfig[] = [
       technical: {
         title: "Reading the Wall, Playing Caroms, and the Line",
         body: [
-          "At the wall: track the ball while locating the wall (glance to find it, then return eyes to the ball), and decide to leap for a catch, set up for the carom, or back up. Know your wall's height, material, and rebound behavior — a high wall produces long caroms, a padded wall deadens the ball. Play the carom cleanly and get rid of the ball fast to hold the hitter. Locate the wall to avoid crashing into it.",
+          "At the wall, track the ball while locating the wall — glance to find it, then return your eyes to the ball — and decide whether to leap for a catch, set up for the carom, or back up. Know your wall's height, material, and rebound behavior; a high wall produces long caroms, a padded wall deadens the ball. Play the carom cleanly and get rid of the ball fast to hold the hitter. Locate the wall to avoid crashing into it.",
           "Playing the line: cut off balls hit down the left-field line before they reach the corner, and play corner caroms cleanly, because a ball past the outfielder down the line becomes an extra-base hit. Guard the line in no-doubles situations and against pull hitters. The goal of both wall and line play is to turn would-be doubles and triples into singles by fielding the rebound quickly and getting the ball back to the infield.",
         ],
         codeExample: {
@@ -844,7 +844,7 @@ export const baseball13Stages: StageConfig[] = [
         title: "The Crow-Hop, Trajectory, and Hitting the Cutoff",
         body: [
           "The crow-hop and trajectory: after fielding or catching, take a crow-hop (shuffle-hop) to gather momentum and transfer weight, then throw over the top with a four-seam grip on a low, carrying line — not a high rainbow. A low throw gets there faster and lets the cutoff man catch it at shoulder height to relay or redirect. Footwork and a four-seam grip make the throw strong and accurate.",
-          "Hitting the cutoff: throw through the cutoff man (the infielder lined up between you and the target), hitting him at the chest with a low, accurate throw so he can catch and relay it, redirect it to catch a trailing runner, or let it continue. Overthrowing the cutoff man lets runners advance. A strong, accurate throw on a line to or through the cutoff man is the goal — accuracy and a low trajectory matter as much as arm strength.",
+          "Hit the cutoff man — the infielder lined up between you and the target. Throw to his chest with a low, accurate throw so he can catch and relay it, redirect it to catch a trailing runner, or let it continue. Overthrowing the cutoff man lets runners advance. A strong, accurate throw on a line to or through the cutoff man is the goal — accuracy and a low trajectory matter as much as arm strength.",
         ],
         codeExample: {
           label: "The Outfield Throw",
@@ -1004,7 +1004,7 @@ export const baseball13Stages: StageConfig[] = [
         title: "Backup Responsibilities and Situational Positioning",
         body: [
           "Backups: the left fielder backs up third base on throws and pickoffs from the catcher or pitcher, backs up the center fielder on balls to left-center, and backs up bases and rundowns on the left side. Position behind the play so an overthrow or a ball that gets past a fielder doesn't cost extra bases. Backing up is constant and essential.",
-          "Positioning and communication: set depth and lateral position by situation — normal, shallow (weak hitter or play at the plate), deep (no-doubles, late in close games), or shaded to the line or gap for the hitter. Read the hitter, pitcher, and situation, and adjust in concert with the center fielder. Communicate on shared balls, call or defer in the gap, and know before each pitch where you'll back up or what you'll do if the ball is hit to a given spot.",
+          "Positioning and communication go together. Set depth and lateral position by situation — normal, shallow (weak hitter or play at the plate), deep (no-doubles, late in close games), or shaded to the line or gap for the hitter. Read the hitter, pitcher, and situation, and adjust in concert with the center fielder. Communicate on shared balls, call or defer in the gap, and know before each pitch where you'll back up or what you'll do if the ball is hit to a given spot.",
         ],
         codeExample: {
           label: "Left Fielder — Backups and Positioning",
@@ -1166,7 +1166,7 @@ export const baseball13Stages: StageConfig[] = [
       technical: {
         title: "Deciding Where to Throw and the Cutoff System",
         body: [
-          "Decide before fielding: know the situation (outs, runners, score) and where the play is before the ball arrives — hold it, throw to second (keep the hitter to a single), throw to third (retire or hold an advancing runner), or throw home (play at the plate). Deciding in advance lets you field with momentum toward the target and throw decisively.",
+          "Decide before fielding — know the situation (outs, runners, score) and where the play is before the ball arrives:\n- hold it\n- throw to second (keep the hitter to a single)\n- throw to third (retire or hold an advancing runner)\n- throw home (play at the plate)\nDeciding in advance lets you field with momentum toward the target and throw decisively.",
           "The cutoff and relay system: throw to or through the cutoff man (an infielder lined up between you and the target) on throws home or to third; on deep balls, a middle infielder comes out as the relay man. The cutoff/relay can relay, redirect to catch a trailing runner, or let the throw through. Throw to the base where an out or hold is possible — not the wrong base — and hit the cutoff so the defense keeps its options.",
         ],
         codeExample: {
@@ -1328,7 +1328,7 @@ export const baseball13Stages: StageConfig[] = [
       technical: {
         title: "Pre-Pitch Thinking and the Elements",
         body: [
-          "Decide before the pitch: process the situation (score, outs, runners and speed, count, hitter) and set depth and position (normal, shallow, deep no-doubles, shaded to line or gap). Pre-decide where the play is and where you'll throw if the ball is hit to you, so the reaction is instant.",
+          "Decide before the pitch. Process the situation — score, outs, runners and speed, count, hitter — and set depth and position (normal, shallow, deep no-doubles, shaded to line or gap). Pre-decide where the play is and where you'll throw if the ball is hit to you, so the reaction is instant.",
           "The elements and awareness: know where the sun is and shield it with sunglasses or the glove on fly balls; account for the wind knocking balls down or carrying them; know the field's quirks (wall, corners, warning track by feel for safety). Check the wind and sun before each at-bat. Communicate with the center fielder on positioning and shared balls, and stay aware of the outs and runners. The thinking and the element-checks are done before the pitch.",
         ],
         codeExample: {

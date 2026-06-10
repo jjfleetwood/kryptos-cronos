@@ -201,7 +201,7 @@ export const driving3Stages: StageConfig[] = [
       tagline: "Defensive driving means assuming other drivers will make mistakes — and being ready when they do.",
       year: 1964,
       overview: [
-        "Defensive driving is a set of habits and mental frameworks that help you anticipate and react to hazards before they become emergencies. The core philosophy: you cannot control other drivers, road conditions, or mechanical failures — but you can control your own position, speed, and readiness to react. Defensive drivers assume other cars will do the wrong thing and position themselves to have options when that happens.",
+        "Defensive driving is a set of habits and mental frameworks that help you anticipate and react to hazards before they become emergencies. The core philosophy is simple. You cannot control other drivers, road conditions, or mechanical failures — but you can control your own position, speed, and readiness to react. Defensive drivers assume other cars will do the wrong thing and position themselves to have options when that happens.",
         "Scanning 12–15 seconds ahead (the distance your car will travel in that time) gives you processing time to identify hazards and decide smoothly rather than panicking:\n- On city streets, 12–15 seconds is about a full block.\n- On the freeway, it's about a quarter mile.\nMost new drivers focus only on the car directly in front; experienced drivers scan the whole picture.",
         "The SIPDE method — Scan, Identify, Predict, Decide, Execute — is the systematic process CHP officers and driver's-ed programs use to teach hazard response:\n- Scan the environment broadly.\n- Identify specific hazards.\n- Predict how those hazards might develop.\n- Decide on a response.\n- Execute it smoothly.\nRunning this process continuously transforms reactive driving into proactive driving.",
       ],
@@ -381,7 +381,7 @@ export const driving3Stages: StageConfig[] = [
       technical: {
         title: "Recognizing and Responding to Aggressive Drivers",
         body: [
-          "Warning signs that another driver is aggressive: excessive speed and weaving, tailgating, repeated horn honking, aggressive headlight flashing, making obscene gestures, yelling or threatening. If you see these signs directed at any car (including yours), create space between you and that driver immediately.",
+          "Warning signs that another driver is aggressive:\n- excessive speed and weaving\n- tailgating\n- repeated horn honking\n- aggressive headlight flashing\n- obscene gestures\n- yelling or threatening\nIf you see these signs directed at any car (including yours), create space between you and that driver immediately.",
           "Managing your own frustration: acknowledge that other drivers' mistakes are usually not personal. A driver who cut you off likely didn't see you — they weren't targeting you. Name the frustration internally ('that was irritating') but don't feed it. Podcasts, music, and controlled breathing all help. Avoid driving when emotionally escalated.",
         ],
         codeExample: {

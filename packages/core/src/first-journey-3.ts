@@ -1777,7 +1777,7 @@ print(url.netloc)  # = "secure.paypal.com.attacker.ru"
       year: 2025,
       overview: [
         "Returning to Santa Cruz Harbor at the end of the journey. Every fishing vessel follows a man-overboard protocol: shout 'man overboard', throw the life ring, maintain visual contact, radio the Coast Guard, don't sail away. The protocol exists because panic is the enemy — you need a rehearsed sequence that works under pressure. Cybersecurity incident response is the same: a prepared, sequenced response to a security event.",
-        "When you suspect you've been compromised — account takeover, malware infection, phishing click — the instinct is to panic and do everything at once. The correct response is methodical: Identify (confirm the incident), Contain (stop the bleeding), Eradicate (remove the threat), Recover (restore normal operation), and document everything for post-incident review.",
+        "When you suspect you've been compromised — account takeover, malware infection, phishing click — the instinct is to panic and do everything at once. The correct response is methodical:\n- Identify — confirm the incident\n- Contain — stop the bleeding\n- Eradicate — remove the threat\n- Recover — restore normal operation\n- Document everything for the post-incident review",
         "At the personal level, incident response for an account takeover: immediately change the password and enable 2FA, check for unauthorized activity (emails sent, purchases made, profile changes), revoke all active sessions, notify anyone who may have received malicious messages from your account. At the organizational level, this is a formal process involving IR teams, legal, PR, and regulatory notification.",
       ],
       technical: {

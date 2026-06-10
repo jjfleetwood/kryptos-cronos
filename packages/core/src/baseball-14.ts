@@ -201,7 +201,7 @@ export const baseball14Stages: StageConfig[] = [
       technical: {
         title: "The Straightaway Read, First Step, and Routes",
         body: [
-          "Read in every direction: from straightaway, the center fielder must read balls to both gaps, over his head, and in front, so his read and first step have to work in any direction. Anticipate using the pitch, count, and hitter (shading toward a gap when warranted), then read trajectory off the bat from the sound and initial flight.",
+          "Read in every direction. From straightaway, the center fielder must read balls to both gaps, over his head, and in front, so his read and first step have to work in any direction. Anticipate using the pitch, the count, and the hitter (shading toward a gap when warranted), then read trajectory off the bat from the sound and initial flight.",
           "First step and routes: drop-step and turn on balls over the head (never backpedal), break hard to the gap, or charge under control on balls in front. Run the most efficient route — often curved — to arrive with momentum toward your throw, and make the over-the-shoulder catch on deep balls. Because the center fielder covers the most ground, small improvements in the jump and routes have an outsized impact on his range.",
         ],
         codeExample: {
@@ -1321,7 +1321,7 @@ export const baseball14Stages: StageConfig[] = [
       technical: {
         title: "Pre-Pitch Thinking for the Outfield Captain",
         body: [
-          "Decide before the pitch: process the situation (score, outs, runners and speed, count, hitter) and set your depth and position (normal, shallow, deep no-doubles, shaded to a gap). As captain, help position the corner outfielders in concert. Pre-decide where the play is and where you'll throw if the ball is hit to you.",
+          "Decide before the pitch. Process the situation — score, outs, runners and speed, count, hitter — and set your depth and position (normal, shallow, deep no-doubles, shaded to a gap). As captain, help position the corner outfielders in concert. Pre-decide where the play is and where you'll throw if the ball is hit to you.",
           "Elements and leadership: account for the sun, wind, and field's quirks, checking them before each at-bat and leading the outfield's adjustments. Confirm the situation and positioning with the corner outfielders, communicate on shared balls and relays, and stay aware of the runners and outs. The center fielder is the thinking leader of the outfield, and his pre-pitch thinking covers the whole unit.",
         ],
         codeExample: {
