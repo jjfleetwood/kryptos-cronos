@@ -34,7 +34,7 @@ Stack: Next.js 16 · React 19 · TypeScript · Tailwind 4 · Upstash Redis · Su
 | [OPS.md](OPS.md) | Operations runbook: env vars, services, monitoring |
 | [PARTNERS.md](PARTNERS.md) | Companies, services, and APIs supporting the build |
 | [API_REFERENCE.md](API_REFERENCE.md) | API route specifications |
-| [CURRICULUM.md](CURRICULUM.md) | Full stage catalog across all 72 epochs |
+| [CURRICULUM.md](CURRICULUM.md) | Full stage catalog across all 75 epochs |
 | [SECURITY_BRIEFING.md](SECURITY_BRIEFING.md) | Security posture, findings, remediation status |
 | [RELEASE_NOTES.md](RELEASE_NOTES.md) | Version history and changelog |
 | [BUSINESS_PROPOSAL_PRO.md](BUSINESS_PROPOSAL_PRO.md) · [BUSINESS_PROPOSAL_CASUAL.md](BUSINESS_PROPOSAL_CASUAL.md) | Investor pitch (formal / plain-language) |

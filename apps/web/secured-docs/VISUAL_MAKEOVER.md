@@ -34,7 +34,7 @@ Recurring traits across the top 50 this year:
 | Texture | gradients + grid overlays present; **no grain/noise** | Low–Medium |
 | Color | strong cyan/indigo/violet system already | Low (keep, tighten) |
 | Reduced-motion | not handled | Medium (a11y) |
-| Metadata | OG still says "458 stages / 38 epochs" (stale) | Low |
+| Metadata | OG still says "831 stages / 75 epochs" (stale) | Low |
 
 ---
 

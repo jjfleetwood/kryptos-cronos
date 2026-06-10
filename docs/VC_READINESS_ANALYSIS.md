@@ -71,7 +71,7 @@ A VC will catch this the moment you describe the model. Every user is "Pro," so 
 
 **3. The non-security content question — now answered (see Part 2.5).**
 
-Previously the open wound: ~half of 72 epochs aren't cybersecurity (debate ×8, baseball ×15, flag-football ×3, driving ×3, travel/language ×4, crafts). A partner taking this to an LP committee couldn't explain a cosmetology curriculum inside a security company. **The answer is no longer a hedge — it's a decision:** the public cyber product (Kryptós CronOS) shows security tracks only; the diverse content becomes a separate consumer/licensing brand on the same engine. The cyber VC never has to see a baseball epoch. Execution detail in Part 2.5 and the Tier-1 action list.
+Previously the open wound: ~half of 75 epochs aren't cybersecurity (debate ×8, baseball ×15, flag-football ×3, driving ×3, travel/language ×4, crafts). A partner taking this to an LP committee couldn't explain a cosmetology curriculum inside a security company. **The answer is no longer a hedge — it's a decision:** the public cyber product (Kryptós CronOS) shows security tracks only; the diverse content becomes a separate consumer/licensing brand on the same engine. The cyber VC never has to see a baseball epoch. Execution detail in Part 2.5 and the Tier-1 action list.
 
 **4. Single founder. No team. No advisors.**
 
