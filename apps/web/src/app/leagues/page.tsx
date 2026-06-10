@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { LevelBadge } from "@/components/LevelBadge";
+import { useLocale } from "@/contexts/LocaleContext";
 import {
   divisionById, promoteDivision, relegateDivision, isTopDivision, isBottomDivision,
 } from "@kryptos/core/leagues";
@@ -31,8 +32,8 @@ function avatarColor(username: string): [string, string] {
   return colors[h % colors.length];
 }
 
-function countdown(ms: number): string {
-  if (ms <= 0) return "resetting…";
+function countdown(ms: number, resettingLabel: string): string {
+  if (ms <= 0) return resettingLabel;
   const d = Math.floor(ms / 86_400_000);
   const h = Math.floor((ms % 86_400_000) / 3_600_000);
   const m = Math.floor((ms % 3_600_000) / 60_000);
@@ -42,6 +43,7 @@ function countdown(ms: number): string {
 }
 
 export default function LeaguesPage() {
+  const { t } = useLocale();
   const [data, setData] = useState<LeagueData | null>(null);
   const [loading, setLoading] = useState(true);
   const [now, setNow] = useState(0);
@@ -73,28 +75,28 @@ export default function LeaguesPage() {
       <div className="max-w-3xl mx-auto">
         <div className="flex items-center justify-between mb-6">
           <Link href="/stages" className="text-gray-500 hover:text-cyan-400 text-sm transition-colors">
-            ← Stage Map
+            ← {t("stages.title")}
           </Link>
           <Link href="/leaderboard" className="text-sm text-purple-400 hover:text-purple-300 transition-colors">
-            🏆 Leaderboard
+            🏆 {t("nav.leaderboard")}
           </Link>
         </div>
 
         {loading ? (
-          <div className="py-24 text-center text-gray-600 text-sm">Loading your league…</div>
+          <div className="py-24 text-center text-gray-600 text-sm">{t("leagues.loading")}</div>
         ) : !data || !div ? (
           <div className="py-24 text-center text-gray-600 text-sm">
-            Sign in and complete a stage to join this week&apos;s league.
+            {t("leagues.signIn")}
           </div>
         ) : (
           <>
             {/* Division header */}
             <div className={`rounded-2xl border ${div.borderClass} ${div.bgClass} p-6 mb-6 text-center`}>
               <div className="text-5xl mb-2">{div.emoji}</div>
-              <h1 className={`text-3xl font-black ${div.textClass}`}>{div.name} League</h1>
+              <h1 className={`text-3xl font-black ${div.textClass}`}>{div.name} {t("leagues.leagueSuffix")}</h1>
               <p className="text-gray-500 text-sm mt-1">
-                Top {data.promoteCount} promote · bottom {data.relegateCount} relegate · resets in{" "}
-                <span className="text-gray-300 font-semibold">{now ? countdown(data.resetAt - now) : "…"}</span>
+                {t("leagues.topLabel")} {data.promoteCount} {t("leagues.promoteLabel")} · {t("leagues.bottomLabel")} {data.relegateCount} {t("leagues.relegateLabel")} · {t("leagues.resetsIn")}{" "}
+                <span className="text-gray-300 font-semibold">{now ? countdown(data.resetAt - now, t("leagues.resetting")) : "…"}</span>
               </p>
             </div>
 
@@ -102,12 +104,12 @@ export default function LeaguesPage() {
             <div className="bg-white/3 border border-white/10 rounded-xl overflow-hidden">
               <div className="grid grid-cols-[2.5rem_1fr_auto] gap-2 px-5 py-3 border-b border-white/10 text-xs text-gray-500 font-semibold uppercase tracking-wider">
                 <div>#</div>
-                <div>Agent</div>
-                <div className="text-right">XP this week</div>
+                <div>{t("leagues.colAgent")}</div>
+                <div className="text-right">{t("leagues.colXpWeek")}</div>
               </div>
 
               {n === 0 ? (
-                <div className="py-16 text-center text-gray-600 text-sm">No agents in your cohort yet.</div>
+                <div className="py-16 text-center text-gray-600 text-sm">{t("leagues.emptyCohort")}</div>
               ) : (
                 data.standings.map((s, i) => {
                   const rank = i + 1;
@@ -136,7 +138,7 @@ export default function LeaguesPage() {
                         </div>
                         <span className={`font-semibold truncate ${isYou ? "text-cyan-400" : "text-white"}`}>
                           {s.username}
-                          {isYou && <span className="ml-2 text-xs text-cyan-600 font-normal">(you)</span>}
+                          {isYou && <span className="ml-2 text-xs text-cyan-600 font-normal">{t("leagues.youTag")}</span>}
                         </span>
                         <LevelBadge xp={s.xp} />
                       </div>
@@ -153,12 +155,12 @@ export default function LeaguesPage() {
             <div className="mt-4 flex items-center justify-center gap-5 text-xs text-gray-500">
               {canPromote && (
                 <span className="flex items-center gap-1">
-                  <span className="text-green-500">▲</span> Promotion → {divisionById(promoteDivision(data.division)).name}
+                  <span className="text-green-500">▲</span> {t("leagues.promotionTo")} {divisionById(promoteDivision(data.division)).name}
                 </span>
               )}
               {canRelegate && (
                 <span className="flex items-center gap-1">
-                  <span className="text-red-500">▼</span> Relegation → {divisionById(relegateDivision(data.division)).name}
+                  <span className="text-red-500">▼</span> {t("leagues.relegationTo")} {divisionById(relegateDivision(data.division)).name}
                 </span>
               )}
             </div>

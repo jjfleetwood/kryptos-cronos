@@ -4,6 +4,7 @@ import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
 import { MAX_FREEZES, FREEZE_PRICE } from "@kryptos/core/streaks";
 import { PRO_COIN_MULTIPLIER } from "@kryptos/core/pro-perks";
+import { useLocale } from "@/contexts/LocaleContext";
 
 type QuestState = {
   id: string;
@@ -23,6 +24,7 @@ type StreakSummary = { current: number; freezes: number; dayXp: number; goal: nu
 type QuestsData = { daily: QuestState[]; weekly: QuestState[]; streak: StreakSummary; pro: boolean };
 
 function QuestCard({ q, onClaim, busy }: { q: QuestState; onClaim: (id: string) => void; busy: boolean }) {
+  const { t } = useLocale();
   const pct = Math.min(100, Math.round((q.progress / q.target) * 100));
   return (
     <div className={`rounded-xl border p-4 ${q.claimed ? "border-green-500/30 bg-green-500/5" : q.done ? "border-amber-500/40 bg-amber-500/8" : "border-white/8 bg-white/2"}`}>
@@ -57,7 +59,7 @@ function QuestCard({ q, onClaim, busy }: { q: QuestState; onClaim: (id: string) 
             q.claimed ? "bg-green-500/15 text-green-400 cursor-default" : "bg-amber-500 text-black hover:bg-amber-400"
           }`}
         >
-          {q.claimed ? "✓ Claimed" : busy ? "…" : "Claim reward"}
+          {q.claimed ? `✓ ${t("quests.claimed")}` : busy ? "…" : t("quests.claim")}
         </button>
       )}
     </div>
@@ -65,6 +67,7 @@ function QuestCard({ q, onClaim, busy }: { q: QuestState; onClaim: (id: string) 
 }
 
 export default function QuestsPage() {
+  const { t } = useLocale();
   const [data, setData] = useState<QuestsData | null>(null);
   const [loading, setLoading] = useState(true);
   const [busyId, setBusyId] = useState<string | null>(null);
@@ -111,62 +114,62 @@ export default function QuestsPage() {
     <div className="min-h-screen px-4 py-12" style={{ background: "linear-gradient(135deg, #0d1117 0%, #0f2027 50%, #1a1a2e 100%)" }}>
       <div className="max-w-2xl mx-auto">
         <div className="flex items-center justify-between mb-6">
-          <Link href="/stages" className="text-gray-500 hover:text-cyan-400 text-sm transition-colors">← Stage Map</Link>
-          <Link href="/leagues" className="text-sm text-amber-400 hover:text-amber-300 transition-colors">⚔️ Leagues</Link>
+          <Link href="/stages" className="text-gray-500 hover:text-cyan-400 text-sm transition-colors">← {t("stages.title")}</Link>
+          <Link href="/leagues" className="text-sm text-amber-400 hover:text-amber-300 transition-colors">⚔️ {t("nav.leagues", "Leagues")}</Link>
         </div>
 
         <div className="flex items-center gap-3 mb-1">
-          <h1 className="text-3xl font-bold text-white">Quests</h1>
+          <h1 className="text-3xl font-bold text-white">{t("quests.title")}</h1>
           {data?.pro && (
             <span className="text-xs font-bold px-2 py-0.5 rounded-full border border-amber-500/40 bg-amber-500/10 text-amber-400">
               PRO ×{PRO_COIN_MULTIPLIER} 🪙
             </span>
           )}
         </div>
-        <p className="text-gray-500 text-sm mb-6">Daily and weekly objectives. Claim coins and streak freezes.</p>
+        <p className="text-gray-500 text-sm mb-6">{t("quests.subtitle")}</p>
 
         {loading ? (
-          <div className="py-20 text-center text-gray-600 text-sm">Loading quests…</div>
+          <div className="py-20 text-center text-gray-600 text-sm">{t("quests.loading")}</div>
         ) : !data ? (
-          <div className="py-20 text-center text-gray-600 text-sm">Sign in to view your quests.</div>
+          <div className="py-20 text-center text-gray-600 text-sm">{t("quests.signIn")}</div>
         ) : (
           <>
             {/* Streak / daily goal */}
             <div className="rounded-xl border border-white/10 bg-white/3 p-5 mb-6">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-sm font-bold text-white">
-                  🔥 {data.streak.current}-day streak
-                  <span className="ml-2 text-xs font-normal text-sky-400">❄️ {data.streak.freezes} freeze{data.streak.freezes === 1 ? "" : "s"}</span>
+                  🔥 {data.streak.current} {t("quests.streakLabel")}
+                  <span className="ml-2 text-xs font-normal text-sky-400">❄️ {data.streak.freezes} {t("quests.freezesLabel")}</span>
                 </span>
                 <span className={`text-xs font-mono ${goalMet ? "text-green-400" : "text-gray-500"}`}>
-                  {goalMet ? "✓ goal met" : `${data.streak.dayXp}/${data.streak.goal} XP`}
+                  {goalMet ? `✓ ${t("quests.goalMet")}` : `${data.streak.dayXp}/${data.streak.goal} XP`}
                 </span>
               </div>
               <div className="h-2 rounded-full bg-white/8 overflow-hidden">
                 <div className="h-full rounded-full transition-all duration-500" style={{ width: `${goalPct}%`, background: goalMet ? "linear-gradient(90deg,#4ade80,#16a34a)" : "linear-gradient(90deg,#facc15,#fb923c)" }} />
               </div>
               <div className="flex items-center justify-between mt-2">
-                <p className="text-xs text-gray-600">Earn {data.streak.goal} XP a day to keep your streak alive.</p>
+                <p className="text-xs text-gray-600">{t("quests.goalHintPre")} {data.streak.goal} {t("quests.goalHintPost")}</p>
                 {data.streak.freezes < MAX_FREEZES && (
                   <button
                     onClick={buyFreeze}
                     disabled={buyingFreeze}
                     className="text-xs font-bold px-2.5 py-1 rounded-lg border border-sky-500/40 bg-sky-500/10 text-sky-300 hover:bg-sky-500/20 transition-colors flex-shrink-0"
                   >
-                    {buyingFreeze ? "…" : `Buy ❄️ — ${FREEZE_PRICE} 🪙`}
+                    {buyingFreeze ? "…" : `${t("quests.buy")} ❄️ — ${FREEZE_PRICE} 🪙`}
                   </button>
                 )}
               </div>
             </div>
 
             {/* Daily */}
-            <h2 className="text-xs font-mono text-gray-500 uppercase tracking-widest mb-3">Daily</h2>
+            <h2 className="text-xs font-mono text-gray-500 uppercase tracking-widest mb-3">{t("quests.daily")}</h2>
             <div className="space-y-3 mb-8">
               {data.daily.map((q) => <QuestCard key={q.id} q={q} onClaim={claim} busy={busyId === q.id} />)}
             </div>
 
             {/* Weekly */}
-            <h2 className="text-xs font-mono text-gray-500 uppercase tracking-widest mb-3">Weekly</h2>
+            <h2 className="text-xs font-mono text-gray-500 uppercase tracking-widest mb-3">{t("quests.weekly")}</h2>
             <div className="space-y-3">
               {data.weekly.map((q) => <QuestCard key={q.id} q={q} onClaim={claim} busy={busyId === q.id} />)}
             </div>

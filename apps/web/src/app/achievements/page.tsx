@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { useLocale } from "@/contexts/LocaleContext";
 
 type AchState = {
   id: string;
@@ -16,16 +17,10 @@ type AchState = {
 };
 type Data = { achievements: AchState[]; earnedCount: number; total: number };
 
-const CATEGORY_LABEL: Record<string, string> = {
-  progression: "Progression",
-  mastery: "Mastery",
-  streak: "Streak",
-  epochs: "Completion",
-  leagues: "Leagues",
-};
 const CATEGORY_ORDER = ["progression", "mastery", "streak", "epochs", "leagues"];
 
 export default function AchievementsPage() {
+  const { t } = useLocale();
   const [data, setData] = useState<Data | null>(null);
   const [loading, setLoading] = useState(true);
 
@@ -43,28 +38,28 @@ export default function AchievementsPage() {
     <div className="min-h-screen px-4 py-12" style={{ background: "linear-gradient(135deg, #0d1117 0%, #0f2027 50%, #1a1a2e 100%)" }}>
       <div className="max-w-3xl mx-auto">
         <div className="flex items-center justify-between mb-6">
-          <Link href="/stages" className="text-gray-500 hover:text-cyan-400 text-sm transition-colors">← Stage Map</Link>
-          <Link href="/quests" className="text-sm text-emerald-400 hover:text-emerald-300 transition-colors">🎯 Quests</Link>
+          <Link href="/stages" className="text-gray-500 hover:text-cyan-400 text-sm transition-colors">← {t("stages.title")}</Link>
+          <Link href="/quests" className="text-sm text-emerald-400 hover:text-emerald-300 transition-colors">🎯 {t("quests.title")}</Link>
         </div>
 
-        <h1 className="text-3xl font-bold text-white mb-1">Achievements</h1>
+        <h1 className="text-3xl font-bold text-white mb-1">{t("achievements.title")}</h1>
         {data && (
           <p className="text-gray-500 text-sm mb-6">
-            <span className="text-cyan-400 font-bold">{data.earnedCount}</span> / {data.total} unlocked
+            <span className="text-cyan-400 font-bold">{data.earnedCount}</span> / {data.total} {t("achievements.unlocked")}
           </p>
         )}
 
         {loading ? (
-          <div className="py-20 text-center text-gray-600 text-sm">Loading achievements…</div>
+          <div className="py-20 text-center text-gray-600 text-sm">{t("achievements.loading")}</div>
         ) : !data ? (
-          <div className="py-20 text-center text-gray-600 text-sm">Sign in to view your achievements.</div>
+          <div className="py-20 text-center text-gray-600 text-sm">{t("achievements.signIn")}</div>
         ) : (
           CATEGORY_ORDER.map((cat) => {
             const items = grouped(cat);
             if (items.length === 0) return null;
             return (
               <div key={cat} className="mb-8">
-                <h2 className="text-xs font-mono text-gray-500 uppercase tracking-widest mb-3">{CATEGORY_LABEL[cat] ?? cat}</h2>
+                <h2 className="text-xs font-mono text-gray-500 uppercase tracking-widest mb-3">{t(`achievements.cat.${cat}`, cat)}</h2>
                 <div className="grid sm:grid-cols-2 gap-3">
                   {items.map((a) => {
                     const pct = Math.min(100, Math.round((a.progress / a.target) * 100));
