@@ -6,6 +6,7 @@ import HomeCtfDemo from "@/components/HomeCtfDemo";
 import Logo from "@/components/Logo";
 import Reveal from "@/components/Reveal";
 import CountUp from "@/components/CountUp";
+import FrontierTicker from "@/components/FrontierTicker";
 
 // Every domain the platform now covers — including the new deep-tech tracks.
 // Surfaced on the homepage so the breadth (robots, EVs, space, silicon, STEM…) is visible.
@@ -263,6 +264,9 @@ export default function Home() {
             </div>
           </div>
         </section>
+
+        {/* ── First Bloods ticker ── */}
+        <FrontierTicker />
 
         {/* ── Stats ── */}
         <section className="border-b border-white/5 py-12 px-4"

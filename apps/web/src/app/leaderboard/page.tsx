@@ -16,8 +16,19 @@ type Player = {
   stages: number;
   badges: number;
   lastActive: number | null;
+  lastStageId?: string | null;
+  lastStageTitle?: string | null;
+  lastStageClears?: number;
+  pioneerCount?: number;
   isCurrentPlayer?: boolean;
   recencyFallback?: boolean;
+};
+
+type FrontierData = {
+  feed: { stageId: string; stageTitle: string; username: string; ts: number }[];
+  holdings: { stageId: string; stageTitle: string; clears: number; uncontested: boolean }[];
+  pioneerCount: number;
+  uncontestedCount: number;
 };
 
 type ProfileData = {
@@ -28,8 +39,6 @@ type ProfileData = {
   streak: number;
   longestStreak: number;
   completedStageIds: string[];
-  trophies: { id: string; name: string; emoji: string; tier: string }[];
-  equippedItemIds: Record<string, string>;
 };
 
 const MEDAL: Record<number, string> = { 1: "🥇", 2: "🥈", 3: "🥉" };
@@ -63,17 +72,6 @@ function timeAgo(ts: number | null): string {
   if (h < 24) return `${h}h ago`;
   return `${Math.floor(h / 24)}d ago`;
 }
-
-const TIER_COLORS: Record<string, string> = {
-  field: "text-gray-400 border-gray-500/30 bg-gray-500/8",
-  enlisted: "text-stone-400 border-stone-500/30 bg-stone-500/8",
-  commended: "text-amber-500 border-amber-500/30 bg-amber-500/8",
-  decorated: "text-violet-400 border-violet-500/30 bg-violet-500/8",
-  distinguished: "text-sky-400 border-sky-500/30 bg-sky-500/8",
-  elite: "text-cyan-400 border-cyan-500/30 bg-cyan-500/8",
-  legendary: "text-purple-400 border-purple-500/30 bg-purple-500/8",
-  apex: "text-red-400 border-red-500/30 bg-red-500/8",
-};
 
 // Group completed stages by epoch for the profile view
 function groupStagesByEpoch(completedIds: string[]) {
@@ -196,27 +194,6 @@ function ProfilePanel({ username, myName, rank, onClose }: {
                 ))}
               </div>
 
-              {/* Trophies */}
-              {profile.trophies.length > 0 && (
-                <div className="px-6 py-5 border-b border-white/5">
-                  <h3 className="text-xs font-mono text-gray-500 uppercase tracking-widest mb-3">
-                    {t("leaderboard.trophiesProfile")} <span className="text-gray-700 ml-1">({profile.trophies.length})</span>
-                  </h3>
-                  <div className="flex flex-wrap gap-2">
-                    {profile.trophies.map((t) => (
-                      <div
-                        key={t.id}
-                        title={`${t.name} · ${t.tier}`}
-                        className={`flex items-center gap-1.5 px-2 py-1 rounded-lg border text-xs ${TIER_COLORS[t.tier] ?? "text-gray-400 border-gray-500/30"}`}
-                      >
-                        <span>{t.emoji}</span>
-                        <span className="hidden sm:inline truncate max-w-24">{t.name}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-
               {/* Completed stages */}
               <div className="px-6 py-5">
                 <h3 className="text-xs font-mono text-gray-500 uppercase tracking-widest mb-4">
@@ -286,6 +263,14 @@ export default function LeaderboardPage() {
   const [loading, setLoading] = useState(true);
   const [copied, setCopied] = useState(false);
   const [profileOpen, setProfileOpen] = useState<{ username: string; rank: number } | null>(null);
+  const [frontier, setFrontier] = useState<FrontierData | null>(null);
+
+  useEffect(() => {
+    fetch("/api/frontier")
+      .then((r) => (r.ok ? r.json() : null))
+      .then((d: FrontierData | null) => { if (d) setFrontier(d); })
+      .catch(() => {});
+  }, []);
 
   function handleShare() {
     const rankStr = myRank ? `#${myRank}` : "the";
@@ -342,7 +327,7 @@ export default function LeaderboardPage() {
         );
 
         const meWithServerXp = serverMe
-          ? { ...me, xp: serverMe.xp }
+          ? { ...me, ...serverMe, isCurrentPlayer: true } // keep my frontier data (last-cleared, pioneer)
           : period === "alltime" ? me : null;
 
         const all = [
@@ -459,6 +444,21 @@ export default function LeaderboardPage() {
           </div>
         )}
 
+        {/* Rivalry nudge — the player one rank above you. */}
+        {(() => {
+          const myRow = rows.find((r) => r.isCurrentPlayer);
+          const rival = myRow && myRow.rank > 1 ? rows.find((r) => r.rank === myRow.rank - 1) : null;
+          if (!rival || !myRow) return null;
+          const diff = rival.xp - myRow.xp;
+          if (diff <= 0) return null;
+          return (
+            <div className="bg-rose-500/5 border border-rose-500/25 rounded-xl px-4 py-3 mb-6 flex items-center gap-2 text-sm">
+              <span className="text-lg">⚔️</span>
+              <span className="text-gray-300"><span className="font-bold text-white">{rival.username}</span> is <span className="font-mono text-rose-300">{diff.toLocaleString()} XP</span> ahead — catch them.</span>
+            </div>
+          );
+        })()}
+
         {/* Table */}
         <div className="bg-white/3 border border-white/10 rounded-xl overflow-hidden">
           <div className="grid grid-cols-[2.5rem_1fr_auto] sm:grid-cols-[3rem_1fr_10rem_5rem_5rem_7rem] gap-2 px-5 py-3 border-b border-white/10 text-xs text-gray-500 font-semibold uppercase tracking-wider">
@@ -501,11 +501,21 @@ export default function LeaderboardPage() {
                   <div className="min-w-0">
                     <span className={`font-semibold truncate block ${player.isCurrentPlayer ? "text-cyan-400" : "text-white"}`}>
                       {player.username}
+                      {!!player.pioneerCount && player.pioneerCount > 0 && (
+                        <span title={`Pioneer — first to clear ${player.pioneerCount} stage${player.pioneerCount === 1 ? "" : "s"}`} className="ml-1.5 text-xs align-middle">🏴<span className="text-[10px] font-mono text-rose-400 ml-0.5">{player.pioneerCount}</span></span>
+                      )}
                       {player.isCurrentPlayer && (
                         <span className="ml-2 text-xs text-cyan-600 font-normal">{t("leaderboard.youLabel")}</span>
                       )}
                     </span>
-                    <span className="text-xs text-gray-600 sm:hidden">{player.stages} {t("leaderboard.stagesLabel")} · {player.badges} {t("leaderboard.badgesLabel")}</span>
+                    {player.lastStageTitle ? (
+                      <span className="text-[10px] text-gray-600 truncate block">
+                        ▸ {player.lastStageTitle}
+                        {player.lastStageClears ? <span className="text-gray-700"> · {player.lastStageClears} cleared</span> : null}
+                      </span>
+                    ) : (
+                      <span className="text-xs text-gray-600 sm:hidden">{player.stages} {t("leaderboard.stagesLabel")} · {player.badges} {t("leaderboard.badgesLabel")}</span>
+                    )}
                     <RankLabel xp={player.xp} />
                   </div>
                 </div>
@@ -547,6 +557,44 @@ export default function LeaderboardPage() {
             ))
           )}
         </div>
+
+        {/* ── Frontier: First Bloods + your pioneered stages ── */}
+        {frontier && (frontier.feed.length > 0 || frontier.pioneerCount > 0) && (
+          <div className="mt-8 grid md:grid-cols-2 gap-4">
+            <div className="bg-white/2 border border-white/8 rounded-xl p-5">
+              <h3 className="text-sm font-bold text-white mb-1">🏴 First Bloods</h3>
+              <p className="text-xs text-gray-600 mb-3">The latest stages a pioneer cleared first. Beat someone to a stage and the claim is yours — forever.</p>
+              <div className="space-y-1.5 max-h-64 overflow-y-auto">
+                {frontier.feed.length === 0 ? (
+                  <p className="text-xs text-gray-700 italic">No first bloods yet — go claim one.</p>
+                ) : frontier.feed.map((f, i) => (
+                  <div key={i} className="flex items-center gap-2 text-xs">
+                    <span>🏴</span>
+                    <span className="text-rose-300 font-semibold flex-shrink-0">{f.username}</span>
+                    <span className="text-gray-600 flex-shrink-0">first cleared</span>
+                    <Link href={`/stages/${f.stageId}`} className="text-gray-300 hover:text-cyan-400 truncate">{f.stageTitle}</Link>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="bg-white/2 border border-white/8 rounded-xl p-5">
+              <h3 className="text-sm font-bold text-white mb-1">🗺️ Your Frontier</h3>
+              <p className="text-xs text-gray-600 mb-3">
+                <span className="text-white font-semibold">{frontier.pioneerCount}</span> pioneered · <span className="text-rose-300">{frontier.uncontestedCount} still uncontested</span>
+              </p>
+              <div className="space-y-1.5 max-h-64 overflow-y-auto">
+                {frontier.holdings.length === 0 ? (
+                  <p className="text-xs text-gray-700 italic">You haven&apos;t pioneered any stages yet — clear something nobody else has.</p>
+                ) : frontier.holdings.map((h) => (
+                  <Link key={h.stageId} href={`/stages/${h.stageId}`} className="flex items-center justify-between gap-2 text-xs hover:bg-white/3 rounded px-1.5 py-1">
+                    <span className="text-gray-300 truncate">{h.uncontested ? "🏴" : "🚩"} {h.stageTitle}</span>
+                    <span className={`font-mono flex-shrink-0 ${h.uncontested ? "text-rose-300" : "text-gray-600"}`}>{h.uncontested ? "uncontested" : `${h.clears} clears`}</span>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
 
         <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
           <Link
