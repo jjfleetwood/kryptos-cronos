@@ -15,6 +15,7 @@ import { getDomainsForStage } from "@kryptos/core/cyberops-domains";
 import { getCertBadgesForStage } from "@kryptos/core/cert-domains";
 import { useLocale } from "@/contexts/LocaleContext";
 import { STAGE_IMAGES, TIMELINE_IMAGES } from "@/lib/stage-images";
+import StageFrontierBanner from "./StageFrontierBanner";
 
 // Local, always-available branded placeholder. External image hosts (Wikimedia)
 // now reject on-demand thumbnail hotlinking, so every stage image falls back to
@@ -308,6 +309,8 @@ export default function StageInfo({
     >
       <div className="max-w-3xl mx-auto">
         <BackLink href={backHref} />
+
+        <StageFrontierBanner stageId={stage.id} />
 
         {/* ── Hero ──────────────────────────────────────────────────────────── */}
         <div className="mb-10">

@@ -269,6 +269,8 @@ export async function awardStageInRedis(
       penalty: newPenalty,
       bonus: totalBonus,
       cleanSolves: newClean,
+      // Last stage cleared — surfaced next to the player on the leaderboard.
+      ...(isNew ? { lastStageId: stageId, lastStageAt: Date.now() } : {}),
     }),
     redis.hset(streakKey, {
       current,
@@ -300,6 +302,21 @@ export async function awardStageInRedis(
     }
     // Quests — advance daily/weekly objective counters (clean solve = score ≥ 80).
     await bumpQuestCounters(username, { stages: 1, xp: baseDelta, clean: bonusXp > 0 ? 1 : 0 });
+
+    // ── Frontier ── global per-stage clear count + First Blood / Pioneer.
+    // The clear counter only counts real award-path completions (bots don't
+    // touch it), so being the FIRST to clear a stage is a genuine human feat.
+    const lower = username.toLowerCase();
+    const clears = Number(await redis.incr(`stage:clears:${stageId}`));
+    if (clears === 1) {
+      // First Blood — claim the stage. Pioneer is permanent (set-once).
+      const claimed = await redis.set(`stage:pioneer:${stageId}`, lower, { nx: true });
+      if (claimed) {
+        await redis.sadd(`pioneer:${lower}`, stageId); // this user's pioneered stages
+        await redis.lpush("frontier:feed", JSON.stringify({ stageId, username: lower, ts: Date.now() }));
+        await redis.ltrim("frontier:feed", 0, 49); // keep the last 50 first-bloods
+      }
+    }
   }
 
   // Fire-and-forget stage completion email (only for new completions)
