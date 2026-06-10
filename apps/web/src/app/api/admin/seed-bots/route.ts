@@ -5,6 +5,7 @@ import { logAdminAction } from "@/lib/audit";
 import { stagesMeta as stages } from "@kryptos/core/stages-meta";
 import { ECONOMY_VERSION } from "@/lib/economy";
 import { addLeagueXp, weekMondayKey } from "@/lib/leagues";
+import { checkStageMilestones, checkXpMilestones, checkStreakMilestones } from "@kryptos/core/milestone-badges";
 
 /** POST /api/admin/seed-bots
  *  Admin-only. Seeds a fixed roster of demo "players" so the leaderboard + leagues
@@ -84,8 +85,17 @@ export async function POST(req: NextRequest) {
     // Roughly proportion stages to XP (~175 XP/stage), capped at the catalog.
     const stageCount = Math.max(1, Math.min(stages.length, Math.round(xp / 175)));
     const start = h % Math.max(1, stages.length - stageCount);
-    const owned = stages.slice(start, start + stageCount).map((s) => s.id);
+    const ownedStages = stages.slice(start, start + stageCount);
+    const owned = ownedStages.map((s) => s.id);
     const lastStage = stages[(start + stageCount - 1) % stages.length];
+    // Believable badges: milestone badges earned by the bot's stats + a handful
+    // of the stage-completion badges from the stages it has "cleared".
+    const badges = [
+      ...checkStageMilestones(stageCount),
+      ...checkXpMilestones(xp),
+      ...checkStreakMilestones(streak),
+      ...ownedStages.slice(0, 6 + (h % 6)).map((s) => s.badge.id),
+    ];
     // Spread last-active over the past ~3 days so the recency boards have bots too.
     const lastActive = now - (h % (3 * 86_400_000));
 
@@ -93,7 +103,7 @@ export async function POST(req: NextRequest) {
       xp,
       gv: ECONOMY_VERSION,
       stages: JSON.stringify(owned),
-      badges: JSON.stringify([]),
+      badges: JSON.stringify(badges),
       lastActive,
       bonus: 0,
       penalty: 0,

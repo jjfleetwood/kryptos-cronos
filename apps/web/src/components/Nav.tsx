@@ -93,9 +93,7 @@ export default function Nav() {
           {[
             { href: "/stages", label: t("nav.stages") },
             { href: "/certs", label: t("nav.certs", "Certs") },
-            { href: "/journey", label: t("nav.journey") },
             { href: "/leaderboard", label: t("nav.leaderboard") },
-            { href: "/explore", label: t("nav.explore", "Explore") },
           ].map(({ href, label }) => (
             <Link
               key={href}
@@ -119,6 +117,9 @@ export default function Nav() {
               </Link>
               <Link href="/journey" title={t("nav.journey")} className="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-white/8 transition-colors text-base">
                 🗺️
+              </Link>
+              <Link href="/explore" title={t("nav.explore", "Explore")} className="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-white/8 transition-colors text-base">
+                🧭
               </Link>
               <Link href="/account" title="Account & Billing" className="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-white/8 transition-colors text-base">
                 ⚙️
