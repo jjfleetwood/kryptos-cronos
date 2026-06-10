@@ -68,8 +68,10 @@ function sh(cmd) {
 }
 
 function applyFixes() {
-  if (sh("git status --porcelain")) {
-    console.error("✗ --fix requires a clean working tree. Aborting.");
+  // -uno: untracked files (e.g. this agent's own .tmp_ transpile dir) don't
+  // block the run — only modified tracked files do; we stage core/src only.
+  if (sh("git status --porcelain -uno")) {
+    console.error("✗ --fix requires a clean working tree (tracked files). Aborting.");
     process.exitCode = 1;
     return null;
   }
