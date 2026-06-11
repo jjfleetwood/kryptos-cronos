@@ -1,0 +1,120 @@
+name: Claude Subagents (nightly)
+
+# Runs the supervised Claude Code subagents (.claude/agents/*.md) on a nightly
+# rotation — the judgement-heavy half of the fleet that the deterministic scripts
+# can't do. They are report-only or PR-only by their definitions and NEVER merge,
+# so a human still approves anything that reaches master.
+#
+# DORMANT until you set the repo secret ANTHROPIC_API_KEY (billed — each run spends
+# Claude API credits). Without it the job logs a skip and exits clean.
+#
+# Setup (one-time):
+#   - Secret  ANTHROPIC_API_KEY  (turns it on; billed)
+#   - Secrets ADMIN_SECRET + ADMIN_USERNAME + AGENT_REPORT_TOKEN already exist for
+#     the board; the default GITHUB_TOKEN opens PRs.
+#   - Test: Actions → this workflow → Run workflow, pick an agent.
+#
+# Rotation (by ISO weekday): Mon audit · Tue content-review · Wed ux · Thu
+# code-review · Fri docs+drift deep · Sat/Sun audit. Override via workflow_dispatch.
+
+on:
+  schedule:
+    - cron: "30 7 * * *" # 07:30 UTC, just after the deterministic report fleet
+  workflow_dispatch:
+    inputs:
+      agent:
+        description: "Subagent to run"
+        type: choice
+        default: audit-agent
+        options: [audit-agent, content-reviewer, ux-reviewer, code-reviewer, docs-agent, drift-agent]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: nightly-subagents
+  cancel-in-progress: false
+
+jobs:
+  subagent:
+    name: Run one supervised subagent
+    runs-on: ubuntu-latest
+    env:
+      ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+      AGENT_REPORT_URL: ${{ vars.AGENT_REPORT_URL || 'https://www.kryptoscronos.com' }}
+      AGENT_REPORT_TOKEN: ${{ secrets.AGENT_REPORT_TOKEN }}
+      ADMIN_SECRET: ${{ secrets.ADMIN_SECRET }}
+      ADMIN_USERNAME: ${{ secrets.ADMIN_USERNAME }}
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Gate on API key (dormant without it)
+        id: gate
+        run: |
+          if [ -z "$ANTHROPIC_API_KEY" ]; then
+            echo "No ANTHROPIC_API_KEY set — Claude subagents are dormant. Skipping."
+            echo "run=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "run=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Setup Node.js
+        if: steps.gate.outputs.run == 'true'
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: package-lock.json
+
+      - name: Install dependencies
+        if: steps.gate.outputs.run == 'true'
+        run: npm ci
+
+      - name: Git identity
+        if: steps.gate.outputs.run == 'true'
+        run: |
+          git config user.name "kryptos-subagent[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Install Claude Code
+        if: steps.gate.outputs.run == 'true'
+        run: npm i -g @anthropic-ai/claude-code
+
+      - name: Pick tonight's subagent
+        if: steps.gate.outputs.run == 'true'
+        id: pick
+        run: |
+          if [ -n "${{ github.event.inputs.agent }}" ]; then
+            echo "agent=${{ github.event.inputs.agent }}" >> "$GITHUB_OUTPUT"
+          else
+            case "$(date -u +%u)" in
+              1) A=audit-agent ;;
+              2) A=content-reviewer ;;
+              3) A=ux-reviewer ;;
+              4) A=code-reviewer ;;
+              5) A=docs-agent ;;
+              *) A=audit-agent ;;
+            esac
+            echo "agent=$A" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Run subagent (headless, bounded tool allowlist)
+        if: steps.gate.outputs.run == 'true'
+        continue-on-error: true
+        run: |
+          A="${{ steps.pick.outputs.agent }}"
+          echo "Running subagent: $A"
+          # Explicit allowlist instead of --dangerously-skip-permissions: the agent
+          # can read, analyze, edit on a branch, and open a PR via gh — but Bash is
+          # scoped to git/gh/node/npm/npx (no arbitrary shell) and `gh pr merge` is
+          # denied, so it can never merge. Same human-merge gate as the auto-agent.
+          claude -p "Run tonight's supervised sweep using the '$A' subagent defined in .claude/agents/$A.md. Follow its definition exactly. It is report-only or PR-only: file findings to the Development board and/or open ONE focused branch + PR. You must NEVER merge, never push to master, and stay inside the subagent's documented scope and forbidden zones. If there is nothing worth filing or fixing, say so and stop." \
+            --permission-mode acceptEdits \
+            --allowedTools "Read,Glob,Grep,Edit,Write,WebFetch,Bash(git add:*),Bash(git checkout:*),Bash(git commit:*),Bash(git push:*),Bash(git status:*),Bash(git branch:*),Bash(git diff:*),Bash(gh pr create:*),Bash(node:*),Bash(npx:*),Bash(npm run:*)" \
+            --disallowedTools "Bash(gh pr merge:*),Bash(git merge:*),Bash(git push origin master:*)" \
+            --max-turns 60 \
+            2>&1 | tail -80
