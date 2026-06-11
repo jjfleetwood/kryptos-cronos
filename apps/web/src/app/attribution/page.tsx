@@ -293,6 +293,29 @@ const COMPUTING_PHYSICS_CREDITS = [
   { stage: "poh-10", device: "Data-center cold aisle", file: "poh-10.jpg", author: "123net", license: "CC BY-SA 3.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/", url: "https://commons.wikimedia.org/wiki/File:123Net_Data_Center_(DC2).jpg" },
 ];
 
+// Per-file credits for the French Basics imagery (Wikimedia Commons + public domain).
+const FRENCH_IMAGE_CREDITS = [
+  { stage: "french-01", device: "Parisian café terrace (Place Colette)", file: "french-01.jpg", author: "zoetnet", license: "CC BY 2.0", licenseUrl: "https://creativecommons.org/licenses/by/2.0/", url: "https://commons.wikimedia.org/wiki/File:Cafe,_Place_Colette,_Paris_2010.jpg" },
+  { stage: "french-02", device: "Coffee & croissants", file: "french-02.jpg", author: "Andy Li", license: "CC0", licenseUrl: "https://creativecommons.org/publicdomain/zero/1.0/", url: "https://commons.wikimedia.org/wiki/File:Breakfast_in_Le_Grand_St_Marc,_Rouen_2025-03-23.jpg" },
+  { stage: "french-03", device: "French bistro interior", file: "french-03.jpg", author: "Véronique PAGNIER", license: "CC BY-SA 3.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/", url: "https://commons.wikimedia.org/wiki/File:Bistrot_St_Trinit.JPG" },
+  { stage: "french-04", device: "French street market", file: "french-04.jpg", author: "Joenomias Menno De Jong", license: "CC0", licenseUrl: "https://creativecommons.org/publicdomain/zero/1.0/", url: "https://commons.wikimedia.org/wiki/File:Greengrocer_At_A_Street_Market_In_France_Dordogne_(242326619).jpeg" },
+  { stage: "french-05", device: "Paris Métro entrance (Guimard)", file: "french-05.jpg", author: "Blubadger", license: "CC BY-SA 3.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/", url: "https://commons.wikimedia.org/wiki/File:Station-metro-paris-entrance-guimard.jpg" },
+  { stage: "french-06", device: "Euro banknote (€5)", file: "french-06.jpg", author: "Robert Kalina (ECB)", license: "CC BY-SA 3.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/", url: "https://commons.wikimedia.org/wiki/File:EUR_5_reverse_(2002_issue).jpg" },
+  { stage: "french-07", device: "Paris Métro train & platform", file: "french-07.jpg", author: "Fabio Venni", license: "CC BY-SA 2.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/2.0/", url: "https://commons.wikimedia.org/wiki/File:Paris_Metro_Le_pont_de_Lavallois_Becon.jpg" },
+  { stage: "french-08", device: "The Louvre & glass pyramid at night", file: "french-08.jpg", author: "Benh Lieu Song", license: "CC BY 2.5", licenseUrl: "https://creativecommons.org/licenses/by/2.5/", url: "https://commons.wikimedia.org/wiki/File:Cour_Napol%C3%A9on_at_night_-_Louvre.jpg" },
+  { stage: "french-09", device: "French Red Cross ambulance", file: "french-09.jpg", author: "Kevin.B", license: "CC BY-SA 3.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/", url: "https://commons.wikimedia.org/wiki/File:Peugeot_Boxer_Ambulance_Croix-Rouge_Strasbourg.jpg" },
+  { stage: "french-10", device: "Boulevard Montmartre (Pissarro)", file: "french-10.jpg", author: "Camille Pissarro", license: "Public domain", licenseUrl: "https://commons.wikimedia.org/wiki/Commons:Public_domain", url: "https://commons.wikimedia.org/wiki/File:The_Boulevard_Montmartre_on_a_Winter_Morning.JPG" },
+  { stage: "french-11", device: "Boulangerie-pâtisserie shopfront", file: "french-11.jpg", author: "Fritz Geller-Grimm", license: "CC BY-SA 2.5", licenseUrl: "https://creativecommons.org/licenses/by-sa/2.5/", url: "https://commons.wikimedia.org/wiki/File:Montpellier_fg09.jpg" },
+  { stage: "french-12", device: "Boeuf bourguignon", file: "french-12.jpg", author: "DC", license: "CC BY 3.0", licenseUrl: "https://creativecommons.org/licenses/by/3.0/", url: "https://commons.wikimedia.org/wiki/File:Boeuf_bourguignon_servi_avec_des_p%C3%A2tes.jpg" },
+  { stage: "french-13", device: "Champagne village & vineyards", file: "french-13.jpg", author: "Phillip Capper", license: "CC BY 2.0", licenseUrl: "https://creativecommons.org/licenses/by/2.0/", url: "https://commons.wikimedia.org/wiki/File:Village_and_vineyards_in_Champagne.jpg" },
+  { stage: "french-14", device: "French pharmacy (green cross)", file: "french-14.jpg", author: "Hermann Luyken", license: "CC BY-SA 3.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/", url: "https://commons.wikimedia.org/wiki/File:2010.05.29.160438_Pharmacie_Boucherie_Rue_Sainte_Odile_Obernai_FR.jpg" },
+  { stage: "french-15", device: "Art Deco hotel salon (1931)", file: "french-15.jpg", author: "Unknown (public domain)", license: "Public domain", licenseUrl: "https://commons.wikimedia.org/wiki/Commons:Public_domain", url: "https://commons.wikimedia.org/wiki/File:Hotel_Nogar%C3%B3_(living_room)_1931.JPG" },
+  { stage: "french-16", device: "Musée d'Orsay & its clocks", file: "french-16.jpg", author: "Sanchezn", license: "CC BY-SA 3.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/", url: "https://commons.wikimedia.org/wiki/File:MuseeDOrsay.jpg" },
+  { stage: "french-17", device: "Parisians in the rain (Boilly)", file: "french-17.jpg", author: "Louis-Léopold Boilly", license: "Public domain", licenseUrl: "https://commons.wikimedia.org/wiki/Commons:Public_domain", url: "https://commons.wikimedia.org/wiki/File:Passer-payez-Boilly-ca1803.jpg" },
+  { stage: "french-18", device: "Minitel terminal", file: "french-18.jpg", author: "Tieum", license: "CC BY-SA 3.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/", url: "https://commons.wikimedia.org/wiki/File:Minitel1.jpg" },
+  { stage: "french-20", device: "Paris from the Eiffel Tower (Champ de Mars)", file: "french-20.jpg", author: "Diliff (edit Fir0002)", license: "CC BY 2.5", licenseUrl: "https://creativecommons.org/licenses/by/2.5/", url: "https://commons.wikimedia.org/wiki/File:Champ_de_Mars_from_the_Eiffel_Tower_-_July_2006_edit.jpg" },
+];
+
 // Per-file credits for the Tapestry imagery (Wikimedia Commons + public domain museum works).
 const TAPESTRY_IMAGE_CREDITS = [
   { stage: "tapestry-01", device: "Bayeux Tapestry (Halley's Comet & Harold)", file: "tapestry-01.jpg", author: "Myrabella", license: "Public domain", licenseUrl: "https://commons.wikimedia.org/wiki/Commons:Public_domain", url: "https://commons.wikimedia.org/wiki/File:Bayeux_Tapestry_32-33_comet_Halley_Harold.jpg" },
@@ -570,6 +593,28 @@ export default function AttributionPage() {
             {OT_IMAGE_CREDITS.map((c) => (
               <li key={c.stage} className="text-xs text-gray-400 flex flex-wrap items-center gap-x-2 gap-y-0.5">
                 <span className="text-gray-600 font-mono w-10 flex-shrink-0">OT{c.stage}</span>
+                <span className="text-gray-300">{c.device}</span>
+                <span className="text-gray-700">·</span>
+                <a href={c.url} target="_blank" rel="noopener noreferrer" className="text-cyan-500 hover:text-cyan-400 transition-colors">{c.file}</a>
+                <span className="text-gray-700">·</span>
+                <span>© {c.author}</span>
+                <a href={c.licenseUrl} target="_blank" rel="noopener noreferrer" className="text-amber-400 hover:text-amber-300 transition-colors">{c.license} ↗</a>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="mt-12">
+          <h2 className="text-white font-bold text-lg mb-1">French Basics — imagery</h2>
+          <p className="text-gray-500 text-xs mb-4 leading-relaxed">
+            Real Paris and France scenes matched to each lesson — café terraces, street markets, the
+            Métro, the Louvre, a boulangerie, the Champagne vineyards, a Minitel — from Wikimedia Commons
+            and the public domain, self-hosted and credited below.
+          </p>
+          <ul className="space-y-2 rounded-2xl border border-white/8 p-5" style={{ background: "rgba(255,255,255,0.02)" }}>
+            {FRENCH_IMAGE_CREDITS.map((c) => (
+              <li key={c.stage} className="text-xs text-gray-400 flex flex-wrap items-center gap-x-2 gap-y-0.5">
+                <span className="text-gray-600 font-mono w-16 flex-shrink-0">{c.stage}</span>
                 <span className="text-gray-300">{c.device}</span>
                 <span className="text-gray-700">·</span>
                 <a href={c.url} target="_blank" rel="noopener noreferrer" className="text-cyan-500 hover:text-cyan-400 transition-colors">{c.file}</a>
