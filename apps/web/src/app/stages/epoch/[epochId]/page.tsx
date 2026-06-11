@@ -152,6 +152,12 @@ export default function EpochPage() {
           </Link>
           <span className="text-gray-700">/</span>
           <span className="text-gray-400">{epoch.name}</span>
+          <Link
+            href={`/decks?epoch=${epochId}`}
+            className="ml-auto text-[11px] font-mono text-fuchsia-400 hover:text-fuchsia-300 transition-colors whitespace-nowrap border border-fuchsia-500/30 px-2.5 py-1 rounded-lg"
+          >
+            📊 Generate deck
+          </Link>
         </div>
 
         {/* Epoch hero */}

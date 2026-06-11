@@ -4,12 +4,21 @@ import { useState } from "react";
 import Link from "next/link";
 import { epochs } from "@kryptos/core/stages-meta";
 
-// Phase 1 lens roster (mirrors LENSES in lib/pptx-lens.ts). More lenses to come.
-const LENSES = [{ id: "tech-audit", name: "Technology Audit" }];
+// Lens roster (mirrors LENSES in lib/pptx-lens.ts).
+const LENSES = [
+  { id: "tech-audit", name: "Technology Audit" },
+  { id: "exec-board", name: "Executive / Board" },
+  { id: "training", name: "Training Module" },
+  { id: "sales", name: "Capability Overview" },
+];
 
 export default function DecksPage() {
   const sorted = [...epochs].sort((a, b) => a.name.localeCompare(b.name));
-  const [epochId, setEpochId] = useState(sorted[0]?.id ?? "");
+  // Preselect an epoch from ?epoch=<id> (e.g. the epoch-page "Generate deck" button).
+  const preselect = typeof window !== "undefined" ? new URLSearchParams(window.location.search).get("epoch") : null;
+  const [epochId, setEpochId] = useState(
+    preselect && sorted.some((e) => e.id === preselect) ? preselect : sorted[0]?.id ?? "",
+  );
   const [lens, setLens] = useState("tech-audit");
   const [busy, setBusy] = useState(false);
   const [err, setErr] = useState<string | null>(null);
