@@ -1,13 +1,25 @@
-"use client";
-
-// Admin-only render of the Agent Fleet Overview (docs/AGENTS_OVERVIEW.md). Unlike
-// the public Agent Risk Audit Guide, this is internal ops, so it's fetched through
-// the admin-gated /api/docs route — a non-admin gets 401 and is bounced to /stages.
-import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import fs from "fs";
+import path from "path";
 import Link from "next/link";
+import type { Metadata } from "next";
 import ReactMarkdown, { type Components } from "react-markdown";
 import remarkGfm from "remark-gfm";
+
+export const metadata: Metadata = {
+  title: "Agent Fleet Overview — Kryptós CronOS",
+  description:
+    "Every automated agent on Kryptós CronOS: the nightly report fleet, the hourly programming agent, the tier method, the Claude Code subagents, and the never-merge rule they all share.",
+};
+
+// Public render of the Agent Fleet Overview (mirrors the Agent Risk Audit Guide).
+// The route is traced to the markdown file in next.config.ts.
+function loadGuide(): string {
+  try {
+    return fs.readFileSync(path.join(process.cwd(), "secured-docs", "AGENTS_OVERVIEW.md"), "utf-8");
+  } catch {
+    return "# Agent Fleet Overview\n\nThe overview is temporarily unavailable.";
+  }
+}
 
 const components: Components = {
   h1: ({ children }) => <h1 className="text-3xl font-bold text-white mb-6 mt-2 leading-tight">{children}</h1>,
@@ -51,19 +63,7 @@ const components: Components = {
 };
 
 export default function AgentFleetPage() {
-  const router = useRouter();
-  const [markdown, setMarkdown] = useState<string | null>(null);
-
-  useEffect(() => {
-    fetch("/api/docs/AGENTS_OVERVIEW.md")
-      .then((r) => {
-        if (r.status === 401) { router.replace("/stages"); return null; }
-        return r.ok ? r.text() : null;
-      })
-      .then((text) => { if (text != null) setMarkdown(text); })
-      .catch(() => router.replace("/stages"));
-  }, [router]);
-
+  const markdown = loadGuide();
   return (
     <div className="min-h-screen px-4 py-16" style={{ background: "linear-gradient(135deg, #0d1117 0%, #0f2027 50%, #1a1a2e 100%)" }}>
       <div className="max-w-3xl mx-auto">
@@ -71,16 +71,14 @@ export default function AgentFleetPage() {
         <div className="mt-6 mb-8 flex items-center gap-3">
           <span className="text-3xl flex-shrink-0">🛰️</span>
           <div>
-            <p className="text-[11px] font-mono font-bold text-emerald-400 uppercase tracking-widest">Internal · Admin only</p>
+            <p className="text-[11px] font-mono font-bold text-emerald-400 uppercase tracking-widest">Behind the scenes</p>
             <p className="text-gray-500 text-sm">Every automated agent on Kryptós CronOS — what runs, when, and the rules they share</p>
           </div>
         </div>
         <article className="rounded-2xl border border-white/10 bg-white/2 p-6 sm:p-8">
-          {markdown == null ? (
-            <p className="text-gray-500 text-sm">Loading…</p>
-          ) : (
-            <ReactMarkdown remarkPlugins={[remarkGfm]} components={components}>{markdown}</ReactMarkdown>
-          )}
+          <ReactMarkdown remarkPlugins={[remarkGfm]} components={components}>
+            {markdown}
+          </ReactMarkdown>
         </article>
       </div>
     </div>

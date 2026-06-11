@@ -16,6 +16,7 @@ const nextConfig: NextConfig = {
     "/api/docs/(.*)": ["./secured-docs/**"],
     // The public Agent Risk Audit Guide renders the same markdown server-side.
     "/guides/agent-risk-audit": ["./secured-docs/AGENT_RISK_AUDIT_GUIDE.md"],
+    "/guides/agent-fleet": ["./secured-docs/AGENTS_OVERVIEW.md"],
   },
   // Versioned API namespace for clients that can't be force-updated (the mobile
   // app pins to /api/v1). /api/v1/* serves the same handlers as /api/* today; a
