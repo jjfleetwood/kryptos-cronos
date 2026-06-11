@@ -119,12 +119,15 @@ export async function POST(req: NextRequest) {
     const weekXp = 50 + (h % 400);
     await redis.zadd(week, { score: weekXp, member: name });
     if (now - lastActive < 86_400_000) await redis.zadd(day, { score: 20 + (h % 120), member: name });
-    // Place the bot in a weekly league cohort, spread across divisions by XP rank
-    // (BOTS is sorted high→low) so the whole league ladder is populated, not just
-    // Bronze. Requires reset:true to re-home an existing bot into a new division.
-    const perDiv = Math.ceil(BOTS.length / DIVISIONS.length);
-    const divIdx = Math.max(0, Math.min(DIVISIONS.length - 1, DIVISIONS.length - 1 - Math.floor(i / perDiv)));
-    await redis.hset(`league:user:${name}`, { division: DIVISIONS[divIdx].id });
+    // Place the bot in a weekly league cohort as a realistic PYRAMID — most bots
+    // in the lower divisions (where new players start, so a fresh user's Bronze
+    // cohort is alive) tapering to a lone star at the top. BOTS is sorted high→low
+    // lifetime XP, so the strongest bots take the sparse top tiers. (reset:true
+    // re-homes existing bots.)
+    const WEIGHTS: Record<string, number> = { obsidian: 1, diamond: 3, platinum: 5, gold: 6, silver: 7, bronze: 10 };
+    const divSeqTop = [...DIVISIONS].reverse().flatMap((d) => Array(WEIGHTS[d.id] ?? 4).fill(d.id) as string[]);
+    const botDiv = divSeqTop[Math.min(i, divSeqTop.length - 1)] ?? DIVISIONS[0].id;
+    await redis.hset(`league:user:${name}`, { division: botDiv });
     await addLeagueXp(name, weekXp, weekMondayKey());
     await redis.sadd("bot:names", name);
     seeded++;
