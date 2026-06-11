@@ -1,0 +1,74 @@
+name: Programming Agent (auto, hourly)
+
+# The executing half of the tier method: every hour it reviews the Development
+# scrum board and, for the low-risk AUTO tier ONLY (deterministic + tsc-gated
+# fixes), it runs the fix, opens a branch + PR via gh, and moves the card to
+# `review`. It NEVER merges and never touches HUMAN-tier / judgement work, so a
+# human still approves every change before it reaches master (and prod).
+#
+# Setup (one-time):
+#   1. GitHub → Settings → Secrets and variables → Actions:
+#        - Secret  ADMIN_SECRET    = the prod ADMIN_SECRET (HMAC for the board API)
+#        - Secret  ADMIN_USERNAME  = the prod admin username
+#   2. Pause without editing this file: set repo Variable AUTO_AGENT_ENABLED = false.
+#   3. Test first: Actions → this workflow → Run workflow (workflow_dispatch).
+#
+# Cadence note: GitHub cron can lag a few minutes under load and skips a tick if a
+# run is still going; the agent is idempotent (handled cards leave the AUTO sweep),
+# so a missed or doubled tick is harmless.
+
+on:
+  schedule:
+    - cron: "0 * * * *" # top of every hour (UTC)
+  workflow_dispatch:
+    inputs:
+      execute:
+        description: "Open PRs (true) or dry-run classify only (false)"
+        type: boolean
+        default: true
+
+permissions:
+  contents: write
+  pull-requests: write
+
+# Don't let a long run overlap the next hourly tick.
+concurrency:
+  group: auto-agent
+  cancel-in-progress: false
+
+jobs:
+  auto:
+    name: Review board → auto-fix low-risk items
+    runs-on: ubuntu-latest
+    env:
+      ADMIN_SECRET: ${{ secrets.ADMIN_SECRET }}
+      ADMIN_USERNAME: ${{ secrets.ADMIN_USERNAME }}
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      AUTO_AGENT_ENABLED: ${{ vars.AUTO_AGENT_ENABLED || 'true' }}
+    defaults:
+      run:
+        working-directory: apps/web
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # full history so the agent can branch + push
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: package-lock.json
+
+      - name: Install dependencies
+        working-directory: .
+        run: npm ci
+
+      - name: Git identity
+        working-directory: .
+        run: |
+          git config user.name "kryptos-auto-agent[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Programming agent (auto mode)
+        run: node scripts/auto-agent.mjs ${{ (github.event_name != 'workflow_dispatch' || inputs.execute) && '--execute' || '' }}
