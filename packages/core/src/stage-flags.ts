@@ -235,6 +235,51 @@ export const stageFlags: Record<string, string> = {
   "stage-m24": "FLAG{CVE_2023_20109_GDOI_MASS_RCE}",
   "stage-m25": "FLAG{CVE_2018_0296_ASA_PATH_D0S}",
 
+  // ── Cisco SecOps / Advanced (cisco-3/4/5.ts) ─────────────────────────────────
+  // These CTF stages assemble their flag from 4 in-terminal fragments; the value
+  // here is byte-identical to that assembly (previously unregistered → unsolvable).
+  "stage-m26": "FLAG{ftd_cli_inj_root_c2022}",
+  "stage-m28": "FLAG{saml_xsw_umbrella_admin_9_6}",
+  "stage-m30": "FLAG{imc_rest_inject_root_1896}",
+  "stage-m34": "FLAG{iosxe_http_priv15_10_0}",
+  "stage-m36": "FLAG{arcane_door_line_runner_2024}",
+  "stage-m37": "FLAG{smart_install_rce_9_8}",
+  "stage-m39": "FLAG{fp_frag3_evasion_fixed}",
+  "stage-m41": "FLAG{ftd_ssl_dos_lockout_patched}",
+  "stage-m42": "FLAG{xdr_pivot_lateral_hunt_2024}",
+  "stage-m44": "FLAG{dnac_api_enum_boundary_2024}",
+  "stage-m46": "FLAG{cyberops_killchain_powershell_contained}",
+  "stage-m48": "FLAG{silicon_one_macsec_secured}",
+  "stage-m50": "FLAG{quantum_safe_mlkem_2024}",
+
+  // ── Tech Audit: Continuous Monitoring 2.0 (tech-audit-4.ts) ──────────────────
+  // Fragment-assembled CTF flags, previously unregistered → unsolvable.
+  "audit-cm01": "FLAG{1SCM_C0NT1NU0US_V1S1B1L1TY}",
+  "audit-cm02": "FLAG{N3XT_G3N_S13M_D3T3CT10N}",
+  "audit-cm03": "FLAG{U3BA_R1SK_CH41N_D3T3CT3D}",
+  "audit-cm04": "FLAG{NDR_B34C0N_C4PT4IN_HOOK}",
+  "audit-cm05": "FLAG{C5PM_M15C0NF1G_4TT4CK_P4TH}",
+  "audit-cm06": "FLAG{ST1X_T4X11_1NT3L_SH4R1NG}",
+  "audit-cm07": "FLAG{S04R_4UT0_R3SP0NS3_PL4YB00K}",
+  "audit-cm08": "FLAG{D3C3PT10N_H0N3YT0K3N_TR4P_F1R3D}",
+  "audit-cm09": "FLAG{Z3R0_TR4ST_N3V3R_VER1FY}",
+  "audit-cm10": "FLAG{XDR_C0RR3L4T3D_1NC1D3NT}",
+  "audit-cm11": "FLAG{C0MPL14NC3_C0NT1NU0US_4UD1T}",
+  "audit-cm12": "FLAG{M4TUR1TY_M3TR1CS_S0C_L3V3L5}",
+
+  // ── Quantum Era: Risk Management (quantum-4.ts) ──────────────────────────────
+  // Fragment-assembled CTF flags, previously unregistered → unsolvable.
+  "quantum-d01": "FLAG{CBOM_INVENTORY_V1_ASSETS}",
+  "quantum-d02": "FLAG{HNDL_HARVEST_NOW_DECRYPT_LATER}",
+  "quantum-d03": "FLAG{FIPS203_ML_KEM_768_QUANTUM_SAFE}",
+  "quantum-d04": "FLAG{CNSA2_MANDATE_NSS_COMPLIANT}",
+  "quantum-d05": "FLAG{PQC_ROADMAP_PHASE_PLAN_EXECUTE}",
+  "quantum-d06": "FLAG{SECTOR_QRISK_MATRIX_FINANCIAL}",
+  "quantum-d07": "FLAG{BOARD_QRISK_MATERIAL_DISCLOSE}",
+  "quantum-d08": "FLAG{HYBRID_CLASSICAL_PQC_PARALLEL}",
+  "quantum-d09": "FLAG{QSAFE_ARCH_AGILE_PKI_DESIGN}",
+  "quantum-d10": "FLAG{SUPPLY_CHAIN_QUANTUM_RISK_MANAGED}",
+
   // ── Our First Journey 1 (first-journey.ts) ─────────────────────────────────────
   "bt-01": "FLAG{N3TW0RK_1S_JUST_N0D3S_AND_P4THS}",
   "bt-02": "FLAG{1P_4DDR3SS_R0UT3S_EV3RY_P4CK3T}",
