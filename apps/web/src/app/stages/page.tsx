@@ -64,24 +64,10 @@ export default function StagesPage() {
 
         {/* Header */}
         <div className="mb-8">
-          <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center mb-4">
             <Link href="/" className="text-gray-500 hover:text-cyan-400 text-sm transition-colors">
               {t("stages.backToHome")}
             </Link>
-            <div className="flex items-center gap-4">
-              <Link href="/quests" className="text-sm text-emerald-400 hover:text-emerald-300 transition-colors flex items-center gap-1">
-                🎯 Quests
-              </Link>
-              <Link href="/achievements" className="text-sm text-yellow-400 hover:text-yellow-300 transition-colors flex items-center gap-1">
-                🏅 <span className="hidden sm:inline">Achievements</span>
-              </Link>
-              <Link href="/leagues" className="text-sm text-amber-400 hover:text-amber-300 transition-colors flex items-center gap-1">
-                ⚔️ Leagues
-              </Link>
-              <Link href="/leaderboard" className="text-sm text-purple-400 hover:text-purple-300 transition-colors flex items-center gap-1">
-                🏆 {t("nav.leaderboard")}
-              </Link>
-            </div>
           </div>
           <h1 className="text-4xl font-bold text-white mb-2">{t("stages.title")}</h1>
           <p className="text-gray-400">{t("stages.subtitle")}</p>
