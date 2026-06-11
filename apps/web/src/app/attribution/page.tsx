@@ -293,6 +293,27 @@ const COMPUTING_PHYSICS_CREDITS = [
   { stage: "poh-10", device: "Data-center cold aisle", file: "poh-10.jpg", author: "123net", license: "CC BY-SA 3.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/", url: "https://commons.wikimedia.org/wiki/File:123Net_Data_Center_(DC2).jpg" },
 ];
 
+// Per-file credits for the Italian Basics imagery (Wikimedia Commons + public domain).
+const ITALIAN_IMAGE_CREDITS = [
+  { stage: "italian-01", device: "Galleria Vittorio Emanuele II (Milan)", file: "italian-01.jpg", author: "Pilgab", license: "CC BY-SA 3.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/", url: "https://commons.wikimedia.org/wiki/File:Galleria_Vittorio_Emanuele_II_(Milan).jpg" },
+  { stage: "italian-03", device: "Spaghetti with tomato sauce", file: "italian-03.jpg", author: "Silar", license: "CC BY-SA 3.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/", url: "https://commons.wikimedia.org/wiki/File:04666_Polish_spaghetti_pasta_with_sauce_made_of_pork_meat,_tomatoes,_garlic_and_olive.JPG" },
+  { stage: "italian-04", device: "Via Montenapoleone (Milan fashion)", file: "italian-04.jpg", author: "Tengis Bilegsaikhan", license: "CC BY 2.0", licenseUrl: "https://creativecommons.org/licenses/by/2.0/", url: "https://commons.wikimedia.org/wiki/File:Gucci_Shop,_Via_Montenapoleone,_Milan.jpg" },
+  { stage: "italian-05", device: "Historic Milan tram", file: "italian-05.jpg", author: "Arbalete", license: "Public domain", licenseUrl: "https://commons.wikimedia.org/wiki/Commons:Public_domain", url: "https://commons.wikimedia.org/wiki/File:Milano_-_corso_Colombo_-_tram_ATM_1725.jpg" },
+  { stage: "italian-06", device: "Market fruit & vegetable stall (Snyders)", file: "italian-06.jpg", author: "Frans Snyders / Jan Wildens", license: "Public domain", licenseUrl: "https://commons.wikimedia.org/wiki/Commons:Public_domain", url: "https://commons.wikimedia.org/wiki/File:Frans_Snyders_-_Fruit_Stall_-_WGA21520.jpg" },
+  { stage: "italian-07", device: "Piazza Cordusio, Milan (Mantovani)", file: "italian-07.jpg", author: "Luigi Mantovani", license: "CC BY-SA 3.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/", url: "https://commons.wikimedia.org/wiki/File:Artgate_Fondazione_Cariplo_-_Mantovani_Luigi,_Piazza_Cordusio_a_Milano.jpg" },
+  { stage: "italian-08", device: "Milan Cathedral (Duomo)", file: "italian-08.jpg", author: "Skarkkai", license: "CC0", licenseUrl: "https://creativecommons.org/publicdomain/zero/1.0/", url: "https://commons.wikimedia.org/wiki/File:Milan-duomo-front-facade.jpg" },
+  { stage: "italian-09", device: "Carabinieri on an Italian street", file: "italian-09.jpg", author: "Public domain", license: "Public domain", licenseUrl: "https://commons.wikimedia.org/wiki/Commons:Public_domain", url: "https://commons.wikimedia.org/wiki/File:Carabinieri_car_in_Rome.jpg" },
+  { stage: "italian-10", device: "Aperitivo (Spritz)", file: "italian-10.jpg", author: "Ralf Steinberger", license: "CC BY 2.0", licenseUrl: "https://creativecommons.org/licenses/by/2.0/", url: "https://commons.wikimedia.org/wiki/File:Italian_Aperitivo_culture_-_pre-dinner_evening_drink_as_an_appetizer_(32876800955).jpg" },
+  { stage: "italian-11", device: "Italian gelato counter", file: "italian-11.jpg", author: "Kat Phillips", license: "CC BY 2.0", licenseUrl: "https://creativecommons.org/licenses/by/2.0/", url: "https://commons.wikimedia.org/wiki/File:Sicilian_ice_cream_parlor.jpg" },
+  { stage: "italian-12", device: "Risotto alla milanese", file: "italian-12.jpg", author: "cyclonebill", license: "CC BY-SA 2.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/2.0/", url: "https://commons.wikimedia.org/wiki/File:Risotto_med_safran_(6977872494).jpg" },
+  { stage: "italian-13", device: "Chianti wine", file: "italian-13.jpg", author: "MATSUOKA Kohei", license: "CC BY 2.0", licenseUrl: "https://creativecommons.org/licenses/by/2.0/", url: "https://commons.wikimedia.org/wiki/File:CHIANTI_glass_%26_bottle.jpg" },
+  { stage: "italian-14", device: "Italian pharmacy (farmacia)", file: "italian-14.jpg", author: "MOs810", license: "CC BY-SA 3.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/", url: "https://commons.wikimedia.org/wiki/File:Monza_farmacia.JPG" },
+  { stage: "italian-15", device: "Hotel concierge with keys (Rome)", file: "italian-15.jpg", author: "Jorge Royan", license: "CC BY-SA 3.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/", url: "https://commons.wikimedia.org/wiki/File:A_hotel_concierge_handing_room_keys,_Rome_-_3566.jpg" },
+  { stage: "italian-16", device: "St Mark's Clock Tower, Venice", file: "italian-16.jpg", author: "Snapshots Of The Past", license: "CC BY-SA 2.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/2.0/", url: "https://commons.wikimedia.org/wiki/File:Clock_tower_(torre_dellOrologio)_Piazzetta_di_San_Marco_Venice_Italy.jpg" },
+  { stage: "italian-18", device: "San Siro stadium (Milan)", file: "italian-18.jpg", author: "Samoano", license: "CC BY-SA 3.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/", url: "https://commons.wikimedia.org/wiki/File:Stadio_San_Siro_-_Giuseppe_Meazza,_Milano.jpg" },
+  { stage: "italian-20", device: "Naviglio Grande canal, Milan", file: "italian-20.jpg", author: "Giovanni Dall'Orto", license: "CC BY-SA 2.5", licenseUrl: "https://creativecommons.org/licenses/by-sa/2.5/", url: "https://commons.wikimedia.org/wiki/File:DSC09674_-_Milano_-_Naviglio_Grande_-_Foto_Giovanni_Dall%27Orto_-_14-sept-2003.jpg" },
+];
+
 // Per-file credits for the French Basics imagery (Wikimedia Commons + public domain).
 const FRENCH_IMAGE_CREDITS = [
   { stage: "french-01", device: "Parisian café terrace (Place Colette)", file: "french-01.jpg", author: "zoetnet", license: "CC BY 2.0", licenseUrl: "https://creativecommons.org/licenses/by/2.0/", url: "https://commons.wikimedia.org/wiki/File:Cafe,_Place_Colette,_Paris_2010.jpg" },
@@ -593,6 +614,28 @@ export default function AttributionPage() {
             {OT_IMAGE_CREDITS.map((c) => (
               <li key={c.stage} className="text-xs text-gray-400 flex flex-wrap items-center gap-x-2 gap-y-0.5">
                 <span className="text-gray-600 font-mono w-10 flex-shrink-0">OT{c.stage}</span>
+                <span className="text-gray-300">{c.device}</span>
+                <span className="text-gray-700">·</span>
+                <a href={c.url} target="_blank" rel="noopener noreferrer" className="text-cyan-500 hover:text-cyan-400 transition-colors">{c.file}</a>
+                <span className="text-gray-700">·</span>
+                <span>© {c.author}</span>
+                <a href={c.licenseUrl} target="_blank" rel="noopener noreferrer" className="text-amber-400 hover:text-amber-300 transition-colors">{c.license} ↗</a>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="mt-12">
+          <h2 className="text-white font-bold text-lg mb-1">Italian Basics — imagery</h2>
+          <p className="text-gray-500 text-xs mb-4 leading-relaxed">
+            Real Milan and Italy scenes matched to each lesson — the Galleria, the Duomo, a historic tram,
+            gelato, risotto, Chianti, San Siro, the Navigli — from Wikimedia Commons and the public domain,
+            self-hosted and credited below.
+          </p>
+          <ul className="space-y-2 rounded-2xl border border-white/8 p-5" style={{ background: "rgba(255,255,255,0.02)" }}>
+            {ITALIAN_IMAGE_CREDITS.map((c) => (
+              <li key={c.stage} className="text-xs text-gray-400 flex flex-wrap items-center gap-x-2 gap-y-0.5">
+                <span className="text-gray-600 font-mono w-16 flex-shrink-0">{c.stage}</span>
                 <span className="text-gray-300">{c.device}</span>
                 <span className="text-gray-700">·</span>
                 <a href={c.url} target="_blank" rel="noopener noreferrer" className="text-cyan-500 hover:text-cyan-400 transition-colors">{c.file}</a>
