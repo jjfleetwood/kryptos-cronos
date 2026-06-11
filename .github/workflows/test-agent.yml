@@ -65,3 +65,27 @@ jobs:
       - name: i18n Coverage Agent
         continue-on-error: true
         run: node scripts/i18n-agent.mjs --report
+
+      - name: Content Drift Agent
+        continue-on-error: true
+        run: node scripts/drift-agent.mjs --report
+
+      - name: Docs Agent
+        continue-on-error: true
+        run: node scripts/docs-agent.mjs --report
+
+      - name: Curriculum Structure Agent
+        continue-on-error: true
+        run: node scripts/curriculum-agent.mjs --report
+
+      - name: Image Integrity Agent
+        continue-on-error: true
+        run: node scripts/image-agent.mjs --report
+
+      - name: Security Hygiene Agent
+        continue-on-error: true
+        run: node scripts/security-agent.mjs --report
+
+      - name: Content Depth Agent
+        continue-on-error: true
+        run: node scripts/prose-agent.mjs --report
