@@ -293,6 +293,22 @@ const COMPUTING_PHYSICS_CREDITS = [
   { stage: "poh-10", device: "Data-center cold aisle", file: "poh-10.jpg", author: "123net", license: "CC BY-SA 3.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/", url: "https://commons.wikimedia.org/wiki/File:123Net_Data_Center_(DC2).jpg" },
 ];
 
+// Per-file credits for the Tapestry imagery (Wikimedia Commons + public domain museum works).
+const TAPESTRY_IMAGE_CREDITS = [
+  { stage: "tapestry-01", device: "Bayeux Tapestry (Halley's Comet & Harold)", file: "tapestry-01.jpg", author: "Myrabella", license: "Public domain", licenseUrl: "https://commons.wikimedia.org/wiki/Commons:Public_domain", url: "https://commons.wikimedia.org/wiki/File:Bayeux_Tapestry_32-33_comet_Halley_Harold.jpg" },
+  { stage: "tapestry-02", device: "The Lady and the Unicorn tapestries", file: "tapestry-02.jpg", author: "Joe deSousa", license: "CC0", licenseUrl: "https://creativecommons.org/publicdomain/zero/1.0/", url: "https://commons.wikimedia.org/wiki/File:The_Lady_and_the_Unicorn_Tapestries,_Paris_9_July_2015.jpg" },
+  { stage: "tapestry-03", device: "Chinese kesi silk tapestry (Met)", file: "tapestry-03.jpg", author: "The Metropolitan Museum of Art", license: "CC0", licenseUrl: "https://creativecommons.org/publicdomain/zero/1.0/", url: "https://commons.wikimedia.org/wiki/File:%E4%B8%AD%E4%BA%9E%E6%88%96%E8%8F%AF%E5%8C%97%EF%BC%88%E5%8D%81%E4%B8%89%E4%B8%96%E7%B4%80%EF%BC%89_%E8%93%AE%E6%B1%A0%E6%B0%B4%E7%A6%BD%E7%B4%8B%E7%B7%99%E7%B5%B2-Textile_with_Aquatic_Birds_and_Recumbent_Animal_MET_DT4121.jpg" },
+  { stage: "tapestry-04", device: "The Paracas Textile (Nasca, Peru)", file: "tapestry-04.jpg", author: "Nasca culture, Peru (Brooklyn Museum)", license: "Public domain", licenseUrl: "https://commons.wikimedia.org/wiki/Commons:Public_domain", url: "https://commons.wikimedia.org/wiki/File:Nasca._Mantle_(%22The_Paracas_Textile%22),_overall.jpg" },
+  { stage: "tapestry-05", device: "Dyed wool yarn", file: "tapestry-05.jpg", author: "Roy & Danielle", license: "CC BY 2.0", licenseUrl: "https://creativecommons.org/licenses/by/2.0/", url: "https://commons.wikimedia.org/wiki/File:Dyed_wool_-_Salinas.jpg" },
+  { stage: "tapestry-06", device: "Weaver tying warp threads at the loom", file: "tapestry-06.jpg", author: "Lewis Hine (NARA)", license: "Public domain", licenseUrl: "https://commons.wikimedia.org/wiki/Commons:Public_domain", url: "https://commons.wikimedia.org/wiki/File:Paterson,_New_Jersey_-_Textiles._Weaver_tying_ends_of_broken_warp_thread_on_backside_of_loom._-_NARA_-_518565.jpg" },
+  { stage: "tapestry-07", device: "Tapestry loom (basse-lisse)", file: "tapestry-07.jpg", author: "David Monniaux", license: "CC BY-SA 3.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/", url: "https://commons.wikimedia.org/wiki/File:Loom_basse_lisse_DSC08828.jpg" },
+  { stage: "tapestry-08", device: "Barberini tapestry — sea battle", file: "tapestry-08.jpg", author: "Pietro da Cortona / Barberini manufactory", license: "Public domain", licenseUrl: "https://commons.wikimedia.org/wiki/Commons:Public_domain", url: "https://commons.wikimedia.org/wiki/File:Tapestry_showing_the_Sea_Battle_between_the_Fleets_of_Constantine_and_Licinius.jpg" },
+  { stage: "tapestry-09", device: "Barberini tapestry — Constantine", file: "tapestry-09.jpg", author: "Barberini manufactory, Rome", license: "Public domain", licenseUrl: "https://commons.wikimedia.org/wiki/Commons:Public_domain", url: "https://commons.wikimedia.org/wiki/File:Constantine_Directing_the_Building_of_Constantinople_(tapestry)_-_1623-1625.jpg" },
+  { stage: "tapestry-10", device: "Millefleur tapestry fragment (c. 1500)", file: "tapestry-10.jpg", author: "Franco-Flemish (anonymous)", license: "Public domain", licenseUrl: "https://commons.wikimedia.org/wiki/Commons:Public_domain", url: "https://commons.wikimedia.org/wiki/File:Franco-flemish_Millefleur_Tapestry_Fragment,_circa_1500.jpg" },
+  { stage: "tapestry-11", device: "Queen Esther tapestry (V&A)", file: "tapestry-11.jpg", author: "Andrew Turvey (Wikipedia Loves Art)", license: "CC BY-SA 2.5", licenseUrl: "https://creativecommons.org/licenses/by-sa/2.5/", url: "https://commons.wikimedia.org/wiki/File:WLA_vanda_Queen_Esther_Tapestry.jpg" },
+  { stage: "tapestry-12", device: "Hand-weaving a tapestry", file: "tapestry-12.jpg", author: "Wuzyprod", license: "CC BY-SA 4.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/", url: "https://commons.wikimedia.org/wiki/File:A_Senegalese_upholsterer_weaving_an_entirely_handmade_luxury_carpet_02.jpg" },
+];
+
 // Per-file credits for the Flag Football imagery (Wikimedia Commons, free licenses).
 const FLAG_IMAGE_CREDITS = [
   { stage: "01", device: "Flag football action", file: "Flag Football Juke.jpg", author: "JJ hohorst", license: "CC BY-SA 3.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/", url: "https://commons.wikimedia.org/wiki/File:Flag_Football_Juke.jpg" },
@@ -554,6 +570,28 @@ export default function AttributionPage() {
             {OT_IMAGE_CREDITS.map((c) => (
               <li key={c.stage} className="text-xs text-gray-400 flex flex-wrap items-center gap-x-2 gap-y-0.5">
                 <span className="text-gray-600 font-mono w-10 flex-shrink-0">OT{c.stage}</span>
+                <span className="text-gray-300">{c.device}</span>
+                <span className="text-gray-700">·</span>
+                <a href={c.url} target="_blank" rel="noopener noreferrer" className="text-cyan-500 hover:text-cyan-400 transition-colors">{c.file}</a>
+                <span className="text-gray-700">·</span>
+                <span>© {c.author}</span>
+                <a href={c.licenseUrl} target="_blank" rel="noopener noreferrer" className="text-amber-400 hover:text-amber-300 transition-colors">{c.license} ↗</a>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="mt-12">
+          <h2 className="text-white font-bold text-lg mb-1">Tapestry — imagery</h2>
+          <p className="text-gray-500 text-xs mb-4 leading-relaxed">
+            The great historical tapestries (Bayeux, the Lady and the Unicorn, Chinese kesi, the Paracas
+            Textile, the Barberini and millefleur works) plus looms, yarn, and weaving — from Wikimedia
+            Commons and public-domain museum collections, self-hosted and credited below.
+          </p>
+          <ul className="space-y-2 rounded-2xl border border-white/8 p-5" style={{ background: "rgba(255,255,255,0.02)" }}>
+            {TAPESTRY_IMAGE_CREDITS.map((c) => (
+              <li key={c.stage} className="text-xs text-gray-400 flex flex-wrap items-center gap-x-2 gap-y-0.5">
+                <span className="text-gray-600 font-mono w-20 flex-shrink-0">{c.stage}</span>
                 <span className="text-gray-300">{c.device}</span>
                 <span className="text-gray-700">·</span>
                 <a href={c.url} target="_blank" rel="noopener noreferrer" className="text-cyan-500 hover:text-cyan-400 transition-colors">{c.file}</a>

@@ -595,4 +595,20 @@ export const STAGE_IMAGES: Record<string, string> = {
   "poh-08": "/img/poh-08.jpg",
   "poh-09": "/img/poh-09.jpg",
   "poh-10": "/img/poh-10.jpg",
+
+  // Tapestry — the famous historical pieces (Bayeux, Lady & the Unicorn, kesi,
+  // Paracas, Barberini, millefleur) + looms/yarn/weaving; Wikimedia Commons +
+  // public domain, credited on /attribution.
+  "tapestry-01": "/img/tapestry-01.jpg",
+  "tapestry-02": "/img/tapestry-02.jpg",
+  "tapestry-03": "/img/tapestry-03.jpg",
+  "tapestry-04": "/img/tapestry-04.jpg",
+  "tapestry-05": "/img/tapestry-05.jpg",
+  "tapestry-06": "/img/tapestry-06.jpg",
+  "tapestry-07": "/img/tapestry-07.jpg",
+  "tapestry-08": "/img/tapestry-08.jpg",
+  "tapestry-09": "/img/tapestry-09.jpg",
+  "tapestry-10": "/img/tapestry-10.jpg",
+  "tapestry-11": "/img/tapestry-11.jpg",
+  "tapestry-12": "/img/tapestry-12.jpg",
 };

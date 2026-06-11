@@ -754,5 +754,89 @@
     "artist": "No machine-readable author provided. Cyberdex assumed (based on copyright claims).",
     "license": "Public domain",
     "source": "https://commons.wikimedia.org/wiki/File:Elixir_M2U51264DS8HC3G-5T_20060320.jpg"
+  },
+  "tapestry-01": {
+    "file": "tapestry-01.jpg",
+    "title": "Bayeux Tapestry 32-33 comet Halley Harold.jpg",
+    "artist": "Myrabella",
+    "license": "Public domain",
+    "source": "https://commons.wikimedia.org/wiki/File:Bayeux_Tapestry_32-33_comet_Halley_Harold.jpg"
+  },
+  "tapestry-02": {
+    "file": "tapestry-02.jpg",
+    "title": "The Lady and the Unicorn Tapestries, Paris 9 July 2015.jpg",
+    "artist": "Joe deSousa",
+    "license": "CC0",
+    "source": "https://commons.wikimedia.org/wiki/File:The_Lady_and_the_Unicorn_Tapestries,_Paris_9_July_2015.jpg"
+  },
+  "tapestry-03": {
+    "file": "tapestry-03.jpg",
+    "title": "中亞或華北（十三世紀） 蓮池水禽紋緙絲-Textile with Aquatic Birds and Recumbent Animal MET DT4121.jpg",
+    "artist": "Public domain",
+    "license": "CC0",
+    "source": "https://commons.wikimedia.org/wiki/File:%E4%B8%AD%E4%BA%9E%E6%88%96%E8%8F%AF%E5%8C%97%EF%BC%88%E5%8D%81%E4%B8%89%E4%B8%96%E7%B4%80%EF%BC%89_%E8%93%AE%E6%B1%A0%E6%B0%B4%E7%A6%BD%E7%B4%8B%E7%B7%99%E7%B5%B2-Textile_with_Aquatic_Birds_and_Recumbent_Animal_MET_DT4121.jpg"
+  },
+  "tapestry-04": {
+    "file": "tapestry-04.jpg",
+    "title": "Nasca. Mantle (\"The Paracas Textile\"), overall.jpg",
+    "artist": "Unknown creatorUnknown creator, Nasca Culture, Peru",
+    "license": "Public domain",
+    "source": "https://commons.wikimedia.org/wiki/File:Nasca._Mantle_(%22The_Paracas_Textile%22),_overall.jpg"
+  },
+  "tapestry-05": {
+    "file": "tapestry-05.jpg",
+    "title": "Dyed wool - Salinas.jpg",
+    "artist": "Roy &amp; Danielle",
+    "license": "CC BY 2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Dyed_wool_-_Salinas.jpg"
+  },
+  "tapestry-06": {
+    "file": "tapestry-06.jpg",
+    "title": "Paterson, New Jersey - Textiles. Weaver tying ends of broken warp thread on backside of loom. - NARA - 518565.jpg",
+    "artist": "Lewis Hine",
+    "license": "Public domain",
+    "source": "https://commons.wikimedia.org/wiki/File:Paterson,_New_Jersey_-_Textiles._Weaver_tying_ends_of_broken_warp_thread_on_backside_of_loom._-_NARA_-_518565.jpg"
+  },
+  "tapestry-07": {
+    "file": "tapestry-07.jpg",
+    "title": "Loom basse lisse DSC08828.jpg",
+    "artist": "No machine-readable author provided. David.Monniaux assumed (based on copyright claims).",
+    "license": "CC BY-SA 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Loom_basse_lisse_DSC08828.jpg"
+  },
+  "tapestry-09": {
+    "file": "tapestry-09.jpg",
+    "title": "Constantine Directing the Building of Constantinople (tapestry) - 1623-1625.jpg",
+    "artist": "Public domain",
+    "license": "Public domain",
+    "source": "https://commons.wikimedia.org/wiki/File:Constantine_Directing_the_Building_of_Constantinople_(tapestry)_-_1623-1625.jpg"
+  },
+  "tapestry-10": {
+    "file": "tapestry-10.jpg",
+    "title": "Franco-flemish Millefleur Tapestry Fragment, circa 1500.jpg",
+    "artist": "AnonymousUnknown author",
+    "license": "Public domain",
+    "source": "https://commons.wikimedia.org/wiki/File:Franco-flemish_Millefleur_Tapestry_Fragment,_circa_1500.jpg"
+  },
+  "tapestry-11": {
+    "file": "tapestry-11.jpg",
+    "title": "WLA vanda Queen Esther Tapestry.jpg",
+    "artist": "Wikipedia Loves Art participant \"AndrewTurvey\"",
+    "license": "CC BY-SA 2.5",
+    "source": "https://commons.wikimedia.org/wiki/File:WLA_vanda_Queen_Esther_Tapestry.jpg"
+  },
+  "tapestry-12": {
+    "file": "tapestry-12.jpg",
+    "title": "A Senegalese upholsterer weaving an entirely handmade luxury carpet 02.jpg",
+    "artist": "Wuzyprod",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:A_Senegalese_upholsterer_weaving_an_entirely_handmade_luxury_carpet_02.jpg"
+  },
+  "tapestry-08": {
+    "file": "tapestry-08.jpg",
+    "title": "Tapestry showing the Sea Battle between the Fleets of Constantine and Licinius.jpg",
+    "artist": "Figural composition designed in 1635 by Pietro da Cortona (Pietro Berrettini), Italian, 1596 - 1669. Woven at the Barberini tapestry manufactory, Rome. Workshop of Jacomo della Riviera, Flemish.",
+    "license": "Public domain",
+    "source": "https://commons.wikimedia.org/wiki/File:Tapestry_showing_the_Sea_Battle_between_the_Fleets_of_Constantine_and_Licinius.jpg"
   }
 }
