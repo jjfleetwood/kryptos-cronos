@@ -21,12 +21,13 @@ export default function Nav() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [langOpen, setLangOpen] = useState(false);
   const langRef = useRef<HTMLDivElement>(null);
+  const [moreOpen, setMoreOpen] = useState(false);
+  const moreRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
-      if (langRef.current && !langRef.current.contains(e.target as Node)) {
-        setLangOpen(false);
-      }
+      if (langRef.current && !langRef.current.contains(e.target as Node)) setLangOpen(false);
+      if (moreRef.current && !moreRef.current.contains(e.target as Node)) setMoreOpen(false);
     }
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
@@ -55,8 +56,8 @@ export default function Nav() {
     return () => window.removeEventListener("scroll", onScroll);
   }, [pathname]);
 
-  // Close mobile menu on route change
-  useEffect(() => { setMobileOpen(false); }, [pathname]);
+  // Close menus on route change
+  useEffect(() => { setMobileOpen(false); setMoreOpen(false); }, [pathname]);
 
   function handleUpgrade() {
     router.push("/upgrade");
@@ -70,9 +71,10 @@ export default function Nav() {
   }
 
   // One uniform nav model — every item is an icon + small label (same format for
-  // the primary links and the gamification items) so the top bar reads as one
-  // consistent set instead of a mix of text links and bare icons.
-  const navItems: { href: string; icon: string; label: string }[] = [
+  // every entry) so the top bar reads as one consistent set. Primary items stay
+  // in the row; the secondary ones fold behind a "More" menu to keep it tidy.
+  type NavItem = { href: string; icon: string; label: string };
+  const primaryItems: NavItem[] = [
     { href: "/stages", icon: "🗺️", label: t("nav.stages") },
     { href: "/certs", icon: "📜", label: t("nav.certs", "Certifications") },
     { href: "/leaderboard", icon: "🏆", label: t("nav.leaderboard") },
@@ -81,13 +83,19 @@ export default function Nav() {
           { href: "/quests", icon: "🎯", label: "Quests" },
           { href: "/leagues", icon: "⚔️", label: "Leagues" },
           { href: "/achievements", icon: "🏅", label: "Achievements" },
-          { href: "/journey", icon: "🌍", label: t("nav.journey") },
-          { href: "/explore", icon: "🧭", label: t("nav.explore", "Explore") },
-          { href: "/account", icon: "⚙️", label: "Account" },
         ]
       : []),
   ];
+  const moreItems: NavItem[] = username
+    ? [
+        { href: "/journey", icon: "🌍", label: t("nav.journey") },
+        { href: "/explore", icon: "🧭", label: t("nav.explore", "Explore") },
+        { href: "/account", icon: "⚙️", label: "Account" },
+      ]
+    : [];
+  const allItems = [...primaryItems, ...moreItems]; // mobile drawer shows them flat
   const isActive = (href: string) => pathname === href || pathname.startsWith(href + "/");
+  const moreActive = moreItems.some((m) => isActive(m.href));
 
   return (
     <header
@@ -108,9 +116,10 @@ export default function Nav() {
           </span>
         </Link>
 
-        {/* Desktop nav — one uniform row of icon + small-label items */}
+        {/* Desktop nav — one uniform row of icon + small-label items; the secondary
+            items fold behind "More" so the row stays comfortable. */}
         <nav className="hidden md:flex items-end gap-0.5">
-          {navItems.map(({ href, icon, label }) => {
+          {primaryItems.map(({ href, icon, label }) => {
             const active = isActive(href);
             return (
               <Link
@@ -121,15 +130,44 @@ export default function Nav() {
                 style={{ background: active ? "rgba(255,255,255,0.10)" : undefined }}
               >
                 <span className="text-[15px] leading-none">{icon}</span>
-                <span
-                  className="text-[9px] leading-none font-medium tracking-tight whitespace-nowrap"
-                  style={{ color: active ? skin.accent : skin.textMuted }}
-                >
+                <span className="text-[9px] leading-none font-medium tracking-tight whitespace-nowrap" style={{ color: active ? skin.accent : skin.textMuted }}>
                   {label}
                 </span>
               </Link>
             );
           })}
+
+          {moreItems.length > 0 && (
+            <div ref={moreRef} className="relative">
+              <button
+                onClick={() => setMoreOpen((o) => !o)}
+                title="More"
+                className="flex flex-col items-center justify-center gap-0.5 px-2 py-1 rounded-lg transition-colors hover:bg-white/10"
+                style={{ background: moreOpen || moreActive ? "rgba(255,255,255,0.10)" : undefined }}
+              >
+                <span className="text-[15px] leading-none">⋯</span>
+                <span className="text-[9px] leading-none font-medium tracking-tight" style={{ color: moreActive ? skin.accent : skin.textMuted }}>More</span>
+              </button>
+              {moreOpen && (
+                <div
+                  className="absolute right-0 top-full mt-2 rounded-xl overflow-hidden shadow-2xl z-50 min-w-[170px] py-1"
+                  style={{ background: skin.navBg, border: `1px solid ${skin.cardBorder}` }}
+                >
+                  {moreItems.map(({ href, icon, label }) => (
+                    <Link
+                      key={href}
+                      href={href}
+                      className="flex items-center gap-2.5 px-4 py-2.5 text-sm transition-colors hover:opacity-80"
+                      style={{ color: isActive(href) ? skin.accent : skin.textSecondary, background: isActive(href) ? `${skin.accent}12` : "transparent" }}
+                    >
+                      <span className="text-base leading-none">{icon}</span> {label}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
+
           {admin && (
             <Link
               href="/admin"
@@ -243,8 +281,8 @@ export default function Nav() {
             background: skin.navBg,
           }}
         >
-          {/* Same unified item set as desktop (deduped — journey appears once) */}
-          {navItems.map(({ href, icon, label }) => (
+          {/* Same unified item set as desktop, shown flat (deduped — journey once) */}
+          {allItems.map(({ href, icon, label }) => (
             <Link
               key={href}
               href={href}
