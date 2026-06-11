@@ -7,7 +7,7 @@ import {
 import type { ScrumItem } from "@/lib/scrum-types";
 
 const TYPES = ["bug", "enhancement", "task", "content", "test", "plan", "chore"];
-const STATUSES = ["triage", "backlog", "todo", "in-progress", "review", "done", "archived"];
+const STATUSES = ["triage", "backlog", "todo", "planned", "in-progress", "review", "done", "archived"];
 const PRIORITIES = ["p0", "p1", "p2", "p3"];
 
 // The Development board is restricted to the primary admin account only — not just

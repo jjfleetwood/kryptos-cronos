@@ -129,10 +129,12 @@ function runSelfPR(ex) {
 (async () => {
   const r = await api("/api/admin/scrum");
   const { items } = await r.json();
-  // "TODO items" = the actionable board columns, excluding work already in flight/done.
+  // The actionable columns, excluding work already in flight/done. "Approved &
+  // Planned" is the greenlit lane (planned + agreed to do) — prioritized first.
+  const RANK = { planned: 0, todo: 1, backlog: 2, triage: 3 };
   const open = items
-    .filter((it) => ["triage", "backlog", "todo"].includes(it.status))
-    .sort((a, b) => (a.createdAt ?? 0) - (b.createdAt ?? 0));
+    .filter((it) => it.status in RANK)
+    .sort((a, b) => (RANK[a.status] - RANK[b.status]) || (a.createdAt ?? 0) - (b.createdAt ?? 0));
 
   const workable = [];
   for (const it of open) {

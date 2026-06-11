@@ -1,6 +1,6 @@
 // Shared scrum-board types (pure — safe to import in client components).
 
-export type ScrumStatus = "triage" | "backlog" | "todo" | "in-progress" | "review" | "done" | "archived";
+export type ScrumStatus = "triage" | "backlog" | "todo" | "planned" | "in-progress" | "review" | "done" | "archived";
 export type ScrumType = "bug" | "enhancement" | "task" | "content" | "test" | "plan" | "chore";
 export type ScrumPriority = "p0" | "p1" | "p2" | "p3";
 export type ScrumSource = "manual" | "feedback" | "survey" | "agent";
@@ -30,6 +30,7 @@ export const STATUS_COLUMNS: { id: ScrumStatus; label: string; hint: string }[] 
   { id: "triage",      label: "Triage",      hint: "New — decide build or reject" },
   { id: "backlog",     label: "Backlog",     hint: "Approved to build, not scheduled" },
   { id: "todo",        label: "To Do",       hint: "Scheduled / next up" },
+  { id: "planned",     label: "Approved & Planned", hint: "Greenlit + has a plan — queued to be swept and done" },
   { id: "in-progress", label: "In Progress", hint: "Being built" },
   { id: "review",      label: "Review",      hint: "Awaiting your review/approval" },
   { id: "done",        label: "Done",        hint: "Shipped" },
