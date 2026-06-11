@@ -120,6 +120,24 @@ export async function getCohortStandings(cohort: string): Promise<Standing[]> {
   }));
 }
 
+export type DivisionSummary = { division: string; members: number; top: Standing[] };
+
+/** "All leagues" view: for each division this week, the total member count across
+ *  its cohorts + the top `topN` standings of its headline cohort (seq 1). Lets the
+ *  /leagues page show the whole ladder populated, the way the leaderboard shows
+ *  everyone — not just the caller's own cohort. */
+export async function getDivisionLadder(week = weekMondayKey(), topN = 5): Promise<DivisionSummary[]> {
+  const out: DivisionSummary[] = [];
+  for (const div of DIVISION_IDS) {
+    const maxSeq = Number((await redis.get(fillKey(week, div))) ?? 0);
+    let members = 0;
+    for (let seq = 1; seq <= maxSeq; seq++) members += await redis.zcard(cohortKey(`${week}:${div}:${seq}`));
+    const top = maxSeq >= 1 ? (await getCohortStandings(`${week}:${div}:1`)).slice(0, topN) : [];
+    out.push({ division: div, members, top });
+  }
+  return out;
+}
+
 /**
  * Weekly reset: walk every cohort of the just-ended week, promote the top
  * PROMOTE_COUNT to the next division and relegate the bottom RELEGATE_COUNT,

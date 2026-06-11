@@ -9,6 +9,7 @@ import {
 } from "@kryptos/core/leagues";
 
 type Standing = { username: string; weeklyXp: number; xp: number; lastStageTitle?: string | null; lastStageClears?: number; pioneerCount?: number };
+type DivisionSummary = { division: string; members: number; top: Standing[] };
 type LeagueData = {
   you: string;
   division: string;
@@ -18,6 +19,7 @@ type LeagueData = {
   relegateCount: number;
   cohortSize: number;
   standings: Standing[];
+  ladder?: DivisionSummary[];
 };
 
 const MEDAL: Record<number, string> = { 1: "🥇", 2: "🥈", 3: "🥉" };
@@ -172,6 +174,65 @@ export default function LeaguesPage() {
                 </span>
               )}
             </div>
+
+            {/* All leagues — the full division ladder, populated, so you can see the
+                tiers above and below (the leaderboard-style "everyone else" view). */}
+            {data.ladder && data.ladder.length > 0 && (
+              <div className="mt-10">
+                <h2 className="text-sm font-bold uppercase tracking-widest text-gray-400 mb-3 flex items-center gap-2">
+                  🪜 All Leagues
+                </h2>
+                <div className="space-y-3">
+                  {[...data.ladder].reverse().map((dsum) => {
+                    const dv = divisionById(dsum.division);
+                    const isYours = dsum.division === data.division;
+                    return (
+                      <div
+                        key={dsum.division}
+                        className={`rounded-xl border p-4 ${dv.borderClass} ${isYours ? dv.bgClass : "bg-white/2"}`}
+                      >
+                        <div className="flex items-center justify-between mb-2">
+                          <div className="flex items-center gap-2 min-w-0">
+                            <span className="text-2xl leading-none">{dv.emoji}</span>
+                            <span className={`font-black ${dv.textClass}`}>{dv.name}</span>
+                            {isYours && (
+                              <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-cyan-500/15 text-cyan-300 border border-cyan-500/30">
+                                {t("leagues.youTag")}
+                              </span>
+                            )}
+                          </div>
+                          <span className="text-[11px] text-gray-500 flex-shrink-0">
+                            {dsum.members} {dsum.members === 1 ? "player" : "players"}
+                          </span>
+                        </div>
+                        {dsum.top.length === 0 ? (
+                          <p className="text-[11px] text-gray-600 italic">No one here yet this week.</p>
+                        ) : (
+                          <div className="space-y-1">
+                            {dsum.top.map((s, i) => {
+                              const isYou = s.username === data.you;
+                              return (
+                                <div key={s.username} className="grid grid-cols-[1.5rem_1fr_auto] gap-2 items-center text-xs">
+                                  <span className="text-center">{MEDAL[i + 1] ?? <span className="text-gray-600 font-mono">{i + 1}</span>}</span>
+                                  <span className={`truncate ${isYou ? "text-cyan-400 font-semibold" : "text-gray-300"}`}>
+                                    {s.username}
+                                    {!!s.pioneerCount && s.pioneerCount > 0 && <span className="ml-1 align-middle">🏴</span>}
+                                  </span>
+                                  <span className="font-mono text-gray-500 text-right">{s.weeklyXp.toLocaleString()}</span>
+                                </div>
+                              );
+                            })}
+                            {dsum.members > dsum.top.length && (
+                              <p className="text-[10px] text-gray-700 pt-0.5">+{dsum.members - dsum.top.length} more</p>
+                            )}
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
           </>
         )}
       </div>

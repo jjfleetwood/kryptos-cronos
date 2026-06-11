@@ -5,6 +5,7 @@ import { logAdminAction } from "@/lib/audit";
 import { stagesMeta as stages } from "@kryptos/core/stages-meta";
 import { ECONOMY_VERSION } from "@/lib/economy";
 import { addLeagueXp, weekMondayKey } from "@/lib/leagues";
+import { DIVISIONS } from "@kryptos/core/leagues";
 import { checkStageMilestones, checkXpMilestones, checkStreakMilestones } from "@kryptos/core/milestone-badges";
 
 /** POST /api/admin/seed-bots
@@ -118,7 +119,12 @@ export async function POST(req: NextRequest) {
     const weekXp = 50 + (h % 400);
     await redis.zadd(week, { score: weekXp, member: name });
     if (now - lastActive < 86_400_000) await redis.zadd(day, { score: 20 + (h % 120), member: name });
-    // Place the bot in a weekly league cohort (so /leagues is populated too).
+    // Place the bot in a weekly league cohort, spread across divisions by XP rank
+    // (BOTS is sorted high→low) so the whole league ladder is populated, not just
+    // Bronze. Requires reset:true to re-home an existing bot into a new division.
+    const perDiv = Math.ceil(BOTS.length / DIVISIONS.length);
+    const divIdx = Math.max(0, Math.min(DIVISIONS.length - 1, DIVISIONS.length - 1 - Math.floor(i / perDiv)));
+    await redis.hset(`league:user:${name}`, { division: DIVISIONS[divIdx].id });
     await addLeagueXp(name, weekXp, weekMondayKey());
     await redis.sadd("bot:names", name);
     seeded++;

@@ -21,13 +21,15 @@ export function TrackCatalog({
   const { t, locale } = useLocale();
   const epochMetaMap = locale !== "en" ? (STAGE_META_MAPS[locale]?.epochs ?? null) : null;
 
-  function renderCard(epoch: (typeof epochs)[number]) {
+  function renderCard(epoch: (typeof epochs)[number], accent: string) {
     const ea = epochAccent[epoch.id] ?? epochAccent.ancient;
     const stageCount = allStages.filter((s) => s.epochId === epoch.id).length;
     const doneCount = allStages.filter((s) => s.epochId === epoch.id && completedStages.includes(s.id)).length;
     const pct = stageCount > 0 ? (doneCount / stageCount) * 100 : 0;
     const done = doneCount === stageCount && stageCount > 0;
-    const textClass = done ? "text-green-400" : ((ea.tab || "").split(" ")[0] || "text-cyan-400");
+    // Wave colour is per-CATEGORY (the track accent) so a track reads as one
+    // family instead of a busy rainbow; completed epochs go green.
+    const waveColor = done ? "rgb(74 222 128)" : accent;
     return (
       <Link
         key={epoch.id}
@@ -42,8 +44,12 @@ export function TrackCatalog({
         {stageCount > 0 && (
           <div
             aria-hidden="true"
-            className={`kc-tank pointer-events-none absolute inset-x-0 bottom-0 z-0 overflow-hidden ${textClass} ${done ? "kc-tank-done" : ""}`}
-            style={{ height: `max(${pct}%, 14px)`, opacity: doneCount === 0 ? 0.7 : 1 }}
+            className={`kc-tank pointer-events-none absolute inset-x-0 bottom-0 z-0 overflow-hidden ${done ? "kc-tank-done" : ""}`}
+            // Height tracks progress (no fixed floor, so 0/10 ≠ 1/10 ≠ 3/10); the
+            // +8px lifts the average waterline onto the % mark with the crest just
+            // over it (e.g. 6/12 sits a touch above half). color drives the wave
+            // via currentColor. Near-empty epochs stay faint.
+            style={{ height: `calc(${pct}% + 8px)`, color: waveColor, opacity: doneCount === 0 ? 0.55 : 1 }}
           >
             <div className="kc-tank-inner absolute inset-0">
               <div className="absolute inset-x-0 top-1.5 bottom-0" style={{ background: "currentColor", opacity: 0.18 }} />
@@ -126,7 +132,7 @@ export function TrackCatalog({
                             {sg.label}
                           </span>
                           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-                            {sgEpochs.map((epoch) => renderCard(epoch))}
+                            {sgEpochs.map((epoch) => renderCard(epoch, ts.color))}
                           </div>
                         </div>
                       );
@@ -136,7 +142,7 @@ export function TrackCatalog({
               );
             })() : (
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 pl-4">
-                {trackEpochs.map((epoch) => renderCard(epoch))}
+                {trackEpochs.map((epoch) => renderCard(epoch, ts.color))}
               </div>
             )}
           </div>
