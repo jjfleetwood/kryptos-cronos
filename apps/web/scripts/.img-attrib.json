@@ -614,5 +614,145 @@
     "artist": "Uploaded by Duk 08:45, 16 Feb 2005 (UTC)",
     "license": "Public domain",
     "source": "https://commons.wikimedia.org/wiki/File:Clean_room.jpg"
+  },
+  "cf-02": {
+    "file": "cf-02.jpg",
+    "title": "Binary Clock - prototype.jpg",
+    "artist": "Barney Livingston",
+    "license": "CC BY-SA 2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Binary_Clock_-_prototype.jpg"
+  },
+  "cf-03": {
+    "file": "cf-03.jpg",
+    "title": "Transistors.agr.jpg",
+    "artist": "ArnoldReinhold",
+    "license": "CC BY-SA 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Transistors.agr.jpg"
+  },
+  "cf-04": {
+    "file": "cf-04.jpg",
+    "title": "DEC-VAX-KA820AA-CPU.jpg",
+    "artist": "Adamantios",
+    "license": "CC BY-SA 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:DEC-VAX-KA820AA-CPU.jpg"
+  },
+  "cf-05": {
+    "file": "cf-05.jpg",
+    "title": "Punch-card--fortran.jpg",
+    "artist": "Public domain",
+    "license": "Public domain",
+    "source": "https://commons.wikimedia.org/wiki/File:Punch-card--fortran.jpg"
+  },
+  "cf-06": {
+    "file": "cf-06.jpg",
+    "title": "Fairchild uA741 opamp 6920.jpg",
+    "artist": "Analogdesigner",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Fairchild_uA741_opamp_6920.jpg"
+  },
+  "cf-07": {
+    "file": "cf-07.jpg",
+    "title": "Magnetic core memory card.jpg",
+    "artist": "Thierry46",
+    "license": "CC BY-SA 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Magnetic_core_memory_card.jpg"
+  },
+  "cf-08": {
+    "file": "cf-08.jpg",
+    "title": "Intel Underside (44256686).jpeg",
+    "artist": "Justin Mathews",
+    "license": "CC BY 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Intel_Underside_(44256686).jpeg"
+  },
+  "poh-04": {
+    "file": "poh-04.jpg",
+    "title": "Electronics workbench.jpg",
+    "artist": "James Bastow",
+    "license": "CC BY-SA 2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Electronics_workbench.jpg"
+  },
+  "poh-05": {
+    "file": "poh-05.jpg",
+    "title": "Military laser experiment.jpg",
+    "artist": "US Air Force",
+    "license": "Public domain",
+    "source": "https://commons.wikimedia.org/wiki/File:Military_laser_experiment.jpg"
+  },
+  "poh-07": {
+    "file": "poh-07.jpg",
+    "title": "Windows 7 Pro Proof of License sticker.jpg",
+    "artist": "SDTV is beast123",
+    "license": "CC BY-SA 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Windows_7_Pro_Proof_of_License_sticker.jpg"
+  },
+  "poh-08": {
+    "file": "poh-08.jpg",
+    "title": "Mojo v3 FPGA Development Board (9303578174).jpg",
+    "artist": "SparkFun Electronics from Boulder, USA",
+    "license": "CC BY 2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Mojo_v3_FPGA_Development_Board_(9303578174).jpg"
+  },
+  "poh-09": {
+    "file": "poh-09.jpg",
+    "title": "AMD Athlon64X2 4400+ 90nm 2006.jpg",
+    "artist": "cole8888",
+    "license": "CC BY-SA 2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:AMD_Athlon64X2_4400%2B_90nm_2006.jpg"
+  },
+  "poh-10": {
+    "file": "poh-10.jpg",
+    "title": "123Net Data Center (DC2).jpg",
+    "artist": "123net",
+    "license": "CC BY-SA 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:123Net_Data_Center_(DC2).jpg"
+  },
+  "cf-01": {
+    "file": "cf-01.jpg",
+    "title": "Falling lamp (Unsplash).jpg",
+    "artist": "Robert Wiedemann antilumen",
+    "license": "CC0",
+    "source": "https://commons.wikimedia.org/wiki/File:Falling_lamp_(Unsplash).jpg"
+  },
+  "cf-09": {
+    "file": "cf-09.jpg",
+    "title": "Green circuit board II (2389301870).jpg",
+    "artist": "Peter Shanks from Hobart, Australia",
+    "license": "CC BY 2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Green_circuit_board_II_(2389301870).jpg"
+  },
+  "cf-10": {
+    "file": "cf-10.jpg",
+    "title": "Wafer 20110212.jpg",
+    "artist": "Sangitiana Fararano",
+    "license": "CC BY-SA 2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Wafer_20110212.jpg"
+  },
+  "poh-01": {
+    "file": "poh-01.jpg",
+    "title": "Hameg Oscilloscope HMO3004 Series.jpg",
+    "artist": "Ordercrazy",
+    "license": "CC0",
+    "source": "https://commons.wikimedia.org/wiki/File:Hameg_Oscilloscope_HMO3004_Series.jpg"
+  },
+  "poh-02": {
+    "file": "poh-02.jpg",
+    "title": "Circuito0518.jpg",
+    "artist": "Mvdiogo",
+    "license": "CC BY-SA 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Circuito0518.jpg"
+  },
+  "poh-03": {
+    "file": "poh-03.jpg",
+    "title": "Penny Mercury.jpg",
+    "artist": "Greg Smith, Christchurch 8083, New Zealand",
+    "license": "CC BY-SA 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Penny_Mercury.jpg"
+  },
+  "poh-06": {
+    "file": "poh-06.jpg",
+    "title": "Elixir M2U51264DS8HC3G-5T 20060320.jpg",
+    "artist": "No machine-readable author provided. Cyberdex assumed (based on copyright claims).",
+    "license": "Public domain",
+    "source": "https://commons.wikimedia.org/wiki/File:Elixir_M2U51264DS8HC3G-5T_20060320.jpg"
   }
 }

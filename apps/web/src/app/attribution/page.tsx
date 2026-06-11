@@ -270,6 +270,29 @@ const SILICON_IMAGE_CREDITS = [
   { stage: "10", device: "Quantum processor (ion trap, NIST)", file: "Quantum Computing; Ion Trapping.jpg", author: "National Institute of Standards and Technology", license: "Public domain", licenseUrl: "https://commons.wikimedia.org/wiki/Commons:Public_domain", url: "https://commons.wikimedia.org/wiki/File:Quantum_Computing;_Ion_Trapping_(5941055642).jpg" },
 ];
 
+// Per-file credits for the How Computers Really Work + Physics of Hacking imagery
+// (Wikimedia Commons, free licenses + public domain). Self-hosted, credited below.
+const COMPUTING_PHYSICS_CREDITS = [
+  { stage: "cf-01", device: "Incandescent bulb filament", file: "cf-01.jpg", author: "Robert Wiedemann (antilumen)", license: "CC0", licenseUrl: "https://creativecommons.org/publicdomain/zero/1.0/", url: "https://commons.wikimedia.org/wiki/File:Falling_lamp_(Unsplash).jpg" },
+  { stage: "cf-02", device: "Breadboard prototype circuit", file: "cf-02.jpg", author: "Barney Livingston", license: "CC BY-SA 2.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/2.0/", url: "https://commons.wikimedia.org/wiki/File:Binary_Clock_-_prototype.jpg" },
+  { stage: "cf-03", device: "Assorted transistors", file: "cf-03.jpg", author: "ArnoldReinhold", license: "CC BY-SA 3.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/", url: "https://commons.wikimedia.org/wiki/File:Transistors.agr.jpg" },
+  { stage: "cf-04", device: "Vintage CPU board (DEC VAX)", file: "cf-04.jpg", author: "Adamantios", license: "CC BY-SA 3.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/", url: "https://commons.wikimedia.org/wiki/File:DEC-VAX-KA820AA-CPU.jpg" },
+  { stage: "cf-05", device: "FORTRAN punched card", file: "cf-05.jpg", author: "Public domain (Wikimedia Commons)", license: "Public domain", licenseUrl: "https://commons.wikimedia.org/wiki/Commons:Public_domain", url: "https://commons.wikimedia.org/wiki/File:Punch-card--fortran.jpg" },
+  { stage: "cf-06", device: "Op-amp IC die & bond wires", file: "cf-06.jpg", author: "Analogdesigner", license: "CC BY-SA 4.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/", url: "https://commons.wikimedia.org/wiki/File:Fairchild_uA741_opamp_6920.jpg" },
+  { stage: "cf-07", device: "Magnetic-core memory", file: "cf-07.jpg", author: "Thierry46", license: "CC BY-SA 3.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/", url: "https://commons.wikimedia.org/wiki/File:Magnetic_core_memory_card.jpg" },
+  { stage: "cf-08", device: "CPU pin grid (underside)", file: "cf-08.jpg", author: "Justin Mathews", license: "CC BY 3.0", licenseUrl: "https://creativecommons.org/licenses/by/3.0/", url: "https://commons.wikimedia.org/wiki/File:Intel_Underside_(44256686).jpeg" },
+  { stage: "cf-09", device: "Printed circuit-board traces", file: "cf-09.jpg", author: "Peter Shanks (Hobart, Australia)", license: "CC BY 2.0", licenseUrl: "https://creativecommons.org/licenses/by/2.0/", url: "https://commons.wikimedia.org/wiki/File:Green_circuit_board_II_(2389301870).jpg" },
+  { stage: "cf-10", device: "Silicon wafer (die grid)", file: "cf-10.jpg", author: "Sangitiana Fararano", license: "CC BY-SA 2.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/2.0/", url: "https://commons.wikimedia.org/wiki/File:Wafer_20110212.jpg" },
+  { stage: "poh-01", device: "Digital oscilloscope", file: "poh-01.jpg", author: "Ordercrazy", license: "CC0", licenseUrl: "https://creativecommons.org/publicdomain/zero/1.0/", url: "https://commons.wikimedia.org/wiki/File:Hameg_Oscilloscope_HMO3004_Series.jpg" },
+  { stage: "poh-02", device: "Electronics measurement bench", file: "poh-02.jpg", author: "Mvdiogo", license: "CC BY-SA 3.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/", url: "https://commons.wikimedia.org/wiki/File:Circuito0518.jpg" },
+  { stage: "poh-04", device: "Electronics workbench", file: "poh-04.jpg", author: "James Bastow", license: "CC BY-SA 2.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/2.0/", url: "https://commons.wikimedia.org/wiki/File:Electronics_workbench.jpg" },
+  { stage: "poh-05", device: "Optical laser laboratory", file: "poh-05.jpg", author: "U.S. Air Force", license: "Public domain", licenseUrl: "https://commons.wikimedia.org/wiki/Commons:Public_domain", url: "https://commons.wikimedia.org/wiki/File:Military_laser_experiment.jpg" },
+  { stage: "poh-06", device: "DRAM memory modules", file: "poh-06.jpg", author: "Cyberdex (Wikimedia Commons)", license: "Public domain", licenseUrl: "https://commons.wikimedia.org/wiki/Commons:Public_domain", url: "https://commons.wikimedia.org/wiki/File:Elixir_M2U51264DS8HC3G-5T_20060320.jpg" },
+  { stage: "poh-08", device: "FPGA development board", file: "poh-08.jpg", author: "SparkFun Electronics (Boulder, USA)", license: "CC BY 2.0", licenseUrl: "https://creativecommons.org/licenses/by/2.0/", url: "https://commons.wikimedia.org/wiki/File:Mojo_v3_FPGA_Development_Board_(9303578174).jpg" },
+  { stage: "poh-09", device: "CPU die (AMD Athlon 64 X2)", file: "poh-09.jpg", author: "cole8888", license: "CC BY-SA 2.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/2.0/", url: "https://commons.wikimedia.org/wiki/File:AMD_Athlon64X2_4400%2B_90nm_2006.jpg" },
+  { stage: "poh-10", device: "Data-center cold aisle", file: "poh-10.jpg", author: "123net", license: "CC BY-SA 3.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/", url: "https://commons.wikimedia.org/wiki/File:123Net_Data_Center_(DC2).jpg" },
+];
+
 // Per-file credits for the Flag Football imagery (Wikimedia Commons, free licenses).
 const FLAG_IMAGE_CREDITS = [
   { stage: "01", device: "Flag football action", file: "Flag Football Juke.jpg", author: "JJ hohorst", license: "CC BY-SA 3.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/", url: "https://commons.wikimedia.org/wiki/File:Flag_Football_Juke.jpg" },
@@ -531,6 +554,28 @@ export default function AttributionPage() {
             {OT_IMAGE_CREDITS.map((c) => (
               <li key={c.stage} className="text-xs text-gray-400 flex flex-wrap items-center gap-x-2 gap-y-0.5">
                 <span className="text-gray-600 font-mono w-10 flex-shrink-0">OT{c.stage}</span>
+                <span className="text-gray-300">{c.device}</span>
+                <span className="text-gray-700">·</span>
+                <a href={c.url} target="_blank" rel="noopener noreferrer" className="text-cyan-500 hover:text-cyan-400 transition-colors">{c.file}</a>
+                <span className="text-gray-700">·</span>
+                <span>© {c.author}</span>
+                <a href={c.licenseUrl} target="_blank" rel="noopener noreferrer" className="text-amber-400 hover:text-amber-300 transition-colors">{c.license} ↗</a>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="mt-12">
+          <h2 className="text-white font-bold text-lg mb-1">How Computers Work &amp; Physics of Hacking — imagery</h2>
+          <p className="text-gray-500 text-xs mb-4 leading-relaxed">
+            Real photos of the physical hardware behind each concept (filaments, transistors, core memory,
+            chip dies, oscilloscopes, DRAM, data centers), from Wikimedia Commons under free licenses and the
+            public domain. Self-hosted and credited below; the most abstract stages keep the generated cover.
+          </p>
+          <ul className="space-y-2 rounded-2xl border border-white/8 p-5" style={{ background: "rgba(255,255,255,0.02)" }}>
+            {COMPUTING_PHYSICS_CREDITS.map((c) => (
+              <li key={c.stage} className="text-xs text-gray-400 flex flex-wrap items-center gap-x-2 gap-y-0.5">
+                <span className="text-gray-600 font-mono w-12 flex-shrink-0">{c.stage}</span>
                 <span className="text-gray-300">{c.device}</span>
                 <span className="text-gray-700">·</span>
                 <a href={c.url} target="_blank" rel="noopener noreferrer" className="text-cyan-500 hover:text-cyan-400 transition-colors">{c.file}</a>

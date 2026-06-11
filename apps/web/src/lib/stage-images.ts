@@ -567,4 +567,32 @@ export const STAGE_IMAGES: Record<string, string> = {
   "si-08": "/img/si-08.jpg",
   "si-09": "/img/si-09.jpg",
   "si-10": "/img/si-10.jpg",
+
+  // How Computers Really Work — real photos of the physical hardware behind each
+  // concept (filament, breadboard, transistors, vintage CPU board, punch card,
+  // op-amp die, core memory, CPU, PCB traces, silicon wafer); Wikimedia Commons,
+  // credited on /attribution.
+  "cf-01": "/img/cf-01.jpg",
+  "cf-02": "/img/cf-02.jpg",
+  "cf-03": "/img/cf-03.jpg",
+  "cf-04": "/img/cf-04.jpg",
+  "cf-05": "/img/cf-05.jpg",
+  "cf-06": "/img/cf-06.jpg",
+  "cf-07": "/img/cf-07.jpg",
+  "cf-08": "/img/cf-08.jpg",
+  "cf-09": "/img/cf-09.jpg",
+  "cf-10": "/img/cf-10.jpg",
+
+  // The Physics of Hacking — real lab/hardware photos for the side-channel &
+  // hardware attacks (oscilloscope, measurement bench, workbench, laser optics,
+  // DRAM, FPGA, CPU die, data center); Commons, credited on /attribution.
+  // poh-03 (RF) and poh-07 (cold-boot) keep the generated cover.
+  "poh-01": "/img/poh-01.jpg",
+  "poh-02": "/img/poh-02.jpg",
+  "poh-04": "/img/poh-04.jpg",
+  "poh-05": "/img/poh-05.jpg",
+  "poh-06": "/img/poh-06.jpg",
+  "poh-08": "/img/poh-08.jpg",
+  "poh-09": "/img/poh-09.jpg",
+  "poh-10": "/img/poh-10.jpg",
 };
