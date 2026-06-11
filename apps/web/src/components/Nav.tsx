@@ -69,6 +69,26 @@ export default function Nav() {
     router.push("/");
   }
 
+  // One uniform nav model — every item is an icon + small label (same format for
+  // the primary links and the gamification items) so the top bar reads as one
+  // consistent set instead of a mix of text links and bare icons.
+  const navItems: { href: string; icon: string; label: string }[] = [
+    { href: "/stages", icon: "🗺️", label: t("nav.stages") },
+    { href: "/certs", icon: "📜", label: t("nav.certs", "Certifications") },
+    { href: "/leaderboard", icon: "🏆", label: t("nav.leaderboard") },
+    ...(username
+      ? [
+          { href: "/quests", icon: "🎯", label: "Quests" },
+          { href: "/leagues", icon: "⚔️", label: "Leagues" },
+          { href: "/achievements", icon: "🏅", label: "Achievements" },
+          { href: "/journey", icon: "🌍", label: t("nav.journey") },
+          { href: "/explore", icon: "🧭", label: t("nav.explore", "Explore") },
+          { href: "/account", icon: "⚙️", label: "Account" },
+        ]
+      : []),
+  ];
+  const isActive = (href: string) => pathname === href || pathname.startsWith(href + "/");
+
   return (
     <header
       className="fixed top-0 left-0 right-0 z-40 transition-all duration-300"
@@ -88,47 +108,36 @@ export default function Nav() {
           </span>
         </Link>
 
-        {/* Desktop nav */}
-        <nav className="hidden md:flex items-center gap-6 text-sm">
-          {[
-            { href: "/stages", label: t("nav.stages") },
-            { href: "/certs", label: t("nav.certs", "Certs") },
-            { href: "/leaderboard", label: t("nav.leaderboard") },
-          ].map(({ href, label }) => (
-            <Link
-              key={href}
-              href={href}
-              style={{ color: skin.textSecondary }}
-              className="hover:opacity-100 transition-opacity"
-            >
-              {label}
-            </Link>
-          ))}
-          {username && (
-            <div className="flex items-center gap-1">
-              <Link href="/quests" title="Quests" className="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-white/8 transition-colors text-base">
-                🎯
+        {/* Desktop nav — one uniform row of icon + small-label items */}
+        <nav className="hidden md:flex items-end gap-0.5">
+          {navItems.map(({ href, icon, label }) => {
+            const active = isActive(href);
+            return (
+              <Link
+                key={href}
+                href={href}
+                title={label}
+                className="flex flex-col items-center justify-center gap-0.5 px-2 py-1 rounded-lg transition-colors hover:bg-white/10"
+                style={{ background: active ? "rgba(255,255,255,0.10)" : undefined }}
+              >
+                <span className="text-[15px] leading-none">{icon}</span>
+                <span
+                  className="text-[9px] leading-none font-medium tracking-tight whitespace-nowrap"
+                  style={{ color: active ? skin.accent : skin.textMuted }}
+                >
+                  {label}
+                </span>
               </Link>
-              <Link href="/leagues" title="Leagues" className="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-white/8 transition-colors text-base">
-                ⚔️
-              </Link>
-              <Link href="/achievements" title="Achievements" className="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-white/8 transition-colors text-base">
-                🏅
-              </Link>
-              <Link href="/journey" title={t("nav.journey")} className="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-white/8 transition-colors text-base">
-                🗺️
-              </Link>
-              <Link href="/explore" title={t("nav.explore", "Explore")} className="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-white/8 transition-colors text-base">
-                🧭
-              </Link>
-              <Link href="/account" title="Account & Billing" className="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-white/8 transition-colors text-base">
-                ⚙️
-              </Link>
-            </div>
-          )}
+            );
+          })}
           {admin && (
-            <Link href="/admin" className="text-red-400 hover:text-red-300 transition-colors font-semibold">
-              {t("nav.admin")} ⚙️
+            <Link
+              href="/admin"
+              title={t("nav.admin")}
+              className="flex flex-col items-center justify-center gap-0.5 px-2 py-1 rounded-lg transition-colors hover:bg-red-500/10"
+            >
+              <span className="text-[15px] leading-none">🛡️</span>
+              <span className="text-[9px] leading-none font-medium tracking-tight text-red-400 whitespace-nowrap">{t("nav.admin")}</span>
             </Link>
           )}
         </nav>
@@ -234,47 +243,25 @@ export default function Nav() {
             background: skin.navBg,
           }}
         >
-          {[
-            { href: "/stages", label: `🗺️ ${t("nav.stages")}` },
-            { href: "/certs", label: `📜 ${t("nav.certs", "Certs")}` },
-            { href: "/journey", label: `🌍 ${t("nav.journey")}` },
-            { href: "/leaderboard", label: `🏆 ${t("nav.leaderboard")}` },
-            { href: "/explore", label: `🧭 ${t("nav.explore", "Explore")}` },
-          ].map(({ href, label }) => (
+          {/* Same unified item set as desktop (deduped — journey appears once) */}
+          {navItems.map(({ href, icon, label }) => (
             <Link
               key={href}
               href={href}
               className="block px-3 py-2.5 rounded-lg text-sm transition-colors"
-              style={{ color: skin.textSecondary }}
+              style={{ color: isActive(href) ? skin.accent : skin.textSecondary }}
             >
-              {label}
+              {icon} {label}
             </Link>
           ))}
           {username && (
-            <>
-              <Link href={`/profile/${username}`} className="block px-3 py-2.5 rounded-lg text-sm" style={{ color: skin.accent }}>
-                🧑‍💻 {t("nav.profile")}
-              </Link>
-              <Link href="/quests" className="block px-3 py-2.5 rounded-lg text-sm" style={{ color: "#34d399" }}>
-                🎯 Quests
-              </Link>
-              <Link href="/leagues" className="block px-3 py-2.5 rounded-lg text-sm" style={{ color: "#fbbf24" }}>
-                ⚔️ Leagues
-              </Link>
-              <Link href="/achievements" className="block px-3 py-2.5 rounded-lg text-sm" style={{ color: "#facc15" }}>
-                🏅 Achievements
-              </Link>
-              <Link href="/journey" className="block px-3 py-2.5 rounded-lg text-sm" style={{ color: "#22d3ee" }}>
-                🗺️ {t("nav.journey")}
-              </Link>
-              <Link href="/account" className="block px-3 py-2.5 rounded-lg text-sm" style={{ color: skin.textSecondary }}>
-                ⚙️ Account & Billing
-              </Link>
-            </>
+            <Link href={`/profile/${username}`} className="block px-3 py-2.5 rounded-lg text-sm" style={{ color: skin.accent }}>
+              🧑‍💻 {t("nav.profile")}
+            </Link>
           )}
           {admin && (
             <Link href="/admin" className="block px-3 py-2.5 rounded-lg text-red-400 text-sm font-semibold">
-              ⚙️ {t("nav.admin")}
+              🛡️ {t("nav.admin")}
             </Link>
           )}
           <div className="pt-3 mt-3" style={{ borderTop: `1px solid ${skin.cardBorder}` }}>
