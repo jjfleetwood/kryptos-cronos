@@ -24,14 +24,16 @@ export default function StagesPage() {
   const [totalXp, setTotalXp] = useState(0);
   const [streak, setStreak] = useState(0);
   const [username, setUsername] = useState<string | null>(null);
+  const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
     setUsername(getSession());
     fetch("/api/auth/me")
       .then((r) => (r.ok ? r.json() : null))
-      .then((data: { username: string } | null) => {
+      .then((data: { username: string; isAdmin?: boolean } | null) => {
         if (!data) return;
         setUsername(data.username);
+        setIsAdmin(!!data.isAdmin);
         setSession(data.username);
         fetchProgress().then((p) => {
           if (!p) return;
@@ -171,6 +173,18 @@ export default function StagesPage() {
             🛡️ Agent Risk Audit Guide
           </Link>
         </div>
+
+        {/* Agent Fleet Overview — internal ops doc, admin-only (the page itself is admin-gated). */}
+        {isAdmin && (
+          <div className="flex justify-end mb-4 -mt-2">
+            <Link
+              href="/guides/agent-fleet"
+              className="text-[10px] font-mono text-emerald-400 hover:text-emerald-300 transition-colors whitespace-nowrap border border-emerald-500/30 px-2.5 py-1 rounded-lg"
+            >
+              🛰️ Agent Fleet Overview
+            </Link>
+          </div>
+        )}
 
         <ContinueStrip />
 
