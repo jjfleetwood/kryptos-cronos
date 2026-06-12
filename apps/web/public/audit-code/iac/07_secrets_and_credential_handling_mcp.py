@@ -2,13 +2,16 @@
 """Read-only MCP server — Infrastructure as Code (IaC): "Secrets and credential handling" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Infrastructure as Code (IaC) policy/standard and flag every item where the "Secrets and credential handling" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify no secrets live in IaC code, history, or state, and that apply-time auth is short-lived. PASS: no hardcoded credentials/keys/tokens in the IaC repos or git history; secrets are injected at apply time from a secrets manager (Vault, AWS/GCP/Azure secret-manager data sources) or passed as protected CI variables — never committed `tfvars`; remote state is encrypted at rest with tightly scoped read access (state stores resource secrets like DB passwords in plaintext); and the IaC runner authenticates to the cloud via OIDC/short-lived role, not a long-lived key. Exceptions: any secret found in code or history, state stored unencrypted or world-readable, `terraform.tfvars` with passwords committed, and a long-lived admin cloud key embedded in the pipeline.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the secrets and credential handling control (from Terraform / CloudFormation / Bicep)
+    A secret-scan of the IaC repos + their history (gitleaks / TruffleHog) for credentials, keys, and tokens committed in `.tf`/`.yaml`/`tfvars`
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: Terraform / CloudFormation / Bicep, Policy-as-code (OPA / Sentinel), IaC scanners (tfsec/Checkov), GitOps controller (Argo/Flux))
+    gitleaks detect --source . --log-opts='--all'   (full history)  /  trufflehog git file://. 
+    confirm backend encryption: S3 backend has `encrypt = true` + a KMS key, and read access to the state bucket/HCP workspace is least-privilege
+    grep for hardcoded secrets in `*.tf` / `*.tfvars` and confirm secret values come from `data.vault_*` / `data.aws_secretsmanager_secret_version`
+    CI: confirm cloud auth is OIDC (`aws-actions/configure-aws-credentials` with role-to-assume) not a stored AWS_SECRET_ACCESS_KEY
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

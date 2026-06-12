@@ -2,13 +2,16 @@
 """Read-only MCP server — Infrastructure as Code (IaC): "Change management and peer review" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Infrastructure as Code (IaC) policy/standard and flag every item where the "Change management and peer review" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Trace every infrastructure change in the period from running state back to a reviewed, approved pull request. PASS: each `terraform apply` / CloudFormation stack update maps to a merged PR that had at least one independent CODEOWNER approval before merge; the plan in the PR matches what was applied; direct console/CLI changes are blocked or exception-tracked; and the author can't self-approve their own prod change. Exceptions: applies with no corresponding PR ('clickops' or laptop applies), PRs self-approved or merged with no review, and a divergence between the reviewed plan and what actually ran.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the change management and peer review control (from Terraform / CloudFormation / Bicep)
+    The pull-request history for the IaC repos — every infrastructure change as a PR with its reviewers and approval timestamps
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: Terraform / CloudFormation / Bicep, Policy-as-code (OPA / Sentinel), IaC scanners (tfsec/Checkov), GitOps controller (Argo/Flux))
+    GitHub: gh api repos/{org}/{repo}/branches/main/protection  (required reviews, CODEOWNERS, no self-review)
+    HCP Terraform: GET /api/v2/workspaces/{id}/runs  → each apply, its source PR (commit SHA) and the user who confirmed it
+    Atlantis: the PR-comment apply trail (plan → approve → apply) per repo
+    AWS:  CloudTrail lookup for ConsoleLogin + non-Terraform-principal mutating events on managed resources (out-of-band changes)
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

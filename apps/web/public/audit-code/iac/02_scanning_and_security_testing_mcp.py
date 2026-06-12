@@ -2,13 +2,16 @@
 """Read-only MCP server — Infrastructure as Code (IaC): "Scanning and security testing" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Infrastructure as Code (IaC) policy/standard and flag every item where the "Scanning and security testing" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Run the IaC security scanners across the in-scope IaC repos and compare to the pipeline gate. PASS: a misconfiguration scanner (Checkov/tfsec/Terrascan/KICS) runs on every IaC repo on each PR, fails the build on findings at/above the agreed severity, covers Terraform + CloudFormation + Kubernetes/Helm manifests, and every suppression has a documented, time-boxed justification. Exceptions: IaC repos with no scanner, the scan set to soft-fail/warn-only, scanners run only locally (not enforced in CI), and blanket `skip-check`/ignore rules hiding real HIGH/CRITICAL findings.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the scanning and security testing control (from Terraform / CloudFormation / Bicep)
+    The IaC-scanner configuration in the pipeline (Checkov / tfsec / Terrascan / KICS) — which repos run it and the ruleset/severity threshold
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: Terraform / CloudFormation / Bicep, Policy-as-code (OPA / Sentinel), IaC scanners (tfsec/Checkov), GitOps controller (Argo/Flux))
+    checkov -d . --compact --output sarif   (and confirm CI uses `--soft-fail` is NOT set)
+    tfsec . --minimum-severity HIGH --format sarif
+    terrascan scan -i terraform -t aws   /   kics scan -p . --report-formats sarif
+    grep the repos for suppression markers: `#checkov:skip`, `#tfsec:ignore`, `.checkov.yaml` skip lists — and check each has a reason
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /
