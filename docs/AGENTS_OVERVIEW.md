@@ -97,7 +97,7 @@ Also available on-demand (not scheduled): **epoch-author** — scaffolds a brand
 
 | Cadence | Who | Mode |
 |---|---|---|
-| Nightly 07:00 UTC | The 11-agent deterministic report fleet (`test-agent.yml`) | report-only → board |
+| Nightly 07:00 UTC | The 10-agent deterministic report fleet (`test-agent.yml`) | report-only → board |
 | Nightly 07:30 UTC | One rotating Claude subagent (`nightly-subagents.yml`) | report-only / PR-only (dormant w/o API key) |
 | Hourly | The programming agent (`auto-agent.yml`) | auto-fix safe AUTO subset → PR |
 | On demand | Claude subagents (epoch-author) + drift/docs `--fix` | supervised → PR |
