@@ -2,13 +2,16 @@
 """Read-only MCP server — Infrastructure as Code (IaC): "GitOps security controls" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Infrastructure as Code (IaC) policy/standard and flag every item where the "GitOps security controls" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify the GitOps pull-based delivery model is secured end to end (git is the source of truth, the controller is the only thing that writes to the cluster). PASS: the GitOps repo is the single write path — direct `kubectl apply` to clusters is restricted; the manifest repo has branch protection + required review (and ideally signed/verified commits); the controller verifies commit signatures and only syncs trusted, pinned sources; self-heal/auto-sync reverts drift; the controller's cluster RBAC is least-privilege per target (no single agent with cluster-admin on every cluster); and the controller's own UI/API is authenticated + RBAC-scoped. Exceptions: unprotected manifest repo (any push reaches prod clusters), no commit verification, the controller holding cluster-admin across all clusters, self-heal disabled (so manual drift persists), and a publicly-exposed or weakly-authenticated Argo/Flux endpoint.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the gitops security controls control (from Terraform / CloudFormation / Bicep)
+    The GitOps controller config (Argo CD / Flux) — the source repos it syncs, the target clusters, and the sync/self-heal/prune settings
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: Terraform / CloudFormation / Bicep, Policy-as-code (OPA / Sentinel), IaC scanners (tfsec/Checkov), GitOps controller (Argo/Flux))
+    Argo CD: argocd app list + argocd app get → source repo/revision, auto-sync + self-heal + prune flags per app
+    Flux: flux get sources git / flux get kustomizations → source pinning + sync status; confirm `verify` (commit signature) is set
+    kubectl get clusterrolebinding -o wide  → the Argo/Flux service account's RBAC (is it cluster-admin everywhere?)
+    confirm the manifest repo has branch protection + required review, and direct kubectl write to prod clusters is blocked (the controller is the only writer)
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

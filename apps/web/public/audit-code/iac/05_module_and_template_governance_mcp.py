@@ -2,13 +2,16 @@
 """Read-only MCP server — Infrastructure as Code (IaC): "Module and template governance" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Infrastructure as Code (IaC) policy/standard and flag every item where the "Module and template governance" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify reusable modules and templates are governed, versioned, and trusted. PASS: callers consume modules from an approved private registry pinned to immutable, semver-tagged versions (not a moving branch or `latest`); module publishing is restricted to module owners and the module passes scanning/review before a version is cut; third-party/public modules are vetted (forked into the registry or pinned to a reviewed commit); and a known-good module change propagates through controlled version bumps, not silently. Exceptions: modules sourced from a floating `main`/`master` branch (any push changes prod), unrestricted publishing, public modules pulled directly from the internet with no review, and unpinned/`latest` references.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the module and template governance control (from Terraform / CloudFormation / Bicep)
+    The private module registry inventory (HCP Terraform private registry / Terraform Registry / Git module sources) and their version constraints
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: Terraform / CloudFormation / Bicep, Policy-as-code (OPA / Sentinel), IaC scanners (tfsec/Checkov), GitOps controller (Argo/Flux))
+    grep callers for `source =` + `version =` / git `?ref=` → flag any pointing at a branch (`?ref=main`) or with no version constraint
+    HCP Terraform: GET /api/v2/organizations/{org}/registry-modules  → versions, publishers
+    confirm module repos run Checkov/tfsec + tests on PR before a tag is published
+    for public modules: confirm they're vendored into the private registry or pinned to a reviewed commit SHA, not `terraform-aws-modules/...` floating
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

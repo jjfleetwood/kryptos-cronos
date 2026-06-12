@@ -2,13 +2,16 @@
 """Read-only MCP server — Infrastructure as Code (IaC): "Pipeline integration" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Infrastructure as Code (IaC) policy/standard and flag every item where the "Pipeline integration" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify IaC change is delivered only through a controlled pipeline. PASS: applies run only from the pipeline (no local apply to prod), in the order plan → IaC-scan → policy-as-code → human approval → apply; the apply consumes the saved, reviewed plan artifact (so what's approved is what runs); prod applies require an approver distinct from the author via environment protection; the runner assumes a least-privilege, short-lived role scoped to the workspace; and the pipeline definition itself is branch-protected. Exceptions: developers applying to prod from laptops, the apply re-planning instead of using the approved plan (review/apply divergence), no approval gate before prod apply, an over-privileged shared apply role, and an editable pipeline anyone can change.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the pipeline integration control (from Terraform / CloudFormation / Bicep)
+    The IaC pipeline definition (plan → policy → approval → apply) and the protected-environment / required-approval config for prod applies
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: Terraform / CloudFormation / Bicep, Policy-as-code (OPA / Sentinel), IaC scanners (tfsec/Checkov), GitOps controller (Argo/Flux))
+    confirm the workflow uses `terraform plan -out=plan.out` then `terraform apply plan.out` (same artifact), not a bare `terraform apply` that re-plans
+    GitHub: required reviewers on the `production` environment (gh api repos/{org}/{repo}/environments/production) — approver ≠ author
+    inspect the apply-stage cloud role: scoped to the stack's resources + short-lived (OIDC), not AdministratorAccess
+    confirm `terraform apply` is blocked outside CI (state-lock + no human apply credentials) and the pipeline YAML is branch-protected
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

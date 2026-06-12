@@ -2,13 +2,16 @@
 """Read-only MCP server — Infrastructure as Code (IaC): "Configuration drift detection" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Infrastructure as Code (IaC) policy/standard and flag every item where the "Configuration drift detection" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Detect divergence between the declared IaC state and running infrastructure. PASS: a scheduled drift check (HCP Terraform health assessments, `terraform plan -detailed-exitcode`, or driftctl) runs across managed workspaces; a clean plan (exit 0 / no changes) is the steady state; any drift is alerted, investigated, and reconciled (re-applied or codified) within SLA; and out-of-band console changes are correlated to a change record. Exceptions: workspaces with no scheduled drift check, persistent unreconciled drift (runtime silently diverged from code), and unauthorized changes (drift with no corresponding change ticket) — e.g. a security group widened in the console that the code would revert.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the configuration drift detection control (from Terraform / CloudFormation / Bicep)
+    A current `terraform plan` against the live state for in-scope workspaces (a non-empty plan = drift between code and runtime)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: Terraform / CloudFormation / Bicep, Policy-as-code (OPA / Sentinel), IaC scanners (tfsec/Checkov), GitOps controller (Argo/Flux))
+    terraform plan -detailed-exitcode   (exit 2 = drift) per workspace on a schedule
+    HCP Terraform: enable + read 'health assessments' (drift detection) via GET /api/v2/workspaces/{id}/assessment-results
+    driftctl scan --from tfstate+s3://... --to aws+tf   (IaC state vs actual cloud)
+    AWS: aws configservice get-resource-config-history  → who changed a managed resource out-of-band, when
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

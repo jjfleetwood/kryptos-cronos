@@ -2,13 +2,16 @@
 """Read-only MCP server — Infrastructure as Code (IaC): "Cloud resource misconfig via IaC" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Infrastructure as Code (IaC) policy/standard and flag every item where the "Cloud resource misconfig via IaC" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Inspect the IaC for the specific cloud misconfigurations that create exposure, and confirm runtime posture agrees. PASS: storage is private + encrypted (no public S3/blob ACLs, KMS/CMK encryption on at rest), security groups/NSGs don't allow 0.0.0.0/0 to admin ports (22/3389/databases), IAM in code is least-privilege (no `"Action": "*"` / `"Resource": "*"`), and logging (flow logs, CloudTrail, bucket access logs) is enabled in the template — and the CSPM shows zero of these in runtime. Exceptions: any IaC resource defaulting a bucket public, an `0.0.0.0/0` ingress on a sensitive port, a wildcard IAM policy, or encryption/logging disabled — each named by resource address and file.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the cloud resource misconfig via iac control (from Terraform / CloudFormation / Bicep)
+    The `terraform plan` JSON (`terraform show -json plan.out`) for in-scope changes — the resources and attributes about to be created
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: Terraform / CloudFormation / Bicep, Policy-as-code (OPA / Sentinel), IaC scanners (tfsec/Checkov), GitOps controller (Argo/Flux))
+    terraform plan -out plan.out && terraform show -json plan.out  → jq the planned_values for public ACLs, 0.0.0.0/0, wildcard IAM
+    checkov / tfsec policy ids CKV_AWS_18/20/23/24 (logging, public bucket, open SG) against the plan
+    AWS: aws securityhub get-findings --filters '{"GeneratorId":[{"Value":"aws-foundational-security-best-practices"}]}'
+    Wiz/Prisma query: 'publicly exposed resources' and 'unencrypted data stores' joined back to the owning Terraform module
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /
