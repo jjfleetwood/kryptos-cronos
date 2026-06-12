@@ -2,13 +2,16 @@
 """Read-only MCP server — Endpoint Devices: "Device image version mgmt" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Endpoint Devices policy/standard and flag every item where the "Device image version mgmt" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify endpoints run a current, approved, hardened image. PASS: gold images are versioned, hardened (CIS), and patched at bake; the fleet runs current image versions; and re-imaging/refresh keeps drift bounded. Exceptions: devices on images years old, unapproved/unmanaged builds, images that ship unpatched or unhardened, and no process to refresh stale images.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the device image version mgmt control (from MDM / UEM (Intune / Jamf))
+    The approved gold-image/build definitions + versions per OS
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: MDM / UEM (Intune / Jamf), EDR (CrowdStrike / Defender / SentinelOne), Disk-encryption manager (BitLocker/FileVault), Endpoint inventory / NAC)
+    MDM: deployed OS build + image-version distribution across the fleet
+    compare to the approved gold-image versions
+    CIS-CAT the gold image to confirm hardening + patch currency at bake
+    flag devices on deprecated/unapproved builds
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

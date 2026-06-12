@@ -2,13 +2,16 @@
 """Read-only MCP server — Endpoint Devices: "Device management platform" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Endpoint Devices policy/standard and flag every item where the "Device management platform" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify all corporate endpoints are enrolled in and governed by the management platform. PASS: every in-scope device (Windows/macOS/mobile) is enrolled in MDM/UEM, receives the security baseline, and reports compliant; unmanaged devices are blocked from corporate resources. Exceptions: devices not enrolled, enrolled-but-non-compliant devices, and unmanaged devices with access to corporate data.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the device management platform control (from MDM / UEM (Intune / Jamf))
+    The MDM/UEM enrolment report — devices enrolled + managed vs the total known device population
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: MDM / UEM (Intune / Jamf), EDR (CrowdStrike / Defender / SentinelOne), Disk-encryption manager (BitLocker/FileVault), Endpoint inventory / NAC)
+    Intune/Jamf: enrolled + compliant device count vs the CMDB/AD device count (the gap)
+    export the configuration-profile baseline + per-device compliance state
+    Conditional Access: is device-compliance required for corporate apps?
+    list devices with corporate access that are NOT enrolled
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

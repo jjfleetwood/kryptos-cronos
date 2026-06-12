@@ -2,13 +2,16 @@
 """Read-only MCP server — Endpoint Devices: "End-of-life management" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Endpoint Devices policy/standard and flag every item where the "End-of-life management" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify no endpoint runs unsupported software/hardware that no longer receives security patches. PASS: OS + hardware are mapped to vendor EOL dates; devices are refreshed/upgraded before EOL; any EOL device that must remain is isolated, compensated, and ESU-covered. Exceptions: endpoints on EOL OS receiving no security patches, no refresh plan, and EOL devices on the production network with no isolation.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the end-of-life management control (from MDM / UEM (Intune / Jamf))
+    The inventory of OS/hardware versions vs vendor end-of-support dates
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: MDM / UEM (Intune / Jamf), EDR (CrowdStrike / Defender / SentinelOne), Disk-encryption manager (BitLocker/FileVault), Endpoint inventory / NAC)
+    map deployed OS/hardware versions to vendor end-of-support dates
+    list endpoints on EOL OS (e.g. Windows 10 after Oct 2025 with no ESU)
+    confirm a funded refresh plan; check ESU enrolment where used
+    verify any remaining EOL devices are network-isolated + compensated
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

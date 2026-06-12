@@ -2,13 +2,16 @@
 """Read-only MCP server — Endpoint Devices: "NAC, VPN, ZTNA" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Endpoint Devices policy/standard and flag every item where the "NAC, VPN, ZTNA" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify network/app access requires a healthy, authorised device (posture-based access). PASS: NAC authenticates + posture-checks devices on wired and wireless (802.1X), quarantining unknown/non-compliant devices; VPN/ZTNA enforce device posture (managed + compliant) before access; bypass exceptions are minimal and tracked. Exceptions: open ports/SSIDs with no NAC, non-compliant devices reaching production, VPN/ZTNA with no posture check, and broad MAC-bypass exceptions.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the nac, vpn, ztna control (from MDM / UEM (Intune / Jamf))
+    The network-access-control posture policy (device must be managed + compliant to reach the network/apps)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: MDM / UEM (Intune / Jamf), EDR (CrowdStrike / Defender / SentinelOne), Disk-encryption manager (BitLocker/FileVault), Endpoint inventory / NAC)
+    NAC: 802.1X coverage on wired+wireless; policy for unknown/non-compliant → quarantine
+    VPN/ZTNA posture config (managed + compliant + AV/patch checks)
+    review the MAC-Auth-Bypass exception list (the usual hole)
+    test: connect an unmanaged device — does NAC quarantine it?
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

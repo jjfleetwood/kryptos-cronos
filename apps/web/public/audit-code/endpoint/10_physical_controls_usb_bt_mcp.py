@@ -2,13 +2,16 @@
 """Read-only MCP server — Endpoint Devices: "Physical controls (USB, BT)" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Endpoint Devices policy/standard and flag every item where the "Physical controls (USB, BT)" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify peripheral and removable-media controls are enforced. PASS: USB mass-storage is blocked or forced-encrypted per policy; only approved peripherals are allowed (device-control allow-list); Bluetooth is restricted/managed; DMA/Thunderbolt protection is on; and usage is logged. Exceptions: unrestricted USB storage (data-exfil + malware vector), no peripheral allow-list, open Bluetooth, DMA protection off, and no logging of removable-media use.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the physical controls (usb, bt) control (from MDM / UEM (Intune / Jamf))
+    The removable-media + peripheral-control policy and its MDM enforcement (USB storage block/encrypt, Bluetooth restrictions)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: MDM / UEM (Intune / Jamf), EDR (CrowdStrike / Defender / SentinelOne), Disk-encryption manager (BitLocker/FileVault), Endpoint inventory / NAC)
+    MDM device-control policy: USB-storage block/encrypt + peripheral allow-list config
+    confirm BitLocker To Go (or block) on removable storage
+    Defender device-control + Kernel DMA Protection status
+    SIEM: USB-insertion + blocked-peripheral events
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

@@ -2,13 +2,16 @@
 """Read-only MCP server — Endpoint Devices: "Data loss prevention (endpoint)" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Endpoint Devices policy/standard and flag every item where the "Data loss prevention (endpoint)" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify endpoint DLP detects + controls sensitive-data egress at the device. PASS: endpoint DLP covers the fleet, detects sensitive types on USB/print/clipboard/upload/personal-sync, blocks or warns per policy, and feeds incidents to the SOC. Exceptions: endpoints without the DLP agent, key channels uncovered (USB, personal cloud sync, clipboard), incidents not triaged, and trivial override.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the data loss prevention (endpoint) control (from MDM / UEM (Intune / Jamf))
+    The endpoint-DLP policy + coverage (sensitive-data detection on copy/print/upload/USB)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: MDM / UEM (Intune / Jamf), EDR (CrowdStrike / Defender / SentinelOne), Disk-encryption manager (BitLocker/FileVault), Endpoint inventory / NAC)
+    endpoint-DLP console: enrolled endpoints vs inventory + policy per channel
+    test channels: USB copy, print, personal OneDrive/Drive sync, clipboard to webmail
+    incident export + disposition
+    confirm personal-sync-client + clipboard controls
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

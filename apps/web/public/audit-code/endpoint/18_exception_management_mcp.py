@@ -2,13 +2,16 @@
 """Read-only MCP server — Endpoint Devices: "Exception management" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Endpoint Devices policy/standard and flag every item where the "Exception management" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify exceptions to endpoint controls are governed, compensated, and time-boxed. PASS: every exemption (no EDR, encryption off, patch deferral, USB allowed) is in a register with a business justification, an approved compensating control, a named owner, and an expiry; exceptions are reviewed and reconciled to reality; expired ones are closed. Exceptions: undocumented exemptions (devices just missing controls with no record), exceptions with no compensating control, no expiry ('permanent temporary' exceptions), and a register that doesn't match the actual exempted devices.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the exception management control (from MDM / UEM (Intune / Jamf))
+    The endpoint-control exception register (devices/users exempted from EDR, encryption, patch, USB, etc.)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: MDM / UEM (Intune / Jamf), EDR (CrowdStrike / Defender / SentinelOne), Disk-encryption manager (BitLocker/FileVault), Endpoint inventory / NAC)
+    pull the exception register: justification, compensating control, owner, approval, expiry per exemption
+    reconcile the register vs reality (MDM/EDR devices actually missing controls)
+    flag exceptions past expiry or with no compensating control
+    find undocumented exemptions — exempted devices not in the register
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

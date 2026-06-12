@@ -2,13 +2,16 @@
 """Read-only MCP server — Endpoint Devices: "OS patching cadence" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Endpoint Devices policy/standard and flag every item where the "OS patching cadence" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify endpoints are patched within cadence (OS + common third-party apps). PASS: a patch policy with severity SLAs exists; ~100% of endpoints are within SLA for OS and high-risk third-party apps (browsers, Java, Adobe); deployment rings + reboot enforcement keep devices current; and KEV-listed endpoint CVEs are remediated. Exceptions: endpoints months behind, third-party apps unpatched, devices with paused/failed updates, and no third-party patching at all.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the os patching cadence control (from MDM / UEM (Intune / Jamf))
+    The endpoint patch-compliance report (missing OS + third-party patches, severity, age) per device
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: MDM / UEM (Intune / Jamf), EDR (CrowdStrike / Defender / SentinelOne), Disk-encryption manager (BitLocker/FileVault), Endpoint inventory / NAC)
+    Intune/SCCM update-compliance per device; identify devices behind SLA
+    third-party patch coverage (browsers/Java/Adobe) — usually the real gap
+    list devices with paused/failed update history
+    join endpoint CVEs to the CISA KEV catalogue
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

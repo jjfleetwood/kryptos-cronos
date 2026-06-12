@@ -2,13 +2,16 @@
 """Read-only MCP server — Endpoint Devices: "End point inventory and unauthorized devices" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Endpoint Devices policy/standard and flag every item where the "End point inventory and unauthorized devices" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify the org has a complete, reconciled endpoint inventory and detects unauthorised devices. PASS: a single authoritative inventory reconciles MDM, EDR, directory, and network sources; devices on the network are matched to it; and unknown/unauthorised devices are detected and quarantined (NAC). Exceptions: large reconciliation gaps, rogue devices on the network with no detection, and no NAC/quarantine for unknowns.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the end point inventory and unauthorized devices control (from MDM / UEM (Intune / Jamf))
+    The authoritative endpoint inventory reconciled from MDM + EDR + AD + DHCP/NAC
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: MDM / UEM (Intune / Jamf), EDR (CrowdStrike / Defender / SentinelOne), Disk-encryption manager (BitLocker/FileVault), Endpoint inventory / NAC)
+    reconcile device lists: AD computers ∪ EDR ∪ MDM ∪ DHCP leases → find the gaps
+    runZero / Lansweeper network discovery vs the inventory (rogue devices)
+    NAC logs: unknown devices that connected — were they quarantined?
+    count endpoints with EDR but no MDM (and vice-versa)
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

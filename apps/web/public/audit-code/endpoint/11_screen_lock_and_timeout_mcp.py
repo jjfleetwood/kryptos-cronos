@@ -2,13 +2,16 @@
 """Read-only MCP server — Endpoint Devices: "Screen lock and timeout" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Endpoint Devices policy/standard and flag every item where the "Screen lock and timeout" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify endpoints auto-lock after inactivity and require re-authentication. PASS: an inactivity timeout (≤15 min, shorter for privileged/admin) is enforced via MDM and can't be disabled locally; resume requires password/biometric; and kiosk/shared devices have appropriate session handling. Exceptions: no timeout or an excessive one (hours), users able to disable the lock, and privileged workstations with the same long timeout as standard devices.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the screen lock and timeout control (from MDM / UEM (Intune / Jamf))
+    The screen-lock/timeout policy (inactivity timeout, password/biometric on resume) and its MDM enforcement
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: MDM / UEM (Intune / Jamf), EDR (CrowdStrike / Defender / SentinelOne), Disk-encryption manager (BitLocker/FileVault), Endpoint inventory / NAC)
+    MDM: screen-lock/timeout profile config + per-device compliance
+    confirm the setting is managed (greyed-out for the user, not user-editable)
+    check privileged/admin workstations have a shorter timeout
+    review kiosk/shared-device session policy
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

@@ -2,13 +2,16 @@
 """Read-only MCP server — Endpoint Devices: "MDM and containerization" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Endpoint Devices policy/standard and flag every item where the "MDM and containerization" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify mobile + BYOD access to corporate data is managed and isolated. PASS: corporate mobiles are enrolled with a security baseline; BYOD uses MAM/containerisation that isolates work data (no copy to personal apps, selective wipe, encrypted container); jailbroken/rooted devices are blocked; and conditional access requires compliance. Exceptions: unmanaged mobiles with corporate mail/data, BYOD with no container (corp data in personal apps), no jailbreak detection, and no compliance gate.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the mdm and containerization control (from MDM / UEM (Intune / Jamf))
+    The mobile-device + BYOD inventory and management model (MDM-managed vs MAM/containerised)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: MDM / UEM (Intune / Jamf), EDR (CrowdStrike / Defender / SentinelOne), Disk-encryption manager (BitLocker/FileVault), Endpoint inventory / NAC)
+    Intune: managed-device + App-Protection-Policy coverage; jailbreak/root compliance
+    confirm MAM policy: work-data encryption, copy/paste restriction, selective wipe, block backup
+    Conditional Access requiring a compliant / MAM-protected app for mobile mail
+    list mobiles with corporate access but no management
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

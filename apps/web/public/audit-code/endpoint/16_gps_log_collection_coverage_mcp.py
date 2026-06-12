@@ -2,13 +2,16 @@
 """Read-only MCP server — Endpoint Devices: "GPS, log collection coverage" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Endpoint Devices policy/standard and flag every item where the "GPS, log collection coverage" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify endpoints emit and ship security telemetry, and lost devices can be located. PASS: required endpoint log sources are enabled and ~100% of endpoints forward to the SIEM (incl. roaming via cloud collectors); EDR telemetry is centralised; device location/GPS is available for lost-device recovery; and logs are retained. Exceptions: endpoints not forwarding (investigation blind spots), missing sources (no 4688/Sysmon), roaming devices uncollected, and no location capability for lost devices.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the gps, log collection coverage control (from MDM / UEM (Intune / Jamf))
+    Endpoint log/telemetry forwarding coverage to the SIEM (which endpoints send security logs)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: MDM / UEM (Intune / Jamf), EDR (CrowdStrike / Defender / SentinelOne), Disk-encryption manager (BitLocker/FileVault), Endpoint inventory / NAC)
+    SIEM: endpoints reporting in last 24h vs the device inventory (forwarding coverage)
+    confirm 4688 + command-line + 4104 script-block + Sysmon enabled fleet-wide
+    roaming-device telemetry via cloud collector (not just on-LAN)
+    MDM device-location / Find-My for lost-device recovery
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

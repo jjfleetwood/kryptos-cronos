@@ -2,13 +2,16 @@
 """Read-only MCP server — Endpoint Devices: "Hardware lifecycle tracking" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Endpoint Devices policy/standard and flag every item where the "Hardware lifecycle tracking" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify hardware is tracked across its full lifecycle. PASS: every device has a register entry through procurement, assignment, refresh, and disposal; the register reconciles to discovered devices; disposed devices were securely wiped (NIST 800-88) with certificates; and lost/stolen devices are recorded and remotely wiped. Exceptions: deployed devices not in the register (or vice-versa), disposed devices with no wipe evidence, and lost devices not remote-wiped.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the hardware lifecycle tracking control (from MDM / UEM (Intune / Jamf))
+    The hardware asset register (procurement → deployment → refresh → disposal) with owner, location, status
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: MDM / UEM (Intune / Jamf), EDR (CrowdStrike / Defender / SentinelOne), Disk-encryption manager (BitLocker/FileVault), Endpoint inventory / NAC)
+    reconcile the ITAM register vs MDM + EDR discovered devices
+    disposal: certificates of destruction / crypto-erase logs per NIST 800-88
+    lost/stolen log: confirm remote wipe was issued AND confirmed
+    check for register entries stuck 'in stock' that are actually deployed
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

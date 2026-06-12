@@ -2,13 +2,16 @@
 """Read-only MCP server — Endpoint Devices: "Full disk encryption" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Endpoint Devices policy/standard and flag every item where the "Full disk encryption" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify endpoints are fully-disk-encrypted with escrowed recovery keys. PASS: ~100% of endpoints have FDE enabled and completed (BitLocker XTS-AES, FileVault) with TPM-backed protectors; recovery keys are escrowed (Intune/AD) and recoverable; and removable drives are encrypted. Exceptions: devices with encryption off or suspended, decryption-paused devices, recovery keys not escrowed (data unrecoverable + audit fail), and unencrypted external drives.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the full disk encryption control (from MDM / UEM (Intune / Jamf))
+    The full-disk-encryption status per device (BitLocker/FileVault on, fully encrypted, correct cipher)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: MDM / UEM (Intune / Jamf), EDR (CrowdStrike / Defender / SentinelOne), Disk-encryption manager (BitLocker/FileVault), Endpoint inventory / NAC)
+    MDM: FDE status (encrypted/encrypting/off) per device vs the inventory
+    confirm recovery-key escrow to Intune/AD (and test a recovery)
+    BitLocker: TPM + cipher (XTS-AES-256) + protector config
+    removable-drive encryption (BitLocker To Go) status
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

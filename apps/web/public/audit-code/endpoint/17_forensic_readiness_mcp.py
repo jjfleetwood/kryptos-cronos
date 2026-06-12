@@ -2,13 +2,16 @@
 """Read-only MCP server — Endpoint Devices: "Forensic readiness" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Endpoint Devices policy/standard and flag every item where the "Forensic readiness" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify the org could investigate an endpoint compromise. PASS: EDR retains sufficient process/file/network history for DFIR; remote triage/collection (memory, artifacts) is available without physical access; hosts can be network-isolated from the console; and there's a documented forensic process with chain-of-custody. Exceptions: telemetry retention too short to investigate (days, not months), no remote-collection capability, no host-isolation, and no forensic process.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the forensic readiness control (from MDM / UEM (Intune / Jamf))
+    The endpoint forensic-capability evidence (EDR retains process/file/network history; remote triage/collection available)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: MDM / UEM (Intune / Jamf), EDR (CrowdStrike / Defender / SentinelOne), Disk-encryption manager (BitLocker/FileVault), Endpoint inventory / NAC)
+    EDR: telemetry-retention window (enough to investigate a 3-month-old intrusion?)
+    confirm remote triage/collection (RTR / Live Response / Velociraptor) is available + tested
+    confirm one-click host network-isolation from the EDR console
+    review the endpoint forensic + chain-of-custody process
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /
