@@ -79,7 +79,15 @@ Also available on-demand (not scheduled): **epoch-author** — scaffolds a brand
 
 **Safety:** the workflow uses a **bounded tool allowlist** (read/edit/write + `git` branch/commit/push + `gh pr create` + node/npm) — *not* `--dangerously-skip-permissions` — and explicitly **denies `gh pr merge` / `git merge` / push-to-master**, so the human-merge gate holds. **Dormant until the repo secret `ANTHROPIC_API_KEY` is set** (each run is billed Claude API usage); without it the job logs a skip and exits clean.
 
-## 5. Shared infrastructure
+## 5. The nightly Deep Content Author (the grinder)
+
+`.github/workflows/nightly-content.yml` + `.claude/agents/content-author.md` — a dedicated Claude subagent that runs **every night at 12:00 UTC (04:00 PST)** to grind through the deep-content backlog **one self-contained unit per run**. Same safety model as §4 (bounded allowlist, PR-only, never merges, dormant without `ANTHROPIC_API_KEY`).
+
+- **Primary work:** author one un-authored **Advanced Audit** domain to the IAM/VPM quality bar — real artifacts, tests, systems, and commands per module — by appending records to `packages/core/scripts/audit-content.mjs`, regenerating, gating on the generator + `tsc`, and opening one branch + PR. Priority order is in the agent definition (network-security → data-privacy → cloud-saas → …).
+- **Secondary work** (once every audit domain is authored): deepen the epoch the Prose Quality agent flags most, into the narrative house standard.
+- **Guardrails:** one domain/epoch per run; never edits the hand-authored `aar-01`, `stage-flags`, or auth/payments/crypto/proxy; green gates before any PR. Manual run: Actions → this workflow → optionally name a `target` domain slug.
+
+## 6. Shared infrastructure
 
 - **`/api/agent/report`** — the single intake. Token-gated (`AGENT_REPORT_TOKEN`) behind the `AGENTS_ENABLED` kill switch. Dedups by finding key, auto-resolves fixed findings, writes a per-agent sweep-summary card, and upserts a cross-agent **📊 Agent digest** card with ▲/▼/= trends every sweep.
 - **`gen:meta` pre-push hook** (`apps/web/.claude/settings.json`) — blocks a `git push` when `stages-meta.generated.ts` is stale (`check:meta`). Fix: `npm run gen:meta -w @kryptos/core`.

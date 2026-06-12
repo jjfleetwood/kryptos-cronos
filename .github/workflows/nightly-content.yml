@@ -1,0 +1,97 @@
+name: Deep Content Author (nightly)
+
+# Runs the supervised content-author Claude subagent every night to grind through
+# the deep-content backlog — primarily authoring real per-module content for the
+# Advanced Audit track (one domain per run), then deepening flagged prose. It is
+# PR-only and NEVER merges, so a human still approves anything that reaches master.
+#
+# Schedule: 12:00 UTC = 04:00 PST (05:00 during PDT — GitHub cron is UTC, no DST).
+# Sits well clear of the 07:00/07:30 UTC report fleet + subagent rotation.
+#
+# DORMANT until you set the repo secret ANTHROPIC_API_KEY (billed — each run spends
+# Claude API credits). Without it the job logs a skip and exits clean.
+#   - Test: Actions → this workflow → Run workflow (optionally name a target domain).
+
+on:
+  schedule:
+    - cron: "0 12 * * *" # 04:00 America/Los_Angeles (PST)
+  workflow_dispatch:
+    inputs:
+      target:
+        description: "Optional: a specific domain slug or epoch to author (else next in priority)"
+        type: string
+        default: ""
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: nightly-content
+  cancel-in-progress: false
+
+jobs:
+  author:
+    name: Author one deep-content unit → PR
+    runs-on: ubuntu-latest
+    env:
+      ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+      AGENT_REPORT_URL: ${{ vars.AGENT_REPORT_URL || 'https://www.kryptoscronos.com' }}
+      AGENT_REPORT_TOKEN: ${{ secrets.AGENT_REPORT_TOKEN }}
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Gate on API key (dormant without it)
+        id: gate
+        run: |
+          if [ -z "$ANTHROPIC_API_KEY" ]; then
+            echo "No ANTHROPIC_API_KEY set — the content author is dormant. Skipping."
+            echo "run=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "run=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Setup Node.js
+        if: steps.gate.outputs.run == 'true'
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: package-lock.json
+
+      - name: Install dependencies
+        if: steps.gate.outputs.run == 'true'
+        run: npm ci
+
+      - name: Git identity
+        if: steps.gate.outputs.run == 'true'
+        run: |
+          git config user.name "kryptos-content-author[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Install Claude Code
+        if: steps.gate.outputs.run == 'true'
+        run: npm i -g @anthropic-ai/claude-code
+
+      - name: Run content-author (headless, bounded tool allowlist)
+        if: steps.gate.outputs.run == 'true'
+        continue-on-error: true
+        run: |
+          TARGET="${{ github.event.inputs.target }}"
+          PROMPT="Run tonight's deep-content authoring sweep using the 'content-author' subagent defined in .claude/agents/content-author.md. Follow its definition exactly: author ONE un-authored Advanced Audit domain to the IAM/VPM quality bar (real artifacts, tests, systems, commands), regenerate, gate on the generator + tsc, and open ONE focused branch + PR. You must NEVER merge, never push to master, and stay inside the documented scope and forbidden zones (never edit aar-01, stage-flags, auth/payments/crypto/proxy). If a target is named, author that one. End with the PR URL on the final line."
+          if [ -n "$TARGET" ]; then
+            PROMPT="$PROMPT  Target for this run: $TARGET"
+          fi
+          # Explicit allowlist instead of --dangerously-skip-permissions: the agent can
+          # read, research, edit on a branch, run the generator + tsc, and open a PR — but
+          # Bash is scoped to git/gh/node/npm/npx and `gh pr merge` / push-to-master are
+          # denied, so it can never merge. Same human-merge gate as the rest of the fleet.
+          claude -p "$PROMPT" \
+            --permission-mode acceptEdits \
+            --allowedTools "Read,Glob,Grep,Edit,Write,WebFetch,WebSearch,Bash(git add:*),Bash(git checkout:*),Bash(git commit:*),Bash(git push:*),Bash(git status:*),Bash(git branch:*),Bash(git diff:*),Bash(gh pr create:*),Bash(node:*),Bash(npx:*),Bash(npm run:*)" \
+            --disallowedTools "Bash(gh pr merge:*),Bash(git merge:*),Bash(git push origin master:*)" \
+            --max-turns 120 \
+            2>&1 | tail -100
