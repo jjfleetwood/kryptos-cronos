@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { cookies } from "next/headers";
-import { auditEpochs, auditStagesForEpoch } from "@kryptos/core/audit-registry";
+import { auditEpochs, auditStagesForEpoch, auditRanked, getAuditEpoch } from "@kryptos/core/audit-registry";
 import { getSessionFromCookies } from "@/lib/server-session";
 import { getUserTier } from "@/lib/access";
 import AuditGate from "./AuditGate";
@@ -35,6 +35,9 @@ export default async function AuditLanding() {
     })
     .sort((a, b) => b.avgCombined - a.avgCombined);
 
+  // The 20 highest-value opportunities across the whole track (ease + value).
+  const top20 = auditRanked().slice(0, 20);
+
   return (
     <div
       className="min-h-screen px-4 py-12"
@@ -61,7 +64,47 @@ export default async function AuditLanding() {
           together by ease of implementation and audit value.
         </p>
 
-        <div className="mt-8 mb-3 flex items-center justify-between gap-3">
+        {/* Prioritized — the highest-value opportunities across the whole track. */}
+        <div className="mt-10 mb-3 flex items-center justify-between gap-3">
+          <div>
+            <h2 className="text-lg font-black text-white">🎯 Prioritized — Top 20 Opportunities</h2>
+            <p className="text-xs text-gray-400">The highest-value, most-implementable controls across every domain — start here.</p>
+          </div>
+          <Link
+            href="/audit/ranked"
+            className="shrink-0 rounded-lg border border-violet-400/40 bg-violet-500/10 px-2.5 py-1 text-[11px] font-semibold text-violet-200 transition-colors hover:bg-violet-500/20"
+          >
+            ↕ All ranked →
+          </Link>
+        </div>
+        <div className="grid gap-3 sm:grid-cols-2">
+          {top20.map((m, i) => {
+            const epoch = getAuditEpoch(m.epochId);
+            const ease = m.easeScore ?? 0;
+            const value = m.valueScore ?? 0;
+            return (
+              <Link
+                key={m.id}
+                href={`/audit/${m.epochId}/${m.id}`}
+                className="group flex items-center gap-3 rounded-xl border border-violet-500/25 bg-white/[0.03] p-3 transition-all hover:border-violet-400/60 hover:bg-violet-500/[0.06]"
+              >
+                <div className="grid h-8 w-8 shrink-0 place-items-center rounded-lg bg-violet-500/15 text-sm font-black text-violet-200">
+                  {i + 1}
+                </div>
+                <div className="min-w-0 flex-1">
+                  <h3 className="truncate text-sm font-semibold text-white group-hover:text-violet-100">{m.title}</h3>
+                  <p className="truncate text-[11px] text-gray-500">{epoch?.emoji} {epoch?.name}</p>
+                </div>
+                <div className="shrink-0 text-right">
+                  <div className="text-sm font-black text-violet-200">{ease + value}<span className="text-[10px] text-gray-500">/20</span></div>
+                  <div className="text-[9px] uppercase tracking-wide text-gray-500"><span className="text-emerald-300">E{ease}</span> <span className="text-amber-300">V{value}</span></div>
+                </div>
+              </Link>
+            );
+          })}
+        </div>
+
+        <div className="mt-10 mb-3 flex items-center justify-between gap-3">
           <p className="text-xs font-semibold uppercase tracking-wider text-violet-300/70">
             Domains, ranked by average module score (ease + value)
           </p>
