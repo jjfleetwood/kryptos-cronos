@@ -2,13 +2,16 @@
 """Read-only MCP server — Post-Quantum Readiness: "Cryptographic inventory and visibility" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Post-Quantum Readiness policy/standard and flag every item where the "Cryptographic inventory and visibility" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify the org has visibility into where + what cryptography it uses. PASS: a cryptographic inventory covers the estate (TLS, PKI, data-at-rest, code-signing, VPN, app crypto, libraries) via automated discovery; each asset has algorithm/key-size/location/owner; and crypto is classified by quantum vulnerability. Exceptions: no cryptographic inventory (can't migrate what you can't see), partial/manual discovery missing major surfaces, no quantum-vulnerability classification, and crypto assets with no owner.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the cryptographic inventory and visibility control (from Cryptographic inventory / CBOM tooling)
+    The cryptographic inventory across the estate (algorithms, key sizes, protocols, certificates, libraries) + where each is used
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: Cryptographic inventory / CBOM tooling, TLS + certificate estate, KMS / HSM + PKI, Vendor PQC roadmaps)
+    crypto-discovery: scan TLS endpoints (testssl/nmap), CT logs, code (CodeQL crypto), configs, libraries
+    coverage: % of the estate inventoried via automated discovery vs unknown
+    classify each asset by quantum vulnerability (RSA/ECC/DH vs AES-256/SHA-384)
+    owner + location per cryptographic asset
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

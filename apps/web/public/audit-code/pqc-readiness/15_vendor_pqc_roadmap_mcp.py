@@ -2,13 +2,16 @@
 """Read-only MCP server — Post-Quantum Readiness: "Vendor PQC roadmap" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Post-Quantum Readiness policy/standard and flag every item where the "Vendor PQC roadmap" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify the org tracks + drives its vendors' PQC readiness. PASS: critical crypto/security vendors' PQC roadmaps are tracked; the org's migration dependencies on vendor PQC delivery are mapped; the org actively engages vendors for commitments + timelines; and there's a contingency where a critical vendor is behind. Exceptions: vendor PQC roadmaps untracked, unmapped dependencies on vendor delivery (migration blocked by a vendor), no vendor engagement, and no contingency for a laggard critical vendor.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the vendor pqc roadmap control (from Cryptographic inventory / CBOM tooling)
+    The tracked PQC roadmaps of critical crypto/security vendors (TLS/PKI/HSM/VPN/cloud providers)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: Cryptographic inventory / CBOM tooling, TLS + certificate estate, KMS / HSM + PKI, Vendor PQC roadmaps)
+    track critical crypto/security vendors' PQC roadmaps (TLS/PKI/HSM/VPN/cloud)
+    dependency analysis: which migration steps depend on a vendor shipping PQC?
+    engagement: is the org pushing vendors for PQC commitments + timelines?
+    contingency where a critical vendor has no / late PQC roadmap
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

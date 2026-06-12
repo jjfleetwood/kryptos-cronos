@@ -2,13 +2,16 @@
 """Read-only MCP server — Post-Quantum Readiness: "PQC pen testing" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Post-Quantum Readiness policy/standard and flag every item where the "PQC pen testing" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify PQC implementations are security-tested for implementation flaws + downgrade. PASS: PQC/hybrid deployments are penetration/security-tested for downgrade attacks (forcing classical), implementation flaws (the library/integration, side-channels, bad parameter validation), and negotiation manipulation; findings are remediated. Exceptions: no security testing of PQC implementations, no downgrade-attack testing (the main practical risk — strong algorithm, weak negotiation), untested PQC libraries/integrations, and unremediated PQC findings.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the pqc pen testing control (from Cryptographic inventory / CBOM tooling)
+    The security testing of PQC/hybrid implementations (correct implementation, no downgrade-to-classical, side-channels, parameter validation)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: Cryptographic inventory / CBOM tooling, TLS + certificate estate, KMS / HSM + PKI, Vendor PQC roadmaps)
+    security-test PQC/hybrid implementations: downgrade-to-classical attacks (forcing vulnerable crypto)
+    implementation-flaw testing (the library/integration, side-channels, parameter validation)
+    negotiation manipulation testing
+    findings + remediation from PQC-focused testing
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

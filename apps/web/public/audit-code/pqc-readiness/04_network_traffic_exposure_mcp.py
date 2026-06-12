@@ -2,13 +2,16 @@
 """Read-only MCP server — Post-Quantum Readiness: "Network traffic exposure" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Post-Quantum Readiness policy/standard and flag every item where the "Network traffic exposure" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify exposure of sensitive network traffic to HNDL is assessed. PASS: traffic carrying long-secret data over interceptable links is inventoried with its key-exchange; quantum-vulnerable key exchange (RSA/ECDH) on long-secret traffic is identified as HNDL-exposed (record now, decrypt later); and there's a plan to migrate that traffic to hybrid/PQC key exchange. Exceptions: no assessment of which sensitive traffic uses vulnerable key exchange, long-secret data on classical-ECDH internet links with no plan, and no move toward hybrid key exchange for the most exposed flows.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the network traffic exposure control (from Cryptographic inventory / CBOM tooling)
+    The inventory of network traffic carrying sensitive long-lived data over interceptable links (internet, partner links, cross-region) + its key-exchange algorithm
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: Cryptographic inventory / CBOM tooling, TLS + certificate estate, KMS / HSM + PKI, Vendor PQC roadmaps)
+    scan endpoints/links for negotiated key-exchange (ECDHE/RSA vs hybrid ML-KEM)
+    map sensitive long-lived data flows to interceptable links (internet/partner/cross-region)
+    HNDL exposure: long-secret traffic on quantum-vulnerable key exchange (capturable now)
+    where is hybrid PQC TLS already enabled vs classical-only?
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

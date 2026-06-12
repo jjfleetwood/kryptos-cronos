@@ -2,13 +2,16 @@
 """Read-only MCP server — Post-Quantum Readiness: "Active HNDL threat intel" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Post-Quantum Readiness policy/standard and flag every item where the "Active HNDL threat intel" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify the org tracks the quantum threat to keep its migration timeline current. PASS: the org consumes credible threat-intel on quantum progress + adversary harvesting; maintains a CRQC-timeline assumption that's periodically updated; has trigger criteria that would accelerate migration on a breakthrough; and feeds this into prioritisation. Exceptions: no quantum threat-intel tracking, a static/unexamined timeline assumption, no acceleration triggers, and migration prioritisation disconnected from the evolving threat.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the active hndl threat intel control (from Cryptographic inventory / CBOM tooling)
+    The threat-intelligence the org consumes on quantum-computing progress + adversary harvesting activity (nation-state HNDL collection)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: Cryptographic inventory / CBOM tooling, TLS + certificate estate, KMS / HSM + PKI, Vendor PQC roadmaps)
+    the threat-intel consumed on quantum progress + adversary HNDL collection
+    the org's CRQC-timeline assumption + its update process
+    acceleration trigger criteria (a quantum breakthrough)
+    is HNDL threat-intel feeding the migration prioritisation?
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

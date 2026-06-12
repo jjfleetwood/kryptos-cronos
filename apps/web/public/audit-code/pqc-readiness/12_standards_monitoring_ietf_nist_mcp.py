@@ -2,13 +2,16 @@
 """Read-only MCP server — Post-Quantum Readiness: "Standards monitoring (IETF, NIST)" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Post-Quantum Readiness policy/standard and flag every item where the "Standards monitoring (IETF, NIST)" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify the org tracks evolving PQC standards + acts on them. PASS: PQC standards development (NIST, IETF, ETSI, ISO) is monitored by an owner; new/updated standards are assessed for impact + adopted into the plan; and there's a defined process to incorporate changes (new algorithms, parameter updates, deprecations). Exceptions: no standards monitoring, no owner, standards changes that don't reach the migration plan, and decisions made on outdated/draft standards.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the standards monitoring (ietf, nist) control (from Cryptographic inventory / CBOM tooling)
+    Evidence the org monitors PQC standards development (NIST PQC standardisation, IETF protocol drafts/RFCs, ETSI, ISO)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: Cryptographic inventory / CBOM tooling, TLS + certificate estate, KMS / HSM + PKI, Vendor PQC roadmaps)
+    confirm monitoring of PQC standards (NIST PQC, IETF drafts/RFCs, ETSI, ISO)
+    the process to assess + adopt new/updated standards
+    assigned owner / standards liaison
+    how standards changes flow into the migration plan
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

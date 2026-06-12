@@ -2,13 +2,16 @@
 """Read-only MCP server — Post-Quantum Readiness: "Industry interop testing" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Post-Quantum Readiness policy/standard and flag every item where the "Industry interop testing" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify PQC implementations are interoperability-tested before broad rollout. PASS: PQC/hybrid implementations are interop-tested (IETF/NIST interop suites, partners, vendors); they interoperate across the heterogeneous estate (legacy + PQC-capable clients); negotiation/downgrade is handled safely; and interop failures are tracked + fixed. Exceptions: PQC deployed with no interop testing (breakage in production), no testing against partners/legacy clients, unsafe downgrade behaviour, and unresolved interop failures.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the industry interop testing control (from Cryptographic inventory / CBOM tooling)
+    Participation/results in PQC interoperability testing (NIST/IETF interop events, vendor interop, hybrid-TLS interop suites)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: Cryptographic inventory / CBOM tooling, TLS + certificate estate, KMS / HSM + PKI, Vendor PQC roadmaps)
+    participation/results in PQC interop testing (IETF/NIST events, hybrid-TLS suites)
+    interop with partners/clients/vendors (does the org's PQC handshake succeed?)
+    negotiation/downgrade handling (safe fallback, no break)
+    testing across legacy + PQC-capable clients during transition
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

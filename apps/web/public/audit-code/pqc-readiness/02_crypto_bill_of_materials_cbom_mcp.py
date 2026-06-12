@@ -2,13 +2,16 @@
 """Read-only MCP server — Post-Quantum Readiness: "Crypto Bill of Materials (CBOM)" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Post-Quantum Readiness policy/standard and flag every item where the "Crypto Bill of Materials (CBOM)" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify a CBOM exists and is usable for PQC migration. PASS: a CBOM (CycloneDX crypto-assets) is generated for applications/systems, kept current (CI-integrated or scan-refreshed), covers the portfolio, and is queryable to drive migration (find every component using a vulnerable algorithm). Exceptions: no CBOM, stale/manual CBOM, partial portfolio coverage, and a CBOM that can't be queried for impact (so migration is guesswork).
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the crypto bill of materials (cbom) control (from Cryptographic inventory / CBOM tooling)
+    The CBOM (CycloneDX cryptography assets) for applications + systems — algorithms, key lengths, protocols, certificate dependencies, and their relationships
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: Cryptographic inventory / CBOM tooling, TLS + certificate estate, KMS / HSM + PKI, Vendor PQC roadmaps)
+    confirm a CBOM (CycloneDX crypto-assets) is generated for apps/systems
+    CBOM currency: CI-integrated / scan-refreshed vs one-off
+    portfolio coverage (apps with a CBOM vs total)
+    query the CBOM: 'which components use RSA-2048 / P-256?' (migration impact)
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

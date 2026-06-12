@@ -2,13 +2,16 @@
 """Read-only MCP server — Post-Quantum Readiness: "Third-party PKI dependency" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Post-Quantum Readiness policy/standard and flag every item where the "Third-party PKI dependency" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify external PKI dependencies won't block PQC. PASS: external PKI/CA dependencies are inventoried with their PQC readiness; the org understands which external roots/intermediates must go PQC for its chains; there's a plan/timeline (and alternatives if a CA lags); and bridge/cross-cert PKI is considered. Exceptions: unmapped external PKI dependencies, reliance on public/partner CAs with no PQC plan, no alternative if a critical CA is late, and ignored cross-certification PQC implications.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the third-party pki dependency control (from Cryptographic inventory / CBOM tooling)
+    The inventory of external PKI/CA dependencies (public CAs, partner PKIs, cloud-managed CAs) + their PQC readiness
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: Cryptographic inventory / CBOM tooling, TLS + certificate estate, KMS / HSM + PKI, Vendor PQC roadmaps)
+    inventory external PKI/CA dependencies (public CAs, partner PKIs, cloud-managed CAs) + their PQC readiness
+    which external roots/intermediates must go PQC for the org's chains?
+    plan/timeline for external PKI PQC + the org's options if they lag
+    cross-certification / bridge-PKI PQC considerations
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

@@ -2,13 +2,16 @@
 """Read-only MCP server — Post-Quantum Readiness: "CNSA 2.0 compliance planning" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Post-Quantum Readiness policy/standard and flag every item where the "CNSA 2.0 compliance planning" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify systems subject to CNSA 2.0 have a compliant migration plan + are on track. PASS: CNSA-2.0-in-scope systems (national-security systems / their suppliers) are inventoried; a plan adopts the CNSA 2.0 algorithm suite (ML-KEM-1024, ML-DSA, AES-256, SHA-384/512) against the published category deadlines (software/firmware signing first); and status tracks the milestones. Exceptions: CNSA-2.0-in-scope systems with no migration plan, missing the published milestones (e.g. the signing deadline), and adopting non-CNSA-2.0 parameter sets where CNSA 2.0 applies.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the cnsa 2.0 compliance planning control (from Cryptographic inventory / CBOM tooling)
+    For national-security-relevant systems: the CNSA 2.0 migration plan + the algorithm-transition timeline (CNSA 2.0 category deadlines — software/firmware signing first, then broader)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: Cryptographic inventory / CBOM tooling, TLS + certificate estate, KMS / HSM + PKI, Vendor PQC roadmaps)
+    inventory CNSA-2.0-in-scope systems (NSS / suppliers to NSS)
+    plan adopting the CNSA 2.0 suite (ML-KEM-1024, ML-DSA, AES-256, SHA-384/512)
+    status vs the CNSA 2.0 category deadlines (software/firmware signing first)
+    confirm correct parameter sets where CNSA 2.0 applies
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

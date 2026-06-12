@@ -2,13 +2,16 @@
 """Read-only MCP server — Post-Quantum Readiness: "Secure communications PQC migration" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Post-Quantum Readiness policy/standard and flag every item where the "Secure communications PQC migration" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify secure-communications are being migrated to PQC, prioritised by exposure. PASS: a migration plan moves secure-comms (TLS, VPN, SSH, email) to hybrid/PQC key exchange, with deployments/pilots underway (hybrid TLS 1.3 with ML-KEM), prioritised by HNDL exposure, and with interop/fallback handled. Exceptions: no secure-comms migration plan, no hybrid pilots, migration not prioritised by exposure, and hybrid deployments that break interop or fall back to classical silently.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the secure communications pqc migration control (from Cryptographic inventory / CBOM tooling)
+    The migration plan + status for secure-communications channels (TLS, VPN/IPsec, SSH, email/S-MIME, API) to hybrid/PQC
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: Cryptographic inventory / CBOM tooling, TLS + certificate estate, KMS / HSM + PKI, Vendor PQC roadmaps)
+    migration plan + status for secure-comms channels (TLS/VPN/SSH/email/API) to hybrid/PQC
+    hybrid pilots: e.g. X25519 + ML-KEM-768 in TLS 1.3 (where enabled?)
+    prioritisation by HNDL exposure (most-exposed channels first)
+    interop + safe-fallback handling for hybrid negotiation
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

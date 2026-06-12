@@ -2,13 +2,16 @@
 """Read-only MCP server — Post-Quantum Readiness: "Crypto, protocol, hardware agility" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Post-Quantum Readiness policy/standard and flag every item where the "Crypto, protocol, hardware agility" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify the estate can actually adopt new cryptography (agility). PASS: crypto is abstracted (centrally swappable in software), protocols are configurable to new algorithms, and hardware (HSMs, devices) can support PQC or has an upgrade path; un-agile crypto is identified + being remediated. Exceptions: crypto hardcoded per call-site (a PQC swap = mass refactor), protocols/products that can't be reconfigured, HSMs/hardware with no PQC support or upgrade path, and no plan to fix the un-agile long-poles.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the crypto, protocol, hardware agility control (from Cryptographic inventory / CBOM tooling)
+    The crypto-agility assessment of the estate (can algorithms be swapped centrally without re-architecture — software, protocols, hardware/HSM)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: Cryptographic inventory / CBOM tooling, TLS + certificate estate, KMS / HSM + PKI, Vendor PQC roadmaps)
+    crypto-agility: is crypto behind a central abstraction or hardcoded per call-site?
+    protocol agility: can TLS/IKE be reconfigured to new algorithms?
+    hardware agility: do HSMs/devices support PQC or have an upgrade path?
+    the remediation plan for un-agile crypto (the migration long-pole)
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

@@ -2,13 +2,16 @@
 """Read-only MCP server — Post-Quantum Readiness: "Secure product PQC readiness" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Post-Quantum Readiness policy/standard and flag every item where the "Secure product PQC readiness" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify the org's own products are on a PQC path (where it's a producer). PASS: products the org ships have their cryptography assessed for quantum vulnerability; a product PQC roadmap + customer commitments exist; shipped products are field-upgradeable to PQC (firmware/software update path); and long-lived product data/comms exposure is addressed. Exceptions: shipped products with quantum-vulnerable crypto and no roadmap, no customer-facing PQC commitment, products with un-upgradeable crypto (especially embedded/IoT), and long-secret product data on classical crypto.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the secure product pqc readiness control (from Cryptographic inventory / CBOM tooling)
+    For products the org builds/ships: the PQC readiness of the product's cryptography (the crypto customers depend on)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: Cryptographic inventory / CBOM tooling, TLS + certificate estate, KMS / HSM + PKI, Vendor PQC roadmaps)
+    assess the shipped product's cryptography for quantum vulnerability (product CBOM)
+    the product PQC roadmap + customer-facing commitments
+    field-upgradeability: can deployed products be updated to PQC (firmware/software)?
+    long-lived product data/comms exposure (does the product protect customer data long-term?)
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

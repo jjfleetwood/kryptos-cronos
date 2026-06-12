@@ -2,13 +2,16 @@
 """Read-only MCP server — Post-Quantum Readiness: "Trust store updates" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Post-Quantum Readiness policy/standard and flag every item where the "Trust store updates" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify trust stores can be updated for PQC. PASS: trust stores across the estate (OS/browser/app/device) are inventoried; there's a process + capability to distribute new PQC/hybrid CA roots + intermediates; constrained/embedded devices have a trust-store update path; and the mechanism is tested. Exceptions: no trust-store inventory, no process to roll out PQC roots, embedded/IoT devices with un-updatable trust stores (stuck on classical roots), and an untested update mechanism.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the trust store updates control (from Cryptographic inventory / CBOM tooling)
+    The inventory of trust stores (OS, browser, application, device CA trust stores) + the process to update them for PQC roots/intermediates
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: Cryptographic inventory / CBOM tooling, TLS + certificate estate, KMS / HSM + PKI, Vendor PQC roadmaps)
+    inventory trust stores (OS / browser / app / device CA stores)
+    process + capability to distribute new PQC / hybrid CA roots + intermediates
+    trust-store update path for constrained/embedded devices (the hard case)
+    test the update mechanism
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

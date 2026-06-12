@@ -2,13 +2,16 @@
 """Read-only MCP server — Post-Quantum Readiness: "Long-lived data identification" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Post-Quantum Readiness policy/standard and flag every item where the "Long-lived data identification" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify the org has identified data needing protection beyond the quantum horizon. PASS: long-secret data is inventoried with its required confidentiality lifetime; it's mapped to the crypto protecting it; data whose secrecy must outlast the expected arrival of a cryptographically-relevant quantum computer (~2030s) is flagged HNDL-priority; and owners are assigned. Exceptions: no identification of long-lived sensitive data, no mapping to protecting crypto, no HNDL prioritisation, and unowned long-secret data.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the long-lived data identification control (from Cryptographic inventory / CBOM tooling)
+    The inventory of long-lived/long-secret data (must stay confidential for years/decades) + its required secrecy lifetime
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: Cryptographic inventory / CBOM tooling, TLS + certificate estate, KMS / HSM + PKI, Vendor PQC roadmaps)
+    inventory long-secret data + its required confidentiality lifetime (years/decades)
+    map that data to the crypto protecting it (at-rest + in-transit) via the CBOM
+    HNDL prioritisation: secrecy lifetime extending past the ~2030 CRQC horizon
+    owners + locations of long-lived sensitive data
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

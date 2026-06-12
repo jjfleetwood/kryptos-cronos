@@ -2,13 +2,16 @@
 """Read-only MCP server — Post-Quantum Readiness: "RFC 9881 alignment" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Post-Quantum Readiness policy/standard and flag every item where the "RFC 9881 alignment" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify PQC implementations conform to the published protocol standards (incl. RFC 9881). PASS: PQC protocol use follows the standardised specifications (IETF PQC RFCs / RFC 9881) — standard algorithm identifiers, hybrid combiners, and negotiation — validated for interop, not a proprietary/non-conformant scheme; and the org tracks the standards as they finalise. Exceptions: custom/non-standard PQC implementations (interop + security risk), implementations diverging from the finalised RFC, no interop validation, and no tracking of standards updates.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the rfc 9881 alignment control (from Cryptographic inventory / CBOM tooling)
+    The mapping of the org's PQC protocol implementations to the published standards/RFCs (the relevant IETF PQC RFCs incl. RFC 9881) — conformant, not custom
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: Cryptographic inventory / CBOM tooling, TLS + certificate estate, KMS / HSM + PKI, Vendor PQC roadmaps)
+    map PQC protocol implementations to the published standards/RFCs (incl. RFC 9881)
+    confirm standard algorithm IDs + hybrid combiners + negotiation (not proprietary)
+    interop validation against the RFC
+    track the RFC status + updates
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /
