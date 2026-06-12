@@ -874,12 +874,20 @@ export default function AdminPage() {
               </div>
               <p className="text-gray-600 text-sm">Logged in as <span className="text-cyan-400">{currentUser}</span></p>
             </div>
-            <Link
-              href="/admin/docs"
-              className="flex items-center gap-2 px-4 py-2 border border-cyan-500/30 hover:border-cyan-400 text-cyan-400 rounded-lg text-sm transition-colors"
-            >
-              📄 View Docs
-            </Link>
+            <div className="flex items-center gap-2">
+              <Link
+                href="/decks"
+                className="flex items-center gap-2 px-4 py-2 border border-violet-500/30 hover:border-violet-400 text-violet-300 rounded-lg text-sm transition-colors"
+              >
+                📊 Deck Generator
+              </Link>
+              <Link
+                href="/admin/docs"
+                className="flex items-center gap-2 px-4 py-2 border border-cyan-500/30 hover:border-cyan-400 text-cyan-400 rounded-lg text-sm transition-colors"
+              >
+                📄 View Docs
+              </Link>
+            </div>
           </div>
         </div>
 
