@@ -2,13 +2,16 @@
 """Read-only MCP server — Vulnerability & Patch Management: "Patch mgmt and exception handling" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Vulnerability & Patch Management policy/standard and flag every item where the "Patch mgmt and exception handling" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Reconcile missing patches against the SLA and the KEV catalogue. PASS: every missing patch is within its severity SLA window; nothing on the CISA KEV list is open past the BOD 22-01 due date; and every overdue item has a formal, time-boxed risk acceptance with a compensating control. Exceptions: critical or KEV-listed vulnerabilities open past SLA, patches missing for months, and 'exceptions' with no owner or expiry date.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the patch mgmt and exception handling control (from Vuln scanner (Tenable/Qualys/Rapid7))
+    The patch-compliance report by host — missing patches with severity and age
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: Vuln scanner (Tenable/Qualys/Rapid7), Patch management (SCCM/Intune/Ansible), CMDB / asset inventory, CISA KEV feed)
+    SCCM / Intune update-compliance export per device
+    Tenable: 'missing patch' plugin family + 'vulnerability age' field, filtered to severity
+    join scan CVEs to the CISA KEV catalogue (cisa.gov/known-exploited-vulnerabilities-catalog)
+    Linux: dnf/yum updateinfo list security, apt list --upgradable across the fleet
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

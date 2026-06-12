@@ -2,13 +2,16 @@
 """Read-only MCP server — Vulnerability & Patch Management: "Configuration drift monitoring" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Vulnerability & Patch Management policy/standard and flag every item where the "Configuration drift monitoring" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Compare running configuration to the enforced baseline. PASS: a configuration-management engine (Ansible/Chef/Puppet/AWS SSM) runs on schedule across ~100% of hosts; drift is detected and auto-remediated or ticketed within SLA; and every legitimate deviation maps to an approved change. Exceptions: hosts not under configuration management at all, drift left unremediated, and unauthorised changes (drift with no corresponding change record).
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the configuration drift monitoring control (from Vuln scanner (Tenable/Qualys/Rapid7))
+    The desired-state configuration baseline held by the CM tool
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: Vuln scanner (Tenable/Qualys/Rapid7), Patch management (SCCM/Intune/Ansible), CMDB / asset inventory, CISA KEV feed)
+    AWS Config rules + SSM State Manager association-compliance report
+    Chef Automate / Puppet 'corrective vs intentional changes' report
+    list hosts NOT enrolled in CM (CMDB minus CM inventory) — the blind spots
+    correlate drift events to ServiceNow change tickets (authorised vs not)
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

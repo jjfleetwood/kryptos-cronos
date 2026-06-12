@@ -2,13 +2,16 @@
 """Read-only MCP server — Vulnerability & Patch Management: "STE — cloud infra vuln tickets" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Vulnerability & Patch Management policy/standard and flag every item where the "STE — cloud infra vuln tickets" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Assess the automated cloud-vulnerability ticketing flow (the Security Ticketing Engine). PASS: every cloud finding (CSPM / Inspector / Wiz) auto-creates a ticket routed to the resource owner by tag, with a severity-based SLA, dedup, and closed-loop verification on rescan. Exceptions: findings with no ticket or owner (orphaned risk), tickets with no SLA, duplicate noise drowning real findings, and tickets closed without a confirming rescan.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the ste — cloud infra vuln tickets control (from Vuln scanner (Tenable/Qualys/Rapid7))
+    The pipeline from cloud vulnerability finding (CSPM/scanner) to a ticket with an owner and SLA
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: Vuln scanner (Tenable/Qualys/Rapid7), Patch management (SCCM/Intune/Ansible), CMDB / asset inventory, CISA KEV feed)
+    AWS Security Hub / Inspector findings → EventBridge → ticket-automation Lambda
+    route by resource tag (owner/team); dedup by finding id to suppress noise
+    SLA aging dashboard for cloud tickets by severity
+    auto-close a ticket only after a rescan shows the finding resolved
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

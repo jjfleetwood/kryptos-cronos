@@ -2,13 +2,16 @@
 """Read-only MCP server — Vulnerability & Patch Management: "Host event logging and monitoring" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Vulnerability & Patch Management policy/standard and flag every item where the "Host event logging and monitoring" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify hosts produce and ship security-relevant logs. PASS: required event sources are enabled (authentication, process-creation with command line, PowerShell script-block, Sysmon, EDR), ~100% of hosts forward to the SIEM, logs are retained per policy and tamper-protected, and key ATT&CK techniques have detections. Exceptions: hosts not forwarding (logging blind spots), missing event sources (e.g. process-creation auditing off), retention below policy, and ATT&CK coverage gaps.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the host event logging and monitoring control (from Vuln scanner (Tenable/Qualys/Rapid7))
+    The host logging configuration (what's collected: authentication, process-creation, PowerShell script-block, Sysmon, EDR telemetry)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: Vuln scanner (Tenable/Qualys/Rapid7), Patch management (SCCM/Intune/Ansible), CMDB / asset inventory, CISA KEV feed)
+    SIEM: hosts reporting in the last 24h vs CMDB (forwarding-coverage gap)
+    audit policy: confirm Event ID 4688 process-creation + command-line capture and 4104 script-block logging are enabled
+    Sysmon configuration review (process, network, image-load coverage)
+    ATT&CK Navigator layer of current detections vs the technique list
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

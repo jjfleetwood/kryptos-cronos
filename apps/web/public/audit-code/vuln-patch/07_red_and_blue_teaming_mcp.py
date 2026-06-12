@@ -2,13 +2,16 @@
 """Read-only MCP server — Vulnerability & Patch Management: "Red and blue teaming" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Vulnerability & Patch Management policy/standard and flag every item where the "Red and blue teaming" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Assess the red/blue/purple program. PASS: adversary-emulation exercises run on cadence against realistic ATT&CK techniques with proper RoE; blue-team detection/response is measured (what was detected, MTTD/MTTR); a purple-team matrix shows technique coverage; and findings are remediated and retested. Exceptions: no adversary emulation, tests not mapped to ATT&CK, detections that silently failed and weren't fixed, and findings with no retest.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the red and blue teaming control (from Vuln scanner (Tenable/Qualys/Rapid7))
+    The red-team engagement reports with scope and rules of engagement (RoE)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: Vuln scanner (Tenable/Qualys/Rapid7), Patch management (SCCM/Intune/Ansible), CMDB / asset inventory, CISA KEV feed)
+    MITRE Caldera or Atomic Red Team to execute techniques safely
+    for each executed technique, correlate to a SIEM/EDR alert: detected vs missed
+    build an ATT&CK Navigator coverage layer from the results
+    track each finding to closure with retest evidence
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

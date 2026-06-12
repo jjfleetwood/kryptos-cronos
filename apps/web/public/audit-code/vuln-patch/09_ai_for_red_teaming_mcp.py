@@ -2,13 +2,16 @@
 """Read-only MCP server — Vulnerability & Patch Management: "AI for red teaming" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Vulnerability & Patch Management policy/standard and flag every item where the "AI for red teaming" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Assess governance of AI used in offensive security. PASS: AI-assisted red-team tooling is inventoried and authorised; every AI-generated action runs within scope/RoE behind a human-in-the-loop gate; activity is fully logged and attributable; and sensitive target data is not sent to public/ungoverned models. Exceptions: shadow AI offensive tooling, AI actions taken autonomously outside RoE, missing logging/attribution, and target data leaking to public model endpoints.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the ai for red teaming control (from Vuln scanner (Tenable/Qualys/Rapid7))
+    The inventory of AI-assisted offensive tooling in use, with its authorisation and guardrails
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: Vuln scanner (Tenable/Qualys/Rapid7), Patch management (SCCM/Intune/Ansible), CMDB / asset inventory, CISA KEV feed)
+    inventory AI offensive tools and confirm each engagement's authorisation
+    review LLM API logs for prompts/outputs tied to the engagement (attribution)
+    confirm a human-approval gate exists before any AI-driven action executes
+    DLP/policy check that target or client data is not pasted into public model endpoints
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

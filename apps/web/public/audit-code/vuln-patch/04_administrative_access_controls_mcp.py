@@ -2,13 +2,16 @@
 """Read-only MCP server — Vulnerability & Patch Management: "Administrative access controls" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Vulnerability & Patch Management policy/standard and flag every item where the "Administrative access controls" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Enumerate who holds administrative access to in-scope servers and how they reach it. PASS: admin access is least-privilege, brokered through a bastion/PAM with MFA, checkout, and session logging, prefers JIT over standing, and local admin is LAPS-managed; no direct admin logon from user workstations. Exceptions: broad standing admin, shared admin accounts, administrative logon without MFA, and direct RDP/SSH that bypasses the bastion.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the administrative access controls control (from Vuln scanner (Tenable/Qualys/Rapid7))
+    The local/privileged administrator membership per server (who can log on as admin)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: Vuln scanner (Tenable/Qualys/Rapid7), Patch management (SCCM/Intune/Ansible), CMDB / asset inventory, CISA KEV feed)
+    per host: members of local Administrators (Windows) / sudoers + wheel (Linux)
+    AD: who holds 'Allow log on through Remote Desktop' / Remote Desktop Users on servers
+    PAM session logs: which privileged account was checked out, by whom, when
+    confirm MFA on RDP/SSH (Duo / Entra) and that direct paths to servers are blocked
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

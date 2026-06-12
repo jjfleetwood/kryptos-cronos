@@ -2,13 +2,16 @@
 """Read-only MCP server — Vulnerability & Patch Management: "Server build standards and hardening" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Vulnerability & Patch Management policy/standard and flag every item where the "Server build standards and hardening" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Scan every in-scope server against the approved hardening baseline (CIS Benchmark / DISA STIG for that OS). PASS: each server is built from the current golden image and scores at or above the agreed threshold (e.g. ≥90% CIS Level 1), with documented, time-boxed exceptions for the remainder. Exceptions: servers built off-image or never hardened, baselines scoring below threshold, and 'temporary' exceptions with no expiry.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the server build standards and hardening control (from Vuln scanner (Tenable/Qualys/Rapid7))
+    The approved hardening baseline per OS (the CIS Benchmark level or DISA STIG the org committed to)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: Vuln scanner (Tenable/Qualys/Rapid7), Patch management (SCCM/Intune/Ansible), CMDB / asset inventory, CISA KEV feed)
+    CIS-CAT Pro Assessor run against the CIS Benchmark for each OS (machine-readable score)
+    Tenable.sc audit policy ('CIS …' / 'DISA STIG …') or Qualys Policy Compliance scan
+    AWS:  compare each instance's running AMI id against the approved golden-AMI list
+    Chef InSpec / Ansible compliance profile run against the baseline
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /
