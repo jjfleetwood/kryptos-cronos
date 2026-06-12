@@ -2,13 +2,16 @@
 """Read-only MCP server — Third Party Systems: "Data backup and recovery (vendor)" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Third Party Systems policy/standard and flag every item where the "Data backup and recovery (vendor)" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify data held in vendor systems is recoverable — including the org's own copy. PASS: the vendor backs up + can restore the org's data to a defined RTO/RPO; critically, the org keeps its OWN backup/export of data held in SaaS (the shared-responsibility gap — SaaS providers protect the platform, not your data from your own mistake/deletion); restores are tested; and data is exportable. Exceptions: sole reliance on the vendor for recoverability, no independent backup of SaaS data, restores never tested, and no data-export capability.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the data backup and recovery (vendor) control (from TPRM / GRC platform (Archer/OneTrust))
+    Evidence the vendor backs up the org's data + the vendor's restore capability / RTO-RPO
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: TPRM / GRC platform (Archer/OneTrust), Vendor inventory + contracts, SOC 2 / attestation repository, Integration / API gateway)
+    vendor: backup + restore capability + RTO/RPO for the org's data
+    confirm the org has an INDEPENDENT backup of critical SaaS data (M365 / Salesforce / etc.) — the shared-responsibility gap
+    restore-test evidence (export + restore actually tested)
+    data-export / portability: can the org extract its data on demand?
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

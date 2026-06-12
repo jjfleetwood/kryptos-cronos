@@ -2,13 +2,16 @@
 """Read-only MCP server — Third Party Systems: "Audit and monitoring rights" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Third Party Systems policy/standard and flag every item where the "Audit and monitoring rights" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify the org can verify its vendors (audit + monitoring rights). PASS: contracts grant a right to audit (or accept SOC 2 II in lieu); the org actually receives + reviews the vendor's audit reports (and follows up on exceptions + the CUECs it must implement); high-risk vendors are continuously monitored; and the org can get vendor logs for its own incidents. Exceptions: no right-to-audit, audit reports received but never reviewed (or CUECs ignored), no continuous monitoring, and no access to vendor logs during an incident.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the audit and monitoring rights control (from TPRM / GRC platform (Archer/OneTrust))
+    The contractual right-to-audit clause + evidence it's exercised (on-site, remote, or via assessments)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: TPRM / GRC platform (Archer/OneTrust), Vendor inventory + contracts, SOC 2 / attestation repository, Integration / API gateway)
+    contract: right-to-audit clause (or SOC 2 II acceptance)
+    are received SOC 2 reports REVIEWED — including exceptions + the CUECs the org must implement?
+    continuous monitoring (SecurityScorecard / BitSight) for high-risk vendors + alerting
+    can the org obtain vendor logs relevant to an incident on its data?
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

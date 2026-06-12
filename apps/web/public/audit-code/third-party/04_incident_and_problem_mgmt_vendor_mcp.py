@@ -2,13 +2,16 @@
 """Read-only MCP server — Third Party Systems: "Incident and problem mgmt (vendor)" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Third Party Systems policy/standard and flag every item where the "Incident and problem mgmt (vendor)" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify vendor incidents are communicated + jointly managed. PASS: contracts mandate incident/breach notification within a defined SLA (e.g. 24-72h); the org has a runbook for vendor-side incidents (escalation, comms, customer notice); the vendor provides RCAs for significant/recurring issues; and past incidents show the SLA was met. Exceptions: no contractual notification SLA, late/no notice in real incidents, no joint IR runbook, and recurring vendor problems with no RCA or remediation.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the incident and problem mgmt (vendor) control (from TPRM / GRC platform (Archer/OneTrust))
+    The vendor incident-notification SLA + evidence it's met (breach/incident-notice timeliness in real cases)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: TPRM / GRC platform (Archer/OneTrust), Vendor inventory + contracts, SOC 2 / attestation repository, Integration / API gateway)
+    contract: incident + breach-notification SLA (hours)
+    real incidents: was the org notified within SLA? (timeline evidence)
+    joint IR runbook: escalation path + comms + customer-notification responsibility
+    vendor RCAs for recurring problems + remediation tracking
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

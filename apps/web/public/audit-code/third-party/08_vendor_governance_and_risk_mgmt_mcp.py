@@ -2,13 +2,16 @@
 """Read-only MCP server — Third Party Systems: "Vendor governance and risk mgmt" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Third Party Systems policy/standard and flag every item where the "Vendor governance and risk mgmt" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify third parties are governed across their lifecycle with risk-based rigor. PASS: a complete vendor inventory is risk-tiered; onboarding due-diligence matches the tier; vendors are reassessed on cadence (and continuously monitored for high-risk ones); and offboarding revokes access + confirms data return/destruction. Exceptions: shadow/uninventoried vendors, no risk-tiering, onboarding with no due-diligence, high-risk vendors never reassessed, and offboarded vendors with residual access/data.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the vendor governance and risk mgmt control (from TPRM / GRC platform (Archer/OneTrust))
+    The vendor inventory + risk-tiering (criticality × data sensitivity) + the assessment cadence per tier
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: TPRM / GRC platform (Archer/OneTrust), Vendor inventory + contracts, SOC 2 / attestation repository, Integration / API gateway)
+    vendor inventory + risk-tier (criticality × data sensitivity) + assessment cadence per tier
+    onboarding due-diligence evidence (SIG questionnaire, SOC 2, financial, references)
+    continuous monitoring (SecurityScorecard / BitSight) for high-risk vendors
+    offboarding: access revoked + data return/destruction attested
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

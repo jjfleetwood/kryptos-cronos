@@ -2,13 +2,16 @@
 """Read-only MCP server — Third Party Systems: "Systems availability and capacity" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Third Party Systems policy/standard and flag every item where the "Systems availability and capacity" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify vendor services meet availability + capacity needs. PASS: critical vendors have an availability SLA the org actually monitors (independent uptime/perf monitoring, not just the vendor's word); capacity is sufficient for the org's peak + growth; SLA breaches trigger credits + review; and degradation is detected early. Exceptions: no SLA or no independent monitoring, capacity limits hit at peak, SLA breaches unnoticed/uncredited, and no performance monitoring of the dependency.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the systems availability and capacity control (from TPRM / GRC platform (Archer/OneTrust))
+    The vendor's availability SLA + actual uptime evidence (status-page history, SLA credits)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: TPRM / GRC platform (Archer/OneTrust), Vendor inventory + contracts, SOC 2 / attestation repository, Integration / API gateway)
+    vendor availability SLA + actual uptime (status-page history / the org's synthetic monitoring)
+    capacity: can the vendor handle the org's peak + projected growth?
+    independent monitoring of the vendor service (not relying on the vendor's status page)
+    SLA-breach + service-credit history
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

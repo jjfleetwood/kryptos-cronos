@@ -2,13 +2,16 @@
 """Read-only MCP server — Third Party Systems: "Integration and interface security" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Third Party Systems policy/standard and flag every item where the "Integration and interface security" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify vendor integrations are authenticated, encrypted, least-privilege, and monitored. PASS: every interface uses strong auth (OAuth/mTLS, not shared static keys) and encryption in transit; the access granted to the vendor is least-privilege + scoped; credentials are rotated; and interfaces are logged + monitored. Exceptions: integrations over plaintext or with shared static API keys, vendor access far broader than needed, non-rotating credentials, and unmonitored interfaces.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the integration and interface security control (from TPRM / GRC platform (Archer/OneTrust))
+    The inventory of integrations/interfaces with each vendor (API, file transfer, VPN/tunnel, SSO federation) + the data crossing each
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: TPRM / GRC platform (Archer/OneTrust), Vendor inventory + contracts, SOC 2 / attestation repository, Integration / API gateway)
+    inventory integrations + the auth/encryption each uses (OAuth/mTLS vs static key; TLS vs plaintext SFTP)
+    the access scope each vendor integration holds (least-privilege?) + credential rotation
+    confirm interface logging → SIEM + anomaly detection
+    test: could the vendor API credential read more than it needs?
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

@@ -2,13 +2,16 @@
 """Read-only MCP server — Third Party Systems: "Subcontractor / nth party risk" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Third Party Systems policy/standard and flag every item where the "Subcontractor / nth party risk" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify risk is managed beyond the direct vendor (nth-party / fourth-party). PASS: critical vendors disclose their sub-processors; contracts flow security/privacy obligations down to sub-processors + require notice of changes; concentration risk across fourth parties is assessed (the shared dependency that affects many vendors at once); and the org can object to new sub-processors. Exceptions: no visibility into sub-processors, no contractual flow-down, an unmanaged shared fourth-party concentration (the systemic-risk pattern), and no notice/objection rights.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the subcontractor / nth party risk control (from TPRM / GRC platform (Archer/OneTrust))
+    The map of each vendor's critical sub-processors / fourth parties (and the data they touch)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: TPRM / GRC platform (Archer/OneTrust), Vendor inventory + contracts, SOC 2 / attestation repository, Integration / API gateway)
+    per critical vendor: its disclosed sub-processors / fourth parties + the data they touch
+    DPA flow-down: are obligations passed to sub-processors + is change-notice required?
+    concentration: is one fourth party (a shared cloud / CDN / auth provider) behind many vendors?
+    the org's notice + objection rights for new sub-processors
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

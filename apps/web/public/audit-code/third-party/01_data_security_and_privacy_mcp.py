@@ -2,13 +2,16 @@
 """Read-only MCP server — Third Party Systems: "Data security and privacy" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Third Party Systems policy/standard and flag every item where the "Data security and privacy" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify vendors holding the org's data protect it to the org's standard. PASS: each vendor has a current data-security attestation (SOC 2 II / ISO 27001) whose scope covers the service used; a DPA defines purpose limitation, sub-processor controls, deletion, and breach notification; data shared is minimized + classified; and high-risk vendors are independently validated. Exceptions: vendors with sensitive data and no/stale attestation, missing or weak DPA, over-sharing of data, and no breach-notification clause.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the data security and privacy control (from TPRM / GRC platform (Archer/OneTrust))
+    The data-flow + data inventory per vendor (what data they receive/process/store, classification, volume)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: TPRM / GRC platform (Archer/OneTrust), Vendor inventory + contracts, SOC 2 / attestation repository, Integration / API gateway)
+    TPRM: per vendor, the data classification received + a current SOC 2 II / ISO cert (scope + date)
+    DPA review: purpose limitation, sub-processors, deletion, breach-notice SLA
+    data-flow map: is data minimized vs what the vendor actually needs?
+    high-risk vendor: independent validation (pen-test summary / evidenced questionnaire)
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

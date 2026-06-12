@@ -2,13 +2,16 @@
 """Read-only MCP server — Third Party Systems: "Post-quantum protection support" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Third Party Systems policy/standard and flag every item where the "Post-quantum protection support" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify critical vendors are on a path to post-quantum-safe cryptography for the org's data. PASS: vendors holding/transmitting long-lived sensitive data are inventoried for their crypto; each critical vendor has a published PQC roadmap (NIST FIPS 203/204) + crypto-agility; HNDL exposure through vendors is assessed; and contracts require PQC support on a timeline. Exceptions: long-lived data protected only by classical crypto at/through vendors, vendors with no PQC roadmap, no HNDL assessment of the vendor data flows, and no contractual PQC-migration requirement.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the post-quantum protection support control (from TPRM / GRC platform (Archer/OneTrust))
+    The inventory of vendors protecting the org's long-lived/sensitive data with cryptography (TLS to the vendor, data-at-rest at the vendor, signed exchanges)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: TPRM / GRC platform (Archer/OneTrust), Vendor inventory + contracts, SOC 2 / attestation repository, Integration / API gateway)
+    inventory vendors holding/transmitting long-lived sensitive data + the crypto they use
+    each critical vendor's published PQC roadmap + crypto-agility commitment
+    HNDL exposure: long-secret org data traversing to / stored at vendors on classical algorithms
+    contractual terms requiring PQC migration on a timeline
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

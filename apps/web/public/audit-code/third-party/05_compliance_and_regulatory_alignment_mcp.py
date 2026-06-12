@@ -2,13 +2,16 @@
 """Read-only MCP server — Third Party Systems: "Compliance and regulatory alignment" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Third Party Systems policy/standard and flag every item where the "Compliance and regulatory alignment" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify vendors meet the regulatory obligations they inherit from the org. PASS: each vendor is mapped to the regulations relevant to the data/service; the vendor holds the required attestations (PCI AOC, HITRUST, FedRAMP, etc.) covering the in-scope service; flow-down regulatory requirements are contractual; and the vendor cooperates with the org's regulatory needs. Exceptions: a vendor in a regulated data flow without the required certification, attestations that don't cover the service used, no flow-down clauses, and vendors that won't support the org's regulatory/audit needs.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the compliance and regulatory alignment control (from TPRM / GRC platform (Archer/OneTrust))
+    The mapping of each vendor to the regulations it must support for the org (GDPR, HIPAA, PCI, SOX, sector rules)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: TPRM / GRC platform (Archer/OneTrust), Vendor inventory + contracts, SOC 2 / attestation repository, Integration / API gateway)
+    map each vendor to the regulations it touches (GDPR / HIPAA / PCI / SOX / sector)
+    verify the vendor holds the required cert covering the in-scope service (e.g. a PCI AOC for a payment processor)
+    contract flow-down: are the org's regulatory obligations passed to the vendor?
+    right-to-audit + regulatory-cooperation clauses
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

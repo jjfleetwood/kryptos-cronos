@@ -2,13 +2,16 @@
 """Read-only MCP server — Third Party Systems: "Change and release mgmt (vendor)" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Third Party Systems policy/standard and flag every item where the "Change and release mgmt (vendor)" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify vendor changes are governed so they don't surprise the org. PASS: contracts require advance notice of material/breaking changes + maintenance windows; the org receives + assesses vendor change notifications and tests them before they affect production; and there's a process for vendor deprecations. Exceptions: no contractual change-notice terms, vendor changes that broke production with no warning, no org-side assessment/testing of vendor changes, and unmanaged API deprecations.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the change and release mgmt (vendor) control (from TPRM / GRC platform (Archer/OneTrust))
+    The vendor's change-notification process + evidence the org is notified of material vendor changes (releases, deprecations, infra changes)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: TPRM / GRC platform (Archer/OneTrust), Vendor inventory + contracts, SOC 2 / attestation repository, Integration / API gateway)
+    confirm contractual advance-notice terms for breaking changes + maintenance windows
+    is the org subscribed to + acting on vendor change notifications / status pages / API-deprecation notices?
+    a process to test vendor changes in a sandbox before prod
+    incidents caused by unannounced vendor changes
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

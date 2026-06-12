@@ -2,13 +2,16 @@
 """Read-only MCP server — Third Party Systems: "Identity federation and authentication" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Third Party Systems policy/standard and flag every item where the "Identity federation and authentication" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify identity + access between the org and vendors is federated, MFA-protected, and deprovisioned. PASS: the org's access to vendor services is via SSO + MFA (local vendor passwords disabled); the vendor's access into the org's environment is least-privilege, JIT, MFA'd, and logged; and access is deprovisioned on leaver/termination in both directions. Exceptions: vendor services with local passwords bypassing SSO/MFA, vendor standing admin into the org's tenant, no MFA on vendor access, and vendor/leaver access not deprovisioned.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the identity federation and authentication control (from TPRM / GRC platform (Archer/OneTrust))
+    The federation config for each vendor (SAML / OIDC SSO) + whether local vendor logins are disabled
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: TPRM / GRC platform (Archer/OneTrust), Vendor inventory + contracts, SOC 2 / attestation repository, Integration / API gateway)
+    confirm vendor apps use SSO + MFA with local logins disabled (the Salesforce-local-login gap)
+    vendor access INTO the org: standing vs JIT, scoped, MFA'd, logged (third-party PAM)
+    deprovisioning: vendor + leaver access removed on offboarding/termination
+    review vendor support/admin access to the org's tenant
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

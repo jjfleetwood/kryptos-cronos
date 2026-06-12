@@ -2,13 +2,16 @@
 """Read-only MCP server — Third Party Systems: "Vendor AI supply chain" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Third Party Systems policy/standard and flag every item where the "Vendor AI supply chain" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify vendor AI use doesn't create hidden data/model risk. PASS: vendors using AI on the org's data are inventoried (incl. AI features added to existing SaaS); contracts prohibit training on the org's data without consent + require AI governance (NIST AI RMF / ISO 42001); the vendor's model supply chain + foundation-model providers are disclosed; and AI-specific risks (data leakage, IP, hallucination liability) are addressed. Exceptions: vendors training on the org's data without consent, AI features enabled with no governance review, an undisclosed model supply chain, and no contractual AI/data-use terms.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the vendor ai supply chain control (from TPRM / GRC platform (Archer/OneTrust))
+    The inventory of vendors using AI/ML in the service (incl. AI features bolted onto existing products) + how the org's data is used (training? inference?)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: TPRM / GRC platform (Archer/OneTrust), Vendor inventory + contracts, SOC 2 / attestation repository, Integration / API gateway)
+    inventory vendors using AI on the org's data (incl. newly-added AI features in existing SaaS)
+    contract / DPA: is training on the org's data prohibited without consent? is AI governance required?
+    the vendor's model supply chain + foundation-model providers (disclosed?)
+    AI-specific terms: data use, IP, transparency, opt-out
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /
